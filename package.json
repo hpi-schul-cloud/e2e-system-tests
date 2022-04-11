@@ -1,0 +1,30 @@
+{
+  "name": "e2e-system-tests",
+  "version": "1.0.0",
+  "description": "e2e testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hpi-schul-cloud/e2e-system-tests.git"
+  },
+  "keywords": [
+    "e2e"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hpi-schul-cloud/e2e-system-tests/issues"
+  },
+  "homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
+  "devDependencies": {
+    "cypress": "^9.5.3",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-file-upload": "^5.0.8"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
+}
