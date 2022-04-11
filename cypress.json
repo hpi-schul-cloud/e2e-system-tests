@@ -1,6 +1,6 @@
 {
     "testFiles": "**/*.feature",
-    "baseUrl": "xxx",
+    "baseUrl": "xxxxxxx url under test",
     "ADMIN_EMAIL": "",
     "ADMIN_PWD": "",
     "TEACHER_EMAIL": "",
