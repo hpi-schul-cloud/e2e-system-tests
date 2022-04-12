@@ -17,3 +17,5 @@ Cypress.Commands.add('expectOldCourseCreationPageAndCreateNewCourse',()=>{
 })
 
 
+
+
