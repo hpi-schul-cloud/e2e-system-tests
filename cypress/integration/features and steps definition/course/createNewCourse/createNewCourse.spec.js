@@ -1,5 +1,3 @@
-import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
-
 
 Given('I am logged in as a teacher',()=>{
     cy.teacherLogin()
