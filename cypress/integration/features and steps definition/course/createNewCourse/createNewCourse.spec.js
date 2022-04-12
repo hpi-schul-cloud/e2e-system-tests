@@ -1,11 +1,11 @@
-//import{Given, When, Then} from "cypress-cucumber-preprocessor/steps"
+import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 
 
 Given('I am logged in as a teacher',()=>{
     cy.teacherLogin()
 })
 
-When('I visit the room overview',()=>{
+When('I visit the rooms overview',()=>{
     cy.visitRoomOverview()
 })
 

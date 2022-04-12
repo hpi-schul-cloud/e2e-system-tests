@@ -1,5 +1,6 @@
 {
-    "testFiles": "**/*.{feature,features}",
+    
+    "testFiles": "**/*.feature",
     "baseUrl": "https://brb-main.cd.dbildungscloud.dev",
     "ADMIN_EMAIL": "",
     "ADMIN_PWD": "",
