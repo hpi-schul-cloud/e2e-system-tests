@@ -1,12 +1,16 @@
 {
+    
     "testFiles": "**/*.feature",
-    "baseUrl": "xxx",
+    "baseUrl": "-----",
     "ADMIN_EMAIL": "",
     "ADMIN_PWD": "",
-    "TEACHER_EMAIL": "",
+    "TEACHER_EMAIL": "'",
     "TEACHER_PWD": "",
     "SUBTEACHER_EMAIL": "",
     "SUBTEACHER_PWD": "",
     "STUDENT_EMAIL": "",
     "STUDENT_PWD": ""
+    
+    
+
 }
