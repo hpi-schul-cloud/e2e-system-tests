@@ -8,5 +8,5 @@ When('I am in the rooms overview', () => {
 })
 
 Then('I should be able to delete the test room', () => {
-    
+    cy.deleteTestRoom()
 })
