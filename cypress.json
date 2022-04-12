@@ -1,8 +1,8 @@
 {
     
     "testFiles": "**/*.feature",
-    "baseUrl": "-----",
-    "ADMIN_EMAIL": "",
+    "baseUrl": "while running locally use main dev cluster for example",
+    "ADMIN_EMAIL": "", 
     "ADMIN_PWD": "",
     "TEACHER_EMAIL": "'",
     "TEACHER_PWD": "",
