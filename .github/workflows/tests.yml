@@ -10,6 +10,6 @@ jobs:
        uses: actions/checkout@v2
      - name: npm ci
        run: npm ci --prefer-offline --no-audit
-     - name: Cypress run
+     - name: e2e tests
        run: npm run cy:run
 
