@@ -1,7 +1,7 @@
 {
     
     "testFiles": "**/*.feature",
-    "baseUrl": "while running locally use main dev cluster for example",
+    "baseUrl": "https://brb-main.cd.dbildungscloud.dev",
     "ADMIN_EMAIL": "", 
     "ADMIN_PWD": "",
     "TEACHER_EMAIL": "'",
