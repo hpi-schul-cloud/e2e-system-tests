@@ -4,7 +4,6 @@
   "description": "e2e testing",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "cy:run": "cypress run",
     "cy:open": "cypress open"
   },
@@ -22,10 +21,15 @@
   },
   "homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
   "devDependencies": {
+    "as-a": "^2.2.0",
     "cypress": "^9.5.3",
     "cypress-cucumber-preprocessor": "^4.3.1",
-    "cypress-file-upload": "^5.0.8"
+    "cypress-file-upload": "^5.0.8",
+    "extsprintf": "^1.4.1"
   },
-  "cypress-cucumber-preprocessor": { "nonGlobalStepDefinitions": true }
- 
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "commonPath": "cypress/support/step_definitions",
+    "stepDefinitions": "cypress/support/step_definitions"
+  }
 }

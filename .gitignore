@@ -1,19 +1,16 @@
+#############################
+# Node modules, logs
+#############################
 node_modules
-.tmp
-.sass-cache
-.DS_Store
 npm-debug.log
-tmp
-.projects
-*.orig
+
+#############################
+# Screenshots, Videos & logs
+#############################
 screenshots
 videos
-out.js
-examples/*/cypress/logs
-examples/*/cypress/downloads
-snapshots.js
-.nyc_output
-coverage
-dist
-test-data.json
-examples/stubbing-spying__intercept/users5.json
+
+#############################
+# Env files
+#############################
+.as-a.ini

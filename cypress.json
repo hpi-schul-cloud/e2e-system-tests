@@ -1,16 +1,4 @@
 {
-    
-    "testFiles": "**/*.feature",
-    "baseUrl": "while running locally use main dev cluster for example",
-    "ADMIN_EMAIL": "", 
-    "ADMIN_PWD": "",
-    "TEACHER_EMAIL": "'",
-    "TEACHER_PWD": "",
-    "SUBTEACHER_EMAIL": "",
-    "SUBTEACHER_PWD": "",
-    "STUDENT_EMAIL": "",
-    "STUDENT_PWD": ""
-    
-    
-
+  "testFiles": "**/*.feature",
+  "baseUrl": "https://default-main.cd.dbildungscloud.dev/login"
 }
