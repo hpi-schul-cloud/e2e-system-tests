@@ -1,16 +1,19 @@
 {
     
     "testFiles": "**/*.feature",
-    "baseUrl": "while running locally use main dev cluster for example",
-    "ADMIN_EMAIL": "", 
-    "ADMIN_PWD": "",
-    "TEACHER_EMAIL": "'",
-    "TEACHER_PWD": "",
-    "SUBTEACHER_EMAIL": "",
-    "SUBTEACHER_PWD": "",
-    "STUDENT_EMAIL": "",
-    "STUDENT_PWD": ""
     
-    
-
+    "env": {
+    "BRB_loginPage": "https://staging.brandenburg.dbildungscloud.org/",  
+    "NBC_loginPage": " ",
+    "INT_loginPage": "https://staging.international.dbildungscloud.org/",
+    "Default_loginPage": " ",
+    "teacher_email": "lehrer@schul-cloud.org ",
+    "teacher_pwd": "Schulcloud1!",
+    "sub_teacher_email": " ",
+    "sub_teacher_pwd":" ",
+    "student_email": " ",
+    "student_pwd:":" ",
+    "admin_email":" ",
+    "admin_pwd":" "
+    }
 }

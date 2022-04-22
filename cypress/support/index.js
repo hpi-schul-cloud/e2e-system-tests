@@ -15,10 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import './customCommands/commonLogins/logins'
-import './customCommands/course/createNewCourse'
-import './customCommands/topicAndTask/createNewTopicAndTask'
-import './customCommands/course/deleteCourse'
+
 
 
 // Alternatively you can use CommonJS syntax:
