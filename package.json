@@ -24,12 +24,12 @@
   "devDependencies": {
     "cypress": "^9.5.3",
     "cypress-cucumber-preprocessor": "^4.3.1",
-    "cypress-file-upload": "^5.0.8"
+    "cypress-file-upload": "^5.0.8",
+    "as-a": "^2.2.0"
   },
-  "cypress-cucumber-preprocessor": { 
+  "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
-    "commonPath": "cypress/support/stepDefinition",
-    "stepDefinitions": "cypress/support/stepDefinition"
-   }
- 
+    "commonPath": "cypress/support/step-definition",
+    "stepDefinitions": "cypress/support/step-definition"
+  }
 }
