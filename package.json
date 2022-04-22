@@ -26,6 +26,10 @@
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-file-upload": "^5.0.8"
   },
-  "cypress-cucumber-preprocessor": { "nonGlobalStepDefinitions": true }
+  "cypress-cucumber-preprocessor": { 
+    "nonGlobalStepDefinitions": false,
+    "commonPath": "cypress/support/stepDefinition",
+    "stepDefinitions": "cypress/support/stepDefinition"
+   }
  
 }
