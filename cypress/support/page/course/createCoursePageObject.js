@@ -15,7 +15,7 @@ class Create_Course{
     }
 
     clickOnCreateFAB(){
-        cy.get(thid.createFAB).click()
+        cy.get(this.createFAB).click()
     }
 
     fillCourseCreationForm(){
