@@ -3,7 +3,7 @@
     "testFiles": "**/*.feature",
     
     "env": {
-    "BRB_loginPage": "https://staging.brandenburg.dbildungscloud.org/",  
+    "BRB_loginPage": "https://staging.brandenburg.dbildungscloud.org/", 
     "NBC_loginPage": " ",
     "INT_loginPage": "https://staging.international.dbildungscloud.org/",
     "Default_loginPage": " ",
