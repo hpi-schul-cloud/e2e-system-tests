@@ -45,3 +45,4 @@ on('file:preprocessor', cucumber())
  "nonGlobalStepDefinitions": true
 }
 ```
+## To manage application ULRs/test data we can use .env file approach as of now.
