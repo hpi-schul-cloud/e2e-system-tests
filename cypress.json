@@ -1,12 +1,13 @@
 {
     "testFiles": "**/*.feature",
+
     "viewportWidth": 1024,
     "viewportHeight": 768,
     "env": {
         "BRB_loginPage": "https://staging.brandenburg.dbildungscloud.org/",
-        "NBC_loginPage": " ",
+        "NBC_loginPage": "https://staging.niedersachsen.dbildungscloud.org/",
         "INT_loginPage": "https://staging.international.dbildungscloud.org/",
-        "Default_loginPage": " ",
+        "Default_loginPage": "https://default-main.cd.dbildungscloud.dev/",
         "teacher_email": "lehrer@schul-cloud.org ",
         "teacher_pwd": "Schulcloud1!",
         "sub_teacher_email": " ",
