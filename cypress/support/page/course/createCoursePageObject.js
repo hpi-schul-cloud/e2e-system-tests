@@ -1,21 +1,14 @@
 class Create_Course{
 
-    courseOverviewnavigationButton='[data-testid="Course-Overview"]'
     createFAB='[name="fab-icon"]'
     courseTitle='[data-testid="coursename"]'
     nextButton='[id="nextSection"]'
-    nextContinueButton='[data-submit-label="Create course and continue"]'
+    nextContinueButton='[data-submit-label="Kurs anlegen und Weiter"]'
     goToCourseOverviewButton='[data-testid="zur-uebersicht-btn"]'
 
 
-    goToRoomOverview(){
-        cy.get(this.courseOverviewnavigationButton).click()
-        cy.url().should('include','/rooms-overview/')
-
-    }
-
     clickOnCreateFAB(){
-        cy.get(thid.createFAB).click()
+        cy.get(this.createFAB).click()
     }
 
     fillCourseCreationForm(){
