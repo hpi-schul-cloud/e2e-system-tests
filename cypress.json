@@ -1,19 +1,19 @@
 {
-    
     "testFiles": "**/*.feature",
-    
+    "viewportWidth": 1024,
+    "viewportHeight": 768,
     "env": {
-    "BRB_loginPage": "https://staging.brandenburg.dbildungscloud.org/", 
-    "NBC_loginPage": " ",
-    "INT_loginPage": "https://staging.international.dbildungscloud.org/",
-    "Default_loginPage": " ",
-    "teacher_email": "lehrer@schul-cloud.org ",
-    "teacher_pwd": "Schulcloud1!",
-    "sub_teacher_email": " ",
-    "sub_teacher_pwd":" ",
-    "student_email": " ",
-    "student_pwd:":" ",
-    "admin_email":" ",
-    "admin_pwd":" "
+        "BRB_loginPage": "https://staging.brandenburg.dbildungscloud.org/",
+        "NBC_loginPage": " ",
+        "INT_loginPage": "https://staging.international.dbildungscloud.org/",
+        "Default_loginPage": " ",
+        "teacher_email": "lehrer@schul-cloud.org ",
+        "teacher_pwd": "Schulcloud1!",
+        "sub_teacher_email": " ",
+        "sub_teacher_pwd": " ",
+        "student_email": " ",
+        "student_pwd:": " ",
+        "admin_email": " ",
+        "admin_pwd": " "
     }
 }

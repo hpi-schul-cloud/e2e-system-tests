@@ -28,7 +28,6 @@
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions":false,
-    "commonPath": "cypress/support/step_definition/",
     "stepDefinitions": "cypress/support/step_definition/"
     
   }

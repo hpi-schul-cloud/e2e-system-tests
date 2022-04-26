@@ -1,6 +1,6 @@
-import Commom_Logins from '../../../page/common_logins/loginsPageObject'
+import Commom_Logins from '../../../page/common/logins'
 import Delete_Course from '../../../page/course/deleteCoursePageObject'
-import Create_Course from '../../../page/course/createCoursePageObject'
+import Room_Overview from '../../../page/common/goToRoomOverview'
 
 
 Given('I am logged in as a teacher', () => {
@@ -8,16 +8,17 @@ Given('I am logged in as a teacher', () => {
     loginAsTeacher.brbTeacherLogin()
 })
 
-When('I am in the rooms overview and select the course', () => {
-    const selectCourseToDelete= new Delete_Course()
-    const courseNavigation = new  Create_Course()
-    courseNavigation.goToRoomOverview()
-    selectCourseToDelete.slectTheCourse()
+When('I am in the rooms overview', () => {
+    const navigateToRoomOverview = new Room_Overview()
+    navigateToRoomOverview.goToRoomOverview()
+})
 
-    
+And('select the room to be deleted', () => {
+    const selectCourseToDelete = new Delete_Course()
+    selectCourseToDelete.selectTheRoom()
 })
 
 Then('I should be able to delete the test room', () => {
-    const deleteSelectedCourse= new Delete_Course()
+    const deleteSelectedCourse = new Delete_Course()
     deleteSelectedCourse.performDeletion()
 })

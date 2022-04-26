@@ -5,4 +5,7 @@ Feature: To add a new course by the teacher
 Scenario: Adding a new course
         Given I am logged in as a teacher
         When I visit the rooms overview
-        Then I am able to create a course in the old course creation page
+        And I click on FAB to create the course
+        And I fill out the course creation form
+        And I click on next steps
+        Then I am created a course visible on the room overview page
