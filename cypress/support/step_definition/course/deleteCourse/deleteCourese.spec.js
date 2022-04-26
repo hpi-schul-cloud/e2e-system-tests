@@ -1,10 +1,10 @@
-import Commom_Logins from '../../../page/common/logins'
+import Common_Logins from '../../../page/common/logins'
 import Delete_Course from '../../../page/course/deleteCoursePageObject'
 import Room_Overview from '../../../page/common/goToRoomOverview'
 
 
 Given('I am logged in as a teacher', () => {
-    const loginAsTeacher = new Commom_Logins()
+    const loginAsTeacher = new Common_Logins()
     loginAsTeacher.brbTeacherLogin()
 })
 

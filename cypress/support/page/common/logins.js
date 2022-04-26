@@ -1,4 +1,4 @@
-class Commom_Logins{
+class Common_Logins{
 
     emailInputFieldElement='[data-testid="username"]'
     passwordInputFieldElement='[data-testid="password"]'
@@ -12,15 +12,15 @@ class Commom_Logins{
     }
 
     brbStudentLogin(){
-        
+
     }
 
     brbAdminLogin(){
-        
+
     }
 
 }
-export default Commom_Logins
+export default Common_Logins
 
 
 

@@ -1,4 +1,4 @@
-class Delele_Course {
+class Delete_Course {
     threeDotButton = '[type="button"]'
     editOption = '[class="btn btn-sm dropdown-toggle btn-course-dropdown"]'
     selectOption= '[class="dropdown-item btn-course-edit"]'
@@ -7,7 +7,6 @@ class Delele_Course {
 
     selectTheRoom() {
         cy.get('[aria-label="Kurs unique test course name"]').click()
-            
     }
 
     performDeletion() {
@@ -16,8 +15,6 @@ class Delele_Course {
         cy.get(this.selectOption).click()
         cy.get(this.deleteButton).click()
         cy.get(this.confirmDeletionPopup).click({ force: true })
-
     }
-
 }
-export default Delele_Course
+export default Delete_Course
