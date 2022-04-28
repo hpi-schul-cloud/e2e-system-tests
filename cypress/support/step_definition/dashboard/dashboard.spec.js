@@ -1,11 +1,6 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 import Dashboard from '../../page/common/dashboard'
 
-When('I arrive on the dashboard', () => {
-    const selectDashboard = new Dashboard()
-    selectDashboard.arriveAtDashboard()
-})
-
 Then('I can see the welcome message', () => {
     const selectDashboard = new Dashboard()
     selectDashboard.seeWelcomeMessage()
