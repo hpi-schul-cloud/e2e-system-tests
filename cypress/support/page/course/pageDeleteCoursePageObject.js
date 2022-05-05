@@ -1,13 +1,18 @@
 class Delele_Course {
-    threeDotButton = '[type="button"]'
-    editOption = '[class="btn btn-sm dropdown-toggle btn-course-dropdown"]'
-    selectOption= '[class="dropdown-item btn-course-edit"]'
-    deleteButton = '[data-method="DELETE"]'
-    confirmDeletionPopup = '.btn-primary:nth-child(3)'
+
+    constructor() {
+        this.threeDotButton = '[type="button"]'
+        this.editOption = '[class="btn btn-sm dropdown-toggle btn-course-dropdown"]'
+        this.selectOption = '[class="dropdown-item btn-course-edit"]'
+        this.deleteButton = '[data-method="DELETE"]'
+        this.confirmDeletionPopup = '.btn-primary:nth-child(3)'
+
+
+    }
 
     selectTheRoom() {
         cy.get('[aria-label="Kurs unique test course name"]').click()
-            
+
     }
 
     performDeletion() {

@@ -1,37 +1,36 @@
 
-import Commom_Logins from '../../../page/common/logins'
-import Create_Course from '../../../page/course/createCoursePageObject'
-import Room_Overview from '../../../page/common/goToRoomOverview'
+import Commom_Logins from '../../../page/common/pageLogins'
+import Create_Course from '../../../page/course/pageCreateCoursePageObject'
+import Room_Overview from '../../../page/common/pageGoToRoomOverview'
+
+const commonLogin = new Commom_Logins()
+const roomOverview = new Room_Overview()
+const createCourse = new Create_Course()
+
 
 Given('I am logged in as a teacher', () => {
-    const loginAsTeacher = new Commom_Logins()
-    loginAsTeacher.brbTeacherLogin()
+    commonLogin.loginAsBrbTeacher()
 })
 
 When('I visit the rooms overview', () => {
-    const roomOverviewVisit = new Room_Overview()
-    roomOverviewVisit.goToRoomOverview()
+    roomOverview.goToRoomOverview()
 
 })
 
 And('I click on FAB to create the course', () => {
-    const createCourse = new Create_Course()
     createCourse.clickOnCreateFAB()
 })
 
 And('I fill out the course creation form', () => {
-    const fillUpForm = new Create_Course()
-    fillUpForm.fillCourseCreationForm()
+    createCourse.fillCourseCreationForm()
 })
 
 And('I click on next steps', () => {
-    const nextStep = new Create_Course()
-    nextStep.clickOnNextSteps()
+    createCourse.clickOnNextSteps()
 })
 
 Then('I am created a course visible on the room overview page', () => {
-    const courseCreation = new Create_Course()
-    courseCreation.courseIsCreatedAndVisibleOnOverviewPage()
+    createCourse.createdCourseIsVisibleOnOverviewPage()
 })
 
 
