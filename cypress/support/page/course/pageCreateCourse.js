@@ -28,4 +28,3 @@ class Create_Course {
     }
 }
 export default Create_Course
-

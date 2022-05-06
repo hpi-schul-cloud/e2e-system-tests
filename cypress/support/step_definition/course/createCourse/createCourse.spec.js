@@ -1,4 +1,3 @@
-
 import Common_Logins from '../../../page/common/pageLogins'
 import Create_Course from '../../../page/course/pageCreateCourse'
 import Navigation from '../../../page/common/pageNavigation'
@@ -6,7 +5,6 @@ import Navigation from '../../../page/common/pageNavigation'
 const commonLogin = new Common_Logins()
 const navigation = new Navigation()
 const createCourse = new Create_Course()
-
 
 Given('I am logged in as a teacher', () => {
     commonLogin.loginAsBrbTeacher()
