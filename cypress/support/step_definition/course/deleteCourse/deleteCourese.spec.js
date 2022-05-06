@@ -1,5 +1,5 @@
 import Common_Logins from '../../../page/common/pageLogins'
-import Delete_Course from '../../../page/course/pageDeleteCoursePageObject'
+import Delete_Course from '../../../page/course/pageDeleteCourse'
 import Navigation from '../../../page/common/pageNavigation'
 
 const commonLogin = new Common_Logins()
