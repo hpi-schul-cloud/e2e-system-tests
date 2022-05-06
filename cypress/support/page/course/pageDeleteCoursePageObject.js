@@ -1,4 +1,4 @@
-class Delele_Course {
+class Delete_Course {
 
     constructor() {
         this.threeDotButton = '[type="button"]'
@@ -25,4 +25,4 @@ class Delele_Course {
     }
 
 }
-export default Delele_Course
+export default Delete_Course

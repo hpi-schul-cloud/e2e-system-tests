@@ -29,7 +29,7 @@ And('I click on next steps', () => {
     createCourse.clickOnNextSteps()
 })
 
-Then('I am created a course visible on the room overview page', () => {
+Then('I see the created course on the room overview page', () => {
     createCourse.createdCourseIsVisibleOnOverviewPage()
 })
 
