@@ -1,30 +1,27 @@
 class Create_Course {
+  static #createFAB = '[name="fab-icon"]'
+  static #courseTitle = '[data-testid="coursename"]'
+  static #nextButton = '[id="nextSection"]'
+  static #nextContinueButton = '[data-submit-label="Kurs anlegen und Weiter"]'
+  static #goToCourseOverviewButton = '[data-testid="zur-uebersicht-btn"]'
 
-    constructor() {
-        this.createFAB = '[name="fab-icon"]'
-        this.courseTitle = '[data-testid="coursename"]'
-        this.nextButton = '[id="nextSection"]'
-        this.nextContinueButton = '[data-submit-label="Kurs anlegen und Weiter"]'
-        this.goToCourseOverviewButton = '[data-testid="zur-uebersicht-btn"]'
-    }
+  clickOnCreateFAB () {
+    cy.get(Create_Course.#createFAB).click()
+  }
 
-    clickOnCreateFAB() {
-        cy.get(this.createFAB).click()
-    }
+  fillCourseCreationForm () {
+    cy.get(Create_Course.#courseTitle).type('unique test course name')
+  }
 
-    fillCourseCreationForm() {
-        cy.get(this.courseTitle).type('unique test course name')
-    }
+  clickOnNextSteps () {
+    cy.get(Create_Course.#nextButton).click()
+    cy.get(Create_Course.#nextContinueButton).click()
+    cy.get(Create_Course.#goToCourseOverviewButton).click()
+  }
 
-    clickOnNextSteps() {
-        cy.get(this.nextButton).click()
-        cy.get(this.nextContinueButton).click()
-        cy.get(this.goToCourseOverviewButton).click()
-    }
-
-    createdCourseIsVisibleOnOverviewPage() {
-        cy.url().should('include', '/rooms-overview')
-        cy.contains('test course name')
-    }
+  createdCourseIsVisibleOnOverviewPage () {
+    cy.url().should('include', '/rooms-overview')
+    cy.contains('test course name')
+  }
 }
 export default Create_Course
