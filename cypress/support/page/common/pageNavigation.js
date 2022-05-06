@@ -1,6 +1,9 @@
-class Room_Overview {
+class Navigation {
 
-    courseOverviewnavigationButton = '[data-testid="Course-Overview"]'
+    constructor() {
+        this.courseOverviewnavigationButton = '[data-testid="Course-Overview"]'
+    }
+
     goToRoomOverview() {
         cy.get(this.courseOverviewnavigationButton).click()
         cy.url().should('include', '/rooms-overview/')
@@ -8,7 +11,7 @@ class Room_Overview {
     }
 
 }
-export default Room_Overview 
+export default Navigation
 
 
 
