@@ -6,7 +6,6 @@ class Create_Course {
         this.nextButton = '[id="nextSection"]'
         this.nextContinueButton = '[data-submit-label="Kurs anlegen und Weiter"]'
         this.goToCourseOverviewButton = '[data-testid="zur-uebersicht-btn"]'
-
     }
 
     clickOnCreateFAB() {
@@ -15,7 +14,6 @@ class Create_Course {
 
     fillCourseCreationForm() {
         cy.get(this.courseTitle).type('unique test course name')
-
     }
 
     clickOnNextSteps() {
@@ -27,7 +25,6 @@ class Create_Course {
     createdCourseIsVisibleOnOverviewPage() {
         cy.url().should('include', '/rooms-overview')
         cy.contains('test course name')
-
     }
 }
 export default Create_Course

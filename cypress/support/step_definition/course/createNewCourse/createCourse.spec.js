@@ -1,10 +1,10 @@
 
-import Commom_Logins from '../../../page/common/pageLogins'
-import Create_Course from '../../../page/course/pageCreateCoursePageObject'
-import Room_Overview from '../../../page/common/pageGoToRoomOverview'
+import Common_Logins from '../../../page/common/pageLogins'
+import Create_Course from '../../../page/course/pageCreateCourse'
+import Navigation from '../../../page/common/pageNavigation'
 
-const commonLogin = new Commom_Logins()
-const roomOverview = new Room_Overview()
+const commonLogin = new Common_Logins()
+const navigation = new Navigation()
 const createCourse = new Create_Course()
 
 
@@ -13,8 +13,7 @@ Given('I am logged in as a teacher', () => {
 })
 
 When('I visit the rooms overview', () => {
-    roomOverview.goToRoomOverview()
-
+    navigation.goToRoomOverview()
 })
 
 And('I click on FAB to create the course', () => {
@@ -32,6 +31,3 @@ And('I click on next steps', () => {
 Then('I see the created course on the room overview page', () => {
     createCourse.createdCourseIsVisibleOnOverviewPage()
 })
-
-
-

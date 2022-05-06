@@ -6,13 +6,10 @@ class Delete_Course {
         this.selectOption = '[class="dropdown-item btn-course-edit"]'
         this.deleteButton = '[data-method="DELETE"]'
         this.confirmDeletionPopup = '.btn-primary:nth-child(3)'
-
-
     }
 
     selectTheRoom() {
         cy.get('[aria-label="Kurs unique test course name"]').click()
-
     }
 
     performDeletion() {
@@ -21,8 +18,6 @@ class Delete_Course {
         cy.get(this.selectOption).click()
         cy.get(this.deleteButton).click()
         cy.get(this.confirmDeletionPopup).click({ force: true })
-
     }
-
 }
 export default Delete_Course

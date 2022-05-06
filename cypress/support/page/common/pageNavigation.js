@@ -1,4 +1,4 @@
-class Room_Overview {
+class Navigation {
 
     constructor() {
         this.courseOverviewnavigationButton = '[data-testid="Course-Overview"]'
@@ -11,7 +11,7 @@ class Room_Overview {
     }
 
 }
-export default Room_Overview
+export default Navigation
 
 
 
