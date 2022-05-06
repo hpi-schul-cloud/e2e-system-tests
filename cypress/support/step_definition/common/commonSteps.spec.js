@@ -6,6 +6,11 @@ Given('I am logged in as a teacher', () => {
     loginAsTeacher.brbTeacherLogin()
 })
 
+Given('I am logged in as an admin', () => {
+    const loginAsAdmin = new Common_Logins()
+    loginAsAdmin.brbAdminLogin()
+})
+
 When('I arrive on the dashboard', () => {
     const selectDashboard = new Dashboard()
     selectDashboard.arriveAtDashboard()

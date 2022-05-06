@@ -1,8 +1,11 @@
 class Read_News {
-  newsTitleOnDashboard = '[data-testid="title_of_an_element"]';
-  teamNewsTag = '#main-content div.tag.tag-default'
-  newsTitle = '[id="page-title"]';
-  newsText = "#main-content > div.ckcontent";
+
+  constructor() {
+    newsTitleOnDashboard = '[data-testid="title_of_an_element"]';
+    teamNewsTag = '#main-content div.tag.tag-default'
+    newsTitle = '[id="page-title"]';
+    newsText = "#main-content > div.ckcontent";
+  }
 
   goToNewsOnDashboard() {
     cy.get(this.newsTitleOnDashboard).eq(2).click();

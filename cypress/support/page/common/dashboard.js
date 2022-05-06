@@ -1,8 +1,11 @@
 class Dashboard {
-  welcomeMessage = '[data-testid="welcome-section"]';
-  dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
-  dashboardTaskCourseName = '[data-testid="task-course-name"]';
-  dashboardTaskName = '[data-testid="task-name"]';
+
+  constructor() {
+    welcomeMessage = '[data-testid="welcome-section"]';
+    dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
+    dashboardTaskCourseName = '[data-testid="task-course-name"]';
+    dashboardTaskName = '[data-testid="task-name"]';
+  }
 
   arriveAtDashboard() {
     cy.url().should("include", "/dashboard");

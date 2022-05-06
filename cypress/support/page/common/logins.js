@@ -1,8 +1,9 @@
 class Common_Logins{
 
-    emailInputFieldElement='[data-testid="username"]'
-    passwordInputFieldElement='[data-testid="password"]'
-    submitButton='[data-testid="submit-login"]'
+    emailInputFieldElement = '[data-testid="username"]'
+    passwordInputFieldElement = '[data-testid="password"]'
+    submitButton = '[data-testid="submit-login"]'
+    nbcLoginWithEmail ='[data-testid="submit-cloud-site"]'
 
     brbTeacherLogin(){
     cy.visit(Cypress.env("BRB_loginPage"))
@@ -16,7 +17,18 @@ class Common_Logins{
     }
 
     brbAdminLogin(){
+    cy.visit(Cypress.env("BRB_loginPage"))
+    cy.get(this.emailInputFieldElement).eq(1).type(Cypress.env("admin_email"))
+    cy.get(this.passwordInputFieldElement).eq(1).type(Cypress.env("teacher_pwd"))
+    cy.get(this.submitButton).eq(1).click()
+    }
 
+    nbcAdminLogin(){
+    cy.visit(Cypress.env("NBC_loginPage"))
+    cy.get(this.nbcLoginWithEmail).eq(1).click()
+    cy.get(this.emailInputFieldElement).eq(1).type(Cypress.env("admin_email"))
+    cy.get(this.passwordInputFieldElement).eq(1).type(Cypress.env("teacher_pwd"))
+    cy.get(this.submitButton).eq(1).click()
     }
 
 }

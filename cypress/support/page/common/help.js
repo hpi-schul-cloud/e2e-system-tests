@@ -1,18 +1,21 @@
 class Help {
-  questionIcon = '.fa-question';
-  helpSectionInHeader = '[data-testid="Hilfeartikel"]';
-  sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]';
-  advancedTrainingsInHeader = '[data-testid="Fortbildung"]';
-  helpSectionInSidebar = '[data-testid="Hilfebereich"]';
-  helpArticlesInSidebar = '[data-testid="Hilfeartikel"]';
-  helpContactInSidebar = '[data-testid="Kontakt"]';
-  advancedTrainingsInSidebar = '[data-testid="Fortbildungen"]';
-  helpPageTitle = '[id="page-title"]';
-  helpFirstSteps = '#erste_schritte > .icon-card__content > .h4';
-  helpLessons = '[id="Unterricht"]';
-  helpOrganization = '[id="Organisation"]';
-  helpNutzungshilfen = '[id="nutzungshilfen"]';
-  helpContactform = 'h2.h4';
+
+  constructor() {
+    questionIcon = '.fa-question';
+    helpSectionInHeader = '[data-testid="Hilfeartikel"]';
+    sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]';
+    advancedTrainingsInHeader = '[data-testid="Fortbildung"]';
+    helpSectionInSidebar = '[data-testid="Hilfebereich"]';
+    helpArticlesInSidebar = '[data-testid="Hilfeartikel"]';
+    helpContactInSidebar = '[data-testid="Kontakt"]';
+    advancedTrainingsInSidebar = '[data-testid="Fortbildungen"]';
+    helpPageTitle = '[id="page-title"]';
+    helpFirstSteps = '#erste_schritte > .icon-card__content > .h4';
+    helpLessons = '[id="Unterricht"]';
+    helpOrganization = '[id="Organisation"]';
+    helpNutzungshilfen = '[id="nutzungshilfen"]';
+    helpContactform = 'h2.h4';
+  }
 
   clickQuestionIcon() {
     cy.get(this.questionIcon).click();
