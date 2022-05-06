@@ -23,6 +23,6 @@
         "default_password": "Schulcloud1!"
       }
     },
-    "experimentalSessionAndOrigin": "true"
+    "experimentalSessionAndOrigin": true
   }
 }
