@@ -1,17 +1,24 @@
-import Delete_Course from '../../../page/course/deleteCoursePageObject'
-import Room_Overview from '../../../page/common/goToRoomOverview'
+import Common_Logins from '../../../page/common/pageLogins'
+import Delete_Course from '../../../page/course/pageDeleteCourse'
+import Navigation from '../../../page/common/pageNavigation'
+
+const commonLogin = new Common_Logins()
+const navigation = new Navigation()
+const deleteCourse = new Delete_Course()
+
+
+Given('I am logged in as a teacher', () => {
+    commonLogin.loginAsBrbTeacher()
+})
 
 When('I am in the rooms overview', () => {
-    const navigateToRoomOverview = new Room_Overview()
-    navigateToRoomOverview.goToRoomOverview()
+    navigation.goToRoomOverview()
 })
 
 And('select the room to be deleted', () => {
-    const selectCourseToDelete = new Delete_Course()
-    selectCourseToDelete.selectTheRoom()
+    deleteCourse.selectTheRoom()
 })
 
 Then('I should be able to delete the test room', () => {
-    const deleteSelectedCourse = new Delete_Course()
-    deleteSelectedCourse.performDeletion()
+    deleteCourse.performDeletion()
 })

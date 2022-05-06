@@ -1,27 +1,31 @@
-import Create_Course from '../../../page/course/createCoursePageObject'
-import Room_Overview from '../../../page/common/goToRoomOverview'
+import Common_Logins from '../../../page/common/pageLogins'
+import Create_Course from '../../../page/course/pageCreateCourse'
+import Navigation from '../../../page/common/pageNavigation'
+
+const commonLogin = new Common_Logins()
+const navigation = new Navigation()
+const createCourse = new Create_Course()
+
+Given('I am logged in as a teacher', () => {
+    commonLogin.loginAsBrbTeacher()
+})
 
 When('I visit the rooms overview', () => {
-    const roomOverviewVisit = new Room_Overview()
-    roomOverviewVisit.goToRoomOverview()
+    navigation.goToRoomOverview()
 })
 
 And('I click on FAB to create the course', () => {
-    const createCourse = new Create_Course()
     createCourse.clickOnCreateFAB()
 })
 
 And('I fill out the course creation form', () => {
-    const fillUpForm = new Create_Course()
-    fillUpForm.fillCourseCreationForm()
+    createCourse.fillCourseCreationForm()
 })
 
 And('I click on next steps', () => {
-    const nextStep = new Create_Course()
-    nextStep.clickOnNextSteps()
+    createCourse.clickOnNextSteps()
 })
 
-Then('I am created a course visible on the room overview page', () => {
-    const courseCreation = new Create_Course()
-    courseCreation.courseIsCreatedAndVisibleOnOverviewPage()
+Then('I see the created course on the room overview page', () => {
+    createCourse.createdCourseIsVisibleOnOverviewPage()
 })

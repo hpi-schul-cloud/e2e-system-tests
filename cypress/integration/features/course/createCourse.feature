@@ -8,4 +8,4 @@ Scenario: Adding a new course
         And I click on FAB to create the course
         And I fill out the course creation form
         And I click on next steps
-        Then I am created a course visible on the room overview page
+        Then I see the created course on the room overview page
