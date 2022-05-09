@@ -14,8 +14,8 @@ jobs:
        run: npm run cy:run
 
      - name: 'Upload Artifact'
-    uses: actions/upload-artifact@v2
-    with:
-      name: my-artifact
-      path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos
-      retention-days: 3
+       uses: actions/upload-artifact@v2
+       with:
+         name: my-artifact
+         path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos
+         retention-days: 3
