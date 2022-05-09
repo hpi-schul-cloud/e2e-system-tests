@@ -9,7 +9,7 @@ class Delete_Course {
     }
 
     selectTheRoom() {
-        cy.get('[aria-label="Kurs unique test course name"]').click()
+        cy.get('[aria-label="Kurs unique test course name"]').eq(1).click()
     }
 
     performDeletion() {
