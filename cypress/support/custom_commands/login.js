@@ -6,8 +6,9 @@ const submitButton = '[data-testid="submit-login"]'
 
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
-    const links = Cypress.env('links')
-    const link = links[environment]
+    const links = Cypress.env('themes')
+    let environmentUpperCased = environment.toUpperCase()
+    const link = links[environmentUpperCased]
     Cypress.config('baseUrl', link)
 
     cy.visit(link)
@@ -15,20 +16,20 @@ Cypress.Commands.add('login', (username, environment) => {
     const users = Cypress.env('users')
     const user = users[username]
 
-    const password = users.password.default_password
+    const password = users.password.DEFAULT_PASSWORD
 
     if (user === 'teacher') {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .type(user.email)
+        .type(user.EMAIL)
     } else if (user === 'student') {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .type(user.email)
+        .type(user.EMAIL)
     } else {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .type(user.email)
+        .type(user.EMAIL)
     }
 
     cy.get(passwordInputFieldElement)

@@ -1,5 +1,5 @@
-import Delete_Course from '../../../page/course/pageDeleteCourse'
-import Navigation from '../../../page/common/pageNavigation'
+import Delete_Course from '../../../pages/course/pageDeleteCourse'
+import Navigation from '../../../pages/common/pageNavigation'
 
 const navigation = new Navigation()
 const deleteCourse = new Delete_Course()

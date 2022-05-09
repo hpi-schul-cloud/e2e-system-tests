@@ -1,3 +1,5 @@
+'use strict'
+
 class Delete_Course {
   static #threeDotButton = '[type="button"]'
   static #editOption = '[class="btn btn-sm dropdown-toggle btn-course-dropdown"]'

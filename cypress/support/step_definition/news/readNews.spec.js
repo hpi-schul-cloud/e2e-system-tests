@@ -1,5 +1,5 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
-import Read_News from '../../page/news/pageReadNews'
+import Read_News from '../../pages/news/pageReadNews'
 
 const selectReadNews= new Read_News()
 

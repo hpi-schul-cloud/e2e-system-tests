@@ -1,4 +1,4 @@
-import Create_Course from '../../../page/course/pageCreateCourse'
+import Create_Course from '../../../pages/course/pageCreateCourse'
 
 const createCourse = new Create_Course()
 

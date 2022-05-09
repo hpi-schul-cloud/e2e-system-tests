@@ -8,6 +8,6 @@ Scenario: Reading a school news on the dashboard
         Then I can read the school news
 
 Scenario: Reading a team news on the dashboard
-        Given I am logged in as a 'teacher' at 'brb'
+        Given I am logged in as a 'student' at 'brb'
         When I go to the team news on the dashboard
         Then I can read the team news

@@ -1,3 +1,5 @@
+'use strict'
+
 class Dashboard {
   static #welcomeMessage = '[data-testid="welcome-section"]'
   static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]'
@@ -11,7 +13,7 @@ class Dashboard {
 
   seeWelcomeMessage () {
     cy.get(Dashboard.#welcomeMessage)
-    cy.contains('Hallo Cord Carl!')
+    cy.contains('Hallo')
   }
 
   seeAssignedTasks () {

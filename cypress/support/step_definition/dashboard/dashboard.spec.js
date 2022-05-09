@@ -1,5 +1,5 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
-import Dashboard from '../../page/common/pageDashboard'
+import Dashboard from '../../pages/dashboard/pageDashboard'
 
 const selectDashboard = new Dashboard()
 

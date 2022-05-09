@@ -1,3 +1,5 @@
+'use strict'
+
 class Create_Course {
   static #createFAB = '[name="fab-icon"]'
   static #courseTitle = '[data-testid="coursename"]'

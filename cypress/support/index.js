@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
-import '../support/customCommands/login'
+import './custom_commands/login'
 
 
 

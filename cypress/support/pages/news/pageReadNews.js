@@ -1,3 +1,5 @@
+'use strict'
+
 class Read_News {
   static #newsTitleOnDashboard = '[data-testid="title_of_an_element"]'
   static #teamNewsTag = '#main-content div.tag.tag-default'

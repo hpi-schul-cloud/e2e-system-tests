@@ -1,3 +1,5 @@
+'use strict'
+
 class Help {
   static #questionIcon = '.fa-question'
   static #helpSectionInHeader = '[data-testid="Hilfeartikel"]'
