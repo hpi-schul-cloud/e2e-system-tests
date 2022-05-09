@@ -1,5 +1,3 @@
-Cypress.config('experimentalSessionSupport', true)
-
 const emailInputFieldElement = '[data-testid="username"]'
 const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
@@ -14,6 +12,7 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.visit(link)
 
     const users = Cypress.env('users')
+
     const user = users[username]
 
     const password = users.password.DEFAULT_PASSWORD
