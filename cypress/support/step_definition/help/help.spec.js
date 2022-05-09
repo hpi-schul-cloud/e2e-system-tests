@@ -1,5 +1,5 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
-import Help from '../../page/common/help'
+import Help from '../../pages/help/pageHelp'
 
 const selectHelp= new Help()
 

@@ -22,13 +22,12 @@
   },
   "homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
   "devDependencies": {
-    "cypress": "^9.5.3",
+    "cypress": "^9.6.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-file-upload": "^5.0.8"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions":false,
+    "nonGlobalStepDefinitions": false,
     "stepDefinitions": "cypress/support/step_definition/"
-    
   }
 }
