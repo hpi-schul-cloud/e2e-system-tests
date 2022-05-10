@@ -23,5 +23,5 @@ jobs:
      - name: 'Download artifact'
        uses: actions/download-artifact@v2
        with:
-         name: 'my-artifact-d'
+         name: 'my-artifact'
          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
