@@ -13,4 +13,4 @@ Install or make sure Chrome browser (at least) have it in your development machi
 
 ## How to setup Cypress
 1) Clone the project
-2) install all dependencies by runing: `npm install --save-dev`
+2) Install all dependencies by runing: `npm install --save-dev`
