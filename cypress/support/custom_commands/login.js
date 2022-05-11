@@ -20,23 +20,19 @@ Cypress.Commands.add('login', (username, environment) => {
     if (user === 'teacher') {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .should('be.visible')
         .type(user.EMAIL)
     } else if (user === 'student') {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .should('be.visible')
         .type(user.EMAIL)
     } else {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .should('be.visible')
         .type(user.EMAIL)
     }
 
     cy.get(passwordInputFieldElement)
       .eq(1)
-      .should('be.visible')
       .type(password, { log: false })
 
     cy.get(submitButton)
