@@ -8,13 +8,14 @@ class Help {
   static #helpSectionInSidebar = '[data-testid="Hilfebereich"]'
   static #helpArticlesInSidebar = '[data-testid="Hilfeartikel"]'
   static #helpContactInSidebar = '[data-testid="Kontakt"]'
-  static #advancedTrainingsInSidebar = '[data-testid="Fortbildungen"]'
+  static #advancedTrainingsInSidebar = 'a[title="Fortbildungen"]'
   static #helpPageTitle = '[id="page-title"]'
   static #helpFirstSteps = '#erste_schritte > .icon-card__content > .h4'
   static #helpLessons = '[id="Unterricht"]'
   static #helpOrganization = '[id="Organisation"]'
   static #helpNutzungshilfen = '[id="nutzungshilfen"]'
   static #helpContactform = 'h2.h4'
+  static #popUpLink = 'https://lernen.cloud/'
 
   clickQuestionIcon () {
     cy.visit('/dashboard')
