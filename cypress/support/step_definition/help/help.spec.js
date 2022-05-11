@@ -16,7 +16,7 @@ When('I click on send request or problem in header', () => {
 })
 
 When('I click on advanced trainings in header', () => {
-    selectHelp.clickAdvancedTrainingsInHeader()
+    selectHelp.advancedTrainingsInHeader()
 })
 
 When('I click on help section in sidebar', () => {
@@ -32,7 +32,7 @@ When('I click on contact in sidebar', () => {
 })
 
 When('I click on advanced trainings in sidebar', () => {
-    selectHelp.clickAdvancedTrainingsInSidebar()
+    selectHelp.advancedTrainingsInSidebar()
 })
 
 Then('I can see the help articles page', () => {
