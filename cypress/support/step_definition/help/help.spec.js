@@ -1,6 +1,8 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 import Help from '../../pages/help/pageHelp'
+import Page_Navigation from '../../pages/common/pageNavigation'
 
+const selectNavigation = new Page_Navigation()
 const selectHelp= new Help()
 
 When('I click on the question icon in header', () => {
@@ -20,19 +22,19 @@ When('I click on advanced trainings in header', () => {
 })
 
 When('I click on help section in sidebar', () => {
-    selectHelp.clickHelpSectionInSidebar()
+    selectNavigation.goToHelpSection()
 })
 
 When('I click on help articles in sidebar', () => {
-    selectHelp.clickHelpArticlesInSidebar()
+    selectNavigation.goToHelpArticles()
 })
 
 When('I click on contact in sidebar', () => {
-    selectHelp.clickHelpContactInSidebar()
+    selectNavigation.goToHelpContact()
 })
 
 When('I click on advanced trainings in sidebar', () => {
-    selectHelp.clickAdvancedTrainingsInSidebar()
+    selectNavigation.goToAdvancedTrainings()
 })
 
 Then('I can see the help articles page', () => {

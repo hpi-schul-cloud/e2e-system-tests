@@ -5,10 +5,6 @@ class Help {
   static #helpSectionInHeader = '[data-testid="Hilfeartikel"]'
   static #sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]'
   static #advancedTrainingsInHeader = '[data-testid="Fortbildung"]'
-  static #helpSectionInSidebar = '[data-testid="Hilfebereich"]'
-  static #helpArticlesInSidebar = '[data-testid="Hilfeartikel"]'
-  static #helpContactInSidebar = '[data-testid="Kontakt"]'
-  static #advancedTrainingsInSidebar = '[data-testid="Fortbildungen"]'
   static #helpPageTitle = '[id="page-title"]'
   static #helpFirstSteps = '#erste_schritte > .icon-card__content > .h4'
   static #helpLessons = '[id="Unterricht"]'
@@ -27,29 +23,10 @@ class Help {
 
   clickSendRequestOrProblemInHeader () {
     cy.get(Help.#sendRequestOrProblemInHeader).click()
-  }ﬂ
+  }
 
   clickAdvancedTrainingsInHeader () {
     cy.get(Help.#advancedTrainingsInHeader).click()
-  }
-
-  clickHelpSectionInSidebar () {
-    cy.visit('/dashboard')
-    cy.get(Help.#helpSectionInSidebar).click()
-  }
-
-  clickHelpArticlesInSidebar () {
-    cy.get(Help.#helpArticlesInSidebar)
-      .eq(0)
-      .click()
-  }
-
-  clickHelpContactInSidebar () {
-    cy.get(Help.#helpContactInSidebar).click()
-  }
-
-  clickAdvancedTrainingsInSidebar () {
-    cy.get(Help.#advancedTrainingsInSidebar).click()
   }
 
   seeHelpArticlesPage () {
