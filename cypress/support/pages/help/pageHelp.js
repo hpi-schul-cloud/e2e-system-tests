@@ -8,13 +8,14 @@ class Help {
   static #helpSectionInSidebar = '[data-testid="Hilfebereich"]'
   static #helpArticlesInSidebar = '[data-testid="Hilfeartikel"]'
   static #helpContactInSidebar = '[data-testid="Kontakt"]'
-  static #advancedTrainingsInSidebar = '[data-testid="Fortbildungen"]'
+  static #advancedTrainingsInSidebar = 'a[title="Fortbildungen"]'
   static #helpPageTitle = '[id="page-title"]'
   static #helpFirstSteps = '#erste_schritte > .icon-card__content > .h4'
   static #helpLessons = '[id="Unterricht"]'
   static #helpOrganization = '[id="Organisation"]'
   static #helpNutzungshilfen = '[id="nutzungshilfen"]'
   static #helpContactform = 'h2.h4'
+  static #popUpLink = 'https://lernen.cloud/'
 
   clickQuestionIcon () {
     cy.visit('/dashboard')
@@ -27,10 +28,13 @@ class Help {
 
   clickSendRequestOrProblemInHeader () {
     cy.get(Help.#sendRequestOrProblemInHeader).click()
-  }ﬂ
+  }
 
-  clickAdvancedTrainingsInHeader () {
-    cy.get(Help.#advancedTrainingsInHeader).click()
+  advancedTrainingsInHeader () {
+    cy.get(Help.#advancedTrainingsInHeader).should($a => {
+      expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
+      expect($a.attr('target'), 'target').to.equal('_blank')
+    })
   }
 
   clickHelpSectionInSidebar () {
@@ -48,8 +52,11 @@ class Help {
     cy.get(Help.#helpContactInSidebar).click()
   }
 
-  clickAdvancedTrainingsInSidebar () {
-    cy.get(Help.#advancedTrainingsInSidebar).click()
+  advancedTrainingsInSidebar () {
+    cy.get(Help.#advancedTrainingsInSidebar).should($a => {
+      expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
+      expect($a.attr('target'), 'target').to.equal('_blank')
+    })
   }
 
   seeHelpArticlesPage () {
