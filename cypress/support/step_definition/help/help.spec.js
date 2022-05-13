@@ -1,8 +1,6 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 import Help from '../../pages/help/pageHelp'
-import Page_Navigation from '../../pages/common/pageNavigation'
 
-const selectNavigation = new Page_Navigation()
 const selectHelp= new Help()
 
 When('I click on the question icon in header', () => {

@@ -11,7 +11,7 @@ class Help {
   static #helpOrganization = '[id="Organisation"]'
   static #helpNutzungshilfen = '[id="nutzungshilfen"]'
   static #helpContactform = 'h2.h4'
-  static #popUpLink = 'https://lernen.cloud'
+  static #popUpLink = 'https://lernen.cloud/'
 
   clickQuestionIcon () {
     cy.visit('/dashboard')

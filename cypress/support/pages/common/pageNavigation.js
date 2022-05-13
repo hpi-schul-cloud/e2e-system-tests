@@ -24,7 +24,7 @@ class Navigation {
     static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]'
     static #helpContactNavigationButton = '[data-testid="Kontakt"]'
     static #advancedTrainingsNavigationButton = '[data-testid="Fortbildungen"]'
-    static #popUpLink = 'https://lernen.cloud'
+    static #popUpLink = 'https://lernen.cloud/'
 
   arriveOnDashboard () {
     cy.visit('/dashboard')
