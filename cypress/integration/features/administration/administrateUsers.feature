@@ -4,7 +4,7 @@ Feature: To add, edit and delete new users by the admin
 
 Scenario: Adding a new student
         Given I am logged in as a 'admin' at 'brb'
-        When I visit the administration page
+        When I go to administration page
         And I go to student administration
         And I click on FAB to add a user
         And I fill out the student creation form
@@ -13,7 +13,7 @@ Scenario: Adding a new student
 
 Scenario: Deleting a student
         Given I am logged in as a 'admin' at 'brb'
-        When I visit the administration page
+        When I go to administration page
         And I go to student administration
         And I enter user name in search input field
         And I click edit student button
@@ -23,7 +23,7 @@ Scenario: Deleting a student
 
 Scenario: Adding a new teacher
         Given I am logged in as a 'admin' at 'brb'
-        When I visit the administration page
+        When I go to administration page
         And I go to teacher administration
         And I click on FAB to add a user
         And I fill out the teacher creation form
@@ -32,7 +32,7 @@ Scenario: Adding a new teacher
 
 Scenario: Deleting a teacher
         Given I am logged in as a 'admin' at 'brb'
-        When I visit the administration page
+        When I go to administration page
         And I go to teacher administration
         And I enter user name in search input field
         And I click edit teacher button

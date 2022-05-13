@@ -4,6 +4,6 @@ Feature: To delete the course created for testing purpose
 
     Scenario: Deleting the test course created during executing the testing
         Given I am logged in as a 'teacher' at 'brb'
-        When I am in the rooms overview
+        When I go to rooms overview
         And select the room to be deleted
         Then I should be able to delete the test room

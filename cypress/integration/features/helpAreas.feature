@@ -16,11 +16,11 @@ Scenario: Use the help area in the header
 
 Scenario: Use the help area in the sidebar
         Given I am logged in as a 'teacher' at 'brb'
-        When I click on help section in sidebar
+        When I go to help section in sidebar
         Then I can see the help articles page
-        When I click on help articles in sidebar
+        When I go to help articles in sidebar
         Then I can see the help articles page
-        When I click on contact in sidebar
+        When I go to contact in sidebar
         Then I can see the help contact page
-        When I click on advanced trainings in sidebar
+        When I go to advanced trainings in sidebar
         #Then a new tab in browser opens
