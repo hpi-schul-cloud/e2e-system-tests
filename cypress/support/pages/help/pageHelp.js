@@ -26,7 +26,7 @@ class Help {
     cy.get(Help.#sendRequestOrProblemInHeader).click()
   }
 
-  clickAdvancedTrainingsInHeader () {
+  advancedTrainingsInHeader () {
     cy.get(Help.#advancedTrainingsInHeader).should($a => {
       expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
       expect($a.attr('target'), 'target').to.equal('_blank')
