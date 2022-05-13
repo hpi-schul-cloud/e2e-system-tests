@@ -11,6 +11,7 @@ class Help {
   static #helpOrganization = '[id="Organisation"]'
   static #helpNutzungshilfen = '[id="nutzungshilfen"]'
   static #helpContactform = 'h2.h4'
+  static #popUpLink = 'https://lernen.cloud'
 
   clickQuestionIcon () {
     cy.visit('/dashboard')
@@ -26,7 +27,10 @@ class Help {
   }
 
   clickAdvancedTrainingsInHeader () {
-    cy.get(Help.#advancedTrainingsInHeader).click()
+    cy.get(Help.#advancedTrainingsInHeader).should($a => {
+      expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
+      expect($a.attr('target'), 'target').to.equal('_blank')
+    })
   }
 
   seeHelpArticlesPage () {

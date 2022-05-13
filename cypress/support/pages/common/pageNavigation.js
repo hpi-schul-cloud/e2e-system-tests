@@ -16,17 +16,22 @@ class Navigation {
     static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
     static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]';
     static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]';
+    static #courseAdministrationNavigationButton = '[data-testid="Kurse"]';
+    static #classAdministrationNavigationButton = '[data-testid="Klassen"]';
+    static #teamAdministrationNavigationButton = '[data-testid="Teams"]';
+    static #schoolAdministrationNavigationButton = '[data-testid="Schule"]';
     static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]'
     static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]'
     static #helpContactNavigationButton = '[data-testid="Kontakt"]'
     static #advancedTrainingsNavigationButton = '[data-testid="Fortbildungen"]'
+    static #popUpLink = 'https://lernen.cloud'
 
   arriveOnDashboard () {
     cy.visit('/dashboard')
     cy.url().should('include', '/dashboard')
   }
 
-  goToRoomOverview () {
+  goToRoomsOverview () {
     cy.visit('/rooms-overview')
     cy.get(Navigation.#courseOverviewNavigationButton).click()
     cy.url().should('include', '/rooms-overview')
@@ -64,7 +69,7 @@ class Navigation {
 
   goToTeamsFilesOverview () {
     cy.visit('/files/teams')
-    cy.get(Navigation.#teamsFilesOverviewNavigationButton).click()
+    cy.get(Navigation.#teamsFilesOverviewNavigationButton).eq(1).click()
     cy.url().should('include', '/files/teams')
   }
 
@@ -116,6 +121,30 @@ class Navigation {
     cy.url().should('include', '/administration/teachers')
   }
 
+  goTCourseAdministration () {
+    cy.visit('/administration/courses')
+    cy.get(Navigation.#courseAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/courses')
+  }
+
+  goToClassAdministration () {
+    cy.visit('/administration/classes')
+    cy.get(Navigation.#classAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/classes')
+  }
+
+  goToTeamAdministration () {
+    cy.visit('/administration/teams')
+    cy.get(Navigation.#teamAdministrationNavigationButton).eq(1).click()
+    cy.url().should('include', '/administration/teams')
+  }
+
+  goToSchoolAdministration () {
+    cy.visit('/administration/school')
+    cy.get(Navigation.#schoolAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/school')
+  }
+
   goToHelpSection () {
     cy.visit('/help')
     cy.get(Navigation.#helpOverviewNavigationButton).click()
@@ -135,9 +164,10 @@ class Navigation {
   }
 
   goToAdvancedTrainings () {
-    //cy.origin('https://lernen.cloud'), () => {cy.visit('https://lernen.cloud/')}
-    cy.get(Navigation.#advancedTrainingsNavigationButton).click()
-    //cy.url().should('include', 'https://lernen.cloud/')
+    cy.get(Navigation.#advancedTrainingsNavigationButton).should($a => {
+      expect($a.attr('href'), 'href').to.equal(Navigation.#popUpLink)
+      expect($a.attr('target'), 'target').to.equal('_blank')
+    })
   }
 }
 export default Navigation

@@ -1,21 +1,7 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
-import Page_Navigation from '../../pages/common/pageNavigation'
 import Administration from '../../pages/administration/administration'
 
-const selectNavigation = new Page_Navigation()
 const selectAdministration= new Administration()
-
-When('I visit the administration page', () => {
-    selectNavigation.goToAdministration()
-})
-
-When('I go to student administration', () => {
-    selectNavigation.goToStudentAdministration()
-})
-
-When('I go to teacher administration', () => {
-    selectNavigation.goToTeacherAdministration()
-})
 
 When('I click on FAB to add a user', () => {
     selectAdministration.clickOnFAB()
