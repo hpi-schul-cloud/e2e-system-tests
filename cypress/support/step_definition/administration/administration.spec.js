@@ -40,9 +40,9 @@ When('I click on delete button in pop up', () => {
 })
 
 Then('I can see the created user in the table', () => {
-    selectAdministration.userIsCreatedAndVisibleInTable()
+    selectAdministration.createdUserIsVisibleInTable()
 })
 
 Then('I cannot see the user in the table', () => {
-    selectAdministration.userIsNotVisibleInTable()
+    selectAdministration.createdUserIsNotVisibleInTable()
 })

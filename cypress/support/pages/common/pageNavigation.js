@@ -14,12 +14,12 @@ class Navigation {
     static #lernStoreOverviewNavigationButton = '[data-testid="Lern-Store"]'
     static #addonsOverviewNavigationButton = '[data-testid="Add-Ons"]'
     static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
-    static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]';
-    static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]';
-    static #courseAdministrationNavigationButton = '[data-testid="Kurse"]';
-    static #classAdministrationNavigationButton = '[data-testid="Klassen"]';
-    static #teamAdministrationNavigationButton = '[data-testid="Teams"]';
-    static #schoolAdministrationNavigationButton = '[data-testid="Schule"]';
+    static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]'
+    static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
+    static #courseAdministrationNavigationButton = '[data-testid="Kurse"]'
+    static #classAdministrationNavigationButton = '[data-testid="Klassen"]'
+    static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
+    static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
     static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]'
     static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]'
     static #helpContactNavigationButton = '[data-testid="Kontakt"]'

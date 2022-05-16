@@ -1,20 +1,20 @@
 'use strict'
 
 class Administration {
-    static #fabButton = '#fab';
-    static #createUserButton = '.v-btn--router';
-    static #firstName = '[data-testid="input_create-user_firstname"]';
-    static #lastName = '[data-testid="input_create-user_lastname"]';
-    static #email = '[data-testid="input_create-user_email"]';
-    static #addButton = '[data-testid="button_create-user_submit"]';
-    static #searchbar = '[data-testid="searchbar"]';
-    static #editStudentButton = '[data-testid="edit_student_button"]';
-    static #editTeacherButton = '[data-testid="edit_teacher_button"]';
-    static #deleteButton = '.btn-delete';
-    static #cancelButtonConfirmation = '.cancel-modal button.btn-close';
-    static #deleteButtonCancel = '.cancel-modal button.historyback';
-    static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit';
-    static #tableContents =  '[data-testid="table-data-body"]';
+    static #fabButton = '#fab'
+    static #createUserButton = '.v-btn--router'
+    static #firstName = '[data-testid="input_create-user_firstname"]'
+    static #lastName = '[data-testid="input_create-user_lastname"]'
+    static #email = '[data-testid="input_create-user_email"]'
+    static #addButton = '[data-testid="button_create-user_submit"]'
+    static #searchbar = '[data-testid="searchbar"]'
+    static #editStudentButton = '[data-testid="edit_student_button"]'
+    static #editTeacherButton = '[data-testid="edit_teacher_button"]'
+    static #deleteButton = '.btn-delete'
+    static #cancelButtonConfirmation = '.cancel-modal button.btn-close'
+    static #deleteButtonCancel = '.cancel-modal button.historyback'
+    static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit'
+    static #tableContents =  '[data-testid="table-data-body"]'
 
     clickOnFAB () {
         cy.get(Administration.#fabButton).click()
@@ -57,12 +57,12 @@ class Administration {
         cy.get(Administration.#deleteButtonConfirmation).click()
     }
 
-    userIsCreatedAndVisibleInTable () {
+    createdUserIsVisibleInTable () {
         cy.get(Administration.#tableContents);
         cy.contains('Adam')
     }
 
-    userIsNotVisibleInTable () {
+    createdUserIsNotVisibleInTable () {
         cy.get(Administration.#tableContents);
         cy.contains('Adam').should('not.exist')
     }
