@@ -27,7 +27,7 @@ module.exports = (on, config) => {
   on('file:preprocessor', cucumber())
 }
 
-const width = 1024
-const height = 800
+const width = 900
+const height = 500
 
 console.log('configuring the browser window size to %d x %d', width, height)
