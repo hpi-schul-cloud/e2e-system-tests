@@ -1,7 +1,7 @@
 {
   "testFiles": "**/*.feature",
   "viewportWidth": 1024,
-  "viewportHeight": 800,
+  "viewportHeight": 768,
   "videoCompression": 40,
   "env": {
     "themes": {
