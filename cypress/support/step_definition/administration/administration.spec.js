@@ -1,5 +1,5 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
-import Administration from '../../pages/administration/administration'
+import Administration from '../../pages/administration/pageAdministration'
 
 const selectAdministration= new Administration()
 
