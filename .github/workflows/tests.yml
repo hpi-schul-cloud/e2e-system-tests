@@ -15,6 +15,7 @@ jobs:
 
      - name: 'Upload Artifact'
        uses: actions/upload-artifact@v2
+       if: always()
        with:
          name: my-artifact
          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
