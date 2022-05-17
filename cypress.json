@@ -1,8 +1,8 @@
 {
   "testFiles": "**/*.feature",
   "viewportWidth": 1024,
-  "viewportHeight": 768,
-  "videoCompression": 40,
+  "viewportHeight": 800,
+  "videoCompression": 20,
   "env": {
     "themes": {
       "BRB": "https://staging.brandenburg.dbildungscloud.org",
