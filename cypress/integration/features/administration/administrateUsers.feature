@@ -1,5 +1,4 @@
-Feature: To add, edit and delete new users by the admin
-                #Edit will be added later ;)
+Feature: To add, edit and delete new users by the admin. Edit will be added later.
 
     As an admin I want to create a new user so that I can administrate it
 
