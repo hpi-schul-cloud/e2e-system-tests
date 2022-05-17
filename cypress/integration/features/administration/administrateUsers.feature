@@ -1,4 +1,4 @@
-Feature: To add, edit and delete new users by the admin. Edit will be added later.
+Feature: To add, edit and delete new users by the admin.
 
     As an admin I want to create a new user so that I can administrate it
 
@@ -10,6 +10,16 @@ Scenario: Adding a new student
         And I fill out the student creation form
         And I click on add button
         Then I can see the created user in the table
+
+Scenario: Editing a new student
+        Given I am logged in as a 'admin' at 'brb'
+        When I go to administration page
+        And I go to student administration
+        And I enter user name in search input field
+        And I click edit student button
+        And I change student information
+        And I click save changes button
+        Then I can see the edited user in the table
 
 Scenario: Deleting a student
         Given I am logged in as a 'admin' at 'brb'
@@ -29,6 +39,16 @@ Scenario: Adding a new teacher
         And I fill out the teacher creation form
         And I click on add button
         Then I can see the created user in the table
+
+Scenario: Editing a new teacher
+        Given I am logged in as a 'admin' at 'brb'
+        When I go to administration page
+        And I go to teacher administration
+        And I enter user name in search input field
+        And I click edit teacher button
+        And I change teacher information
+        And I click save changes button
+        Then I can see the edited user in the table
 
 Scenario: Deleting a teacher
         Given I am logged in as a 'admin' at 'brb'

@@ -23,7 +23,7 @@ class Navigation {
     static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]'
     static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]'
     static #helpContactNavigationButton = '[data-testid="Kontakt"]'
-    static #advancedTrainingsNavigationButton = '[data-testid="Fortbildungen"]'
+    static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]'
     static #popUpLink = 'https://lernen.cloud/'
 
   arriveOnDashboard () {

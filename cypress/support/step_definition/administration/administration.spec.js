@@ -31,6 +31,18 @@ When('I click edit teacher button', () => {
     selectAdministration.clickEditTeacherButton()
 })
 
+When('I change student information', () => {
+    selectAdministration.changeStudentUserInformation()
+})
+
+When('I change teacher information', () => {
+    selectAdministration.changeTeacherUserInformation()
+})
+
+When('I click save changes button', () => {
+    selectAdministration.clickSaveButton()
+})
+
 When('I click delete user button', () => {
     selectAdministration.clickDeleteButton()
 })
@@ -41,6 +53,10 @@ When('I click on delete button in pop up', () => {
 
 Then('I can see the created user in the table', () => {
     selectAdministration.createdUserIsVisibleInTable()
+})
+
+Then('I can see the edited user in the table', () => {
+    selectAdministration.editedUserIsVisibleInTable()
 })
 
 Then('I cannot see the user in the table', () => {
