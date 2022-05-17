@@ -11,7 +11,7 @@ jobs:
      - name: npm ci
        run: npm ci --prefer-offline --no-audit
      - name: Cypress run
-       run: npm run cy:run
+       run: npm run cy:run_on_chrome
 
      - name: 'Upload Artifact'
        uses: actions/upload-artifact@v2
