@@ -5,7 +5,7 @@ const createCourse = new Create_Course()
 const navigation = new Navigation()
 
 When ('I am in the rooms overview', () =>{
-  //navigation.goToRoomOverview()
+  navigation.goToRoomOverview()
 })
 
 And('I click on FAB to create the course', () => {
