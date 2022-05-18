@@ -1,9 +1,17 @@
 name: manual-test-trigger
 on:
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
 jobs:
- trigger:
-    runs-on: ubuntu-20.04
+  printInputs:
+    runs-on: ubuntu-latest
     steps:
-     - name: Release Testing
-       uses: actions/checkout@v2
+    - run: |
+        echo "Log level: ${{ github.event.inputs.logLevel }}"
+        echo "Tags: ${{ github.event.inputs.tags }}"
