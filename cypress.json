@@ -4,7 +4,7 @@
   "viewportHeight": 768,
   "videoCompression": 18,
   "env": {
-    "themes": {
+    "instance": {
       "BRB": "https://staging.brandenburg.dbildungscloud.org",
       "NBC": "https://staging.niedersachsen.dbildungscloud.org",
       "INT": "https://staging.international.dbildungscloud.org",
@@ -12,16 +12,20 @@
     },
     "users": {
       "teacher": {
-        "EMAIL": "lehrer@schul-cloud.org "
+        "CYPRESS_TEACHER_EMAIL": "lehrer@schul-cloud.org",
+        "CYPRESS_TEACHER_PASSWORD":"Schulcloud1!"
+      },
+      "sub_teacher": {
+        "CYPRESS_SUB_TEACHER_EMAIL": "TBD",
+        "CYPRESS_SUB_TEACHER_PASSWORD":"TBD"
       },
       "student": {
-        "EMAIL": "schueler@schul-cloud.org"
+        "CYPRESS_SUB_TEACHER_EMAIL": "schueler@schul-cloud.org",
+        "CYPRESS_TEACHER_PASSWORD":"Schulcloud1!"
       },
       "admin": {
-        "EMAIL": "admin@schul-cloud.org"
-      },
-      "password": {
-        "DEFAULT_PASSWORD": "Schulcloud1!"
+        "CYPRESS_STUDENT_EMAIL": "admin@schul-cloud.org",
+        "CYPRESS_STUDENT_PASSWORD":"Schulcloud1!"
       }
     }
   },

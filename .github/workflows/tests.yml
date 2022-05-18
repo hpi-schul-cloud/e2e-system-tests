@@ -2,6 +2,24 @@
 
 name: e2e-tests
 on:  [push]
+
+  workflow_dispatch:
+    inputs:
+      host:
+       description: 'In which instance to run the tests?
+       required: true
+       default: 'https://default-main.cd.dbildungscloud.dev'
+       type: choice
+       options:
+         - 'https://staging.brandenburg.dbildungscloud.org'
+         - 'https://staging.niedersachsen.dbildungscloud.org'
+      tags:
+        description: 'Testing Type'
+        required: true
+        type: string
+
+
+
 jobs:
  e2e-tests:
     runs-on: ubuntu-20.04
