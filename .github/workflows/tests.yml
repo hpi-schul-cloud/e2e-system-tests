@@ -24,7 +24,6 @@ name: manual test trigger
 on:
   workflow_dispatch:
     inputs:
-      host:
        description: 'In which instance to run the tests?
        required: true
        default: 'https://default-main.cd.dbildungscloud.dev'
