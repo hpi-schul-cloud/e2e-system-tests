@@ -1,3 +1,4 @@
+name: manual-triggrer
 on:
   workflow_dispatch:
     inputs:
