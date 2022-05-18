@@ -1,12 +1,33 @@
-name: manual-test-trigger
 on:
   workflow_dispatch:
     inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
       tags:
         description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
 jobs:
-  printInputs:
-    runs-on: ubuntu.20.04
+  log-inputs:
+    runs-on: ubuntu-latest
     steps:
-       - name: trigger test
-         run: echo 'Tags: ${{ github.event.inputs.tags }}'
+      - run: |
+          echo "Log level: $LEVEL"
+          echo "Tags: $TAGS"
+          echo "Environment: $ENVIRONMENT"
+        env:
+          LEVEL: ${{ github.event.inputs.logLevel }}
+          TAGS: ${{ github.event.inputs.tags }}
+          ENVIRONMENT: ${{ github.event.inputs.environment }}
