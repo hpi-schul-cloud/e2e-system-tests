@@ -1,20 +1,7 @@
 # This is a basic workflow to help you get started with Actions
-name: trigger e2e-tests
-on:
- workflow_dispatch:
-  inputs:
-    host:
-      description: 'In which instance to run the tests?'
-      required: true
-      default: 'https://default-main.cd.dbildungscloud.dev'
-      type: choice
-      options:
-       - 'https://staging.brandenburg.dbildungscloud.org'
-       - 'https://staging.niedersachsen.dbildungscloud.org'
-      tags:
-       description: 'Release Testing'
-       required: true
-       type: string
+name: e2e-tests
+on:  [push]
+
 jobs:
  e2e-tests:
     runs-on: ubuntu-20.04
@@ -34,4 +21,14 @@ jobs:
          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
          retention-days: 3
 
+name: manual test trigger
+on:
+  workflow_dispatch:
+
+job:
+  build: ubuntu-20.04
+  steps:
+  - uses: actions/checkout@v2
+  - name: Release Testing
+    run: echo "release testing is triggered"
 
