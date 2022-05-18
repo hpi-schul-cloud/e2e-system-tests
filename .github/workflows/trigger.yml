@@ -9,5 +9,4 @@ jobs:
     runs-on: ubuntu.20.04
     steps:
        - name: trigger test
-         run:
-           echo "Tags: ${{ github.event.inputs.tags }}"
+         run: echo "Tags: ${{ github.event.inputs.tags }}"
