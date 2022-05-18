@@ -2,7 +2,7 @@ name: manual-test-trigger
 on:
   workflow_dispatch:
 
-job:
+jobs:
   build: ubuntu-20.04
   steps:
   - uses: actions/checkout@v2
