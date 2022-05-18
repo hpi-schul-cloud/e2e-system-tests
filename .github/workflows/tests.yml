@@ -20,15 +20,3 @@ jobs:
          name: my-artifact
          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
          retention-days: 3
-
-name: manual-test-trigger
-on:
-  workflow_dispatch:
-
-job:
-  build: ubuntu-20.04
-  steps:
-  - uses: actions/checkout@v2
-  - name: Release Testing
-    run: echo "release testing is triggered"
-
