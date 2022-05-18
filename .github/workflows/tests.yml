@@ -24,14 +24,14 @@ name: manual test trigger
 on:
   workflow_dispatch:
     inputs:
-       description: 'In which instance to run the tests?
-       required: true
-       default: 'https://default-main.cd.dbildungscloud.dev'
-       type: choice
-       options:
-        - 'https://staging.brandenburg.dbildungscloud.org'
-        - 'https://staging.niedersachsen.dbildungscloud.org'
+      default: "https://default-main.cd.dbildungscloud.dev"
+      description: "In which instance to run the tests?"
+      options:
+        - "https://staging.brandenburg.dbildungscloud.org"
+        - "https://staging.niedersachsen.dbildungscloud.org"
+      required: true
       tags:
-       description: 'Testing Type'
-       required: true
-       type: string
+        description: "Testing Type"
+        required: true
+        type: string
+      type: choice
