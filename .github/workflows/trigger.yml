@@ -8,9 +8,9 @@ on:
         default: 'warning'
         type: choice
         options:
-        - info
-        - warning
-        - debug
+         - info
+         - warning
+         - debug
       tags:
         description: 'Test scenario tags'
         required: false
