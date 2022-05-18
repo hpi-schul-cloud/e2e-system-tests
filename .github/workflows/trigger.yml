@@ -7,4 +7,5 @@ jobs:
     steps:
      - name: Release Testing
        uses: actions/checkout@v2
+     - name: Release testing
        run: echo "release testing is triggered"
