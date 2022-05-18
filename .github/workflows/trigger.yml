@@ -3,8 +3,9 @@ on:
   workflow_dispatch:
 
 jobs:
-  runs-on: ubuntu-20.04
-  steps:
-  - uses: actions/checkout@v2
-  - name: Release Testing
-    run: echo "release testing is triggered"
+ trigger:
+   runs-on: ubuntu-20.04
+   steps:
+     - uses: actions/checkout@v2
+     - name: Release Testing
+       run: echo "release testing is triggered"
