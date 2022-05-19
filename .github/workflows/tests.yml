@@ -1,20 +1,21 @@
 # This is a basic workflow to help you get started with Actions
-name: e2e manual trigger
-on: [workflow_dispatch]
+name: e2e-manual-trigger
+on: [push]
+  workflow_dispatch:
 jobs:
- e2e-tests:
-  runs-on: ubuntu-20.04
-   steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: npm ci
-      run: npm ci --prefer-offline --no-audit
-    - name: Cypress run
-      run: npm run cy:run_on_chrome
-    - name: 'Upload Artifact'
-      uses: actions/upload-artifact@v2
-      if: always() # to always upload the files if tests passed or failed
-      with:
-       name: my-artifact
-       path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
-       retention-days: 3
+  e2e-tests:
+    runs-on: ubuntu-20.04
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v2
+        - name: npm ci
+          run: npm ci --prefer-offline --no-audit
+        - name: Cypress run
+          run: npm run cy:run_on_chrome
+        - name: 'Upload Artifact'
+          uses: actions/upload-artifact@v2
+          if: always() # to always upload the files if tests passed or failed
+          with:
+            name: my-artifact
+            path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+            retention-days: 3
