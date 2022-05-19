@@ -3,6 +3,9 @@ name: e2e-manual-trigger
 on:
   push:
   workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Test scenario tags'
 jobs:
   e2e-tests:
     runs-on: ubuntu-20.04
@@ -20,3 +23,5 @@ jobs:
           name: my-artifact
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
           retention-days: 3
+      - name: print tag
+        run: ${{ github.event.inputs.tags }}
