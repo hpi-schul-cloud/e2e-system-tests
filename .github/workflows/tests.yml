@@ -1,6 +1,7 @@
 # This is a basic workflow to help you get started with Actions
-name: e2e-tests
-on:  [push]
+name: e2e-manual-trigger
+on:
+  workflow_dispatch:
 
 jobs:
  e2e-tests:
