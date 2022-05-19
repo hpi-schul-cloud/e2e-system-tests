@@ -1,6 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 name: e2e-manual-trigger
-on: push
+on:
+  push:
+  workflow_dispatch:
 jobs:
   e2e-tests:
     runs-on: ubuntu-20.04
