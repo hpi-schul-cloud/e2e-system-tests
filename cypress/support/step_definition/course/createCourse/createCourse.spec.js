@@ -1,6 +1,12 @@
 import Create_Course from '../../../pages/course/pageCreateCourse'
+import Navigation from '../../../pages/common/pageNavigation'
 
 const createCourse = new Create_Course()
+const navigation = new Navigation()
+
+When ('I am in the rooms overview', () =>{
+  navigation.goToRoomOverview()
+})
 
 And('I click on FAB to create the course', () => {
   createCourse.clickOnCreateFAB()
