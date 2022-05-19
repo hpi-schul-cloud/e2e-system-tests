@@ -19,22 +19,6 @@ When('I click on advanced trainings in header', () => {
     selectHelp.advancedTrainingsInHeader()
 })
 
-When('I click on help section in sidebar', () => {
-    selectHelp.clickHelpSectionInSidebar()
-})
-
-When('I click on help articles in sidebar', () => {
-    selectHelp.clickHelpArticlesInSidebar()
-})
-
-When('I click on contact in sidebar', () => {
-    selectHelp.clickHelpContactInSidebar()
-})
-
-When('I click on advanced trainings in sidebar', () => {
-    selectHelp.advancedTrainingsInSidebar()
-})
-
 Then('I can see the help articles page', () => {
     selectHelp.seeHelpArticlesPage()
 })
@@ -42,7 +26,3 @@ Then('I can see the help articles page', () => {
 Then('I can see the help contact page', () => {
     selectHelp.seeHelpContactPage()
 })
-
-//Then('a new tab in browser opens', () => {
-//
-//})
