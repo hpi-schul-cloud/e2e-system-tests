@@ -5,11 +5,11 @@ on:
     inputs:
       name1:
         description: 'Please enter a valid BRB instance URL to run the tests'
-        default: 'default URL: https://brb-main.cd.dbildungscloud.dev/'
+        default: 'https://brb-main.cd.dbildungscloud.dev/'
         required: true
       name2:
         description: 'Please enter a valid NBC instance URL to run the tests'
-        default: 'default URL:  https://nbc-main.cd.dbildungscloud.dev/'
+        default: 'https://nbc-main.cd.dbildungscloud.dev/'
         required: true
 jobs:
   system-tests:
