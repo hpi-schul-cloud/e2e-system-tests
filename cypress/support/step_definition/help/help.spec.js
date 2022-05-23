@@ -19,10 +19,26 @@ When('I click on advanced trainings in header', () => {
     selectHelp.advancedTrainingsInHeader()
 })
 
+When('I enter keyword in search bar', () => {
+    selectHelp.enterKeywordInSearchbar()
+})
+
+When('I fill out the contact form', () => {
+    selectHelp.fillOutContactForm()
+})
+
 Then('I can see the help articles page', () => {
     selectHelp.seeHelpArticlesPage()
 })
 
 Then('I can see the help contact page', () => {
     selectHelp.seeHelpContactPage()
+})
+
+Then('I can see an help article related to my search', () => {
+    selectHelp.seeHelpArticle()
+})
+
+Then('I can send it to the support', () => {
+    selectHelp.sendFormToSupport()
 })
