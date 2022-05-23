@@ -3,14 +3,15 @@ name: e2e-tests
 on:  [push]
 jobs:
  e2e-tests:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-     - name: Checkout
-       uses: actions/checkout@v2
-     - name: npm ci
-       run: npm ci --prefer-offline --no-audit
-     - name: Cypress run
-       run: npm run cy:run_on_chrome
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        browser: chrome
+        headless: true
      - name: 'Upload Artifact'
        uses: actions/upload-artifact@v2
        if: always() # to always upload the files if tests passed or failed
