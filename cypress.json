@@ -1,8 +1,5 @@
 {
   "testFiles": "**/*.feature",
-  "viewportWidth": 1024,
-  "viewportHeight": 768,
-  "videoCompression": 18,
   "env": {
     "themes": {
       "BRB": "https://staging.brandenburg.dbildungscloud.org",
@@ -23,10 +20,12 @@
       "password": {
         "DEFAULT_PASSWORD": "Schulcloud1!"
       }
-    }
+    },
+    "allure": true,
+    "allureResultsPath": "cypress/assets/allure-results",
+    "allureLogCypress": false,
+    "allureLogGherkin": true
   },
-  "experimentalSessionAndOrigin": true
+  "experimentalSessionAndOrigin": true,
+  "videosFolder": "cypress/assets/allure-results"
 }
-
-
-

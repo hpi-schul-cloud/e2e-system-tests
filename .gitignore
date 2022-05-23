@@ -2,3 +2,5 @@ node_modules
 .DS_Store
 screenshots
 videos
+cypress/assets/allure-results
+cypress/reports/allure-reports

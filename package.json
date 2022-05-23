@@ -4,9 +4,15 @@
   "description": "e2e testing",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "cy:run_on_chrome": "cypress run --headless --browser chrome",
-    "cy:open": "cypress open"
+    "cy:open": "cypress open",
+		"cy:run": "cypress run",
+    "allure:report": "allure generate cypress/assets/allure-results --clean -o cypress/reports/allure-reports",
+    "allure:clear": "[[ -d cypress/assets/allure-results ]] && rm -rf cypress/assets/allure-results",
+		"allure:open": "allure open cypress/reports/allure-reports",
+    "pretest": "npm run allure:clear",
+    "clean:run:report": "npm run allure:clear || npm run cy:run || npm run posttest",
+    "posttest": "npm run allure:report && npm run allure:open"
   },
   "repository": {
     "type": "git",
@@ -22,9 +28,9 @@
   },
   "homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.26.5",
     "cypress": "^9.6.0",
-    "cypress-cucumber-preprocessor": "^4.3.1",
-    "cypress-file-upload": "^5.0.8"
+    "cypress-cucumber-preprocessor": "^4.3.1"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
