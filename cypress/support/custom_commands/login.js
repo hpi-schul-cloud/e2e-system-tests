@@ -4,7 +4,7 @@ const submitButton = '[data-testid="submit-login"]'
 
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
-    const links = Cypress.env('themes')
+    const links = Cypress.env('instance')
     let environmentUpperCased = environment.toUpperCase()
     const link = links[environmentUpperCased]
     Cypress.config('baseUrl', link)
