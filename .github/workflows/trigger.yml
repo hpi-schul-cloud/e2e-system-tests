@@ -1,5 +1,4 @@
 name: manual tests trigger
-
 on:
   workflow_dispatch:
     inputs:
