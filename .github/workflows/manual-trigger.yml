@@ -4,11 +4,11 @@ on:
     inputs:
       name1:
         description: 'Please enter a valid BRB instance URL to run the tests'
-        default: 'https://brb-main.cd.dbildungscloud.dev/'
+        default: '"https://staging.brandenburg.dbildungscloud.org'
         required: true
       name2:
         description: 'Please enter a valid NBC instance URL to run the tests'
-        default: 'https://nbc-main.cd.dbildungscloud.dev/'
+        default: 'https://staging.niedersachsen.dbildungscloud.org'
         required: true
 jobs:
   e2e-system-tests:
