@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     inputs:
       name1:
-        description: 'Please enter a valid BRB instance URL to trigger the tests'
+        description: 'Please enter a valid BRB instance URL to run the tests'
         default: 'default URL: https://brb-main.cd.dbildungscloud.dev/'
         required: true
       name2:
-        description: 'Please enter a valid intance TWO URL to trigger the tests againt'
+        description: 'Please enter a valid NBC instance URL to run the tests'
         default: 'default URL:  https://nbc-main.cd.dbildungscloud.dev/'
         required: true
 jobs:
