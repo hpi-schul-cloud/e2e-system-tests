@@ -10,7 +10,7 @@ on:
       name2:
         description: 'Please enter a valid intance TWO URL to trigger the tests againt'
         default: 'default URL:  https://nbc-main.cd.dbildungscloud.dev/'
-        reqzured: true
+        required: true
 jobs:
   system-tests:
     runs-on: ubuntu-latest
