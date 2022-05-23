@@ -34,6 +34,7 @@ Scenario: Use the article search inside the help articles area
 
 Scenario: Submit an issue via contact form inside help area
         Given I am logged in as a 'teacher' at 'brb'
+        When I go to help section in sidebar
         When I go to contact in sidebar
         Then I can see the help contact page
         When I fill out the contact form
