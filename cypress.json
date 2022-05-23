@@ -6,7 +6,7 @@
   "env": {
     "instance": {
       "BRB": "https://staging.brandenburg.dbildungscloud.org",
-      "NBC": "https://staging.niedersachsen.dbildungscloud.org",
+      "NBC": "https://staging.niedersachsen.dbildungscloud.org"
     },
     "users": {
       "teacher": {
