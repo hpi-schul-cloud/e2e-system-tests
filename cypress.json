@@ -5,8 +5,8 @@
   "videoCompression": 18,
   "env": {
     "instance": {
-      "BRB": "https://staging.brandenburg.dbildungscloud.org",
-      "NBC": "https://staging.niedersachsen.dbildungscloud.org",
+      "BRB": "https://brb-main.cd.dbildungscloud.dev/",
+      "NBC": "https://nbc-main.cd.dbildungscloud.dev/",
       "INT": "https://staging.international.dbildungscloud.org",
       "DEFAULT": "https://default-main.cd.dbildungscloud.dev"
     },
