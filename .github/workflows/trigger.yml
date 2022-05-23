@@ -1,4 +1,4 @@
-name: manual tests trigger
+name: e2e-manaul-trigger-tests
 on:
   workflow_dispatch:
     inputs:
