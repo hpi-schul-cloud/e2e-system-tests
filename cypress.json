@@ -4,9 +4,10 @@
   "viewportHeight": 768,
   "videoCompression": 18,
   "env": {
-    "ins": {
+    "instance": {
       "BRB": "https://staging.brandenburg.dbildungscloud.org",
       "NBC": "https://staging.niedersachsen.dbildungscloud.org",
+    },
     "users": {
       "teacher": {
         "EMAIL": "lehrer@schul-cloud.org "
