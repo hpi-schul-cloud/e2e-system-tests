@@ -17,7 +17,7 @@ And('I fill out the course creation form', () => {
 })
 
 And('I click on next steps', () => {
-  createCourse.clickOnNextSteps()
+  //createCourse.clickOnNextSteps()
 })
 
 Then('I see the created course on the room overview page', () => {
