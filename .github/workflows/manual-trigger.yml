@@ -22,8 +22,8 @@ jobs:
         browser: chrome
         headless: true
       env:
-        CYPRESS_BRB: ${{ github.event.inputs.name1 }}
-        CYPRESS_NBC: ${{ github.event.inputs.name2 }}
+        CYPRESS_BRB: ${{ github.event.inputs.instance1 }}
+        CYPRESS_NBC: ${{ github.event.inputs.instance2 }}
         CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
         CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
         CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
