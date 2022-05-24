@@ -1,12 +1,12 @@
-name: e2e-manaul-trigger-tests
+name: e2e-manual-trigger-tests
 on:
   workflow_dispatch:
     inputs:
-      name1:
+      instance1:
         description: 'Please enter a valid BRB instance URL to run the tests'
-        default: '"https://staging.brandenburg.dbildungscloud.org'
+        default: 'https://staging.brandenburg.dbildungscloud.org'
         required: true
-      name2:
+      instance2:
         description: 'Please enter a valid NBC instance URL to run the tests'
         default: 'https://staging.niedersachsen.dbildungscloud.org'
         required: true
@@ -26,5 +26,5 @@ jobs:
         CYPRESS_NBC: ${{ github.event.inputs.name2 }}
         CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
         CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
-        CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
+        CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
         CYPRESS_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_DEFAULT_PASSWORD }}
