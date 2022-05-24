@@ -28,3 +28,10 @@ jobs:
         CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
         CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
         CYPRESS_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_DEFAULT_PASSWORD }}
+    - name: 'Upload Artifact'
+      uses: actions/upload-artifact@v2
+      if: always() # to always upload the files if tests passed or failed
+      with:
+        name: my-artifact
+        path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+        retention-days: 3
