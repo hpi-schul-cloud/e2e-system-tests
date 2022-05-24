@@ -20,7 +20,7 @@ jobs:
       uses: cypress-io/github-action@v2
       with:
         browser: chrome
-        headless: false
+        headless: true
       env:
         CYPRESS_BRB: ${{ github.event.inputs.instance1 }}
         CYPRESS_NBC: ${{ github.event.inputs.instance2 }}
