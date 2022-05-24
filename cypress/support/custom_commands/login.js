@@ -2,7 +2,31 @@ const emailInputFieldElement = '[data-testid="username"]'
 const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
 
-Cypress.Commands.add('login', (username, environment) => {
+
+Cypress.Commands.add('loginAsBRBTeacher',() => {
+
+cy.visit(Cypress.env('BRB'))
+cy.get(emailInputFieldElement).eq(1).type(Cypress.env('TEACHER_EMAIL'))
+cy.get(passwordInputFieldElement).eq(1).type(Cypress.env('DEFAULT_PASSWORD'))
+cy.get(submitButton).eq(1).click()
+
+})
+
+Cypress.Commands.add('loginAsBRBAdmin',() => {
+
+  cy.visit(Cypress.env('BRB'))
+  cy.get(emailInputFieldElement).eq(1).type(Cypress.env('ADMIN_EMAIL'))
+  cy.get(passwordInputFieldElement).eq(1).type(Cypress.env('DEFAULT_PASSWORD'))
+  cy.get(submitButton).eq(1).click()
+
+
+})
+
+
+
+
+
+/*Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
     const links = Cypress.env('instance')
     let environmentUpperCased = environment.toUpperCase()
@@ -40,4 +64,6 @@ Cypress.Commands.add('login', (username, environment) => {
       .click()
     cy.url().should('contain', '/dashboard')
   })
-})
+})*/
+
+

@@ -4,26 +4,12 @@
   "viewportHeight": 768,
   "videoCompression": 18,
   "env": {
-    "instance": {
       "BRB": "https://staging.brandenburg.dbildungscloud.org",
-      "NBC": "https://staging.niedersachsen.dbildungscloud.org"
-    },
-    "users": {
-      "teacher": {
-        "EMAIL": "lehrer@schul-cloud.org "
-      },
-      "student": {
-        "EMAIL": "schueler@schul-cloud.org"
-      },
-      "admin": {
-        "EMAIL": "admin@schul-cloud.org"
-      },
-      "password": {
-        "DEFAULT_PASSWORD": "Schulcloud1!"
+      "NBC": "https://staging.niedersachsen.dbildungscloud.org",
+      "TEACHER_EMAIL": "lehrer@schul-cloud.org ",
+      "ADMIN_EMAIL": "admin@schul-cloud.org",
+      "DEFAULT_PASSWORD": "Schulcloud1!"
       }
-    }
-  },
-  "experimentalSessionAndOrigin": true
 }
 
 
