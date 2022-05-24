@@ -4,11 +4,9 @@
   "viewportHeight": 768,
   "videoCompression": 18,
   "env": {
-    "themes": {
+    "instance": {
       "BRB": "https://staging.brandenburg.dbildungscloud.org",
-      "NBC": "https://staging.niedersachsen.dbildungscloud.org",
-      "INT": "https://staging.international.dbildungscloud.org",
-      "DEFAULT": "https://default-main.cd.dbildungscloud.dev"
+      "NBC": "https://staging.niedersachsen.dbildungscloud.org"
     },
     "users": {
       "teacher": {
