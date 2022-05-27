@@ -20,10 +20,5 @@ class Create_Course {
     cy.get(Create_Course.#nextContinueButton).click()
     cy.get(Create_Course.#goToCourseOverviewButton).click()
   }
-
-  createdCourseIsVisibleOnOverviewPage () {
-    cy.url().should('include', '/rooms-overview')
-    cy.contains('test course name')
-  }
 }
 export default Create_Course
