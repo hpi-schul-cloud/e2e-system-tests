@@ -3,6 +3,7 @@ import Administration from '../../pages/administration/pageAdministration'
 
 const selectAdministration= new Administration()
 
+//WHEN
 When('I click on FAB to add a user', () => {
     selectAdministration.clickOnFAB()
 })
@@ -51,6 +52,31 @@ When('I click on delete button in pop up', () => {
     selectAdministration.clickDeleteButtonInPopup()
 })
 
+When('I go to new school administration page', () => {
+    selectAdministration.clickNewAdminPageButton()
+})
+
+When('I click toggle switch to activate the chat', () => {
+    selectAdministration.clickChatToggleSwitch()
+})
+
+When('I click toggle switch to deactivate the chat', () => {
+    selectAdministration.clickChatToggleSwitch()
+})
+
+When('I click toggle switch to activate video conferencing', () => {
+    selectAdministration.clickVideoconferenceToggleSwitch()
+})
+
+When('I click toggle switch to deactivate video conferencing', () => {
+    selectAdministration.clickVideoconferenceToggleSwitch()
+})
+
+When('I click save button', () => {
+    selectAdministration.clickSaveButton()
+})
+
+//THEN
 Then('I can see the created user in the table', () => {
     selectAdministration.createdUserIsVisibleInTable()
 })

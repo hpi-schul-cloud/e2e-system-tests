@@ -18,6 +18,10 @@ class Administration {
     static #cancelButtonConfirmation = '.cancel-modal button.btn-close'
     static #deleteButtonCancel = '.cancel-modal button.historyback'
     static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit'
+    static #newSchoolAdminPageButton = '.btn-info'
+    static #chatToggleSwitch = '.rocketchat-switch'
+    static #videoconferenceToggleSwitch = '.videoconference-switch'
+    static #saveButton = '.my-5'
     static #tableContents =  '[data-testid="table-data-body"]'
 
     clickOnFAB () {
@@ -72,7 +76,7 @@ class Administration {
     }
 
     clickSaveButton () {
-        cy.get(Administration.#submitButton).eq(0).click()
+        cy.get(Administration.#submitButton).click()
     }
 
     clickDeleteButton () {
@@ -81,6 +85,29 @@ class Administration {
 
     clickDeleteButtonInPopup () {
         cy.get(Administration.#deleteButtonConfirmation).click()
+    }
+
+    clickNewAdminPageButton () {
+        cy.get(Administration.#newSchoolAdminPageButton).click()
+    }
+
+    clickChatToggleSwitch () {
+        cy.get(Administration.#chatToggleSwitch)
+        .find('input')
+        .click()
+        //need to find out current state and decide if state needs to be changed
+        //if current state aria-checked="true" and I want it activated then I don't need to click
+        //if current state aria-checked="false" and I want it activated then I need to click
+    }
+
+    clickVideoconferenceToggleSwitch () {
+        cy.get(Administration.#videoconferenceToggleSwitch)
+        .find('input')
+        .click()
+    }
+
+    clickSaveButton () {
+        cy.get(Administration.#saveButton).click()
     }
 
     createdUserIsVisibleInTable () {
