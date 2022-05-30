@@ -32,7 +32,7 @@ class Navigation {
   }
 
   goToRoomsOverview () {
-    //cy.visit('/rooms-overview')
+    cy.visit('/rooms-overview')
     cy.get(Navigation.#courseOverviewNavigationButton).click()
     cy.url().should('include', '/rooms-overview')
   }
