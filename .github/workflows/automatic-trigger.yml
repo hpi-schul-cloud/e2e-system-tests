@@ -15,8 +15,6 @@ jobs:
           env:
             CYPRESS_INSTANCE_BRB: ${{ secrets.CYPRESS_INSTANCE_BRB }}
             CYPRESS_USERS_TEACHER_EMAIL: ${{ secrets.CYPRESS_USERS_TEACHER_EMAIL }}
-            #CYPRESS_USERS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
-            #CYPRESS_USERS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
             CYPRESS_USERS_PASSWORD_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_USERS_PASSWORD_DEFAULT_PASSWORD }}
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
