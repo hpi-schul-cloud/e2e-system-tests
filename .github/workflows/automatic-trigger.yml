@@ -1,21 +1,28 @@
 # This is a basic workflow to help you get started with Actions
 name: e2e-automatic-trigger-tests
-on:  [push]
+on: [push]
 jobs:
- e2e-tests:
+  e2e-tests:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Cypress run
-      uses: cypress-io/github-action@v2
-      with:
-        browser: chrome
-        headless: true
-    - name: 'Upload Artifact'
-      uses: actions/upload-artifact@v2
-      if: always() # to always upload the files if tests passed or failed
-      with:
-        name: my-artifact
-        path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
-        retention-days: 3
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+          env:
+          CYPRESS_INSTANCE_BRB: ${{ github.event.inputs.instance1 }}
+          CYPRESS_INSTANCE_NBC: ${{ github.event.inputs.instance2 }}
+          CYPRESS_USERS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
+          CYPRESS_USERS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
+          CYPRESS_USERS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
+          CYPRESS_USERS_PASSWORD_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_DEFAULT_PASSWORD }}
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        if: always() # to always upload the files if tests passed or failed
+        with:
+          name: my-artifact
+          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+          retention-days: 3
