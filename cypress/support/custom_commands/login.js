@@ -2,6 +2,7 @@ const emailInputFieldElement = '[data-testid="username"]'
 const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
 
+
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
     const links = Cypress.env('instance')
