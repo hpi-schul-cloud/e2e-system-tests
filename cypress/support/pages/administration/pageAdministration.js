@@ -76,7 +76,7 @@ class Administration {
     }
 
     clickSaveButton () {
-        cy.get(Administration.#submitButton).click()
+        cy.get(Administration.#submitButton).eq(0).click()
     }
 
     clickDeleteButton () {
