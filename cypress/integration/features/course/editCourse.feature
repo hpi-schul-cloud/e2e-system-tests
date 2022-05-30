@@ -18,7 +18,7 @@ Feature: To edit a course by the teacher
         And students of the class are in field students
         # When I log out
         # And log in as student
-        # And I go to Course Page
+        # And I go to rooms overview
         # Then I see the course
 
     Scenario: Removing classes from a course

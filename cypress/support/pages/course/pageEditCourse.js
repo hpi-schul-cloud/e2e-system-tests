@@ -10,7 +10,6 @@ class Edit_Course {
   static #selectClassesDeleteButtons = '#classId_chosen > ul > li > a'
   static #selectClasses = '#classId_chosen > ul > li > span'
   static #btnSubmit = '#main-content > section > form > div.modal-footer > button.btn.btn-primary.btn-submit'
-  static #titleEditPageString = 'Kurs bearbeiten'
   static #classSearchString = 'ALLE'
   static #numberStudentsInClass = 3
   static #courseName = 'Mathe'
@@ -31,7 +30,8 @@ class Edit_Course {
   }
 
   courseEditPageIsVisible () {
-    cy.get(Edit_Course.#pageTitle).should('contain',Edit_Course.#titleEditPageString)
+    cy.get(Edit_Course.#pageTitle)
+    cy.contains('Kurs bearbeiten')
   }
 
   selectClassForCourse () {
@@ -66,4 +66,3 @@ class Edit_Course {
   }
 }
 export default Edit_Course
-

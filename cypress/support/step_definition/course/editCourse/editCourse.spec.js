@@ -46,7 +46,3 @@ And('there are no classes in the classes field', () => {
 And('there are no students in the students field', () => {
     editCourse.CheckNoStudentsInFieldStudents()
 })
-
-
-
-
