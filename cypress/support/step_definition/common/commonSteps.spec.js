@@ -2,8 +2,8 @@
   cy.login(username, environment)
 })*/
 
-Given('I am logged in as an teacher to brb', () => {
-  cy.loginAsBRBTeacher()
+Given('I am logged in as an teacher to nbc', () => {
+  cy.loginAsNBCTeacher()
 })
 
 Given('I am logged in as an admin to brb', () => {

@@ -3,9 +3,9 @@ const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
 
 
-Cypress.Commands.add('loginAsBRBTeacher',() => {
+Cypress.Commands.add('loginAsNBCTeacher',() => {
 
-cy.visit(Cypress.env('BRB'))
+cy.visit(Cypress.env('NBC'))
 cy.get(emailInputFieldElement).eq(1).type(Cypress.env('TEACHER_EMAIL'))
 cy.get(passwordInputFieldElement).eq(1).type(Cypress.env('DEFAULT_PASSWORD'))
 cy.get(submitButton).eq(1).click()
