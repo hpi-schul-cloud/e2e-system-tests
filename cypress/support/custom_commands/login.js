@@ -1,22 +1,22 @@
 const emailInputFieldElement = '[data-testid="username"]'
 const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
-
+let url = Cypress.env('instance')
+let user = Cypress.env('users')
+let password = user.password.DEFAULT_PASSWORD
 
 Cypress.Commands.add('loginAsNBCTeacher',() => {
-let url = Cypress.env('instance')
 cy.visit(url.NBC)
-cy.get(emailInputFieldElement).eq(1).type(Cypress.env('TEACHER_EMAIL'))
-cy.get(passwordInputFieldElement).eq(1).type(Cypress.env('DEFAULT_PASSWORD'))
+cy.get(emailInputFieldElement).eq(1).type(Cypress.env(user.teacher.EMAIL))
+cy.get(passwordInputFieldElement).eq(1).type(password)
 cy.get(submitButton).eq(1).click()
 
 })
 
 Cypress.Commands.add('loginAsBRBAdmin',() => {
-  let url = Cypress.env('instance')
   cy.visit(url.BRB)
-  cy.get(emailInputFieldElement).eq(1).type(Cypress.env('ADMIN_EMAIL'))
-  cy.get(passwordInputFieldElement).eq(1).type(Cypress.env('DEFAULT_PASSWORD'))
+  cy.get(emailInputFieldElement).eq(1).type(user.admin.EMAIL)
+  cy.get(passwordInputFieldElement).eq(1).type(password)
   cy.get(submitButton).eq(1).click()
 
 
