@@ -13,9 +13,7 @@ jobs:
           browser: chrome
           headless: true
           env:
-            CYPRESS_INSTANCE_BRB: ${{ secrets.CYPRESS_INSTANCE_BRB }}
-            CYPRESS_USERS_TEACHER_EMAIL: ${{ secrets.CYPRESS_USERS_TEACHER_EMAIL }}
-            CYPRESS_USERS_PASSWORD_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_USERS_PASSWORD_DEFAULT_PASSWORD }}
+            CYPRESS_INSTANCE_BRB: ${{ secrets.CYPRESS_ENV_CI }}
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
         if: always() # to always upload the files if tests passed or failed
@@ -23,3 +21,6 @@ jobs:
           name: my-artifact
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
           retention-days: 3
+
+          # CYPRESS_USERS_TEACHER_EMAIL: ${{ secrets.CYPRESS_USERS_TEACHER_EMAIL }}
+          #  CYPRESS_USERS_PASSWORD_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_USERS_PASSWORD_DEFAULT_PASSWORD }}
