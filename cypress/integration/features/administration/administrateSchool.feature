@@ -8,7 +8,7 @@ Scenario: Activate Chat
         And I go to school administration
         And I go to new school administration page
         And I click toggle switch to activate the chat
-        And I click save button
+        And I click save general settings button
         And I log out
         Given I am logged in as a 'teacher' at 'brb'
         And I go to teams overview
@@ -24,7 +24,7 @@ Scenario: Deactivate Chat
         And I go to school administration
         And I go to new school administration page
         And I click toggle switch to deactivate the chat
-        And I click save button
+        And I click save general settings button
         And I log out
         Given I am logged in as a 'teacher' at 'brb'
         And I go to teams overview
@@ -40,7 +40,7 @@ Scenario: Activate BigBlueButton
         And I go to school administration
         And I go to new school administration page
         And I click toggle switch to activate video conferencing
-        And I click save button
+        And I click save general settings button
         And I log out
         Given I am logged in as a 'teacher' at 'brb'
         And I go to rooms overview
@@ -55,7 +55,7 @@ Scenario: Dectivate BigBlueButton
         And I go to school administration
         And I go to new school administration page
         And I click toggle switch to deactivate video conferencing
-        And I click save button
+        And I click save general settings button
         And I log out
         Given I am logged in as a 'teacher' at 'brb'
         And I go to rooms overview

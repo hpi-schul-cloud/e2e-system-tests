@@ -72,8 +72,8 @@ When('I click toggle switch to deactivate video conferencing', () => {
     selectAdministration.clickVideoconferenceToggleSwitch()
 })
 
-When('I click save button', () => {
-    selectAdministration.clickSaveButton()
+When('I click save general settings button', () => {
+    selectAdministration.clickSaveGeneralSettingsButton()
 })
 
 //THEN

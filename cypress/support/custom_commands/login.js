@@ -1,7 +1,7 @@
 const emailInputFieldElement = '[data-testid="username"]'
 const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
-const intitials = '[data-testid="initials"]'
+const initials = '[data-testid="initials"]'
 const logoutButton = '[data-testid="logout"]'
 
 Cypress.Commands.add('login', (username, environment) => {
@@ -45,7 +45,7 @@ Cypress.Commands.add('login', (username, environment) => {
 })
 
 Cypress.Commands.add('logout', () => {
-      cy.get(intitials).click()
+      cy.get(initials).click()
       cy.get(logoutButton).click()
       cy.contains(/Herzlich willkommen|Login für registrierte Nutzer:innen/g)
   })
