@@ -27,7 +27,7 @@ jobs:
         CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
         CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
         CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
-        CYPRESS_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_DEFAULT_PASSWORD }}
+        CYPRESS_DEFAULT_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
       if: always() # to always upload the files if tests passed or failed
