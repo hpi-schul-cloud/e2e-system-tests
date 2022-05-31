@@ -1,31 +1,31 @@
 import Team from '../../pages/team/pageTeam'
 
-const selectTeam = new Team()
+const team = new Team()
 
 When('I go to a team', () => {
-    selectTeam.selectTeam()
+    team.selectTeam()
 })
 
 When('I open team settings', () => {
-    selectTeam.openTeamSettings()
+    team.openTeamSettings()
 })
 
 When('I choose edit team', () => {
-    selectTeam.editTeam()
+    team.editTeam()
 })
 
 Then('I can see the chat', () => {
-    selectTeam.canSeeTeamChat()
+    team.canSeeTeamChat()
 })
 
 Then('I can not see the chat', () => {
-    selectTeam.canNotSeeTeamChat()
+    team.canNotSeeTeamChat()
 })
 
 Then('I can see the checkbox for messenger', () => {
-    selectTeam.canSeeTeamChatCheckbox()
+    team.canSeeTeamChatCheckbox()
 })
 
 Then('I can not see the checkbox for messenger', () => {
-    selectTeam.canNotSeeTeamChatCheckbox()
+    team.canNotSeeTeamChatCheckbox()
 })
