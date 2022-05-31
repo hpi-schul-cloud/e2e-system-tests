@@ -19,7 +19,7 @@ class Edit_Course {
     cy.get(Edit_Course.#courseToEdit).click()
   }
 
-  coursePageIsVisible () {
+  showCoursePage () {
     cy.url().should('include', '/courses')
     cy.get(Edit_Course.#pageTitle).should('contain',Edit_Course.#courseName)
   }
@@ -29,7 +29,7 @@ class Edit_Course {
     cy.get(Edit_Course.#btnCourseEdit).click()
   }
 
-  courseEditPageIsVisible () {
+  showCourseEditPage () {
     cy.get(Edit_Course.#pageTitle)
     cy.contains('Kurs bearbeiten')
   }
@@ -47,20 +47,20 @@ class Edit_Course {
     cy.get(Edit_Course.#btnSubmit).click()
   }
 
-  addedClassIsInFieldClasses () {
+  checkAddedClassIsInFieldClasses () {
     cy.get(Edit_Course.#selectClasses).should('contain',Edit_Course.#classSearchString)
   }
 
-  studentsAreInFieldStudents () {
+  checkStudentsAreInFieldStudents () {
     // + 1 - because the inputfield to add a student is also in the ul
     cy.get(Edit_Course.#selectStudents).should('have.length', Edit_Course.#numberStudentsInClass + 1)
   }
 
-  CheckNoClassesInFieldClasses () {
+  checkNoClassesInFieldClasses () {
     cy.get(Edit_Course.#selectClasses).should('have.length', 0)
   }
 
-  CheckNoStudentsInFieldStudents () {
+  checkNoStudentsInFieldStudents () {
     // 1 - because the inputfield to add a student is also in the ul
     cy.get(Edit_Course.#selectStudents).should('have.length', 1)
   }

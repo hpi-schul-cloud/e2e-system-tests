@@ -8,7 +8,7 @@ And('I click on course', () => {
 })
 
 Then('I can see course page', () => {
-    editCourse.coursePageIsVisible()
+    editCourse.showCoursePage()
 })
 
 When('I open course edit page', () => {
@@ -16,7 +16,7 @@ When('I open course edit page', () => {
 })
 
 Then('I can see course edit page', () => {
-    editCourse.courseEditPageIsVisible()
+    editCourse.showCourseEditPage()
 })
 
 When('I choose a class', () => {
@@ -32,17 +32,17 @@ When('I click on save changes', () => {
 })
 
 And('class is in field classes', () => {
-    editCourse.addedClassIsInFieldClasses()
+    editCourse.checkAddedClassIsInFieldClasses()
 })
 
 And('students of the class are in field students', () => {
-    editCourse.studentsAreInFieldStudents()
+    editCourse.checkStudentsAreInFieldStudents()
 })
 
 And('there are no classes in the classes field', () => {
-    editCourse.CheckNoClassesInFieldClasses()
+    editCourse.checkNoClassesInFieldClasses()
 })
 
 And('there are no students in the students field', () => {
-    editCourse.CheckNoStudentsInFieldStudents()
+    editCourse.checkNoStudentsInFieldStudents()
 })
