@@ -2,9 +2,31 @@
   "testFiles": "**/*.feature",
   "viewportWidth": 1024,
   "viewportHeight": 768,
-  "videoCompression": 18
-}
+  "videoCompression": 18,
 
+"env": {
+  "instance": {
+    "BRB": "https://brb-main.cd.dbildungscloud.dev",
+    "NBC": "https://nbc-main.cd.dbildungscloud.dev",
+    "DEFAULT":"https://default-main.cd.dbildungscloud.dev/login"
+  },
+  "users": {
+    "teacher": {
+      "EMAIL": "lehrer@schul-cloud.org "
+    },
+    "student": {
+      "EMAIL": "schueler@schul-cloud.org"
+    },
+    "admin": {
+      "EMAIL": "admin@schul-cloud.org"
+    },
+    "password": {
+      "DEFAULT_PASSWORD": "Schulcloud1!"
+    }
+  }
+},
+"experimentalSessionAndOrigin": false
+}
 
 
 

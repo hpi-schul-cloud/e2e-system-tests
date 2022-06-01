@@ -22,8 +22,8 @@ When ('I submit the request without entering my email',()=>{
   loginScreen.enterEmailIsMandatory()
 })
 
-Then ('I see the notification that entering email is a mandatory field',()=>{
+Then ('I see the dailog is still open',()=>{
+  loginScreen.seeDailogIsStillOpen()
 
-//
 })
 

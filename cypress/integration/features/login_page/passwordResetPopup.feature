@@ -9,5 +9,5 @@ Feature: Visibility of dBildungscloud Password Reset pop-up
 
   Scenario: Entering email or user name is mandatory
     When I submit the request without entering my email
-    Then I see the notification that entering email is a mandatory field
+    Then I see the dailog is still open
 
