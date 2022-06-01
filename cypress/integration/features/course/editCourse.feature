@@ -5,13 +5,13 @@ Feature: To edit a course by the teacher
     Scenario: Adding a class to a course
         Given I am logged in as a 'teacher' at 'brb'
         When I go to rooms overview
-        And I click on course
-        Then I can see course page
+        And I go to room 'Kurs Mathe'
+        Then I can see room page 'Mathe'
         When I open course edit page
         Then I can see course edit page
         When I choose a class
         And I click on save changes
-        Then I can see course page
+        Then I can see room page 'Mathe'
         When I open course edit page
         Then I can see course edit page
         And class is in field classes
@@ -24,13 +24,13 @@ Feature: To edit a course by the teacher
     Scenario: Removing classes from a course
         Given I am logged in as a 'teacher' at 'brb'
         When I go to rooms overview
-        And I click on course
-        Then I can see course page
+        And I go to room 'Kurs Mathe'
+        Then I can see room page 'Mathe'
         When I open course edit page
         Then I can see course edit page
         When I remove all classes
         And I click on save changes
-        Then I can see course page
+        Then I can see room page 'Mathe'
         When I open course edit page
         Then I can see course edit page
         And there are no classes in the classes field

@@ -11,8 +11,8 @@ class Create_Course {
     cy.get(Create_Course.#createFAB).click()
   }
 
-  fillCourseCreationForm () {
-    cy.get(Create_Course.#courseTitle).type('unique test course name')
+  fillCourseCreationForm (new_course) {
+    cy.get(Create_Course.#courseTitle).type(new_course)
   }
 
   clickOnNextSteps () {

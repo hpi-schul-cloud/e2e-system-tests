@@ -8,8 +8,12 @@ When ('I am in the rooms overview', () =>{
   navigation.goToRoomOverview()
 })
 
-And('I go to a room', () => {
-  course.selectTheRoom()
+And('I go to room {string}', (room_name) => {
+  course.selectTheRoom(room_name)
+})
+
+Then('I can see room page {string}', (room_name) => {
+  course.showRoomPage(room_name)
 })
 
 And('I go to tools tab', () => {
@@ -20,8 +24,12 @@ And('I click add new tool button', () => {
   course.addNewTool()
 })
 
-Then('I see the created course on the room overview page', () => {
-  course.createdCourseIsVisibleOnOverviewPage()
+Then('I see the course {string} on the room overview page', (course_name) => {
+  course.courseIsVisibleOnOverviewPage(course_name)
+})
+
+Then('I do not see the course {string} on the room overview page', (course_name) => {
+  course.courseIsNotVisibleOnOverviewPage(course_name)
 })
 
 Then('I can add BigBlueButton to the room', () => {

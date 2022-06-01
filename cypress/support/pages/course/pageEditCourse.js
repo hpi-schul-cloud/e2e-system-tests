@@ -1,7 +1,6 @@
 'use strict'
 
 class Edit_Course {
-  static #courseToEdit = '[aria-label="Kurs Mathe"]'
   static #pageTitle = '[id="page-title"]'
   static #dropDownCourse = '[class="btn btn-sm dropdown-toggle btn-course-dropdown"]'
   static #btnCourseEdit = '[class="dropdown-item btn-course-edit"]'
@@ -12,17 +11,7 @@ class Edit_Course {
   static #btnSubmit = '#main-content > section > form > div.modal-footer > button.btn.btn-primary.btn-submit'
   static #classSearchString = 'ALLE'
   static #numberStudentsInClass = 3
-  static #courseName = 'Mathe'
   static #selectStudents = '#studentsId_chosen > ul > li'
-
-  clickOnCourse () {
-    cy.get(Edit_Course.#courseToEdit).click()
-  }
-
-  showCoursePage () {
-    cy.url().should('include', '/courses')
-    cy.get(Edit_Course.#pageTitle).should('contain',Edit_Course.#courseName)
-  }
 
   openCourseEditPage () {
     cy.get(Edit_Course.#dropDownCourse).click()
