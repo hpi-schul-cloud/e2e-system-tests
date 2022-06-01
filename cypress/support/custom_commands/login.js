@@ -6,36 +6,34 @@ const logoutButton = '[data-testid="logout"]'
 
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
-    const links = Cypress.env('instance')
+    const env = Cypress.env()
+    let link
     let environmentUpperCased = environment.toUpperCase()
-    const link = links[environmentUpperCased]
-    Cypress.config('baseUrl', link)
+    if (environmentUpperCased === 'BRB') {
+      link = Cypress.config('baseUrl', env[environmentUpperCased])
+      cy.visit(link)
+    } else if (environmentUpperCased === 'NBC') {
+      link = Cypress.config('baseUrl', env[environmentUpperCased])
+      cy.visit(link)
+    }
 
-    cy.visit(link)
-
-    const users = Cypress.env('users')
-
-    const user = users[username]
-
-    const password = users.password.DEFAULT_PASSWORD
-
-    if (user === 'teacher') {
+    if (username === 'teacher') {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .type(user.EMAIL)
-    } else if (user === 'student') {
+        .type(env['TEACHER_EMAIL'])
+    } else if (username === 'student') {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .type(user.EMAIL)
+        .type(env['STUDENT_EMAIL'])
     } else {
       cy.get(emailInputFieldElement)
         .eq(1)
-        .type(user.EMAIL)
+        .type(env['ADMIN_EMAIL'])
     }
 
     cy.get(passwordInputFieldElement)
       .eq(1)
-      .type(password, { log: false })
+      .type(env['PASSWORD'], { log: false })
 
     cy.get(submitButton)
       .eq(1)
