@@ -6,9 +6,8 @@
 
 "env": {
   "instance": {
-    "BRB": "https://brb-main.cd.dbildungscloud.dev",
-    "NBC": "https://nbc-main.cd.dbildungscloud.dev",
-    "DEFAULT":"https://default-main.cd.dbildungscloud.dev/login"
+    "BRB": "https://staging.brandenburg.dbildungscloud.org",
+    "NBC": "https://staging.niedersachsen.dbildungscloud.org"
   },
   "users": {
     "teacher": {
@@ -25,7 +24,7 @@
     }
   }
 },
-"experimentalSessionAndOrigin": false
+"experimentalSessionAndOrigin": true
 }
 
 

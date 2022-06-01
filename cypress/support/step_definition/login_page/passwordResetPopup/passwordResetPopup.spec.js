@@ -12,18 +12,6 @@ When ('I click on Forgot Password? link', () =>{
   loginScreen.clickOnForgotPassword()
   })
 
-Then ('I see the Reset Password dailog with lable, email input text box, cancel and send reset password elements',() =>{
+Then ('I see the Reset Password dailog with username lable, email input box, infoMessage, cancel and send reset password buttons',() =>{
   loginScreen.showElementOnDailog()
 })
-
-//Scenrio: Entering email or user name is mandatory
-
-When ('I submit the request without entering my email',()=>{
-  loginScreen.enterEmailIsMandatory()
-})
-
-Then ('I see the dailog is still open',()=>{
-  loginScreen.seeDailogIsStillOpen()
-
-})
-
