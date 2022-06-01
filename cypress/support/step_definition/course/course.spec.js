@@ -8,10 +8,6 @@ When ('I am in the rooms overview', () =>{
   navigation.goToRoomOverview()
 })
 
-And('I go to room {string}', (room_name) => {
-  course.selectTheRoom(room_name)
-})
-
 Then('I can see room page {string}', (room_name) => {
   course.showRoomPage(room_name)
 })

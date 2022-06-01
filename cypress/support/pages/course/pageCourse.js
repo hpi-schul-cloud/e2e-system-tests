@@ -7,14 +7,6 @@ class Course {
   static #toolsList = 'div.list-group'
   static #pageTitle = '[id="page-title"]'
 
-  selectTheRoom (room) {
-    const selectedRoom = `[aria-label='${room}']`
-    cy.get(selectedRoom).click({
-      multiple: true,
-      force: true
-    })
-  }
-
   showRoomPage (room) {
     cy.url().should('include', '/courses')
     cy.get(Course.#pageTitle).should('contain', room)
