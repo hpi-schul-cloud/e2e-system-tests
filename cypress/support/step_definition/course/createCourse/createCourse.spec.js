@@ -6,8 +6,8 @@ And('I click on FAB to create the course', () => {
   createCourse.clickOnCreateFAB()
 })
 
-And('I fill out the course creation form', () => {
-  createCourse.fillCourseCreationForm()
+And('I fill out the course creation form for new course {string}', (new_course_name) => {
+  createCourse.fillCourseCreationForm(new_course_name)
 })
 
 And('I click on next steps', () => {

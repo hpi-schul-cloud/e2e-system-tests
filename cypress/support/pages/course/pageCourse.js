@@ -5,12 +5,11 @@ class Course {
   static #toolsTab = '[data-testid="tools"]'
   static #groupsTab = '[data-testid="groups"]'
   static #toolsList = 'div.list-group'
+  static #pageTitle = '[id="page-title"]'
 
-  selectTheRoom () {
-    cy.get('[aria-label="Kurs unique test course name"]').click({
-      multiple: true,
-      force: true
-    })
+  showRoomPage (room) {
+    cy.url().should('include', '/courses')
+    cy.get(Course.#pageTitle).should('contain', room)
   }
 
   goToTools () {
@@ -21,9 +20,14 @@ class Course {
     cy.get('[aria-label="Neues Tool hinzufügen"]').click()
   }
 
-  createdCourseIsVisibleOnOverviewPage () {
+  courseIsVisibleOnOverviewPage (course_name) {
     cy.url().should('include', '/rooms-overview')
-    cy.contains('test course name')
+    cy.contains(course_name)
+  }
+
+  courseIsNotVisibleOnOverviewPage (course_name) {
+    cy.url().should('include', '/rooms-overview')
+    cy.contains(course_name).should('not.exist')
   }
 
   canAddBigBlueButton () {

@@ -44,7 +44,7 @@ Scenario: Deactivate BigBlueButton
         And I log out
         Given I am logged in as a 'teacher' at 'brb'
         And I go to rooms overview
-        And I go to a room
+        And I go to room 'Kurs Mathe'
         And I go to tools tab
         And I click add new tool button
         Then I can not add BigBlueButton to the room
@@ -59,7 +59,7 @@ Scenario: Activate BigBlueButton
         And I log out
         Given I am logged in as a 'teacher' at 'brb'
         And I go to rooms overview
-        And I go to a room
+        And I go to room 'Kurs Mathe'
         And I go to tools tab
         And I click add new tool button
         Then I can add BigBlueButton to the room

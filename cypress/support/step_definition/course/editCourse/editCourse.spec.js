@@ -3,14 +3,6 @@ import { And, When } from 'cypress-cucumber-preprocessor/steps'
 
 const editCourse = new Edit_Course()
 
-And('I click on course', () => {
-    editCourse.clickOnCourse()
-})
-
-Then('I can see course page', () => {
-    editCourse.showCoursePage()
-})
-
 When('I open course edit page', () => {
     editCourse.openCourseEditPage()
 })
