@@ -7,13 +7,6 @@ class Delete_Course {
   static #deleteButton = '[data-method="DELETE"]'
   static #confirmDeletionPopup = '.btn-primary:nth-child(3)'
 
-  selectTheRoom () {
-    cy.get('[aria-label="Kurs unique test course name"]').click({
-      multiple: true,
-      force: true
-    })
-  }
-
   performDeletion () {
     cy.get(Delete_Course.#threeDotButton)
       .eq(1)

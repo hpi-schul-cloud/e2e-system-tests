@@ -4,8 +4,8 @@ Feature: To add a new course by the teacher
 
     Scenario: Adding a new course
         Given I am logged in as a 'teacher' at 'brb'
-        When I am in the rooms overview
+        When I go to rooms overview
         And I click on FAB to create the course
-        And I fill out the course creation form
+        And I fill out the course creation form for new course 'Cypress Testkurs'
         And I click on next steps
-        Then I see the created course on the room overview page
+        Then I see the course 'Cypress Testkurs' on the room overview page

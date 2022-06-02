@@ -4,10 +4,10 @@ Feature: To read a news on the dashboard
 
 Scenario: Reading a school news on the dashboard
         Given I am logged in as a 'teacher' at 'brb'
-        When I go to the school news on the dashboard
+        When I go to school news on the dashboard
         Then I can read the school news
 
 Scenario: Reading a team news on the dashboard
         Given I am logged in as a 'student' at 'brb'
-        When I go to the team news on the dashboard
+        When I go to team news on the dashboard
         Then I can read the team news
