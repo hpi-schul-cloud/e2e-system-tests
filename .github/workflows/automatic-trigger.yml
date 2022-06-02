@@ -1,0 +1,28 @@
+name: e2e-automatic-trigger-tests
+on:  [push]
+jobs:
+ e2e-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          headless: true
+        env:
+          CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
+          CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
+          CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
+          CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
+          CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v2
+        if: always() # to always upload the files if tests passed or failed
+        with:
+          name: my-artifact
+          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+          retention-days: 3

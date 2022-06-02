@@ -12,6 +12,12 @@ class Help {
   static #helpNutzungshilfen = '[id="nutzungshilfen"]'
   static #helpContactform = 'h2.h4'
   static #popUpLink = 'https://lernen.cloud/'
+  static #searchBar = '.search'
+  static #searchResult = '.live-search-results'
+  static #bugFormHeadline = '.bug_form > label:nth-child(12) > input:nth-child(2)'
+  static #bugFormMail = '.bug_form > label:nth-child(15) > input:nth-child(2)'
+  static #bugFormSubmitButton ='.bug_form > button'
+  static #feedbackSendConfirmation = '[data-testid="notification"]'
 
   clickQuestionIcon () {
     cy.visit('/dashboard')
@@ -51,6 +57,26 @@ class Help {
     cy.contains('Kontakt')
     cy.get(Help.#helpContactform)
     cy.contains('Kontaktformular')
+  }
+
+  enterKeywordInSearchbar () {
+    cy.get(Help.#searchBar).type('Hilfe')
+  }
+
+  fillOutContactForm () {
+    cy.get(Help.#bugFormHeadline).type('Dies ist ein Test!')
+    cy.get(Help.#bugFormMail).type('test@example.com')
+    cy.get(Help.#bugFormSubmitButton).click()
+  }
+
+  seeHelpArticle () {
+    cy.get(Help.#searchResult)
+    cy.contains('Erste Schritte')
+  }
+
+  sendFormToSupport () {
+    cy.get(Help.#feedbackSendConfirmation)
+    cy.contains('Feedback erfolgreich versendet!')
   }
 }
 export default Help

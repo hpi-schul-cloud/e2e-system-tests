@@ -1,64 +1,90 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 import Administration from '../../pages/administration/pageAdministration'
 
-const selectAdministration= new Administration()
+const administration = new Administration()
 
+//WHEN
 When('I click on FAB to add a user', () => {
-    selectAdministration.clickOnFAB()
+    administration.clickOnFAB()
 })
 
 When('I fill out the student creation form', () => {
-    selectAdministration.fillStudentCreationForm()
+    administration.fillStudentCreationForm()
 })
 
 When('I fill out the teacher creation form', () => {
-    selectAdministration.fillTeacherCreationForm()
+    administration.fillTeacherCreationForm()
 })
 
 When('I click on add button', () => {
-    selectAdministration.clickOnAddButton()
+    administration.clickOnAddButton()
 })
 
 When('I enter user name in search input field', () => {
-    selectAdministration.enterNameForSearch()
+    administration.enterNameForSearch()
 })
 
 When('I click edit student button', () => {
-    selectAdministration.clickEditStudentButton()
+    administration.clickEditStudentButton()
 })
 
 When('I click edit teacher button', () => {
-    selectAdministration.clickEditTeacherButton()
+    administration.clickEditTeacherButton()
 })
 
 When('I change student information', () => {
-    selectAdministration.changeStudentUserInformation()
+    administration.changeStudentUserInformation()
 })
 
 When('I change teacher information', () => {
-    selectAdministration.changeTeacherUserInformation()
+    administration.changeTeacherUserInformation()
 })
 
 When('I click save changes button', () => {
-    selectAdministration.clickSaveButton()
+    administration.clickSaveButton()
 })
 
 When('I click delete user button', () => {
-    selectAdministration.clickDeleteButton()
+    administration.clickDeleteButton()
 })
 
 When('I click on delete button in pop up', () => {
-    selectAdministration.clickDeleteButtonInPopup()
+    administration.clickDeleteButtonInPopup()
 })
 
+When('I go to new school administration page', () => {
+    administration.clickNewAdminPageButton()
+})
+
+When('I click toggle switch to activate the chat', () => {
+    administration.clickChatToggleSwitch()
+})
+
+When('I click toggle switch to deactivate the chat', () => {
+    administration.clickChatToggleSwitch()
+})
+
+When('I click toggle switch to activate video conferencing', () => {
+    administration.clickVideoconferenceToggleSwitch()
+})
+
+When('I click toggle switch to deactivate video conferencing', () => {
+    administration.clickVideoconferenceToggleSwitch()
+})
+
+When('I click save general settings button', () => {
+    administration.clickSaveGeneralSettingsButton()
+})
+
+//THEN
 Then('I can see the created user in the table', () => {
-    selectAdministration.createdUserIsVisibleInTable()
+    administration.createdUserIsVisibleInTable()
 })
 
 Then('I can see the edited user in the table', () => {
-    selectAdministration.editedUserIsVisibleInTable()
+    administration.editedUserIsVisibleInTable()
 })
 
 Then('I cannot see the user in the table', () => {
-    selectAdministration.createdUserIsNotVisibleInTable()
+    administration.createdUserIsNotVisibleInTable()
 })

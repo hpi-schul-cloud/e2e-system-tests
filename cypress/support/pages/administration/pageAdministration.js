@@ -18,6 +18,10 @@ class Administration {
     static #cancelButtonConfirmation = '.cancel-modal button.btn-close'
     static #deleteButtonCancel = '.cancel-modal button.historyback'
     static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit'
+    static #newSchoolAdminPageButton = '.btn-info'
+    static #chatToggleSwitch = '.rocketchat-switch'
+    static #videoconferenceToggleSwitch = '.videoconference-switch'
+    static #saveGeneralSettingsButton = '.my-5'
     static #tableContents =  '[data-testid="table-data-body"]'
 
     clickOnFAB () {
@@ -81,6 +85,56 @@ class Administration {
 
     clickDeleteButtonInPopup () {
         cy.get(Administration.#deleteButtonConfirmation).click()
+    }
+
+    clickNewAdminPageButton () {
+        cy.get(Administration.#newSchoolAdminPageButton).click()
+    }
+
+    clickChatToggleSwitch () {
+        cy.intercept('/api/v1/federalStates/*').as('federalStates')
+        cy.wait('@federalStates')
+        cy.get(Administration.#chatToggleSwitch)
+        .find('input')
+        .click({ force: true })
+        //need to find out current state and decide if state needs to be changed
+        //if current state aria-checked="true" and I want it activated then I don't need to click
+        //if current state aria-checked="false" and I want it activated then I need to click
+        /*
+
+        it('Enable', function () {
+        cy.get('input[aria-label="toggle switch"]').eq(2).then(($ele) => { //#input-130 für Video, input-125 für Chat
+        if ($ele.is(':true')) {
+            return
+        } else {
+            cy.wrap($ele).click()
+            //cy.get(Administration.#chatToggleSwitch)
+        }
+        })
+    })
+
+    it('Disable', function () {
+    cy.get('input[aria-label="toggle switch"]').eq(2).then(($ele) => {
+        if ($ele.is(':true')) {
+            cy.wrap($ele).click()
+            //cy.get(Administration.#chatToggleSwitch)
+        } else {
+            return
+        }
+    })
+    })*/
+    }
+
+    clickVideoconferenceToggleSwitch () {
+        cy.intercept('/api/v1/federalStates/*').as('federalStates')
+        cy.wait('@federalStates')
+        cy.get(Administration.#videoconferenceToggleSwitch)
+        .find('input')
+        .click({ force: true })
+    }
+
+    clickSaveGeneralSettingsButton () {
+        cy.get(Administration.#saveGeneralSettingsButton).click()
     }
 
     createdUserIsVisibleInTable () {
