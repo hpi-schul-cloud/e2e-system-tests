@@ -6,11 +6,6 @@ class Dashboard {
   static #dashboardTaskCourseName = '[data-testid="task-course-name"]'
   static #dashboardTaskName = '[data-testid="task-name"]'
 
-  arriveAtDashboard () {
-    cy.visit('/dashboard')
-    cy.url().should('include', '/dashboard')
-  }
-
   seeWelcomeMessage () {
     cy.get(Dashboard.#welcomeMessage)
     cy.contains('Hallo')

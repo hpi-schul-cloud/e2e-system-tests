@@ -1,48 +1,44 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 import Help from '../../pages/help/pageHelp'
 
-const selectHelp= new Help()
+const help= new Help()
 
 When('I click on the question icon in header', () => {
-    selectHelp.clickQuestionIcon()
+    help.clickQuestionIcon()
 })
 
 When('I click on help section in header', () => {
-    selectHelp.clickHelpSectionInHeader()
+    help.clickHelpSectionInHeader()
 })
 
 When('I click on send request or problem in header', () => {
-    selectHelp.clickSendRequestOrProblemInHeader()
+    help.clickSendRequestOrProblemInHeader()
 })
 
 When('I click on advanced trainings in header', () => {
-    selectHelp.advancedTrainingsInHeader()
+    help.advancedTrainingsInHeader()
 })
 
-When('I click on help section in sidebar', () => {
-    selectHelp.clickHelpSectionInSidebar()
+When('I enter keyword in search bar', () => {
+    help.enterKeywordInSearchbar()
 })
 
-When('I click on help articles in sidebar', () => {
-    selectHelp.clickHelpArticlesInSidebar()
-})
-
-When('I click on contact in sidebar', () => {
-    selectHelp.clickHelpContactInSidebar()
-})
-
-When('I click on advanced trainings in sidebar', () => {
-    selectHelp.advancedTrainingsInSidebar()
+When('I fill out the contact form', () => {
+    help.fillOutContactForm()
 })
 
 Then('I can see the help articles page', () => {
-    selectHelp.seeHelpArticlesPage()
+    help.seeHelpArticlesPage()
 })
 
 Then('I can see the help contact page', () => {
-    selectHelp.seeHelpContactPage()
+    help.seeHelpContactPage()
 })
 
-//Then('a new tab in browser opens', () => {
-//
-//})
+Then('I can see an help article related to my search', () => {
+    help.seeHelpArticle()
+})
+
+Then('I can send it to the support', () => {
+    help.sendFormToSupport()
+})

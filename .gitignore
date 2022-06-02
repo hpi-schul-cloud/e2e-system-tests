@@ -3,3 +3,4 @@ node_modules
 screenshots
 videos
 reports
+cypress.env.json

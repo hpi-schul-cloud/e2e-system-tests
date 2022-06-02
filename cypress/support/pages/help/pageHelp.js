@@ -5,10 +5,6 @@ class Help {
   static #helpSectionInHeader = '[data-testid="Hilfeartikel"]'
   static #sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]'
   static #advancedTrainingsInHeader = '[data-testid="Fortbildung"]'
-  static #helpSectionInSidebar = '[data-testid="Hilfebereich"]'
-  static #helpArticlesInSidebar = '[data-testid="Hilfeartikel"]'
-  static #helpContactInSidebar = '[data-testid="Kontakt"]'
-  static #advancedTrainingsInSidebar = 'a[title="Fortbildungen"]'
   static #helpPageTitle = '[id="page-title"]'
   static #helpFirstSteps = '#erste_schritte > .icon-card__content > .h4'
   static #helpLessons = '[id="Unterricht"]'
@@ -16,6 +12,12 @@ class Help {
   static #helpNutzungshilfen = '[id="nutzungshilfen"]'
   static #helpContactform = 'h2.h4'
   static #popUpLink = 'https://lernen.cloud/'
+  static #searchBar = '.search'
+  static #searchResult = '.live-search-results'
+  static #bugFormHeadline = '.bug_form > label:nth-child(12) > input:nth-child(2)'
+  static #bugFormMail = '.bug_form > label:nth-child(15) > input:nth-child(2)'
+  static #bugFormSubmitButton ='.bug_form > button'
+  static #feedbackSendConfirmation = '[data-testid="notification"]'
 
   clickQuestionIcon () {
     cy.visit('/dashboard')
@@ -32,28 +34,6 @@ class Help {
 
   advancedTrainingsInHeader () {
     cy.get(Help.#advancedTrainingsInHeader).should($a => {
-      expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
-      expect($a.attr('target'), 'target').to.equal('_blank')
-    })
-  }
-
-  clickHelpSectionInSidebar () {
-    cy.visit('/dashboard')
-    cy.get(Help.#helpSectionInSidebar).click()
-  }
-
-  clickHelpArticlesInSidebar () {
-    cy.get(Help.#helpArticlesInSidebar)
-      .eq(0)
-      .click()
-  }
-
-  clickHelpContactInSidebar () {
-    cy.get(Help.#helpContactInSidebar).click()
-  }
-
-  advancedTrainingsInSidebar () {
-    cy.get(Help.#advancedTrainingsInSidebar).should($a => {
       expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
       expect($a.attr('target'), 'target').to.equal('_blank')
     })
@@ -77,6 +57,26 @@ class Help {
     cy.contains('Kontakt')
     cy.get(Help.#helpContactform)
     cy.contains('Kontaktformular')
+  }
+
+  enterKeywordInSearchbar () {
+    cy.get(Help.#searchBar).type('Hilfe')
+  }
+
+  fillOutContactForm () {
+    cy.get(Help.#bugFormHeadline).type('Dies ist ein Test!')
+    cy.get(Help.#bugFormMail).type('test@example.com')
+    cy.get(Help.#bugFormSubmitButton).click()
+  }
+
+  seeHelpArticle () {
+    cy.get(Help.#searchResult)
+    cy.contains('Erste Schritte')
+  }
+
+  sendFormToSupport () {
+    cy.get(Help.#feedbackSendConfirmation)
+    cy.contains('Feedback erfolgreich versendet!')
   }
 }
 export default Help
