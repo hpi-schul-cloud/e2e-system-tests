@@ -1,6 +1,6 @@
 Feature: To administrate school settings by the admin.
 
-As an admin I want to administrate the school so that I can manage it
+As an admin I want to administrate the external tools used in the school so that I can manage it
 
 Scenario: Deactivate Chat
         Given I am logged in as a 'admin' at 'brb'

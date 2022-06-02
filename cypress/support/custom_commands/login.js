@@ -61,7 +61,6 @@ Cypress.Commands.add('login', (username, environment) => {
         user_password = 'EXPERT_1_PASSWORD'
         break;
     }
-
     cy.get(emailInputFieldElement).eq(1).type(env[user_email])
     cy.get(passwordInputFieldElement).eq(1).type(env[user_password])
     cy.get(submitButton).eq(1).click()

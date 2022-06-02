@@ -1,4 +1,4 @@
-import Navigation from '../../pages/common/pageNavigation'
+import Navigation from '../../pages/common_navigation/pageNavigation'
 
 const navigation = new Navigation()
 

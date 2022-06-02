@@ -12,7 +12,7 @@ class Team {
     static #activateConfCheckbox ='#activateConf'
 
     selectTeam () {
-      cy.get(Team.#teamContainer).eq(1).click()
+      cy.get(Team.#teamContainer).eq(0).click()
     }
 
     openTeamSettings () {
