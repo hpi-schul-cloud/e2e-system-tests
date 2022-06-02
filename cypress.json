@@ -5,8 +5,10 @@
   "viewportHeight": 768,
   "videoCompression": 18,
   "experimentalSessionAndOrigin": true,
-  "allure": true,
-  "allureResultsPath": "cypress/assets/allure-results",
-  "allureLogCypress": false,
-  "allureLogGherkin": true
+  "env": {
+    "allure": true,
+    "allureResultsPath": "cypress/assets/allure-results",
+    "allureLogCypress": false,
+    "allureLogGherkin": true
+  }
 }
