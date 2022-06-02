@@ -4,7 +4,6 @@
 	"description": "e2e testing",
 	"main": "index.js",
 	"scripts": {
-		"check": "[[ -d cypress/reports ]] && echo 'Yes' ",
 		"cy:run": "cypress run",
 		"cy:open": "cypress open",
 		"pretest": "[[ -d cypress/reports ]] && rm -rf cypress/reports",
