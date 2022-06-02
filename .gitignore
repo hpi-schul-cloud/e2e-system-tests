@@ -3,3 +3,5 @@ node_modules
 screenshots
 videos
 cypress.env.json
+cucumber-json
+reports
