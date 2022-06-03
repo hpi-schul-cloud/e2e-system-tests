@@ -19,7 +19,7 @@ class Administration {
     static #deleteButtonCancel = '.cancel-modal button.historyback'
     static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit'
     static #newSchoolAdminPageButton = '.btn-info'
-    static #chatToggleSwitch = '.rocketchat-switch'
+    static #chatToggleSwitch = '[id="input-131"]'
     static #videoconferenceToggleSwitch = '.videoconference-switch'
     static #saveGeneralSettingsButton = '.my-5'
     static #tableContents =  '[data-testid="table-data-body"]'
@@ -92,11 +92,9 @@ class Administration {
     }
 
     clickChatToggleSwitch () {
-        cy.intercept('/api/v1/federalStates/*').as('federalStates')
-        cy.wait('@federalStates')
-        cy.get(Administration.#chatToggleSwitch)
-        .find('input')
-        .click({ force: true })
+        //cy.intercept('/api/v1/federalStates/*').as('federalStates')
+        //cy.wait('@federalStates')
+        cy.get(Administration.#chatToggleSwitch).click({ force: true })
         //need to find out current state and decide if state needs to be changed
         //if current state aria-checked="true" and I want it activated then I don't need to click
         //if current state aria-checked="false" and I want it activated then I need to click

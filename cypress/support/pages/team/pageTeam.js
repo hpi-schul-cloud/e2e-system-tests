@@ -6,7 +6,7 @@ class Team {
     static #manageTeamMembers = '[data-testid="administrate_team_members"]'
     static #editTeam = 'i.fa-edit'
     static #deleteTeam = 'i.fa fa-trash'
-    static #rocketchat = '.rocketchat'
+    static #rocketchat = '[class="rocketchat"]'
     static #teamOptions = '.section-course'
     static #activateRCCheckbox ='#activateRC'
     static #activateConfCheckbox ='#activateConf'
@@ -24,7 +24,7 @@ class Team {
     }
 
     canSeeTeamChat () {
-      cy.get(Team.#rocketchat)
+      cy.get(Team.#rocketchat).should('be.visible')
       //cy.contains('Beginn des Gesprächs')
     }
 
