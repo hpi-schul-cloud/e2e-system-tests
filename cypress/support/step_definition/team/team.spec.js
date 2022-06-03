@@ -6,11 +6,11 @@ When('I go to a team', () => {
     team.selectTeam()
 })
 
-When('I open team settings', () => {
+And('I open team settings', () => {
     team.openTeamSettings()
 })
 
-When('I choose edit team', () => {
+And('I choose edit team', () => {
     team.editTeam()
 })
 

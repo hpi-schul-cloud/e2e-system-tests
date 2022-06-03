@@ -1,78 +1,78 @@
-import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
+import { Given, When, Then, And } from 'cypress-cucumber-preprocessor/steps'
 import Administration from '../../pages/administration/pageAdministration'
 
 const administration = new Administration()
 
-//WHEN
-When('I click on FAB to add a user', () => {
+//WHEN also includes AND
+And('I click on FAB to add a user', () => {
     administration.clickOnFAB()
 })
 
-When('I fill out the student creation form', () => {
+And('I fill out the student creation form', () => {
     administration.fillStudentCreationForm()
 })
 
-When('I fill out the teacher creation form', () => {
+And('I fill out the teacher creation form', () => {
     administration.fillTeacherCreationForm()
 })
 
-When('I click on add button', () => {
+And('I click on add button', () => {
     administration.clickOnAddButton()
 })
 
-When('I enter user name in search input field', () => {
+And('I enter user name in search input field', () => {
     administration.enterNameForSearch()
 })
 
-When('I click edit student button', () => {
+And('I click edit student button', () => {
     administration.clickEditStudentButton()
 })
 
-When('I click edit teacher button', () => {
+And('I click edit teacher button', () => {
     administration.clickEditTeacherButton()
 })
 
-When('I change student information', () => {
+And('I change student information', () => {
     administration.changeStudentUserInformation()
 })
 
-When('I change teacher information', () => {
+And('I change teacher information', () => {
     administration.changeTeacherUserInformation()
 })
 
-When('I click save changes button', () => {
+And('I click save changes button', () => {
     administration.clickSaveButton()
 })
 
-When('I click delete user button', () => {
+And('I click delete user button', () => {
     administration.clickDeleteButton()
 })
 
-When('I click on delete button in pop up', () => {
+And('I click on delete button in pop up', () => {
     administration.clickDeleteButtonInPopup()
 })
 
-When('I go to new school administration page', () => {
+And('I go to new school administration page', () => {
     administration.clickNewAdminPageButton()
 })
 
-When('I click toggle switch to activate the chat', () => {
+And('I click toggle switch to activate the chat', () => {
     administration.clickChatToggleSwitch()
 })
 
-When('I click toggle switch to deactivate the chat', () => {
+And('I click toggle switch to deactivate the chat', () => {
     administration.clickChatToggleSwitch()
 })
 
-When('I click toggle switch to activate video conferencing', () => {
+And('I click toggle switch to activate video conferencing', () => {
     administration.clickVideoconferenceToggleSwitch()
 })
 
-When('I click toggle switch to deactivate video conferencing', () => {
+And('I click toggle switch to deactivate video conferencing', () => {
     administration.clickVideoconferenceToggleSwitch()
 })
 
-When('I click save general settings button', () => {
+And('I click save general settings button', () => {
     administration.clickSaveGeneralSettingsButton()
 })
 

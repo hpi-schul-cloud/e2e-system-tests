@@ -3,19 +3,20 @@ import Help from '../../pages/help/pageHelp'
 
 const help= new Help()
 
+//WHEN also includes AND
 When('I click on the question icon in header', () => {
     help.clickQuestionIcon()
 })
 
-When('I click on help section in header', () => {
+And('I click on help section in header', () => {
     help.clickHelpSectionInHeader()
 })
 
-When('I click on send request or problem in header', () => {
+And('I click on send request or problem in header', () => {
     help.clickSendRequestOrProblemInHeader()
 })
 
-When('I click on advanced trainings in header', () => {
+And('I click on advanced trainings in header', () => {
     help.advancedTrainingsInHeader()
 })
 

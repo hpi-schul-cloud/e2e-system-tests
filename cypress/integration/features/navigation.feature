@@ -7,7 +7,7 @@ Scenario: Check navigation in sidebar as admin
         When I go to rooms overview
         When I go to teams overview
         When I go to files overview
-        When I go to personal files overview
+        And I go to personal files overview
         When I go to course files overview
         When I go to team files overview
         When I go to shared files overview
