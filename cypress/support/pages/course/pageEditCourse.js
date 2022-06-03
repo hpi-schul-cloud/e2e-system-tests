@@ -2,15 +2,15 @@
 
 class Edit_Course {
   static #pageTitle = '[id="page-title"]'
-  static #dropDownCourse = '[class="btn btn-sm dropdown-toggle btn-course-dropdown"]'
-  static #btnCourseEdit = '[class="dropdown-item btn-course-edit"]'
+  static #dropDownCourse = 'div.course-title > button.three-dot-button'
+  static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #selectClassesInput = '#classId_chosen > ul > li > input'
   static #selectClassesDropdown = '#classId_chosen > div > ul > li:nth-child(1)'
   static #selectClassesDeleteButtons = '#classId_chosen > ul > li > a'
   static #selectClasses = '#classId_chosen > ul > li > span'
   static #btnSubmit = '#main-content > section > form > div.modal-footer > button.btn.btn-primary.btn-submit'
   static #classSearchString = 'ALLE'
-  static #numberStudentsInClass = 3
+  static #numberStudentsInClass = 2
   static #selectStudents = '#studentsId_chosen > ul > li'
 
   openCourseEditPage () {

@@ -16,10 +16,10 @@ Feature: To edit a course by the teacher
         Then I can see course edit page
         And class is in field classes
         And students of the class are in field students
-        # When I log out
-        # And log in as student
-        # And I go to rooms overview
-        # Then I see the course
+        When I log out
+        Given I am logged in as a 'student' at 'brb'
+        And I go to rooms overview
+        Then I see the course 'Mathe' on the room overview page
 
     Scenario: Removing classes from a course
         Given I am logged in as a 'teacher' at 'brb'
