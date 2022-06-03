@@ -7,7 +7,7 @@ class Create_Course {
   static #nextContinueButton = '[data-submit-label="Kurs anlegen und Weiter"]'
   static #goToCourseOverviewButton = '[data-testid="zur-uebersicht-btn"]'
 
-  clickOnCreateFAB () {
+  clickOnCourseFAB () {
     cy.get(Create_Course.#createFAB).click()
   }
 
