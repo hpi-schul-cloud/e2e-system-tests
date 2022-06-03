@@ -1,6 +1,6 @@
 'use strict'
 
-class Course {
+class Common_Course {
   static #learningContentTab = '[data-testid="learnContent"]'
   static #toolsTab = '[data-testid="tools"]'
   static #groupsTab = '[data-testid="groups"]'
@@ -8,12 +8,12 @@ class Course {
   static #pageTitle = '[id="page-title"]'
 
   showRoomPage (room) {
-    cy.url().should('include', '/courses')
-    cy.get(Course.#pageTitle).should('contain', room)
+      const selectedRoom = `[aria-label='${room}']`
+      cy.get(selectedRoom).should('be.visible')
   }
 
   goToTools () {
-    cy.get(Course.#toolsTab).click()
+    cy.get(Common_Course.#toolsTab).click()
   }
 
   addNewTool () {
@@ -31,13 +31,23 @@ class Course {
   }
 
   canAddBigBlueButton () {
-    cy.get(Course.#toolsList)
+    cy.get(Common_Course.#toolsList)
     cy.contains('Video-Konferenz mit BigBlueButton')
   }
 
   canNotAddBigBlueButton () {
-    cy.get(Course.#toolsList)
+    cy.get(Common_Course.#toolsList)
     cy.contains('Video-Konferenz mit BigBlueButton').should('not.exist')
   }
+
+  goToRoomBoard (room_name) {
+    const selectedRoom = `[aria-label='${room_name}']`
+    cy.get(selectedRoom).click({
+    multiple: true,
+    force: true
+  })
+
+  }
+
 }
-export default Course
+export default Common_Course

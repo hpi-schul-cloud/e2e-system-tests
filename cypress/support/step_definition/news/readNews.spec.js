@@ -1,4 +1,3 @@
-import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
 import Read_News from '../../pages/news/pageReadNews'
 
 const readNews= new Read_News()

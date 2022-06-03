@@ -1,6 +1,5 @@
-
 import Help from '../../pages/help/pageHelp'
-import Navigation from '../../pages/common_navigation/pageNavigation'
+import Navigation from '../../pages/common_global/pageNavigation'
 
 const help= new Help()
 const navigation = new Navigation()

@@ -1,6 +1,6 @@
-import Navigation from '../../../pages/common_navigation/pageNavigation'
+import Navigation from '../../../pages/common_global/pageNavigation'
 import Team from '../../../pages/team/pageTeam'
-import Administration from '../../../pages/administration/pageAdministration'
+import Administration from '../../../pages/administration/pageCommonAdministration'
 import Course from '../../../pages/course/pageCommonCourse'
 
 const administration = new Administration()

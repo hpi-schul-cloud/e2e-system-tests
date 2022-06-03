@@ -1,6 +1,6 @@
 import { Given, When, Then } from 'cypress-cucumber-preprocessor/steps'
-import Administration from '../../pages/administration/pageAdministration'
-import Navigation from '../../pages/common_navigation/pageNavigation'
+import Administration from '../../../pages/administration/pageCommonAdministration'
+import Navigation from '../../../pages/common_global/pageNavigation'
 
 const administration = new Administration()
 const navigation = new Navigation()

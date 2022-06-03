@@ -2,8 +2,8 @@
 
 class Edit_Course {
   static #pageTitle = '[id="page-title"]'
-  static #dropDownCourse = '[class="btn btn-sm dropdown-toggle btn-course-dropdown"]'
-  static #btnCourseEdit = '[class="dropdown-item btn-course-edit"]'
+  static #dropDownCourse = '.v-btn__content > .v-icon > .v-icon__svg'
+  static #btnCourseEdit = '[class="v-list-item v-list-item--link theme--light menu-action menu-action-Bearbeiten/Löschen"]'
   static #selectClassesInput = '#classId_chosen > ul > li > input'
   static #selectClassesDropdown = '#classId_chosen > div > ul > li:nth-child(1)'
   static #selectClassesDeleteButtons = '#classId_chosen > ul > li > a'
@@ -17,6 +17,7 @@ class Edit_Course {
     cy.get(Edit_Course.#dropDownCourse).click()
     cy.get(Edit_Course.#btnCourseEdit).click()
   }
+
 
   showCourseEditPage () {
     cy.get(Edit_Course.#pageTitle)
