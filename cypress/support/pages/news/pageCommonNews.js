@@ -1,1 +1,14 @@
-// Here we define the page objects commonly used in other News related feature definition.
+'use strict'
+
+class News_Common {
+
+    static #newsOverviewNavigationButton = '[data-testid="Neuigkeiten"]'
+
+  goToNewsOverview () {
+    cy.visit('/news')
+    cy.get(News_Common.#newsOverviewNavigationButton).click()
+    cy.url().should('include', '/news')
+  }
+
+}
+export default News_Common

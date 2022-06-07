@@ -1,1 +1,9 @@
-// Here we define the page objects commonly used in other dashboard related feature definition.
+'use strict'
+class Dashboard_Common {
+
+  arriveOnDashboard () {
+    cy.visit('/dashboard')
+    cy.url().should('include', '/dashboard')
+  }
+}
+  export default Dashboard_Common
