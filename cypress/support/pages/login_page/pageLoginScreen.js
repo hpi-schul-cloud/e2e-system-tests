@@ -10,7 +10,7 @@ class Login_Screen{
 
 
   beingOnLoginPage(){
-    cy.visit(Cypress.env('BRB')
+    cy.visit('https://brb-main.cd.dbildungscloud.dev/login')
   }
 
   clickOnForgotPassword () {
