@@ -40,3 +40,8 @@ Then('I can see course edit page', () => {
   course.showCourseEditPage()
 })
 
+
+And('I click on save changes', () => {
+  course.submitChanges()
+})
+
