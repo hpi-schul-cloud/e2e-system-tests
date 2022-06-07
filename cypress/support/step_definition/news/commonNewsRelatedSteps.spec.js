@@ -1,4 +1,4 @@
-import News_Common from '../../pages/news/pageCommonNewsRelated'
+import News_Common from '../../pages/news/pageCommonNews'
 
 const newsCommon = new News_Common()
 

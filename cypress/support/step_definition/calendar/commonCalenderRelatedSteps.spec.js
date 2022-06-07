@@ -1,8 +1,8 @@
-import Calendar_Navigation from '../../pages/common_global/pageNavigation'
+import Calendar_Common from '../../pages/calendar/pageCommonCalender'
 
-const calendarNavigation = new Calendar_Navigation ()
+const calendarCommon = new Calendar_Common ()
 
 
 When('I go to calendar overview', () => {
-  calendarNavigation.goToCalendarOverview()
+  calendarCommon.goToCalendarOverview()
   })
