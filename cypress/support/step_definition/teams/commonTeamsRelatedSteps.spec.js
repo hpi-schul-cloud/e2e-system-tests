@@ -1,4 +1,4 @@
-import Teams_Common from '../../pages/teams/pageCommonTeamsRelated'
+import Teams_Common from '../../pages/teams/pageCommonTeams'
 
 
 const teamsCommon = new Teams_Common()

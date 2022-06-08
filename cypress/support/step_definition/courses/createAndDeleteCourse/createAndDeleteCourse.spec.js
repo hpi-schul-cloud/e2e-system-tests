@@ -21,9 +21,9 @@ And('I fill out the course creation form for new course {string}', (new_course_n
 And('I click on next steps', () => {
   course.clickOnNextSteps()
 })
+
 //Then ('I see the course 'Cypress Testkurs' on the room overview page')
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
-
 
 
 // Scenario: Deleting the test course/room created during executing the testing

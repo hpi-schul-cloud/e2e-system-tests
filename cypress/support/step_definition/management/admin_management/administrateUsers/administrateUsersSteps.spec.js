@@ -1,6 +1,6 @@
-import Management_Common from '../../../../pages/management/pageCommonManagement'
+import Management from '../../../../pages/management/pageManagement'
 
-const managementCommon = new Management_Common()
+const management = new Management()
 
 //Scenario: Adding a new student
 
@@ -17,13 +17,13 @@ const managementCommon = new Management_Common()
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I fill out the student creation form', () => {
-  managementCommon.fillStudentCreationForm()
+  management.fillStudentCreationForm()
 })
 And('I click on add button', () => {
-  managementCommon.clickOnAddButton()
+  management.clickOnAddButton()
 })
 Then('I can see the created student in the table', () => {
-  managementCommon.createdUserIsVisibleInTable()
+  management.createdUserIsVisibleInTable()
 })
 
 //Scenario: Editing a new student
@@ -44,13 +44,13 @@ Then('I can see the created student in the table', () => {
  //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I change student information', () => {
-  managementCommon.changeStudentUserInformation()
+  management.changeStudentUserInformation()
 })
 And('I click save changes button', () => {
-  managementCommon.clickSaveButton()
+  management.clickSaveButton()
 })
 Then('I can see the edited student in the table', () => {
-  managementCommon.editedUserIsVisibleInTable()
+  management.editedUserIsVisibleInTable()
 })
 
 // Scenario: Deleting a student
@@ -74,13 +74,13 @@ Then('I can see the edited student in the table', () => {
 
 
 And('I click delete user button', () => {
-  managementCommon.clickDeleteButton()
+  management.clickDeleteButton()
 })
 And('I click on delete button in pop up', () => {
-  managementCommon.clickDeleteButtonInPopup()
+  management.clickDeleteButtonInPopup()
 })
 Then('I cannot see the deleted student in the table', () => {
-  managementCommon.createdUserIsNotVisibleInTable()
+  management.createdUserIsNotVisibleInTable()
 })
 
 //Scenario: Adding a new teacher
@@ -98,13 +98,13 @@ Then('I cannot see the deleted student in the table', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I fill out the teacher creation form', () => {
-  managementCommon.fillTeacherCreationForm()
+  management.fillTeacherCreationForm()
 })
 And('I click on add button', () => {
-  managementCommon.clickOnAddButton()
+  management.clickOnAddButton()
 })
 Then('I can see the created teacher in the table', () => {
-  managementCommon.createdUserIsVisibleInTable()
+  management.createdUserIsVisibleInTable()
 })
 
 //Scenario: Editing a new teacher
@@ -125,13 +125,13 @@ Then('I can see the created teacher in the table', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I change teacher information', () => {
-  managementCommon.changeTeacherUserInformation()
+  management.changeTeacherUserInformation()
 })
 And('I click save changes button', () => {
-  managementCommon.clickSaveButton()
+  management.clickSaveButton()
 })
 Then('I can see the edited teacher in the table', () => {
-  managementCommon.editedUserIsVisibleInTable()
+  management.editedUserIsVisibleInTable()
 })
 
 //Scenario: Deleting a teacher
@@ -152,11 +152,11 @@ Then('I can see the edited teacher in the table', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I click delete user button', () => {
-  managementCommon.clickDeleteButton()
+  management.clickDeleteButton()
 })
 And('I click on delete button in pop up', () => {
-  managementCommon.clickDeleteButtonInPopup()
+  management.clickDeleteButtonInPopup()
 })
 Then('I cannot see the deleted teacher in the table', () => {
-  managementCommon.createdUserIsNotVisibleInTable()
+  management.createdUserIsNotVisibleInTable()
 })

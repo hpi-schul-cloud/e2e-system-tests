@@ -4,7 +4,7 @@ const news = new News()
 
 //Scenario: Reading a school news on the dashboard
 
-//Given I am logged in as a 'admin' at 'brb'
+//I am logged in as a 'teacher' at 'brb'
 //step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
 
 When('I go to school news on the dashboard', () => {
@@ -18,7 +18,7 @@ Then('I can read the school news', () => {
 
 //Scenario: Reading a team news on the dashboard
 
-//Given I am logged in as a 'admin' at 'brb'
+//I am logged in as a 'student' at 'brb'
 //step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
 
 When('I go to team news on the dashboard', () => {

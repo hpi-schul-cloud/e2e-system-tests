@@ -1,4 +1,4 @@
-import Addons_Common from '../../pages/addons/pageCommonAddonsRelated'
+import Addons_Common from '../../pages/addons/pageCommonAddons'
 
 const addonsCommon = new Addons_Common()
 

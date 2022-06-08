@@ -1,10 +1,9 @@
 import Common_Course from '../../pages/courses/pageCommonCourse'
 import Course from '../../pages/courses/pageCourse'
-import Tasks_Common from '../../pages/tasks/pageCommonTasks'
 
 const commonCourse = new Common_Course()
 const course = new Course()
-const tasksCommon = Tasks_Common()
+
 
 
 When('I go to rooms overview', () => {
@@ -13,15 +12,11 @@ When('I go to rooms overview', () => {
 
 And('I go to room {string}', (room_name) => {
   const selectedRoom = `[aria-label='${room_name}']`
-  cy.get(selectedRoom).click()
+  cy.get(selectedRoom).click({ multiple: true, force:true })
 })
 
 Then('I can see room page {string}', (room_name) => {
   commonCourse.showRoomPage(room_name)
-})
-
-When('I go to tasks overview', () => {
-  tasksCommon.goToTasksOverview()
 })
 
 Then('I see the course {string} on the room overview page', (course_name) => {

@@ -14,11 +14,11 @@ When('I go to school administration', () => {
 })
 
 When('I go to new school administration page', () => {
-  managementCommon.clickNewAdminPageButton()
+  management.clickNewAdminPageButton()
 })
 
 And('I click save general settings button', () => {
-  managementCommon.clickSaveGeneralSettingsButton()
+  management.clickSaveGeneralSettingsButton()
 })
 
 And ('I go to student administration', () => {

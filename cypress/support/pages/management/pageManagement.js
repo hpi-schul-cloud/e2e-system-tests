@@ -24,109 +24,109 @@ class Management {
   static #newSchoolAdminPageButton = '.btn-info'
   static #videoconferenceToggleSwitch = '.videoconference-switch'
   static #saveGeneralSettingsButton = '.my-5'
-  static #tableContents =  '[data-testid="table-data-body"]'
+  static #tableContents = '[data-testid="table-data-body"]'
 
-  clickOnFAB () {
+  clickOnFAB() {
     cy.get(Management.#fabButton).click()
     cy.get(Management.#createUserButton).click()
-}
+  }
 
-fillStudentCreationForm () {
+  fillStudentCreationForm() {
     cy.get(Management.#firstNameCreationForm).type('Adam')
     cy.get(Management.#lastNameCreationForm).type('Riese')
     cy.get(Management.#emailCreationForm).type('adam.riese@example.com')
-}
+  }
 
-fillTeacherCreationForm () {
+  fillTeacherCreationForm() {
     cy.get(Management.#firstNameCreationForm).type('Adam')
     cy.get(Management.#lastNameCreationForm).type('Rose')
     cy.get(Management.#emailCreationForm).type('adam.rose@example.com')
-}
+  }
 
-clickOnAddButton () {
+  clickOnAddButton() {
     cy.get(Management.#addButton).click()
-}
+  }
 
-enterNameForSearch () {
+  enterNameForSearch() {
     cy.get(Management.#searchbar).type('Adam')
-}
+  }
 
-clickEditStudentButton () {
+  clickEditStudentButton() {
     cy.get(Management.#editStudentButton).eq(0).click()
-}
+  }
 
-clickEditTeacherButton () {
+  clickEditTeacherButton() {
     cy.get(Management.#editTeacherButton).eq(0).click()
-}
+  }
 
-changeStudentUserInformation () {
+  changeStudentUserInformation() {
     cy.get(Management.#firstNameEditForm).clear()
     cy.get(Management.#firstNameEditForm).type('Alex')
     cy.get(Management.#lastNameEditForm).clear()
     cy.get(Management.#lastNameEditForm).type('Abramovic')
     cy.get(Management.#emailEditForm).clear()
     cy.get(Management.#emailEditForm).type('alex.abramovic@example')
-}
+  }
 
-changeTeacherUserInformation () {
+  changeTeacherUserInformation() {
     cy.get(Management.#firstNameEditForm).clear()
     cy.get(Management.#firstNameEditForm).type('Amber')
     cy.get(Management.#lastNameEditForm).clear()
     cy.get(Management.#lastNameEditForm).type('Adams Young')
     cy.get(Management.#emailEditForm).clear()
     cy.get(Management.#emailEditForm).type('amber.adams-young@example')
-}
+  }
 
-clickSaveButton () {
+  clickSaveButton() {
     cy.get(Management.#submitButton).eq(0).click()
-}
+  }
 
-clickDeleteButton () {
+  clickDeleteButton() {
     cy.get(Management.#deleteButton).click()
-}
+  }
 
-clickDeleteButtonInPopup () {
+  clickDeleteButtonInPopup() {
     cy.get(Management.#deleteButtonConfirmation).click()
-}
+  }
 
-clickNewAdminPageButton () {
+  clickNewAdminPageButton() {
     cy.get(Management.#newSchoolAdminPageButton).click()
-}
+  }
 
-clickVideoconferenceToggleSwitch () {
+  clickVideoconferenceToggleSwitch() {
     cy.intercept('/api/v1/federalStates/*').as('federalStates')
     cy.wait('@federalStates')
     cy.get(Management.#videoconferenceToggleSwitch)
-    .find('input')
-    .click({ force: true })
-}
+      .find('input')
+      .click({ force: true })
+  }
 
-clickSaveGeneralSettingsButton () {
-    cy.get(Management.#saveGeneralSettingsButton).click()
-}
+  clickSaveGeneralSettingsButton() {
+    cy.get(Management.#saveGeneralSettingsButton).click({multiple:true, force:true})
+  }
 
-createdUserIsVisibleInTable () {
+  createdUserIsVisibleInTable() {
     //cy.get(Administration.#searchbar).clear(Administration.#searchbar)
     cy.get(Management.#tableContents)
     cy.contains('Adam')
-}
+  }
 
-editedUserIsVisibleInTable () {
+  editedUserIsVisibleInTable() {
     cy.get(Management.#searchbar).clear()
     cy.get(Management.#tableContents)
     cy.contains(/Alex|Amber/g)
-}
+  }
 
-createdUserIsNotVisibleInTable () {
+  createdUserIsNotVisibleInTable() {
     cy.get(Management.#searchbar).clear()
     cy.get(Management.#tableContents)
     cy.contains('Adam').should('not.exist')
     cy.contains('Alex').should('not.exist')
-}
+  }
 
-  clickChatToggleSwitch () {
-    //cy.intercept('/api/v1/federalStates/*').as('federalStates')
-    //cy.wait('@federalStates')
+  clickChatToggleSwitch() {
+    cy.intercept('/api/v1/federalStates/*').as('federalStates')
+    cy.wait('@federalStates')
     cy.get(Management.#chatToggleSwitch).click({ force: true })
     //need to find out current state and decide if state needs to be changed
     //if current state aria-checked="true" and I want it activated then I don't need to click

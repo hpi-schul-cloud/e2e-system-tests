@@ -2,21 +2,20 @@
 
 class News {
   static #newsTitleOnDashboard = '[data-testid="title_of_an_element"]'
-  static #teamNewsTag = '#main-content div.tag.tag-default'
+  static #teamNewsTag = '[data-testid="header-of-element"]'
   static #newsTitle = '[id="page-title"]'
   static #newsText = '#main-content > div.ckcontent'
 
   goToSchoolNewsOnDashboard () {
     cy.visit('/news')
     cy.get(News.#newsTitleOnDashboard)
-      .eq(2)
-      .click()
+    cy.contains('Test 123').click()
     cy.url().should('include', '/news/')
   }
 
   goToTeamNewsOnDashboard () {
     cy.visit('/news')
-    cy.get(News.#teamNewsTag).click()
+    cy.get(News.#teamNewsTag).contains('test').click( {multiple: true, force:true})
     cy.url().should('include', '/news/')
   }
 
