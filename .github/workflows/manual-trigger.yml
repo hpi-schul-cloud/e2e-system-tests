@@ -4,11 +4,11 @@ on:
     inputs:
       instance1:
         description: 'Please enter a valid BRB instance URL to run the tests'
-        default: 'https://staging.brandenburg.dbildungscloud.org'
+        default: 'https://brb-main.cd.dbildungscloud.dev'
         required: true
       instance2:
         description: 'Please enter a valid NBC instance URL to run the tests'
-        default: 'https://staging.niedersachsen.dbildungscloud.org'
+        default: 'https://nbc-main.cd.dbildungscloud.dev'
         required: true
 jobs:
   e2e-system-tests:
@@ -29,6 +29,18 @@ jobs:
           CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
           CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+          CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
+          CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
+          CYPRESS_TEACHER_2_EMAIL: ${{ secrets.CYPRESS_TEACHER_2_EMAIL }}
+          CYPRESS_TEACHER_2_PASSWORD: ${{ secrets.CYPRESS_TEACHER_2_PASSWORD }}
+          CYPRESS_STUDENT_1_EMAIL: ${{ secrets.CYPRESS_STUDENT_1_EMAIL }}
+          CYPRESS_STUDENT_1_PASSWORD: ${{ secrets.CYPRESS_STUDENT_1_PASSWORD }}
+          CYPRESS_STUDENT_2_EMAIL: ${{ secrets.CYPRESS_STUDENT_2_EMAIL }}
+          CYPRESS_STUDENT_2_PASSWORD: ${{ secrets.CYPRESS_STUDENT_2_PASSWORD }}
+          CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
+          CYPRESS_ADMIN_1_PASSWORD": ${{ secrets.CYPRESS_ADMIN_1_PASSWORD" }}
+          CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
+          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD" }}
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2

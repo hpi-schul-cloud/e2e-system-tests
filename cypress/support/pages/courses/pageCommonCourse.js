@@ -15,6 +15,14 @@ class Common_Course {
     cy.url().should('include', '/rooms-overview')
   }
 
+  naviagteToRoomBoard(room_name) {
+    const selectedRoom = `[aria-label='${room_name}']`
+    cy.get(selectedRoom).click({
+      multiple: true,
+      force: true
+    })
+  }
+
   showRoomPage(room) {
     const selectedRoom = `[aria-label='${room}']`
     cy.get(selectedRoom).should('be.visible')
@@ -46,14 +54,6 @@ class Common_Course {
   canNotAddBigBlueButton() {
     cy.get(Common_Course.#toolsList)
     cy.contains('Video-Konferenz mit BigBlueButton').should('not.exist')
-  }
-
-  naviagteToRoomBoard(room_name) {
-    const selectedRoom = `[aria-label='${room_name}']`
-    cy.get(selectedRoom).click({
-      multiple: true,
-      force: true
-    })
   }
 }
 export default Common_Course

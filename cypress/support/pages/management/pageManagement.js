@@ -3,7 +3,7 @@
 
 class Management {
 
-  static #chatToggleSwitch = '[id="input-131"]'
+  static #chatToggleSwitch = '.rocketchat-switch'
   static #fabButton = '#fab'
   static #createUserButton = '.v-btn--router'
   static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]'
@@ -127,7 +127,7 @@ class Management {
   clickChatToggleSwitch() {
     cy.intercept('/api/v1/federalStates/*').as('federalStates')
     cy.wait('@federalStates')
-    cy.get(Management.#chatToggleSwitch).click({ force: true })
+    cy.get(Management.#chatToggleSwitch).find('input').click({force:true})
     //need to find out current state and decide if state needs to be changed
     //if current state aria-checked="true" and I want it activated then I don't need to click
     //if current state aria-checked="false" and I want it activated then I need to click

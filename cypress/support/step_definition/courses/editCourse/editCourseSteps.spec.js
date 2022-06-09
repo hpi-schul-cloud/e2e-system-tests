@@ -18,11 +18,9 @@ const course = new Course()
 
 //When I open course edit page
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
-//
 
 //Then I can see course edit page
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
-
 
 When('I choose a class', () => {
   course.selectClassForCourse()

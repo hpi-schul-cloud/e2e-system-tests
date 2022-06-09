@@ -51,5 +51,6 @@ class Management_Common {
     cy.get(Management_Common.#schoolAdministrationNavigationButton).click()
     cy.url().should('include', '/administration/school')
   }
+
 }
 export default Management_Common

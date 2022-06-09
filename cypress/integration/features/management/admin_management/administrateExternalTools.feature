@@ -2,7 +2,8 @@ Feature: To administrate school settings by the admin.
 
   As an admin I want to administrate the external tools used in the school so that I can manage it
 
-  Scenario: Deactivate Chat
+  Scenario: Deactivate Chat --> currently deactivate cht toggle is unstable so call to action is taking place for this scenario
+
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
     And I go to school administration
@@ -19,6 +20,7 @@ Feature: To administrate school settings by the admin.
     Then I can not see the checkbox for messenger in a team
 
   Scenario: Activate Chat
+
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
     And I go to school administration
@@ -35,6 +37,7 @@ Feature: To administrate school settings by the admin.
     Then I can see the checkbox for messenger in a team
 
   #Scenario: Deactivate BigBlueButton --> BBB tool is not avaiable on main instance
+
     #Given I am logged in as a 'admin' at 'brb'
     #When I go to administration page
     #And I go to school administration
@@ -50,6 +53,7 @@ Feature: To administrate school settings by the admin.
     #Then I can not add BigBlueButton to the room
 
   #Scenario: Activate BigBlueButton --> BBB tool is not avaiable on main instance
+
     #Given I am logged in as a 'admin' at 'brb'
     #When I go to administration page
     #And I go to school administration
