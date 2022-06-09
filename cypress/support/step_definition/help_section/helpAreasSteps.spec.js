@@ -15,7 +15,7 @@ And('I click on help section in header', () => {
   help.clickHelpSectionInHeader()
 })
 
-Then ('I can see the help articles page', () => {
+Then('I can see the help articles page', () => {
   help.seeHelpArticlesPage()
 })
 
@@ -81,7 +81,7 @@ Then('I can see the help contact page', () => {
 //When I go to help section in sidebar
 //step defined --> \step_definition\help_section\commonHelpSectionRelatedSteps.spec.js
 
-Then ('I can see the help articles page', () => {
+Then('I can see the help articles page', () => {
   help.seeHelpArticlesPage()
 })
 
@@ -108,7 +108,6 @@ Then('I can see an help article related to my search', () => {
 Then('I can see the help contact page', () => {
   help.seeHelpContactPage()
 })
-
 
 When('I fill out the contact form', () => {
   help.fillOutContactForm()

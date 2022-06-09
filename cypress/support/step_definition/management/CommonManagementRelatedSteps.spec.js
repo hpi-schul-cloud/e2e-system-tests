@@ -6,11 +6,11 @@ const managementCommon = new Management_Common()
 const management = new Management()
 
 When('I go to administration page', () => {
-  managementCommon.goToAdministration()
+  managementCommon.navigateToAdministration()
 })
 
 When('I go to school administration', () => {
-  managementCommon.goToSchoolAdministration()
+  managementCommon.navigateToSchoolAdministration()
 })
 
 When('I go to new school administration page', () => {
@@ -21,25 +21,24 @@ And('I click save general settings button', () => {
   management.clickSaveGeneralSettingsButton()
 })
 
-And ('I go to student administration', () => {
-  managementCommon.goToStudentAdministration()
+And('I go to student administration', () => {
+  managementCommon.navigateToStudentAdministration()
 })
 
-
-And ('I enter user name in search input field', () => {
+And('I enter user name in search input field', () => {
   management.enterNameForSearch()
 })
 
-And ('I click edit student button', () => {
+And('I click edit student button', () => {
   management.clickEditStudentButton()
 })
 
-And ('I click edit teacher button', () => {
+And('I click edit teacher button', () => {
   management.clickEditTeacherButton()
 })
 
-And ('I go to teacher administration', () => {
-  managementCommon.goToTeacherAdministration()
+And('I go to teacher administration', () => {
+  managementCommon.navigateToTeacherAdministration()
 })
 
 And('I click on FAB to add a user', () => {

@@ -1,6 +1,5 @@
 'use strict'
 
-
 class Common_Course {
 
   static #learningContentTab = '[data-testid="learnContent"]'
@@ -10,55 +9,51 @@ class Common_Course {
   static #pageTitle = '[id="page-title"]'
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
 
-
-  goToRoomsOverview () {
+  navigateToRoomsOverview() {
     cy.visit('/rooms-overview')
     cy.get(Common_Course.#courseOverviewNavigationButton).click()
     cy.url().should('include', '/rooms-overview')
   }
 
-
-  showRoomPage (room) {
-      const selectedRoom = `[aria-label='${room}']`
-      cy.get(selectedRoom).should('be.visible')
+  showRoomPage(room) {
+    const selectedRoom = `[aria-label='${room}']`
+    cy.get(selectedRoom).should('be.visible')
   }
 
-  goToTools () {
+  navigateToTools() {
     cy.get(Common_Course.#toolsTab).click()
   }
 
-  addNewTool () {
+  addNewTool() {
     cy.get('[aria-label="Neues Tool hinzufügen"]').click()
   }
 
-  courseIsVisibleOnOverviewPage (course_name) {
+  courseIsVisibleOnOverviewPage(course_name) {
     cy.url().should('include', '/rooms-overview')
     cy.contains(course_name)
   }
 
-  courseIsNotVisibleOnOverviewPage (course_name) {
+  courseIsNotVisibleOnOverviewPage(course_name) {
     cy.url().should('include', '/rooms-overview')
     cy.contains(course_name).should('not.exist')
   }
 
-  canAddBigBlueButton () {
+  canAddBigBlueButton() {
     cy.get(Common_Course.#toolsList)
     cy.contains('Video-Konferenz mit BigBlueButton')
   }
 
-  canNotAddBigBlueButton () {
+  canNotAddBigBlueButton() {
     cy.get(Common_Course.#toolsList)
     cy.contains('Video-Konferenz mit BigBlueButton').should('not.exist')
   }
 
-  goToRoomBoard (room_name) {
+  naviagteToRoomBoard(room_name) {
     const selectedRoom = `[aria-label='${room_name}']`
     cy.get(selectedRoom).click({
-    multiple: true,
-    force: true
-  })
-
+      multiple: true,
+      force: true
+    })
   }
-
 }
 export default Common_Course

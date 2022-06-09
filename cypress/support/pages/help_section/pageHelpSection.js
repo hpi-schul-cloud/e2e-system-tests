@@ -1,6 +1,7 @@
 'use strict'
 
 class Help {
+
   static #questionIcon = '.fa-question'
   static #helpSectionInHeader = '[data-testid="Hilfeartikel"]'
   static #sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]'
@@ -16,30 +17,30 @@ class Help {
   static #searchResult = '.live-search-results'
   static #bugFormHeadline = '.bug_form > label:nth-child(12) > input:nth-child(2)'
   static #bugFormMail = '.bug_form > label:nth-child(15) > input:nth-child(2)'
-  static #bugFormSubmitButton ='.bug_form > button'
+  static #bugFormSubmitButton = '.bug_form > button'
   static #feedbackSendConfirmation = '[data-testid="notification"]'
 
-  clickQuestionIcon () {
+  clickQuestionIcon() {
     cy.visit('/dashboard')
     cy.get(Help.#questionIcon).click()
   }
 
-  clickHelpSectionInHeader () {
+  clickHelpSectionInHeader() {
     cy.get(Help.#helpSectionInHeader).click()
   }
 
-  clickSendRequestOrProblemInHeader () {
+  clickSendRequestOrProblemInHeader() {
     cy.get(Help.#sendRequestOrProblemInHeader).click()
   }
 
-  advancedTrainingsInHeader () {
+  advancedTrainingsInHeader() {
     cy.get(Help.#advancedTrainingsInHeader).should($a => {
       expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
       expect($a.attr('target'), 'target').to.equal('_blank')
     })
   }
 
-  seeHelpArticlesPage () {
+  seeHelpArticlesPage() {
     cy.get(Help.#helpPageTitle)
     cy.contains('Hilfeartikel')
     cy.get(Help.#helpFirstSteps)
@@ -52,29 +53,29 @@ class Help {
     cy.contains('Nutzungshilfen')
   }
 
-  seeHelpContactPage () {
+  seeHelpContactPage() {
     cy.get(Help.#helpPageTitle)
     cy.contains('Kontakt')
     cy.get(Help.#helpContactform)
     cy.contains('Kontaktformular')
   }
 
-  enterKeywordInSearchbar () {
+  enterKeywordInSearchbar() {
     cy.get(Help.#searchBar).type('Hilfe')
   }
 
-  fillOutContactForm () {
+  fillOutContactForm() {
     cy.get(Help.#bugFormHeadline).type('Dies ist ein Test!')
     cy.get(Help.#bugFormMail).type('test@example.com')
     cy.get(Help.#bugFormSubmitButton).click()
   }
 
-  seeHelpArticle () {
+  seeHelpArticle() {
     cy.get(Help.#searchResult)
     cy.contains('Erste Schritte')
   }
 
-  sendFormToSupport () {
+  sendFormToSupport() {
     cy.get(Help.#feedbackSendConfirmation)
     cy.contains('Feedback erfolgreich versendet!')
   }

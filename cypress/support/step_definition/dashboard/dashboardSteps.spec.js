@@ -26,6 +26,7 @@ Then('I can see the welcome message', () => {
 Then('I can see the assigned tasks', () => {
   dashboard.seeAssignedTasks()
 })
+
 Then('I can see the draft tasks', () => {
   dashboard.seeDraftTasks()
 })

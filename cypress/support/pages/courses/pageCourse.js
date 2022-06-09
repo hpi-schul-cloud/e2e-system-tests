@@ -23,21 +23,21 @@ class Course {
   static #numberStudentsInClass = 3
   static #selectStudents = '#studentsId_chosen > ul > li'
 
-  clickOnCreateFAB () {
+  clickOnCreateFAB() {
     cy.get(Course.#createFAB).click()
   }
 
-  fillCourseCreationForm (new_course) {
+  fillCourseCreationForm(new_course) {
     cy.get(Course.#courseTitle).type(new_course)
   }
 
-  clickOnNextSteps () {
+  clickOnNextSteps() {
     cy.get(Course.#nextButton).click()
     cy.get(Course.#nextContinueButton).click()
     cy.get(Course.#goToCourseOverviewButton).click()
   }
 
-  performDeletion () {
+  performDeletion() {
     cy.get(Course.#threeDotButton)
       .eq(1)
       .click()
@@ -53,45 +53,44 @@ class Course {
     })
   }
 
-// edit course
-  openCourseEditPage () {
+  // edit course
+  openCourseEditPage() {
     cy.get(Course.#dropDownCourse).click()
     cy.get(Course.#btnCourseEdit).click()
   }
 
-
-  showCourseEditPage () {
+  showCourseEditPage() {
     cy.get(Course.#pageTitle)
     cy.contains('Kurs bearbeiten')
   }
 
-  selectClassForCourse () {
+  selectClassForCourse() {
     cy.get(Course.#selectClassesInput).type(Course.#classSearchString)
     cy.get(Course.#selectClassesDropdown).click()
   }
 
-  removeClassesFromCourse () {
+  removeClassesFromCourse() {
     cy.get(Course.#selectClassesDeleteButtons).click({ multiple: true })
   }
 
-  submitChanges () {
+  submitChanges() {
     cy.get(Course.#btnSubmit).click()
   }
 
-  checkAddedClassIsInFieldClasses () {
-    cy.get(Course.#selectClasses).should('contain',Course.#classSearchString)
+  checkAddedClassIsInFieldClasses() {
+    cy.get(Course.#selectClasses).should('contain', Course.#classSearchString)
   }
 
-  checkStudentsAreInFieldStudents () {
+  checkStudentsAreInFieldStudents() {
     // + 1 - because the inputfield to add a student is also in the ul
     cy.get(Course.#selectStudents).should('have.length', Course.#numberStudentsInClass + 1)
   }
 
-  checkNoClassesInFieldClasses () {
+  checkNoClassesInFieldClasses() {
     cy.get(Course.#selectClasses).should('have.length', 0)
   }
 
-  checkNoStudentsInFieldStudents () {
+  checkNoStudentsInFieldStudents() {
     // 1 - because the inputfield to add a student is also in the ul
     cy.get(Course.#selectStudents).should('have.length', 1)
   }

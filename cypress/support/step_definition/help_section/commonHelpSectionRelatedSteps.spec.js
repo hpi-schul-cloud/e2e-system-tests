@@ -3,17 +3,17 @@ import Help_Common from '../../pages/help_section/pageCommonHelpSection'
 const helpCommon = new Help_Common()
 
 When('I go to help section in sidebar', () => {
-  helpCommon.goToHelpSection()
+  helpCommon.navigateToHelpSection()
 })
 
 When('I go to help articles in sidebar', () => {
-  helpCommon.goToHelpArticles()
+  helpCommon.navigateToHelpArticles()
 })
 
 When('I go to contact in sidebar', () => {
-  helpCommon.goToHelpContact()
+  helpCommon.navigateToHelpContact()
 })
 
 When('I go to advanced trainings in sidebar', () => {
-  helpCommon.goToAdvancedTrainings()
+  helpCommon.navigateToAdvancedTrainings()
 })

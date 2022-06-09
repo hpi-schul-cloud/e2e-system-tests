@@ -3,5 +3,5 @@ Given('I am logged in as a {string} at {string}', (username, environment) => {
 })
 
 Then('I log out', () => {
-  cy.logout().click({force: true})
+  cy.logout().click({ force: true })
 })

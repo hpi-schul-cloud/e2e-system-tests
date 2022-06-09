@@ -4,15 +4,13 @@ import Course from '../../pages/courses/pageCourse'
 const commonCourse = new Common_Course()
 const course = new Course()
 
-
-
 When('I go to rooms overview', () => {
-  commonCourse.goToRoomsOverview()
+  commonCourse.navigateToRoomsOverview()
 })
 
 And('I go to room {string}', (room_name) => {
   const selectedRoom = `[aria-label='${room_name}']`
-  cy.get(selectedRoom).click({ multiple: true, force:true })
+  cy.get(selectedRoom).click({ multiple: true, force: true })
 })
 
 Then('I can see room page {string}', (room_name) => {
@@ -34,7 +32,6 @@ When('I open course edit page', () => {
 Then('I can see course edit page', () => {
   course.showCourseEditPage()
 })
-
 
 And('I click on save changes', () => {
   course.submitChanges()

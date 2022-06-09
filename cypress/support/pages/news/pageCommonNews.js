@@ -2,13 +2,12 @@
 
 class News_Common {
 
-    static #newsOverviewNavigationButton = '[data-testid="Neuigkeiten"]'
+  static #newsOverviewNavigationButton = '[data-testid="Neuigkeiten"]'
 
-  goToNewsOverview () {
+  navigateToNewsOverview() {
     cy.visit('/news')
     cy.get(News_Common.#newsOverviewNavigationButton).click()
     cy.url().should('include', '/news')
   }
-
 }
 export default News_Common

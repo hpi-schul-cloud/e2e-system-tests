@@ -19,9 +19,11 @@ const management = new Management()
 And('I fill out the student creation form', () => {
   management.fillStudentCreationForm()
 })
+
 And('I click on add button', () => {
   management.clickOnAddButton()
 })
+
 Then('I can see the created student in the table', () => {
   management.createdUserIsVisibleInTable()
 })
@@ -41,14 +43,16 @@ Then('I can see the created student in the table', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 //And ('I click edit student button', () => {
- //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
+//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I change student information', () => {
   management.changeStudentUserInformation()
 })
+
 And('I click save changes button', () => {
   management.clickSaveButton()
 })
+
 Then('I can see the edited student in the table', () => {
   management.editedUserIsVisibleInTable()
 })
@@ -76,9 +80,11 @@ Then('I can see the edited student in the table', () => {
 And('I click delete user button', () => {
   management.clickDeleteButton()
 })
+
 And('I click on delete button in pop up', () => {
   management.clickDeleteButtonInPopup()
 })
+
 Then('I cannot see the deleted student in the table', () => {
   management.createdUserIsNotVisibleInTable()
 })
@@ -100,9 +106,11 @@ Then('I cannot see the deleted student in the table', () => {
 And('I fill out the teacher creation form', () => {
   management.fillTeacherCreationForm()
 })
+
 And('I click on add button', () => {
   management.clickOnAddButton()
 })
+
 Then('I can see the created teacher in the table', () => {
   management.createdUserIsVisibleInTable()
 })
@@ -127,9 +135,11 @@ Then('I can see the created teacher in the table', () => {
 And('I change teacher information', () => {
   management.changeTeacherUserInformation()
 })
+
 And('I click save changes button', () => {
   management.clickSaveButton()
 })
+
 Then('I can see the edited teacher in the table', () => {
   management.editedUserIsVisibleInTable()
 })
@@ -154,9 +164,11 @@ Then('I can see the edited teacher in the table', () => {
 And('I click delete user button', () => {
   management.clickDeleteButton()
 })
+
 And('I click on delete button in pop up', () => {
   management.clickDeleteButtonInPopup()
 })
+
 Then('I cannot see the deleted teacher in the table', () => {
   management.createdUserIsNotVisibleInTable()
 })

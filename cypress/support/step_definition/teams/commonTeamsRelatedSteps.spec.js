@@ -1,10 +1,9 @@
 import Teams_Common from '../../pages/teams/pageCommonTeams'
 
-
 const teamsCommon = new Teams_Common()
 
 When('I go to teams overview', () => {
-  teamsCommon.goToTeamsOverview()
+  teamsCommon.navigateToTeamsOverview()
 })
 
 And('I go to a team', () => {

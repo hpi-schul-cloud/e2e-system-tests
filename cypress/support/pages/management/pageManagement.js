@@ -102,7 +102,7 @@ class Management {
   }
 
   clickSaveGeneralSettingsButton() {
-    cy.get(Management.#saveGeneralSettingsButton).click({multiple:true, force:true})
+    cy.get(Management.#saveGeneralSettingsButton).click({ multiple: true, force: true })
   }
 
   createdUserIsVisibleInTable() {

@@ -1,6 +1,7 @@
 'use strict'
 
 class Login_Management {
+
   static #passwordRecoveryButton = '[data-testid="forgot-password"]'
   static #usernameLabel = '[data-testid="username-label"]'
   static #emailInputBox = '[id="username"]'
@@ -8,16 +9,15 @@ class Login_Management {
   static #submitButton = '[data-testid="btn-submit"]'
   static #cancelButton = '[data-testid="btn-cancel"]'
 
-
-  beingOnLoginPage(){
+  beingOnLoginPage() {
     cy.visit(Cypress.env('BRB'))
   }
 
-  clickOnForgotPassword () {
+  clickOnForgotPassword() {
     cy.get(Login_Management.#passwordRecoveryButton).eq(1).click()
   }
 
-  showElementOnDailog(){
+  showElementOnDailog() {
     cy.get(Login_Management.#usernameLabel).should('be.visible')
     cy.get(Login_Management.#emailInputBox).should('be.visible')
     cy.get(Login_Management.#infoMessage).should('be.visible')

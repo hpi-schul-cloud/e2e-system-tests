@@ -2,14 +2,12 @@
 
 class Learning_Store_Common {
 
-    static #lernStoreOverviewNavigationButton = '[data-testid="Lern-Store"]'
+  static #lernStoreOverviewNavigationButton = '[data-testid="Lern-Store"]'
 
-
-    goToLernStoreOverview () {
-        cy.visit('/content')
-        cy.get(Learning_Store_Common.#lernStoreOverviewNavigationButton).click()
-        cy.url().should('include', '/content')
-      }
-
+  navigateToLernStoreOverview() {
+    cy.visit('/content')
+    cy.get(Learning_Store_Common.#lernStoreOverviewNavigationButton).click()
+    cy.url().should('include', '/content')
+  }
 }
 export default Learning_Store_Common
