@@ -30,7 +30,7 @@ jobs:
           CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
           CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
           CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
-          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
+          CYPRESS_EXPERT_1_PASSWORD: ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
