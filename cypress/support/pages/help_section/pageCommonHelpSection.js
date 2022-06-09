@@ -14,7 +14,7 @@ class Help_Common {
     cy.url().should('include', '/help/articles')
   }
 
-  naviagteToHelpArticles() {
+  navigateToHelpArticles() {
     cy.visit('/help/articles')
     cy.get(Help_Common.#helpArticlesNavigationButton).eq(0).click()
     cy.url().should('include', '/help/articles')
@@ -26,7 +26,7 @@ class Help_Common {
     cy.url().should('include', '/help/contact')
   }
 
-  naviagteToAdvancedTrainings() {
+  navigateToAdvancedTrainings() {
     cy.get(Help_Common.#advancedTrainingsNavigationButton).should($a => {
       expect($a.attr('href'), 'href').to.equal(Help_Common.#popUpLink)
       expect($a.attr('target'), 'target').to.equal('_blank')

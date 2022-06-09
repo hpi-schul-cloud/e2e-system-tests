@@ -1,4 +1,4 @@
-import Calendar_Common from '../../pages/calendar/pageCommonCalender'
+import Calendar_Common from '../../pages/calendar/pageCommonCalendar'
 
 const calendarCommon = new Calendar_Common()
 
