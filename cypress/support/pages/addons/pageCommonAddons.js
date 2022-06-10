@@ -7,7 +7,6 @@ class Addons_Common {
 
   navigateToAddonsOverview() {
     cy.visit('/addons')
-    cy.url().should('include', '/addons')
     cy.get(Addons_Common.#addonsOverviewNavigationButton).contains('Add-ons').click()
     cy.url().should('include', '/addons')
   }
