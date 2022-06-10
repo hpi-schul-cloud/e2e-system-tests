@@ -1,6 +1,6 @@
 'use strict'
 
-class Course {
+class Courses {
   static #createFAB = '[name="fab-icon"]'
   static #courseTitle = '[data-testid="coursename"]'
   static #nextButton = '[id="nextSection"]'
@@ -24,30 +24,30 @@ class Course {
   static #selectStudents = '#studentsId_chosen > ul > li'
 
   clickOnCreateFAB() {
-    cy.get(Course.#createFAB).click()
+    cy.get(Courses.#createFAB).click()
   }
 
   fillCourseCreationForm(new_course) {
-    cy.get(Course.#courseTitle).type(new_course)
+    cy.get(Courses.#courseTitle).type(new_course)
   }
 
   clickOnNextSteps() {
-    cy.get(Course.#nextButton).click()
-    cy.get(Course.#nextContinueButton).click()
-    cy.get(Course.#goToCourseOverviewButton).click()
+    cy.get(Courses.#nextButton).click()
+    cy.get(Courses.#nextContinueButton).click()
+    cy.get(Courses.#goToCourseOverviewButton).click()
   }
 
   performDeletion() {
-    cy.get(Course.#threeDotButton)
+    cy.get(Courses.#threeDotButton)
       .eq(1)
       .click()
-    cy.get(Course.#editOption).click()
-    cy.get(Course.#selectOption).click({
+    cy.get(Courses.#editOption).click()
+    cy.get(Courses.#selectOption).click({
       multiple: true,
       force: true
     })
-    cy.get(Course.#deleteButton).click()
-    cy.get(Course.#confirmDeletionPopup).click({
+    cy.get(Courses.#deleteButton).click()
+    cy.get(Courses.#confirmDeletionPopup).click({
       multiple: true,
       force: true
     })
@@ -55,44 +55,44 @@ class Course {
 
   // edit course
   openCourseEditPage() {
-    cy.get(Course.#dropDownCourse).click()
-    cy.get(Course.#btnCourseEdit).click()
+    cy.get(Courses.#dropDownCourse).click()
+    cy.get(Courses.#btnCourseEdit).click()
   }
 
   showCourseEditPage() {
-    cy.get(Course.#pageTitle)
+    cy.get(Courses.#pageTitle)
     cy.contains('Kurs bearbeiten')
   }
 
   selectClassForCourse() {
-    cy.get(Course.#selectClassesInput).type(Course.#classSearchString)
-    cy.get(Course.#selectClassesDropdown).click()
+    cy.get(Courses.#selectClassesInput).type(Course.#classSearchString)
+    cy.get(Courses.#selectClassesDropdown).click()
   }
 
   removeClassesFromCourse() {
-    cy.get(Course.#selectClassesDeleteButtons).click({ multiple: true })
+    cy.get(Courses.#selectClassesDeleteButtons).click({ multiple: true })
   }
 
   submitChanges() {
-    cy.get(Course.#btnSubmit).click()
+    cy.get(Courses.#btnSubmit).click()
   }
 
   checkAddedClassIsInFieldClasses() {
-    cy.get(Course.#selectClasses).should('contain', Course.#classSearchString)
+    cy.get(Courses.#selectClasses).should('contain', Course.#classSearchString)
   }
 
   checkStudentsAreInFieldStudents() {
     // + 1 - because the inputfield to add a student is also in the ul
-    cy.get(Course.#selectStudents).should('have.length', Course.#numberStudentsInClass + 1)
+    cy.get(Courses.#selectStudents).should('have.length', Course.#numberStudentsInClass + 1)
   }
 
   checkNoClassesInFieldClasses() {
-    cy.get(Course.#selectClasses).should('have.length', 0)
+    cy.get(Courses.#selectClasses).should('have.length', 0)
   }
 
   checkNoStudentsInFieldStudents() {
     // 1 - because the inputfield to add a student is also in the ul
-    cy.get(Course.#selectStudents).should('have.length', 1)
+    cy.get(Courses.#selectStudents).should('have.length', 1)
   }
 }
-export default Course
+export default Courses

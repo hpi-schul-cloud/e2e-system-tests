@@ -3,7 +3,6 @@
 
 class Management {
 
-  static #chatToggleSwitch = '.rocketchat-switch'
   static #fabButton = '#fab'
   static #createUserButton = '.v-btn--router'
   static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]'
@@ -22,6 +21,7 @@ class Management {
   static #deleteButtonCancel = '.cancel-modal button.historyback'
   static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit'
   static #newSchoolAdminPageButton = '.btn-info'
+  static #chatToggleSwitch = '.rocketchat-switch'
   static #videoconferenceToggleSwitch = '.videoconference-switch'
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'

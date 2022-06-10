@@ -5,7 +5,7 @@ class Help_Common {
   static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]'
   static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]'
   static #helpContactNavigationButton = '[data-testid="Kontakt"]'
-  static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]'
+  static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]' // data-testid="Fortbildungen"  we have Id for it
   static #popUpLink = 'https://lernen.cloud/'
 
   navigateToHelpSection() {

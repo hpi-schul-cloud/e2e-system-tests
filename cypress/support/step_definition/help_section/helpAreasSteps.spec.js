@@ -3,7 +3,6 @@ import Help from '../../pages/help_section/pageHelpSection'
 const help = new Help()
 
 //Scenario: Use the help area in the header
-
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
@@ -41,13 +40,11 @@ And('I click on advanced trainings in header', () => {
 
 
 //Scenario: Use the help area in the sidebar
-
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
 //When I go to help section in sidebar
 //step defined --> \step_definition\help_section\commonHelpSectionRelatedSteps.spec.js
-
 
 Then('I can see the help articles page', () => {
   help.seeHelpArticlesPage()
@@ -74,7 +71,6 @@ Then('I can see the help contact page', () => {
 
 
 //Scenario: Use the article search inside the help articles area
-
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
@@ -94,7 +90,6 @@ Then('I can see an help article related to my search', () => {
 })
 
 //Scenario: Submit an issue via contact form inside help area
-
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 

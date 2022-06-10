@@ -1,9 +1,8 @@
-import Course from '../../../pages/courses/pageCourse'
+import Courses from '../../../pages/courses/pageCourses'
 
-const course = new Course()
+const courses = new Courses()
 
-// Scenario: Adding a class to a course
-
+//Scenario: Adding a class to a course
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
@@ -23,11 +22,11 @@ const course = new Course()
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
 When('I choose a class', () => {
-  course.selectClassForCourse()
+  courses.selectClassForCourse()
 })
 
 And('I click on save changes', () => {
-  course.submitChanges()
+  courses.submitChanges()
 })
 
 //Then I can see room page 'Mathe'
@@ -40,16 +39,14 @@ And('I click on save changes', () => {
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
 And('class is in field classes', () => {
-  course.checkAddedClassIsInFieldClasses()
+  courses.checkAddedClassIsInFieldClasses()
 })
 
 And('students of the class are in field students', () => {
-  course.checkStudentsAreInFieldStudents()
+  courses.checkStudentsAreInFieldStudents()
 })
 
-
 //Scenario: Removing classes from a course
-
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
@@ -64,14 +61,12 @@ And('students of the class are in field students', () => {
 
 //When ('I open course edit page')
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
-//
 
 //Then ('I can see course edit page')
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
-
 When('I remove all classes', () => {
-  course.removeClassesFromCourse()
+  courses.removeClassesFromCourse()
 })
 
 // And('I click on save changes', () => {
@@ -87,9 +82,9 @@ When('I remove all classes', () => {
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
 And('there are no classes in the classes field', () => {
-  course.checkNoClassesInFieldClasses()
+  courses.checkNoClassesInFieldClasses()
 })
 
 And('there are no students in the students field', () => {
-  course.checkNoStudentsInFieldStudents()
+  courses.checkNoStudentsInFieldStudents()
 })

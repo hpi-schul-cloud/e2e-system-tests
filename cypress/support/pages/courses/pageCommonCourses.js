@@ -1,6 +1,6 @@
 'use strict'
 
-class Common_Course {
+class Courses_Common {
 
   static #learningContentTab = '[data-testid="learnContent"]'
   static #toolsTab = '[data-testid="tools"]'
@@ -11,7 +11,7 @@ class Common_Course {
 
   navigateToRoomsOverview() {
     cy.visit('/rooms-overview')
-    cy.get(Common_Course.#courseOverviewNavigationButton).click()
+    cy.get(Courses_Common.#courseOverviewNavigationButton).click()
     cy.url().should('include', '/rooms-overview')
   }
 
@@ -29,7 +29,7 @@ class Common_Course {
   }
 
   navigateToTools() {
-    cy.get(Common_Course.#toolsTab).click()
+    cy.get(Courses_Common.#toolsTab).click()
   }
 
   addNewTool() {
@@ -47,13 +47,13 @@ class Common_Course {
   }
 
   canAddBigBlueButton() {
-    cy.get(Common_Course.#toolsList)
+    cy.get(Courses_Common.#toolsList)
     cy.contains('Video-Konferenz mit BigBlueButton')
   }
 
   canNotAddBigBlueButton() {
-    cy.get(Common_Course.#toolsList)
+    cy.get(Courses_Common.#toolsList)
     cy.contains('Video-Konferenz mit BigBlueButton').should('not.exist')
   }
 }
-export default Common_Course
+export default Courses_Common

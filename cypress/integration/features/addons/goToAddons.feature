@@ -1,8 +1,8 @@
-Feature: To check navigation in sidebar
+Feature: To go to addons page on NBC
 
-  As a user I want to check navigation in sidebar so that I can make sure all features are there
+  As an admin I want to navigation to the addons page on NBC so that I can access it.
 
-  Scenario: Check navigation in sidebar as admin
-    Given I am logged in as a 'admin' at 'brb'
-    When I go to AddOns overview
-    #Then I would need a final confirmation
+  Scenario: to access Add-ons page as an Admin
+    Given I am logged in as a 'admin' at 'nbc'
+    When I go to Add-Ons overview
+    Then I see the Add-Ons page with the title on the top

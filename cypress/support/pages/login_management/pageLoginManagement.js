@@ -17,12 +17,21 @@ class Login_Management {
     cy.get(Login_Management.#passwordRecoveryButton).eq(1).click()
   }
 
-  showElementOnDailog() {
+  showElementOnDialog() {
     cy.get(Login_Management.#usernameLabel).should('be.visible')
     cy.get(Login_Management.#emailInputBox).should('be.visible')
     cy.get(Login_Management.#infoMessage).should('be.visible')
     cy.get(Login_Management.#submitButton).should('be.visible')
     cy.get(Login_Management.#cancelButton).should('be.visible')
+  }
+
+  submitRequestWithoutEmail() {
+    cy.get(Login_Management.#emailInputBox).type('email@example.com').clear()
+    cy.get(Login_Management.#submitButton).click()
+  }
+
+  seeEmailInputOnSubmitingRequestWithoutEnteringEmail() {
+    cy.get(Login_Management.#emailInputBox).should('be.visible')
   }
 }
 export default Login_Management

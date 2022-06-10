@@ -1,11 +1,11 @@
-import Common_Course from '../../pages/courses/pageCommonCourse'
-import Course from '../../pages/courses/pageCourse'
+import Courses_Common from '../../pages/courses/pageCommonCourses'
+import Courses from '../../pages/courses/pageCourses'
 
-const commonCourse = new Common_Course()
-const course = new Course()
+const coursesCommon = new Courses_Common()
+const courses = new Courses()
 
 When('I go to rooms overview', () => {
-  commonCourse.navigateToRoomsOverview()
+  coursesCommon.navigateToRoomsOverview()
 })
 
 And('I go to room {string}', (room_name) => {
@@ -14,26 +14,25 @@ And('I go to room {string}', (room_name) => {
 })
 
 Then('I can see room page {string}', (room_name) => {
-  commonCourse.showRoomPage(room_name)
+  coursesCommon.showRoomPage(room_name)
 })
 
 Then('I see the course {string} on the room overview page', (course_name) => {
-  commonCourse.courseIsVisibleOnOverviewPage(course_name)
+  coursesCommon.courseIsVisibleOnOverviewPage(course_name)
 })
 
 Then('I do not see the course {string} on the room overview page', (course_name) => {
-  commonCourse.courseIsNotVisibleOnOverviewPage(course_name)
+  coursesCommon.courseIsNotVisibleOnOverviewPage(course_name)
 })
 
 When('I open course edit page', () => {
-  course.openCourseEditPage()
+  courses.openCourseEditPage()
 })
 
 Then('I can see course edit page', () => {
-  course.showCourseEditPage()
+  courses.showCourseEditPage()
 })
 
 And('I click on save changes', () => {
-  course.submitChanges()
+  courses.submitChanges()
 })
-

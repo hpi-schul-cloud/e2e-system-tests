@@ -1,9 +1,8 @@
-import Course from '../../../pages/courses/pageCourse'
+import Courses from '../../../pages/courses/pageCourses'
 
-const course = new Course()
+const courses = new Courses()
 
 //Scenario: Adding a new course
-
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
@@ -11,23 +10,22 @@ const course = new Course()
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
 And('I click on FAB to create the course', () => {
-  course.clickOnCreateFAB()
+  courses.clickOnCreateFAB()
 })
 
 And('I fill out the course creation form for new course {string}', (new_course_name) => {
-  course.fillCourseCreationForm(new_course_name)
+  courses.fillCourseCreationForm(new_course_name)
 })
 
 And('I click on next steps', () => {
-  course.clickOnNextSteps()
+  courses.clickOnNextSteps()
 })
 
 //Then ('I see the course 'Cypress Testkurs' on the room overview page')
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
 
-// Scenario: Deleting the test course/room created during executing the testing
-
+//Scenario: Deleting the test course/room created during executing the testing
 //Given ('I am logged in as a 'teacher' at 'brb'')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
@@ -38,7 +36,7 @@ And('I click on next steps', () => {
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
 Then('I should be able to delete the test room', () => {
-  course.performDeletion()
+  courses.performDeletion()
 })
 
 //Then ('I do not see the course 'Kurs Cypress Testkurs' on the room overview page')
