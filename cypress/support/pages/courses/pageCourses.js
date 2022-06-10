@@ -65,7 +65,7 @@ class Courses {
   }
 
   selectClassForCourse() {
-    cy.get(Courses.#selectClassesInput).type(Course.#classSearchString)
+    cy.get(Courses.#selectClassesInput).type(Courses.#classSearchString)
     cy.get(Courses.#selectClassesDropdown).click()
   }
 
@@ -78,7 +78,7 @@ class Courses {
   }
 
   checkAddedClassIsInFieldClasses() {
-    cy.get(Courses.#selectClasses).should('contain', Course.#classSearchString)
+    cy.get(Courses.#selectClasses).should('contain', Courses.#classSearchString)
   }
 
   checkStudentsAreInFieldStudents() {
