@@ -2,7 +2,7 @@
 
 class News {
 
-  static #newsTitleOnDashboard = '[data-testid="title_of_an_element"]'
+  static #newsTitleOnDashboard = '[data-testid="container_of_element"]'
   static #teamNewsTag = '[data-testid="header-of-element"]'
   static #newsTitle = '[id="page-title"]'
   static #newsText = '#main-content > div.ckcontent'

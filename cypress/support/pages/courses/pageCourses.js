@@ -13,14 +13,14 @@ class Courses {
   static #confirmDeletionPopup = '.btn-primary:nth-child(3)'
   static #pageTitle = '[id="page-title"]'
   static #dropDownCourse = '.v-btn__content > .v-icon > .v-icon__svg'
-  static #btnCourseEdit = '[class="v-list-item v-list-item--link theme--light menu-action menu-action-Bearbeiten/Löschen"]'
+  static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]' //[class="v-list-item v-list-item--link theme--light menu-action menu-action-Bearbeiten/Löschen"]'
   static #selectClassesInput = '#classId_chosen > ul > li > input'
-  static #selectClassesDropdown = '#classId_chosen > div > ul > li:nth-child(1)'
+  //static #selectClassesDropdown = '#classId_chosen > div > ul > li:nth-child(1)'
   static #selectClassesDeleteButtons = '#classId_chosen > ul > li > a'
   static #selectClasses = '#classId_chosen > ul > li > span'
   static #btnSubmit = '#main-content > section > form > div.modal-footer > button.btn.btn-primary.btn-submit'
   static #classSearchString = 'ALLE'
-  static #numberStudentsInClass = 3
+  static #numberStudentsInClass = 2
   static #selectStudents = '#studentsId_chosen > ul > li'
 
   clickOnCreateFAB() {
@@ -55,7 +55,7 @@ class Courses {
 
   // edit course
   openCourseEditPage() {
-    cy.get(Courses.#dropDownCourse).click()
+    cy.get(Courses.#dropDownCourse).eq(1).click()
     cy.get(Courses.#btnCourseEdit).click()
   }
 
@@ -65,8 +65,8 @@ class Courses {
   }
 
   selectClassForCourse() {
-    cy.get(Courses.#selectClassesInput).type(Courses.#classSearchString)
-    cy.get(Courses.#selectClassesDropdown).click()
+    //type.('{enter}') simulates hitting 'enter' button from the keyboard to select class ALLE from the dropdown
+    cy.get(Courses.#selectClassesInput).should('have.value','Klasse(n) auswählen').type(Courses.#classSearchString).type('{enter}')
   }
 
   removeClassesFromCourse() {
@@ -83,7 +83,7 @@ class Courses {
 
   checkStudentsAreInFieldStudents() {
     // + 1 - because the inputfield to add a student is also in the ul
-    cy.get(Courses.#selectStudents).should('have.length', Course.#numberStudentsInClass + 1)
+    cy.get(Courses.#selectStudents).should('have.length', Courses.#numberStudentsInClass + 1)
   }
 
   checkNoClassesInFieldClasses() {

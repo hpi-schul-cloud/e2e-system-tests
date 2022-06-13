@@ -2,7 +2,7 @@
 
 class Teams_Common {
 
-  static #teamContainer = '[data-testid="container_of_element"]'
+  static #teamTitle = '[data-testid="title_of_an_element"]'
   static #teamSettings = '[data-testid="team_settings"]'
   static #manageTeamMembers = '[data-testid="administrate_team_members"]'
   static #editTeam = 'i.fa-edit'
@@ -20,7 +20,7 @@ class Teams_Common {
   }
 
   selectTeam() {
-    cy.get(Teams_Common.#teamContainer).eq(0).click()
+    cy.get(Teams_Common.#teamTitle).eq(0).click()
   }
 
   openTeamSettings() {

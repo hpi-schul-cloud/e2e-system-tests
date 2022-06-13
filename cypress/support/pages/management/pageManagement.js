@@ -91,6 +91,7 @@ class Management {
 
   clickNewAdminPageButton() {
     cy.get(Management.#newSchoolAdminPageButton).click()
+    cy.url().should('include', '/administration/school-settings')
   }
 
   clickVideoconferenceToggleSwitch() {
@@ -127,7 +128,7 @@ class Management {
   clickChatToggleSwitch() {
     cy.intercept('/api/v1/federalStates/*').as('federalStates')
     cy.wait('@federalStates')
-    cy.get(Management.#chatToggleSwitch).find('input').click({force:true})
+    cy.get(Management.#chatToggleSwitch).find('input').click({ force: true })
     //need to find out current state and decide if state needs to be changed
     //if current state aria-checked="true" and I want it activated then I don't need to click
     //if current state aria-checked="false" and I want it activated then I need to click

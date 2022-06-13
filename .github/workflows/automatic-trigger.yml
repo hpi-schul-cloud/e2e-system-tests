@@ -11,7 +11,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
-          headless: true
+          headed: true
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_NBC: ${{ secrets.CYPRESS_NBC }}

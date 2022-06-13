@@ -7,7 +7,7 @@ class Help {
   static #sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]'
   static #advancedTrainingsInHeader = '[data-testid="Fortbildung"]'
   static #helpPageTitle = '[id="page-title"]'
-  static #helpFirstSteps = '#erste_schritte > .icon-card__content > .h4'
+  static #helpFirstSteps = '#erste_schritte > .icon-card__content > .icon-card__title'
   static #helpLessons = '[id="Unterricht"]'
   static #helpOrganization = '[id="Organisation"]'
   static #helpNutzungshilfen = '[id="nutzungshilfen"]'

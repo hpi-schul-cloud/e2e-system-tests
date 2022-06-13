@@ -15,7 +15,7 @@ Then('I can see the welcome message', () => {
 })
 
 //Scenario: Check tasks on the dashboard
-//Given ('I am logged in as a 'teacher' at 'brb'')
+//Given ('I am logged in as a 'teacher' at 'brb')
 //step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
 
 //When I arrive on the dashboard
