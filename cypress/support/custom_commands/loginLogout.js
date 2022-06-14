@@ -66,7 +66,7 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.get(emailInputFieldElement).eq(1).type(env[user_email],{force:true})
     cy.get(passwordInputFieldElement).eq(1).type(env[user_password],{force:true})
     cy.get(submitButton).eq(1).click({force:true})
-    cy.url().should('contain', '/dashboard', { timeout: 100000 })
+    cy.url().should('contain', '/dashboard')
   })
 })
 
