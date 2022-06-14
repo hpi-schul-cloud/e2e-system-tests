@@ -12,6 +12,8 @@ class Teams_Common {
   static #activateRCCheckbox = '#activateRC'
   static #activateConfCheckbox = '#activateConf'
   static #teamsOverviewNavigationButton = '[data-testid="Teams"]'
+  static #messangerActivation = '[data-testid="rocketchat_checkbox"]'
+  static #saveButton = '[data-testid="create_team_btn"]'
 
   navigateToTeamsOverview() {
     cy.visit('/teams')
@@ -33,7 +35,7 @@ class Teams_Common {
 
   canSeeTeamChat() {
     cy.get(Teams_Common.#rocketchat).should('be.visible')
-    //cy.contains('Beginn des Gesprächs')
+    cy.contains('Beginn des Gesprächs')
   }
 
   canNotSeeTeamChat() {
@@ -43,7 +45,7 @@ class Teams_Common {
   canSeeTeamChatCheckbox() {
     cy.get(Teams_Common.#teamOptions)
     cy.contains('Messenger für Team aktivieren')
-    cy.get(Teams_Common.#activateRCCheckbox)
+    //cy.get(Teams_Common.#activateRCCheckbox)
   }
 
   canNotSeeTeamChatCheckbox() {
@@ -62,6 +64,14 @@ class Teams_Common {
     cy.get(Teams_Common.#teamOptions)
     cy.contains('Videokonferenzen für Team aktivieren').should('not.exist')
     cy.get(Teams_Common.#activateConfCheckbox).should('not.exist')
+  }
+
+  enableMessangerInTeamEdit() {
+    cy.get(Teams_Common.#messangerActivation).click()
+  }
+
+  clickOnSaveAfterEdit () {
+    cy.get(Teams_Common.#saveButton).click()
   }
 }
 export default Teams_Common

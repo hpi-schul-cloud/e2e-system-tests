@@ -12,8 +12,8 @@ class Courses {
   static #deleteButton = '[data-method="DELETE"]'
   static #confirmDeletionPopup = '.btn-primary:nth-child(3)'
   static #pageTitle = '[id="page-title"]'
-  static #dropDownCourse = '.v-btn__content > .v-icon > .v-icon__svg'
-  static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]' //[class="v-list-item v-list-item--link theme--light menu-action menu-action-Bearbeiten/Löschen"]'
+  static #dropDownCourse = '.course-title .three-dot-button'//'.three-dot-button:first-of-type'//'[data-testid="title-menu"]'
+  static #btnCourseEdit =  '[data-testid="title-menu-edit-delete"]'// [class="v-list-item v-list-item--link theme--light menu-action menu-action-Bearbeiten/Löschen"]'
   static #selectClassesInput = '#classId_chosen > ul > li > input'
   //static #selectClassesDropdown = '#classId_chosen > div > ul > li:nth-child(1)'
   static #selectClassesDeleteButtons = '#classId_chosen > ul > li > a'
@@ -55,7 +55,7 @@ class Courses {
 
   // edit course
   openCourseEditPage() {
-    cy.get(Courses.#dropDownCourse).eq(1).click()
+    cy.get(Courses.#dropDownCourse).click()
     cy.get(Courses.#btnCourseEdit).click()
   }
 

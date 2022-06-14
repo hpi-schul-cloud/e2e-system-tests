@@ -29,10 +29,13 @@ Feature: To administrate school settings by the admin.
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
     And I go to a team
-    Then I can see the chat in team
     And I open team settings
     And I choose edit team
     Then I can see the checkbox for messenger in a team
+    And I selected the messenger activation checkbox
+    And click on save changes
+    #Then I can see the chat in team
+
 
   #Scenario: Deactivate BigBlueButton --> BBB tool is not avaiable on main instance this test will be inside the course -> tools folder
     #Given I am logged in as a 'admin' at 'brb'

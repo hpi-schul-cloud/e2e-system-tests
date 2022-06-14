@@ -1,6 +1,8 @@
 import Management from '../../../../pages/management/pageManagement'
+import Teams_Common from '../../../../pages/teams/pageCommonTeams'
 
 const management = new Management()
+const teamCommon = new Teams_Common()
 
 //Scenario: Deactivate Chat
 //Given I am logged in as a 'admin' at 'brb'
@@ -86,4 +88,15 @@ When('I click toggle switch to activate the chat', () => {
 //step defined --> \step_definition\teams\commonTeamsRelatedSteps.spec.js
 
 //Then ('I can see the checkbox for messenger in a team')
+//step defined --> \step_definition\teams\commonTeamsRelatedSteps.spec.js
+
+And ('I selected the messenger activation checkbox',()=>{
+teamCommon.enableMessangerInTeamEdit()
+})
+
+And ('click on save changes',()=>{
+teamCommon.clickOnSaveAfterEdit()
+})
+
+//Then ('I can see the chat in a team',()=>{
 //step defined --> \step_definition\teams\commonTeamsRelatedSteps.spec.js
