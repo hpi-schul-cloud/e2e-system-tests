@@ -15,7 +15,7 @@ class Courses_Common {
     cy.url().should('include', '/rooms-overview')
   }
 
-  naviagteToRoomBoard(room_name) {
+  navigateToRoomBoard(room_name) {
     const selectedRoom = `[aria-label='${room_name}']`
     cy.get(selectedRoom).click({
       multiple: true,

@@ -15,19 +15,15 @@ class Dashboard {
   seeAssignedTasks() {
     cy.get(Dashboard.#dashboardTasksTitle).eq(0)
     cy.contains('Gestellte Aufgaben')
-    cy.get(Dashboard.#dashboardTaskCourseName).eq(0)
-    cy.contains('Task11')
-    //cy.get(Dashboard.#dashboardTaskName).eq(0)
-    //cy.contains('Test Aufgabe - Copy')
+    cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains('Mathe')
+    cy.get(Dashboard.#dashboardTaskName).eq(0).contains('Task11')
   }
 
   seeDraftTasks() {
     cy.get(Dashboard.#dashboardTasksTitle).eq(1)
     cy.contains('Entwürfe')
-    cy.get(Dashboard.#dashboardTaskCourseName).eq(1)
-    cy.contains('Task1')
-    //cy.get(Dashboard.#dashboardTaskName).eq(1)
-    //cy.contains('Test - Copy')
+    cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains('Mathe')
+    cy.get(Dashboard.#dashboardTaskName).eq(0).contains('Task1')
   }
 }
 export default Dashboard
