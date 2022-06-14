@@ -16,7 +16,7 @@ class Dashboard {
     cy.get(Dashboard.#dashboardTasksTitle).eq(0)
     cy.contains('Gestellte Aufgaben')
     cy.get(Dashboard.#dashboardTaskCourseName).eq(0)
-    cy.contains('test task copy')
+    cy.contains('Task11')
     //cy.get(Dashboard.#dashboardTaskName).eq(0)
     //cy.contains('Test Aufgabe - Copy')
   }
@@ -25,7 +25,7 @@ class Dashboard {
     cy.get(Dashboard.#dashboardTasksTitle).eq(1)
     cy.contains('Entwürfe')
     cy.get(Dashboard.#dashboardTaskCourseName).eq(1)
-    cy.contains('test task draft')
+    cy.contains('Task1')
     //cy.get(Dashboard.#dashboardTaskName).eq(1)
     //cy.contains('Test - Copy')
   }

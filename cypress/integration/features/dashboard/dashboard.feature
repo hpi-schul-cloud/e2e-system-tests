@@ -8,7 +8,7 @@ Feature: To check contents on the dashboard
     Then I can see the welcome message
 
   Scenario: Check tasks on the dashboard
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher' at 'nbc'
     When I arrive on the dashboard
     Then I can see the assigned tasks
     Then I can see the draft tasks
