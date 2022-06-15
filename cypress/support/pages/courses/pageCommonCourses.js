@@ -11,7 +11,7 @@ class Courses_Common {
   static #addNewToolButton = '[data-testid="add_new_tool"]'
 
   navigateToRoomsOverview() {
-    //cy.visit('/rooms-overview')
+    cy.visit('/rooms-overview')
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
     cy.url().should('include', '/rooms-overview')
   }

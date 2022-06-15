@@ -9,14 +9,14 @@ class News {
   static #newsText = '.ckcontent > p:nth-child(1)'  //'#main-content > div.ckcontent'
 
   goToSchoolNewsOnDashboard() {
-    //cy.visit('/news')
+    cy.visit('/news')
     cy.get(News.#newsTitleOnDashboard)
     cy.contains('Test 123').click()
     cy.url().should('include', '/news/')
   }
 
   goToTeamNewsOnDashboard() {
-    //cy.visit('/news')
+    cy.visit('/news')
     cy.get(News.#teamNewsTag).contains('test').click({ multiple: true, force: true })
     cy.url().should('include', '/news/')
   }
