@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
-        run: npm run generate:report
+        command: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
