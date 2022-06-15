@@ -6,7 +6,7 @@
 	"scripts": {
 		"cy:run": "cypress run",
 		"cy:open": "cypress open",
-		"pretest": "[[ -d cypress/reports ]] && rm -rf cypress/reports",
+		"pretest": "if exist cypress\\reports rmdir /S/Q cypress\\reports",
 		"generate:report": "node cucumber-html-report.js",
 		"posttest": "npm run cy:run || npm run generate:report"
 	},
