@@ -38,7 +38,7 @@ report.generate({
   pageFooter: ' ',
   displayReportTime: true,
   metadata: {
-    browser: {
+    platform: {
       name: os.platform()
     }
   },
