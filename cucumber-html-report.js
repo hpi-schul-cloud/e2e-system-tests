@@ -39,7 +39,7 @@ report.generate({
   displayReportTime: true,
   metadata: {
     browser: {
-      name: 'Chrome'
+      name: os.platform()
     }
   },
   customData: {
