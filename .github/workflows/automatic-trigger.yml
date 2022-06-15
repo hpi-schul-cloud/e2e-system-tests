@@ -1,17 +1,28 @@
 name: e2e-automatic-trigger-tests
-on:  [push]
+on: [push]
 jobs:
- e2e-tests:
+  e2e-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Cypress Information
+        uses: cypress-io/github-action@v4
+        with:
+          build: npx cypress info
+
+      - name: Clean up previous report
+        uses: cypress-io/github-actions@v2
+        with:
+          command: npm run pretest
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
           headless: true
+          command: npm run posttest
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}

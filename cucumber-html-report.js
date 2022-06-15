@@ -52,7 +52,6 @@ report.generate({
     title: 'Run info',
     data: [
       { label: 'Project', value: 'dBildungscloud' },
-      { label: 'Release', value: '27.14' },
       { label: 'Execution Time', value: time() }
     ]
   }

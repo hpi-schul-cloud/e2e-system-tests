@@ -8,7 +8,7 @@
 		"cy:open": "cypress open",
 		"pretest": "[[ -d cypress/reports ]] && rm -rf cypress/reports",
 		"generate:report": "node cucumber-html-report.js",
-		"posttest": "npm run pretest && npm run cy:run || npm run generate:report"
+		"posttest": "npm run cy:run || npm run generate:report"
 	},
 	"repository": {
 		"type": "git",
@@ -26,7 +26,7 @@
 	"devDependencies": {
 		"cypress": "^9.6.0",
 		"cypress-cucumber-preprocessor": "^4.3.1",
-		"multiple-cucumber-html-reporter": "^1.21.2"
+		"multiple-cucumber-html-reporter": "^1.21.4"
 	},
 	"cypress-cucumber-preprocessor": {
 		"nonGlobalStepDefinitions": false,
