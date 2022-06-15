@@ -34,24 +34,19 @@ report.generate({
   openReportInBrowser: false,
   saveCollectedJSON: true,
   pageTitle: 'dBildungscloud E2E Test Report',
-  reportName: 'E2E Test Report ' + time(),
+  reportName: 'E2E Cucumber Test Report' + time(),
   pageFooter: ' ',
   displayReportTime: true,
   metadata: {
     browser: {
-      name: 'firefox',
-      version: '99'
-    },
-    device: 'Local machine',
-    platform: {
-      name: 'osx',
-      version: '12.3.1'
+      name: 'Chrome'
     }
   },
   customData: {
     title: 'Run info',
     data: [
       { label: 'Project', value: 'dBildungscloud' },
+      { label: 'Instance', value: baseUrl },
       { label: 'Execution Time', value: time() }
     ]
   }
