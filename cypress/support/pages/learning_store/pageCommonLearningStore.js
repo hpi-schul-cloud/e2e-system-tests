@@ -5,7 +5,7 @@ class Learning_Store_Common {
   static #lernStoreOverviewNavigationButton = '[data-testid="Lern-Store"]'
 
   navigateToLernStoreOverview() {
-    cy.visit('/content')
+    //cy.visit('/content')
     cy.get(Learning_Store_Common.#lernStoreOverviewNavigationButton).click()
     cy.url().should('include', '/content')
   }

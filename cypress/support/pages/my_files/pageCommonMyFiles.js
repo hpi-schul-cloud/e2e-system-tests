@@ -9,31 +9,31 @@ class My_Files_Common {
   static #sharedFilesOverviewNavigationButton = '[data-testid="geteilte Dateien"]'
 
   navigateToFilesOverview() {
-    cy.visit('/files')
+    //cy.visit('/files')
     cy.get(My_Files_Common.#filesOverviewNavigationButton).click()
     cy.url().should('include', '/files')
   }
 
   navigateToPersonalFilesOverview() {
-    cy.visit('/files/my')
+    //cy.visit('/files/my')
     cy.get(My_Files_Common.#personalFilesOverviewNavigationButton).click()
     cy.url().should('include', '/files/my')
   }
 
   navigateToCourseFilesOverview() {
-    cy.visit('/files/courses')
+    //cy.visit('/files/courses')
     cy.get(My_Files_Common.#coursesFilesOverviewNavigationButton).click()
     cy.url().should('include', '/files/courses')
   }
 
   navigateToTeamsFilesOverview() {
-    cy.visit('/files/teams')
+    //cy.visit('/files/teams')
     cy.get(My_Files_Common.#teamsFilesOverviewNavigationButton).eq(1).click()
     cy.url().should('include', '/files/teams')
   }
 
   navigateToSharedFilesOverview() {
-    cy.visit('/files/shared')
+    //cy.visit('/files/shared')
     cy.get(My_Files_Common.#sharedFilesOverviewNavigationButton).click()
     cy.url().should('include', '/files/shared')
   }

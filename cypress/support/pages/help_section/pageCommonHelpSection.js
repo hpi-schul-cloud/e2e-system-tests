@@ -9,19 +9,19 @@ class Help_Common {
   static #popUpLink = 'https://lernen.cloud/'
 
   navigateToHelpSection() {
-    cy.visit('/help')
+    //cy.visit('/help')
     cy.get(Help_Common.#helpOverviewNavigationButton).click()
     cy.url().should('include', '/help/articles')
   }
 
   navigateToHelpArticles() {
-    cy.visit('/help/articles')
+    //cy.visit('/help/articles')
     cy.get(Help_Common.#helpArticlesNavigationButton).eq(0).click()
     cy.url().should('include', '/help/articles')
   }
 
   navigateToHelpContact() {
-    cy.visit('/help/contact')
+    //cy.visit('/help/contact')
     cy.get(Help_Common.#helpContactNavigationButton).click()
     cy.url().should('include', '/help/contact')
   }
