@@ -37,11 +37,6 @@ report.generate({
   reportName: 'E2E Cucumber Test Report' + time(),
   pageFooter: ' ',
   displayReportTime: true,
-  metadata: {
-    platform: {
-      name: os.platform()
-    }
-  },
   customData: {
     title: 'Run info',
     data: [
