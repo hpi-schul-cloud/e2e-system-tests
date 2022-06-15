@@ -5,12 +5,12 @@ class Teams_Common {
   static #teamTitle = '[data-testid="title_of_an_element"]'
   static #teamSettings = '[data-testid="team_settings"]'
   static #manageTeamMembers = '[data-testid="administrate_team_members"]'
-  static #editTeam = 'i.fa-edit'
-  static #deleteTeam = 'i.fa fa-trash'
-  static #rocketchat = '[class="rocketchat"]'
-  static #teamOptions = '.section-course'
-  static #activateRCCheckbox = '#activateRC'
-  static #activateConfCheckbox = '#activateConf'
+  static #editTeam = '[data-testid="edit_team_members"]' //'i.fa-edit'
+  static #deleteTeam = '[data-testid="delete_team_members"]' //'i.fa fa-trash'
+  static #rocketchat = '[data-testid="rocketchat_wrapper"]' //'[class="rocketchat"]'
+  static #teamOptions = '[data-testid="team_options"]' //'.section-course'
+  static #activateRCCheckbox = '[data-testid="rocketchat_checkbox"]' //'#activateRC'
+  static #activateConfCheckbox =  '[data-testid="videoconf_checkbox"]'  //'#activateConf'
   static #teamsOverviewNavigationButton = '[data-testid="Teams"]'
   static #messangerActivation = '[data-testid="rocketchat_checkbox"]'
   static #saveButton = '[data-testid="create_team_btn"]'
@@ -35,7 +35,6 @@ class Teams_Common {
 
   canSeeTeamChat() {
     cy.get(Teams_Common.#rocketchat).should('be.visible')
-    cy.contains('Beginn des Gesprächs')
   }
 
   canNotSeeTeamChat() {
@@ -45,7 +44,7 @@ class Teams_Common {
   canSeeTeamChatCheckbox() {
     cy.get(Teams_Common.#teamOptions)
     cy.contains('Messenger für Team aktivieren')
-    //cy.get(Teams_Common.#activateRCCheckbox)
+    cy.get(Teams_Common.#activateRCCheckbox)
   }
 
   canNotSeeTeamChatCheckbox() {

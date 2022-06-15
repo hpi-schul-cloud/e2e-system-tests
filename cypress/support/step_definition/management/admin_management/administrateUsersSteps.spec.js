@@ -1,4 +1,4 @@
-import Management from '../../../../pages/management/pageManagement'
+import Management from '../../../pages/management/pageManagement'
 
 const management = new Management()
 

@@ -4,8 +4,8 @@ class News {
 
   static #newsTitleOnDashboard = '[data-testid="container_of_element"]'
   static #teamNewsTag = '[data-testid="header-of-element"]'
-  static #newsTitle = '[id="page-title"]'
-  static #newsText = '#main-content > div.ckcontent'
+  static #newsTitle =  '[data-testid="title_of_an_element"]' //'[id="page-title"]'
+  static #newsText = '[data-testid="body_of_element"]'  //'#main-content > div.ckcontent'
 
   goToSchoolNewsOnDashboard() {
     cy.visit('/news')

@@ -1,4 +1,3 @@
-
 'use strict'
 
 class Management {
@@ -15,12 +14,12 @@ class Management {
   static #firstNameEditForm = "input[name='firstName']"
   static #lastNameEditForm = "input[name='lastName']"
   static #emailEditForm = "input[name='email']"
-  static #submitButton = '.btn-submit'
-  static #deleteButton = '.btn-delete'
-  static #cancelButtonConfirmation = '.cancel-modal button.btn-close'
+  static #submitButton = '[data-testid="button_save_user"]'
+  static #deleteButton = '[data-testid="button_delete_user"]'
+  static #cancelButtonConfirmation = '[data-testid="btn-cancel"]'
   static #deleteButtonCancel = '.cancel-modal button.historyback'
-  static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit'
-  static #newSchoolAdminPageButton = '.btn-info'
+  static #deleteButtonConfirmation = '[data-testid="btn-submit"]'
+  static #newSchoolAdminPageButton = '[data-testid="button_new_admin_page"]'
   static #chatToggleSwitch = '.rocketchat-switch'
   static #videoconferenceToggleSwitch = '.videoconference-switch'
   static #saveGeneralSettingsButton = '.my-5'
@@ -107,7 +106,7 @@ class Management {
   }
 
   createdUserIsVisibleInTable() {
-    //cy.get(Administration.#searchbar).clear(Administration.#searchbar)
+    cy.get(Management.#searchbar).clear(Management.#searchbar)
     cy.get(Management.#tableContents)
     cy.contains('Adam')
   }

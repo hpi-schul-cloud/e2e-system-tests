@@ -35,6 +35,9 @@ And('I click on next steps', () => {
 //And ('I go to room 'Kurs Cypress Testkurs'')
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
+//When I open course edit page
+//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+
 Then('I should be able to delete the test room', () => {
   courses.performDeletion()
 })

@@ -25,9 +25,8 @@ When('I choose a class', () => {
   courses.selectClassForCourse()
 })
 
-And('I click on save changes', () => {
-  courses.submitChanges()
-})
+// And I click on save changes
+//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
 //Then I can see room page 'Mathe'
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js

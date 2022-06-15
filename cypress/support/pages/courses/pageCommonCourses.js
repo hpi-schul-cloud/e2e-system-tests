@@ -5,9 +5,10 @@ class Courses_Common {
   static #learningContentTab = '[data-testid="learnContent"]'
   static #toolsTab = '[data-testid="tools"]'
   static #groupsTab = '[data-testid="groups"]'
-  static #toolsList = 'div.list-group'
+  static #toolsList = '[data-testid="course_tool_list_add_tool"]'
   static #pageTitle = '[id="page-title"]'
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
+  static #addNewToolButton = '[data-testid="add_new_tool"]'
 
   navigateToRoomsOverview() {
     cy.visit('/rooms-overview')
@@ -33,7 +34,7 @@ class Courses_Common {
   }
 
   addNewTool() {
-    cy.get('[aria-label="Neues Tool hinzufügen"]').click()
+    cy.get(Courses_Common.#addNewToolButton).click()
   }
 
   courseIsVisibleOnOverviewPage(course_name) {
@@ -47,13 +48,11 @@ class Courses_Common {
   }
 
   canAddBigBlueButton() {
-    cy.get(Courses_Common.#toolsList)
-    cy.contains('Video-Konferenz mit BigBlueButton')
+    cy.get(Courses_Common.#toolsList).should('be.visible')
   }
 
   canNotAddBigBlueButton() {
-    cy.get(Courses_Common.#toolsList)
-    cy.contains('Video-Konferenz mit BigBlueButton').should('not.exist')
+    cy.get(Courses_Common.#toolsList).should('not.exist')
   }
 }
 export default Courses_Common
