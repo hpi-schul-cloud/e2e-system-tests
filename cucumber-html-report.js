@@ -1,4 +1,9 @@
 const report = require('multiple-cucumber-html-reporter')
+let os = require('os')
+
+let osMap = () => {
+  console.log(os.platform)
+}
 
 let time = () => {
   let date_instance = new Date()
@@ -34,10 +39,15 @@ report.generate({
   openReportInBrowser: false,
   saveCollectedJSON: true,
   pageTitle: 'dBildungscloud E2E Test Report',
-  reportName: 'E2E Cucumber Test Report' + time(),
+  reportName: 'E2E Cucumber Test Report ' + time(),
   pageFooter: ' ',
-  hideMetadata: true,
+  hideMetadata: false,
   displayReportTime: true,
+  metadata: {
+    platform: {
+      name: osMap()
+    }
+  },
   customData: {
     title: 'Run info',
     data: [
