@@ -85,7 +85,7 @@ class Management {
   }
 
   clickDeleteButtonInPopup() {
-    cy.get(Management.#deleteButtonConfirmation).click()
+    cy.get(Management.#deleteButtonConfirmation).click({ multiple: true, force:true})
   }
 
   clickNewAdminPageButton() {

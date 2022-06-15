@@ -20,7 +20,7 @@ class Courses {
   static #selectClasses = '#classId_chosen > ul > li > span'
   static #btnSubmit = '#main-content > section > form > div.modal-footer > button.btn.btn-primary.btn-submit'
   static #classSearchString = 'ALLE'
-  static #numberStudentsInClass = 3
+  static #numberStudentsInClass = 2
   static #selectStudents = '#studentsId_chosen > ul > li'
 
   clickOnCreateFAB() {

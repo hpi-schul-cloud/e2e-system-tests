@@ -4,8 +4,9 @@ class News {
 
   static #newsTitleOnDashboard = '[data-testid="container_of_element"]'
   static #teamNewsTag = '[data-testid="header-of-element"]'
-  static #newsTitle =  '[data-testid="title_of_an_element"]' //'[id="page-title"]'
-  static #newsText = '[data-testid="body_of_element"]'  //'#main-content > div.ckcontent'
+  static #newsTitle =  '[data-testid="title_of_an_element"]'
+  static #pageTitle = '[id="page-title"]'
+  static #newsText = '.ckcontent > p:nth-child(1)'  //'#main-content > div.ckcontent'
 
   goToSchoolNewsOnDashboard() {
     cy.visit('/news')
@@ -21,14 +22,14 @@ class News {
   }
 
   readSchoolNews() {
-    cy.get(News.#newsTitle)
+    cy.get(News.#pageTitle)
     cy.contains('Test 123')
     cy.get(News.#newsText)
     cy.contains('456 lalala')
   }
 
   readTeamNews() {
-    cy.get(News.#newsTitle)
+    cy.get(News.#pageTitle)
     cy.contains('test')
     cy.get(News.#newsText)
     cy.contains('t')
