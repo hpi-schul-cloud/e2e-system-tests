@@ -46,7 +46,6 @@ report.generate({
     title: 'Run info',
     data: [
       { label: 'Project', value: 'dBildungscloud' },
-      { label: 'Instance', value: Cypress.config().baseUrl },
       { label: 'Execution Time', value: time() }
     ]
   }
