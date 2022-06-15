@@ -36,6 +36,7 @@ report.generate({
   pageTitle: 'dBildungscloud E2E Test Report',
   reportName: 'E2E Cucumber Test Report' + time(),
   pageFooter: ' ',
+  hideMetadata: true,
   displayReportTime: true,
   customData: {
     title: 'Run info',
