@@ -7,8 +7,7 @@
 		"cy:run": "cypress run",
 		"cy:open": "cypress open",
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
-		"generate:report": "node cucumber-html-report.js",
-		"posttest": "npm run cy:run || npm run generate:report"
+		"generate:report": "node cucumber-html-report.js"
 	},
 	"repository": {
 		"type": "git",

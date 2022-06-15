@@ -31,7 +31,7 @@ let time = () => {
 report.generate({
   jsonDir: 'cypress/cucumber-json',
   reportPath: 'cypress/reports',
-  openReportInBrowser: true,
+  openReportInBrowser: false,
   saveCollectedJSON: true,
   pageTitle: 'dBildungscloud E2E Test Report',
   reportName: 'E2E Test Report ' + time(),
