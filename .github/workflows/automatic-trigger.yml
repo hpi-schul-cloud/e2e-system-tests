@@ -8,12 +8,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clean up previous report
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v2
         with:
           command: npm run pretest
 
       - name: Cypress run
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v2
         with:
           browser: chrome
           headless: true
@@ -26,21 +26,20 @@ jobs:
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
 
       - name: Generate Report
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v2
         with:
           command: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
-        if: failure()
+        if: always()
         with:
           name: my-report
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
-          if-no-files-found: error
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
-        if: always() # to always upload the files if tests passed or failed
+        if: always()
         with:
           name: my-artifact
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
