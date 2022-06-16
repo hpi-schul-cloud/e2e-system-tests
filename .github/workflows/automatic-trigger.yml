@@ -19,7 +19,7 @@ jobs:
           headless: true
           run: |
             npm run cy:run
-            npm run npm run generate:report
+            npm run generate:report
           continue-on-error: false
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
@@ -27,6 +27,14 @@ jobs:
           CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
           CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+
+      - name: Copy test execution videos
+        run: |
+          mkdir public
+          cp -r cypress/videos public/videos
+
+      - name: Generate Report
+        run:  npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
