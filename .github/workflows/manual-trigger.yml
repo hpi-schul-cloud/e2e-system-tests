@@ -42,7 +42,7 @@ jobs:
           name: my-report
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
 
-      - name: Upload Artifact
+      - name: Upload Video Artifact
         uses: actions/upload-artifact@v2
         if: always()
         with:
