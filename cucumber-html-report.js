@@ -1,67 +1,82 @@
 const report = require('multiple-cucumber-html-reporter')
+const fs = require('fs')
 
-let osMap = () => {
-  if (process.platform === 'win32') {
+let osMap = os => {
+  if (os.startsWith('win')) {
     return 'windows'
-  } else if (process.platform === 'darwin') {
+  } else if (os.startsWith('darwin')) {
     return 'osx'
-  } else if (process.platform === 'linux') {
+  } else if (os.startsWith('linux')) {
     return 'linux'
+  } else if (os.startsWith('ubuntu')) {
+    return 'ubuntu'
+  } else if (os.startsWith('android')) {
+    return 'android'
+  } else if (os.startsWith('ios')) {
+    return 'ios'
+  }
+}
+
+let browserMap = browser => {
+  if (browser.startsWith('electron') || browser.startsWith('chrome')) {
+    return 'chrome'
+  } else if (browser.startsWith('firefox')) {
+    return 'firefox'
+  } else if (browser.startsWith('safari')) {
+    return 'safari'
+  } else if (browser.startsWith('internet explorer')) {
+    return 'internet explorer'
   } else {
-    return 'undefined'
+    return 'edge'
   }
 }
 
-let time = () => {
-  let date_instance = new Date()
-  date_instance.getTime()
-  let months = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec'
-  ]
-  let year = date_instance.getFullYear()
-  let month = months[date_instance.getMonth()]
-  let date = date_instance.getDate()
-  let hour = date_instance.getHours()
-  let min = date_instance.getMinutes()
-  let sec = date_instance.getSeconds()
-  let time =
-    date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec
-  return time
-}
-
-report.generate({
-  jsonDir: 'cypress/cucumber-json',
-  reportPath: 'cypress/reports',
-  openReportInBrowser: false,
-  saveCollectedJSON: true,
-  pageTitle: 'dBildungscloud E2E Test Report',
-  reportName: 'E2E Cucumber Test Report ' + time(),
-  pageFooter: ' ',
-  hideMetadata: false,
-  displayReportTime: true,
-  metadata: {
-    platform: {
-      name: osMap()
+fs.readFile('cypress/.run/results.json', function read (err, data) {
+  if (err) {
+    throw err
+  }
+  let runInfos = JSON.parse(data)
+  report.generate({
+    jsonDir: 'cypress/cucumber-json',
+    reportPath: 'cypress/reports',
+    openReportInBrowser: false,
+    saveCollectedJSON: true,
+    pageTitle: 'dBildungscloud E2E Test Report',
+    reportName:
+      'E2E Cucumber Test Report ' +
+      new Date(runInfos.startedTestsAt).toLocaleString(),
+    pageFooter: ' ',
+    hideMetadata: false,
+    displayReportTime: true,
+    metadata: {
+      browser: {
+        name: browserMap(runInfos.browserName),
+        version: runInfos.browserVersion
+      },
+      device: 'Cypress',
+      platform: {
+        name: osMap(runInfos.osName)
+      }
     },
-    device: 'Test machine',
-  },
-  customData: {
-    title: 'Run info',
-    data: [
-      { label: 'Project', value: 'dBildungscloud' },
-      { label: 'Instance', value: process.env.NODE_ENV || 'DEV'},
-      { label: 'Execution Time', value: time() }
-    ]
-  }
+    customData: {
+      title: 'Run info',
+      data: [
+        { label: 'Project', value: 'dBildungscloud' },
+        {
+          label: 'Instance',
+          value:
+            runInfos.config.rawJson.envFile.BRB ||
+            runInfos.config.rawJson.envFile.NBC
+        },
+        {
+          label: 'Execution Start Time',
+          value: new Date(runInfos.startedTestsAt).toLocaleString()
+        },
+        {
+          label: 'Execution End Time',
+          value: new Date(runInfos.endedTestsAt).toLocaleString()
+        }
+      ]
+    }
+  })
 })
