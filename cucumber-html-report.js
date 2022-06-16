@@ -66,9 +66,7 @@ fs.readFile('cypress/.run/results.json', function read (err, data) {
           label: 'Instance',
           value:
             runInfos.config.rawJson.envFile.BRB ||
-            runInfos.config.rawJson.envFile.NBC ||
-            CYPRESS_BRB ||
-            CYPRESS_NBC
+            runInfos.config.rawJson.envFile.NBC
         },
         {
           label: 'Execution Start Time',
