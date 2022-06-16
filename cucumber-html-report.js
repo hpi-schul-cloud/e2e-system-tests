@@ -1,8 +1,15 @@
 const report = require('multiple-cucumber-html-reporter')
-let os = require('os')
 
 let osMap = () => {
-  console.log(os.platform)
+  if (process.platform === 'win32') {
+    return 'windows'
+  } else if (process.platform === 'darwin') {
+    return 'osx'
+  } else if (process.platform === 'linux') {
+    return 'linux'
+  } else {
+    return 'undefined'
+  }
 }
 
 let time = () => {
@@ -46,12 +53,14 @@ report.generate({
   metadata: {
     platform: {
       name: osMap()
-    }
+    },
+    device: 'Test machine',
   },
   customData: {
     title: 'Run info',
     data: [
       { label: 'Project', value: 'dBildungscloud' },
+      { label: 'Instance', value: process.env.NODE_ENV || 'DEV'},
       { label: 'Execution Time', value: time() }
     ]
   }
