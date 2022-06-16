@@ -20,7 +20,7 @@ class Help {
   static #feedbackSendConfirmation = '[data-testid="notification"]'
 
   clickQuestionIcon () {
-    cy.visit('/dashboard')
+    //cy.visit('/dashboard')
     cy.get(Help.#questionIcon).click()
   }
 
