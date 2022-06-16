@@ -26,15 +26,11 @@ jobs:
           CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
 
-      - name: Generate Report
-        uses: cypress-io/github-action@v2
-        with:
-          command: npm run generate:report
-
       - name: Upload Report
         uses: actions/upload-artifact@v2
         if: always()
         with:
+          command: npm run npm run generate:report
           name: my-report
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
 
