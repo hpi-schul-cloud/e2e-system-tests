@@ -19,8 +19,7 @@ jobs:
           headless: true
           run: |
             npm run cy:run
-            npm run generate:report
-          continue-on-error: false
+          continue-on-error: true
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
@@ -34,7 +33,10 @@ jobs:
           cp -r cypress/videos public/videos
 
       - name: Generate Report
-        run:  npm run generate:report
+        uses: cypress-io/github-action@v4
+        with:
+          run: |
+          npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
