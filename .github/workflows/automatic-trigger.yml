@@ -8,17 +8,19 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Clean up previous report
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           command: npm run pretest
 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v4
         with:
           browser: chrome
           headless: true
-          run: npm run cy:run
-          continue-on-error: true
+          run: |
+            npm run cy:run
+            npm run npm run generate:report
+          continue-on-error: false
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
@@ -30,7 +32,6 @@ jobs:
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          run: npm run npm run generate:report
           name: my-report
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
 
