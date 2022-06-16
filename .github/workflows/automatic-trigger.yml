@@ -17,13 +17,19 @@ jobs:
         with:
           browser: chrome
           headless: true
-          command: npm run posttest
+          command: npm run cy:run
+          continue-on-error: true
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
           CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
           CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+
+      - name: Generate Report
+        uses: cypress-io/github-action@v2
+        with:
+          command: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
