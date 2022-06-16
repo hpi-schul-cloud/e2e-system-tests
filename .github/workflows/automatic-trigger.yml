@@ -10,14 +10,14 @@ jobs:
       - name: Clean up previous report
         uses: cypress-io/github-action@v2
         with:
-          command: npm run pretest
+          run: npm run pretest
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
           headless: true
-          command: npm run cy:run
+          run: npm run cy:run
           continue-on-error: true
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
@@ -29,7 +29,7 @@ jobs:
       - name: Generate Report
         uses: cypress-io/github-action@v2
         with:
-          command: npm run generate:report
+          run: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
