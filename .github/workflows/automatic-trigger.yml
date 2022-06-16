@@ -1,7 +1,7 @@
 name: e2e-automatic-trigger-tests
 on: [push]
 jobs:
-  e2e-tests:
+  cypress-run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -14,18 +14,17 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
-        with:
-          browser: chrome
-          headless: true
-          run: |
-            npm run cy:run
-          continue-on-error: true
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
           CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
           CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+        with:
+          browser: chrome
+          headed: false
+          command: |
+            npm run cy:run
 
       - name: Copy test execution videos
         run: |
