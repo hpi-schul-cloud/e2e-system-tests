@@ -6,15 +6,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Clean up previous report
+        uses: cypress-io/github-action@v4
         with:
-          run: npm run pretest
+          command: npm run pretest
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
+        continue-on-error: true
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
@@ -26,8 +26,9 @@ jobs:
           headed: false
 
       - name: Generate Report
+        uses: cypress-io/github-action@v4
         with:
-          run: npm run generate:report
+          command: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
