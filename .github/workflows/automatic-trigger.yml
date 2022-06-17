@@ -1,7 +1,7 @@
 name: e2e-automatic-trigger-tests
 on: [push]
 jobs:
-  cypress-run:
+  e2e-system-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -10,9 +10,8 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Clean up previous report
-        uses: cypress-io/github-action@v4
         with:
-          command: npm run pretest
+          run: npm run pretest
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
@@ -27,10 +26,8 @@ jobs:
           headed: false
 
       - name: Generate Report
-        uses: cypress-io/github-action@v4
         with:
-          run: |
-            npm run generate:report
+          run: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
