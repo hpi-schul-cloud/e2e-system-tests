@@ -27,11 +27,9 @@ function getCucumberReportMaps () {
     if (!json[0]) {
       return
     }
-    //console.log(json)
     const [feature] = json[0].uri.split('/').reverse()
     cucumberReportFileMap[feature] = file
     cucumberReportMap[feature] = json
-    //console.log(cucumberReportMap[feature][0])
   })
 }
 
@@ -108,7 +106,6 @@ function addScreenshots () {
           }
         }
       })
-      //Write JSON with screenshot back to report file.
       fs.writeFileSync(
         path.join(cucumberJsonDir, cucumberReportFileMap[feature]),
         JSON.stringify(cucumberReportMap[feature], null, jsonIndentLevel)
@@ -173,7 +170,7 @@ function generateReport () {
             name: browserMap(runInfos.browserName),
             version: runInfos.browserVersion
           },
-          device: 'Cypress',
+          device: 'Test Device',
           platform: {
             name: osMap(runInfos.osName)
           }
