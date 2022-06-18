@@ -28,7 +28,7 @@ jobs:
   e2e-system-tests-generate-and-upload-report:
     runs-on: ubuntu-latest
     needs: e2e-system-tests-run
-    if: ${{ needs.e2e-system-tests-run.job.status == 'cancelled' ||  needs.e2e-system-tests-run.job.status == 'failure' || needs.e2e-system-tests-run.job.status == 'success'}}
+    if: always()
     steps:
       - name: Generate Report
         uses: cypress-io/github-action@v4
