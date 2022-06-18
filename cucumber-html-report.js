@@ -2,13 +2,14 @@ const report = require('multiple-cucumber-html-reporter')
 const fs = require('fs')
 const fs_extra = require('fs-extra')
 const path = require('path')
+const chalk = require('chalk')
 
 const cucumberJsonDir = path.resolve(process.cwd(), 'cypress/cucumber-json')
-/*const cucumberReportFileMap = {}
+const cucumberReportFileMap = {}
 const cucumberReportMap = {}
-const jsonIndentLevel = 2*/
+const jsonIndentLevel = 2
 const htmlReportDir = path.resolve(process.cwd(), 'cypress/reports')
-/*const screenshotsDir = path.resolve(process.cwd(), 'cypress/screenshots')
+const screenshotsDir = path.resolve(process.cwd(), 'cypress/screenshots')
 
 getCucumberReportMaps()
 addScreenshots()
@@ -30,104 +31,91 @@ function getCucumberReportMaps () {
     const [feature] = json[0].uri.split('/').reverse()
     cucumberReportFileMap[feature] = file
     cucumberReportMap[feature] = json
-    console.log(cucumberReportMap[feature][0])
+    //console.log(cucumberReportMap[feature][0])
   })
 }
 
 function addScreenshots () {
-  if (fs_extra.existsSync(screenshotsDir)) {
-    //only if screenshots exists
-    const prependPathSegment = pathSegment => location =>
-      path.join(pathSegment, location)
+  const prependPathSegment = pathSegment => location =>
+    path.join(pathSegment, location)
 
-    const readdirPreserveRelativePath = location =>
-      fs_extra.readdirSync(location).map(prependPathSegment(location))
+  const readdirPreserveRelativePath = location =>
+    fs.readdirSync(location).map(prependPathSegment(location))
 
-    const readdirRecursive = location =>
-      readdirPreserveRelativePath(location).reduce(
-        (result, currentValue) =>
-          fs_extra.statSync(currentValue).isDirectory()
-            ? result.concat(readdirRecursive(currentValue))
-            : result.concat(currentValue),
-        []
+  const readdirRecursive = location =>
+    readdirPreserveRelativePath(location).reduce(
+      (result, currentValue) =>
+        fs.statSync(currentValue).isDirectory()
+          ? result.concat(readdirRecursive(currentValue))
+          : result.concat(currentValue),
+      []
+    )
+  const screenshots = readdirRecursive(path.resolve(screenshotsDir)).filter(
+    file => {
+      return file.indexOf('.png') > -1
+    }
+  )
+
+  const featuresList = Array.from(
+    new Set(screenshots.map(x => x.match(/[\w-_.]+\.feature/g)[0]))
+  )
+  featuresList.forEach(feature => {
+    screenshots.forEach(screenshot => {
+      const regex = /(?<=\ --\ ).*?((?=\ \(example\ \#\d+\))|(?=\ \(failed\)))/g
+      const [scenarioName] = screenshot.match(regex)
+      console.info(
+        chalk.blue('\n Adding screenshot to cucumber-json report for')
       )
+      console.info(chalk.blue(scenarioName))
 
-    const screenshots = readdirRecursive(path.resolve(screenshotsDir)).filter(
-      file => {
-        return file.indexOf('.png') > -1
+      console.log(featuresList)
+      console.log(feature)
+      console.log(cucumberReportMap)
+      const myScenarios = cucumberReportMap[feature][0].elements.filter(e =>
+        scenarioName.includes(e.name)
+      )
+      if (!myScenarios) {
+        return
       }
-    )
-
-    const featuresList = Array.from(
-      new Set(screenshots.map(x => x.match(/[\w-_.]+.feature/g)[0]))
-    )
-
-    featuresList.forEach(feature => {
-      screenshots.forEach(screenshot => {
-        const regex = /(?<=--\ ).+?((?=\ (example\ #\d+))|(?=\ (failed))|(?=.\w{3}))/g
-        const [scenarioName] = screenshot.match(regex)
-
-        var filename = screenshot.replace(/^.*[\\\/]/, '')
-
-        const featureSelected = cucumberReportMap[feature][0]
-
-        let myScenarios = []
-
-        cucumberReportMap[feature][0].forEach(item => {
-          console.log(item)
-          let fullFileName = featureSelected.name + ' -- ' + item.name
-          if (filename.includes(fullFileName)) {
-            myScenarios.push(item)
-          }
-        })
-
-        if (!myScenarios) {
+      let foundFailedStep = false
+      myScenarios.forEach(myScenario => {
+        if (foundFailedStep) {
           return
         }
-        let foundFailedStep = false
-        myScenarios.forEach(myScenario => {
-          if (foundFailedStep) {
-            return
+        let myStep
+        if (screenshot.includes('(failed)')) {
+          myStep = myScenario.steps.find(
+            step => step.result.status === 'failed'
+          )
+        } else {
+          myStep = myScenario.steps.find(step =>
+            step.name.includes('screenshot')
+          )
+        }
+        if (!myStep) {
+          return
+        }
+        const data = fs.readFileSync(path.resolve(screenshot))
+        if (data) {
+          const base64Image = Buffer.from(data, 'binary').toString('base64')
+          if (!myStep.embeddings) {
+            myStep.embeddings = []
+            myStep.embeddings.push({
+              data: base64Image,
+              mime_type: 'image/png'
+            })
+            foundFailedStep = true
           }
-          let myStep
-          if (screenshot.includes('(failed)')) {
-            myStep = myScenario.steps.find(
-              step => step.result.status === 'failed'
-            )
-          } else {
-            myStep = myScenario.steps.find(
-              step => step.result.status === 'passed'
-            )
-          }
-          if (!myStep) {
-            return
-          }
-          const data = fs_extra.readFileSync(path.resolve(screenshot))
-          if (data) {
-            const base64Image = Buffer.from(data, 'binary').toString('base64')
-            if (!myStep.embeddings) {
-              myStep.embeddings = []
-              myStep.embeddings.push({
-                data: base64Image,
-                mime_type: 'image/png',
-                name: myStep.name
-              })
-              foundFailedStep = true
-            }
-          }
-        })
-        //Write JSON with screenshot back to report file.
-        fs_extra.writeFileSync(
-          path.join(cucumberJsonDir, cucumberReportFileMap[feature]),
-          JSON.stringify(cucumberReportMap[feature], null, jsonIndentLevel)
-        )
+        }
       })
+      //Write JSON with screenshot back to report file.
+      fs.writeFileSync(
+        path.join(cucumberJsonDir, cucumberReportFileMap[feature]),
+        JSON.stringify(cucumberReportMap[feature], null, jsonIndentLevel)
+      )
     })
-  }
+  })
 }
-*/
-
-generateReport()
 
 let osMap = os => {
   if (os.startsWith('win')) {

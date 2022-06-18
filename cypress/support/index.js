@@ -18,7 +18,7 @@ import './commands'
 import './custom_commands/login'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-afterEach(() => {
+/*afterEach(() => {
   const screenshotsFolder = Cypress.config('screenshotsFolder')
   if (window.cucumberJson?.generate) {
     const testState = window.testState
@@ -40,3 +40,4 @@ afterEach(() => {
     }
   }
 })
+*/
