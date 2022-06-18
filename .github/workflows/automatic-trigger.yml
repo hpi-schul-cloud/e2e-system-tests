@@ -25,13 +25,9 @@ jobs:
           browser: chrome
           headed: false
 
-  e2e-system-tests-generate-and-upload-report:
-    runs-on: ubuntu-latest
-    needs: e2e-system-tests-run
-    if: always()
-    steps:
       - name: Generate Report
         uses: cypress-io/github-action@v4
+        if: always()
         with:
           command: npm run generate:report
 
