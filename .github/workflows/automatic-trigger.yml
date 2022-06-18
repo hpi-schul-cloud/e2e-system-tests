@@ -26,7 +26,10 @@ jobs:
           headed: false
 
       - name: Generate Report
-        run: npm run generate:report
+        uses: cypress-io/github-action@v4
+        continue-on-error: true
+        with:
+          command: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v2
