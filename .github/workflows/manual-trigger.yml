@@ -25,7 +25,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v4
         env:
-          CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
+          CYPRESS_BRB: ${{ github.event.inputs.instance1 }}
+          CYPRESS_NBC: ${{ github.event.inputs.instance2 }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
           CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
           CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
