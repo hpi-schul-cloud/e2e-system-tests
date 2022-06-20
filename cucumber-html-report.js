@@ -66,9 +66,6 @@ function addScreenshots () {
       )
       console.info(chalk.blue(scenarioName))
 
-      console.log(featuresList)
-      console.log(feature)
-      console.log(cucumberReportMap)
       const myScenarios = cucumberReportMap[feature][0].elements.filter(e =>
         scenarioName.includes(e.name)
       )
