@@ -4,12 +4,17 @@ on:
     inputs:
       instance1:
         description: 'Please enter a valid BRB instance URL to run the tests'
-        default: 'https://staging.brandenburg.dbildungscloud.org'
+        default: 'https://brb-main.cd.dbildungscloud.dev/'
         required: true
       instance2:
         description: 'Please enter a valid NBC instance URL to run the tests'
-        default: 'https://staging.niedersachsen.dbildungscloud.org'
+        default: 'https://nbc-main.cd.dbildungscloud.dev/'
         required: true
+      instance3:
+        description: 'Please enter a valid NBC instance URL to run the tests'
+        default: 'https://default-main.cd.dbildungscloud.dev/login'
+        required: true
+
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
@@ -25,14 +30,27 @@ jobs:
         env:
           CYPRESS_BRB: ${{ github.event.inputs.instance1 }}
           CYPRESS_NBC: ${{ github.event.inputs.instance2 }}
+          CYPRESS_DEFAULT: ${{ github.event.inputs.instance3 }}
           CYPRESS_TEACHER_EMAIL: ${{ secrets.CYPRESS_TEACHER_EMAIL }}
           CYPRESS_STUDENT_EMAIL: ${{ secrets.CYPRESS_STUDENT_EMAIL }}
           CYPRESS_ADMIN_EMAIL: ${{ secrets.CYPRESS_ADMIN_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.CYPRESS_PASSWORD }}
+          CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
+          CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
+          CYPRESS_TEACHER_2_EMAIL: ${{ secrets.CYPRESS_TEACHER_2_EMAIL }}
+          CYPRESS_TEACHER_2_PASSWORD: ${{ secrets.CYPRESS_TEACHER_2_PASSWORD }}
+          CYPRESS_STUDENT_1_EMAIL: ${{ secrets.CYPRESS_STUDENT_1_EMAIL }}
+          CYPRESS_STUDENT_1_PASSWORD: ${{ secrets.CYPRESS_STUDENT_1_PASSWORD }}
+          CYPRESS_STUDENT_2_EMAIL: ${{ secrets.CYPRESS_STUDENT_2_EMAIL }}
+          CYPRESS_STUDENT_2_PASSWORD: ${{ secrets.CYPRESS_STUDENT_2_PASSWORD }}
+          CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
+          CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
+          CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
+          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
 
       - name: 'Upload Artifact'
         uses: actions/upload-artifact@v2
-        if: always() # to always upload the files if tests passed or failed
+        if: always()
         with:
           name: my-artifact
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
