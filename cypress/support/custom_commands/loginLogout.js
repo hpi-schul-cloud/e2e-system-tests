@@ -73,9 +73,7 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.get(submitButton).eq(1).click()
     cy.url().should('contain', '/dashboard')
   })
-
   cy.visit('/dashboard')
-
 })
 
 Cypress.Commands.add('logout', () => {
