@@ -1,7 +1,0 @@
-{
-  "testFiles": "**/*.feature",
-  "viewportWidth": 1024,
-  "viewportHeight": 768,
-  "videoCompression": 18,
-  "experimentalSessionAndOrigin": true
-}
