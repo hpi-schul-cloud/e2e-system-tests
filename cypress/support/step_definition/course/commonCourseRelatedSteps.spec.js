@@ -9,8 +9,7 @@ When('I go to rooms overview', () => {
 })
 
 And('I go to room {string}', (room_name) => {
-  const selectedRoom = `[aria-label='${room_name}']`
-  cy.get(selectedRoom).click({ multiple: true, force: true })
+  coursesCommon.navigateToRoomBoard(room_name)
 })
 
 Then('I can see room page {string}', (room_name) => {
