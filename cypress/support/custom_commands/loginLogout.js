@@ -26,6 +26,7 @@ Cypress.Commands.add('login', (username, environment) => {
     let user_password
 
     switch (username) {
+        
       case 'teacher':
         user_email = 'TEACHER_1_EMAIL'
         user_password = 'TEACHER_1_PASSWORD'
@@ -66,11 +67,12 @@ Cypress.Commands.add('login', (username, environment) => {
         user_password = 'EXPERT_1_PASSWORD'
         break;
     }
-    cy.get(emailInputFieldElement).eq(1).type(env[user_email],{force:true})
-    cy.get(passwordInputFieldElement).eq(1).type(env[user_password],{force:true})
-    cy.get(submitButton).eq(1).click({force:true})
+    cy.get(emailInputFieldElement).eq(1).type(env[user_email])
+    cy.get(passwordInputFieldElement).eq(1).type(env[user_password])
+    cy.get(submitButton).eq(1).click()
     cy.url().should('contain', '/dashboard')
   })
+  cy.visit('/dashboard')
 })
 
 Cypress.Commands.add('logout', () => {
