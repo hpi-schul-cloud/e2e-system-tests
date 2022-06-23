@@ -1,32 +1,38 @@
 {
-  "name": "e2e-system-tests",
-  "version": "1.0.0",
-  "description": "e2e testing",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cy:run": "cypress run",
-    "cy:open": "cypress open"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hpi-schul-cloud/e2e-system-tests.git"
-  },
-  "keywords": [
-    "e2e"
-  ],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/hpi-schul-cloud/e2e-system-tests/issues"
-  },
-  "homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
-  "devDependencies": {
-    "cypress": "^9.6.0",
-    "cypress-cucumber-preprocessor": "^4.3.1"
-  },
-  "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": false,
-    "stepDefinitions": "cypress/support/step_definition/"
-  }
+	"name": "e2e-system-tests",
+	"version": "1.0.0",
+	"description": "e2e testing",
+	"main": "index.js",
+	"scripts": {
+		"cy:run": "cypress run",
+		"cy:open": "cypress open",
+		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
+		"generate:report": "node cucumber-html-report.js",
+		"posttest": "npm run cy:run || npm run generate:report"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hpi-schul-cloud/e2e-system-tests.git"
+	},
+	"keywords": [
+		"e2e"
+	],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/hpi-schul-cloud/e2e-system-tests/issues"
+	},
+	"homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
+	"devDependencies": {
+		"cypress": "^9.6.0",
+		"cypress-cucumber-preprocessor": "^4.3.1",
+		"multiple-cucumber-html-reporter": "^1.21.4"
+	},
+	"cypress-cucumber-preprocessor": {
+		"nonGlobalStepDefinitions": false,
+		"stepDefinitions": "cypress/support/step_definition/",
+		"cucumberJson": {
+			"generate": true
+		}
+	}
 }
