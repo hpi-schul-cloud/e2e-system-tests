@@ -1,4 +1,4 @@
-import Dashboard_Common from '../../pages/dashboard/pageCommondashboard'
+import Dashboard_Common from '../../pages/dashboard/pageCommonDashboard'
 
 const dashboardCommon = new Dashboard_Common()
 
