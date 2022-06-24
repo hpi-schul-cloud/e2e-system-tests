@@ -5,7 +5,7 @@ const administration = new Administration()
 
 //WHEN also includes AND
 And('I click on FAB to add a user', () => {
-    administration.clickOnFAB()
+    administration.clickOnAdministrationFAB()
 })
 
 And('I fill out the student creation form', () => {
