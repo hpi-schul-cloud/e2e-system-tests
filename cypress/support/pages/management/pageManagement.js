@@ -93,7 +93,7 @@ class Management {
     cy.url().should('include', '/administration/school-settings')
   }
 
-  clickVideoconferenceToggleSwitch() {
+  clickVideoConferenceToggleSwitch() {
     cy.intercept('/api/v1/federalStates/*').as('federalStates')
     cy.wait('@federalStates')
     cy.get(Management.#videoconferenceToggleSwitch)
