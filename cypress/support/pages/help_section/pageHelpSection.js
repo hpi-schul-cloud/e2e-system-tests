@@ -20,8 +20,7 @@ class Help {
   static #bugFormSubmitButton = '[data-testid="bug_submit"]'
   static #feedbackSendConfirmation = '[data-testid="notification"]'
 
-  clickQuestionIcon() {
-    cy.visit('/dashboard')
+  clickQuestionIcon(){
     cy.get(Help.#questionIcon).click()
   }
 
