@@ -24,7 +24,7 @@ class Administration {
     static #saveGeneralSettingsButton = '.my-5'
     static #tableContents =  '[data-testid="table-data-body"]'
 
-    clickOnFAB () {
+    clickOnAdministrationFAB () {
         cy.get(Administration.#fabButton).click()
         cy.get(Administration.#createUserButton).click()
     }

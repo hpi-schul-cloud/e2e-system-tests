@@ -5,10 +5,10 @@ class Course {
   static #toolsTab = '[data-testid="tools"]'
   static #groupsTab = '[data-testid="groups"]'
   static #toolsList = 'div.list-group'
-  static #pageTitle = '[id="page-title"]'
+  static #pageTitle = '.text-h3'
 
   showRoomPage (room) {
-    cy.url().should('include', '/courses')
+    cy.url().should('include', '/rooms')
     cy.get(Course.#pageTitle).should('contain', room)
   }
 

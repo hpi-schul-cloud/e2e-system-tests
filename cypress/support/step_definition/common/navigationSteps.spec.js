@@ -18,7 +18,7 @@ When('I go to files overview', () => {
   navigation.goToFilesOverview()
 })
 
-When('I go to personal files overview', () => {
+And('I go to personal files overview', () => {
   navigation.goToPersonalFilesOverview()
 })
 
@@ -54,7 +54,7 @@ When('I go to administration page', () => {
   navigation.goToAdministration()
 })
 
-When('I go to student administration', () => {
+And('I go to student administration', () => {
   navigation.goToStudentAdministration()
 })
 
