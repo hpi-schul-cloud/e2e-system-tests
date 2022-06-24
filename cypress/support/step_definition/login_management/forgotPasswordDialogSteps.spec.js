@@ -9,7 +9,7 @@ const loginManagement = new Login_Management()
 //When I click on Forgot Password? link
 //this step defined in --> \step_definition\login_management\commonLoginManagementRelatedSteps.spec.js
 
-Then('I see the Reset Password dialog with username label, email input box, info message, cancel and send reset password buttons', () => {
+Then('I see the Reset Password dialog', () => {
   loginManagement.showElementOnDialog()
 })
 
@@ -20,7 +20,7 @@ Then('I see the Reset Password dialog with username label, email input box, info
 //When I click on Forgot Password? link
 //this step defined in  --> \step_definition\login_management\commonLoginManagementRelatedSteps.spec.js
 
-When('I remove my email from the input box and submit the request', () => {
+When('I clear email section and submit the request', () => {
   loginManagement.submitRequestWithoutEmail()
 })
 

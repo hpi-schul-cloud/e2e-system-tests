@@ -9,7 +9,7 @@ class Login_Management {
   static #submitButton = '[data-testid="btn-submit"]'
   static #cancelButton = '[data-testid="btn-cancel"]'
 
-  beingOnLoginPage() {
+  visitLoginPage() {
     cy.visit(Cypress.env('BRB'))
   }
 
