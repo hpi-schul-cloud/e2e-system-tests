@@ -2,7 +2,7 @@
 
 class Help {
 
-  static #questionIcon = '[data-testid="help_top_menu"]'   //'.fa-question'
+  static #questionIcon = '[data-testid="help_top_menu"]'
   static #helpSectionInHeader = '[data-testid="Hilfeartikel"]'
   static #sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]'
   static #advancedTrainingsInHeader = '[data-testid="Fortbildung"]'
@@ -14,10 +14,10 @@ class Help {
   static #helpContactform = 'h2.h4'
   static #popUpLink = 'https://lernen.cloud/'
   static #searchBar = '[data-testid="help_search_bar"]'
-  static #searchResult = '[data-testid="help_search_results"]'  //'.live-search-results'
-  static #bugFormHeadline = '[data-testid="bug_headline"]'  //'.bug_form > label:nth-child(12) > input:nth-child(2)'
-  static #bugFormMail = '[data-testid="bug_email"]'  //'.bug_form > label:nth-child(15) > input:nth-child(2)'
-  static #bugFormSubmitButton = '[data-testid="bug_submit"]'  //'.bug_form > button'
+  static #searchResult = '[data-testid="help_search_results"]'
+  static #bugFormHeadline = '[data-testid="bug_headline"]'
+  static #bugFormMail = '[data-testid="bug_email"]'
+  static #bugFormSubmitButton = '[data-testid="bug_submit"]'
   static #feedbackSendConfirmation = '[data-testid="notification"]'
 
   clickQuestionIcon() {
