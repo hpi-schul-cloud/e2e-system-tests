@@ -6,16 +6,12 @@ class Courses {
   static #nextButton = '[id="nextSection"]'
   static #nextContinueButton = '[data-submit-label="Kurs anlegen und Weiter"]'
   static #goToCourseOverviewButton = '[data-testid="zur-uebersicht-btn"]'
-  //static #threeDotButton = '[type="button"]'
-  //static #editOption = '[class="three-dot-button v-btn v-btn--icon v-btn--round theme--light v-size--default"]'
-  //static #selectOption = '[class="v-icon notranslate menu-action-icon mr-1 theme--light"]'
   static #deleteButton = '[data-method="DELETE"]'
   static #confirmDeletionPopup = '[data-testid="modal_delete_course_button"]'
   static #pageTitle = '[id="page-title"]'
-  static #dropDownCourse = '.course-title .three-dot-button'  //'.three-dot-button:first-of-type'//'[data-testid="title-menu"]'
+  static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #selectClassesInput = '#classId_chosen > ul > li > input'
-  //static #selectClassesDropdown = '#classId_chosen > div > ul > li:nth-child(1)'
   static #selectClassesDeleteButtons = '#classId_chosen > ul > li > a'
   static #selectClasses = '#classId_chosen > ul > li > span'
   static #btnSubmit = '#main-content > section > form > div.modal-footer > button.btn.btn-primary.btn-submit'
@@ -45,7 +41,6 @@ class Courses {
     })
   }
 
-  // edit course
   openCourseEditPage() {
     cy.get(Courses.#dropDownCourse).click()
     cy.get(Courses.#btnCourseEdit).click()
@@ -57,7 +52,6 @@ class Courses {
   }
 
   selectClassForCourse() {
-    //type.('{enter}') simulates hitting 'enter' button from the keyboard to select class ALLE from the dropdown
     cy.get(Courses.#selectClassesInput).should('have.value', 'Klasse(n) auswählen').type(Courses.#classSearchString).type('{enter}')
   }
 
