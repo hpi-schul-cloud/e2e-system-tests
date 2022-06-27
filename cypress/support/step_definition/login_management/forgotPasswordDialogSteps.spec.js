@@ -10,7 +10,7 @@ const loginManagement = new Login_Management()
 //this step defined in --> \step_definition\login_management\commonLoginManagementRelatedSteps.spec.js
 
 Then('I see the Reset Password dialog', () => {
-  loginManagement.showElementOnDialog()
+  loginManagement.showUpElementsOnDialog()
 })
 
 //Scenario: Entering email or user name is mandatory
