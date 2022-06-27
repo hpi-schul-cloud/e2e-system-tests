@@ -1,8 +1,6 @@
 const emailInputFieldElement = '[data-testid="username"]'
 const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
-const initials = '[data-testid="initials"]'
-const logoutButton = '[data-testid="logout"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
 
 Cypress.Commands.add('login', (username, environment) => {
@@ -67,16 +65,9 @@ Cypress.Commands.add('login', (username, environment) => {
         user_password = 'EXPERT_1_PASSWORD'
         break;
     }
-<<<<<<< HEAD:cypress/support/custom_commands/loginLogout.js
-
-    cy.get(emailInputFieldElement).eq(1).type(env[user_email],{force: true})
-    cy.get(passwordInputFieldElement).eq(1).type(env[user_password],{force: true})
-    cy.get(submitButton).eq(1).click({force: true})
-=======
     cy.get(emailInputFieldElement).eq(1).type(env[user_email])
     cy.get(passwordInputFieldElement).eq(1).type(env[user_password])
     cy.get(submitButton).eq(1).click()
->>>>>>> main:cypress/support/custom_commands/login.js
     cy.url().should('contain', '/dashboard')
   })
   cy.visit('/dashboard')

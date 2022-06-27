@@ -4,9 +4,9 @@ const news = new News()
 
 //Scenario: Reading a school news on the dashboard
 //I am logged in as a 'teacher' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
-//When I go to news overview page
+//I go to teams overview
 //step defined --> \step_definition\news\commonNewsRelatedSteps.spec.js
 
 Then('I can read the school news', () => {
@@ -15,9 +15,9 @@ Then('I can read the school news', () => {
 
 //Scenario: Reading a team news on the dashboard
 //I am logged in as a 'teacher' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
-//When I go to team overview page
+//I go to news overview
 //step defined --> \step_definition\teams\commonTeamsRelatedSteps.spec.js
 
 Then('I can read the team news', () => {

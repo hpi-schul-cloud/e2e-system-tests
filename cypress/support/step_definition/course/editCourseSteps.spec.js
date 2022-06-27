@@ -4,7 +4,7 @@ const courses = new Courses()
 
 //Scenario: Adding a class to a course
 //Given ('I am logged in as a 'teacher' at 'brb'')
-//step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When ('I go to rooms overview')
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
@@ -47,7 +47,7 @@ And('students of the class are in field students', () => {
 
 //Scenario: Removing classes from a course
 //Given ('I am logged in as a 'teacher' at 'brb'')
-//step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When ('I go to rooms overview')
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js

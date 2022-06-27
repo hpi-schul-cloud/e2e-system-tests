@@ -2,8 +2,7 @@
 
 class Addons_Common {
 
-  //static #addonsOverviewNavigationButton = '[data-testid="Add-Ons"]' // test can't find this element for some reason on NBC
-  static #addonsOverviewNavigationButton = '[class="link-name"]'  // this way test can find it and passing the test
+  static #addonsOverviewNavigationButton = '[data-testid="Add-Ons"]'
 
   navigateToAddonsOverview() {
     cy.visit('/addons')

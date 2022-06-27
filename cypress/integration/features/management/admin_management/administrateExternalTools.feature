@@ -2,15 +2,12 @@ Feature: To administrate school settings by the admin.
 
   As an admin I want to administrate the external tools used in the school so that I can manage it
 
-  ## we deactivated this test for now dur to slower page load issue on CI and we we will fix it in a follow up.
-
-
- Scenario: Deactivate Chat
+  Scenario: Deactivate Chat
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
     And I go to school administration
     And I go to new school administration page
-    And I click toggle switch to deactivate the chat
+    And I click on toggle switch to deactivate the chat
     And I click save general settings button
     Then I log out
     Given I am logged in as a 'teacher' at 'brb'
@@ -26,7 +23,7 @@ Feature: To administrate school settings by the admin.
     When I go to administration page
     And I go to school administration
     And I go to new school administration page
-    And I click toggle switch to activate the chat
+    And I click on toggle switch to activate the chat
     And I click save general settings button
     Then I log out
     Given I am logged in as a 'teacher' at 'brb'
@@ -39,33 +36,33 @@ Feature: To administrate school settings by the admin.
     And click on save changes
     Then I can see the chat in team
 
+  #Currently deactivated due to reconfirmation of tool availability in used test instance
+  #Scenario: Deactivate BigBlueButton
+    #Given I am logged in as a 'admin' at 'brb'
+    #When I go to administration page
+    #And I go to school administration
+    #And I go to new school administration page
+    #And I click on toggle switch to deactivate video conferencing
+    #And I click save general settings button
+    #And I log out
+    #Given I am logged in as a 'teacher' at 'brb'
+    #And I go to rooms overview
+    #And I go to room
+    #And I go to tools tab
+    #And I click add new tool button
+    #Then I can not add BigBlueButton to the room
 
-  Scenario: Deactivate BigBlueButton --> BBB tool is not avaiable on main instance this test will be inside the course -> tools folder
-    Given I am logged in as a 'admin' at 'brb'
-    When I go to administration page
-    And I go to school administration
-    And I go to new school administration page
-    And I click toggle switch to deactivate video conferencing
-    And I click save general settings button
-    And I log out
-    Given I am logged in as a 'teacher' at 'brb'
-    And I go to rooms overview
-    And I go to room
-    And I go to tools tab
-    And I click add new tool button
-    Then I can not add BigBlueButton to the room
-
-  Scenario: Activate BigBlueButton --> BBB tool is not avaiable on main instance and this test will be inside the course -> tools folder
-    Given I am logged in as a 'admin' at 'brb'
-    When I go to administration page
-    And I go to school administration
-    And I go to new school administration page
-    And I click toggle switch to activate video conferencing
-    And I click save general settings button
-    And I log out
-    Given I am logged in as a 'teacher' at 'brb'
-    And I go to rooms overview
-    And I go to room
-    And I go to tools tab
-    And I click add new tool button
-    Then I can add BigBlueButton to the room
+  #Scenario: Activate BigBlueButton
+    #Given I am logged in as a 'admin' at 'brb'
+    #When I go to administration page
+    #And I go to school administration
+    #And I go to new school administration page
+    #And I click on toggle switch to activate video conferencing
+    #And I click save general settings button
+    #And I log out
+    #Given I am logged in as a 'teacher' at 'brb'
+    #And I go to rooms overview
+    #And I go to room
+    #And I go to tools tab
+    #And I click add new tool button
+    #Then I can add BigBlueButton to the room

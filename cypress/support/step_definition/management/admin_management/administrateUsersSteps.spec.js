@@ -4,7 +4,7 @@ const management = new Management()
 
 //Scenario: Adding a new student
 //Given I am logged in as a 'admin' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When I go to administration page
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -29,7 +29,7 @@ Then('I can see the created student in the table', () => {
 
 //Scenario: Editing a new student
 //Given I am logged in as a 'admin' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When I go to administration page
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -57,7 +57,7 @@ Then('I can see the edited student in the table', () => {
 
 // Scenario: Deleting a student
 //Given I am logged in as a 'admin' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When I go to administration page
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -85,7 +85,7 @@ Then('I cannot see the deleted student in the table', () => {
 
 //Scenario: Adding a new teacher
 //Given I am logged in as a 'admin' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When I go to administration page
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -110,7 +110,7 @@ Then('I can see the created teacher in the table', () => {
 
 //Scenario: Editing a new teacher
 //Given I am logged in as a 'admin' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When I go to administration page
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -138,7 +138,7 @@ Then('I can see the edited teacher in the table', () => {
 
 //Scenario: Deleting a teacher
 //Given I am logged in as a 'admin' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When I go to administration page
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
