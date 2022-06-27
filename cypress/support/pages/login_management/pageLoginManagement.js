@@ -17,7 +17,7 @@ class Login_Management {
     cy.get(Login_Management.#passwordRecoveryButton).eq(1).click()
   }
 
-  showElementOnDialog() {
+  showUpElementsOnDialog() {
     cy.get(Login_Management.#usernameLabel).should('be.visible')
     cy.get(Login_Management.#emailInputBox).should('be.visible')
     cy.get(Login_Management.#infoMessage).should('be.visible')
