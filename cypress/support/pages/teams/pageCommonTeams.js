@@ -16,7 +16,6 @@ class Teams_Common {
   static #saveButton = '[data-testid="create_team_btn"]'
 
   navigateToTeamsOverview() {
-    cy.visit('/teams')
     cy.get(Teams_Common.#teamsOverviewNavigationButton).click()
     cy.url().should('include', '/teams')
   }

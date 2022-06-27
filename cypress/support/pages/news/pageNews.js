@@ -2,35 +2,17 @@
 
 class News {
 
-  static #newsTitleOnDashboard = '[data-testid="container_of_element"]'
-  static #teamNewsTag = '[data-testid="header-of-element"]'
-  static #newsTitle =  '[data-testid="title_of_an_element"]'
-  static #pageTitle = '[id="page-title"]'
-  static #newsText = '.ckcontent > p:nth-child(1)'  //'#main-content > div.ckcontent'
-
-  goToSchoolNewsOnDashboard() {
-    cy.get(News.#newsTitleOnDashboard)
-    cy.contains('Test 123').click()
-    cy.url().should('include', '/news/')
-  }
-
-  goToTeamNewsOnDashboard() {
-    cy.get(News.#teamNewsTag).contains('test').click({ multiple: true, force: true })
-    cy.url().should('include', '/news/')
-  }
+  static #pageTitle = '[data-testid="title_of_an_element"]'
+  static #newsText = '[data-testid="body_of_element"]'
 
   readSchoolNews() {
-    cy.get(News.#pageTitle)
-    cy.contains('Test 123')
-    cy.get(News.#newsText)
-    cy.contains('456 lalala')
+    cy.get(News.#pageTitle).contains('test 123')
+    cy.get(News.#newsText).contains('456 lalala')
   }
 
   readTeamNews() {
-    cy.get(News.#pageTitle)
-    cy.contains('test')
-    cy.get(News.#newsText)
-    cy.contains('t')
+    cy.get(News.#pageTitle).contains('Musik')
+    cy.get(News.#newsText).contains('Have fun')
   }
 }
 export default News
