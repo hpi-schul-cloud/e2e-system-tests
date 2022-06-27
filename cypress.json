@@ -4,6 +4,6 @@
   "viewportHeight": 768,
   "videoCompression": 18,
   "experimentalSessionAndOrigin": true,
-  "defaultCommandTimeout":10000,
-  "pageLoadTimeout":120000
+  "pageLoadTimeout":120000,
+  "defaultCommandTimeout":10000
 }
