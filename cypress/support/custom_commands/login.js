@@ -26,7 +26,7 @@ Cypress.Commands.add('login', (username, environment) => {
     let user_password
 
     switch (username) {
-        
+
       case 'teacher':
         user_email = 'TEACHER_1_EMAIL'
         user_password = 'TEACHER_1_PASSWORD'
@@ -73,10 +73,4 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.url().should('contain', '/dashboard')
   })
   cy.visit('/dashboard')
-})
-
-Cypress.Commands.add('logout', () => {
-  cy.get(initials).click()
-  cy.get(logoutButton).click()
-  cy.contains(/Herzlich willkommen|Login für registrierte Nutzer:innen/g)
 })
