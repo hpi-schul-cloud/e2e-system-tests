@@ -1,8 +1,6 @@
 const emailInputFieldElement = '[data-testid="username"]'
 const passwordInputFieldElement = '[data-testid="password"]'
 const submitButton = '[data-testid="submit-login"]'
-const initials = '[data-testid="initials"]'
-const logoutButton = '[data-testid="logout"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
 
 Cypress.Commands.add('login', (username, environment) => {

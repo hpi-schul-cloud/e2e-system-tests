@@ -35,4 +35,3 @@ As a teacher I want to edit a course so that I can teach and provide online cour
   #Then I can see course edit page
   #And there are no classes in the classes field
   #And there are no students in the students field
-

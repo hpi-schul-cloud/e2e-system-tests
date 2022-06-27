@@ -6,7 +6,7 @@ const teamCommon = new Teams_Common()
 
 //Scenario: Deactivate Chat
 //Given I am logged in as a 'admin' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When I go to administration page
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -17,7 +17,7 @@ const teamCommon = new Teams_Common()
 //And I go to new school administration pag
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-When('I click toggle switch to deactivate the chat', () => {
+When('I click on toggle switch to deactivate the chat', () => {
   management.clickChatToggleSwitch()
 })
 
@@ -25,10 +25,10 @@ When('I click toggle switch to deactivate the chat', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 //Then I log out
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined --> step_definition\authentication\logoutStep.spec.js
 
 //Given I am logged in as a 'teacher' at 'brb'
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined --> \step_definition\authentication\loginStep.spec.js
 
 //And I go to teams overview
 //step defined --> \step_definition\teams\commonTeamsRelatedSteps.spec.js
@@ -51,7 +51,7 @@ When('I click toggle switch to deactivate the chat', () => {
 
 //Scenario: Activate Chat
 //Given (I am logged in as a 'admin' at 'brb')
-//step defined --> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined --> \step_definition\authentication\loginStep.spec.js
 
 //When (I go to administration page)
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -62,7 +62,7 @@ When('I click toggle switch to deactivate the chat', () => {
 //When('I go to new school administration page')
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-When('I click toggle switch to activate the chat', () => {
+When('I click on toggle switch to activate the chat', () => {
   management.clickChatToggleSwitch()
 })
 
@@ -70,7 +70,7 @@ When('I click toggle switch to activate the chat', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 //Then (I log out)
-//step defined--> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js
+//step defined--> step_definition\authentication\logoutStep.spec.js
 
 //Given I am logged in as a 'teacher' at 'brb'
 //step defined--> \step_definition\commonGlobalSteps\loginLogoutSteps.spec.js

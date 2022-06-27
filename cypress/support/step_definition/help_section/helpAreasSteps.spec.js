@@ -4,7 +4,7 @@ const help = new Help()
 
 //Scenario: Use the help area in the header
 //Given ('I am logged in as a 'teacher' at 'brb'')
-//step defined --> \step_definition\commonGlobalSteps\loginSteps.spec.js
+//step defined -->\step_definition\authentication\loginStep.spec.js
 
 When('I click on the question icon in header', () => {
   help.clickQuestionIcon()

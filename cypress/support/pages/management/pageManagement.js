@@ -16,8 +16,6 @@ class Management {
   static #emailEditForm = "input[name='email']"
   static #submitButton = '[data-testid="button_save_user"]'
   static #deleteButton = '[data-testid="button_delete_user"]'
-  static #cancelButtonConfirmation = '[data-testid="btn-cancel"]'
-  static #deleteButtonCancel = '.cancel-modal button.historyback'
   static #deleteButtonConfirmation = '[data-testid="btn-submit"]'
   static #newSchoolAdminPageButton = '[data-testid="button_new_admin_page"]'
   static #chatToggleSwitch = '.rocketchat-switch'
@@ -125,10 +123,9 @@ class Management {
   }
 
   clickChatToggleSwitch() {
-    ///cy.intercept('/api/v1/federalStates/*').as('federalStates')
-    //cy.wait('@federalStates')
-    //cy.get(Management.#chatToggleSwitch).find('input').click({ force: true })
-    cy.contains('Chatfunktion aktivieren').click()
+    cy.intercept('/api/v1/federalStates/*').as('federalStates')
+    cy.wait('@federalStates')
+    cy.get(Management.#chatToggleSwitch).find('input').click({ force: true })
     //need to find out current state and decide if state needs to be changed
     //if current state aria-checked="true" and I want it activated then I don't need to click
     //if current state aria-checked="false" and I want it activated then I need to click
