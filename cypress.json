@@ -5,5 +5,5 @@
   "videoCompression": 18,
   "experimentalSessionAndOrigin": true,
   "pageLoadTimeout":120000,
-  "defaultCommandTimeout":10000
+  "defaultCommandTimeout":15000
 }
