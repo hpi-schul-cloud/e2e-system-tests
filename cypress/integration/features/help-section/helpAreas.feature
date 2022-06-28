@@ -12,7 +12,7 @@ Feature: To use the help areas in dBildungscloud
     Then I can see the help contact page
     When I click on the question icon in header
     And I click on advanced trainings in header
-    Then a new tab in browser opens
+    #Then a new tab in browser opens
 
   Scenario: Use the help area in the sidebar
     Given I am logged in as a 'teacher' at 'brb'
@@ -23,7 +23,7 @@ Feature: To use the help areas in dBildungscloud
     When I go to contact in sidebar
     Then I can see the help contact page
     When I go to advanced trainings in sidebar
-    Then a new tab in browser opens
+    #Then a new tab in browser opens
 
   Scenario: Use the article search inside the help articles area
     Given I am logged in as a 'teacher' at 'brb'
