@@ -28,10 +28,10 @@ class Management {
     cy.get(Management.#createUserButton).click()
   }
 
-  fillStudentCreationForm() {
-    cy.get(Management.#firstNameCreationForm).type('Adam')
-    cy.get(Management.#lastNameCreationForm).type('Riese')
-    cy.get(Management.#emailCreationForm).type('adam.riese@example.com')
+  fillStudentCreationForm(forename, surname, email) {
+    cy.get(Management.#firstNameCreationForm).type(forename)
+    cy.get(Management.#lastNameCreationForm).type(surname)
+    cy.get(Management.#emailCreationForm).type(email)
   }
 
   fillTeacherCreationForm() {
@@ -44,8 +44,8 @@ class Management {
     cy.get(Management.#addButton).click()
   }
 
-  enterNameForSearch() {
-    cy.get(Management.#searchbar).type('Adam')
+  enterNameForSearch(keyword) {
+    cy.get(Management.#searchbar).type(keyword)
   }
 
   clickEditStudentButton() {
@@ -78,6 +78,12 @@ class Management {
     cy.get(Management.#submitButton).eq(0).click()
   }
 
+  deleteUser(email){
+    cy.get(Management.#emailEditForm).should('have.value', email).then(($matchEmail) => {
+      this.clickDeleteButton()
+    })
+  }
+
   clickDeleteButton() {
     cy.get(Management.#deleteButton).click()
   }
@@ -103,10 +109,10 @@ class Management {
     cy.get(Management.#saveGeneralSettingsButton).click({ multiple: true, force: true })
   }
 
-  createdUserIsVisibleInTable() {
+  createdUserIsVisibleInTable(email) {
     cy.get(Management.#searchbar).clear(Management.#searchbar)
     cy.get(Management.#tableContents)
-    cy.contains('Adam')
+    cy.contains(email)
   }
 
   editedUserIsVisibleInTable() {
@@ -115,11 +121,10 @@ class Management {
     cy.contains(/Alex|Amber/g)
   }
 
-  createdUserIsNotVisibleInTable() {
-    cy.get(Management.#searchbar).clear()
+  createdUserIsNotVisibleInTable(email) {
+    cy.get(Management.#searchbar).clear(Management.#searchbar)
     cy.get(Management.#tableContents)
-    cy.contains('Adam').should('not.exist')
-    cy.contains('Alex').should('not.exist')
+    cy.contains(email).should('not.exist')
   }
 
   clickChatToggleSwitch() {
