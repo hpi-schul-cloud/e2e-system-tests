@@ -24,10 +24,6 @@ And('I go to student administration', () => {
   managementCommon.navigateToStudentAdministration()
 })
 
-And('I enter user name in search input field', () => {
-  management.enterNameForSearch()
-})
-
 And('I click edit student button', () => {
   management.clickEditStudentButton()
 })

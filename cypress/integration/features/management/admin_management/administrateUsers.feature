@@ -4,14 +4,14 @@ Feature: To add, edit and delete new users by the admin.
 
   ## We deactivated this test because deletion of the users seems to remove the wrong accounts in the system, we will fix it in a follow up ticket.
 
-  #Scenario: Adding a new student
-    #Given I am logged in as a 'admin' at 'brb'
-    #When I go to administration page
-    #And I go to student administration
-    #And I click on FAB to add a user
-    #And I fill out the student creation form
-    #And I click on add button
-    #Then I can see the created student in the table
+  Scenario: Adding a new student
+    Given I am logged in as a 'admin' at 'brb'
+    When I go to administration page
+    And I go to student administration
+    And I click on FAB to add a user
+    And I fill out the student creation form for 'Adam' 'Riese' with email 'adam.riese@example.com'
+    And I click on add button
+    Then I can see the created student with email 'adam.riese@example.com' in the table
 
   #Scenario: Editing a new student
     #Given I am logged in as a 'admin' at 'brb'
@@ -23,15 +23,15 @@ Feature: To add, edit and delete new users by the admin.
     #And I click save changes button
     #Then I can see the edited student in the table
 
-  #Scenario: Deleting a student
-    #Given I am logged in as a 'admin' at 'brb'
-    #When I go to administration page
-    #And I go to student administration
-    #And I enter user name in search input field
-    #And I click edit student button
-    #And I click delete user button
-    #And I click on delete button in pop up
-    #Then I cannot see the deleted student in the table
+  Scenario: Deleting a student
+    Given I am logged in as a 'admin' at 'brb'
+    When I go to administration page
+    And I go to student administration
+    And I enter 'adam.riese@example.com' in search input field
+    And I click edit student button
+    And I click delete user button to delete user with email 'adam.riese@example.com'
+    And I click on delete button in pop up
+    Then I cannot see student 'adam.riese@example.com' in the table
 
   #Scenario: Adding a new teacher
     #Given I am logged in as a 'admin' at 'brb'

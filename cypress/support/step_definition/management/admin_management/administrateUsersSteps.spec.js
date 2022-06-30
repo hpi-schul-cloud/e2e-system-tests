@@ -15,16 +15,16 @@ const management = new Management()
 //And 'I click on FAB to add a user'
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-And('I fill out the student creation form', () => {
-  management.fillStudentCreationForm()
+And('I fill out the student creation form for {string} {string} with email {string}', (forename, surname, email) => {
+  management.fillStudentCreationForm(forename, surname, email)
 })
 
 And('I click on add button', () => {
   management.clickOnAddButton()
 })
 
-Then('I can see the created student in the table', () => {
-  management.createdUserIsVisibleInTable()
+Then('I can see the created student with email {string} in the table', (email) => {
+  management.createdUserIsVisibleInTable(email)
 })
 
 //Scenario: Editing a new student
@@ -37,8 +37,9 @@ Then('I can see the created student in the table', () => {
 //And I go to student administration
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-//And ('I enter user name in search input field', () => {
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
+And('I enter {string} in search input field', (keyword) => {
+  management.enterNameForSearch(keyword)
+})
 
 //And ('I click edit student button', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
@@ -71,16 +72,16 @@ Then('I can see the edited student in the table', () => {
 //And ('I click edit student button', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-And('I click delete user button', () => {
-  management.clickDeleteButton()
+And('I click delete user button to delete user with email {string}', (email) => {
+  management.deleteUser(email)
 })
 
 And('I click on delete button in pop up', () => {
   management.clickDeleteButtonInPopup()
 })
 
-Then('I cannot see the deleted student in the table', () => {
-  management.createdUserIsNotVisibleInTable()
+Then('I cannot see student {string} in the table', (email) => {
+  management.createdUserIsNotVisibleInTable(email)
 })
 
 //Scenario: Adding a new teacher
