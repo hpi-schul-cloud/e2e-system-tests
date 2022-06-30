@@ -2,11 +2,8 @@
 
 class Courses_Common {
 
-  static #learningContentTab = '[data-testid="learnContent"]'
   static #toolsTab = '[data-testid="tools"]'
-  static #groupsTab = '[data-testid="groups"]'
   static #toolsList = '[data-testid="course_tool_list_add_tool"]'
-  static #pageTitle = '[id="page-title"]'
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
 

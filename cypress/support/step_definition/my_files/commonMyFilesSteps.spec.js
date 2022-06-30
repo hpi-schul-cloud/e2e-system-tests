@@ -1,4 +1,4 @@
-import My_Files_Common from './../../pages/my_files/pageCommonMyFiles'
+import My_Files_Common from '../../pages/my_files/pageCommonMyFiles'
 
 const myFilesCommon = new My_Files_Common()
 
