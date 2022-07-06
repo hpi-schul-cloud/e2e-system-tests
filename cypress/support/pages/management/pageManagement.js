@@ -10,7 +10,6 @@ class Management {
   static #addButton = '[data-testid="button_create-user_submit"]'
   static #searchbar = '.core > [data-testid="searchbar"]'
   static #editStudentButton = '[data-testid="edit_student_button"]'
-  static #editTeacherButton = '[data-testid="edit_teacher_button"]'
   static #firstNameEditForm = "input[name='firstName']"
   static #lastNameEditForm = "input[name='lastName']"
   static #emailEditForm = "input[name='email']"
@@ -28,16 +27,10 @@ class Management {
     cy.get(Management.#createUserButton).click()
   }
 
-  fillStudentCreationForm(forename, surname, email) {
+  fillUserCreationForm(forename, surname, email) {
     cy.get(Management.#firstNameCreationForm).type(forename)
     cy.get(Management.#lastNameCreationForm).type(surname)
     cy.get(Management.#emailCreationForm).type(email)
-  }
-
-  fillTeacherCreationForm() {
-    cy.get(Management.#firstNameCreationForm).type('Adam')
-    cy.get(Management.#lastNameCreationForm).type('Rose')
-    cy.get(Management.#emailCreationForm).type('adam.rose@example.com')
   }
 
   clickOnAddButton() {
@@ -48,21 +41,34 @@ class Management {
     cy.get(Management.#searchbar).type(keyword)
   }
 
-  clickEditStudentButton() {
-    cy.get(Management.#editStudentButton).eq(0).click()
+  clickEditStudentButton(email) {
+    cy.contains('td', email)
+      .siblings()
+      .find('a')
+      .should('have.attr', 'data-testid', 'edit_student_button')
+      .click()
   }
 
-  clickEditTeacherButton() {
-    cy.get(Management.#editTeacherButton).eq(0).click()
+  clickEditTeacherButton(email) {
+    cy.contains('td', email)
+      .siblings()
+      .find('a')
+      .should('have.attr', 'data-testid', 'edit_teacher_button')
+      .click()
   }
 
-  changeStudentUserInformation() {
+  changeUsername(firstname, surname) {
     cy.get(Management.#firstNameEditForm).clear()
-    cy.get(Management.#firstNameEditForm).type('Alex')
+    cy.get(Management.#firstNameEditForm).type(firstname)
     cy.get(Management.#lastNameEditForm).clear()
-    cy.get(Management.#lastNameEditForm).type('Abramovic')
+    cy.get(Management.#lastNameEditForm).type(surname)
     cy.get(Management.#emailEditForm).clear()
     cy.get(Management.#emailEditForm).type('alex.abramovic@example')
+  }
+
+  changeEmail(new_email) {
+    cy.get(Management.#emailEditForm).clear()
+    cy.get(Management.#emailEditForm).type(new_email)
   }
 
   changeTeacherUserInformation() {
@@ -109,19 +115,22 @@ class Management {
     cy.get(Management.#saveGeneralSettingsButton).click({ multiple: true, force: true })
   }
 
-  createdUserIsVisibleInTable(email) {
+  userIsVisibleInTable(email) {
     cy.get(Management.#searchbar).clear(Management.#searchbar)
     cy.get(Management.#tableContents)
     cy.contains(email)
   }
 
-  editedUserIsVisibleInTable() {
+  // This should not be used anymore because we use one method independent if it is a
+  // created or edited user and also independent if it is a student or a teacher
+  // Remove this method if the changes work without it.
+  /* editedUserIsVisibleInTable() {
     cy.get(Management.#searchbar).clear()
     cy.get(Management.#tableContents)
     cy.contains(/Alex|Amber/g)
-  }
+  } */
 
-  createdUserIsNotVisibleInTable(email) {
+  userIsNotVisibleInTable(email) {
     cy.get(Management.#searchbar).clear(Management.#searchbar)
     cy.get(Management.#tableContents)
     cy.contains(email).should('not.exist')
