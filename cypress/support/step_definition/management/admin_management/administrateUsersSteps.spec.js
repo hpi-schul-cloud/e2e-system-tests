@@ -48,8 +48,8 @@ And('I change username to {string} {string}', (firstname, surname) => {
   management.changeUsername(firstname, surname)
 })
 
-And('I change email to {string}', (new_email) => {
-  management.changeEmail(new_email)
+And('I change email to {string}', (newEmail) => {
+  management.changeEmail(newEmail)
 })
 
 And('I click save changes button', () => {
