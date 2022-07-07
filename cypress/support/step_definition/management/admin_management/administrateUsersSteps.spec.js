@@ -15,16 +15,16 @@ const management = new Management()
 //And 'I click on FAB to add a user'
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-And('I fill out the student creation form for {string} {string} with email {string}', (forename, surname, email) => {
-  management.fillStudentCreationForm(forename, surname, email)
+And('I fill out the user creation form for {string} {string} with email {string}', (forename, surname, email) => {
+  management.fillUserCreationForm(forename, surname, email)
 })
 
 And('I click on add button', () => {
   management.clickOnAddButton()
 })
 
-Then('I can see the created student with email {string} in the table', (email) => {
-  management.createdUserIsVisibleInTable(email)
+Then('I can see the user with email {string} in the table', (email) => {
+  management.userIsVisibleInTable(email)
 })
 
 //Scenario: Editing a new student
@@ -44,16 +44,16 @@ And('I enter {string} in search input field', (keyword) => {
 //And ('I click edit student button', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-And('I change student information', () => {
-  management.changeStudentUserInformation()
+And('I change username to {string} {string}', (firstname, surname) => {
+  management.changeUsername(firstname, surname)
+})
+
+And('I change email to {string}', (newEmail) => {
+  management.changeEmail(newEmail)
 })
 
 And('I click save changes button', () => {
   management.clickSaveButton()
-})
-
-Then('I can see the edited student in the table', () => {
-  management.editedUserIsVisibleInTable()
 })
 
 // Scenario: Deleting a student
@@ -69,8 +69,9 @@ Then('I can see the edited student in the table', () => {
 //And ('I enter user name in search input field', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-//And ('I click edit student button', () => {
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
+And('I click edit student button for {string}', (email) => {
+  management.clickEditStudentButton(email)
+})
 
 And('I click delete user button to delete user with email {string}', (email) => {
   management.deleteUser(email)
@@ -80,8 +81,8 @@ And('I click on delete button in pop up', () => {
   management.clickDeleteButtonInPopup()
 })
 
-Then('I cannot see student {string} in the table', (email) => {
-  management.createdUserIsNotVisibleInTable(email)
+Then('I cannot see user {string} in the table', (email) => {
+  management.userIsNotVisibleInTable(email)
 })
 
 //Scenario: Adding a new teacher
@@ -97,16 +98,11 @@ Then('I cannot see student {string} in the table', (email) => {
 //And 'I click on FAB to add a user'
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-And('I fill out the teacher creation form', () => {
-  management.fillTeacherCreationForm()
-})
+//And('I fill out the user creation form', () => {
+//step defined  --> \step_definition\management\admin_management\adminUsersSteps.spec.js
 
 And('I click on add button', () => {
   management.clickOnAddButton()
-})
-
-Then('I can see the created teacher in the table', () => {
-  management.createdUserIsVisibleInTable()
 })
 
 //Scenario: Editing a new teacher
@@ -122,11 +118,8 @@ Then('I can see the created teacher in the table', () => {
 //And ('I enter user name in search input field', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-//And I click edit teacher button
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-And('I change teacher information', () => {
-  management.changeTeacherUserInformation()
+And('I click edit teacher button for {string}', (email) => {
+  management.clickEditTeacherButton(email)
 })
 
 And('I click save changes button', () => {
@@ -150,17 +143,10 @@ Then('I can see the edited teacher in the table', () => {
 //And ('I enter user name in search input field', () => {
 //step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
-//And I click edit teacher button
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
 And('I click delete user button', () => {
   management.clickDeleteButton()
 })
 
 And('I click on delete button in pop up', () => {
   management.clickDeleteButtonInPopup()
-})
-
-Then('I cannot see the deleted teacher in the table', () => {
-  management.createdUserIsNotVisibleInTable()
 })

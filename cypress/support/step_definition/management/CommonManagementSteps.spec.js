@@ -24,14 +24,6 @@ And('I go to student administration', () => {
   managementCommon.navigateToStudentAdministration()
 })
 
-And('I click edit student button', () => {
-  management.clickEditStudentButton()
-})
-
-And('I click edit teacher button', () => {
-  management.clickEditTeacherButton()
-})
-
 And('I go to teacher administration', () => {
   managementCommon.navigateToTeacherAdministration()
 })
