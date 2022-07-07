@@ -69,15 +69,6 @@ class Management {
     cy.get(Management.#emailEditForm).type(new_email)
   }
 
-  changeTeacherUserInformation() {
-    cy.get(Management.#firstNameEditForm).clear()
-    cy.get(Management.#firstNameEditForm).type('Amber')
-    cy.get(Management.#lastNameEditForm).clear()
-    cy.get(Management.#lastNameEditForm).type('Adams Young')
-    cy.get(Management.#emailEditForm).clear()
-    cy.get(Management.#emailEditForm).type('amber.adams-young@example')
-  }
-
   clickSaveButton() {
     cy.get(Management.#submitButton).eq(0).click()
   }
@@ -118,15 +109,6 @@ class Management {
     cy.get(Management.#tableContents)
     cy.contains(email)
   }
-
-  // This should not be used anymore because we use one method independent if it is a
-  // created or edited user and also independent if it is a student or a teacher
-  // Remove this method if the changes work without it.
-  /* editedUserIsVisibleInTable() {
-    cy.get(Management.#searchbar).clear()
-    cy.get(Management.#tableContents)
-    cy.contains(/Alex|Amber/g)
-  } */
 
   userIsNotVisibleInTable(email) {
     cy.get(Management.#searchbar).clear(Management.#searchbar)

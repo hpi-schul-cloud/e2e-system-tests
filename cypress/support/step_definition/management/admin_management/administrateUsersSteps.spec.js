@@ -122,10 +122,6 @@ And('I click edit teacher button for {string}', (email) => {
   management.clickEditTeacherButton(email)
 })
 
-And('I change teacher information', () => {
-  management.changeTeacherUserInformation()
-})
-
 And('I click save changes button', () => {
   management.clickSaveButton()
 })
