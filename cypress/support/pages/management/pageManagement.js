@@ -62,8 +62,6 @@ class Management {
     cy.get(Management.#firstNameEditForm).type(firstname)
     cy.get(Management.#lastNameEditForm).clear()
     cy.get(Management.#lastNameEditForm).type(surname)
-    cy.get(Management.#emailEditForm).clear()
-    cy.get(Management.#emailEditForm).type('alex.abramovic@example')
   }
 
   changeEmail(new_email) {
