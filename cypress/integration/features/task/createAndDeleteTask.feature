@@ -6,14 +6,14 @@ Feature: To create and delete tasks by the teacher.
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
-    # And I click on Create
-    # And I click on New Task
-    # Then I can see create edit page
+    And I click on FAB to create new content
+    And I click on New Task
+    Then I can see create task page
     # And file upload button is disabled
-    # When I enter title 'E2E task'
-    # And I click on Enable Group Submission
-    # And I enable Draft
-    # And I set task-visibility-start-date: today, 00:00
+    When I enter title 'Task Creation and Deletion Test'
+    And I click on Enable Group Submission
+    And I click on Draft
+    And I set task-visibility-start-date to 'today' at '0000'
     # And I set task-processing-end-date: today +1 day, 10:00
     # And I enter task description 'Dies ist Deine Aufgabe.'
     # And I click on Save

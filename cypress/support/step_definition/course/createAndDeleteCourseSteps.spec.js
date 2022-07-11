@@ -7,11 +7,10 @@ const courses = new Courses()
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When ('I go to rooms overview')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
-And('I click on FAB to create the course', () => {
-  courses.clickOnCreateFAB()
-})
+//And('I click on FAB to create the course')
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 And('I fill out the course creation form for new course {string}', (new_course_name) => {
   courses.fillCourseCreationForm(new_course_name)
@@ -22,7 +21,7 @@ And('I click on next steps', () => {
 })
 
 //Then ('I see the course 'Cypress Testkurs' on the room overview page')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 
 //Scenario: Deleting the test course/room created during executing the testing
@@ -30,17 +29,17 @@ And('I click on next steps', () => {
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When ('I go to rooms overview')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 //And ('I go to room 'Kurs Cypress Testkurs'')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 //When I open course edit page
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 Then('I delete the test room', () => {
   courses.performDeletion()
 })
 
 //Then ('I do not see the course 'Kurs Cypress Testkurs' on the room overview page')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js

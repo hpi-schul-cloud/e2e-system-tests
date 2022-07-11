@@ -35,3 +35,15 @@ Then('I can see course edit page', () => {
 And('I click on save changes', () => {
   courses.submitChanges()
 })
+
+And('I click on FAB to create the course', () => {
+  coursesCommon.clickOnCreateCourseFAB()
+})
+
+And('I click on FAB to create new content', () => {
+  coursesCommon.clickOnCreateContentFAB()
+})
+
+And('I click on New Task', () => {
+  coursesCommon.clickOnNewTask()
+})

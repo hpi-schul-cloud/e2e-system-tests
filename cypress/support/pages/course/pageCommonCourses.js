@@ -2,10 +2,13 @@
 
 class Courses_Common {
 
+  static #createCourse = '[data-testid="add-course-button"]'
+  static #createContent = '[data-testid="add-content-button"]'
   static #toolsTab = '[data-testid="tools"]'
   static #toolsList = '[data-testid="course_tool_list_add_tool"]'
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
+  static #newTask = '[data-testid="fab_button_add_task"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
@@ -68,6 +71,18 @@ class Courses_Common {
 
   canNotAddBigBlueButton() {
     cy.get(Courses_Common.#toolsList).should('not.exist')
+  }
+
+  clickOnCreateCourseFAB() {
+    cy.get(Courses_Common.#createCourse).click()
+  }
+
+  clickOnCreateContentFAB() {
+    cy.get(Courses_Common.#createContent).click()
+  }
+
+  clickOnNewTask() {
+    cy.get(Courses_Common.#newTask).click()
   }
 }
 export default Courses_Common
