@@ -13,10 +13,29 @@ class Courses_Common {
   }
 
   navigateToRoomBoard(room_name) {
-    const selectedRoom = `[aria-label='${room_name}']`
-    cy.get(selectedRoom).click({
-      multiple: true,
-      force: true
+    cy.get('h1').eq(0).then(($title) => {
+      const htmlTitlePage = $title.text()
+      if (htmlTitlePage.includes('Kurse')) {
+        cy.get(`[aria-label="Kurs ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      } else if (htmlTitlePage.includes('courses')) {
+        cy.get(`[aria-label="Course ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      } else if (htmlTitlePage.includes('Cursos')) {
+        cy.get(`[aria-label="Curso ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      } else if (htmlTitlePage.includes('Поточні')) {
+        cy.get(`[aria-label="Курс ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      }
     })
   }
 

@@ -38,7 +38,7 @@ And('I click on next steps', () => {
 //When I open course edit page
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
-Then('I should be able to delete the test room', () => {
+Then('I delete the test room', () => {
   courses.performDeletion()
 })
 
