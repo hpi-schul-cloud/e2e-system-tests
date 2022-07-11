@@ -6,14 +6,14 @@ Feature: To add and delete a course by the teacher
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview
     And I click on FAB to create the course
-    And I fill out the course creation form for new course 'Cypress Testkurs'
+    And I fill out the course creation form for new course 'Cypress Test Creation and Deletion'
     And I click on next steps
-    Then I see the course 'Cypress Testkurs' on the room overview page
+    Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
 
   Scenario: Deleting the test course/room created during executing the testing
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview
-    And I go to room 'Kurs Cypress Testkurs'
+    And I go to room 'Cypress Test Creation and Deletion'
     When I open course edit page
-    Then I should be able to delete the test room
-    Then I do not see the course 'Kurs Cypress Testkurs' on the room overview page
+    Then I delete the test room
+    Then I do not see the course 'Cypress Test Creation and Deletion' on the room overview page
