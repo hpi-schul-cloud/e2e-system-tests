@@ -12,7 +12,6 @@ class Courses_Common {
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
-    cy.url().should('include', '/rooms-overview')
   }
 
   navigateToRoomBoard(room_name) {
