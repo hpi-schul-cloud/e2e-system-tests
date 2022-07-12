@@ -14,21 +14,22 @@ Feature: To create and delete tasks by the teacher.
     And I click on Enable Group Submission
     And I click on Draft
     And I set task-visibility-start-date to 'today' at '0000'
-    # And I set task-processing-end-date: today +1 day, 10:00
-    # And I enter task description 'Dies ist Deine Aufgabe.'
-    # And I click on Save
-    # Then I can see room page 'Course with subject and tasks'
-    # And I can see task 'E2E task'
+    And I set task-visibility-due-date to 'tomorrow' at '1000'
+    And I enter task description 'Dies ist Deine Aufgabe.'
+    And I click on button Submit
+    Then I can see room page 'Course with subject and tasks'
+    And I can see task 'Task Creation and Deletion Test'
 
-# Scenario: Teacher deletes task from room
-#    When I click on three dots of task 'Create and delete task from room'
-#    And I click on Delete
-#    Then a confirmation panel is visible
-#    When I click on Cancel
-#    And I can see task 'Create and delete task from room'
-#    When I click on three dots of task 'E2E task from room'
-#    And I click on Delete
-#    Then a confirmation panel is visible
-#    When I click on Delete
-#    Then I can see room page 'Course with subject and tasks'
-#    And I can not see task 'Create and delete task from room'
+Scenario: Teacher deletes task from room
+    Given I am logged in as a 'teacher1' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    When I click on dot menu of content 'Task Creation and Deletion Test'
+    And I click on Delete in dot menu
+    And I click on Cancel in confirmation window
+    Then I can see task 'Task Creation and Deletion Test'
+    When I click on dot menu of content 'Task Creation and Deletion Test'
+    And I click on Delete in dot menu
+    And I click on Delete in confirmation window
+    Then I can see room page 'Course with subject and tasks'
+    And I can not see task 'Task Creation and Deletion Test'

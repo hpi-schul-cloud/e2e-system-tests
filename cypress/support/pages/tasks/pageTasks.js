@@ -7,6 +7,7 @@ class Task {
   static #draftCheckbox = '[data-testid="private-checkbox"]'
   static #visibilityStartDateInput = '[data-testid="form-datetime-input-availableDate"]'
   static #visibilityDueDateInput = '[data-testid="form-datetime-input-dueDate"]'
+  static #homeWorkDescriptionP = '[class="ck-placeholder"]'
 
 
   seeCreateTaskPage() {
@@ -44,17 +45,25 @@ class Task {
     let startDateText = startDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
     startDateText = startDateText.replace('/', '')
     cy.get(Task.#visibilityStartDateInput).type(`{moveToStart}${startDateText}${visibilityStartTime}`)
+  }
 
+  setVisibilityDueDate(visibilityDueDate, visibilityDueTime) {
+    const today = new Date()
+    let dueDate
+    if (visibilityDueDate === 'today') {
+      dueDate = today
+    } else if (visibilityDueDate === 'tomorrow') {
+      dueDate = new Date(today)
+      dueDate.setDate(dueDate.getDate() + 1)
+    }
+    let startDueText = dueDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
+    startDueText = startDueText.replace('/', '')
+    cy.get(Task.#visibilityDueDateInput).type(`{moveToStart}${startDueText}${visibilityDueTime}`)
+  }
 
-
-    //cy.get(Task.#visibilityStartDateInput).click()
-    // cy.get(Task.#startDatePickerToday)
-    //   .eq(0)
-    //   .click()
-
-
-    // DD.MM.YYYY 29:59  11.12.2022 29:59
-    //cy.get(Task.#visibilityStartDateInput).click()
+  setTaskDescription(taskDescription){
+    cy.get(Task.#homeWorkDescriptionP)
+      .type(taskDescription)
   }
 }
 export default Task

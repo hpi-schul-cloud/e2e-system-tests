@@ -38,3 +38,11 @@ And ('I click on Draft', () => {
 And ('I set task-visibility-start-date to {string} at {string}', (visibilityStartDate, visibilityStartTime) => {
   task.setVisibilityStartDate(visibilityStartDate, visibilityStartTime)
 })
+
+And ('I set task-visibility-due-date to {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
+  task.setVisibilityDueDate(visibilityDueDate, visibilityDueTime)
+})
+
+And ('I enter task description {string}', (taskDescription) => {
+  task.setTaskDescription(taskDescription)
+})

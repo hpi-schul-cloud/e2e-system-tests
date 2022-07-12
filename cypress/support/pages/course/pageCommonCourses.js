@@ -9,6 +9,11 @@ class Courses_Common {
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
   static #newTask = '[data-testid="fab_button_add_task"]'
+  static #elements = '[class="elements"]'
+  static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
+  static #dialogCancelButton = '[data-testid="dialog-cancel"]'
+  static #deleteButtonInDotMenu = '[class="v-list-item v-list-item--link theme--light menu-action menu-action-Löschen"]'
+  static #vCardText = '[class="v-card__text"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
@@ -83,6 +88,39 @@ class Courses_Common {
 
   clickOnNewTask() {
     cy.get(Courses_Common.#newTask).click()
+  }
+
+  taskIsVisibleOnCoursePage(taskTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    cy.url().should('include', '/rooms/')
+    cy.contains(taskTitle)
+  }
+
+  taskIsNotVisibleOnCoursePage(taskTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    cy.url().should('include', '/rooms/')
+    cy.contains(taskTitle).should('not.exist')
+  }
+
+  openDotMenuForContent(contentTitle){
+    cy.get(Courses_Common.#elements)
+      .get(Courses_Common.#vCardText)
+      .contains(contentTitle)
+      .prev()
+      .find('button')
+      .click()
+  }
+
+  clickDeleteInDotMenu(){
+    cy.get(Courses_Common.#deleteButtonInDotMenu).click()
+  }
+
+  clickCancelInConfirmationWindow() {
+    cy.get(Courses_Common.#dialogCancelButton).click()
+  }
+
+  clickDeleteInConfirmationWindow() {
+    cy.get(Courses_Common.#dialogConfirmButton).click()
   }
 }
 export default Courses_Common
