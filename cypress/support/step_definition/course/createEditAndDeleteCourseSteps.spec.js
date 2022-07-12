@@ -64,9 +64,9 @@ Then('I edit the title of the room to {string} and the description', (editedRoom
 //When I open course edit page
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
 
-Then('I delete the test room', () => {
+Then('I should be able to delete the test room', () => {
   courses.performDeletion()
 })
 
-  //Then ('I do not see the course 'Kurs Cypress Testkurs' on the room overview page')
-  //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//Then ('I do not see the course 'Kurs Cypress Testkurs' on the room overview page')
+//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js

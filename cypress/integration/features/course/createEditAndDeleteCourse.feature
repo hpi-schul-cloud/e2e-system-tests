@@ -22,7 +22,7 @@ Feature: To add and delete a course by the teacher
   Scenario: Deleting the test course/room created during executing the testing
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview
-    And I go to room 'Kurs Cypress Testkurs Edit'
+    And I go to room 'Cypress Testkurs Edit'
     When I open course edit page
     Then I should be able to delete the test room
-    Then I do not see the course 'Kurs Cypress Testkurs Edit' on the room overview page
+    Then I do not see the course 'Cypress Testkurs Edit' on the room overview page

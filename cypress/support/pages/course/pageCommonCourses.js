@@ -8,34 +8,23 @@ class Courses_Common {
   static #addNewToolButton = '[data-testid="add_new_tool"]'
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
+  static #pageTitle = '[id="page-title"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
   }
 
-  navigateToRoomBoard(room_name) {
+  navigateToRoomBoard(roomName) {
     cy.get('h1').eq(0).then(($title) => {
       const htmlTitlePage = $title.text()
       if (htmlTitlePage.includes('Kurse')) {
-        cy.get(`[aria-label="Kurs ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Kurs ${roomName}"]`).eq(0).click()
       } else if (htmlTitlePage.includes('courses')) {
-        cy.get(`[aria-label="Course ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Course ${roomName}"]`).click()
       } else if (htmlTitlePage.includes('Cursos')) {
-        cy.get(`[aria-label="Curso ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Curso ${roomName}"]`).click()
       } else if (htmlTitlePage.includes('Поточні')) {
-        cy.get(`[aria-label="Курс ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Курс ${roomName}"]`).click()
       }
     })
   }
@@ -58,7 +47,6 @@ class Courses_Common {
   }
 
   courseIsNotVisibleOnOverviewPage(courseName) {
-    cy.url().should('include', '/rooms-overview')
     cy.contains(courseName).should('not.exist')
   }
 
