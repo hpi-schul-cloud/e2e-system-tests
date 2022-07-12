@@ -4,7 +4,6 @@ class Courses_Common {
 
   static #toolsTab = '[data-testid="tools"]'
   static #toolsList = '[data-testid="course_tool_list_add_tool"]'
-  static #pageTitle = '[id="page-title"]'
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
   static #dropDownCourse = '.course-title .three-dot-button'
@@ -14,11 +13,30 @@ class Courses_Common {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
   }
 
-  navigateToRoomBoard(roomName) {
-    const selectedRoom = `[aria-label='${roomName}']`
-    cy.get(selectedRoom).click({
-      multiple: true,
-      force: true
+  navigateToRoomBoard(room_name) {
+    cy.get('h1').eq(0).then(($title) => {
+      const htmlTitlePage = $title.text()
+      if (htmlTitlePage.includes('Kurse')) {
+        cy.get(`[aria-label="Kurs ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      } else if (htmlTitlePage.includes('courses')) {
+        cy.get(`[aria-label="Course ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      } else if (htmlTitlePage.includes('Cursos')) {
+        cy.get(`[aria-label="Curso ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      } else if (htmlTitlePage.includes('Поточні')) {
+        cy.get(`[aria-label="Курс ${room_name}"]`).click({
+          multiple: true,
+          force: true
+        })
+      }
     })
   }
 
