@@ -2,20 +2,20 @@
 
 class Courses_Common {
 
-  static #learningContentTab = '[data-testid="learnContent"]'
   static #toolsTab = '[data-testid="tools"]'
-  static #groupsTab = '[data-testid="groups"]'
   static #toolsList = '[data-testid="course_tool_list_add_tool"]'
   static #pageTitle = '[id="page-title"]'
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
+  static #dropDownCourse = '.course-title .three-dot-button'
+  static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
   }
 
-  navigateToRoomBoard(room_name) {
-    const selectedRoom = `[aria-label='${room_name}']`
+  navigateToRoomBoard(roomName) {
+    const selectedRoom = `[aria-label='${roomName}']`
     cy.get(selectedRoom).click({
       multiple: true,
       force: true
@@ -35,14 +35,14 @@ class Courses_Common {
     cy.get(Courses_Common.#addNewToolButton).click()
   }
 
-  courseIsVisibleOnOverviewPage(course_name) {
+  courseIsVisibleOnOverviewPage(courseName) {
     cy.url().should('include', '/rooms-overview')
-    cy.contains(course_name)
+    cy.contains(courseName)
   }
 
-  courseIsNotVisibleOnOverviewPage(course_name) {
+  courseIsNotVisibleOnOverviewPage(courseName) {
     cy.url().should('include', '/rooms-overview')
-    cy.contains(course_name).should('not.exist')
+    cy.contains(courseName).should('not.exist')
   }
 
   canAddBigBlueButton() {
@@ -51,6 +51,16 @@ class Courses_Common {
 
   canNotAddBigBlueButton() {
     cy.get(Courses_Common.#toolsList).should('not.exist')
+  }
+
+  openCourseEditPage() {
+    cy.get(Courses_Common.#dropDownCourse).click()
+    cy.get(Courses_Common.#btnCourseEdit).click()
+  }
+
+  showCourseEditPage() {
+    cy.get(Courses_Common.#pageTitle)
+    cy.contains('Kurs bearbeiten')
   }
 }
 export default Courses_Common
