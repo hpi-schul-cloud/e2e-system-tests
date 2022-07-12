@@ -36,7 +36,6 @@ class Courses_Common {
   }
 
   courseIsVisibleOnOverviewPage(courseName) {
-    cy.url().should('include', '/rooms-overview')
     cy.contains(courseName)
   }
 
