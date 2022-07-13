@@ -56,8 +56,8 @@ And('I can not see task {string}', (taskTitle) => {
   coursesCommon.taskIsNotVisibleOnCoursePage(taskTitle)
 })
 
-When ('I click on dot menu of content {string}', (contentTitle) => {
-  coursesCommon.openDotMenuForContent(contentTitle)
+When ('I click on three dot menu of content {string}', (contentTitle) => {
+  coursesCommon.openThreeDotMenuForContent(contentTitle)
 })
 
 And('I click on Delete in dot menu', () => {

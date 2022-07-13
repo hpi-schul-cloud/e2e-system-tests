@@ -1,6 +1,6 @@
 'use strict'
 
-class Task {
+class Tasks {
   static #createForm = '[id="homework-form"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
@@ -11,26 +11,26 @@ class Task {
 
 
   seeCreateTaskPage() {
-    cy.get(Task.#createForm)
-      .get(Task.#taskNameInput)
+    cy.get(Tasks.#createForm)
+      .get(Tasks.#taskNameInput)
       .should('be.empty')
   }
 
   // checkFileUploadButtonIsDisabled {
-  //   cy.get(Task.#fileUploadButton)
+  //   cy.get(Tasks.#fileUploadButton)
   //     .should('be.empty')
   // }
 
   enterTaskTitle(taskTitle) {
-    cy.get(Task.#taskNameInput).type(taskTitle)
+    cy.get(Tasks.#taskNameInput).type(taskTitle)
   }
 
   clickOnGroupSubmissionCheckbox() {
-    cy.get(Task.#groupSubmissionCheckbox).click()
+    cy.get(Tasks.#groupSubmissionCheckbox).click()
   }
 
   clickOnDraftCheckbox() {
-    cy.get(Task.#draftCheckbox).click()
+    cy.get(Tasks.#draftCheckbox).click()
   }
 
   setVisibilityStartDate(visibilityStartDate, visibilityStartTime) {
@@ -44,7 +44,7 @@ class Task {
     }
     let startDateText = startDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
     startDateText = startDateText.replace('/', '')
-    cy.get(Task.#visibilityStartDateInput).type(`{moveToStart}${startDateText}${visibilityStartTime}`)
+    cy.get(Tasks.#visibilityStartDateInput).type(`{moveToStart}${startDateText}${visibilityStartTime}`)
   }
 
   setVisibilityDueDate(visibilityDueDate, visibilityDueTime) {
@@ -58,12 +58,12 @@ class Task {
     }
     let startDueText = dueDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
     startDueText = startDueText.replace('/', '')
-    cy.get(Task.#visibilityDueDateInput).type(`{moveToStart}${startDueText}${visibilityDueTime}`)
+    cy.get(Tasks.#visibilityDueDateInput).type(`{moveToStart}${startDueText}${visibilityDueTime}`)
   }
 
   setTaskDescription(taskDescription){
-    cy.get(Task.#homeWorkDescriptionP)
+    cy.get(Tasks.#homeWorkDescriptionP)
       .type(taskDescription)
   }
 }
-export default Task
+export default Tasks

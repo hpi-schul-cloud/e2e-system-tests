@@ -102,9 +102,8 @@ class Courses_Common {
     cy.contains(taskTitle).should('not.exist')
   }
 
-  openDotMenuForContent(contentTitle){
-    cy.get(Courses_Common.#elements)
-      .get(Courses_Common.#vCardText)
+  openThreeDotMenuForContent(contentTitle){
+    cy.get(Courses_Common.#vCardText)
       .contains(contentTitle)
       .prev()
       .find('button')

@@ -24,11 +24,11 @@ Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
-    When I click on dot menu of content 'Task Creation and Deletion Test'
+    When I click on three dot menu of content 'Task Creation and Deletion Test'
     And I click on Delete in dot menu
     And I click on Cancel in confirmation window
     Then I can see task 'Task Creation and Deletion Test'
-    When I click on dot menu of content 'Task Creation and Deletion Test'
+    When I click on three dot menu of content 'Task Creation and Deletion Test'
     And I click on Delete in dot menu
     And I click on Delete in confirmation window
     Then I can see room page 'Course with subject and tasks'
