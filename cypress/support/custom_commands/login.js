@@ -1,6 +1,6 @@
-const emailInputFieldElement = '[data-testid="username"]'
-const passwordInputFieldElement = '[data-testid="password"]'
-const submitButton = '[data-testid="submit-login"]'
+const emailInputFieldElement = '[data-testid="username-email"]'
+const passwordInputFieldElement = '[data-testid="password-email"]'
+const submitButton = '[data-testid="submit-login-email"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
 
 Cypress.Commands.add('login', (username, environment) => {
@@ -65,9 +65,9 @@ Cypress.Commands.add('login', (username, environment) => {
         userPassword = 'EXPERT_1_PASSWORD'
         break;
     }
-    cy.get(emailInputFieldElement).eq(1).type(env[userEmail],{force: true})
-    cy.get(passwordInputFieldElement).eq(1).type(env[userPassword],{force: true})
-    cy.get(submitButton).eq(1).click({force: true})
+    cy.get(emailInputFieldElement).eq(1).type(env[userEmail])
+    cy.get(passwordInputFieldElement).eq(1).type(env[userPassword])
+    cy.get(submitButton).eq(1).click()
     cy.url().should('contain', '/dashboard')
   })
   cy.visit('/dashboard')
