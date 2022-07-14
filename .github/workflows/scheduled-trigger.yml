@@ -64,5 +64,5 @@ jobs:
         with:
           type: ${{ job.status }}
           job_name: 'Cypress Tests'
-          url: ${{ secrets.RC_WEBHOOK }}
-          username: Automated Test Run
+          url: ${{ secrets.RC_WEBHOOK_URL }}
+          username: Scheduled Automated Test Run
