@@ -2,10 +2,9 @@
 
 class Addons_Common {
 
-  static #addonsOverviewNavigationButton = '[data-testid="Add-Ons"]'
+  static #addonsOverviewNavigationButton = '[data-testid="Add-ons"]'
 
   navigateToAddonsOverview() {
-    cy.visit('/addons')
     cy.get(Addons_Common.#addonsOverviewNavigationButton).contains('Add-ons').click()
     cy.url().should('include', '/addons')
   }
