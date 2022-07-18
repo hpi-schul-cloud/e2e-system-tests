@@ -3,7 +3,7 @@
 class Tasks_Common {
   static #tasksOverviewNavigationButton = '[data-testid="Aufgaben"]'
   static #taskForm = '[id="homework-form"]'
-  static #submitButton = '[class="btn btn-primary btn-submit"]'
+  static #submitButton = '[data-testid="submit-task-btn"]'
 
   navigateToTasksOverview() {
     cy.visit('/tasks')

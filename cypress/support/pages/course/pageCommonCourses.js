@@ -9,11 +9,10 @@ class Courses_Common {
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
   static #newTask = '[data-testid="fab_button_add_task"]'
-  static #elements = '[class="elements"]'
   static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
-  static #deleteButtonInDotMenu = '[class="v-list-item v-list-item--link theme--light menu-action menu-action-Löschen"]'
-  static #vCardText = '[class="v-card__text"]'
+  static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
+  static #vCardText = '[data-testid="content-card-task-content"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
