@@ -76,6 +76,7 @@ jobs:
         if: always()
         with:
           type: ${{ job.status }}
-          job_name: 'Cypress Tests'
-          url: ${{ secrets.RC_WEBHOOK_URL }}
+          job_name: 'cypress tests triggered by ${{ github.actor }}:'
+          url: ${{ secrets.RC_WEBHOOK }}
+          channel: '#e2e-cypress-test-notifications'
           username: Manually Triggered Automated Test Run
