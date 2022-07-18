@@ -12,7 +12,7 @@ class Courses_Common {
   static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
-  static #vCardText = '[data-testid="content-card-task-content"]'
+  static #contentCardText = '[data-testid="content-card-task-content"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
@@ -102,7 +102,7 @@ class Courses_Common {
   }
 
   openThreeDotMenuForContent(contentTitle){
-    cy.get(Courses_Common.#vCardText)
+    cy.get(Courses_Common.#contentCardText)
       .contains(contentTitle)
       .prev()
       .find('button')
