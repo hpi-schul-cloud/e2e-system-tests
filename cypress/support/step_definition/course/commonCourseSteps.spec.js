@@ -35,3 +35,39 @@ Then('I can see course edit page', () => {
 And('I click on save changes', () => {
   courses.submitChanges()
 })
+
+And('I click on FAB to create the course', () => {
+  coursesCommon.clickOnCreateCourseFAB()
+})
+
+And('I click on FAB to create new content', () => {
+  coursesCommon.clickOnCreateContentFAB()
+})
+
+And('I click on New Task', () => {
+  coursesCommon.clickOnNewTask()
+})
+
+And('I can see task {string}', (taskTitle) => {
+  coursesCommon.taskIsVisibleOnCoursePage(taskTitle)
+})
+
+And('I can not see task {string}', (taskTitle) => {
+  coursesCommon.taskIsNotVisibleOnCoursePage(taskTitle)
+})
+
+When ('I click on three dot menu of content {string}', (contentTitle) => {
+  coursesCommon.openThreeDotMenuForContent(contentTitle)
+})
+
+And('I click on Delete in dot menu', () => {
+  coursesCommon.clickDeleteInDotMenu()
+})
+
+And('I click on Cancel in confirmation window', () => {
+  coursesCommon.clickCancelInConfirmationWindow()
+})
+
+And('I click on Delete in confirmation window', () => {
+  coursesCommon.clickDeleteInConfirmationWindow()
+})

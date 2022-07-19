@@ -1,7 +1,6 @@
 'use strict'
 
 class Courses {
-  static #createFAB = '[name="fab-icon"]'
   static #courseTitle = '[data-testid="coursename"]'
   static #nextButton = '[id="nextSection"]'
   static #nextContinueButton = '[data-submit-label="Kurs anlegen und Weiter"]'
@@ -11,6 +10,11 @@ class Courses {
   static #btnSubmit = '#main-content > section > form > div.modal-footer > button.btn.btn-primary.btn-submit'
   static #courseDescription = '[id="courseDescription"]'
   static #courseName = '[name="name"]'
+  static #createFAB = '[name="fab-icon"]'
+
+  fillCourseCreationForm(new_course) {
+    cy.get(Courses.#courseTitle).type(new_course)
+  }
 
   clickOnCreateFAB() {
     cy.get(Courses.#createFAB).click()

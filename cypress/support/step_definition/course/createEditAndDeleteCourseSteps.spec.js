@@ -8,11 +8,10 @@ const courses = new Courses()
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When ('I go to rooms overview')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
-And('I click on FAB to create the course', () => {
-  courses.clickOnCreateFAB()
-})
+//And('I click on FAB to create the course')
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 And('I fill out the course creation form for new course {string}', (newCourseName) => {
   courses.fillCourseCreationForm(newCourseName)
@@ -23,7 +22,7 @@ And('I click on next steps', () => {
 })
 
 //Then ('I see the course 'Cypress Testkurs' on the room overview page')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 //Scenario: Editing the course
 
@@ -31,13 +30,13 @@ And('I click on next steps', () => {
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
 //When ('I go to rooms overview')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
-//And ('I go to room 'Kurs Cypress Testkurs')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//And ('I go to room 'Kurs Cypress Testkurs'')
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 //When I open course edit page
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
 
 //Then I can see course edit page
 //step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
@@ -69,4 +68,4 @@ Then('I should be able to delete the test room', () => {
 })
 
 //Then ('I do not see the course 'Kurs Cypress Testkurs' on the room overview page')
-//step defined --> \step_definition\courses\commonCourseRelatedSteps.spec.js
+//step defined --> \step_definition\courses\commonCourseSteps.spec.js
