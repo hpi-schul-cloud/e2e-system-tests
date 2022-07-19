@@ -49,6 +49,17 @@ jobs:
           browser: chrome
           headed: false
 
+      - name: Send Notification to Rocket Chat
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        # you can add conditions, but leave always(), it makes sure that also a message is send, if previous steps failed
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: 'cypress tests triggered by ${{ github.actor }}:'
+          url: ${{ secrets.RC_WEBHOOK }}
+          channel: '#e2e-cypress-test-notifications'
+          username: Manually Triggered Automated Test Run
+
       - name: Generate Report
         uses: cypress-io/github-action@v4
         if: always()

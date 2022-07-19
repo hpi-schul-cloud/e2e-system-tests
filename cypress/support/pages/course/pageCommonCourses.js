@@ -13,35 +13,25 @@ class Courses_Common {
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
   static #contentCardText = '[data-testid="content-card-task-content"]'
+  static #dropDownCourse = '.course-title .three-dot-button'
+  static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
+  static #pageTitle = '[id="page-title"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
-    cy.url().should('include', '/rooms-overview')
   }
 
-  navigateToRoomBoard(room_name) {
+  navigateToRoomBoard(roomName) {
     cy.get('h1').eq(0).then(($title) => {
       const htmlTitlePage = $title.text()
       if (htmlTitlePage.includes('Kurse')) {
-        cy.get(`[aria-label="Kurs ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Kurs ${roomName}"]`).eq(0).click()
       } else if (htmlTitlePage.includes('courses')) {
-        cy.get(`[aria-label="Course ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Course ${roomName}"]`).click()
       } else if (htmlTitlePage.includes('Cursos')) {
-        cy.get(`[aria-label="Curso ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Curso ${roomName}"]`).click()
       } else if (htmlTitlePage.includes('Поточні')) {
-        cy.get(`[aria-label="Курс ${room_name}"]`).click({
-          multiple: true,
-          force: true
-        })
+        cy.get(`[aria-label="Курс ${roomName}"]`).click()
       }
     })
   }
@@ -59,14 +49,12 @@ class Courses_Common {
     cy.get(Courses_Common.#addNewToolButton).click()
   }
 
-  courseIsVisibleOnOverviewPage(course_name) {
-    cy.url().should('include', '/rooms-overview')
-    cy.contains(course_name)
+  courseIsVisibleOnOverviewPage(courseName) {
+    cy.contains(courseName)
   }
 
-  courseIsNotVisibleOnOverviewPage(course_name) {
-    cy.url().should('include', '/rooms-overview')
-    cy.contains(course_name).should('not.exist')
+  courseIsNotVisibleOnOverviewPage(courseName) {
+    cy.contains(courseName).should('not.exist')
   }
 
   canAddBigBlueButton() {
@@ -119,6 +107,16 @@ class Courses_Common {
 
   clickDeleteInConfirmationWindow() {
     cy.get(Courses_Common.#dialogConfirmButton).click()
+  }
+
+  openCourseEditPage() {
+    cy.get(Courses_Common.#dropDownCourse).click()
+    cy.get(Courses_Common.#btnCourseEdit).click()
+  }
+
+  showCourseEditPage() {
+    cy.get(Courses_Common.#pageTitle)
+    cy.contains('Kurs bearbeiten')
   }
 }
 export default Courses_Common

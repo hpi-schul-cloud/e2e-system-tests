@@ -10,10 +10,19 @@ Feature: To add and delete a course by the teacher
     And I click on next steps
     Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
 
-  Scenario: Deleting the test course/room created during executing the testing
+  Scenario: Editing the course
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview
     And I go to room 'Cypress Test Creation and Deletion'
     When I open course edit page
-    Then I delete the test room
-    Then I do not see the course 'Cypress Test Creation and Deletion' on the room overview page
+    Then I can see course edit page
+    Then I edit the title of the room to 'Cypress Testkurs Edit' and the description
+    And I click on save changes
+
+  Scenario: Deleting the test course/room created during executing the testing
+    Given I am logged in as a 'teacher' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Cypress Testkurs Edit'
+    When I open course edit page
+    Then I should be able to delete the test room
+    Then I do not see the course 'Cypress Testkurs Edit' on the room overview page

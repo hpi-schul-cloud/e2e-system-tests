@@ -8,28 +8,28 @@ When('I go to rooms overview', () => {
   coursesCommon.navigateToRoomsOverview()
 })
 
-And('I go to room {string}', (room_name) => {
-  coursesCommon.navigateToRoomBoard(room_name)
+And('I go to room {string}', (roomName) => {
+  coursesCommon.navigateToRoomBoard(roomName)
 })
 
-Then('I can see room page {string}', (room_name) => {
-  coursesCommon.showRoomPage(room_name)
+Then('I can see room page {string}', (roomName) => {
+  coursesCommon.showRoomPage(roomName)
 })
 
-Then('I see the course {string} on the room overview page', (course_name) => {
-  coursesCommon.courseIsVisibleOnOverviewPage(course_name)
+Then('I see the course {string} on the room overview page', (courseName) => {
+  coursesCommon.courseIsVisibleOnOverviewPage(courseName)
 })
 
-Then('I do not see the course {string} on the room overview page', (course_name) => {
-  coursesCommon.courseIsNotVisibleOnOverviewPage(course_name)
+Then('I do not see the course {string} on the room overview page', (courseName) => {
+  coursesCommon.courseIsNotVisibleOnOverviewPage(courseName)
 })
 
 When('I open course edit page', () => {
-  courses.openCourseEditPage()
+  coursesCommon.openCourseEditPage()
 })
 
 Then('I can see course edit page', () => {
-  courses.showCourseEditPage()
+  coursesCommon.showCourseEditPage()
 })
 
 And('I click on save changes', () => {
