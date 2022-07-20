@@ -59,6 +59,24 @@ And ('I enter task description {string}', (taskDescription) => {
 //And('I can see task 'Task Creation and Deletion Test')
 //step defined -->\step_definition\course\commonCourseSteps.spec.js
 
+//Scenario: Teacher edits and publishs task from room via form
+//Given ('I am logged in as a 'teacher1' at 'brb'')
+//step defined -->\step_definition\authentication\loginStep.spec.js
+
+And('I click on Public Submission Checkbox', () => {
+  tasks.clickOnPublicSubmissionCheckbox()
+})
+
+And('I click on Cancel Public Submission in confirmation window on task page', () => {
+  tasks.clickCancelInConfirmationWindow()
+})
+
+And('I click on Submit Public Submission in confirmation window on task page', () => {
+  tasks.clickSubmitInConfirmationWindow()
+})
+
+//When I click on task 'Cy: Task Creating and Deleting Test'
+//step defined -->\step_definition\course\commonCourseSteps.spec.js
 
 //Scenario: Teacher creates task as draft from room
 //Given ('I am logged in as a 'teacher1' at 'brb'')

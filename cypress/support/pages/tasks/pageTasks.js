@@ -7,7 +7,11 @@ class Tasks {
   static #draftCheckbox = '[data-testid="private-checkbox"]'
   static #visibilityStartDateInput = '[data-testid="form-datetime-input-availableDate"]'
   static #visibilityDueDateInput = '[data-testid="form-datetime-input-dueDate"]'
-  static #homeWorkDescriptionP = '[class="ck-placeholder"]'
+  static #homeWorkDescriptionP = '[class="ck ck-editor__main"]'
+  static #publicSubmissionsCheckbox = '[id="publicSubmissionsCheckbox"]'
+  static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]'
+  static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
+
 
 
   seeCreateTaskPage() {
@@ -22,6 +26,7 @@ class Tasks {
   // }
 
   enterTaskTitle(taskTitle) {
+    cy.get(Tasks.#taskNameInput).clear()
     cy.get(Tasks.#taskNameInput).type(taskTitle)
   }
 
@@ -62,8 +67,22 @@ class Tasks {
   }
 
   setTaskDescription(taskDescription){
-    cy.get(Tasks.#homeWorkDescriptionP)
-      .type(taskDescription)
+    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').clear()
+    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').type(taskDescription)
+    // cy.get(Tasks.#homeWorkDescriptionP).innerHTML = ''
+    // cy.get(Tasks.#homeWorkDescriptionP).type(taskDescription)
+  }
+
+  clickOnPublicSubmissionCheckbox(){
+    cy.get(Tasks.#publicSubmissionsCheckbox).click()
+  }
+
+  clickCancelInConfirmationWindow() {
+    cy.get(Tasks.#dialogCancelButton).click()
+  }
+
+  clickSubmitInConfirmationWindow() {
+    cy.get(Tasks.#dialogConfirmButton).click()
   }
 }
 export default Tasks
