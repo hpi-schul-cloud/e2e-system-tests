@@ -11,6 +11,7 @@ class Tasks {
   static #publicSubmissionsCheckbox = '[id="publicSubmissionsCheckbox"]'
   static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
+  static #taskDetailsTab = '[id="extended"]'
 
 
 
@@ -83,6 +84,10 @@ class Tasks {
 
   clickSubmitInConfirmationWindow() {
     cy.get(Tasks.#dialogConfirmButton).click()
+  }
+
+  descriptionEqualsOnDetailpage(expectedDescription) {
+    cy.get(Tasks.#taskDetailsTab).should('contain', expectedDescription)
   }
 }
 export default Tasks

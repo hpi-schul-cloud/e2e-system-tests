@@ -41,12 +41,12 @@ Scenario: Teacher edits and publishs task from room via form
     Then I can see room page 'Course with subject and tasks'
     And I can see task 'Cy Task Creating, Editing, Deleting Test'
     When I click on task 'Cy Task Creating, Editing, Deleting Test'
-    # Then I can see description 'Dies ist Deine Aufgabe. Viel Erfolg!'
-    # When I click on button Edit
-    # Then Public Submission is enabled
+    Then description is 'Dies ist Deine Aufgabe. Viel Erfolg!'
+    # When I click on button Edit -> WAITING FOR data-testids
+    # Then Public Submission is enabled -> id = publicSubmissionsCheckbox
     # And task-visibility-start-date is 'today' at '0100'
     # And task-visibility-due-date is 'tomorrow' at '1100'
-    # And Draft is disabled
+    # And Draft is disabled -> data-testid = private-checkbox
   #tbd
 
 Scenario: Teacher deletes task from room

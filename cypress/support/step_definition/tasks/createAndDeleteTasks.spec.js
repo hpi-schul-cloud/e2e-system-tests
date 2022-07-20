@@ -78,6 +78,10 @@ And('I click on Submit Public Submission in confirmation window on task page', (
 //When I click on task 'Cy: Task Creating and Deleting Test'
 //step defined -->\step_definition\course\commonCourseSteps.spec.js
 
+Then('description is {string}', (expectedDescription) => {
+  tasks.descriptionEqualsOnDetailpage(expectedDescription)
+})
+
 //Scenario: Teacher creates task as draft from room
 //Given ('I am logged in as a 'teacher1' at 'brb'')
 //step defined -->\step_definition\authentication\loginStep.spec.js
