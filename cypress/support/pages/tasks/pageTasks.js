@@ -12,6 +12,7 @@ class Tasks {
   static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
   static #taskDetailsTab = '[id="extended"]'
+  static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
 
 
 
@@ -67,11 +68,17 @@ class Tasks {
     cy.get(Tasks.#visibilityDueDateInput).type(`{moveToStart}${startDueText}${visibilityDueTime}`)
   }
 
+  // compareVisibilityStartDate(visibilityStartDate, visibilityStartTime){
+
+  // }
+
+  // compareVisibilityDueDate(visibilityDueDate, visibilityDueTime){
+
+  // }
+
   setTaskDescription(taskDescription){
     cy.get(Tasks.#homeWorkDescriptionP).find('div > p').clear()
     cy.get(Tasks.#homeWorkDescriptionP).find('div > p').type(taskDescription)
-    // cy.get(Tasks.#homeWorkDescriptionP).innerHTML = ''
-    // cy.get(Tasks.#homeWorkDescriptionP).type(taskDescription)
   }
 
   clickOnPublicSubmissionCheckbox(){
@@ -88,6 +95,18 @@ class Tasks {
 
   descriptionEqualsOnDetailpage(expectedDescription) {
     cy.get(Tasks.#taskDetailsTab).should('contain', expectedDescription)
+  }
+
+  clickOnEditInTaskDetails(){
+    cy.get(Tasks.#taskDetailsEditButton).click()
+  }
+
+  publicSubmissionIsEnabled(){
+    cy.get(Tasks.#publicSubmissionsCheckbox).should('be.checked')
+  }
+
+  draftIsDisabled(){
+    cy.get(Tasks.#draftCheckbox).should('not.be.checked')
   }
 }
 export default Tasks

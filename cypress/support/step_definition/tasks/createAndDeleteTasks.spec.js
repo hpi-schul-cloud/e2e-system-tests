@@ -34,7 +34,7 @@ And ('I click on Enable Group Submission', () => {
   tasks.clickOnGroupSubmissionCheckbox()
 })
 
-And ('I click on Draft', () => {
+And ('I click on Draft Checkbox', () => {
   tasks.clickOnDraftCheckbox()
 })
 
@@ -82,7 +82,19 @@ Then('description is {string}', (expectedDescription) => {
   tasks.descriptionEqualsOnDetailpage(expectedDescription)
 })
 
-//Scenario: Teacher creates task as draft from room
+When ('I click on button Edit', () => {
+  tasks.clickOnEditInTaskDetails()
+})
+
+And ('Public Submission is enabled', () => {
+  tasks.publicSubmissionIsEnabled()
+})
+
+And ('Draft is disabled', () => {
+  tasks.draftIsDisabled()
+})
+
+//Scenario: Teacher deletes task
 //Given ('I am logged in as a 'teacher1' at 'brb'')
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
