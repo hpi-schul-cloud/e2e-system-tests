@@ -1,4 +1,4 @@
-Feature: TO search for a course via serach input box
+Feature: To search for a course via search input box on the course overview page
 
   As a user (teacher & student) I want to search for dedicated course so that I can quickly find it.
 
