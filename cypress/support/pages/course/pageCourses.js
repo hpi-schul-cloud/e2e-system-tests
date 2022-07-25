@@ -12,7 +12,6 @@ class Courses {
   static #courseName = '[name="name"]'
   static #createFAB = '[name="fab-icon"]'
   static #seachFieldRoomOverview = '[data-testid="search-field"]'
-  static #roomOverviewContainer = '#rooms-container'
 
   fillCourseCreationForm(new_course) {
     cy.get(Courses.#courseTitle).type(new_course)
