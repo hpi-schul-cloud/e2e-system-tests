@@ -13,6 +13,7 @@ class Tasks {
   static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
   static #taskDetailsTab = '[id="extended"]'
   static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
+  static #fileUploadButton = '[class="section-upload"]'
 
 
 
@@ -22,10 +23,13 @@ class Tasks {
       .should('be.empty')
   }
 
-  // checkFileUploadButtonIsDisabled {
-  //   cy.get(Tasks.#fileUploadButton)
-  //     .should('be.empty')
-  // }
+  fileUploadButtonIsDisabled() {
+    cy.get(Tasks.#fileUploadButton).get('div').get('div').get('div').should('have.class', 'form-files-storage-disabled')
+  }
+
+  fileUploadButtonIsEnabled() {
+    cy.get(Tasks.#fileUploadButton).get('div').get('div').get('button')
+  }
 
   enterTaskTitle(taskTitle) {
     cy.get(Tasks.#taskNameInput).clear()
@@ -66,6 +70,34 @@ class Tasks {
     let startDueText = dueDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
     startDueText = startDueText.replace('/', '')
     cy.get(Tasks.#visibilityDueDateInput).type(`{moveToStart}${startDueText}${visibilityDueTime}`)
+  }
+
+  compareVisibilityStartDate(visibilityStartDate, visibilityStartTime) {
+    const today = new Date()
+    let startDate
+    if (visibilityStartDate === 'today') {
+      startDate = today
+    } else if (visibilityStartDate === 'tomorrow') {
+      startDate = new Date(today)
+      startDate.setDate(startDate.getDate() + 1)
+    }
+    let startDateText = startDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
+    let startDateCheckValue = startDateText.replace(/\//gm, '.') + ' ' + visibilityStartTime
+    cy.get(Tasks.#visibilityStartDateInput).should('have.value', startDateCheckValue)
+  }
+
+  compareVisibilityDueDate(visibilityDueDate, visibilityDueTime) {
+    const today = new Date()
+    let dueDate
+    if (visibilityDueDate === 'today') {
+      dueDate = today
+    } else if (visibilityDueDate === 'tomorrow') {
+      dueDate = new Date(today)
+      dueDate.setDate(dueDate.getDate() + 1)
+    }
+    let dueDateText = dueDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
+    let dueDateCheckValue = dueDateText.replace(/\//gm, '.') + ' ' + visibilityDueTime
+    cy.get(Tasks.#visibilityDueDateInput).should('have.value', dueDateCheckValue)
   }
 
   // compareVisibilityStartDate(visibilityStartDate, visibilityStartTime){

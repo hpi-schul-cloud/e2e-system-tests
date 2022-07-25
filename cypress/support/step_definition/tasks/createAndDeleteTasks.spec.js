@@ -22,9 +22,9 @@ Then('I can see create task page', () => {
   tasks.seeCreateTaskPage()
 })
 
-// And('file upload button is disabled', () => {
-//   task.checkFileUploadButtonIsDisabled()
-// })
+And('file upload button is disabled', () => {
+  tasks.fileUploadButtonIsDisabled()
+})
 
 When ('I enter title {string}', (taskTitle) => {
   tasks.enterTaskTitle(taskTitle)
@@ -63,6 +63,10 @@ And ('I enter task description {string}', (taskDescription) => {
 //Given ('I am logged in as a 'teacher1' at 'brb'')
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
+And('file upload button is enabled', () => {
+  tasks.fileUploadButtonIsEnabled()
+})
+
 And('I click on Public Submission Checkbox', () => {
   tasks.clickOnPublicSubmissionCheckbox()
 })
@@ -88,6 +92,14 @@ When ('I click on button Edit', () => {
 
 And ('Public Submission is enabled', () => {
   tasks.publicSubmissionIsEnabled()
+})
+
+And ('task-visibility-start-date is {string} at {string}', (visibilityStartDate, visibilityStartTime) => {
+  tasks.compareVisibilityStartDate(visibilityStartDate, visibilityStartTime)
+})
+
+And ('task-visibility-due-date is {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
+  tasks.compareVisibilityDueDate(visibilityDueDate, visibilityDueTime)
 })
 
 And ('Draft is disabled', () => {
