@@ -11,6 +11,7 @@ class Courses {
   static #courseDescription = '[id="courseDescription"]'
   static #courseName = '[name="name"]'
   static #createFAB = '[name="fab-icon"]'
+  static #searchFieldRoomOverview = '[data-testid="search-field"]'
 
   fillCourseCreationForm(new_course) {
     cy.get(Courses.#courseTitle).type(new_course)
@@ -45,6 +46,10 @@ class Courses {
   editCourseTitleAndDescription(editedRoomName) {
     cy.get(Courses.#courseName).clear().type(editedRoomName)
     cy.get(Courses.#courseDescription).type('this is test description')
+  }
+
+  searchForARoom(roomName) {
+    cy.get(Courses.#searchFieldRoomOverview).type(roomName)
   }
 }
 export default Courses

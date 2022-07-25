@@ -65,8 +65,8 @@ Cypress.Commands.add('login', (username, environment) => {
         userPassword = 'EXPERT_1_PASSWORD'
         break;
     }
-    cy.get(emailInputFieldElement).eq(1).type(env[userEmail])
-    cy.get(passwordInputFieldElement).eq(1).type(env[userPassword])
+    cy.get(emailInputFieldElement).eq(1).type(env[userEmail], {log:false})
+    cy.get(passwordInputFieldElement).eq(1).type(env[userPassword], {log:false})
     cy.get(submitButton).eq(1).click()
     cy.url().should('contain', '/dashboard')
   })

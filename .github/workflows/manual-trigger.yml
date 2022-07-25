@@ -66,7 +66,7 @@ jobs:
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: my-artifact
+          name: my-video-artifact
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
           retention-days: 3
 
