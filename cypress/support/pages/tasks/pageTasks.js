@@ -24,11 +24,11 @@ class Tasks {
   }
 
   fileUploadButtonIsDisabled() {
-    cy.get(Tasks.#fileUploadButton).get('div').get('div').get('div').should('have.class', 'form-files-storage-disabled')
+    cy.get(Tasks.#fileUploadButton).find('div').should('have.class', 'form-files-storage-disabled')
   }
 
   fileUploadButtonIsEnabled() {
-    cy.get(Tasks.#fileUploadButton).get('div').get('div').get('button')
+    cy.get(Tasks.#fileUploadButton).find('button')
   }
 
   enterTaskTitle(taskTitle) {
