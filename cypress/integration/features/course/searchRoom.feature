@@ -17,7 +17,7 @@ Feature: To search for a course via search input box on the course overview page
   Scenario: student is able to search for a course and find it
     Given I am logged in as a 'student' at 'brb'
     When I go to rooms overview
-    When I enter the course name 'Course with subject and tasks' into the search field
+    When I enter the course name 'Course with subject' into the search field
     Then I see the course 'Course with subject and tasks' on the room overview page
 
   Scenario: student is able to search for a course and DO NOT find it
