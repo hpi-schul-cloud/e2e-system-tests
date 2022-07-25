@@ -34,5 +34,8 @@
 		"cucumberJson": {
 			"generate": true
 		}
+	},
+	"dependencies": {
+		"cypress-file-upload": "^5.0.8"
 	}
 }
