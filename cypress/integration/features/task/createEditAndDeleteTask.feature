@@ -1,6 +1,6 @@
-Feature: To create and delete tasks by the teacher.
+Feature: To create, edit and delete tasks by the teacher.
 
-  As a teacher I want to create and delete a new task so that the student can perform it
+  As a teacher I want to create, edit and delete a new task so that the student can perform it
 
   Scenario: Teacher creates task as draft from room
     Given I am logged in as a 'teacher1' at 'brb'
