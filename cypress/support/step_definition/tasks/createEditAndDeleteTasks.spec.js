@@ -63,23 +63,58 @@ And ('I enter task description {string}', (taskDescription) => {
 //Given ('I am logged in as a 'teacher1' at 'brb'')
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
+//When I go to rooms overview
+//step defined -->\step_definition\course\commonCourseSteps.spec.js
+
+//And I go to room 'Course with subject and tasks'
+//step defined -->\step_definition\course\commonCourseSteps.spec.js
+
+//When I click on three dot menu of content 'Task Creation and Deletion Test'
+//step defined -->\step_definition\course\commonCourseSteps.spec.js
+
+//I click on Edit in dot menu
+//step defined -->\step_definition\course\commonCourseSteps.spec.js
+
 And('file upload button is enabled', () => {
   tasks.fileUploadButtonIsEnabled()
 })
 
+// When ('I enter title {string}', (taskTitle) => {
+// -> this file
+
+// And ('I click on Enable Group Submission', () => {
+// -> this file
+
+// And ('I set task-visibility-start-date to {string} at {string}', (visibilityStartDate, visibilityStartTime) => {
+// -> this file
+
+// And ('I set task-visibility-due-date to {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
+// -> this file
+
+// And ('I enter task description {string}', (taskDescription) => {
+// -> this file
+
 And('I click on Public Submission Checkbox', () => {
   tasks.clickOnPublicSubmissionCheckbox()
-})
-
-And('I click on Cancel Public Submission in confirmation window on task page', () => {
-  tasks.clickCancelInConfirmationWindow()
 })
 
 And('I click on Submit Public Submission in confirmation window on task page', () => {
   tasks.clickSubmitInConfirmationWindow()
 })
 
-//When I click on task 'Cy: Task Creating and Deleting Test'
+// And ('I click on Draft Checkbox', () => {
+// -> this file
+
+//And('I click on button Submit')
+//step defined -->\step_definition\tasks\commonTaskSteps.spec.js
+
+//And('I can see room page 'Course with subject and tasks')
+//step defined -->\step_definition\course\commonCourseSteps.spec.js
+
+//And('I can see task 'Cy Task Creating, Editing, Deleting Test')
+//step defined -->\step_definition\course\commonCourseSteps.spec.js
+
+//When I click on task 'Cy Task Creating and Deleting Test'
 //step defined -->\step_definition\course\commonCourseSteps.spec.js
 
 Then('description is {string}', (expectedDescription) => {
