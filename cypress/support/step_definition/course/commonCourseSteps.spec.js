@@ -44,8 +44,8 @@ And('I click on FAB to create new content', () => {
   coursesCommon.clickOnCreateContentFAB()
 })
 
-And('I click on New Task', () => {
-  coursesCommon.clickOnNewTask()
+And('I click on New Task FAB', () => {
+  coursesCommon.clickOnNewTaskFAB()
 })
 
 And('I can see task {string}', (taskTitle) => {
@@ -64,10 +64,18 @@ And('I click on Delete in dot menu', () => {
   coursesCommon.clickDeleteInDotMenu()
 })
 
+And('I click on Edit in dot menu', () => {
+  coursesCommon.clickEditInDotMenu()
+})
+
 And('I click on Cancel in confirmation window', () => {
   coursesCommon.clickCancelInConfirmationWindow()
 })
 
 And('I click on Delete in confirmation window', () => {
   coursesCommon.clickDeleteInConfirmationWindow()
+})
+
+When('I click on task {string}', (taskTitle) => {
+  coursesCommon.openTask(taskTitle)
 })
