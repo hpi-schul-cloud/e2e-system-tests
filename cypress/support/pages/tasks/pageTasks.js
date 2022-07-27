@@ -14,8 +14,43 @@ class Tasks {
   static #taskDetailsTab = '[id="extended"]'
   static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
   static #fileUploadButton = '[class="section-upload"]'
+  static #fileUploadInput = '[type="file"]'
+  static #filesSection = '[class="files"]'
+  static #fileViewerSection = '[class="file-viewer"]'
 
 
+  clickOnRenameFile(fileName){
+    // cy.get(`[data-file-name="${fileName}]"`).eq(0)
+    //   .get('button').eq(1)
+    //   .click()
+  }
+
+  clickOnFileInTaskEditPage(fileName){
+    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
+    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
+      cy.get(Tasks.#filesSection)
+        .contains(fileName)
+        .click()
+    }
+  }
+
+  seeFileInFileViewer(fileName){
+    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
+    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
+      cy.get(Tasks.#fileViewerSection).contains('a')
+    }
+  }
+
+  clickOnFileViewer(fileName){
+    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
+    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
+      cy.get(Tasks.#fileViewerSection).click({force: true})
+    }
+  }
+
+  fileIsVisibleInSectionFiles(fileName){
+    cy.get(Tasks.#filesSection).contains(fileName)
+  }
 
   seeCreateTaskPage() {
     cy.get(Tasks.#createForm)
@@ -139,6 +174,18 @@ class Tasks {
 
   draftIsDisabled(){
     cy.get(Tasks.#draftCheckbox).should('not.be.checked')
+  }
+
+  executeFileUploadDragAndDrop(fileName){
+    // mark our window object to "know" when it gets reloaded
+    cy.window().then(w => w.beforeReload = true)
+    // initially the new property is there
+    cy.window().should('have.prop', 'beforeReload', true)
+    // Upload a file includes a reload of the page
+    cy.get(Tasks.#fileUploadInput)
+      .attachFile(fileName)
+    // after reload the property should be gone
+    cy.window().should('not.have.prop', 'beforeReload')
   }
 }
 export default Tasks

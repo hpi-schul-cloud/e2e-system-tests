@@ -9,7 +9,8 @@ Feature: To create, edit and delete tasks by the teacher.
     And I click on FAB to create new content
     And I click on New Task FAB
     Then I can see create task page
-    # And file upload button is disabled
+    And file upload button is disabled
+    #  And file upload button is disabled - has to be adjusted when data-testids are available
     When I enter title 'Cy Task Creating and Deleting Test'
     And I click on Enable Group Submission
     And I click on Draft Checkbox
@@ -20,13 +21,16 @@ Feature: To create, edit and delete tasks by the teacher.
     Then I can see room page 'Course with subject and tasks'
     And I can see task 'Cy Task Creating and Deleting Test'
 
-Scenario: Teacher edits and publishes task from room via form
+  Scenario: Teacher edits and publishes task from room via form
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating and Deleting Test'
     And I click on Edit in dot menu
-    # Then file upload button is enabled
+    Then file upload button is enabled
+    # Then file upload button is enabled - has to be adjusted when data-testids are available
+    When I upload file 'example_jpg.jpg'
+  #  Then the page reloads (this happens automatically after file upload)
     When I enter title 'Cy Task Creating, Editing, Deleting Test'
     And I click on Enable Group Submission
     And I set task-visibility-start-date to 'today' at '0100'
@@ -40,13 +44,47 @@ Scenario: Teacher edits and publishes task from room via form
     And I can see task 'Cy Task Creating, Editing, Deleting Test'
     When I click on task 'Cy Task Creating, Editing, Deleting Test'
     Then description is 'Dies ist Deine Aufgabe. Viel Erfolg!'
-    When I click on button Edit
+    And file 'example_jpg.jpg' is visible in section files
+    # When I click on file 'example_jpg.jpg'
+    # Then file 'example_jpg.jpg' is displayed in file-viewer
+    # When I click on file-viewer for file 'example_jpg.jpg'
+    And I click on button Edit
     Then Public Submission is enabled
     And task-visibility-start-date is 'today' at '01:00'
     And task-visibility-due-date is 'tomorrow' at '11:00'
     And Draft is disabled
 
-Scenario: Teacher deletes task from room
+  Scenario: Teacher edits file
+    Given I am logged in as a 'teacher1' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
+    And I click on Edit in dot menu
+    And file 'example_jpg.jpg' is visible in section files
+    # When I click on file 'example_jpg.jpg'
+    # Then file 'example_jpg.jpg' is displayed in file-viewer
+    When I upload file 'test_pdf.pdf'
+    And file 'example_jpg.jpg' is visible in section files
+    And file 'test_pdf.pdf' is visible in section files
+    When I click on rename file 'test_pdf.pdf'
+  #   Then filename dialog opens
+  #   When I enter filename 'test_pdf_renamed.pdf'
+  #   And I click on cancel in dialog window
+  #   Then file 'test_pdf.pdf' is available
+  #   When I click on rename file 'test_pdf.pdf'
+  #   And I enter filename 'test_pdf_renamed.pdf'
+  #   And I click on save in confirmation window
+  #   Then file 'test_pdf_renamed.pdf' is available
+  #   When I click on download file 'test_pdf_renamed.pdf'
+  #   Then download of file 'test_pdf_renamed.pdf' starts
+  #   When I click on delete file 'test_pdf_renamed.pdf'
+  #   Then file 'test_pdf_renamed.pdf' is not available
+  #   And file 'test_pdf.pdf' is not available
+  #   And file 'example_jpg.jpg' is available
+
+
+
+  Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'

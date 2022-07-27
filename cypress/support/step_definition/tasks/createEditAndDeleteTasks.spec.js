@@ -79,6 +79,10 @@ And('file upload button is enabled', () => {
   tasks.fileUploadButtonIsEnabled()
 })
 
+When('I upload file {string}', (fileName) => {
+  tasks.executeFileUploadDragAndDrop(fileName)
+})
+
 // When ('I enter title {string}', (taskTitle) => {
 // -> this file
 
@@ -140,6 +144,35 @@ And ('task-visibility-due-date is {string} at {string}', (visibilityDueDate, vis
 And ('Draft is disabled', () => {
   tasks.draftIsDisabled()
 })
+
+Then('file {string} is visible in section files', (fileName) => {
+  tasks.fileIsVisibleInSectionFiles(fileName)
+})
+
+When('I click on file {string}', (fileName) => {
+  tasks.clickOnFileInTaskEditPage(fileName)
+})
+
+Then('file {string} is displayed in file-viewer', (fileName) => {
+  tasks.seeFileInFileViewer(fileName)
+})
+
+When('I click on file-viewer for file {string}', (fileName) => {
+  tasks.clickOnFileViewer(fileName)
+})
+
+
+
+//Scenario: Teacher deletes task
+//Given ('I am logged in as a 'teacher1' at 'brb'')
+//step defined -->\step_definition\authentication\loginStep.spec.js
+
+//...
+
+When('I click on rename file {string}', (fileName) => {
+  tasks.clickOnRenameFile(fileName)
+})
+
 
 //Scenario: Teacher deletes task
 //Given ('I am logged in as a 'teacher1' at 'brb'')
