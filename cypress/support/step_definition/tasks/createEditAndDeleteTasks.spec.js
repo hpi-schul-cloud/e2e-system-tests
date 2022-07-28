@@ -173,6 +173,26 @@ When('I click on rename file {string}', (fileName) => {
   tasks.clickOnRenameFile(fileName)
 })
 
+When('I enter filename {string} in modal dialog', (newFileName) => {
+  tasks.enterNewFileName(newFileName)
+})
+
+And('I click on cancel in dialog window', () => {
+  tasks.cancelRenameFileDialog()
+})
+
+And('I click on save in confirmation window', () => {
+tasks.submitRenameFileDialog()
+})
+
+When('I click on delete file {string}', (fileName) => {
+  tasks.clickOnDeleteFile(fileName)
+})
+
+And('I click on submit in delete file dialog', () => {
+  tasks.submitDeleteFileDialog()
+})
+
 
 //Scenario: Teacher deletes task
 //Given ('I am logged in as a 'teacher1' at 'brb'')

@@ -17,12 +17,52 @@ class Tasks {
   static #fileUploadInput = '[type="file"]'
   static #filesSection = '[class="files"]'
   static #fileViewerSection = '[class="file-viewer"]'
+  static #renameFileInput = '[id="newNameInput"]'
+  static #deleteModalDialog = '[class="modal fade delete-modal in"]'
+  static #submitBtnModalDialog = '[class="btn btn-primary btn-submit"]'
 
+
+  clickOnDeleteFile(fileName){
+    cy.get(`[data-file-viewer-savename="${fileName}"]`)
+      .find('[data-method="delete"]')
+      .click()
+  }
+
+  submitDeleteFileDialog(){
+    cy.get(Tasks.#deleteModalDialog)
+      .find('[type="submit"]')
+      .click()
+  }
+
+  enterNewFileName(newFileName){
+    cy.get(Tasks.#renameFileInput).clear()
+    cy.get(Tasks.#renameFileInput).type(newFileName, { force: true })
+  }
+
+  cancelRenameFileDialog(){
+    cy.get(Tasks.#renameFileInput)
+      .parent()
+      .parent()
+      .parent()
+      .find('[type="button"]')
+      .eq(0)
+      .click()
+  }
+
+  submitRenameFileDialog(){
+    cy.get(Tasks.#renameFileInput)
+      .parent()
+      .parent()
+      .parent()
+      .find('[type="submit"]')
+      .click()
+    cy.reload()
+  }
 
   clickOnRenameFile(fileName){
-    // cy.get(`[data-file-name="${fileName}]"`).eq(0)
-    //   .get('button').eq(1)
-    //   .click()
+    cy.get(`[data-file-viewer-savename="${fileName}"]`)
+      .find('button').eq(1)
+      .click()
   }
 
   clickOnFileInTaskEditPage(fileName){
@@ -49,7 +89,8 @@ class Tasks {
   }
 
   fileIsVisibleInSectionFiles(fileName){
-    cy.get(Tasks.#filesSection).contains(fileName)
+    cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true})
+    //cy.get(Tasks.#filesSection).find(`[data-file-name="${fileName}"]`)
   }
 
   seeCreateTaskPage() {

@@ -67,20 +67,24 @@ Feature: To create, edit and delete tasks by the teacher.
     And file 'example_jpg.jpg' is visible in section files
     And file 'test_pdf.pdf' is visible in section files
     When I click on rename file 'test_pdf.pdf'
-  #   Then filename dialog opens
-  #   When I enter filename 'test_pdf_renamed.pdf'
-  #   And I click on cancel in dialog window
-  #   Then file 'test_pdf.pdf' is available
-  #   When I click on rename file 'test_pdf.pdf'
-  #   And I enter filename 'test_pdf_renamed.pdf'
-  #   And I click on save in confirmation window
-  #   Then file 'test_pdf_renamed.pdf' is available
+    # Then filename dialog opens
+    When I enter filename 'test_pdf_renamed.pdf' in modal dialog
+    And I click on cancel in dialog window
+    Then file 'test_pdf.pdf' is visible in section files
+    When I click on rename file 'test_pdf.pdf'
+    And I enter filename 'test_pdf_renamed.pdf' in modal dialog
+    And I click on save in confirmation window
+    Then file 'test_pdf_renamed.pdf' is visible in section files
   #   When I click on download file 'test_pdf_renamed.pdf'
   #   Then download of file 'test_pdf_renamed.pdf' starts
-  #   When I click on delete file 'test_pdf_renamed.pdf'
-  #   Then file 'test_pdf_renamed.pdf' is not available
-  #   And file 'test_pdf.pdf' is not available
-  #   And file 'example_jpg.jpg' is available
+    When I click on delete file 'test_pdf_renamed.pdf'
+    # And I click on cancel in delete file dialog
+    # Then file 'test_pdf_renamed.pdf' is visible in section files
+    # When I click on delete file 'test_pdf_renamed.pdf'
+    And I click on submit in delete file dialog
+  #   Then file 'test_pdf_renamed.pdf' is not visible in section files
+  #   And file 'test_pdf.pdf' is not visible in section files
+  #   And file 'example_jpg.jpg' is visible in section files
 
 
 
