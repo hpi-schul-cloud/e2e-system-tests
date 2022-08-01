@@ -21,6 +21,16 @@ class Tasks {
   static #deleteModalDialog = '[class="modal fade delete-modal in"]'
   static #submitBtnModalDialog = '[class="btn btn-primary btn-submit"]'
 
+  clickDownloadFile(fileName){
+    cy.get(`[data-file-viewer-savename="${fileName}"]`)
+      .find('[data-method="download"]')
+      .click()
+  }
+
+  fileIsSavedInDownloads(fileName){
+    cy.readFile(`cypress/downloads/${fileName}`, 'binary', { timeout: 15000 })
+      .should(buffer => expect(buffer.length).to.be.gt(100))
+  }
 
   clickOnDeleteFile(fileName){
     cy.get(`[data-file-viewer-savename="${fileName}"]`)
@@ -31,6 +41,13 @@ class Tasks {
   submitDeleteFileDialog(){
     cy.get(Tasks.#deleteModalDialog)
       .find('[type="submit"]')
+      .click()
+  }
+
+  cancelDeleteFileDialog(){
+    cy.get(Tasks.#deleteModalDialog)
+      .find('[type="button"]')
+      .eq(0)
       .click()
   }
 
@@ -90,7 +107,10 @@ class Tasks {
 
   fileIsVisibleInSectionFiles(fileName){
     cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true})
-    //cy.get(Tasks.#filesSection).find(`[data-file-name="${fileName}"]`)
+  }
+
+  fileIsNotVisibleInSectionFiles(fileName){
+    cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true}).should('not.exist')
   }
 
   seeCreateTaskPage() {

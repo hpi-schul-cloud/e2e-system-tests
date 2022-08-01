@@ -67,7 +67,6 @@ Feature: To create, edit and delete tasks by the teacher.
     And file 'example_jpg.jpg' is visible in section files
     And file 'test_pdf.pdf' is visible in section files
     When I click on rename file 'test_pdf.pdf'
-    # Then filename dialog opens
     When I enter filename 'test_pdf_renamed.pdf' in modal dialog
     And I click on cancel in dialog window
     Then file 'test_pdf.pdf' is visible in section files
@@ -75,18 +74,20 @@ Feature: To create, edit and delete tasks by the teacher.
     And I enter filename 'test_pdf_renamed.pdf' in modal dialog
     And I click on save in confirmation window
     Then file 'test_pdf_renamed.pdf' is visible in section files
-  #   When I click on download file 'test_pdf_renamed.pdf'
-  #   Then download of file 'test_pdf_renamed.pdf' starts
+    When I click on download file 'test_pdf_renamed.pdf'
+    Then file 'test_pdf_renamed.pdf' is saved in folder downloads
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
+    And I click on Edit in dot menu
+    And I click on delete file 'test_pdf_renamed.pdf'
+    And I click on cancel in delete file dialog
+    Then file 'test_pdf_renamed.pdf' is visible in section files
     When I click on delete file 'test_pdf_renamed.pdf'
-    # And I click on cancel in delete file dialog
-    # Then file 'test_pdf_renamed.pdf' is visible in section files
-    # When I click on delete file 'test_pdf_renamed.pdf'
     And I click on submit in delete file dialog
-  #   Then file 'test_pdf_renamed.pdf' is not visible in section files
-  #   And file 'test_pdf.pdf' is not visible in section files
-  #   And file 'example_jpg.jpg' is visible in section files
-
-
+    Then file 'test_pdf_renamed.pdf' is not visible in section files
+    And file 'test_pdf.pdf' is not visible in section files
+    And file 'example_jpg.jpg' is visible in section files
 
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'

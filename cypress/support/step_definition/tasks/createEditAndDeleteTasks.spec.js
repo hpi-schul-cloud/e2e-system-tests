@@ -149,6 +149,10 @@ Then('file {string} is visible in section files', (fileName) => {
   tasks.fileIsVisibleInSectionFiles(fileName)
 })
 
+Then('file {string} is not visible in section files', (fileName) => {
+  tasks.fileIsNotVisibleInSectionFiles(fileName)
+})
+
 When('I click on file {string}', (fileName) => {
   tasks.clickOnFileInTaskEditPage(fileName)
 })
@@ -185,8 +189,20 @@ And('I click on save in confirmation window', () => {
 tasks.submitRenameFileDialog()
 })
 
+When('I click on download file {string}', (fileName) => {
+  tasks.clickDownloadFile(fileName)
+})
+
+Then('file {string} is saved in folder downloads', (fileName) => {
+  tasks.fileIsSavedInDownloads(fileName)
+})
+
 When('I click on delete file {string}', (fileName) => {
   tasks.clickOnDeleteFile(fileName)
+})
+
+And('I click on cancel in delete file dialog', () => {
+  tasks.cancelDeleteFileDialog()
 })
 
 And('I click on submit in delete file dialog', () => {
