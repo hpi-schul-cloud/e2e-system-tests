@@ -89,6 +89,20 @@ Feature: To create, edit and delete tasks by the teacher.
     And file 'test_pdf.pdf' is not visible in section files
     And file 'example_jpg.jpg' is visible in section files
 
+Scenario: Student submits task
+  #  When I log out
+    Given I am logged in as a 'student1' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    And I click on task 'Cy Task Creating, Editing, Deleting Test'
+    Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
+    When  I click on submission tab
+    And I enter text submission 'Hier ist die Antwort.'
+    And I click on button Save and Send
+    Then I see hint that submission has been sent successfully
+  #  When I click  completed task tab
+  #  Then I see task 'E2E task from room' in the list
+
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview

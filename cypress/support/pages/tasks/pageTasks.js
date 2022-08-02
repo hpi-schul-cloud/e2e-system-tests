@@ -1,6 +1,7 @@
 'use strict'
 
 class Tasks {
+  static #pageTitle = '[id="page-title"]'
   static #createForm = '[id="homework-form"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
@@ -12,6 +13,7 @@ class Tasks {
   static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
   static #taskDetailsTab = '[id="extended"]'
+  static #submissionTab = '[id="submission-tab-link"]'
   static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
   static #fileUploadButton = '[class="section-upload"]'
   static #fileUploadInput = '[type="file"]'
@@ -20,6 +22,24 @@ class Tasks {
   static #renameFileInput = '[id="newNameInput"]'
   static #deleteModalDialog = '[class="modal fade delete-modal in"]'
   static #submitBtnModalDialog = '[class="btn btn-primary btn-submit"]'
+  static #submissionSaveAndSendBtn = '[class="ckeditor-submit btn btn-primary btn-submit"]'
+  static #hintForSubmissionReceived = '[class="fa fa-check done"]'
+
+  seeDetailPageForTask(taskTitle){
+    cy.get(Tasks.#pageTitle).should('contain', taskTitle)
+  }
+
+  clickSubmissionTab(){
+    cy.get(Tasks.#submissionTab).click()
+  }
+
+  clickSaveAndSendSubmissionBtn(){
+    cy.get(Tasks.#submissionSaveAndSendBtn).click()
+  }
+
+  seeSubmissionReceivedHint(){
+    cy.get(Tasks.#hintForSubmissionReceived).should('be.visible')
+  }
 
   clickDownloadFile(fileName){
     cy.get(`[data-file-viewer-savename="${fileName}"]`)
@@ -204,9 +224,9 @@ class Tasks {
 
   // }
 
-  setTaskDescription(taskDescription){
+  setTaskText(taskText){
     cy.get(Tasks.#homeWorkDescriptionP).find('div > p').clear()
-    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').type(taskDescription)
+    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').type(taskText)
   }
 
   clickOnPublicSubmissionCheckbox(){

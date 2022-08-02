@@ -47,7 +47,7 @@ And ('I set task-visibility-due-date to {string} at {string}', (visibilityDueDat
 })
 
 And ('I enter task description {string}', (taskDescription) => {
-  tasks.setTaskDescription(taskDescription)
+  tasks.setTaskText(taskDescription)
 })
 
 //And('I click on button Submit')
@@ -167,7 +167,7 @@ When('I click on file-viewer for file {string}', (fileName) => {
 
 
 
-//Scenario: Teacher deletes task
+//Scenario: Teacher edits file
 //Given ('I am logged in as a 'teacher1' at 'brb'')
 //step defined -->\step_definition\authentication\loginStep.spec.js
 
@@ -207,6 +207,30 @@ And('I click on cancel in delete file dialog', () => {
 
 And('I click on submit in delete file dialog', () => {
   tasks.submitDeleteFileDialog()
+})
+
+//Scenario: Student deletes task
+//Given ('I am logged in as a 'student1' at 'brb'')
+//step defined -->\step_definition\authentication\loginStep.spec.js
+
+Then('I see detail page for task {string}', (taskTitle) => {
+  tasks.seeDetailPageForTask(taskTitle)
+})
+
+When('I click on submission tab', () => {
+  tasks.clickSubmissionTab()
+})
+
+And ('I enter text submission {string}', (submissionText) => {
+  tasks.setTaskText(submissionText)
+})
+
+And('I click on button Save and Send', () => {
+  tasks.clickSaveAndSendSubmissionBtn()
+})
+
+Then('I see hint that submission has been sent successfully', () => {
+  tasks.seeSubmissionReceivedHint()
 })
 
 
