@@ -1,6 +1,6 @@
-#Feature: To read a news on the respective dashboards
+Feature: To read a news on the respective dashboards
 
-  #As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
+  As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
 
   #Scenario: Reading a school news on the dashboard
     #Given I am logged in as a 'teacher' at 'brb'

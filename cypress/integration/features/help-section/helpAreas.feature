@@ -1,6 +1,6 @@
-#Feature: To use the help areas in dBildungscloud
+Feature: To use the help areas in dBildungscloud
 
-  #As a teacher I want to use the help areas in the header and sidebar so that I can find help when needed
+  As a teacher I want to use the help areas in the header and sidebar so that I can find help when needed
 
   #Scenario: Use the help area in the header
     #Given I am logged in as a 'teacher' at 'brb'

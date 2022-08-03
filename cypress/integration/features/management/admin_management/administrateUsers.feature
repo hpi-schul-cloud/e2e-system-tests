@@ -1,6 +1,6 @@
-#Feature: To add, edit and delete new users by the admin.
+Feature: To add, edit and delete new users by the admin.
 
-  #As an admin I want to create a new user so that I can administrate it
+  As an admin I want to create a new user so that I can administrate it
 
   #Scenario: Adding a new student
     #Given I am logged in as a 'admin' at 'brb'

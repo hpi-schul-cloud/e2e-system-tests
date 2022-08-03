@@ -1,6 +1,6 @@
-#Feature: To go to addons page on NBC
+Feature: To go to addons page on NBC
 
-  #As an admin I want to navigation to the addons page on NBC so that I can access it.
+  As an admin I want to navigation to the addons page on NBC so that I can access it.
 
   #Scenario: to access Add-ons page as an Admin
     #Given I am logged in as a 'admin' at 'nbc'
