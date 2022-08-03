@@ -9,7 +9,7 @@ Feature: To create, edit and delete tasks by the teacher.
     And I click on FAB to create new content
     And I click on New Task FAB
     Then I can see create task page
-    # And file upload button is disabled
+    And file upload button is disabled
     When I enter title 'Cy Task Creating and Deleting Test'
     And I click on Enable Group Submission
     And I click on Draft Checkbox
@@ -26,7 +26,7 @@ Scenario: Teacher edits and publishes task from room via form
     And I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating and Deleting Test'
     And I click on Edit in dot menu
-    # Then file upload button is enabled
+    Then file upload button is enabled
     When I enter title 'Cy Task Creating, Editing, Deleting Test'
     And I click on Enable Group Submission
     And I set task-visibility-start-date to 'today' at '0100'

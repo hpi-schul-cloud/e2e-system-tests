@@ -24,5 +24,5 @@ Feature: To add and delete a course by the teacher
     When I go to rooms overview
     And I go to room 'Cypress Testkurs Edit'
     When I open course edit page
-    Then I should be able to delete the test room
+    When I should be able to delete the test room
     Then I do not see the course 'Cypress Testkurs Edit' on the room overview page
