@@ -14,8 +14,10 @@ class Tasks {
   static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
   static #taskDetailsTab = '[id="extended"]'
   static #submissionTab = '[id="submission-tab-link"]'
+  static #submissionsTab = '[id="submissions-tab-link"]'
   static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
-  static #fileUploadButton = '[class="section-upload"]'
+  static #fileUploadButtonDisabled = '[data-testid="tasks-edit-fileupload-disabled"]'
+  static #fileUploadButtonEnabled = '[data-testid="tasks-edit-fileupload-enabled"]'
   static #fileUploadInput = '[type="file"]'
   static #filesSection = '[class="files"]'
   static #fileViewerSection = '[class="file-viewer"]'
@@ -24,6 +26,77 @@ class Tasks {
   static #submitBtnModalDialog = '[class="btn btn-primary btn-submit"]'
   static #submissionSaveAndSendBtn = '[class="ckeditor-submit btn btn-primary btn-submit"]'
   static #hintForSubmissionReceived = '[class="fa fa-check done"]'
+  static #doneTasksTab = '[data-testid="closedTasks"]'
+  static #taskTitleInList = '[data-testid="taskTitle"]'
+  static #taskSection = '[class="section-homework"]'
+  static #submissionsSection = '[id="submissions"]'
+  static #submissionDiv = '[id="submission"]'
+  static #gradingPercentInput = '[data-testid="evaluation_procent"]'
+  // static #saveAndSendButton = '[class="ckeditor-submit btn btn-primary"]' -> adjust when data-testid available
+  static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]'
+
+  checkGradingForStudent(studentLastname, gradingPercent){
+    cy.get(Tasks.#submissionsSection)
+    .contains(studentLastname)
+    .parent()
+    .should('contain', gradingPercent)
+  }
+
+  clickSaveAndSendBtn(){
+    cy.get(Tasks.#submissionSaveAndSendBtn).click()
+    // cy.get('[class="tab-content submission-editor active"]')
+    //   .find('button')
+    //   .click()
+  }
+
+  enterGradingPercent(gradingPercent){
+    cy.get(Tasks.#gradingPercentInput).type(gradingPercent)
+  }
+
+  clickOnGradingTab(){
+    // will be adapted if data test id for grad tab link is available
+    cy.get('[class="section-evaluation tab-view"]').find('a').eq(1).click()
+  }
+
+  compareSubmissionText(submissionText){
+    cy.get(Tasks.#submissionDiv).should('contain', submissionText)
+  }
+
+  openStudentsSubmission(studentLastname){
+    cy.get(Tasks.#submissionsSection)
+      .contains(studentLastname)
+      .parent()
+      .find('[class="fa fa-chevron-down"]')
+      .click()
+  }
+
+  seeTickInStudentsSubmissionLine(studentLastname){
+    cy.get(Tasks.#submissionsSection)
+    .contains(studentLastname)
+    .parent()
+    .find('[class="fa fa-check green"]')
+    .should('be.visible')
+  }
+
+  seeTaskInList(taskTitle){
+    cy.get(Tasks.#taskTitleInList).contains(taskTitle).should('be.visible')
+  }
+
+  seeTaskNotInList(taskTitle){
+    cy.get(Tasks.#taskTitleInList).should('not.contain', taskTitle)
+  }
+
+  clickOnTabDoneTasks(){
+    cy.get(Tasks.#doneTasksTab).click()
+  }
+
+  openNotGradedTasks(){
+    cy.get(Tasks.#lowerTaskSectionIcon).eq(1).click()
+  }
+
+  clickOnToRoomBtn(){
+    cy.get(Tasks.#taskSection).find('a').eq(1).click()
+  }
 
   seeDetailPageForTask(taskTitle){
     cy.get(Tasks.#pageTitle).should('contain', taskTitle)
@@ -31,6 +104,10 @@ class Tasks {
 
   clickSubmissionTab(){
     cy.get(Tasks.#submissionTab).click()
+  }
+
+  clickSubmissionsTab(){
+    cy.get(Tasks.#submissionsTab).click()
   }
 
   clickSaveAndSendSubmissionBtn(){
@@ -140,11 +217,11 @@ class Tasks {
   }
 
   fileUploadButtonIsDisabled() {
-    cy.get(Tasks.#fileUploadButton).find('div').should('have.class', 'form-files-storage-disabled')
+    cy.get(Tasks.#fileUploadButtonDisabled).should('be.visible')
   }
 
   fileUploadButtonIsEnabled() {
-    cy.get(Tasks.#fileUploadButton).find('button')
+    cy.get(Tasks.#fileUploadButtonEnabled).should('be.visible')
   }
 
   enterTaskTitle(taskTitle) {

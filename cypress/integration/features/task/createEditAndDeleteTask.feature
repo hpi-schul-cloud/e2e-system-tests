@@ -22,6 +22,9 @@ Feature: To create, edit and delete tasks by the teacher.
     And I can see task 'Cy Task Creating and Deleting Test'
 
   Scenario: Teacher edits and publishes task from room via form
+#   Adding the following actions would be a good idea:
+# - attaching a file to task
+# - embedding an image into a task.description
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
@@ -89,8 +92,7 @@ Feature: To create, edit and delete tasks by the teacher.
     And file 'test_pdf.pdf' is not visible in section files
     And file 'example_jpg.jpg' is visible in section files
 
-Scenario: Student submits task
-  #  When I log out
+  Scenario: Student submits task
     Given I am logged in as a 'student1' at 'brb'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
@@ -100,8 +102,31 @@ Scenario: Student submits task
     And I enter text submission 'Hier ist die Antwort.'
     And I click on button Save and Send
     Then I see hint that submission has been sent successfully
-  #  When I click  completed task tab
-  #  Then I see task 'E2E task from room' in the list
+    When I go to tasks overview
+    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list
+    And I click completed task tab
+    And I click on not graded tasks
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list
+
+  Scenario: Teacher grades task from room
+    Given I am logged in as a 'teacher1' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+  # Then Task card info submitted contains "1/2" for task 'Course with subject and tasks'
+    And I click on task 'Cy Task Creating, Editing, Deleting Test'
+    And I click on submissions tab
+    Then there is a tick in column delivered for 'Kraft'
+    When I click on submission of 'Kraft'
+    Then I see submission text 'Hier ist die Antwort.'
+    When I click on grading tab
+    And I enter comment 'Gut gemacht!'
+    And I enter grade '83'
+    # And I click on button Save and Send
+    # Then there is a tick in column delivered for 'Kraft'
+    # And grading for 'Kraft' contains '83'
+  # When I click on button To Course
+  # Then Task card info submitted contains "1/2" for task 'Course with subject and tasks'
+  # And Task card info graded contains "1/2" for task 'Course with subject and tasks'
 
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'

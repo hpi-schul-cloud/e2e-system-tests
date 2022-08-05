@@ -233,6 +233,66 @@ Then('I see hint that submission has been sent successfully', () => {
   tasks.seeSubmissionReceivedHint()
 })
 
+When('I click on button To-Room', () => {
+  tasks.clickOnToRoomBtn()
+})
+
+And('I click completed task tab', () => {
+  tasks.clickOnTabDoneTasks()
+})
+
+And('I click on not graded tasks', () => {
+  tasks.openNotGradedTasks()
+})
+
+Then('I see task {string} in the list', (taskTitle) => {
+  tasks.seeTaskInList(taskTitle)
+})
+
+Then('I do not see task {string} in the list', (taskTitle) => {
+  tasks.seeTaskNotInList(taskTitle)
+})
+
+
+//Scenario: Teacher grades task from room
+//Given ('I am logged in as a 'teacher1' at 'brb'')
+//step defined -->\step_definition\authentication\loginStep.spec.js
+
+And('I click on submissions tab', () => {
+  tasks.clickSubmissionsTab()
+})
+
+Then('there is a tick in column delivered for {string}', (studentLastname) => {
+  tasks.seeTickInStudentsSubmissionLine(studentLastname)
+})
+
+When('I click on submission of {string}', (studentLastname) => {
+  tasks.openStudentsSubmission(studentLastname)
+})
+
+Then('I see submission text {string}', (submissionText) => {
+  tasks.compareSubmissionText(submissionText)
+})
+
+When('I click on grading tab', () => {
+  tasks.clickOnGradingTab()
+})
+
+And ('I enter comment {string}', (gradingText) => {
+  tasks.setTaskText(gradingText)
+})
+
+And('I enter grade {string}', (gradingPercent) => {
+  tasks.enterGradingPercent(gradingPercent)
+})
+
+And('I click on button Save and Send', () => {
+  tasks.clickSaveAndSendBtn()
+})
+
+And('grading for {string} contains {string}', (studentLastname, gradingPercent) => {
+  tasks.checkGradingForStudent(studentLastname, gradingPercent)
+})
 
 //Scenario: Teacher deletes task
 //Given ('I am logged in as a 'teacher1' at 'brb'')
