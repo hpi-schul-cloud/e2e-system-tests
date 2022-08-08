@@ -26,8 +26,8 @@ class Tasks {
   static #renameFileSubmitButton = '[data-testid="rename-file-dialog-submit-btn"]'
   static #deleteFileCancelButton = '[data-testid="delete-file-dialog-cancel-btn"]'
   static #deleteFileSubmitButton = '[data-testid="delete-file-dialog-submit-btn"]'
-  static #submitBtnModalDialog = '[class="btn btn-primary btn-submit"]'
   static #submissionSaveAndSendBtn = '[data-testid="tasks-submission-save-and-send-btn"]'
+  static #gradingSaveAndSendBtn = '[class="ckeditor-submit btn btn-primary"]'
   static #hintForSubmissionReceived = '[data-testid="tasks-submission-hint-received"]'
   static #doneTasksTab = '[data-testid="closedTasks"]'
   static #taskTitleInList = '[data-testid="taskTitle"]'
@@ -35,164 +35,8 @@ class Tasks {
   static #submissionsSection = '[id="submissions"]'
   static #submissionDiv = '[id="submission"]'
   static #gradingPercentInput = '[data-testid="evaluation_procent"]'
-  // static #saveAndSendButton = '[class="ckeditor-submit btn btn-primary"]' -> adjust when data-testid available
   static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]'
-
-  checkGradingForStudent(studentLastname, gradingPercent){
-    cy.get(Tasks.#submissionsSection)
-    .contains(studentLastname)
-    .parent()
-    .should('contain', gradingPercent)
-  }
-
-  clickSaveAndSendBtn(){
-    cy.get(Tasks.#submissionSaveAndSendBtn).click()
-  }
-
-  enterGradingPercent(gradingPercent){
-    cy.get(Tasks.#gradingPercentInput).type(gradingPercent)
-  }
-
-  clickOnGradingTab(){
-    // will be adapted if data test id for grad tab link is available
-    cy.get('[class="section-evaluation tab-view"]').find('a').eq(1).click()
-  }
-
-  compareSubmissionText(submissionText){
-    cy.get(Tasks.#submissionDiv).should('contain', submissionText)
-  }
-
-  openStudentsSubmission(studentLastname){
-    cy.get(Tasks.#submissionsSection)
-      .contains(studentLastname)
-      .parent()
-      .find('[class="fa fa-chevron-down"]')
-      .click()
-  }
-
-  seeTickInStudentsSubmissionLine(studentLastname){
-    cy.get(Tasks.#submissionsSection)
-    .contains(studentLastname)
-    .parent()
-    .find('[class="fa fa-check green"]')
-    .should('be.visible')
-  }
-
-  seeTaskInList(taskTitle){
-    cy.get(Tasks.#taskTitleInList).contains(taskTitle).should('be.visible')
-  }
-
-  seeTaskNotInList(taskTitle){
-    cy.get(Tasks.#taskTitleInList).should('not.contain', taskTitle)
-  }
-
-  clickOnTabDoneTasks(){
-    cy.get(Tasks.#doneTasksTab).click()
-  }
-
-  openNotGradedTasks(){
-    cy.get(Tasks.#lowerTaskSectionIcon).eq(1).click()
-  }
-
-  clickOnToRoomBtn(){
-    cy.get(Tasks.#taskSection).find('a').eq(1).click()
-  }
-
-  seeDetailPageForTask(taskTitle){
-    cy.get(Tasks.#pageTitle).should('contain', taskTitle)
-  }
-
-  clickSubmissionTab(){
-    cy.get(Tasks.#submissionTab).click()
-  }
-
-  clickSubmissionsTab(){
-    cy.get(Tasks.#submissionsTab).click()
-  }
-
-  clickSaveAndSendSubmissionBtn(){
-    cy.get(Tasks.#submissionSaveAndSendBtn).click()
-  }
-
-  seeSubmissionReceivedHint(){
-    cy.get(Tasks.#hintForSubmissionReceived).should('be.visible')
-  }
-
-  clickDownloadFile(fileName){
-    cy.get(`[data-file-viewer-savename="${fileName}"]`)
-      .find('[data-method="download"]')
-      .click()
-  }
-
-  fileIsSavedInDownloads(fileName){
-    cy.readFile(`cypress/downloads/${fileName}`, 'binary', { timeout: 15000 })
-      .should(buffer => expect(buffer.length).to.be.gt(100))
-  }
-
-  clickOnDeleteFile(fileName){
-    cy.get(`[data-file-viewer-savename="${fileName}"]`)
-      .find('[data-method="delete"]')
-      .click()
-  }
-
-  submitDeleteFileDialog(){
-    cy.get(Tasks.#deleteFileSubmitButton).click()
-  }
-
-  cancelDeleteFileDialog(){
-    cy.get(Tasks.#deleteFileCancelButton).click()
-  }
-
-  enterNewFileName(newFileName){
-    cy.get(Tasks.#renameFileInput).clear()
-    cy.get(Tasks.#renameFileInput).type(newFileName, { force: true })
-  }
-
-  cancelRenameFileDialog(){
-    cy.get(Tasks.#renameFileCancelButton).click()
-  }
-
-  submitRenameFileDialog(){
-    cy.get(Tasks.#renameFileSubmitButton).click()
-    cy.reload()
-  }
-
-  clickOnRenameFile(fileName){
-    cy.get(`[data-file-viewer-savename="${fileName}"]`)
-      .find('button').eq(1)
-      .click()
-  }
-
-  clickOnFileInTaskEditPage(fileName){
-    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
-    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
-      cy.get(Tasks.#filesSection)
-        .contains(fileName)
-        .click()
-    }
-  }
-
-  seeFileInFileViewer(fileName){
-    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
-    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
-      cy.get(Tasks.#fileViewerSection).contains('a')
-    }
-  }
-
-  clickOnFileViewer(fileName){
-    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
-    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
-      cy.get(Tasks.#fileViewerSection).click({force: true})
-    }
-  }
-
-  fileIsVisibleInSectionFiles(fileName){
-    cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true})
-  }
-
-  fileIsNotVisibleInSectionFiles(fileName){
-    cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true}).should('not.exist')
-  }
+  static #toCourseButton = '[data-testid="tasks-navbtn-to-room-files"]' // to be adapted, when data-testid is correct (tasks-navbtn-to-room)
 
   seeCreateTaskPage() {
     cy.get(Tasks.#createForm)
@@ -249,6 +93,47 @@ class Tasks {
     cy.get(Tasks.#visibilityDueDateInput).type(`{moveToStart}${startDueText}${visibilityDueTime}`)
   }
 
+  setTaskText(taskText){
+    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').clear()
+    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').type(taskText)
+  }
+
+  executeFileUpload(fileName){
+    // mark our window object to "know" when it gets reloaded
+    cy.window().then(w => w.beforeReload = true)
+    // initially the new property is there
+    cy.window().should('have.prop', 'beforeReload', true)
+    // Upload a file includes a reload of the page
+    cy.get(Tasks.#fileUploadInput)
+      .attachFile(fileName)
+    // after reload the property should be gone
+    cy.window().should('not.have.prop', 'beforeReload')
+  }
+
+  clickOnPublicSubmissionCheckbox(){
+    cy.get(Tasks.#publicSubmissionsCheckbox).click()
+  }
+
+  clickCancelInConfirmationWindow() {
+    cy.get(Tasks.#dialogCancelButton).click()
+  }
+
+  clickSubmitInConfirmationWindow() {
+    cy.get(Tasks.#dialogConfirmButton).click()
+  }
+
+  descriptionEqualsOnDetailpage(expectedDescription) {
+    cy.get(Tasks.#taskDetailsTab).should('contain', expectedDescription)
+  }
+
+  clickOnEditInTaskDetails(){
+    cy.get(Tasks.#taskDetailsEditButton).click()
+  }
+
+  publicSubmissionIsEnabled(){
+    cy.get(Tasks.#publicSubmissionsCheckbox).should('be.checked')
+  }
+
   compareVisibilityStartDate(visibilityStartDate, visibilityStartTime) {
     const today = new Date()
     let startDate
@@ -277,57 +162,174 @@ class Tasks {
     cy.get(Tasks.#visibilityDueDateInput).should('have.value', dueDateCheckValue)
   }
 
-  // compareVisibilityStartDate(visibilityStartDate, visibilityStartTime){
-
-  // }
-
-  // compareVisibilityDueDate(visibilityDueDate, visibilityDueTime){
-
-  // }
-
-  setTaskText(taskText){
-    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').clear()
-    cy.get(Tasks.#homeWorkDescriptionP).find('div > p').type(taskText)
-  }
-
-  clickOnPublicSubmissionCheckbox(){
-    cy.get(Tasks.#publicSubmissionsCheckbox).click()
-  }
-
-  clickCancelInConfirmationWindow() {
-    cy.get(Tasks.#dialogCancelButton).click()
-  }
-
-  clickSubmitInConfirmationWindow() {
-    cy.get(Tasks.#dialogConfirmButton).click()
-  }
-
-  descriptionEqualsOnDetailpage(expectedDescription) {
-    cy.get(Tasks.#taskDetailsTab).should('contain', expectedDescription)
-  }
-
-  clickOnEditInTaskDetails(){
-    cy.get(Tasks.#taskDetailsEditButton).click()
-  }
-
-  publicSubmissionIsEnabled(){
-    cy.get(Tasks.#publicSubmissionsCheckbox).should('be.checked')
-  }
-
   draftIsDisabled(){
     cy.get(Tasks.#draftCheckbox).should('not.be.checked')
   }
 
-  executeFileUploadDragAndDrop(fileName){
-    // mark our window object to "know" when it gets reloaded
-    cy.window().then(w => w.beforeReload = true)
-    // initially the new property is there
-    cy.window().should('have.prop', 'beforeReload', true)
-    // Upload a file includes a reload of the page
-    cy.get(Tasks.#fileUploadInput)
-      .attachFile(fileName)
-    // after reload the property should be gone
-    cy.window().should('not.have.prop', 'beforeReload')
+  fileIsVisibleInSectionFiles(fileName){
+    cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true})
+  }
+
+  fileIsNotVisibleInSectionFiles(fileName){
+    cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true}).should('not.exist')
+  }
+
+  clickOnFileInTaskEditPage(fileName){
+    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
+    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
+      cy.get(Tasks.#filesSection)
+        .contains(fileName)
+        .click()
+    }
+  }
+
+  seeFileInFileViewer(fileName){
+    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
+    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
+      cy.get(Tasks.#fileViewerSection)
+      .find('img')
+      .should('have.attr', 'src')
+      .should('contain', fileName)
+    }
+  }
+
+  clickOnFileViewer(fileName){
+    // pdf files are excluded, because they open in a new browser tab, which can not be reached by cypress
+    if (fileName.includes('png') || fileName.includes('jpg') || fileName.includes('gif')) {
+      cy.get(Tasks.#fileViewerSection)
+        .find('a')
+        .eq(0)
+        .click()
+    }
+  }
+
+  clickOnRenameFile(fileName){
+    cy.get(`[data-file-viewer-savename="${fileName}"]`)
+      .find('button').eq(1)
+      .click()
+  }
+
+  enterNewFileName(newFileName){
+    cy.get(Tasks.#renameFileInput).clear()
+    cy.get(Tasks.#renameFileInput).type(newFileName, { force: true })
+  }
+
+  cancelRenameFileDialog(){
+    cy.get(Tasks.#renameFileCancelButton).click()
+  }
+
+  submitRenameFileDialog(){
+    cy.get(Tasks.#renameFileSubmitButton).click()
+    cy.reload()
+  }
+
+  clickDownloadFile(fileName){
+    cy.get(`[data-file-viewer-savename="${fileName}"]`)
+      .find('[data-method="download"]')
+      .click()
+  }
+
+  fileIsSavedInDownloads(fileName){
+    cy.readFile(`cypress/downloads/${fileName}`, 'binary', { timeout: 15000 })
+      .should(buffer => expect(buffer.length).to.be.gt(100))
+  }
+
+  clickOnDeleteFile(fileName){
+    cy.get(`[data-file-viewer-savename="${fileName}"]`)
+      .find('[data-method="delete"]')
+      .click()
+  }
+
+  submitDeleteFileDialog(){
+    cy.get(Tasks.#deleteFileSubmitButton).click()
+  }
+
+  cancelDeleteFileDialog(){
+    cy.get(Tasks.#deleteFileCancelButton).click()
+  }
+
+  seeDetailPageForTask(taskTitle){
+    cy.get(Tasks.#pageTitle).should('contain', taskTitle)
+  }
+
+  clickSubmissionTab(){
+    cy.get(Tasks.#submissionTab).click()
+  }
+
+  clickSaveAndSendSubmissionBtn(){
+    cy.get(Tasks.#submissionSaveAndSendBtn).click()
+  }
+
+  seeSubmissionReceivedHint(){
+    cy.get(Tasks.#hintForSubmissionReceived).should('be.visible')
+  }
+
+  clickOnToRoomBtn(){
+    cy.get(Tasks.#taskSection).find('a').eq(1).click()
+  }
+
+  clickOnTabDoneTasks(){
+    cy.get(Tasks.#doneTasksTab).click()
+  }
+
+  openNotGradedTasks(){
+    cy.get(Tasks.#lowerTaskSectionIcon).eq(1).click()
+  }
+
+  seeTaskInList(taskTitle){
+    cy.get(Tasks.#taskTitleInList).contains(taskTitle).should('be.visible')
+  }
+
+  seeTaskNotInList(taskTitle){
+    cy.get(Tasks.#taskTitleInList).should('not.contain', taskTitle)
+  }
+
+  clickSubmissionsTab(){
+    cy.get(Tasks.#submissionsTab).click()
+  }
+
+  seeTickInStudentsSubmissionLine(studentLastname){
+    cy.get(Tasks.#submissionsSection)
+    .contains(studentLastname)
+    .parent()
+    .find('[class="fa fa-check green"]')
+    .should('be.visible')
+  }
+
+  openStudentsSubmission(studentLastname){
+    cy.get(Tasks.#submissionsSection)
+      .contains(studentLastname)
+      .parent()
+      .find('[class="fa fa-chevron-down"]')
+      .click()
+  }
+
+  compareSubmissionText(submissionText){
+    cy.get(Tasks.#submissionDiv).should('contain', submissionText)
+  }
+
+  clickOnGradingTab(){
+    // will be adapted if data test id for grad tab link is available
+    cy.get('[class="section-evaluation tab-view"]').find('a').eq(1).click()
+  }
+
+  enterGradingPercent(gradingPercent){
+    cy.get(Tasks.#gradingPercentInput).type(gradingPercent)
+  }
+
+  clickSaveAndSendGradingBtn(){
+    cy.get(Tasks.#gradingSaveAndSendBtn).click()
+  }
+
+  checkGradingForStudent(studentLastname, gradingPercent){
+    cy.get(Tasks.#submissionsSection)
+    .contains(studentLastname)
+    .parent()
+    .should('contain', gradingPercent)
+  }
+
+  clickOnButtonToParentCourse(){
+    cy.get(Tasks.#toCourseButton).click()
   }
 }
 export default Tasks

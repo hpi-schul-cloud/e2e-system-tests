@@ -17,6 +17,7 @@ class Courses_Common {
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #pageTitle = '[id="page-title"]'
+  static #contentCardTaskInfo = '[data-testid="content-card-task-info"]'
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
@@ -128,6 +129,28 @@ class Courses_Common {
   showCourseEditPage() {
     cy.get(Courses_Common.#pageTitle)
     cy.contains('Kurs bearbeiten')
+  }
+
+  compareSubmittedTasksInformation(submittedTasks, contentTitle){
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(contentTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskInfo)
+      .find('span')
+      .eq(0)
+      .should('contain', submittedTasks)
+  }
+
+  compareGradedTasksInformation(gradedTasks, contentTitle){
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(contentTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskInfo)
+      .find('span')
+      .eq(2)
+      .should('contain', gradedTasks)
   }
 }
 export default Courses_Common

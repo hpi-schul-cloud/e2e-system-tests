@@ -79,3 +79,11 @@ And('I click on Delete in confirmation window', () => {
 When('I click on task {string}', (taskTitle) => {
   coursesCommon.openTask(taskTitle)
 })
+
+Then('Task card info submitted contains {string} for task {string}', (submittedTasks, taskTitle) => {
+  coursesCommon.compareSubmittedTasksInformation(submittedTasks, taskTitle)
+})
+
+And('Task card info graded contains {string} for task {string}', (gradedTasks, taskTitle) => {
+  coursesCommon.compareGradedTasksInformation(gradedTasks, taskTitle)
+})
