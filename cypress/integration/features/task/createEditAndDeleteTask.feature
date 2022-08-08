@@ -22,9 +22,6 @@ Feature: To create, edit and delete tasks by the teacher.
     And I can see task 'Cy Task Creating and Deleting Test'
 
   Scenario: Teacher edits and publishes task from room via form
-#   Adding the following actions would be a good idea:
-# - attaching a file to task
-# - embedding an image into a task.description
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'

@@ -18,17 +18,20 @@ class Tasks {
   static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
   static #fileUploadButtonDisabled = '[data-testid="tasks-edit-fileupload-disabled"]'
   static #fileUploadButtonEnabled = '[data-testid="tasks-edit-fileupload-enabled"]'
-  static #fileUploadInput = '[type="file"]'
-  static #filesSection = '[class="files"]'
+  static #fileUploadInput = '[data-testid="tasks-edit-fileupload-input"]'
+  static #filesSection = '[data-testid="tasks-edit-section-files"]'
   static #fileViewerSection = '[class="file-viewer"]'
   static #renameFileInput = '[id="newNameInput"]'
-  static #deleteModalDialog = '[class="modal fade delete-modal in"]'
+  static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]'
+  static #renameFileSubmitButton = '[data-testid="rename-file-dialog-submit-btn"]'
+  static #deleteFileCancelButton = '[data-testid="delete-file-dialog-cancel-btn"]'
+  static #deleteFileSubmitButton = '[data-testid="delete-file-dialog-submit-btn"]'
   static #submitBtnModalDialog = '[class="btn btn-primary btn-submit"]'
-  static #submissionSaveAndSendBtn = '[class="ckeditor-submit btn btn-primary btn-submit"]'
-  static #hintForSubmissionReceived = '[class="fa fa-check done"]'
+  static #submissionSaveAndSendBtn = '[data-testid="tasks-submission-save-and-send-btn"]'
+  static #hintForSubmissionReceived = '[data-testid="tasks-submission-hint-received"]'
   static #doneTasksTab = '[data-testid="closedTasks"]'
   static #taskTitleInList = '[data-testid="taskTitle"]'
-  static #taskSection = '[class="section-homework"]'
+  static #taskSection = '[data-testid="task-section-task"]'
   static #submissionsSection = '[id="submissions"]'
   static #submissionDiv = '[id="submission"]'
   static #gradingPercentInput = '[data-testid="evaluation_procent"]'
@@ -44,9 +47,6 @@ class Tasks {
 
   clickSaveAndSendBtn(){
     cy.get(Tasks.#submissionSaveAndSendBtn).click()
-    // cy.get('[class="tab-content submission-editor active"]')
-    //   .find('button')
-    //   .click()
   }
 
   enterGradingPercent(gradingPercent){
@@ -136,16 +136,11 @@ class Tasks {
   }
 
   submitDeleteFileDialog(){
-    cy.get(Tasks.#deleteModalDialog)
-      .find('[type="submit"]')
-      .click()
+    cy.get(Tasks.#deleteFileSubmitButton).click()
   }
 
   cancelDeleteFileDialog(){
-    cy.get(Tasks.#deleteModalDialog)
-      .find('[type="button"]')
-      .eq(0)
-      .click()
+    cy.get(Tasks.#deleteFileCancelButton).click()
   }
 
   enterNewFileName(newFileName){
@@ -154,22 +149,11 @@ class Tasks {
   }
 
   cancelRenameFileDialog(){
-    cy.get(Tasks.#renameFileInput)
-      .parent()
-      .parent()
-      .parent()
-      .find('[type="button"]')
-      .eq(0)
-      .click()
+    cy.get(Tasks.#renameFileCancelButton).click()
   }
 
   submitRenameFileDialog(){
-    cy.get(Tasks.#renameFileInput)
-      .parent()
-      .parent()
-      .parent()
-      .find('[type="submit"]')
-      .click()
+    cy.get(Tasks.#renameFileSubmitButton).click()
     cy.reload()
   }
 
