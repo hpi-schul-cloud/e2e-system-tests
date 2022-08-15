@@ -17,7 +17,9 @@ class Courses_Common {
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #pageTitle = '[id="page-title"]'
-  static #contentCardTaskInfo = '[data-testid="content-card-task-info"]'
+  static #contentCardTaskInfoSubmissionsChip = '[data-testid="room-detail-task-chip-submitted"]'
+  static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
+
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
@@ -136,9 +138,7 @@ class Courses_Common {
       .contains(contentTitle)
       .parent()
       .parent()
-      .find(Courses_Common.#contentCardTaskInfo)
-      .find('span')
-      .eq(0)
+      .find(Courses_Common.#contentCardTaskInfoSubmissionsChip)
       .should('contain', submittedTasks)
   }
 
@@ -147,9 +147,7 @@ class Courses_Common {
       .contains(contentTitle)
       .parent()
       .parent()
-      .find(Courses_Common.#contentCardTaskInfo)
-      .find('span')
-      .eq(2)
+      .find(Courses_Common.#contentCardTaskInfoGradingsChip)
       .should('contain', gradedTasks)
   }
 }

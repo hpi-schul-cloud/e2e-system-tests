@@ -27,7 +27,7 @@ class Tasks {
   static #deleteFileCancelButton = '[data-testid="delete-file-dialog-cancel-btn"]'
   static #deleteFileSubmitButton = '[data-testid="delete-file-dialog-submit-btn"]'
   static #submissionSaveAndSendBtn = '[data-testid="tasks-submission-save-and-send-btn"]'
-  static #gradingSaveAndSendBtn = '[class="ckeditor-submit btn btn-primary"]'
+  static #gradingSaveAndSendBtn = '[data-testid="tasks-submission-grading-save-and-send-btn"]'
   static #hintForSubmissionReceived = '[data-testid="tasks-submission-hint-received"]'
   static #doneTasksTab = '[data-testid="closedTasks"]'
   static #taskTitleInList = '[data-testid="taskTitle"]'
@@ -36,7 +36,11 @@ class Tasks {
   static #submissionDiv = '[id="submission"]'
   static #gradingPercentInput = '[data-testid="evaluation_procent"]'
   static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]'
-  static #toCourseButton = '[data-testid="tasks-navbtn-to-room-files"]' // to be adapted, when data-testid is correct (tasks-navbtn-to-room)
+  static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]'
+  static #taskSubmissionsSubmittedIcon = '[data-testid="task-submissions-task-submitted-icon"]'
+  static #taskSubmissionsOpenSubmissionIcon = '[data-testid="task-submissions-opensubmission-icon"]'
+  static #taskSubmissionsGradingTabLink = '[data-testid="task-submission-grading-tab"]'
+
 
   seeCreateTaskPage() {
     cy.get(Tasks.#createForm)
@@ -292,7 +296,7 @@ class Tasks {
     cy.get(Tasks.#submissionsSection)
     .contains(studentLastname)
     .parent()
-    .find('[class="fa fa-check green"]')
+    .find(Tasks.#taskSubmissionsSubmittedIcon)
     .should('be.visible')
   }
 
@@ -300,7 +304,7 @@ class Tasks {
     cy.get(Tasks.#submissionsSection)
       .contains(studentLastname)
       .parent()
-      .find('[class="fa fa-chevron-down"]')
+      .find(Tasks.#taskSubmissionsOpenSubmissionIcon)
       .click()
   }
 
@@ -309,8 +313,7 @@ class Tasks {
   }
 
   clickOnGradingTab(){
-    // will be adapted if data test id for grad tab link is available
-    cy.get('[class="section-evaluation tab-view"]').find('a').eq(1).click()
+    cy.get(Tasks.#taskSubmissionsGradingTabLink).click()
   }
 
   enterGradingPercent(gradingPercent){
