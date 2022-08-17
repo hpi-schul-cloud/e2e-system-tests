@@ -18,7 +18,8 @@ class Teams_Common {
     cy.url().should('include', '/teams')
   }
 
-  selectTeam() {
+  selectTeam(teamName) {
+    cy.get(Teams_Common.#teamTitle).contains(teamName)
     cy.get(Teams_Common.#teamTitle).eq(0).click()
   }
 

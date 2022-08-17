@@ -6,8 +6,8 @@ When('I go to teams overview', () => {
   teamsCommon.navigateToTeamsOverview()
 })
 
-And('I go to a team', () => {
-  teamsCommon.selectTeam()
+And('I go to a team {string}', (teamName) => {
+  teamsCommon.selectTeam(teamName)
 })
 
 Then('I can not see the chat in team', () => {
