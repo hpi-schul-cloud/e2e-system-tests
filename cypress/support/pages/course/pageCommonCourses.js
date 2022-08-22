@@ -115,7 +115,7 @@ class Courses_Common {
     cy.get(Courses_Common.#editButtonInDotMenu).click()
   }
 
-  clickCancelInConfirmationWindow() {
+  clickOnCancelInConfirmationWindow() {
     cy.get(Courses_Common.#dialogCancelButton).click()
   }
 
