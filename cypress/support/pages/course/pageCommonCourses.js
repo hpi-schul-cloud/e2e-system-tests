@@ -17,9 +17,6 @@ class Courses_Common {
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #pageTitle = '[id="page-title"]'
-  static #contentCardTaskInfoSubmissionsChip = '[data-testid="room-detail-task-chip-submitted"]'
-  static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
-
 
   navigateToRoomsOverview() {
     cy.get(Courses_Common.#courseOverviewNavigationButton).click()
@@ -115,7 +112,7 @@ class Courses_Common {
     cy.get(Courses_Common.#editButtonInDotMenu).click()
   }
 
-  clickOnCancelInConfirmationWindow() {
+  clickCancelInConfirmationWindow() {
     cy.get(Courses_Common.#dialogCancelButton).click()
   }
 
@@ -131,24 +128,6 @@ class Courses_Common {
   showCourseEditPage() {
     cy.get(Courses_Common.#pageTitle)
     cy.contains('Kurs bearbeiten')
-  }
-
-  compareSubmittedTasksInformation(submittedTasks, contentTitle){
-    cy.get(Courses_Common.#contentCardContent)
-      .contains(contentTitle)
-      .parent()
-      .parent()
-      .find(Courses_Common.#contentCardTaskInfoSubmissionsChip)
-      .should('contain', submittedTasks)
-  }
-
-  compareGradedTasksInformation(gradedTasks, contentTitle){
-    cy.get(Courses_Common.#contentCardContent)
-      .contains(contentTitle)
-      .parent()
-      .parent()
-      .find(Courses_Common.#contentCardTaskInfoGradingsChip)
-      .should('contain', gradedTasks)
   }
 }
 export default Courses_Common
