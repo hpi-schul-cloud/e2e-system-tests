@@ -11,6 +11,10 @@ const jsonIndentLevel = 2
 const htmlReportDir = path.resolve(process.cwd(), 'cypress/reports')
 const screenshotsDir = path.resolve(process.cwd(), 'cypress/screenshots')
 
+if (!fs.existsSync(screenshotsDir)) {
+  fs.mkdirSync(screenshotsDir)
+}
+
 getCucumberReportMaps()
 addScreenshots()
 generateReport()

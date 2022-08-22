@@ -48,11 +48,11 @@ class Tasks {
       .should('be.empty')
   }
 
-  fileUploadButtonIsDisabled() {
+  seeUploadFileButtonIsDisabled() {
     cy.get(Tasks.#fileUploadButtonDisabled).should('be.visible')
   }
 
-  fileUploadButtonIsEnabled() {
+  seeUploadFileButtonIsEnabled() {
     cy.get(Tasks.#fileUploadButtonEnabled).should('be.visible')
   }
 
@@ -118,15 +118,15 @@ class Tasks {
     cy.get(Tasks.#publicSubmissionsCheckbox).click()
   }
 
-  clickCancelInConfirmationWindow() {
+  clickOnCancelInConfirmationWindow() {
     cy.get(Tasks.#dialogCancelButton).click()
   }
 
-  clickSubmitInConfirmationWindow() {
+  clickOnSubmitInConfirmationWindow() {
     cy.get(Tasks.#dialogConfirmButton).click()
   }
 
-  descriptionEqualsOnDetailpage(expectedDescription) {
+  compareDescriptionOnDetailpage(expectedDescription) {
     cy.get(Tasks.#taskDetailsTab).should('contain', expectedDescription)
   }
 
@@ -166,11 +166,11 @@ class Tasks {
     cy.get(Tasks.#visibilityDueDateInput).should('have.value', dueDateCheckValue)
   }
 
-  draftIsDisabled(){
+  seeDraftIsDisabled(){
     cy.get(Tasks.#draftCheckbox).should('not.be.checked')
   }
 
-  fileIsVisibleInSectionFiles(fileName){
+  seeFileInSectionFiles(fileName){
     cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true})
   }
 
@@ -233,7 +233,7 @@ class Tasks {
       .click()
   }
 
-  fileIsSavedInDownloads(fileName){
+  seeFileIsSavedInDownloads(fileName){
     cy.readFile(`cypress/downloads/${fileName}`, 'binary', { timeout: 15000 })
       .should(buffer => expect(buffer.length).to.be.gt(100))
   }

@@ -2,7 +2,7 @@ import Tasks from '../../pages/tasks/pageTasks'
 
 const tasks = new Tasks()
 
-// EXTERNAL STEP DEFINITIONS
+// EXTERNAL COMMON STEP DEFINITIONS
 // =========================
 // External defined steps can be found here:
 // -----------------------------------------
@@ -15,7 +15,7 @@ Then('I can see create task page', () => {
 })
 
 And('file upload button is disabled', () => {
-  tasks.fileUploadButtonIsDisabled()
+  tasks.seeUploadFileButtonIsDisabled()
 })
 
 When ('I enter title {string}', (taskTitle) => {
@@ -42,8 +42,8 @@ And ('I enter task description {string}', (taskDescription) => {
   tasks.setTaskText(taskDescription)
 })
 
-And('file upload button is enabled', () => {
-  tasks.fileUploadButtonIsEnabled()
+Then('I see file upload button is enabled', () => {
+  tasks.seeUploadFileButtonIsEnabled()
 })
 
 When('I upload file {string}', (fileName) => {
@@ -55,18 +55,18 @@ And('I click on Public Submission Checkbox', () => {
 })
 
 And('I click on Submit Public Submission in confirmation window on task page', () => {
-  tasks.clickSubmitInConfirmationWindow()
+  tasks.clickOnSubmitInConfirmationWindow()
 })
 
-Then('description is {string}', (expectedDescription) => {
-  tasks.descriptionEqualsOnDetailpage(expectedDescription)
+Then('I see description is {string}', (expectedDescription) => {
+  tasks.compareDescriptionOnDetailpage(expectedDescription)
 })
 
 When ('I click on button Edit', () => {
   tasks.clickOnEditInTaskDetails()
 })
 
-And ('Public Submission is enabled', () => {
+Then ('I see public submission is enabled', () => {
   tasks.publicSubmissionIsEnabled()
 })
 
@@ -79,14 +79,14 @@ And ('task-visibility-due-date is {string} at {string}', (visibilityDueDate, vis
 })
 
 And ('Draft is disabled', () => {
-  tasks.draftIsDisabled()
+  tasks.seeDraftIsDisabled()
 })
 
-Then('file {string} is visible in section files', (fileName) => {
-  tasks.fileIsVisibleInSectionFiles(fileName)
+Then('I see file {string} is visible in section files', (fileName) => {
+  tasks.seeFileInSectionFiles(fileName)
 })
 
-Then('file {string} is not visible in section files', (fileName) => {
+Then('I see file {string} is not visible in section files', (fileName) => {
   tasks.fileIsNotVisibleInSectionFiles(fileName)
 })
 
@@ -123,7 +123,7 @@ When('I click on download file {string}', (fileName) => {
 })
 
 Then('file {string} is saved in folder downloads', (fileName) => {
-  tasks.fileIsSavedInDownloads(fileName)
+  tasks.seeFileIsSavedInDownloads(fileName)
 })
 
 When('I click on delete file {string}', (fileName) => {
