@@ -69,7 +69,7 @@ And('I click on Edit in dot menu', () => {
 })
 
 And('I click on Cancel in confirmation window', () => {
-  coursesCommon.clickCancelInConfirmationWindow()
+  coursesCommon.clickOnCancelInConfirmationWindow()
 })
 
 And('I click on Delete in confirmation window', () => {
@@ -78,4 +78,12 @@ And('I click on Delete in confirmation window', () => {
 
 When('I click on task {string}', (taskTitle) => {
   coursesCommon.openTask(taskTitle)
+})
+
+Then('I see task card info submitted contains {string} for task {string}', (submittedTasks, taskTitle) => {
+  coursesCommon.compareSubmittedTasksInformation(submittedTasks, taskTitle)
+})
+
+And('Task card info graded contains {string} for task {string}', (gradedTasks, taskTitle) => {
+  coursesCommon.compareGradedTasksInformation(gradedTasks, taskTitle)
 })
