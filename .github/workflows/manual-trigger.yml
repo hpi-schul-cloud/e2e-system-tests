@@ -4,15 +4,15 @@ on:
     inputs:
       instance1:
         description: 'Please enter a valid BRB instance URL to run the tests on'
-        default: 'https://brb-cypress-test.cd.dbildungscloud.dev'
+        default: 'https://brb-main.cd.dbildungscloud.dev/'
         required: true
       instance2:
         description: 'Please enter a valid NBC instance URL to run the tests on'
-        default: 'https://nbc-cypress-test.cd.dbildungscloud.dev'
+        default: 'https://nbc-main.cd.dbildungscloud.dev/'
         required: true
       instance3:
         description: 'Please enter a valid DEFAULT instance URL to run the tests on'
-        default: 'https://default-cypress-test.cd.dbildungscloud.dev'
+        default: 'https://default-main.cd.dbildungscloud.dev/'
         required: true
 
 jobs:
