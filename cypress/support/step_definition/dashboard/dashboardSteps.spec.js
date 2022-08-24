@@ -11,10 +11,12 @@ const teamsCommon = new Teams_Common()
 loginStep.spec.js
 commonDashboardSteps.spec.js
 commonTeamsSteps.spec.js
+commonDashboardSteps.spec.js
 
 */
 
 //Scenario: as a pre-condition teacher creates school news
+//--------------------------------------------------------
 
 When ('I click on add news button',()=>{
   newsCommon.clickOnAddSchoolNews()
@@ -24,11 +26,11 @@ Then ('I see news creation page',()=>{
   newsCommon.seeNewsCreationPage()
 })
 
-And ('I enter school news title {string}',(newsTitle)=>{
+And ('I enter news title {string}',(newsTitle)=>{
   newsCommon.enterNewsTitle(newsTitle)
 })
 
-And ('I enter school news description {string}',(newsDescription)=>{
+And ('I enter news description {string}',(newsDescription)=>{
    newsCommon.enterNewsDescription(newsDescription)
 })
 
@@ -51,127 +53,81 @@ Then ('I see news is created successfully with title {string} and with desccript
 
 
 //Scenario: as a pre-condition teacher creates a team news
+//--------------------------------------------------------
 
 When ('I click on news tab on the team detail page',()=>{
-  cy.clickOnNewsTab() //data-tab="js-news"
+  teamsCommon.clickOnNewsTabInTeamDetailPage()
 })
+
 And ('I click on create news button',()=>{
-  cy.clickOnCreateNews()
-})
-
-Then ('I see news creation page',()=>{
-  cy.seeNewsCreationPage()
-})
-
-And ('I enter team news title {string}',(TeamNewsTitle)=>{
-  cy.enterNewsTitle()
-})
-
-And ('I enter team news description {string}',(teamNewsDescription)=>{
-  cy.enterTeamNewsDescription(teamNewsDescription)
-})
-
-And ('I see date input field',()=>{
-  cy.seeDateInputField()
-})
-
-And ('I see time input field',()=>{
-  cy.seeTimeInputField()
-})
-
-And ('I click on Save button',()=>{
-  cy.clickOnTeamNewsCreationSaveButton()
-})
-
-Then ('I see news detail page and news is created successfully {string}',(teamNewsName)=>{
-  cy.seeTeamNewsDetailPage(teamNewsName)
+  teamsCommon.clickOnCreateNewsOnTeamDetailPage()
 })
 
 
 //Scenario: as a pre-condition teacher adds student as team member
-
-And ('I open the team titled titled {string}',()=>{
-  teamsCommon.openTeam()
-
-})
-
-And ('I see team detail page',()=>{
-  cy.seeTeamDetailPage()
-})
+//-------------------------------------------------------------------
 
 And ('I click on three dot menu on the team title',()=>{
-  cy.clickOnThreeDotEditButton()
+  teamsCommon.clickOnThreeDotToManageTeam()
 })
 
 And ('I click on manage team members option',()=>{
-  cy.clickOnManageTeamMembersEditOption()
+  teamsCommon.clickOnManageTeamMembersEditOption()
 })
 
 And ('I click on Add internal attendees button',()=>{
-  cy.clickOnAddInternalAttendeees()
+  teamsCommon.clickOnAddInternalAttendeees()
 })
 
-And ('new dialog opens',()=>{
- cy.seedialogToAddTeamMember()
-})
-
-And ('I click on select people drop down',()=>{
- cy.clickOnSelectPeopleDropdown()
-})
-
-And ('select {string} as a team member',(teamMember)=>{
-  cy.selectteamMember(teamMember)
+And ('new dialog opens to select student {string} from the drop down list',()=>{
+ teamsCommon.selectInternalTeamMember()
 })
 
 And ('I click on add button',()=>{
-  cy.clickOnAddPeopleButton()
+  teamsCommon.clickOnAddButton()
 })
 
-And ('I redirected to and see the student named {string} on the team members table',(studentName)=>{
- cy.seeNewlyAddedStudent(studentName)
+Then ('I see the student named {string} on the team members table',(studentName)=>{
+ teamsCommon.seeNewlyAddedStudentAsInternalTeamMember(studentName)
 })
 
 
 //Scenario: student arrives on dashboard
+//---------------------------------------
 
+Then ('I see the welcome message {string}', (welcomeMsg) => {
+  dashboard.seeWelcomeMessage(welcomeMsg)
+})
 
+Then ('I see school news with title {string} and description {string}', (newsTitle, newsDesc) =>{
+  dashboard.seeSchoolNews(newsTitle, newsDesc)
+})
+
+Then ('I see teams news with title {string} and description {string}', (newsTitle, newsDesc) =>{
+  dashboard.seeTeamsNews(newsTitle, newsDesc)
+})
+
+Then ('I can see the assigned task {string}', (taskName) =>{
+  dashboard.seeAssignedTasks(taskName)
+})
 
 //Scenario: teacher arrives on dashboard
+//--------------------------------------
 
+Then ('I can see the draft task {string}',(draftName) =>{
+  dashboard.seeDraftTasks(draftName)
+})
 
 //Scenario: as a post-condition teacher deletes the school news
+//-------------------------------------------------------------
+
 
 
 //Scenario: as a post-condition teacher deletes the team and so the team news
+//---------------------------------------------------------------------------
 
 
 
+//Scenario: as a post-condition teacher deletes the internal team memeber student in the team
+//-------------------------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Then('I can see the welcome message', () => {
-  dashboard.seeWelcomeMessage()
-})
-
-Then('I can see the assigned tasks', () => {
-  dashboard.seeAssignedTasks()
-})
-
-Then('I can see the draft tasks', () => {
-  dashboard.seeDraftTasks()
-})

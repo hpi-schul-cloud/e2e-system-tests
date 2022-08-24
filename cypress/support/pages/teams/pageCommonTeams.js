@@ -12,6 +12,50 @@ class Teams_Common {
   static #teamsOverviewNavigationButton = '[data-testid="Teams"]'
   static #messangerActivation = '[data-testid="rocketchat_checkbox"]'
   static #saveButton = '[data-testid="create_team_btn"]'
+  static #newsTabOnTeamDetail = '[data-tab="js-news"]'
+  static #createNewsButtonOnTeamDetail = '[data-testid="create_a_team"]'
+  static #threeDotManageTeam = '[id="page-title"]'
+  static #manageTeamMembersOption = '[data-testid="administrate_team_members"]'
+  static #addInternalTeamMemberButton = '[data-testid="internal_team_members"]'
+  static #selectInternalTeamMember = '[data-testid="select_team_members_add"]'
+  static #memberSubmitButton = '[data-testid="btn-submit"]'
+  static #studentTable= '[data-testid="students_names_container"]'
+
+
+
+  seeNewlyAddedStudentAsInternalTeamMember(){
+    cy.get(Teams_Common.#studentTable).contains('Kraft')
+  }
+
+  clickOnAddButton(){
+    //cy.get(Teams_Common.#memberSubmitButton).click()
+    cy.get('.add-member-modal .modal-form').submit()
+  }
+
+  selectInternalTeamMember(){
+    cy.get(Teams_Common.#selectInternalTeamMember).invoke('show')
+    cy.get(Teams_Common.#selectInternalTeamMember).select('Kraft, Herbert')
+  }
+
+  clickOnAddInternalAttendeees(){
+    cy.get(Teams_Common.#addInternalTeamMemberButton).click()
+  }
+
+  clickOnManageTeamMembersEditOption(){
+    cy.get(Teams_Common.#manageTeamMembersOption).click()
+  }
+
+  clickOnThreeDotToManageTeam(){
+    cy.get(Teams_Common.#threeDotManageTeam).click() //.contains('Musik')
+  }
+
+  clickOnCreateNewsOnTeamDetailPage(){
+    cy.get(Teams_Common.#createNewsButtonOnTeamDetail).click()
+  }
+
+  clickOnNewsTabInTeamDetailPage() {
+    cy.get(Teams_Common.#newsTabOnTeamDetail).click()
+  }
 
   navigateToTeamsOverview() {
     cy.get(Teams_Common.#teamsOverviewNavigationButton).click()
