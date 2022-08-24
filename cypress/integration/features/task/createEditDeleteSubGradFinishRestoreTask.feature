@@ -123,6 +123,18 @@ Feature: To create, edit and delete tasks by the teacher.
     Then I see task card info submitted contains "1/2" for task 'Cy Task Creating, Editing, Deleting Test'
     And Task card info graded contains "1/2" for task 'Cy Task Creating, Editing, Deleting Test'
 
+  Scenario: Student sees grading
+    Given I am logged in as a 'student1' at 'brb'
+    When I go to tasks overview
+    And I click completed task tab
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list
+    And I click on task 'Cy Task Creating, Editing, Deleting Test' in task overview
+    And I click on feedback tab
+  #  Then I see submission text 'Hier ist die Antwort.'
+  #  When I click on tab grading
+  #  Then I see grading text 'Gut gemacht!'
+  #  And I see grad is  '83'
+
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
