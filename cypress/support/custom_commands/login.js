@@ -2,6 +2,9 @@ const emailInputFieldElement = '[data-testid="username-email"]'
 const passwordInputFieldElement = '[data-testid="password-email"]'
 const submitButton = '[data-testid="submit-login-email"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
+const initials = '[data-testid="initials"]'
+const languageSelection = '[id="selected-language"]'
+const languageDe = '[data-language="de"]'
 
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
@@ -69,6 +72,10 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.get(passwordInputFieldElement).eq(1).type(env[userPassword], {log:false})
     cy.get(submitButton).eq(1).click()
     cy.url().should('contain', '/dashboard')
+    cy.get(initials).click()
+    cy.get(languageSelection).click()
+    cy.get(languageDe).click()
+
   })
   cy.visit('/dashboard')
 })
