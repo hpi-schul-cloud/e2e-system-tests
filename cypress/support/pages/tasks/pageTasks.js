@@ -2,6 +2,7 @@
 
 class Tasks {
   static #pageTitle = '[id="page-title"]'
+  static #localeDateFormat = 'de-DE'
   static #createForm = '[id="homework-form"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
@@ -79,9 +80,8 @@ class Tasks {
       startDate = new Date(today)
       startDate.setDate(startDate.getDate() + 1)
     }
-    let startDateText = startDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
-    startDateText = startDateText.replace('/', '')
-    cy.get(Tasks.#visibilityStartDateInput).type(`{moveToStart}${startDateText}${visibilityStartTime}`)
+    let startDateText = startDate.toLocaleString(Tasks.#localeDateFormat, {year:'numeric', day: '2-digit', month: '2-digit'})
+    cy.get(Tasks.#visibilityStartDateInput).type(`{selectAll}${startDateText}${visibilityStartTime}`)
   }
 
   setVisibilityDueDate(visibilityDueDate, visibilityDueTime) {
@@ -93,9 +93,8 @@ class Tasks {
       dueDate = new Date(today)
       dueDate.setDate(dueDate.getDate() + 1)
     }
-    let startDueText = dueDate.toLocaleString('en-GB', {year:'numeric', day: '2-digit', month: '2-digit'})
-    startDueText = startDueText.replace('/', '')
-    cy.get(Tasks.#visibilityDueDateInput).type(`{moveToStart}${startDueText}${visibilityDueTime}`)
+    let startDueText = dueDate.toLocaleString(Tasks.#localeDateFormat, {year:'numeric', day: '2-digit', month: '2-digit'})
+    cy.get(Tasks.#visibilityDueDateInput).type(`{selectAll}${startDueText}${visibilityDueTime}`)
   }
 
   setTaskText(taskText){
