@@ -42,7 +42,15 @@ class Tasks {
   static #taskSubmissionsOpenSubmissionIcon = '[data-testid="task-submissions-opensubmission-icon"]'
   static #taskSubmissionsGradingTabLink = '[data-testid="task-submission-grading-tab"]'
   static #taskFeedbackTabLink = '[id="feedback-tab-link"]'
+  static #feedbackSection = '[id="feedback"]'
 
+  compareFeedbackText(feedbackText){
+    cy.get(Tasks.#feedbackSection).should('contain', feedbackText)
+  }
+
+  compareFeedbackGrade(feedbackGrade){
+    cy.get(Tasks.#feedbackSection).should('contain', feedbackGrade)
+  }
 
   seeCreateTaskPage() {
     cy.get(Tasks.#createForm)

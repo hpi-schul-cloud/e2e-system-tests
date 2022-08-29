@@ -206,10 +206,6 @@ When('I click on submission tab', () => {
   tasks.clickOnSubmissionTab()
 })
 
-When('I click on feedback tab', () => {
-  tasks.clickOnFeedbackTab()
-})
-
 And ('I enter comment {string}', (gradingText) => {
   tasks.setTaskText(gradingText)
 })
@@ -228,4 +224,16 @@ And('grading for {string} contains {string}', (studentLastname, gradingPercent) 
 
 When('I click on button To Course', () => {
   tasks.clickOnButtonToParentCourse()
+})
+
+When('I click on feedback tab', () => {
+  tasks.clickOnFeedbackTab()
+})
+
+When('I see feedback text {string}', (feedbackText) => {
+  tasks.compareFeedbackText(feedbackText)
+})
+
+And('I see grade is {string}', (feedbackGrade) => {
+  tasks.compareFeedbackGrade(feedbackGrade)
 })

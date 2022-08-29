@@ -93,6 +93,7 @@ Feature: To create, edit and delete tasks by the teacher.
     And I click on task 'Cy Task Creating, Editing, Deleting Test'
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
+    # When I upload file 'test_pdf.pdf'
     And I enter text submission 'Hier ist die Antwort.'
     And I click on button Save and Send Submission
     Then I see hint that submission has been sent successfully
@@ -129,11 +130,10 @@ Feature: To create, edit and delete tasks by the teacher.
     And I click completed task tab
     Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list
     And I click on task 'Cy Task Creating, Editing, Deleting Test' in task overview
-    And I click on feedback tab
-  #  Then I see submission text 'Hier ist die Antwort.'
-  #  When I click on tab grading
-  #  Then I see grading text 'Gut gemacht!'
-  #  And I see grad is  '83'
+    Then I see submission text 'Hier ist die Antwort.'
+    When I click on feedback tab
+    Then I see feedback text 'Gut gemacht!'
+    And I see grade is '83'
 
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
