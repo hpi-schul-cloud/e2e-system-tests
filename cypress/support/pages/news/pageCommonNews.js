@@ -4,20 +4,40 @@ class News_Common {
 
   static #newsOverviewNavigationButton = '[data-testid="Neuigkeiten"]'
   static #createNewNews = '[data-testid="create-news-btn"]'
-  static #newsTitle = '[data-testid="news_title"]'
+  static #newsTitleInput = '[data-testid="news_title"]'
   static #newsDescription= '[contenteditable="true"]'
   static #newsDateInput= '[data-testid="news_date"]'
   static #newsTimeInput= '[data-testid="news_time"]'
   static #newsCreateButton= '[data-testid="btn_news_submit"]'
-  static #seeNewsTitle = '[id="page-title"]'
-  static #seeNewsDescription = '[class="ckcontent"]'
+  static #newsTitle = '[id="page-title"]'
+  static #newsDescriptionVisibe = '[class="ckcontent"]'
+  static #newsName = '[data-testid="title_of_an_element"]'
+  static #deleteNews = '[data-testid="btn-delete-news"]'
+  static #deleteNewsConfirmation = '[class="btn btn-primary btn-submit"]'
 
-  seeCreatedSchoolNews(newsTitle,newsDesc) {
-    cy.get(News_Common.#seeNewsTitle).contains(newsTitle)
-    cy.get(News_Common.#seeNewsDescription).contains(newsDesc)
+
+  doNotSeeNews(newsName) {
+    cy.get(News_Common.#newsName).contains(newsName).should('not.exist')
   }
 
-  clickOnSchoolNewsCreationSaveButton() {
+  confirmDeletionOnDialogBox() {
+    cy.get(News_Common.#deleteNewsConfirmation).contains('Löschen').click()
+  }
+
+  clickOnDeleteNewsButton() {
+    cy.get(News_Common.#deleteNews).click()
+  }
+
+  openNewsDetailPage (newsName) {
+    cy.get(News_Common.#newsName).contains(newsName).click()
+  }
+
+  seeCreatedNews(newsTitle,newsDesc) {
+    cy.get(News_Common.#newsTitle).contains(newsTitle)
+    cy.get(News_Common.#newsDescriptionVisibe).contains(newsDesc)
+  }
+
+  clickOnCreateNewsSaveButton() {
     cy.get(News_Common.#newsCreateButton).click()
   }
 
@@ -34,14 +54,14 @@ class News_Common {
   }
 
   enterNewsTitle(newsTitle) {
-    cy.get(News_Common.#newsTitle).eq(1).type(newsTitle)
+    cy.get(News_Common.#newsTitleInput).eq(1).type(newsTitle)
   }
 
   seeNewsCreationPage() {
     cy.url().should('include','/news/new')
   }
 
-  clickOnAddSchoolNews() {
+  clickOnAddNews() {
     cy.get(News_Common.#createNewNews).click()
   }
 

@@ -18,18 +18,29 @@ class Teams_Common {
   static #manageTeamMembersOption = '[data-testid="administrate_team_members"]'
   static #addInternalTeamMemberButton = '[data-testid="internal_team_members"]'
   static #selectInternalTeamMember = '[data-testid="select_team_members_add"]'
-  static #memberSubmitButton = '[data-testid="btn-submit"]'
-  static #studentTable= '[data-testid="students_names_container"]'
+  static #studentTableBody = '[data-testid="students_names_container"]'
+  static #confirmTeamMemberAddButton = '[data-testid="btn-submit"]'
+  static #confirmTeamMemberDeleteButton= '[data-testid="btn-submit"]'
+  static #deleteIconInTableViewRow = '[data-testid="btn-delete-team-member"]'
 
 
+  doNotSeeDeletedStudentInTeam(){
+    cy.get(Teams_Common.#studentTableBody).find('tr td','Herbert').should('not.exist')
+  }
 
-  seeNewlyAddedStudentAsInternalTeamMember(){
-    cy.get(Teams_Common.#studentTable).contains('Kraft')
+  removeStudentInTeam () {
+    cy.get(Teams_Common.#studentTableBody).contains('tr', 'Herbert').then(tableRow => {
+      cy.wrap(tableRow).find(Teams_Common.#deleteIconInTableViewRow).click()
+      cy.get(Teams_Common.#confirmTeamMemberDeleteButton).contains('Teilnehmer:in löschen').click()
+    })
+  }
+
+  seeNewlyAddedStudentAsInternalTeamMember () {
+    cy.get(Teams_Common.#studentTableBody).find('tr td','Herbert')
   }
 
   clickOnAddButton(){
-    //cy.get(Teams_Common.#memberSubmitButton).click()
-    cy.get('.add-member-modal .modal-form').submit()
+    cy.get(Teams_Common.#confirmTeamMemberAddButton).contains('Hinzufügen').click()
   }
 
   selectInternalTeamMember(){
