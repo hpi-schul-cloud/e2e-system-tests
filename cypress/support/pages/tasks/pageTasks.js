@@ -41,7 +41,16 @@ class Tasks {
   static #taskSubmissionsSubmittedIcon = '[data-testid="task-submissions-task-submitted-icon"]'
   static #taskSubmissionsOpenSubmissionIcon = '[data-testid="task-submissions-opensubmission-icon"]'
   static #taskSubmissionsGradingTabLink = '[data-testid="task-submission-grading-tab"]'
+  static #taskFeedbackTabLink = '[id="feedback-tab-link"]'
+  static #feedbackSection = '[id="feedback"]'
 
+  compareFeedbackText(feedbackText){
+    cy.get(Tasks.#feedbackSection).should('contain', feedbackText)
+  }
+
+  compareFeedbackGrade(feedbackGrade){
+    cy.get(Tasks.#feedbackSection).should('contain', feedbackGrade)
+  }
 
   seeCreateTaskPage() {
     cy.get(Tasks.#createForm)
@@ -283,6 +292,12 @@ class Tasks {
     cy.get(Tasks.#taskTitleInList).contains(taskTitle).should('be.visible')
   }
 
+  openTaskInTaskOverview(taskTitle) {
+    cy.get(Tasks.#taskTitleInList)
+      .contains(taskTitle)
+      .click()
+  }
+
   seeTaskNotInList(taskTitle){
     cy.get(Tasks.#taskTitleInList).should('not.contain', taskTitle)
   }
@@ -328,6 +343,14 @@ class Tasks {
     .contains(studentLastname)
     .parent()
     .should('contain', gradingPercent)
+  }
+
+  clickOnSubmissionTab(){
+    cy.get(Tasks.#taskSubmissionsGradingTabLink).click()
+  }
+
+  clickOnFeedbackTab(){
+    cy.get(Tasks.#taskFeedbackTabLink).click()
   }
 
   clickOnButtonToParentCourse(){

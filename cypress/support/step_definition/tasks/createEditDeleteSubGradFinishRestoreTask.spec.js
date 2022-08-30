@@ -178,6 +178,10 @@ Then('I do not see task {string} in the list', (taskTitle) => {
   tasks.seeTaskNotInList(taskTitle)
 })
 
+When('I click on task {string} in task overview', (taskTitle) => {
+  tasks.openTaskInTaskOverview(taskTitle)
+})
+
 And('I click on submissions tab', () => {
   tasks.clickSubmissionsTab()
 })
@@ -198,6 +202,10 @@ When('I click on grading tab', () => {
   tasks.clickOnGradingTab()
 })
 
+When('I click on submission tab', () => {
+  tasks.clickOnSubmissionTab()
+})
+
 And ('I enter comment {string}', (gradingText) => {
   tasks.setTaskText(gradingText)
 })
@@ -216,4 +224,16 @@ And('grading for {string} contains {string}', (studentLastname, gradingPercent) 
 
 When('I click on button To Course', () => {
   tasks.clickOnButtonToParentCourse()
+})
+
+When('I click on feedback tab', () => {
+  tasks.clickOnFeedbackTab()
+})
+
+When('I see feedback text {string}', (feedbackText) => {
+  tasks.compareFeedbackText(feedbackText)
+})
+
+And('I see grade is {string}', (feedbackGrade) => {
+  tasks.compareFeedbackGrade(feedbackGrade)
 })

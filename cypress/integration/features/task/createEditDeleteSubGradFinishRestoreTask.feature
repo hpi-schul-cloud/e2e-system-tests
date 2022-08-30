@@ -93,6 +93,7 @@ Feature: To create, edit and delete tasks by the teacher.
     And I click on task 'Cy Task Creating, Editing, Deleting Test'
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
+    # When I upload file 'test_pdf.pdf'
     And I enter text submission 'Hier ist die Antwort.'
     And I click on button Save and Send Submission
     Then I see hint that submission has been sent successfully
@@ -122,6 +123,17 @@ Feature: To create, edit and delete tasks by the teacher.
     When I click on button To Course
     Then I see task card info submitted contains "1/2" for task 'Cy Task Creating, Editing, Deleting Test'
     And Task card info graded contains "1/2" for task 'Cy Task Creating, Editing, Deleting Test'
+
+  Scenario: Student sees grading
+    Given I am logged in as a 'student1' at 'brb'
+    When I go to tasks overview
+    And I click completed task tab
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list
+    And I click on task 'Cy Task Creating, Editing, Deleting Test' in task overview
+    Then I see submission text 'Hier ist die Antwort.'
+    When I click on feedback tab
+    Then I see feedback text 'Gut gemacht!'
+    And I see grade is '83'
 
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
