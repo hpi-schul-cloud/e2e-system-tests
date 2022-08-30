@@ -35,3 +35,35 @@ Then('I can see the checkbox for messenger in a team', () => {
 Then('I can see the chat in team', () => {
   teamsCommon.canSeeTeamChat()
 })
+
+And('I click on three dot menu on the team title', () => {
+  teamsCommon.clickOnThreeDotToManageTeam()
+})
+
+And('I click on manage team members option', () => {
+  teamsCommon.clickOnManageTeamMembersEditOption()
+})
+
+And('I click on Add internal attendees button', () => {
+  teamsCommon.clickOnAddInternalAttendeees()
+})
+
+And('new dialog opens to select student {string} from the drop down list', () => {
+  teamsCommon.selectInternalTeamMember()
+})
+
+And('I click on add button', () => {
+  teamsCommon.clickOnAddButton()
+})
+
+Then('I see the student named {string} on the team members table', (studentName) => {
+  teamsCommon.seeNewlyAddedStudentAsInternalTeamMember(studentName)
+})
+
+When ('I select the student {string} and click on delete icon',()=>{
+  teamsCommon.removeStudentInTeam()
+})
+
+Then ('I see {string} is not visible on the table',()=>{
+  teamsCommon.doNotSeeDeletedStudentInTeam()
+})
