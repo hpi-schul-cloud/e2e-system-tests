@@ -12,8 +12,9 @@ Install or make sure Chrome browser (at least) have it in your development machi
 5) Install in IDE (Visual Studio Code), Extention called --> `EditorConfig`
 
 ## How to setup/run Cypress test locally
-1) Clone the project
-2) Install all dependencies by runing: `npm install --save-dev`
-3) Add "cypress.env.json" with the login tests data
-5) Execute the following command in terminal to run the tests in Cypress runner (UI) → npm run cy:open
-6) Execute the following command in terminal to run the tests in headless mode → npm run cy:run
+
+1) Clone the project → "e2e-system-test"
+2) Add "cypress.env.json" with the login tests data (as mentioned above).
+3) Execute the following command in terminal → npm install --save-dev
+4) Execute the following command in terminal to run the tests in Cypress runner (UI) → npm run cy:open
+5) Execute the following command in terminal to run the tests in headless mode → npm run cy:run
