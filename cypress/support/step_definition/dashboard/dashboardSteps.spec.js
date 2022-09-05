@@ -6,13 +6,16 @@ const dashboard = new Dashboard()
 const newsCommon = new News_Common()
 const teamsCommon = new Teams_Common()
 
-/* common steps are defined in the following files already:
 
-loginStep.spec.js
-commonTeamsSteps.spec.js
-commonDashboardSteps.spec.js
+// EXTERNAL COMMON STEP DEFINITIONS
+// =========================
+// External defined steps can be found here:
+// -----------------------------------------
+// -->\step_definition\authentication\loginStep.spec.js
+// --> \step_definition\teams\commonTeamsSteps.spec.js
+// --> \step_definition\dashboard\commonDashboardSteps.spec.js
+// --> \step_definition\news\commonNewsSteps.spec.js
 
-*/
 
 //Scenario: as a pre-condition teacher creates school news
 //--------------------------------------------------------
