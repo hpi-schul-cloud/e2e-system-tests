@@ -1,6 +1,6 @@
 Feature: To check contents on the dashboard
 
-  As a student and a teacher I want to be see important information on the dashboard so that I can be updated start working
+  As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
 
   Scenario: as a pre-condition teacher creates school news
     Given I am logged in as a 'teacher' at 'brb'
