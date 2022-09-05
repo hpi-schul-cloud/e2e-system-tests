@@ -44,7 +44,7 @@ And('I click on manage team members option', () => {
   teamsCommon.clickOnManageTeamMembersEditOption()
 })
 
-And('I click on Add internal attendees button', () => {
+And('I click on add internal attendees button', () => {
   teamsCommon.clickOnAddInternalAttendeees()
 })
 
@@ -52,7 +52,7 @@ And('new dialog opens to select student {string} from the drop down list', () =>
   teamsCommon.selectInternalTeamMember()
 })
 
-And('I click on add button', () => {
+And('I click on add user button', () => {
   teamsCommon.clickOnAddButton()
 })
 

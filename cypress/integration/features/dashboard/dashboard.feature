@@ -5,14 +5,14 @@ Feature: To check contents on the dashboard
   Scenario: as a pre-condition teacher creates school news
     Given I am logged in as a 'teacher' at 'brb'
     When I go to news overview
-    When I click on add news button
+    And I click on add news button
     Then I see news creation page
     And I enter news title 'this is a school news'
     And I enter news description 'test school news description'
     And I see date input field
     And I see time input field
-    And I click on Save button
-    Then I see news is created successfully with title 'this is a school news' and with desccription 'test school news description'
+    And I click on save button
+    Then I see news is created successfully with title 'this is a school news' and with description 'test school news description'
 
   Scenario: as a pre-condition teacher creates a team news
     Given I am logged in as a 'teacher' at 'brb'
@@ -25,8 +25,8 @@ Feature: To check contents on the dashboard
     And I enter news description 'test team news description'
     And I see date input field
     And I see time input field
-    And I click on Save button
-    Then I see news is created successfully with title 'this is a team news' and with desccription 'test team news description'
+    And I click on save button
+    Then I see news is created successfully with title 'this is a team news' and with description 'test team news description'
 
   Scenario: as a pre-condition teacher adds student as team member
     Given I am logged in as a 'teacher' at 'brb'
@@ -34,10 +34,10 @@ Feature: To check contents on the dashboard
     And I go to a team 'Musik'
     And I click on three dot menu on the team title
     And I click on manage team members option
-    And I click on Add internal attendees button
+    And I click on add internal attendees button
     And new dialog opens to select student 'Herbert Kraft' from the drop down list
-    And I click on add button
-   Then I see the student named 'Herbert Kraft' on the team members table
+    And I click on add user button
+    Then I see the student named 'Herbert Kraft' on the team members table
 
   Scenario: student arrives on dashboard
     Given I am logged in as a 'student' at 'brb'
@@ -71,6 +71,12 @@ Feature: To check contents on the dashboard
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'this is a team news'
+
+  Scenario: student does not see news anymore on dashboard
+    Given I am logged in as a 'student' at 'brb'
+    When I arrive on the dashboard
+    Then I do not see school news with title 'this is a school news'
+    Then I do not see teams news with title 'this is a team news'
 
   Scenario: as a post-condition teacher deletes the student as a  team member
     Given I am logged in as a 'teacher' at 'brb'

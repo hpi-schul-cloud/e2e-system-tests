@@ -10,11 +10,19 @@ class News_Common {
   static #newsTimeInput= '[data-testid="news_time"]'
   static #newsCreateButton= '[data-testid="btn_news_submit"]'
   static #newsTitle = '[id="page-title"]'
-  static #newsDescriptionVisibe = '[class="ckcontent"]'
+  static #newsDescriptionVisible = '[class="ckcontent"]'
   static #newsName = '[data-testid="title_of_an_element"]'
   static #deleteNews = '[data-testid="btn-delete-news"]'
   static #deleteNewsConfirmation = '[class="btn btn-primary btn-submit"]'
 
+
+  studentDoNotSeeTeamsNews(teamNewsTitle){
+    cy.get(News_Common.#newsName).contains(teamNewsTitle).should('not.exist')
+  }
+
+  studentDoNotSeeSchoolNews(schoolNewsTitle){
+    cy.get(News_Common.#newsName).contains(schoolNewsTitle).should('not.exist')
+  }
 
   doNotSeeNews(newsName) {
     cy.get(News_Common.#newsName).contains(newsName).should('not.exist')
@@ -34,7 +42,7 @@ class News_Common {
 
   seeCreatedNews(newsTitle,newsDesc) {
     cy.get(News_Common.#newsTitle).contains(newsTitle)
-    cy.get(News_Common.#newsDescriptionVisibe).contains(newsDesc)
+    cy.get(News_Common.#newsDescriptionVisible).contains(newsDesc)
   }
 
   clickOnCreateNewsSaveButton() {

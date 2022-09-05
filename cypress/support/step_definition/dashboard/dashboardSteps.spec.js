@@ -17,7 +17,7 @@ commonDashboardSteps.spec.js
 //Scenario: as a pre-condition teacher creates school news
 //--------------------------------------------------------
 
-When('I click on add news button', () => {
+And ('I click on add news button', () => {
   newsCommon.clickOnAddNews()
 })
 
@@ -42,11 +42,11 @@ And('I see time input field', () => {
   newsCommon.seeTimeInput()
 })
 
-And('I click on Save button', () => {
+And('I click on save button', () => {
   newsCommon.clickOnCreateNewsSaveButton()
 })
 
-Then('I see news is created successfully with title {string} and with desccription {string}', (newsTitle, newsDesc) => {
+Then('I see news is created successfully with title {string} and with description {string}', (newsTitle, newsDesc) => {
   newsCommon.seeCreatedNews(newsTitle, newsDesc)
 })
 
@@ -62,7 +62,7 @@ And('I click on create news button', () => {
 })
 
 //Scenario: as a pre-condition teacher adds student as team member
-//-------------------------------------------------------------------
+//-----------------------------------------------------------------
 //defined in common step definition
 
 //Scenario: student arrives on dashboard
@@ -113,6 +113,21 @@ Then('I do not see the news {string}', (newsName) => {
 //Scenario: as a post-condition teacher deletes the team news
 //-----------------------------------------------------------
 // defined in common steps
+
+
+//Scenario: student does not see news anymore on dashboard
+//------------------------------------------------------------
+
+Then ('I do not see school news with title {string}',(schoolNewsTitle) =>{
+  newsCommon.studentDoNotSeeSchoolNews()
+})
+
+Then ('I do not see teams news with title {string}',(teamNewsTitle) => {
+  newsCommon.studentDoNotSeeTeamsNews()
+})
+
+
+
 
 //Scenario: as a post-condition teacher deletes the internal team memeber student in the team
 //-------------------------------------------------------------------------------------------
