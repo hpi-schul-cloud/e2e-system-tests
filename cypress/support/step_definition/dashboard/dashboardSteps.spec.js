@@ -119,11 +119,11 @@ Then('I do not see the news {string}', (newsName) => {
 //------------------------------------------------------------
 
 Then ('I do not see school news with title {string}',(schoolNewsTitle) =>{
-  newsCommon.studentDoNotSeeSchoolNews()
+  newsCommon.studentDoNotSeeSchoolNews(schoolNewsTitle)
 })
 
 Then ('I do not see teams news with title {string}',(teamNewsTitle) => {
-  newsCommon.studentDoNotSeeTeamsNews()
+  newsCommon.studentDoNotSeeTeamsNews(teamNewsTitle)
 })
 
 

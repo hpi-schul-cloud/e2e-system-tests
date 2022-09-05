@@ -50,11 +50,11 @@ class News_Common {
   }
 
   seeTimeInput() {
-    cy.get(News_Common.#newsTimeInput).should('be.visible')
+    cy.get(News_Common.#newsTimeInput).should('exist')
   }
 
   seeDateInput() {
-    cy.get(News_Common.#newsDateInput).should('be.visible')
+    cy.get(News_Common.#newsDateInput).should('exist')
   }
 
   enterNewsDescription(newsDescription) {
