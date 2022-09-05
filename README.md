@@ -1,4 +1,4 @@
-# BDD Testing for dBildungscloud with Cypress
+# BDD Testing for "Schulcloud-Verbund-Software" with Cypress
 
 Framework we use: Cypress (<https://www.cypress.io/>)
 
