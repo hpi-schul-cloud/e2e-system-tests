@@ -14,7 +14,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 ## How to setup/run Cypress tests locally
 
 1) Clone the project
-2) Add "cypress.env.json" with the login tests data (as mentioned above).
+2) Add "cypress.env.json" with the login tests data.
 3) Execute the following command in terminal → `npm install --save-dev`
 4) Execute the following command in terminal to run the tests in Cypress runner (UI) → `npm run cy:open`
 5) Execute the following command in terminal to run the tests in headless mode → `npm run cy:run`
