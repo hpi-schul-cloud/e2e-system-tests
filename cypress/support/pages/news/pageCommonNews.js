@@ -60,11 +60,11 @@ class News_Common {
   }
 
   enterNewsDescription (newsDescription) {
-    cy.get(News_Common.#newsDescription).type(newsDescription)
+    cy.get(News_Common.#newsDescription, { timeout: 20000 }).type(newsDescription)
   }
 
   enterNewsTitle (newsTitle) {
-    cy.get(News_Common.#newsTitleInput)
+    cy.get(News_Common.#newsTitleInput, { timeout: 20000 })
       .eq(1)
       .type(newsTitle)
   }
