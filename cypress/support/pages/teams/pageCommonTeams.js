@@ -52,7 +52,7 @@ class Teams_Common {
   }
 
   selectInternalTeamMember () {
-    cy.get(Teams_Common.#selectInternalTeamMember, { timeout: 20000 }).invoke(
+    cy.get(Teams_Common.#selectInternalTeamMember, { timeout: 200000 }).invoke(
       'show'
     )
     cy.get(Teams_Common.#selectInternalTeamMember, { timeout: 20000 })
