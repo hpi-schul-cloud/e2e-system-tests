@@ -15,7 +15,7 @@ class News_Common {
   static #deleteNewsConfirmation = '[class="btn btn-primary btn-submit"]'
 
   doNotSeeNews (newsName) {
-    cy.get('span').then($span => {
+    cy.get('span', { timeout: 20000 }).then($span => {
       if ($span.find(News_Common.#newsName)) {
         cy.contains(newsName).should('not.exist')
       } else {
