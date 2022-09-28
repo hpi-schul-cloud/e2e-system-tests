@@ -87,3 +87,15 @@ Then('I see task card info submitted contains {string} for task {string}', (subm
 And('Task card info graded contains {string} for task {string}', (gradedTasks, taskTitle) => {
   coursesCommon.compareGradedTasksInformation(gradedTasks, taskTitle)
 })
+
+And('I click on link finish for task {string}', taskTitle => {
+  coursesCommon.clickOnFinishTask(taskTitle)
+})
+
+Then('I see task {string} does not contain any buttons', taskTitle => {
+  coursesCommon.checkTaskCardDoesNotHaveButtons(taskTitle)
+})
+
+Then('I see task {string} contains buttons', taskTitle => {
+  coursesCommon.checkTaskCardDoesHaveButtons(taskTitle)
+})

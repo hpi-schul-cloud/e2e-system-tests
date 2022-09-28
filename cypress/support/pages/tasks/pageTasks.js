@@ -3,6 +3,8 @@
 class Tasks {
   static #pageTitle = '[id="page-title"]'
   static #localeDateFormat = 'de-DE'
+  static #taskOverviewTeacher = '[class="task-dashboard-teacher"]'
+  static #taskOverviewStudent = '[class="task-dashboard-student"]'
   static #createForm = '[id="homework-form"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
@@ -43,6 +45,11 @@ class Tasks {
   static #taskSubmissionsGradingTabLink = '[data-testid="task-submission-grading-tab"]'
   static #taskFeedbackTabLink = '[id="feedback-tab-link"]'
   static #feedbackSection = '[id="feedback"]'
+  static #finishedTasksTab = '[data-testid="finishedTasks"]'
+  static #openTasksTab = '[data-testid="openTasks"]'
+  static #finishedTasksListDiv = '[id="finished"]'
+  static #taskDotMenu = '[data-testid="task-menu"]'
+  static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]'
 
   compareFeedbackText(feedbackText){
     cy.get(Tasks.#feedbackSection).should('contain', feedbackText)
@@ -288,18 +295,34 @@ class Tasks {
     cy.get(Tasks.#lowerTaskSectionIcon).eq(1).click()
   }
 
-  seeTaskInList(taskTitle){
-    cy.get(Tasks.#taskTitleInList).contains(taskTitle).should('be.visible')
+  seeTaskInListAsTeacher(taskTitle){
+    cy.get(Tasks.#taskOverviewTeacher)
+      .contains(taskTitle)
+      .should('be.visible')
+  }
+
+  seeTaskNotInListAsTeacher(taskTitle){
+    cy.get(Tasks.#taskOverviewTeacher)
+      .contains(taskTitle)
+      .should('not.exist')
+  }
+
+  seeTaskInListAsStudent(taskTitle){
+    cy.get(Tasks.#taskOverviewStudent)
+      .contains(taskTitle)
+      .should('be.visible')
+  }
+
+  seeTaskNotInListAsStudent(taskTitle){
+    cy.get(Tasks.#taskOverviewStudent)
+      .contains(taskTitle)
+      .should('not.exist')
   }
 
   openTaskInTaskOverview(taskTitle) {
     cy.get(Tasks.#taskTitleInList)
       .contains(taskTitle)
       .click()
-  }
-
-  seeTaskNotInList(taskTitle){
-    cy.get(Tasks.#taskTitleInList).should('not.contain', taskTitle)
   }
 
   clickSubmissionsTab(){
@@ -356,5 +379,29 @@ class Tasks {
   clickOnButtonToParentCourse(){
     cy.get(Tasks.#toCourseButton).click()
   }
+
+  clickOnFinishedTab(){
+    cy.get(Tasks.#finishedTasksTab).click()
+  }
+
+  clickOnOpenTasksTab(){
+    cy.get(Tasks.#openTasksTab).click()
+  }
+
+  clickOnTaskDotMenu(taskTitle){
+    cy.get(Tasks.#finishedTasksListDiv)
+      .find(Tasks.#taskTitleInList)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .parent()
+      .find(Tasks.#taskDotMenu)
+      .click()
+  }
+
+  clickTaskFinishInDotMenu(linkId){
+    cy.get(Tasks.#taskFinishButtonInDotMenu).click()
+  }
+
 }
 export default Tasks

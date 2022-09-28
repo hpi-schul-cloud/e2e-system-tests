@@ -14,6 +14,7 @@ class Courses_Common {
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
+  static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #pageTitle = '[id="page-title"]'
@@ -150,5 +151,37 @@ class Courses_Common {
       .find(Courses_Common.#contentCardTaskInfoGradingsChip)
       .should('contain', gradedTasks)
   }
+
+  clickOnFinishTask(taskTitle){
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskActions)
+      .find('button')
+      .click()
+  }
+
+  checkTaskCardDoesNotHaveButtons(taskTitle){
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskActions)
+      .find('button')
+      .should('not.exist')
+  }
+
+  checkTaskCardDoesHaveButtons(taskTitle){
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskActions)
+      .find('button')
+      .should('be.visible')
+  }
+
+
 }
 export default Courses_Common
