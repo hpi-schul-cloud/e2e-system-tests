@@ -2,29 +2,28 @@ const emailInputFieldElement = '[data-testid="username-email"]'
 const passwordInputFieldElement = '[data-testid="password-email"]'
 const submitButton = '[data-testid="submit-login-email"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
+const defaultLoginViaExternalBroker = '[data-testid="submit-oauth-login"], [data-provider="oauth"]'
 const initials = '[data-testid="initials"]'
 const languageSelection = '[id="selected-language"]'
 const languageDe = '[data-language="de"]'
 
+const externalUsernameInputFieldElement = '[id="Username"]'
+const externalPasswordInputFieldElement = '[id="Password"]'
+
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
     const env = Cypress.env()
-    let link
-    let environmentUpperCased = environment.toUpperCase()
-    if (environmentUpperCased === 'BRB') {
-      link = Cypress.config('baseUrl', env[environmentUpperCased])
-      cy.visit(link)
-    } else if (environmentUpperCased === 'NBC') {
-      link = Cypress.config('baseUrl', env[environmentUpperCased])
-      cy.visit(link)
+    const link = Cypress.config('baseUrl', env[environmentUpperCased])
+    const environmentUpperCased = environment.toUpperCase()
+    console.log(link)
+    cy.visit(link)
+    if (environmentUpperCased === 'NBC') {
       cy.get(nbcLoginWithEmailOptionButton).eq(1).click()
-    } else if (environmentUpperCased === 'DEFAULT') {
-      link = Cypress.config('baseUrl', env[environmentUpperCased])
-      cy.visit(link)
     }
 
     let userEmail
     let userPassword
+    let doExternalLogin = false
 
     switch (username) {
 
@@ -67,15 +66,26 @@ Cypress.Commands.add('login', (username, environment) => {
         userEmail = 'EXPERT_1_EMAIL'
         userPassword = 'EXPERT_1_PASSWORD'
         break;
+      case 'extern_student':
+        userEmail = 'STUDENT_EXTERN'
+        userPassword = 'STUDENT_EXTERN_PASSWORD'
+        doExternalLogin = true
+        break;
     }
-    cy.get(emailInputFieldElement).eq(1).type(env[userEmail], {log:false})
-    cy.get(passwordInputFieldElement).eq(1).type(env[userPassword], {log:false})
-    cy.get(submitButton).eq(1).click()
+    if (doExternalLogin){
+      cy.get(defaultLoginViaExternalBroker).eq(1).click()
+      cy.get(externalUsernameInputFieldElement).eq(1).type(env[userEmail], {log:false})
+      cy.get(externalUsernameInputFieldElement).eq(1).type(env[userPassword], {log:false})
+      cy.type('{enter}')
+    } else {
+      cy.get(emailInputFieldElement).eq(1).type(env[userEmail], {log:false})
+      cy.get(passwordInputFieldElement).eq(1).type(env[userPassword], {log:false})
+      cy.get(submitButton).eq(1).click()
+    }
     cy.url().should('contain', '/dashboard')
     cy.get(initials).click()
     cy.get(languageSelection).click()
     cy.get(languageDe).click()
-
   })
   cy.visit('/dashboard')
 })
