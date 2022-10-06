@@ -2,12 +2,8 @@
 
 class Dashboard_Common {
 
-  visitDashboard() {
-    cy.visit('/dashboard')
-    this.arriveOnDashboard()
-  }
-
   arriveOnDashboard() {
+    cy.visit('/dashboard')
     cy.url().should('include', '/dashboard')
   }
 }
