@@ -42,7 +42,7 @@ class Management {
     }
     cy.intercept('/api/v1/classes?**').as('classes_api')
     cy.get(Management.#addButton).click()
-    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api']).then(
+    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], { timeout: 10000 }).then(
       interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(201)
         expect(interceptions[1].response.statusCode).to.equal(200)
