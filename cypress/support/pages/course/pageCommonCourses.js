@@ -33,11 +33,11 @@ class Courses_Common {
       '@schools_api',
       '@dashboard_api'
     ]).then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(200 || 201)
-      expect(interceptions[1].response.statusCode).to.equal(200 || 201)
-      expect(interceptions[2].response.statusCode).to.equal(200 || 201)
-      expect(interceptions[3].response.statusCode).to.equal(200 || 201)
-      expect(interceptions[4].response.statusCode).to.equal(200 || 201)
+      expect(interceptions[0].response.statusCode).to.equal(200)
+      expect(interceptions[1].response.statusCode).to.equal(200)
+      expect(interceptions[2].response.statusCode).to.equal(200)
+      expect(interceptions[3].response.statusCode).to.equal(200)
+      expect(interceptions[4].response.statusCode).to.equal(200)
       expect(interceptions[4].request.url).to.eq(
         'https://brb-main.cd.dbildungscloud.dev/api/v3/dashboard'
       )

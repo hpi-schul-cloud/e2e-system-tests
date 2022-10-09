@@ -81,11 +81,10 @@ class News_Common {
       '@roles_api',
       '@schools_api'
     ]).then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(200 || 201)
-      expect(interceptions[1].response.statusCode).to.equal(200 || 201)
-      expect(interceptions[2].response.statusCode).to.equal(200 || 201)
-      expect(interceptions[3].response.statusCode).to.equal(200 || 201)
-      console.log(interceptions[3].response)
+      expect(interceptions[0].response.statusCode).to.equal(200)
+      expect(interceptions[1].response.statusCode).to.equal(200)
+      expect(interceptions[2].response.statusCode).to.equal(200)
+      expect(interceptions[3].response.statusCode).to.equal(200)
       expect(interceptions[3].request.url).to.include(
         'https://brb-main.cd.dbildungscloud.dev/api/v1/schools/'
       )
