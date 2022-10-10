@@ -11,7 +11,8 @@ class Login_Management {
   static #brokerButton = '[data-testid="submit-oauth-login"]'
 
   visitLoginPage() {
-    cy.visit(Cypress.env('BRB'))
+    const link = Cypress.config('baseUrl', Cypress.env('DEFAULT'))
+    cy.visit('login')
   }
 
   clickOnForgotPassword() {
