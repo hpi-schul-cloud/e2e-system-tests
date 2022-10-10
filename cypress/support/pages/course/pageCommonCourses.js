@@ -32,7 +32,7 @@ class Courses_Common {
       '@roles_api',
       '@schools_api',
       '@dashboard_api'
-    ], { timeout: 10000 }).then(interceptions => {
+    ], { timeout: 15000 }).then(interceptions => {
       expect(interceptions[0].response.statusCode).to.equal(200)
       expect(interceptions[1].response.statusCode).to.equal(200)
       expect(interceptions[2].response.statusCode).to.equal(200)
