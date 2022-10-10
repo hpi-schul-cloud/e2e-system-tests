@@ -8,13 +8,19 @@ class Login_Management {
   static #infoMessage = '[data-testid="info-message"]'
   static #submitButton = '[data-testid="btn-submit"]'
   static #cancelButton = '[data-testid="btn-cancel"]'
+  static #brokerButton = '[data-testid="submit-oauth-login"]'
 
   visitLoginPage() {
-    cy.visit(Cypress.env('BRB'))
+    const link = Cypress.config('baseUrl', Cypress.env('DEFAULT'))
+    cy.visit('login')
   }
 
   clickOnForgotPassword() {
     cy.get(Login_Management.#passwordRecoveryButton).eq(1).click()
+  }
+
+  brokerButtonIsVisible(brokerButtonName) {
+    cy.get(Login_Management.#brokerButton).contains(brokerButtonName)
   }
 
   showUpElementsOnDialog() {
@@ -23,6 +29,7 @@ class Login_Management {
     cy.get(Login_Management.#infoMessage).should('be.visible')
     cy.get(Login_Management.#submitButton).should('be.visible')
     cy.get(Login_Management.#cancelButton).should('be.visible')
+    cy.get(Login_Management.#brokerButton).should('be.visible')
   }
 
   submitRequestWithoutEmail() {
@@ -33,5 +40,6 @@ class Login_Management {
   seeEmailInputOnSubmitingRequestWithoutEnteringEmail() {
     cy.get(Login_Management.#emailInputBox).should('be.visible')
   }
+
 }
 export default Login_Management
