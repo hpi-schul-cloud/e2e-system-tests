@@ -262,3 +262,7 @@ And('I click on Restore', () => {
   tasks.clickTaskFinishInDotMenu()
 })
 
+And('I open task list with due date', () => {
+  tasks.clickLowerTaskSectionIcon()
+})
+

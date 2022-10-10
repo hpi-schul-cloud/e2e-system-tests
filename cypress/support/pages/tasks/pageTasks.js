@@ -399,8 +399,12 @@ class Tasks {
       .click()
   }
 
-  clickTaskFinishInDotMenu(linkId){
+  clickTaskFinishInDotMenu(){
     cy.get(Tasks.#taskFinishButtonInDotMenu).click()
+  }
+
+  clickLowerTaskSectionIcon(){
+    cy.get(Tasks.#lowerTaskSectionIcon).click()
   }
 
 }

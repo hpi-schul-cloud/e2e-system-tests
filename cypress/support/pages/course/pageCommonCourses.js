@@ -2,6 +2,7 @@
 
 class Courses_Common {
 
+  static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
   static #createContent = '[data-testid="add-content-button"]'
   static #toolsTab = '[data-testid="tools"]'
@@ -83,15 +84,19 @@ class Courses_Common {
   }
 
   taskIsVisibleOnCoursePage(taskTitle) {
-    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    cy.url().should('include', '/rooms/')
+    // cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    // cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
+    // cy.contains(taskTitle).should('not.exist')
   }
 
   taskIsNotVisibleOnCoursePage(taskTitle) {
-    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    cy.url().should('include', '/rooms/')
+    // cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    // cy.url().should('include', '/rooms/')
+    // cy.wait(1000)
     cy.contains(taskTitle).should('not.exist')
+    // cy.get(Courses_Common.#mainContent).should('not.contain', taskTitle)
+    // cy.get(Courses_Common.#mainContent).contains(taskTitle).should('not.exist')
   }
 
   openTask(taskTitle) {
