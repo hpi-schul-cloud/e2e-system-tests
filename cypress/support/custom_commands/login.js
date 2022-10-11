@@ -10,13 +10,15 @@ const languageDe = '[data-language="de"]'
 
 const externalUsernameInputFieldElement = '[id="Username"]'
 const externalPasswordInputFieldElement = '[id="Password"]'
+const oauth_url =
+  'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
 
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
     const env = Cypress.env()
     const environmentUpperCased = environment.toUpperCase()
     const link = Cypress.config('baseUrl', env[environmentUpperCased])
-    cy.visit(link)
+    cy.log(link)
     if (environmentUpperCased === 'NBC') {
       cy.visit('/login')
       cy.get(nbcLoginWithEmailOptionButton).click()
@@ -70,15 +72,20 @@ Cypress.Commands.add('login', (username, environment) => {
         break
     }
     if (doExternalLogin) {
-      cy.get(defaultLoginViaExternalBroker).click()
-      cy.url().should('include', '/Account/Login')
-      cy.get(externalUsernameInputFieldElement).should('be.visible')
-      cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
-        log: false
+      cy.request('GET', oauth_url).then(resp => {
+        cy.intercept(resp.requestHeaders.referer).as('oauth_url')
+        cy.visit(resp.requestHeaders.referer)
+        cy.wait('@oauth_url')
+        cy.url().should('include', '/Account/Login')
+        cy.get(externalUsernameInputFieldElement).should('be.visible')
+        cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
+          log: false
+        })
+        cy.get(externalPasswordInputFieldElement)
+          .type(env[userPassword], { log: false })
+          .type('{enter}')
       })
-      cy.get(externalPasswordInputFieldElement)
-        .type(env[userPassword], { log: false })
-        .type('{enter}')
+      //cy.get(defaultLoginViaExternalBroker).click()
     } else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
