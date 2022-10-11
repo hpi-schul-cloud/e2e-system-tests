@@ -7,7 +7,7 @@ Feature: To go to account settings page on default
     When I go to my account settings
     Then I see my email is editable
 
-  Scenario: I see my e-mail is not editable as an external student user
-    Given I am logged in as a 'student_extern' at 'default'
-    When I go to my account settings
-    Then I see my email is not editable
+  #Scenario: I see my e-mail is not editable as an external student user
+    #Given I am logged in as a 'student_extern' at 'default'
+    #When I go to my account settings
+    #Then I see my email is not editable
