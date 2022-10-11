@@ -19,8 +19,7 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.visit(link)
     if (environmentUpperCased === 'NBC') {
       cy.visit('/login')
-      cy.get(nbcLoginWithEmailOptionButton)
-        .click()
+      cy.get(nbcLoginWithEmailOptionButton).click()
     } else if (environmentUpperCased === 'DEFAULT') {
       cy.visit('/login')
     } else {
@@ -72,6 +71,8 @@ Cypress.Commands.add('login', (username, environment) => {
     }
     if (doExternalLogin) {
       cy.get(defaultLoginViaExternalBroker).click()
+      cy.url().should('include', '/Account/Login')
+      cy.get(externalUsernameInputFieldElement).should('be.visible')
       cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
         log: false
       })
