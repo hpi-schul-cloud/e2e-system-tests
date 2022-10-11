@@ -222,7 +222,7 @@ class Tasks {
   }
 
   enterNewFileName(newFileName){
-    cy.get(Tasks.#renameFileInput).clear()
+    cy.get(Tasks.#renameFileInput).click().focus().clear()
     cy.get(Tasks.#renameFileInput).type(newFileName, { force: true })
   }
 
