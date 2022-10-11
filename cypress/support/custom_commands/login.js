@@ -85,7 +85,6 @@ Cypress.Commands.add('login', (username, environment) => {
           .type(env[userPassword], { log: false })
           .type('{enter}')
       })
-      //cy.get(defaultLoginViaExternalBroker).click()
     } else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
