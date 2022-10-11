@@ -56,3 +56,13 @@ jobs:
           name: my-video-artifact
           path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
           retention-days: 3
+
+      - name: Send Notification to Rocket Chat
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        # you can add conditions, but leave always(), it makes sure that also a message is send, if previous steps failed
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: 'Cypress Tests'
+          url: ${{ secrets.RC_WEBHOOK_URL }}
+          username: Manually Trigger Automated Test Run
