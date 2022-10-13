@@ -9,3 +9,7 @@ Given('I am on the dBildungscloud login page', () => {
 When('I click on Forgot Password', () => {
     loginManagement.clickOnForgotPassword()
 })
+
+Then('I see the Login via {string} button', (brokerButtonName) => {
+    loginManagement.brokerButtonIsVisible(brokerButtonName)
+})
