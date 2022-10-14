@@ -10,7 +10,6 @@ const news = new News()
 // --> \step_definition\teams\commonTeamsSteps.spec.js
 // --> \step_definition\news\commonNewsSteps.spec.js
 
-
 Then('I can read the news {string} with description {string}', (titleOfNews, descriptionOfNews) => {
   news.teacherReadsNewsOnOverviewPage(titleOfNews, descriptionOfNews)
 })
