@@ -32,6 +32,8 @@ jobs:
           CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
           CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
           CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
+          CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
+          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
         with:
           browser: chrome
           headed: false
