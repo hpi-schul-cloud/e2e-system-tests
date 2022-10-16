@@ -20,28 +20,33 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    cy.get(Courses_Common.#courseOverviewNavigationButton).click()
     cy.intercept('/api/v1/config/app/public').as('public_api')
     cy.intercept('/api/v1/me').as('me_api')
     cy.intercept('/api/v1/roles/user/**').as('roles_api')
     cy.intercept('/api/v1/schools/**').as('schools_api')
     cy.intercept('/api/v3/dashboard').as('dashboard_api')
-    cy.wait([
-      '@public_api',
-      '@me_api',
-      '@roles_api',
-      '@schools_api',
-      '@dashboard_api'
-    ], { timeout: 30000 }).then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(200)
-      expect(interceptions[1].response.statusCode).to.equal(200)
-      expect(interceptions[2].response.statusCode).to.equal(200)
-      expect(interceptions[3].response.statusCode).to.equal(200)
-      expect(interceptions[4].response.statusCode).to.equal(200)
-      expect(interceptions[4].request.url).to.eq(
-        'https://brb-main.cd.dbildungscloud.dev/api/v3/dashboard'
+    cy.get(Courses_Common.#courseOverviewNavigationButton)
+      .click()
+      .wait(
+        [
+          '@public_api',
+          '@me_api',
+          '@roles_api',
+          '@schools_api',
+          '@dashboard_api'
+        ],
+        { timeout: 30000 }
       )
-    })
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].response.statusCode).to.equal(200)
+        expect(interceptions[3].response.statusCode).to.equal(200)
+        expect(interceptions[4].response.statusCode).to.equal(200)
+        expect(interceptions[4].request.url).to.eq(
+          'https://brb-main.cd.dbildungscloud.dev/api/v3/dashboard'
+        )
+      })
   }
 
   navigateToRoomBoard (roomName) {
@@ -77,7 +82,9 @@ class Courses_Common {
   }
 
   courseIsVisibleOnOverviewPage (courseName) {
-    cy.contains(courseName).should('be.visible').and('contain.text', courseName)
+    cy.contains(courseName)
+      .should('be.visible')
+      .and('contain.text', courseName)
   }
 
   courseIsNotVisibleOnOverviewPage (courseName) {
