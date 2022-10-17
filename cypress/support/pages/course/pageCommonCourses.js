@@ -52,6 +52,7 @@ class Courses_Common {
   }
 
   navigateToRoomBoard (roomName) {
+    cy.intercept('**/userPermissions?**').as('userPermissions_api')
     cy.get('h1')
       .eq(0)
       .then($title => {
@@ -60,6 +61,21 @@ class Courses_Common {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
+            .wait(
+              [
+                '@public_api',
+                '@me_api',
+                '@roles_api',
+                '@schools_api',
+                '@userPermissions_api'
+              ],
+              { timeout: 60000 }
+            )
+            .then(interceptions => {
+              expect(interceptions[1].response.statusCode).to.equal(200)
+              expect(interceptions[1].state).to.equal('Complete')
+              expect(interceptions[0].response.statusCode).to.equal(200)
+            })
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`).click()
         } else if (htmlTitlePage.includes('Cursos')) {
@@ -117,6 +133,22 @@ class Courses_Common {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
+      .should('be.visible')
+      .wait(
+        [
+          '@public_api',
+          '@me_api',
+          '@roles_api',
+          '@schools_api',
+          '@userPermissions_api'
+        ],
+        { timeout: 60000 }
+      )
+      .then(interceptions => {
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[1].state).to.equal('Complete')
+        expect(interceptions[0].response.statusCode).to.equal(200)
+      })
   }
 
   taskIsNotVisibleOnCoursePage (taskTitle) {
