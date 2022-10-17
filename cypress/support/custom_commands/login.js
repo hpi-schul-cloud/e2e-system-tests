@@ -72,7 +72,10 @@ Cypress.Commands.add('login', (username, environment) => {
         break
     }
     if (doExternalLogin) {
-      cy.request('GET', oauth_url, {timeout: 60000}).then(resp => {
+      cy.request('GET', oauth_url, {
+        timeout: 60000,
+        retryOnStatusCodeFailure: true
+      }).then(resp => {
         cy.intercept(resp.requestHeaders.referer).as('oauth_url')
         cy.visit(resp.requestHeaders.referer)
         cy.wait('@oauth_url')
