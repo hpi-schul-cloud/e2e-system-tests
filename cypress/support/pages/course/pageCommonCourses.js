@@ -20,20 +20,22 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    cy.intercept('/api/v1/config/app/public').as('public_api')
-    cy.intercept('/api/v1/me').as('me_api')
-    cy.intercept('/api/v1/roles/user/**').as('roles_api')
-    cy.intercept('/api/v1/schools/**').as('schools_api')
-    cy.intercept('/api/v3/dashboard').as('dashboard_api')
+    cy.intercept('**/api/v1/config/app/public').as('public_api')
+    cy.intercept('**/api/v1/me').as('me_api')
+    cy.intercept('**/api/v1/roles/user/**').as('roles_api')
+    cy.intercept('**/api/v1/schools/**').as('schools_api')
+    cy.intercept('**/api/v3/dashboard', req => {
+      delete req.headers['if-none-match']
+    }).as('dashboard_api')
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
       .wait(
         [
+          '@dashboard_api',
           '@public_api',
           '@me_api',
           '@roles_api',
-          '@schools_api',
-          '@dashboard_api'
+          '@schools_api'
         ],
         { timeout: 30000 }
       )
@@ -43,7 +45,7 @@ class Courses_Common {
         expect(interceptions[2].response.statusCode).to.equal(200)
         expect(interceptions[3].response.statusCode).to.equal(200)
         expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[4].request.url).to.eq(
+        expect(interceptions[0].request.url).to.eq(
           'https://brb-main.cd.dbildungscloud.dev/api/v3/dashboard'
         )
       })
