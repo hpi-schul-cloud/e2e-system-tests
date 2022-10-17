@@ -97,6 +97,8 @@ Feature: To create, edit and delete tasks by the teacher.
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
     And I enter text submission 'Hier ist die Antwort.'
+    And I upload file 'testboard_jpg' for submission
+    And I see file 'testboard_jpg' is visible in uploaded files section
     And I click on button Save and Send Submission
     Then I see hint that submission has been sent successfully
     When I go to tasks overview
@@ -116,7 +118,14 @@ Feature: To create, edit and delete tasks by the teacher.
     Then there is a tick in column delivered for 'Kraft'
     When I click on submission of 'Kraft'
     Then I see submission text 'Hier ist die Antwort.'
+    When I click on download file 'testboard_jpg' in submission
+    Then file 'testboard_jpg' is saved in folder downloads
     When I click on grading tab
+    And I upload file 'gradingfile-pdf.pdf'
+    And I click on submissions tab
+    And I click on submission of 'Kraft'
+    And I click on grading tab
+    Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
     And I enter comment 'Gut gemacht!'
     And I enter grade '83'
     And I click on button Save and Send grading
@@ -136,6 +145,8 @@ Feature: To create, edit and delete tasks by the teacher.
     When I click on feedback tab
     Then I see feedback text 'Gut gemacht!'
     And I see grade is '83'
+    When I click on download file 'gradingfile-pdf.pdf' in grading
+    Then file 'gradingfile-pdf.pdf' is saved in folder downloads
 
   Scenario: Teacher finishes task from room
     Given I am logged in as a 'teacher1' at 'brb'

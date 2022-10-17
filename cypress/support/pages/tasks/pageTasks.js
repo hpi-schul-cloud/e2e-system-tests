@@ -23,6 +23,7 @@ class Tasks {
   static #fileUploadButtonEnabled = '[data-testid="tasks-edit-fileupload"]'
   static #fileUploadInput = '[data-testid="tasks-edit-fileupload-input"]'
   static #filesSection = '[data-testid="tasks-edit-section-files"]'
+  static #uploadedFilesSection = '[class="form-group section-uploaded-files"]'
   static #fileViewerSection = '[class="file-viewer"]'
   static #renameFileInput = '[id="newNameInput"]'
   static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]'
@@ -129,6 +130,11 @@ class Tasks {
     cy.window().should('not.have.prop', 'beforeReload')
   }
 
+  executeFileUploadForSubmission(fileName){
+    cy.get(Tasks.#fileUploadInput)
+      .attachFile(fileName)
+  }
+
   clickOnPublicSubmissionCheckbox(){
     cy.get(Tasks.#publicSubmissionsCheckbox).click()
   }
@@ -185,8 +191,12 @@ class Tasks {
     cy.get(Tasks.#draftCheckbox).should('not.be.checked')
   }
 
-  seeFileInSectionFiles(fileName){
+  seeFileInSectionFilesInEditTask(fileName){
     cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true})
+  }
+
+  seeFileInSectionUploadedFiles(fileName){
+    cy.get(Tasks.#uploadedFilesSection).contains(fileName, {includeShadowDom: true})
   }
 
   fileIsNotVisibleInSectionFiles(fileName){
@@ -245,6 +255,26 @@ class Tasks {
   clickDownloadFile(fileName){
     cy.get(`[data-file-viewer-savename="${fileName}"]`)
       .find('[data-method="download"]')
+      .click()
+  }
+
+  clickDownloadFileInSubmission(fileName){
+    cy.get(Tasks.#submissionsSection)
+      .find('a')
+      .should('contain', fileName)
+      .parent()
+      .find('span')
+      .find('a')
+      .click()
+  }
+
+  clickDownloadFileInGrading(fileName){
+    cy.get(Tasks.#feedbackSection)
+      .find('a')
+      .should('contain', fileName)
+      .parent()
+      .find('span')
+      .find('a')
       .click()
   }
 

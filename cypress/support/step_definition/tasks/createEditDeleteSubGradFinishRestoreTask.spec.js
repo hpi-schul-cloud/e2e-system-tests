@@ -50,6 +50,10 @@ When('I upload file {string}', (fileName) => {
   tasks.executeFileUpload(fileName)
 })
 
+When('I upload file {string} for submission', (fileName) => {
+  tasks.executeFileUploadForSubmission(fileName)
+})
+
 And('I click on Public Submission Checkbox', () => {
   tasks.clickOnPublicSubmissionCheckbox()
 })
@@ -83,7 +87,11 @@ And ('Draft is disabled', () => {
 })
 
 Then('I see file {string} is visible in section files', (fileName) => {
-  tasks.seeFileInSectionFiles(fileName)
+  tasks.seeFileInSectionFilesInEditTask(fileName)
+})
+
+Then('I see file {string} is visible in uploaded files section', (fileName) => {
+  tasks.seeFileInSectionUploadedFiles(fileName)
 })
 
 Then('I see file {string} is not visible in section files', (fileName) => {
@@ -120,6 +128,14 @@ tasks.submitRenameFileDialog()
 
 When('I click on download file {string}', (fileName) => {
   tasks.clickDownloadFile(fileName)
+})
+
+When('I click on download file {string} in submission', (fileName) => {
+  tasks.clickDownloadFileInSubmission(fileName)
+})
+
+When('I click on download file {string} in grading', (fileName) => {
+  tasks.clickDownloadFileInGrading(fileName)
 })
 
 Then('file {string} is saved in folder downloads', (fileName) => {
