@@ -74,7 +74,20 @@ class News_Common {
   }
 
   clickOnAddNews () {
-    cy.get(News_Common.#createNewNews).click()
+    cy.intercept('**/public').as('public_api')
+    cy.intercept('**/me').as('me_api')
+    cy.intercept('**/roles/**').as('roles_api')
+    cy.intercept('**/schools/**').as('schools_api')
+    cy.get(News_Common.#createNewNews).click().then(object => {
+      cy.wrap(object)
+      .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].response.statusCode).to.equal(200)
+        expect(interceptions[3].response.statusCode).to.equal(200)
+      })
+    })
   }
 
   navigateToNewsOverview () {

@@ -35,13 +35,19 @@ class Teams_Common {
 
   doNotSeeDeletedStudentInTeam () {
     cy.get(Teams_Common.#studentTableBody)
-      .find(Teams_Common.#teamMemberInTable, Teams_Common.#testAssertionData.lastName)
+      .find(
+        Teams_Common.#teamMemberInTable,
+        Teams_Common.#testAssertionData.lastName
+      )
       .should('not.exist')
   }
 
   removeStudentInTeam () {
     cy.get(Teams_Common.#studentTableBody)
-      .contains(Teams_Common.#teamMemberInTable, Teams_Common.#testAssertionData.lastName)
+      .contains(
+        Teams_Common.#teamMemberInTable,
+        Teams_Common.#testAssertionData.lastName
+      )
       .then(tableRow => {
         cy.wrap(tableRow)
           .find(Teams_Common.#deleteIconInTableViewRow)
@@ -53,7 +59,10 @@ class Teams_Common {
   }
 
   seeNewlyAddedStudentAsInternalTeamMember () {
-    cy.get(Teams_Common.#studentTableBody).find(Teams_Common.#teamMemberInTable, Teams_Common.#testAssertionData.lastName)
+    cy.get(Teams_Common.#studentTableBody).find(
+      Teams_Common.#teamMemberInTable,
+      Teams_Common.#testAssertionData.lastName
+    )
   }
 
   clickOnAddButton () {
@@ -84,7 +93,22 @@ class Teams_Common {
   }
 
   clickOnCreateNewsOnTeamDetailPage () {
-    cy.get(Teams_Common.#createNewsButtonOnTeamDetail).click()
+    cy.intercept('**/public').as('public_api')
+    cy.intercept('**/me').as('me_api')
+    cy.intercept('**/roles/**').as('roles_api')
+    cy.intercept('**/schools/**').as('schools_api')
+    cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
+      .click()
+      .then(object => {
+        cy.wrap(object)
+          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
+          .then(interceptions => {
+            expect(interceptions[0].response.statusCode).to.equal(200)
+            expect(interceptions[1].response.statusCode).to.equal(200)
+            expect(interceptions[2].response.statusCode).to.equal(200)
+            expect(interceptions[3].response.statusCode).to.equal(200)
+          })
+      })
   }
 
   clickOnNewsTabInTeamDetailPage () {
@@ -131,7 +155,9 @@ class Teams_Common {
 
   canNotSeeTeamChatCheckbox () {
     cy.get(Teams_Common.#teamOptions)
-    cy.contains(Teams_Common.#testAssertionData.activateMessengerText).should('not.exist')
+    cy.contains(Teams_Common.#testAssertionData.activateMessengerText).should(
+      'not.exist'
+    )
     cy.get(Teams_Common.#activateRCCheckbox).should('not.exist')
   }
 
@@ -143,7 +169,9 @@ class Teams_Common {
 
   canNotSeeTeamVideoCheckbox () {
     cy.get(Teams_Common.#teamOptions)
-    cy.contains(Teams_Common.#testAssertionData.activateVideoMessengerText).should('not.exist')
+    cy.contains(
+      Teams_Common.#testAssertionData.activateVideoMessengerText
+    ).should('not.exist')
     cy.get(Teams_Common.#activateConfCheckbox).should('not.exist')
   }
 
