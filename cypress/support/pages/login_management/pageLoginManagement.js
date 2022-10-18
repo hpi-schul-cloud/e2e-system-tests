@@ -16,7 +16,7 @@ class Login_Management {
   }
 
   clickOnForgotPassword() {
-    cy.get(Login_Management.#passwordRecoveryButton).eq(1).click()
+    cy.get(Login_Management.#passwordRecoveryButton).click()
   }
 
   brokerButtonIsVisible(brokerButtonName) {
