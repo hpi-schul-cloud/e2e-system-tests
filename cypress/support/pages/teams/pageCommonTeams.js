@@ -21,33 +21,44 @@ class Teams_Common {
   static #confirmTeamMemberAddButton = '[data-testid="btn-submit"]'
   static #confirmTeamMemberDeleteButton = '[data-testid="btn-submit"]'
   static #deleteIconInTableViewRow = '[data-testid="btn-delete-team-member"]'
+  static #teamMemberInTable = 'tr'
+
+  static #testAssertionData = {
+    firstName: 'Kraft',
+    lastName: 'Herbert',
+    fullName: 'Kraft, Herbert',
+    deletePopupText: 'Teilnehmer:in löschen',
+    addButtonText: 'Hinzufügen',
+    activateMessengerText: 'Messenger für Team aktivieren',
+    activateVideoMessengerText: 'Videokonferenzen für Team aktivieren'
+  }
 
   doNotSeeDeletedStudentInTeam () {
     cy.get(Teams_Common.#studentTableBody)
-      .find('tr td', 'Herbert')
+      .find(Teams_Common.#teamMemberInTable, Teams_Common.#testAssertionData.lastName)
       .should('not.exist')
   }
 
   removeStudentInTeam () {
     cy.get(Teams_Common.#studentTableBody)
-      .contains('tr', 'Herbert')
+      .contains(Teams_Common.#teamMemberInTable, Teams_Common.#testAssertionData.lastName)
       .then(tableRow => {
         cy.wrap(tableRow)
           .find(Teams_Common.#deleteIconInTableViewRow)
           .click()
         cy.get(Teams_Common.#confirmTeamMemberDeleteButton)
-          .contains('Teilnehmer:in löschen')
+          .contains(Teams_Common.#testAssertionData.deletePopupText)
           .click()
       })
   }
 
   seeNewlyAddedStudentAsInternalTeamMember () {
-    cy.get(Teams_Common.#studentTableBody).find('tr td', 'Herbert')
+    cy.get(Teams_Common.#studentTableBody).find(Teams_Common.#teamMemberInTable, Teams_Common.#testAssertionData.lastName)
   }
 
   clickOnAddButton () {
     cy.get(Teams_Common.#confirmTeamMemberAddButton)
-      .contains('Hinzufügen')
+      .contains(Teams_Common.#testAssertionData.addButtonText)
       .click()
   }
 
@@ -57,7 +68,7 @@ class Teams_Common {
     )
     cy.get(Teams_Common.#selectInternalTeamMember, { timeout: 20000 })
       .should('be.visible')
-      .select('Kraft, Herbert', { force: true })
+      .select(Teams_Common.#testAssertionData.fullName, { force: true })
   }
 
   clickOnAddInternalAttendeees () {
@@ -114,25 +125,25 @@ class Teams_Common {
 
   canSeeTeamChatCheckbox () {
     cy.get(Teams_Common.#teamOptions)
-    cy.contains('Messenger für Team aktivieren')
+    cy.contains(Teams_Common.#testAssertionData.activateMessengerText)
     cy.get(Teams_Common.#activateRCCheckbox)
   }
 
   canNotSeeTeamChatCheckbox () {
     cy.get(Teams_Common.#teamOptions)
-    cy.contains('Messenger für Team aktivieren').should('not.exist')
+    cy.contains(Teams_Common.#testAssertionData.activateMessengerText).should('not.exist')
     cy.get(Teams_Common.#activateRCCheckbox).should('not.exist')
   }
 
   canSeeTeamVideoCheckbox () {
     cy.get(Teams_Common.#teamOptions)
-    cy.contains('Videokonferenzen für Team aktivieren')
+    cy.contains(Teams_Common.#testAssertionData.activateVideoMessengerText)
     cy.get(Teams_Common.#activateConfCheckbox)
   }
 
   canNotSeeTeamVideoCheckbox () {
     cy.get(Teams_Common.#teamOptions)
-    cy.contains('Videokonferenzen für Team aktivieren').should('not.exist')
+    cy.contains(Teams_Common.#testAssertionData.activateVideoMessengerText).should('not.exist')
     cy.get(Teams_Common.#activateConfCheckbox).should('not.exist')
   }
 
