@@ -34,29 +34,29 @@ class Management {
 
   clickOnAddButton (role) {
     if (!(role == 'student')) {
-      cy.intercept('/api/v1/users/admin/teachers').as('post_role_api')
-      cy.intercept('/api/v1/users/admin/teachers?**').as('get_roles_api')
+      cy.intercept('POST', '**/teachers').as('post_role_api')
+      cy.intercept('GET', '**/teachers?**').as('get_roles_api')
     } else {
-      cy.intercept('/api/v1/users/admin/students').as('post_role_api')
-      cy.intercept('/api/v1/users/admin/students?**').as('get_roles_api')
+      cy.intercept('POST', '**/students').as('post_role_api')
+      cy.intercept('GET', '**/students?**').as('get_roles_api')
     }
-    cy.intercept('/api/v1/classes?**').as('classes_api')
+    cy.intercept('**/classes?**').as('classes_api')
     cy.get(Management.#addButton).click()
-    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], { timeout: 10000 }).then(
-      interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(201)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[2].request.url).to.include('/api/v1/users/admin')
-      }
-    )
+    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], {
+      timeout: 10000
+    }).then(interceptions => {
+      expect(interceptions[0].response.statusCode).to.equal(201)
+      expect(interceptions[1].response.statusCode).to.equal(200)
+      expect(interceptions[2].response.statusCode).to.equal(200)
+      expect(interceptions[2].request.url).to.include('/api/v1/users/admin')
+    })
   }
 
   enterNameForSearch (role, keyword) {
     if (!(role == 'student')) {
-      cy.intercept('/api/v1/users/admin/teachers?**').as('search_api')
+      cy.intercept('**/teachers?**').as('search_api')
     } else {
-      cy.intercept('/api/v1/users/admin/students?**').as('search_api')
+      cy.intercept('**/students?**').as('search_api')
     }
     cy.get(Management.#searchbar).type(keyword)
     cy.wait('@search_api')
@@ -123,7 +123,7 @@ class Management {
   }
 
   clickVideoConferenceToggleSwitch () {
-    cy.intercept('/api/v1/federalStates/*').as('federalStates')
+    cy.intercept('**/federalStates/**').as('federalStates')
     cy.wait('@federalStates')
     cy.get(Management.#videoconferenceToggleSwitch)
       .find('input')
@@ -152,7 +152,7 @@ class Management {
   }
 
   clickChatToggleSwitch () {
-    cy.intercept('/api/v1/federalStates/*').as('federalStates')
+    cy.intercept('**/federalStates/**').as('federalStates')
     cy.wait('@federalStates')
     cy.get(Management.#chatToggleSwitch)
       .find('input')
