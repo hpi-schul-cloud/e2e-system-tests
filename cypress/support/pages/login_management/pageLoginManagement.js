@@ -29,7 +29,6 @@ class Login_Management {
     cy.get(Login_Management.#infoMessage).should('be.visible')
     cy.get(Login_Management.#submitButton).should('be.visible')
     cy.get(Login_Management.#cancelButton).should('be.visible')
-    cy.get(Login_Management.#brokerButton).should('be.visible')
   }
 
   submitRequestWithoutEmail() {
