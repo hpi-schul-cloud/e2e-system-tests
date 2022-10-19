@@ -53,9 +53,7 @@ class News_Common {
       .click()
       .wait('@alerts_api')
       .then(interceptions => {
-        //expect(interceptions.state).to.equal('Complete')
         expect(interceptions.response.statusCode).to.equal(200)
-        console.log(interceptions[1])
       })
   }
 
