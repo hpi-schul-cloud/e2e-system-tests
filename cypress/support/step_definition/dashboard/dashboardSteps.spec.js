@@ -52,5 +52,5 @@ Then('I do not see school news with title {string}', schoolNewsTitle => {
 })
 
 Then ('I do not see teams news with title {string}',(teamNewsTitle) => {
-  newsCommon.studentDoNotSeeTeamsNews(teamNewsTitle)
+  newsCommon.doNotSeeNews(teamNewsTitle)
 })
