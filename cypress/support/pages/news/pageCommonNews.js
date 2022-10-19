@@ -48,7 +48,15 @@ class News_Common {
   }
 
   clickOnCreateNewsSaveButton () {
-    cy.get(News_Common.#newsCreateButton).click()
+    cy.intercept('/alerts').as('alerts_api')
+    cy.get(News_Common.#newsCreateButton)
+      .click()
+      .wait('@alerts_api')
+      .then(interceptions => {
+        //expect(interceptions.state).to.equal('Complete')
+        expect(interceptions.response.statusCode).to.equal(200)
+        console.log(interceptions[1])
+      })
   }
 
   seeTimeInput () {
@@ -60,7 +68,9 @@ class News_Common {
   }
 
   enterNewsDescription (newsDescription) {
-    cy.get(News_Common.#newsDescription, { timeout: 20000 }).type(newsDescription)
+    cy.get(News_Common.#newsDescription, { timeout: 20000 }).type(
+      newsDescription
+    )
   }
 
   enterNewsTitle (newsTitle) {
@@ -78,16 +88,18 @@ class News_Common {
     cy.intercept('**/me').as('me_api')
     cy.intercept('**/roles/**').as('roles_api')
     cy.intercept('**/schools/**').as('schools_api')
-    cy.get(News_Common.#createNewNews).click().then(object => {
-      cy.wrap(object)
-      .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
+    cy.get(News_Common.#createNewNews)
+      .click()
+      .then(object => {
+        cy.wrap(object)
+          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
+          .then(interceptions => {
+            expect(interceptions[0].response.statusCode).to.equal(200)
+            expect(interceptions[1].response.statusCode).to.equal(200)
+            expect(interceptions[2].response.statusCode).to.equal(200)
+            expect(interceptions[3].response.statusCode).to.equal(200)
+          })
       })
-    })
   }
 
   navigateToNewsOverview () {
