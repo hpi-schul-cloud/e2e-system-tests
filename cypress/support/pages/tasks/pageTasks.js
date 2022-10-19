@@ -23,7 +23,7 @@ class Tasks {
   static #fileUploadButtonEnabled = '[data-testid="tasks-edit-fileupload"]'
   static #fileUploadInput = '[data-testid="tasks-edit-fileupload-input"]'
   static #filesSection = '[data-testid="tasks-edit-section-files"]'
-  static #uploadedFilesSection = '[class="form-group section-uploaded-files"]'
+  static #uploadedFilesSection = '[data-testid="section-uploadedfiles"]'
   static #fileViewerSection = '[class="file-viewer"]'
   static #renameFileInput = '[id="newNameInput"]'
   static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]'
