@@ -8,7 +8,7 @@ const teamsCommon = new Teams_Common()
 
 
 // EXTERNAL COMMON STEP DEFINITIONS
-// =========================
+// ================================
 // External defined steps can be found here:
 // -----------------------------------------
 // -->\step_definition\authentication\loginStep.spec.js
@@ -16,60 +16,7 @@ const teamsCommon = new Teams_Common()
 // --> \step_definition\dashboard\commonDashboardSteps.spec.js
 // --> \step_definition\news\commonNewsSteps.spec.js
 
-
-//Scenario: as a pre-condition teacher creates school news
-//--------------------------------------------------------
-
-And ('I click on add news button', () => {
-  newsCommon.clickOnAddNews()
-})
-
-Then('I see news creation page', () => {
-  newsCommon.seeNewsCreationPage()
-})
-
-And('I enter news title {string}', (newsTitle) => {
-  newsCommon.enterNewsTitle(newsTitle)
-})
-
-And('I enter news description {string}', (newsDescription) => {
-  newsCommon.enterNewsDescription(newsDescription)
-})
-
-And('I see date input field', () => {
-  newsCommon.seeDateInput()
-
-})
-
-And('I see time input field', () => {
-  newsCommon.seeTimeInput()
-})
-
-And('I click on save button', () => {
-  newsCommon.clickOnCreateNewsSaveButton()
-})
-
-Then('I see news is created successfully with title {string} and with description {string}', (newsTitle, newsDesc) => {
-  newsCommon.seeCreatedNews(newsTitle, newsDesc)
-})
-
-//Scenario: as a pre-condition teacher creates a team news
-//--------------------------------------------------------
-
-When('I click on news tab on the team detail page', () => {
-  teamsCommon.clickOnNewsTabInTeamDetailPage()
-})
-
-And('I click on create news button', () => {
-  teamsCommon.clickOnCreateNewsOnTeamDetailPage()
-})
-
-//Scenario: as a pre-condition teacher adds student as team member
-//-----------------------------------------------------------------
-//defined in common step definition
-
 //Scenario: student arrives on dashboard
-//---------------------------------------
 
 Then('I see the welcome message {string}', (welcomeMsg) => {
   dashboard.seeWelcomeMessage(welcomeMsg)
@@ -88,38 +35,12 @@ Then('I can see the assigned task {string}', (taskName) => {
 })
 
 //Scenario: teacher arrives on dashboard
-//--------------------------------------
 
 Then('I can see the draft task {string}', (draftName) => {
   dashboard.seeDraftTasks(draftName)
 })
 
-//Scenario: as a post-condition teacher deletes the school news
-//-------------------------------------------------------------
-
-And('I click on the news teaser {string}', (newsName) => {
-  newsCommon.openNewsDetailPage(newsName)
-})
-
-When('I click on delete button', () => {
-  newsCommon.clickOnDeleteNewsButton()
-})
-
-And('I confirm the deletion on confirmation dialog box', () => {
-  newsCommon.confirmDeletionOnDialogBox()
-})
-
-Then('I do not see the news {string}', (newsName) => {
-  newsCommon.doNotSeeNews(newsName)
-})
-
-//Scenario: as a post-condition teacher deletes the team news
-//-----------------------------------------------------------
-// defined in common steps
-
-
 //Scenario: student does not see news anymore on dashboard
-//------------------------------------------------------------
 
 Then ('I do not see school news with title {string}',(schoolNewsTitle) =>{
   newsCommon.studentDoNotSeeSchoolNews(schoolNewsTitle)
@@ -128,10 +49,3 @@ Then ('I do not see school news with title {string}',(schoolNewsTitle) =>{
 Then ('I do not see teams news with title {string}',(teamNewsTitle) => {
   newsCommon.studentDoNotSeeTeamsNews(teamNewsTitle)
 })
-
-
-
-
-//Scenario: as a post-condition teacher deletes the internal team memeber student in the team
-//-------------------------------------------------------------------------------------------
-// defined in teams common steps
