@@ -2,8 +2,6 @@ import Teams_Common from '../../pages/teams/pageCommonTeams'
 
 const teamsCommon = new Teams_Common()
 
-
-
 When('I go to teams overview', () => {
   teamsCommon.navigateToTeamsOverview()
 })
@@ -66,4 +64,12 @@ When ('I select the student {string} and click on delete icon',()=>{
 
 Then ('I see {string} is not visible on the table',()=>{
   teamsCommon.doNotSeeDeletedStudentInTeam()
+})
+
+When('I click on news tab on the team detail page', () => {
+  teamsCommon.clickOnNewsTabInTeamDetailPage()
+})
+
+And('I click on create news button', () => {
+  teamsCommon.clickOnCreateNewsOnTeamDetailPage()
 })
