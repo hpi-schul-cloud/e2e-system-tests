@@ -2,18 +2,14 @@ import Management from '../../../pages/management/pageManagement'
 
 const management = new Management()
 
+// EXTERNAL COMMON STEP DEFINITIONS
+// ================================
+// External defined steps can be found here:
+// -----------------------------------------
+// -->\step_definition\authentication\loginStep.spec.js
+// --> \step_definition\management\CommonManagementSteps.spec.js
+
 //Scenario: Adding a new student
-//Given I am logged in as a 'admin' at 'brb'
-//step defined -->\step_definition\authentication\loginStep.spec.js
-
-//When I go to administration page
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And I go to student administration
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And 'I click on FAB to add a user'
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I fill out the user creation form for {string} {string} with email {string}', (forename, surname, email) => {
   management.fillUserCreationForm(forename, surname, email)
@@ -28,21 +24,10 @@ Then('I can see the user with email {string} in the table', (email) => {
 })
 
 //Scenario: Editing a new student
-//Given I am logged in as a 'admin' at 'brb'
-//step defined -->\step_definition\authentication\loginStep.spec.js
-
-//When I go to administration page
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And I go to student administration
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I enter {string} email {string} in search input field', (role, keyword) => {
   management.enterNameForSearch(role, keyword)
 })
-
-//And ('I click edit student button', () => {
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I change username to {string} {string}', (firstname, surname) => {
   management.changeUsername(firstname, surname)
@@ -57,17 +42,6 @@ And('I click save changes button', () => {
 })
 
 // Scenario: Deleting a student
-//Given I am logged in as a 'admin' at 'brb'
-//step defined -->\step_definition\authentication\loginStep.spec.js
-
-//When I go to administration page
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And I go to student administration
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And ('I enter user name in search input field', () => {
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I click edit student button for {string}', (email) => {
   management.clickEditStudentButton(email)
@@ -86,33 +60,8 @@ Then('I cannot see user {string} in the table', (email) => {
 })
 
 //Scenario: Adding a new teacher
-//Given I am logged in as a 'admin' at 'brb'
-//step defined -->\step_definition\authentication\loginStep.spec.js
-
-//When I go to administration page
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And I go to teacher administration
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And 'I click on FAB to add a user'
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And('I fill out the user creation form', () => {
-//step defined  --> \step_definition\management\admin_management\adminUsersSteps.spec.js
 
 //Scenario: Editing a new teacher
-//Given I am logged in as a 'admin' at 'brb'
-//step defined -->\step_definition\authentication\loginStep.spec.js
-
-//When I go to administration page
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And I go to teacher administration
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And ('I enter user name in search input field', () => {
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I click edit teacher button for {string}', (email) => {
   management.clickEditTeacherButton(email)
@@ -127,17 +76,6 @@ Then('I can see the edited teacher in the table', () => {
 })
 
 //Scenario: Deleting a teacher
-//Given I am logged in as a 'admin' at 'brb'
-//step defined -->\step_definition\authentication\loginStep.spec.js
-
-//When I go to administration page
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And I go to teacher administration
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
-
-//And ('I enter user name in search input field', () => {
-//step defined --> \step_definition\management\CommonManagementRelatedSteps.spec.js
 
 And('I click delete user button', () => {
   management.clickDeleteButton()

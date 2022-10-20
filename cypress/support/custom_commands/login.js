@@ -2,16 +2,13 @@ const emailInputFieldElement = '[data-testid="username-email"]'
 const passwordInputFieldElement = '[data-testid="password-email"]'
 const submitButton = '[data-testid="submit-login-email"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
-const defaultLoginViaExternalBroker =
-  '[data-testid="submit-oauth-login"], [data-provider="oauth"]'
+const defaultLoginViaExternalBroker = '[data-testid="submit-oauth-login"], [data-provider="oauth"]'
 const initials = '[data-testid="initials"]'
 const languageSelection = '[id="selected-language"]'
 const languageDe = '[data-language="de"]'
-
 const externalUsernameInputFieldElement = '[id="Username"]'
 const externalPasswordInputFieldElement = '[id="Password"]'
-const oauth_url =
-  'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
+const oauth_url = 'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
 
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
@@ -81,14 +78,14 @@ Cypress.Commands.add('login', (username, environment) => {
         cy.wait('@oauth_url')
         cy.url().should('include', '/Account/Login')
         cy.get(externalUsernameInputFieldElement).should('be.visible')
-        cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
-          log: false
-        })
+        cy.get(externalUsernameInputFieldElement)
+          .type(env[userEmail], { log: false } )
         cy.get(externalPasswordInputFieldElement)
           .type(env[userPassword], { log: false })
           .type('{enter}')
       })
-    } else {
+    }
+    else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
       cy.get(submitButton).click()
