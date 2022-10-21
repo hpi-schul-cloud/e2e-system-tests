@@ -265,7 +265,7 @@ class Tasks {
   }
 
   clickSubmissionTab(){
-    cy.get(Tasks.#submissionTab).click()
+    cy.get(Tasks.#submissionTab).click({ multiple: true })
   }
 
   clickSaveAndSendSubmissionBtn(){
