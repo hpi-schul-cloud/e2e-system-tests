@@ -36,8 +36,7 @@ class Courses_Common {
           '@me_api',
           '@roles_api',
           '@schools_api'
-        ],
-        { timeout: 60000 }
+        ]
       )
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
