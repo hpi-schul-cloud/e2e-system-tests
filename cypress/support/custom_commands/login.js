@@ -80,16 +80,19 @@ Cypress.Commands.add('login', (username, environment) => {
     if (doExternalLogin) {
       cy.request('GET', oauth_url).then(resp => {
         cy.intercept(resp.requestHeaders.referer).as('oauth_url')
-        cy.visit(resp.requestHeaders.referer)
-        cy.wait('@oauth_url')
-        cy.url().should('include', '/Account/Login')
-        cy.get(externalUsernameInputFieldElement).should('be.visible')
-        cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
-          log: false
+        cy.visit(resp.requestHeaders.referer).then(window => {
+          expect(window.location.pathname).to.include('/Account/Login')
+          cy.get('@oauth_url').then(resp => {
+            expect(resp.response.statusCode).to.equal(308)
+            cy.get(externalUsernameInputFieldElement).should('be.visible')
+            cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
+              log: false
+            })
+            cy.get(externalPasswordInputFieldElement)
+              .type(env[userPassword], { log: false })
+              .type('{enter}')
+          })
         })
-        cy.get(externalPasswordInputFieldElement)
-          .type(env[userPassword], { log: false })
-          .type('{enter}')
       })
     } else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
