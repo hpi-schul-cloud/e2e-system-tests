@@ -199,7 +199,7 @@ When('I click on grading tab', () => {
 })
 
 When('I click on submission tab', () => {
-  tasks.clickOnSubmissionTab()
+  tasks.clickSubmissionTab()
 })
 
 And ('I enter comment {string}', (gradingText) => {
