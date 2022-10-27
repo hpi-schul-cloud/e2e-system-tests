@@ -50,6 +50,10 @@ When('I upload file {string}', (fileName) => {
   tasks.executeFileUpload(fileName)
 })
 
+When('I upload file {string} for submission', (fileName) => {
+  tasks.executeFileUploadForSubmission(fileName)
+})
+
 And('I click on Public Submission Checkbox', () => {
   tasks.clickOnPublicSubmissionCheckbox()
 })
@@ -83,7 +87,11 @@ And ('Draft is disabled', () => {
 })
 
 Then('I see file {string} is visible in section files', (fileName) => {
-  tasks.seeFileInSectionFiles(fileName)
+  tasks.seeFileInSectionFilesInEditTask(fileName)
+})
+
+Then('I see file {string} is visible in uploaded files section', (fileName) => {
+  tasks.seeFileInSectionUploadedFiles(fileName)
 })
 
 Then('I see file {string} is not visible in section files', (fileName) => {
@@ -120,6 +128,14 @@ tasks.submitRenameFileDialog()
 
 When('I click on download file {string}', (fileName) => {
   tasks.clickDownloadFile(fileName)
+})
+
+When('I click on download file {string} in submission', (fileName) => {
+  tasks.clickDownloadFileInSubmission(fileName)
+})
+
+When('I click on download file {string} in grading', (fileName) => {
+  tasks.clickDownloadFileInGrading(fileName)
 })
 
 Then('file {string} is saved in folder downloads', (fileName) => {
@@ -170,15 +186,23 @@ And('I click on not graded tasks', () => {
   tasks.openNotGradedTasks()
 })
 
-Then('I see task {string} in the list', (taskTitle) => {
-  tasks.seeTaskInList(taskTitle)
+Then('I see task {string} in the list as teacher', taskTitle => {
+  tasks.seeTaskInListAsTeacher(taskTitle)
 })
 
-Then('I do not see task {string} in the list', (taskTitle) => {
-  tasks.seeTaskNotInList(taskTitle)
+Then('I do not see task {string} in the list as teacher', taskTitle => {
+  tasks.seeTaskNotInListAsTeacher(taskTitle)
 })
 
-When('I click on task {string} in task overview', (taskTitle) => {
+Then('I see task {string} in the list as student', taskTitle => {
+  tasks.seeTaskInListAsStudent(taskTitle)
+})
+
+Then('I do not see task {string} in the list as student', taskTitle => {
+  tasks.seeTaskNotInListAsStudent(taskTitle)
+})
+
+When('I click on task {string} in task overview', taskTitle => {
   tasks.openTaskInTaskOverview(taskTitle)
 })
 
@@ -186,11 +210,11 @@ And('I click on submissions tab', () => {
   tasks.clickSubmissionsTab()
 })
 
-Then('there is a tick in column delivered for {string}', (studentLastname) => {
+Then('there is a tick in column delivered for {string}', studentLastname => {
   tasks.seeTickInStudentsSubmissionLine(studentLastname)
 })
 
-When('I click on submission of {string}', (studentLastname) => {
+When('I click on submission of {string}', studentLastname => {
   tasks.openStudentsSubmission(studentLastname)
 })
 
@@ -230,10 +254,31 @@ When('I click on feedback tab', () => {
   tasks.clickOnFeedbackTab()
 })
 
-When('I see feedback text {string}', (feedbackText) => {
+When('I see feedback text {string}', feedbackText => {
   tasks.compareFeedbackText(feedbackText)
 })
 
-And('I see grade is {string}', (feedbackGrade) => {
+And('I see grade is {string}', feedbackGrade => {
   tasks.compareFeedbackGrade(feedbackGrade)
 })
+
+When('I click on open tasks tab', () => {
+  tasks.clickOnOpenTasksTab()
+})
+
+When('I click on finished tab', () => {
+  tasks.clickOnFinishedTab()
+})
+
+When('I click on dot menu of task {string}', taskTitle => {
+  tasks.clickOnTaskDotMenu(taskTitle)
+})
+
+And('I click on Restore', () => {
+  tasks.clickTaskFinishInDotMenu()
+})
+
+And('I open task list with due date', () => {
+  tasks.clickLowerTaskSectionIcon()
+})
+

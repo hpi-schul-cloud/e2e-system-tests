@@ -96,15 +96,16 @@ Feature: To create, edit and delete tasks by the teacher.
     And I click on task 'Cy Task Creating, Editing, Deleting Test'
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
-    # When I upload file 'test_pdf.pdf'
     And I enter text submission 'Hier ist die Antwort.'
+    And I upload file 'testboard_jpg' for submission
+    And I see file 'testboard_jpg' is visible in uploaded files section
     And I click on button Save and Send Submission
     Then I see hint that submission has been sent successfully
     When I go to tasks overview
-    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list
+    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
     And I click completed task tab
     And I click on not graded tasks
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
 
   Scenario: Teacher grades task from room
     Given I am logged in as a 'teacher1' at 'brb'
@@ -117,7 +118,14 @@ Feature: To create, edit and delete tasks by the teacher.
     Then there is a tick in column delivered for 'Kraft'
     When I click on submission of 'Kraft'
     Then I see submission text 'Hier ist die Antwort.'
+    When I click on download file 'testboard_jpg' in submission
+    Then file 'testboard_jpg' is saved in folder downloads
     When I click on grading tab
+    And I upload file 'gradingfile-pdf.pdf'
+    And I click on submissions tab
+    And I click on submission of 'Kraft'
+    And I click on grading tab
+    Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
     And I enter comment 'Gut gemacht!'
     And I enter grade '83'
     And I click on button Save and Send grading
@@ -131,12 +139,38 @@ Feature: To create, edit and delete tasks by the teacher.
     Given I am logged in as a 'student1' at 'brb'
     When I go to tasks overview
     And I click completed task tab
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
     And I click on task 'Cy Task Creating, Editing, Deleting Test' in task overview
     Then I see submission text 'Hier ist die Antwort.'
     When I click on feedback tab
     Then I see feedback text 'Gut gemacht!'
     And I see grade is '83'
+    When I click on download file 'gradingfile-pdf.pdf' in grading
+    Then file 'gradingfile-pdf.pdf' is saved in folder downloads
+
+  Scenario: Teacher finishes task from room
+    Given I am logged in as a 'teacher1' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    And I click on link finish for task 'Cy Task Creating, Editing, Deleting Test'
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' does not contain any buttons
+
+  Scenario: Teacher restores the finished task from room
+    Given I am logged in as a 'teacher1' at 'brb'
+    When I go to tasks overview
+    # And I open task list with due date // Icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
+    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    When I click on finished tab
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    When I click on dot menu of task 'Cy Task Creating, Editing, Deleting Test'
+    And I click on Restore
+    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    When I click on open tasks tab
+    And I open task list with due date
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    Then I see task 'Cy Task Creating, Editing, Deleting Test' contains buttons
 
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
@@ -145,9 +179,15 @@ Feature: To create, edit and delete tasks by the teacher.
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
     And I click on Cancel in confirmation window
+    # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+    And I go to rooms overview
+    And I go to room 'Course with subject and tasks'
     Then I can see task 'Cy Task Creating, Editing, Deleting Test'
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
     And I click on Delete in confirmation window
+    # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+    And I go to rooms overview
+    And I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
     And I can not see task 'Cy Task Creating, Editing, Deleting Test'

@@ -3,6 +3,8 @@
 class Tasks {
   static #pageTitle = '[id="page-title"]'
   static #localeDateFormat = 'de-DE'
+  static #taskOverviewTeacher = '[class="task-dashboard-teacher"]'
+  static #taskOverviewStudent = '[class="task-dashboard-student"]'
   static #createForm = '[id="homework-form"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
@@ -21,6 +23,7 @@ class Tasks {
   static #fileUploadButtonEnabled = '[data-testid="tasks-edit-fileupload"]'
   static #fileUploadInput = '[data-testid="tasks-edit-fileupload-input"]'
   static #filesSection = '[data-testid="tasks-edit-section-files"]'
+  static #uploadedFilesSection = '[data-testid="section-uploadedfiles"]'
   static #fileViewerSection = '[class="file-viewer"]'
   static #renameFileInput = '[id="newNameInput"]'
   static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]'
@@ -43,6 +46,11 @@ class Tasks {
   static #taskSubmissionsGradingTabLink = '[data-testid="task-submission-grading-tab"]'
   static #taskFeedbackTabLink = '[id="feedback-tab-link"]'
   static #feedbackSection = '[id="feedback"]'
+  static #finishedTasksTab = '[data-testid="finishedTasks"]'
+  static #openTasksTab = '[data-testid="openTasks"]'
+  static #finishedTasksListDiv = '[id="finished"]'
+  static #taskDotMenu = '[data-testid="task-menu"]'
+  static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]'
 
   compareFeedbackText(feedbackText){
     cy.get(Tasks.#feedbackSection).should('contain', feedbackText)
@@ -122,6 +130,11 @@ class Tasks {
     cy.window().should('not.have.prop', 'beforeReload')
   }
 
+  executeFileUploadForSubmission(fileName){
+    cy.get(Tasks.#fileUploadInput)
+      .attachFile(fileName)
+  }
+
   clickOnPublicSubmissionCheckbox(){
     cy.get(Tasks.#publicSubmissionsCheckbox).click()
   }
@@ -178,8 +191,12 @@ class Tasks {
     cy.get(Tasks.#draftCheckbox).should('not.be.checked')
   }
 
-  seeFileInSectionFiles(fileName){
+  seeFileInSectionFilesInEditTask(fileName){
     cy.get(Tasks.#filesSection).contains(fileName, {includeShadowDom: true})
+  }
+
+  seeFileInSectionUploadedFiles(fileName){
+    cy.get(Tasks.#uploadedFilesSection).contains(fileName, {includeShadowDom: true})
   }
 
   fileIsNotVisibleInSectionFiles(fileName){
@@ -241,6 +258,26 @@ class Tasks {
       .click()
   }
 
+  clickDownloadFileInSubmission(fileName){
+    cy.get(Tasks.#submissionsSection)
+      .find('a')
+      .should('contain', fileName)
+      .parent()
+      .find('span')
+      .find('a')
+      .click()
+  }
+
+  clickDownloadFileInGrading(fileName){
+    cy.get(Tasks.#feedbackSection)
+      .find('a')
+      .should('contain', fileName)
+      .parent()
+      .find('span')
+      .find('a')
+      .click()
+  }
+
   seeFileIsSavedInDownloads(fileName){
     cy.readFile(`cypress/downloads/${fileName}`, 'binary', { timeout: 15000 })
       .should(buffer => expect(buffer.length).to.be.gt(100))
@@ -288,18 +325,34 @@ class Tasks {
     cy.get(Tasks.#lowerTaskSectionIcon).eq(1).click()
   }
 
-  seeTaskInList(taskTitle){
-    cy.get(Tasks.#taskTitleInList).contains(taskTitle).should('be.visible')
+  seeTaskInListAsTeacher(taskTitle){
+    cy.get(Tasks.#taskOverviewTeacher)
+      .contains(taskTitle)
+      .should('be.visible')
+  }
+
+  seeTaskNotInListAsTeacher(taskTitle){
+    cy.get(Tasks.#taskOverviewTeacher)
+      .contains(taskTitle)
+      .should('not.exist')
+  }
+
+  seeTaskInListAsStudent(taskTitle){
+    cy.get(Tasks.#taskOverviewStudent)
+      .contains(taskTitle)
+      .should('be.visible')
+  }
+
+  seeTaskNotInListAsStudent(taskTitle){
+    cy.get(Tasks.#taskOverviewStudent)
+      .contains(taskTitle)
+      .should('not.exist')
   }
 
   openTaskInTaskOverview(taskTitle) {
     cy.get(Tasks.#taskTitleInList)
       .contains(taskTitle)
       .click()
-  }
-
-  seeTaskNotInList(taskTitle){
-    cy.get(Tasks.#taskTitleInList).should('not.contain', taskTitle)
   }
 
   clickSubmissionsTab(){
@@ -356,5 +409,33 @@ class Tasks {
   clickOnButtonToParentCourse(){
     cy.get(Tasks.#toCourseButton).click()
   }
+
+  clickOnFinishedTab(){
+    cy.get(Tasks.#finishedTasksTab).click()
+  }
+
+  clickOnOpenTasksTab(){
+    cy.get(Tasks.#openTasksTab).click()
+  }
+
+  clickOnTaskDotMenu(taskTitle){
+    cy.get(Tasks.#finishedTasksListDiv)
+      .find(Tasks.#taskTitleInList)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .parent()
+      .find(Tasks.#taskDotMenu)
+      .click()
+  }
+
+  clickTaskFinishInDotMenu(){
+    cy.get(Tasks.#taskFinishButtonInDotMenu).click()
+  }
+
+  clickLowerTaskSectionIcon(){
+    cy.get(Tasks.#lowerTaskSectionIcon).click()
+  }
+
 }
 export default Tasks
