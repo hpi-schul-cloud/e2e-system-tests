@@ -29,15 +29,13 @@ class Courses_Common {
     }).as('dashboard_api')
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
-      .wait(
-        [
-          '@dashboard_api',
-          '@public_api',
-          '@me_api',
-          '@roles_api',
-          '@schools_api'
-        ]
-      )
+      .wait([
+        '@dashboard_api',
+        '@public_api',
+        '@me_api',
+        '@roles_api',
+        '@schools_api'
+      ])
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
         expect(interceptions[1].response.statusCode).to.equal(200)
