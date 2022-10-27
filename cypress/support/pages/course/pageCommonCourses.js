@@ -1,6 +1,7 @@
 'use strict'
 
 class Courses_Common {
+  static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
   static #createContent = '[data-testid="add-content-button"]'
   static #toolsTab = '[data-testid="tools"]'
@@ -13,6 +14,7 @@ class Courses_Common {
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
+  static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #pageTitle = '[id="page-title"]'
@@ -149,9 +151,12 @@ class Courses_Common {
   }
 
   taskIsNotVisibleOnCoursePage (taskTitle) {
-    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    cy.url().should('include', '/rooms/')
+    // cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    // cy.url().should('include', '/rooms/')
+    // cy.wait(1000)
     cy.contains(taskTitle).should('not.exist')
+    // cy.get(Courses_Common.#mainContent).should('not.contain', taskTitle)
+    // cy.get(Courses_Common.#mainContent).contains(taskTitle).should('not.exist')
   }
 
   openTask (taskTitle) {
@@ -210,6 +215,36 @@ class Courses_Common {
       .parent()
       .find(Courses_Common.#contentCardTaskInfoGradingsChip)
       .should('contain', gradedTasks)
+  }
+
+  clickOnFinishTask (taskTitle) {
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskActions)
+      .find('button')
+      .click()
+  }
+
+  checkTaskCardDoesNotHaveButtons (taskTitle) {
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskActions)
+      .find('button')
+      .should('not.exist')
+  }
+
+  checkTaskCardDoesHaveButtons (taskTitle) {
+    cy.get(Courses_Common.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses_Common.#contentCardTaskActions)
+      .find('button')
+      .should('be.visible')
   }
 }
 export default Courses_Common
