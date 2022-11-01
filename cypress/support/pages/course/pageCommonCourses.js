@@ -26,9 +26,7 @@ class Courses_Common {
     cy.intercept('**/api/v1/me').as('me_api')
     cy.intercept('**/api/v1/roles/user/**').as('roles_api')
     cy.intercept('**/api/v1/schools/**').as('schools_api')
-    cy.intercept('**/api/v3/dashboard', req => {
-      delete req.headers['if-none-match']
-    }).as('dashboard_api')
+    cy.intercept('**/api/v3/dashboard').as('dashboard_api')
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
       .wait([
@@ -44,9 +42,7 @@ class Courses_Common {
         expect(interceptions[2].response.statusCode).to.equal(200)
         expect(interceptions[3].response.statusCode).to.equal(200)
         expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[0].request.url).to.eq(
-          'https://brb-main.cd.dbildungscloud.dev/api/v3/dashboard'
-        )
+        expect(interceptions[0].request.url).to.include('/api/v3/dashboard')
       })
   }
 
@@ -60,16 +56,13 @@ class Courses_Common {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-            .wait(
-              [
-                '@public_api',
-                '@me_api',
-                '@roles_api',
-                '@schools_api',
-                '@userPermissions_api'
-              ],
-              { timeout: 60000 }
-            )
+            .wait([
+              '@public_api',
+              '@me_api',
+              '@roles_api',
+              '@schools_api',
+              '@userPermissions_api'
+            ])
             .then(interceptions => {
               expect(interceptions[1].response.statusCode).to.equal(200)
               expect(interceptions[1].state).to.equal('Complete')
@@ -133,20 +126,17 @@ class Courses_Common {
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
       .should('be.visible')
-      .wait(
-        [
-          '@public_api',
-          '@me_api',
-          '@roles_api',
-          '@schools_api',
-          '@userPermissions_api'
-        ],
-        { timeout: 60000 }
-      )
+      .wait([
+        '@public_api',
+        '@me_api',
+        '@roles_api',
+        '@schools_api',
+        '@userPermissions_api'
+      ])
       .then(interceptions => {
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
         expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].state).to.equal('Complete')
+        expect(interceptions[1].response.statusCode).to.equal(200)
       })
   }
 

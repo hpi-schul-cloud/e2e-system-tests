@@ -31,7 +31,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on Edit in dot menu
     Then I see file upload button is enabled
     When I upload file 'example_jpg.jpg'
-  #  Then the page reloads (this happens automatically after file upload)
+    #  Then the page reloads (this happens automatically after file upload)
     When I enter title 'Cy Task Creating, Editing, Deleting Test'
     And I click on Enable Group Submission
     And I set task-visibility-start-date to 'today' at '0100'
@@ -168,6 +168,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I click on open tasks tab
     And I open task list with due date
     Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    When I arrive on the dashboard
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
     Then I see task 'Cy Task Creating, Editing, Deleting Test' contains buttons
@@ -180,14 +181,15 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on Delete in dot menu
     And I click on Cancel in confirmation window
     # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
-    And I go to rooms overview
+    When I arrive on the dashboard
+    When I go to rooms overview
     And I go to room 'Course with subject and tasks'
     Then I can see task 'Cy Task Creating, Editing, Deleting Test'
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
     And I click on Delete in confirmation window
     # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
-    And I go to rooms overview
+    When I go to rooms overview
     And I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
     And I can not see task 'Cy Task Creating, Editing, Deleting Test'
