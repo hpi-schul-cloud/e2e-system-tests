@@ -17,3 +17,4 @@
 import './commands'
 import './custom_commands/login'
 import './custom_commands/logout'
+import 'cypress-promise/register'

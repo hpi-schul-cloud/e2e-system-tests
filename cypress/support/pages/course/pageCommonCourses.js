@@ -22,7 +22,9 @@ class Courses_Common {
 
 
   navigateToRoomsOverview() {
-    cy.get(Courses_Common.#courseOverviewNavigationButton).click()
+    cy.get(Courses_Common.#courseOverviewNavigationButton)
+      .click()
+      .promisify()
   }
 
   navigateToRoomBoard(roomName) {
