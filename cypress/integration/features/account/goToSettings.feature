@@ -1,4 +1,4 @@
-Feature: To go to account settings page on default
+Feature: Account - To go to account settings page on default
 
   As a user I want to navigation to my account's settings page so that I can see my account details (e. g. email).
 

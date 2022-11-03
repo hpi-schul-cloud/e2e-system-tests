@@ -40,7 +40,6 @@ class Management {
       cy.intercept('POST', '**/students').as('post_role_api')
       cy.intercept('GET', '**/students?**').as('get_roles_api')
     }
-    cy.intercept('**/classes?**').as('classes_api')
     cy.get(Management.#addButton).click()
     cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], {
       timeout: 10000

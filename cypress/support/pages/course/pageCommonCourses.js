@@ -1,5 +1,4 @@
 'use strict'
-
 class Courses_Common {
   static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
@@ -22,11 +21,6 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    cy.intercept('**/api/v1/config/app/public').as('public_api')
-    cy.intercept('**/api/v1/me').as('me_api')
-    cy.intercept('**/api/v1/roles/user/**').as('roles_api')
-    cy.intercept('**/api/v1/schools/**').as('schools_api')
-    cy.intercept('**/api/v3/dashboard').as('dashboard_api')
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
       .wait([
@@ -42,12 +36,11 @@ class Courses_Common {
         expect(interceptions[2].response.statusCode).to.equal(200)
         expect(interceptions[3].response.statusCode).to.equal(200)
         expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[0].request.url).to.include('/api/v3/dashboard')
+        expect(interceptions[0].request.url).to.include('/dashboard')
       })
   }
 
   navigateToRoomBoard (roomName) {
-    cy.intercept('**/userPermissions?**').as('userPermissions_api')
     cy.get('h1')
       .eq(0)
       .then($title => {

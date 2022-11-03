@@ -1,4 +1,4 @@
-Feature: To read a news on the respective dashboards
+Feature:  News - To read a news on the respective dashboards
 
   As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
 

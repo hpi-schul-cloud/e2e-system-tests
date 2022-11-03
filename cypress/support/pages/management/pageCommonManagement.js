@@ -16,12 +16,6 @@ class Management_Common {
   }
 
   navigateToStudentAdministration() {
-    cy.intercept('**/public').as('public_api')
-    cy.intercept('**/me').as('me_api')
-    cy.intercept('**/roles/user/**').as('roles_api')
-    cy.intercept('**/schools/**').as('schools_api')
-    cy.intercept('**/classes?**').as('classes_api')
-    cy.intercept('**/students?**').as('students_api')
     cy.get(Management_Common.#studentAdministrationNavigationButton).click()
     cy.wait([
       '@public_api',

@@ -48,7 +48,6 @@ class News_Common {
   }
 
   clickOnCreateNewsSaveButton () {
-    cy.intercept('/alerts').as('alerts_api')
     cy.get(News_Common.#newsCreateButton)
       .click()
       .wait('@alerts_api')
@@ -82,10 +81,6 @@ class News_Common {
   }
 
   clickOnAddNews () {
-    cy.intercept('**/public').as('public_api')
-    cy.intercept('**/me').as('me_api')
-    cy.intercept('**/roles/**').as('roles_api')
-    cy.intercept('**/schools/**').as('schools_api')
     cy.get(News_Common.#createNewNews)
       .click()
       .then(object => {
