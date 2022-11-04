@@ -1,7 +1,5 @@
 'use strict'
-
 class Courses_Common {
-
   static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
   static #createContent = '[data-testid="add-content-button"]'
@@ -22,75 +20,120 @@ class Courses_Common {
   static #contentCardTaskInfoSubmissionsChip = '[data-testid="room-detail-task-chip-submitted"]'
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
-
-  navigateToRoomsOverview() {
-    cy.get(Courses_Common.#courseOverviewNavigationButton).click()
+  navigateToRoomsOverview () {
+    cy.get(Courses_Common.#courseOverviewNavigationButton)
+      .click()
+      .wait([
+        '@dashboard_api',
+        '@public_api',
+        '@me_api',
+        '@roles_api',
+        '@schools_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].response.statusCode).to.equal(200)
+        expect(interceptions[3].response.statusCode).to.equal(200)
+        expect(interceptions[4].response.statusCode).to.equal(200)
+        expect(interceptions[0].request.url).to.include('/dashboard')
+      })
   }
 
-  navigateToRoomBoard(roomName) {
-    cy.get('h1').eq(0).then(($title) => {
-      const htmlTitlePage = $title.text()
-      if (htmlTitlePage.includes('Kurse')) {
-        cy.get(`[aria-label="Kurs ${roomName}"]`).eq(0).click()
-      } else if (htmlTitlePage.includes('courses')) {
-        cy.get(`[aria-label="Course ${roomName}"]`).click()
-      } else if (htmlTitlePage.includes('Cursos')) {
-        cy.get(`[aria-label="Curso ${roomName}"]`).click()
-      } else if (htmlTitlePage.includes('Поточні')) {
-        cy.get(`[aria-label="Курс ${roomName}"]`).click()
-      }
-    })
+  navigateToRoomBoard (roomName) {
+    cy.get('h1')
+      .eq(0)
+      .then($title => {
+        const htmlTitlePage = $title.text()
+        if (htmlTitlePage.includes('Kurse')) {
+          cy.get(`[aria-label="Kurs ${roomName}"]`)
+            .eq(0)
+            .click()
+            .wait([
+              '@public_api',
+              '@me_api',
+              '@roles_api',
+              '@schools_api',
+              '@userPermissions_api'
+            ])
+            .then(interceptions => {
+              expect(interceptions[1].response.statusCode).to.equal(200)
+              expect(interceptions[1].state).to.equal('Complete')
+              expect(interceptions[0].response.statusCode).to.equal(200)
+            })
+        } else if (htmlTitlePage.includes('courses')) {
+          cy.get(`[aria-label="Course ${roomName}"]`).click()
+        } else if (htmlTitlePage.includes('Cursos')) {
+          cy.get(`[aria-label="Curso ${roomName}"]`).click()
+        } else if (htmlTitlePage.includes('Поточні')) {
+          cy.get(`[aria-label="Курс ${roomName}"]`).click()
+        }
+      })
   }
 
-  showRoomPage(room) {
+  showRoomPage (room) {
     const selectedRoom = `[aria-label='${room}']`
     cy.get(selectedRoom).should('be.visible')
   }
 
-  navigateToTools() {
+  navigateToTools () {
     cy.get(Courses_Common.#toolsTab).click()
   }
 
-  addNewTool() {
+  addNewTool () {
     cy.get(Courses_Common.#addNewToolButton).click()
   }
 
-  courseIsVisibleOnOverviewPage(courseName) {
+  courseIsVisibleOnOverviewPage (courseName) {
     cy.contains(courseName)
+      .should('be.visible')
+      .and('contain.text', courseName)
   }
 
-  courseIsNotVisibleOnOverviewPage(courseName) {
+  courseIsNotVisibleOnOverviewPage (courseName) {
     cy.contains(courseName).should('not.exist')
   }
 
-  canAddBigBlueButton() {
+  canAddBigBlueButton () {
     cy.get(Courses_Common.#toolsList).should('be.visible')
   }
 
-  canNotAddBigBlueButton() {
+  canNotAddBigBlueButton () {
     cy.get(Courses_Common.#toolsList).should('not.exist')
   }
 
-  clickOnCreateCourseFAB() {
+  clickOnCreateCourseFAB () {
     cy.get(Courses_Common.#createCourse).click()
   }
 
-  clickOnCreateContentFAB() {
+  clickOnCreateContentFAB () {
     cy.get(Courses_Common.#createContent).click()
   }
 
-  clickOnNewTaskFAB() {
+  clickOnNewTaskFAB () {
     cy.get(Courses_Common.#newTaskFAB).click()
   }
 
-  taskIsVisibleOnCoursePage(taskTitle) {
-    // cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    // cy.url().should('include', '/rooms/')
+  taskIsVisibleOnCoursePage (taskTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
-    // cy.contains(taskTitle).should('not.exist')
+      .should('be.visible')
+      .wait([
+        '@public_api',
+        '@me_api',
+        '@roles_api',
+        '@schools_api',
+        '@userPermissions_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].state).to.equal('Complete')
+        expect(interceptions[1].response.statusCode).to.equal(200)
+      })
   }
 
-  taskIsNotVisibleOnCoursePage(taskTitle) {
+  taskIsNotVisibleOnCoursePage (taskTitle) {
     // cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     // cy.url().should('include', '/rooms/')
     // cy.wait(1000)
@@ -99,13 +142,13 @@ class Courses_Common {
     // cy.get(Courses_Common.#mainContent).contains(taskTitle).should('not.exist')
   }
 
-  openTask(taskTitle) {
+  openTask (taskTitle) {
     cy.get(Courses_Common.#contentCardContent)
       .contains(taskTitle)
       .click()
   }
 
-  openThreeDotMenuForContent(contentTitle){
+  openThreeDotMenuForContent (contentTitle) {
     cy.get(Courses_Common.#contentCardContent)
       .contains(contentTitle)
       .prev()
@@ -113,33 +156,33 @@ class Courses_Common {
       .click()
   }
 
-  clickDeleteInDotMenu(linkId){
+  clickDeleteInDotMenu (linkId) {
     cy.get(Courses_Common.#deleteButtonInDotMenu).click()
   }
 
-  clickEditInDotMenu(linkId){
+  clickEditInDotMenu (linkId) {
     cy.get(Courses_Common.#editButtonInDotMenu).click()
   }
 
-  clickOnCancelInConfirmationWindow() {
+  clickOnCancelInConfirmationWindow () {
     cy.get(Courses_Common.#dialogCancelButton).click()
   }
 
-  clickDeleteInConfirmationWindow() {
+  clickDeleteInConfirmationWindow () {
     cy.get(Courses_Common.#dialogConfirmButton).click()
   }
 
-  openCourseEditPage() {
+  openCourseEditPage () {
     cy.get(Courses_Common.#dropDownCourse).click()
     cy.get(Courses_Common.#btnCourseEdit).click()
   }
 
-  showCourseEditPage() {
+  showCourseEditPage () {
     cy.get(Courses_Common.#pageTitle)
     cy.contains('Kurs bearbeiten')
   }
 
-  compareSubmittedTasksInformation(submittedTasks, contentTitle){
+  compareSubmittedTasksInformation (submittedTasks, contentTitle) {
     cy.get(Courses_Common.#contentCardContent)
       .contains(contentTitle)
       .parent()
@@ -148,7 +191,7 @@ class Courses_Common {
       .should('contain', submittedTasks)
   }
 
-  compareGradedTasksInformation(gradedTasks, contentTitle){
+  compareGradedTasksInformation (gradedTasks, contentTitle) {
     cy.get(Courses_Common.#contentCardContent)
       .contains(contentTitle)
       .parent()
@@ -157,7 +200,7 @@ class Courses_Common {
       .should('contain', gradedTasks)
   }
 
-  clickOnFinishTask(taskTitle){
+  clickOnFinishTask (taskTitle) {
     cy.get(Courses_Common.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -167,7 +210,7 @@ class Courses_Common {
       .click()
   }
 
-  checkTaskCardDoesNotHaveButtons(taskTitle){
+  checkTaskCardDoesNotHaveButtons (taskTitle) {
     cy.get(Courses_Common.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -177,7 +220,7 @@ class Courses_Common {
       .should('not.exist')
   }
 
-  checkTaskCardDoesHaveButtons(taskTitle){
+  checkTaskCardDoesHaveButtons (taskTitle) {
     cy.get(Courses_Common.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -186,7 +229,5 @@ class Courses_Common {
       .find('button')
       .should('be.visible')
   }
-
-
 }
 export default Courses_Common

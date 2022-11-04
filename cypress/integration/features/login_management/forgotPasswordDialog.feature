@@ -1,4 +1,4 @@
-Feature: Visibility of dBildungscloud Password Reset dialog
+Feature: Forget Password - Visibility of dBildungscloud Password Reset dialog
 
   As a user (teacher or student or admin), I want to see password recovery dialog box visible to me so that I can recover my password in case needed.
 

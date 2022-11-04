@@ -93,10 +93,6 @@ class Teams_Common {
   }
 
   clickOnCreateNewsOnTeamDetailPage () {
-    cy.intercept('**/public').as('public_api')
-    cy.intercept('**/me').as('me_api')
-    cy.intercept('**/roles/**').as('roles_api')
-    cy.intercept('**/schools/**').as('schools_api')
     cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
       .click()
       .then(object => {

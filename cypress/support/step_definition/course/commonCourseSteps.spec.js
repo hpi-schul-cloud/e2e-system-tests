@@ -8,21 +8,24 @@ When('I go to rooms overview', () => {
   coursesCommon.navigateToRoomsOverview()
 })
 
-And('I go to room {string}', (roomName) => {
+And('I go to room {string}', roomName => {
   coursesCommon.navigateToRoomBoard(roomName)
 })
 
-Then('I can see room page {string}', (roomName) => {
+Then('I can see room page {string}', roomName => {
   coursesCommon.showRoomPage(roomName)
 })
 
-Then('I see the course {string} on the room overview page', (courseName) => {
+Then('I see the course {string} on the room overview page', courseName => {
   coursesCommon.courseIsVisibleOnOverviewPage(courseName)
 })
 
-Then('I do not see the course {string} on the room overview page', (courseName) => {
-  coursesCommon.courseIsNotVisibleOnOverviewPage(courseName)
-})
+Then(
+  'I do not see the course {string} on the room overview page',
+  courseName => {
+    coursesCommon.courseIsNotVisibleOnOverviewPage(courseName)
+  }
+)
 
 When('I open course edit page', () => {
   coursesCommon.openCourseEditPage()
@@ -48,15 +51,15 @@ And('I click on New Task FAB', () => {
   coursesCommon.clickOnNewTaskFAB()
 })
 
-And('I can see task {string}', (taskTitle) => {
+And('I can see task {string}', taskTitle => {
   coursesCommon.taskIsVisibleOnCoursePage(taskTitle)
 })
 
-And('I can not see task {string}', (taskTitle) => {
+And('I can not see task {string}', taskTitle => {
   coursesCommon.taskIsNotVisibleOnCoursePage(taskTitle)
 })
 
-When ('I click on three dot menu of content {string}', (contentTitle) => {
+When('I click on three dot menu of content {string}', contentTitle => {
   coursesCommon.openThreeDotMenuForContent(contentTitle)
 })
 
@@ -76,17 +79,23 @@ And('I click on Delete in confirmation window', () => {
   coursesCommon.clickDeleteInConfirmationWindow()
 })
 
-When('I click on task {string}', (taskTitle) => {
+When('I click on task {string}', taskTitle => {
   coursesCommon.openTask(taskTitle)
 })
 
-Then('I see task card info submitted contains {string} for task {string}', (submittedTasks, taskTitle) => {
-  coursesCommon.compareSubmittedTasksInformation(submittedTasks, taskTitle)
-})
+Then(
+  'I see task card info submitted contains {string} for task {string}',
+  (submittedTasks, taskTitle) => {
+    coursesCommon.compareSubmittedTasksInformation(submittedTasks, taskTitle)
+  }
+)
 
-And('Task card info graded contains {string} for task {string}', (gradedTasks, taskTitle) => {
-  coursesCommon.compareGradedTasksInformation(gradedTasks, taskTitle)
-})
+And(
+  'Task card info graded contains {string} for task {string}',
+  (gradedTasks, taskTitle) => {
+    coursesCommon.compareGradedTasksInformation(gradedTasks, taskTitle)
+  }
+)
 
 And('I click on link finish for task {string}', taskTitle => {
   coursesCommon.clickOnFinishTask(taskTitle)

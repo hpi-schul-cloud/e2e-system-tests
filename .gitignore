@@ -6,3 +6,4 @@ cypress.env.json
 cucumber-json
 reports
 .run
+downloads

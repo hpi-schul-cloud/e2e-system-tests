@@ -15,8 +15,8 @@ And('I fill out the user creation form for {string} {string} with email {string}
   management.fillUserCreationForm(forename, surname, email)
 })
 
-And('I click on add button', () => {
-  management.clickOnAddButton()
+And('I click on add button to add {string}', (role) => {
+  management.clickOnAddButton(role)
 })
 
 Then('I can see the user with email {string} in the table', (email) => {
@@ -25,8 +25,8 @@ Then('I can see the user with email {string} in the table', (email) => {
 
 //Scenario: Editing a new student
 
-And('I enter {string} in search input field', (keyword) => {
-  management.enterNameForSearch(keyword)
+And('I enter {string} email {string} in search input field', (role, keyword) => {
+  management.enterNameForSearch(role, keyword)
 })
 
 And('I change username to {string} {string}', (firstname, surname) => {
@@ -60,10 +60,6 @@ Then('I cannot see user {string} in the table', (email) => {
 })
 
 //Scenario: Adding a new teacher
-
-And('I click on add button', () => {
-  management.clickOnAddButton()
-})
 
 //Scenario: Editing a new teacher
 

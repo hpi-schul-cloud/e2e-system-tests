@@ -2,13 +2,15 @@ const emailInputFieldElement = '[data-testid="username-email"]'
 const passwordInputFieldElement = '[data-testid="password-email"]'
 const submitButton = '[data-testid="submit-login-email"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
-const defaultLoginViaExternalBroker = '[data-testid="submit-oauth-login"], [data-provider="oauth"]'
+const defaultLoginViaExternalBroker =
+  '[data-testid="submit-oauth-login"], [data-provider="oauth"]'
 const initials = '[data-testid="initials"]'
 const languageSelection = '[id="selected-language"]'
 const languageDe = '[data-language="de"]'
 const externalUsernameInputFieldElement = '[id="Username"]'
 const externalPasswordInputFieldElement = '[id="Password"]'
-const oauth_url = 'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
+const oauth_url =
+  'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
 
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
@@ -18,11 +20,26 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.log(link)
     if (environmentUpperCased === 'NBC') {
       cy.visit('/login')
+        .wait(['@alerts_api', '@locales_api'])
+        .then(interceptions => {
+          expect(interceptions[0].response.statusCode).to.equal(200)
+          expect(interceptions[1].response.statusCode).to.equal(200)
+        })
       cy.get(nbcLoginWithEmailOptionButton).click()
     } else if (environmentUpperCased === 'DEFAULT') {
       cy.visit('/login')
+        .wait(['@alerts_api', '@locales_api'])
+        .then(interceptions => {
+          expect(interceptions[0].response.statusCode).to.equal(200)
+          expect(interceptions[1].response.statusCode).to.equal(200)
+        })
     } else {
       cy.visit('/login')
+        .wait(['@alerts_api', '@locales_api'])
+        .then(interceptions => {
+          expect(interceptions[0].response.statusCode).to.equal(200)
+          expect(interceptions[1].response.statusCode).to.equal(200)
+        })
     }
 
     let userEmail
@@ -71,18 +88,21 @@ Cypress.Commands.add('login', (username, environment) => {
     if (doExternalLogin) {
       cy.request('GET', oauth_url).then(resp => {
         cy.intercept(resp.requestHeaders.referer).as('oauth_url')
-        cy.visit(resp.requestHeaders.referer)
-        cy.wait('@oauth_url')
-        cy.url().should('include', '/Account/Login')
-        cy.get(externalUsernameInputFieldElement).should('be.visible')
-        cy.get(externalUsernameInputFieldElement)
-          .type(env[userEmail], { log: false } )
-        cy.get(externalPasswordInputFieldElement)
-          .type(env[userPassword], { log: false })
-          .type('{enter}')
+        cy.visit(resp.requestHeaders.referer).then(window => {
+          expect(window.location.pathname).to.include('/Account/Login')
+          cy.get('@oauth_url').then(resp => {
+            expect(resp.response.statusCode).to.equal(308)
+            cy.get(externalUsernameInputFieldElement).should('be.visible')
+            cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
+              log: false
+            })
+            cy.get(externalPasswordInputFieldElement)
+              .type(env[userPassword], { log: false })
+              .type('{enter}')
+          })
+        })
       })
-    }
-    else {
+    } else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
       cy.get(submitButton).click()

@@ -13,42 +13,71 @@ class Courses {
   static #createFAB = '[name="fab-icon"]'
   static #searchFieldRoomOverview = '[data-testid="search-field"]'
 
-  fillCourseCreationForm(new_course) {
+  fillCourseCreationForm (new_course) {
     cy.get(Courses.#courseTitle).type(new_course)
   }
 
-  clickOnCreateFAB() {
+  clickOnCreateFAB () {
     cy.get(Courses.#createFAB).click()
   }
 
-  fillCourseCreationForm(newCourseName) {
+  fillCourseCreationForm (newCourseName) {
     cy.get(Courses.#courseTitle).type(newCourseName)
   }
 
-  clickOnNextSteps() {
+  clickOnNextSteps () {
     cy.get(Courses.#nextButton).click()
     cy.get(Courses.#nextContinueButton).click()
-    cy.get(Courses.#goToCourseOverviewButton).click()
+    cy.get(Courses.#goToCourseOverviewButton)
+      .click()
+      .wait('@dashboard_api', { timeout: 60000 })
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+        expect(interceptions.response.url).to.include('/dashboard')
+        expect(interceptions.state).to.equal('Complete')
+      })
   }
 
-  performDeletion() {
+  performDeletion () {
     cy.get(Courses.#deleteButton).click()
     cy.get(Courses.#confirmDeletionPopup).click({
       multiple: true,
       force: true
+    }).wait([
+      '@public_api',
+      '@me_api',
+      '@roles_api',
+      '@schools_api',
+      '@dashboard_api'
+    ])
+    .then(interceptions => {
+      expect(interceptions[4].response.statusCode).to.equal(200)
     })
   }
 
-  submitChanges() {
-    cy.get(Courses.#btnSubmit).click()
+  submitChanges () {
+    cy.get(Courses.#btnSubmit)
+      .click()
+      .wait([
+        '@public_api',
+        '@me_api',
+        '@roles_api',
+        '@schools_api',
+        '@userPermissions_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[4].response.statusCode).to.equal(200)
+      })
   }
 
-  editCourseTitleAndDescription(editedRoomName) {
-    cy.get(Courses.#courseName).clear().type(editedRoomName)
+  editCourseTitleAndDescription (editedRoomName) {
+    cy.get(Courses.#courseName)
+      .clear()
+      .type(editedRoomName)
     cy.get(Courses.#courseDescription).type('this is test description')
   }
 
-  searchForARoom(roomName) {
+  searchForARoom (roomName) {
     cy.get(Courses.#searchFieldRoomOverview).type(roomName)
   }
 }

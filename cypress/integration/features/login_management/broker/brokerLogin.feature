@@ -1,4 +1,4 @@
-Feature: Verify brokered dBildungscloud login via OIDC provider
+Feature: Broker Login - Verify brokered dBildungscloud login via OIDC provider
 
   As an external student, I want to use my external account (OIDCMOCK) as an identity provider to log in to the dBildungscloud.
 

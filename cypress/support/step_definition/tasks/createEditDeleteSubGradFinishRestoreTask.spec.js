@@ -158,10 +158,6 @@ Then('I see detail page for task {string}', (taskTitle) => {
   tasks.seeDetailPageForTask(taskTitle)
 })
 
-When('I click on submission tab', () => {
-  tasks.clickSubmissionTab()
-})
-
 And ('I enter text submission {string}', (submissionText) => {
   tasks.setTaskText(submissionText)
 })
@@ -227,7 +223,7 @@ When('I click on grading tab', () => {
 })
 
 When('I click on submission tab', () => {
-  tasks.clickOnSubmissionTab()
+  tasks.clickSubmissionTab()
 })
 
 And ('I enter comment {string}', (gradingText) => {

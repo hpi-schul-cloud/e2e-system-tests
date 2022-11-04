@@ -1,7 +1,6 @@
 'use strict'
 
 class Management {
-
   static #fabButton = '#fab'
   static #createUserButton = '.v-btn--router'
   static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]'
@@ -22,26 +21,49 @@ class Management {
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'
 
-  clickOnFAB() {
+  clickOnFAB () {
     cy.get(Management.#fabButton).click()
     cy.get(Management.#createUserButton).click()
   }
 
-  fillUserCreationForm(forename, surname, email) {
+  fillUserCreationForm (forename, surname, email) {
     cy.get(Management.#firstNameCreationForm).type(forename)
     cy.get(Management.#lastNameCreationForm).type(surname)
     cy.get(Management.#emailCreationForm).type(email)
   }
 
-  clickOnAddButton() {
+  clickOnAddButton (role) {
+    if (!(role == 'student')) {
+      cy.intercept('POST', '**/teachers').as('post_role_api')
+      cy.intercept('GET', '**/teachers?**').as('get_roles_api')
+    } else {
+      cy.intercept('POST', '**/students').as('post_role_api')
+      cy.intercept('GET', '**/students?**').as('get_roles_api')
+    }
     cy.get(Management.#addButton).click()
+    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], {
+      timeout: 10000
+    }).then(interceptions => {
+      expect(interceptions[0].response.statusCode).to.equal(201)
+      expect(interceptions[1].response.statusCode).to.equal(200)
+      expect(interceptions[2].response.statusCode).to.equal(200)
+      expect(interceptions[2].request.url).to.include('/api/v1/users/admin')
+    })
   }
 
-  enterNameForSearch(keyword) {
+  enterNameForSearch (role, keyword) {
+    if (!(role == 'student')) {
+      cy.intercept('**/teachers?**').as('search_api')
+    } else {
+      cy.intercept('**/students?**').as('search_api')
+    }
     cy.get(Management.#searchbar).type(keyword)
+    cy.wait('@search_api')
+      .its('response.statusCode')
+      .should('eq', 200)
   }
 
-  clickEditStudentButton(email) {
+  clickEditStudentButton (email) {
     cy.contains('td', email)
       .siblings()
       .find('a')
@@ -49,7 +71,7 @@ class Management {
       .click()
   }
 
-  clickEditTeacherButton(email) {
+  clickEditTeacherButton (email) {
     cy.contains('td', email)
       .siblings()
       .find('a')
@@ -57,69 +79,83 @@ class Management {
       .click()
   }
 
-  changeUsername(firstname, surname) {
+  changeUsername (firstname, surname) {
     cy.get(Management.#firstNameEditForm).clear()
     cy.get(Management.#firstNameEditForm).type(firstname)
     cy.get(Management.#lastNameEditForm).clear()
     cy.get(Management.#lastNameEditForm).type(surname)
   }
 
-  changeEmail(newEmail) {
+  changeEmail (newEmail) {
     cy.get(Management.#emailEditForm).clear()
     cy.get(Management.#emailEditForm).type(newEmail)
   }
 
-  clickSaveButton() {
-    cy.get(Management.#submitButton).eq(0).click()
+  clickSaveButton () {
+    cy.get(Management.#submitButton)
+      .eq(0)
+      .click()
   }
 
-  deleteUser(email){
-    cy.get(Management.#emailEditForm).should('have.value', email).then(($matchEmail) => {
-      this.clickDeleteButton()
-    })
+  deleteUser (email) {
+    cy.get(Management.#emailEditForm)
+      .should('have.value', email)
+      .then($matchEmail => {
+        this.clickDeleteButton()
+      })
   }
 
-  clickDeleteButton() {
+  clickDeleteButton () {
     cy.get(Management.#deleteButton).click()
   }
 
-  clickDeleteButtonInPopup() {
-    cy.get(Management.#deleteButtonConfirmation).click({ multiple: true, force:true})
+  clickDeleteButtonInPopup () {
+    cy.get(Management.#deleteButtonConfirmation).click({
+      multiple: true,
+      force: true
+    })
   }
 
-  clickNewAdminPageButton() {
+  clickNewAdminPageButton () {
     cy.get(Management.#newSchoolAdminPageButton).click()
     cy.url().should('include', '/administration/school-settings')
   }
 
-  clickVideoConferenceToggleSwitch() {
-    cy.intercept('/api/v1/federalStates/*').as('federalStates')
+  clickVideoConferenceToggleSwitch () {
+    cy.intercept('**/federalStates/**').as('federalStates')
     cy.wait('@federalStates')
     cy.get(Management.#videoconferenceToggleSwitch)
       .find('input')
       .click({ force: true })
   }
 
-  clickSaveGeneralSettingsButton() {
-    cy.get(Management.#saveGeneralSettingsButton).click({ multiple: true, force: true })
+  clickSaveGeneralSettingsButton () {
+    cy.get(Management.#saveGeneralSettingsButton).click({
+      multiple: true,
+      force: true
+    })
   }
 
-  userIsVisibleInTable(email) {
+  userIsVisibleInTable (email) {
     cy.get(Management.#searchbar).clear(Management.#searchbar)
     cy.get(Management.#tableContents)
     cy.contains(email)
+      .should('be.visible')
+      .and('contain.text', email)
   }
 
-  userIsNotVisibleInTable(email) {
+  userIsNotVisibleInTable (email) {
     cy.get(Management.#searchbar).clear(Management.#searchbar)
     cy.get(Management.#tableContents)
     cy.contains(email).should('not.exist')
   }
 
-  clickChatToggleSwitch() {
-    cy.intercept('/api/v1/federalStates/*').as('federalStates')
+  clickChatToggleSwitch () {
+    cy.intercept('**/federalStates/**').as('federalStates')
     cy.wait('@federalStates')
-    cy.get(Management.#chatToggleSwitch).find('input').click({ force: true })
+    cy.get(Management.#chatToggleSwitch)
+      .find('input')
+      .click({ force: true })
   }
 }
 export default Management
