@@ -329,9 +329,9 @@ class Tasks {
   }
 
   seeFileIsSavedInDownloads (fileName) {
-    cy.readFile(`cypress/downloads/${fileName}`, 'binary', {
-      timeout: 15000
-    }).should(buffer => expect(buffer.length).to.be.gt(100))
+    cy.readFile(`cypress/downloads/${fileName}`, 'binary').should(buffer =>
+      expect(buffer.length).to.be.gt(100)
+    )
   }
 
   clickOnDeleteFile (fileName) {

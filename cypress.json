@@ -5,8 +5,8 @@
   "videoCompression": 18,
   "experimentalSessionAndOrigin": true,
   "chromeWebSecurity": false,
-  "pageLoadTimeout": 150000,
-  "defaultCommandTimeout": 150000,
-  "requestTimeout":150000,
-  "responseTimeout":150000
+  "pageLoadTimeout": 200000,
+  "defaultCommandTimeout": 200000,
+  "requestTimeout":200000,
+  "responseTimeout":200000
 }

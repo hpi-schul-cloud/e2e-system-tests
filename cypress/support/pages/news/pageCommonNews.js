@@ -15,7 +15,7 @@ class News_Common {
   static #deleteNewsConfirmation = '[class="btn btn-primary btn-submit"]'
 
   doNotSeeNews (newsName) {
-    cy.get('span', { timeout: 20000 }).then($span => {
+    cy.get('span').then($span => {
       if ($span.find(News_Common.#newsName)) {
         cy.contains(newsName).should('not.exist')
       } else {
@@ -65,13 +65,11 @@ class News_Common {
   }
 
   enterNewsDescription (newsDescription) {
-    cy.get(News_Common.#newsDescription, { timeout: 20000 }).type(
-      newsDescription
-    )
+    cy.get(News_Common.#newsDescription).type(newsDescription)
   }
 
   enterNewsTitle (newsTitle) {
-    cy.get(News_Common.#newsTitleInput, { timeout: 20000 })
+    cy.get(News_Common.#newsTitleInput)
       .eq(1)
       .type(newsTitle)
   }
