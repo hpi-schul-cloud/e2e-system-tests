@@ -6,7 +6,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
     And I go to student administration
-    And I click on FAB to add a user
+    And I click on FAB to add a 'student'
     And I fill out the user creation form for 'Adam' 'Riese' with email 'adam.riese@example.com'
     And I click on add button to add 'student'
     Then I can see the user with email 'adam.riese@example.com' in the table
@@ -37,7 +37,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
     And I go to teacher administration
-    And I click on FAB to add a user
+    And I click on FAB to add a 'teacher'
     And I fill out the user creation form for 'Karl' 'Müller' with email 'karl.mueller@example.com'
     And I click on add button to add 'teacher'
     Then I can see the user with email 'karl.mueller@example.com' in the table

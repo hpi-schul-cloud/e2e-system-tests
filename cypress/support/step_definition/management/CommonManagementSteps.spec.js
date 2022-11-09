@@ -28,6 +28,6 @@ And('I go to teacher administration', () => {
   managementCommon.navigateToTeacherAdministration()
 })
 
-And('I click on FAB to add a user', () => {
-  management.clickOnFAB()
+And('I click on FAB to add a {string}', (user) => {
+  management.clickOnFAB(user)
 })
