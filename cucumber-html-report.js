@@ -181,8 +181,16 @@ function generateReport () {
           data: [
             { label: 'Project', value: 'dBildungscloud' },
             {
-              label: 'Instance',
-              value: runInfos.config.env.BRB || runInfos.config.env.NBC
+              label: 'Instance 1',
+              value: runInfos.config.env.BRB
+            },
+            {
+              label: 'Instance 2',
+              value: runInfos.config.env.NBC
+            },
+            {
+              label: 'Instance 3',
+              value: runInfos.config.env.DEFAULT
             },
             {
               label: 'Execution Start Time',

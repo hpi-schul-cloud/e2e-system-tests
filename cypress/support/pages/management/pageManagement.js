@@ -40,11 +40,19 @@ class Management {
 
   clickOnAddButton (role) {
     if (!(role == 'student')) {
-      cy.intercept('POST', '**/teachers').as('post_role_api')
-      cy.intercept('GET', '**/teachers?**').as('get_roles_api')
+      cy.intercept('POST', '**/teachers', req => {
+        delete req.headers['if-none-match']
+      }).as('post_role_api')
+      cy.intercept('GET', '**/teachers?**', req => {
+        delete req.headers['if-none-match']
+      }).as('get_roles_api')
     } else {
-      cy.intercept('POST', '**/students').as('post_role_api')
-      cy.intercept('GET', '**/students?**').as('get_roles_api')
+      cy.intercept('POST', '**/students', req => {
+        delete req.headers['if-none-match']
+      }).as('post_role_api')
+      cy.intercept('GET', '**/students?**', req => {
+        delete req.headers['if-none-match']
+      }).as('get_roles_api')
     }
     cy.get(Management.#addButton).click()
     cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], {
@@ -59,9 +67,13 @@ class Management {
 
   enterNameForSearch (role, keyword) {
     if (!(role == 'student')) {
-      cy.intercept('**/teachers?**').as('search_api')
+      cy.intercept('**/teachers?**', req => {
+        delete req.headers['if-none-match']
+      }).as('search_api')
     } else {
-      cy.intercept('**/students?**').as('search_api')
+      cy.intercept('**/students?**', req => {
+        delete req.headers['if-none-match']
+      }).as('search_api')
     }
     cy.get(Management.#searchbar).type(keyword)
     cy.wait('@search_api')
