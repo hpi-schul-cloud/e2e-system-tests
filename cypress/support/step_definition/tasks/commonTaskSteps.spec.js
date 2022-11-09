@@ -9,3 +9,7 @@ When('I go to tasks overview', () => {
 And('I click on button Submit', () => {
   tasksCommon.clickOnSubmit()
 })
+
+When('I click on button Add Task', () => {
+  tasksCommon.clickOnAddTask()
+})
