@@ -40,7 +40,7 @@ class Courses_Common {
       })*/
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
-      .waitForNetworkIdle('@dashboard_api', 20000)
+      .waitForNetworkIdle('@dashboard_api', 1000)
   }
 
   navigateToRoomBoard (roomName) {
@@ -67,7 +67,7 @@ class Courses_Common {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-            .waitForNetworkIdle('@userPermissions_api', 20000)
+            .waitForNetworkIdle('@userPermissions_api', 1000)
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`).click()
         } else if (htmlTitlePage.includes('Cursos')) {
@@ -140,7 +140,7 @@ class Courses_Common {
       })*/
     cy.contains(taskTitle)
       .should('be.visible')
-      .waitForNetworkIdle('@userPermissions_api', 20000)
+      .waitForNetworkIdle('@userPermissions_api', 1000)
   }
 
   taskIsNotVisibleOnCoursePage (taskTitle) {

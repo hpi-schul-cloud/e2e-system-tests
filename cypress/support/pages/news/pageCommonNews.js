@@ -97,7 +97,7 @@ class News_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-          .waitForNetworkIdle('@schools_api', 20000)
+          .waitForNetworkIdle('@schools_api', 1000)
       })
   }
 
