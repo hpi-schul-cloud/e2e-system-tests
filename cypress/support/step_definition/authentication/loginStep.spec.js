@@ -95,6 +95,11 @@ Before(() => {
     pattern: '**/alerts',
     alias: 'alerts_api',
   })
+  cy.waitForNetworkIdlePrepare({
+    method: 'GET',
+    pattern: '**/tasks?**',
+    alias: 'tasks_api',
+  })
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {
