@@ -91,7 +91,7 @@ class Teams_Common {
   }
 
   clickOnCreateNewsOnTeamDetailPage () {
-    cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
+    /*cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
       .click()
       .then(object => {
         cy.wrap(object)
@@ -102,7 +102,10 @@ class Teams_Common {
             expect(interceptions[2].response.statusCode).to.equal(200)
             expect(interceptions[3].response.statusCode).to.equal(200)
           })
-      })
+      })*/
+    cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
+      .click()
+      .waitForNetworkIdle('@schools_api', 20000)
   }
 
   clickOnNewsTabInTeamDetailPage () {

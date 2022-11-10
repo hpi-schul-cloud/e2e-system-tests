@@ -48,12 +48,14 @@ class News_Common {
   }
 
   clickOnCreateNewsSaveButton () {
-    cy.get(News_Common.#newsCreateButton)
+    /*cy.get(News_Common.#newsCreateButton)
       .click()
       .wait('@alerts_api')
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-      })
+      })*/
+      cy.get(News_Common.#newsCreateButton)
+      .click()
   }
 
   seeTimeInput () {
@@ -79,7 +81,7 @@ class News_Common {
   }
 
   clickOnAddNews () {
-    cy.get(News_Common.#createNewNews)
+    /*cy.get(News_Common.#createNewNews)
       .click()
       .then(object => {
         cy.wrap(object)
@@ -90,6 +92,12 @@ class News_Common {
             expect(interceptions[2].response.statusCode).to.equal(200)
             expect(interceptions[3].response.statusCode).to.equal(200)
           })
+      })*/
+      cy.get(News_Common.#createNewNews)
+      .click()
+      .then(object => {
+        cy.wrap(object)
+          .waitForNetworkIdle('@schools_api', 20000)
       })
   }
 

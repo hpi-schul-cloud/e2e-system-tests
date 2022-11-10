@@ -1,7 +1,6 @@
 'use strict'
 
 class Management_Common {
-
   static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
   static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]'
   static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
@@ -10,14 +9,14 @@ class Management_Common {
   static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
   static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
 
-  navigateToAdministration() {
+  navigateToAdministration () {
     cy.get(Management_Common.#administrationOverviewNavigationButton).click()
     cy.url().should('include', '/administration')
   }
 
-  navigateToStudentAdministration() {
+  navigateToStudentAdministration () {
     cy.get(Management_Common.#studentAdministrationNavigationButton).click()
-    cy.wait([
+    /*cy.wait([
       '@public_api',
       '@me_api',
       '@roles_api',
@@ -31,31 +30,34 @@ class Management_Common {
       expect(interceptions[3].response.statusCode).to.equal(200)
       expect(interceptions[4].response.statusCode).to.equal(200)
       expect(interceptions[5].response.statusCode).to.equal(200)
-    })
+    })*/
+    cy.waitForNetworkIdle('@students_api', 20000)
     cy.url().should('include', '/administration/students')
   }
 
-  navigateToTeacherAdministration() {
+  navigateToTeacherAdministration () {
     cy.get(Management_Common.#teacherAdministrationNavigationButton).click()
     cy.url().should('include', '/administration/teachers')
   }
 
-  navigateToCourseAdministration() {
+  navigateToCourseAdministration () {
     cy.get(Management_Common.#courseAdministrationNavigationButton).click()
     cy.url().should('include', '/administration/courses')
   }
 
-  navigateToClassAdministration() {
+  navigateToClassAdministration () {
     cy.get(Management_Common.#classAdministrationNavigationButton).click()
     cy.url().should('include', '/administration/classes')
   }
 
-  navigateToTeamAdministration() {
-    cy.get(Management_Common.#teamAdministrationNavigationButton).eq(1).click()
+  navigateToTeamAdministration () {
+    cy.get(Management_Common.#teamAdministrationNavigationButton)
+      .eq(1)
+      .click()
     cy.url().should('include', '/administration/teams')
   }
 
-  navigateToSchoolAdministration() {
+  navigateToSchoolAdministration () {
     cy.get(Management_Common.#schoolAdministrationNavigationButton).click()
     cy.url().should('include', '/administration/school')
   }

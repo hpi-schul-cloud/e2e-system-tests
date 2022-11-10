@@ -18,7 +18,7 @@ Cypress.Commands.add('login', (username, environment) => {
     const environmentUpperCased = environment.toUpperCase()
     const link = Cypress.config('baseUrl', env[environmentUpperCased])
     cy.log(link)
-    if (environmentUpperCased === 'NBC') {
+    /*if (environmentUpperCased === 'NBC') {
       cy.visit('/login')
         .wait(['@alerts_api', '@locales_api'])
         .then(interceptions => {
@@ -40,6 +40,15 @@ Cypress.Commands.add('login', (username, environment) => {
           expect(interceptions[0].response.statusCode).to.equal(200)
           expect(interceptions[1].response.statusCode).to.equal(200)
         })
+    }*/
+
+    if (environmentUpperCased === 'NBC') {
+      cy.visit('/login')
+      cy.get(nbcLoginWithEmailOptionButton).click()
+    } else if (environmentUpperCased === 'DEFAULT') {
+      cy.visit('/login')
+    } else {
+      cy.visit('/login')
     }
 
     let userEmail
