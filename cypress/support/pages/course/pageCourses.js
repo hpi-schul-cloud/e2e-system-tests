@@ -38,7 +38,7 @@ class Courses {
       })*/
     cy.get(Courses.#goToCourseOverviewButton)
       .click()
-      .waitForNetworkIdle('@dashboard_api', 1000)
+      .waitForNetworkIdle(1000)
   }
 
   performDeletion () {
@@ -63,7 +63,7 @@ class Courses {
         multiple: true,
         force: true
       })
-      .waitForNetworkIdle('@dashboard_api', 1000)
+      .waitForNetworkIdle(1000)
   }
 
   submitChanges () {
@@ -81,7 +81,7 @@ class Courses {
       })*/
     cy.get(Courses.#btnSubmit)
       .click()
-      .waitForNetworkIdle('@userPermissions_api', 1000)
+      .waitForNetworkIdle(1000)
   }
 
   editCourseTitleAndDescription (editedRoomName) {

@@ -40,7 +40,7 @@ class Courses_Common {
       })*/
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
-      .waitForNetworkIdle('@dashboard_api', 1000)
+      .waitForNetworkIdle(1000)
   }
 
   navigateToRoomBoard (roomName) {

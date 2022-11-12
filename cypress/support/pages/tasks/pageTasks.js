@@ -142,7 +142,7 @@ class Tasks {
     // Upload a file includes a reload of the page
     cy.get(Tasks.#fileUploadInput)
       .attachFile(fileName)
-      .waitForNetworkIdle('@fileModel_api', 1000)
+      .waitForNetworkIdle(1000)
     // after reload the property should be gone
     cy.window().should('not.have.prop', 'beforeReload')
   }
@@ -150,7 +150,7 @@ class Tasks {
   executeFileUploadForSubmission (fileName) {
     cy.get(Tasks.#fileUploadInput)
       .attachFile(fileName)
-      .waitForNetworkIdle('@fileModel_api', 1000)
+      .waitForNetworkIdle(1000)
   }
 
   clickOnPublicSubmissionCheckbox () {
