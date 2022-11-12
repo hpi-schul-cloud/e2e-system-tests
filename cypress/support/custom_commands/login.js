@@ -13,7 +13,7 @@ const oauth_url =
   'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
 
 Cypress.Commands.add('login', (username, environment) => {
-  //cy.session([username, environment], () => {
+  cy.session([username, environment], () => {
     const env = Cypress.env()
     const environmentUpperCased = environment.toUpperCase()
     const link = Cypress.config('baseUrl', env[environmentUpperCased])
@@ -120,6 +120,6 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.get(initials).click()
     cy.get(languageSelection).click()
     cy.get(languageDe).click()
- // })
+  })
   cy.visit('/dashboard')
 })
