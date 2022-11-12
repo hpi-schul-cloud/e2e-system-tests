@@ -100,6 +100,11 @@ Before(() => {
     pattern: '**/tasks?**',
     alias: 'tasks_api',
   })
+  cy.waitForNetworkIdlePrepare({
+    method: 'POST',
+    pattern: '**/fileModel',
+    alias: 'fileModel_api',
+  })
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {

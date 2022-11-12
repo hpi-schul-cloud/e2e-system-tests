@@ -67,7 +67,7 @@ class Courses_Common {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-            .waitForNetworkIdle('@userPermissions_api', 1000)
+            .waitForNetworkIdle(1000)
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`).click()
         } else if (htmlTitlePage.includes('Cursos')) {
@@ -122,7 +122,8 @@ class Courses_Common {
   }
 
   taskIsVisibleOnCoursePage (taskTitle) {
-    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    //cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    //cy.waitForNetworkIdle('@userPermissions_api', 1000)
     cy.url().should('include', '/rooms/')
     /*cy.contains(taskTitle)
       .should('be.visible')
@@ -138,9 +139,7 @@ class Courses_Common {
         expect(interceptions[1].state).to.equal('Complete')
         expect(interceptions[1].response.statusCode).to.equal(200)
       })*/
-    cy.contains(taskTitle)
-      .should('be.visible')
-      .waitForNetworkIdle('@userPermissions_api', 1000)
+    cy.contains(taskTitle).should('be.visible')
   }
 
   taskIsNotVisibleOnCoursePage (taskTitle) {
