@@ -40,7 +40,7 @@ class Courses_Common {
       })*/
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
-      .waitForNetworkIdle(1000)
+      .waitForNetworkIdle(5000)
   }
 
   navigateToRoomBoard (roomName) {
@@ -67,7 +67,7 @@ class Courses_Common {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-            .waitForNetworkIdle(1000)
+            .waitForNetworkIdle(5000)
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`).click()
         } else if (htmlTitlePage.includes('Cursos')) {

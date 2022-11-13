@@ -105,7 +105,7 @@ class Teams_Common {
       })*/
     cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
       .click()
-      .waitForNetworkIdle(1000)
+      .waitForNetworkIdle(5000)
   }
 
   clickOnNewsTabInTeamDetailPage () {

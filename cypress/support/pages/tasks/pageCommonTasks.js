@@ -7,7 +7,7 @@ class Tasks_Common {
 
   navigateToTasksOverview() {
     cy.visit('/tasks')
-    cy.waitForNetworkIdle(1000)
+    cy.waitForNetworkIdle(5000)
     cy.get(Tasks_Common.#tasksOverviewNavigationButton).click()
     cy.url().should('include', '/tasks')
   }

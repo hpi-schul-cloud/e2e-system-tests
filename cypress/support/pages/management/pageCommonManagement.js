@@ -31,7 +31,7 @@ class Management_Common {
       expect(interceptions[4].response.statusCode).to.equal(200)
       expect(interceptions[5].response.statusCode).to.equal(200)
     })*/
-    cy.waitForNetworkIdle(1000)
+    cy.waitForNetworkIdle(5000)
     cy.url().should('include', '/administration/students')
   }
 

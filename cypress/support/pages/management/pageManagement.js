@@ -85,7 +85,7 @@ class Management {
       })
     }
     cy.get(Management.#addButton).click()
-    cy.waitForNetworkIdle(1000)
+    cy.waitForNetworkIdle(5000)
   }
 
   enterNameForSearch (role, keyword) {
