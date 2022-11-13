@@ -9,8 +9,7 @@ class Help_Common {
 
   navigateToHelpSection () {
     cy.get(Help_Common.#helpOverviewNavigationButton)
-      .click()
-      .waitForNetworkIdle(6000)
+      .click({timeout: 10000})
     cy.url().should('include', '/help/articles')
   }
 

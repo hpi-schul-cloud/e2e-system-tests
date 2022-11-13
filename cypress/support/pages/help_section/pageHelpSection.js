@@ -29,8 +29,7 @@ class Help {
 
   clickSendRequestOrProblemInHeader () {
     cy.get(Help.#sendRequestOrProblemInHeader)
-      .click()
-      .waitForNetworkIdle(6000)
+      .click({timeout: 10000})
   }
 
   advancedTrainingsInHeader () {
@@ -68,8 +67,7 @@ class Help {
     cy.get(Help.#bugFormHeadline).type('Dies ist ein Test!')
     cy.get(Help.#bugFormMail).type('test@example.com')
     cy.get(Help.#bugFormSubmitButton)
-      .click()
-      .waitForNetworkIdle(6000)
+      .click({timeout: 10000})
   }
 
   seeHelpArticle () {
