@@ -1,7 +1,6 @@
 'use strict'
 
 class Help {
-
   static #questionIcon = '[data-testid="help_top_menu"]'
   static #helpSectionInHeader = '[data-testid="Hilfeartikel"]'
   static #sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]'
@@ -20,26 +19,28 @@ class Help {
   static #bugFormSubmitButton = '[data-testid="bug_submit"]'
   static #feedbackSendConfirmation = '[data-testid="notification"]'
 
-  clickQuestionIcon(){
+  clickQuestionIcon () {
     cy.get(Help.#questionIcon).click()
   }
 
-  clickHelpSectionInHeader() {
+  clickHelpSectionInHeader () {
     cy.get(Help.#helpSectionInHeader).click()
   }
 
-  clickSendRequestOrProblemInHeader() {
-    cy.get(Help.#sendRequestOrProblemInHeader).click()
+  clickSendRequestOrProblemInHeader () {
+    cy.get(Help.#sendRequestOrProblemInHeader)
+      .click()
+      .waitForNetworkIdle(6000)
   }
 
-  advancedTrainingsInHeader() {
+  advancedTrainingsInHeader () {
     cy.get(Help.#advancedTrainingsInHeader).should($a => {
       expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
       expect($a.attr('target'), 'target').to.equal('_blank')
     })
   }
 
-  seeHelpArticlesPage() {
+  seeHelpArticlesPage () {
     cy.get(Help.#helpPageTitle)
     cy.contains('Hilfeartikel')
     cy.get(Help.#helpFirstSteps)
@@ -52,29 +53,31 @@ class Help {
     cy.contains('Nutzungshilfen')
   }
 
-  seeHelpContactPage() {
+  seeHelpContactPage () {
     cy.get(Help.#helpPageTitle)
     cy.contains('Kontakt')
     cy.get(Help.#helpContactform)
     cy.contains('Kontaktformular')
   }
 
-  enterKeywordInSearchbar() {
+  enterKeywordInSearchbar () {
     cy.get(Help.#searchBar).type('Hilfe')
   }
 
-  fillOutContactForm() {
+  fillOutContactForm () {
     cy.get(Help.#bugFormHeadline).type('Dies ist ein Test!')
     cy.get(Help.#bugFormMail).type('test@example.com')
-    cy.get(Help.#bugFormSubmitButton).click()
+    cy.get(Help.#bugFormSubmitButton)
+      .click()
+      .waitForNetworkIdle(6000)
   }
 
-  seeHelpArticle() {
+  seeHelpArticle () {
     cy.get(Help.#searchResult)
     cy.contains('Erste Schritte')
   }
 
-  sendFormToSupport() {
+  sendFormToSupport () {
     cy.get(Help.#feedbackSendConfirmation)
     cy.contains('Feedback erfolgreich versendet!')
   }
