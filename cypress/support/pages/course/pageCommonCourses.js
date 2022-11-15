@@ -22,7 +22,7 @@ class Courses_Common {
 
   navigateToRoomsOverview () {
     cy.get(Courses_Common.#courseOverviewNavigationButton)
-      .click({timeout: 10000})
+      .click()
       .waitForNetworkIdle(10_000)
   }
 
