@@ -21,23 +21,6 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    /*cy.get(Courses_Common.#courseOverviewNavigationButton)
-      .click()
-      .wait([
-        '@dashboard_api',
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-        expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[0].request.url).to.include('/dashboard')
-      })*/
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
       .waitForNetworkIdle(5000)
@@ -49,21 +32,6 @@ class Courses_Common {
       .then($title => {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
-          /*cy.get(`[aria-label="Kurs ${roomName}"]`)
-            .eq(0)
-            .click()
-            .wait([
-              '@public_api',
-              '@me_api',
-              '@roles_api',
-              '@schools_api',
-              '@userPermissions_api'
-            ])
-            .then(interceptions => {
-              expect(interceptions[1].response.statusCode).to.equal(200)
-              expect(interceptions[1].state).to.equal('Complete')
-              expect(interceptions[0].response.statusCode).to.equal(200)
-            })*/
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
@@ -123,22 +91,7 @@ class Courses_Common {
 
   taskIsVisibleOnCoursePage (taskTitle) {
     //cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    //cy.waitForNetworkIdle('@userPermissions_api', 1000)
     cy.url().should('include', '/rooms/')
-    /*cy.contains(taskTitle)
-      .should('be.visible')
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@userPermissions_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })*/
     cy.contains(taskTitle).should('be.visible')
   }
 

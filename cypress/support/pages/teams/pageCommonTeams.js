@@ -91,18 +91,6 @@ class Teams_Common {
   }
 
   clickOnCreateNewsOnTeamDetailPage () {
-    /*cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
-      .click()
-      .then(object => {
-        cy.wrap(object)
-          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
-          .then(interceptions => {
-            expect(interceptions[0].response.statusCode).to.equal(200)
-            expect(interceptions[1].response.statusCode).to.equal(200)
-            expect(interceptions[2].response.statusCode).to.equal(200)
-            expect(interceptions[3].response.statusCode).to.equal(200)
-          })
-      })*/
     cy.get(Teams_Common.#createNewsButtonOnTeamDetail)
       .click()
       .waitForNetworkIdle(5000)

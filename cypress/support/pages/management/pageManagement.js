@@ -39,82 +39,11 @@ class Management {
   }
 
   clickOnAddButton (role) {
-    /*if (!(role == 'student')) {
-      cy.intercept('POST', '**/ /*teachers', req => {
-        delete req.headers['if-none-match']
-      }).as('post_role_api')
-      cy.intercept('GET', '**/ /*teachers?**', req => {
-        delete req.headers['if-none-match']
-      }).as('get_roles_api')
-    } else {
-      cy.intercept('POST', '**/ /*students', req => {
-        delete req.headers['if-none-match']
-      }).as('post_role_api')
-      cy.intercept('GET', '**/ /*students?**', req => {
-        delete req.headers['if-none-match']
-      }).as('get_roles_api')
-    }
-    cy.get(Management.#addButton).click()
-    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api']).then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(201)
-      expect(interceptions[1].response.statusCode).to.equal(200)
-      expect(interceptions[2].response.statusCode).to.equal(200)
-      expect(interceptions[2].request.url).to.include('/api/v1/users/admin')
-    })*/
-    if (!(role == 'student')) {
-      cy.waitForNetworkIdlePrepare({
-        method: 'POST',
-        pattern: '**/teachers',
-        alias: 'post_role_api',
-      })
-      cy.waitForNetworkIdlePrepare({
-        method: 'GET',
-        pattern: '**/teachers?**',
-        alias: 'get_roles_api',
-      })
-    } else {
-      cy.waitForNetworkIdlePrepare({
-        method: 'POST',
-        pattern: '**/students',
-        alias: 'post_role_api',
-      })
-      cy.waitForNetworkIdlePrepare({
-        method: 'GET',
-        pattern: '**/students?**',
-        alias: 'get_roles_api',
-      })
-    }
     cy.get(Management.#addButton).click()
     cy.waitForNetworkIdle(5000)
   }
 
   enterNameForSearch (role, keyword) {
-    /*if (!(role == 'student')) {
-      cy.intercept('**/ /*teachers?**', req => {
-        delete req.headers['if-none-match']
-      }).as('search_api')
-    } else {
-      cy.intercept('**/ /*students?**', req => {
-        delete req.headers['if-none-match']
-      }).as('search_api')
-    }
-    cy.get(Management.#searchbar).type(keyword)
-    cy.wait('@search_api')
-      .its('response.statusCode')
-      .should('eq', 200)*/
-    if (!(role == 'student')) {
-      cy.waitForNetworkIdlePrepare({
-        method: 'GET',
-        pattern: '**/teachers?**',
-        alias: 'search_api',
-      })
-    } else {
-      cy.waitForNetworkIdlePrepare({
-        method: 'GET',
-        pattern: '**/students?**',
-        alias: 'search_api',
-      })
-    }
     cy.get(Management.#searchbar).type(keyword)
   }
 

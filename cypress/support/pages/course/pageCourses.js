@@ -28,14 +28,6 @@ class Courses {
   clickOnNextSteps () {
     cy.get(Courses.#nextButton).click()
     cy.get(Courses.#nextContinueButton).click()
-    /*cy.get(Courses.#goToCourseOverviewButton)
-      .click()
-      .wait('@dashboard_api')
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-        expect(interceptions.response.url).to.include('/dashboard')
-        expect(interceptions.state).to.equal('Complete')
-      })*/
     cy.get(Courses.#goToCourseOverviewButton)
       .click()
       .waitForNetworkIdle(5000)
@@ -43,21 +35,6 @@ class Courses {
 
   performDeletion () {
     cy.get(Courses.#deleteButton).click()
-    /*cy.get(Courses.#confirmDeletionPopup)
-      .click({
-        multiple: true,
-        force: true
-      })
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@dashboard_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[4].response.statusCode).to.equal(200)
-      })*/
     cy.get(Courses.#confirmDeletionPopup)
       .click({
         multiple: true,
@@ -67,18 +44,6 @@ class Courses {
   }
 
   submitChanges () {
-    /*cy.get(Courses.#btnSubmit)
-      .click()
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@userPermissions_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[4].response.statusCode).to.equal(200)
-      })*/
     cy.get(Courses.#btnSubmit)
       .click()
       .waitForNetworkIdle(5000)
