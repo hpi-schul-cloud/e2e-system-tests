@@ -22,8 +22,8 @@ class Courses_Common {
 
   navigateToRoomsOverview () {
     cy.get(Courses_Common.#courseOverviewNavigationButton)
-      .click()
-      .waitForNetworkIdle(5000)
+      .click({timeout: 10000})
+      .waitForNetworkIdle(10_000)
   }
 
   navigateToRoomBoard (roomName) {
