@@ -2,7 +2,8 @@
 
 class Management {
   static #fabButton = '#fab'
-  static #createUserButton = '.v-btn--router'
+  static #addStudentButton = '[data-testid="fab_button_add_students"]'
+  static #addTeacherButton = '[data-testid="fab_button_add_teachers"]'
   static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]'
   static #lastNameCreationForm = '[data-testid="input_create-user_lastname"]'
   static #emailCreationForm = '[data-testid="input_create-user_email"]'
@@ -23,7 +24,14 @@ class Management {
 
   clickOnFAB () {
     cy.get(Management.#fabButton).click()
-    cy.get(Management.#createUserButton).click()
+  }
+
+  clickOnAddStudentInFAB () {
+    cy.get(Management.#addStudentButton).click()
+  }
+
+  clickOnAddTeacherInFAB () {
+    cy.get(Management.#addTeacherButton).click()
   }
 
   fillUserCreationForm (forename, surname, email) {
