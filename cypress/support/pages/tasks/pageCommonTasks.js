@@ -20,10 +20,6 @@ class Tasks_Common {
 
   clickOnSubmit() {
     cy.get(Tasks_Common.#taskForm).find(Tasks_Common.#submitButton).click()
-    // next lines can be removed when BC-2711 is resolved
-    Cypress.on('uncaught:exception', (err, runnable) => {
-      return false;
-    })
     //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
   }
 

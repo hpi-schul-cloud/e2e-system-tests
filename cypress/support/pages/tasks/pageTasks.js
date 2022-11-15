@@ -12,6 +12,7 @@ class Tasks {
   static #publicSubmissionsCheckbox = '[id="publicSubmissionsCheckbox"]'
   static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
+  static #dialogCancelDeleteTaskButtons = '[id="modal-delete-homework-footer"]'
   static #taskDetailsTab = '[id="extended"]'
   static #submissionTab = '[id="submission-tab-link"]'
   static #submissionsTab = '[id="submissions-tab-link"]'
@@ -48,6 +49,20 @@ class Tasks {
   static #finishedTasksListDiv = '[id="finished"]'
   static #taskDotMenu = '[data-testid="task-menu"]'
   static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]'
+
+  clickCancelDeletionButtonInEditTask () {
+    cy.get(Tasks.#dialogCancelDeleteTaskButtons)
+      .find('button')
+      .eq(0)
+      .click()
+  }
+
+  clickConfirmDeletionButtonInEditTask () {
+    cy.get(Tasks.#dialogCancelDeleteTaskButtons)
+      .find('button')
+      .eq(1)
+      .click()
+  }
 
   compareFeedbackText (feedbackText) {
     cy.get(Tasks.#feedbackSection).should('contain', feedbackText)

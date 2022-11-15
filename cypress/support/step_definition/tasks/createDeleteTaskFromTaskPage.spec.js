@@ -10,3 +10,10 @@ const tasks = new Tasks()
 // -->\step_definition\course\commonCourseSteps.spec.js
 // -->\step_definition\tasks\commonTaskSteps.spec.js
 
+When('I click on button Cancel in confirmation window in edit task page', () => {
+    tasks.clickCancelDeletionButtonInEditTask()
+})
+
+When('I click on button Delete in confirmation window in edit task page', () => {
+    tasks.clickConfirmDeletionButtonInEditTask()
+})
