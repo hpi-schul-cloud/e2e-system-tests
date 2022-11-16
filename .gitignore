@@ -7,3 +7,5 @@ cucumber-json
 reports
 .run
 downloads
+runner-results
+multi-reporter-config.json

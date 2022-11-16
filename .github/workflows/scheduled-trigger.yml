@@ -5,9 +5,20 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    outputs:
+      e2e-tests: ${{ steps.parse.outputs.e2e-tests }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # Run the tests in parallel, each with one of the prepared test specs
+        spec: ${{ fromJson(needs.prepare.outputs.e2e-tests) }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Parse test files for parallelization
+        id: parse
+        uses: tgamauf/cypress-parallel@v1
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v4
@@ -37,6 +48,7 @@ jobs:
         with:
           browser: chrome
           headed: false
+        spec: ${{ matrix.spec }}
 
       - name: Generate Report
         uses: cypress-io/github-action@v4

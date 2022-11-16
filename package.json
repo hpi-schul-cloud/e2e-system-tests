@@ -8,7 +8,14 @@
 		"cy:open": "cypress open",
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node cucumber-html-report.js",
-		"posttest": "npm run cy:run || npm run generate:report"
+		"posttest": "npm run cy:run || npm run generate:report",
+		"tag:tasks": "./node_modules/.bin/cypress-tags run -e TAGS='@tasks'",
+		"tag:management": "./node_modules/.bin/cypress-tags run -e TAGS='@management'",
+		"tag:courses_and_topics": "./node_modules/.bin/cypress-tags run -e TAGS='@courses_and_topics'",
+		"tag:dashboard_and_news": "./node_modules/.bin/cypress-tags run -e TAGS='@dashboard_and_news'",
+		"tag:help": "./node_modules/.bin/cypress-tags run -e TAGS='@help'",
+		"tag:team": "./node_modules/.bin/cypress-tags run -e TAGS='@team'",
+		"cy:parallel": "cypress-parallel -s cy:run -t 2 -d cypress/integration/features/ -m false"
 	},
 	"repository": {
 		"type": "git",
@@ -26,8 +33,8 @@
 	"devDependencies": {
 		"cypress": "^9.6.0",
 		"cypress-cucumber-preprocessor": "^4.3.1",
-		"multiple-cucumber-html-reporter": "^1.21.4",
-		"cypress-file-upload": "^5.0.8"
+		"cypress-file-upload": "^5.0.8",
+		"multiple-cucumber-html-reporter": "^1.21.4"
 	},
 	"cypress-cucumber-preprocessor": {
 		"nonGlobalStepDefinitions": false,

@@ -1,3 +1,4 @@
+@dashboard_and_news @team
 Feature: Dashboard - To check contents on the dashboard
 
   As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
