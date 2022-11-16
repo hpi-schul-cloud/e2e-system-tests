@@ -48,7 +48,7 @@ jobs:
         with:
           browser: chrome
           headed: false
-        spec: ${{ matrix.spec }}
+          spec: ${{ matrix.spec }}
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
