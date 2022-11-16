@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        run:
+          echo "{environment_variable_name}={value}" >> $GITHUB_ENV
 
       - name: Parse test files for parallelization
         id: parse
@@ -21,7 +23,7 @@ jobs:
       - name: Read outputs
         run: |
           echo "${{ steps.parse }}"
-          echo "${{ GITHUB_WORKSPACE }}"
+          echo "${{ env.action_state }}"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v4
