@@ -1,18 +1,21 @@
 name: e2e-automatic-trigger-tests
 on: [push]
 jobs:
-  test:
+  e2e-system-tests:
     runs-on: ubuntu-latest
     outputs:
       integration-tests: ${{ steps.parse.outputs.integration-tests }}
     strategy:
       fail-fast: false
       matrix:
-        spec: ${{ fromJson(needs.test.outputs.integration-tests) }}
+        spec: ${{ fromJson(needs.e2e-system-tests.outputs.integration-tests) }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        run: |
+            echo "${{steps.parse.outputs.integration-tests}}"
+            echo "${{e2e-system-tests.outputs.integration-tests}}"
 
       - name: Parse test files for parallelization
         id: parse
