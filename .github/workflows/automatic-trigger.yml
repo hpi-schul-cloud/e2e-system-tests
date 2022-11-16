@@ -1,14 +1,14 @@
 name: e2e-automatic-trigger-tests
 on: [push]
 jobs:
-  e2e-system-tests:
+  prepare:
     runs-on: ubuntu-latest
     outputs:
       integration-tests: ${{ steps.parse.outputs.integration-tests }}
-    strategy:
-      fail-fast: false
-      #matrix:
-      #  spec: ${{ fromJson(needs.e2e-system-tests.outputs.integration-tests) }}
+    #strategy:
+    #  fail-fast: false
+    #matrix:
+    #  spec: ${{ fromJson(needs.prepare.outputs.integration-tests) }}
 
     steps:
       - name: Checkout
@@ -18,14 +18,23 @@ jobs:
         id: parse
         uses: tgamauf/cypress-parallel@v1
 
-      - name: Read outputs
-        run: |
-          echo "${{ jobs.e2e-system-tests.outputs.integration-tests }}"
-
       - name: Clean up previous report
         uses: cypress-io/github-action@v4
         with:
           command: npm run pretest
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        spec: ${{ fromJson(needs.prepare.outputs.integration-tests) }}
+
+    steps:
+      - name: Reading output
+        run: |
+          echo "${{prepare.outputs.integration-tests}}"
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
@@ -50,7 +59,7 @@ jobs:
         with:
           browser: chrome
           headed: false
-          #spec: ${{ matrix.spec }}
+          spec: ${{ matrix.spec }}
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
