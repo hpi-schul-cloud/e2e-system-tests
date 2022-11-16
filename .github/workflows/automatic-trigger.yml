@@ -5,10 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       integration-tests: ${{ steps.parse.outputs.integration-tests }}
-    #strategy:
-    #  fail-fast: false
-    #matrix:
-    #  spec: ${{ fromJson(needs.prepare.outputs.integration-tests) }}
 
     steps:
       - name: Checkout
@@ -59,6 +55,8 @@ jobs:
           browser: chrome
           headed: false
           spec: ${{ matrix.spec }}
+          parallel: true
+          group: 'Actions'
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
