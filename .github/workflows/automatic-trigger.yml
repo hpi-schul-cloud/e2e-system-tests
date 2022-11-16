@@ -20,7 +20,7 @@ jobs:
 
       - name: Read outputs
         run: |
-          echo "${{ e2e-system-tests.outputs.integration-tests }}"
+          echo "${{ outputs.integration-tests }}"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v4
