@@ -3,10 +3,11 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    outputs:
+      integration-tests: ${{ steps.parse.outputs.integration-tests }}
     strategy:
       fail-fast: false
       matrix:
-        # Run the tests in parallel, each with one of the prepared test specs
         spec: ${{fromJson(needs.e2e-system-tests.outputs.integration-tests)}}
 
     steps:
@@ -17,8 +18,7 @@ jobs:
         id: parse
         uses: tgamauf/cypress-parallel@v1
         with:
-          outputs:
-            integration-tests: ${{ steps.parse.outputs.integration-tests }}
+          working-directory: ${GITHUB_WORKSPACE}/cypress.json
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v4
