@@ -67,7 +67,7 @@ class Help {
     cy.get(Help.#bugFormHeadline).type('Dies ist ein Test!')
     cy.get(Help.#bugFormMail).type('test@example.com')
     cy.get(Help.#bugFormSubmitButton)
-      .click({timeout: 10000})
+      .click({timeout: 20_000})
   }
 
   seeHelpArticle () {
