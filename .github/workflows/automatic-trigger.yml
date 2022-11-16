@@ -14,10 +14,10 @@ jobs:
         id: parse
         uses: tgamauf/cypress-parallel@v1
 
-      - name: Clean up previous report 🗑
-        uses: cypress-io/github-action@v4
-        with:
-          command: npm run pretest
+     # - name: Clean up previous report 🗑
+     #   uses: cypress-io/github-action@v4
+     #   with:
+     #     command: npm run pretest
 
   run-tests:
     runs-on: ubuntu-latest
