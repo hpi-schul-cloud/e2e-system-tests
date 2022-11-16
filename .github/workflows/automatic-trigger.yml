@@ -14,13 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Read outputs
-        run: |
-          echo "${{ steps.parse }}"
-
       - name: Parse test files for parallelization
         id: parse
         uses: tgamauf/cypress-parallel@v1
+
+      - name: Read outputs
+        run: |
+          echo "${{ steps.parse }}"
+          echo "${{ GITHUB_WORKSPACE }}"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v4
