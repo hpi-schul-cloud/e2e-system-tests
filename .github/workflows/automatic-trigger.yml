@@ -1,14 +1,14 @@
 name: e2e-automatic-trigger-tests
 on: [push]
 jobs:
-  e2e-system-tests:
+  test:
     runs-on: ubuntu-latest
     outputs:
       integration-tests: ${{ steps.parse.outputs.integration-tests }}
     strategy:
       fail-fast: false
       matrix:
-        spec: ${{fromJson(needs.e2e-system-tests.outputs.integration-tests)}}
+        spec: ${{ fromJson(needs.test.outputs.integration-tests) }}
 
     steps:
       - name: Checkout
