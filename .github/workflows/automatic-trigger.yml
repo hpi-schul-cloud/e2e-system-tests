@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        spec: ${{ fromJson(needs.e2e-system-tests.outputs.integration-tests) }}
+        spec: ${{ needs.e2e-system-tests.outputs.integration-tests }}
 
     steps:
       - name: Checkout
