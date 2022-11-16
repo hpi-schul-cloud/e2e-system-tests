@@ -16,7 +16,7 @@ jobs:
 
       - name: Read outputs
         run: |
-          echo "${{ steps.parse.outputs.integration-tests }}"
+          echo "${{ steps.parse.outputs }}"
 
       - name: Parse test files for parallelization
         id: parse
