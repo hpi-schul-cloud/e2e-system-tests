@@ -23,7 +23,7 @@ class Courses_Common {
   navigateToRoomsOverview () {
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
-      .waitForNetworkIdle('@dashboard_api', 10_000)
+      .waitForNetworkIdle(10_000)
       .its('waited')
   }
 
