@@ -7,8 +7,8 @@ jobs:
       integration-tests: ${{ steps.parse.outputs.integration-tests }}
     strategy:
       fail-fast: false
-      matrix:
-        spec: ${{ needs.e2e-system-tests.outputs.integration-tests }}
+      #matrix:
+      #  spec: ${{ fromJson(needs.e2e-system-tests.outputs.integration-tests) }}
 
     steps:
       - name: Checkout
@@ -20,7 +20,7 @@ jobs:
 
       - name: Read outputs
         run: |
-          echo "${{ steps.parse.outputs.integration-tests }}"
+          echo "${{ e2e-system-tests.outputs.integration-tests }}"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v4
@@ -50,7 +50,7 @@ jobs:
         with:
           browser: chrome
           headed: false
-          spec: ${{ matrix.spec }}
+          #spec: ${{ matrix.spec }}
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
