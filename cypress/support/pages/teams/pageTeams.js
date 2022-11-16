@@ -17,7 +17,7 @@ class Teams {
   }
 
   seeTeamCreationFormPage () {
-    cy.url().should('include', '/team/add')
+    cy.url().should('include', '/teams/add')
   }
 
 
