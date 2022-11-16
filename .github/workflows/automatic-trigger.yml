@@ -55,7 +55,6 @@ jobs:
           browser: chrome
           headed: false
           spec: ${{ matrix.spec }}
-          parallel: true
           group: 'Actions'
 
       - name: Generate Report
