@@ -17,7 +17,6 @@ jobs:
       - name: Read outputs
         run: |
           echo "${{steps.parse.outputs.integration-tests}}"
-          echo "${{e2e-system-tests.outputs.integration-tests}}"
 
       - name: Parse test files for parallelization
         id: parse
