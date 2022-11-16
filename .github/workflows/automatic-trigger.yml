@@ -32,10 +32,6 @@ jobs:
         spec: ${{ fromJson(needs.prepare.outputs.integration-tests) }}
 
     steps:
-      - name: Reading output
-        run: |
-          echo "${{prepare.outputs.integration-tests}}"
-
       - name: Cypress run
         uses: cypress-io/github-action@v4
         env:
