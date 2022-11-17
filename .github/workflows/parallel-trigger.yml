@@ -47,7 +47,9 @@ jobs:
         if: always()
         with:
           name: cucumber-json-artifact
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+          path: |
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/.run
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -62,7 +64,9 @@ jobs:
         uses: actions/download-artifact@v3
         if: always()
         with:
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+          path: |
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/.run
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
