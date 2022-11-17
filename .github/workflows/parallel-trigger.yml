@@ -51,17 +51,10 @@ jobs:
           path: |
             ${{ github.workspace }}/cypress/cucumber-json
 
-      - name: Read file contents (artifacts)
-        id: read_file
-        uses: andstor/file-reader-action@v1
-        if: always()
-        with:
-          path: |
-            ${{ github.workspace }}/cypress/cucumber-json
-
-      - name: File contents
+      - shell: bash
         run: |
-          echo "${ steps.read_file.outputs.contents }"
+          value=`cat ${{ github.workspace }}/cypress/cucumber-json`
+          echo The result is $value
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
