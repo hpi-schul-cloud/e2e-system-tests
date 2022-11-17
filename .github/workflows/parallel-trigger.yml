@@ -42,13 +42,20 @@ jobs:
           headed: false
           command: npm run tag:${{ matrix.spec }}
 
-      - name: Upload Report
+      - name: Upload test artifacts (cucumber-json)
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: cucumber-json-artifact
-          path: |
+          name: cucumber-json
+          path:
             /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+
+      - name: Upload test artifacts (.run)
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: run
+          path:
             /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/.run
 
   generate-and-upload-report:
@@ -60,13 +67,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Download reports artifacts
+      - name: Download reports artifacts (cucumber-json)
         uses: actions/download-artifact@v3
         if: always()
         with:
-          path: |
-            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
-            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/.run
+          name: cucumber-json
+
+      - name: Download reports artifacts (.run)
+        uses: actions/download-artifact@v3
+        if: always()
+        with:
+          name: run
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
