@@ -6,7 +6,7 @@ class Tasks_Common {
   static #submitButton = '[data-testid="submit-task-btn"]'
   static #addTaskButton = '[data-testid="addTask"]'
   static #taskNameInput = '[data-testid="homework-name"]'
-  static #homeWorkDescriptionP = '[class="ck ck-editor__main"]'
+  static #homeworkDescription = '[class="ck ck-editor__main"]'
   static #draftTasksTab = '[data-testid="draftTasks"]'
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
@@ -45,10 +45,10 @@ class Tasks_Common {
   }
 
   setTaskText (taskText) {
-    cy.get(Tasks_Common.#homeWorkDescriptionP)
+    cy.get(Tasks_Common.#homeworkDescription)
       .find('div > p')
       .clear()
-    cy.get(Tasks_Common.#homeWorkDescriptionP)
+    cy.get(Tasks_Common.#homeworkDescription)
       .find('div > p')
       .type(taskText)
   }
