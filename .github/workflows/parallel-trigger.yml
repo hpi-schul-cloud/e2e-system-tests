@@ -1,0 +1,74 @@
+name: e2e-scheduled-trigger-tests
+on: [push]
+jobs:
+  e2e-system-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        spec: ['help']
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clean up previous report
+        uses: cypress-io/github-action@v4
+        with:
+          command: npm run pretest
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v4
+        env:
+          CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
+          CYPRESS_NBC: ${{ secrets.CYPRESS_NBC }}
+          CYPRESS_DEFAULT: ${{ secrets.CYPRESS_DEFAULT }}
+          CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
+          CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
+          CYPRESS_TEACHER_2_EMAIL: ${{ secrets.CYPRESS_TEACHER_2_EMAIL }}
+          CYPRESS_TEACHER_2_PASSWORD: ${{ secrets.CYPRESS_TEACHER_2_PASSWORD }}
+          CYPRESS_STUDENT_1_EMAIL: ${{ secrets.CYPRESS_STUDENT_1_EMAIL }}
+          CYPRESS_STUDENT_1_PASSWORD: ${{ secrets.CYPRESS_STUDENT_1_PASSWORD }}
+          CYPRESS_STUDENT_2_EMAIL: ${{ secrets.CYPRESS_STUDENT_2_EMAIL }}
+          CYPRESS_STUDENT_2_PASSWORD: ${{ secrets.CYPRESS_STUDENT_2_PASSWORD }}
+          CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
+          CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
+          CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
+          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
+          CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
+          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
+        with:
+          browser: chrome
+          headed: false
+          command: npm run tag:${{ matrix.spec }}
+
+      - name: Generate Report
+        uses: cypress-io/github-action@v4
+        if: always()
+        with:
+          command: npm run generate:report
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: my-report
+          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
+
+      - name: Upload Video Artifact
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: my-video-artifact
+          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+          retention-days: 3
+
+      - name: Send Notification to Rocket Chat
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        # you can add conditions, but leave always(), it makes sure that also a message is send, if previous steps failed
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: 'Cypress Tests'
+          url: ${{ secrets.RC_WEBHOOK_URL }}
+          username: Scheduled Automated Test Run
