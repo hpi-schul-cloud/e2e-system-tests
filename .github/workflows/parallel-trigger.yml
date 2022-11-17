@@ -6,7 +6,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        spec: ['help']
+        #spec:
+        #  [
+        #    'help',
+        #    'management',
+        #    'courses_and_topics',
+        #    'dashboard_and_news',
+        #    'help',
+        #    'team',
+        #  ]
+        spec:
+          [
+            'help',
+            'team'
+          ]
 
     steps:
       - name: Checkout
@@ -51,22 +64,7 @@ jobs:
           path: |
             ${{ github.workspace }}/cypress/cucumber-json/
             ${{ github.workspace }}/cypress/.run/
-
-      - name: Display structure of downloaded files
-        if: always()
-        run: tree -a
-
-      - shell: bash
-        if: always()
-        run: |
-          value=`cat ${{ github.workspace }}/cypress/cucumber-json/helpAreas.cucumber.json`
-          echo The result is $value and for run is $value-new
-
-      - shell: bash
-        if: always()
-        run: |
-          value=`cat ${{ github.workspace }}/cypress/.run/results.json`
-          echo The result is $value
+            ${{ github.workspace }}/cypress/videos/features
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -76,17 +74,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Download reports artifacts (cucumber-json)
-        uses: actions/download-artifact@v3
-        if: always()
-        with:
-          name: artifacts
-          path: ${{ github.workspace }}/cypress/
-
-      - name: Display structure of downloaded files
-        if: always()
-        run: tree -a
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
