@@ -56,6 +56,19 @@ jobs:
           headed: false
           spec: ${{ matrix.spec }}
 
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          if-no-files-found: error
+          name: artifacts
+          path: |
+           path: |
+            ${{ github.workspace }}/cypress/cucumber-json/
+            ${{ github.workspace }}/cypress/.run/
+            ${{ github.workspace }}/cypress/videos/features
+            ${{ github.workspace }}/cypress/screenshots
+
   generate-reports:
     runs-on: ubuntu-latest
     needs: run-tests
@@ -64,6 +77,13 @@ jobs:
     steps:
       - name: Checkout ⏱
         uses: actions/checkout@v2
+
+      - name: Download reports artifacts
+        uses: actions/download-artifact@v3
+        if: always()
+        with:
+          name: artifacts
+          path: ${{ github.workspace }}/cypress/
 
       - name: Generate Report 🎉
         uses: cypress-io/github-action@v4
@@ -76,12 +96,12 @@ jobs:
         if: always()
         with:
           name: my-report
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
+          path: ${{ github.workspace }}/cypress/reports
 
       - name: Upload Video Artifact 💿
         uses: actions/upload-artifact@v2
         if: always()
         with:
           name: my-video-artifact
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+          path: ${{ github.workspace }}/cypress/videos/features
           retention-days: 3
