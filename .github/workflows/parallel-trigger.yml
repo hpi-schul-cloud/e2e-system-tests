@@ -49,8 +49,8 @@ jobs:
           if-no-files-found: error
           name: artifacts
           path: |
-            ${{ github.workspace }}/cypress/cucumber-json
-            ${{ github.workspace }}/cypress/.run
+            ${{ github.workspace }}/cypress/cucumber-json/
+            ${{ github.workspace }}/cypress/.run/
 
       - name: Display structure of downloaded files
         if: always()
@@ -82,9 +82,6 @@ jobs:
         if: always()
         with:
           name: artifacts
-          path: |
-            ${{ github.workspace }}/cypress/cucumber-json
-            ${{ github.workspace }}/cypress/.run
 
       - name: Display structure of downloaded files
         if: always()
