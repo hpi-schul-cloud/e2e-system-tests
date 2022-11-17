@@ -20,11 +20,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Clean up previous report
-        uses: cypress-io/github-action@v4
-        with:
-          command: npm run pretest
-
       - name: Cypress run
         uses: cypress-io/github-action@v4
         env:
