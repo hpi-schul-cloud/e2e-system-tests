@@ -9,16 +9,17 @@ jobs:
         spec:
           [
             'help',
-            'tasks',
-            'management',
-            'courses_and_topics',
-            'dashboard_and_news',
-            'team',
+            'tasks'
           ]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+         node-version: 16
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
@@ -44,6 +45,14 @@ jobs:
           browser: chrome
           headed: false
           command: npm run tag:${{ matrix.spec }}
+
+  generate-and-upload-report:
+    runs-on: ubuntu-latest
+    needs: e2e-system-tests
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
