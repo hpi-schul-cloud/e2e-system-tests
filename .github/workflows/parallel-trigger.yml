@@ -48,7 +48,7 @@ jobs:
         with:
           name: cucumber-json
           path:
-            /home/runner/work/e2e-system-tests/e2e-system-tests/cucumber-json
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
 
       - name: Upload test artifacts (.run)
         uses: actions/upload-artifact@v2
@@ -56,7 +56,7 @@ jobs:
         with:
           name: run
           path:
-            /home/runner/work/e2e-system-tests/e2e-system-tests/.run
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/.run
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -78,6 +78,25 @@ jobs:
         if: always()
         with:
           name: run
+
+      - name: Read file contents (cucumber-json)
+        id: read_file_cucumber_json
+        uses: andstor/file-reader-action@v1
+        with:
+          path: |
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+
+      - name: Read file contents (run)
+        id: read_file_run
+        uses: andstor/file-reader-action@v1
+        with:
+          path: |
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/.run
+
+      - name: File contents
+        run: |
+          echo "${ steps.read_file_cucumber_json.outputs.contents }"
+          echo "${ steps.read_file_run.outputs.contents }"
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
