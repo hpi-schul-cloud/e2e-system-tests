@@ -50,11 +50,14 @@ jobs:
           name: artifacts
           path: |
             ${{ github.workspace }}/cypress/cucumber-json
+            ${{ github.workspace }}/cypress/.run
 
       - shell: bash
+        if: always()
         run: |
           value=`cat ${{ github.workspace }}/cypress/cucumber-json/helpAreas.cucumber.json`
-          echo The result is $value
+          value-new=`cat ${{ github.workspace }}/cypress/.run/results.json`
+          echo The result is $value and for run is $value-new
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -70,11 +73,16 @@ jobs:
         if: always()
         with:
           name: artifacts
+          path: |
+            ${{ github.workspace }}/cypress/cucumber-json
+            ${{ github.workspace }}/cypress/.run
 
       - shell: bash
+        if: always()
         run: |
-          value=`cat ${{ github.workspace }}/cucumber-json/helpAreas.cucumber.json`
-          echo The result is $value
+          value=`cat ${{ github.workspace }}/cypress/cucumber-json/helpAreas.cucumber.json`
+          value-new=`cat ${{ github.workspace }}/cypress/.run/results.json`
+          echo The result is $value and for run is $value-new
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
