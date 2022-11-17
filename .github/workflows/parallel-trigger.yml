@@ -54,7 +54,7 @@ jobs:
 
       - name: Display structure of downloaded files
         if: always()
-        run: tree
+        run: tree -a
 
       - shell: bash
         if: always()
@@ -85,7 +85,7 @@ jobs:
 
       - name: Display structure of downloaded files
         if: always()
-        run: tree
+        run: tree -a
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
