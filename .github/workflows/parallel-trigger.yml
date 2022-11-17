@@ -73,7 +73,7 @@ jobs:
 
       - shell: bash
         run: |
-          value=`cat ${{ github.workspace }}/cypress/cucumber-json/helpAreas.cucumber.json`
+          value=`cat ${{ github.workspace }}/cucumber-json/helpAreas.cucumber.json`
           echo The result is $value
 
       - name: Generate Report
