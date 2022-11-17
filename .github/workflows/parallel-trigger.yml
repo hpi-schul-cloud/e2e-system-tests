@@ -82,6 +82,7 @@ jobs:
         if: always()
         with:
           name: artifacts
+          path: ${{ github.workspace }}/cypress/
 
       - name: Display structure of downloaded files
         if: always()
