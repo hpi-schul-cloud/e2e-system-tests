@@ -75,6 +75,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Download reports artifacts (cucumber-json)
+        uses: actions/download-artifact@v3
+        if: always()
+        with:
+          name: artifacts
+          path: ${{ github.workspace }}/cypress/
+
       - name: Generate Report
         uses: cypress-io/github-action@v4
         if: always()
