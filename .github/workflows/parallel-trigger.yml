@@ -6,7 +6,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        spec: ['help', 'management']
+        spec: ['help']
 
     steps:
       - name: Checkout
@@ -48,7 +48,7 @@ jobs:
         with:
           name: cucumber-json
           path:
-            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+            /home/runner/work/e2e-system-tests/e2e-system-tests/cucumber-json
 
       - name: Upload test artifacts (.run)
         uses: actions/upload-artifact@v2
@@ -56,7 +56,7 @@ jobs:
         with:
           name: run
           path:
-            /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/.run
+            /home/runner/work/e2e-system-tests/e2e-system-tests/.run
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
