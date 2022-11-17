@@ -12,7 +12,6 @@ jobs:
             'management',
             'courses_and_topics',
             'dashboard_and_news',
-            'help',
             'team',
           ]
 

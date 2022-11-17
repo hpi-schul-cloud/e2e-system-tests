@@ -87,7 +87,7 @@ jobs:
         if: always()
         with:
           name: artifacts
-          path: ${{ github.workspace }}/cypress/
+          path: ${{ github.workspace }}/
 
       - name: Directory reports
         if: always()
