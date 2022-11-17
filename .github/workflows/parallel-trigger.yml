@@ -50,7 +50,6 @@ jobs:
           name: artifacts
           path: |
             ${{ github.workspace }}/cypress/cucumber-json
-            ${{ github.workspace }}/cypress/.run
 
       - name: Read file contents (artifacts)
         id: read_file
@@ -59,7 +58,6 @@ jobs:
         with:
           path: |
             ${{ github.workspace }}/cypress/cucumber-json
-            ${{ github.workspace }}/cypress/.run
 
       - name: File contents
         run: |
@@ -77,6 +75,8 @@ jobs:
       - name: Download reports artifacts (cucumber-json)
         uses: actions/download-artifact@v3
         if: always()
+        with:
+          name: artifacts
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
