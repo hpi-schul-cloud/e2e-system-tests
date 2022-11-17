@@ -56,8 +56,13 @@ jobs:
         if: always()
         run: |
           value=`cat ${{ github.workspace }}/cypress/cucumber-json/helpAreas.cucumber.json`
-          value-new=`cat ${{ github.workspace }}/cypress/.run/results.json`
           echo The result is $value and for run is $value-new
+
+      - shell: bash
+        if: always()
+        run: |
+          value=`cat ${{ github.workspace }}/cypress/.run/results.json`
+          echo The result is $value
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -77,12 +82,9 @@ jobs:
             ${{ github.workspace }}/cypress/cucumber-json
             ${{ github.workspace }}/cypress/.run
 
-      - shell: bash
+      - name: Display structure of downloaded files
         if: always()
-        run: |
-          value=`cat ${{ github.workspace }}/cypress/cucumber-json/helpAreas.cucumber.json`
-          value-new=`cat ${{ github.workspace }}/cypress/.run/results.json`
-          echo The result is $value and for run is $value-new
+        run: ls -R
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
