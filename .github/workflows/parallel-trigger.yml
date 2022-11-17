@@ -42,6 +42,13 @@ jobs:
           headed: false
           command: npm run tag:${{ matrix.spec }}
 
+      - name: Upload Report
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cucumber-json-artifact
+          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
+
   generate-and-upload-report:
     runs-on: ubuntu-latest
     needs: e2e-system-tests
@@ -50,6 +57,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Download reports artifacts
+        uses: actions/download-artifact@v3
+        if: always()
+        with:
+          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/cucumber-json
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
