@@ -6,19 +6,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        #spec:
-        #  [
-        #    'help',
-        #    'management',
-        #    'courses_and_topics',
-        #    'dashboard_and_news',
-        #    'help',
-        #    'team',
-        #  ]
         spec:
           [
             'help',
-            'team'
+            'management',
+            'courses_and_topics',
+            'dashboard_and_news',
+            'help',
+            'team',
           ]
 
     steps:

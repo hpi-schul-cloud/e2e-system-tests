@@ -69,6 +69,10 @@ jobs:
             ${{ github.workspace }}/cypress/videos/features
             ${{ github.workspace }}/cypress/screenshots
 
+      - name: Directory reports
+        if: always()
+        run: tree -a
+
   generate-reports:
     runs-on: ubuntu-latest
     needs: run-tests
@@ -84,6 +88,10 @@ jobs:
         with:
           name: artifacts
           path: ${{ github.workspace }}/cypress/
+
+      - name: Directory reports
+        if: always()
+        run: tree -a
 
       - name: Generate Report 🎉
         uses: cypress-io/github-action@v4
