@@ -52,6 +52,10 @@ jobs:
             ${{ github.workspace }}/cypress/cucumber-json
             ${{ github.workspace }}/cypress/.run
 
+      - name: Display structure of downloaded files
+        if: always()
+        run: tree
+
       - shell: bash
         if: always()
         run: |
@@ -84,7 +88,7 @@ jobs:
 
       - name: Display structure of downloaded files
         if: always()
-        run: ls -R
+        run: tree
 
       - name: Generate Report
         uses: cypress-io/github-action@v4
