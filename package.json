@@ -12,7 +12,7 @@
 		"tag:tasks": "./node_modules/.bin/cypress-tags run -e TAGS='@tasks'",
 		"tag:management": "./node_modules/.bin/cypress-tags run -e TAGS='@management'",
 		"tag:courses_and_topics": "./node_modules/.bin/cypress-tags run -e TAGS='@courses_and_topics'",
-		"tag:dashboard_and_news": "./node_modules/.bin/cypress-tags run -e TAGS='@dashboard_and_news'",
+		"tag:dashboard": "./node_modules/.bin/cypress-tags run -e TAGS='@dashboard'",
 		"tag:help": "./node_modules/.bin/cypress-tags run -e TAGS='@help'",
 		"tag:team": "./node_modules/.bin/cypress-tags run -e TAGS='@team'",
 		"cy:parallel": "cypress-parallel -s cy:run -t 2 -d cypress/integration/features/ -m false"
