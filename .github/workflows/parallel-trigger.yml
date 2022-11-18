@@ -10,7 +10,7 @@ jobs:
           [
             'help',
             'management',
-            '_and_news',
+            'dashboard',
             'team',
           ]
         os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
