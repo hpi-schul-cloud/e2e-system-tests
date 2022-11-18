@@ -1,5 +1,6 @@
 name: e2e-parallel-trigger-tests
 on: [push]
+
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
@@ -7,18 +8,27 @@ jobs:
       fail-fast: false
       matrix:
         spec:
-          [
+          [ 'tasks',
             'help',
             'management',
             'dashboard',
-            'team',
+            'news',
+            'courses',
+            'account',
+            'addons',
+            'login'
           ]
 
     steps:
-      - name: Checkout
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
         uses: actions/checkout@v3
 
-      - name: Cypress run
+      - name: 🗑 Clean up previous report 🗑
+        uses: cypress-io/github-action@v4
+        with:
+          command: npm run pretest
+
+      - name: 🧪 Cypress run 🧪
         uses: cypress-io/github-action@v4
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
@@ -41,9 +51,9 @@ jobs:
         with:
           browser: chrome
           headed: false
-          command: npm run tag:${{ matrix.spec }}
+          command: npm run tag:stable:${{ matrix.spec }}
 
-      - name: Upload test artifacts
+      - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
         if: always()
         with:
@@ -61,30 +71,30 @@ jobs:
     if: always()
 
     steps:
-      - name: Checkout
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
         uses: actions/checkout@v3
 
-      - name: Download reports artifacts
+      - name: 📩 Download reports artifacts 📩
         uses: actions/download-artifact@v3
         if: always()
         with:
           name: artifacts
           path: ${{ github.workspace }}/cypress/
 
-      - name: Generate Report
+      - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v4
         if: always()
         with:
           command: npm run generate:report
 
-      - name: Upload Report
+      - name: 🎉 Upload Report 🎉
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-report
           path: ${{ github.workspace }}/cypress/reports
 
-      - name: Upload Video Artifact
+      - name: 📼 Upload Video Artifact 📼
         uses: actions/upload-artifact@v3
         if: always()
         with:

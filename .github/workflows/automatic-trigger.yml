@@ -1,5 +1,6 @@
 name: e2e-automatic-trigger-tests
 on: [push]
+
 jobs:
   prepare:
     runs-on: ubuntu-latest
@@ -7,14 +8,14 @@ jobs:
       integration-tests: ${{ steps.parse.outputs.integration-tests }}
 
     steps:
-      - name: Checkout 🔗
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
         uses: actions/checkout@v3
 
-      - name: Parse test files for parallelization 📚
+      - name: 📚 Parse test files for parallelization 📚
         id: parse
         uses: tgamauf/cypress-parallel@v1
 
-      - name: Clean up previous report 🗑
+      - name: 🗑 Clean up previous report 🗑
         uses: cypress-io/github-action@v4
         with:
           command: npm run pretest
@@ -28,10 +29,10 @@ jobs:
         spec: ${{ fromJson(needs.prepare.outputs.integration-tests) }}
 
     steps:
-      - name: Checkout ⏱
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
         uses: actions/checkout@v2
 
-      - name: Cypress run 🧪
+      - name: 🧪 Cypress run 🧪
         uses: cypress-io/github-action@v4
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
@@ -56,7 +57,7 @@ jobs:
           headed: false
           spec: ${{ matrix.spec }}
 
-      - name: Upload test artifacts
+      - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
         if: always()
         with:
@@ -75,34 +76,30 @@ jobs:
     if: always()
 
     steps:
-      - name: Checkout ⏱
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
         uses: actions/checkout@v3
 
-      - name: Download reports artifacts
+      - name: 📩 Download reports artifacts 📩
         uses: actions/download-artifact@v3
         if: always()
         with:
           name: artifacts
           path: ${{ github.workspace }}/
 
-      - name: Directory reports
-        if: always()
-        run: tree -a
-
-      - name: Generate Report 🎉
+      - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v4
         if: always()
         with:
           command: npm run generate:report
 
-      - name: Upload Report 📨
+      - name: 🎉 Upload Report 🎉
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-report
           path: ${{ github.workspace }}/cypress/reports
 
-      - name: Upload Video Artifact 💿
+      - name: 📼 Upload Video Artifact 📼
         uses: actions/upload-artifact@v3
         if: always()
         with:
