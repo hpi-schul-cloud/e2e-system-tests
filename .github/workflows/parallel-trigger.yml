@@ -2,7 +2,7 @@ name: e2e-scheduled-trigger-tests
 on: [push]
 jobs:
   e2e-system-tests:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
@@ -10,10 +10,11 @@ jobs:
           [
             'help',
             'management',
-            'courses_and_topics',
             'dashboard_and_news',
             'team',
           ]
+        os: ['windows-latest', 'ubuntu-latest', 'macos-latest']
+        node-version: [16.x, 18.x, 19.x]
 
     steps:
       - name: Checkout
@@ -22,7 +23,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: ${{ matrix.node-version }}
 
       - name: Cypress run
         uses: cypress-io/github-action@v4
@@ -62,7 +63,7 @@ jobs:
             ${{ github.workspace }}/cypress/screenshots
 
   generate-and-upload-report:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: e2e-system-tests
     if: always()
 
