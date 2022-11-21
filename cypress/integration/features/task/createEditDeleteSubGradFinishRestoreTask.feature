@@ -140,7 +140,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I go to tasks overview
     And I click completed task tab
     Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
-    And I click on task 'Cy Task Creating, Editing, Deleting Test' in task overview
+    And I click on task 'Cy Task Creating, Editing, Deleting Test' in tasks overview
     Then I see submission text 'Hier ist die Antwort.'
     When I click on feedback tab
     Then I see feedback text 'Gut gemacht!'

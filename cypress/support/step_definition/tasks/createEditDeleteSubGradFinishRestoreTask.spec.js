@@ -182,10 +182,6 @@ Then('I do not see task {string} in the list as student', taskTitle => {
   tasks.seeTaskNotInListAsStudent(taskTitle)
 })
 
-When('I click on task {string} in task overview', taskTitle => {
-  tasks.openTaskInTaskOverview(taskTitle)
-})
-
 And('I click on submissions tab', () => {
   tasks.clickSubmissionsTab()
 })

@@ -16,6 +16,8 @@ Before(() => {
   cy.intercept('**/students?**').as('students_api')
   cy.intercept('**/locales/**').as('locales_api')
   cy.intercept('**/alerts').as('alerts_api')
+  cy.intercept('**/alert').as('alert_api')
+  cy.intercept('**/tasks**').as('tasks_api')
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {
