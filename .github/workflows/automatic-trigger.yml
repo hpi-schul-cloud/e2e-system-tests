@@ -8,7 +8,7 @@ jobs:
       fail-fast: false
       matrix:
         spec:
-          [ 'tasks',
+          [
             'help',
             'management',
             'dashboard',
@@ -16,7 +16,7 @@ jobs:
             'courses',
             'account',
             'addons',
-            'login'
+            'login',
           ]
 
     steps:
@@ -79,7 +79,7 @@ jobs:
         if: always()
         with:
           name: artifacts
-          path: ${{ github.workspace }}/
+          path: ${{ github.workspace }}/cypress/
 
       - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v4

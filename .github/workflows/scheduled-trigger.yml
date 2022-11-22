@@ -81,7 +81,7 @@ jobs:
         if: always()
         with:
           name: artifacts
-          path: ${{ github.workspace }}/
+          path: ${{ github.workspace }}/cypress/
 
       - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v4
