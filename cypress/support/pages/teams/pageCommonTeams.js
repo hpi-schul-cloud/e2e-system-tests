@@ -112,15 +112,20 @@ class Teams_Common {
   }
 
   navigateToTeamsOverview () {
-    cy.get(Teams_Common.#teamsOverviewNavigationButton).click()
-    cy.url().should('include', '/teams')
+    cy.get(Teams_Common.#teamsOverviewNavigationButton)
+    .click()
+    .url().should('include', '/teams')
   }
 
   selectTeam (teamName) {
     cy.get(Teams_Common.#teamTitle).contains(teamName)
-    cy.get(Teams_Common.#teamTitle)
-      .eq(0)
       .click()
+      .wait([
+        '@alerts_api',
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   openTeamSettings () {
