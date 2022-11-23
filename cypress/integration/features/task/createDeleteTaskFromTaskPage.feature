@@ -2,7 +2,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
 
   As a teacher I want to create and delete a new task on the task overview page so that the student can submit it
 
- Scenario: As a teacher, I want to be able to create simple tasks without course
+ Scenario: Teacher creates simple tasks without course
    Given I am logged in as a 'teacher1' at 'brb'
    When I go to tasks overview
    When I click on button Add Task
@@ -26,7 +26,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
    When I click on draft tasks tab
    Then I can see task 'Cy Task to be delete on task page' on tasks overview page
 
- Scenario: As a teacher, I want to be able to delete a simple task without course using the dot menu
+ Scenario: Teacher deletes a simple task without course using the dot menu
    Given I am logged in as a 'teacher1' at 'brb'
    When I go to tasks overview
    When I click on draft tasks tab
@@ -42,7 +42,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
    When I click on draft tasks tab
    Then I can not see task 'Cy Task Creating from Task Overview Test' on tasks overview page
 
- Scenario: As a teacher, I want to be able to delete a simple task without course using the delete button on the task edit page
+ Scenario: Teacher deletes a simple task without course using the delete button on the task edit page
    Given I am logged in as a 'teacher1' at 'brb'
    When I go to tasks overview
    When I click on draft tasks tab
