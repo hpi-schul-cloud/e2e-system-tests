@@ -31,7 +31,7 @@ When('I click on team settings', () => {
 	teams.clickOnTeamSettings()
 })
 
-When('I click on add team button', () => {
+When('I click on button Add Team on the teams overview page', () => {
 	teams.clickOnAddTeam()
 })
 
@@ -47,23 +47,15 @@ When('I enter in the description {string}', (desc) => {
 	teams.enterTeamDescription(desc)
 })
 
-Then('I see team chat activation check box is visible', () => {
-	teams.seeChatActivationOption()
-})
-
-Then('team video activation check box is visible', () => {
-	teams.seeVideoActivationOption()
-})
-
-When('I select the team colour to red', () => {
+When('I select the team colour to black', () => {
 	teams.selectTeamColour()
 })
 
-Then('I click on create button', () => {
+Then('I click on button Create Team on the team creation page', () => {
 	teams.clickOnAddButton()
 })
 
-Then('I see team titled {string} is visible', (teamName) => {
+Then('I see team title {string} is visible', (teamName) => {
 	teams.seeCreatedTeamName(teamName)
 })
 

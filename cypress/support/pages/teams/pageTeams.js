@@ -5,17 +5,15 @@ class Teams {
   static #addNewTeamButton ='[data-testid="add-team-btn"]'
   static #teamName = '[data-testid="team_name"]'
   static #teamDescription = '[data-testid="description_team"]'
-  static #teamChatActivateCheckBox = '[id="activateRC"]'
-  static #teamVideoActivationCheckBox = '[id="activateConf"]'
-  static #teamColourDropDown = '.sp-preview' //data-testid is to be added
+  static #teamColourDropdown = '.sp-preview' //data-testid is to be added
   static #teamCreateButton = '[data-testid ="create_team_btn"]'
   static #teamNameOnOverviewPage = '[data-testid="title_of_an_element"]'
   static #teamDescriptionOnOverviewPage = '[data-testid="body_of_element"]'
   static #teamSettings = '[data-testid="team_settings"]'
   static #teamEditOption = '[data-testid="edit_team_members"]' //data-testid is to be updated with correct name
-  static #teamSaveChages = '[data-testid="create_team_btn"]' //data-testid is to be updated with correct name
+  static #teamSaveChanges = '[data-testid="create_team_btn"]' //data-testid is to be updated with correct name
   static #teamDeleteOption = '[data-testid="delete_team_members"]'
-  static #teamDeleteOnDailogBox = '[data-testid="btn-submit-action"]'
+  static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]'
 
 
 
@@ -26,7 +24,7 @@ class Teams {
   }
 
   confirmDeleteOnDialogBox () {
-    cy.get(Teams.#teamDeleteOnDailogBox)
+    cy.get(Teams.#teamDeleteOnDialogBox)
       .click()
   }
 
@@ -36,7 +34,7 @@ class Teams {
   }
 
   clickOnSaveChangeButton () {
-    cy.get(Teams.#teamSaveChages)
+    cy.get(Teams.#teamSaveChanges)
     .click()
     .wait([
       '@alerts_api',
@@ -96,18 +94,8 @@ class Teams {
     .type(desc)
   }
 
-  seeChatActivationOption () {
-    cy.get(Teams.#teamChatActivateCheckBox)
-      .should('be.visible')
-  }
-
-  seeVideoActivationOption () {
-    cy.get(Teams.#teamVideoActivationCheckBox)
-      .should('be.visible')
-  }
-
   selectTeamColour () {
-    cy.get(Teams.#teamColourDropDown)
+    cy.get(Teams.#teamColourDropdown)
       .click()
   }
 
@@ -125,11 +113,13 @@ class Teams {
   seeCreatedTeamName (teamName) {
     cy.get(Teams.#teamNameOnOverviewPage)
       .contains(teamName)
+      .should('be.visible')
   }
 
   seeCreatedTeamDescription (desc) {
     cy.get(Teams.#teamDescriptionOnOverviewPage)
       .contains(desc)
+      .should('be.visible')
   }
 }
 export default Teams
