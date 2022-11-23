@@ -10,16 +10,8 @@ const tasks = new Tasks()
 // -->\step_definition\course\commonCourseSteps.spec.js
 // -->\step_definition\tasks\commonTaskSteps.spec.js
 
-Then('I can see create task page', () => {
-  tasks.seeCreateTaskPage()
-})
-
 And('file upload button is disabled', () => {
   tasks.seeUploadFileButtonIsDisabled()
-})
-
-When ('I enter title {string}', (taskTitle) => {
-  tasks.enterTaskTitle(taskTitle)
 })
 
 And ('I click on Enable Group Submission', () => {
@@ -36,10 +28,6 @@ And ('I set task-visibility-start-date to {string} at {string}', (visibilityStar
 
 And ('I set task-visibility-due-date to {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
   tasks.setVisibilityDueDate(visibilityDueDate, visibilityDueTime)
-})
-
-And ('I enter task description {string}', (taskDescription) => {
-  tasks.setTaskText(taskDescription)
 })
 
 Then('I see file upload button is enabled', () => {
@@ -158,10 +146,6 @@ Then('I see detail page for task {string}', (taskTitle) => {
   tasks.seeDetailPageForTask(taskTitle)
 })
 
-And ('I enter text submission {string}', (submissionText) => {
-  tasks.setTaskText(submissionText)
-})
-
 And('I click on button Save and Send Submission', () => {
   tasks.clickSaveAndSendSubmissionBtn()
 })
@@ -198,10 +182,6 @@ Then('I do not see task {string} in the list as student', taskTitle => {
   tasks.seeTaskNotInListAsStudent(taskTitle)
 })
 
-When('I click on task {string} in task overview', taskTitle => {
-  tasks.openTaskInTaskOverview(taskTitle)
-})
-
 And('I click on submissions tab', () => {
   tasks.clickSubmissionsTab()
 })
@@ -224,10 +204,6 @@ When('I click on grading tab', () => {
 
 When('I click on submission tab', () => {
   tasks.clickSubmissionTab()
-})
-
-And ('I enter comment {string}', (gradingText) => {
-  tasks.setTaskText(gradingText)
 })
 
 And('I enter grade {string}', (gradingPercent) => {
