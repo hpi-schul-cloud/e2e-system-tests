@@ -22,24 +22,14 @@ class Tasks_Common {
   clickOnSubmit() {
     cy.get(Tasks_Common.#taskForm).find(Tasks_Common.#submitButton)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-    })
+      .cy.waitForNetworkIdle(5000)
     //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
   }
 
   clickOnAddTask() {
     cy.get(Tasks_Common.#addTaskButton)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-    })
+      .cy.waitForNetworkIdle(5000)
   }
 
   seeCreateTaskPage (taskTitle) {
@@ -118,12 +108,7 @@ class Tasks_Common {
     cy.get(Tasks_Common.#taskCardTitle)
       .contains(taskTitle)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+      .cy.waitForNetworkIdle(5000)
   }
 
   clickDeleteTaskInDotMenu () {

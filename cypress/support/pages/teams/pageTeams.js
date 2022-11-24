@@ -36,23 +36,13 @@ class Teams {
   clickOnSaveChangeButton () {
     cy.get(Teams.#teamSaveChanges)
     .click()
-    .wait([
-      '@alerts_api',
-    ])
-    .then(interceptions => {
-      expect(interceptions.response.statusCode).to.equal(200)
-    })
+    .cy.waitForNetworkIdle(5000)
   }
 
   clickOnEditOption () {
     cy.get(Teams.#teamEditOption)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+      .cy.waitForNetworkIdle(5000)
   }
 
   seeTeamEditPage () {
@@ -69,12 +59,7 @@ class Teams {
   clickOnAddTeam () {
     cy.get(Teams.#addNewTeamButton)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+      .cy.waitForNetworkIdle(5000)
   }
 
   seeTeamCreationPage () {
@@ -102,12 +87,7 @@ class Teams {
   clickOnAddButton () {
     cy.get(Teams.#teamCreateButton)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+      .cy.waitForNetworkIdle(5000)
   }
 
   seeCreatedTeamName (teamName) {

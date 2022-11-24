@@ -109,12 +109,7 @@ class Teams_Common {
   selectTeam (teamName) {
     cy.get(Teams_Common.#teamTitle).contains(teamName)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+      .cy.waitForNetworkIdle(5000)
   }
 
   openTeamSettings () {
