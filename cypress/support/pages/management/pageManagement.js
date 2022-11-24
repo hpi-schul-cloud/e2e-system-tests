@@ -2,8 +2,8 @@
 
 class Management {
   static #fabButton = '#fab'
-  static #createStudentButton = "[data-testid='fab_button_add_students']"
-  static #createTeacherButton = "[data-testid='fab_button_add_teachers']"
+  static #addStudentButton = '[data-testid="fab_button_add_students"]'
+  static #addTeacherButton = '[data-testid="fab_button_add_teachers"]'
   static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]'
   static #lastNameCreationForm = '[data-testid="input_create-user_lastname"]'
   static #emailCreationForm = '[data-testid="input_create-user_email"]'
@@ -22,14 +22,16 @@ class Management {
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'
 
-  clickOnFAB (user) {
-    if (user != 'student') {
-      cy.get(Management.#fabButton).click()
-      cy.get(Management.#createTeacherButton).click()
-    } else {
-      cy.get(Management.#fabButton).click()
-      cy.get(Management.#createStudentButton).click()
-    }
+  clickOnFAB () {
+    cy.get(Management.#fabButton).click()
+  }
+
+  clickOnAddStudentInFAB () {
+    cy.get(Management.#addStudentButton).click()
+  }
+
+  clickOnAddTeacherInFAB () {
+    cy.get(Management.#addTeacherButton).click()
   }
 
   fillUserCreationForm (forename, surname, email) {

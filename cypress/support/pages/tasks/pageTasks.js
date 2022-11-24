@@ -5,16 +5,15 @@ class Tasks {
   static #localeDateFormat = 'de-DE'
   static #taskOverviewTeacher = '[class="task-dashboard-teacher"]'
   static #taskOverviewStudent = '[class="task-dashboard-student"]'
-  static #createForm = '[id="homework-form"]'
-  static #taskNameInput = '[data-testid="homework-name"]'
   static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
   static #draftCheckbox = '[data-testid="private-checkbox"]'
   static #visibilityStartDateInput = '[data-testid="form-datetime-input-availableDate"]'
   static #visibilityDueDateInput = '[data-testid="form-datetime-input-dueDate"]'
-  static #homeWorkDescriptionP = '[class="ck ck-editor__main"]'
   static #publicSubmissionsCheckbox = '[id="publicSubmissionsCheckbox"]'
   static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
+  static #dialogCancelDeletionTaskButtons = '#modal-delete-homework-footer > .btn-close'
+  static #dialogConfirmDeletionTaskButtons = '#modal-delete-homework-footer > .btn-submit'
   static #taskDetailsTab = '[id="extended"]'
   static #submissionTab = '[id="submission-tab-link"]'
   static #submissionsTab = '[id="submissions-tab-link"]'
@@ -52,6 +51,16 @@ class Tasks {
   static #taskDotMenu = '[data-testid="task-menu"]'
   static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]'
 
+  clickCancelDeletionButtonInEditTask () {
+    cy.get(Tasks.#dialogCancelDeletionTaskButtons)
+      .click()
+  }
+
+  clickConfirmDeletionButtonInEditTask () {
+    cy.get(Tasks.#dialogConfirmDeletionTaskButtons)
+      .click()
+  }
+
   compareFeedbackText (feedbackText) {
     cy.get(Tasks.#feedbackSection).should('contain', feedbackText)
   }
@@ -60,23 +69,12 @@ class Tasks {
     cy.get(Tasks.#feedbackSection).should('contain', feedbackGrade)
   }
 
-  seeCreateTaskPage () {
-    cy.get(Tasks.#createForm)
-      .get(Tasks.#taskNameInput)
-      .should('be.empty')
-  }
-
   seeUploadFileButtonIsDisabled () {
     cy.get(Tasks.#fileUploadButtonDisabled).should('be.visible')
   }
 
   seeUploadFileButtonIsEnabled () {
     cy.get(Tasks.#fileUploadButtonEnabled).should('be.visible')
-  }
-
-  enterTaskTitle (taskTitle) {
-    cy.get(Tasks.#taskNameInput).clear()
-    cy.get(Tasks.#taskNameInput).type(taskTitle)
   }
 
   clickOnGroupSubmissionCheckbox () {
@@ -123,15 +121,6 @@ class Tasks {
     cy.get(Tasks.#visibilityDueDateInput).type(
       `{selectAll}${startDueText}${visibilityDueTime}`
     )
-  }
-
-  setTaskText (taskText) {
-    cy.get(Tasks.#homeWorkDescriptionP)
-      .find('div > p')
-      .clear()
-    cy.get(Tasks.#homeWorkDescriptionP)
-      .find('div > p')
-      .type(taskText)
   }
 
   executeFileUpload (fileName) {

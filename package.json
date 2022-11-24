@@ -8,7 +8,18 @@
 		"cy:open": "cypress open",
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node cucumber-html-report.js",
-		"posttest": "npm run cy:run || npm run generate:report"
+		"posttest": "npm run cy:run || npm run generate:report",
+		"tag:stable:tasks": "./node_modules/.bin/cypress-tags run -e TAGS='@tasks'",
+		"tag:stable:management": "./node_modules/.bin/cypress-tags run -e TAGS='@management and @stable_test'",
+		"tag:stable:courses": "./node_modules/.bin/cypress-tags run -e TAGS='@courses and @stable_test'",
+		"tag:stable:dashboard": "./node_modules/.bin/cypress-tags run -e TAGS='@dashboard and @stable_test'",
+		"tag:stable:help": "./node_modules/.bin/cypress-tags run -e TAGS='@help and @stable_test'",
+		"tag:stable:news": "./node_modules/.bin/cypress-tags run -e TAGS='@news and @stable_test'",
+		"tag:stable:account": "./node_modules/.bin/cypress-tags run -e TAGS='@account and @stable_test'",
+		"tag:stable:addons": "./node_modules/.bin/cypress-tags run -e TAGS='@addons and @stable_test'",
+		"tag:stable:login": "./node_modules/.bin/cypress-tags run -e TAGS='@login and @stable_test'",
+		"tag:unstable": "./node_modules/.bin/cypress-tags run -e TAGS='@unstable_test'",
+		"tag:only": "./node_modules/.bin/cypress-tags run -e TAGS='@only'"
 	},
 	"repository": {
 		"type": "git",

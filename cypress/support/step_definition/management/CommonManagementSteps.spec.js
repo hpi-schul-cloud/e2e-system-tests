@@ -28,6 +28,14 @@ And('I go to teacher administration', () => {
   managementCommon.navigateToTeacherAdministration()
 })
 
-And('I click on FAB to add a {string}', (user) => {
-  management.clickOnFAB(user)
+When('I click on FAB', () => {
+  management.clickOnFAB()
+})
+
+When('I click on Add Student in opened FAB', () => {
+  management.clickOnAddStudentInFAB()
+})
+
+When('I click on Add Teacher in opened FAB', () => {
+  management.clickOnAddTeacherInFAB()
 })
