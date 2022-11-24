@@ -109,7 +109,7 @@ class Teams_Common {
   selectTeam (teamName) {
     cy.get(Teams_Common.#teamTitle).contains(teamName)
       .click()
-      .cy.waitForNetworkIdle(5000)
+      .waitForNetworkIdle(5000)
   }
 
   openTeamSettings () {

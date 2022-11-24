@@ -22,14 +22,14 @@ class Tasks_Common {
   clickOnSubmit() {
     cy.get(Tasks_Common.#taskForm).find(Tasks_Common.#submitButton)
       .click()
-      .cy.waitForNetworkIdle(5000)
+      .waitForNetworkIdle(5000)
     //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
   }
 
   clickOnAddTask() {
     cy.get(Tasks_Common.#addTaskButton)
       .click()
-      .cy.waitForNetworkIdle(5000)
+      .waitForNetworkIdle(5000)
   }
 
   seeCreateTaskPage (taskTitle) {
@@ -61,12 +61,7 @@ class Tasks_Common {
   clickOnTabDraftTasks () {
     cy.get(Tasks_Common.#draftTasksTab)
       .click()
-      .wait([
-        '@tasks_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+      .waitForNetworkIdle(5000)
   }
 
 
@@ -75,18 +70,7 @@ class Tasks_Common {
     cy.url().should('include', '/tasks')
     cy.contains(taskTitle)
       .should('be.visible')
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@tasks_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })
+      .waitForNetworkIdle(5000)
   }
 
 
@@ -108,7 +92,7 @@ class Tasks_Common {
     cy.get(Tasks_Common.#taskCardTitle)
       .contains(taskTitle)
       .click()
-      .cy.waitForNetworkIdle(5000)
+      .waitForNetworkIdle(5000)
   }
 
   clickDeleteTaskInDotMenu () {

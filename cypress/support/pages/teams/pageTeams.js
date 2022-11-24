@@ -1,8 +1,7 @@
 'use strict'
 
 class Teams {
-
-  static #addNewTeamButton ='[data-testid="add-team-btn"]'
+  static #addNewTeamButton = '[data-testid="add-team-btn"]'
   static #teamName = '[data-testid="team_name"]'
   static #teamDescription = '[data-testid="description_team"]'
   static #teamColourDropdown = '.sp-preview' //data-testid is to be added
@@ -15,8 +14,6 @@ class Teams {
   static #teamDeleteOption = '[data-testid="delete_team_members"]'
   static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]'
 
-
-
   doNotSeeTeam (teamName) {
     cy.get(Teams.#teamNameOnOverviewPage)
       .contains(teamName)
@@ -24,30 +21,27 @@ class Teams {
   }
 
   confirmDeleteOnDialogBox () {
-    cy.get(Teams.#teamDeleteOnDialogBox)
-      .click()
+    cy.get(Teams.#teamDeleteOnDialogBox).click()
   }
 
   clickOnDeleteOption () {
-    cy.get(Teams.#teamDeleteOption)
-      .click()
+    cy.get(Teams.#teamDeleteOption).click()
   }
 
   clickOnSaveChangeButton () {
     cy.get(Teams.#teamSaveChanges)
-    .click()
-    .cy.waitForNetworkIdle(5000)
+      .click()
+      .waitForNetworkIdle(5000)
   }
 
   clickOnEditOption () {
     cy.get(Teams.#teamEditOption)
       .click()
-      .cy.waitForNetworkIdle(5000)
+      .waitForNetworkIdle(5000)
   }
 
   seeTeamEditPage () {
-      cy.url()
-        .should('include','/edit')
+    cy.url().should('include', '/edit')
   }
 
   clickOnTeamSettings () {
@@ -59,12 +53,11 @@ class Teams {
   clickOnAddTeam () {
     cy.get(Teams.#addNewTeamButton)
       .click()
-      .cy.waitForNetworkIdle(5000)
+      .waitForNetworkIdle(5000)
   }
 
   seeTeamCreationPage () {
-    cy.url()
-      .should('include', '/teams/add')
+    cy.url().should('include', '/teams/add')
   }
 
   enterTeamName (teamName) {
@@ -75,19 +68,18 @@ class Teams {
 
   enterTeamDescription (desc) {
     cy.get(Teams.#teamDescription)
-    .clear()
-    .type(desc)
+      .clear()
+      .type(desc)
   }
 
   selectTeamColour () {
-    cy.get(Teams.#teamColourDropdown)
-      .click()
+    cy.get(Teams.#teamColourDropdown).click()
   }
 
   clickOnAddButton () {
     cy.get(Teams.#teamCreateButton)
       .click()
-      .cy.waitForNetworkIdle(5000)
+      .waitForNetworkIdle(5000)
   }
 
   seeCreatedTeamName (teamName) {
