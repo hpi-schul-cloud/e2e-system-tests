@@ -1,3 +1,4 @@
+@tasks
 Feature: Task - To create, edit and delete tasks by the teacher.
 
   As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
