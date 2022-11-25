@@ -111,20 +111,22 @@ class Tasks_Common {
   taskIsVisibleOnTasksOverviewPage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/tasks')
-    cy.contains(taskTitle)
-      .should('be.visible')
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@tasks_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })
+    cy.contains(taskTitle).should('be.visible')
+    cy.wait('@public_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@me_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@roles_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@schools_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@tasks_api')
+      .its('response.statusCode')
+      .should('eq', 200)
   }
 
   taskIsNotVisibleOnTasksOverviewPage (taskTitle) {

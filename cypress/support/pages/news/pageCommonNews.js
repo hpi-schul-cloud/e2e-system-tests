@@ -85,13 +85,18 @@ class News_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
-          .then(interceptions => {
-            expect(interceptions[0].response.statusCode).to.equal(200)
-            expect(interceptions[1].response.statusCode).to.equal(200)
-            expect(interceptions[2].response.statusCode).to.equal(200)
-            expect(interceptions[3].response.statusCode).to.equal(200)
-          })
+        cy.wait('@public_api')
+          .its('response.statusCode')
+          .should('eq', 200)
+        cy.wait('@me_api')
+          .its('response.statusCode')
+          .should('eq', 200)
+        cy.wait('@roles_api')
+          .its('response.statusCode')
+          .should('eq', 200)
+        cy.wait('@schools_api')
+          .its('response.statusCode')
+          .should('eq', 200)
       })
   }
 

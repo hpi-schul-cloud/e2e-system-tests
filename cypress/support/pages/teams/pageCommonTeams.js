@@ -97,13 +97,18 @@ class Teams_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
-          .then(interceptions => {
-            expect(interceptions[0].response.statusCode).to.equal(200)
-            expect(interceptions[1].response.statusCode).to.equal(200)
-            expect(interceptions[2].response.statusCode).to.equal(200)
-            expect(interceptions[3].response.statusCode).to.equal(200)
-          })
+        cy.wait('@public_api')
+          .its('response.statusCode')
+          .should('eq', 200)
+        cy.wait('@me_api')
+          .its('response.statusCode')
+          .should('eq', 200)
+        cy.wait('@roles_api')
+          .its('response.statusCode')
+          .should('eq', 200)
+        cy.wait('@schools_api')
+          .its('response.statusCode')
+          .should('eq', 200)
       })
   }
 
@@ -113,16 +118,16 @@ class Teams_Common {
 
   navigateToTeamsOverview () {
     cy.get(Teams_Common.#teamsOverviewNavigationButton)
-    .click()
-    .url().should('include', '/teams')
+      .click()
+      .url()
+      .should('include', '/teams')
   }
 
   selectTeam (teamName) {
-    cy.get(Teams_Common.#teamTitle).contains(teamName)
+    cy.get(Teams_Common.#teamTitle)
+      .contains(teamName)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
+      .wait(['@alerts_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
       })

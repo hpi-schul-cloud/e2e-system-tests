@@ -49,14 +49,15 @@ class Management {
       cy.intercept('GET', '**/students?**').as('get_roles_api')
     }
     cy.get(Management.#addButton).click()
-    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], {
-      timeout: 10000
-    }).then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(201)
-      expect(interceptions[1].response.statusCode).to.equal(200)
-      expect(interceptions[2].response.statusCode).to.equal(200)
-      expect(interceptions[2].request.url).to.include('/api/v1/users/admin')
-    })
+    cy.wait('@post_role_api')
+      .its('response.statusCode')
+      .should('eq', 201)
+    cy.wait('@classes_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@get_roles_api')
+      .its('response.statusCode')
+      .should('eq', 200)
   }
 
   enterNameForSearch (role, keyword) {

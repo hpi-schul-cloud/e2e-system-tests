@@ -30,7 +30,7 @@ class Courses {
     cy.get(Courses.#nextContinueButton).click()
     cy.get(Courses.#goToCourseOverviewButton)
       .click()
-      .wait('@dashboard_api', { timeout: 60000 })
+      .wait('@dashboard_api')
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
         expect(interceptions.response.url).to.include('/dashboard')
@@ -43,31 +43,41 @@ class Courses {
     cy.get(Courses.#confirmDeletionPopup).click({
       multiple: true,
       force: true
-    }).wait([
-      '@public_api',
-      '@me_api',
-      '@roles_api',
-      '@schools_api',
-      '@dashboard_api'
-    ])
-    .then(interceptions => {
-      expect(interceptions[4].response.statusCode).to.equal(200)
     })
+    cy.wait('@public_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@me_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@roles_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@schools_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@dashboard_api')
+      .its('response.statusCode')
+      .should('eq', 200)
   }
 
   submitChanges () {
-    cy.get(Courses.#btnSubmit)
-      .click()
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@userPermissions_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[4].response.statusCode).to.equal(200)
-      })
+    cy.get(Courses.#btnSubmit).click()
+    cy.wait('@public_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@me_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@roles_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@schools_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@userPermissions_api')
+      .its('response.statusCode')
+      .should('eq', 200)
   }
 
   editCourseTitleAndDescription (editedRoomName) {
