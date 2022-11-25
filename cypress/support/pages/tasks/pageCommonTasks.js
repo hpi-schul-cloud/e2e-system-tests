@@ -12,11 +12,28 @@ class Tasks_Common {
   static #taskMenuDelete = '[data-testid="task-delete"]'
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
 
-  navigateToTasksOverview() {
+  navigateToTasksOverview () {
     cy.visit('/tasks')
-    cy.get(Tasks_Common.#tasksOverviewNavigationButton)
-      .click()
-      .wait([
+    cy.get(Tasks_Common.#tasksOverviewNavigationButton).click()
+    cy.wait('@public_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@me_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@roles_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@schools_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@alert_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    cy.wait('@tasks_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+    /*.wait([
         '@public_api',
         '@me_api',
         '@roles_api',
@@ -32,35 +49,32 @@ class Tasks_Common {
         expect(interceptions[4].response.statusCode).to.equal(200)
         expect(interceptions[5].response.statusCode).to.equal(200)
         expect(interceptions[5].request.url).to.include('/tasks')
-      })
+      })*/
     cy.url().should('include', '/tasks')
   }
 
-  clickOnSubmit() {
-    cy.get(Tasks_Common.#taskForm).find(Tasks_Common.#submitButton)
+  clickOnSubmit () {
+    cy.get(Tasks_Common.#taskForm)
+      .find(Tasks_Common.#submitButton)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
+      .wait(['@alerts_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-    })
+      })
     //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
   }
 
-  clickOnAddTask() {
+  clickOnAddTask () {
     cy.get(Tasks_Common.#addTaskButton)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
+      .wait(['@alerts_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-    })
+      })
   }
 
   seeCreateTaskPage (taskTitle) {
-    if (taskTitle === '-'){
+    if (taskTitle === '-') {
       cy.get(Tasks_Common.#taskForm)
         .get(Tasks_Common.#taskNameInput)
         .should('be.empty')
@@ -88,14 +102,11 @@ class Tasks_Common {
   clickOnTabDraftTasks () {
     cy.get(Tasks_Common.#draftTasksTab)
       .click()
-      .wait([
-        '@tasks_api'
-      ])
+      .wait(['@tasks_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
       })
   }
-
 
   taskIsVisibleOnTasksOverviewPage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
@@ -116,7 +127,6 @@ class Tasks_Common {
       })
   }
 
-
   taskIsNotVisibleOnTasksOverviewPage (taskTitle) {
     cy.wait(200)
     cy.contains(taskTitle).should('not.exist')
@@ -135,9 +145,7 @@ class Tasks_Common {
     cy.get(Tasks_Common.#taskCardTitle)
       .contains(taskTitle)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
+      .wait(['@alerts_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
       })
@@ -150,6 +158,5 @@ class Tasks_Common {
   clickButtonDeleteTask () {
     cy.get(Tasks_Common.#deleteTaskButton).click()
   }
-
 }
 export default Tasks_Common
