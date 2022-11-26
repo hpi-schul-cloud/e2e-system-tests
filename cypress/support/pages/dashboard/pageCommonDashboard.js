@@ -4,9 +4,6 @@ class Dashboard_Common {
   arriveOnDashboard () {
     cy.visit('/dashboard')
     cy.url().should('include', '/dashboard')
-    cy.wait('@dashboard_api')
-      .its('response.statusCode')
-      .should('eq', 200)
     cy.wait('@alerts_api')
       .its('response.statusCode')
       .should('eq', 200)
