@@ -50,10 +50,15 @@ class News_Common {
   clickOnCreateNewsSaveButton () {
     cy.get(News_Common.#newsCreateButton)
       .click()
-      .wait('@alerts_api')
+      .get("input[data-testid='news_title']")
+      .then($elm => {
+        const newsTitle = $elm.text().trim()
+        expect(newsTitle).to.match(/^$|^[a-zA-Z0-9._%+-]/)
+      })
+    /*.wait('@alerts_api')
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-      })
+      })*/
   }
 
   seeTimeInput () {
@@ -85,9 +90,14 @@ class News_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-        cy.wait('@alert_api')
+          .get("input[data-testid='news_title']")
+          .then($elm => {
+            const newsTitle = $elm.text().trim()
+            expect(newsTitle).to.match(/^$|^[a-zA-Z0-9._%+-]/)
+          })
+        /*cy.wait('@alert_api')
           .its('response.statusCode')
-          .should('eq', 200)
+          .should('eq', 200)*/
       })
   }
 

@@ -97,9 +97,14 @@ class Teams_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-        cy.wait('@alert_api')
+          .get("input[data-testid='news_title']")
+          .then($elm => {
+            const newsTitle = $elm.text().trim()
+            expect(newsTitle).to.match(/^$|^[a-zA-Z0-9._%+-]/)
+          })
+        /*cy.wait('@alert_api')
           .its('response.statusCode')
-          .should('eq', 200)
+          .should('eq', 200)*/
       })
   }
 
@@ -118,10 +123,14 @@ class Teams_Common {
     cy.get(Teams_Common.#teamTitle)
       .contains(teamName)
       .click()
-      .wait(['@alerts_api'])
+      .get("[data-testid='team_files']")
+      .then($elm => {
+        expect($elm).to.exist
+      })
+    /*.wait(['@alerts_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-      })
+      })*/
   }
 
   openTeamSettings () {

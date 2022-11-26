@@ -15,10 +15,15 @@ class Management_Common {
   }
 
   navigateToStudentAdministration () {
-    cy.get(Management_Common.#studentAdministrationNavigationButton).click()
-    cy.wait('@alert_api')
+    cy.get(Management_Common.#studentAdministrationNavigationButton)
+      .click()
+      .get("[data-testid='table-data-row']")
+      .then($elm => {
+        expect($elm).to.have.lengthOf.greaterThan(10)
+      })
+    /*cy.wait('@alert_api')
       .its('response.statusCode')
-      .should('eq', 200)
+      .should('eq', 200)*/
     cy.url().should('include', '/administration/students')
   }
 

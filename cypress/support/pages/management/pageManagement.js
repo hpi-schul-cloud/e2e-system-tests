@@ -60,10 +60,15 @@ class Management {
     } else {
       cy.intercept('**/students?**').as('search_api')
     }
-    cy.get(Management.#searchbar).type(keyword)
-    cy.wait('@search_api')
+    cy.get(Management.#searchbar)
+      .type(keyword)
+      .get("[data-testid='table-data-row']")
+      .then($elm => {
+        expect($elm).to.have.lengthOf.greaterThan(1)
+      })
+    /*cy.wait('@search_api')
       .its('response.statusCode')
-      .should('eq', 200)
+      .should('eq', 200)*/
   }
 
   clickEditStudentButton (email) {

@@ -14,11 +14,16 @@ class Tasks_Common {
 
   navigateToTasksOverview () {
     cy.visit('/tasks')
-    cy.get(Tasks_Common.#tasksOverviewNavigationButton).click()
-    cy.wait('@tasks_api')
+    cy.get(Tasks_Common.#tasksOverviewNavigationButton)
+      .click()
+      .get('[data-testid="upperTaskSection"]')
+      .then($elm => {
+        expect($elm).to.exist
+      })
+    /*cy.wait('@tasks_api')
       .its('response.statusCode')
       .should('eq', 200)
-    /*.wait([
+    .wait([
         '@public_api',
         '@me_api',
         '@roles_api',
@@ -52,10 +57,14 @@ class Tasks_Common {
   clickOnAddTask () {
     cy.get(Tasks_Common.#addTaskButton)
       .click()
-      .wait(['@alerts_api'])
+      .get('#homework-form')
+      .then($elm => {
+        expect($elm).to.exist
+      })
+    /*.wait(['@alerts_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-      })
+      })*/
   }
 
   seeCreateTaskPage (taskTitle) {
@@ -87,19 +96,30 @@ class Tasks_Common {
   clickOnTabDraftTasks () {
     cy.get(Tasks_Common.#draftTasksTab)
       .click()
-      .wait(['@tasks_api'])
+      .get("[data-testid='taskTitle']")
+      .then($elm => {
+        expect($elm).to.have.lengthOf.greaterThan(5)
+      })
+    /*.wait(['@tasks_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-      })
+      })*/
   }
 
   taskIsVisibleOnTasksOverviewPage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/tasks')
-    cy.contains(taskTitle).should('be.visible')
-    cy.wait('@tasks_api')
+    cy.contains(taskTitle)
+      .should('be.visible')
+      .get("[data-testid='taskTitle']")
+      .then($elm => {
+        let taskTitleRegex = new RegExp(taskTitle)
+        let taskTitleString = $elm.text().trim()
+        expect(taskTitleString).to.match(taskTitleRegex)
+      })
+    /*cy.wait('@tasks_api')
       .its('response.statusCode')
-      .should('eq', 200)
+      .should('eq', 200)*/
   }
 
   taskIsNotVisibleOnTasksOverviewPage (taskTitle) {
@@ -120,10 +140,14 @@ class Tasks_Common {
     cy.get(Tasks_Common.#taskCardTitle)
       .contains(taskTitle)
       .click()
-      .wait(['@alerts_api'])
+      .get("[data-testid='task-details-btn-finish']")
+      .then($elm => {
+        expect($elm).to.exist
+      })
+    /*.wait(['@alerts_api'])
       .then(interceptions => {
         expect(interceptions.response.statusCode).to.equal(200)
-      })
+      })*/
   }
 
   clickDeleteTaskInDotMenu () {

@@ -21,10 +21,19 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    cy.get(Courses_Common.#courseOverviewNavigationButton).click()
-    cy.wait('@dashboard_api')
+    cy.get(Courses_Common.#courseOverviewNavigationButton)
+      .click()
+      .get('.room-overview-col > div > span > div + div ')
+      .then($elm => {
+        const text = $elm
+          .text()
+          .replace(/\s+/g, ' ')
+          .trim()
+        expect(text).to.match(/\w*\s/)
+      })
+    /*cy.wait('@dashboard_api')
       .its('response.statusCode')
-      .should('eq', 200)
+      .should('eq', 200)*/
   }
 
   navigateToRoomBoard (roomName) {
@@ -36,9 +45,13 @@ class Courses_Common {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-          cy.wait('@userPermissions_api')
+            .get('.container-full-width')
+            .then($elm => {
+              expect($elm).exist
+            })
+          /*cy.wait('@userPermissions_api')
             .its('response.statusCode')
-            .should('eq', 200)
+            .should('eq', 200)*/
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`).click()
         } else if (htmlTitlePage.includes('Cursos')) {
@@ -95,10 +108,15 @@ class Courses_Common {
   taskIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/rooms/')
-    cy.contains(taskTitle).should('be.visible')
-    cy.wait('@userPermissions_api')
+    cy.contains(taskTitle)
+      .should('be.visible')
+      .get('.container-full-width')
+      .then($elm => {
+        expect($elm).exist
+      })
+    /*cy.wait('@userPermissions_api')
       .its('response.statusCode')
-      .should('eq', 200)
+      .should('eq', 200)*/
   }
 
   taskIsNotVisibleOnCoursePage (taskTitle) {
