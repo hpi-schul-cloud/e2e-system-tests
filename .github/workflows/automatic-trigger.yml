@@ -17,7 +17,8 @@ jobs:
             'account',
             'addons',
             'login',
-            'tasks'
+            'tasks',
+            'team'
           ]
 
     steps:
