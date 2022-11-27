@@ -50,7 +50,7 @@ class News_Common {
   clickOnCreateNewsSaveButton () {
     cy.get(News_Common.#newsCreateButton)
       .click()
-      .get("input[data-testid='news_title']")
+      .get('[data-testid="btn-delete-news"]')
       .then($elm => {
         const newsTitle = $elm.text().trim()
         expect(newsTitle).to.match(/^$|^[a-zA-Z0-9._%+-]/)
