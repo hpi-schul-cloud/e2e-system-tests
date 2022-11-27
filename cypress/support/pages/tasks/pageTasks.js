@@ -52,13 +52,11 @@ class Tasks {
   static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]'
 
   clickCancelDeletionButtonInEditTask () {
-    cy.get(Tasks.#dialogCancelDeletionTaskButtons)
-      .click()
+    cy.get(Tasks.#dialogCancelDeletionTaskButtons).click()
   }
 
   clickConfirmDeletionButtonInEditTask () {
-    cy.get(Tasks.#dialogConfirmDeletionTaskButtons)
-      .click()
+    cy.get(Tasks.#dialogConfirmDeletionTaskButtons).click()
   }
 
   compareFeedbackText (feedbackText) {
@@ -427,7 +425,14 @@ class Tasks {
   }
 
   clickOnGradingTab () {
-    cy.get(Tasks.#taskSubmissionsGradingTabLink).click()
+    cy.get(Tasks.#taskSubmissionsGradingTabLink)
+      .click()
+      .get('div#MathJax_Message')
+      .then($elm => {
+        expect($elm)
+          .to.have.attr('style')
+          .equals('display: none;')
+      })
   }
 
   enterGradingPercent (gradingPercent) {

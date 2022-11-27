@@ -64,7 +64,7 @@ class Management {
       .type(keyword)
       .get("[data-testid='table-data-row']")
       .then($elm => {
-        expect($elm).to.have.lengthOf.greaterThan(1)
+        expect($elm).to.have.lengthOf.greaterThan(0)
       })
     /*cy.wait('@search_api')
       .its('response.statusCode')
