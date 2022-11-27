@@ -52,7 +52,7 @@ jobs:
           CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
         with:
           browser: chrome
-          headed: true
+          headed: false
           command: npm run tag:stable:${{ matrix.spec }}
 
       - name: 📬 Upload test artifacts 📬
