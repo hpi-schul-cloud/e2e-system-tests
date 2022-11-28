@@ -103,20 +103,3 @@ jobs:
           name: my-video-artifact
           path: ${{ github.workspace }}/cypress/videos/features
           retention-days: 3
-
-  notify_RC:
-    runs-on: ubuntu-latest
-    needs: [e2e-system-tests, generate-and-upload-report]
-    if: |
-      always()
-
-    steps:
-      - uses: technote-space/workflow-conclusion-action@v3
-
-      - name: 🚀 Send Notification to Rocket Chat 🚀
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
-        with:
-          type: ${{ env.WORKFLOW_CONCLUSION }}
-          job_name: 'Cypress Tests'
-          url: ${{ secrets.RC_WEBHOOK_URL }}
-          username: Automatic Trigger Test Run
