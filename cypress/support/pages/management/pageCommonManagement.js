@@ -8,6 +8,7 @@ class Management_Common {
   static #classAdministrationNavigationButton = '[data-testid="Klassen"]'
   static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
   static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
+  static #navigateToStudentAdministrationLoad = "[data-testid='table-data-row']"
 
   navigateToAdministration () {
     cy.get(Management_Common.#administrationOverviewNavigationButton).click()
@@ -17,13 +18,10 @@ class Management_Common {
   navigateToStudentAdministration () {
     cy.get(Management_Common.#studentAdministrationNavigationButton)
       .click()
-      .get("[data-testid='table-data-row']")
+      .get(Management_Common.#navigateToStudentAdministrationLoad)
       .then($elm => {
         expect($elm).to.have.lengthOf.greaterThan(10)
       })
-    /*cy.wait('@alert_api')
-      .its('response.statusCode')
-      .should('eq', 200)*/
     cy.url().should('include', '/administration/students')
   }
 

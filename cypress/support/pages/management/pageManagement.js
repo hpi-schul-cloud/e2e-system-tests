@@ -21,6 +21,7 @@ class Management {
   static #videoconferenceToggleSwitch = '.videoconference-switch'
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'
+  static #nameForSearchLoad = "[data-testid='table-data-row']"
 
   clickOnFAB () {
     cy.get(Management.#fabButton).click()
@@ -42,10 +43,8 @@ class Management {
 
   clickOnAddButton (role) {
     if (!(role == 'student')) {
-      cy.intercept('POST', '**/teachers').as('post_role_api')
       cy.intercept('GET', '**/teachers?**').as('get_roles_api')
     } else {
-      cy.intercept('POST', '**/students').as('post_role_api')
       cy.intercept('GET', '**/students?**').as('get_roles_api')
     }
     cy.get(Management.#addButton).click()
@@ -55,20 +54,12 @@ class Management {
   }
 
   enterNameForSearch (role, keyword) {
-    if (!(role == 'student')) {
-      cy.intercept('**/teachers?**').as('search_api')
-    } else {
-      cy.intercept('**/students?**').as('search_api')
-    }
     cy.get(Management.#searchbar)
       .type(keyword)
-      .get("[data-testid='table-data-row']")
+      .get(Management.#nameForSearchLoad)
       .then($elm => {
         expect($elm).to.have.lengthOf.greaterThan(0)
       })
-    /*cy.wait('@search_api')
-      .its('response.statusCode')
-      .should('eq', 200)*/
   }
 
   clickEditStudentButton (email) {

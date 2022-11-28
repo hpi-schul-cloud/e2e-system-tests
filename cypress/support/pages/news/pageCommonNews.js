@@ -13,6 +13,8 @@ class News_Common {
   static #newsName = '[data-testid="title_of_an_element"]'
   static #deleteNews = '[data-testid="btn-delete-news"]'
   static #deleteNewsConfirmation = '[class="btn btn-primary btn-submit"]'
+  static #clickOnCreateNewsSaveButtonLoad = '[data-testid="btn-delete-news"]'
+  static #clickOnAddNewsLoad = "input[data-testid='news_title']"
 
   doNotSeeNews (newsName) {
     cy.get('span', { timeout: 20000 }).then($span => {
@@ -54,15 +56,11 @@ class News_Common {
   clickOnCreateNewsSaveButton () {
     cy.get(News_Common.#newsCreateButton)
       .click()
-      .get('[data-testid="btn-delete-news"]')
+      .get(News_Common.#clickOnCreateNewsSaveButtonLoad)
       .then($elm => {
         const newsTitle = $elm.text().trim()
         expect(newsTitle).to.match(/^$|^[a-zA-Z0-9._%+-]/)
       })
-    /*.wait('@alerts_api')
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })*/
   }
 
   seeTimeInput () {
@@ -94,14 +92,11 @@ class News_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-          .get("input[data-testid='news_title']")
+          .get(News_Common.#clickOnAddNewsLoad)
           .then($elm => {
             const newsTitle = $elm.text().trim()
             expect(newsTitle).to.match(/^$|^[a-zA-Z0-9._%+-]/)
           })
-        /*cy.wait('@alert_api')
-          .its('response.statusCode')
-          .should('eq', 200)*/
       })
   }
 

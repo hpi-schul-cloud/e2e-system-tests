@@ -30,20 +30,7 @@ class Courses {
     cy.get(Courses.#nextContinueButton).click()
     cy.get(Courses.#goToCourseOverviewButton)
       .click()
-      .get('.room-overview-col > div > span > div + div ')
-      .then($elm => {
-        const text = $elm
-          .text()
-          .replace(/\s+/g, ' ')
-          .trim()
-        expect(text).to.match(/\w*\s/)
-      })
-    /*.wait('@dashboard_api')
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-        expect(interceptions.response.url).to.include('/dashboard')
-        expect(interceptions.state).to.equal('Complete')
-      })*/
+      .roomOverviewLoadAssertion()
   }
 
   performDeletion () {
@@ -53,29 +40,13 @@ class Courses {
         multiple: true,
         force: true
       })
-      .get('.room-overview-col > div > span > div + div ')
-      .then($elm => {
-        const text = $elm
-          .text()
-          .replace(/\s+/g, ' ')
-          .trim()
-        expect(text).to.match(/\w*\s/)
-      })
-    /*cy.wait('@dashboard_api')
-      .its('response.statusCode')
-      .should('eq', 200)*/
+      .roomOverviewLoadAssertion()
   }
 
   submitChanges () {
     cy.get(Courses.#btnSubmit)
       .click()
-      .get('.container-full-width')
-      .then($elm => {
-        expect($elm).exist
-      })
-    /*cy.wait('@userPermissions_api')
-      .its('response.statusCode')
-      .should('eq', 200)*/
+      .roomboardLoadAssertion()
   }
 
   editCourseTitleAndDescription (editedRoomName) {

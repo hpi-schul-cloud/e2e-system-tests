@@ -107,16 +107,23 @@ jobs:
         if: always()
         with:
           name: my-report
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
+          path: ${{ github.workspace }}/cypress/reports
 
       - name: 📼 Upload Video Artifact 📼
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-video-artifact
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+          path: ${{ github.workspace }}/cypress/videos/features
           retention-days: 3
 
+  notify_RC:
+    runs-on: ubuntu-latest
+    needs: [e2e-system-tests, generate-and-upload-report]
+    if: |
+      always()
+
+    steps:
       - name: 🚀 Send Notification to Rocket Chat 🚀
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
         if: always()
@@ -124,4 +131,4 @@ jobs:
           type: ${{ job.status }}
           job_name: 'Cypress Tests'
           url: ${{ secrets.RC_WEBHOOK_URL }}
-          username: Manual Trigger Test Run
+          username: Scheduled Automated Test Run

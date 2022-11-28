@@ -20,26 +20,6 @@ class Tasks_Common {
       .then($elm => {
         expect($elm).to.exist
       })
-    /*cy.wait('@tasks_api')
-      .its('response.statusCode')
-      .should('eq', 200)
-    .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@alert_api',
-        '@tasks_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-        expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[5].response.statusCode).to.equal(200)
-        expect(interceptions[5].request.url).to.include('/tasks')
-      })*/
     cy.url().should('include', '/tasks')
   }
 
@@ -61,10 +41,6 @@ class Tasks_Common {
       .then($elm => {
         expect($elm).to.exist
       })
-    /*.wait(['@alerts_api'])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })*/
   }
 
   seeCreateTaskPage (taskTitle) {
@@ -100,10 +76,6 @@ class Tasks_Common {
       .then($elm => {
         expect($elm).to.have.lengthOf.greaterThan(5)
       })
-    /*.wait(['@tasks_api'])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })*/
   }
 
   taskIsVisibleOnTasksOverviewPage (taskTitle) {
@@ -117,9 +89,6 @@ class Tasks_Common {
         let taskTitleString = $elm.text().trim()
         expect(taskTitleString).to.match(taskTitleRegex)
       })
-    /*cy.wait('@tasks_api')
-      .its('response.statusCode')
-      .should('eq', 200)*/
   }
 
   taskIsNotVisibleOnTasksOverviewPage (taskTitle) {
@@ -144,10 +113,6 @@ class Tasks_Common {
       .then($elm => {
         expect($elm).to.exist
       })
-    /*.wait(['@alerts_api'])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })*/
   }
 
   clickDeleteTaskInDotMenu () {

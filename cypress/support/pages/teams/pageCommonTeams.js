@@ -22,6 +22,8 @@ class Teams_Common {
   static #confirmTeamMemberDeleteButton = '[data-testid="btn-submit"]'
   static #deleteIconInTableViewRow = '[data-testid="btn-delete-team-member"]'
   static #teamMemberInTable = 'tr'
+  static #createNewsOnTeamDetailPage = "input[data-testid='news_title']"
+  static #selectTeam = "[data-testid='team_files']"
 
   static #testAssertionData = {
     firstName: 'Kraft',
@@ -97,14 +99,11 @@ class Teams_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-          .get("input[data-testid='news_title']")
+          .get(Teams_Common.#createNewsOnTeamDetailPage)
           .then($elm => {
             const newsTitle = $elm.text().trim()
             expect(newsTitle).to.match(/^$|^[a-zA-Z0-9._%+-]/)
           })
-        /*cy.wait('@alert_api')
-          .its('response.statusCode')
-          .should('eq', 200)*/
       })
   }
 
@@ -123,14 +122,10 @@ class Teams_Common {
     cy.get(Teams_Common.#teamTitle)
       .contains(teamName)
       .click()
-      .get("[data-testid='team_files']")
+      .get(Teams_Common.#selectTeam)
       .then($elm => {
         expect($elm).to.exist
       })
-    /*.wait(['@alerts_api'])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })*/
   }
 
   openTeamSettings () {

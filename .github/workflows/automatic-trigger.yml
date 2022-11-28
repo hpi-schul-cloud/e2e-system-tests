@@ -18,7 +18,7 @@ jobs:
             'addons',
             'login',
             'tasks',
-            'team'
+            'team',
           ]
 
     steps:
@@ -103,3 +103,19 @@ jobs:
           name: my-video-artifact
           path: ${{ github.workspace }}/cypress/videos/features
           retention-days: 3
+
+  notify_RC:
+    runs-on: ubuntu-latest
+    needs: [e2e-system-tests, generate-and-upload-report]
+    if: |
+      always()
+
+    steps:
+      - name: 🚀 Send Notification to Rocket Chat 🚀
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        if: always()
+        with:
+          type: ${{ job.status }}
+          job_name: 'Cypress Tests'
+          url: ${{ secrets.RC_WEBHOOK_URL }}
+          username: Scheduled Automated Test Run
