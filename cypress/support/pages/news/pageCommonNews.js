@@ -43,8 +43,12 @@ class News_Common {
   }
 
   seeCreatedNews (newsTitle, newsDesc) {
-    cy.get(News_Common.#newsTitle).contains(newsTitle)
-    cy.get(News_Common.#newsDescriptionVisible).contains(newsDesc)
+    cy.get(News_Common.#newsTitle).then(() => {
+      cy.contains(newsTitle).should('be.visible')
+      cy.get(News_Common.#newsDescriptionVisible)
+        .contains(newsDesc)
+        .should('be.visible')
+    })
   }
 
   clickOnCreateNewsSaveButton () {
