@@ -125,11 +125,12 @@ jobs:
       always()
 
     steps:
+      - uses: technote-space/workflow-conclusion-action@v3
+
       - name: 🚀 Send Notification to Rocket Chat 🚀
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
-        if: always()
         with:
-          type: ${{ job.status }}
+          type: ${{ env.WORKFLOW_CONCLUSION }}
           job_name: 'Cypress Tests'
           url: ${{ secrets.RC_WEBHOOK_URL }}
-          username: Scheduled Automated Test Run
+          username: Manual Trigger Test Run
