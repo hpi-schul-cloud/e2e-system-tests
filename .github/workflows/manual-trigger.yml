@@ -23,7 +23,6 @@ jobs:
       matrix:
         spec:
           [
-            'tasks',
             'help',
             'management',
             'dashboard',
@@ -32,6 +31,8 @@ jobs:
             'account',
             'addons',
             'login',
+            'tasks',
+            'team',
           ]
 
     steps:
