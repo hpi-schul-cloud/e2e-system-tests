@@ -108,10 +108,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [e2e-system-tests, generate-and-upload-report]
     if: |
-      always() &&
-      (needs.e2e-system-tests.result == 'success' || needs.e2e-system-tests.result == 'skipped' || needs.e2e-system-tests.result == 'failure' || needs.e2e-system-tests.result == 'cancelled') &&
-      (needs.generate-and-upload-report.result == 'success' || needs.generate-and-upload-report.result == 'skipped' || needs.generate-and-upload-report.result == 'failure' || needs.generate-and-upload-report.result == 'cancelled') &&
-      !(needs.e2e-system-tests.result == 'skipped' && needs.generate-and-upload-report.result == 'skipped')
+      always()
 
     steps:
       - name: 🚀 Send Notification to Rocket Chat 🚀
