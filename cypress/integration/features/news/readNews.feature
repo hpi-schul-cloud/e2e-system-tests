@@ -43,7 +43,7 @@ Feature:  News - To read a news on the respective dashboards
 
   Scenario: as a post-condition teacher deletes the school news
     Given I am logged in as a 'teacher' at 'brb'
-    When I arrive on the dashboard
+    When I go to news overview
     And I click on the news teaser 'Read news - this is a school news'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
@@ -51,7 +51,7 @@ Feature:  News - To read a news on the respective dashboards
 
   Scenario: as a post-condition teacher deletes the team news
     Given I am logged in as a 'teacher' at 'brb'
-    When I arrive on the dashboard
+    When I go to news overview
     And I click on the news teaser 'Read news - this is a team news'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
