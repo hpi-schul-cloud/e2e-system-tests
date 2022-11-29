@@ -6,7 +6,7 @@
   "experimentalSessionAndOrigin": true,
   "chromeWebSecurity": false,
   "pageLoadTimeout": 150000,
-  "defaultCommandTimeout": 50000,
+  "defaultCommandTimeout": 80000,
   "requestTimeout":8000,
   "responseTimeout":8000
 }
