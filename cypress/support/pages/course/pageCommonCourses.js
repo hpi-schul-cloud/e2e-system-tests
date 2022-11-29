@@ -24,11 +24,13 @@ class Courses_Common {
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
       .wait([
-        '@dashboard_api',
+        '@runtime_config_api',
         '@public_api',
         '@me_api',
         '@roles_api',
-        '@schools_api'
+        '@schools_api',
+        '@alert_api',
+        '@dashboard_api'
       ])
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
@@ -36,7 +38,8 @@ class Courses_Common {
         expect(interceptions[2].response.statusCode).to.equal(200)
         expect(interceptions[3].response.statusCode).to.equal(200)
         expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[0].request.url).to.include('/dashboard')
+        expect(interceptions[5].response.statusCode).to.equal(200)
+        expect(interceptions[6].request.url).to.include('/dashboard')
       })
   }
 
@@ -50,16 +53,25 @@ class Courses_Common {
             .eq(0)
             .click()
             .wait([
+              '@runtime_config_api',
               '@public_api',
               '@me_api',
               '@roles_api',
               '@schools_api',
+              '@alert_api',
+              '@board_api',
               '@userPermissions_api'
             ])
             .then(interceptions => {
-              expect(interceptions[1].response.statusCode).to.equal(200)
-              expect(interceptions[1].state).to.equal('Complete')
               expect(interceptions[0].response.statusCode).to.equal(200)
+              expect(interceptions[1].response.statusCode).to.equal(200)
+              expect(interceptions[2].response.statusCode).to.equal(200)
+              expect(interceptions[2].state).to.equal('Complete')
+              expect(interceptions[3].response.statusCode).to.equal(200)
+              expect(interceptions[4].response.statusCode).to.equal(200)
+              expect(interceptions[5].response.statusCode).to.equal(200)
+              expect(interceptions[6].response.statusCode).to.equal(200)
+              expect(interceptions[7].response.statusCode).to.equal(200)
             })
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`).click()
@@ -88,10 +100,21 @@ class Courses_Common {
     cy.contains(courseName)
       .should('be.visible')
       .and('contain.text', courseName)
+      .wait([
+        '@schools_api',
+        '@alert_api',
+        '@dashboard_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].response.statusCode).to.equal(200)
+      })
   }
 
   courseIsNotVisibleOnOverviewPage (courseName) {
-    cy.contains(courseName).should('not.exist')
+    cy.contains(courseName)
+      .should('not.exist')
   }
 
   canAddBigBlueButton () {
@@ -103,7 +126,14 @@ class Courses_Common {
   }
 
   clickOnCreateCourseFAB () {
-    cy.get(Courses_Common.#createCourse).click()
+    cy.get(Courses_Common.#createCourse)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   clickOnCreateContentFAB () {
@@ -173,8 +203,16 @@ class Courses_Common {
   }
 
   openCourseEditPage () {
-    cy.get(Courses_Common.#dropDownCourse).click()
-    cy.get(Courses_Common.#btnCourseEdit).click()
+    cy.get(Courses_Common.#dropDownCourse)
+      .click()
+    cy.get(Courses_Common.#btnCourseEdit)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   showCourseEditPage () {

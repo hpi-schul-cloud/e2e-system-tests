@@ -9,9 +9,18 @@ class Account_Common {
   static #emailReadOnly = '[data-testid="user_email_readonly"]'
 
   navigateToAccountSettingsSection() {
-    cy.get(Account_Common.#initialsButton).click()
-    cy.get(Account_Common.#settingsButton).click()
-    cy.url().should('include', '/account')
+    cy.get(Account_Common.#initialsButton)
+      .click()
+    cy.get(Account_Common.#settingsButton)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
+    cy.url()
+      .should('include', '/account')
   }
 
   verifyEmailEditable(isEditable) {
