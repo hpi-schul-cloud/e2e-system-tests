@@ -20,25 +20,25 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.log(link)
     if (environmentUpperCased === 'NBC') {
       cy.visit('/login')
-        .wait(['@alerts_api', '@locales_api'])
+        .wait('@alerts_api')
         .then(interceptions => {
-          expect(interceptions[0].response.statusCode).to.equal(200)
-          expect(interceptions[1].response.statusCode).to.equal(200)
+          expect(interceptions.response.statusCode).to.equal(200)
+          //expect(interceptions[1].response.statusCode).to.equal(200)
         })
       cy.get(nbcLoginWithEmailOptionButton).click()
     } else if (environmentUpperCased === 'DEFAULT') {
       cy.visit('/login')
-        .wait(['@alerts_api', '@locales_api'])
+        .wait('@alerts_api')
         .then(interceptions => {
-          expect(interceptions[0].response.statusCode).to.equal(200)
-          expect(interceptions[1].response.statusCode).to.equal(200)
+          expect(interceptions.response.statusCode).to.equal(200)
+          //expect(interceptions[1].response.statusCode).to.equal(200)
         })
     } else {
       cy.visit('/login')
-        .wait(['@alerts_api', '@locales_api'])
+        .wait('@alerts_api')
         .then(interceptions => {
-          expect(interceptions[0].response.statusCode).to.equal(200)
-          expect(interceptions[1].response.statusCode).to.equal(200)
+          expect(interceptions.response.statusCode).to.equal(200)
+          //expect(interceptions[1].response.statusCode).to.equal(200)
         })
     }
 
