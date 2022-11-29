@@ -108,7 +108,14 @@ class Teams_Common {
   }
 
   clickOnNewsTabInTeamDetailPage () {
-    cy.get(Teams_Common.#newsTabOnTeamDetail).click()
+    cy.get(Teams_Common.#newsTabOnTeamDetail)
+      .click({ force: true })
+      .then(() => {
+        cy.get(Teams_Common.#newsTabOnTeamDetail)
+          .click({ force: true })
+          .get('[data-testid="news-section"]')
+          .should('be.visible')
+      })
   }
 
   navigateToTeamsOverview () {
