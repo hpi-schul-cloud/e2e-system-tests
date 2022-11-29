@@ -44,22 +44,24 @@ Feature: Dashboard - To check contents on the dashboard
     Given I am logged in as a 'student' at 'brb'
     When I arrive on the dashboard
     Then I see the welcome message 'Hallo Herbert Kraft!'
-    Then I see school news with title 'Dashboard - this is a school news' and description 'test school news description'
     Then I see teams news with title 'Dashboard - this is a team news' and description 'test team news description'
-    Then I can see the assigned task 'Task11'
+    When I go to news overview
+    Then I see school news with title 'Dashboard - this is a school news' and description 'test school news description'
+    #Then I can see the assigned task 'Task11'
 
   Scenario: teacher arrives on dashboard
     Given I am logged in as a 'teacher' at 'brb'
     When I arrive on the dashboard
     Then I see the welcome message 'Hallo Karl Herzog!'
-    Then I see school news with title 'Dashboard - this is a school news' and description 'test school news description'
     Then I see teams news with title 'Dashboard - this is a team news' and description 'test team news description'
-    Then I can see the assigned task 'Task11'
-    Then I can see the draft task 'Task1'
+    When I go to news overview
+    Then I see school news with title 'Dashboard - this is a school news' and description 'test school news description'
+    #Then I can see the assigned task 'Task11'
+    #Then I can see the draft task 'Task1'
 
   Scenario: as a post-condition teacher deletes the school news
     Given I am logged in as a 'teacher' at 'brb'
-    When I arrive on the dashboard
+    When I go to news overview
     And I click on the news teaser 'Dashboard - this is a school news'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
@@ -67,7 +69,7 @@ Feature: Dashboard - To check contents on the dashboard
 
   Scenario: as a post-condition teacher deletes the team news
     Given I am logged in as a 'teacher' at 'brb'
-    When I arrive on the dashboard
+    When I go to news overview
     And I click on the news teaser 'Dashboard - this is a team news'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
