@@ -16,3 +16,11 @@ Cypress.Commands.add('roomboardLoadAssertion', () => {
     expect($elm).exist
   })
 })
+
+Cypress.Commands.add('preventFormSubmitDefault', selectors => {
+  cy.get(selectors).then(form$ => {
+    form$.on('submit', e => {
+      e.preventDefault()
+    })
+  })
+})
