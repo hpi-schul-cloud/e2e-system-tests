@@ -8,5 +8,5 @@
   "pageLoadTimeout": 150000,
   "defaultCommandTimeout": 150000,
   "requestTimeout":8000,
-  "responseTimeout":8000
+  "responseTimeout":18000
 }
