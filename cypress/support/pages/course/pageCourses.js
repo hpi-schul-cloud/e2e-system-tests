@@ -35,10 +35,14 @@ class Courses {
 
   performDeletion () {
     cy.get(Courses.#deleteButton).click()
-    cy.get(Courses.#confirmDeletionPopup).click({
+    cy.preventFormSubmitDefault(Courses.#confirmDeletionPopup).click({
       multiple: true,
       force: true
     })
+    /*cy.get(Courses.#confirmDeletionPopup).click({
+      multiple: true,
+      force: true
+    })*/
     cy.roomOverviewLoadAssertion()
   }
 
