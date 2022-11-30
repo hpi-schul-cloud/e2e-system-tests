@@ -105,12 +105,13 @@ Cypress.Commands.add('login', (username, environment) => {
     } else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
-      cy.get(submitButton).click()
+      cy.preventFormSubmitDefault(submitButton).click()
+      //cy.get(submitButton).click()
     }
-    cy.url().should('contain', '/dashboard')
     cy.get(initials).click()
     cy.get(languageSelection).click()
     cy.get(languageDe).click()
   })
   cy.visit('/dashboard')
+  cy.url().should('contain', '/dashboard')
 })
