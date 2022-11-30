@@ -21,9 +21,13 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    cy.get(Courses_Common.#courseOverviewNavigationButton)
+    cy.preventFormSubmitDefault(
+      Courses_Common.#courseOverviewNavigationButton
+    ).click()
+    cy.roomOverviewLoadAssertion()
+    /*cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
-      .roomOverviewLoadAssertion()
+      .roomOverviewLoadAssertion()*/
   }
 
   navigateToRoomBoard (roomName) {
@@ -32,10 +36,14 @@ class Courses_Common {
       .then($title => {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
-          cy.get(`[aria-label="Kurs ${roomName}"]`)
+          /*cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-            .roomboardLoadAssertion()
+            .roomboardLoadAssertion()*/
+          cy.preventFormSubmitDefault(`[aria-label="Kurs ${roomName}"]`)
+            .eq(0)
+            .click()
+          cy.roomboardLoadAssertion()
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`).click()
         } else if (htmlTitlePage.includes('Cursos')) {
