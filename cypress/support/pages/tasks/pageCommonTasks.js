@@ -15,7 +15,7 @@ class Tasks_Common {
   navigateToTasksOverview () {
     //cy.visit('/tasks')
     cy.wait(500)
-    cy.get(Tasks_Common.#tasksOverviewNavigationButton)
+    cy.preventFormSubmitDefault(Tasks_Common.#tasksOverviewNavigationButton)
       .click()
       .get('[data-testid="upperTaskSection"]')
       .then($elm => {
