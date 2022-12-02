@@ -23,7 +23,6 @@ Cypress.Commands.add('login', (username, environment) => {
         .wait('@alerts_api')
         .then(interceptions => {
           expect(interceptions.response.statusCode).to.equal(200)
-          //expect(interceptions[1].response.statusCode).to.equal(200)
         })
       cy.get(nbcLoginWithEmailOptionButton).click()
     } else if (environmentUpperCased === 'DEFAULT') {
@@ -31,14 +30,12 @@ Cypress.Commands.add('login', (username, environment) => {
         .wait('@alerts_api')
         .then(interceptions => {
           expect(interceptions.response.statusCode).to.equal(200)
-          //expect(interceptions[1].response.statusCode).to.equal(200)
         })
     } else {
       cy.visit('/login')
         .wait('@alerts_api')
         .then(interceptions => {
           expect(interceptions.response.statusCode).to.equal(200)
-          //expect(interceptions[1].response.statusCode).to.equal(200)
         })
     }
 
@@ -112,6 +109,6 @@ Cypress.Commands.add('login', (username, environment) => {
     cy.get(languageSelection).click()
     cy.get(languageDe).click()
   })
-  cy.visit('/dashboard')
+  cy.visit('/dashboard').wait('@alerts_api')
   cy.url().should('contain', '/dashboard')
 })
