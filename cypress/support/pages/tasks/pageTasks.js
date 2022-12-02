@@ -127,7 +127,10 @@ class Tasks {
     // initially the new property is there
     cy.window().should('have.prop', 'beforeReload', true)
     // Upload a file includes a reload of the page
-    cy.get(Tasks.#fileUploadInput).attachFile(fileName)
+    cy.preventFormSubmitDefault(Tasks.#fileUploadInput)
+      .attachFile(fileName)
+      .wait('@alerts_api')
+    //cy.get(Tasks.#fileUploadInput).attachFile(fileName)
     // after reload the property should be gone
     cy.window().should('not.have.prop', 'beforeReload')
   }
@@ -344,7 +347,9 @@ class Tasks {
   }
 
   clickSaveAndSendSubmissionBtn () {
-    cy.get(Tasks.#submissionSaveAndSendBtn).click()
+    cy.get(Tasks.#submissionSaveAndSendBtn)
+      .click()
+      .wait('@alerts_api')
   }
 
   seeSubmissionReceivedHint () {
