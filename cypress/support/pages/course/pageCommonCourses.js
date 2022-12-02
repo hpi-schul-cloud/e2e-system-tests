@@ -1,4 +1,5 @@
 'use strict'
+
 class Courses_Common {
   static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
@@ -21,10 +22,12 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    cy.preventFormSubmitDefault(
-      Courses_Common.#courseOverviewNavigationButton
-    ).click()
-    cy.roomOverviewLoadAssertion()
+    //cy.preventFormSubmitDefault(Courses_Common.#courseOverviewNavigationButton)
+    //  .click()
+    cy.visit('/rooms-overview').then(async () => {
+      await cy.roomOverviewLoadAssertion()
+    })
+
     /*cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()
       .roomOverviewLoadAssertion()*/
