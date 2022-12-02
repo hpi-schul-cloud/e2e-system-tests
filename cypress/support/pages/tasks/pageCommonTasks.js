@@ -14,7 +14,7 @@ class Tasks_Common {
 
   navigateToTasksOverview () {
     cy.visit('/tasks')
-    cy.get(Tasks_Common.#tasksOverviewNavigationButton)
+      .preventFormSubmitDefault(Tasks_Common.#tasksOverviewNavigationButton)
       .click()
       .get('[data-testid="upperTaskSection"]')
       .then($elm => {
@@ -24,8 +24,9 @@ class Tasks_Common {
   }
 
   clickOnSubmit () {
-    cy.get(Tasks_Common.#taskForm)
-      .find(Tasks_Common.#submitButton)
+    /*cy.get(Tasks_Common.#taskForm)
+      .find(Tasks_Common.#submitButton)*/
+    cy.preventFormSubmitDefault(Tasks_Common.#submitButton)
       .click()
       .wait(['@alerts_api'])
       .then(interceptions => {
