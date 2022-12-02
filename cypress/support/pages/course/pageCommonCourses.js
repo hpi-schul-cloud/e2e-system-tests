@@ -56,7 +56,9 @@ class Courses_Common {
 
   showRoomPage (room) {
     const selectedRoom = `[aria-label='${room}']`
-    cy.get(selectedRoom).should('be.visible')
+    cy.get(selectedRoom).then($elm => {
+      cy.get($elm).should('be.visible')
+    })
   }
 
   navigateToTools () {
@@ -98,7 +100,7 @@ class Courses_Common {
   }
 
   taskIsVisibleOnCoursePage (taskTitle) {
-    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    //cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
       .should('be.visible')
