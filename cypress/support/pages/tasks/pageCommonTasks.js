@@ -13,8 +13,9 @@ class Tasks_Common {
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
 
   navigateToTasksOverview () {
-    cy.visit('/tasks')
-      .preventFormSubmitDefault(Tasks_Common.#tasksOverviewNavigationButton)
+    //cy.visit('/tasks')
+    cy.wait(500)
+    cy.get(Tasks_Common.#tasksOverviewNavigationButton)
       .click()
       .get('[data-testid="upperTaskSection"]')
       .then($elm => {
