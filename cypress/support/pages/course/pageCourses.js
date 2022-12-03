@@ -39,10 +39,6 @@ class Courses {
       multiple: true,
       force: true
     })
-    /*cy.get(Courses.#confirmDeletionPopup).click({
-      multiple: true,
-      force: true
-    })*/
     cy.roomOverviewLoadAssertion()
   }
 
