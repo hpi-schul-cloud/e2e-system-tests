@@ -22,15 +22,9 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
   navigateToRoomsOverview () {
-    //cy.preventFormSubmitDefault(Courses_Common.#courseOverviewNavigationButton)
-    //  .click()
     cy.visit('/rooms-overview').then(async () => {
       await cy.roomOverviewLoadAssertion()
     })
-
-    /*cy.get(Courses_Common.#courseOverviewNavigationButton)
-      .click()
-      .roomOverviewLoadAssertion()*/
   }
 
   navigateToRoomBoard (roomName) {
@@ -39,10 +33,6 @@ class Courses_Common {
       .then($title => {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
-          /*cy.get(`[aria-label="Kurs ${roomName}"]`)
-            .eq(0)
-            .click()
-            .roomboardLoadAssertion()*/
           cy.preventFormSubmitDefault(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
