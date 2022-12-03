@@ -22,6 +22,7 @@ class Management {
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'
   static #nameForSearchLoad = "[data-testid='table-data-row']"
+  static #successMessageBannerVisibility = "div[role='status']>div.toasted"
 
   clickOnFAB () {
     cy.get(Management.#fabButton).click()
@@ -45,7 +46,7 @@ class Management {
     cy.preventFormSubmitDefault(Management.#addButton)
       .click()
       .then(() => {
-        cy.get("div[role='status']>div.toasted").should('not.exist')
+        cy.get(Management.#successMessageBannerVisibility).should('not.exist')
       })
   }
 
