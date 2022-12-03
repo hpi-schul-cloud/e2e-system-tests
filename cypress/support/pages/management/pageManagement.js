@@ -42,15 +42,11 @@ class Management {
   }
 
   clickOnAddButton (role) {
-    if (!(role == 'student')) {
-      cy.intercept('GET', '**/teachers?**').as('get_roles_api')
-    } else {
-      cy.intercept('GET', '**/students?**').as('get_roles_api')
-    }
-    cy.get(Management.#addButton).click()
-    cy.wait('@get_roles_api')
-      .its('response.statusCode')
-      .should('eq', 200)
+    cy.preventFormSubmitDefault(Management.#addButton)
+      .click()
+      .then(() => {
+        cy.get("div[role='status']>div.toasted").should('not.exist')
+      })
   }
 
   enterNameForSearch (role, keyword) {
