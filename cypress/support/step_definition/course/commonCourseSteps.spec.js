@@ -16,11 +16,11 @@ Then('I can see room page {string}', roomName => {
   coursesCommon.showRoomPage(roomName)
 })
 
-Then('I see the course {string} after the search on the room overview page', courseName => {
+Then('I see the course {string} on the room overview page', courseName => {
   coursesCommon.courseIsVisiblAfterSearch(courseName)
 })
 
-Then('I do not see the course {string} after the search on the room overview page', courseName => {
+Then('I do not see the course {string} on the room overview page', courseName => {
     coursesCommon.courseIsNotVisiblAfterSearch(courseName)
 })
 
