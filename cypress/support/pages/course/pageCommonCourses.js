@@ -20,6 +20,18 @@ class Courses_Common {
   static #contentCardTaskInfoSubmissionsChip = '[data-testid="room-detail-task-chip-submitted"]'
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
+
+  courseIsVisiblAfterSearch(courseName) {
+    cy.contains(courseName)
+      .should('be.visible')
+      .and('contain.text', courseName)
+  }
+
+  courseIsNotVisiblAfterSearch (courseName) {
+    cy.contains(courseName)
+      .should('not.exist')
+  }
+
   navigateToRoomsOverview () {
     cy.get(Courses_Common.#courseOverviewNavigationButton)
       .click()

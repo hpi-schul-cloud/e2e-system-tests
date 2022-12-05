@@ -40,20 +40,24 @@ class News_Common {
     cy.get(News_Common.#newsName)
       .contains(newsName)
       .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions =>{
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   seeCreatedNews (newsTitle, newsDesc) {
-    cy.get(News_Common.#newsTitle).contains(newsTitle)
-    cy.get(News_Common.#newsDescriptionVisible).contains(newsDesc)
+    cy.get(News_Common.#newsTitle)
+      .contains(newsTitle)
+    cy.get(News_Common.#newsDescriptionVisible)
+      .contains(newsDesc)
   }
 
   clickOnCreateNewsSaveButton () {
     cy.get(News_Common.#newsCreateButton)
       .click()
-      .wait('@alerts_api')
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeTimeInput () {
@@ -85,19 +89,29 @@ class News_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
+          .wait(['@runtime_config_api','@public_api', '@me_api', '@roles_api', '@schools_api', '@alert_api'])
           .then(interceptions => {
             expect(interceptions[0].response.statusCode).to.equal(200)
             expect(interceptions[1].response.statusCode).to.equal(200)
             expect(interceptions[2].response.statusCode).to.equal(200)
             expect(interceptions[3].response.statusCode).to.equal(200)
+            expect(interceptions[4].response.statusCode).to.equal(200)
+            expect(interceptions[5].response.statusCode).to.equal(200)
           })
       })
   }
 
   navigateToNewsOverview () {
-    cy.get(News_Common.#newsOverviewNavigationButton).click()
-    cy.url().should('include', '/news')
+    cy.get(News_Common.#newsOverviewNavigationButton)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
+    cy.url()
+      .should('include', '/news')
   }
 }
 export default News_Common

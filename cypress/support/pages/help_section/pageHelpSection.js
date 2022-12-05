@@ -25,11 +25,13 @@ class Help {
   }
 
   clickHelpSectionInHeader() {
-    cy.get(Help.#helpSectionInHeader).click()
+    cy.get(Help.#helpSectionInHeader)
+      .click()
   }
 
   clickSendRequestOrProblemInHeader() {
-    cy.get(Help.#sendRequestOrProblemInHeader).click()
+    cy.get(Help.#sendRequestOrProblemInHeader)
+      .click()
   }
 
   advancedTrainingsInHeader() {
@@ -64,9 +66,12 @@ class Help {
   }
 
   fillOutContactForm() {
-    cy.get(Help.#bugFormHeadline).type('Dies ist ein Test!')
-    cy.get(Help.#bugFormMail).type('test@example.com')
-    cy.get(Help.#bugFormSubmitButton).click()
+    cy.get(Help.#bugFormHeadline)
+      .type('Dies ist ein Test!')
+    cy.get(Help.#bugFormMail)
+      .type('test@example.com')
+    cy.get(Help.#bugFormSubmitButton)
+      .click()
   }
 
   seeHelpArticle() {

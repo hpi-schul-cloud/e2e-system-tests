@@ -17,6 +17,8 @@ class Tasks_Common {
     cy.get(Tasks_Common.#tasksOverviewNavigationButton)
       .click()
       .wait([
+        '@runtime_config_api',
+        '@tasks_api',
         '@public_api',
         '@me_api',
         '@roles_api',
@@ -31,7 +33,9 @@ class Tasks_Common {
         expect(interceptions[3].response.statusCode).to.equal(200)
         expect(interceptions[4].response.statusCode).to.equal(200)
         expect(interceptions[5].response.statusCode).to.equal(200)
-        expect(interceptions[5].request.url).to.include('/tasks')
+        expect(interceptions[6].response.statusCode).to.equal(200)
+        expect(interceptions[7].response.statusCode).to.equal(200)
+        expect(interceptions[7].request.url).to.include('/tasks')
       })
     cy.url().should('include', '/tasks')
   }
