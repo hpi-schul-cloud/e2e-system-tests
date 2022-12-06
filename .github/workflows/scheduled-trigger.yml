@@ -10,7 +10,6 @@ jobs:
       matrix:
         spec:
           [
-            'tasks',
             'help',
             'management',
             'dashboard',
@@ -19,6 +18,8 @@ jobs:
             'account',
             'addons',
             'login',
+            'tasks',
+            'team',
           ]
 
     steps:
@@ -51,8 +52,6 @@ jobs:
           CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
           CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
         with:
-          browser: chrome
-          headed: false
           command: npm run tag:stable:${{ matrix.spec }}
 
       - name: 📬 Upload test artifacts 📬
@@ -104,11 +103,19 @@ jobs:
           path: ${{ github.workspace }}/cypress/videos/features
           retention-days: 3
 
+  notify_RC:
+    runs-on: ubuntu-latest
+    needs: [e2e-system-tests, generate-and-upload-report]
+    if: |
+      always()
+
+    steps:
+      - uses: technote-space/workflow-conclusion-action@v3
+
       - name: 🚀 Send Notification to Rocket Chat 🚀
         uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
-        if: always()
         with:
-          type: ${{ job.status }}
+          type: ${{ env.WORKFLOW_CONCLUSION }}
           job_name: 'Cypress Tests'
           url: ${{ secrets.RC_WEBHOOK_URL }}
-          username: Scheduled Automated Test Run
+          username: Scheduled Trigger Test Run
