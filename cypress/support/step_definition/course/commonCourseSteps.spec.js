@@ -17,11 +17,11 @@ Then('I can see room page {string}', roomName => {
 })
 
 Then('I see the course {string} on the room overview page', courseName => {
-  coursesCommon.courseIsVisiblAfterSearch(courseName)
+  coursesCommon.courseIsVisiblOnOverviewPage(courseName)
 })
 
 Then('I do not see the course {string} on the room overview page', courseName => {
-    coursesCommon.courseIsNotVisiblAfterSearch(courseName)
+    coursesCommon.courseIsNotVisiblOnOverviewPage(courseName)
 })
 
 When('I open course edit page', () => {

@@ -7,7 +7,7 @@ Feature: Course - To add and delete a course by the teacher
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview
     And I click on FAB to create the course
-    And I fill out the course creation form for new course 'Cypress Test Creation and Deletion'
+    And I enter the course title 'Cypress Test Creation and Deletion'
     And I click on next steps
     Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
 

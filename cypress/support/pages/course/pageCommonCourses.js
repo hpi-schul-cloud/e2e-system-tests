@@ -21,13 +21,13 @@ class Courses_Common {
   static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
 
 
-  courseIsVisiblAfterSearch(courseName) {
+  courseIsVisiblOnOverviewPage(courseName) {
     cy.contains(courseName)
       .should('be.visible')
       .and('contain.text', courseName)
   }
 
-  courseIsNotVisiblAfterSearch (courseName) {
+  courseIsNotVisiblOnOverviewPage (courseName) {
     cy.contains(courseName)
       .should('not.exist')
   }

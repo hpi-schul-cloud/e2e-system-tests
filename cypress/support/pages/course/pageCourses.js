@@ -46,7 +46,7 @@ class Courses {
       })
   }
 
-  performDeletion () {
+  performRoomDeletion () {
     cy.get(Courses.#deleteButton).click()
     cy.get(Courses.#confirmDeletionPopup).click({
       multiple: true,
@@ -100,7 +100,7 @@ class Courses {
     cy.get(Courses.#courseName)
       .clear()
       .type(editedRoomName)
-    cy.get(Courses.#courseDescription).type('this is test description')
+    cy.get(Courses.#courseDescription).type('cy edit this is test description')
   }
 
   searchForARoom (roomName) {
