@@ -365,8 +365,10 @@ class Tasks {
   }
 
   openNotGradedTasks () {
-    cy.get(Tasks.#lowerTaskSectionIcon)
+    cy.get(Tasks.#taskOverviewStudent)
+      .find('section')
       .eq(1)
+      .find(Tasks.#lowerTaskSectionIcon)
       .click()
   }
 
