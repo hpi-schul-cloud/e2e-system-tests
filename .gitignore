@@ -6,3 +6,13 @@ cypress.env.json
 cucumber-json
 reports
 .run
+downloads
+runner-results
+multi-reporter-config.json
+
+.project
+.settings
+.idea
+*.log
+secrets
+*.swp

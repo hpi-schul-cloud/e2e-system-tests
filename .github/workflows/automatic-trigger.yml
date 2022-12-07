@@ -1,18 +1,36 @@
 name: e2e-automatic-trigger-tests
 on: [push]
+
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    strategy:
+      fail-fast: false
+      matrix:
+        spec:
+          [
+            'help',
+            'management',
+            'dashboard',
+            'news',
+            'courses',
+            'account',
+            'addons',
+            'login',
+            'tasks',
+            'team',
+          ]
 
-      - name: Clean up previous report
+    steps:
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
+        uses: actions/checkout@v3
+
+      - name: 🗑 Clean up previous report 🗑
         uses: cypress-io/github-action@v4
         with:
           command: npm run pretest
 
-      - name: Cypress run
+      - name: 🧪 Cypress run 🧪
         uses: cypress-io/github-action@v4
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
@@ -29,28 +47,57 @@ jobs:
           CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
           CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
           CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
-          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
+          CYPRESS_EXPERT_1_PASSWORD: ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
+          CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
+          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
         with:
-          browser: chrome
-          headed: false
+          command: npm run tag:stable:${{ matrix.spec }}
 
-      - name: Generate Report
+      - name: 📬 Upload test artifacts 📬
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          if-no-files-found: error
+          name: artifacts
+          path: |
+            ${{ github.workspace }}/cypress/cucumber-json/
+            ${{ github.workspace }}/cypress/.run/
+            ${{ github.workspace }}/cypress/videos/features
+            ${{ github.workspace }}/cypress/screenshots
+
+  generate-and-upload-report:
+    runs-on: ubuntu-latest
+    needs: e2e-system-tests
+    if: always()
+
+    steps:
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
+        uses: actions/checkout@v3
+
+      - name: 📩 Download reports artifacts 📩
+        uses: actions/download-artifact@v3
+        if: always()
+        with:
+          name: artifacts
+          path: ${{ github.workspace }}/cypress/
+
+      - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v4
         if: always()
         with:
           command: npm run generate:report
 
-      - name: Upload Report
-        uses: actions/upload-artifact@v2
+      - name: 🎉 Upload Report 🎉
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-report
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/reports
+          path: ${{ github.workspace }}/cypress/reports
 
-      - name: Upload Video Artifact
-        uses: actions/upload-artifact@v2
+      - name: 📼 Upload Video Artifact 📼
+        uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: my-artifact
-          path: /home/runner/work/e2e-system-tests/e2e-system-tests/cypress/videos/features
+          name: my-video-artifact
+          path: ${{ github.workspace }}/cypress/videos/features
           retention-days: 3
