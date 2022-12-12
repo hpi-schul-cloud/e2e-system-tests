@@ -28,6 +28,10 @@ And('I go to teacher administration', () => {
   managementCommon.navigateToTeacherAdministration()
 })
 
+When('I go to team administration', () => {
+  managementCommon.navigateToTeamAdministration();
+});
+
 When('I click on FAB', () => {
   management.clickOnFAB()
 })
