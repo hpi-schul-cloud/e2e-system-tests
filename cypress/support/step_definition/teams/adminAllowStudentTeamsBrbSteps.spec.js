@@ -6,6 +6,7 @@ const managementTeam = new Management_Team()
 // =========================
 // External defined steps can be found here:
 // -----------------------------------------
+// -->\step_definition\authentication\loginStep.spec.js
 // -->\step_definition\management\CommonManagementSteps.spec.js
 
 // Scenario: Admin allows student to create a team on BRB
