@@ -10,7 +10,7 @@ class Teams_Common {
   static #activateConfCheckbox = '[data-testid="videoconf_checkbox"]'
   static #teamsOverviewNavigationButton = '[data-testid="Teams"]'
   static #messangerActivation = '[data-testid="rocketchat_checkbox"]'
-  static #saveButton = '[data-testid="create_team_btn"]'
+  static #saveButton = '[data-testid="save_team_button"]'
   static #newsTabOnTeamDetail = '[data-tab="js-news"]'
   static #createNewsButtonOnTeamDetail = '[data-testid="create_a_team"]'
   static #threeDotManageTeam = '[id="page-title"]'

@@ -6,12 +6,12 @@ class Teams {
   static #teamName = '[data-testid="team_name"]'
   static #teamDescription = '[data-testid="description_team"]'
   static #teamColourDropdown = '.sp-preview' //data-testid is to be added
-  static #teamCreateButton = '[data-testid ="create_team_btn"]'
+  static #teamCreateButton = '[data-testid ="save_team_button"]'
   static #teamNameOnOverviewPage = '[data-testid="title_of_an_element"]'
   static #teamDescriptionOnOverviewPage = '[data-testid="body_of_element"]'
   static #teamSettings = '[data-testid="team_settings"]'
   static #teamEditOption = '[data-testid="edit_team"]'
-  static #teamSaveChanges = '[data-testid="create_team_btn"]' //data-testid is to be updated with correct name
+  static #teamSaveChanges = '[data-testid="save_team_button"]'
   static #teamDeleteOption = '[data-testid="delete_team_members"]'
   static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]'
 
