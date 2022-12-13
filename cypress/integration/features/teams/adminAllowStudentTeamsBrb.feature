@@ -8,5 +8,5 @@ Scenario: Admin allows student to create a team on BRB
   When I go to administration page
   When I go to team administration
   When I click the checkbox to allow students to create a team
-  When I click on Save button
+  When I click on Save
   Then I see checkbox is saved

@@ -15,7 +15,7 @@ When('I click the checkbox to allow students to create a team', () => {
     managementTeam.clickAllowStudentsTeamCheckbox()
 })
 
-When('I click on save button', () => {
+When('I click on Save', () => {
     managementTeam.clickSaveButton()
 })
 
