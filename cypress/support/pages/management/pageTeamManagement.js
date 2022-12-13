@@ -6,7 +6,16 @@ class Management_Team {
 
   clickAllowStudentsTeamCheckbox () {
     cy.get(Management_Team.#studentTeamCheckbox)
-      .click({ force: true })
+      .as('checkbox')
+      .invoke('is', ':checked')
+      .then(checked => {
+        if (checked) {
+        } else {
+          cy
+            .get('@checkbox')
+            .check();
+        }
+      })
   }
 
   clickSaveButton () {
