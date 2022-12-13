@@ -6,7 +6,6 @@ class Management_Team {
 
   clickAllowStudentsTeamCheckbox () {
     cy.get(Management_Team.#studentTeamCheckbox)
-      .find('input')
       .click({ force: true })
   }
 
