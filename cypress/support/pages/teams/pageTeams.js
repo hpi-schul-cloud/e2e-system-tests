@@ -2,7 +2,7 @@
 
 class Teams {
 
-  static #addNewTeamButton ='[data-testid="add-team-btn"]'
+  static #addNewTeamButton ='[data-testid="add_team_button"]'
   static #teamName = '[data-testid="team_name"]'
   static #teamDescription = '[data-testid="description_team"]'
   static #teamColourDropdown = '.sp-preview' //data-testid is to be added
