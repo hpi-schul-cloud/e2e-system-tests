@@ -11,7 +11,7 @@ Scenario: As a pre-condition admin allows student to create a team on BRB
   When I click on Save
   Then I see checkbox is saved
 
-Scenario: Creating a new team by Student
+Scenario: Student can create, edit and delete team on BRB
   Given I am logged in as a 'student' at 'brb'
   When I go to teams overview
   When I click on button Add Team on the teams overview page
@@ -24,9 +24,6 @@ Scenario: Creating a new team by Student
   Then I see team title 'cy test student team to test create edit delete team' is visible
   Then I see the description 'this is cy student team description' is visible
 
-Scenario: Editing the newly created team by Student
-  Given I am logged in as a 'student' at 'brb'
-  When I go to teams overview
   When I go to a team 'cy test student team to test create edit delete team'
   When I click on team settings
   When I click on edit option
@@ -38,9 +35,6 @@ Scenario: Editing the newly created team by Student
   Then I see team title 'edited cy test student team to test create edit delete team' is visible
   Then I see the description 'edited this is cy student team description' is visible
 
-Scenario: Deleting the newly created team by Student
-  Given I am logged in as a 'student' at 'brb'
-  When I go to teams overview
   When I go to a team 'edited cy test student team to test create edit delete team'
   When I click on team settings
   When I click on delete option
