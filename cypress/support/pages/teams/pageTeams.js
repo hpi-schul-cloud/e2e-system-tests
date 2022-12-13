@@ -10,7 +10,7 @@ class Teams {
   static #teamNameOnOverviewPage = '[data-testid="title_of_an_element"]'
   static #teamDescriptionOnOverviewPage = '[data-testid="body_of_element"]'
   static #teamSettings = '[data-testid="team_settings"]'
-  static #teamEditOption = '[data-testid="edit_team_members"]' //data-testid is to be updated with correct name
+  static #teamEditOption = '[data-testid="edit_team"]'
   static #teamSaveChanges = '[data-testid="create_team_btn"]' //data-testid is to be updated with correct name
   static #teamDeleteOption = '[data-testid="delete_team_members"]'
   static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]'

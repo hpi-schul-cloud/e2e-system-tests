@@ -3,7 +3,7 @@
 class Teams_Common {
   static #teamTitle = '[data-testid="title_of_an_element"]'
   static #teamSettings = '[data-testid="team_settings"]'
-  static #editTeam = '[data-testid="edit_team_members"]'
+  static #editTeam = '[data-testid="edit_team"]'
   static #rocketchat = '[data-testid="rocketchat_wrapper"]'
   static #teamOptions = '[data-testid="team_options"]'
   static #activateRCCheckbox = '[data-testid="rocketchat_checkbox"]'
