@@ -3,6 +3,7 @@
 class Teams {
 
   static #addNewTeamButton ='[data-testid="add_team_button"]'
+  static #addNewTeamEmptyOverviewButton ='[data-testid="add_team_button_empty_overview"]'
   static #teamName = '[data-testid="team_name"]'
   static #teamDescription = '[data-testid="description_team"]'
   static #teamColourDropdown = '[data-testid="selector"]'
@@ -18,7 +19,7 @@ class Teams {
 
 
   doNotSeeTeam (teamName) {
-    cy.get(Teams.#teamNameOnOverviewPage)
+    cy.get('main > section')
       .contains(teamName)
       .should('not.exist')
   }
@@ -67,14 +68,27 @@ class Teams {
   }
 
   clickOnAddTeam () {
-    cy.get(Teams.#addNewTeamButton)
-      .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+    cy.get('main > section').then(($element) => {
+      if ($element.hasClass('empty-state')) {
+        cy.get(Teams.#addNewTeamEmptyOverviewButton)
+          .click()
+          .wait([
+            '@alerts_api',
+          ])
+          .then(interceptions => {
+            expect(interceptions.response.statusCode).to.equal(200)
+          })
+      } else {
+        cy.get(Teams.#addNewTeamButton)
+          .click()
+          .wait([
+            '@alerts_api',
+          ])
+          .then(interceptions => {
+            expect(interceptions.response.statusCode).to.equal(200)
+          })
+        }
+    })
   }
 
   seeTeamCreationPage () {

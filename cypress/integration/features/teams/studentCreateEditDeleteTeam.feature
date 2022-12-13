@@ -1,7 +1,15 @@
 @team @stable_test
-Feature: Team - Student create, delete and edit operations on Teams in Brandenburg
+Feature: Team - Student managed teams (on BRB)
 
   As a student I want to create/edit/delete the team in Brandenburg so that I can manage the team.
+
+Scenario: As a pre-condition admin allows student to create a team on BRB
+  Given I am logged in as a 'admin' at 'brb'
+  When I go to administration page
+  When I go to team administration
+  When I click the checkbox to allow students to create a team
+  When I click on Save
+  Then I see checkbox is saved
 
 Scenario: Creating a new team by Student
   Given I am logged in as a 'student' at 'brb'
