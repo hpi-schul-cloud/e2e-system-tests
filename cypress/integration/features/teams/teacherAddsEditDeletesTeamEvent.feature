@@ -25,7 +25,7 @@ When I enter the description 'edit cy team event description cy'
 When I enter place 'edit cy TestPlace'
 When I click on Save team event
 Then I am on team detail Calendar tab and title 'edit cy test team event cy' is visible
-Then I am on team detail Calendar tab and description 'edit cy team event description cy' is visible
+Then I am on the team detail Calendar tab and description 'edit cy team event description cy' is visible
 
 When I click on edit icon for the same event 'cy test team event cy'
 Then I see event creation dialog box
