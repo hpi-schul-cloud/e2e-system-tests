@@ -23,7 +23,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I change email to 'alex.abramovic@example.com'
     And I click save changes button
     Then I can see the user with email 'alex.abramovic@example.com' in the table
-    Then I cannot see user 'adam.riese@example.com' in the table
+    Then I can not see user 'adam.riese@example.com' in the table
 
   Scenario: Deleting a student
     Given I am logged in as a 'admin' at 'brb'
@@ -33,7 +33,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I click edit student button for 'alex.abramovic@example.com'
     And I click delete user button to delete user with email 'alex.abramovic@example.com'
     And I click on delete button in pop up
-    Then I cannot see user 'alex.abramovic@example.com' in the table
+    Then I can not see user 'alex.abramovic@example.com' in the table
 
   Scenario: Adding a new teacher
     Given I am logged in as a 'admin' at 'brb'
@@ -55,7 +55,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I change email to 't.mueschmidt@example.com'
     And I click save changes button
     Then I can see the user with email 't.mueschmidt@example.com' in the table
-    Then I cannot see user 'karl.mueller@example.com' in the table
+    Then I can not see user 'karl.mueller@example.com' in the table
 
   Scenario: Deleting a teacher
     Given I am logged in as a 'admin' at 'brb'
@@ -65,4 +65,4 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I click edit teacher button for 't.mueschmidt@example.com'
     And I click delete user button to delete user with email 't.mueschmidt@example.com'
     And I click on delete button in pop up
-    Then I cannot see user 't.mueschmidt@example.com' in the table
+    Then I can not see user 't.mueschmidt@example.com' in the table

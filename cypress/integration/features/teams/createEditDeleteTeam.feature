@@ -10,7 +10,7 @@ Scenario: Creating a new team by Teacher
   Then I see new team creation page
   When I enter in the title 'cy test team to test create edit delete team'
   When I enter in the description 'this is cy team description'
-  When I select the team colour to black
+  When I select the team colour black
   Then I click on button Create Team on the team creation page
   When I go to teams overview
   Then I see team title 'cy test team to test create edit delete team' is visible

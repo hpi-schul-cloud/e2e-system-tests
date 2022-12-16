@@ -48,7 +48,8 @@ class Management {
       cy.intercept('POST', '**/students').as('post_role_api')
       cy.intercept('GET', '**/students?**').as('get_roles_api')
     }
-    cy.get(Management.#addButton).click()
+    cy.get(Management.#addButton)
+      .click()
     cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], {
       timeout: 10000
     }).then(interceptions => {
@@ -77,6 +78,12 @@ class Management {
       .find('a')
       .should('have.attr', 'data-testid', 'edit_student_button')
       .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   clickEditTeacherButton (email) {
@@ -85,6 +92,12 @@ class Management {
       .find('a')
       .should('have.attr', 'data-testid', 'edit_teacher_button')
       .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   changeUsername (firstname, surname) {
@@ -153,9 +166,10 @@ class Management {
   }
 
   userIsNotVisibleInTable (email) {
-    cy.get(Management.#searchbar).clear(Management.#searchbar)
+    cy.get(Management.#searchbar)
+      .clear(Management.#searchbar)
     cy.get(Management.#tableContents)
-    cy.contains(email).should('not.exist')
+      .contains(email).should('not.exist')
   }
 
   clickChatToggleSwitch () {
