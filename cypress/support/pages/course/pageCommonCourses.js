@@ -39,7 +39,6 @@ class Courses_Common {
         '@runtime_config_api',
         '@public_api',
         '@me_api',
-        '@roles_api',
         '@schools_api',
         '@alert_api',
         '@dashboard_api'
@@ -50,8 +49,7 @@ class Courses_Common {
         expect(interceptions[2].response.statusCode).to.equal(200)
         expect(interceptions[3].response.statusCode).to.equal(200)
         expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[5].response.statusCode).to.equal(200)
-        expect(interceptions[6].request.url).to.include('/dashboard')
+        expect(interceptions[5].request.url).to.include('/dashboard')
       })
   }
 

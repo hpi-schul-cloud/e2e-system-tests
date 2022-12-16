@@ -13,12 +13,6 @@ class Account_Common {
       .click()
     cy.get(Account_Common.#settingsButton)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
     cy.url()
       .should('include', '/account')
   }

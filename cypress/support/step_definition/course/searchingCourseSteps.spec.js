@@ -14,21 +14,3 @@ const courses = new Courses()
 When ('I enter the course name {string} into the search field',(roomName)=>{
     courses.searchForARoom(roomName)
 })
-
-//Scenario: teacher is able to search for a course and DO NOT find it
-
-When ('I enter the course name {string} into the search field',(roomName) =>{
-    courses.searchForARoom(roomName)
-})
-
-//Scenario: student is able to search for a course and find it
-
-When ('I enter the course name {string} into the search field',(roomName) =>{
-    courses.searchForARoom(roomName)
-})
-
-//Scenario: student is able to search for a course and DO NOT find it
-
-When ('I enter the course name {string} into the search field',(roomName) =>{
-    courses.searchForARoom(roomName)
-})

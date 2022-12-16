@@ -8,12 +8,6 @@ class Addons_Common {
     cy.get(Addons_Common.#addonsOverviewNavigationButton)
     .contains('Add-ons')
     .click()
-    .wait([
-      '@alerts_api'
-    ])
-    .then(interceptions => {
-      expect(interceptions.response.statusCode).to.equal(200)
-    })
     cy.url()
       .should('include', '/addons')
   }

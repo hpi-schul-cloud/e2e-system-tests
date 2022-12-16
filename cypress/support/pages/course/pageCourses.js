@@ -104,7 +104,8 @@ class Courses {
   }
 
   searchForARoom (roomName) {
-    cy.get(Courses.#searchFieldRoomOverview).type(roomName)
+    cy.get(Courses.#searchFieldRoomOverview)
+      .type(roomName)
   }
 }
 export default Courses

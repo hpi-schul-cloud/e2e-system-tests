@@ -16,27 +16,10 @@ class Management_Common {
   }
 
   navigateToStudentAdministration() {
-    cy.get(Management_Common.#studentAdministrationNavigationButton).click()
-    cy.wait([
-      '@runtime_config_api',
-      '@public_api',
-      '@me_api',
-      '@roles_api',
-      '@schools_api',
-      '@students_api',
-      '@alert_api',
-      '@classes_api',
-    ]).then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(200)
-      expect(interceptions[1].response.statusCode).to.equal(200)
-      expect(interceptions[2].response.statusCode).to.equal(200)
-      expect(interceptions[3].response.statusCode).to.equal(200)
-      expect(interceptions[4].response.statusCode).to.equal(200)
-      expect(interceptions[5].response.statusCode).to.equal(200)
-      expect(interceptions[6].response.statusCode).to.equal(200)
-      expect(interceptions[7].response.statusCode).to.equal(200)
-    })
-    cy.url().should('include', '/administration/students')
+    cy.get(Management_Common.#studentAdministrationNavigationButton)
+      .click()
+    cy.url()
+      .should('include', '/administration/students')
   }
 
   navigateToTeacherAdministration() {

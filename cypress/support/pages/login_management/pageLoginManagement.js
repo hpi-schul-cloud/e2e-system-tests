@@ -13,15 +13,6 @@ class Login_Management {
   visitLoginPage() {
     const link = Cypress.config('baseUrl', Cypress.env('DEFAULT'))
     cy.visit('login')
-    .wait([
-      '@locales_api',
-      '@alerts_api'
-    ])
-    .then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(200)
-      expect(interceptions[1].response.statusCode).to.equal(200)
-    })
-
   }
 
   clickOnForgotPassword() {
