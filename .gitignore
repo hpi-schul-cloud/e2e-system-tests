@@ -9,3 +9,10 @@ reports
 downloads
 runner-results
 multi-reporter-config.json
+
+.project
+.settings
+.idea
+*.log
+secrets
+*.swp

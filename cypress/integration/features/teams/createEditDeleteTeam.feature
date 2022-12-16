@@ -1,4 +1,5 @@
-Feature: Create, delete and edit operations on Teams
+@team @stable_test
+Feature: Team - Create, delete and edit operations on Teams
 
   As a teacher I want to create/edit/delete the team so that I can manage the team.
 
