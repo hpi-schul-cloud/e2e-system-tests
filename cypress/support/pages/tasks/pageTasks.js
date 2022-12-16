@@ -29,7 +29,7 @@ class Tasks {
   static #renameFileSubmitButton = '[data-testid="rename-file-dialog-submit-btn"]'
   static #deleteFileCancelButton = '[data-testid="delete-file-dialog-cancel-btn"]'
   static #deleteFileSubmitButton = '[data-testid="delete-file-dialog-submit-btn"]'
-  static #submissionSaveAndSendBtn = '[data-testid="tasks-submission-save-and-send-btn"]'
+  static #submissionSendButton = '[data-testid="tasks-submission-submit-btn"]'
   static #gradingSaveAndSendBtn = '[data-testid="tasks-submission-grading-save-and-send-btn"]'
   static #hintForSubmissionReceived = '[data-testid="tasks-submission-hint-received"]'
   static #doneTasksTab = '[data-testid="closedTasks"]'
@@ -346,7 +346,7 @@ class Tasks {
   }
 
   clickSaveAndSendSubmissionBtn () {
-    cy.get(Tasks.#submissionSaveAndSendBtn).click()
+    cy.get(Tasks.#submissionSendButton).click()
   }
 
   seeSubmissionReceivedHint () {

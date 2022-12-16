@@ -100,7 +100,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I enter text submission 'Hier ist die Antwort.'
     And I upload file 'testboard_jpg' for submission
     And I see file 'testboard_jpg' is visible in uploaded files section
-    And I click on button Save and Send Submission
+    And I click on button Send Submission
     Then I see hint that submission has been sent successfully
     When I go to tasks overview
     Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as student

@@ -146,7 +146,7 @@ Then('I see detail page for task {string}', (taskTitle) => {
   tasks.seeDetailPageForTask(taskTitle)
 })
 
-And('I click on button Save and Send Submission', () => {
+And('I click on button Send Submission', () => {
   tasks.clickSaveAndSendSubmissionBtn()
 })
 
