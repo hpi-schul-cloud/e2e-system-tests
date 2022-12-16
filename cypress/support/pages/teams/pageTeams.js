@@ -15,11 +15,12 @@ class Teams {
   static #teamSaveChanges = '[data-testid="save_team_button"]'
   static #teamDeleteOption = '[data-testid="delete_team_members"]'
   static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]'
+  static #teamMainSection = 'main > section'
 
 
 
   doNotSeeTeam (teamName) {
-    cy.get('main > section')
+    cy.get(Teams.#teamMainSection)
       .contains(teamName)
       .should('not.exist')
   }
@@ -68,7 +69,7 @@ class Teams {
   }
 
   clickOnAddTeam () {
-    cy.get('main > section').then(($element) => {
+    cy.get(Teams.#teamMainSection).then(($element) => {
       if ($element.hasClass('empty-state')) {
         cy.get(Teams.#addNewTeamEmptyOverviewButton)
           .click()
