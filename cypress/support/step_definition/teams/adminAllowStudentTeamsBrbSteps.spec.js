@@ -1,4 +1,4 @@
-import Management_Team from '../../pages/management/pageTeamManagement'
+import Management_Team from '../../pages/administration/pageTeamManagement'
 
 const managementTeam = new Management_Team()
 
