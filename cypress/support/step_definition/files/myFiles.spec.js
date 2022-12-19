@@ -40,8 +40,8 @@ And('I click delete file button of file {string}', (fileName) => {
     files.clickOnDeleteFile(fileName)
 })
 
-And('I click confirm delete file button', () => {
-    files.clickOnConfirmDeleteFile()
+And('I click confirm delete file button of file {string}', (fileName) => {
+    files.clickOnConfirmDeleteFile(fileName)
 })
 
 //THEN
@@ -50,11 +50,11 @@ Then('LibreOffice opens', () => {
 })
 
 Then('I can see file with name {string}', (fileName) => {
-    files.filenameIsShown(fileName)
+    files.fileNameIsShown(fileName)
 })
 
 Then('I can not see file with name {string}', (fileName) => {
-    files.filenameIsNotShown(fileName)
+    files.fileNameIsNotShown(fileName)
 })
 
 //doesn't work

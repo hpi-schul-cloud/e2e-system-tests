@@ -15,7 +15,7 @@ Scenario: Create a LibreOffice text document
         And I go to personal files overview
         Then I can see file with name 'Cy: LibraOffice Open'
         And I click delete file button of file 'Cy: LibraOffice Open.docx'
-        And I click confirm delete file button
+        And I click confirm delete file button of file 'Cy: LibraOffice Open.docx'
         Then I can not see file with name 'Cy: LibraOffice Open.docx'
 
 Scenario: Edit name of LibreOffice text document
@@ -37,7 +37,7 @@ Scenario: Edit name of LibreOffice text document
         And I click save name button
         Then I can see file with name 'Cy: LibraOffice Edit.docx'
         And I click delete file button of file 'Cy: LibraOffice Edit.docx'
-        And I click confirm delete file button
+        And I click confirm delete file button of file 'Cy: LibraOffice Edit.docx'
         Then I can not see file with name 'Cy: LibraOffice Edit.docx'
 
 Scenario: Delete a LibreOffice text document
@@ -52,9 +52,5 @@ Scenario: Delete a LibreOffice text document
         And I go to personal files overview
         Then I can see file with name 'Cy: LibraOffice Delete.docx'
         And I click delete file button of file 'Cy: LibraOffice Delete.docx'
-        And I click confirm delete file button
+        And I click confirm delete file button of file 'Cy: LibraOffice Delete.docx'
         Then I can not see file with name 'Cy: LibraOffice Delete.docx'
-
-
-# Can be extended to different users roles and document types
-# typing inside document currently doesn't work and would check LibreOffice not dBildungscloud

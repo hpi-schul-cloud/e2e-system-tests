@@ -69,33 +69,30 @@ class Files {
       })
   }
 
-  clickOnConfirmDeleteFile () {
+  clickOnConfirmDeleteFile (fileName) {
     cy.get(Files.#confirmDeleteFile)
       .focus()
       .should('be.visible')
       .click()
       .wait('@alerts_api')
     cy.contains(
-      "Bist du dir sicher, dass du 'testboard_jpg' löschen möchtest?"
+      `Bist du dir sicher, dass du ${fileName} löschen möchtest?`
     ).should('not.exist')
     //cy.get('div#MathJax_Message').should('exist')
   }
 
   libreOfficeOpens () {
     cy.url().should('include', '/files/file/')
-    cy.get(Files.#pageTitle)
-      .should('be.visible')
-      .contains('LibreOffice Online')
-      .should('be.visible')
     cy.wait('@alerts_api')
+    cy.contains(Files.#pageTitle, 'LibreOffice Online').should('be.visible')
   }
 
-  filenameIsShown (filename) {
-    cy.get(Files.#cardTitle).should('contain', filename)
+  fileNameIsShown (fileName) {
+    cy.contains(Files.#cardTitle, fileName).should('contain', fileName)
   }
 
-  filenameIsNotShown (fileName) {
-    cy.get(Files.#cardTitle).should('not.exist')
+  fileNameIsNotShown (fileName) {
+    cy.contains(Files.#cardTitle, fileName).should('not.exist')
   }
 
   //doesn't work
