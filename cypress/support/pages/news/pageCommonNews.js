@@ -43,17 +43,15 @@ class News_Common {
   }
 
   seeCreatedNews (newsTitle, newsDesc) {
-    cy.get(News_Common.#newsTitle).contains(newsTitle)
-    cy.get(News_Common.#newsDescriptionVisible).contains(newsDesc)
+    cy.get(News_Common.#newsTitle)
+      .contains(newsTitle)
+    cy.get(News_Common.#newsDescriptionVisible)
+      .contains(newsDesc)
   }
 
   clickOnCreateNewsSaveButton () {
     cy.get(News_Common.#newsCreateButton)
       .click()
-      .wait('@alerts_api')
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeTimeInput () {
@@ -83,21 +81,13 @@ class News_Common {
   clickOnAddNews () {
     cy.get(News_Common.#createNewNews)
       .click()
-      .then(object => {
-        cy.wrap(object)
-          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
-          .then(interceptions => {
-            expect(interceptions[0].response.statusCode).to.equal(200)
-            expect(interceptions[1].response.statusCode).to.equal(200)
-            expect(interceptions[2].response.statusCode).to.equal(200)
-            expect(interceptions[3].response.statusCode).to.equal(200)
-          })
-      })
   }
 
   navigateToNewsOverview () {
-    cy.get(News_Common.#newsOverviewNavigationButton).click()
-    cy.url().should('include', '/news')
+    cy.get(News_Common.#newsOverviewNavigationButton)
+      .click()
+    cy.url()
+      .should('include', '/news')
   }
 }
 export default News_Common

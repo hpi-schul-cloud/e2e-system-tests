@@ -3,14 +3,14 @@
 class Teams_Common {
   static #teamTitle = '[data-testid="title_of_an_element"]'
   static #teamSettings = '[data-testid="team_settings"]'
-  static #editTeam = '[data-testid="edit_team_members"]'
+  static #editTeam = '[data-testid="edit_team"]'
   static #rocketchat = '[data-testid="rocketchat_wrapper"]'
   static #teamOptions = '[data-testid="team_options"]'
   static #activateRCCheckbox = '[data-testid="rocketchat_checkbox"]'
   static #activateConfCheckbox = '[data-testid="videoconf_checkbox"]'
   static #teamsOverviewNavigationButton = '[data-testid="Teams"]'
   static #messangerActivation = '[data-testid="rocketchat_checkbox"]'
-  static #saveButton = '[data-testid="create_team_btn"]'
+  static #saveButton = '[data-testid="save_team_button"]'
   static #newsTabOnTeamDetail = '[data-tab="js-news"]'
   static #createNewsButtonOnTeamDetail = '[data-testid="create_a_team"]'
   static #threeDotManageTeam = '[id="page-title"]'
@@ -40,6 +40,12 @@ class Teams_Common {
         Teams_Common.#testAssertionData.lastName
       )
       .should('not.exist')
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   removeStudentInTeam () {
@@ -85,7 +91,14 @@ class Teams_Common {
   }
 
   clickOnManageTeamMembersEditOption () {
-    cy.get(Teams_Common.#manageTeamMembersOption).click()
+    cy.get(Teams_Common.#manageTeamMembersOption)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   clickOnThreeDotToManageTeam () {
@@ -97,12 +110,14 @@ class Teams_Common {
       .click()
       .then(object => {
         cy.wrap(object)
-          .wait(['@public_api', '@me_api', '@roles_api', '@schools_api'])
+          .wait([ '@runtime_config_api', '@public_api', '@me_api', '@roles_api', '@schools_api', '@alert_api'])
           .then(interceptions => {
             expect(interceptions[0].response.statusCode).to.equal(200)
             expect(interceptions[1].response.statusCode).to.equal(200)
             expect(interceptions[2].response.statusCode).to.equal(200)
             expect(interceptions[3].response.statusCode).to.equal(200)
+            expect(interceptions[4].response.statusCode).to.equal(200)
+            expect(interceptions[5].response.statusCode).to.equal(200)
           })
       })
   }
@@ -114,11 +129,19 @@ class Teams_Common {
   navigateToTeamsOverview () {
     cy.get(Teams_Common.#teamsOverviewNavigationButton)
     .click()
-    .url().should('include', '/teams')
+    .wait([
+      '@alerts_api'
+    ])
+    .then(interceptions => {
+      expect(interceptions.response.statusCode).to.equal(200)
+    })
+    cy.url()
+    .should('include', '/teams')
   }
 
   selectTeam (teamName) {
-    cy.get(Teams_Common.#teamTitle).contains(teamName)
+    cy.get(Teams_Common.#teamTitle)
+      .contains(teamName)
       .click()
       .wait([
         '@alerts_api',

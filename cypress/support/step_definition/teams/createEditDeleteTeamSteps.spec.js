@@ -47,7 +47,7 @@ When('I enter in the description {string}', (desc) => {
 	teams.enterTeamDescription(desc)
 })
 
-When('I select the team colour to black', () => {
+When('I select the team colour black', () => {
 	teams.selectTeamColour()
 })
 

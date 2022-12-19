@@ -1,4 +1,4 @@
-import Management from '../../../pages/management/pageManagement'
+import Management from '../../../pages/administration/pageAdministration'
 
 const management = new Management()
 
@@ -55,7 +55,7 @@ And('I click on delete button in pop up', () => {
   management.clickDeleteButtonInPopup()
 })
 
-Then('I cannot see user {string} in the table', (email) => {
+Then('I can not see user {string} in the table', (email) => {
   management.userIsNotVisibleInTable(email)
 })
 

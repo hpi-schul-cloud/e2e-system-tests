@@ -1,4 +1,4 @@
-import Management from '../../../pages/management/pageManagement'
+import Management from '../../../pages/administration/pageAdministration'
 import Teams_Common from '../../../pages/teams/pageCommonTeams'
 
 const management = new Management()

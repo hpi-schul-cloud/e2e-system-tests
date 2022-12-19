@@ -12,7 +12,7 @@ const courses = new Courses()
 
 //Scenario: Adding a new course
 
-And('I fill out the course creation form for new course {string}', (newCourseName) => {
+And('I enter the course title {string}', (newCourseName) => {
   courses.fillCourseCreationForm(newCourseName)
 })
 
@@ -27,5 +27,5 @@ Then('I edit the title of the room to {string} and the description', (editedRoom
 //Scenario: Deleting the test course/room created during executing the testing
 
 Then('I should be able to delete the test room', () => {
-  courses.performDeletion()
+  courses.performRoomDeletion()
 })

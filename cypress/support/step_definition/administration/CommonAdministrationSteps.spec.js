@@ -1,5 +1,5 @@
-import Management_Common from '../../pages/management/pageCommonManagement'
-import Management from '../../pages/management/pageManagement'
+import Management_Common from '../../pages/administration/pageCommonAdministration'
+import Management from '../../pages/administration/pageAdministration'
 
 const managementCommon = new Management_Common()
 const management = new Management()
@@ -27,6 +27,10 @@ And('I go to student administration', () => {
 And('I go to teacher administration', () => {
   managementCommon.navigateToTeacherAdministration()
 })
+
+When('I go to team administration', () => {
+  managementCommon.navigateToTeamAdministration();
+});
 
 When('I click on FAB', () => {
   management.clickOnFAB()

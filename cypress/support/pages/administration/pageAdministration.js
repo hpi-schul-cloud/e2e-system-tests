@@ -1,159 +1,183 @@
 'use strict'
 
-class Administration {
-    static #fabButton = '#fab'
-    static #createUserButton = '.v-btn--router'
-    static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]'
-    static #lastNameCreationForm = '[data-testid="input_create-user_lastname"]'
-    static #emailCreationForm = '[data-testid="input_create-user_email"]'
-    static #addButton = '[data-testid="button_create-user_submit"]'
-    static #searchbar = '.core > [data-testid="searchbar"]'
-    static #editStudentButton = '[data-testid="edit_student_button"]'
-    static #editTeacherButton = '[data-testid="edit_teacher_button"]'
-    static #firstNameEditForm = "input[name='firstName']"
-    static #lastNameEditForm = "input[name='lastName']"
-    static #emailEditForm = "input[name='email']"
-    static #submitButton = '.btn-submit'
-    static #deleteButton = '.btn-delete'
-    static #cancelButtonConfirmation = '.cancel-modal button.btn-close'
-    static #deleteButtonCancel = '.cancel-modal button.historyback'
-    static #deleteButtonConfirmation = '.delete-modal.in  button.btn-submit'
-    static #newSchoolAdminPageButton = '.btn-info'
-    static #chatToggleSwitch = '.rocketchat-switch'
-    static #videoconferenceToggleSwitch = '.videoconference-switch'
-    static #saveGeneralSettingsButton = '.my-5'
-    static #tableContents =  '[data-testid="table-data-body"]'
+class Management {
+  static #fabButton = '#fab'
+  static #addStudentButton = '[data-testid="fab_button_add_students"]'
+  static #addTeacherButton = '[data-testid="fab_button_add_teachers"]'
+  static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]'
+  static #lastNameCreationForm = '[data-testid="input_create-user_lastname"]'
+  static #emailCreationForm = '[data-testid="input_create-user_email"]'
+  static #addButton = '[data-testid="button_create-user_submit"]'
+  static #searchbar = '.core > [data-testid="searchbar"]'
+  static #editStudentButton = '[data-testid="edit_student_button"]'
+  static #firstNameEditForm = "input[name='firstName']"
+  static #lastNameEditForm = "input[name='lastName']"
+  static #emailEditForm = "input[name='email']"
+  static #submitButton = '[data-testid="button_save_user"]'
+  static #deleteButton = '[data-testid="button_delete_user"]'
+  static #deleteButtonConfirmation = '[data-testid="btn-submit"]'
+  static #newSchoolAdminPageButton = '[data-testid="button_new_admin_page"]'
+  static #chatToggleSwitch = '.rocketchat-switch'
+  static #videoconferenceToggleSwitch = '.videoconference-switch'
+  static #saveGeneralSettingsButton = '.my-5'
+  static #tableContents = '[data-testid="table-data-body"]'
 
-    clickOnAdministrationFAB () {
-        cy.get(Administration.#fabButton).click()
-        cy.get(Administration.#createUserButton).click()
+  clickOnFAB () {
+    cy.get(Management.#fabButton).click()
+  }
+
+  clickOnAddStudentInFAB () {
+    cy.get(Management.#addStudentButton).click()
+  }
+
+  clickOnAddTeacherInFAB () {
+    cy.get(Management.#addTeacherButton).click()
+  }
+
+  fillUserCreationForm (forename, surname, email) {
+    cy.get(Management.#firstNameCreationForm).type(forename)
+    cy.get(Management.#lastNameCreationForm).type(surname)
+    cy.get(Management.#emailCreationForm).type(email)
+  }
+
+  clickOnAddButton (role) {
+    if (!(role == 'student')) {
+      cy.intercept('POST', '**/teachers').as('post_role_api')
+      cy.intercept('GET', '**/teachers?**').as('get_roles_api')
+    } else {
+      cy.intercept('POST', '**/students').as('post_role_api')
+      cy.intercept('GET', '**/students?**').as('get_roles_api')
     }
-
-    fillStudentCreationForm () {
-        cy.get(Administration.#firstNameCreationForm).type('Adam')
-        cy.get(Administration.#lastNameCreationForm).type('Riese')
-        cy.get(Administration.#emailCreationForm).type('adam.riese@example.com')
-    }
-
-    fillTeacherCreationForm () {
-        cy.get(Administration.#firstNameCreationForm).type('Adam')
-        cy.get(Administration.#lastNameCreationForm).type('Rose')
-        cy.get(Administration.#emailCreationForm).type('adam.rose@example.com')
-    }
-
-    clickOnAddButton () {
-        cy.get(Administration.#addButton).click()
-    }
-
-    enterNameForSearch () {
-        cy.get(Administration.#searchbar).type('Adam')
-    }
-
-    clickEditStudentButton () {
-        cy.get(Administration.#editStudentButton).eq(0).click()
-    }
-
-    clickEditTeacherButton () {
-        cy.get(Administration.#editTeacherButton).eq(0).click()
-    }
-
-    changeStudentUserInformation () {
-        cy.get(Administration.#firstNameEditForm).clear()
-        cy.get(Administration.#firstNameEditForm).type('Alex')
-        cy.get(Administration.#lastNameEditForm).clear()
-        cy.get(Administration.#lastNameEditForm).type('Abramovic')
-        cy.get(Administration.#emailEditForm).clear()
-        cy.get(Administration.#emailEditForm).type('alex.abramovic@example')
-    }
-
-    changeTeacherUserInformation () {
-        cy.get(Administration.#firstNameEditForm).clear()
-        cy.get(Administration.#firstNameEditForm).type('Amber')
-        cy.get(Administration.#lastNameEditForm).clear()
-        cy.get(Administration.#lastNameEditForm).type('Adams Young')
-        cy.get(Administration.#emailEditForm).clear()
-        cy.get(Administration.#emailEditForm).type('amber.adams-young@example')
-    }
-
-    clickSaveButton () {
-        cy.get(Administration.#submitButton).eq(0).click()
-    }
-
-    clickDeleteButton () {
-        cy.get(Administration.#deleteButton).click()
-    }
-
-    clickDeleteButtonInPopup () {
-        cy.get(Administration.#deleteButtonConfirmation).click()
-    }
-
-    clickNewAdminPageButton () {
-        cy.get(Administration.#newSchoolAdminPageButton).click()
-    }
-
-    clickChatToggleSwitch () {
-        cy.intercept('/api/v1/federalStates/*').as('federalStates')
-        cy.wait('@federalStates')
-        cy.get(Administration.#chatToggleSwitch)
-        .find('input')
-        .click({ force: true })
-        //need to find out current state and decide if state needs to be changed
-        //if current state aria-checked="true" and I want it activated then I don't need to click
-        //if current state aria-checked="false" and I want it activated then I need to click
-        /*
-
-        it('Enable', function () {
-        cy.get('input[aria-label="toggle switch"]').eq(2).then(($ele) => { //#input-130 für Video, input-125 für Chat
-        if ($ele.is(':true')) {
-            return
-        } else {
-            cy.wrap($ele).click()
-            //cy.get(Administration.#chatToggleSwitch)
-        }
-        })
+    cy.get(Management.#addButton)
+      .click()
+    cy.wait(['@post_role_api', '@classes_api', '@get_roles_api'], {
+      timeout: 10000
+    }).then(interceptions => {
+      expect(interceptions[0].response.statusCode).to.equal(201)
+      expect(interceptions[1].response.statusCode).to.equal(200)
+      expect(interceptions[2].response.statusCode).to.equal(200)
+      expect(interceptions[2].request.url).to.include('/api/v1/users/admin')
     })
+  }
 
-    it('Disable', function () {
-    cy.get('input[aria-label="toggle switch"]').eq(2).then(($ele) => {
-        if ($ele.is(':true')) {
-            cy.wrap($ele).click()
-            //cy.get(Administration.#chatToggleSwitch)
-        } else {
-            return
-        }
+  enterNameForSearch (role, keyword) {
+    if (!(role == 'student')) {
+      cy.intercept('**/teachers?**').as('search_api')
+    } else {
+      cy.intercept('**/students?**').as('search_api')
+    }
+    cy.get(Management.#searchbar).type(keyword)
+    cy.wait('@search_api')
+      .its('response.statusCode')
+      .should('eq', 200)
+  }
+
+  clickEditStudentButton (email) {
+    cy.contains('td', email)
+      .siblings()
+      .find('a')
+      .should('have.attr', 'data-testid', 'edit_student_button')
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
+  }
+
+  clickEditTeacherButton (email) {
+    cy.contains('td', email)
+      .siblings()
+      .find('a')
+      .should('have.attr', 'data-testid', 'edit_teacher_button')
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
+  }
+
+  changeUsername (firstname, surname) {
+    cy.get(Management.#firstNameEditForm).clear()
+    cy.get(Management.#firstNameEditForm).type(firstname)
+    cy.get(Management.#lastNameEditForm).clear()
+    cy.get(Management.#lastNameEditForm).type(surname)
+  }
+
+  changeEmail (newEmail) {
+    cy.get(Management.#emailEditForm).clear()
+    cy.get(Management.#emailEditForm).type(newEmail)
+  }
+
+  clickSaveButton () {
+    cy.get(Management.#submitButton)
+      .eq(0)
+      .click()
+  }
+
+  deleteUser (email) {
+    cy.get(Management.#emailEditForm)
+      .should('have.value', email)
+      .then($matchEmail => {
+        this.clickDeleteButton()
+      })
+  }
+
+  clickDeleteButton () {
+    cy.get(Management.#deleteButton).click()
+  }
+
+  clickDeleteButtonInPopup () {
+    cy.get(Management.#deleteButtonConfirmation).click({
+      multiple: true,
+      force: true
     })
-    })*/
-    }
+  }
 
-    clickVideoconferenceToggleSwitch () {
-        cy.intercept('/api/v1/federalStates/*').as('federalStates')
-        cy.wait('@federalStates')
-        cy.get(Administration.#videoconferenceToggleSwitch)
-        .find('input')
-        .click({ force: true })
-    }
+  clickNewAdminPageButton () {
+    cy.get(Management.#newSchoolAdminPageButton).click()
+    cy.url().should('include', '/administration/school-settings')
+  }
 
-    clickSaveGeneralSettingsButton () {
-        cy.get(Administration.#saveGeneralSettingsButton).click()
-    }
+  clickVideoConferenceToggleSwitch () {
+    cy.intercept('**/federalStates/**').as('federalStates')
+    cy.wait('@federalStates')
+    cy.get(Management.#videoconferenceToggleSwitch)
+      .find('input')
+      .click({ force: true })
+  }
 
-    createdUserIsVisibleInTable () {
-        //cy.get(Administration.#searchbar).clear(Administration.#searchbar)
-        cy.get(Administration.#tableContents)
-        cy.contains('Adam')
-    }
+  clickSaveGeneralSettingsButton () {
+    cy.get(Management.#saveGeneralSettingsButton).click({
+      multiple: true,
+      force: true
+    })
+  }
 
-    editedUserIsVisibleInTable () {
-        cy.get(Administration.#searchbar).clear()
-        cy.get(Administration.#tableContents)
-        cy.contains(/Alex|Amber/g)
-    }
+  userIsVisibleInTable (email) {
+    cy.get(Management.#searchbar).clear(Management.#searchbar)
+    cy.get(Management.#tableContents)
+    cy.contains(email)
+      .should('be.visible')
+      .and('contain.text', email)
+  }
 
-    createdUserIsNotVisibleInTable () {
-        cy.get(Administration.#searchbar).clear()
-        cy.get(Administration.#tableContents)
-        cy.contains('Adam').should('not.exist')
-        cy.contains('Alex').should('not.exist')
-    }
+  userIsNotVisibleInTable (email) {
+    cy.get(Management.#searchbar)
+      .clear(Management.#searchbar)
+    cy.get(Management.#tableContents)
+      .contains(email).should('not.exist')
+  }
+
+  clickChatToggleSwitch () {
+    cy.intercept('**/federalStates/**').as('federalStates')
+    cy.wait('@federalStates')
+    cy.get(Management.#chatToggleSwitch)
+      .find('input')
+      .click({ force: true })
+  }
 }
-export default Administration
+export default Management
