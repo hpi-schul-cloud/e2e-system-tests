@@ -9,31 +9,51 @@ Scenario: Create a LibreOffice text document
         And I go to personal files overview
         When I click create a new file button
         And I select filetype document
-        When I type in 'Neues Text-Dokument'
+        When I type in 'Cy: LibraOffice Open'
         And I click create file button
         Then LibreOffice opens
         And I go to personal files overview
-        Then I can see file with name 'Neues Text-Dokument'
+        Then I can see file with name 'Cy: LibraOffice Open'
+        And I click delete file button of file 'Cy: LibraOffice Open.docx'
+        And I click confirm delete file button
+        Then I can not see file with name 'Cy: LibraOffice Open.docx'
 
 Scenario: Edit name of LibreOffice text document
         Given I am logged in as a 'student' at 'brb'
         When I go to files overview
         And I go to personal files overview
-        When I click file with 'Neues Text-Dokument'
+        When I click create a new file button
+        And I select filetype document
+        When I type in 'Cy: LibraOffice Open'
+        And I click create file button
         Then LibreOffice opens
         And I go to personal files overview
-        And I click rename file button
-        And I enter new file name 'Nicht mehr ganz so neues Text-Dokument.docx'
+        Then I can see file with name 'Cy: LibraOffice Open'
+        When I click file with 'Cy: LibraOffice Open'
+        Then LibreOffice opens
+        And I go to personal files overview
+        And I click rename file button of file 'Cy: LibraOffice Open'
+        And I enter new file name 'Cy: LibraOffice Edit.docx'
         And I click save name button
-        Then I can see file with name 'Nicht mehr ganz so neues Text-Dokument.docx'
+        Then I can see file with name 'Cy: LibraOffice Edit.docx'
+        And I click delete file button of file 'Cy: LibraOffice Edit.docx'
+        And I click confirm delete file button
+        Then I can not see file with name 'Cy: LibraOffice Edit.docx'
 
 Scenario: Delete a LibreOffice text document
         Given I am logged in as a 'student' at 'brb'
         When I go to files overview
         And I go to personal files overview
-        And I click delete file button
+        When I click create a new file button
+        And I select filetype document
+        When I type in 'Cy: LibraOffice Delete'
+        And I click create file button
+        Then LibreOffice opens
+        And I go to personal files overview
+        Then I can see file with name 'Cy: LibraOffice Delete.docx'
+        And I click delete file button of file 'Cy: LibraOffice Delete.docx'
         And I click confirm delete file button
-        Then I can not see file with name 'Nicht mehr ganz so neues Text-Dokument.docx'
+        Then I can not see file with name 'Cy: LibraOffice Delete.docx'
 
 
 # Can be extended to different users roles and document types

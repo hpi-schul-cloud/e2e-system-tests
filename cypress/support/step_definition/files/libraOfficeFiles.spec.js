@@ -12,32 +12,32 @@ And('I select filetype document', () => {
     files.selectFiletypeDocument()
 })
 
-When('I type in {string}', (filename) => {
-    files.typeFilename(filename)
+When('I type in {string}', (fileName) => {
+    files.typeFilename(fileName)
 })
 
 And('I click create file button', () => {
     files.clickOnCreateFile()
 })
 
-When('I click file with {string}', (filename) => {
-    files.clickOnFileWithName(filename)
+When('I click file with {string}', (fileName) => {
+    files.clickOnFileWithName(fileName)
 })
 
-And('I click rename file button', () => {
-    files.clickOnRenameFile()
+And('I click rename file button of file {string}', (fileName) => {
+    files.clickOnRenameFile(fileName)
 })
 
-And('I enter new file name {string}', (filename) => {
-    files.typeNewFilename(filename)
+And('I enter new file name {string}', (fileName) => {
+    files.typeNewFilename(fileName)
 })
 
 And('I click save name button', () => {
     files.clickOnSaveFilename()
 })
 
-And('I click delete file button', () => {
-    files.clickOnDeleteFile()
+And('I click delete file button of file {string}', (fileName) => {
+    files.clickOnDeleteFile(fileName)
 })
 
 And('I click confirm delete file button', () => {
@@ -49,12 +49,12 @@ Then('LibreOffice opens', () => {
     files.libreOfficeOpens()
 })
 
-Then('I can see file with name {string}', (filename) => {
-    files.filenameIsShown(filename)
+Then('I can see file with name {string}', (fileName) => {
+    files.filenameIsShown(fileName)
 })
 
-Then('I can not see file with name {string}', (filename) => {
-    files.filenameIsNotShown(filename)
+Then('I can not see file with name {string}', (fileName) => {
+    files.filenameIsNotShown(fileName)
 })
 
 //doesn't work

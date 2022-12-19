@@ -26,7 +26,10 @@ class Files {
 
   selectFiletypeDocument () {
     cy.get(Files.#filetypeDropdown).click()
-    cy.get(Files.#filetypeDocument).click()
+    cy.get(Files.#filetypeDocument)
+      .contains('Textdokument (docx)')
+      .should('be.visible')
+      .click()
   }
 
   typeFilename (filename) {
@@ -38,12 +41,15 @@ class Files {
   }
 
   clickOnFileWithName (filename) {
-    cy.get(Files.#cardTitle).click({ multiple: true, force: true })
-    cy.focused().click()
+    cy.get(Files.#cardTitle).contains(filename).should('be.visible').click()
   }
 
-  clickOnRenameFile () {
-    cy.get(Files.#renameFile).click({ multiple: true, force: true })
+  clickOnRenameFile (fileName) {
+    cy.get(Files.#cardTitle)
+      .contains(fileName)
+      .then(() => {
+        cy.get(Files.#renameFile).first().click()
+      })
   }
 
   typeNewFilename (filename) {
@@ -54,29 +60,42 @@ class Files {
     cy.get(Files.#saveRenameFile).click()
   }
 
-  clickOnDeleteFile () {
-    cy.get(Files.#deleteFile).click({ multiple: true, force: true })
+  clickOnDeleteFile (fileName) {
+    cy.get(Files.#cardTitle)
+      .contains(fileName)
+      .then(() => {
+        cy.get(Files.#deleteFile).first().should('be.visible').click()
+        cy.get("[data-testid='modal_content']").should('be.visible') //ksmdmskdmksdmksdmksdmksmdksdmksmdk
+      })
   }
 
   clickOnConfirmDeleteFile () {
-    cy.get(Files.#confirmDeleteFile).click()
+    cy.get(Files.#confirmDeleteFile)
+      .focus()
+      .should('be.visible')
+      .click()
+      .wait('@alerts_api')
+    cy.contains(
+      "Bist du dir sicher, dass du 'testboard_jpg' löschen möchtest?"
+    ).should('not.exist')
+    //cy.get('div#MathJax_Message').should('exist')
   }
 
   libreOfficeOpens () {
     cy.url().should('include', '/files/file/')
     cy.get(Files.#pageTitle)
-    cy.contains('LibreOffice Online')
+      .should('be.visible')
+      .contains('LibreOffice Online')
+      .should('be.visible')
+    cy.wait('@alerts_api')
   }
 
   filenameIsShown (filename) {
     cy.get(Files.#cardTitle).should('contain', filename)
   }
 
-  filenameIsNotShown (filename) {
-    cy.get(Files.#cardTitle)
-    cy.contains(
-      /Neues Text-Dokument|Nicht mehr ganz so neues Text-Dokument.docx/g
-    ).should('not.exist')
+  filenameIsNotShown (fileName) {
+    cy.get(Files.#cardTitle).should('not.exist')
   }
 
   //doesn't work
