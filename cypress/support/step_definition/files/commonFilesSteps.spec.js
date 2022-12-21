@@ -6,7 +6,7 @@ When('I go to files overview', () => {
   files.navigateToFilesOverview()
 })
 
-And('I go to personal files overview', () => {
+Then('I go to personal files overview', () => {
   files.navigateToPersonalFilesOverview()
 })
 
@@ -21,6 +21,3 @@ When('I go to team files overview', () => {
 When('I go to shared files overview', () => {
   files.navigateToSharedFilesOverview()
 })
-
-//Then('I would need a final confirmation', () => {
-//})

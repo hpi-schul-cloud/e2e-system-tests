@@ -21,6 +21,15 @@ class Files {
   static #pageTitle = '[data-testid="LibreOffice Online"]'
   static #deleteDialogBoxPopupContainer = '[data-testid="modal_content"]'
 
+  static #testAssertionData = {
+    fileTypeDocument: 'Textdokument (docx)',
+    createFileSubmitButtonText: 'Datei erstellen',
+    saveRenameButtonText: 'Speichern',
+    libraOfficeOpenTitleText: 'LibreOffice Online',
+    deletePopupTextInitials: 'Bist du dir sicher, dass du ',
+    deletePopupTextFinal: ' löschen möchtest?'
+  }
+
   clickOnCreateNewFile () {
     cy.get(Files.#newFile).click()
   }
@@ -28,7 +37,7 @@ class Files {
   selectFiletypeDocument () {
     cy.get(Files.#filetypeDropdown).click()
     cy.get(Files.#filetypeDocument)
-      .contains('Textdokument (docx)')
+      .contains(Files.#testAssertionData.fileTypeDocument)
       .should('be.visible')
       .click()
   }
@@ -38,7 +47,10 @@ class Files {
   }
 
   clickOnCreateFile () {
-    cy.contains(Files.#createFile, 'Datei erstellen').click()
+    cy.contains(
+      Files.#createFile,
+      Files.#testAssertionData.createFileSubmitButtonText
+    ).click()
   }
 
   clickOnFileWithName (fileName) {
@@ -58,7 +70,10 @@ class Files {
   }
 
   clickOnSaveFilename () {
-    cy.contains(Files.#saveRenameFile, 'Speichern').click()
+    cy.contains(
+      Files.#saveRenameFile,
+      Files.#testAssertionData.saveRenameButtonText
+    ).click()
     cy.wait('@alerts_api')
   }
 
@@ -72,20 +87,28 @@ class Files {
   }
 
   clickOnConfirmDeleteFile (fileName) {
+    let deletePopUpTextInitials = Files.#testAssertionData.deletePopupTextInitials
+    let deletePopUpTextTitle = deletePopUpTextInitials.concat(
+      "'",
+      fileName,
+      "'",
+      Files.#testAssertionData.deletePopupTextFinal
+    )
     cy.get(Files.#confirmDeleteFile)
       .focus()
       .should('be.visible')
       .click()
       .wait('@alerts_api')
-    cy.contains(
-      `Bist du dir sicher, dass du ${fileName} löschen möchtest?`
-    ).should('not.exist')
+    cy.contains(deletePopUpTextTitle).should('not.exist')
   }
 
   libreOfficeOpens () {
     cy.url().should('include', '/files/file/')
     cy.wait('@alerts_api')
-    cy.contains(Files.#pageTitle, 'LibreOffice Online').should('be.visible')
+    cy.contains(
+      Files.#pageTitle,
+      Files.#testAssertionData.libraOfficeOpenTitleText
+    ).should('be.visible')
   }
 
   fileNameIsShown (fileName) {
