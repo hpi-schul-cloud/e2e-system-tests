@@ -19,6 +19,7 @@ jobs:
             'login',
             'tasks',
             'team',
+            'files',
           ]
 
     steps:
