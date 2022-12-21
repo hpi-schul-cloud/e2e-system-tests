@@ -23,12 +23,14 @@ class Tasks {
   static #fileUploadInput = '[data-testid="tasks-edit-fileupload-input"]'
   static #filesSection = '[data-testid="tasks-edit-section-files"]'
   static #uploadedFilesSection = '[data-testid="section-uploadedfiles"]'
+  static #uploadedFilesSectionInSubmission = '[data-testid="tasks-edit-section-files"]'
   static #fileViewerSection = '[class="file-viewer"]'
   static #renameFileInput = '[id="newNameInput"]'
   static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]'
   static #renameFileSubmitButton = '[data-testid="rename-file-dialog-submit-btn"]'
   static #deleteFileCancelButton = '[data-testid="delete-file-dialog-cancel-btn"]'
   static #deleteFileSubmitButton = '[data-testid="delete-file-dialog-submit-btn"]'
+  static #submissionSaveButton = '[data-testid="tasks-submission-save-btn"]'
   static #submissionSendButton = '[data-testid="tasks-submission-submit-btn"]'
   static #gradingSaveAndSendBtn = '[data-testid="tasks-submission-grading-save-and-send-btn"]'
   static #hintForSubmissionReceived = '[data-testid="tasks-submission-hint-received"]'
@@ -220,6 +222,14 @@ class Tasks {
     })
   }
 
+  seeFileInSubmissionSectionUploadedFiles (fileName) {
+    cy.get(Tasks.#uploadedFilesSectionInSubmission)
+      .eq(1)
+      .contains(fileName, {
+      includeShadowDom: true
+    })
+  }
+
   fileIsNotVisibleInSectionFiles (fileName) {
     cy.get(Tasks.#filesSection)
       .contains(fileName, { includeShadowDom: true })
@@ -345,7 +355,11 @@ class Tasks {
     cy.get(Tasks.#submissionTab).click({ multiple: true })
   }
 
-  clickSaveAndSendSubmissionBtn () {
+  clickSaveSubmissionBtn () {
+    cy.get(Tasks.#submissionSaveButton).click()
+  }
+
+  clickSendSubmissionBtn () {
     cy.get(Tasks.#submissionSendButton).click()
   }
 
