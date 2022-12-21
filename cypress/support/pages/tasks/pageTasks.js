@@ -240,9 +240,10 @@ class Tasks {
   }
 
   seeFileInSubmissionSectionUploadedFiles (fileName) {
-    cy.get(Tasks.#uploadedFilesSectionInSubmission).eq(1).contains(fileName, {
-      includeShadowDom: true
-    })
+    cy.get(Tasks.#uploadedFilesSectionInSubmission)
+      .eq(1)
+      .contains(fileName, { includeShadowDom: true })
+      .should('be.visible')
   }
 
   fileIsNotVisibleInSectionFiles (fileName) {
@@ -315,12 +316,9 @@ class Tasks {
   }
 
   clickDownloadFileInSubmission (fileName) {
-    cy.get(Tasks.#submissionsSection)
-      .find('a')
-      .should('contain', fileName)
-      .parent()
-      .find('span')
-      .find('a')
+    cy.get(`[data-file-name="${fileName}"]`)
+      .find('button')
+      .should('be.visible')
       .click()
   }
 
