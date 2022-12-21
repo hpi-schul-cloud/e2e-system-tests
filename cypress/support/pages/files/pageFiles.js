@@ -43,7 +43,9 @@ class Files {
   }
 
   typeFilename (fileName) {
-    cy.get(Files.#filenameInputField).type(fileName)
+    cy.get(Files.#filenameInputField)
+      .type(fileName)
+      .should('have.value', fileName)
   }
 
   clickOnCreateFile () {
@@ -66,7 +68,10 @@ class Files {
   }
 
   typeNewFilename (fileName) {
-    cy.get(Files.#newFilenameInputField).clear().type(fileName)
+    cy.get(Files.#newFilenameInputField)
+      .clear()
+      .type(fileName, { force: true })
+      .should('have.value', fileName)
   }
 
   clickOnSaveFilename () {
@@ -87,7 +92,8 @@ class Files {
   }
 
   clickOnConfirmDeleteFile (fileName) {
-    let deletePopUpTextInitials = Files.#testAssertionData.deletePopupTextInitials
+    let deletePopUpTextInitials =
+      Files.#testAssertionData.deletePopupTextInitials
     let deletePopUpTextTitle = deletePopUpTextInitials.concat(
       "'",
       fileName,
