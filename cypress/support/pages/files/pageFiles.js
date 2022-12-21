@@ -69,6 +69,7 @@ class Files {
 
   typeNewFilename (fileName) {
     cy.get(Files.#newFilenameInputField)
+      .focus()
       .clear()
       .type(fileName, { force: true })
       .should('have.value', fileName)
