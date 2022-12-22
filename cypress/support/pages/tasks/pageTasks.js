@@ -23,13 +23,13 @@ class Tasks {
   static #submissionTab = '[id="submission-tab-link"]'
   static #submissionsTab = '[id="submissions-tab-link"]'
   static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
-  static #fileUploadButtonDisabled = '[data-testid="tasks-edit-fileupload"]'
-  static #fileUploadButtonEnabled = '[data-testid="tasks-edit-fileupload"]'
-  static #fileUploadInput = '[data-testid="tasks-edit-fileupload-input"]'
-  static #filesSection = '[data-testid="tasks-edit-section-files"]'
+  static #fileUploadButtonDisabled = '[data-testid="fileupload-button"]'
+  static #fileUploadButtonEnabled = '[data-testid="fileupload-button"]'
+  static #fileUploadInput = '[data-testid="fileupload-input"]'
+  static #filesSection = '[data-testid="tasks-section-files"]'
   static #uploadedFilesSection = '[data-testid="section-uploadedfiles"]'
   static #uploadedFilesSectionInSubmission =
-    '[data-testid="tasks-edit-section-files"]'
+    '[data-testid="submissions-section-files"]'
   static #fileViewerSection = '[class="file-viewer"]'
   static #renameFileInput = '[id="newNameInput"]'
   static #renameFileCancelButton =
@@ -241,7 +241,6 @@ class Tasks {
 
   seeFileInSubmissionSectionUploadedFiles (fileName) {
     cy.get(Tasks.#uploadedFilesSectionInSubmission)
-      .eq(1)
       .contains(fileName, { includeShadowDom: true })
       .should('be.visible')
   }
