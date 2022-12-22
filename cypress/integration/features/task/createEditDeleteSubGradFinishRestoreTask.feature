@@ -1,4 +1,4 @@
-@unstable_test
+@tasks @stable_test
 Feature: Task - To create, edit and delete tasks by the teacher.
 
   As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
@@ -97,10 +97,11 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on task 'Cy Task Creating, Editing, Deleting Test'
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
-    And I enter text submission 'Hier ist die Antwort.'
-    And I upload file 'testboard_jpg' for submission
-    And I see file 'testboard_jpg' is visible in uploaded files section
-    And I click on button Send Submission
+    When I enter text submission 'Hier ist die Antwort.'
+    When I click on button Save Submission
+    When I upload file 'testboard_jpg' for submission
+    When I see file 'testboard_jpg' is visible in uploaded files section of submission
+    When I click on button Send Submission
     Then I see hint that submission has been sent successfully
     When I go to tasks overview
     Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
