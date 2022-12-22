@@ -67,6 +67,7 @@ class Tasks {
   static #finishedTasksListDiv = '[id="finished"]'
   static #taskDotMenu = '[data-testid="task-menu"]'
   static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]'
+  static #uploadedFileNameTag = '.card-block > div > a'
 
   clickCancelDeletionButtonInEditTask () {
     cy.get(Tasks.#dialogCancelDeletionTaskButtons).click()
@@ -153,7 +154,7 @@ class Tasks {
     cy.get(Tasks.#fileUploadInput)
       .attachFile(fileName) // attaching the file
       .then(() => {
-        cy.contains('.card-block > div > a', fileName).should('be.visible')
+        cy.contains(Tasks.#uploadedFileNameTag, fileName).should('be.visible')
       })
   }
 
