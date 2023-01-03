@@ -25,7 +25,7 @@ class Invalid_Credentials {
     invalidPassword:
       'sc9lwOX#Z!ImcKVp66SP9ag$RvEX00nhR&Vn@dIW@hhREU||Zhbhbhu&&&$)Uhbwhbdbb|||',
     errorMessageText: 'Login fehlgeschlagen.',
-    formValidationText: 'Please fill out this field.',
+    formValidationText: /[Please fill]+(out|in)?[ this field.]+/
   }
 
   emailFieldIsVisibleAndEmpty () {
@@ -36,7 +36,10 @@ class Invalid_Credentials {
         .then(el => {
           expect(el[0].checkValidity()).to.be.false
         })
-      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).should('have.length', 2)
+      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).should(
+        'have.length',
+        2
+      )
     })
   }
 
@@ -77,18 +80,27 @@ class Invalid_Credentials {
         .then(el => {
           expect(el[0].checkValidity()).to.be.false
         })
-      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).should('have.length', 1)
+      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).should(
+        'have.length',
+        1
+      )
     })
   }
 
   formValidationMessageDisplay () {
     cy.get(Invalid_Credentials.#loginFormSelector).within(() => {
-      cy.get(Invalid_Credentials.#formValidationInvalidPseudoSelector).then(el => {
-        expect(el[0].checkValidity()).to.be.false
-      })
-      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector)
-        .invoke('prop', 'validationMessage')
-        .should('equal', Invalid_Credentials.#testData.formValidationText)
+      cy.get(Invalid_Credentials.#formValidationInvalidPseudoSelector).then(
+        el => {
+          expect(el[0].checkValidity()).to.be.false
+        }
+      )
+      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).then(
+        $input => {
+          expect($input[0].validationMessage).to.eq(
+            'Please fill in this field.' || 'Please fill out this field.'
+          )
+        }
+      )
     })
   }
 }
