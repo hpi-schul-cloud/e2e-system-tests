@@ -23,8 +23,7 @@ class Invalid_Credentials {
     emailText: 'robot.test+.exe@@@@@@@gmx.de',
     invalidPassword:
       'sc9lwOX#Z!ImcKVp66SP9ag$RvEX00nhR&Vn@dIW@hhREU||Zhbhbhu&&&$)Uhbwhbdbb|||',
-    errorMessageText: 'Login fehlgeschlagen.',
-    formValidationText: 'Please fill out this field.'
+    errorMessageText: 'Login fehlgeschlagen.'
   }
 
   emailFieldIsVisibleAndEmpty () {
@@ -91,12 +90,9 @@ class Invalid_Credentials {
       cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).then(el => {
         expect(el[0].checkValidity()).to.be.false
       })
-      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).then(
-        $input => {
-          expect($input[0].validationMessage).to.eq(
-            Invalid_Credentials.#testData.formValidationText
-          )
-        }
+      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).should(
+        'have.length',
+        2
       )
     })
   }
