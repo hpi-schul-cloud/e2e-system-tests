@@ -7,7 +7,6 @@ class Invalid_Credentials {
   static #notificationBannerField = '[data-testid="notification"]'
   static #loginFormSelector = 'form.login-form'
   static #inputFieldInvalidPseudoSelector = 'input:invalid'
-  static #formValidationInvalidPseudoSelector = '#name:invalid'
 
   static #testData = {
     usernameText: [
@@ -25,7 +24,7 @@ class Invalid_Credentials {
     invalidPassword:
       'sc9lwOX#Z!ImcKVp66SP9ag$RvEX00nhR&Vn@dIW@hhREU||Zhbhbhu&&&$)Uhbwhbdbb|||',
     errorMessageText: 'Login fehlgeschlagen.',
-    formValidationText: /[Please fill]+(out|in)?[ this field.]+/
+    formValidationText: 'Please fill out this field.'
   }
 
   emailFieldIsVisibleAndEmpty () {
@@ -89,15 +88,13 @@ class Invalid_Credentials {
 
   formValidationMessageDisplay () {
     cy.get(Invalid_Credentials.#loginFormSelector).within(() => {
-      cy.get(Invalid_Credentials.#formValidationInvalidPseudoSelector).then(
-        el => {
-          expect(el[0].checkValidity()).to.be.false
-        }
-      )
+      cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).then(el => {
+        expect(el[0].checkValidity()).to.be.false
+      })
       cy.get(Invalid_Credentials.#inputFieldInvalidPseudoSelector).then(
         $input => {
           expect($input[0].validationMessage).to.eq(
-            'Please fill in this field.' || 'Please fill out this field.'
+            Invalid_Credentials.#testData.formValidationText
           )
         }
       )
