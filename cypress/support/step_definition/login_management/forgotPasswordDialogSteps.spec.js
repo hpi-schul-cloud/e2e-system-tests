@@ -1,4 +1,4 @@
-import Login_Management from '../../pages/login_management/pageLoginManagement'
+import Login_Management from '../../pages/login_management/pageCommonLoginManagement'
 
 const loginManagement = new Login_Management()
 
@@ -22,5 +22,5 @@ When('I clear email section and submit the request', () => {
 })
 
 Then('I still see the email input box that request is not submitted', () => {
-  loginManagement.seeEmailInputOnSubmitingRequestWithoutEnteringEmail()
+  loginManagement.seeEmailInputOnSubmittingRequestWithoutEnteringEmail()
 })
