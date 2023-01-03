@@ -3,14 +3,14 @@
 class Login_Management {
   static #passwordRecoveryButton = '[data-testid="forgot-password"]'
   static #usernameLabel = '[data-testid="username-label"]'
-  static #emailInputBox = '[data-testid="username-email"]'
+  static #emailInputBox = '[data-testid="username"]'
   static #infoMessage = '[data-testid="info-message"]'
   static #submitButton = '[data-testid="btn-submit"]'
   static #cancelButton = '[data-testid="btn-cancel"]'
   static #brokerButton = '[data-testid="submit-oauth-login"]'
 
   visitLoginPage () {
-    Cypress.config('baseUrl', Cypress.env('BRB'))
+    Cypress.config('baseUrl', Cypress.env('DEFAULT'))
     cy.visit('login')
       .wait(['@alerts_api', '@locales_api'])
       .then(interceptions => {
