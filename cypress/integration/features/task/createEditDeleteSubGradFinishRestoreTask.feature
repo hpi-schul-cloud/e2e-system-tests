@@ -124,9 +124,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then file 'testboard_jpg' is saved in folder downloads
     When I click on grading tab
     And I upload file 'gradingfile-pdf.pdf'
-    And I click on submissions tab
-    And I click on submission of 'Kraft'
-    And I click on grading tab
     Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
     And I enter comment 'Gut gemacht!'
     And I enter grade '83'
