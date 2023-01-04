@@ -10,9 +10,7 @@ class Invalid_Credentials {
 
   static #testData = {
     usernameText: [
-      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia. Lorem do id magna commodo ex quis aliquip veniam non ipsum.',
-      'Id id fugiat sint consequat ipsum Lorem ut ut sit consectetur aute quis. Esse reprehenderit magna officia Lorem est.',
-      'Esse ad irure voluptate veniam exercitation veniam amet ipsum cupidatat cupidatat excepteur ex enim.'
+      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.
     ],
     emailText: 'robot.test+.exe@@@@@@@gmx.de',
     invalidPassword:
