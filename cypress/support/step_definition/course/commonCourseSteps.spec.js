@@ -48,6 +48,10 @@ And('I click on New Task FAB', () => {
   coursesCommon.clickOnNewTaskFAB()
 })
 
+And('I click on New Topic FAB', () => {
+  coursesCommon.clickOnNewTopicFAB()
+})
+
 And('I can see task {string} on course page', taskTitle => {
   coursesCommon.taskIsVisibleOnCoursePage(taskTitle)
 })

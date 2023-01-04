@@ -8,6 +8,7 @@ class Courses_Common {
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
   static #newTaskFAB = '[data-testid="fab_button_add_task"]'
+  static #newTopicFAB = '[data-testid="fab_button_add_lesson"]'
   static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
@@ -152,6 +153,10 @@ class Courses_Common {
 
   clickOnNewTaskFAB () {
     cy.get(Courses_Common.#newTaskFAB).click()
+  }
+
+  clickOnNewTopicFAB () {
+    cy.get(Courses_Common.#newTopicFAB).click()
   }
 
   taskIsVisibleOnCoursePage (taskTitle) {
