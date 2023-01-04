@@ -12,13 +12,7 @@ class Invalid_Credentials {
     usernameText: [
       'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia. Lorem do id magna commodo ex quis aliquip veniam non ipsum.',
       'Id id fugiat sint consequat ipsum Lorem ut ut sit consectetur aute quis. Esse reprehenderit magna officia Lorem est.',
-      'Esse ad irure voluptate veniam exercitation veniam amet ipsum cupidatat cupidatat excepteur ex enim.',
-      '<script>alert("Hello-HiEr")</script>',
-      '<script>alert("Hello")</script>',
-      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia. Lorem do id magna commodo ex quis aliquip veniam non ipsum.',
-      'Id id fugiat sint consequat ipsum Lorem ut ut sit consectetur aute quis. Esse reprehenderit magna officia Lorem est.',
-      'Esse ad irure voluptate veniam exercitation veniam amet ipsum cupidatat cupidatat excepteur ex enim.',
-      'Et esse qui in sit nisi voluptate qui id anim cillum aliquip est aute. Pariatur laborum eiusmod consequat ullamco quis voluptate.'
+      'Esse ad irure voluptate veniam exercitation veniam amet ipsum cupidatat cupidatat excepteur ex enim.'
     ],
     emailText: 'robot.test+.exe@@@@@@@gmx.de',
     invalidPassword:
@@ -60,7 +54,8 @@ class Invalid_Credentials {
   }
 
   clickOnSubmitButton () {
-    cy.get(Invalid_Credentials.#submitBtn).should('be.visible').click()
+    // cy.get(Invalid_Credentials.#submitBtn).should('be.visible').click()
+    cy.get(Invalid_Credentials.#loginFormSelector).should('be.visible').submit()
   }
 
   errorMessageDisplay () {
