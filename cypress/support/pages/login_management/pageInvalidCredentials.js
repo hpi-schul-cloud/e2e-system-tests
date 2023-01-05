@@ -3,17 +3,13 @@
 class Invalid_Credentials {
   static #emailInputBox = '[data-testid="username-email"]'
   static #passwordField = '[data-testid = "password-email"]'
-  static #submitBtn = '[data-testid="submit-login-email"]'
   static #notificationBannerField = '[data-testid="notification"]'
   static #loginFormSelector = 'form.login-form'
   static #inputFieldInvalidPseudoSelector = 'input:invalid'
 
   static #testData = {
-    usernameText: [
+    usernameText:
       'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.',
-      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.',
-      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.',
-    ],
     emailText: 'robot.test+.exe@@@@@@@gmx.de',
     invalidPassword:
       'sc9lwOX#Z!ImcKVp66SP9ag$RvEX00nhR&Vn@dIW@hhREU||Zhbhbhu&&&$)Uhbwhbdbb|||',
@@ -38,7 +34,7 @@ class Invalid_Credentials {
   enterInvalidEmailOrUsername (usernameOrEmail) {
     let usernameOrEmailText
     if (!usernameOrEmail) {
-      usernameOrEmailText = Invalid_Credentials.#testData.usernameText.join('')
+      usernameOrEmailText = Invalid_Credentials.#testData.usernameText
     } else {
       usernameOrEmailText = Invalid_Credentials.#testData.emailText
     }
@@ -54,7 +50,6 @@ class Invalid_Credentials {
   }
 
   clickOnSubmitButton () {
-    // cy.get(Invalid_Credentials.#submitBtn).should('be.visible').click()
     cy.get(Invalid_Credentials.#loginFormSelector).should('be.visible').submit()
   }
 
