@@ -33,10 +33,16 @@ class Invalid_Credentials {
 
   enterInvalidEmailOrUsername (usernameOrEmail) {
     let usernameOrEmailText
-    if (!usernameOrEmail) {
-      usernameOrEmailText = Invalid_Credentials.#testData.usernameText
+    /*
+        @params: Boolean
+        if parameter is TRUE ---> it types Email
+        else -----> it type Username
+    */
+    if (usernameOrEmail) {
+      console.log(usernameOrEmail)
+      usernameOrEmailText = Invalid_Credentials.#testData.emailText    // value is email, since logic is true
     } else {
-      usernameOrEmailText = Invalid_Credentials.#testData.emailText
+      usernameOrEmailText = Invalid_Credentials.#testData.usernameText // value is username, since logic is false
     }
     cy.get(Invalid_Credentials.#emailInputBox)
       .type(usernameOrEmailText, { log: false, timeout: 120000 })

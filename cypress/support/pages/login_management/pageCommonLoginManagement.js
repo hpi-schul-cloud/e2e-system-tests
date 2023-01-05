@@ -36,7 +36,7 @@ class Login_Management {
   }
 
   submitRequestWithoutEmail () {
-    cy.get(Login_Management.#emailInputBox).type('email@example.com').clear()
+    cy.get(Login_Management.#emailInputBox).clear()
     cy.get(Login_Management.#submitButton).click()
   }
 
