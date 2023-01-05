@@ -38,7 +38,7 @@ class Invalid_Credentials {
   enterInvalidEmailOrUsername (usernameOrEmail) {
     let usernameOrEmailText
     if (!usernameOrEmail) {
-      usernameOrEmailText = Invalid_Credentials.#testData.usernameText.join('-')
+      usernameOrEmailText = Invalid_Credentials.#testData.usernameText.join('')
     } else {
       usernameOrEmailText = Invalid_Credentials.#testData.emailText
     }
