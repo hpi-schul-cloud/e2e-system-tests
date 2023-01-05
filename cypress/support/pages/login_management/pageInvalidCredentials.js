@@ -10,7 +10,9 @@ class Invalid_Credentials {
 
   static #testData = {
     usernameText: [
-      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.'
+      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.',
+      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.',
+      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.',
     ],
     emailText: 'robot.test+.exe@@@@@@@gmx.de',
     invalidPassword:
@@ -36,7 +38,7 @@ class Invalid_Credentials {
   enterInvalidEmailOrUsername (usernameOrEmail) {
     let usernameOrEmailText
     if (!usernameOrEmail) {
-      usernameOrEmailText = Invalid_Credentials.#testData.usernameText.join('')
+      usernameOrEmailText = Invalid_Credentials.#testData.usernameText.join('-')
     } else {
       usernameOrEmailText = Invalid_Credentials.#testData.emailText
     }
