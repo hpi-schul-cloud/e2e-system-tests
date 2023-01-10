@@ -156,7 +156,14 @@ class Courses_Common {
   }
 
   clickOnNewTopicFAB () {
-    cy.get(Courses_Common.#newTopicFAB).click()
+    cy.get(Courses_Common.#newTopicFAB)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   taskIsVisibleOnCoursePage (taskTitle) {
