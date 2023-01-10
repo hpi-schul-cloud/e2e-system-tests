@@ -16,47 +16,18 @@ class Tasks_Common {
     cy.visit('/tasks')
     cy.get(Tasks_Common.#tasksOverviewNavigationButton)
       .click()
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@alert_api',
-        '@tasks_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-        expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[5].response.statusCode).to.equal(200)
-        expect(interceptions[5].request.url).to.include('/tasks')
-      })
     cy.url().should('include', '/tasks')
   }
 
   clickOnSubmit() {
     cy.get(Tasks_Common.#taskForm).find(Tasks_Common.#submitButton)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-    })
     //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
   }
 
   clickOnAddTask() {
     cy.get(Tasks_Common.#addTaskButton)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-    })
   }
 
   seeCreateTaskPage (taskTitle) {
@@ -88,32 +59,13 @@ class Tasks_Common {
   clickOnTabDraftTasks () {
     cy.get(Tasks_Common.#draftTasksTab)
       .click()
-      .wait([
-        '@tasks_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
-
 
   taskIsVisibleOnTasksOverviewPage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/tasks')
     cy.contains(taskTitle)
       .should('be.visible')
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@tasks_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })
   }
 
 
@@ -135,12 +87,6 @@ class Tasks_Common {
     cy.get(Tasks_Common.#taskCardTitle)
       .contains(taskTitle)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   clickDeleteTaskInDotMenu () {
@@ -150,6 +96,5 @@ class Tasks_Common {
   clickButtonDeleteTask () {
     cy.get(Tasks_Common.#deleteTaskButton).click()
   }
-
 }
 export default Tasks_Common

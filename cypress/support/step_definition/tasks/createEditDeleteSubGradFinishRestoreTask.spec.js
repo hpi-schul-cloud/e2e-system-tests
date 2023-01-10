@@ -82,6 +82,10 @@ Then('I see file {string} is visible in uploaded files section', (fileName) => {
   tasks.seeFileInSectionUploadedFiles(fileName)
 })
 
+Then('I see file {string} is visible in uploaded files section of submission', (fileName) => {
+  tasks.seeFileInSubmissionSectionUploadedFiles(fileName)
+})
+
 Then('I see file {string} is not visible in section files', (fileName) => {
   tasks.fileIsNotVisibleInSectionFiles(fileName)
 })
@@ -146,8 +150,12 @@ Then('I see detail page for task {string}', (taskTitle) => {
   tasks.seeDetailPageForTask(taskTitle)
 })
 
-And('I click on button Save and Send Submission', () => {
-  tasks.clickSaveAndSendSubmissionBtn()
+When('I click on button Save Submission', () => {
+  tasks.clickSaveSubmissionBtn()
+})
+
+When('I click on button Send Submission', () => {
+  tasks.clickSendSubmissionBtn()
 })
 
 Then('I see hint that submission has been sent successfully', () => {

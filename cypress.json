@@ -4,9 +4,9 @@
   "viewportHeight": 768,
   "videoCompression": 18,
   "experimentalSessionAndOrigin": true,
-  "chromeWebSecurity": false,
-  "pageLoadTimeout": 120000,
-  "defaultCommandTimeout": 120000,
+  "chromeWebSecurity": true,
+  "pageLoadTimeout": 80000,
+  "defaultCommandTimeout": 80000,
   "requestTimeout":60000,
   "responseTimeout":60000
 }

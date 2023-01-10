@@ -18,6 +18,8 @@ Before(() => {
   cy.intercept('**/alerts').as('alerts_api')
   cy.intercept('**/alert').as('alert_api')
   cy.intercept('**/tasks**').as('tasks_api')
+  cy.intercept('**/runtime.config.json').as('runtime_config_api')
+  cy.intercept('**/board').as('board_api')
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {

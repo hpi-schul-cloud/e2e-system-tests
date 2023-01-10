@@ -1,5 +1,5 @@
-import Management_Common from '../../pages/management/pageCommonManagement'
-import Management from '../../pages/management/pageManagement'
+import Management_Common from '../../pages/administration/pageCommonAdministration'
+import Management from '../../pages/administration/pageAdministration'
 
 const managementCommon = new Management_Common()
 const management = new Management()
