@@ -8,23 +8,23 @@ Scenario: Teacher adds, edits and deletes the team event via calendar
   When I go to a team 'Musik'
   When I go to calendar tab
   When I click on Add date button
-  Then I see event creation dialog box
+  Then I see event creation dialog form
   When I enter the title 'cy test team event cy'
-  When I select the from date 'pre selected date'
-  When I select the to date ' 'pre selected date'
+  When I select the team event start date and time
+  When I select the team event end date and time
   When I enter the description 'cy team event description cy'
-  When I enter the event place name 'cy TestPlace'
+  When I enter the event place 'cy TestPlace'
   When I click on Save team event
-  Then I am on team detail Calendar tab and title  'cy test team event cy' is visible
+  Then I am in calendar tab on team detail page and title 'cy test team event cy' is visible
   When I click on edit icon
-  Then I see event creation dialog box
+  Then I see event creation dialog form
   When I re enter the title 'edit cy teat team edit'
   When I re enter the description 'edit cy team event description cy'
-  When I re enter the place name 'edit cy TestPlace'
+  When I re enter the place 'edit cy TestPlace'
   When I click on Save team event
-  Then I am on team detail Calendar tab and title 'edit cy test team event cy' is visible
-  Then I am on the team detail Calendar tab and description 'edit cy team event description cy' is visible
-  When I click on edit icon for the same event 'cy test team event cy'
-  Then I see event creation dialog box
+  Then I am in calendar tab on team detail page and edited title 'edit cy test team event cy' is visible
+  Then I am in calendar tab on team detail page and edited description 'edit cy team event description cy' is visible
+  When I click on edit icon
+  Then I see event creation dialog form
   When I click on Delete team event button
-  Then I am on team detail Calendar tab and title  'edit cy test team event cy' is NOT visible
+  Then I am in calendar tab on team detail page and title 'edit cy test team event cy' is NOT visible
