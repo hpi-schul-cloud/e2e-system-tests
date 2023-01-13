@@ -38,17 +38,17 @@ Scenario: Teacher adds calendar with video conference
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
-When I click on Calendar tab
-When I click on Add Date button
-Then I see event creation modal
-When I enter title 'cy test team event cy'
-When I select start date and time
-When I select end date and time
-When I enter description 'cy test event description cy'
-When I enter place 'cy test place cy'
+When I go to calendar tab
+When I click on Add date button
+Then I see event creation dialog form
+When I enter the title 'cy test team event cy'
+When I select the team event start date and time
+When I select the team event end date and time
+When I enter the description 'cy team event description cy'
+When I enter the event place 'cy TestPlace'
 When I enable video conference toggle
-When I click on Add button
-Then I am on the team detail Calendar tab and title  'cy test team event cy' is visible
+When I click on Save team event
+Then I am in calendar tab on team detail page and edited title 'edit cy test team event cy' is visible
 Then I am on the team detail Calendar tab and see start video conference button
 When I click on start video conference button
 Then I see modal to start the call
@@ -57,8 +57,8 @@ Scenario: Student can see the event with video confernce
 Given I am logged in as a 'student' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
-When I click on Calendar tab
-Then I am on the team detail Calendar tab and title  'cy test team event cy' is visible
+When I go to calendar tab
+Then I am in calendar tab on team detail page and edited title 'edit cy test team event cy' is visible
 Then I am on the team detail Calendar tab and see start video conference button
 When I click on info icon on start video conference
 Then I see dialog box that video is not yet started and
@@ -77,11 +77,11 @@ Scenario: as a post condition Teacher deletes the event
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
-When I click on Calendar tab
-Then I am on the team detail Calendar tab and title  'cy test team event cy' is visible
-When I click on event edit icon
-When I click on Delete button
-Then I am redirected to the team detail Calendar tab and title  'cy test team event cy' is not visible
+When I go to calendar tab
+When I click on edit icon
+Then I see event creation dialog form
+When I click on Delete team event button
+Then I am in calendar tab on team detail page and title 'edit cy test team event cy' is NOT visible
 
 Scenario: as a post condition Admin disable the video conference for the team
 Given I am logged in as a 'admin' at 'default'
