@@ -10,14 +10,15 @@ class Topics {
   static #addLearningMaterialBtn = '[data-testid="topic-addcontent-material-btn"]'
   static #addEtherpadBtn = '[data-testid="topic-addcontent-etherpad-btn"]'
   static #addTaskBtn = '[data-testid="topic-addcontent-task-btn"]'
+  static #submitChangesInTopicBtn = '[data-testid="topic-submitchanges-btn"]'
   static #elementTextDescriptionTextarea = '[class="ck ck-editor__main"]'
   // static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
   // static #draftCheckbox = '[data-testid="private-checkbox"]'
 
-  seeCreateTopicPage (topicTitle) {
+  seeEditTopicPage (topicTitle) {
     if (topicTitle === '-'){
       cy.get(Topics.#topicTitleInput)
-        .should('be.empty')
+        .should('have.value', '')
     } else {
       cy.get(Topics.#topicTitleInput)
         .should('have.value', topicTitle)
@@ -47,6 +48,17 @@ class Topics {
 
   clickOnAddTaskToTopic() {
     cy.get(Topics.#addTaskBtn).click()
+  }
+
+  clickOnSubmitChangesInTopicBtn() {
+    cy.get(Topics.#submitChangesInTopicBtn)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
   }
 
   seeFormElementText() {

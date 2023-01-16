@@ -9,8 +9,8 @@ const topics = new Topics()
 // -->\step_definition\authentication\loginStep.spec.js
 // -->\step_definition\course\commonCourseSteps.spec.js
 
-Then('I can see create topic page {string}', (topicTitle) => {
-  topics.seeCreateTopicPage(topicTitle)
+Then('I can see edit topic page {string}', (topicTitle) => {
+  topics.seeEditTopicPage(topicTitle)
 })
 
 When ('I enter topic title {string}', (topicTitle) => {
@@ -56,3 +56,12 @@ When('I enter title {string} into element GeoGebra', (elementGeoGebraTitle) => {
 When('I enter description {string} into element GeoGebra', (elementGeoGebraDescription) => {
   topics.enterDescriptionforElementGeoGebra(elementGeoGebraDescription)
 })
+
+When('I click on create button to create topic', () => {
+  topics.clickOnSubmitChangesInTopicBtn()
+})
+
+When('I click on save button to save changes', () => {
+  topics.clickOnSubmitChangesInTopicBtn()
+})
+
