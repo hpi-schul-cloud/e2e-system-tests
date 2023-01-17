@@ -1,4 +1,4 @@
-import Login_Management from '../../pages/login_management/pageCommonLoginManagement'
+import Login_Management from '../../pages/login_management/pageLoginManagement'
 
 const loginManagement = new Login_Management()
 

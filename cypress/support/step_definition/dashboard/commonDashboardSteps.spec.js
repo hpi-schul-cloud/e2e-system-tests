@@ -1,7 +1,7 @@
-import Dashboard_Common from '../../pages/dashboard/pageCommonDashboard'
+import Dashboard from '../../pages/dashboard/pageDashboard'
 
-const dashboardCommon = new Dashboard_Common()
+const dashboard = new Dashboard()
 
 When('I arrive on the dashboard', () => {
-    dashboardCommon.arriveOnDashboard()
+    dashboard.arriveOnDashboard()
 })

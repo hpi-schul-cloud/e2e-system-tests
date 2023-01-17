@@ -2,6 +2,7 @@
 Feature: Invalid Credentials - Verify login functionality via wrong user data
 
     As a user (teacher, student or admin), I want to see how app behaves when I'll use invalid credentials.
+
     Scenario: User uses invalid email and password
         Given I am on the dBildungscloud login page
         Then I will see Email field is visible and empty

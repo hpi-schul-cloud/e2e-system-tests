@@ -1,64 +1,64 @@
-import Tasks_Common from '../../pages/tasks/pageCommonTasks'
+import Tasks from '../../pages/tasks/pageTasks'
 
-const tasksCommon = new Tasks_Common()
+const tasks = new Tasks()
 
 When('I go to tasks overview', () => {
-  tasksCommon.navigateToTasksOverview()
+  tasks.navigateToTasksOverview()
 })
 
 And('I click on button Submit', () => {
-  tasksCommon.clickOnSubmit()
+  tasks.clickOnSubmit()
 })
 
 When('I click on button Add Task', () => {
-  tasksCommon.clickOnAddTask()
+  tasks.clickOnAddTask()
 })
 
 Then('I can see create task page {string}', (taskTitle) => {
-  tasksCommon.seeCreateTaskPage(taskTitle)
+  tasks.seeCreateTaskPage(taskTitle)
 })
 
 When ('I enter title {string}', (taskTitle) => {
-  tasksCommon.enterTaskTitle(taskTitle)
+  tasks.enterTaskTitle(taskTitle)
 })
 
 And ('I enter task description {string}', (taskDescription) => {
-  tasksCommon.setTaskText(taskDescription)
+  tasks.setTaskText(taskDescription)
 })
 
 And ('I enter text submission {string}', (submissionText) => {
-  tasksCommon.setTaskText(submissionText)
+  tasks.setTaskText(submissionText)
 })
 
 And ('I enter comment {string}', (gradingText) => {
-  tasksCommon.setTaskText(gradingText)
+  tasks.setTaskText(gradingText)
 })
 
 When('I click on draft tasks tab', () => {
-  tasksCommon.clickOnTabDraftTasks()
+  tasks.clickOnTabDraftTasks()
 })
 
 Then('I can see task {string} on tasks overview page', taskTitle => {
-  tasksCommon.taskIsVisibleOnTasksOverviewPage(taskTitle)
+  tasks.taskIsVisibleOnTasksOverviewPage(taskTitle)
 })
 
 Then('I can not see task {string} on tasks overview page', taskTitle => {
-  tasksCommon.taskIsNotVisibleOnTasksOverviewPage(taskTitle)
+  tasks.taskIsNotVisibleOnTasksOverviewPage(taskTitle)
 })
 
 When('I click on three dot menu of task {string}', contentTitle => {
-  tasksCommon.openThreeDotMenuForTask(contentTitle)
+  tasks.openThreeDotMenuForTask(contentTitle)
 })
 
 When('I click on Delete Task in dot menu', () => {
-  tasksCommon.clickDeleteTaskInDotMenu()
+  tasks.clickDeleteTaskInDotMenu()
 })
 
 When('I click on task {string} in tasks overview', contentTitle => {
-  tasksCommon.openTaskFromTasksOverview(contentTitle)
+  tasks.openTaskFromTasksOverview(contentTitle)
 })
 
 When('I click on button Delete', () => {
-  tasksCommon.clickButtonDeleteTask()
+  tasks.clickButtonDeleteTask()
 })
 

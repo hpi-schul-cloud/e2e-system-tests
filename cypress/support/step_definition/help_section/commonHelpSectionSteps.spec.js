@@ -1,19 +1,19 @@
-import Help_Common from '../../pages/help_section/pageCommonHelpSection'
+import Help from '../../pages/help_section/pageHelpSection'
 
-const helpCommon = new Help_Common()
+const help = new Help()
 
 When('I go to help section in sidebar', () => {
-  helpCommon.navigateToHelpSection()
+  help.navigateToHelpSection()
 })
 
 When('I go to help articles in sidebar', () => {
-  helpCommon.navigateToHelpArticles()
+  help.navigateToHelpArticles()
 })
 
 When('I go to contact in sidebar', () => {
-  helpCommon.navigateToHelpContact()
+  help.navigateToHelpContact()
 })
 
 When('I go to advanced trainings in sidebar', () => {
-  helpCommon.navigateToAdvancedTrainings()
+  help.navigateToAdvancedTrainings()
 })

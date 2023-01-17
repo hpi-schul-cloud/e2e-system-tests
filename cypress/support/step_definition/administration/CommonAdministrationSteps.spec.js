@@ -1,15 +1,13 @@
-import Management_Common from '../../pages/administration/pageCommonAdministration'
 import Management from '../../pages/administration/pageAdministration'
 
-const managementCommon = new Management_Common()
 const management = new Management()
 
 When('I go to administration page', () => {
-  managementCommon.navigateToAdministration()
+ management.navigateToAdministration()
 })
 
 When('I go to school administration', () => {
-  managementCommon.navigateToSchoolAdministration()
+ management.navigateToSchoolAdministration()
 })
 
 When('I go to new school administration page', () => {
@@ -21,15 +19,15 @@ And('I click save general settings button', () => {
 })
 
 And('I go to student administration', () => {
-  managementCommon.navigateToStudentAdministration()
+ management.navigateToStudentAdministration()
 })
 
 And('I go to teacher administration', () => {
-  managementCommon.navigateToTeacherAdministration()
+ management.navigateToTeacherAdministration()
 })
 
 When('I go to team administration', () => {
-  managementCommon.navigateToTeamAdministration();
+ management.navigateToTeamAdministration();
 });
 
 When('I click on FAB', () => {

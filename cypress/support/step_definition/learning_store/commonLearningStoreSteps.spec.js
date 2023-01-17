@@ -1,7 +1,7 @@
-import Learning_Store_Common from '../../pages/learning_store/pageCommonLearningStore'
+import Learning_Store from '../../pages/learning_store/pageLearningStore'
 
-const learningStoreCommon = new Learning_Store_Common()
+const learningStore = new Learning_Store()
 
 When('I go to LernStore overview', () => {
-  learningStoreCommon.navigateToLernStoreOverview()
+  learningStore.navigateToLernStoreOverview()
 })

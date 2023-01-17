@@ -1,6 +1,6 @@
 'use strict'
 
-class Account_Common {
+class Account {
 
   static #initialsButton = '[data-testid="initials"]';
   static #settingsButton = '[data-testid="settings"]'
@@ -9,9 +9,9 @@ class Account_Common {
   static #emailReadOnly = '[data-testid="user_email_readonly"]'
 
   navigateToAccountSettingsSection() {
-    cy.get(Account_Common.#initialsButton)
+    cy.get(Account.#initialsButton)
       .click()
-    cy.get(Account_Common.#settingsButton)
+    cy.get(Account.#settingsButton)
       .click()
     cy.url()
       .should('include', '/account')
@@ -19,13 +19,13 @@ class Account_Common {
 
   verifyEmailEditable(isEditable) {
     if (isEditable){
-      cy.get(Account_Common.#email).should('be.visible');
-      cy.get(Account_Common.#email).should('not.have.attr', 'readonly')
+      cy.get(Account.#email).should('be.visible');
+      cy.get(Account.#email).should('not.have.attr', 'readonly')
     } else {
-      cy.get(Account_Common.#emailReadOnly).should('be.visible');
-      cy.get(Account_Common.#emailReadOnly).should('have.attr', 'readonly')
+      cy.get(Account.#emailReadOnly).should('be.visible');
+      cy.get(Account.#emailReadOnly).should('have.attr', 'readonly')
     }
   }
 
 }
-export default Account_Common
+export default Account

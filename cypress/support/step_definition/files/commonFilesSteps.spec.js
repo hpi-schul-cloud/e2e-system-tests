@@ -1,4 +1,4 @@
-import Files from '../../pages/files/pageCommonFiles'
+import Files from '../../pages/files/pageFiles'
 
 const files = new Files()
 
