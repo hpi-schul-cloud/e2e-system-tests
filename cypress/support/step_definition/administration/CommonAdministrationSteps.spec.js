@@ -4,6 +4,19 @@ import Management from '../../pages/administration/pageAdministration'
 const managementCommon = new Management_Common()
 const management = new Management()
 
+
+Then ('I enable the video conference from the old school setting page', () =>{
+	teams.enableTeamsVideoConferenceByAdmin()
+})
+
+Then ('I click on admin setting save button', () =>{
+	teams.clickOnAdminSettingsSave()
+})
+
+When ('I click on the manage school card',() =>{
+	teams.clickOnManageSchoolCard()
+})
+
 When('I go to administration page', () => {
   managementCommon.navigateToAdministration()
 })

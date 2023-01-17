@@ -32,11 +32,11 @@ When ('I enter the description {string}', (eventDescription) =>{
 	teams.enterTeamEventDescription(eventDescription)
 })
 
-When ('I enter the event place {string}', (eventPlace) =>{
-	teams.enterTeamEventPlace(eventPlace)
+When ('I enter the event place {string} and press the enter button to save the event', (eventPlace) =>{
+	teams.enterTeamEventPlaceAndPressEnter(eventPlace)
 })
 
-When ('I click on Save team event', () =>{
+When ('I click on Save team event or I hit enter button on the keyboard to save it', () =>{
 	teams.clickOnSaveTeamEvent()
 })
 
@@ -56,7 +56,7 @@ When ('I re enter the description {string}', (editedEventDescription) =>{
   teams.editTeamEventDescription(editedEventDescription)
 })
 
-When ('I re enter the place {string}', (editedEventPlace) =>{
+When ('I re enter the place {string} and press the enter button to save the event', (editedEventPlace) =>{
   teams.editTeamEventPlace(editedEventPlace)
 })
 

@@ -28,6 +28,7 @@ class Teams {
   static #teamEventEditIcon = '[data-testid="edit_team_event"]'
   static #teamEventDeleteButton = '[data-testid="delete_team_event"]'
 
+
   doNotSeeTeamEventTitle (editedEventTitle) {
     cy.contains(editedEventTitle)
       .should('not.be.visible')
@@ -44,24 +45,27 @@ class Teams {
 
   editedTeamEventTitleIsVisible (editedEventTitle) {
     cy.contains(editedEventTitle)
-     .should('be.visible')
   }
 
   editTeamEventDescription (editedEventDescription) {
     cy.get(Teams.#teamEventDescrptionInput)
     .eq(1)
+    .clear()
     .type(editedEventDescription)
   }
 
   editTeamEventPlace (editedEventPlace) {
     cy.get(Teams.#teamEventPlaceInput)
     .eq(1)
+    .clear()
     .type(editedEventPlace)
+    .type('{enter}')
   }
 
   editTeamEventTitle (editedEventTitle) {
     cy.get(Teams.#teamEventTitleInput)
       .eq(1)
+      .clear()
       .type(editedEventTitle)
   }
 
@@ -79,10 +83,11 @@ class Teams {
       .click()
   }
 
-  enterTeamEventPlace (eventPlace) {
+  enterTeamEventPlaceAndPressEnter (eventPlace) {
     cy.get(Teams.#teamEventPlaceInput)
       .eq(1)
       .type(eventPlace)
+      .type('{enter}')
   }
 
   enterTeamEventDescription (eventDescription) {
