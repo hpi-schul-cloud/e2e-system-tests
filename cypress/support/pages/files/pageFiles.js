@@ -98,7 +98,9 @@ class Files {
     cy.get(Files.#cardTitle)
       .contains(fileName)
       .then(() => {
-        cy.get(Files.#renameFile).first().click()
+        cy.get(Files.#renameFile).first().click().then(() => {
+          cy.contains('[data-testid="popup-title"]', 'Datei umbenennen').should('be.visible')
+        })
       })
   }
 
