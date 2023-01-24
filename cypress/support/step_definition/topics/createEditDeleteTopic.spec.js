@@ -53,8 +53,24 @@ When('I enter title {string} into element GeoGebra', (elementGeoGebraTitle) => {
   topics.enterTitleforElementGeoGebra(elementGeoGebraTitle)
 })
 
-When('I enter description {string} into element GeoGebra', (elementGeoGebraDescription) => {
-  topics.enterDescriptionforElementGeoGebra(elementGeoGebraDescription)
+When('I enter GeoGebra material ID {string}', (geoGebraMaterialID) => {
+  topics.enterIDforElementGeoGebra(geoGebraMaterialID)
+})
+
+When('I enter title {string} into element Learning Material', (elementLearningMaterialTitle) => {
+  topics.enterTitleforElementLearningMaterial(elementLearningMaterialTitle)
+})
+
+Then('I see second learning material button in the content area', () => {
+  topics.seeAddMaterialBtnInContent()
+})
+
+When('I enter title {string} into element Etherpad', (elementEtherpadTitle) => {
+  topics.enterTitleforElementEtherpad(elementEtherpadTitle)
+})
+
+When('I enter description for the ether pad {string}', (descriptionEtherpad) => {
+  topics.enterDescriptionforElementEtherpad(descriptionEtherpad)
 })
 
 When('I click on create button to create topic', () => {

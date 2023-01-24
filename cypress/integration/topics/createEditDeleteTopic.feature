@@ -15,22 +15,23 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see form element Text
     When I enter title "Cy Title for Text Element in Topic" into element Text
     When I enter description 'Cy this is the description of the topic. It is used for automated Cypress tests.' into element Text
-    # When I click on button Add GeoGebra to topic
-    # # When I enter title "Cy Title for GeoGebra Element in Topic" into element GeoGebra
-    # # When I enter test GeoGebra material ID 'kEBfU7AR'
-    # When I click on button Add Learning Material to topic
-    # # When I enter the title 'Cy Title for Learning Material Element in Topic'
-    # # When I see second learning material button in the content area
-    # When I click on button Add Etherpad to topic
-    # # When I enter the title 'Cy Title for Etherpad Element in Topic'
-    # # When I enter description for the ether pad 'this is my epad description'
+    When I click on button Add GeoGebra to topic
+    When I enter title "Cy Title for GeoGebra Element in Topic" into element GeoGebra
+    When I enter GeoGebra material ID 'kEBfU7AR'
+    When I click on button Add Learning Material to topic
+    When I enter title 'Cy Title for Learning Material Element in Topic' into element Learning Material
+    Then I see second learning material button in the content area
+    # currently step for adding material is excluded because this process is via new browser window
+    When I click on button Add Etherpad to topic
+    When I enter title 'Cy Title for Etherpad Element in Topic' into element Etherpad
+    When I enter description for the ether pad 'this is my epad description'
     # When I click on button Add Task to topic
-    # # When I enter the title 'Cy Title for Task Element in Topic'
+    # # When I enter the title 'Cy Title for Task Element in Topic' into element Task
     # # When I enter the URL of the task from the another course 'https://brb-main.cd.dbildungscloud.dev/homework/59cce3f6c6abf042248e888d'
-    When I click on create button to create topic
-    Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
+    # When I click on create button to create topic
+    # Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
     # When I add file to element Text
-    When I click on save button to save changes
+    # When I click on save button to save changes
     # Then I can see room page 'Course with subject and tasks'
     # Then I see the topic card named 'this is my topic name'
     # Then I see publish button on the topic card 'this is my topic name' 
