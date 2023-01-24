@@ -108,7 +108,7 @@ class Files {
   typeNewFilename (fileName) {
     cy.get(Files.#newFilenameInputField)
       .focus()
-      .type('{selectall}{backspace}')
+      .type('{selectall}{backspace}{selectall}{backspace}')
       .should('have.value', '')
     cy.get(Files.#newFilenameInputField)
       .focus()
