@@ -1,7 +1,7 @@
-import Addons_Common from '../../pages/addons/pageCommonAddons'
+import Addons from '../../pages/addons/pageAddons'
 
-const addonsCommon = new Addons_Common()
+const addons = new Addons()
 
 When('I go to Add-Ons overview', () => {
-  addonsCommon.navigateToAddonsOverview()
+  addons.navigateToAddonsOverview()
 })

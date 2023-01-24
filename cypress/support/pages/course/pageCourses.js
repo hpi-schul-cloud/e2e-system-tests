@@ -12,6 +12,283 @@ class Courses {
   static #courseName = '[name="name"]'
   static #createFAB = '[name="fab-icon"]'
   static #searchFieldRoomOverview = '[data-testid="search-field"]'
+  static #mainContent = '[id="main-content"]'
+  static #createCourse = '[data-testid="add-course-button"]'
+  static #createContent = '[data-testid="add-content-button"]'
+  static #toolsTab = '[data-testid="tools"]'
+  static #toolsList = '[data-testid="course_tool_list_add_tool"]'
+  static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
+  static #addNewToolButton = '[data-testid="add_new_tool"]'
+  static #newTaskFAB = '[data-testid="fab_button_add_task"]'
+  static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
+  static #dialogCancelButton = '[data-testid="dialog-cancel"]'
+  static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
+  static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
+  static #contentCardContent = '[data-testid="content-card-task-content"]'
+  static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
+  static #dropDownCourse = '.course-title .three-dot-button'
+  static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
+  static #pageTitle = '[id="page-title"]'
+  static #contentCardTaskInfoSubmissionsChip = '[data-testid="room-detail-task-chip-submitted"]'
+  static #contentCardTaskInfoGradingsChip = '[data-testid="room-detail-task-chip-graded"]'
+
+
+  courseIsVisiblOnOverviewPage(courseName) {
+    cy.contains(courseName)
+      .should('be.visible')
+      .and('contain.text', courseName)
+  }
+
+  courseIsNotVisiblOnOverviewPage (courseName) {
+    cy.contains(courseName)
+      .should('not.exist')
+  }
+
+  navigateToRoomsOverview () {
+    cy.get(Courses.#courseOverviewNavigationButton)
+      .click()
+      .wait([
+        '@runtime_config_api',
+        '@public_api',
+        '@me_api',
+        '@schools_api',
+        '@alert_api',
+        '@dashboard_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].response.statusCode).to.equal(200)
+        expect(interceptions[3].response.statusCode).to.equal(200)
+        expect(interceptions[4].response.statusCode).to.equal(200)
+        expect(interceptions[5].request.url).to.include('/dashboard')
+      })
+  }
+
+  navigateToRoomBoard (roomName) {
+    cy.get('h1')
+      .eq(0)
+      .then($title => {
+        const htmlTitlePage = $title.text()
+        if (htmlTitlePage.includes('Kurse')) {
+          cy.get(`[aria-label="Kurs ${roomName}"]`)
+            .eq(0)
+            .click()
+            .wait([
+              '@runtime_config_api',
+              '@public_api',
+              '@me_api',
+              '@roles_api',
+              '@schools_api',
+              '@alert_api',
+              '@board_api',
+              '@userPermissions_api'
+            ])
+            .then(interceptions => {
+              expect(interceptions[0].response.statusCode).to.equal(200)
+              expect(interceptions[1].response.statusCode).to.equal(200)
+              expect(interceptions[2].response.statusCode).to.equal(200)
+              expect(interceptions[2].state).to.equal('Complete')
+              expect(interceptions[3].response.statusCode).to.equal(200)
+              expect(interceptions[4].response.statusCode).to.equal(200)
+              expect(interceptions[5].response.statusCode).to.equal(200)
+              expect(interceptions[6].response.statusCode).to.equal(200)
+              expect(interceptions[7].response.statusCode).to.equal(200)
+            })
+        } else if (htmlTitlePage.includes('courses')) {
+          cy.get(`[aria-label="Course ${roomName}"]`).click()
+        } else if (htmlTitlePage.includes('Cursos')) {
+          cy.get(`[aria-label="Curso ${roomName}"]`).click()
+        } else if (htmlTitlePage.includes('Поточні')) {
+          cy.get(`[aria-label="Курс ${roomName}"]`).click()
+        }
+      })
+  }
+
+  showRoomPage (room) {
+    const selectedRoom = `[aria-label='${room}']`
+    cy.get(selectedRoom).should('be.visible')
+  }
+
+  navigateToTools () {
+    cy.get(Courses.#toolsTab).click()
+  }
+
+  addNewTool () {
+    cy.get(Courses.#addNewToolButton).click()
+  }
+
+  courseIsVisibleOnOverviewPage (courseName) {
+    cy.contains(courseName)
+      .should('be.visible')
+      .and('contain.text', courseName)
+      .wait([
+        '@schools_api',
+        '@alert_api',
+        '@dashboard_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].response.statusCode).to.equal(200)
+      })
+  }
+
+  courseIsNotVisibleOnOverviewPage (courseName) {
+    cy.contains(courseName)
+      .should('not.exist')
+  }
+
+  canAddBigBlueButton () {
+    cy.get(Courses.#toolsList).should('be.visible')
+  }
+
+  canNotAddBigBlueButton () {
+    cy.get(Courses.#toolsList).should('not.exist')
+  }
+
+  clickOnCreateCourseFAB () {
+    cy.get(Courses.#createCourse)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
+  }
+
+  clickOnCreateContentFAB () {
+    cy.get(Courses.#createContent).click()
+  }
+
+  clickOnNewTaskFAB () {
+    cy.get(Courses.#newTaskFAB).click()
+  }
+
+  taskIsVisibleOnCoursePage (taskTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    cy.url().should('include', '/rooms/')
+    cy.contains(taskTitle)
+      .should('be.visible')
+      .wait([
+        '@public_api',
+        '@me_api',
+        '@roles_api',
+        '@schools_api',
+        '@userPermissions_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].state).to.equal('Complete')
+        expect(interceptions[1].response.statusCode).to.equal(200)
+      })
+  }
+
+  taskIsNotVisibleOnCoursePage (taskTitle) {
+    // cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    // cy.url().should('include', '/rooms/')
+    // cy.wait(1000)
+    cy.contains(taskTitle).should('not.exist')
+    // cy.get(Courses.#mainContent).should('not.contain', taskTitle)
+    // cy.get(Courses.#mainContent).contains(taskTitle).should('not.exist')
+  }
+
+  openTask (taskTitle) {
+    cy.get(Courses.#contentCardContent)
+      .contains(taskTitle)
+      .click()
+  }
+
+  openThreeDotMenuForContent (contentTitle) {
+    cy.get(Courses.#contentCardContent)
+      .contains(contentTitle)
+      .prev()
+      .find('button')
+      .click()
+  }
+
+  clickDeleteInDotMenu (linkId) {
+    cy.get(Courses.#deleteButtonInDotMenu).click()
+  }
+
+  clickEditInDotMenu (linkId) {
+    cy.get(Courses.#editButtonInDotMenu).click()
+  }
+
+  clickOnCancelInConfirmationWindow () {
+    cy.get(Courses.#dialogCancelButton).click()
+  }
+
+  clickDeleteInConfirmationWindow () {
+    cy.get(Courses.#dialogConfirmButton).click()
+  }
+
+  openCourseEditPage () {
+    cy.get(Courses.#dropDownCourse)
+      .click()
+    cy.get(Courses.#btnCourseEdit)
+      .click()
+      .wait([
+        '@alerts_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions.response.statusCode).to.equal(200)
+      })
+  }
+
+  showCourseEditPage () {
+    cy.get(Courses.#pageTitle)
+    cy.contains('Kurs bearbeiten')
+  }
+
+  compareSubmittedTasksInformation (submittedTasks, contentTitle) {
+    cy.get(Courses.#contentCardContent)
+      .contains(contentTitle)
+      .parent()
+      .parent()
+      .find(Courses.#contentCardTaskInfoSubmissionsChip)
+      .should('contain', submittedTasks)
+  }
+
+  compareGradedTasksInformation (gradedTasks, contentTitle) {
+    cy.get(Courses.#contentCardContent)
+      .contains(contentTitle)
+      .parent()
+      .parent()
+      .find(Courses.#contentCardTaskInfoGradingsChip)
+      .should('contain', gradedTasks)
+  }
+
+  clickOnFinishTask (taskTitle) {
+    cy.get(Courses.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses.#contentCardTaskActions)
+      .find('button')
+      .click()
+  }
+
+  checkTaskCardDoesNotHaveButtons (taskTitle) {
+    cy.get(Courses.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses.#contentCardTaskActions)
+      .find('button')
+      .should('not.exist')
+  }
+
+  checkTaskCardDoesHaveButtons (taskTitle) {
+    cy.get(Courses.#contentCardContent)
+      .contains(taskTitle)
+      .parent()
+      .parent()
+      .find(Courses.#contentCardTaskActions)
+      .find('button')
+      .should('be.visible')
+  }
 
   fillCourseCreationForm (new_course) {
     cy.get(Courses.#courseTitle).type(new_course)

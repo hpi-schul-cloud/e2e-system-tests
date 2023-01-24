@@ -10,6 +10,13 @@ class Dashboard {
   static #newsText = '[data-testid="body_of_element"]'
   static #newsSection = '[data-testid="news-section"]'
 
+
+  arriveOnDashboard() {
+    cy.visit('/dashboard')
+    cy.url()
+      .should('include', '/dashboard')
+  }
+
   seeSchoolNews(newsTitle, newsDesc) {
     cy.get(Dashboard.#newsSection).should('be.visible')
     cy.get(Dashboard.#pageTitle).contains(newsTitle)
