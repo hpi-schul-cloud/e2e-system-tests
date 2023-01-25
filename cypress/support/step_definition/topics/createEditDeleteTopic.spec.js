@@ -89,3 +89,11 @@ When('I click on save button to save changes', () => {
   topics.clickOnSubmitChangesInTopicBtn()
 })
 
+Then('I see topic detail page {string} with content elements {string}, {string}, {string}, {string} and {string}', (topicTitle, contentTitle1, contentTitle2, contentTitle3, contentTitle4, contentTitle5) => {
+  topics.seeTopicDetailPage(topicTitle, contentTitle1, contentTitle2, contentTitle3, contentTitle4, contentTitle5)
+})
+
+When('I click on last breadcrump element in topbar navigation', () => {
+  topics.clickLastBreadcrumb()
+})
+

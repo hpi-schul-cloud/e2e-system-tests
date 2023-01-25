@@ -21,6 +21,11 @@ class Topics {
   static #submitChangesInTopicBtn = '[data-testid="topic-submitchanges-btn"]'
   static #elementTextDescriptionTextarea = '[class="ck ck-editor__main"]'
   static #inputClassFormControl = '[class="form-control"]'
+  static #navCourseOverviewLink = '[data-testid="Course-Overview"]'
+  static #titlebar = '[id="titlebar"]'
+  static #sectionCourse = '[class="section-course"]'
+  static #topNavbar = '[id="top-navbar"]'
+  static #breadcrumbItem = '[class="breadcrumb-item "]'
   // static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
   // static #draftCheckbox = '[data-testid="private-checkbox"]'
 
@@ -159,6 +164,26 @@ class Topics {
         .find('input')
         .type(taskLink)
     })
+  }
+
+  seeTopicDetailPage(topicTitle, contentTitle1, contentTitle2, contentTitle3, contentTitle4, contentTitle5) {
+    cy.get(Topics.#navCourseOverviewLink)
+      .should('have.attr', 'class', 'active')
+    cy.get(Topics.#titlebar)
+      .should('contain', topicTitle)
+    cy.get(Topics.#sectionCourse).within(() => {
+      cy.get('h2').should('contain', contentTitle1)
+      cy.get('h2').should('contain', contentTitle1)
+      cy.get('h2').should('contain', contentTitle1)
+      cy.get('h2').should('contain', contentTitle1)
+      cy.get('h2').should('contain', contentTitle1)
+    })
+  }
+
+  clickLastBreadcrumb() {
+    cy.get(Topics.#breadcrumbItem).last().click()
+    // cy.get(Topics.#topNavbar).within(() => {
+    // })
   }
 
 }

@@ -52,20 +52,28 @@ And('I click on New Topic FAB', () => {
   coursesCommon.clickOnNewTopicFAB()
 })
 
-And('I can see task {string} on course page', taskTitle => {
-  coursesCommon.taskIsVisibleOnCoursePage(taskTitle)
+And('I can see content {string} on course page', topicTitle => {
+  coursesCommon.contentIsVisibleOnCoursePage(topicTitle)
 })
 
-And('I can not see task {string}', taskTitle => {
-  coursesCommon.taskIsNotVisibleOnCoursePage(taskTitle)
+And('I can not see content {string}', taskTitle => {
+  coursesCommon.contentIsNotVisibleOnCoursePage(taskTitle)
 })
 
 When('I click on three dot menu of content {string}', contentTitle => {
   coursesCommon.openThreeDotMenuForContent(contentTitle)
 })
 
+When('I click on three dot menu of topic {string}', contentTitle => {
+  coursesCommon.openThreeDotMenuForTopic(contentTitle)
+})
+
 And('I click on Delete in dot menu', () => {
   coursesCommon.clickDeleteInDotMenu()
+})
+
+When('I click on Delete in dot menu of topic', () => {
+  coursesCommon.clickDeleteInDotMenuOfTopic()
 })
 
 And('I click on Edit in dot menu', () => {
@@ -108,4 +116,8 @@ Then('I see task {string} does not contain any buttons', taskTitle => {
 
 Then('I see task {string} contains buttons', taskTitle => {
   coursesCommon.checkTaskCardDoesHaveButtons(taskTitle)
+})
+
+Then('I can see topic {string} on course page', topicTitle => {
+  coursesCommon.topicIsVisibleOnCoursePage(topicTitle)
 })

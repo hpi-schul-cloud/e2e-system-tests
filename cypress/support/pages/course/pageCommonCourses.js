@@ -12,8 +12,10 @@ class Courses_Common {
   static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
+  static #deleteButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-remove"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
+  static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
   static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
@@ -166,10 +168,10 @@ class Courses_Common {
       })
   }
 
-  taskIsVisibleOnCoursePage (taskTitle) {
+  contentIsVisibleOnCoursePage (contentTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/rooms/')
-    cy.contains(taskTitle)
+    cy.contains(contentTitle)
       .should('be.visible')
       .wait([
         '@public_api',
@@ -185,8 +187,8 @@ class Courses_Common {
       })
   }
 
-  taskIsNotVisibleOnCoursePage (taskTitle) {
-    // cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+  contentIsNotVisibleOnCoursePage (taskTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     // cy.url().should('include', '/rooms/')
     // cy.wait(1000)
     cy.contains(taskTitle).should('not.exist')
@@ -208,8 +210,20 @@ class Courses_Common {
       .click()
   }
 
+  openThreeDotMenuForTopic (topicTitle) {
+    cy.get(Courses_Common.#contentCardTopic)
+      .contains(topicTitle)
+      .prev()
+      .find('button')
+      .click()
+  }
+
   clickDeleteInDotMenu (linkId) {
     cy.get(Courses_Common.#deleteButtonInDotMenu).click()
+  }
+
+  clickDeleteInDotMenuOfTopic () {
+    cy.get(Courses_Common.#deleteButtonInDotMenuOfTopic).click()
   }
 
   clickEditInDotMenu (linkId) {

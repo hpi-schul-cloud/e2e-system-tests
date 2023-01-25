@@ -22,7 +22,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
-    And I can see task 'Cy Task Creating and Deleting Test' on course page
+    And I can see content 'Cy Task Creating and Deleting Test' on course page
 
   Scenario: Teacher edits and publishes task from room via form
     Given I am logged in as a 'teacher1' at 'brb'
@@ -43,7 +43,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on Draft Checkbox
     And I click on button Submit
     Then I can see room page 'Course with subject and tasks'
-    And I can see task 'Cy Task Creating, Editing, Deleting Test' on course page
+    And I can see content 'Cy Task Creating, Editing, Deleting Test' on course page
     And I see task card info submitted contains "0/2" for task 'Cy Task Creating, Editing, Deleting Test'
     When I click on task 'Cy Task Creating, Editing, Deleting Test'
     Then I see description is 'Dies ist Deine Aufgabe. Viel Erfolg!'
@@ -183,7 +183,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I arrive on the dashboard
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
-    Then I can see task 'Cy Task Creating, Editing, Deleting Test' on course page
+    Then I can see content 'Cy Task Creating, Editing, Deleting Test' on course page
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
     And I click on Delete in confirmation window
@@ -192,4 +192,4 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
-    And I can not see task 'Cy Task Creating, Editing, Deleting Test'
+    And I can not see content 'Cy Task Creating, Editing, Deleting Test'
