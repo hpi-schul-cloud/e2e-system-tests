@@ -73,6 +73,14 @@ When('I enter description for the ether pad {string}', (descriptionEtherpad) => 
   topics.enterDescriptionforElementEtherpad(descriptionEtherpad)
 })
 
+When('I enter title {string} into element Task', (elementTaskTitle) => {
+  topics.enterTitleforElementTask(elementTaskTitle)
+})
+
+When('I enter URL of the task from the another course {string}', (elementTaskLink) => {
+  topics.enterLinkforElementTask(elementTaskLink)
+})
+
 When('I click on create button to create topic', () => {
   topics.clickOnSubmitChangesInTopicBtn()
 })

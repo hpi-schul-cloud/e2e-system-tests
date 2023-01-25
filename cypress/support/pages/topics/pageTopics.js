@@ -16,6 +16,7 @@ class Topics {
   static #elementGeoGebraCard = '[data-testid="topic-content-element-geoGebra-1"]'
   static #elementLearningMaterialCard =  '[data-testid="topic-content-element-resources-2"]'
   static #elementEtherpadCard =  '[data-testid="topic-content-element-Etherpad-3"]'
+  static #elementTaskCard = '[data-testid="topic-content-element-internal-4"]'
   static #addLearningMaterialToContentBtn = '[data-testid="topic-material-addmaterial-btn"]'
   static #submitChangesInTopicBtn = '[data-testid="topic-submitchanges-btn"]'
   static #elementTextDescriptionTextarea = '[class="ck ck-editor__main"]'
@@ -140,6 +141,23 @@ class Topics {
       cy.get(Topics.#cardBlock)
         .find('textarea')
         .type(elementEtherpadDescription)
+    })
+  }
+
+  enterTitleforElementTask(elementEtherpadTask) {
+    cy.get(Topics.#elementTaskCard).within(() => {
+      cy.get(Topics.#cardHeader)
+        .find('div > input')
+        .eq(0)
+        .type(elementEtherpadTask)
+    })
+  }
+
+  enterLinkforElementTask(taskLink) {
+    cy.get(Topics.#elementTaskCard).within(() => {
+      cy.get(Topics.#cardBlock)
+        .find('input')
+        .type(taskLink)
     })
   }
 
