@@ -22,6 +22,7 @@ Scenario: Edit name of LibreOffice text document
         Then I go to personal files overview
         Then I can see file with name 'Cy: LibraOffice Open.docx'
         Then I click rename file button of file 'Cy: LibraOffice Open.docx'
+        Then I can see edit file popup box of file 'Cy: LibraOffice Open.docx'
         Then I enter new file name 'Cy: LibraOffice Edit.docx'
         Then I click save name button
         Then I can see file with name 'Cy: LibraOffice Edit.docx'
