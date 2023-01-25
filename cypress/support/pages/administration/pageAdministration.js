@@ -1,7 +1,5 @@
 'use strict'
 
-import Teams from "../teams/pageTeams"
-
 class Management {
   static #fabButton = '#fab'
   static #addStudentButton = '[data-testid="fab_button_add_students"]'
@@ -23,9 +21,17 @@ class Management {
   static #videoconferenceToggleSwitch = '.videoconference-switch'
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'
-  static #manageSchoolCard = '[data-testid="administrate_classes"]'
-  static #oldvideoconferenceActivateCheckBox ='[name="videoconference"]'
-  static #saveGeneralAdminSetting = '[class="btn btn-primary btn-submit"]' //data-testid to be defined?
+  static #manageSchoolCard = '[data-testid="school_administration_card"]'
+  static #oldAdminPageVideoChatCheckBox ='[name="videoconference"]'
+  static #saveGeneralAdminSetting = '.btn btn-primary btn-submit' //data-testid to be defined?
+
+
+
+
+  disableTeamsVideoConferenceByAdmin () {
+    cy.get(Management.#oldAdminPageVideoChatCheckBox)
+      .uncheck()
+  }
 
   clickOnAdminSettingsSave () {
     cy.get(Management.#saveGeneralAdminSetting)
@@ -33,7 +39,8 @@ class Management {
   }
 
   enableTeamsVideoConferenceByAdmin () {
-    cy.get(Management.#oldvideoconferenceActivateCheckBox)
+    cy.get(Management.#oldAdminPageVideoChatCheckBox)
+      .check()
   }
 
   clickOnManageSchoolCard () {

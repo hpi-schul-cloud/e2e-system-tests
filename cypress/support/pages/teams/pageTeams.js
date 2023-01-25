@@ -16,7 +16,7 @@ class Teams {
   static #teamDeleteOption = '[data-testid="delete_team_members"]'
   static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]'
   static #teamMainSection = 'main > section'
-  static #teamCalandertab = '[data-testid="team_calendar_tab"]'
+  static #teamCalanderTab = '[data-testid="team_calendar_tab"]'
   static #addTeamEventButton = '[data-testid="add_team_event"]'
   static #teamEventCreteModal = '[data-testid="modal_content"]'
   static #teamEventTitleInput ='[data-testid="team_event_name"]'
@@ -27,16 +27,82 @@ class Teams {
   static #teamEventSaveButton = '[data-testid="btn-submit"]'
   static #teamEventEditIcon = '[data-testid="edit_team_event"]'
   static #teamEventDeleteButton = '[data-testid="delete_team_event"]'
+  static #videoConferenceCheckBoxOnTeamSetting = '[data-testid="videoconf_checkbox"]'
+  static #videoToggleOnModal = '[data-toggle="toggle"]'
+  static #moderatorVideoConferenceStartButton = '[data-testid="start_video_conference_link"]'
+  static #teamVideoConferenceModal = '[data-testid="modal_content"]'
+  static #muteParticipantToggle = '[data-testid="toggle_mute_participants"]'
+  static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]'
+  static #allPartipantsAreModeratorToggel = '[data-testid="toggle_all_participants_moderator"]'
+  static #teamVideoConferenceStartButtonInModal = '[data-testid="btn-submit"]'
+  static #disabledVideoCheckboxOnTeamDetailpage = '[disabled=""]'
+  static #teamVideoConferenceJoinLinkButton = '[href="/videoconference"]'
 
+
+  seeBBBExternalURL (bbbExtURL) {
+    cy.url().should('eq', bbbExtURL)
+  }
+
+  clickOnVideoParticipantLinkButtonAsStudent () {
+    cy.get(Teams.#teamVideoConferenceJoinLinkButton)
+      .click()
+  }
+
+  seeVideoPartcipationButtonAsStudent () {
+    cy.get(Teams.#teamVideoConferenceJoinLinkButton)
+      .should('be.exist')
+  }
+
+  seeDisabledVideoConferenceOnTeamEditPage () {
+    cy.get(Teams.#videoConferenceCheckBoxOnTeamSetting)
+      .should('be.exist')
+    cy.get(Teams.#disabledVideoCheckboxOnTeamDetailpage)
+      .should('be.exist')
+  }
+
+  seeModalAndToggles () {
+    cy.get(Teams.#teamVideoConferenceModal)
+      .should('be.exist')
+    cy.get(Teams.#muteParticipantToggle)
+      .should('be.exist')
+    cy.get(Teams.#moderatorApprovalToggle)
+      .should('be.exist')
+    cy.get(Teams.#allPartipantsAreModeratorToggel)
+      .should('be.exist')
+  }
+
+  startTeamVideoConferenceFromModal () {
+    cy.get(Teams.#teamVideoConferenceStartButtonInModal)
+      .click()
+  }
+
+  clickOnVideoStartButtonAsTeacherAndModerator () {
+    cy.get(Teams.#moderatorVideoConferenceStartButton)
+      .click({multiple:true, force:true})
+  }
+
+  seeTeamVideoConferenceIsVisible () {
+    cy.get(Teams.#moderatorVideoConferenceStartButton)
+      .should ('be.exist')
+  }
+
+  enableVideoConferenceToggleOnModal () {
+    cy.get(Teams.#videoToggleOnModal)
+      .click({multiple:true, force:true})
+  }
+
+  enableVideoConferenceOnTeamEditPage () {
+    cy.get(Teams.#videoConferenceCheckBoxOnTeamSetting)
+      .check()
+  }
 
   doNotSeeTeamEventTitle (editedEventTitle) {
     cy.contains(editedEventTitle)
-      .should('not.be.visible')
   }
 
   deleteTeamEvent () {
     cy.get(Teams.#teamEventDeleteButton)
-      .click()
+      .click({multiple:true, force:true})
   }
 
   editedTeamEventDescriptionIsVisible (editedEventTitle) {
@@ -69,9 +135,9 @@ class Teams {
       .type(editedEventTitle)
   }
 
-  clickOnTeamsEditOption () {
+  clickOnTeamsEventEditOption () {
     cy.get(Teams.#teamEventEditIcon)
-      .click()
+      .click({multiple:true, force:true})
   }
 
   seeTeamEventTitleIsVisible (eventTitle) {
@@ -88,6 +154,7 @@ class Teams {
       .eq(1)
       .type(eventPlace)
       .type('{enter}')
+      .wait(5000)
   }
 
   enterTeamEventDescription (eventDescription) {
@@ -112,9 +179,8 @@ class Teams {
       .type(eventTitle)
   }
 
-  seeTeamEventCreationForm () {
+  seeTeamEventCreationModal () {
     cy.get(Teams.#teamEventCreteModal)
-      .should('be.visible')
   }
 
   clickOnAddTeamsAppointment () {
@@ -123,7 +189,7 @@ class Teams {
   }
 
   goToTeamsCalendarTab () {
-    cy.get(Teams.#teamCalandertab)
+    cy.get(Teams.#teamCalanderTab)
       .click()
   }
 

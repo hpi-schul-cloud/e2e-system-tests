@@ -15,10 +15,6 @@ When('I click on delete option', () =>{
 	teams.clickOnDeleteOption()
 })
 
-When('I click on teams save changes button', () => {
-	teams.clickOnSaveChangeButton()
-})
-
 When('I click on edit option', () => {
 	teams.clickOnEditOption()
 })

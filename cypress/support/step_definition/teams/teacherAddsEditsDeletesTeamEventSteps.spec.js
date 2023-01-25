@@ -12,8 +12,8 @@ When ('I click on Add date button',() =>{
 	teams.clickOnAddTeamsAppointment()
 })
 
-Then ('I see event creation dialog form',() =>{
-	teams.seeTeamEventCreationForm()
+Then ('I see event creation modal',() =>{
+	teams.seeTeamEventCreationModal()
 })
 
 When ('I enter the title {string}', (eventTitle) =>{
@@ -45,7 +45,7 @@ Then ('I am in calendar tab on team detail page and title {string} is visible', 
 })
 
 When ('I click on edit icon', () => {
-	teams.clickOnTeamsEditOption()
+	teams.clickOnTeamsEventEditOption()
 })
 
 When ('I re enter the title {string}', (editedEventTitle) =>{
@@ -62,10 +62,6 @@ When ('I re enter the place {string} and press the enter button to save the even
 
 Then ('I am in calendar tab on team detail page and edited title {string} is visible', (editedEventTitle) =>{
   teams.editedTeamEventTitleIsVisible(editedEventTitle)
-})
-
-Then ('I am in calendar tab on team detail page and edited description {string} is visible', (editedEventDescription) =>{
-	teams.editedTeamEventDescriptionIsVisible(editedEventDescription)
 })
 
 When ('I click on Delete team event button', () =>{

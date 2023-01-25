@@ -5,16 +5,20 @@ const managementCommon = new Management_Common()
 const management = new Management()
 
 
-Then ('I enable the video conference from the old school setting page', () =>{
-	teams.enableTeamsVideoConferenceByAdmin()
+Then ('I disable the video conference from the old school setting page', () =>{
+	management.disableTeamsVideoConferenceByAdmin()
 })
 
 Then ('I click on admin setting save button', () =>{
-	teams.clickOnAdminSettingsSave()
+	management.clickOnAdminSettingsSave()
 })
 
-When ('I click on the manage school card',() =>{
-	teams.clickOnManageSchoolCard()
+Then ('I enable the video conference from the old school setting page', () =>{
+	management.enableTeamsVideoConferenceByAdmin()
+})
+
+When ('I click on manage school card',() =>{
+	management.clickOnManageSchoolCard()
 })
 
 When('I go to administration page', () => {

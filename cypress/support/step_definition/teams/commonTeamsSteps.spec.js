@@ -1,6 +1,12 @@
 import Teams_Common from '../../pages/teams/pageCommonTeams'
+import Teams from '../../pages/teams/pageTeams'
 
+const teams = new Teams()
 const teamsCommon = new Teams_Common()
+
+When('I click on teams save changes button', () => {
+	teams.clickOnSaveChangeButton()
+})
 
 When('I go to teams overview', () => {
   teamsCommon.navigateToTeamsOverview()

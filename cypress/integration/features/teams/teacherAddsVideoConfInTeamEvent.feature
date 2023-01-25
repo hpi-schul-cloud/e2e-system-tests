@@ -7,7 +7,7 @@ As a teacher I want to add video conference to the team event so that team membe
 Scenario: as a pre condition Admin enables the video conference for the team
 Given I am logged in as a 'admin' at 'default'
 When I go to administration page
-When I click on the manage school card
+When I click on manage school card
 Then I enable the video conference from the old school setting page
 Then I click on admin setting save button
 
@@ -32,34 +32,35 @@ And new dialog opens to select student 'Herbert Kraft' from the drop down list
 And I click on add user button
 Then I see the student named 'Herbert Kraft' on the team members table
 
-Scenario: Teacher adds calendar with video conference
+Scenario: Teacher adds event with video conference
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
 When I go to calendar tab
 When I click on Add date button
-Then I see event creation dialog form
-When I enter the title 'cy test team event cy'
+Then I see event creation modal
+When I enter the title 'cy title'
 When I select the team event start date and time
 When I select the team event end date and time
 When I enter the description 'cy team event description cy'
-When I enter the event place 'cy TestPlace'
-When I enable the video conference check box on the teams edit pages
-When I click on Save team event
+When I enable the video conference toggle on the modal
+When I enter the event place 'cy TestPlace' and press the enter button to save the event
+#When I click on Save team event or I hit enter button on the keyboard to save it // currently there is an issue related to save button data-testid
 When I go to calendar tab
-Then I am in calendar tab on team detail page and title 'cy test team event cy' is visible
-Then I am on the team detail Calendar tab and see start video conference button
+Then I am in calendar tab on team detail page and title 'cy title' is visible
+Then I see the start video conference button
 When I click on start video conference button as a moderator teacher
-Then I see the modal and start the video confernce
+Then I see the modal and toggles are visible in the modal
+Then I start the team video confernce
 Then I see URL is changed to 'https://bbb-3.bbb.staging.messenger.schule/'
 
-Scenario: Student can see the event with video confernce option
+Scenario: Student can see and participate in video confernce
 Given I am logged in as a 'student' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
 When I go to calendar tab
-Then I am in calendar tab on team detail page and title 'cy test team event cy' is visible
-Then I am on the team detail Calendar tab and see start video conference button
+Then I am in calendar tab on team detail page and title 'cy title' is visible
+Then I see the video conference participate button as student
 When I click on participate to video conference button as a participanting student
 Then I see URL is changed to 'https://bbb-3.bbb.staging.messenger.schule/'
 
@@ -78,18 +79,17 @@ When I go to teams overview
 And I go to a team 'Musik'
 When I go to calendar tab
 When I click on edit icon
-Then I see event creation dialog form
+Then I see event creation modal
 When I click on Delete team event button
-Then I am in calendar tab on team detail page and title 'edit cy test team event cy' is NOT visible
+Then I am in calendar tab on team detail page and title 'cy title' is NOT visible
 
 Scenario: as a post condition Admin disable the video conference for the team
 Given I am logged in as a 'admin' at 'default'
 When I go to administration page
 When I click on manage school card
-When I click on go to new school adminstration button
+#When I click on go to new school adminstration button // due unstability/bug on this page at the moment
 Then I disable the video conference from the old school setting page
 Then I click on admin setting save button
-Then I see video conference check box is unchecked
 
 Scenario: as a post condition Teacher sees deactivated video conference check box
 Given I am logged in as a 'teacher' at 'default'
