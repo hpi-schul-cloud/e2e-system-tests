@@ -26,6 +26,10 @@ Then('I click rename file button of file {string}', fileName => {
   files.clickOnRenameFile(fileName)
 })
 
+Then('I can see edit file popup box of file {string}', fileName => {
+  files.renamePopupBoxVisible(fileName)
+})
+
 Then('I enter new file name {string}', fileName => {
   files.typeNewFilename(fileName)
 })
