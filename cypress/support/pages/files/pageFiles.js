@@ -100,19 +100,17 @@ class Files {
     cy.get(Files.#cardTitle)
       .contains(fileName)
       .then(() => {
-        cy.get(Files.#renameFile)
-          .first()
-          .click()
-          .then(() => {
-            cy.contains(
-              '[data-testid="popup-title"]',
-              'Datei umbenennen'
-            ).should('be.visible')
-            cy.get('[data-testid="folder-rename-text-field"]')
-              .should('be.visible')
-              .should('have.value', fileName)
-          })
+        cy.get(Files.#renameFile).first().click()
       })
+  }
+
+  renamePopupBoxVisible (fileName) {
+    cy.contains('[data-testid="popup-title"]', 'Datei umbenennen').should(
+      'be.visible'
+    )
+    cy.get('[data-testid="folder-rename-text-field"]')
+      .should('be.visible')
+      .should('have.value', fileName)
   }
 
   typeNewFilename (fileName) {
