@@ -35,8 +35,8 @@ class Teams {
   static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]'
   static #allPartipantsAreModeratorToggel = '[data-testid="toggle_all_participants_moderator"]'
   static #teamVideoConferenceStartButtonInModal = '[data-testid="btn-submit"]'
-  static #disabledVideoCheckboxOnTeamDetailpage = '[disabled=""]'
-  static #teamVideoConferenceJoinLinkButton = '[href="/videoconference"]'
+  static #disabledVideoCheckboxOnTeamEditpage = '[disabled=""]'
+  static #teamVideoConferenceJoinLinkButton = '[data-testid="participate-video-conf-link"]'
 
 
   seeBBBExternalURL (bbbExtURL) {
@@ -56,7 +56,7 @@ class Teams {
   seeDisabledVideoConferenceOnTeamEditPage () {
     cy.get(Teams.#videoConferenceCheckBoxOnTeamSetting)
       .should('be.exist')
-    cy.get(Teams.#disabledVideoCheckboxOnTeamDetailpage)
+    cy.get(Teams.#disabledVideoCheckboxOnTeamEditpage)
       .should('be.exist')
   }
 

@@ -22,8 +22,8 @@ class Management {
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'
   static #manageSchoolCard = '[data-testid="school_administration_card"]'
-  static #oldAdminPageVideoChatCheckBox ='[name="videoconference"]'
-  static #saveGeneralAdminSetting = '.btn btn-primary btn-submit' //data-testid to be defined?
+  static #oldAdminPageVideoChatCheckBox ='[data-testid="school-admin-video-conference-checkbox"]'
+  static #saveGeneralAdminSetting = '[data-testid="school-admin-save-general-setting"]'
 
 
 
