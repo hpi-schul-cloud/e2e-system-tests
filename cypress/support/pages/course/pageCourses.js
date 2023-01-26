@@ -11,6 +11,7 @@ class Courses {
   static #courseDescription = '[id="courseDescription"]'
   static #courseName = '[name="name"]'
   static #createFAB = '[name="fab-icon"]'
+  static #newTopicFAB = '[data-testid="fab_button_add_lesson"]'
   static #searchFieldRoomOverview = '[data-testid="search-field"]'
   static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
@@ -23,8 +24,10 @@ class Courses {
   static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
+  static #deleteButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-remove"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
+  static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
   static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
@@ -194,6 +197,57 @@ class Courses {
     // cy.get(Courses.#mainContent).contains(taskTitle).should('not.exist')
   }
 
+  contentIsVisibleOnCoursePage (contentTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    cy.url().should('include', '/rooms/')
+    cy.contains(contentTitle)
+      .should('be.visible')
+      .wait([
+        '@runtime_config_api',
+        '@public_api',
+        '@me_api',
+        '@roles_api',
+        '@schools_api',
+        '@userPermissions_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].state).to.equal('Complete')
+        expect(interceptions[2].response.statusCode).to.equal(200)
+      })
+  }
+
+  contentIsNotVisibleOnCoursePage (contentTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+      .wait([
+        '@board_api',
+        '@runtime_config_api',
+        '@public_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+      })
+    cy.contains(contentTitle).should('not.exist')
+  }
+
+  contentIsNotVisibleOnCoursePage (contentTitle) {
+    cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+      .wait([
+        '@board_api',
+        '@runtime_config_api',
+        '@public_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+      })
+    cy.contains(contentTitle).should('not.exist')
+  }
+
   openTask (taskTitle) {
     cy.get(Courses.#contentCardContent)
       .contains(taskTitle)
@@ -208,8 +262,20 @@ class Courses {
       .click()
   }
 
-  clickDeleteInDotMenu (linkId) {
+  openThreeDotMenuForTopic (topicTitle) {
+    cy.get(Courses.#contentCardTopic)
+      .contains(topicTitle)
+      .prev()
+      .find('button')
+      .click()
+  }
+
+  clickDeleteInDotMenu () {
     cy.get(Courses.#deleteButtonInDotMenu).click()
+  }
+
+  clickDeleteInDotMenuOfTopic () {
+    cy.get(Courses.#deleteButtonInDotMenuOfTopic).click()
   }
 
   clickEditInDotMenu (linkId) {
@@ -384,5 +450,17 @@ class Courses {
     cy.get(Courses.#searchFieldRoomOverview)
       .type(roomName)
   }
+
+  clickOnNewTopicFAB () {
+    cy.get(Courses.#newTopicFAB)
+    .click()
+    .wait([
+      '@alerts_api'
+    ])
+    .then(interceptions => {
+      expect(interceptions.response.statusCode).to.equal(200)
+    })
+  }
+
 }
 export default Courses

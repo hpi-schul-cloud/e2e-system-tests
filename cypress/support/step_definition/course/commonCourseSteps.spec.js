@@ -50,12 +50,12 @@ And('I click on New Topic FAB', () => {
   courses.clickOnNewTopicFAB()
 })
 
-And('I can see content {string} on course page', topicTitle => {
-  courses.contentIsVisibleOnCoursePage(topicTitle)
+And('I can see content {string} on course page', contentTitle => {
+  courses.contentIsVisibleOnCoursePage(contentTitle)
 })
 
-And('I can not see content {string}', taskTitle => {
-  courses.contentIsNotVisibleOnCoursePage(taskTitle)
+And('I can not see content {string}', contentTitle => {
+  courses.contentIsNotVisibleOnCoursePage(contentTitle)
 })
 
 And('I can see task {string} on course page', taskTitle => {
@@ -71,7 +71,7 @@ When('I click on three dot menu of content {string}', contentTitle => {
 })
 
 When('I click on three dot menu of topic {string}', contentTitle => {
-  coursesCommon.openThreeDotMenuForTopic(contentTitle)
+  courses.openThreeDotMenuForTopic(contentTitle)
 })
 
 And('I click on Delete in dot menu', () => {
@@ -79,7 +79,7 @@ And('I click on Delete in dot menu', () => {
 })
 
 When('I click on Delete in dot menu of topic', () => {
-  coursesCommon.clickDeleteInDotMenuOfTopic()
+  courses.clickDeleteInDotMenuOfTopic()
 })
 
 And('I click on Edit in dot menu', () => {
@@ -125,5 +125,5 @@ Then('I see task {string} contains buttons', taskTitle => {
 })
 
 Then('I can see topic {string} on course page', topicTitle => {
-  coursesCommon.topicIsVisibleOnCoursePage(topicTitle)
+  courses.topicIsVisibleOnCoursePage(topicTitle)
 })
