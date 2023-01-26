@@ -24,8 +24,15 @@ class Management {
   static #manageSchoolCard = '[data-testid="school_administration_card"]'
   static #oldAdminPageVideoChatCheckBox ='[data-testid="school-admin-video-conference-checkbox"]'
   static #saveGeneralAdminSetting = '[data-testid="school-admin-save-general-setting"]'
-
-
+  static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
+  static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]'
+  static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
+  static #courseAdministrationNavigationButton = '[data-testid="Kurse"]'
+  static #classAdministrationNavigationButton = '[data-testid="Klassen"]'
+  static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
+  static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
+  static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
+  static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -46,6 +53,67 @@ class Management {
   clickOnManageSchoolCard () {
     cy.get(Management.#manageSchoolCard)
       .click()
+  }
+
+  clickAllowStudentsTeamCheckbox () {
+    cy.get(Management.#studentTeamCheckbox)
+      .as('checkbox')
+      .invoke('is', ':checked')
+      .then(checked => {
+        if (checked) {
+        } else {
+          cy
+            .get('@checkbox')
+            .check();
+        }
+      })
+  }
+
+  clickSaveButtonToAllowStudentCreateTeam () {
+    cy.get(Management.#submitButtonTeamsAdmin)
+      .eq(0)
+      .click()
+  }
+
+  seeStudentTeamsAllowed () {
+    cy.get(Management.#studentTeamCheckbox).should('be.checked')
+  }
+
+  navigateToAdministration() {
+    cy.get(Management.#administrationOverviewNavigationButton).click()
+    cy.url().should('include', '/administration')
+  }
+
+  navigateToStudentAdministration() {
+    cy.get(Management.#studentAdministrationNavigationButton)
+      .click()
+    cy.url()
+      .should('include', '/administration/students')
+  }
+
+  navigateToTeacherAdministration() {
+    cy.get(Management.#teacherAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/teachers')
+  }
+
+  navigateToCourseAdministration() {
+    cy.get(Management.#courseAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/courses')
+  }
+
+  navigateToClassAdministration() {
+    cy.get(Management.#classAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/classes')
+  }
+
+  navigateToTeamAdministration() {
+    cy.get(Management.#teamAdministrationNavigationButton).eq(1).click()
+    cy.url().should('include', '/administration/teams')
+  }
+
+  navigateToSchoolAdministration() {
+    cy.get(Management.#schoolAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/school')
   }
 
   clickOnFAB () {

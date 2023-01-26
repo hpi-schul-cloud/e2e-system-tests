@@ -1,81 +1,79 @@
-import Teams_Common from '../../pages/teams/pageCommonTeams'
 import Teams from '../../pages/teams/pageTeams'
 
 const teams = new Teams()
-const teamsCommon = new Teams_Common()
 
 When('I click on teams save changes button', () => {
 	teams.clickOnSaveChangeButton()
 })
 
 When('I go to teams overview', () => {
-  teamsCommon.navigateToTeamsOverview()
+  teams.navigateToTeamsOverview()
 })
 
 And('I go to a team {string}', (teamName) => {
-  teamsCommon.selectTeam(teamName)
+  teams.selectTeam(teamName)
 })
 
 Then('I can not see the chat in team', () => {
-  teamsCommon.canNotSeeTeamChat()
+  teams.canNotSeeTeamChat()
 })
 
 And('I open team settings', () => {
-  teamsCommon.openTeamSettings()
+  teams.openTeamSettings()
 })
 
 And('I choose edit team', () => {
-  teamsCommon.editTeam()
+  teams.editTeam()
 })
 
 Then('I can not see the checkbox for messenger in a team', () => {
-  teamsCommon.canNotSeeTeamChatCheckbox()
+  teams.canNotSeeTeamChatCheckbox()
 })
 
 Then('I can see the checkbox for messenger in a team', () => {
-  teamsCommon.canSeeTeamChatCheckbox()
+  teams.canSeeTeamChatCheckbox()
 })
 
 Then('I can see the chat in team', () => {
-  teamsCommon.canSeeTeamChat()
+  teams.canSeeTeamChat()
 })
 
 And('I click on three dot menu on the team title', () => {
-  teamsCommon.clickOnThreeDotToManageTeam()
+  teams.clickOnThreeDotToManageTeam()
 })
 
 And('I click on manage team members option', () => {
-  teamsCommon.clickOnManageTeamMembersEditOption()
+  teams.clickOnManageTeamMembersEditOption()
 })
 
 And('I click on add internal attendees button', () => {
-  teamsCommon.clickOnAddInternalAttendeees()
+  teams.clickOnAddInternalAttendeees()
 })
 
 And('new dialog opens to select student {string} from the drop down list', () => {
-  teamsCommon.selectInternalTeamMember()
+  teams.selectInternalTeamMember()
 })
 
 And('I click on add user button', () => {
-  teamsCommon.clickOnAddButton()
+  teams.clickOnAddingNewTeamMemberButton()
 })
 
 Then('I see the student named {string} on the team members table', (studentName) => {
-  teamsCommon.seeNewlyAddedStudentAsInternalTeamMember(studentName)
+  teams.seeNewlyAddedStudentAsInternalTeamMember(studentName)
 })
 
 When ('I select the student {string} and click on delete icon',()=>{
-  teamsCommon.removeStudentInTeam()
+  teams.removeStudentInTeam()
 })
 
 Then ('I see {string} is not visible on the table',()=>{
-  teamsCommon.doNotSeeDeletedStudentInTeam()
+  teams.doNotSeeDeletedStudentInTeam()
 })
 
 When('I click on news tab on the team detail page', () => {
-  teamsCommon.clickOnNewsTabInTeamDetailPage()
+  teams.clickOnNewsTabInTeamDetailPage()
 })
 
 And('I click on create news button', () => {
-  teamsCommon.clickOnCreateNewsOnTeamDetailPage()
+  teams.clickOnCreateNewsOnTeamDetailPage()
 })

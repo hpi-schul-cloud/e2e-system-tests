@@ -1,6 +1,6 @@
-import Management_Team from '../../pages/administration/pageTeamManagement'
+import Management from '../../pages/administration/pageAdministration'
 
-const managementTeam = new Management_Team()
+const management = new Management()
 
 // EXTERNAL COMMON STEP DEFINITIONS
 // =========================
@@ -12,13 +12,13 @@ const managementTeam = new Management_Team()
 // Scenario: Admin allows student to create a team on BRB
 
 When('I click the checkbox to allow students to create a team', () => {
-    managementTeam.clickAllowStudentsTeamCheckbox()
+  management.clickAllowStudentsTeamCheckbox()
 })
 
 When('I click on Save', () => {
-    managementTeam.clickSaveButton()
+  management.clickSaveButtonToAllowStudentCreateTeam()
 })
 
 Then('I see checkbox is saved', () => {
-    managementTeam.seeStudentTeamsAllowed()
+  management.seeStudentTeamsAllowed()
 })
