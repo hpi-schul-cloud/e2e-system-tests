@@ -20,6 +20,11 @@ class Files {
   static #cardTitle = '[data-testid="file-title"]'
   static #pageTitle = '[data-testid="LibreOffice Online"]'
   static #deleteDialogBoxPopupContainer = '[data-testid="modal_content"]'
+  static #filesOverviewNavigationButton = '[data-testid="Meine Dateien"]'
+  static #personalFilesOverviewNavigationButton = '[data-testid="persönliche Dateien"]'
+  static #coursesFilesOverviewNavigationButton = '[data-testid="Kurse"]'
+  static #teamsFilesOverviewNavigationButton = '[data-testid="Teams"]'
+  static #sharedFilesOverviewNavigationButton = '[data-testid="geteilte Dateien"]'
 
   static #testAssertionData = {
     fileTypeDocument: 'Textdokument (docx)',
@@ -28,6 +33,36 @@ class Files {
     libraOfficeOpenTitleText: 'LibreOffice Online',
     deletePopupTextInitials: 'Bist du dir sicher, dass du ',
     deletePopupTextFinal: ' löschen möchtest?'
+  }
+
+  navigateToFilesOverview () {
+    cy.get(Files.#filesOverviewNavigationButton).click()
+    cy.wait('@alerts_api')
+    cy.url().should('include', '/files')
+  }
+
+  navigateToPersonalFilesOverview () {
+    cy.get(Files.#personalFilesOverviewNavigationButton).click()
+    cy.wait('@alerts_api')
+    cy.url().should('include', '/files/my')
+  }
+
+  navigateToCourseFilesOverview () {
+    cy.get(Files.#coursesFilesOverviewNavigationButton).click()
+    cy.wait('@alerts_api')
+    cy.url().should('include', '/files/courses')
+  }
+
+  navigateToTeamsFilesOverview () {
+    cy.get(Files.#teamsFilesOverviewNavigationButton).eq(1).click()
+    cy.wait('@alerts_api')
+    cy.url().should('include', '/files/teams')
+  }
+
+  navigateToSharedFilesOverview () {
+    cy.get(Files.#sharedFilesOverviewNavigationButton).click()
+    cy.wait('@alerts_api')
+    cy.url().should('include', '/files/shared')
   }
 
   clickOnCreateNewFile () {

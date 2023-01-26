@@ -52,7 +52,7 @@ When('I select the team colour black', () => {
 })
 
 Then('I click on button Create Team on the team creation page', () => {
-	teams.clickOnAddButton()
+	teams.clickOnAddButtonToCreateTeam()
 })
 
 Then('I see team title {string} is visible', (teamName) => {

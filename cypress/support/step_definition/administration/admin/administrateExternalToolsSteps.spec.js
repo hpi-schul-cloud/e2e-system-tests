@@ -1,8 +1,8 @@
 import Management from '../../../pages/administration/pageAdministration'
-import Teams_Common from '../../../pages/teams/pageCommonTeams'
+import Teams from '../../../pages/teams/pageTeams'
 
 const management = new Management()
-const teamCommon = new Teams_Common()
+const teams = new Teams()
 
 // EXTERNAL COMMON STEP DEFINITIONS
 // ================================
@@ -27,9 +27,9 @@ When('I click on toggle switch to activate the chat', () => {
 })
 
 And ('I selected the messenger activation checkbox',()=>{
-teamCommon.enableMessangerInTeamEdit()
+  teams.enableMessangerInTeamEdit()
 })
 
 And ('click on save changes',()=>{
-teamCommon.clickOnSaveAfterEdit()
+  teams.clickOnSaveAfterEdit()
 })

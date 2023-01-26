@@ -1,13 +1,13 @@
 'use strict'
 
-class Calendar_Common {
+class Calendar {
 
   static #calendarOverviewNavigationButton = '[data-testid="Termine"]'
 
   navigateToCalendarOverview() {
     cy.visit('/calendar')
-    cy.get(Calendar_Common.#calendarOverviewNavigationButton).click()
+    cy.get(Calendar.#calendarOverviewNavigationButton).click()
     cy.url().should('include', '/calendar')
   }
 }
-export default Calendar_Common
+export default Calendar

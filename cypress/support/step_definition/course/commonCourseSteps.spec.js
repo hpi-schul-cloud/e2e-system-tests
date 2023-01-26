@@ -1,35 +1,33 @@
-import Courses_Common from '../../pages/course/pageCommonCourses'
 import Courses from '../../pages/course/pageCourses'
 
-const coursesCommon = new Courses_Common()
 const courses = new Courses()
 
 When('I go to rooms overview', () => {
-  coursesCommon.navigateToRoomsOverview()
+  courses.navigateToRoomsOverview()
 })
 
 And('I go to room {string}', roomName => {
-  coursesCommon.navigateToRoomBoard(roomName)
+  courses.navigateToRoomBoard(roomName)
 })
 
 Then('I can see room page {string}', roomName => {
-  coursesCommon.showRoomPage(roomName)
+  courses.showRoomPage(roomName)
 })
 
 Then('I see the course {string} on the room overview page', courseName => {
-  coursesCommon.courseIsVisiblOnOverviewPage(courseName)
+  courses.courseIsVisiblOnOverviewPage(courseName)
 })
 
 Then('I do not see the course {string} on the room overview page', courseName => {
-    coursesCommon.courseIsNotVisiblOnOverviewPage(courseName)
+    courses.courseIsNotVisiblOnOverviewPage(courseName)
 })
 
 When('I open course edit page', () => {
-  coursesCommon.openCourseEditPage()
+  courses.openCourseEditPage()
 })
 
 Then('I can see course edit page', () => {
-  coursesCommon.showCourseEditPage()
+  courses.showCourseEditPage()
 })
 
 And('I click on save changes', () => {
@@ -37,17 +35,18 @@ And('I click on save changes', () => {
 })
 
 And('I click on FAB to create the course', () => {
-  coursesCommon.clickOnCreateCourseFAB()
+  courses.clickOnCreateCourseFAB()
 })
 
 And('I click on FAB to create new content', () => {
-  coursesCommon.clickOnCreateContentFAB()
+  courses.clickOnCreateContentFAB()
 })
 
 And('I click on New Task FAB', () => {
-  coursesCommon.clickOnNewTaskFAB()
+  courses.clickOnNewTaskFAB()
 })
 
+<<<<<<< HEAD
 And('I click on New Topic FAB', () => {
   coursesCommon.clickOnNewTopicFAB()
 })
@@ -58,10 +57,18 @@ And('I can see content {string} on course page', topicTitle => {
 
 And('I can not see content {string}', taskTitle => {
   coursesCommon.contentIsNotVisibleOnCoursePage(taskTitle)
+=======
+And('I can see task {string} on course page', taskTitle => {
+  courses.taskIsVisibleOnCoursePage(taskTitle)
+})
+
+And('I can not see task {string}', taskTitle => {
+  courses.taskIsNotVisibleOnCoursePage(taskTitle)
+>>>>>>> main
 })
 
 When('I click on three dot menu of content {string}', contentTitle => {
-  coursesCommon.openThreeDotMenuForContent(contentTitle)
+  courses.openThreeDotMenuForContent(contentTitle)
 })
 
 When('I click on three dot menu of topic {string}', contentTitle => {
@@ -69,7 +76,7 @@ When('I click on three dot menu of topic {string}', contentTitle => {
 })
 
 And('I click on Delete in dot menu', () => {
-  coursesCommon.clickDeleteInDotMenu()
+  courses.clickDeleteInDotMenu()
 })
 
 When('I click on Delete in dot menu of topic', () => {
@@ -77,45 +84,45 @@ When('I click on Delete in dot menu of topic', () => {
 })
 
 And('I click on Edit in dot menu', () => {
-  coursesCommon.clickEditInDotMenu()
+  courses.clickEditInDotMenu()
 })
 
 And('I click on Cancel in confirmation window', () => {
-  coursesCommon.clickOnCancelInConfirmationWindow()
+  courses.clickOnCancelInConfirmationWindow()
 })
 
 And('I click on Delete in confirmation window', () => {
-  coursesCommon.clickDeleteInConfirmationWindow()
+  courses.clickDeleteInConfirmationWindow()
 })
 
 When('I click on task {string}', taskTitle => {
-  coursesCommon.openTask(taskTitle)
+  courses.openTask(taskTitle)
 })
 
 Then(
   'I see task card info submitted contains {string} for task {string}',
   (submittedTasks, taskTitle) => {
-    coursesCommon.compareSubmittedTasksInformation(submittedTasks, taskTitle)
+    courses.compareSubmittedTasksInformation(submittedTasks, taskTitle)
   }
 )
 
 And(
   'Task card info graded contains {string} for task {string}',
   (gradedTasks, taskTitle) => {
-    coursesCommon.compareGradedTasksInformation(gradedTasks, taskTitle)
+    courses.compareGradedTasksInformation(gradedTasks, taskTitle)
   }
 )
 
 And('I click on link finish for task {string}', taskTitle => {
-  coursesCommon.clickOnFinishTask(taskTitle)
+  courses.clickOnFinishTask(taskTitle)
 })
 
 Then('I see task {string} does not contain any buttons', taskTitle => {
-  coursesCommon.checkTaskCardDoesNotHaveButtons(taskTitle)
+  courses.checkTaskCardDoesNotHaveButtons(taskTitle)
 })
 
 Then('I see task {string} contains buttons', taskTitle => {
-  coursesCommon.checkTaskCardDoesHaveButtons(taskTitle)
+  courses.checkTaskCardDoesHaveButtons(taskTitle)
 })
 
 Then('I can see topic {string} on course page', topicTitle => {

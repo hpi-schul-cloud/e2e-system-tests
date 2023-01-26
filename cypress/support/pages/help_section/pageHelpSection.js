@@ -19,6 +19,40 @@ class Help {
   static #bugFormMail = '[data-testid="bug_email"]'
   static #bugFormSubmitButton = '[data-testid="bug_submit"]'
   static #feedbackSendConfirmation = '[data-testid="notification"]'
+  static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]'
+  static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]'
+  static #helpContactNavigationButton = '[data-testid="Kontakt"]'
+  static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]'
+
+  navigateToHelpSection() {
+    cy.get(Help.#helpOverviewNavigationButton)
+      .click()
+    cy.url()
+      .should('include', '/help/articles')
+  }
+
+  navigateToHelpArticles() {
+    cy.get(Help.#helpArticlesNavigationButton)
+      .eq(0)
+      .click()
+    cy.url()
+      .should('include', '/help/articles')
+  }
+
+  navigateToHelpContact() {
+    cy.get(Help.#helpContactNavigationButton)
+      .click()
+    cy.url()
+      .should('include', '/help/contact')
+  }
+
+  navigateToAdvancedTrainings() {
+    cy.get(Help.#advancedTrainingsNavigationButton)
+      .should($a => {
+        expect($a.attr('href'), 'href').to.equal(Help.#popUpLink)
+        expect($a.attr('target'), 'target').to.equal('_blank')
+    })
+  }
 
   clickQuestionIcon(){
     cy.get(Help.#questionIcon).click()

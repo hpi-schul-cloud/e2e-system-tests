@@ -1,15 +1,15 @@
-import Account_Common from '../../pages/account/pageCommonAccount'
+import Account from '../../pages/account/pageAccount'
 
-const accountCommon = new Account_Common()
+const account = new Account()
 
 When('I go to my account settings', () => {
-  accountCommon.navigateToAccountSettingsSection()
+  account.navigateToAccountSettingsSection()
 })
 
 Then('I see my email is editable', () => {
-  accountCommon.verifyEmailEditable(true)
+  account.verifyEmailEditable(true)
 })
 
 Then('I see my email is not editable', () => {
-  accountCommon.verifyEmailEditable(false)
+  account.verifyEmailEditable(false)
 })
