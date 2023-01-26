@@ -46,25 +46,24 @@ And('I click on New Task FAB', () => {
   courses.clickOnNewTaskFAB()
 })
 
-<<<<<<< HEAD
 And('I click on New Topic FAB', () => {
-  coursesCommon.clickOnNewTopicFAB()
+  courses.clickOnNewTopicFAB()
 })
 
 And('I can see content {string} on course page', topicTitle => {
-  coursesCommon.contentIsVisibleOnCoursePage(topicTitle)
+  courses.contentIsVisibleOnCoursePage(topicTitle)
 })
 
 And('I can not see content {string}', taskTitle => {
-  coursesCommon.contentIsNotVisibleOnCoursePage(taskTitle)
-=======
+  courses.contentIsNotVisibleOnCoursePage(taskTitle)
+})
+
 And('I can see task {string} on course page', taskTitle => {
   courses.taskIsVisibleOnCoursePage(taskTitle)
 })
 
 And('I can not see task {string}', taskTitle => {
   courses.taskIsNotVisibleOnCoursePage(taskTitle)
->>>>>>> main
 })
 
 When('I click on three dot menu of content {string}', contentTitle => {
