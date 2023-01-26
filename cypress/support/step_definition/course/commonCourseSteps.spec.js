@@ -58,13 +58,13 @@ And('I can not see content {string}', contentTitle => {
   courses.contentIsNotVisibleOnCoursePage(contentTitle)
 })
 
-And('I can see task {string} on course page', taskTitle => {
-  courses.taskIsVisibleOnCoursePage(taskTitle)
-})
+// And('I can see task {string} on course page', taskTitle => {
+//   courses.taskIsVisibleOnCoursePage(taskTitle)
+// })
 
-And('I can not see task {string}', taskTitle => {
-  courses.taskIsNotVisibleOnCoursePage(taskTitle)
-})
+// And('I can not see task {string}', taskTitle => {
+//   courses.taskIsNotVisibleOnCoursePage(taskTitle)
+// })
 
 When('I click on three dot menu of content {string}', contentTitle => {
   courses.openThreeDotMenuForContent(contentTitle)
