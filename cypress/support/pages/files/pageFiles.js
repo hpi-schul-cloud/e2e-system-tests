@@ -21,10 +21,14 @@ class Files {
   static #pageTitle = '[data-testid="LibreOffice Online"]'
   static #deleteDialogBoxPopupContainer = '[data-testid="modal_content"]'
   static #filesOverviewNavigationButton = '[data-testid="Meine Dateien"]'
-  static #personalFilesOverviewNavigationButton = '[data-testid="persönliche Dateien"]'
+  static #personalFilesOverviewNavigationButton =
+    '[data-testid="persönliche Dateien"]'
   static #coursesFilesOverviewNavigationButton = '[data-testid="Kurse"]'
   static #teamsFilesOverviewNavigationButton = '[data-testid="Teams"]'
-  static #sharedFilesOverviewNavigationButton = '[data-testid="geteilte Dateien"]'
+  static #sharedFilesOverviewNavigationButton =
+    '[data-testid="geteilte Dateien"]'
+  static #editFilePopupBoxTitle = '[data-testid="popup-title"]'
+  static #editFilePopupBoxTextField = '[data-testid="folder-rename-text-field"]'
 
   static #testAssertionData = {
     fileTypeDocument: 'Textdokument (docx)',
@@ -32,7 +36,8 @@ class Files {
     saveRenameButtonText: 'Speichern',
     libraOfficeOpenTitleText: 'LibreOffice Online',
     deletePopupTextInitials: 'Bist du dir sicher, dass du ',
-    deletePopupTextFinal: ' löschen möchtest?'
+    deletePopupTextFinal: ' löschen möchtest?',
+    editFilePopupBoxTitleText: 'Datei umbenennen'
   }
 
   navigateToFilesOverview () {
@@ -102,10 +107,21 @@ class Files {
       })
   }
 
+  renamePopupBoxVisible (fileName) {
+    cy.contains(
+      Files.#editFilePopupBoxTitle,
+      Files.#testAssertionData.editFilePopupBoxTitleText
+    ).should('be.visible')
+    cy.get(Files.#editFilePopupBoxTextField)
+      .should('be.visible')
+      .should('have.value', fileName)
+  }
+
   typeNewFilename (fileName) {
     cy.get(Files.#newFilenameInputField)
+      .click()
       .focus()
-      .type('{selectall}{backspace}')
+      .clear()
       .should('have.value', '')
     cy.get(Files.#newFilenameInputField)
       .focus()
