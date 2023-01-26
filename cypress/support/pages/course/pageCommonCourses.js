@@ -174,6 +174,7 @@ class Courses_Common {
     cy.contains(contentTitle)
       .should('be.visible')
       .wait([
+        '@runtime_config_api',
         '@public_api',
         '@me_api',
         '@roles_api',
@@ -182,18 +183,25 @@ class Courses_Common {
       ])
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
         expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[2].state).to.equal('Complete')
+        expect(interceptions[2].response.statusCode).to.equal(200)
       })
   }
 
   contentIsNotVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    // cy.url().should('include', '/rooms/')
-    // cy.wait(1000)
+      .wait([
+        '@board_api',
+        '@runtime_config_api',
+        '@public_api'
+      ])
+      .then(interceptions => {
+        expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+        expect(interceptions[1].response.statusCode).to.equal(200)
+      })
     cy.contains(taskTitle).should('not.exist')
-    // cy.get(Courses_Common.#mainContent).should('not.contain', taskTitle)
-    // cy.get(Courses_Common.#mainContent).contains(taskTitle).should('not.exist')
   }
 
   openTask (taskTitle) {

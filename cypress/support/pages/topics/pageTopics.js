@@ -181,9 +181,16 @@ class Topics {
   }
 
   clickLastBreadcrumb() {
-    cy.get(Topics.#breadcrumbItem).last().click()
-    // cy.get(Topics.#topNavbar).within(() => {
-    // })
+    cy.get(Topics.#breadcrumbItem)
+      .last()
+      .click()
+      .wait(['@alerts_api', '@runtime_config_api', '@locales_api'], {
+      timeout: 10000
+    }).then(interceptions => {
+      expect(interceptions[0].response.statusCode).to.equal(200)
+      expect(interceptions[1].response.statusCode).to.equal(200)
+      expect(interceptions[2].response.statusCode).to.equal(200)
+    })
   }
 
 }
