@@ -7,13 +7,18 @@ class Tasks {
   static #taskOverviewStudent = '[class="task-dashboard-student"]'
   static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
   static #draftCheckbox = '[data-testid="private-checkbox"]'
-  static #visibilityStartDateInput = '[data-testid="form-datetime-input-availableDate"]'
+  static #visibilityStartDateInput =
+    '[data-testid="form-datetime-input-availableDate"]'
   static #visibilityDueDateInput = '[data-testid="form-datetime-input-dueDate"]'
   static #publicSubmissionsCheckbox = '[id="publicSubmissionsCheckbox"]'
-  static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]'
-  static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]'
-  static #dialogCancelDeletionTaskButtons = '#modal-delete-homework-footer > .btn-close'
-  static #dialogConfirmDeletionTaskButtons = '#modal-delete-homework-footer > .btn-submit'
+  static #dialogConfirmButton =
+    '[data-testid="task-publicSubmissions-dialog-confirm"]'
+  static #dialogCancelButton =
+    '[data-testid="task-publicSubmissions-dialog-cancel"]'
+  static #dialogCancelDeletionTaskButtons =
+    '#modal-delete-homework-footer > .btn-close'
+  static #dialogConfirmDeletionTaskButtons =
+    '#modal-delete-homework-footer > .btn-submit'
   static #taskDetailsTab = '[id="extended"]'
   static #submissionTab = '[id="submission-tab-link"]'
   static #submissionsTab = '[id="submissions-tab-link"]'
@@ -22,18 +27,25 @@ class Tasks {
   static #fileUploadButtonEnabled = '[data-testid="fileupload-button"]'
   static #fileUploadInput = '[data-testid="fileupload-input"]'
   static #filesSection = '[data-testid="tasks-section-files"]'
-  static #uploadedFilesSection = '[data-testid="section-uploadedfiles"]'
-  static #uploadedFilesSectionInSubmission = '[data-testid="submissions-section-files"]'
+  static #uploadedFilesSection = '[data-testid="submissions-section-files"]'
+  static #uploadedFilesSectionInSubmission =
+    '[data-testid="submissions-section-files"]'
   static #fileViewerSection = '[class="file-viewer"]'
   static #renameFileInput = '[id="newNameInput"]'
-  static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]'
-  static #renameFileSubmitButton = '[data-testid="rename-file-dialog-submit-btn"]'
-  static #deleteFileCancelButton = '[data-testid="delete-file-dialog-cancel-btn"]'
-  static #deleteFileSubmitButton = '[data-testid="delete-file-dialog-submit-btn"]'
+  static #renameFileCancelButton =
+    '[data-testid="rename-file-dialog-cancel-btn"]'
+  static #renameFileSubmitButton =
+    '[data-testid="rename-file-dialog-submit-btn"]'
+  static #deleteFileCancelButton =
+    '[data-testid="delete-file-dialog-cancel-btn"]'
+  static #deleteFileSubmitButton =
+    '[data-testid="delete-file-dialog-submit-btn"]'
   static #submissionSaveButton = '[data-testid="tasks-submission-save-btn"]'
   static #submissionSendButton = '[data-testid="tasks-submission-submit-btn"]'
-  static #gradingSaveAndSendBtn = '[data-testid="tasks-submission-grading-save-and-send-btn"]'
-  static #hintForSubmissionReceived = '[data-testid="tasks-submission-hint-received"]'
+  static #gradingSaveAndSendBtn =
+    '[data-testid="tasks-submission-grading-save-and-send-btn"]'
+  static #hintForSubmissionReceived =
+    '[data-testid="tasks-submission-hint-received"]'
   static #doneTasksTab = '[data-testid="closedTasks"]'
   static #taskTitleInList = '[data-testid="taskTitle"]'
   static #taskSection = '[data-testid="task-section-task"]'
@@ -42,9 +54,12 @@ class Tasks {
   static #gradingPercentInput = '[data-testid="evaluation_procent"]'
   static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]'
   static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]'
-  static #taskSubmissionsSubmittedIcon = '[data-testid="task-submissions-task-submitted-icon"]'
-  static #taskSubmissionsOpenSubmissionIcon = '[data-testid="task-submissions-opensubmission-icon"]'
-  static #taskSubmissionsGradingTabLink = '[data-testid="task-submission-grading-tab"]'
+  static #taskSubmissionsSubmittedIcon =
+    '[data-testid="task-submissions-task-submitted-icon"]'
+  static #taskSubmissionsOpenSubmissionIcon =
+    '[data-testid="task-submissions-opensubmission-icon"]'
+  static #taskSubmissionsGradingTabLink =
+    '[data-testid="task-submission-grading-tab"]'
   static #taskFeedbackTabLink = '[id="feedback-tab-link"]'
   static #feedbackSection = '[id="feedback"]'
   static #finishedTasksTab = '[data-testid="finishedTasks"]'
@@ -63,30 +78,29 @@ class Tasks {
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
+  static #downloadFileGradingSection =
+    '[data-testid="submissions-section-files"]'
+  static #downloadFileTitle = '.card-title'
+  static #downloadFileText = '.card-text'
 
-  navigateToTasksOverview() {
+  navigateToTasksOverview () {
     cy.visit('/tasks')
-    cy.get(Tasks.#tasksOverviewNavigationButton)
-      .click()
+    cy.get(Tasks.#tasksOverviewNavigationButton).click()
     cy.url().should('include', '/tasks')
   }
 
-  clickOnSubmit() {
-    cy.get(Tasks.#taskForm).find(Tasks.#submitButton)
-      .click()
+  clickOnSubmit () {
+    cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
     //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
   }
 
-  clickOnAddTask() {
-    cy.get(Tasks.#addTaskButton)
-      .click()
+  clickOnAddTask () {
+    cy.get(Tasks.#addTaskButton).click()
   }
 
   seeCreateTaskPage (taskTitle) {
-    if (taskTitle === '-'){
-      cy.get(Tasks.#taskForm)
-        .get(Tasks.#taskNameInput)
-        .should('be.empty')
+    if (taskTitle === '-') {
+      cy.get(Tasks.#taskForm).get(Tasks.#taskNameInput).should('be.empty')
     } else {
       cy.get(Tasks.#taskForm)
         .get(Tasks.#taskNameInput)
@@ -100,26 +114,19 @@ class Tasks {
   }
 
   setTaskText (taskText) {
-    cy.get(Tasks.#homeworkDescription)
-      .find('div > p')
-      .clear()
-    cy.get(Tasks.#homeworkDescription)
-      .find('div > p')
-      .type(taskText)
+    cy.get(Tasks.#homeworkDescription).find('div > p').clear()
+    cy.get(Tasks.#homeworkDescription).find('div > p').type(taskText)
   }
 
   clickOnTabDraftTasks () {
-    cy.get(Tasks.#draftTasksTab)
-      .click()
+    cy.get(Tasks.#draftTasksTab).click()
   }
 
   taskIsVisibleOnTasksOverviewPage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/tasks')
-    cy.contains(taskTitle)
-      .should('be.visible')
+    cy.contains(taskTitle).should('be.visible')
   }
-
 
   taskIsNotVisibleOnTasksOverviewPage (taskTitle) {
     cy.wait(200)
@@ -136,9 +143,7 @@ class Tasks {
   }
 
   openTaskFromTasksOverview (taskTitle) {
-    cy.get(Tasks.#taskCardTitle)
-      .contains(taskTitle)
-      .click()
+    cy.get(Tasks.#taskCardTitle).contains(taskTitle).click()
   }
 
   clickDeleteTaskInDotMenu () {
@@ -148,7 +153,6 @@ class Tasks {
   clickButtonDeleteTask () {
     cy.get(Tasks.#deleteTaskButton).click()
   }
-
 
   clickCancelDeletionButtonInEditTask () {
     cy.get(Tasks.#dialogCancelDeletionTaskButtons).click()
@@ -248,7 +252,7 @@ class Tasks {
   }
 
   clickOnSubmitInConfirmationWindow () {
-    cy.get(Tasks.#dialogConfirmButton).click()
+    cy.get(Tasks.#dialogConfirmButton).should('be.visible').click()
   }
 
   compareDescriptionOnDetailpage (expectedDescription) {
@@ -404,13 +408,18 @@ class Tasks {
   }
 
   clickDownloadFileInGrading (fileName) {
-    cy.get(Tasks.#feedbackSection)
-      .find('a')
-      .should('contain', fileName)
-      .parent()
-      .find('span')
-      .find('a')
-      .click()
+    cy.get(Tasks.#downloadFileGradingSection)
+      .first()
+      .then(elm => {
+        cy.get(elm)
+          .contains(Tasks.#downloadFileTitle, fileName)
+          .should('be.visible')
+        cy.get(elm)
+          .find(Tasks.#downloadFileText)
+          .find('button')
+          .should('be.visible')
+          .click()
+      })
   }
 
   seeFileIsSavedInDownloads (fileName) {
@@ -481,7 +490,7 @@ class Tasks {
     cy.get(Tasks.#taskOverviewStudent)
       .should('not.have.css', 'display', 'none')
       .then(() => {
-        cy.contains("[data-testid='taskTitle']", taskTitle).should('exist')
+        cy.contains(Tasks.#taskCardTitle, taskTitle).should('exist')
       })
   }
 
