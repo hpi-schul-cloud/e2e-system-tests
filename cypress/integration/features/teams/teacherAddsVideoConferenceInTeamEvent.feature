@@ -35,7 +35,7 @@ Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
 When I go to calendar tab
-When I click on Add date button
+When I click on Add date
 Then I see event creation modal
 When I enter the title 'cy title'
 When I select the team event start date and time
