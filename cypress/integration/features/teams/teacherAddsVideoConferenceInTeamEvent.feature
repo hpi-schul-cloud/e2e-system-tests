@@ -85,7 +85,7 @@ Scenario: as a post condition Admin disable the video conference for the team
 Given I am logged in as a 'admin' at 'default'
 When I go to administration page
 When I click on manage school card
-#When I click on go to new school adminstration button // due unstability/bug on this page at the moment
+#When I click on go to new school adminstration button  // unstability on this page at the moment
 Then I disable the video conference on the old school setting page
 Then I click on admin setting save button
 
