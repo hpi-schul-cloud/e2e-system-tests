@@ -8,7 +8,7 @@ When ('I go to calendar tab',() =>{
 	teams.goToTeamsCalendarTab()
 })
 
-When ('I click on Add date button',() =>{
+When ('I click on Add date',() =>{
 	teams.clickOnAddTeamsAppointment()
 })
 
@@ -32,7 +32,7 @@ When ('I enter the description {string}', (eventDescription) =>{
 	teams.enterTeamEventDescription(eventDescription)
 })
 
-When ('I enter the event place {string} and press the enter button to save the event', (eventPlace) =>{
+When ('I enter the event place {string} and press enter to save the event', (eventPlace) =>{
 	teams.enterTeamEventPlaceAndPressEnter(eventPlace)
 })
 
@@ -64,7 +64,7 @@ Then ('I am in calendar tab on team detail page and edited title {string} is vis
   teams.editedTeamEventTitleIsVisible(editedEventTitle)
 })
 
-When ('I click on Delete team event button', () =>{
+When ('I click on Delete team event in modal', () =>{
   teams.deleteTeamEvent()
 })
 

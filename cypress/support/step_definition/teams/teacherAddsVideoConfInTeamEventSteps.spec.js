@@ -6,7 +6,7 @@ const teams = new Teams()
 // also admin related pages
 
 
-When ('I enable the video conference check box on the teams edit page',() =>{
+When ('I enable the video conference on the teams edit page',() =>{
 	teams.enableVideoConferenceOnTeamEditPage()
 })
 
@@ -39,7 +39,7 @@ Then ('I see video conference check box is unchecked', () =>{
 	teams.seeUncheckedVideoConferenceCheckbox()
 })
 
-Then ('I see video conference check box is disabled', () =>{
+Then ('I see video conference option is disabled', () =>{
 	teams.seeDisabledVideoConferenceOnTeamEditPage()
 })
 
