@@ -5,6 +5,10 @@ const teams = new Teams()
 //There are some repeating steps which are defined only once in this this step definition file for example 'to save team event after creating and editing' etc..
 // also admin related pages
 
+Then ('I see the information that video conference is not yet started', () =>{
+	teams.seeVideoParticipationNotStartedInfoIcon()
+	teams.seeVideoNotStartedInfoModal()
+})
 
 When ('I enable the video conference on the teams edit page',() =>{
 	teams.enableVideoConferenceOnTeamEditPage()

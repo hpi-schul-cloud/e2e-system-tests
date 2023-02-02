@@ -63,21 +63,27 @@ class Tasks {
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
+  static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
 
-  navigateToTasksOverview() {
+
+  seeVideoParticipationAsStudent () {
+    cy.get()
+  }
+
+  navigateToTasksOverview () {
     cy.visit('/tasks')
     cy.get(Tasks.#tasksOverviewNavigationButton)
       .click()
     cy.url().should('include', '/tasks')
   }
 
-  clickOnSubmit() {
+  clickOnSubmit () {
     cy.get(Tasks.#taskForm).find(Tasks.#submitButton)
       .click()
     //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
   }
 
-  clickOnAddTask() {
+  clickOnAddTask () {
     cy.get(Tasks.#addTaskButton)
       .click()
   }

@@ -57,7 +57,6 @@ class Teams {
   static #confirmTeamMemberDeleteButton = '[data-testid="btn-submit"]'
   static #deleteIconInTableViewRow = '[data-testid="btn-delete-team-member"]'
   static #teamMemberInTable = 'tr'
-
   static #testAssertionData = {
     firstName: 'Kraft',
     lastName: 'Herbert',
@@ -65,6 +64,20 @@ class Teams {
     deletePopupText: 'Teilnehmer:in löschen',
     activateMessengerText: 'Messenger für Team aktivieren',
     activateVideoMessengerText: 'Videokonferenzen für Team aktivieren'
+  }
+  static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
+  static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
+
+
+  seeVideoNotStartedInfoModal () {
+    cy.get(Teams.#videoConferenceNotStartedInfoModal)
+      .should('be.exist')
+  }
+
+  seeVideoParticipationNotStartedInfoIcon () {
+    cy.wait(2000)
+    cy.get(Teams.#videoConferenceNotStartedIcon)
+      .click({force: true})
   }
 
   seeBBBExternalURL (bbbExtURL) {
