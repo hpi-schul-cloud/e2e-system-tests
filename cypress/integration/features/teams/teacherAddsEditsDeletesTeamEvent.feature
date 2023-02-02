@@ -1,5 +1,5 @@
 @team @stable_test
-Feature: Team - Teacher manages the team event
+Feature: Team - Teacher adds/edit and delete the team event without video conference
 
 As a teacher I want to create/edit/delete the team event in default so that I can manage the team collaboration.
 

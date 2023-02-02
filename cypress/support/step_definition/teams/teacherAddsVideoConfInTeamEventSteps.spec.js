@@ -26,7 +26,7 @@ Then ('I see the modal and toggles are visible in the modal', () =>{
 	teams.seeModalAndToggles()
 })
 
-Then ('I start the team video confernce', () =>{
+Then ('I start the team video conference', () =>{
 	teams.startTeamVideoConferenceFromModal()
 })
 
@@ -34,7 +34,7 @@ Then ('I see URL is changed to {string}', (bbbExtURL) =>{
 	teams.seeBBBExternalURL(bbbExtURL)
 })
 
-Then ('I click on participate to video conference button as a participanting student', () =>{
+Then ('I click on participate to video conference button as a participating student', () =>{
 	teams.clickOnVideoParticipantLinkButtonAsStudent()
 })
 

@@ -1,7 +1,7 @@
 @team @stable_test
-Feature: Team - Teacher adds video conference to the team team and student can partcipate as an internal team member
+Feature: Team - Teacher adds and deletes video conference to the team event and student can partcipate as an internal team member
 
-As a teacher I want to add video conference to the team event so that team members can colleborate via video conference.
+As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.
 
 Scenario: as a pre condition Admin enables the video conference option for a team event
 Given I am logged in as a 'admin' at 'default'
@@ -49,10 +49,10 @@ Then I am in calendar tab on team detail page and title 'cy title' is visible
 Then I see the start video conference button
 When I click on start video conference button as a moderator teacher
 Then I see the modal and toggles are visible in the modal
-#Then I start the team video confernce //due to multiple element issue, this step is blocked by BC-3085
+#Then I start the team video conference //due to multiple element issue, this step is blocked by BC-3085
 #Then I see URL is changed to 'https://bbb-3.bbb.staging.messenger.schule/' //this step is blocked by BC-3085
 
-Scenario: Student can see and participate in video confernce
+Scenario: Student can see and participate in video conference
 Given I am logged in as a 'student' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
@@ -60,7 +60,7 @@ When I go to calendar tab
 Then I am in calendar tab on team detail page and title 'cy title' is visible
 Then I see the information that video conference is not yet started
 #Then I see the video conference participate button as student //this step is blocked by BC-3085
-#When I click on participate to video conference button as a participanting student //this step is blocked by BC-3085
+#When I click on participate to video conference button as a participating student //this step is blocked by BC-3085
 #Then I see URL is changed to 'https://bbb-3.bbb.staging.messenger.schule/' //this step is blocked by BC-3085
 
 Scenario: as a post-condition teacher deletes the student as a team member
@@ -86,7 +86,7 @@ Scenario: as a post condition Admin disable the video conference for the team
 Given I am logged in as a 'admin' at 'default'
 When I go to administration page
 When I click on manage school card
-#When I click on go to new school adminstration button  //unstability on this page at the moment so this step is commented out and old admin page is used
+#When I click on go to new school administration button  //some instability on this page at the moment so this step is commented out and old admin page is used
 Then I disable the video conference on the old school setting page
 Then I click on admin setting save button
 
