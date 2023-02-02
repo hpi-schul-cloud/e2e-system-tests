@@ -68,6 +68,6 @@ When ('I click on Delete team event in modal', () =>{
   teams.deleteTeamEvent()
 })
 
-Then ('I am in calendar tab on team detail page and title {string} is NOT visible', (editedEventTitle) =>{
-  teams.doNotSeeTeamEventTitle(editedEventTitle)
+Then ('I am in calendar tab on team detail page and title is NOT visible', () =>{
+  teams.doNotSeeTeamEventTitle()
 })

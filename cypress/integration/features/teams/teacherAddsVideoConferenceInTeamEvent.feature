@@ -80,7 +80,7 @@ When I go to calendar tab
 When I click on edit icon
 Then I see event creation modal
 When I click on Delete team event in modal
-Then I am in calendar tab on team detail page and title 'cy title' is NOT visible
+Then I am in calendar tab on team detail page and title is NOT visible
 
 Scenario: as a post condition Admin disable the video conference for the team
 Given I am logged in as a 'admin' at 'default'

@@ -27,4 +27,4 @@ Scenario: Teacher adds, edits and deletes the team event
   When I click on edit icon
   Then I see event creation modal
   When I click on Delete team event in modal
-  Then I am in calendar tab on team detail page and title 'edit cy title' is NOT visible
+  Then I am in calendar tab on team detail page and title is NOT visible

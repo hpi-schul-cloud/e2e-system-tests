@@ -38,7 +38,6 @@ Then ('I click on participate to video conference button as a participanting stu
 	teams.clickOnVideoParticipantLinkButtonAsStudent()
 })
 
-
 Then ('I see video conference check box is unchecked', () =>{
 	teams.seeUncheckedVideoConferenceCheckbox()
 })

@@ -67,6 +67,7 @@ class Teams {
   }
   static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
   static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
+  static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
 
 
   seeVideoNotStartedInfoModal () {
@@ -137,8 +138,9 @@ class Teams {
       .check()
   }
 
-  doNotSeeTeamEventTitle (editedEventTitle) {
-    cy.contains(editedEventTitle)
+  doNotSeeTeamEventTitle () {
+    cy.get(Teams.#teamEventTitleOnCalanderTab)
+      .should('not.exist')
   }
 
   deleteTeamEvent () {
@@ -182,7 +184,8 @@ class Teams {
   }
 
   seeTeamEventTitleIsVisible (eventTitle) {
-    cy.contains(eventTitle)
+    cy.get(Teams.#teamEventTitleOnCalanderTab)
+      .contains(eventTitle)
   }
 
   clickOnSaveTeamEvent () {
