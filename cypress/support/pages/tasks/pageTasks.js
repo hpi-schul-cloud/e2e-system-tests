@@ -23,8 +23,7 @@ class Tasks {
   static #submissionTab = '[id="submission-tab-link"]'
   static #submissionsTab = '[id="submissions-tab-link"]'
   static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]'
-  static #fileUploadButtonDisabled = '[data-testid="fileupload-button"]'
-  static #fileUploadButtonEnabled = '[data-testid="fileupload-button"]'
+  static #fileUploadButton = '[data-testid="fileupload-button"]'
   static #fileUploadInput = '[data-testid="fileupload-input"]'
   static #filesSection = '[data-testid="tasks-section-files"]'
   static #uploadedFilesSection = '[data-testid="submissions-section-files"]'
@@ -171,11 +170,15 @@ class Tasks {
   }
 
   seeUploadFileButtonIsDisabled () {
-    cy.get(Tasks.#fileUploadButtonDisabled).should('be.visible')
+    cy.get(Tasks.#fileUploadButton)
+      .invoke('attr', 'class')
+      .should('contain', 'form-files-storage-disabled')
   }
 
   seeUploadFileButtonIsEnabled () {
-    cy.get(Tasks.#fileUploadButtonEnabled).should('be.visible')
+    cy.get(Tasks.#fileUploadButton)
+      .invoke('attr', 'class')
+      .should('not.contain', 'form-files-storage-disabled')
   }
 
   clickOnGroupSubmissionCheckbox () {
