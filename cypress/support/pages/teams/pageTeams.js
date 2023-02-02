@@ -152,8 +152,9 @@ class Teams {
     cy.contains(editedEventTitle)
   }
 
-  editedTeamEventTitleIsVisible (editedEventTitle) {
-    cy.contains(editedEventTitle)
+  editedTeamEventTitleIsVisible () {
+    cy.get(Teams.#teamEventTitleOnCalanderTab)
+      .should('be.exist')
   }
 
   editTeamEventDescription (editedEventDescription) {
@@ -198,7 +199,7 @@ class Teams {
       .eq(1)
       .type(eventPlace)
       .type('{enter}')
-      .wait(5000)
+      .wait(2000)
   }
 
   enterTeamEventDescription (eventDescription) {

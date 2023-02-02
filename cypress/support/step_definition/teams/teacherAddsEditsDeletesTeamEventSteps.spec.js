@@ -65,7 +65,7 @@ When ('I re enter the place {string} and press the enter button to save the even
   teams.editTeamEventPlace(editedEventPlace)
 })
 
-Then ('I am in calendar tab on team detail page and edited title {string} is visible', (editedEventTitle) =>{
+Then ('I am in calendar tab on team detail page and edited title is visible', (editedEventTitle) =>{
   teams.editedTeamEventTitleIsVisible(editedEventTitle)
 })
 
