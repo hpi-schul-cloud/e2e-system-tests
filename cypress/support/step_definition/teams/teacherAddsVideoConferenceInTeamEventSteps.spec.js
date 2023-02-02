@@ -2,8 +2,14 @@ import Teams from '../../pages/teams/pageTeams'
 
 const teams = new Teams()
 
-//There are some repeating steps which are defined only once in this this step definition file for example 'to save team event after creating and editing' etc..
-// also admin related pages
+//There are some repeating steps which are defined only once in this step definition file etc.
+
+// Rest of the defined steps can be found here:
+// -----------------------------------------
+// -\step_definition\authentication\loginStep.spec.js
+// -\step_definition\administration\CommonAdministrationSteps.spec.js
+// -\step_definition\teams\commonTeamsSteps.spec.js
+
 
 Then ('I see the information that video conference is not yet started', () =>{
 	teams.seeVideoParticipationNotStartedInfoIcon()

@@ -289,7 +289,7 @@ class Teams {
       .select(Teams.#testAssertionData.fullName, { force: true })
   }
 
-  clickOnAddInternalAttendeees () {
+  clickOnAddInternalAttendees () {
     cy.get(Teams.#addInternalTeamMemberButton).click()
   }
 

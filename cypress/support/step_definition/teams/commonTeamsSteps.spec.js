@@ -47,7 +47,7 @@ And('I click on manage team members option', () => {
 })
 
 And('I click on add internal attendees button', () => {
-  teams.clickOnAddInternalAttendeees()
+  teams.clickOnAddInternalAttendees()
 })
 
 And('new dialog opens to select student {string} from the drop down list', () => {
