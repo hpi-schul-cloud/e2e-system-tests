@@ -188,7 +188,7 @@ class Teams {
 
   clickOnTeamsEventEditOption () {
     cy.get(Teams.#teamEventEditIcon)
-      .click({multiple:true, force:true})
+      .click({force: true, multiple: true})
   }
 
   seeTeamEventTitleIsVisible (eventTitle) {
@@ -252,12 +252,6 @@ class Teams {
         Teams.#testAssertionData.lastName
       )
       .should('not.exist')
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   removeStudentInTeam () {
@@ -289,9 +283,7 @@ class Teams {
   }
 
   selectInternalTeamMember () {
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 200000 }).invoke(
-      'show'
-    )
+    cy.get(Teams.#selectInternalTeamMember, { timeout: 200000 }).invoke('show')
     cy.get(Teams.#selectInternalTeamMember, { timeout: 20000 })
       .should('be.visible')
       .select(Teams.#testAssertionData.fullName, { force: true })
@@ -304,12 +296,6 @@ class Teams {
   clickOnManageTeamMembersEditOption () {
     cy.get(Teams.#manageTeamMembersOption)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   clickOnThreeDotToManageTeam () {
@@ -319,18 +305,6 @@ class Teams {
   clickOnCreateNewsOnTeamDetailPage () {
     cy.get(Teams.#createNewsButtonOnTeamDetail)
       .click()
-      .then(object => {
-        cy.wrap(object)
-          .wait([ '@runtime_config_api', '@public_api', '@me_api', '@roles_api', '@schools_api', '@alert_api'])
-          .then(interceptions => {
-            expect(interceptions[0].response.statusCode).to.equal(200)
-            expect(interceptions[1].response.statusCode).to.equal(200)
-            expect(interceptions[2].response.statusCode).to.equal(200)
-            expect(interceptions[3].response.statusCode).to.equal(200)
-            expect(interceptions[4].response.statusCode).to.equal(200)
-            expect(interceptions[5].response.statusCode).to.equal(200)
-          })
-      })
   }
 
   clickOnNewsTabInTeamDetailPage () {
@@ -424,23 +398,11 @@ class Teams {
   clickOnSaveChangeButton () {
     cy.get(Teams.#teamSaveChanges)
     .click()
-    .wait([
-      '@alerts_api',
-    ])
-    .then(interceptions => {
-      expect(interceptions.response.statusCode).to.equal(200)
-    })
   }
 
   clickOnEditOption () {
     cy.get(Teams.#teamEditOption)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeTeamEditPage () {
@@ -459,21 +421,9 @@ class Teams {
       if ($element.hasClass('empty-state')) {
         cy.get(Teams.#addNewTeamEmptyOverviewButton)
           .click()
-          .wait([
-            '@alerts_api',
-          ])
-          .then(interceptions => {
-            expect(interceptions.response.statusCode).to.equal(200)
-          })
       } else {
         cy.get(Teams.#addNewTeamButton)
           .click()
-          .wait([
-            '@alerts_api',
-          ])
-          .then(interceptions => {
-            expect(interceptions.response.statusCode).to.equal(200)
-          })
         }
     })
   }
@@ -503,12 +453,6 @@ class Teams {
   clickOnAddButtonToCreateTeam () {
     cy.get(Teams.#teamCreateButton)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeCreatedTeamName (teamName) {

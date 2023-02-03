@@ -31,7 +31,7 @@ And new dialog opens to select student 'Herbert Kraft' from the drop down list
 And I click on add user button
 Then I see the student named 'Herbert Kraft' on the team members table
 
-Scenario: Teacher adds event with video conference
+Scenario: Teacher adds  event with video conference
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
@@ -69,11 +69,15 @@ And I click on manage team members option
 When I select the student 'Herbert Kraft' and click on delete icon
 Then I see 'Herbert Kraft' is not visible on the table
 
-Scenario: as a post condition Teacher deletes the event
+Scenario: as a post condition Teacher edits and deletes the event
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
 And I go to a team 'Musik'
 When I go to calendar tab
+When I click on edit icon
+When I re enter the title 'edit cy title'
+When I re enter the description 'edit cy team event description cy'
+When I re enter the place 'edit cy test place cy' and press the enter button to save the event
 When I click on edit icon
 Then I see event creation modal
 When I click on Delete team event in modal
@@ -83,7 +87,6 @@ Scenario: as a post condition Admin disable the video conference for the team
 Given I am logged in as a 'admin' at 'default'
 When I go to administration page
 When I click on manage school card
-#When I click on go to new school administration button  //some instability on this page at the moment so this step is commented out and old admin page is used
 Then I disable the video conference on the old school setting page
 Then I click on admin setting save button
 
