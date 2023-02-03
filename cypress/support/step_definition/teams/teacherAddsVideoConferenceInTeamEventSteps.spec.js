@@ -32,8 +32,8 @@ Then ('I see the modal and toggles are visible in the modal', () =>{
 	teams.seeModalAndToggles()
 })
 
-Then ('I start the team video conference', () =>{
-	teams.startTeamVideoConferenceFromModal()
+Then ('I start the team video conference which has title {string}', (teamEventTitle) =>{
+	teams.startTeamVideoConferenceFromModal(teamEventTitle)
 })
 
 Then ('I see URL is changed to {string}', (bbbExtURL) =>{

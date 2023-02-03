@@ -45,6 +45,11 @@ When ('I click on Save team event or I hit enter button on the keyboard to save 
 	teams.clickOnSaveTeamEvent()
 })
 
+// this step is for clicking on save button in modal to create a new event using sanitizing approach
+//When ('I click on Save team event which has title {string}', (teamEventName) =>{
+	//teams.clickOnSaveToCreateNewTeamEvent(teamEventName)
+//})
+
 Then ('I am in calendar tab on team detail page and title {string} is visible', (eventTitle) =>{
 	teams.seeTeamEventTitleIsVisible(eventTitle)
 })

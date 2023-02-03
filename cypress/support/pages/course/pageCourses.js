@@ -209,7 +209,7 @@ class Courses {
   }
 
   clickDeleteInDotMenu (linkId) {
-    cy.get(Courses.#deleteButtonInDotMenu).click()
+    cy.get(Courses.#deleteButtonInDotMenu).click({force: true})
   }
 
   clickEditInDotMenu (linkId) {

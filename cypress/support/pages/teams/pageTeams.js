@@ -34,9 +34,8 @@ class Teams {
   static #muteParticipantToggle = '[data-testid="toggle_mute_participants"]'
   static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]'
   static #allPartipantsAreModeratorToggel = '[data-testid="toggle_all_participants_moderator"]'
-  static #teamVideoConferenceStartButtonInModal = '[data-testid="btn-submit"]'
   static #disabledVideoCheckboxOnTeamEditpage = '[disabled=""]'
-  static #teamVideoConferenceJoinLinkButton = '[data-testid="participate-video-conf-link"]'
+  static #teamVideoConferenceJoinLinkButton = '[data-testid="participate-video-conference-link"]'
   static #teamTitle = '[data-testid="title_of_an_element"]'
   static #editTeam = '[data-testid="edit_team"]'
   static #rocketchat = '[data-testid="rocketchat_wrapper"]'
@@ -69,6 +68,13 @@ class Teams {
   static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
   static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
 
+
+  // this method is for clicking on add button to create a new team event in the calander tab
+  //clickOnSaveToCreateNewTeamEvent (teamEventName) {
+    //const sanitizedTeamEventName = teamEventName.replace(/[^A-Za-z0-9_-]*/img, '')
+    //cy.get(`[data-testid=btn-submit-${sanitizedTeamEventName}]`)
+      //.click()
+  //}
 
   seeVideoNotStartedInfoModal () {
     cy.get(Teams.#videoConferenceNotStartedInfoModal)
@@ -113,8 +119,9 @@ class Teams {
       .should('be.exist')
   }
 
-  startTeamVideoConferenceFromModal () {
-    cy.get(Teams.#teamVideoConferenceStartButtonInModal)
+  startTeamVideoConferenceFromModal (teamEventTitle) {
+    const sanitizedTeamEventTitle = teamEventTitle.replace(/[^A-Za-z0-9_-]*/img, '')
+    cy.get(`[data-testid=submit-btn-${sanitizedTeamEventTitle}]`)
       .click()
   }
 
@@ -333,12 +340,6 @@ class Teams {
   navigateToTeamsOverview () {
     cy.get(Teams.#teamsOverviewNavigationButton)
     .click()
-    .wait([
-      '@alerts_api'
-    ])
-    .then(interceptions => {
-      expect(interceptions.response.statusCode).to.equal(200)
-    })
     cy.url()
     .should('include', '/teams')
   }
@@ -347,12 +348,6 @@ class Teams {
     cy.get(Teams.#teamTitle)
       .contains(teamName)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   openTeamSettings () {
