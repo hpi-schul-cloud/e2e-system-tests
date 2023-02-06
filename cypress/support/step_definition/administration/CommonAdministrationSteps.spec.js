@@ -2,6 +2,23 @@ import Management from '../../pages/administration/pageAdministration'
 
 const management = new Management()
 
+
+Then ('I disable the video conference on the old school setting page', () =>{
+	management.disableTeamsVideoConferenceByAdmin()
+})
+
+Then ('I click on admin setting save button', () =>{
+	management.clickOnAdminSettingsSave()
+})
+
+Then ('I enable the video conference on the old school setting page', () =>{
+	management.enableTeamsVideoConferenceByAdmin()
+})
+
+When ('I click on manage school card',() =>{
+	management.clickOnManageSchoolCard()
+})
+
 When('I go to administration page', () => {
  management.navigateToAdministration()
 })
