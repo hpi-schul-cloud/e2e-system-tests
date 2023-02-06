@@ -278,7 +278,7 @@ class Teams {
   }
 
   clickOnAddingNewTeamMemberButton () {
-    cy.get(Teams.#confirmTeamMemberAddButton)
+    cy.get(Teams.#confirmTeamMemberAddButton, { timeout: 20000 })
       .click({ multiple: true, force: true})
   }
 

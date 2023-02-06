@@ -63,12 +63,7 @@ class Tasks {
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
-  static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
 
-
-  seeVideoParticipationAsStudent () {
-    cy.get()
-  }
 
   navigateToTasksOverview () {
     cy.visit('/tasks')

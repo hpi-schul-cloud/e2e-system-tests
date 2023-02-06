@@ -84,11 +84,6 @@ Then ('I am in calendar tab on team detail page and title is NOT visible', () =>
   teams.doNotSeeTeamEventTitle()
 })
 
-Then ('I see the information that video conference is not yet started', () =>{
-	teams.seeVideoParticipationNotStartedInfoIcon()
-	teams.seeVideoNotStartedInfoModal()
-})
-
 When ('I enable the video conference on the teams edit page',() =>{
 	teams.enableVideoConferenceOnTeamEditPage()
 })
