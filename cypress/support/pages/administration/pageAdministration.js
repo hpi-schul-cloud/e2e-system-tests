@@ -30,7 +30,88 @@ class Management {
   static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
   static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
   static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
+  // Migration
+  static #deleteExternalToolButton = '[data-testid="deleteAction"]'
+  static #migrationStartButton = '.button-start'
+  static #schoolNummberField = '[id="input-123"]'
+  static #externalToolTable = '[tbody]'
+  static #agreeMigrationButton = '.agree-btn-start'
+  static #completeMigrationButton = '.button-end'
+  static #agreeCompleteMigrationButton = '.agree-btn-end'
+  static #mandatoryMigrationToggle = '[id="input-263"]'
+  static #migrationCompletitionDate = '.migration-completion-date'
 
+// Migration
+
+  migrationButtonIsDisabled() {
+    cy.get(Management.#migrationStartButton)
+      .should('be.disabled')
+  }
+
+  schoolNummberFieldEmpty(){
+    cy.get(Management.#schoolNummberField)
+      .should('be.empty')
+  }
+
+  clickStartMigrationButton(){
+    cy.get(Management.#migrationStartButton)
+      .click()
+  }
+
+  clickAgreeMigrationButton(){
+    cy.get(Management.#agreeMigrationButton)
+      .click()
+  }
+
+  checkMigrationMandatory(){
+    cy.get(Management.#mandatoryMigrationToggle)
+      .check()
+
+  }
+
+  uncheckMigrationMandatory(){
+    cy.get(Management.#mandatoryMigrationToggle)
+      .uncheck()
+
+  }
+
+  startMigrationButtonIsDisabled(){
+    cy.get(Management.#migrationStartButton)
+      .should(be.disabled)
+  }
+
+  completeMigrationButtonVisible(){
+    cy.get(Management.#completeMigrationButton)
+      .should('exist')
+  }
+
+  clickCompleteMigrationButton(){
+    cy.get(Management.#completeMigrationButton)
+      .click()
+  }
+
+  clickAgreeCompleteMigrationButton(){
+    cy.get(Management.#agreeCompleteMigrationButton)
+      .click()
+  }
+
+  migrationCompleteTimestamp(){
+    cy.get(Management.#migrationCompletitionDate)
+      .should('exist')
+  }
+
+  // External Tools Configuration on Admin Base
+
+  deleteExternalTool(tool){
+    cy.get(Management.#externalToolTable)
+      .contains('tr', tool)
+      .then(tableRow =>{
+        cy.wrap(tableRow).find(Management.#deleteExternalToolButton).click()
+      })
+
+  }
+
+  //
 
   clickAllowStudentsTeamCheckbox () {
     cy.get(Management.#studentTeamCheckbox)

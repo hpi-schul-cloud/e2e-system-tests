@@ -75,6 +75,10 @@ Cypress.Commands.add('login', (username, environment) => {
         userEmail = 'ADMIN_1_EMAIL'
         userPassword = 'ADMIN_1_PASSWORD'
         break
+      case 'admin2':
+        userEmail = 'ADMIN_2_EMAIL'
+        userPassword = 'ADMIN_2_PASSWORD'
+        break
       case 'expert':
         userEmail = 'EXPERT_1_EMAIL'
         userPassword = 'EXPERT_1_PASSWORD'

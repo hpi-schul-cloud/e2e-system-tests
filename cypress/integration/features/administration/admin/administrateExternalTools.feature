@@ -2,6 +2,18 @@ Feature: Admin External Tools - To administrate school settings by the admin.
 
   As an admin I want to administrate the external tools used in the school so that I can manage it
 
+ # nbc
+
+ Scenario: Deleting an External Tool
+
+ Given I am logged in as a 'admin' at 'nbc'
+ When I go to administration page
+ And I go to school administration
+ And I go to new school administration page
+ Then I click on delete button for 'Base Test'
+
+
+
   #tests are commented out for at the moment and needs to be adapted
 
   #Scenario: Deactivate Chat

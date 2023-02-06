@@ -33,3 +33,8 @@ And ('I selected the messenger activation checkbox',()=>{
 And ('click on save changes',()=>{
   teams.clickOnSaveAfterEdit()
 })
+
+// Scenario: Delete External Tool
+Then('I click on delete button for {string}', (tool) =>{
+  management.deleteExternalTool(tool)
+})

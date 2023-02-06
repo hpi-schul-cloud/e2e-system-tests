@@ -41,3 +41,4 @@ When('I click on Add Student in opened FAB', () => {
 When('I click on Add Teacher in opened FAB', () => {
   management.clickOnAddTeacherInFAB()
 })
+
