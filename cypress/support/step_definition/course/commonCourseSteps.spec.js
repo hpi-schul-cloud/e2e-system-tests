@@ -46,20 +46,40 @@ And('I click on New Task FAB', () => {
   courses.clickOnNewTaskFAB()
 })
 
-And('I can see task {string} on course page', taskTitle => {
-  courses.taskIsVisibleOnCoursePage(taskTitle)
+And('I click on New Topic FAB', () => {
+  courses.clickOnNewTopicFAB()
 })
 
-And('I can not see task {string}', taskTitle => {
-  courses.taskIsNotVisibleOnCoursePage(taskTitle)
+And('I can see content {string} on course page', contentTitle => {
+  courses.contentIsVisibleOnCoursePage(contentTitle)
 })
+
+And('I can not see content {string}', contentTitle => {
+  courses.contentIsNotVisibleOnCoursePage(contentTitle)
+})
+
+// And('I can see task {string} on course page', taskTitle => {
+//   courses.taskIsVisibleOnCoursePage(taskTitle)
+// })
+
+// And('I can not see task {string}', taskTitle => {
+//   courses.taskIsNotVisibleOnCoursePage(taskTitle)
+// })
 
 When('I click on three dot menu of content {string}', contentTitle => {
   courses.openThreeDotMenuForContent(contentTitle)
 })
 
+When('I click on three dot menu of topic {string}', contentTitle => {
+  courses.openThreeDotMenuForTopic(contentTitle)
+})
+
 And('I click on Delete in dot menu', () => {
   courses.clickDeleteInDotMenu()
+})
+
+When('I click on Delete in dot menu of topic', () => {
+  courses.clickDeleteInDotMenuOfTopic()
 })
 
 And('I click on Edit in dot menu', () => {
@@ -102,4 +122,8 @@ Then('I see task {string} does not contain any buttons', taskTitle => {
 
 Then('I see task {string} contains buttons', taskTitle => {
   courses.checkTaskCardDoesHaveButtons(taskTitle)
+})
+
+Then('I can see topic {string} on course page', topicTitle => {
+  courses.topicIsVisibleOnCoursePage(topicTitle)
 })

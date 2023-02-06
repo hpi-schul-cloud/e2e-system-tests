@@ -11,6 +11,7 @@ class Courses {
   static #courseDescription = '[id="courseDescription"]'
   static #courseName = '[name="name"]'
   static #createFAB = '[name="fab-icon"]'
+  static #newTopicFAB = '[data-testid="fab_button_add_lesson"]'
   static #searchFieldRoomOverview = '[data-testid="search-field"]'
   static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
@@ -23,8 +24,10 @@ class Courses {
   static #dialogConfirmButton = '[data-testid="dialog-confirm"]'
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
+  static #deleteButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-remove"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
+  static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
   static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
   static #dropDownCourse = '.course-title .three-dot-button'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
@@ -209,7 +212,7 @@ class Courses {
   }
 
   clickDeleteInDotMenu (linkId) {
-    cy.get(Courses.#deleteButtonInDotMenu).click({force: true})
+    cy.get(Courses.#deleteButtonInDotMenu).click()
   }
 
   clickEditInDotMenu (linkId) {
@@ -384,5 +387,17 @@ class Courses {
     cy.get(Courses.#searchFieldRoomOverview)
       .type(roomName)
   }
+
+  clickOnNewTopicFAB () {
+    cy.get(Courses.#newTopicFAB)
+    .click()
+    .wait([
+      '@alerts_api'
+    ])
+    .then(interceptions => {
+      expect(interceptions.response.statusCode).to.equal(200)
+    })
+  }
+
 }
 export default Courses
