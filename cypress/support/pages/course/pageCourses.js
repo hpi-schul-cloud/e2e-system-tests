@@ -152,7 +152,7 @@ class Courses {
     cy.get(Courses.#newTaskFAB).click()
   }
 
-  taskIsVisibleOnCoursePage (taskTitle) {
+  contentIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
