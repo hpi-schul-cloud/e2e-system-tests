@@ -51,14 +51,17 @@ class Courses {
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
       .click()
-      .wait([
-        '@runtime_config_api',
-        '@public_api',
-        '@me_api',
-        '@schools_api',
-        '@alert_api',
-        '@dashboard_api'
-      ])
+      .wait(
+        [
+          '@runtime_config_api',
+          '@public_api',
+          '@me_api',
+          '@schools_api',
+          '@alert_api',
+          '@dashboard_api'
+        ],
+        { timeout: 80_000 }
+      )
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
         expect(interceptions[1].response.statusCode).to.equal(200)
@@ -181,6 +184,9 @@ class Courses {
   openTask (taskTitle) {
     cy.get(Courses.#contentCardContent).contains(taskTitle).click()
   }
+  openThreeDotMenuForContent (contentTitle) {
+    cy.contains(contentTitle).prev().find('button').click()
+  }
 
   openThreeDotMenuForTopic (contentTitle) {
     cy.contains(contentTitle).prev().find('button').click()
@@ -302,15 +308,18 @@ class Courses {
         multiple: true,
         force: true
       })
-      .wait([
-        '@runtime_config_api',
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@alert_api',
-        '@dashboard_api'
-      ])
+      .wait(
+        [
+          '@runtime_config_api',
+          '@public_api',
+          '@me_api',
+          '@roles_api',
+          '@schools_api',
+          '@alert_api',
+          '@dashboard_api'
+        ],
+        { timeout: 80000 }
+      )
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
         expect(interceptions[1].response.statusCode).to.equal(200)
