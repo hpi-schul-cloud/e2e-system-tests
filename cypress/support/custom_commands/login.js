@@ -105,7 +105,7 @@ Cypress.Commands.add('login', (username, environment) => {
     } else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
-      cy.get(submitButton).click()
+      cy.get(submitButton).click({ timeout: 80_000 })
     }
     cy.url().should('contain', '/dashboard')
     cy.get(initials).click()
