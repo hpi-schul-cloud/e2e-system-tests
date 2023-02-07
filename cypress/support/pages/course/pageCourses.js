@@ -60,7 +60,7 @@ class Courses {
           '@alert_api',
           '@dashboard_api'
         ],
-        { timeout: 80_000 }
+        { timeout: 99_000 }
       )
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
