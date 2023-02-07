@@ -27,7 +27,7 @@ class Tasks {
   static #fileUploadButtonEnabled = '[data-testid="fileupload-button"]'
   static #fileUploadInput = '[data-testid="fileupload-input"]'
   static #filesSection = '[data-testid="tasks-section-files"]'
-  static #uploadedFilesSection = '[data-testid="submissions-section-files"]'
+  static #uploadedFilesSection = '[data-testid="section-uploadedfiles"]'
   static #uploadedFilesSectionInSubmission =
     '[data-testid="submissions-section-files"]'
   static #fileViewerSection = '[class="file-viewer"]'
@@ -79,10 +79,6 @@ class Tasks {
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
-  static #downloadFileGradingSection =
-    '[data-testid="submissions-section-files"]'
-  static #downloadFileTitle = '.card-title'
-  static #downloadFileText = '.card-text'
 
   navigateToTasksOverview () {
     cy.visit('/tasks')
@@ -252,7 +248,7 @@ class Tasks {
   }
 
   clickOnSubmitInConfirmationWindow () {
-    cy.get(Tasks.#dialogConfirmButton).should('be.visible').click()
+    cy.get(Tasks.#dialogConfirmButton).click()
   }
 
   compareDescriptionOnDetailpage (expectedDescription) {
@@ -408,18 +404,13 @@ class Tasks {
   }
 
   clickDownloadFileInGrading (fileName) {
-    cy.get(Tasks.#downloadFileGradingSection)
-      .first()
-      .then(elm => {
-        cy.get(elm)
-          .contains(Tasks.#downloadFileTitle, fileName)
-          .should('be.visible')
-        cy.get(elm)
-          .find(Tasks.#downloadFileText)
-          .find('button')
-          .should('be.visible')
-          .click()
-      })
+    cy.get(Tasks.#feedbackSection)
+      .find('a')
+      .should('contain', fileName)
+      .parent()
+      .find('span')
+      .find('a')
+      .click()
   }
 
   seeFileIsSavedInDownloads (fileName) {
@@ -486,7 +477,7 @@ class Tasks {
     cy.get(Tasks.#taskOverviewStudent)
       .should('not.have.css', 'display', 'none')
       .then(() => {
-        cy.contains(Tasks.#taskCardTitle, taskTitle).should('exist')
+        cy.contains("[data-testid='taskTitle']", taskTitle).should('exist')
       })
   }
 

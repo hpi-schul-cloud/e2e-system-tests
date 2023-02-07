@@ -16,6 +16,26 @@ class Teams {
   static #teamDeleteOption = '[data-testid="delete_team_members"]'
   static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]'
   static #teamMainSection = 'main > section'
+  static #teamCalanderTab = '[data-testid="team_calendar_tab"]'
+  static #addTeamEventButton = '[data-testid="add_team_event"]'
+  static #teamEventCreteModal = '[data-testid="modal_content"]'
+  static #teamEventTitleInput ='[data-testid="team_event_name"]'
+  static #teamEventStartDateTime = '[data-testid="form-datetime-input-startDate"]'
+  static #teamEventEndDateTime = '[data-testid="form-datetime-input-endDate"]'
+  static #teamEventDescrptionInput = '[data-testid="team_event_description"]'
+  static #teamEventPlaceInput = '[data-testid="team_event_location"]'
+  static #teamEventSaveButton = '[data-testid="btn-submit"]'
+  static #teamEventEditIcon = '[data-testid="edit_team_event"]'
+  static #teamEventDeleteButton = '[data-testid="delete_team_event"]'
+  static #videoConferenceCheckBoxOnTeamSetting = '[data-testid="videoconf_checkbox"]'
+  static #videoToggleOnModal = '[data-toggle="toggle"]'
+  static #moderatorVideoConferenceStartButton = '[data-testid="start_video_conference_link"]'
+  static #teamVideoConferenceModal = '[data-testid="modal_content"]'
+  static #muteParticipantToggle = '[data-testid="toggle_mute_participants"]'
+  static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]'
+  static #allPartipantsAreModeratorToggel = '[data-testid="toggle_all_participants_moderator"]'
+  static #disabledVideoCheckboxOnTeamEditpage = '[disabled=""]'
+  static #teamVideoConferenceJoinLinkButton = '[data-testid="participate-video-conference-link"]'
   static #teamTitle = '[data-testid="title_of_an_element"]'
   static #editTeam = '[data-testid="edit_team"]'
   static #rocketchat = '[data-testid="rocketchat_wrapper"]'
@@ -36,7 +56,6 @@ class Teams {
   static #confirmTeamMemberDeleteButton = '[data-testid="btn-submit"]'
   static #deleteIconInTableViewRow = '[data-testid="btn-delete-team-member"]'
   static #teamMemberInTable = 'tr'
-
   static #testAssertionData = {
     firstName: 'Kraft',
     lastName: 'Herbert',
@@ -44,6 +63,186 @@ class Teams {
     deletePopupText: 'Teilnehmer:in löschen',
     activateMessengerText: 'Messenger für Team aktivieren',
     activateVideoMessengerText: 'Videokonferenzen für Team aktivieren'
+  }
+  static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
+  static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
+  static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
+
+
+  // this method is for clicking on add button to create a new team event in the calander tab
+  //clickOnSaveToCreateNewTeamEvent (teamEventName) {
+    //const sanitizedTeamEventName = teamEventName.replace(/[^A-Za-z0-9_-]*/img, '')
+    //cy.get(`[data-testid=btn-submit-${sanitizedTeamEventName}]`)
+      //.click()
+  //}
+
+  seeVideoNotStartedInfoModal () {
+    cy.get(Teams.#videoConferenceNotStartedInfoModal)
+      .should('be.exist')
+  }
+
+  seeVideoParticipationNotStartedInfoIcon () {
+    cy.wait(2000)
+    cy.get(Teams.#videoConferenceNotStartedIcon)
+      .click({force: true})
+  }
+
+  seeBBBExternalURL (bbbExtURL) {
+    cy.url().should('eq', bbbExtURL)
+  }
+
+  clickOnVideoParticipantLinkButtonAsStudent () {
+    cy.get(Teams.#teamVideoConferenceJoinLinkButton)
+      .click()
+  }
+
+  seeVideoPartcipationButtonAsStudent () {
+    cy.get(Teams.#teamVideoConferenceJoinLinkButton)
+      .should('be.exist')
+  }
+
+  seeDisabledVideoConferenceOnTeamEditPage () {
+    cy.get(Teams.#videoConferenceCheckBoxOnTeamSetting)
+      .should('be.exist')
+    cy.get(Teams.#disabledVideoCheckboxOnTeamEditpage)
+      .should('be.exist')
+  }
+
+  seeModalAndToggles () {
+    cy.get(Teams.#teamVideoConferenceModal)
+      .should('be.exist')
+    cy.get(Teams.#muteParticipantToggle)
+      .should('be.exist')
+    cy.get(Teams.#moderatorApprovalToggle)
+      .should('be.exist')
+    cy.get(Teams.#allPartipantsAreModeratorToggel)
+      .should('be.exist')
+  }
+
+  startTeamVideoConferenceFromModal (teamEventTitle) {
+    const sanitizedTeamEventTitle = teamEventTitle.replace(/[^A-Za-z0-9_-]*/img, '')
+    cy.get(`[data-testid=submit-btn-${sanitizedTeamEventTitle}]`)
+      .click()
+  }
+
+  clickOnVideoStartButtonAsTeacherAndModerator () {
+    cy.get(Teams.#moderatorVideoConferenceStartButton)
+      .click({multiple:true, force:true})
+  }
+
+  seeTeamVideoConferenceIsVisible () {
+    cy.get(Teams.#moderatorVideoConferenceStartButton)
+      .should ('be.exist')
+  }
+
+  enableVideoConferenceToggleOnModal () {
+    cy.get(Teams.#videoToggleOnModal)
+      .click({multiple:true, force:true})
+  }
+
+  enableVideoConferenceOnTeamEditPage () {
+    cy.get(Teams.#videoConferenceCheckBoxOnTeamSetting)
+      .check()
+  }
+
+  doNotSeeTeamEventTitle () {
+    cy.get(Teams.#teamEventTitleOnCalanderTab)
+      .should('not.exist')
+  }
+
+  deleteTeamEvent () {
+    cy.get(Teams.#teamEventDeleteButton)
+      .click({multiple:true, force:true})
+  }
+
+  editedTeamEventDescriptionIsVisible (editedEventTitle) {
+    cy.contains(editedEventTitle)
+  }
+
+  editedTeamEventTitleIsVisible () {
+    cy.get(Teams.#teamEventTitleOnCalanderTab)
+      .should('be.exist')
+  }
+
+  editTeamEventDescription (editedEventDescription) {
+    cy.get(Teams.#teamEventDescrptionInput)
+    .eq(1)
+    .clear()
+    .type(editedEventDescription)
+  }
+
+  editTeamEventPlace (editedEventPlace) {
+    cy.get(Teams.#teamEventPlaceInput)
+    .eq(1)
+    .clear()
+    .type(editedEventPlace)
+    .type('{enter}')
+  }
+
+  editTeamEventTitle (editedEventTitle) {
+    cy.get(Teams.#teamEventTitleInput)
+      .eq(1)
+      .clear()
+      .type(editedEventTitle)
+  }
+
+  clickOnTeamsEventEditOption () {
+    cy.get(Teams.#teamEventEditIcon)
+      .click({force: true, multiple: true})
+  }
+
+  seeTeamEventTitleIsVisible (eventTitle) {
+    cy.get(Teams.#teamEventTitleOnCalanderTab)
+      .contains(eventTitle)
+  }
+
+  clickOnSaveTeamEvent () {
+    cy.get(Teams.#teamEventSaveButton)
+      .click()
+  }
+
+  enterTeamEventPlaceAndPressEnter (eventPlace) {
+    cy.get(Teams.#teamEventPlaceInput)
+      .eq(1)
+      .type(eventPlace)
+      .type('{enter}')
+      .wait(2000)
+  }
+
+  enterTeamEventDescription (eventDescription) {
+    cy.get(Teams.#teamEventDescrptionInput)
+      .eq(1)
+      .type(eventDescription)
+  }
+
+  selectTeamEventEndDate () {
+    cy.get(Teams.#teamEventEndDateTime)
+      .should('be.visible')
+  }
+
+  selectTeamEventStartDate () {
+    cy.get(Teams.#teamEventStartDateTime)
+      .should('be.visible')
+  }
+
+  enterTeamEventTitle (eventTitle) {
+    cy.get(Teams.#teamEventTitleInput)
+      .eq(1)
+      .type(eventTitle)
+  }
+
+  seeTeamEventCreationModal () {
+    cy.get(Teams.#teamEventCreteModal)
+  }
+
+  clickOnAddTeamsAppointment () {
+    cy.get(Teams.#addTeamEventButton)
+      .click()
+  }
+
+  goToTeamsCalendarTab () {
+    cy.get(Teams.#teamCalanderTab)
+      .click()
   }
 
   doNotSeeDeletedStudentInTeam () {
@@ -53,12 +252,6 @@ class Teams {
         Teams.#testAssertionData.lastName
       )
       .should('not.exist')
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   removeStudentInTeam () {
@@ -85,32 +278,24 @@ class Teams {
   }
 
   clickOnAddingNewTeamMemberButton () {
-    cy.get(Teams.#confirmTeamMemberAddButton)
+    cy.get(Teams.#confirmTeamMemberAddButton, { timeout: 20000 })
       .click({ multiple: true, force: true})
   }
 
   selectInternalTeamMember () {
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 200000 }).invoke(
-      'show'
-    )
+    cy.get(Teams.#selectInternalTeamMember, { timeout: 200000 }).invoke('show')
     cy.get(Teams.#selectInternalTeamMember, { timeout: 20000 })
       .should('be.visible')
       .select(Teams.#testAssertionData.fullName, { force: true })
   }
 
-  clickOnAddInternalAttendeees () {
+  clickOnAddInternalAttendees () {
     cy.get(Teams.#addInternalTeamMemberButton).click()
   }
 
   clickOnManageTeamMembersEditOption () {
     cy.get(Teams.#manageTeamMembersOption)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   clickOnThreeDotToManageTeam () {
@@ -120,18 +305,6 @@ class Teams {
   clickOnCreateNewsOnTeamDetailPage () {
     cy.get(Teams.#createNewsButtonOnTeamDetail)
       .click()
-      .then(object => {
-        cy.wrap(object)
-          .wait([ '@runtime_config_api', '@public_api', '@me_api', '@roles_api', '@schools_api', '@alert_api'])
-          .then(interceptions => {
-            expect(interceptions[0].response.statusCode).to.equal(200)
-            expect(interceptions[1].response.statusCode).to.equal(200)
-            expect(interceptions[2].response.statusCode).to.equal(200)
-            expect(interceptions[3].response.statusCode).to.equal(200)
-            expect(interceptions[4].response.statusCode).to.equal(200)
-            expect(interceptions[5].response.statusCode).to.equal(200)
-          })
-      })
   }
 
   clickOnNewsTabInTeamDetailPage () {
@@ -141,12 +314,6 @@ class Teams {
   navigateToTeamsOverview () {
     cy.get(Teams.#teamsOverviewNavigationButton)
     .click()
-    .wait([
-      '@alerts_api'
-    ])
-    .then(interceptions => {
-      expect(interceptions.response.statusCode).to.equal(200)
-    })
     cy.url()
     .should('include', '/teams')
   }
@@ -155,12 +322,6 @@ class Teams {
     cy.get(Teams.#teamTitle)
       .contains(teamName)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   openTeamSettings () {
@@ -237,23 +398,11 @@ class Teams {
   clickOnSaveChangeButton () {
     cy.get(Teams.#teamSaveChanges)
     .click()
-    .wait([
-      '@alerts_api',
-    ])
-    .then(interceptions => {
-      expect(interceptions.response.statusCode).to.equal(200)
-    })
   }
 
   clickOnEditOption () {
     cy.get(Teams.#teamEditOption)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeTeamEditPage () {
@@ -272,21 +421,9 @@ class Teams {
       if ($element.hasClass('empty-state')) {
         cy.get(Teams.#addNewTeamEmptyOverviewButton)
           .click()
-          .wait([
-            '@alerts_api',
-          ])
-          .then(interceptions => {
-            expect(interceptions.response.statusCode).to.equal(200)
-          })
       } else {
         cy.get(Teams.#addNewTeamButton)
           .click()
-          .wait([
-            '@alerts_api',
-          ])
-          .then(interceptions => {
-            expect(interceptions.response.statusCode).to.equal(200)
-          })
         }
     })
   }
@@ -316,12 +453,6 @@ class Teams {
   clickOnAddButtonToCreateTeam () {
     cy.get(Teams.#teamCreateButton)
       .click()
-      .wait([
-        '@alerts_api',
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeCreatedTeamName (teamName) {

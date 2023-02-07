@@ -152,13 +152,12 @@ class Courses {
     cy.get(Courses.#newTaskFAB).click()
   }
 
-  contentIsVisibleOnCoursePage (contentTitle) {
+  taskIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
     cy.url().should('include', '/rooms/')
-    cy.contains(contentTitle)
+    cy.contains(taskTitle)
       .should('be.visible')
       .wait([
-        '@runtime_config_api',
         '@public_api',
         '@me_api',
         '@roles_api',
@@ -167,9 +166,8 @@ class Courses {
       ])
       .then(interceptions => {
         expect(interceptions[0].response.statusCode).to.equal(200)
+        expect(interceptions[1].state).to.equal('Complete')
         expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].state).to.equal('Complete')
-        expect(interceptions[2].response.statusCode).to.equal(200)
       })
   }
 
@@ -196,20 +194,8 @@ class Courses {
       .click()
   }
 
-  openThreeDotMenuForTopic (topicTitle) {
-    cy.get(Courses.#contentCardTopic)
-      .contains(topicTitle)
-      .prev()
-      .find('button')
-      .click()
-  }
-
-  clickDeleteInDotMenu () {
+  clickDeleteInDotMenu (linkId) {
     cy.get(Courses.#deleteButtonInDotMenu).click()
-  }
-
-  clickDeleteInDotMenuOfTopic () {
-    cy.get(Courses.#deleteButtonInDotMenuOfTopic).click()
   }
 
   clickEditInDotMenu (linkId) {

@@ -21,6 +21,9 @@ class Management {
   static #videoconferenceToggleSwitch = '.videoconference-switch'
   static #saveGeneralSettingsButton = '.my-5'
   static #tableContents = '[data-testid="table-data-body"]'
+  static #manageSchoolCard = '[data-testid="school_administration_card"]'
+  static #oldAdminPageVideoChatCheckBox ='[data-testid="school-administration-video-conference-checkbox"]'
+  static #saveGeneralAdminSetting = '[data-testid="school-administration-save-general-setting"]'
   static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
   static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]'
   static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
@@ -31,6 +34,26 @@ class Management {
   static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
   static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
 
+
+  disableTeamsVideoConferenceByAdmin () {
+    cy.get(Management.#oldAdminPageVideoChatCheckBox)
+      .uncheck()
+  }
+
+  clickOnAdminSettingsSave () {
+    cy.get(Management.#saveGeneralAdminSetting)
+      .click()
+  }
+
+  enableTeamsVideoConferenceByAdmin () {
+    cy.get(Management.#oldAdminPageVideoChatCheckBox)
+      .check()
+  }
+
+  clickOnManageSchoolCard () {
+    cy.get(Management.#manageSchoolCard)
+      .click()
+  }
 
   clickAllowStudentsTeamCheckbox () {
     cy.get(Management.#studentTeamCheckbox)
@@ -92,7 +115,6 @@ class Management {
     cy.get(Management.#schoolAdministrationNavigationButton).click()
     cy.url().should('include', '/administration/school')
   }
-
 
   clickOnFAB () {
     cy.get(Management.#fabButton).click()
