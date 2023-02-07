@@ -78,11 +78,7 @@ class Courses {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-            .wait([
-              '@alert_api',
-              '@board_api',
-              '@userPermissions_api'
-            ])
+            .wait(['@alert_api', '@board_api', '@userPermissions_api'])
             .then(interceptions => {
               expect(interceptions[0].response.statusCode).to.equal(200)
               expect(interceptions[1].response.statusCode).to.equal(200)
@@ -186,16 +182,16 @@ class Courses {
     cy.get(Courses.#contentCardContent).contains(taskTitle).click()
   }
 
-  openThreeDotMenuForContent (contentTitle) {
-    cy.get(Courses.#contentCardContent)
-      .contains(contentTitle)
-      .prev()
-      .find('button')
-      .click()
+  openThreeDotMenuForTopic (contentTitle) {
+    cy.contains(contentTitle).prev().find('button').click()
   }
 
-  clickDeleteInDotMenu (linkId) {
+  clickDeleteInDotMenu () {
     cy.get(Courses.#deleteButtonInDotMenu).click()
+  }
+
+  clickDeleteInDotMenuOfTopic () {
+    cy.get(Courses.#deleteButtonInDotMenuOfTopic).click()
   }
 
   clickEditInDotMenu (linkId) {
