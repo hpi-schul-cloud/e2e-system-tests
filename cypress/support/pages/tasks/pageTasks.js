@@ -53,6 +53,7 @@ class Tasks {
   static #submissionDiv = '[id="submission"]'
   static #gradingPercentInput = '[data-testid="evaluation_procent"]'
   static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]'
+  static #lowertaskSectionText = '[data-testid="lowerTaskSection"]'
   static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]'
   static #taskSubmissionsSubmittedIcon =
     '[data-testid="task-submissions-task-submitted-icon"]'
@@ -85,7 +86,6 @@ class Tasks {
 
   navigateToTasksOverview () {
     cy.visit('/tasks')
-    cy.get(Tasks.#tasksOverviewNavigationButton).click()
     cy.url().should('include', '/tasks')
   }
 
@@ -471,11 +471,7 @@ class Tasks {
   }
 
   openNotGradedTasks () {
-    cy.get(Tasks.#taskOverviewStudent)
-      .find('section')
-      .eq(1)
-      .find(Tasks.#lowerTaskSectionIcon)
-      .click()
+    cy.contains(Tasks.#lowertaskSectionText, 'Unbewertet').click()
   }
 
   seeTaskInListAsTeacher (taskTitle) {
