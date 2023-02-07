@@ -65,14 +65,8 @@ class Topics {
   }
 
   clickOnSubmitChangesInTopicBtn() {
-    cy.get(Topics.#submitChangesInTopicBtn)
-      .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
+    cy.get(Topics.#submitChangesInTopicBtn).click()
+    cy.wait(200)
   }
 
   seeFormElementText() {

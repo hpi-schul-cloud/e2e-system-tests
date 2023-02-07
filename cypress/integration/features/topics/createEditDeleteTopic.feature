@@ -27,7 +27,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I enter description for the ether pad 'this is my epad description'
     When I click on button Add Task to topic
     When I enter title 'Cy Title for Task Element in Topic' into element Task
-    When I enter URL of the task from the another course 'https://brb-main.cd.dbildungscloud.dev/homework/59cce3f6c6abf042248e888d'
+    When I enter URL of the task from the another course 'https://brb-main.cd.dbildungscloud.dev/homework/5fa3b8fea9c31a26f4d1d94b'
     When I click on create button to create topic
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
     # When I add file to element Text
@@ -35,6 +35,13 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I see topic detail page "Cy Topic Creating and Deleting Test" with content elements "Cy Title for Text Element in Topic", "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic" and "Cy Title for Task Element in Topic"
     When I click on last breadcrump element in topbar navigation
     Then I can see content 'Cy Topic Creating and Deleting Test' on course page
+
+  Scenario: Teacher edits topic from room
+    Given I am logged in as a 'teacher1' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
+    When I click on Edit in dot menu of topic
 
   Scenario: Teacher deletes topic from room
     Given I am logged in as a 'teacher1' at 'brb'

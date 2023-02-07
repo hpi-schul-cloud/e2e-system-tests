@@ -25,6 +25,7 @@ class Courses {
   static #dialogCancelButton = '[data-testid="dialog-cancel"]'
   static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]'
   static #deleteButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-remove"]'
+  static #editButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-edit"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
   static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
@@ -233,6 +234,10 @@ class Courses {
 
   clickDeleteInDotMenuOfTopic () {
     cy.get(Courses.#deleteButtonInDotMenuOfTopic).click()
+  }
+
+  clickEditInDotMenuOfTopic () {
+    cy.get(Courses.#editButtonInDotMenuOfTopic).click()
   }
 
   clickEditInDotMenu (linkId) {

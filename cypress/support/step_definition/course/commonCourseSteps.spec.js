@@ -82,6 +82,10 @@ When('I click on Delete in dot menu of topic', () => {
   courses.clickDeleteInDotMenuOfTopic()
 })
 
+When('I click on Edit in dot menu of topic', () => {
+  courses.clickEditInDotMenuOfTopic()
+})
+
 And('I click on Edit in dot menu', () => {
   courses.clickEditInDotMenu()
 })
