@@ -23,7 +23,6 @@ jobs:
             'team',
             'topic'
           ]
-    timeout-minutes: 10
 
     steps:
       - name: 🔔🔔🔔 Checkout 🔔🔔🔔
