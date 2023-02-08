@@ -3,8 +3,7 @@ on: [push]
 
 jobs:
   e2e-system-tests:
-    runs-on: macos-latest
-    #runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 3
       fail-fast: false
@@ -71,8 +70,7 @@ jobs:
             ${{ github.workspace }}/cypress/screenshots
 
   generate-and-upload-report:
-    runs-on: macos-latest
-    #runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     needs: e2e-system-tests
     if: always()
 
