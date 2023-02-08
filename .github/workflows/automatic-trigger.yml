@@ -5,22 +5,22 @@ jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 3
+      max-parallel: 4
       fail-fast: false
       matrix:
         spec:
           [
-            'help',
-            'management',
-            'dashboard',
-            'news',
-            'courses',
             'account',
             'addons',
+            'courses',
+            'dashboard',
+            'files',
+            'help',
             'login',
+            'management',
+            'news',
             'tasks',
             'team',
-            'files',
             'topic'
           ]
 
@@ -55,7 +55,6 @@ jobs:
           CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
         with:
           command: npm run tag:stable:${{ matrix.spec }}
-          #command: npm run cy:run
 
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
