@@ -34,8 +34,7 @@ jobs:
           command: npm run pretest
 
       - name: 🧪 Cypress run 🧪
-        uses: cypress-io/github-action@v5
-        timeout-minutes: 15
+        uses: cypress-io/github-action@v5s
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_NBC: ${{ secrets.CYPRESS_NBC }}
