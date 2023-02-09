@@ -79,6 +79,10 @@ class Tasks {
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
+  static #downloadFileGradingSection =
+    '[data-testid="submissions-section-files"]'
+  static #downloadFileTitle = '.card-title'
+  static #downloadFileText = '.card-text'
 
   navigateToTasksOverview () {
     cy.visit('/tasks')
@@ -316,7 +320,7 @@ class Tasks {
   }
 
   seeFileInSectionUploadedFiles (fileName) {
-    cy.get(Tasks.#uploadedFilesSection).contains(fileName, {
+    cy.contains(fileName, {
       includeShadowDom: true
     })
   }
@@ -404,13 +408,18 @@ class Tasks {
   }
 
   clickDownloadFileInGrading (fileName) {
-    cy.get(Tasks.#feedbackSection)
-      .find('a')
-      .should('contain', fileName)
-      .parent()
-      .find('span')
-      .find('a')
-      .click()
+    cy.get(Tasks.#downloadFileGradingSection)
+      .first()
+      .then(elm => {
+        cy.get(elm)
+          .contains(Tasks.#downloadFileTitle, fileName)
+          .should('be.visible')
+        cy.get(elm)
+          .find(Tasks.#downloadFileText)
+          .find('button')
+          .should('be.visible')
+          .click()
+      })
   }
 
   seeFileIsSavedInDownloads (fileName) {

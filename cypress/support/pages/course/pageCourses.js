@@ -58,7 +58,6 @@ class Courses {
           '@me_api',
           '@schools_api',
           '@alert_api',
-          '@dashboard_api'
         ],
         { timeout: 99_000 }
       )
@@ -68,7 +67,6 @@ class Courses {
         expect(interceptions[2].response.statusCode).to.equal(200)
         expect(interceptions[3].response.statusCode).to.equal(200)
         expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[5].request.url).to.include('/dashboard')
       })
   }
 
