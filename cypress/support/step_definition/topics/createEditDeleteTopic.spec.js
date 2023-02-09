@@ -96,4 +96,3 @@ Then('I see topic detail page {string} with content elements {string}, {string},
 When('I click on last breadcrump element in topbar navigation', () => {
   topics.clickLastBreadcrumb()
 })
-

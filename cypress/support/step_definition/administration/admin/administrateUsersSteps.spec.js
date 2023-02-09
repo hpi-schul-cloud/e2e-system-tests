@@ -15,8 +15,8 @@ And('I fill out the user creation form for {string} {string} with email {string}
   management.fillUserCreationForm(forename, surname, email)
 })
 
-And('I click on add button to add {string}', (role) => {
-  management.clickOnAddButton(role)
+And('I click on add user button for user administration', () => {
+  management.clickOnUserAdminitrationAddButton()
 })
 
 Then('I can see the user with email {string} in the table', (email) => {

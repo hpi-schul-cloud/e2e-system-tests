@@ -10,7 +10,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     When I click on FAB
     When I click on Add Student in opened FAB
     And I fill out the user creation form for 'Adam' 'Riese' with email 'adam.riese@example.com'
-    And I click on add button to add 'student'
+    And I click on add user button for user administration
     Then I can see the user with email 'adam.riese@example.com' in the table
 
   Scenario: Editing a new student
@@ -42,7 +42,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     When I click on FAB
     When I click on Add Teacher in opened FAB
     And I fill out the user creation form for 'Karl' 'Müller' with email 'karl.mueller@example.com'
-    And I click on add button to add 'teacher'
+    I click on add user button for user administration
     Then I can see the user with email 'karl.mueller@example.com' in the table
 
   Scenario: Editing a new teacher
