@@ -6,7 +6,7 @@ class Login_Management {
   static #emailInput = '[data-testid="username"]'
   static #infoMessage = '[data-testid="info-message"]'
   static #submitButton = '[data-testid="btn-submit"]'
-  static #cancelButton = '[data-testid="btn-cancel"]'
+  static #cancelButton = '[data-testid="btn-cancel-"]'
   static #brokerButton = '[data-testid="submit-oauth-login"]'
   static #emailInputBox = '[data-testid="username-email"]'
   static #passwordField = '[data-testid = "password-email"]'

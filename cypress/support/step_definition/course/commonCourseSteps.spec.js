@@ -18,9 +18,12 @@ Then('I see the course {string} on the room overview page', courseName => {
   courses.courseIsVisiblOnOverviewPage(courseName)
 })
 
-Then('I do not see the course {string} on the room overview page', courseName => {
+Then(
+  'I do not see the course {string} on the room overview page',
+  courseName => {
     courses.courseIsNotVisiblOnOverviewPage(courseName)
-})
+  }
+)
 
 When('I open course edit page', () => {
   courses.openCourseEditPage()
@@ -65,7 +68,6 @@ And('I can not see content {string}', contentTitle => {
 // And('I can not see task {string}', taskTitle => {
 //   courses.taskIsNotVisibleOnCoursePage(taskTitle)
 // })
-
 When('I click on three dot menu of content {string}', contentTitle => {
   courses.openThreeDotMenuForContent(contentTitle)
 })
