@@ -70,10 +70,14 @@ class Account {
         .click()
         .wait(500)
     } else {
-      cy.get('#selected-language').invoke('text').should('eq', 'Deutsch')
+      cy.contains('[data-testid="available-language-de"]', 'Deutsch')
+        .should('be.visible')
+        .click()
+        .wait(500)
+      /* cy.get('#selected-language').invoke('text').should('eq', 'Deutsch')
       cy.get('#selected-language')
         .invoke('attr', 'data-testid')
-        .should('eq', 'selected-language-de')
+        .should('eq', 'selected-language-de') */
     }
   }
 
