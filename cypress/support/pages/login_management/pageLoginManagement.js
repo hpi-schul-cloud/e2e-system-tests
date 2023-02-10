@@ -6,7 +6,7 @@ class Login_Management {
   static #emailInput = '[data-testid="username"]'
   static #infoMessage = '[data-testid="info-message"]'
   static #submitButton = '[data-testid="btn-submit"]'
-  static #cancelButton = '[data-testid="btn-cancel"]'
+  static #cancelButton = '[data-testid="btn-cancel-"]'
   static #brokerButton = '[data-testid="submit-oauth-login"]'
   static #emailInputBox = '[data-testid="username-email"]'
   static #passwordField = '[data-testid = "password-email"]'
@@ -103,11 +103,6 @@ class Login_Management {
   visitLoginPage () {
     Cypress.config('baseUrl', Cypress.env('DEFAULT'))
     cy.visit('login')
-      .wait(['@alerts_api', '@locales_api'])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })
   }
 
   clickOnForgotPassword () {

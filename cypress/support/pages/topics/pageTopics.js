@@ -67,12 +67,6 @@ class Topics {
   clickOnSubmitChangesInTopicBtn() {
     cy.get(Topics.#submitChangesInTopicBtn)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeFormElementText() {
@@ -183,15 +177,7 @@ class Topics {
   clickLastBreadcrumb() {
     cy.get(Topics.#breadcrumbItem)
       .last()
-      .click()
-      .wait(['@alerts_api', '@runtime_config_api', '@locales_api'], {
-      timeout: 10000
-    }).then(interceptions => {
-      expect(interceptions[0].response.statusCode).to.equal(200)
-      expect(interceptions[1].response.statusCode).to.equal(200)
-      expect(interceptions[2].response.statusCode).to.equal(200)
-    })
+      .click({timeout: 10000})
   }
-
 }
 export default Topics

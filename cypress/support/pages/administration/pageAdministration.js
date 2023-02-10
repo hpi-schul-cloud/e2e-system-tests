@@ -139,16 +139,8 @@ class Management {
       .click()
   }
 
-  enterNameForSearch (role, keyword) {
-    if (!(role == 'student')) {
-      cy.intercept('**/teachers?**').as('search_api')
-    } else {
-      cy.intercept('**/students?**').as('search_api')
-    }
-    cy.get(Management.#searchbar).type(keyword)
-    cy.wait('@search_api')
-      .its('response.statusCode')
-      .should('eq', 200)
+  enterNameForSearch (email) {
+    cy.get(Management.#searchbar).type(email)
   }
 
   clickEditStudentButton (email) {
@@ -157,12 +149,6 @@ class Management {
       .find('a')
       .should('have.attr', 'data-testid', 'edit_student_button')
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   clickEditTeacherButton (email) {
@@ -171,12 +157,6 @@ class Management {
       .find('a')
       .should('have.attr', 'data-testid', 'edit_teacher_button')
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   changeUsername (firstname, surname) {

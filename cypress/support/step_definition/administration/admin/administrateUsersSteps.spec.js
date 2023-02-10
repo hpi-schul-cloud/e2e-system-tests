@@ -25,8 +25,8 @@ Then('I can see the user with email {string} in the table', (email) => {
 
 //Scenario: Editing a new student
 
-And('I enter {string} email {string} in search input field', (role, keyword) => {
-  management.enterNameForSearch(role, keyword)
+And('I enter email {string} in search input field', (email) => {
+  management.enterNameForSearch(email)
 })
 
 And('I change username to {string} {string}', (firstname, surname) => {

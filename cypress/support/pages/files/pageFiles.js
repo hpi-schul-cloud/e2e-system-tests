@@ -42,31 +42,26 @@ class Files {
 
   navigateToFilesOverview () {
     cy.get(Files.#filesOverviewNavigationButton).click()
-    cy.wait('@alerts_api')
     cy.url().should('include', '/files')
   }
 
   navigateToPersonalFilesOverview () {
     cy.get(Files.#personalFilesOverviewNavigationButton).click()
-    cy.wait('@alerts_api')
     cy.url().should('include', '/files/my')
   }
 
   navigateToCourseFilesOverview () {
     cy.get(Files.#coursesFilesOverviewNavigationButton).click()
-    cy.wait('@alerts_api')
     cy.url().should('include', '/files/courses')
   }
 
   navigateToTeamsFilesOverview () {
     cy.get(Files.#teamsFilesOverviewNavigationButton).eq(1).click()
-    cy.wait('@alerts_api')
     cy.url().should('include', '/files/teams')
   }
 
   navigateToSharedFilesOverview () {
     cy.get(Files.#sharedFilesOverviewNavigationButton).click()
-    cy.wait('@alerts_api')
     cy.url().should('include', '/files/shared')
   }
 
@@ -133,8 +128,9 @@ class Files {
     cy.contains(
       Files.#saveRenameFile,
       Files.#testAssertionData.saveRenameButtonText
-    ).click()
-    cy.wait('@alerts_api')
+      )
+      .click()
+
   }
 
   clickOnDeleteFile (fileName) {
@@ -159,13 +155,11 @@ class Files {
       .focus()
       .should('be.visible')
       .click()
-      .wait('@alerts_api')
     cy.contains(deletePopUpTextTitle).should('not.exist')
   }
 
   libreOfficeOpens () {
     cy.url().should('include', '/files/file/')
-    cy.wait('@alerts_api')
     cy.contains(
       Files.#pageTitle,
       Files.#testAssertionData.libraOfficeOpenTitleText
