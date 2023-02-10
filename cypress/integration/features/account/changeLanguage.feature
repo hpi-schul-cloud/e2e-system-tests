@@ -8,7 +8,7 @@ Feature: Account - Change language of the user from user setting
         When I arrive on the dashboard
         Then I can see initials of my name
         When I click on initials of my name
-        Then I click on langauge drop down menu
+        Then I click on language drop down menu
         Then I can change language to '<language>'
         Then I can see language is changed to '<language>'
         Examples:
@@ -23,7 +23,7 @@ Feature: Account - Change language of the user from user setting
         When I arrive on the dashboard
         Then I can see initials of my name
         When I click on initials of my name
-        Then I click on langauge drop down menu
+        Then I click on language drop down menu
         Then I can change language to '<language>'
         Then I can see language is changed to '<language>'
         Examples:
@@ -38,7 +38,7 @@ Feature: Account - Change language of the user from user setting
         When I arrive on the dashboard
         Then I can see initials of my name
         When I click on initials of my name
-        Then I click on langauge drop down menu
+        Then I click on language drop down menu
         Then I can change language to '<language>'
         Then I can see language is changed to '<language>'
         Examples:

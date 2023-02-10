@@ -42,7 +42,15 @@ class Account {
   }
 
   clickLanguagesDropDownMenu () {
-    cy.get('#language-menu').should('be.visible').click()
+    cy.get('#language-menu')
+      .should('be.visible')
+      .click()
+      .then(() => {
+        cy.get('#selected-language').should('be.visible')
+        cy.get('.dropdown-submenu >  ul a').each($element => {
+          cy.get($element).should('be.visible')
+        })
+      })
   }
 
   changeLanguage (language) {

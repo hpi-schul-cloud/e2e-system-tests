@@ -10,7 +10,7 @@ When('I click on initials of my name', () => {
     account.clickInitialsOfName()
 })
 
-Then('I click on langauge drop down menu', () => {
+Then('I click on language drop down menu', () => {
     account.clickLanguagesDropDownMenu()
 })
 
