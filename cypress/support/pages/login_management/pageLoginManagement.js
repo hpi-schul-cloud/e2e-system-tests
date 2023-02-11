@@ -47,7 +47,7 @@ class Login_Management {
     */
     if (usernameOrEmail) {
       console.log(usernameOrEmail)
-      usernameOrEmailText = Login_Management.#testData.emailText    // value is email, since logic is true
+      usernameOrEmailText = Login_Management.#testData.emailText // value is email, since logic is true
     } else {
       usernameOrEmailText = Login_Management.#testData.usernameText // value is username, since logic is false
     }
@@ -133,6 +133,116 @@ class Login_Management {
 
   seeEmailInputOnSubmittingRequestWithoutEnteringEmail () {
     cy.get(Login_Management.#emailInput).should('be.visible')
+  }
+
+  enterEmail () {
+    let userEmail = Cypress.env('STUDENT_PASSWORD_CHANGE_EMAIL')
+    cy.get(Login_Management.#emailInputBox)
+      .type(userEmail, { log: false, timeout: 120000 })
+      .should('have.value', userEmail)
+  }
+
+  enterPassword () {
+    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
+    cy.get(Login_Management.#passwordField)
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+  }
+
+  currentPwdFieldVisibleAndEmpty () {
+    cy.get('[data-testid="settings_password_current"]').should(
+      currentPwdFieldVisibleAndEmpty => {
+        expect(currentPwdFieldVisibleAndEmpty).to.be.empty
+        expect(currentPwdFieldVisibleAndEmpty).to.be.visible
+      }
+    )
+  }
+
+  newAndRepeatPasswordFieldVisibleAndEmpty () {
+    cy.get('[data-testid="settings_password_new"]').should(
+      currentPwdFieldVisibleAndEmpty => {
+        expect(currentPwdFieldVisibleAndEmpty).to.be.empty
+        expect(currentPwdFieldVisibleAndEmpty).to.be.visible
+      }
+    )
+    cy.get('[data-testid="settings_password_control"]').should(
+      currentPwdFieldVisibleAndEmpty => {
+        expect(currentPwdFieldVisibleAndEmpty).to.be.empty
+        expect(currentPwdFieldVisibleAndEmpty).to.be.visible
+      }
+    )
+  }
+
+  enterCurrentPassword () {
+    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
+    cy.get('[data-testid="settings_password_current"]')
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+  }
+
+  enterNewPasswordInAllFields () {
+    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
+    cy.get('[data-testid="settings_password_new"]')
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+    cy.get('[data-testid="settings_password_control"]')
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+  }
+
+  clickOnSubmitButtonInUserSetting () {
+    cy.get('[data-testid="submit_new_password_btn"]')
+      .should('be.visible')
+      .click()
+      .wait(500)
+      .then(() => {
+        cy.get('[data-testid="notification"]').should('be.visible')
+        cy.get('#page-title').should('be.visible')
+      })
+  }
+
+  clickOnInitials () {
+    cy.get('[data-testid="initials"]').should('be.visible').click().wait(500)
+  }
+
+  clickOnLogoutBtn () {
+    cy.get('[data-testid="logout"]').should('be.visible').click().wait(500)
+  }
+
+  enterNewPassword () {
+    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
+    cy.get(Login_Management.#passwordField)
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+  }
+
+  enterNewPasswordInUserSetting () {
+    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
+    cy.get('[data-testid="settings_password_current"]')
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+  }
+
+  enterOldPasswordInUserSetting () {
+    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
+    cy.get('[data-testid="settings_password_new"]')
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+    cy.get('[data-testid="settings_password_control"]')
+      .type(userPwd, { log: false })
+      .should('have.length', 1)
+  }
+
+  waitFor15Seconds () {
+    cy.wait(15000)
+    cy.get('[data-testid="submit-login-email"]').then($btn => {
+      if ($btn.is(':disabled')) {
+        cy.log('Button exists and is disabled!')
+        return
+      } else {
+        cy.log('Button exists and is enabled!')
+      }
+    })
   }
 }
 export default Login_Management
