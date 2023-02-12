@@ -13,6 +13,16 @@ class Login_Management {
   static #notificationBannerField = '[data-testid="notification"]'
   static #loginFormSelector = 'form.login-form'
   static #inputFieldInvalidPseudoSelector = 'input:invalid'
+  static #userSettingsCurrentPasswordField =
+    '[data-testid="settings_password_current"]'
+  static #userSettingsNewPasswordField = '[data-testid="settings_password_new"]'
+  static #userSettingsNewPasswordRepeatField =
+    '[data-testid="settings_password_control"]'
+  static #userSettingsSubmitBtn = '[data-testid="submit_new_password_btn"]'
+  static #pageTitle = '#page-title'
+  static #userSettingsNameInitials = '[data-testid="initials"]'
+  static #logoutBtn = '[data-testid="logout"]'
+  static #loginSubmitBtn = '[data-testid="submit-login-email"]'
 
   static #testData = {
     usernameText:
@@ -51,15 +61,17 @@ class Login_Management {
     } else {
       usernameOrEmailText = Login_Management.#testData.usernameText // value is username, since logic is false
     }
-    cy.get(Login_Management.#emailInputBox)
-      .type(usernameOrEmailText, { log: false, timeout: 120000 })
-      .should('have.value', usernameOrEmailText)
+    this.typeEmailIntoField(
+      Login_Management.#emailInputBox,
+      usernameOrEmailText
+    )
   }
 
   enterInvalidPassword () {
-    cy.get(Login_Management.#passwordField)
-      .type(Login_Management.#testData.invalidPassword, { log: false })
-      .should('have.length', 1)
+    this.typePasswordIntoField(
+      Login_Management.#passwordField,
+      Login_Management.#testData.invalidPassword
+    )
   }
 
   clickOnSubmitButton () {
@@ -135,107 +147,118 @@ class Login_Management {
     cy.get(Login_Management.#emailInput).should('be.visible')
   }
 
+  typeEmailIntoField (sel, email) {
+    cy.get(sel)
+      .type(email, { log: false, timeout: 120000 })
+      .should('have.value', email)
+  }
+
+  typePasswordIntoField (sel, password) {
+    cy.get(sel).type(password, { log: false }).should('have.length', 1)
+  }
+
+  assertEmptyAndVisibleField (sel) {
+    cy.get(sel).should(fieldIsVisibleAndEmpty => {
+      expect(fieldIsVisibleAndEmpty).to.be.empty
+      expect(fieldIsVisibleAndEmpty).to.be.visible
+    })
+  }
+
   enterEmail () {
     let userEmail = Cypress.env('STUDENT_PASSWORD_CHANGE_EMAIL')
-    cy.get(Login_Management.#emailInputBox)
-      .type(userEmail, { log: false, timeout: 120000 })
-      .should('have.value', userEmail)
+    this.typeEmailIntoField(Login_Management.#emailInputBox, userEmail)
   }
 
   enterPassword () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
-    cy.get(Login_Management.#passwordField)
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
+    this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
   }
 
   currentPwdFieldVisibleAndEmpty () {
-    cy.get('[data-testid="settings_password_current"]').should(
-      currentPwdFieldVisibleAndEmpty => {
-        expect(currentPwdFieldVisibleAndEmpty).to.be.empty
-        expect(currentPwdFieldVisibleAndEmpty).to.be.visible
-      }
+    this.assertEmptyAndVisibleField(
+      Login_Management.#userSettingsCurrentPasswordField
     )
   }
 
   newAndRepeatPasswordFieldVisibleAndEmpty () {
-    cy.get('[data-testid="settings_password_new"]').should(
-      currentPwdFieldVisibleAndEmpty => {
-        expect(currentPwdFieldVisibleAndEmpty).to.be.empty
-        expect(currentPwdFieldVisibleAndEmpty).to.be.visible
-      }
+    this.assertEmptyAndVisibleField(
+      Login_Management.#userSettingsNewPasswordField
     )
-    cy.get('[data-testid="settings_password_control"]').should(
-      currentPwdFieldVisibleAndEmpty => {
-        expect(currentPwdFieldVisibleAndEmpty).to.be.empty
-        expect(currentPwdFieldVisibleAndEmpty).to.be.visible
-      }
+    this.assertEmptyAndVisibleField(
+      Login_Management.#userSettingsNewPasswordRepeatField
     )
   }
 
   enterCurrentPassword () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
-    cy.get('[data-testid="settings_password_current"]')
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
+    this.typePasswordIntoField(
+      Login_Management.#userSettingsCurrentPasswordField,
+      userPwd
+    )
   }
 
   enterNewPasswordInAllFields () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
-    cy.get('[data-testid="settings_password_new"]')
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
-    cy.get('[data-testid="settings_password_control"]')
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
+    this.typePasswordIntoField(
+      Login_Management.#userSettingsNewPasswordField,
+      userPwd
+    )
+    this.typePasswordIntoField(
+      Login_Management.#userSettingsNewPasswordRepeatField,
+      userPwd
+    )
   }
 
   clickOnSubmitButtonInUserSetting () {
-    cy.get('[data-testid="submit_new_password_btn"]')
+    cy.get(Login_Management.#userSettingsSubmitBtn)
       .should('be.visible')
       .click()
       .wait(500)
       .then(() => {
-        cy.get('[data-testid="notification"]').should('be.visible')
-        cy.get('#page-title').should('be.visible')
+        cy.get(Login_Management.#notificationBannerField).should('be.visible')
+        cy.get(Login_Management.#pageTitle).should('be.visible')
       })
   }
 
   clickOnInitials () {
-    cy.get('[data-testid="initials"]').should('be.visible').click().wait(500)
+    cy.get(Login_Management.#userSettingsNameInitials)
+      .should('be.visible')
+      .click()
+      .wait(500)
   }
 
   clickOnLogoutBtn () {
-    cy.get('[data-testid="logout"]').should('be.visible').click().wait(500)
+    cy.get(Login_Management.#logoutBtn).should('be.visible').click().wait(500)
   }
 
   enterNewPassword () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
-    cy.get(Login_Management.#passwordField)
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
+    this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
   }
 
   enterNewPasswordInUserSetting () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
-    cy.get('[data-testid="settings_password_current"]')
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
+    this.typePasswordIntoField(
+      Login_Management.#userSettingsCurrentPasswordField,
+      userPwd
+    )
   }
 
   enterOldPasswordInUserSetting () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
-    cy.get('[data-testid="settings_password_new"]')
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
-    cy.get('[data-testid="settings_password_control"]')
-      .type(userPwd, { log: false })
-      .should('have.length', 1)
+    this.typePasswordIntoField(
+      Login_Management.#userSettingsNewPasswordField,
+      userPwd
+    )
+    this.typePasswordIntoField(
+      Login_Management.#userSettingsNewPasswordRepeatField,
+      userPwd
+    )
   }
 
   waitFor15Seconds () {
     cy.wait(15000)
-    cy.get('[data-testid="submit-login-email"]').then($btn => {
+    cy.get(Login_Management.#loginSubmitBtn).then($btn => {
       if ($btn.is(':disabled')) {
         cy.log('Button exists and is disabled!')
         return
