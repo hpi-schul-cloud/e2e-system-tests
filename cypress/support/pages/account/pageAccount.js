@@ -3,9 +3,27 @@
 class Account {
   static #initialsButton = '[data-testid="initials"]'
   static #settingsButton = '[data-testid="settings"]'
-
   static #email = '[data-testid="user_email"]'
   static #emailReadOnly = '[data-testid="user_email_readonly"]'
+  static #languageMenu = '#language-menu'
+  static #selectedLanguage = '#selected-language'
+  static #listOfAllLanguages = '.dropdown-submenu >  ul a'
+  static #germanLanguage = '[data-testid="selected-language-de"]'
+  static #spanishLanguage = '[data-testid="available-language-es"]'
+  static #ukrainianLanguage = '[data-testid="available-language-ua"]'
+  static #englishLanguage = '[data-testid="available-language-en"]'
+  static #pageTitle = '#page-title'
+
+  static #testAssertionData = {
+    german: 'Deutsch',
+    spanish: 'Español',
+    ukrainian: 'Yкраїнський',
+    english: 'English',
+    overviewInGerman: 'Übersicht',
+    overviewInSpanish: 'Panel',
+    overviewInUkrainian: 'Панель керування',
+    overviewInEnglish: 'Dashboard'
+  }
 
   navigateToAccountSettingsSection () {
     cy.get(Account.#initialsButton).click()
@@ -24,7 +42,7 @@ class Account {
   }
 
   nameInitialsIsVisible () {
-    cy.get('[data-testid="initials"]').should('be.visible')
+    cy.get(Account.#initialsButton).should('be.visible')
   }
 
   clickInitialsOfName () {
@@ -42,65 +60,70 @@ class Account {
   }
 
   clickLanguagesDropDownMenu () {
-    cy.get('#language-menu')
+    cy.get(Account.#languageMenu)
       .should('be.visible')
       .click()
       .then(() => {
-        cy.get('#selected-language').should('be.visible')
-        cy.get('.dropdown-submenu >  ul a').each($element => {
+        cy.get(Account.#selectedLanguage).should('be.visible')
+        cy.get(Account.#listOfAllLanguages).each($element => {
           cy.get($element).should('be.visible')
         })
       })
   }
 
   changeLanguage (language) {
-    if (language === 'english') {
-      cy.contains('[data-testid="available-language-en"]', 'English')
-        .should('be.visible')
-        .click()
-        .wait(500)
-    } else if (language === 'spanish') {
-      cy.contains('[data-testid="available-language-es"]', 'Español')
-        .should('be.visible')
-        .click()
-        .wait(500)
-    } else if (language === 'ukrainian') {
-      cy.contains('[data-testid="available-language-ua"]', 'Yкраїнський')
-        .should('be.visible')
-        .click()
-        .wait(500)
-    } else {
-      cy.contains('[data-testid="available-language-de"]', 'Deutsch')
-        .should('be.visible')
-        .click()
-        .wait(500)
-      /* cy.get('#selected-language').invoke('text').should('eq', 'Deutsch')
-      cy.get('#selected-language')
-        .invoke('attr', 'data-testid')
-        .should('eq', 'selected-language-de') */
+    if (language === 'german') {
+      return this.selectLanguage(
+        Account.#germanLanguage,
+        Account.#testAssertionData.german
+      )
     }
+
+    if (language === 'spanish') {
+      return this.selectLanguage(
+        Account.#spanishLanguage,
+        Account.#testAssertionData.spanish
+      )
+    }
+
+    if (language === 'ukrainian') {
+      return this.selectLanguage(
+        Account.#ukrainianLanguage,
+        Account.#testAssertionData.ukrainian
+      )
+    }
+
+    return this.selectLanguage(
+      Account.#englishLanguage,
+      Account.#testAssertionData.english
+    )
+  }
+
+  selectLanguage (sel, language) {
+    return cy.contains(sel, language).should('be.visible').click().wait(500)
+  }
+
+  assertLanguageUpdate (updatedText) {
+    cy.wait(300).get(Account.#pageTitle).invoke('text').should('eq', updatedText)
+    cy.get(Account.#pageTitle)
+      .invoke('attr', 'data-testid')
+      .should('eq', updatedText)
   }
 
   verifyLanguageChanged (language) {
-    if (language === 'english') {
-      cy.get('#page-title').invoke('text').should('eq', 'Dashboard')
-      cy.get('#page-title')
-        .invoke('attr', 'data-testid')
-        .should('eq', 'Dashboard')
-    } else if (language === 'spanish') {
-      cy.get('#page-title').invoke('text').should('eq', 'Panel')
-      cy.get('#page-title').invoke('attr', 'data-testid').should('eq', 'Panel')
-    } else if (language === 'ukrainian') {
-      cy.get('#page-title').invoke('text').should('eq', 'Панель керування')
-      cy.get('#page-title')
-        .invoke('attr', 'data-testid')
-        .should('eq', 'Панель керування')
-    } else {
-      cy.get('#page-title').invoke('text').should('eq', 'Übersicht')
-      cy.get('#page-title')
-        .invoke('attr', 'data-testid')
-        .should('eq', 'Übersicht')
+    if (language === 'german') {
+      return this.assertLanguageUpdate(Account.#testAssertionData.overviewInGerman)
     }
+
+    if (language === 'spanish') {
+      return this.assertLanguageUpdate(Account.#testAssertionData.overviewInSpanish)
+    }
+
+    if (language === 'ukrainian') {
+      return this.assertLanguageUpdate(Account.#testAssertionData.overviewInUkrainian)
+    }
+
+    return this.assertLanguageUpdate(Account.#testAssertionData.overviewInEnglish)
   }
 }
 export default Account
