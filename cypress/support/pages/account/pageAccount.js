@@ -8,7 +8,7 @@ class Account {
   static #languageMenu = '#language-menu'
   static #selectedLanguage = '#selected-language'
   static #listOfAllLanguages = '.dropdown-submenu >  ul a'
-  static #germanLanguage = '[data-testid="selected-language-de"]'
+  static #germanLanguage = '[data-testid="available-language-de"]'
   static #spanishLanguage = '[data-testid="available-language-es"]'
   static #ukrainianLanguage = '[data-testid="available-language-ua"]'
   static #englishLanguage = '[data-testid="available-language-en"]'
