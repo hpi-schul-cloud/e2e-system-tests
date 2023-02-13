@@ -11,17 +11,17 @@ jobs:
       matrix:
         spec:
           [
-            'help',
-            'management',
-            'dashboard',
-            'news',
-            'courses',
             'account',
             'addons',
+            'courses',
+            'dashboard',
+            'files',
+            'help',
             'login',
+            'management',
+            'news',
             'tasks',
             'team',
-            'files',
             'topic'
           ]
 
@@ -30,12 +30,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: 🗑 Clean up previous report 🗑
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           command: npm run pretest
 
       - name: 🧪 Cypress run 🧪
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
+        timeout-minutes: 20
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_NBC: ${{ secrets.CYPRESS_NBC }}
@@ -54,6 +55,10 @@ jobs:
           CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
           CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
           CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL}}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD}}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD}}
+          DEBUG: '@cypress/github-action'
         with:
           command: npm run tag:stable:${{ matrix.spec }}
 
@@ -86,7 +91,7 @@ jobs:
           path: ${{ github.workspace }}/cypress/
 
       - name: 🚀 Generate Report 🚀
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         if: always()
         with:
           command: npm run generate:report
