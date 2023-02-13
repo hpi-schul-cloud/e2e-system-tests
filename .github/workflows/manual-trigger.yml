@@ -49,7 +49,6 @@ jobs:
 
       - name: 🧪 Cypress run 🧪
         uses: cypress-io/github-action@v5
-        timeout-minutes: 20
         env:
           CYPRESS_BRB: ${{ github.event.inputs.instance1 }}
           CYPRESS_NBC: ${{ github.event.inputs.instance2 }}

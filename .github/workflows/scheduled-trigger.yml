@@ -36,7 +36,6 @@ jobs:
 
       - name: 🧪 Cypress run 🧪
         uses: cypress-io/github-action@v5
-        timeout-minutes: 20
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
           CYPRESS_NBC: ${{ secrets.CYPRESS_NBC }}
