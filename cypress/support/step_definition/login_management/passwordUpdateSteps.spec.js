@@ -26,7 +26,7 @@ Then('I enter new password and repeat it in the next field', () => {
     loginManagement.enterNewPasswordInAllFields()
 })
 
-Then('I click on submit button', () => {
+Then('I click on save button in user settings', () => {
     loginManagement.clickOnSubmitButtonInUserSetting()
 })
 
@@ -46,7 +46,7 @@ When('I enter new password in user setting', () => {
     loginManagement.enterNewPasswordInUserSetting()
 })
 
-Then('I enter new password in both fields in user setting', () => {
+Then('I enter new password and repeat it in the next field in user setting', () => {
     loginManagement.enterOldPasswordInUserSetting()
 })
 
