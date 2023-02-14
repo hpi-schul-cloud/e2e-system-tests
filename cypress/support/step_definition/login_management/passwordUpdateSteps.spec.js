@@ -2,19 +2,19 @@ import Login_Management from '../../pages/login_management/pageLoginManagement'
 
 const loginManagement = new Login_Management()
 
-Then('I will enter email', () => {
+Then('I enter email', () => {
     loginManagement.enterEmail()
 })
 
-Then('I will enter password', () => {
+Then('I enter password', () => {
     loginManagement.enterPassword()
 })
 
-Then('I will see current password field is visible and empty', () => {
+Then('I see current password field is visible and empty', () => {
     loginManagement.currentPwdFieldVisibleAndEmpty()
 })
 
-Then('I will see new and repeat password field is visible and empty', () => {
+Then('I see new and repeat password field is visible and empty', () => {
     loginManagement.newAndRepeatPasswordFieldVisibleAndEmpty()
 })
 
@@ -26,7 +26,7 @@ Then('I enter new password in both fields', () => {
     loginManagement.enterNewPasswordInAllFields()
 })
 
-Then('I will click on submit button', () => {
+Then('I click on submit button', () => {
     loginManagement.clickOnSubmitButtonInUserSetting()
 })
 
@@ -38,7 +38,7 @@ Then('I logout', () => {
     loginManagement.clickOnLogoutBtn()
 })
 
-Then ('I will enter new password', () => {
+Then ('I enter new password', () => {
     loginManagement.enterNewPassword()
 })
 
@@ -50,6 +50,6 @@ Then('I enter new password in both fields in user setting', () => {
     loginManagement.enterOldPasswordInUserSetting()
 })
 
-Then('I will wait for 15 seconds', () => {
+Then('I wait for 15 seconds', () => {
     loginManagement.waitFor15Seconds()
 })
