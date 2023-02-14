@@ -7,17 +7,17 @@ Then('I can see initials of my name', () => {
 })
 
 When('I click on initials of my name', () => {
-    account.clickInitialsOfName()
+  account.clickInitialsOfName()
 })
 
 Then('I click on language drop down menu', () => {
-    account.clickLanguagesDropDownMenu()
+  account.clickLanguagesDropDownMenu()
 })
 
 Then('I can change language to {string}', language => {
-    account.changeLanguage(language)
+  account.changeLanguage(language)
 })
 
-Then('I can see language is changed to {string} in dashboard', language => {
-    account.verifyLanguageChanged(language)
+Then('I can see title in dashboard is changed to {string}', language => {
+  account.verifyLanguageChanged(language)
 })
