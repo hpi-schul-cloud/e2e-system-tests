@@ -18,6 +18,6 @@ Then('I can change language to {string}', language => {
     account.changeLanguage(language)
 })
 
-Then('I can see language is changed to {string}', language => {
+Then('I can see language is changed to {string} in dashboard', language => {
     account.verifyLanguageChanged(language)
 })
