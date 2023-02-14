@@ -41,7 +41,7 @@ class Account {
     }
   }
 
-  nameInitialsIsVisible () {
+  assertNameInitialsIsVisible () {
     cy.get(Account.#initialsButton).should('be.visible')
   }
 

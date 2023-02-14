@@ -3,7 +3,7 @@ import Account from '../../pages/account/pageAccount'
 const account = new Account()
 
 Then('I can see initials of my name', () => {
-  account.nameInitialsIsVisible()
+  account.assertNameInitialsIsVisible()
 })
 
 When('I click on initials of my name', () => {
