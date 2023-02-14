@@ -11,11 +11,11 @@ Then('I enter password', () => {
 })
 
 Then('I see current password field is visible and empty', () => {
-    loginManagement.currentPwdFieldVisibleAndEmpty()
+    loginManagement.assertCurrentPwdFieldVisibleAndEmpty()
 })
 
 Then('I see new and repeat password field is visible and empty', () => {
-    loginManagement.newAndRepeatPasswordFieldVisibleAndEmpty()
+    loginManagement.assertNewAndRepeatPasswordFieldVisibleAndEmpty()
 })
 
 When('I enter current password', () => {
@@ -28,6 +28,10 @@ Then('I enter new password and repeat it in the next field', () => {
 
 Then('I click on save button in user settings', () => {
     loginManagement.clickOnSubmitButtonInUserSetting()
+})
+
+Then('I see success message', () => {
+    loginManagement.assertSuccessMessageIsDisplay()
 })
 
 When('I click on the initials', () => {

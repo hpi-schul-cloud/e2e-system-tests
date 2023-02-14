@@ -33,7 +33,7 @@ class Login_Management {
     errorMessageText: 'Login fehlgeschlagen.'
   }
 
-  emailFieldIsVisibleAndEmpty () {
+  assertEmailFieldIsVisibleAndEmpty () {
     cy.get(Login_Management.#loginFormSelector).within(() => {
       cy.get(Login_Management.#emailInputBox)
         .should('be.visible')
@@ -78,14 +78,14 @@ class Login_Management {
     cy.get(Login_Management.#loginFormSelector).should('be.visible').submit()
   }
 
-  errorMessageDisplay () {
+  assertErrorMessageDisplay () {
     cy.get(Login_Management.#notificationBannerField)
       .should('be.visible')
       .and('have.class', 'notification-content')
       .contains(Login_Management.#testData.errorMessageText)
   }
 
-  passwordFieldIsVisibleAndEmpty () {
+  assertPasswordFieldIsVisibleAndEmpty () {
     cy.get(Login_Management.#loginFormSelector).within(() => {
       cy.get(Login_Management.#passwordField)
         .should('be.visible')
@@ -100,7 +100,7 @@ class Login_Management {
     })
   }
 
-  formValidationMessageDisplay () {
+  assertFormValidationMessageDisplay () {
     cy.get(Login_Management.#loginFormSelector).within(() => {
       cy.get(Login_Management.#inputFieldInvalidPseudoSelector).then(el => {
         expect(el[0].checkValidity()).to.be.false
@@ -174,13 +174,13 @@ class Login_Management {
     this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
   }
 
-  currentPwdFieldVisibleAndEmpty () {
+  assertCurrentPwdFieldVisibleAndEmpty () {
     this.assertEmptyAndVisibleField(
       Login_Management.#userSettingsCurrentPasswordField
     )
   }
 
-  newAndRepeatPasswordFieldVisibleAndEmpty () {
+  assertNewAndRepeatPasswordFieldVisibleAndEmpty () {
     this.assertEmptyAndVisibleField(
       Login_Management.#userSettingsNewPasswordField
     )
@@ -218,6 +218,10 @@ class Login_Management {
         cy.get(Login_Management.#notificationBannerField).should('be.visible')
         cy.get(Login_Management.#pageTitle).should('be.visible')
       })
+  }
+
+  assertSuccessMessageIsDisplay () {
+    cy.get(Login_Management.#notificationBannerField).should('be.visible')
   }
 
   clickOnInitials () {

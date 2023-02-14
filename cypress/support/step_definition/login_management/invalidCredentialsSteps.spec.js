@@ -15,15 +15,15 @@ Then('I enter invalid password', () => {
 })
 
 Then('I see error message', () => {
-  loginManagement.errorMessageDisplay()
+  loginManagement.assertErrorMessageDisplay()
 })
 
 Then('I see form validation message', () => {
-  loginManagement.formValidationMessageDisplay()
+  loginManagement.assertFormValidationMessageDisplay()
 })
 
 Then('I see Email field is visible and empty', () => {
-  loginManagement.emailFieldIsVisibleAndEmpty()
+  loginManagement.assertEmailFieldIsVisibleAndEmpty()
 })
 
 Then('I click submit button', () => {
@@ -31,5 +31,5 @@ Then('I click submit button', () => {
 })
 
 Then('I see Password field is visible and empty', () => {
-  loginManagement.passwordFieldIsVisibleAndEmpty()
+  loginManagement.assertPasswordFieldIsVisibleAndEmpty()
 })
