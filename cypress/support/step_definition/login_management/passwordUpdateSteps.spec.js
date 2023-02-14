@@ -22,7 +22,7 @@ When('I enter current password', () => {
     loginManagement.enterCurrentPassword()
 })
 
-Then('I enter new password in both fields', () => {
+Then('I enter new password and repeat it in the next field', () => {
     loginManagement.enterNewPasswordInAllFields()
 })
 

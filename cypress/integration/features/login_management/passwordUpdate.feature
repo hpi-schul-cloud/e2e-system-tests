@@ -14,7 +14,7 @@ Feature: Password Update - Verify login functionality via password change
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
         When I enter current password
-        Then I enter new password in both fields
+        Then I enter new password and repeat it in the next field
         Then I click on submit button
         When I click on the initials
         Then I logout
