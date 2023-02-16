@@ -7,7 +7,7 @@ class Account {
   static #emailReadOnly = '[data-testid="user_email_readonly"]'
   static #languageMenu = '#language-menu'
   static #selectedLanguage = '#selected-language'
-  static #listOfAllLanguages = '.dropdown-submenu >  ul a'
+  static #listOfAllLanguages = '#available-languages'
   static #germanLanguage = '[data-testid="available-language-de"]'
   static #spanishLanguage = '[data-testid="available-language-es"]'
   static #ukrainianLanguage = '[data-testid="available-language-ua"]'
@@ -65,7 +65,8 @@ class Account {
       .click()
       .then(() => {
         cy.get(Account.#selectedLanguage).should('be.visible')
-        cy.get(Account.#listOfAllLanguages).each($element => {
+        cy.get(Account.#listOfAllLanguages).find('li').each($element => {
+          cy.get($element).should('have.prop', 'value')
           cy.get($element).should('be.visible')
         })
       })
@@ -104,7 +105,10 @@ class Account {
   }
 
   assertLanguageUpdate (updatedText) {
-    cy.wait(300).get(Account.#pageTitle).invoke('text').should('eq', updatedText)
+    cy.wait(300)
+      .get(Account.#pageTitle)
+      .invoke('text')
+      .should('eq', updatedText)
     cy.get(Account.#pageTitle)
       .invoke('attr', 'data-testid')
       .should('eq', updatedText)
@@ -112,18 +116,26 @@ class Account {
 
   verifyLanguageChanged (language) {
     if (language === 'german') {
-      return this.assertLanguageUpdate(Account.#testAssertionData.overviewInGerman)
+      return this.assertLanguageUpdate(
+        Account.#testAssertionData.overviewInGerman
+      )
     }
 
     if (language === 'spanish') {
-      return this.assertLanguageUpdate(Account.#testAssertionData.overviewInSpanish)
+      return this.assertLanguageUpdate(
+        Account.#testAssertionData.overviewInSpanish
+      )
     }
 
     if (language === 'ukrainian') {
-      return this.assertLanguageUpdate(Account.#testAssertionData.overviewInUkrainian)
+      return this.assertLanguageUpdate(
+        Account.#testAssertionData.overviewInUkrainian
+      )
     }
 
-    return this.assertLanguageUpdate(Account.#testAssertionData.overviewInEnglish)
+    return this.assertLanguageUpdate(
+      Account.#testAssertionData.overviewInEnglish
+    )
   }
 }
 export default Account
