@@ -20,7 +20,7 @@ Feature: Invalid Credentials - Verify login functionality via wrong user data
     Scenario: User uses invalid username and password
         Given I am on the dBildungscloud login page
         Then I see Email field is visible and empty
-        Then I enter invalid username
+        When I enter invalid username
         Then I see Password field is visible and empty
         When I enter invalid password
         When I click submit button

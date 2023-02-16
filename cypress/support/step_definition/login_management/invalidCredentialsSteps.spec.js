@@ -6,7 +6,7 @@ When('I enter invalid email', () => {
   loginManagement.enterInvalidEmailOrUsername(true)
 })
 
-Then('I enter invalid username', () => {
+When('I enter invalid username', () => {
   loginManagement.enterInvalidEmailOrUsername(false)
 })
 
