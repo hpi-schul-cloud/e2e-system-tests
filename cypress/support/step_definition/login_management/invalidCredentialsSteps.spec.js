@@ -2,7 +2,7 @@ import Login_Management from '../../pages/login_management/pageLoginManagement'
 
 const loginManagement = new Login_Management()
 
-Then('I enter invalid email', () => {
+When('I enter invalid email', () => {
   loginManagement.enterInvalidEmailOrUsername(true)
 })
 
