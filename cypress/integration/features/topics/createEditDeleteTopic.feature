@@ -36,6 +36,13 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on last breadcrump element in topbar navigation
     Then I can see content 'Cy Topic Creating and Deleting Test' on course page
 
+  Scenario: Teacher edits topic from room
+    # Given I am logged in as a 'teacher1' at 'brb'
+    # When I go to rooms overview
+    # And I go to room 'Course with subject and tasks'
+    # When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
+    # When I click on Edit in dot menu of topic
+
   Scenario: Teacher deletes topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
