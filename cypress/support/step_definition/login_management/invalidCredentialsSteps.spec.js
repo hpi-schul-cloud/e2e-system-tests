@@ -22,7 +22,7 @@ Then('I see form validation message', () => {
   loginManagement.assertFormValidationMessageDisplay()
 })
 
-When('I see Email field is visible and empty', () => {
+Then('I see Email field is visible and empty', () => {
   loginManagement.assertEmailFieldIsVisibleAndEmpty()
 })
 
@@ -30,6 +30,6 @@ When('I click submit button', () => {
   loginManagement.clickOnSubmitButton()
 })
 
-When('I see Password field is visible and empty', () => {
+Then('I see Password field is visible and empty', () => {
   loginManagement.assertPasswordFieldIsVisibleAndEmpty()
 })

@@ -2,11 +2,11 @@ import Login_Management from '../../pages/login_management/pageLoginManagement'
 
 const loginManagement = new Login_Management()
 
-Then('I enter email', () => {
+When('I enter email', () => {
     loginManagement.enterEmail()
 })
 
-Then('I enter password', () => {
+When('I enter password', () => {
     loginManagement.enterPassword()
 })
 
@@ -22,12 +22,12 @@ When('I enter current password', () => {
     loginManagement.enterCurrentPassword()
 })
 
-Then('I enter new password and repeat it in the next field in user setting', () => {
+When('I enter new password and repeat it in the next field in user settings', () => {
     loginManagement.enterNewPasswordInAllFields()
 })
 
-Then('I click on save button in user settings', () => {
-    loginManagement.clickOnSubmitButtonInUserSetting()
+When('I click on save button in user settings', () => {
+    loginManagement.clickOnSubmitButtonInUserSettings()
 })
 
 Then('I see success message', () => {
@@ -38,22 +38,22 @@ When('I click on the initials', () => {
     loginManagement.clickOnInitials()
 })
 
-Then('I logout', () => {
+When('I logout', () => {
     loginManagement.clickOnLogoutBtn()
 })
 
-Then ('I enter new password', () => {
+When ('I enter new password', () => {
     loginManagement.enterNewPassword()
 })
 
 When('I enter new password in user setting', () => {
-    loginManagement.enterNewPasswordInUserSetting()
+    loginManagement.enterNewPasswordInUserSettings()
 })
 
-When('I enter old password and repeat it in the next field in user setting', () => {
-    loginManagement.enterOldPasswordInUserSetting()
+When('I enter old password and repeat it in the next field in user settings', () => {
+    loginManagement.enterOldPasswordInUserSettings()
 })
 
-Then('I wait for 15 seconds', () => {
+When('I wait for 15 seconds', () => {
     loginManagement.waitFor15Seconds()
 })

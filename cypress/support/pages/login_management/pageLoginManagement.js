@@ -209,7 +209,7 @@ class Login_Management {
     )
   }
 
-  clickOnSubmitButtonInUserSetting () {
+  clickOnSubmitButtonInUserSettings () {
     cy.get(Login_Management.#userSettingsSubmitBtn)
       .should('be.visible')
       .click()
@@ -240,7 +240,7 @@ class Login_Management {
     this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
   }
 
-  enterNewPasswordInUserSetting () {
+  enterNewPasswordInUserSettings () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
     this.typePasswordIntoField(
       Login_Management.#userSettingsCurrentPasswordField,
@@ -248,7 +248,7 @@ class Login_Management {
     )
   }
 
-  enterOldPasswordInUserSetting () {
+  enterOldPasswordInUserSettings () {
     let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
     this.typePasswordIntoField(
       Login_Management.#userSettingsNewPasswordField,
