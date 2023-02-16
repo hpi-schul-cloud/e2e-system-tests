@@ -14,7 +14,7 @@ Then('I click on language drop down menu', () => {
   account.clickLanguagesDropDownMenu()
 })
 
-Then('I can change language to {string}', language => {
+When('I can change language to {string}', language => {
   account.changeLanguage(language)
 })
 
