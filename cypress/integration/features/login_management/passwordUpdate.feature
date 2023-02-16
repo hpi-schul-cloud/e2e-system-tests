@@ -14,7 +14,7 @@ Feature: Password Update - Verify login functionality via password change
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
         When I enter current password
-        When I enter new password and repeat it in the next field
+        When I enter new password and repeat it in the next field in user setting
         When I click on save button in user settings
         Then I see success message
         When I click on the initials
@@ -36,7 +36,7 @@ Feature: Password Update - Verify login functionality via password change
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
         When I enter new password in user setting
-        When I enter new password and repeat it in the next field in user setting
+        When I enter old password and repeat it in the next field in user setting
         When I click on save button in user settings
         Then I see success message
         When I click on the initials

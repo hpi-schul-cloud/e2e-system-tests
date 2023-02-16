@@ -22,7 +22,7 @@ When('I enter current password', () => {
     loginManagement.enterCurrentPassword()
 })
 
-Then('I enter new password and repeat it in the next field', () => {
+Then('I enter new password and repeat it in the next field in user setting', () => {
     loginManagement.enterNewPasswordInAllFields()
 })
 
@@ -50,7 +50,7 @@ When('I enter new password in user setting', () => {
     loginManagement.enterNewPasswordInUserSetting()
 })
 
-Then('I enter new password and repeat it in the next field in user setting', () => {
+When('I enter old password and repeat it in the next field in user setting', () => {
     loginManagement.enterOldPasswordInUserSetting()
 })
 
