@@ -27,7 +27,6 @@ class Tasks {
   static #fileUploadButtonEnabled = '[data-testid="fileupload-button"]'
   static #fileUploadInput = '[data-testid="fileupload-input"]'
   static #filesSection = '[data-testid="tasks-section-files"]'
-  static #uploadedFilesSection = '[data-testid="section-uploadedfiles"]'
   static #uploadedFilesSectionInSubmission =
     '[data-testid="submissions-section-files"]'
   static #fileViewerSection = '[class="file-viewer"]'
