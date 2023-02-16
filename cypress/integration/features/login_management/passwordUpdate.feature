@@ -9,7 +9,7 @@ Feature: Password Update - Verify login functionality via password change
         Then I enter email
         When I see Password field is visible and empty
         Then I enter password
-        Then I click submit button
+        When I click submit button
         When I go to my account settings
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
@@ -24,14 +24,14 @@ Feature: Password Update - Verify login functionality via password change
         Then I enter email
         When I see Password field is visible and empty
         Then I enter password
-        Then I click submit button
+        When I click submit button
         Then I see error message
         Then I wait for 15 seconds
         When I see Email field is visible and empty
         Then I enter email
         When I see Password field is visible and empty
         Then I enter new password
-        Then I click submit button
+        When I click submit button
         When I go to my account settings
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
@@ -46,5 +46,5 @@ Feature: Password Update - Verify login functionality via password change
         Then I enter email
         When I see Password field is visible and empty
         Then I enter password
-        Then I click submit button
+        When I click submit button
         When I arrive on the dashboard
