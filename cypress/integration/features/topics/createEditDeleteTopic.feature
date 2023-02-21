@@ -27,7 +27,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I enter description for the ether pad 'this is my epad description'
     When I click on button Add Task to topic
     When I enter title 'Cy Title for Task Element in Topic' into element Task
-    When I enter URL of the task from the another course 'https://brb-main.cd.dbildungscloud.dev/homework/59cce3f6c6abf042248e888d'
+    When I enter URL of the task from the another course for task id '59cce3f6c6abf042248e888d'
     When I click on create button to create topic
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
     # When I add file to element Text
@@ -37,21 +37,37 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see content 'Cy Topic Creating and Deleting Test' on course page
 
   Scenario: Teacher edits topic from room
-    # Given I am logged in as a 'teacher1' at 'brb'
-    # When I go to rooms overview
-    # And I go to room 'Course with subject and tasks'
-    # When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
-    # When I click on Edit in dot menu of topic
+    Given I am logged in as a 'teacher1' at 'brb'
+    When I go to rooms overview
+    And I go to room 'Course with subject and tasks'
+    When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
+    When I click on Edit in dot menu of topic
+    Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
+    When I enter topic title 'Cy Topic Creating and Deleting Test - Edited topic'
+    When I click on save button to save changes
+    Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
+    When I click on topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
+    Then I see topic detail page "Cy Topic Creating and Deleting Test - Edited topic" with content elements "Cy Title for Text Element in Topic", "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic" and "Cy Title for Task Element in Topic"
+    When I click on icon Pen on topic page
+    Then I can see edit topic page 'Cy Topic Creating and Deleting Test - Edited topic'
+    When I click on settings and remove option of element '0'
+    # Then I can not see content 'Cy Title for Text Element in Topic' on current page
+    # When I move element '1' to position '3'
+    # When I click on button Add Text to topic
+    # Then I can see form element Text
+    # When I enter title "New: Cy Title for New Text Element in Topic" into element Text
+    # When I enter description 'Cy this is the description for a new added text element. It is also used for automated Cypress tests.' into element Text
+    # When I move element 'last' to position '1'
 
   Scenario: Teacher deletes topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
-    When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
+    When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test - Edited topic'
     When I click on Delete in dot menu of topic
     When I click on Cancel in confirmation window
-    Then I can see content 'Cy Topic Creating and Deleting Test' on course page
-    When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
+    Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
+    When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test - Edited topic'
     When I click on Delete in dot menu of topic
     When I click on Delete in confirmation window
-    Then I can not see content 'Cy Topic Creating and Deleting Test'
+    Then I can not see content 'Cy Topic Creating and Deleting Test - Edited topic'
