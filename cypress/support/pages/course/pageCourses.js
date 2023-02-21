@@ -29,6 +29,8 @@ class Courses {
   static #deleteButtonInDotMenuOfTopic =
     '[data-testid="content-card-lesson-menu-remove"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
+  static #editButtonInDotMenuOfTopic =
+    '[data-testid="content-card-lesson-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
   static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
   static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
@@ -190,6 +192,10 @@ class Courses {
     cy.contains(contentTitle).prev().find('button').click()
   }
 
+  openTopic (contentTitle) {
+    cy.contains(contentTitle).parent().click()
+  }
+
   clickDeleteInDotMenu () {
     cy.get(Courses.#deleteButtonInDotMenu).click()
   }
@@ -200,6 +206,10 @@ class Courses {
 
   clickEditInDotMenu (linkId) {
     cy.get(Courses.#editButtonInDotMenu).click()
+  }
+
+  clickEditInDotMenuOfTopic () {
+    cy.get(Courses.#editButtonInDotMenuOfTopic).click()
   }
 
   clickOnCancelInConfirmationWindow () {

@@ -4,6 +4,7 @@ class Topics {
   static #pageTitle = '[id="page-title"]'
   static #localeDateFormat = 'de-DE'
   static #contentBlocks = '[id="content-blocks"]'
+  static #mainContentMain = '[id="main-content"]'
   static #topicTitleInput = '[id="topicTitleInput"]'
   static #addTextBtn = '[data-testid="topic-addcontent-text-btn"]'
   static #addGeoGebraBtn = '[data-testid="topic-addcontent-geogebra-btn"]'
@@ -11,6 +12,8 @@ class Topics {
   static #addEtherpadBtn = '[data-testid="topic-addcontent-etherpad-btn"]'
   static #addTaskBtn = '[data-testid="topic-addcontent-task-btn"]'
   static #cardHeader = '[class="card-header"]'
+  static #settingsDropdown = '[class="btn btn-secondary dropdown-toggle"]'
+  static #removeElementOption = '[class="fa fa-trash"]'
   static #cardBlock = '[class="card-block"]'
   static #elementTextCard = '[data-testid="topic-content-element-text-0"]'
   static #elementGeoGebraCard = '[data-testid="topic-content-element-geoGebra-1"]'
@@ -26,6 +29,7 @@ class Topics {
   static #sectionCourse = '[class="section-course"]'
   static #topNavbar = '[id="top-navbar"]'
   static #breadcrumbItem = '[class="breadcrumb-item "]'
+  static #penIcon = '[class="fa fa-pencil"]'
   // static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
   // static #draftCheckbox = '[data-testid="private-checkbox"]'
 
@@ -158,11 +162,13 @@ class Topics {
     })
   }
 
-  enterLinkforElementTask(taskLink) {
+  enterLinkforElementTask(taskId) {
+    const env = Cypress.env()
+    const taskURL = env['BRB'] + 'homework/' + taskId
     cy.get(Topics.#elementTaskCard).within(() => {
       cy.get(Topics.#cardBlock)
         .find('input')
-        .type(taskLink)
+        .type(taskURL)
     })
   }
 
@@ -193,5 +199,23 @@ class Topics {
     })
   }
 
+  clickIconPen() {
+    cy.get(Topics.#mainContentMain)
+      .find(Topics.#penIcon)
+      .click()
+  }
+
+  removeElementFromTopic(elementPosition) {
+    cy.get(Topics.#settingsDropdown)
+      .eq(elementPosition)
+      .click()
+    cy.get(Topics.#removeElementOption)
+      .eq(elementPosition)
+      .click()
+  }
+
+  contentIsNotVisibleOnCurrentPage (contentTitle) {
+    cy.contains(contentTitle).should('not.exist')
+  }
 }
 export default Topics

@@ -77,7 +77,7 @@ When('I enter title {string} into element Task', (elementTaskTitle) => {
   topics.enterTitleforElementTask(elementTaskTitle)
 })
 
-When('I enter URL of the task from the another course {string}', (elementTaskLink) => {
+When('I enter URL of the task from the another course for task id {string}', (elementTaskLink) => {
   topics.enterLinkforElementTask(elementTaskLink)
 })
 
@@ -95,5 +95,17 @@ Then('I see topic detail page {string} with content elements {string}, {string},
 
 When('I click on last breadcrump element in topbar navigation', () => {
   topics.clickLastBreadcrumb()
+})
+
+When(`I click on icon Pen on topic page`, () => {
+  topics.clickIconPen()
+})
+
+When(`I click on settings and remove option of element {string}`, (elementPosition) => {
+  topics.removeElementFromTopic(elementPosition)
+})
+
+Then('I can not see content {string} on current page', contentTitle => {
+  topics.contentIsNotVisibleOnCurrentPage(contentTitle)
 })
 
