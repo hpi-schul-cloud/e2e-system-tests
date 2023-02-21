@@ -5,7 +5,7 @@ jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 3
+      max-parallel: 1
       fail-fast: false
       matrix:
         spec:
@@ -53,6 +53,9 @@ jobs:
           CYPRESS_EXPERT_1_PASSWORD: ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
           CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
           CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL}}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD}}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD}}
           DEBUG: '@cypress/github-action'
         with:
           command: npm run tag:stable:${{ matrix.spec }}

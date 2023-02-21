@@ -5,23 +5,23 @@ Feature: Invalid Credentials - Verify login functionality via wrong user data
 
     Scenario: User uses invalid email and password
         Given I am on the dBildungscloud login page
-        Then I will see Email field is visible and empty
-        Then I will enter invalid email
-        Then I will see Password field is visible and empty
-        Then I will enter invalid password
-        Then I will click submit button
-        Then I will see error message
+        Then I see Email field is visible and empty
+        When I enter invalid email
+        Then I see Password field is visible and empty
+        When I enter invalid password
+        When I click submit button
+        Then I see error message
 
     Scenario: User login with empty fields
         Given I am on the dBildungscloud login page
-        Then I will click submit button
-        Then I will see form validation message
+        When I click submit button
+        Then I see form validation message
 
     Scenario: User uses invalid username and password
         Given I am on the dBildungscloud login page
-        Then I will see Email field is visible and empty
-        Then I will enter invalid username
-        Then I will see Password field is visible and empty
-        Then I will enter invalid password
-        Then I will click submit button
-        Then I will see error message
+        Then I see Email field is visible and empty
+        When I enter invalid username
+        Then I see Password field is visible and empty
+        When I enter invalid password
+        When I click submit button
+        Then I see error message
