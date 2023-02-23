@@ -12,9 +12,9 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see edit topic page '-'
     When I enter topic title 'Cy Topic Creating and Deleting Test'
     When I click on button Add Text to topic
-    Then I can see form element Text
-    When I enter title "Cy Title for Text Element in Topic" into element Text
-    When I enter description 'Cy this is the description of the topic. It is used for automated Cypress tests.' into element Text
+    Then I can see form element Text on position '0'
+    When I enter title 'Cy Title for Text Element in Topic' into element Text in element position '0'
+    When I enter description 'Cy this is the description of the topic. It is used for automated Cypress tests.' into element Text in element position '0'
     When I click on button Add GeoGebra to topic
     When I enter title "Cy Title for GeoGebra Element in Topic" into element GeoGebra
     When I enter GeoGebra material ID 'kEBfU7AR'
@@ -23,14 +23,13 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I see second learning material button in the content area
     # currently step for adding material is excluded because this process is via new browser window
     When I click on button Add Etherpad to topic
-    When I enter title 'Cy Title for Etherpad Element in Topic' into element Etherpad
-    When I enter description for the ether pad 'this is my epad description'
+    When I enter title 'Cy Title for Etherpad Element in Topic' into element Etherpad in element position '3'
+    When I enter description for the ether pad 'this is my epad description' in element position '3'
     When I click on button Add Task to topic
     When I enter title 'Cy Title for Task Element in Topic' into element Task
     When I enter URL of the task from the another course for task id '59cce3f6c6abf042248e888d'
     When I click on create button to create topic
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
-    # When I add file to element Text
     When I click on save button to save changes
     Then I see topic detail page "Cy Topic Creating and Deleting Test" with content elements "Cy Title for Text Element in Topic", "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic" and "Cy Title for Task Element in Topic"
     When I click on last breadcrump element in topbar navigation
@@ -51,13 +50,21 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on icon Pen on topic page
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test - Edited topic'
     When I click on settings and remove option of element '0'
-    # Then I can not see content 'Cy Title for Text Element in Topic' on current page
-    # When I move element '1' to position '3'
-    # When I click on button Add Text to topic
-    # Then I can see form element Text
-    # When I enter title "New: Cy Title for New Text Element in Topic" into element Text
-    # When I enter description 'Cy this is the description for a new added text element. It is also used for automated Cypress tests.' into element Text
-    # When I move element 'last' to position '1'
+    When I click on save button to save changes
+    Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on topic page
+    Then I can not see content 'Cy Title for Text Element in Topic' on current page
+    When I click on button Edit on topic page
+    Then I can see edit topic page 'Cy Topic Creating and Deleting Test - Edited topic'
+    When I click on button Add Text to topic
+    Then I can see form element Text on position '4'
+    When I enter title 'Cy New text element Title' into element Text in element position '4'
+    When I enter description 'Cy New this is the description of the topic. It is used for automated Cypress tests.' into element Text in element position '4'
+    When I enter title 'Cy Title for Etherpad Element in Topic Changed' into element Etherpad in element position '2'
+    When I enter description for the ether pad 'changed etherpad description' in element position '2'
+    When I click on save button to save changes
+    Then I see topic detail page "Cy Topic Creating and Deleting Test - Edited topic" with content elements "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic Changed", "Cy Title for Task Element in Topic" and "Cy New text element Title"
+    When I click on last breadcrump element in topbar navigation
+    Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
   Scenario: Teacher deletes topic from room
     Given I am logged in as a 'teacher1' at 'brb'

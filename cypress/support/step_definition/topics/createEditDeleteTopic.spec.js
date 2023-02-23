@@ -37,16 +37,16 @@ When('I click on button Add Task to topic', () => {
   topics.clickOnAddTaskToTopic()
 })
 
-Then('I can see form element Text', () => {
-  topics.seeFormElementText()
+Then('I can see form element Text on position {string}', (elementPosition) => {
+  topics.seeFormElementText(elementPosition)
 })
 
-When('I enter title {string} into element Text', (elementTextTitle) => {
-  topics.enterTitleforElementText(elementTextTitle)
+When('I enter title {string} into element Text in element position {string}', (elementTextTitle, elementPosition) => {
+  topics.enterTitleforElementText(elementTextTitle, elementPosition)
 })
 
-When('I enter description {string} into element Text', (elementTextDescription) => {
-  topics.enterDescriptionforElementText(elementTextDescription)
+When('I enter description {string} into element Text in element position {string}', (elementTextDescription, elementPosition) => {
+  topics.enterDescriptionforElementText(elementTextDescription, elementPosition)
 })
 
 When('I enter title {string} into element GeoGebra', (elementGeoGebraTitle) => {
@@ -65,12 +65,12 @@ Then('I see second learning material button in the content area', () => {
   topics.seeAddMaterialBtnInContent()
 })
 
-When('I enter title {string} into element Etherpad', (elementEtherpadTitle) => {
-  topics.enterTitleforElementEtherpad(elementEtherpadTitle)
+When('I enter title {string} into element Etherpad in element position {string}', (elementEtherpadTitle, elementPosition) => {
+  topics.enterTitleforElementEtherpad(elementEtherpadTitle, elementPosition)
 })
 
-When('I enter description for the ether pad {string}', (descriptionEtherpad) => {
-  topics.enterDescriptionforElementEtherpad(descriptionEtherpad)
+When('I enter description for the ether pad {string} in element position {string}', (descriptionEtherpad, elementPosition) => {
+  topics.enterDescriptionforElementEtherpad(descriptionEtherpad, elementPosition)
 })
 
 When('I enter title {string} into element Task', (elementTaskTitle) => {
@@ -105,7 +105,15 @@ When(`I click on settings and remove option of element {string}`, (elementPositi
   topics.removeElementFromTopic(elementPosition)
 })
 
-Then('I can not see content {string} on current page', contentTitle => {
-  topics.contentIsNotVisibleOnCurrentPage(contentTitle)
+Then('I can not see content {string} on current page', (contentText) => {
+  topics.contentIsNotVisibleOnCurrentPage(contentText)
+})
+
+Then('I can see content {string} on topic page', (contentText) => {
+  topics.contentIsVisibleOnTopicPage(contentText)
+})
+
+When('I click on button Edit on topic page', () => {
+  topics.clickOnButtonEditInTopicPage()
 })
 
