@@ -259,11 +259,11 @@ class Topics {
       .click()
   }
 
-  contentIsNotVisibleOnCurrentPage (contentTitle) {
+  seeNoContentOnCurrentPage (contentTitle) {
     cy.contains(contentTitle).should('not.exist')
   }
 
-  contentIsVisibleOnTopicPage (contentText) {
+  seeNoContentOnTopicPage (contentText) {
     cy.url().should('include', '/courses/')
     cy.contains(contentText)
       .should('be.visible')

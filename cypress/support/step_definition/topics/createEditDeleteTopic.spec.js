@@ -106,11 +106,11 @@ When(`I click on settings and remove option of element {string}`, (elementPositi
 })
 
 Then('I can not see content {string} on current page', (contentText) => {
-  topics.contentIsNotVisibleOnCurrentPage(contentText)
+  topics.seeNoContentOnCurrentPage(contentText)
 })
 
 Then('I can see content {string} on topic page', (contentText) => {
-  topics.contentIsVisibleOnTopicPage(contentText)
+  topics.seeNoContentOnTopicPage(contentText)
 })
 
 When('I click on button Edit on topic page', () => {
