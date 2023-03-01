@@ -12,8 +12,10 @@ class Topics {
   static #addEtherpadBtn = '[data-testid="topic-addcontent-etherpad-btn"]'
   static #addTaskBtn = '[data-testid="topic-addcontent-task-btn"]'
   static #cardHeader = '[class="card-header"]'
-  static #settingsDropdown = '[class="btn btn-secondary dropdown-toggle"]'
-  static #removeElementOption = '[class="fa fa-trash"]'
+  static #settingsDropdown_0 = '[data-testid="topic-dropdown-toggle-element-0"]'
+  static #settingsDropdown_1 = '[data-testid="topic-dropdown-toggle-element-1"]'
+  static #removeElementOption_0 = '[data-testid="topic-dropdown-option-delete-0"]'
+  static #removeElementOption_1 = '[data-testid="topic-dropdown-option-delete-1"]'
   static #cardBlock = '[class="card-block"]'
   static #elementTextCard = '[data-testid="topic-content-element-text-0"]'
   static #elementGeoGebraCard = '[data-testid="topic-content-element-geoGebra-1"]'
@@ -27,11 +29,11 @@ class Topics {
   static #inputClassFormControl = '[class="form-control"]'
   static #navCourseOverviewLink = '[data-testid="Course-Overview"]'
   static #titlebar = '[id="titlebar"]'
-  static #sectionCourse = '[class="section-course"]'
+  static #sectionCourse = '[data-testid="section-topic"]'
   static #topNavbar = '[id="top-navbar"]'
   static #breadcrumbItem = '[class="breadcrumb-item "]'
-  static #penIcon = '[class="fa fa-pencil"]'
-  static #editTopicButton = '[class="btn btn-add btn-primary"]'
+  static #penIcon = '[data-testid="edit-icon-pencil"]'
+  static #editTopicButton = '[data-testid="topic-button-edit"]'
   static #textElementPos0 = '[data-testid="topic-content-element-text-0"]'
   static #textElementPos4 = '[data-testid="topic-content-element-text-4"]'
   // static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
@@ -251,12 +253,22 @@ class Topics {
   }
 
   removeElementFromTopic(elementPosition) {
-    cy.get(Topics.#settingsDropdown)
-      .eq(elementPosition)
-      .click()
-    cy.get(Topics.#removeElementOption)
-      .eq(elementPosition)
-      .click()
+    // cy.get(Topics.#settingsDropdown)
+    //   .eq(elementPosition)
+    //   .click()
+    // cy.get(Topics.#removeElementOption)
+    //   .eq(elementPosition)
+    //   .click()
+    switch (elementPosition) {
+      case '0':
+        cy.get(Topics.#settingsDropdown_0).click()
+        cy.get(Topics.#removeElementOption_0).click()
+        break
+      case '1':
+        cy.get(Topics.#settingsDropdown_1).click()
+        cy.get(Topics.#removeElementOption_1).click()
+        break
+    }
   }
 
   seeNoContentOnCurrentPage (contentTitle) {
