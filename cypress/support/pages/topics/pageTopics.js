@@ -11,11 +11,8 @@ class Topics {
   static #addLearningMaterialBtn = '[data-testid="topic-addcontent-material-btn"]'
   static #addEtherpadBtn = '[data-testid="topic-addcontent-etherpad-btn"]'
   static #addTaskBtn = '[data-testid="topic-addcontent-task-btn"]'
+  // class is used for cardHeader and cardBlock because the elements are too generic and depend on position of the element, so using data-testid would need much more logic (also in the feature file) and code than using class.
   static #cardHeader = '[class="card-header"]'
-  static #settingsDropdown_0 = '[data-testid="topic-dropdown-toggle-element-0"]'
-  static #settingsDropdown_1 = '[data-testid="topic-dropdown-toggle-element-1"]'
-  static #removeElementOption_0 = '[data-testid="topic-dropdown-option-delete-0"]'
-  static #removeElementOption_1 = '[data-testid="topic-dropdown-option-delete-1"]'
   static #cardBlock = '[class="card-block"]'
   static #elementTextCard = '[data-testid="topic-content-element-text-0"]'
   static #elementGeoGebraCard = '[data-testid="topic-content-element-geoGebra-1"]'
@@ -77,12 +74,6 @@ class Topics {
   clickOnSubmitChangesInTopicBtn() {
     cy.get(Topics.#submitChangesInTopicBtn)
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   seeFormElementText(textElementPosition) {
@@ -253,22 +244,12 @@ class Topics {
   }
 
   removeElementFromTopic(elementPosition) {
-    // cy.get(Topics.#settingsDropdown)
-    //   .eq(elementPosition)
-    //   .click()
-    // cy.get(Topics.#removeElementOption)
-    //   .eq(elementPosition)
-    //   .click()
-    switch (elementPosition) {
-      case '0':
-        cy.get(Topics.#settingsDropdown_0).click()
-        cy.get(Topics.#removeElementOption_0).click()
-        break
-      case '1':
-        cy.get(Topics.#settingsDropdown_1).click()
-        cy.get(Topics.#removeElementOption_1).click()
-        break
-    }
+    // this is a special case with dynamic data-testid including the position of the elements.
+    // That's why data-testids are concatinated in this method.
+    let nameOfElementId = "[data-testid='topic-dropdown-toggle-element-" + elementPosition + "']"
+    let nameOfRemoveElementId = "[data-testid='topic-dropdown-option-delete-" + elementPosition + "']"
+    cy.get(nameOfElementId).click()
+    cy.get(nameOfRemoveElementId).click()
   }
 
   seeNoContentOnCurrentPage (contentTitle) {

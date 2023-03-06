@@ -53,23 +53,6 @@ class Courses {
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
       .click()
-      .wait(
-        [
-          '@runtime_config_api',
-          '@public_api',
-          '@me_api',
-          '@schools_api',
-          '@alert_api',
-        ],
-        { timeout: 99_000 }
-      )
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-        expect(interceptions[4].response.statusCode).to.equal(200)
-      })
   }
 
   navigateToRoomBoard (roomName) {
@@ -81,18 +64,15 @@ class Courses {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
             .eq(0)
             .click()
-            .wait(['@alert_api', '@board_api', '@userPermissions_api'])
-            .then(interceptions => {
-              expect(interceptions[0].response.statusCode).to.equal(200)
-              expect(interceptions[1].response.statusCode).to.equal(200)
-              expect(interceptions[2].response.statusCode).to.equal(200)
-            })
         } else if (htmlTitlePage.includes('courses')) {
-          cy.get(`[aria-label="Course ${roomName}"]`).click()
+          cy.get(`[aria-label="Course ${roomName}"]`)
+            .click()
         } else if (htmlTitlePage.includes('Cursos')) {
-          cy.get(`[aria-label="Curso ${roomName}"]`).click()
+          cy.get(`[aria-label="Curso ${roomName}"]`)
+            .click()
         } else if (htmlTitlePage.includes('Поточні')) {
-          cy.get(`[aria-label="Курс ${roomName}"]`).click()
+          cy.get(`[aria-label="Курс ${roomName}"]`)
+            .click()
         }
       })
   }

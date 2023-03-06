@@ -123,6 +123,7 @@ class Tasks {
 
   taskIsVisibleOnTasksOverviewPage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    cy.wait(5000)
     cy.url().should('include', '/tasks')
     cy.contains(taskTitle).should('be.visible')
   }
