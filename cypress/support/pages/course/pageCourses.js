@@ -133,7 +133,7 @@ class Courses {
 
   contentIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    cy.wait(500)
+    cy.wait(4444)
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
       .should('be.visible')
