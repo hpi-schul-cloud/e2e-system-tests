@@ -202,7 +202,7 @@ class Topics {
 
   enterLinkforElementTask(taskId) {
     const env = Cypress.env()
-    const taskURL = env['BRB'] + 'homework/' + taskId
+    const taskURL = env['BRB'] + '/homework/' + taskId
     cy.get(Topics.#elementTaskCard).within(() => {
       cy.get(Topics.#cardBlock)
         .find('input')
