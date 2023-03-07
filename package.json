@@ -20,7 +20,7 @@
 		"tag:stable:login": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@login and @stable_test'",
 		"tag:stable:team": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@team and @stable_test'",
 		"tag:stable:files": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@files and @stable_test'",
-		"tag:stable:topic": "./node_modules/.bin/cypress-tags run --browser chrome -e TAGS='@topics and @stable_test'",
+		"tag:stable:topics": "./node_modules/.bin/cypress-tags run --browser chrome -e TAGS='@topics and @stable_test'",
 		"tag:unstable": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@unstable_test'",
 		"tag:only": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@only'"
 	},
