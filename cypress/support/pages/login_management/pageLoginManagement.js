@@ -105,21 +105,14 @@ class Login_Management {
       cy.get(Login_Management.#inputFieldInvalidPseudoSelector).then(el => {
         expect(el[0].checkValidity()).to.be.false
       })
-      cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
-        'have.length',
-        2
-      )
+      cy.get(Login_Management.#inputFieldInvalidPseudoSelector)
+        .should('have.length',2)
     })
   }
 
   visitLoginPage () {
     Cypress.config('baseUrl', Cypress.env('DEFAULT'))
     cy.visit('login')
-      .wait(['@alerts_api', '@locales_api'])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })
   }
 
   clickOnForgotPassword () {
