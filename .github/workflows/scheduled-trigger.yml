@@ -22,7 +22,7 @@ jobs:
             'news',
             'tasks',
             'team',
-            'topic'
+            'topics'
           ]
 
     steps:
