@@ -56,6 +56,7 @@ class Courses {
   }
 
   navigateToRoomBoard (roomName) {
+    cy.wait(5000)
     cy.get('h1')
       .eq(0)
       .then($title => {
