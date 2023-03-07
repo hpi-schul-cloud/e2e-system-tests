@@ -56,14 +56,12 @@ class Courses {
   }
 
   navigateToRoomBoard (roomName) {
-    cy.wait(5000)
     cy.get('h1')
       .eq(0)
       .then($title => {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
-            .eq(0)
             .click()
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`)
