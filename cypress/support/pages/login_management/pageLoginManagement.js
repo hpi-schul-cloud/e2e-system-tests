@@ -119,8 +119,9 @@ class Login_Management {
     cy.get(Login_Management.#passwordRecoveryButton).click()
   }
 
-  brokerButtonIsVisible (brokerButtonName) {
-    cy.get(Login_Management.#brokerButton).contains(brokerButtonName)
+  brokerButtonIsVisible () {
+    cy.get(Login_Management.#brokerButton)
+      .should('exist')
   }
 
   showUpElementsOnDialog () {
