@@ -8,7 +8,9 @@ Feature: Course - To add and delete a course by the teacher
     When I go to rooms overview
     And I click on FAB to create the course
     And I enter the course title 'Cypress Test Creation and Deletion'
-    And I click on next steps
+    When I click on button Next Steps
+    When I click on button Next Steps
+    When I click on button To Course Overview
     Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
 
   Scenario: Editing the course
