@@ -68,6 +68,11 @@ And('I can not see content {string}', contentTitle => {
 // And('I can not see task {string}', taskTitle => {
 //   courses.taskIsNotVisibleOnCoursePage(taskTitle)
 // })
+
+When('I click on topic {string} on course page', contentTitle => {
+  courses.openTopic(contentTitle)
+})
+
 When('I click on three dot menu of content {string}', contentTitle => {
   courses.openThreeDotMenuForContent(contentTitle)
 })
@@ -86,6 +91,10 @@ When('I click on Delete in dot menu of topic', () => {
 
 And('I click on Edit in dot menu', () => {
   courses.clickEditInDotMenu()
+})
+
+When('I click on Edit in dot menu of topic', () => {
+  courses.clickEditInDotMenuOfTopic()
 })
 
 And('I click on Cancel in confirmation window', () => {

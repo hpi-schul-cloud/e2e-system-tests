@@ -37,16 +37,16 @@ When('I click on button Add Task to topic', () => {
   topics.clickOnAddTaskToTopic()
 })
 
-Then('I can see form element Text', () => {
-  topics.seeFormElementText()
+Then('I can see form element Text on position {string}', (elementPosition) => {
+  topics.seeFormElementText(elementPosition)
 })
 
-When('I enter title {string} into element Text', (elementTextTitle) => {
-  topics.enterTitleforElementText(elementTextTitle)
+When('I enter title {string} into element Text in element position {string}', (elementTextTitle, elementPosition) => {
+  topics.enterTitleforElementText(elementTextTitle, elementPosition)
 })
 
-When('I enter description {string} into element Text', (elementTextDescription) => {
-  topics.enterDescriptionforElementText(elementTextDescription)
+When('I enter description {string} into element Text in element position {string}', (elementTextDescription, elementPosition) => {
+  topics.enterDescriptionforElementText(elementTextDescription, elementPosition)
 })
 
 When('I enter title {string} into element GeoGebra', (elementGeoGebraTitle) => {
@@ -65,19 +65,19 @@ Then('I see second learning material button in the content area', () => {
   topics.seeAddMaterialBtnInContent()
 })
 
-When('I enter title {string} into element Etherpad', (elementEtherpadTitle) => {
-  topics.enterTitleforElementEtherpad(elementEtherpadTitle)
+When('I enter title {string} into element Etherpad in element position {string}', (elementEtherpadTitle, elementPosition) => {
+  topics.enterTitleforElementEtherpad(elementEtherpadTitle, elementPosition)
 })
 
-When('I enter description for the ether pad {string}', (descriptionEtherpad) => {
-  topics.enterDescriptionforElementEtherpad(descriptionEtherpad)
+When('I enter description for the ether pad {string} in element position {string}', (descriptionEtherpad, elementPosition) => {
+  topics.enterDescriptionforElementEtherpad(descriptionEtherpad, elementPosition)
 })
 
 When('I enter title {string} into element Task', (elementTaskTitle) => {
   topics.enterTitleforElementTask(elementTaskTitle)
 })
 
-When('I enter URL of the task from the another course {string}', (elementTaskLink) => {
+When('I enter URL of the task from the another course for task id {string}', (elementTaskLink) => {
   topics.enterLinkforElementTask(elementTaskLink)
 })
 
@@ -95,5 +95,25 @@ Then('I see topic detail page {string} with content elements {string}, {string},
 
 When('I click on last breadcrump element in topbar navigation', () => {
   topics.clickLastBreadcrumb()
+})
+
+When(`I click on icon Pen on topic page`, () => {
+  topics.clickIconPen()
+})
+
+When(`I click on settings and remove option of element {string}`, (elementPosition) => {
+  topics.removeElementFromTopic(elementPosition)
+})
+
+Then('I can not see content {string} on current page', (contentText) => {
+  topics.seeNoContentOnCurrentPage(contentText)
+})
+
+Then('I can see content {string} on topic page', (contentText) => {
+  topics.seeNoContentOnTopicPage(contentText)
+})
+
+When('I click on button Edit on topic page', () => {
+  topics.clickOnButtonEditInTopicPage()
 })
 

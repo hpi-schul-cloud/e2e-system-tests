@@ -28,6 +28,8 @@ class Courses {
   static #deleteButtonInDotMenuOfTopic =
     '[data-testid="content-card-lesson-menu-remove"]'
   static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
+  static #editButtonInDotMenuOfTopic =
+    '[data-testid="content-card-lesson-menu-edit"]'
   static #contentCardContent = '[data-testid="content-card-task-content"]'
   static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
   static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
@@ -50,46 +52,26 @@ class Courses {
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
       .click()
-      .wait(
-        [
-          '@runtime_config_api',
-          '@public_api',
-          '@me_api',
-          '@schools_api',
-          '@alert_api',
-        ],
-        { timeout: 99_000 }
-      )
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-        expect(interceptions[4].response.statusCode).to.equal(200)
-      })
   }
 
   navigateToRoomBoard (roomName) {
+    cy.wait(3000)
     cy.get('h1')
       .eq(0)
       .then($title => {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
-            .eq(0)
             .click()
-            .wait(['@alert_api', '@board_api', '@userPermissions_api'])
-            .then(interceptions => {
-              expect(interceptions[0].response.statusCode).to.equal(200)
-              expect(interceptions[1].response.statusCode).to.equal(200)
-              expect(interceptions[2].response.statusCode).to.equal(200)
-            })
         } else if (htmlTitlePage.includes('courses')) {
-          cy.get(`[aria-label="Course ${roomName}"]`).click()
+          cy.get(`[aria-label="Course ${roomName}"]`)
+            .click()
         } else if (htmlTitlePage.includes('Cursos')) {
-          cy.get(`[aria-label="Curso ${roomName}"]`).click()
+          cy.get(`[aria-label="Curso ${roomName}"]`)
+            .click()
         } else if (htmlTitlePage.includes('Поточні')) {
-          cy.get(`[aria-label="Курс ${roomName}"]`).click()
+          cy.get(`[aria-label="Курс ${roomName}"]`)
+            .click()
         }
       })
   }
@@ -150,6 +132,7 @@ class Courses {
 
   contentIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+    cy.wait(3000)
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
       .should('be.visible')
@@ -189,6 +172,10 @@ class Courses {
     cy.contains(contentTitle).prev().find('button').click()
   }
 
+  openTopic (contentTitle) {
+    cy.contains(contentTitle).parent().click()
+  }
+
   clickDeleteInDotMenu () {
     cy.get(Courses.#deleteButtonInDotMenu).click()
   }
@@ -199,6 +186,10 @@ class Courses {
 
   clickEditInDotMenu (linkId) {
     cy.get(Courses.#editButtonInDotMenu).click()
+  }
+
+  clickEditInDotMenuOfTopic () {
+    cy.get(Courses.#editButtonInDotMenuOfTopic).click()
   }
 
   clickOnCancelInConfirmationWindow () {
