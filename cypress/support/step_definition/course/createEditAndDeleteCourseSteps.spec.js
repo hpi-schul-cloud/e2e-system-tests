@@ -16,8 +16,12 @@ And('I enter the course title {string}', (newCourseName) => {
   courses.fillCourseCreationForm(newCourseName)
 })
 
-And('I click on next steps', () => {
-  courses.clickOnNextSteps()
+When('I click on button Next Steps', () => {
+  courses.clickOnNextStepsBtn()
+})
+
+When('I click on button To Course Overview', () => {
+  courses.clickOnToCourseOverviewBtn()
 })
 
 Then('I edit the title of the room to {string} and the description', (editedRoomName) => {
