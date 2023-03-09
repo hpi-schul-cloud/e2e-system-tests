@@ -3,8 +3,7 @@
 class Courses {
   static #courseTitle = '[data-testid="coursename"]'
   static #nextButton = '[id="nextSection"]'
-  static #nextContinueButton = '[data-submit-label="Kurs anlegen und Weiter"]'
-  static #goToCourseOverviewButton = '[data-testid="zur-uebersicht-btn"]'
+  static #goToCourseOverviewButton = '[data-testid="courses-to-overview-btn"]'
   static #deleteButton = '[data-method="DELETE"]'
   static #confirmDeletionPopup = '[data-testid="modal_delete_course_button"]'
   static #btnSubmit =
@@ -276,9 +275,7 @@ class Courses {
     cy.get(Courses.#courseTitle).type(newCourseName)
   }
 
-  clickOnNextSteps () {
-    cy.get(Courses.#nextButton).click()
-    cy.get(Courses.#nextContinueButton).click()
+  clickOnToCourseOverviewBtn () {
     cy.get(Courses.#goToCourseOverviewButton)
       .click()
       .wait(['@runtime_config_api', '@public_api', '@me_api', '@roles_api'])
@@ -288,6 +285,10 @@ class Courses {
         expect(interceptions[2].response.statusCode).to.equal(200)
         expect(interceptions[3].response.statusCode).to.equal(200)
       })
+  }
+
+  clickOnNextStepsBtn () {
+    cy.get(Courses.#nextButton).click()
   }
 
   performRoomDeletion () {
