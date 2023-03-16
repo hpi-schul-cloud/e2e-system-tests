@@ -59,6 +59,7 @@ jobs:
           DEBUG: '@cypress/github-action'
         with:
           command: npm run tag:stable:${{ matrix.spec }}
+          config-file: cypress.config.js
 
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
