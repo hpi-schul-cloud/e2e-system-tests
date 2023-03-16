@@ -58,7 +58,7 @@ jobs:
           CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD}}
           DEBUG: '@cypress/github-action'
         with:
-          command: npm run tag:stable:${{ matrix.spec }}
+          #command: npm run tag:stable:${{ matrix.spec }}
           #config-file: cypress.config.js
 
       - name: 📬 Upload test artifacts 📬
