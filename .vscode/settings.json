@@ -2,6 +2,6 @@
     "cucumberautocomplete.steps": [
         "cypress/support/step_definition/**/*.spec.js",
     ],
-    "cucumberautocomplete.syncfeatures": "cypress/e2e/features/**/*.feature",
+    "cucumberautocomplete.syncfeatures": "cypress/e2e/**/*.feature",
     "cucumberautocomplete.strictGherkinCompletion": true
 }

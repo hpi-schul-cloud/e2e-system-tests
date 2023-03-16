@@ -1,4 +1,4 @@
-
+@team @stable_test
 Feature: Team - Student managed teams (on BRB)
 
   As a student I want to create/edit/delete the team in Brandenburg so that I can manage the team.
