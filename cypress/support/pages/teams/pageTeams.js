@@ -247,10 +247,7 @@ class Teams {
 
   doNotSeeDeletedStudentInTeam () {
     cy.get(Teams.#studentTableBody)
-      .find(
-        Teams.#teamMemberInTable,
-        Teams.#testAssertionData.lastName
-      )
+      .find(Teams.#testAssertionData.lastName)
       .should('not.exist')
   }
 

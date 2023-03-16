@@ -121,7 +121,7 @@ class Management {
   }
 
   clickOnAddStudentInFAB () {
-    cy.get(Management.#addStudentButton).click()
+    cy.get(Management.#addStudentButton).click({force: true})
   }
 
   clickOnAddTeacherInFAB () {

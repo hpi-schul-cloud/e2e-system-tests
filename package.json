@@ -38,7 +38,7 @@
 	},
 	"homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
 	"devDependencies": {
-		"cypress": "^9.6.0",
+		"cypress": "^12.8.0",
 		"cypress-cucumber-preprocessor": "^4.3.1",
 		"cypress-file-upload": "^5.0.8",
 		"multiple-cucumber-html-reporter": "^1.21.4"
