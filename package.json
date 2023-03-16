@@ -8,21 +8,7 @@
 		"cy:open": "cypress open",
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node cucumber-html-report.js",
-		"posttest": "npm run cy:run || npm run generate:report",
-		"tag:stable:tasks": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@tasks'",
-		"tag:stable:management": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@management and @stable_test'",
-		"tag:stable:courses": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@courses and @stable_test'",
-		"tag:stable:dashboard": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@dashboard and @stable_test'",
-		"tag:stable:help": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@help and @stable_test'",
-		"tag:stable:news": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@news and @stable_test'",
-		"tag:stable:account": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@account and @stable_test'",
-		"tag:stable:addons": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@addons and @stable_test'",
-		"tag:stable:login": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@login and @stable_test'",
-		"tag:stable:team": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@team and @stable_test'",
-		"tag:stable:files": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@files and @stable_test'",
-		"tag:stable:topics": "./node_modules/.bin/cypress-tags run --browser chrome -e TAGS='@topics and @stable_test'",
-		"tag:unstable": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@unstable_test'",
-		"tag:only": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@only'"
+		"posttest": "npm run cy:run || npm run generate:report"
 	},
 	"repository": {
 		"type": "git",

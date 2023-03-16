@@ -1,4 +1,4 @@
-# @team @stable_test
+#@team @stable_test
 Feature: Team - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
 As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.
