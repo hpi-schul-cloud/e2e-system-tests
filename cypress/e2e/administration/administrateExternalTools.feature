@@ -1,4 +1,4 @@
-@unstable_test
+
 Feature: Admin External Tools - To administrate school settings by the admin.
 
   As an admin I want to administrate the external tools used in the school so that I can manage it

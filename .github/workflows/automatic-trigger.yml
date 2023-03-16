@@ -4,25 +4,25 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      fail-fast: false
-      matrix:
-        spec:
-          [
-            'account',
-            'addons',
-            'courses',
-            'dashboard',
-            'files',
-            'help',
-            'login',
-            'management',
-            'news',
-            'tasks',
-            'team',
-            'topics'
-          ]
+    #strategy:
+      #max-parallel: 1
+      #fail-fast: false
+      #matrix:
+        #spec:
+          #[
+            #'account',
+            #'addons',
+            #'courses',
+            #'dashboard',
+            #'files',
+            #'help',
+            #'login',
+            #'management',
+            #'news',
+            #'tasks',
+            #'team',
+            #'topics'
+          #]
 
     steps:
       - name: 🔔🔔🔔 Checkout 🔔🔔🔔
@@ -59,7 +59,7 @@ jobs:
           DEBUG: '@cypress/github-action'
         with:
           command: npm run tag:stable:${{ matrix.spec }}
-          config-file: cypress.config.js
+          #config-file: cypress.config.js
 
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
