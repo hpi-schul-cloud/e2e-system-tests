@@ -1,4 +1,4 @@
-@account @stable_test
+#@account @stable_test
 Feature: Account - Change language of the user from user setting
 
     As a user, I want to language change from user menu for all users i.e. (Admin, Teacher, Student)

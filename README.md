@@ -41,9 +41,9 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |___ cucumber-json (generated after running scenarios, used by .run)
 |   |___ downloads
 |   |___ fixtures
-|   |___ integration
-|       |___ features (containing feature files)
+|   |___ e2e (containing feature files)
 |   |___ plugins
+|   |    |___ index.js
 |   |___ reports (containing html report & assets)
 |   |___ screenshots
 |   |___ support
@@ -51,7 +51,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |    |___ pages (containing methods)
 |   |    |___ step_definitions (step hooks for feature files)
 |   |    |___ command.js
-|   |    |___ index.js
+|   |    |___ e2e.js
 |   |___ videos
 |---- node_modules
 |---- .editorconfig
@@ -59,7 +59,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |---- .gitignore
 |---- cypress-html-report.js (for generating html reports)
 |---- cypress.env.json (credentials & environment variables)
-|---- cypress.json (cypress related setting)
+|---- cypress.config.json (cypress related settings)
 |---- LICENSE
 |---- package-lock.json
 |---- package.json
