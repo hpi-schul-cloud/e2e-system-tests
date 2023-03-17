@@ -73,7 +73,6 @@ jobs:
           DEBUG: '@cypress/github-action'
         with:
           #command: npm run tag:stable:${{ matrix.spec }}
-          node-version: '19.8.0'
           browser: chrome
 
       - name: 📬 Upload test artifacts 📬
