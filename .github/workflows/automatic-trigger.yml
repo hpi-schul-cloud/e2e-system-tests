@@ -25,8 +25,10 @@ jobs:
           #]
 
     steps:
-      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
-        uses: actions/checkout@v3
+      - name: Setup Node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: 🗑 Clean up previous report 🗑
         uses: cypress-io/github-action@v5
@@ -60,6 +62,9 @@ jobs:
         with:
           #command: npm run tag:stable:${{ matrix.spec }}
           browser: chrome
+
+      - name: 🔔🔔🔔 Checkout 🔔🔔🔔
+        uses: actions/checkout@v3
 
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
