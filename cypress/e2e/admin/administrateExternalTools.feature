@@ -3,7 +3,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
 
   As an admin I want to administrate the external tools used in the school so that I can manage it
 
-  #tests are commented out for at the moment and needs to be adapted
+  # This test is commented out at the moment and needs to be adapted
 
   #Scenario: Deactivate Chat
     #Given I am logged in as a 'admin' at 'brb'
