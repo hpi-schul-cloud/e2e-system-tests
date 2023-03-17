@@ -1,5 +1,5 @@
-import Management from '../../../pages/administration/pageAdministration'
-import Teams from '../../../pages/teams/pageTeams'
+import Management from '../../pages/admin/pageAdministration'
+import Teams from '../../pages/teams/pageTeams'
 
 const management = new Management()
 const teams = new Teams()
