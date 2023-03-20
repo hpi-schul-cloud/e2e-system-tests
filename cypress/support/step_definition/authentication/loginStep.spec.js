@@ -5,6 +5,7 @@ const {
   Then
 } = require('cypress-cucumber-preprocessor/steps')
 
+// TODO: I think this registration of interceptors should happen in another, dedicated place. It is not just for the login.
 Before(() => {
   cy.intercept('**/public').as('public_api')
   cy.intercept('**/me').as('me_api')
@@ -20,6 +21,7 @@ Before(() => {
   cy.intercept('**/tasks**').as('tasks_api')
   cy.intercept('**/runtime.config.json').as('runtime_config_api')
   cy.intercept('**/board').as('board_api')
+  cy.intercept('**/courses?**').as('courses_api')
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {
