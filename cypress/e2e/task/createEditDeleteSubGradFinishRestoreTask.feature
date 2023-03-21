@@ -2,7 +2,7 @@
 Feature: Task - To create, edit and delete tasks by the teacher.
 
   As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
-
+@focus
   Scenario: Teacher creates task as draft from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -17,13 +17,13 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I set task-visibility-start-date to 'today' at '0000'
     And I set task-visibility-due-date to 'tomorrow' at '1000'
     And I enter task description 'Dies ist Deine Aufgabe.'
-    And I click on button Submit
+    And I click on button Submit to create the task
     Then I can see create task page 'Cy Task Creating and Deleting Test'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
     And I can see content 'Cy Task Creating and Deleting Test' on course page
-
+@focus
   Scenario: Teacher edits and publishes task from room via form
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -56,7 +56,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And task-visibility-start-date is 'today' at '01:00'
     And task-visibility-due-date is 'tomorrow' at '11:00'
     And Draft is disabled
-
+@focus
   Scenario: Teacher edits file
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview

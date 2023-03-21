@@ -90,7 +90,12 @@ class Tasks {
 
   clickOnSubmit () {
     cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
-    //cy.get(Tasks_Common.#submitButton).should('contain', '').click()
+    cy.wait('@rooms_api')
+  }
+
+  clickOnSubmitToCreateATask () {
+    cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
+    cy.wait('@homework_api')
   }
 
   clickOnAddTask () {
@@ -233,6 +238,7 @@ class Tasks {
     cy.get(Tasks.#fileUploadInput).attachFile(fileName)
     // after reload the property should be gone
     cy.window().should('not.have.prop', 'beforeReload')
+    cy.wait('@homework_api')
   }
 
   executeFileUploadForSubmission (fileName) {
@@ -261,6 +267,7 @@ class Tasks {
 
   clickOnEditInTaskDetails () {
     cy.get(Tasks.#taskDetailsEditButton).click()
+    cy.wait('@homework_api')
   }
 
   publicSubmissionIsEnabled () {
@@ -345,6 +352,7 @@ class Tasks {
       fileName.includes('gif')
     ) {
       cy.get(Tasks.#filesSection).contains(fileName).click()
+      cy.wait('@homework_api')
     }
   }
 
@@ -370,6 +378,7 @@ class Tasks {
       fileName.includes('gif')
     ) {
       cy.get(Tasks.#fileViewerSection).find('a').eq(0).click()
+      cy.wait('@homework_api')
     }
   }
 
@@ -392,12 +401,14 @@ class Tasks {
   submitRenameFileDialog () {
     cy.get(Tasks.#renameFileSubmitButton).click()
     cy.reload()
+    cy.wait('@homework_api')
   }
 
   clickDownloadFile (fileName) {
     cy.get(`[data-file-viewer-savename="${fileName}"]`)
       .find('[data-method="download"]')
       .click()
+    cy.wait('@rooms_api')
   }
 
   clickDownloadFileInSubmission (fileName) {
@@ -436,6 +447,8 @@ class Tasks {
 
   submitDeleteFileDialog () {
     cy.get(Tasks.#deleteFileSubmitButton).click()
+    cy.wait('@delete_api')
+    cy.wait('@homework_api')
   }
 
   cancelDeleteFileDialog () {
