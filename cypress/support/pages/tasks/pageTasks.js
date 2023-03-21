@@ -93,7 +93,7 @@ class Tasks {
     cy.wait('@rooms_api')
   }
 
-  clickOnSubmitToCreateATask () {
+  clickOnSubmitAndStayOnCreatePage () {
     cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
     cy.wait('@homework_api')
   }
