@@ -90,7 +90,7 @@ jobs:
           path: |
             ${{ github.workspace }}/cypress/cucumber-json/
             ${{ github.workspace }}/cypress/.run/
-            ${{ github.workspace }}/cypress/videos/features
+            ${{ github.workspace }}/cypress/videos/
             ${{ github.workspace }}/cypress/screenshots
 
   generate-and-upload-report:
@@ -127,7 +127,7 @@ jobs:
         if: always()
         with:
           name: my-video-artifact
-          path: ${{ github.workspace }}/cypress/videos/features
+          path: ${{ github.workspace }}/cypress/videos/
           retention-days: 3
 
   notify_RC:
