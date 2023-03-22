@@ -23,6 +23,7 @@ class Help {
   static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]'
   static #helpContactNavigationButton = '[data-testid="Kontakt"]'
   static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]'
+  static #selectProblemDropdown= '[data-testid=select-problem]'
 
   navigateToHelpSection() {
     cy.get(Help.#helpOverviewNavigationButton)
@@ -100,6 +101,8 @@ class Help {
   }
 
   fillOutContactForm() {
+    cy.get(Help.#selectProblemDropdown)
+    .select(1, {force:true})
     cy.get(Help.#bugFormHeadline)
       .type('Dies ist ein Test!')
     cy.get(Help.#bugFormMail)
