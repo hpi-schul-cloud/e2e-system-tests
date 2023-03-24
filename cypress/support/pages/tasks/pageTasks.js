@@ -460,15 +460,21 @@ class Tasks {
   }
 
   clickSubmissionTab () {
-    cy.get(Tasks.#submissionTab).click({ multiple: true })
+    cy.get(Tasks.#submissionTab)
+      .click({ multiple: true })
+      .wait('@alerts_api')
   }
 
   clickSaveSubmissionBtn () {
-    cy.get(Tasks.#submissionSaveButton).click()
+    cy.get(Tasks.#submissionSaveButton)
+      .click()
+      .wait('@homework_api')
   }
 
   clickSendSubmissionBtn () {
-    cy.get(Tasks.#submissionSendButton).click()
+    cy.get(Tasks.#submissionSendButton)
+      .click()
+      .wait('@alerts_api')
   }
 
   seeSubmissionReceivedHint () {
@@ -480,11 +486,16 @@ class Tasks {
   }
 
   clickOnTabDoneTasks () {
-    cy.get(Tasks.#doneTasksTab).click()
+    cy.get(Tasks.#doneTasksTab)
+      .click()
+      .wait('@alerts_api')
+      .wait('@tasks_api')
   }
 
   openNotGradedTasks () {
-    cy.contains(Tasks.#lowertaskSectionText, 'Unbewertet').click()
+    cy.contains(Tasks.#lowertaskSectionText, 'Unbewertet')
+      .click()
+      .wait('@tasks_api')
   }
 
   seeTaskInListAsTeacher (taskTitle) {
