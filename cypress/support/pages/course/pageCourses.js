@@ -74,8 +74,7 @@ class Courses {
             .click()
         }
       })
-      cy.wait('@board_api')
-      cy.wait('@userPermissions_api')
+      cy.wait(['@board_api', '@userPermissions_api'])
   }
 
   showRoomPage (room) {

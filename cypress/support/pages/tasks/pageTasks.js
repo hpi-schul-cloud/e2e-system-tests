@@ -447,8 +447,7 @@ class Tasks {
 
   submitDeleteFileDialog () {
     cy.get(Tasks.#deleteFileSubmitButton).click()
-    cy.wait('@delete_api')
-    cy.wait('@homework_api')
+    cy.wait(['@delete_api', '@homework_api'])
   }
 
   cancelDeleteFileDialog () {
