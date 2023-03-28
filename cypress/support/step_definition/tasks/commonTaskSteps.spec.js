@@ -10,6 +10,10 @@ And('I click on button Submit', () => {
   tasks.clickOnSubmit()
 })
 
+And('I click on button Submit to save and stay on task page', () => {
+  tasks.clickOnSubmitAndStayOnCreatePage()
+})
+
 When('I click on button Add Task', () => {
   tasks.clickOnAddTask()
 })

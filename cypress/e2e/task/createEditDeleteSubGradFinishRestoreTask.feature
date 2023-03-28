@@ -17,7 +17,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I set task-visibility-start-date to 'today' at '0000'
     And I set task-visibility-due-date to 'tomorrow' at '1000'
     And I enter task description 'Dies ist Deine Aufgabe.'
-    And I click on button Submit
+    And I click on button Submit to save and stay on task page
     Then I can see create task page 'Cy Task Creating and Deleting Test'
     When I go to rooms overview
     And I go to room 'Course with subject and tasks'

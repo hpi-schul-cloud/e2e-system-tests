@@ -52,10 +52,10 @@ class Courses {
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
       .click()
+    cy.wait('@courses_api')
   }
 
   navigateToRoomBoard (roomName) {
-    cy.wait(3000)
     cy.get('h1')
       .eq(0)
       .then($title => {
@@ -74,6 +74,7 @@ class Courses {
             .click()
         }
       })
+      cy.wait(['@board_api', '@userPermissions_api'])
   }
 
   showRoomPage (room) {
@@ -128,11 +129,12 @@ class Courses {
 
   clickOnNewTaskFAB () {
     cy.get(Courses.#newTaskFAB).click()
+    cy.wait('@homework_api')
   }
 
   contentIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    cy.wait(3000)
+    cy.wait('@rooms_api')
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
       .should('be.visible')
@@ -163,6 +165,7 @@ class Courses {
 
   openTask (taskTitle) {
     cy.get(Courses.#contentCardContent).contains(taskTitle).click()
+    cy.wait('@homework_api')
   }
   openThreeDotMenuForContent (contentTitle) {
     cy.contains(contentTitle).prev().find('button').click()
@@ -186,6 +189,7 @@ class Courses {
 
   clickEditInDotMenu (linkId) {
     cy.get(Courses.#editButtonInDotMenu).click()
+    cy.wait('@homework_api')
   }
 
   clickEditInDotMenuOfTopic () {
