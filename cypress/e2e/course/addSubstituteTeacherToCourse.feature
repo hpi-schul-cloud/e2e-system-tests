@@ -15,6 +15,3 @@ Scenario: Adding substitute teacher to course
     Given I am logged in as a 'teacher2' at 'brb'
     When I go to rooms overview
     And I go to room 'Biologie'
-
-
-    # cypress.env.json wymaga zminy i dodania first i last name

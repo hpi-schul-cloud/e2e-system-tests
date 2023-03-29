@@ -40,7 +40,7 @@ class Courses {
     '[data-testid="room-detail-task-chip-submitted"]'
   static #contentCardTaskInfoGradingsChip =
     '[data-testid="room-detail-task-chip-graded"]'
-  static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]'  //add by MW - czy powinien byc dodne data test id
+  static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]'
 
   courseIsVisiblOnOverviewPage (courseName) {
     cy.contains(courseName).should('be.visible').and('contain.text', courseName)
