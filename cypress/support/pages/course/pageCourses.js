@@ -40,6 +40,7 @@ class Courses {
     '[data-testid="room-detail-task-chip-submitted"]'
   static #contentCardTaskInfoGradingsChip =
     '[data-testid="room-detail-task-chip-graded"]'
+  static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]'  //add by MW - czy powinien byc dodne data test id
 
   courseIsVisiblOnOverviewPage (courseName) {
     cy.contains(courseName).should('be.visible').and('contain.text', courseName)
@@ -367,5 +368,35 @@ class Courses {
         expect(interceptions.response.statusCode).to.equal(200)
       })
   }
+
+  addSubstituteTeacher (username) {
+
+    let userFirstName
+    let userLastName
+
+    switch (username) {
+      case 'teacher1':
+        userFirstName = Cypress.env('TEACHER_1_FIRST_NAME')
+        userLastName = Cypress.env('TEACHER_1_LAST_NAME')
+        break
+      case 'teacher2':
+        userFirstName = Cypress.env('TEACHER_2_FIRST_NAME')
+        userLastName = Cypress.env('TEACHER_2_LAST_NAME')
+        break
+    }
+
+    let userFullName = userLastName + ", " + userFirstName
+
+    cy.log(userFirstName)
+    cy.log(userLastName)
+    cy.log(userFullName)
+
+    cy.get(Courses.#addSubstituteTeacher).click().type('{selectall}{backspace}')
+    cy.get('.chosen-results li').contains(userFullName).click()
+    cy.get('.chosen-container span').should('contain', userFullName)
+  }
+
+
+
 }
 export default Courses
