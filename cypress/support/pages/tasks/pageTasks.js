@@ -492,7 +492,6 @@ class Tasks {
   clickOnTabDoneTasks () {
     cy.get(Tasks.#doneTasksTab)
       .click()
-      .wait('@alerts_api')
       .wait('@tasks_api')
   }
 
