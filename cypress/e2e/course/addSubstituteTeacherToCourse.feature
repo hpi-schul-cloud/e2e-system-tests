@@ -1,5 +1,5 @@
 #@courses @stable_test
-Feature: Add substitute teacher to course
+Feature: Course - Add substitute teacher to course
 
   As a teacher I want to add substitute teacher to the course.
 
@@ -9,6 +9,7 @@ Scenario: Adding substitute teacher to course
     And I go to room 'Biologie'
     When I open course edit page
     Then I can see course edit page
+    And I clear substitute teacher field
     And I add substitute teacher 'teacher2'
     And I click on save changes
     Then I log out
