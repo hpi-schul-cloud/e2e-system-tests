@@ -10,13 +10,14 @@ module.exports = defineConfig({
   requestTimeout: 60000,
   responseTimeout: 60000,
   e2e: {
-    // this config comes dusring v12 update
+    // this config comes during v12 update
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
 
     setupNodeEvents(on, config) {
       return require('./cypress/plugins/index.js')(on, config)
     },
+    testIsolation: true,
     specPattern: 'cypress/e2e/**/*.feature',
   },
 });
