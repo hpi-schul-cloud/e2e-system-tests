@@ -138,3 +138,11 @@ Then('I see task {string} contains buttons', taskTitle => {
 Then('I can see topic {string} on course page', topicTitle => {
   courses.topicIsVisibleOnCoursePage(topicTitle)
 })
+
+And('I clear substitute teacher field', () => {
+  courses.clearSubstituteTeacherField()
+})
+
+And('I add substitute teacher {string}', username => {
+  courses.addSubstituteTeacher(username)
+})
