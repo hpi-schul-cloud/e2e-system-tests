@@ -71,7 +71,8 @@ class Tasks {
   static #tasksOverviewNavigationButton = '[data-testid="Aufgaben"]'
   static #taskForm = '[id="homework-form"]'
   static #submitButton = '[data-testid="submit-task-btn"]'
-  static #addTaskButton = '[data-testid="addTask"]'
+  static #createContentButton =  '[data-testid="add-content-button"]'
+  static #addTaskButton = '[data-testid="fab_button_add_task"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #homeworkDescription = '[class="ck ck-editor__main"]'
   static #draftTasksTab = '[data-testid="draftTasks"]'
@@ -100,6 +101,10 @@ class Tasks {
 
   clickOnAddTask () {
     cy.get(Tasks.#addTaskButton).click()
+  }
+
+  clickOnAddCreateContent () {
+    cy.get(Tasks.#createContentButton).click()
   }
 
   seeCreateTaskPage (taskTitle) {
@@ -487,7 +492,6 @@ class Tasks {
   clickOnTabDoneTasks () {
     cy.get(Tasks.#doneTasksTab)
       .click()
-      .wait('@alerts_api')
       .wait('@tasks_api')
   }
 
