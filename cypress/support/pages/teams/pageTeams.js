@@ -50,7 +50,7 @@ class Teams {
   static #threeDotManageTeam = '[id="page-title"]'
   static #manageTeamMembersOption = '[data-testid="administrate_team_members"]'
   static #addInternalTeamMemberButton = '[data-testid="internal_team_members"]'
-  static #selectInternalTeamMember = '[data-testid="select_team_members_add"]'
+  static #selectInternalTeamMemberInModal = '[data-testid="select_team_members_add"]'
   static #studentTableBody = '[data-testid="students_names_container"]'
   static #confirmTeamMemberAddButton = '[data-testid="btn-submit"]'
   static #confirmTeamMemberDeleteButton = '[data-testid="btn-submit"]'
@@ -275,14 +275,13 @@ class Teams {
   }
 
   clickOnAddingNewTeamMemberButton () {
-    cy.get(Teams.#confirmTeamMemberAddButton, { timeout: 20000 })
-      .click({ multiple: true, force: true})
+    cy.get(Teams.#confirmTeamMemberAddButton)
+      .click({multiple:true, force:true})
   }
 
   selectInternalTeamMember () {
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 200000 }).invoke('show')
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 20000 })
-      .should('be.visible')
+    cy.get(Teams.#selectInternalTeamMemberInModal).invoke('show')
+      .get(Teams.#selectInternalTeamMemberInModal)
       .select(Teams.#testAssertionData.fullName, { force: true })
   }
 
