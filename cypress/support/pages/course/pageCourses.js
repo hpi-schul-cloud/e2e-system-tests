@@ -41,8 +41,8 @@ class Courses {
   static #contentCardTaskInfoGradingsChip =
     '[data-testid="room-detail-task-chip-graded"]'
   static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]'
-  static #chosenResultsLi = '.chosen-results li'
-  static #chosenContainerSpan  = '.chosen-container span'
+  static #chosenResults = '.chosen-results li'
+  static #chosenContainer  = '.chosen-container span'
 
   courseIsVisiblOnOverviewPage (courseName) {
     cy.contains(courseName).should('be.visible').and('contain.text', courseName)
@@ -389,8 +389,8 @@ class Courses {
         break
     }
     let userFullName = userLastName + ", " + userFirstName
-    cy.get(Courses.#chosenResultsLi).contains(userFullName).click()
-    cy.get(Courses.#chosenContainerSpan).should('contain', userFullName)
+    cy.get(Courses.#chosenResults).contains(userFullName).click()
+    cy.get(Courses.#chosenContainer).should('contain', userFullName)
   }
 
 
