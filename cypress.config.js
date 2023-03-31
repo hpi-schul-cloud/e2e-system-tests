@@ -13,12 +13,14 @@ module.exports = defineConfig({
     // This config comes dusring v12 update.
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
-    // testIsolation is by default enabled in v12 and also cy.session() is inherited it by default in the login test, that is why it is set it to false.
 
     setupNodeEvents(on, config) {
       return require('./cypress/plugins/index.js')(on, config)
     },
     specPattern: 'cypress/e2e/**/*.feature',
+
+    // testIsolation is set to false becuase when testIsolation is set to true or in v12 its anyway by default enabled, then it clears the page again that might be redundent.
+    // we are using cy.session() in login custom command, which is inheriting the testIsolation properties by default as true and clearing the page (cookies, local storage..etc.) in the test.
     testIsolation: false
   },
 });
