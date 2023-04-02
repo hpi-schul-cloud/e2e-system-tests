@@ -33,17 +33,17 @@ class News {
   confirmDeletionOnDialogBox () {
     cy.get(News.#deleteNewsConfirmation)
       .contains('Löschen')
-      .click()
+      .click().wait(3000)
   }
 
   clickOnDeleteNewsButton () {
-    cy.get(News.#deleteNews).click()
+    cy.get(News.#deleteNews).click().wait(3000)
   }
 
   openNewsDetailPage (newsName) {
     cy.get(News.#newsName)
       .contains(newsName)
-      .click()
+      .click().wait(3000)
   }
 
   seeCreatedNews (newsTitle, newsDesc) {
@@ -55,7 +55,7 @@ class News {
 
   clickOnCreateNewsSaveButton () {
     cy.get(News.#newsCreateButton)
-      .click()
+      .click().wait(3000)
   }
 
   seeTimeInput () {
