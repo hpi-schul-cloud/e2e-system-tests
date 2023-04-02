@@ -3,7 +3,7 @@ Feature: Dashboard - To check contents on the dashboard
 
   As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
 
-  @only
+  @isolated
   Scenario: as a pre-condition teacher creates school news
     Given I am logged in as a 'teacher' at 'brb'
     When I go to news overview
@@ -16,7 +16,7 @@ Feature: Dashboard - To check contents on the dashboard
     And I click on save button
     Then I see news is created successfully with title 'Dashboard - this is a school news' and with description 'test school news description'
 
-  @only
+  @isolated
   Scenario: as a pre-condition teacher creates a team news
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
@@ -31,7 +31,7 @@ Feature: Dashboard - To check contents on the dashboard
     And I click on save button
     Then I see news is created successfully with title 'Dashboard - this is a team news' and with description 'test team news description'
 
-  @only
+  @isolated
   Scenario: as a pre-condition teacher adds student as team member
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
@@ -43,7 +43,7 @@ Feature: Dashboard - To check contents on the dashboard
     And I click on add user button
     Then I see the student named 'Herbert Kraft' on the team members table
 
-  @only
+  @isolated
   Scenario: student arrives on dashboard
     Given I am logged in as a 'student' at 'brb'
     When I arrive on the dashboard
@@ -52,7 +52,7 @@ Feature: Dashboard - To check contents on the dashboard
     Then I see teams news with title 'Dashboard - this is a team news' and description 'test team news description'
     Then I can see the assigned task 'Task11'
 
-  @only
+  @isolated
   Scenario: teacher arrives on dashboard
     Given I am logged in as a 'teacher' at 'brb'
     When I arrive on the dashboard
@@ -62,7 +62,7 @@ Feature: Dashboard - To check contents on the dashboard
     Then I can see the assigned task 'Task11'
     Then I can see the draft task 'Task1'
 
-  @only
+  @isolated
   Scenario: as a post-condition teacher deletes the school news
     Given I am logged in as a 'teacher' at 'brb'
     When I arrive on the dashboard
@@ -71,7 +71,7 @@ Feature: Dashboard - To check contents on the dashboard
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'Dashboard - this is a school news'
 
-  @only
+  @isolated
   Scenario: as a post-condition teacher deletes the team news
     Given I am logged in as a 'teacher' at 'brb'
     When I arrive on the dashboard
@@ -80,14 +80,14 @@ Feature: Dashboard - To check contents on the dashboard
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'Dashboard - this is a team news'
 
-  @only
+  @isolated
   Scenario: student does not see news anymore on dashboard
     Given I am logged in as a 'student' at 'brb'
     When I arrive on the dashboard
     Then I do not see school news with title 'Dashboard - this is a school news'
     Then I do not see teams news with title 'Dashboard - this is a team news'
 
-  @only
+  @isolated
   Scenario: as a post-condition teacher deletes the student as a  team member
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
