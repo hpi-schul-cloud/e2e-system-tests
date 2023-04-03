@@ -63,7 +63,7 @@ class News {
   }
 
   seeDateInput () {
-    cy.get(News.#newsDateInpu, { timeout: 20000 }).should('exist')
+    cy.get(News.#newsDateInput, { timeout: 20000 }).should('exist')
   }
 
   enterNewsDescription (newsDescription) {
