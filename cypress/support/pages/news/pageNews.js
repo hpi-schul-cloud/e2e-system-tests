@@ -40,7 +40,7 @@ class News {
     cy.get(News.#deleteNews, { timeout: 20000 }).click().wait(3000)
   }
 
-  wopenNewsDetailPage (newsName) {
+  openNewsDetailPage (newsName) {
     cy.get(News.#newsName, { timeout: 20000 })
       .contains(newsName)
       .click().wait(3000)
