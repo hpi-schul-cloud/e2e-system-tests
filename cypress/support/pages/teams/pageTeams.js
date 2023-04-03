@@ -67,6 +67,8 @@ class Teams {
   static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
   static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
   static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
+  static #pageTitleTeamsOverview = '[id="page-title"]'
+  static #teamsMembersOverviewPageTitle = '[id="page-title"]'
 
 
   // this method is for clicking on add button to create a new team event in the calander tab
@@ -75,6 +77,13 @@ class Teams {
     //cy.get(`[data-testid=btn-submit-${sanitizedTeamEventName}]`)
       //.click()
   //}
+
+  seeTeamMemebersOverviewPage() {
+    cy.url()
+      .should('include','/members')
+    cy.get(Teams.#teamsMembersOverviewPageTitle).should('exist')
+  }
+
 
   seeVideoNotStartedInfoModal () {
     cy.get(Teams.#videoConferenceNotStartedInfoModal)
@@ -310,9 +319,10 @@ class Teams {
 
   navigateToTeamsOverview () {
     cy.get(Teams.#teamsOverviewNavigationButton)
-    .click()
+      .click()
     cy.url()
-    .should('include', '/teams')
+      .should('include', '/teams')
+    cy.get(Teams.#pageTitleTeamsOverview).should('exist')
   }
 
   selectTeam (teamName) {
