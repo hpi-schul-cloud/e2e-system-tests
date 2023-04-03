@@ -78,7 +78,7 @@ Feature: Dashboard - To check contents on the dashboard
     When I arrive on the dashboard
     Then I do not see school news with title 'Dashboard - this is a school news'
     Then I do not see teams news with title 'Dashboard - this is a team news'
-    
+
   Scenario: as a post-condition teacher deletes the student as a  team member
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
