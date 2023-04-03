@@ -33,6 +33,7 @@ class News {
   confirmDeletionOnDialogBox () {
     cy.get(News.#deleteNewsConfirmation, { timeout: 20000 })
       .contains('Löschen')
+        .should('exist')
       .click().wait(3000)
   }
 
