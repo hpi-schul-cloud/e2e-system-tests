@@ -31,40 +31,43 @@ class News {
   }
 
   confirmDeletionOnDialogBox () {
-    cy.get(News.#deleteNewsConfirmation, { timeout: 20000 })
+    cy.get(News.#deleteNewsConfirmation)
       .contains('Löschen')
         .should('exist')
-      .click().wait(3000)
+      .click()
   }
 
   clickOnDeleteNewsButton () {
-    cy.get(News.#deleteNews, { timeout: 20000 }).click().wait(3000)
+    cy.get(News.#deleteNews).click()
   }
 
   openNewsDetailPage (newsName) {
-    cy.get(News.#newsName, { timeout: 20000 })
+    cy.get(News.#newsName)
       .contains(newsName)
-      .click().wait(3000)
+        .should('exist')
+      .click()
   }
 
   seeCreatedNews (newsTitle, newsDesc) {
-    cy.get(News.#newsTitle, { timeout: 20000 })
+    cy.get(News.#newsTitle)
       .contains(newsTitle)
+        .should('exist')
     cy.get(News.#newsDescriptionVisible)
-      .contains(newsDesc, { timeout: 20000 })
+      .contains(newsDesc)
+        .should('exist')
   }
 
   clickOnCreateNewsSaveButton () {
-    cy.get(News.#newsCreateButton, { timeout: 20000 })
-      .click().wait(3000)
+    cy.get(News.#newsCreateButton)
+      .click()
   }
 
   seeTimeInput () {
-    cy.get(News.#newsTimeInput, { timeout: 20000 }).should('exist')
+    cy.get(News.#newsTimeInput).should('exist')
   }
 
   seeDateInput () {
-    cy.get(News.#newsDateInput, { timeout: 20000 }).should('exist')
+    cy.get(News.#newsDateInput).should('exist')
   }
 
   enterNewsDescription (newsDescription) {
@@ -84,20 +87,20 @@ class News {
   }
 
   clickOnAddNews () {
-    cy.get(News.#createNewNews, { timeout: 20000 })
+    cy.get(News.#createNewNews)
       .click()
   }
 
   navigateToNewsOverview () {
-    cy.get(News.#newsOverviewNavigationButton, { timeout: 20000 })
+    cy.get(News.#newsOverviewNavigationButton)
       .click()
     cy.url()
       .should('include', '/news')
   }
 
   teacherReadsNewsOnOverviewPage(titleOfNews, descriptionOfNews) {
-    cy.get(News.#pageTitle, { timeout: 20000 }).contains(titleOfNews).should('exist')
-    cy.get(News.#newsText, { timeout: 20000 }).contains(descriptionOfNews).should('exist')
+    cy.get(News.#pageTitle).contains(titleOfNews).should('exist')
+    cy.get(News.#newsText).contains(descriptionOfNews).should('exist')
   }
 }
 export default News

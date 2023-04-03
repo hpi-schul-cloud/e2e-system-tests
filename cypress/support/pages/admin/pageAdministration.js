@@ -137,10 +137,10 @@ class Management {
   clickOnAddButton (role) {
     if (!(role == 'student')) {
       cy.intercept('POST', '**/teachers').as('post_role_api')
-      cy.intercept('GET', '**/teachers?**').as('get_roles_api')
+      cy.intercept('GET', '**/teachers**').as('get_roles_api')
     } else {
       cy.intercept('POST', '**/students').as('post_role_api')
-      cy.intercept('GET', '**/students?**').as('get_roles_api')
+      cy.intercept('GET', '**/students**').as('get_roles_api')
     }
     cy.get(Management.#addButton)
       .click()
