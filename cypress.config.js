@@ -10,7 +10,7 @@ module.exports = defineConfig({
   requestTimeout: 60000,
   responseTimeout: 60000,
   e2e: {
-    // this config comes dusring v12 update
+    // This config comes during v12 update.
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
 
@@ -18,5 +18,9 @@ module.exports = defineConfig({
       return require('./cypress/plugins/index.js')(on, config)
     },
     specPattern: 'cypress/e2e/**/*.feature',
+
+    // testIsolation is set to false because when testIsolation is set to true or in v12 its anyway by default enabled, then it clears the page again that might be redundant.
+    // we are using cy.session() in login custom command, which is inheriting the testIsolation properties by default as true and clearing the page (cookies, local storage..etc.) in the test.
+    testIsolation: false
   },
 });
