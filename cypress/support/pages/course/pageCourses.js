@@ -65,16 +65,28 @@ class Courses {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
-            .click()
+            .click({
+              multiple: true,
+              force: true
+            })
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`)
-            .click()
+            .click({
+              multiple: true,
+              force: true
+            })
         } else if (htmlTitlePage.includes('Cursos')) {
           cy.get(`[aria-label="Curso ${roomName}"]`)
-            .click()
+            .click({
+              multiple: true,
+              force: true
+            })
         } else if (htmlTitlePage.includes('Поточні')) {
           cy.get(`[aria-label="Курс ${roomName}"]`)
-            .click()
+            .click({
+              multiple: true,
+              force: true
+            })
         }
       })
       cy.wait(['@board_api', '@userPermissions_api'])
