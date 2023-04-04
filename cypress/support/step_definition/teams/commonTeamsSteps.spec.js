@@ -47,7 +47,7 @@ And('I click on manage team members option', () => {
 })
 
 Then ('I see team participants overview page', () =>{
-  teams.seeTeamMemebersOverviewPage()
+  teams.seeTeamMembersOverviewPage()
 })
 
 And('I click on add internal attendees button', () => {

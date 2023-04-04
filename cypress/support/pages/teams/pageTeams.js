@@ -78,7 +78,7 @@ class Teams {
       //.click()
   //}
 
-  seeTeamMemebersOverviewPage() {
+  seeTeamMembersOverviewPage() {
     cy.url()
       .should('include','/members')
     cy.get(Teams.#teamsMembersOverviewPageTitle).should('exist')
