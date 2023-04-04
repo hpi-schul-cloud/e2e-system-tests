@@ -6,24 +6,24 @@ jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
     #strategy:
-      #fail-fast: false
-      #max-parallel: 1
-      #matrix:
-        #spec:
-          #[
-            #'account',
-            #'addons',
-            #'courses',
-            #'dashboard',
-            #'files',
-            #'help',
-            #'login',
-            #'management',
-            #'news',
-            #'tasks',
-            #'team',
-            #'topics'
-          #]
+    #fail-fast: false
+    #max-parallel: 1
+    #matrix:
+    #spec:
+    #[
+    #'account',
+    #'addons',
+    #'courses',
+    #'dashboard',
+    #'files',
+    #'help',
+    #'login',
+    #'management',
+    #'news',
+    #'tasks',
+    #'team',
+    #'topics'
+    #]
     steps:
       - name: Setup Node
         uses: actions/setup-node@v3
@@ -58,14 +58,17 @@ jobs:
           CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
           CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
           CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL}}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD}}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD}}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD }}
+          CYPRESS_TEACHER_1_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_1_FIRST_NAME }}
+          CYPRESS_TEACHER_1_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_1_LAST_NAME }}
+          CYPRESS_TEACHER_2_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_2_FIRST_NAME }}
+          CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
           DEBUG: '@cypress/github-action'
         with:
           #command: npm run tag:stable:${{ matrix.spec }}
           browser: chrome
-          command-prefix: "--"
 
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3

@@ -35,6 +35,7 @@ Feature: Dashboard - To check contents on the dashboard
     And I go to a team 'Musik'
     And I click on three dot menu on the team title
     And I click on manage team members option
+    Then I see team participants overview page
     And I click on add internal attendees button
     And new dialog opens to select student 'Herbert Kraft' from the drop down list
     And I click on add user button
@@ -85,5 +86,6 @@ Feature: Dashboard - To check contents on the dashboard
     And I go to a team 'Musik'
     And I click on three dot menu on the team title
     And I click on manage team members option
+    Then I see team participants overview page
     When I select the student 'Herbert Kraft' and click on delete icon
     Then I see 'Herbert Kraft' is not visible on the table

@@ -9,12 +9,13 @@ class Dashboard {
   static #pageTitle = '[data-testid="title_of_an_element"]'
   static #newsText = '[data-testid="body_of_element"]'
   static #newsSection = '[data-testid="news-section"]'
-
+  static #titleOnDashboardPage = '[id="page-title"]'
 
   arriveOnDashboard() {
     cy.visit('/dashboard')
     cy.url()
       .should('include', '/dashboard')
+    cy.get(Dashboard.#titleOnDashboardPage).should('exist')
   }
 
   seeSchoolNews(newsTitle, newsDesc) {
