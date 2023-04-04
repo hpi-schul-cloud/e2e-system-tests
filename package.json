@@ -44,7 +44,7 @@
 		"multiple-cucumber-html-reporter": "^1.21.4"
 	},
 	"cypress-cucumber-preprocessor": {
-		"nonGlobalStepDefinitions": true,
+		"nonGlobalStepDefinitions": false,
 		"stepDefinitions": "cypress/support/step_definition/",
 		"cucumberJson": {
 			"generate": true
