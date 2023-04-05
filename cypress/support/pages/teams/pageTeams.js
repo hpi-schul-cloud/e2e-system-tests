@@ -320,8 +320,7 @@ class Teams {
   navigateToTeamsOverview () {
     cy.get(Teams.#teamsOverviewNavigationButton)
       .click()
-    cy.url()
-      .should('include', '/teams')
+    cy.wait('@teams_api')
     cy.get(Teams.#pageTitleTeamsOverview, { timeout: 200000 }).should('exist')
   }
 

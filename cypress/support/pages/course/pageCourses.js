@@ -54,6 +54,7 @@ class Courses {
 
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
+        .should('exist')
       .click()
     cy.wait('@courses_api')
   }
@@ -66,31 +67,19 @@ class Courses {
         if (htmlTitlePage.includes('Kurse')) {
           cy.get(`[aria-label="Kurs ${roomName}"]`)
               .should('exist')
-            .click({
-              multiple: true,
-              force: true
-            })
+            .click()
         } else if (htmlTitlePage.includes('courses')) {
           cy.get(`[aria-label="Course ${roomName}"]`)
               .should('exist')
-            .click({
-              multiple: true,
-              force: true
-            })
+            .click()
         } else if (htmlTitlePage.includes('Cursos')) {
           cy.get(`[aria-label="Curso ${roomName}"]`)
               .should('exist')
-            .click({
-              multiple: true,
-              force: true
-            })
+            .click()
         } else if (htmlTitlePage.includes('Поточні')) {
           cy.get(`[aria-label="Курс ${roomName}"]`)
               .should('exist')
-            .click({
-              multiple: true,
-              force: true
-            })
+            .click()
         }
       })
       cy.wait(['@board_api', '@userPermissions_api'])

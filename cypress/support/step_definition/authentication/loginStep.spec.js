@@ -24,6 +24,7 @@ Before(() => {
   cy.intercept('**/homework/**').as('homework_api')
   cy.intercept('**/rooms/**').as('rooms_api')
   cy.intercept('**/delete/**').as('delete_api')
+  cy.intercept('**/teams**').as('teams_api')
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {
