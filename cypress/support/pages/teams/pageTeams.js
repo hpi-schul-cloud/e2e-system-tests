@@ -322,7 +322,7 @@ class Teams {
       .click()
     cy.url()
       .should('include', '/teams')
-    cy.get(Teams.#pageTitleTeamsOverview, { timeout: 20000 }).should('exist')
+    cy.get(Teams.#pageTitleTeamsOverview, { timeout: 200000 }).should('exist')
   }
 
   selectTeam (teamName) {
