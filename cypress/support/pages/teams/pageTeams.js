@@ -319,6 +319,7 @@ class Teams {
 
   navigateToTeamsOverview () {
     cy.get(Teams.#teamsOverviewNavigationButton)
+        .should("exist")
       .click()
     cy.wait('@teams_api')
     cy.get(Teams.#pageTitleTeamsOverview, { timeout: 200000 }).should('exist')
@@ -423,12 +424,14 @@ class Teams {
   }
 
   clickOnAddTeam () {
-    cy.get(Teams.#teamMainSection).then(($element) => {
+    cy.get(Teams.#teamMainSection).should("exist").then(($element) => {
       if ($element.hasClass('empty-state')) {
         cy.get(Teams.#addNewTeamEmptyOverviewButton)
+            .should("exist")
           .click()
       } else {
         cy.get(Teams.#addNewTeamButton)
+            .should("exist")
           .click()
         }
     })

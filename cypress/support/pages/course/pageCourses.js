@@ -304,7 +304,7 @@ class Courses {
   }
 
   performRoomDeletion () {
-    cy.get(Courses.#deleteButton).click()
+    cy.get(Courses.#deleteButton).should('exist').click()
     cy.get(Courses.#confirmDeletionPopup)
       .click({
         multiple: true,
