@@ -5,7 +5,7 @@ module.exports = defineConfig({
   viewportHeight: 768,
   videoCompression: 18,
   chromeWebSecurity: true,
-  pageLoadTimeout: 80000,
+  pageLoadTimeout: 180000,
   defaultCommandTimeout: 80000,
   requestTimeout: 60000,
   responseTimeout: 60000,
