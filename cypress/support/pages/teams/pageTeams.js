@@ -67,7 +67,7 @@ class Teams {
   static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
   static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
   static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
-  static #pageTitleTeamsOverview = '[id="page-title"]'
+  static #pageTitleTeamsOverview = '[id="titlebar"]'
   static #teamsMembersOverviewPageTitle = '[id="page-title"]'
 
 
