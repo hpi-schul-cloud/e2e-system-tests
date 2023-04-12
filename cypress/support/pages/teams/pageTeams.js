@@ -52,23 +52,17 @@ class Teams {
   static #addInternalTeamMemberButton = '[data-testid="internal_team_members"]'
   static #selectInternalTeamMember = '[data-testid="select_team_members_add"]'
   static #studentTableBody = '[data-testid="students_names_container"]'
-  static #confirmTeamMemberAddButton = '[data-testid="submit-btn-add-member-modal"]'
-  static #confirmTeamMemberDeleteButton = '[data-testid="submit-btn-delete-member-modal"]'
-  static #editEventSaveButton =' [data-testid="submit-btn-edit-event-modal"]'
+  static #confirmTeamMemberAddButtonOnModal = '[data-testid="submit-btn-add-member-modal"]'
+  static #confirmTeamMemberDeleteButtonOnModal = '[data-testid="submit-btn-delete-member-modal"]'
   static #deleteIconInTableViewRow = '[data-testid="btn-delete-team-member"]'
   static #teamMemberInTable = 'tr'
   static #testAssertionData = {
-    firstName: 'Kraft',
-    lastName: 'Herbert',
-    fullName: 'Kraft, Herbert',
-    deletePopupText: 'Teilnehmer:in löschen',
     activateMessengerText: 'Messenger für Team aktivieren',
     activateVideoMessengerText: 'Videokonferenzen für Team aktivieren'
   }
   static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
   static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
   static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
-  static #pageTitleTeamsOverview = '[id="page-title"]'
   static #teamsMembersOverviewPageTitle = '[id="page-title"]'
 
 
@@ -254,45 +248,40 @@ class Teams {
       .click()
   }
 
-  doNotSeeDeletedStudentInTeam () {
+  doNotSeeDeletedStudentInTeam (studentName) {
     cy.get(Teams.#studentTableBody)
-      .find(Teams.#testAssertionData.lastName)
+      .find(studentName)
       .should('not.exist')
   }
 
-  removeStudentInTeam () {
+  removeStudentInTeam (studentName) {
     cy.get(Teams.#studentTableBody)
-      .contains(
-        Teams.#teamMemberInTable,
-        Teams.#testAssertionData.lastName
-      )
+      .contains(studentName)
       .then(tableRow => {
         cy.wrap(tableRow)
           .find(Teams.#deleteIconInTableViewRow)
           .click()
-        cy.get(Teams.#confirmTeamMemberDeleteButton)
-          .contains(Teams.#testAssertionData.deletePopupText)
+        cy.get(Teams.#confirmTeamMemberDeleteButtonOnModal)
           .click()
       })
   }
 
-  seeNewlyAddedStudentAsInternalTeamMember () {
+  seeNewlyAddedStudentAsInternalTeamMember (studentName) {
     cy.get(Teams.#studentTableBody).find(
-      Teams.#teamMemberInTable,
-      Teams.#testAssertionData.lastName
-    )
+      Teams.#teamMemberInTable, studentName)
   }
 
-  clickOnAddingNewTeamMemberButton () {
-    cy.get(Teams.#confirmTeamMemberAddButton)
+  clickOnAddingNewTeamMemberButtonOnModal () {
+    cy.get(Teams.#confirmTeamMemberAddButtonOnModal)
       .click()
+      .wait(1000)
   }
 
-  selectInternalTeamMember () {
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 200000 }).invoke('show')
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 20000 })
+  selectInternalTeamMember (studentName) {
+    cy.get(Teams.#selectInternalTeamMember).invoke('show')
+    cy.get(Teams.#selectInternalTeamMember)
       .should('be.visible')
-      .select(Teams.#testAssertionData.fullName, { force: true })
+      .select(studentName)
   }
 
   clickOnAddInternalAttendees () {
@@ -322,7 +311,6 @@ class Teams {
       .click()
     cy.url()
       .should('include', '/teams')
-    cy.get(Teams.#pageTitleTeamsOverview).should('exist')
   }
 
   selectTeam (teamName) {

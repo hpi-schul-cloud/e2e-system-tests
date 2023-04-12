@@ -52,7 +52,7 @@ And('I click delete user button to delete user with email {string}', (email) => 
 })
 
 And('I click on delete button in pop up', () => {
-  management.clickDeleteButtonInPopup()
+  management.clickUserDeleteButtonInModal()
 })
 
 Then('I can not see user {string} in the table', (email) => {
@@ -79,8 +79,4 @@ Then('I can see the edited teacher in the table', () => {
 
 And('I click delete user button', () => {
   management.clickDeleteButton()
-})
-
-And('I click on delete button in pop up', () => {
-  management.clickDeleteButtonInPopup()
 })

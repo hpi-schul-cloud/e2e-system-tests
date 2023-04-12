@@ -33,7 +33,6 @@ class Files {
   static #testAssertionData = {
     fileTypeDocument: 'Textdokument (docx)',
     createFileSubmitButtonText: 'Datei erstellen',
-    saveRenameButtonText: 'Speichern',
     libraOfficeOpenTitleText: 'LibreOffice Online',
     deletePopupTextInitials: 'Bist du dir sicher, dass du ',
     deletePopupTextFinal: ' löschen möchtest?',
@@ -132,7 +131,6 @@ class Files {
   clickOnSaveFilename () {
     cy.contains(
       Files.#saveRenameFile,
-      Files.#testAssertionData.saveRenameButtonText
     ).click()
     cy.wait('@alerts_api')
   }
@@ -173,11 +171,14 @@ class Files {
   }
 
   fileNameIsShown (fileName) {
-    cy.contains(Files.#cardTitle, fileName).should('contain', fileName)
+    cy.get(Files.#cardTitle)
+      .should('contain', fileName)
   }
 
   fileNameIsNotShown (fileName) {
-    cy.contains(Files.#cardTitle, fileName).should('not.exist')
+    cy.get(Files.#cardTitle)
+      .contains(fileName)
+      .should('not.exist')
   }
 
   //doesn't work

@@ -27,7 +27,7 @@ And I go to a team 'Musik'
 And I click on three dot menu on the team title
 And I click on manage team members option
 And I click on add internal attendees button
-And new dialog opens to select student 'Herbert Kraft' from the drop down list
+And new dialog opens to select student 'Kraft, Herbert' from the drop down list
 And I click on add user button
 Then I see the student named 'Herbert Kraft' on the team members table
 
