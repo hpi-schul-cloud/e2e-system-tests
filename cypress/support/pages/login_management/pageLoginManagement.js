@@ -5,7 +5,7 @@ class Login_Management {
   static #usernameLabel = '[data-testid="username-label"]'
   static #emailInput = '[data-testid="username"]'
   static #infoMessage = '[data-testid="info-message"]'
-  static #submitButton = '[data-testid="btn-submit"]'
+  static #submitButton = '[data-testid="submit-btn-password-recovery-modal"]'
   static #cancelButton = '[data-testid="btn-cancel-"]'
   static #brokerButton = '[data-testid="submit-oauth-login"]'
   static #emailInputBox = '[data-testid="username-email"]'

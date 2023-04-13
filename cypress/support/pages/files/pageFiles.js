@@ -11,7 +11,7 @@ class Files {
   static #createFile = '[data-testid="btn-submit"]'
   static #downloadFile = '[data-testid="file-download-btn"]'
   static #renameFile = '[data-testid="file-edit-btn"]'
-  static #saveRenameFile = '[data-testid="btn-submit"]'
+  static #saveRenameFile = '[data-testid="submit-btn-rename-modal"]'
   static #deleteFile = '[data-testid="file-delete-btn"]'
   static #confirmDeleteFile = '.delete-modal .btn-submit'
   static #shareFile = '[data-testid="file-share-btn"]'
@@ -118,7 +118,6 @@ class Files {
 
   typeNewFilename (fileName) {
     cy.get(Files.#newFilenameInputField)
-      .click()
       .focus()
       .clear()
       .should('have.value', '')
@@ -129,9 +128,8 @@ class Files {
   }
 
   clickOnSaveFilename () {
-    cy.contains(
-      Files.#saveRenameFile,
-    ).click()
+    cy.get(Files.#saveRenameFile)
+      .click()
     cy.wait('@alerts_api')
   }
 
