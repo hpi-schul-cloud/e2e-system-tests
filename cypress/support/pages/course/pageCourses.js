@@ -406,71 +406,53 @@ class Courses {
         .then($title => {
           const htmlTitlePage = $title.text()
           if (htmlTitlePage.includes('Kurse')) {
-              cy.get(`[class="rooms-container"]`).then($roomsContainer => {
-                  if ($roomsContainer.find(`[aria-label="Kurs ${roomName}"]`).length) {
-                      cy.get(`[aria-label="Kurs ${roomName}"]`).then(($rooms) => {
-                          if ($rooms) {
-                              cy.wrap($rooms).first().click()
-                              cy.wait(['@board_api', '@userPermissions_api', '@rooms_api']);
-                              this.openCourseEditPage();
-                              cy.get(Courses.#deleteButton).should('exist').click()
-                              cy.get(Courses.#confirmDeletionPopup)
-                                  .click({
-                                      multiple: true,
-                                      force: true
-                                  })
-                                  .wait(
-                                      [
-                                          '@runtime_config_api',
-                                          '@public_api',
-                                          '@me_api',
-                                          '@roles_api',
-                                          '@schools_api',
-                                          '@alert_api',
-                                          '@dashboard_api',
-                                          '@rooms_overview_api'
-                                      ],
-                                      {timeout: 80000}
-                                  )
-
-                              if ($rooms.length > 1) {
-                                  this.deleteAllCoursesMatchingName(roomName)
-                              }
-                          }
-                      })
-                  }
-              })
+              this.deleteCursesByName('Kurs', roomName)
           } else if (htmlTitlePage.includes('courses')) {
-            cy.get(`[aria-label="Course ${roomName}"]`)
-                .should('exist')
-                .each(($el, index, $list)  => {
-                  cy.wrap($el).click();
-                  cy.wait(['@board_api', '@userPermissions_api']);
-                  this.openCourseEditPage();
-                  this.performRoomDeletion();
-                })
+              this.deleteCursesByName('Course', roomName)
           } else if (htmlTitlePage.includes('Cursos')) {
-            cy.get(`[aria-label="Curso ${roomName}"]`)
-                .should('exist')
-                .each(($course) => {
-                  cy.wrap($course).click();
-                  cy.wait(['@board_api', '@userPermissions_api']);
-                  this.openCourseEditPage();
-                  this.performRoomDeletion();
-                })
+              this.deleteCursesByName('Curso', roomName)
           } else if (htmlTitlePage.includes('Поточні')) {
-            cy.get(`[aria-label="Курс ${roomName}"]`)
-                .should('exist')
-                .each(($el, index, $list) => {
-                  cy.wrap($el).click();
-                  cy.wait(['@board_api', '@userPermissions_api']);
-                  this.openCourseEditPage();
-                  this.performRoomDeletion();
-                })
+              this.deleteCursesByName('Курс', roomName)
           }
         })
   }
 
+  deleteCursesByName (courseLabel, roomName) {
+      cy.get(`[class="rooms-container"]`).then($roomsContainer => {
+          if ($roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length) {
+              cy.get(`[aria-label="${courseLabel} ${roomName}"]`).then(($rooms) => {
+                  if ($rooms) {
+                      cy.wrap($rooms).first().click()
+                      cy.wait(['@board_api', '@userPermissions_api', '@rooms_api']);
+                      this.openCourseEditPage();
+                      cy.get(Courses.#deleteButton).should('exist').click()
+                      cy.get(Courses.#confirmDeletionPopup)
+                          .click({
+                              multiple: true,
+                              force: true
+                          })
+                          .wait(
+                              [
+                                  '@runtime_config_api',
+                                  '@public_api',
+                                  '@me_api',
+                                  '@roles_api',
+                                  '@schools_api',
+                                  '@alert_api',
+                                  '@dashboard_api',
+                                  '@rooms_overview_api'
+                              ],
+                              {timeout: 80000}
+                          )
+
+                      if ($rooms.length > 1) {
+                          this.deleteAllCoursesMatchingName(roomName)
+                      }
+                  }
+              })
+          }
+      })
+  }
 
 }
 export default Courses
