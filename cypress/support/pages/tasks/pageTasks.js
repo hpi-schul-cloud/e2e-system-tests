@@ -606,5 +606,14 @@ class Tasks {
   clickLowerTaskSectionIcon () {
     cy.get(Tasks.#lowerTaskSectionIcon).click()
   }
+
+  taskExists (taskTitle) {
+    cy.get(Tasks.#taskCardTitle)
+        .then($tasks => {
+          return $tasks.find(taskTitle).length
+        })
+
+    return false
+  }
 }
 export default Tasks
