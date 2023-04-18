@@ -23,7 +23,8 @@
 		"tag:stable:topics": "cypress run --browser chrome -e tags='@topics and @stable_test'",
 		"tag:stable:admin": "cypress run --browser chrome -e tags='@admin and @stable_test'",
 		"tag:unstable": "cypress run --browser chrome -e tags='@unstable_test'",
-		"tag:only": "cypress run --browser chrome -e tags='@only'"
+		"tag:only": "cypress run --browser chrome -e tags='@only'",
+		"tag:stable": "cypress run --browser chrome -e tags='@stable_test'"
 	},
 	"repository": {
 		"type": "git",
