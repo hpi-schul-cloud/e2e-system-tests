@@ -4,25 +4,25 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    strategy:
-      max-parallel: 1
-      fail-fast: false
-      matrix:
-        spec: [
+    #strategy:
+      #max-parallel: 1
+      #fail-fast: false
+      #matrix:
+        #spec: [
             #'account',
-            'addons',
+            #'addons',
             #'admin',
             #'courses',
             #'dashboard',
             #'files',
-            'help'
+            #'help'
             #'login',
             #'management',
             #'news',
             #'tasks',
             #'team',
             #'topics'
-          ]
+          #]
     steps:
       - name: Setup Node
         uses: actions/setup-node@v3
