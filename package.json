@@ -4,7 +4,7 @@
 	"description": "e2e testing",
 	"main": "index.js",
 	"scripts": {
-		"cy:run": "cypress run --browser chrome --headless",
+		"cy:run": "xvfb-run cypress run --headed --browser chrome",
 		"cy:open": "cypress open",
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node cucumber-html-report.js",
