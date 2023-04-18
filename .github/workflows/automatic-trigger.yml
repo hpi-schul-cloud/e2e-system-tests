@@ -10,12 +10,12 @@ jobs:
       matrix:
         spec: [
             #'account',
-            'addons'
+            'addons',
             #'admin',
             #'courses',
             #'dashboard',
             #'files',
-            #'help'
+            'help'
             #'login',
             #'management',
             #'news',
