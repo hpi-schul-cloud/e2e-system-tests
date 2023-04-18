@@ -15,7 +15,7 @@ jobs:
             #'courses',
             #'dashboard',
             #'files',
-            'help'
+            #'help'
             #'login',
             #'management',
             #'news',
@@ -81,7 +81,6 @@ jobs:
           path: |
             ${{ github.workspace }}/logs/
             ${{ github.workspace }}/cypress/
-            ${{ github.workspace }}/cypress/fixtures/test-run-details.json
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -98,9 +97,10 @@ jobs:
         with:
           name: artifacts
           path: |
-            ${{ github.workspace }}/logs/
             ${{ github.workspace }}/cypress/
-            ${{ github.workspace }}/cypress/fixtures/test-run-details.json
+
+        #${{ github.workspace }}/logs/
+        #${{ github.workspace }}/cypress/fixtures/test-run-details.json
 
       - name: Dir Structure
         run: tree -a
