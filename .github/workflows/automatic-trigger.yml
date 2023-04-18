@@ -70,7 +70,7 @@ jobs:
           browser: chrome
 
       - name: Dir Structure
-        run: tree
+        run: tree -f
 
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
@@ -79,7 +79,8 @@ jobs:
           if-no-files-found: error
           name: artifacts
           path: |
-            ${{ github.workspace }}
+            ${{ github.workspace }}/logs/
+            ${{ github.workspace }}/cypress/
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -102,7 +103,7 @@ jobs:
         #${{ github.workspace }}/cypress/fixtures/test-run-details.json
 
       - name: Dir Structure
-        run: tree
+        run: tree -f
 
       - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v5
