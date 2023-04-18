@@ -1,9 +1,8 @@
 const {
   Before,
   After,
-  Given,
-  Then
-} = require('cypress-cucumber-preprocessor/steps')
+  Given
+} = require('@badeball/cypress-cucumber-preprocessor')
 
 Before(() => {
   cy.intercept('**/public').as('public_api')
@@ -27,6 +26,20 @@ Before(() => {
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {
-    cy.login(username, environment)
-    cy.wait('@dashboard_api')
-  })
+  cy.login(username, environment)
+  cy.wait('@dashboard_api')
+})
+
+// After(() => {
+//   cy.readFile('test-run-details.json').then(data => {
+//     const env = Cypress.env()
+//     data.env.BRB = env['BRB']
+//     data.env.NBC = env['NBC']
+//     data.env.DEFAULT = env['DEFAULT']
+//     data.browser = Cypress.browser
+//     data.platform = Cypress.platform
+//     data.endTime = new Array()
+//     data.endTime.push(new Date().toLocaleString())
+//     cy.writeFile('test-run-details.json', data)
+//   })
+// })

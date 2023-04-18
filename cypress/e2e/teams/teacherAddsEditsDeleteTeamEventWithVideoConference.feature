@@ -1,4 +1,4 @@
-#@team @stable_test
+@team @stable_test
 Feature: Team - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
 As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.
@@ -23,8 +23,8 @@ Then I click on teams save changes button
 Scenario: as a pre-condition teacher adds student as an internal team member
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
-And I go to a team 'Musik'
-And I click on three dot menu on the team title
+When I go to a team 'Musik'
+When I click on three dot menu on the team title
 And I click on manage team members option
 And I click on add internal attendees button
 And new dialog opens to select student 'Herbert Kraft' from the drop down list
@@ -34,7 +34,7 @@ Then I see the student named 'Herbert Kraft' on the team members table
 Scenario: Teacher adds  event with video conference
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
-And I go to a team 'Musik'
+When I go to a team 'Musik'
 When I go to calendar tab
 When I click on Add date
 Then I see event creation modal
@@ -55,7 +55,7 @@ Then I start the team video conference which has title 'cy title'
 Scenario: Student can see and participate in video conference
 Given I am logged in as a 'student' at 'default'
 When I go to teams overview
-And I go to a team 'Musik'
+When I go to a team 'Musik'
 When I go to calendar tab
 Then I am in calendar tab on team detail page and title 'cy title' is visible
 Then I click on participate to video conference button as a participating student
@@ -63,8 +63,8 @@ Then I click on participate to video conference button as a participating studen
 Scenario: as a post-condition teacher deletes the student as a team member
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
-And I go to a team 'Musik'
-And I click on three dot menu on the team title
+When I go to a team 'Musik'
+When I click on three dot menu on the team title
 And I click on manage team members option
 When I select the student 'Herbert Kraft' and click on delete icon
 Then I see 'Herbert Kraft' is not visible on the table
@@ -72,7 +72,7 @@ Then I see 'Herbert Kraft' is not visible on the table
 Scenario: as a post condition Teacher edits and deletes the event
 Given I am logged in as a 'teacher' at 'default'
 When I go to teams overview
-And I go to a team 'Musik'
+When I go to a team 'Musik'
 When I go to calendar tab
 When I click on edit icon
 When I re enter the title 'edit cy title'

@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Tasks from '../../pages/tasks/pageTasks'
 
 const tasks = new Tasks()

@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()
@@ -12,7 +13,7 @@ const courses = new Courses()
 
 //Scenario: Adding a new course
 
-And('I enter the course title {string}', (newCourseName) => {
+When('I enter the course title {string}', (newCourseName) => {
   courses.fillCourseCreationForm(newCourseName)
 })
 

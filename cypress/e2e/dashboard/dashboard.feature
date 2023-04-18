@@ -1,4 +1,4 @@
-#@dashboard @stable_test
+@dashboard @stable_test
 Feature: Dashboard - To check contents on the dashboard
 
   As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
@@ -18,7 +18,7 @@ Feature: Dashboard - To check contents on the dashboard
   Scenario: as a pre-condition teacher creates a team news
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
-    And I go to a team 'Musik'
+    When I go to a team 'Musik'
     When I click on news tab on the team detail page
     And I click on create news button
     Then I see news creation page
@@ -32,8 +32,8 @@ Feature: Dashboard - To check contents on the dashboard
   Scenario: as a pre-condition teacher adds student as team member
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
-    And I go to a team 'Musik'
-    And I click on three dot menu on the team title
+    When I go to a team 'Musik'
+    When I click on three dot menu on the team title
     And I click on manage team members option
     And I click on add internal attendees button
     And new dialog opens to select student 'Herbert Kraft' from the drop down list
@@ -82,8 +82,8 @@ Feature: Dashboard - To check contents on the dashboard
   Scenario: as a post-condition teacher deletes the student as a  team member
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
-    And I go to a team 'Musik'
-    And I click on three dot menu on the team title
+    When I go to a team 'Musik'
+    When I click on three dot menu on the team title
     And I click on manage team members option
     When I select the student 'Herbert Kraft' and click on delete icon
     Then I see 'Herbert Kraft' is not visible on the table

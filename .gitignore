@@ -16,3 +16,5 @@ multi-reporter-config.json
 *.log
 secrets
 *.swp
+.zshrc
+test-run-details.json

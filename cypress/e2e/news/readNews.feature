@@ -1,4 +1,4 @@
-#@news @stable_test
+@news @stable_test
 Feature:  News - To read a news on the respective dashboards
 
   As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
@@ -18,7 +18,7 @@ Feature:  News - To read a news on the respective dashboards
   Scenario: as a pre-condition teacher creates a team news
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
-    And I go to a team 'Musik'
+    When I go to a team 'Musik'
     When I click on news tab on the team detail page
     And I click on create news button
     Then I see news creation page
@@ -37,7 +37,7 @@ Feature:  News - To read a news on the respective dashboards
   Scenario: Reading a team news on teams news overview page
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
-    And I go to a team 'Musik'
+    When I go to a team 'Musik'
     When I click on news tab on the team detail page
     Then I can read the news 'News - this is a team news' with description 'test team news description'
 

@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Management from '../../pages/admin/pageAdministration'
 
 const management = new Management()
@@ -31,15 +32,15 @@ When('I go to new school administration page', () => {
   management.clickNewAdminPageButton()
 })
 
-And('I click save general settings button', () => {
+When('I click save general settings button', () => {
   management.clickSaveGeneralSettingsButton()
 })
 
-And('I go to student administration', () => {
+When('I go to student administration', () => {
  management.navigateToStudentAdministration()
 })
 
-And('I go to teacher administration', () => {
+When('I go to teacher administration', () => {
  management.navigateToTeacherAdministration()
 })
 

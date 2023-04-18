@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()

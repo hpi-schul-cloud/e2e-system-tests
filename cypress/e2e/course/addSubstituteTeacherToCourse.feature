@@ -1,4 +1,4 @@
-#@courses @stable_test
+@courses @stable_test
 Feature: Course - Add substitute teacher to course
 
   As a teacher I want to add substitute teacher to the course.
