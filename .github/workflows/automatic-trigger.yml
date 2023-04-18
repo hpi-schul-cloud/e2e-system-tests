@@ -79,8 +79,7 @@ jobs:
           if-no-files-found: error
           name: artifacts
           path: |
-            ${{ github.workspace }}/logs/
-            ${{ github.workspace }}/cypress/
+            ${{ github.workspace }}
 
   generate-and-upload-report:
     runs-on: ubuntu-latest
@@ -97,7 +96,7 @@ jobs:
         with:
           name: artifacts
           path: |
-            ${{ github.workspace }}/cypress/
+            ${{ github.workspace }}
 
         #${{ github.workspace }}/logs/
         #${{ github.workspace }}/cypress/fixtures/test-run-details.json
