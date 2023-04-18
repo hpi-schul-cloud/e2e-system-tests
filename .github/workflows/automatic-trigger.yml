@@ -66,7 +66,7 @@ jobs:
           CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
           DEBUG: '@cypress/github-action'
         with:
-          command: npx run cypress run --browser chrome -e tags='@stable_test'
+          command: npx cypress run --browser chrome -e tags='@stable_test'
           browser: chrome
 
       - name: Upload test artifacts 📬
