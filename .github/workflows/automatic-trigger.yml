@@ -8,15 +8,14 @@ jobs:
       max-parallel: 1
       fail-fast: false
       matrix:
-        spec:
-          [
+        spec: [
             #'account',
             'addons',
             #'admin',
             #'courses',
             #'dashboard',
             #'files',
-            'help',
+            'help'
             #'login',
             #'management',
             #'news',
@@ -70,6 +69,9 @@ jobs:
           command: npm run tag:stable:${{ matrix.spec }}
           browser: chrome
 
+      - name: Dir Structure
+        run: tree -a
+
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
         if: always()
@@ -99,6 +101,9 @@ jobs:
             ${{ github.workspace }}/logs/
             ${{ github.workspace }}/cypress/
             ${{ github.workspace }}/cypress/fixtures/test-run-details.json
+
+      - name: Dir Structure
+        run: tree -a
 
       - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v5
