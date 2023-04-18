@@ -70,7 +70,7 @@ jobs:
           browser: chrome
 
       - name: Dir Structure
-        run: tree -a
+        run: tree
 
       - name: 📬 Upload test artifacts 📬
         uses: actions/upload-artifact@v3
@@ -103,7 +103,7 @@ jobs:
         #${{ github.workspace }}/cypress/fixtures/test-run-details.json
 
       - name: Dir Structure
-        run: tree -a
+        run: tree
 
       - name: 🚀 Generate Report 🚀
         uses: cypress-io/github-action@v5
