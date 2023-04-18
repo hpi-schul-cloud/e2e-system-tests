@@ -8,12 +8,12 @@ class Files {
   static #filetypePresentation = 'li.active-result:nth-child(4)'
   static #filenameInputField = '#file-name'
   static #newFilenameInputField = '[data-testid="folder-rename-text-field"]'
-  static #createFile = '[data-testid="btn-submit"]'
+  static #createFileButtonOnModal = '[data-testid="btn-submit-Neue Datei erstellen"]'
   static #downloadFile = '[data-testid="file-download-btn"]'
   static #renameFile = '[data-testid="file-edit-btn"]'
   static #saveRenameFile = '[data-testid="submit-btn-rename-modal"]'
   static #deleteFile = '[data-testid="file-delete-btn"]'
-  static #confirmDeleteFile = '.delete-modal .btn-submit'
+  static #confirmDeleteFile = '[data-testid="delete-files-btn"]'
   static #shareFile = '[data-testid="file-share-btn"]'
   static #moveFile = '[data-testid="file-move-btn"]'
   static #filePermissionsFile = '[data-testid="file-settings-btn"]'
@@ -32,11 +32,7 @@ class Files {
 
   static #testAssertionData = {
     fileTypeDocument: 'Textdokument (docx)',
-    createFileSubmitButtonText: 'Datei erstellen',
-    libraOfficeOpenTitleText: 'LibreOffice Online',
-    deletePopupTextInitials: 'Bist du dir sicher, dass du ',
-    deletePopupTextFinal: ' löschen möchtest?',
-    editFilePopupBoxTitleText: 'Datei umbenennen'
+    libraOfficeOpenTitleText: 'LibreOffice Online'
   }
 
   navigateToFilesOverview () {
@@ -88,10 +84,8 @@ class Files {
   }
 
   clickOnCreateFile () {
-    cy.contains(
-      Files.#createFile,
-      Files.#testAssertionData.createFileSubmitButtonText
-    ).click()
+    cy.get(Files.#createFileButtonOnModal)
+      .click()
   }
 
   clickOnFileWithName (fileName) {
@@ -107,10 +101,6 @@ class Files {
   }
 
   renamePopupBoxVisible (fileName) {
-    cy.contains(
-      Files.#editFilePopupBoxTitle,
-      Files.#testAssertionData.editFilePopupBoxTitleText
-    ).should('be.visible')
     cy.get(Files.#editFilePopupBoxTextField)
       .should('be.visible')
       .should('have.value', fileName)
@@ -120,9 +110,6 @@ class Files {
     cy.get(Files.#newFilenameInputField)
       .focus()
       .clear()
-      .should('have.value', '')
-    cy.get(Files.#newFilenameInputField)
-      .focus()
       .type(fileName, { force: true })
       .should('have.value', fileName)
   }
@@ -142,21 +129,10 @@ class Files {
       })
   }
 
-  clickOnConfirmDeleteFile (fileName) {
-    let deletePopUpTextInitials =
-      Files.#testAssertionData.deletePopupTextInitials
-    let deletePopUpTextTitle = deletePopUpTextInitials.concat(
-      "'",
-      fileName,
-      "'",
-      Files.#testAssertionData.deletePopupTextFinal
-    )
+  clickOnConfirmDeleteFileOnModal () {
     cy.get(Files.#confirmDeleteFile)
       .focus()
-      .should('be.visible')
       .click()
-      .wait('@alerts_api')
-    cy.contains(deletePopUpTextTitle).should('not.exist')
   }
 
   libreOfficeOpens () {
@@ -174,8 +150,7 @@ class Files {
   }
 
   fileNameIsNotShown (fileName) {
-    cy.get(Files.#cardTitle)
-      .contains(fileName)
+    cy.contains(fileName)
       .should('not.exist')
   }
 

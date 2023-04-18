@@ -33,8 +33,8 @@ Then('I can see course edit page', () => {
   courses.showCourseEditPage()
 })
 
-And('I click on save changes', () => {
-  courses.submitChanges()
+And('I click on save changes after editing the course details', () => {
+  courses.submitChangesAfterEditingCourse()
 })
 
 And('I click on FAB to create the course', () => {
