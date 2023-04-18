@@ -10,7 +10,7 @@ jobs:
       matrix:
         spec: [
             #'account',
-            'addons',
+            'addons'
             #'admin',
             #'courses',
             #'dashboard',
@@ -110,6 +110,9 @@ jobs:
         if: always()
         with:
           command: npm run generate:report
+
+      - name: Dir Structure
+        run: tree -f
 
       - name: 🎉 Upload Report 🎉
         uses: actions/upload-artifact@v3
