@@ -76,6 +76,7 @@ class Login_Management {
 
   clickOnSubmitButton () {
     cy.get(Login_Management.#loginFormSelector).should('be.visible').submit()
+        .wait(['@alert_api', '@dashboard_api'])
   }
 
   assertErrorMessageDisplay () {
