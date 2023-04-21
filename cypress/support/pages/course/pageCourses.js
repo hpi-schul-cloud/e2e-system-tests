@@ -6,7 +6,7 @@ class Courses {
   static #goToCourseOverviewButton = '[data-testid="courses-to-overview-btn"]'
   static #deleteButton = '[data-method="DELETE"]'
   static #confirmDeletionPopup = '[data-testid="modal_delete_course_button"]'
-  static #btnSubmit = '[data-testid="modal_edit_course_button"]'
+  static #btnSubmit = '[data-testid="modal-edit-course-button"]'
   static #courseDescription = '[id="courseDescription"]'
   static #courseName = '[name="name"]'
   static #createFAB = '[name="fab-icon"]'
