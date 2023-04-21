@@ -54,24 +54,24 @@ And('I click on add internal attendees button', () => {
   teams.clickOnAddInternalAttendees()
 })
 
-And('new dialog opens to select student {string} from the drop down list', () => {
-  teams.selectInternalTeamMember()
+And('new dialog opens to select student {string} from the drop down list', (studentName) => {
+  teams.selectInternalTeamMember(studentName)
 })
 
 And('I click on add user button', () => {
-  teams.clickOnAddingNewTeamMemberButton()
+  teams.clickOnAddingNewTeamMemberButtonOnModal()
 })
 
 Then('I see the student named {string} on the team members table', (studentName) => {
   teams.seeNewlyAddedStudentAsInternalTeamMember(studentName)
 })
 
-When ('I select the student {string} and click on delete icon',()=>{
-  teams.removeStudentInTeam()
+When ('I select the student {string} and click on delete icon',(studentName)=>{
+  teams.removeStudentInTeam(studentName)
 })
 
-Then ('I see {string} is not visible on the table',()=>{
-  teams.doNotSeeDeletedStudentInTeam()
+Then ('I see {string} is not visible on the table',(studentName)=>{
+  teams.doNotSeeDeletedStudentInTeam(studentName)
 })
 
 When('I click on news tab on the team detail page', () => {
