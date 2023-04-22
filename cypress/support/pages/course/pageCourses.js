@@ -207,7 +207,7 @@ class Courses {
   }
 
   openCourseEditPage () {
-    cy.parent(Courses.#dropDownCourse).click()
+    cy.get(Courses.#dropDownCourse).parent().click()
     cy.get(Courses.#btnCourseEdit)
       .click()
       .wait(['@alerts_api'])
