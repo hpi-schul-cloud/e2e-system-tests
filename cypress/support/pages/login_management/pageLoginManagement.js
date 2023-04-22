@@ -114,7 +114,7 @@ class Login_Management {
   }
 
   visitLoginPage () {
-    Cypress.config('baseUrl', Cypress.env('DEFAULT'))
+    Cypress.config('baseUrl', Cypress.env('BRB'))
     cy.visit('login')
   }
 
