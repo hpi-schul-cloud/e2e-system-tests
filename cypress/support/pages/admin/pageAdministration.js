@@ -15,7 +15,7 @@ class Management {
   static #emailEditForm = "input[name='email']"
   static #submitButton = '[data-testid="button_save_user"]'
   static #deleteButton = '[data-testid="button_delete_user"]'
-  static #deleteButtonConfirmation = '[data-testid="btn-submit"]'
+  static #deleteButtonConfirmation = '[data-testid="submit-btn-delete-user-modal"]'
   static #newSchoolAdminPageButton = '[data-testid="button_new_admin_page"]'
   static #chatToggleSwitch = '.rocketchat-switch'
   static #videoconferenceToggleSwitch = '.videoconference-switch'

@@ -67,10 +67,6 @@ And('I click edit teacher button for {string}', (email) => {
   management.clickEditTeacherButton(email)
 })
 
-And('I click save changes button', () => {
-  management.clickSaveButton()
-})
-
 Then('I can see the edited teacher in the table', () => {
   management.editedUserIsVisibleInTable()
 })
@@ -79,8 +75,4 @@ Then('I can see the edited teacher in the table', () => {
 
 And('I click delete user button', () => {
   management.clickDeleteButton()
-})
-
-And('I click on delete button in pop up', () => {
-  management.clickDeleteButtonInPopup()
 })
