@@ -37,7 +37,7 @@ Feature: Dashboard - To check contents on the dashboard
     And I click on manage team members option
     Then I see team participants overview page
     And I click on add internal attendees button
-    And new dialog opens to select student 'Herbert Kraft' from the drop down list
+    And new dialog opens to select student 'Kraft, Herbert' from the drop down list
     And I click on add user button
     Then I see the student named 'Herbert Kraft' on the team members table
 

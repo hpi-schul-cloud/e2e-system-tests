@@ -18,7 +18,7 @@ class Tasks {
   static #dialogCancelDeletionTaskButtons =
     '#modal-delete-homework-footer > .btn-close'
   static #dialogConfirmDeletionTaskButtons =
-    '#modal-delete-homework-footer > .btn-submit'
+    '[data-testid="delete-extended-homework-btn"]'
   static #taskDetailsTab = '[id="extended"]'
   static #submissionTab = '[id="submission-tab-link"]'
   static #submissionsTab = '[id="submissions-tab-link"]'
@@ -169,7 +169,8 @@ class Tasks {
   }
 
   clickConfirmDeletionButtonInEditTask () {
-    cy.get(Tasks.#dialogConfirmDeletionTaskButtons).click()
+    cy.get(Tasks.#dialogConfirmDeletionTaskButtons)
+      .click({force: true})
   }
 
   compareFeedbackText (feedbackText) {

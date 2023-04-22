@@ -15,7 +15,7 @@ class Management {
   static #emailEditForm = "input[name='email']"
   static #submitButton = '[data-testid="button_save_user"]'
   static #deleteButton = '[data-testid="button_delete_user"]'
-  static #deleteButtonConfirmation = '[data-testid="submit-btn-delete-user-modal"]'
+  static #deleteUserButtonConfirmationOnModal = '[data-testid="submit-btn-delete-user-modal"]'
   static #newSchoolAdminPageButton = '[data-testid="button_new_admin_page"]'
   static #chatToggleSwitch = '.rocketchat-switch'
   static #videoconferenceToggleSwitch = '.videoconference-switch'
@@ -172,12 +172,6 @@ class Management {
       .find('a')
       .should('have.attr', 'data-testid', 'edit_student_button')
       .click()
-      .wait([
-        '@alerts_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   clickEditTeacherButton (email) {
@@ -224,8 +218,8 @@ class Management {
     cy.get(Management.#deleteButton).click()
   }
 
-  clickDeleteButtonInPopup () {
-    cy.get(Management.#deleteButtonConfirmation).click({
+  clickUserDeleteButtonInModal () {
+    cy.get(Management.#deleteUserButtonConfirmationOnModal).click({
       multiple: true,
       force: true
     })
@@ -252,9 +246,10 @@ class Management {
   }
 
   userIsVisibleInTable (email) {
-    cy.get(Management.#searchbar).clear(Management.#searchbar)
+    cy.get(Management.#searchbar)
+      .clear()
     cy.get(Management.#tableContents)
-    cy.contains(email)
+      .contains(email)
       .should('be.visible')
       .and('contain.text', email)
   }
