@@ -23,6 +23,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I enable the video conference on the teams edit page
         Then I click on teams save changes button
 
+    @stable_test
     Scenario: as a pre-condition teacher adds student as an internal team member
         Given I am logged in as a 'teacher' at 'default'
         When I go to teams overview
@@ -34,6 +35,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         And I click on add user button
         Then I see the student named 'Herbert Kraft' on the team members table
 
+    @stable_test
     Scenario: Teacher adds  event with video conference
         Given I am logged in as a 'teacher' at 'default'
         When I go to teams overview
@@ -74,7 +76,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I select the student 'Herbert Kraft' and click on delete icon
         Then I see 'Herbert Kraft' is not visible on the table
 
-
+    @stable_test
     Scenario: as a post condition Teacher edits and deletes the event
         Given I am logged in as a 'teacher' at 'default'
         When I go to teams overview
@@ -98,7 +100,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on edit icon
         When I re enter the title 'edit cy title'
         When I re enter the description 'edit cy team event description cy'
-        When I re enter the place 'edit cy test place cy' and press the enter button to save the event
+        When I re enter the place 'edit cy test place cy' and press the submit button to save the event
         When I click on edit icon
         Then I see event creation modal
         When I click on Delete team event in modal
