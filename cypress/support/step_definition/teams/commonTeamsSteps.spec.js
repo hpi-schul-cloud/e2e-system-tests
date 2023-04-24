@@ -39,6 +39,10 @@ Then('I can see the chat in team', () => {
   teams.canSeeTeamChat()
 })
 
+Then ('I see team participants overview page', () =>{
+  teams.seeTeamMembersOverviewPage()
+})
+
 When('I click on three dot menu on the team title', () => {
   teams.clickOnThreeDotToManageTeam()
 })

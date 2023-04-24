@@ -26,16 +26,16 @@ Then(
   }
 )
 
+When('I click on save changes after editing the course details', () => {
+  courses.submitChangesAfterEditingCourse()
+})
+
 When('I open course edit page', () => {
   courses.openCourseEditPage()
 })
 
 Then('I can see course edit page', () => {
   courses.showCourseEditPage()
-})
-
-When('I click on save changes', () => {
-  courses.submitChanges()
 })
 
 When('I click on FAB to create the course', () => {
