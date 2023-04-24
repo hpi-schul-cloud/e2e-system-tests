@@ -43,8 +43,8 @@ Then('I click delete file button of file {string}', fileName => {
   files.clickOnDeleteFile(fileName)
 })
 
-Then('I click confirm delete file button of file {string}', fileName => {
-  files.clickOnConfirmDeleteFile(fileName)
+Then('I click confirm delete file button on modal', () => {
+  files.clickOnConfirmDeleteFileOnModal()
 })
 
 Then('LibreOffice opens', () => {

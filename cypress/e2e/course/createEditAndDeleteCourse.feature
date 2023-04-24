@@ -20,7 +20,7 @@ Feature: Course - To add and delete a course by the teacher
     When I open course edit page
     Then I can see course edit page
     Then I edit the title of the room to 'Cypress Testkurs Edit' and the description
-    And I click on save changes
+    And I click on save changes after editing the course details
 
   Scenario: Deleting the test course/room created during executing the testing
     Given I am logged in as a 'teacher' at 'brb'

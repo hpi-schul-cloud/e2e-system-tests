@@ -33,5 +33,5 @@ Scenario: Delete a LibreOffice text document
         Then I go to personal files overview
         Then I can see file with name 'Cy: LibraOffice Edit.docx'
         Then I click delete file button of file 'Cy: LibraOffice Edit.docx'
-        Then I click confirm delete file button of file 'Cy: LibraOffice Edit.docx'
+        Then I click confirm delete file button on modal
         Then I can not see file with name 'Cy: LibraOffice Edit.docx'

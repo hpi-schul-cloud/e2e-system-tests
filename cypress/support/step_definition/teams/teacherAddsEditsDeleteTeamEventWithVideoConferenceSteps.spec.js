@@ -40,18 +40,17 @@ When ('I enter the description {string}', (eventDescription) =>{
 	teams.enterTeamEventDescription(eventDescription)
 })
 
-When ('I enter the event place {string} and press enter to save the event', (eventPlace) =>{
-	teams.enterTeamEventPlaceAndPressEnter(eventPlace)
+When ('I enter the event place {string}', (eventPlace) =>{
+	teams.enterTeamEventPlace(eventPlace)
 })
 
 When ('I click on Save team event or I hit enter button on the keyboard to save it', () =>{
 	teams.clickOnSaveTeamEvent()
 })
 
-// this step is for clicking on save button in modal to create a new event using sanitizing approach
-//When ('I click on Save team event which has title {string}', (teamEventName) =>{
-	//teams.clickOnSaveToCreateNewTeamEvent(teamEventName)
-//})
+When ('I click on Save team event which has title {string}', (teamEventName) =>{
+	teams.clickOnSaveToCreateNewTeamEvent(teamEventName)
+})
 
 Then ('I am in calendar tab on team detail page and title {string} is visible', (eventTitle) =>{
 	teams.seeTeamEventTitleIsVisible(eventTitle)
@@ -69,7 +68,7 @@ When ('I re enter the description {string}', (editedEventDescription) =>{
   teams.editTeamEventDescription(editedEventDescription)
 })
 
-When ('I re enter the place {string} and press the enter button to save the event', (editedEventPlace) =>{
+When ('I re enter the place {string} and press the submit button to save the event', (editedEventPlace) =>{
   teams.editTeamEventPlace(editedEventPlace)
 })
 

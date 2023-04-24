@@ -27,7 +27,7 @@ When I go to a team 'Musik'
 When I click on three dot menu on the team title
 And I click on manage team members option
 And I click on add internal attendees button
-And new dialog opens to select student 'Herbert Kraft' from the drop down list
+And new dialog opens to select student 'Kraft, Herbert' from the drop down list
 And I click on add user button
 Then I see the student named 'Herbert Kraft' on the team members table
 
@@ -43,8 +43,8 @@ When I select the team event start date and time
 When I select the team event end date and time
 When I enter the description 'cy team event description cy'
 When I enable the video conference toggle on the modal
-When I enter the event place 'cy TestPlace' and press enter to save the event
-#When I click on Save team event which has title 'cy title' //currently there is a single 'save' button in the modal but used multiple time in the DOM on different pages, so this is is to be fixed (BC-3002)
+When I enter the event place 'cy TestPlace'
+When I click on Save team event which has title 'create-event-modal'
 When I go to calendar tab
 Then I am in calendar tab on team detail page and title 'cy title' is visible
 Then I see the start video conference button
@@ -77,7 +77,7 @@ When I go to calendar tab
 When I click on edit icon
 When I re enter the title 'edit cy title'
 When I re enter the description 'edit cy team event description cy'
-When I re enter the place 'edit cy test place cy' and press the enter button to save the event
+When I re enter the place 'edit cy test place cy' and press the submit button to save the event
 When I click on edit icon
 Then I see event creation modal
 When I click on Delete team event in modal

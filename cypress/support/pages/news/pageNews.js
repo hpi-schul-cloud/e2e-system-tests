@@ -15,8 +15,8 @@ class News {
   static #newsDescriptionVisible = '[class="ckcontent"]'
   static #newsName = '[data-testid="title_of_an_element"]'
   static #deleteNews = '[data-testid="btn-delete-news"]'
-  static #deleteNewsConfirmation = '[class="btn btn-primary btn-submit"]'
-
+  static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]'
+  static #titlebarNewsOverviewPage = '[id="titlebar"]'
 
   doNotSeeNews (newsName) {
     cy.get('span', { timeout: 20000 }).then($span => {
@@ -32,12 +32,12 @@ class News {
 
   confirmDeletionOnDialogBox () {
     cy.get(News.#deleteNewsConfirmation)
-      .contains('Löschen')
       .click()
   }
 
   clickOnDeleteNewsButton () {
-    cy.get(News.#deleteNews).click()
+    cy.get(News.#deleteNews)
+      .click()
   }
 
   openNewsDetailPage (newsName) {
@@ -80,6 +80,7 @@ class News {
 
   seeNewsCreationPage () {
     cy.url().should('include', '/news/new')
+    cy.get(News.#newsTitleInput).should('exist')
   }
 
   clickOnAddNews () {
@@ -92,6 +93,7 @@ class News {
       .click()
     cy.url()
       .should('include', '/news')
+    cy.get(News.#titlebarNewsOverviewPage).should('exist')
   }
 
   teacherReadsNewsOnOverviewPage(titleOfNews, descriptionOfNews) {
