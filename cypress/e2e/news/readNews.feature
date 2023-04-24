@@ -1,8 +1,10 @@
-@news @stable_test
+@pr
+@release
 Feature:  News - To read a news on the respective dashboards
 
   As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
 
+  @stable_test
   Scenario: as a pre-condition teacher creates school news
     Given I am logged in as a 'teacher' at 'brb'
     When I go to news overview
@@ -15,6 +17,7 @@ Feature:  News - To read a news on the respective dashboards
     And I click on save button
     Then I see news is created successfully with title 'News - this is a school news' and with description 'test school news description'
 
+  @stable_test
   Scenario: as a pre-condition teacher creates a team news
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
@@ -29,11 +32,13 @@ Feature:  News - To read a news on the respective dashboards
     And I click on save button
     Then I see news is created successfully with title 'News - this is a team news' and with description 'test team news description'
 
+  @stable_test
   Scenario: Reading a school news on news overview page
     Given I am logged in as a 'teacher' at 'brb'
     When I go to news overview
     Then I can read the news 'News - this is a school news' with description 'test school news description'
 
+  @stable_test
   Scenario: Reading a team news on teams news overview page
     Given I am logged in as a 'teacher' at 'brb'
     When I go to teams overview
@@ -41,6 +46,7 @@ Feature:  News - To read a news on the respective dashboards
     When I click on news tab on the team detail page
     Then I can read the news 'News - this is a team news' with description 'test team news description'
 
+  @stable_test
   Scenario: as a post-condition teacher deletes the school news
     Given I am logged in as a 'teacher' at 'brb'
     When I arrive on the dashboard
@@ -49,6 +55,7 @@ Feature:  News - To read a news on the respective dashboards
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'News - this is a school news'
 
+  @stable_test
   Scenario: as a post-condition teacher deletes the team news
     Given I am logged in as a 'teacher' at 'brb'
     When I arrive on the dashboard

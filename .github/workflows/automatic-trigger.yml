@@ -4,32 +4,14 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    #strategy:
-      #max-parallel: 1
-      #fail-fast: false
-      #matrix:
-        #spec: [
-            #'account',
-            #'addons',
-            #'admin',
-            #'courses',
-            #'dashboard',
-            #'files',
-            #'help'
-            #'login',
-            #'management',
-            #'news',
-            #'tasks',
-            #'team',
-            #'topics'
-          #]
+
     steps:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Checkout 🔔🔔🔔
+      - name: Checkout
         uses: actions/checkout@v3
 
       - name: Clean up previous report 🗑
@@ -37,7 +19,7 @@ jobs:
         with:
           command: npm run pretest
 
-      - name: Cypress run 🧪
+      - name: Cypress run
         uses: cypress-io/github-action@v5
         env:
           CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
@@ -69,50 +51,20 @@ jobs:
           command: npm run tag:stable
           browser: chrome
 
-      - name: Upload test artifacts 📬
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          if-no-files-found: error
-          name: artifacts
-          path: |
-            ${{ github.workspace }}/logs/
-            ${{ github.workspace }}/cypress/
-
-  generate-and-upload-report:
-    runs-on: ubuntu-latest
-    needs: e2e-system-tests
-    if: always()
-
-    steps:
-      - name: Checkout 🔔🔔🔔
-        uses: actions/checkout@v3
-
-      - name: 📩 Download reports artifacts 📩
-        uses: actions/download-artifact@v3
-        if: always()
-        with:
-          name: artifacts
-          path: |
-            ${{ github.workspace }}
-
-        #${{ github.workspace }}/logs/
-        #${{ github.workspace }}/cypress/fixtures/test-run-details.json
-
-      - name: Generate Report 🚀
+      - name: Generate Report
         uses: cypress-io/github-action@v5
         if: always()
         with:
           command: npm run generate:report
 
-      - name: Upload Report 🎉
+      - name: Upload Report
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-report
           path: ${{ github.workspace }}/reports
 
-      - name: Upload Video Artifact 📼
+      - name: Upload Video Artifact
         uses: actions/upload-artifact@v3
         if: always()
         with:

@@ -1,11 +1,12 @@
-
-@unstable_test
+@pr
+@release
 Feature: Admin External Tools - To administrate school settings by the admin.
 
   As an admin I want to administrate the external tools used in the school so that I can manage it
 
   This test is commented out at the moment and needs to be adapted
 
+  @unstable_test
   Scenario: Deactivate Chat
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -22,6 +23,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     And I choose edit team
     Then I can not see the checkbox for messenger in a team
 
+  @unstable_test
   Scenario: Activate Chat
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -40,6 +42,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     And click on save changes
     Then I can see the chat in team
 
+  @unstable_test
   Scenario: Deactivate BigBlueButton
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -55,6 +58,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     And I click add new tool button
     Then I can not add BigBlueButton to the room
 
+  @unstable_test
   Scenario: Activate BigBlueButton
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page

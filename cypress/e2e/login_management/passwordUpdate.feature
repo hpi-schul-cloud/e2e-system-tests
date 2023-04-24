@@ -1,8 +1,10 @@
-@login @stable_test
+@pr
+@release
 Feature: Password Update - Verify login functionality via password change
 
     As a user, I want to see how app behaves when I'll change password.
 
+    @stable_test
     Scenario: User change password, login and change again to old passwords.
         Given I am on the dBildungscloud login page
         Then I see Email field is visible and empty

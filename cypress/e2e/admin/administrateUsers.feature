@@ -1,8 +1,10 @@
-@admin @stable_test
+@pr
+@release
 Feature: Admin Users - To add, edit and delete new users by the admin.
 
   As an admin I want to create a new user so that I can administrate it
 
+  @stable_test
   Scenario: Adding a new student
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -13,6 +15,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I click on add button to add 'student'
     Then I can see the user with email 'adam.riese@example.com' in the table
 
+  @stable_test
   Scenario: Editing a new student
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -25,6 +28,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     Then I can see the user with email 'alex.abramovic@example.com' in the table
     Then I can not see user 'adam.riese@example.com' in the table
 
+  @stable_test
   Scenario: Deleting a student
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -35,6 +39,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I click on delete button in pop up
     Then I can not see user 'alex.abramovic@example.com' in the table
 
+  @stable_test
   Scenario: Adding a new teacher
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -45,6 +50,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I click on add button to add 'teacher'
     Then I can see the user with email 'karl.mueller@example.com' in the table
 
+  @stable_test
   Scenario: Editing a new teacher
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page
@@ -57,6 +63,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     Then I can see the user with email 't.mueschmidt@example.com' in the table
     Then I can not see user 'karl.mueller@example.com' in the table
 
+  @stable_test
   Scenario: Deleting a teacher
     Given I am logged in as a 'admin' at 'brb'
     When I go to administration page

@@ -1,8 +1,10 @@
-@tasks @stable_test
+@pr
+@release
 Feature: Task - To create, edit and delete tasks by the teacher.
 
   As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
 
+  @stable_test
   Scenario: Teacher creates task as draft from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -24,6 +26,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then I can see room page 'Course with subject and tasks'
     And I can see content 'Cy Task Creating and Deleting Test' on course page
 
+  @stable_test
   Scenario: Teacher edits and publishes task from room via form
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -57,6 +60,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And task-visibility-due-date is 'tomorrow' at '11:00'
     And Draft is disabled
 
+  @stable_test
   Scenario: Teacher edits file
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -90,6 +94,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I see file 'test_pdf.pdf' is not visible in section files
     And I see file 'example_jpg.jpg' is visible in section files
 
+  @stable_test
   Scenario: Student submits task
     Given I am logged in as a 'student1' at 'brb'
     When I go to rooms overview
@@ -109,6 +114,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on not graded tasks
     Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
 
+  @stable_test
   Scenario: Teacher grades task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -134,6 +140,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then I see task card info submitted contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
     And Task card info graded contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
 
+  @stable_test
   Scenario: Student sees grading
     Given I am logged in as a 'student1' at 'brb'
     When I go to tasks overview
@@ -147,6 +154,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I click on download file 'gradingfile-pdf.pdf' in grading
     Then file 'gradingfile-pdf.pdf' is saved in folder downloads
 
+  @stable_test
   Scenario: Teacher finishes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -154,6 +162,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on link finish for task 'Cy Task Creating, Editing, Deleting Test'
     Then I see task 'Cy Task Creating, Editing, Deleting Test' does not contain any buttons
 
+  @stable_test
   Scenario: Teacher restores the finished task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to tasks overview
@@ -172,6 +181,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I go to room 'Course with subject and tasks'
     Then I see task 'Cy Task Creating, Editing, Deleting Test' contains buttons
 
+  @stable_test
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
