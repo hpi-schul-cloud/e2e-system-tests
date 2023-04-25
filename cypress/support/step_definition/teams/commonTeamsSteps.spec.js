@@ -60,7 +60,7 @@ When('new dialog opens to select student {string} from the drop down list', () =
 })
 
 When('I click on add user button', () => {
-  teams.clickOnAddingNewTeamMemberButton()
+  teams.clickOnAddingNewTeamMemberButtonOnModal()
 })
 
 Then('I see the student named {string} on the team members table', (studentName) => {
