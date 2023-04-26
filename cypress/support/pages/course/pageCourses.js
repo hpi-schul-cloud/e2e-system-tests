@@ -136,22 +136,21 @@ class Courses {
 
   contentIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    cy.wait('@rooms_api')
+        .wait([
+          '@public_api',
+          '@me_api',
+          '@roles_api',
+          '@schools_api',
+          '@userPermissions_api'
+        ])
+        .then(interceptions => {
+          expect(interceptions[0].response.statusCode).to.equal(200)
+          expect(interceptions[1].state).to.equal('Complete')
+          expect(interceptions[1].response.statusCode).to.equal(200)
+        })
     cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
       .should('be.visible')
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@userPermissions_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })
   }
 
   contentIsNotVisibleOnCoursePage (contentTitle) {
