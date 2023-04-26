@@ -55,8 +55,8 @@ When('I click on add internal attendees button', () => {
   teams.clickOnAddInternalAttendees()
 })
 
-When('new dialog opens to select student {string} from the drop down list', () => {
-  teams.selectInternalTeamMember()
+When('new dialog opens to select student {string} from the drop down list', (studentName) => {
+  teams.selectInternalTeamMember(studentName)
 })
 
 When('I click on add user button', () => {

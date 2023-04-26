@@ -91,21 +91,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
 
-    @stable_test
-    Scenario: as a post condition Teacher edits and deletes the event
-        Given I am logged in as a 'teacher' at 'default'
-        When I go to teams overview
-        When I go to a team 'Musik'
-        When I go to calendar tab
-        When I click on edit icon
-        When I re enter the title 'edit cy title'
-        When I re enter the description 'edit cy team event description cy'
-        When I re enter the place 'edit cy test place cy' and press the submit button to save the event
-        When I click on edit icon
-        Then I see event creation modal
-        When I click on Delete team event in modal
-        Then I am in calendar tab on team detail page and title is NOT visible
-
 
     @stable_test
     Scenario: as a post condition Admin disable the video conference for the team
