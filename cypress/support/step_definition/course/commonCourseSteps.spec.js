@@ -146,3 +146,7 @@ And('I clear substitute teacher field', () => {
 And('I add substitute teacher {string}', username => {
   courses.addSubstituteTeacher(username)
 })
+
+Then('I delete all courses named {string}', courseName => {
+  courses.deleteAllCoursesMatchingName(courseName);
+})

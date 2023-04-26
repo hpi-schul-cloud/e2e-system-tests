@@ -393,7 +393,59 @@ class Courses {
     cy.get(Courses.#chosenContainer).should('contain', userFullName)
   }
 
+  deleteAllCoursesMatchingName (roomName) {
+    cy.get('h1')
+        .eq(0)
+        .then($title => {
+          const htmlTitlePage = $title.text()
+          if (htmlTitlePage.includes('Kurse')) {
+            this.deleteCursesByName('Kurs', roomName)
+          } else if (htmlTitlePage.includes('courses')) {
+            this.deleteCursesByName('Course', roomName)
+          } else if (htmlTitlePage.includes('Cursos')) {
+            this.deleteCursesByName('Curso', roomName)
+          } else if (htmlTitlePage.includes('Поточні')) {
+            this.deleteCursesByName('Курс', roomName)
+          }
+        })
+  }
 
+  deleteCursesByName (courseLabel, roomName) {
+    cy.get(`[class="rooms-container"]`).then($roomsContainer => {
+      if ($roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length) {
+        cy.get(`[aria-label="${courseLabel} ${roomName}"]`).then(($rooms) => {
+          if ($rooms) {
+            cy.wrap($rooms).first().click()
+            cy.wait(['@board_api', '@userPermissions_api', '@rooms_api']);
+            this.openCourseEditPage();
+            cy.get(Courses.#deleteButton).should('exist').click()
+            cy.get(Courses.#confirmDeletionPopup)
+                .click({
+                  multiple: true,
+                  force: true
+                })
+                .wait(
+                    [
+                      '@runtime_config_api',
+                      '@public_api',
+                      '@me_api',
+                      '@roles_api',
+                      '@schools_api',
+                      '@alert_api',
+                      '@dashboard_api',
+                      '@rooms_overview_api'
+                    ],
+                    {timeout: 80000}
+                )
+
+            if ($rooms.length > 1) {
+              this.deleteAllCoursesMatchingName(roomName)
+            }
+          }
+        })
+      }
+    })
+  }
 
 }
 export default Courses
