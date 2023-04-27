@@ -169,7 +169,9 @@ class Courses {
     cy.wait('@homework_api')
   }
   openThreeDotMenuForContent (contentTitle) {
-    cy.contains(contentTitle).prev().find('button').click()
+    cy.get(Courses.#contentCardContent).contains(contentTitle)
+        .parent()
+        .find('button').click()
   }
 
   openThreeDotMenuForTopic (contentTitle) {
@@ -246,6 +248,7 @@ class Courses {
       .find(Courses.#contentCardTaskActions)
       .find('button')
       .click()
+        .wait(['@task_finish_api'])
   }
 
   checkTaskCardDoesNotHaveButtons (taskTitle) {

@@ -82,7 +82,9 @@ class Tasks {
   static #downloadFileGradingSection =
     '[data-testid="submissions-section-files"]'
   static #downloadFileTitle = '.card-title'
+  static #fileTitleCard = '[data-testid="file-title-card"]'
   static #downloadFileText = '.card-text'
+  static #downloadFileButton = '[data-testid="file-download-btn"]'
 
   navigateToTasksOverview () {
     cy.visit('/tasks')
@@ -429,11 +431,11 @@ class Tasks {
       .first()
       .then(elm => {
         cy.get(elm)
-          .contains(Tasks.#downloadFileTitle, fileName)
+          .find(Tasks.#fileTitleCard)
+          .contains(fileName)
           .should('be.visible')
         cy.get(elm)
-          .find(Tasks.#downloadFileText)
-          .find('button')
+          .find(Tasks.#downloadFileButton)
           .should('be.visible')
           .click()
       })
@@ -601,7 +603,9 @@ class Tasks {
   }
 
   clickTaskFinishInDotMenu () {
-    cy.get(Tasks.#taskFinishButtonInDotMenu).click()
+    cy.get(Tasks.#taskFinishButtonInDotMenu)
+        .click()
+        .wait(['@task_restore_api'])
   }
 
   clickLowerTaskSectionIcon () {

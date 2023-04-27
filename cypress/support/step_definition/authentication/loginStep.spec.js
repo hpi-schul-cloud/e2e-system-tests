@@ -18,6 +18,8 @@ Before(() => {
   cy.intercept('**/alerts').as('alerts_api')
   cy.intercept('**/alert').as('alert_api')
   cy.intercept('**/tasks**').as('tasks_api')
+  cy.intercept('**/tasks/**/finish').as('task_finish_api')
+  cy.intercept('**/tasks/**/restore').as('task_restore_api')
   cy.intercept('**/runtime.config.json').as('runtime_config_api')
   cy.intercept('**/board').as('board_api')
   cy.intercept('**/courses?**').as('courses_api')
