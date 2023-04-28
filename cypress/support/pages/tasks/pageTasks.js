@@ -62,6 +62,8 @@ class Tasks {
     '[data-testid="task-submission-grading-tab"]'
   static #taskFeedbackTabLink = '[id="feedback-tab-link"]'
   static #feedbackSection = '[id="feedback"]'
+  static #feedbackComment = '[data-testid="feedback-comment"]'
+  static #feedbackGrade = '[data-testid="feedback-grade"]'
   static #finishedTasksTab = '[data-testid="finishedTasks"]'
   static #openTasksTab = '[data-testid="openTasks"]'
   static #finishedTasksListDiv = '[id="finished"]'
@@ -176,11 +178,11 @@ class Tasks {
   }
 
   compareFeedbackText (feedbackText) {
-    cy.get(Tasks.#feedbackSection).should('contain', feedbackText)
+    cy.get(Tasks.#feedbackComment).should('contain', feedbackText)
   }
 
   compareFeedbackGrade (feedbackGrade) {
-    cy.get(Tasks.#feedbackSection).should('contain', feedbackGrade)
+    cy.get(Tasks.#feedbackGrade).should('contain', feedbackGrade)
   }
 
   seeUploadFileButtonIsDisabled () {
