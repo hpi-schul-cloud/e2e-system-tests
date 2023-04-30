@@ -76,7 +76,9 @@ class Tasks {
   static #createContentButton =  '[data-testid="add-content-button"]'
   static #addTaskButton = '[data-testid="fab_button_add_task"]'
   static #taskNameInput = '[data-testid="homework-name"]'
-  static #homeworkDescription = '[class="ck ck-editor__main"]'
+  static #homeworkDescription = '[data-testid="homework-description"]'
+  static #submissionComment = '[data-testid="submission-comment"]'
+  static #submissionText = '[data-testid="submission-text"]'
   static #draftTasksTab = '[data-testid="draftTasks"]'
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
@@ -127,8 +129,18 @@ class Tasks {
   }
 
   setTaskText (taskText) {
-    cy.get(Tasks.#homeworkDescription).find('div > p').clear()
-    cy.get(Tasks.#homeworkDescription).find('div > p').type(taskText)
+    cy.get(Tasks.#homeworkDescription).next().find("p").clear()
+    cy.get(Tasks.#homeworkDescription).next().find("p").type(taskText)
+  }
+
+  setSubmissionComment (taskComment) {
+    cy.get(Tasks.#submissionComment).next().find("p").clear()
+    cy.get(Tasks.#submissionComment).next().find("p").type(taskComment)
+  }
+
+  setSubmissionText (taskText) {
+    cy.get(Tasks.#submissionText).next().find("p").clear()
+    cy.get(Tasks.#submissionText).next().find("p").type(taskText)
   }
 
   clickOnTabDraftTasks () {

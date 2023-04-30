@@ -43,6 +43,7 @@ class Management {
   clickOnAdminSettingsSave () {
     cy.get(Management.#saveGeneralAdminSetting)
       .click()
+        .wait(['@alert_api'])
   }
 
   enableTeamsVideoConferenceByAdmin () {
@@ -53,6 +54,7 @@ class Management {
   clickOnManageSchoolCard () {
     cy.get(Management.#manageSchoolCard)
       .click()
+        .wait(['@alert_api'])
   }
 
   clickAllowStudentsTeamCheckbox () {
@@ -80,7 +82,9 @@ class Management {
   }
 
   navigateToAdministration() {
-    cy.get(Management.#administrationOverviewNavigationButton).click()
+    cy.get(Management.#administrationOverviewNavigationButton)
+        .click()
+        .wait(['@alert_api'])
     cy.url().should('include', '/administration')
   }
 

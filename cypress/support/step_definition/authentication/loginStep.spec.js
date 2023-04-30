@@ -29,6 +29,7 @@ Before(() => {
   cy.intercept('**/teams**').as('teams_api')
   cy.intercept('**/courses/**').as('course_api')
   cy.intercept('**/rooms-overview**').as('rooms_overview_api')
+  cy.intercept('**/videoconference/event/**').as("videoconference_api")
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {

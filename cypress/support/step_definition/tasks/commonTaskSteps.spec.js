@@ -35,11 +35,11 @@ And ('I enter task description {string}', (taskDescription) => {
 })
 
 And ('I enter text submission {string}', (submissionText) => {
-  tasks.setTaskText(submissionText)
+  tasks.setSubmissionText(submissionText)
 })
 
 And ('I enter comment {string}', (gradingText) => {
-  tasks.setTaskText(gradingText)
+  tasks.setSubmissionComment(gradingText)
 })
 
 When('I click on draft tasks tab', () => {

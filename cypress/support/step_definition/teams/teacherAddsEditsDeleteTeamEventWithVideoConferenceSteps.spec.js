@@ -47,8 +47,8 @@ When ('I click on Save team event or I hit enter button on the keyboard to save 
 	teams.clickOnSaveTeamEvent()
 })
 
-When ('I click on Save team event which has title {string}', (teamEventName) =>{
-	teams.clickOnSaveToCreateNewTeamEvent(teamEventName)
+When ('I click on Save team event button', () =>{
+	teams.clickOnSaveToCreateNewTeamEvent()
 })
 
 Then ('I am in calendar tab on team detail page and title {string} is visible', (eventTitle) =>{

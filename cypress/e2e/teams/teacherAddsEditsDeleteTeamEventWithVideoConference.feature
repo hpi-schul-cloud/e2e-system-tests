@@ -44,7 +44,7 @@ When I select the team event end date and time
 When I enter the description 'cy team event description cy'
 When I enable the video conference toggle on the modal
 When I enter the event place 'cy TestPlace'
-When I click on Save team event which has title 'create-event-modal'
+When I click on Save team event button
 When I go to calendar tab
 Then I am in calendar tab on team detail page and title 'cy title' is visible
 Then I see the start video conference button
