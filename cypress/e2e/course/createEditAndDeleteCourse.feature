@@ -1,8 +1,10 @@
-#@courses @stable_test
+@pr
+@release
 Feature: Course - To add and delete a course by the teacher
 
   As a teacher I want to create a new course and want to delete the newly created test course/room so that list of courses/rooms can be cleaned and not full with the newly created test courses/rooms.
 
+  @stable_test
   Scenario: Adding a new course
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview
@@ -13,6 +15,7 @@ Feature: Course - To add and delete a course by the teacher
     When I click on button To Course Overview
     Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
 
+  @stable_test
   Scenario: Editing the course
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview
@@ -22,6 +25,7 @@ Feature: Course - To add and delete a course by the teacher
     Then I edit the title of the room to 'Cypress Testkurs Edit' and the description
     And I click on save changes after editing the course details
 
+  @stable_test
   Scenario: Deleting the test course/room created during executing the testing
     Given I am logged in as a 'teacher' at 'brb'
     When I go to rooms overview

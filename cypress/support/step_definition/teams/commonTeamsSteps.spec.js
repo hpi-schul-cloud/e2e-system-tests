@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Teams from '../../pages/teams/pageTeams'
 
 const teams = new Teams()
@@ -10,7 +11,7 @@ When('I go to teams overview', () => {
   teams.navigateToTeamsOverview()
 })
 
-And('I go to a team {string}', (teamName) => {
+When('I go to a team {string}', (teamName) => {
   teams.selectTeam(teamName)
 })
 
@@ -18,11 +19,11 @@ Then('I can not see the chat in team', () => {
   teams.canNotSeeTeamChat()
 })
 
-And('I open team settings', () => {
+When('I open team settings', () => {
   teams.openTeamSettings()
 })
 
-And('I choose edit team', () => {
+When('I choose edit team', () => {
   teams.editTeam()
 })
 
@@ -38,27 +39,27 @@ Then('I can see the chat in team', () => {
   teams.canSeeTeamChat()
 })
 
-And('I click on three dot menu on the team title', () => {
-  teams.clickOnThreeDotToManageTeam()
-})
-
-And('I click on manage team members option', () => {
-  teams.clickOnManageTeamMembersEditOption()
-})
-
 Then ('I see team participants overview page', () =>{
   teams.seeTeamMembersOverviewPage()
 })
 
-And('I click on add internal attendees button', () => {
+When('I click on three dot menu on the team title', () => {
+  teams.clickOnThreeDotToManageTeam()
+})
+
+When('I click on manage team members option', () => {
+  teams.clickOnManageTeamMembersEditOption()
+})
+
+When('I click on add internal attendees button', () => {
   teams.clickOnAddInternalAttendees()
 })
 
-And('new dialog opens to select student {string} from the drop down list', (studentName) => {
+When('new dialog opens to select student {string} from the drop down list', (studentName) => {
   teams.selectInternalTeamMember(studentName)
 })
 
-And('I click on add user button', () => {
+When('I click on add user button', () => {
   teams.clickOnAddingNewTeamMemberButtonOnModal()
 })
 
@@ -78,6 +79,6 @@ When('I click on news tab on the team detail page', () => {
   teams.clickOnNewsTabInTeamDetailPage()
 })
 
-And('I click on create news button', () => {
+When('I click on create news button', () => {
   teams.clickOnCreateNewsOnTeamDetailPage()
 })

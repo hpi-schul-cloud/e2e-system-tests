@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Help from '../../pages/help_section/pageHelpSection'
 
 const help = new Help()

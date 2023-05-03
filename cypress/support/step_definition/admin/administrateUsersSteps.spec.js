@@ -1,3 +1,4 @@
+const { When, Then } = require('@badeball/cypress-cucumber-preprocessor')
 import Management from '../../pages/admin/pageAdministration'
 
 const management = new Management()
@@ -11,51 +12,57 @@ const management = new Management()
 
 //Scenario: Adding a new student
 
-And('I fill out the user creation form for {string} {string} with email {string}', (forename, surname, email) => {
-  management.fillUserCreationForm(forename, surname, email)
-})
+When(
+  'I fill out the user creation form for {string} {string} with email {string}',
+  (forename, surname, email) => {
+    management.fillUserCreationForm(forename, surname, email)
+  }
+)
 
-And('I click on add button to add {string}', (role) => {
+When('I click on add button to add {string}', role => {
   management.clickOnAddButton(role)
 })
 
-Then('I can see the user with email {string} in the table', (email) => {
+Then('I can see the user with email {string} in the table', email => {
   management.userIsVisibleInTable(email)
 })
 
 //Scenario: Editing a new student
 
-And('I enter {string} email {string} in search input field', (role, keyword) => {
-  management.enterNameForSearch(role, keyword)
-})
+When(
+  'I enter {string} email {string} in search input field',
+  (role, keyword) => {
+    management.enterNameForSearch(role, keyword)
+  }
+)
 
-And('I change username to {string} {string}', (firstname, surname) => {
+When('I change username to {string} {string}', (firstname, surname) => {
   management.changeUsername(firstname, surname)
 })
 
-And('I change email to {string}', (newEmail) => {
+When('I change email to {string}', newEmail => {
   management.changeEmail(newEmail)
 })
 
-And('I click save changes button', () => {
+When('I click save changes button', () => {
   management.clickSaveButton()
 })
 
 // Scenario: Deleting a student
 
-And('I click edit student button for {string}', (email) => {
+When('I click edit student button for {string}', email => {
   management.clickEditStudentButton(email)
 })
 
-And('I click delete user button to delete user with email {string}', (email) => {
+When('I click delete user button to delete user with email {string}', email => {
   management.deleteUser(email)
 })
 
-And('I click on delete button in pop up', () => {
+When('I click on delete button in pop up', () => {
   management.clickUserDeleteButtonInModal()
 })
 
-Then('I can not see user {string} in the table', (email) => {
+Then('I can not see user {string} in the table', email => {
   management.userIsNotVisibleInTable(email)
 })
 
@@ -63,12 +70,8 @@ Then('I can not see user {string} in the table', (email) => {
 
 //Scenario: Editing a new teacher
 
-And('I click edit teacher button for {string}', (email) => {
+When('I click edit teacher button for {string}', email => {
   management.clickEditTeacherButton(email)
-})
-
-And('I click save changes button', () => {
-  management.clickSaveButton()
 })
 
 Then('I can see the edited teacher in the table', () => {
@@ -77,6 +80,6 @@ Then('I can see the edited teacher in the table', () => {
 
 //Scenario: Deleting a teacher
 
-And('I click delete user button', () => {
+When('I click delete user button', () => {
   management.clickDeleteButton()
 })

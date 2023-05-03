@@ -7,22 +7,13 @@
 		"cy:run": "cypress run --browser chrome --headless",
 		"cy:open": "cypress open",
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
-		"generate:report": "node cucumber-html-report.js",
+		"generate:report": "node reporter.js",
 		"posttest": "npm run cy:run || npm run generate:report",
-		"tag:stable:tasks": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@tasks'",
-		"tag:stable:management": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@management and @stable_test'",
-		"tag:stable:courses": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@courses and @stable_test'",
-		"tag:stable:dashboard": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@dashboard and @stable_test'",
-		"tag:stable:help": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@help and @stable_test'",
-		"tag:stable:news": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@news and @stable_test'",
-		"tag:stable:account": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@account and @stable_test'",
-		"tag:stable:addons": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@addons and @stable_test'",
-		"tag:stable:login": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@login and @stable_test'",
-		"tag:stable:team": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@team and @stable_test'",
-		"tag:stable:files": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@files and @stable_test'",
-		"tag:stable:topics": "./node_modules/.bin/cypress-tags run --browser chrome -e TAGS='@topics and @stable_test'",
-		"tag:unstable": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@unstable_test'",
-		"tag:only": "./node_modules/.bin/cypress-tags run --browser chrome  -e TAGS='@only'"
+		"tag:stable": "cypress run --browser chrome -e tags='@stable_test'",
+		"tag:stable:pr": "cypress run --browser chrome -e tags='@pr and @stable_test'",
+		"tag:stable:release": "cypress run --browser chrome -e tags='@release and @stable_test'",
+		"tag:unstable": "cypress run --browser chrome -e tags='@unstable_test'",
+		"tag:only": "cypress run --browser chrome -e tags='@only'"
 	},
 	"repository": {
 		"type": "git",
@@ -38,16 +29,28 @@
 	},
 	"homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
 	"devDependencies": {
+		"@badeball/cypress-cucumber-preprocessor": "^16.0.2",
+		"@cypress/webpack-preprocessor": "^5.17.0",
 		"cypress": "^12.8.0",
-		"cypress-cucumber-preprocessor": "^4.3.1",
 		"cypress-file-upload": "^5.0.8",
-		"multiple-cucumber-html-reporter": "^1.21.4"
+		"multiple-cucumber-html-reporter": "^1.21.4",
+		"webpack": "^5.77.0"
 	},
 	"cypress-cucumber-preprocessor": {
-		"nonGlobalStepDefinitions": false,
-		"stepDefinitions": "cypress/support/step_definition/",
-		"cucumberJson": {
-			"generate": true
+		"stepDefinitions": "cypress/support/step_definition/**/*.js",
+		"filterSpecs": true,
+		"omitFiltered": true,
+		"json": {
+			"enabled": true,
+			"output": "logs/json-report.json"
+		},
+		"messages": {
+			"enabled": false,
+			"output": "logs/messages.ndjson"
+		},
+		"html": {
+			"enabled": false,
+			"output": "html-report/report.html"
 		}
 	}
 }

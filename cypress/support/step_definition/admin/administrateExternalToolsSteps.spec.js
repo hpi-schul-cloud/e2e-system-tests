@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Management from '../../pages/admin/pageAdministration'
 import Teams from '../../pages/teams/pageTeams'
 
@@ -26,10 +27,10 @@ When('I click on toggle switch to activate the chat', () => {
   management.clickChatToggleSwitch()
 })
 
-And ('I selected the messenger activation checkbox',()=>{
+When ('I selected the messenger activation checkbox',()=>{
   teams.enableMessangerInTeamEdit()
 })
 
-And ('click on save changes',()=>{
+When ('click on save changes',()=>{
   teams.clickOnSaveAfterEdit()
 })
