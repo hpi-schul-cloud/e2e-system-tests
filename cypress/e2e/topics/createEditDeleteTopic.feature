@@ -1,8 +1,10 @@
-#@topics @stable_test
+@pr
+@release
 Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
 
+  @stable_test
   Scenario: Teacher creates topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -35,6 +37,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on last breadcrump element in topbar navigation
     Then I can see content 'Cy Topic Creating and Deleting Test' on course page
 
+  @stable_test
   Scenario: Teacher edits topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -59,7 +62,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see form element Text on position '4'
     When I enter title 'Cy New text element Title' into element Text in element position '4'
     When I enter description 'Cy New this is the description of the topic. It is used for automated Cypress tests.' into element Text in element position '4'
-# NOTICE: steps for later implementation are commented out
+    # NOTICE: steps for later implementation are commented out
     # When I load up a file 'example_jpg.jpg' to the description of form element Text on position '4'
     # When I move Text element on position '4' to position '3'
     # Then I can see form element Text on position '3'
@@ -68,7 +71,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I enter description for the ether pad 'changed etherpad description' in element position '2'
     When I click on save button to save changes
     Then I see topic detail page "Cy Topic Creating and Deleting Test - Edited topic" with content elements "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic Changed", "Cy Title for Task Element in Topic" and "Cy New text element Title"
-# NOTICE: steps for later implementation are commented out
+    # NOTICE: steps for later implementation are commented out
     # Then I see file 'example_jpg.jpg' on topic page
     # When I click on button Edit on topic page
     # Then I can see form element Text on position '3'
@@ -78,6 +81,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on last breadcrump element in topbar navigation
     Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
+  @stable_test
   Scenario: Teacher deletes topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview

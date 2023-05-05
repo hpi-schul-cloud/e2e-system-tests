@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Teams from '../../pages/teams/pageTeams'
 
 const teams = new Teams()

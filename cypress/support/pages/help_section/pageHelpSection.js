@@ -102,8 +102,9 @@ class Help {
 
   fillOutContactForm() {
     cy.get(Help.#selectProblemDropdown)
-    .select(1, {force:true})
+      .select('Aufgaben', {force: true})
     cy.get(Help.#bugFormHeadline)
+      .focus()
       .type('Dies ist ein Test!')
     cy.get(Help.#bugFormMail)
       .type('test@example.com')

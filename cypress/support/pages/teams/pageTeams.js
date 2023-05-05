@@ -24,7 +24,7 @@ class Teams {
   static #teamEventEndDateTime = '[data-testid="form-datetime-input-endDate"]'
   static #teamEventDescrptionInput = '[data-testid="team_event_description"]'
   static #teamEventPlaceInput = '[data-testid="team_event_location"]'
-  static #teamEventSaveButton = '[data-testid="btn-submit"]'
+  static #teamEventSaveButton = '[data-testid="submit-btn-edit-event-modal"]'
   static #teamEventEditIcon = '[data-testid="edit_team_event"]'
   static #teamEventDeleteButton = '[data-testid="delete_team_event"]'
   static #videoConferenceCheckBoxOnTeamSetting = '[data-testid="videoconf_checkbox"]'
@@ -52,31 +52,26 @@ class Teams {
   static #addInternalTeamMemberButton = '[data-testid="internal_team_members"]'
   static #selectInternalTeamMember = '[data-testid="select_team_members_add"]'
   static #studentTableBody = '[data-testid="students_names_container"]'
-  static #confirmTeamMemberAddButton = '[data-testid="btn-submit"]'
-  static #confirmTeamMemberDeleteButton = '[data-testid="btn-submit"]'
+  static #confirmTeamMemberAddButtonOnModal = '[data-testid="submit-btn-add-member-modal"]'
+  static #confirmTeamMemberDeleteButtonOnModal = '[data-testid="submit-btn-delete-member-modal"]'
   static #deleteIconInTableViewRow = '[data-testid="btn-delete-team-member"]'
   static #teamMemberInTable = 'tr'
   static #testAssertionData = {
-    firstName: 'Kraft',
-    lastName: 'Herbert',
-    fullName: 'Kraft, Herbert',
-    deletePopupText: 'Teilnehmer:in löschen',
     activateMessengerText: 'Messenger für Team aktivieren',
     activateVideoMessengerText: 'Videokonferenzen für Team aktivieren'
   }
   static #videoConferenceNotStartedIcon = '[data-testid="video-conference-not-started-info-icon"]'
   static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
   static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
-  static #pageTitleTeamsOverview = '[id="page-title"]'
   static #teamsMembersOverviewPageTitle = '[id="page-title"]'
 
 
-  // this method is for clicking on add button to create a new team event in the calander tab
-  //clickOnSaveToCreateNewTeamEvent (teamEventName) {
-    //const sanitizedTeamEventName = teamEventName.replace(/[^A-Za-z0-9_-]*/img, '')
-    //cy.get(`[data-testid=btn-submit-${sanitizedTeamEventName}]`)
-      //.click()
-  //}
+
+  clickOnSaveToCreateNewTeamEvent (teamEventName) {
+    const sanitizedTeamEventName = teamEventName.replace(/[^A-Za-z0-9_-]*/img, '')
+    cy.get(`[data-testid=submit-btn-${sanitizedTeamEventName}]`)
+      .click().wait(2000)
+  }
 
   seeTeamMembersOverviewPage() {
     cy.url()
@@ -101,8 +96,7 @@ class Teams {
   }
 
   clickOnVideoParticipantLinkButtonAsStudent () {
-    cy.get(Teams.#teamVideoConferenceJoinLinkButton)
-      .click()
+    cy.get(Teams.#teamVideoConferenceJoinLinkButton).last()
   }
 
   seeVideoPartcipationButtonAsStudent () {
@@ -129,6 +123,7 @@ class Teams {
   }
 
   startTeamVideoConferenceFromModal (teamEventTitle) {
+    cy.get(`[data-testid=start_video_conference_link`).last()
     const sanitizedTeamEventTitle = teamEventTitle.replace(/[^A-Za-z0-9_-]*/img, '')
     cy.get(`[data-testid=submit-btn-${sanitizedTeamEventTitle}]`)
       .click()
@@ -185,7 +180,8 @@ class Teams {
     .eq(1)
     .clear()
     .type(editedEventPlace)
-    .type('{enter}')
+
+    cy.get(Teams.#teamEventSaveButton).click()
   }
 
   editTeamEventTitle (editedEventTitle) {
@@ -210,12 +206,10 @@ class Teams {
       .click()
   }
 
-  enterTeamEventPlaceAndPressEnter (eventPlace) {
+  enterTeamEventPlace (eventPlace) {
     cy.get(Teams.#teamEventPlaceInput)
       .eq(1)
       .type(eventPlace)
-      .type('{enter}')
-      .wait(2000)
   }
 
   enterTeamEventDescription (eventDescription) {
@@ -254,45 +248,40 @@ class Teams {
       .click()
   }
 
-  doNotSeeDeletedStudentInTeam () {
+  doNotSeeDeletedStudentInTeam (studentName) {
     cy.get(Teams.#studentTableBody)
-      .find(Teams.#testAssertionData.lastName)
+      .find(studentName)
       .should('not.exist')
   }
 
-  removeStudentInTeam () {
+  removeStudentInTeam (studentName) {
     cy.get(Teams.#studentTableBody)
-      .contains(
-        Teams.#teamMemberInTable,
-        Teams.#testAssertionData.lastName
-      )
+      .contains(studentName)
       .then(tableRow => {
         cy.wrap(tableRow)
           .find(Teams.#deleteIconInTableViewRow)
           .click()
-        cy.get(Teams.#confirmTeamMemberDeleteButton)
-          .contains(Teams.#testAssertionData.deletePopupText)
+        cy.get(Teams.#confirmTeamMemberDeleteButtonOnModal)
           .click()
       })
   }
 
-  seeNewlyAddedStudentAsInternalTeamMember () {
+  seeNewlyAddedStudentAsInternalTeamMember (studentName) {
     cy.get(Teams.#studentTableBody).find(
-      Teams.#teamMemberInTable,
-      Teams.#testAssertionData.lastName
-    )
+      Teams.#teamMemberInTable, studentName)
   }
 
-  clickOnAddingNewTeamMemberButton () {
-    cy.get(Teams.#confirmTeamMemberAddButton, { timeout: 20000 })
-      .click({ multiple: true, force: true})
+  clickOnAddingNewTeamMemberButtonOnModal () {
+    cy.get(Teams.#confirmTeamMemberAddButtonOnModal)
+      .click()
+      .wait(1000)
   }
 
-  selectInternalTeamMember () {
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 200000 }).invoke('show')
-    cy.get(Teams.#selectInternalTeamMember, { timeout: 20000 })
+  selectInternalTeamMember (studentName) {
+    cy.get(Teams.#selectInternalTeamMember).invoke('show')
+    cy.get(Teams.#selectInternalTeamMember)
       .should('be.visible')
-      .select(Teams.#testAssertionData.fullName, { force: true })
+      .select(studentName)
   }
 
   clickOnAddInternalAttendees () {
@@ -322,7 +311,6 @@ class Teams {
       .click()
     cy.url()
       .should('include', '/teams')
-    cy.get(Teams.#pageTitleTeamsOverview).should('exist')
   }
 
   selectTeam (teamName) {

@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Account from '../../pages/account/pageAccount'
 
 const account = new Account()

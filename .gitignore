@@ -9,10 +9,15 @@ reports
 downloads
 runner-results
 multi-reporter-config.json
+cucumber-html-report.js
 
 .project
 .settings
 .idea
 *.log
+logs
 secrets
 *.swp
+.zshrc
+test-run-details.json
+cypress/fixtures/test-run-details.json
