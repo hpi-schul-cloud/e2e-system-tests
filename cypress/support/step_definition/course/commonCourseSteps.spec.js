@@ -2,11 +2,16 @@ import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()
 
+
+Then ('I see room search box on the room overview page', () => {
+  courses.seeRoomSearchBoxOnRoomOverview()
+})
+
 When('I go to rooms overview', () => {
   courses.navigateToRoomsOverview()
 })
 
-And('I go to room {string}', roomName => {
+When('I go to room {string}', (roomName) => {
   courses.navigateToRoomBoard(roomName)
 })
 
@@ -33,12 +38,12 @@ Then('I can see course edit page', () => {
   courses.showCourseEditPage()
 })
 
-And('I click on save changes', () => {
-  courses.submitChanges()
+When('I click on save changes after editing the course details', () => {
+  courses.submitChangesAfterEditingCourse()
 })
 
-And('I click on FAB to create the course', () => {
-  courses.clickOnCreateCourseFAB()
+When ('I click on FAB to create a new room', () => {
+  courses.clickOnCreateRoomFAB()
 })
 
 And('I click on FAB to create new content', () => {

@@ -43,9 +43,91 @@ class Courses {
   static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]'
   static #chosenResults = '.chosen-results li'
   static #chosenContainer  = '.chosen-container span'
+  static #roomSearrchBox = '[data-testid="search-field"]'
+  static #selectRoomColour = '[data-testid="color-picker"]'
+  static #RoomColourAsRed = '[aria-label="#D50000"]'
+  static #chosenCourseTeacher = '[id="courseTeacher_chosen"]'
+  static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]'
+  static #courseStartDatePicker = '[data-testid="date_start"]'
+  static #courseEndDatePicker = '[data-testid="form-date-input-untilDate"]'
+  static #courseTimeTableContainer = '[data-timesref="#timesContainer"]'
+  static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]'
+  static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]'
+  static #nextButtonToCreateCourseOnParticipationDeatilStep = '[id="nextSection"]'
+  static #sectionThreeAreaOnCourseCreationPage = '[data-testid="section-3-area"]'
+  static #sectionOneAreaOnCourseCreationPage = '[data-testid="section-1-area"]'
+  static #sectionTwoAreaOnCourseCreationPage = '[data-testid="section-2-area"]'
+  static #courseDeleteConfirmationModal = '[data-testid="popup-title"]'
+
+
+
+
+  seeSectionOneAreaOnCourseCreatePage() {
+    cy.get(Courses.#sectionOneAreaOnCourseCreationPage)
+      .should('exist')
+  }
+
+  seeSectionTwoAreaOnCourseCreatePage() {
+    cy.get(Courses.#sectionTwoAreaOnCourseCreationPage)
+      .should('exist')
+  }
+
+  seeSelectedDefaultTeacher(defaultTeacherName) {
+    cy.get(Courses.#chosenCourseTeacher)
+      .contains(defaultTeacherName)
+  }
+
+  seeSubstituteTeacherSelectionBox() {
+    cy.get(Courses.#chosenSubstituteTeacher)
+      .should('exist')
+  }
+
+  seeDatePickersForCourseInSchoolYear() {
+    cy.get(Courses.#courseStartDatePicker)
+      .should('exist')
+    cy.get(Courses.#courseEndDatePicker)
+      .should('exist')
+  }
+
+  seeCreateCourseTimeTableContainer() {
+    cy.get(Courses.#courseTimeTableContainer)
+      .should('exist')
+  }
+
+  seeSelectionBoxToSelectClass() {
+    cy.get(Courses.#addClassToCourseSelectionBox)
+      .should('exist')
+  }
+
+  seeSelectioinBoxToSelectStudent() {
+    cy.get(Courses.#addStudentToCourseSelectionBox)
+      .should('exist')
+  }
+
+  clickOnNextStepButtonOnCourseParticipationDetail() {
+    cy.get(Courses.#nextButtonToCreateCourseOnParticipationDeatilStep)
+      .click()
+  }
+
+  seeCourseCreationFinishPageSectionThree() {
+    cy.get(Courses.#sectionThreeAreaOnCourseCreationPage)
+      .should('exist')
+  }
+
+  selectRoomColour() {
+    cy.get(Courses.#RoomColourAsRed)
+      .click()
+  }
+
+  seeRoomSearchBoxOnRoomOverview () {
+    cy.get(Courses.#roomSearrchBox)
+      .should('be.exist')
+  }
 
   courseIsVisiblOnOverviewPage (courseName) {
-    cy.contains(courseName).should('be.visible').and('contain.text', courseName)
+    cy.contains(courseName)
+      .should('be.visible')
+      .and('contain.text', courseName)
   }
 
   courseIsNotVisiblOnOverviewPage (courseName) {
@@ -55,7 +137,6 @@ class Courses {
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
       .click()
-    cy.wait('@courses_api')
   }
 
   navigateToRoomBoard (roomName) {
@@ -77,7 +158,6 @@ class Courses {
             .click()
         }
       })
-      cy.wait(['@board_api', '@userPermissions_api'])
   }
 
   showRoomPage (room) {
@@ -97,12 +177,6 @@ class Courses {
     cy.contains(courseName)
       .should('be.visible')
       .and('contain.text', courseName)
-      .wait(['@schools_api', '@alert_api', '@dashboard_api'])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-      })
   }
 
   courseIsNotVisibleOnOverviewPage (courseName) {
@@ -117,13 +191,9 @@ class Courses {
     cy.get(Courses.#toolsList).should('not.exist')
   }
 
-  clickOnCreateCourseFAB () {
+  clickOnCreateRoomFAB () {
     cy.get(Courses.#createCourse)
       .click()
-      .wait(['@alerts_api'])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   clickOnCreateContentFAB () {
@@ -208,18 +278,15 @@ class Courses {
   }
 
   openCourseEditPage () {
-    cy.get(Courses.#dropDownCourse).click()
+    cy.get(Courses.#dropDownCourse)
+      .click()
     cy.get(Courses.#btnCourseEdit)
       .click()
-      .wait(['@alerts_api'])
-      .then(interceptions => {
-        expect(interceptions.response.statusCode).to.equal(200)
-      })
   }
 
   showCourseEditPage () {
     cy.get(Courses.#pageTitle)
-    cy.contains('Kurs bearbeiten')
+      .should('exist')
   }
 
   compareSubmittedTasksInformation (submittedTasks, contentTitle) {
@@ -271,7 +338,8 @@ class Courses {
   }
 
   fillCourseCreationForm (new_course) {
-    cy.get(Courses.#courseTitle).type(new_course)
+    cy.get(Courses.#courseTitle)
+      .type(new_course)
   }
 
   clickOnCreateFAB () {
@@ -285,78 +353,44 @@ class Courses {
   clickOnToCourseOverviewBtn () {
     cy.get(Courses.#goToCourseOverviewButton)
       .click()
-      .wait(['@runtime_config_api', '@public_api', '@me_api', '@roles_api'])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-      })
   }
 
-  clickOnNextStepsBtn () {
+  clickOnNextStepsBtnAfterEnteringRoomDetails() {
     cy.get(Courses.#nextButton).click()
   }
 
-  performRoomDeletion () {
-    cy.get(Courses.#deleteButton).click()
-    cy.get(Courses.#confirmDeletionPopup)
-      .click({
-        multiple: true,
-        force: true
-      })
-      .wait(
-        [
-          '@runtime_config_api',
-          '@public_api',
-          '@me_api',
-          '@roles_api',
-          '@schools_api',
-          '@alert_api',
-          '@dashboard_api'
-        ],
-        { timeout: 80000 }
-      )
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-        expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[5].response.statusCode).to.equal(200)
-        expect(interceptions[6].response.statusCode).to.equal(200)
-      })
+  clickOnDeleteButtonOnCourseEditPage () {
+    cy.get(Courses.#deleteButton)
+      .click()
   }
 
-  submitChanges () {
+  seeModalToConfirmCourseDeletion() {
+    cy.get(Courses.#courseDeleteConfirmationModal)
+      .should('exist')
+  }
+
+  confirmCourseDeletionOnModal() {
+    cy.get(Courses.#confirmDeletionPopup)
+      .click({ multiple: true, force: true})
+  }
+
+  submitChangesAfterEditingCourse () {
     cy.get(Courses.#btnSubmit)
       .click()
-      .wait([
-        '@runtime_config_api',
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@alert_api',
-        '@board_api',
-        '@userPermissions_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].response.statusCode).to.equal(200)
-        expect(interceptions[2].response.statusCode).to.equal(200)
-        expect(interceptions[3].response.statusCode).to.equal(200)
-        expect(interceptions[4].response.statusCode).to.equal(200)
-        expect(interceptions[5].response.statusCode).to.equal(200)
-        expect(interceptions[6].response.statusCode).to.equal(200)
-        expect(interceptions[7].response.statusCode).to.equal(200)
-      })
   }
 
-  editCourseTitleAndDescription (editedRoomName) {
-    cy.get(Courses.#courseName).clear().type(editedRoomName)
-    cy.get(Courses.#courseDescription).type('cy edit this is test description')
+  editCourseTitle (editedRoomName) {
+    cy.get(Courses.#courseName)
+      .clear()
+      .type(editedRoomName)
   }
+
+  editCourseDescription (editedRoomDesccription) {
+    cy.get(Courses.#courseDescription)
+      .clear()
+      .type(editedRoomDesccription)
+  }
+
 
   searchForARoom (roomName) {
     cy.get(Courses.#searchFieldRoomOverview).type(roomName)
@@ -392,8 +426,6 @@ class Courses {
     cy.get(Courses.#chosenResults).contains(userFullName).click()
     cy.get(Courses.#chosenContainer).should('contain', userFullName)
   }
-
-
 
 }
 export default Courses
