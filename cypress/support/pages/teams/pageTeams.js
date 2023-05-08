@@ -399,7 +399,6 @@ class Teams {
   clickOnEditOption () {
     cy.get(Teams.#teamEditOption)
       .click()
-        .wait(['@alert_api'])
   }
 
   seeTeamEditPage () {

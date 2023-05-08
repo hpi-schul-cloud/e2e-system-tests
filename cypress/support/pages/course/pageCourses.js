@@ -54,7 +54,7 @@ class Courses {
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
       .click()
-      .wait(['@alert_api', '@dashboard_api', '@courses_api'])
+      .wait(['@dashboard_api', '@courses_api'])
   }
 
   navigateToRoomBoard (roomName) {
