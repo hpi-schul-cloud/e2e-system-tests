@@ -2,14 +2,14 @@
 
 Frameworks:
 
-- [Cypress v9.6.0](https://docs.cypress.io/guides/references/changelog#9-6-0) ( <span style="color:red">  *We use this version as from Cypress v10 onwards there are some structural changes, which we want to address in future* </span> )
+- [Cypress v12.8.0](https://docs.cypress.io/guides/references/changelog#12-8-0)
 
-- [Cypress cucumber pre-processor v4.3.1](https://github.com/TheBrainFamily/cypress-cucumber-example)
+- [Cypress cucumber pre-processor v16.0.2](https://github.com/badeball/cypress-cucumber-preprocessor)
 
 ### Prepare development environment
 
 Install or make sure Chrome browser (at least) have it in your development machine
-1) Install [Node v17.9.0](https://nodejs.org/dist/)
+1) Install [Node v18](https://nodejs.org/dist/)
 2) Install [Git](https://git-scm.com/downloads)
 3) Install [Github Desktop App](https://desktop.github.com/) (Optional)
 3) Install IDE of your choice e.g. [VS code](https://code.visualstudio.com/download)
@@ -37,14 +37,9 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |____ scheduled-trigger.yml
 |---- .vscode (setting for VS code extensions)
 |---- cypress
-|   |___ .run (generated after running, used for html report)
-|   |___ cucumber-json (generated after running scenarios, used by .run)
 |   |___ downloads
 |   |___ fixtures
 |   |___ e2e (containing feature files)
-|   |___ plugins
-|   |    |___ index.js
-|   |___ reports (containing html report & assets)
 |   |___ screenshots
 |   |___ support
 |   |    |___ custom_commands (used in our tests)
@@ -53,11 +48,13 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |    |___ command.js
 |   |    |___ e2e.js
 |   |___ videos
+|---- reports (containing html report & assets)
+|---- logs(contains logs of the test run)
 |---- node_modules
 |---- .editorconfig
 |---- .gitattributes
 |---- .gitignore
-|---- cypress-html-report.js (for generating html reports)
+|---- reporter.js (for generating html reports)
 |---- cypress.env.json (credentials & environment variables)
 |---- cypress.config.json (cypress related settings)
 |---- LICENSE
