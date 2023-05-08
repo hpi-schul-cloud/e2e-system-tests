@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Addons from '../../pages/addons/pageAddons'
 
 const addOns = new Addons()

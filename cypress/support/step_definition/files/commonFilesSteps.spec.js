@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Files from '../../pages/files/pageFiles'
 
 const files = new Files()

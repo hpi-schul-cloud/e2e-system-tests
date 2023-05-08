@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Tasks from '../../pages/tasks/pageTasks'
 
 const tasks = new Tasks()
@@ -10,23 +11,23 @@ const tasks = new Tasks()
 // -->\step_definition\course\commonCourseSteps.spec.js
 // -->\step_definition\tasks\commonTaskSteps.spec.js
 
-And('file upload button is disabled', () => {
+When('file upload button is disabled', () => {
   tasks.seeUploadFileButtonIsDisabled()
 })
 
-And ('I click on Enable Group Submission', () => {
+When ('I click on Enable Group Submission', () => {
   tasks.clickOnGroupSubmissionCheckbox()
 })
 
-And ('I click on Draft Checkbox', () => {
+When ('I click on Draft Checkbox', () => {
   tasks.clickOnDraftCheckbox()
 })
 
-And ('I set task-visibility-start-date to {string} at {string}', (visibilityStartDate, visibilityStartTime) => {
+When ('I set task-visibility-start-date to {string} at {string}', (visibilityStartDate, visibilityStartTime) => {
   tasks.setVisibilityStartDate(visibilityStartDate, visibilityStartTime)
 })
 
-And ('I set task-visibility-due-date to {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
+When ('I set task-visibility-due-date to {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
   tasks.setVisibilityDueDate(visibilityDueDate, visibilityDueTime)
 })
 
@@ -42,11 +43,11 @@ When('I upload file {string} for submission', (fileName) => {
   tasks.executeFileUploadForSubmission(fileName)
 })
 
-And('I click on Public Submission Checkbox', () => {
+When('I click on Public Submission Checkbox', () => {
   tasks.clickOnPublicSubmissionCheckbox()
 })
 
-And('I click on Submit Public Submission in confirmation window on task page', () => {
+When('I click on Submit Public Submission in confirmation window on task page', () => {
   tasks.clickOnSubmitInConfirmationWindow()
 })
 
@@ -62,15 +63,15 @@ Then ('I see public submission is enabled', () => {
   tasks.publicSubmissionIsEnabled()
 })
 
-And ('task-visibility-start-date is {string} at {string}', (visibilityStartDate, visibilityStartTime) => {
+When ('task-visibility-start-date is {string} at {string}', (visibilityStartDate, visibilityStartTime) => {
   tasks.compareVisibilityStartDate(visibilityStartDate, visibilityStartTime)
 })
 
-And ('task-visibility-due-date is {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
+When ('task-visibility-due-date is {string} at {string}', (visibilityDueDate, visibilityDueTime) => {
   tasks.compareVisibilityDueDate(visibilityDueDate, visibilityDueTime)
 })
 
-And ('Draft is disabled', () => {
+When ('Draft is disabled', () => {
   tasks.seeDraftIsDisabled()
 })
 
@@ -110,11 +111,11 @@ When('I enter filename {string} in modal dialog', (newFileName) => {
   tasks.enterNewFileName(newFileName)
 })
 
-And('I click on cancel in dialog window', () => {
+When('I click on cancel in dialog window', () => {
   tasks.cancelRenameFileDialog()
 })
 
-And('I click on save in confirmation window', () => {
+When('I click on save in confirmation window', () => {
 tasks.submitRenameFileDialog()
 })
 
@@ -138,11 +139,11 @@ When('I click on delete file {string}', (fileName) => {
   tasks.clickOnDeleteFile(fileName)
 })
 
-And('I click on cancel in delete file dialog', () => {
+When('I click on cancel in delete file dialog', () => {
   tasks.cancelDeleteFileDialog()
 })
 
-And('I click on submit in delete file dialog', () => {
+When('I click on submit in delete file dialog', () => {
   tasks.submitDeleteFileDialog()
 })
 
@@ -166,11 +167,11 @@ When('I click on button To-Room', () => {
   tasks.clickOnToRoomBtn()
 })
 
-And('I click completed task tab', () => {
+When('I click completed task tab', () => {
   tasks.clickOnTabDoneTasks()
 })
 
-And('I click on not graded tasks', () => {
+When('I click on not graded tasks', () => {
   tasks.openNotGradedTasks()
 })
 
@@ -190,7 +191,7 @@ Then('I do not see task {string} in the list as student', taskTitle => {
   tasks.seeTaskNotInListAsStudent(taskTitle)
 })
 
-And('I click on submissions tab', () => {
+When('I click on submissions tab', () => {
   tasks.clickSubmissionsTab()
 })
 
@@ -214,15 +215,15 @@ When('I click on submission tab', () => {
   tasks.clickSubmissionTab()
 })
 
-And('I enter grade {string}', (gradingPercent) => {
+When('I enter grade {string}', (gradingPercent) => {
   tasks.enterGradingPercent(gradingPercent)
 })
 
-And('I click on button Save and Send grading', () => {
+When('I click on button Save and Send grading', () => {
   tasks.clickSaveAndSendGradingBtn()
 })
 
-And('grading for {string} contains {string}', (studentLastname, gradingPercent) => {
+When('grading for {string} contains {string}', (studentLastname, gradingPercent) => {
   tasks.checkGradingForStudent(studentLastname, gradingPercent)
 })
 
@@ -238,7 +239,7 @@ When('I see feedback text {string}', feedbackText => {
   tasks.compareFeedbackText(feedbackText)
 })
 
-And('I see grade is {string}', feedbackGrade => {
+When('I see grade is {string}', feedbackGrade => {
   tasks.compareFeedbackGrade(feedbackGrade)
 })
 
@@ -254,11 +255,11 @@ When('I click on dot menu of task {string}', taskTitle => {
   tasks.clickOnTaskDotMenu(taskTitle)
 })
 
-And('I click on Restore', () => {
+When('I click on Restore', () => {
   tasks.clickTaskFinishInDotMenu()
 })
 
-And('I open task list with due date', () => {
+When('I open task list with due date', () => {
   tasks.clickLowerTaskSectionIcon()
 })
 

@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Tasks from '../../pages/tasks/pageTasks'
 
 const tasks = new Tasks()
@@ -6,11 +7,11 @@ When('I go to tasks overview', () => {
   tasks.navigateToTasksOverview()
 })
 
-And('I click on button Submit', () => {
+When('I click on button Submit', () => {
   tasks.clickOnSubmit()
 })
 
-And('I click on button Submit to save and stay on task page', () => {
+When('I click on button Submit to save and stay on task page', () => {
   tasks.clickOnSubmitAndStayOnCreatePage()
 })
 
@@ -30,15 +31,15 @@ When ('I enter title {string}', (taskTitle) => {
   tasks.enterTaskTitle(taskTitle)
 })
 
-And ('I enter task description {string}', (taskDescription) => {
+When ('I enter task description {string}', (taskDescription) => {
   tasks.setTaskText(taskDescription)
 })
 
-And ('I enter text submission {string}', (submissionText) => {
+When ('I enter text submission {string}', (submissionText) => {
   tasks.setSubmissionText(submissionText)
 })
 
-And ('I enter comment {string}', (gradingText) => {
+When ('I enter comment {string}', (gradingText) => {
   tasks.setSubmissionComment(gradingText)
 })
 

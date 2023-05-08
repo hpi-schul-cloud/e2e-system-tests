@@ -1,3 +1,4 @@
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
 import Dashboard from '../../pages/dashboard/pageDashboard'
 import News from '../../pages/news/pageNews'
 
