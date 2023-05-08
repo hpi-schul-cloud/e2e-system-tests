@@ -19,35 +19,35 @@ Then ('I see section two area on the course create page',() =>{
   courses.seeSectionTwoAreaOnCourseCreatePage()
 })
 
-Then ('I select room colour as red',() =>{
+When ('I select room colour as red',() =>{
   courses.selectRoomColour()
 })
 
-Then ('I see teacher {string} is selected by default', (defaultTeacherName) =>{
+When ('I see teacher {string} is selected by default', (defaultTeacherName) =>{
   courses.seeSelectedDefaultTeacher(defaultTeacherName)
 })
 
-Then ('I see substitute teacher selection box', () =>{
+When ('I see substitute teacher selection box', () =>{
   courses.seeSubstituteTeacherSelectionBox()
 })
 
-Then ('I see date pickers to start and end the course as per school year',() =>{
+When ('I see date pickers to start and end the course as per school year',() =>{
   courses.seeDatePickersForCourseInSchoolYear()
 })
 
-Then ('I see button to create a course time table container',() =>{
+When ('I see button to create a course time table container',() =>{
   courses.seeCreateCourseTimeTableContainer()
 })
 
-Then('I enter the course title {string}', (newCourseName) => {
+When ('I enter the course title {string}', (newCourseName) => {
   courses.fillCourseCreationForm(newCourseName)
 })
 
-Then ('I see class selection box to select the class for the room',() =>{
+When ('I see class selection box to select the class for the room',() =>{
   courses.seeSelectionBoxToSelectClass()
 })
 
-Then ('I see student selection box to select the class for the room',() =>{
+When ('I see student selection box to select the class for the room',() =>{
   courses.seeSelectioinBoxToSelectStudent()
 })
 
@@ -67,11 +67,11 @@ When('I click on button To Course Overview on the finish page', () => {
   courses.clickOnToCourseOverviewBtn()
 })
 
-Then('I edit the title of the room to {string}', (editedRoomName) => {
+When ('I edit the title of the room to {string}', (editedRoomName) => {
   courses.editCourseTitle(editedRoomName)
 })
 
-Then ('I edit the room description to {string}',(editedRoomDesccription) => {
+When ('I edit the room description to {string}',(editedRoomDesccription) => {
   courses.editCourseDescription(editedRoomDesccription)
 })
 
