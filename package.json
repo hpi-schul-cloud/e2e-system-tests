@@ -9,7 +9,7 @@
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node reporter.js",
 		"posttest": "npm run cy:run || npm run generate:report",
-		"tag:stable": "cypress run --browser chrome -e tags='@stable_test'",
+		"tag:stable": "xvfb-run cypress run --headed --browser chrome -e tags='@stable_test'",
 		"tag:stable:pr": "cypress run --browser chrome -e tags='@pr and @stable_test'",
 		"tag:stable:release": "cypress run --browser chrome -e tags='@release and @stable_test'",
 		"tag:unstable": "cypress run --browser chrome -e tags='@unstable_test'",
