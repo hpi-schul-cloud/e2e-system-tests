@@ -393,7 +393,6 @@ class Teams {
   clickOnSaveChangeButton () {
     cy.get(Teams.#teamSaveChanges)
     .click()
-        .wait(['@alert_api'])
   }
 
   clickOnEditOption () {
