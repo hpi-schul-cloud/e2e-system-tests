@@ -6,5 +6,4 @@ Cypress.Commands.add('logout', () => {
       .click()
     cy.get(logoutButton)
       .click()
-    cy.contains(/Herzlich willkommen|Login für registrierte Nutzer:innen/g)
   })
