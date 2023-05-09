@@ -8,7 +8,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
   Scenario: Teacher creates topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     And I click on FAB to create new content
     And I click on New Topic FAB
     Then I can see edit topic page '-'
@@ -41,7 +41,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
   Scenario: Teacher edits topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
     When I click on Edit in dot menu of topic
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
