@@ -23,19 +23,19 @@ When ('I select room colour as red',() =>{
   courses.selectRoomColour()
 })
 
-When ('I see teacher {string} is selected by default', (defaultTeacherName) =>{
+Then ('I see teacher {string} is selected by default', (defaultTeacherName) =>{
   courses.seeSelectedDefaultTeacher(defaultTeacherName)
 })
 
-When ('I see substitute teacher selection box', () =>{
+Then ('I see substitute teacher selection box', () =>{
   courses.seeSubstituteTeacherSelectionBox()
 })
 
-When ('I see date pickers to start and end the course as per school year',() =>{
+Then ('I see date pickers to start and end the course as per school year',() =>{
   courses.seeDatePickersForCourseInSchoolYear()
 })
 
-When ('I see button to create a course time table container',() =>{
+Then ('I see button to create a course time table container',() =>{
   courses.seeCreateCourseTimeTableContainer()
 })
 
@@ -43,11 +43,11 @@ When ('I enter the course title {string}', (newCourseName) => {
   courses.fillCourseCreationForm(newCourseName)
 })
 
-When ('I see class selection box to select the class for the room',() =>{
+Then ('I see class selection box to select the class for the room',() =>{
   courses.seeSelectionBoxToSelectClass()
 })
 
-When ('I see student selection box to select the class for the room',() =>{
+Then ('I see student selection box to select the class for the room',() =>{
   courses.seeSelectioinBoxToSelectStudent()
 })
 

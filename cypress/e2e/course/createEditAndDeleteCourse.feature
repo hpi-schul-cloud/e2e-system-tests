@@ -13,14 +13,14 @@ Feature: Course - To add and delete a course by the teacher
     Then I see section one area on the course create page
     When I enter the course title 'Cypress Test Creation and Deletion'
     When I select room colour as red
-    When I see teacher 'Karl Herzog' is selected by default
-    When I see substitute teacher selection box
-    When I see date pickers to start and end the course as per school year
-    When I see button to create a course time table container
+    Then I see teacher 'Karl Herzog' is selected by default
+    Then I see substitute teacher selection box
+    Then I see date pickers to start and end the course as per school year
+    Then I see button to create a course time table container
     When I click on button Next Steps after entering the room detail in section one
     Then I see section two area on the course create page
-    When I see class selection box to select the class for the room
-    When I see student selection box to select the class for the room
+    Then I see class selection box to select the class for the room
+    Then I see student selection box to select the class for the room
     When I click on button Next Steps after selecting room participant details
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
