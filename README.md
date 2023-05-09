@@ -40,7 +40,6 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |___ downloads
 |   |___ fixtures
 |   |___ e2e (containing feature files)
-|   |___ reports (containing html report & assets)
 |   |___ screenshots
 |   |___ support
 |   |    |___ custom_commands (used in our tests)
@@ -49,6 +48,8 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |    |___ command.js
 |   |    |___ e2e.js
 |   |___ videos
+|---- reports (containing html report & assets)
+|---- logs(contains logs of the test run)
 |---- node_modules
 |---- .editorconfig
 |---- .gitattributes
