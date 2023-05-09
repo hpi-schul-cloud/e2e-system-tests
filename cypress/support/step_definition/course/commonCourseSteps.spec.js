@@ -3,6 +3,10 @@ import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()
 
+Then ('I see room search box on the room overview page', () => {
+  courses.seeRoomSearchBoxOnRoomOverview()
+})
+
 When('I go to rooms overview', () => {
   courses.navigateToRoomsOverview()
 })
@@ -19,9 +23,7 @@ Then('I see the course {string} on the room overview page', courseName => {
   courses.courseIsVisiblOnOverviewPage(courseName)
 })
 
-Then(
-  'I do not see the course {string} on the room overview page',
-  courseName => {
+Then('I do not see the course {string} on the room overview page', (courseName) => {
     courses.courseIsNotVisiblOnOverviewPage(courseName)
   }
 )
@@ -38,8 +40,8 @@ Then('I can see course edit page', () => {
   courses.showCourseEditPage()
 })
 
-When('I click on FAB to create the course', () => {
-  courses.clickOnCreateCourseFAB()
+When('I click on FAB to create a new room', () => {
+  courses.clickOnCreateRoomFAB()
 })
 
 When('I click on FAB to create new content', () => {

@@ -8,7 +8,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   Scenario: Teacher creates task as draft from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     And I click on FAB to create new content
     And I click on New Task FAB
     Then I can see create task page '-'
@@ -22,7 +22,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on button Submit to save and stay on task page
     Then I can see create task page 'Cy Task Creating and Deleting Test'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
     And I can see content 'Cy Task Creating and Deleting Test' on course page
 
@@ -30,7 +30,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   Scenario: Teacher edits and publishes task from room via form
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating and Deleting Test'
     And I click on Edit in dot menu
     Then I see file upload button is enabled
@@ -64,7 +64,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   Scenario: Teacher edits file
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Edit in dot menu
     Then I see file 'example_jpg.jpg' is visible in section files
@@ -82,7 +82,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I click on download file 'test_pdf_renamed.pdf'
     Then file 'test_pdf_renamed.pdf' is saved in folder downloads
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Edit in dot menu
     And I click on delete file 'test_pdf_renamed.pdf'
@@ -98,7 +98,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   Scenario: Student submits task
     Given I am logged in as a 'student1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     And I click on task 'Cy Task Creating, Editing, Deleting Test'
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
@@ -118,7 +118,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   Scenario: Teacher grades task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     Then I see task card info submitted contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
     And Task card info graded contains '0/2' for task 'Cy Task Creating, Editing, Deleting Test'
     When I click on task 'Cy Task Creating, Editing, Deleting Test'
@@ -158,7 +158,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   Scenario: Teacher finishes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     And I click on link finish for task 'Cy Task Creating, Editing, Deleting Test'
     Then I see task 'Cy Task Creating, Editing, Deleting Test' does not contain any buttons
 
@@ -178,21 +178,21 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
     When I arrive on the dashboard
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     Then I see task 'Cy Task Creating, Editing, Deleting Test' contains buttons
 
   @stable_test
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
     And I click on Cancel in confirmation window
     # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
     When I arrive on the dashboard
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     Then I can see content 'Cy Task Creating, Editing, Deleting Test' on course page
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
@@ -200,6 +200,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
     When I arrive on the dashboard
     When I go to rooms overview
-    And I go to room 'Course with subject and tasks'
+    When I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
     And I can not see content 'Cy Task Creating, Editing, Deleting Test'
