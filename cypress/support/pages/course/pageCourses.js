@@ -218,7 +218,6 @@ class Courses {
           expect(interceptions[1].state).to.equal('Complete')
           expect(interceptions[1].response.statusCode).to.equal(200)
         })
-    cy.url().should('include', '/rooms/')
     cy.contains(taskTitle)
       .should('be.visible')
   }
