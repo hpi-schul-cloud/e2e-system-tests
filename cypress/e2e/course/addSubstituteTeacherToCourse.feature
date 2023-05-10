@@ -8,7 +8,7 @@ Feature: Course - Add substitute teacher to course
   Scenario: Adding substitute teacher to course
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
-    And I go to room 'Biologie'
+    When I go to room 'Biologie'
     When I open course edit page
     Then I can see course edit page
     And I clear substitute teacher field
@@ -17,4 +17,4 @@ Feature: Course - Add substitute teacher to course
     Then I log out
     Given I am logged in as a 'teacher2' at 'brb'
     When I go to rooms overview
-    And I go to room 'Biologie'
+    When I go to room 'Biologie'

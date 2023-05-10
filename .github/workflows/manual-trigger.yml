@@ -76,7 +76,7 @@ jobs:
         if: always()
         with:
           name: my-report
-          path: ${{ github.workspace }}/cypress/reports
+          path: ${{ github.workspace }}/reports
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v3
