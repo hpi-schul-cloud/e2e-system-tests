@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Invalid Credentials - Verify login functionality via wrong user data
 

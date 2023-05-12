@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Admin External Tools - To administrate school settings by the admin.
 

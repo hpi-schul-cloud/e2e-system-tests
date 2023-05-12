@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Help Section - To use the help areas in dBildungscloud
 
