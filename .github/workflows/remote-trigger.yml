@@ -36,6 +36,9 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        with:
+          working-directory: hpi-schul-cloud/e2e-system-tests
+          command: npm run tag:stable:pr
         env:
           CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
           CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
@@ -59,9 +62,6 @@ jobs:
           CYPRESS_TEACHER_2_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_2_FIRST_NAME }}
           CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
           DEBUG: '@cypress/github-action'
-        with:
-          command: npm run tag:stable
-          browser: chrome
 
       - name: Generate Report
         uses: cypress-io/github-action@v5
