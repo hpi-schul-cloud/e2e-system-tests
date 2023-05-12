@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Addons - To go to addons page on NBC
 

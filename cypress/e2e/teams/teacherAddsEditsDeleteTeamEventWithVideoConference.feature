@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Team - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 

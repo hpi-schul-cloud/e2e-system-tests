@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Account - Change language of the user from user setting
 
