@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Dashboard - To check contents on the dashboard
 

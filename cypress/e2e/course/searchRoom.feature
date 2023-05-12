@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Course - To search for a course via search input box on the course overview page
 
