@@ -9,18 +9,19 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
-    And I click on FAB to create new content
-    And I click on New Task FAB
+    When I click on FAB to create new content
+    When I click on New Task FAB
     Then I can see create task page '-'
-    And file upload button is disabled
+    Then file upload button is disabled
     When I enter title 'Cy Task Creating and Deleting Test'
-    And I click on Enable Group Submission
-    And I click on Draft Checkbox
-    And I set task-visibility-start-date to 'today' at '0000'
-    And I set task-visibility-due-date to 'tomorrow' at '1000'
-    And I enter task description 'Dies ist Deine Aufgabe.'
-    And I click on button Submit to save and stay on task page
-    Then I can see create task page 'Cy Task Creating and Deleting Test'
+    When I click on Enable Group Submission
+    When I click on Draft Checkbox
+    When I set task-visibility-start-date to 'today' at '0000'
+    When I set task-visibility-due-date to 'tomorrow' at '1000'
+    When I enter task description 'Dies ist Deine Aufgabe.'
+    When I click on button Submit
+    Then I see detail page for task 'Cy Task Creating and Deleting Test'
+    # Then I can see create task page 'Cy Task Creating and Deleting Test'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
@@ -37,14 +38,16 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I upload file 'example_jpg.jpg'
     #  Then the page reloads (this happens automatically after file upload)
     When I enter title 'Cy Task Creating, Editing, Deleting Test'
-    And I click on Enable Group Submission
-    And I set task-visibility-start-date to 'today' at '0100'
-    And I set task-visibility-due-date to 'tomorrow' at '1100'
-    And I enter task description 'Dies ist Deine Aufgabe. Viel Erfolg!'
-    And I click on Public Submission Checkbox
-    And I click on Submit Public Submission in confirmation window on task page
-    And I click on Draft Checkbox
-    And I click on button Submit
+    When I click on Enable Group Submission
+    When I set task-visibility-start-date to 'today' at '0100'
+    When I set task-visibility-due-date to 'tomorrow' at '1100'
+    When I enter task description 'Dies ist Deine Aufgabe. Viel Erfolg!'
+    When I click on Public Submission Checkbox
+    When I click on Submit Public Submission in confirmation window on task page
+    When I click on Draft Checkbox
+    When I click on button Submit
+    Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
+    When I click on button To Course
     Then I can see room page 'Course with subject and tasks'
     And I can see content 'Cy Task Creating, Editing, Deleting Test' on course page
     Then I see task card info submitted contains '0/2' for task 'Cy Task Creating, Editing, Deleting Test'
@@ -103,9 +106,9 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
     When I enter text submission 'Hier ist die Antwort.'
-    When I click on button Save Submission
+    # When I click on button Save Submission
     When I upload file 'testboard_jpg' for submission
-    When I see file 'testboard_jpg' is visible in uploaded files section of submission
+    Then I see file 'testboard_jpg' is visible in uploaded files section of submission
     When I click on button Send Submission
     Then I see hint that submission has been sent successfully
     When I go to tasks overview

@@ -11,9 +11,9 @@ When('I click on button Submit', () => {
   tasks.clickOnSubmit()
 })
 
-When('I click on button Submit to save and stay on task page', () => {
-  tasks.clickOnSubmitAndStayOnCreatePage()
-})
+// When('I click on button Submit to save and stay on task page', () => {
+//   tasks.clickOnSubmitAndStayOnCreatePage()
+// })
 
 When('I click on button Add Create Content', () => {
   tasks.clickOnAddCreateContent()

@@ -91,13 +91,13 @@ class Tasks {
 
   clickOnSubmit () {
     cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
-    cy.wait('@rooms_api')
+    // cy.wait('@rooms_api')
   }
 
-  clickOnSubmitAndStayOnCreatePage () {
-    cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
-    cy.wait('@homework_api')
-  }
+  // clickOnSubmitAndStayOnCreatePage () {
+  //   cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
+  //   cy.wait('@homework_api')
+  // }
 
   clickOnAddTask () {
     cy.get(Tasks.#addTaskButton).click()
