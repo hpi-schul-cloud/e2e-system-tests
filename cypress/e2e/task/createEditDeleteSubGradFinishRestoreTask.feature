@@ -11,8 +11,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I go to room 'Course with subject and tasks'
     When I click on FAB to create new content
     When I click on New Task FAB
-    Then I can see create task page '-'
-    Then file upload button is disabled
+    Then I can see create task page
     When I enter title 'Cy Task Creating and Deleting Test'
     When I click on Enable Group Submission
     When I click on Draft Checkbox
@@ -21,7 +20,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I enter task description 'Dies ist Deine Aufgabe.'
     When I click on button Submit
     Then I see detail page for task 'Cy Task Creating and Deleting Test'
-    # Then I can see create task page 'Cy Task Creating and Deleting Test'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     Then I can see room page 'Course with subject and tasks'
@@ -33,8 +31,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating and Deleting Test'
-    And I click on Edit in dot menu
-    Then I see file upload button is enabled
+    When I click on Edit in dot menu
+    Then I can see edit task page 'Cy Task Creating and Deleting Test'
     When I upload file 'example_jpg.jpg'
     #  Then the page reloads (this happens automatically after file upload)
     When I enter title 'Cy Task Creating, Editing, Deleting Test'
@@ -106,7 +104,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
     When  I click on submission tab
     When I enter text submission 'Hier ist die Antwort.'
-    # When I click on button Save Submission
     When I upload file 'testboard_jpg' for submission
     Then I see file 'testboard_jpg' is visible in uploaded files section of submission
     When I click on button Send Submission

@@ -10,7 +10,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
     When I go to tasks overview
     When I click on button Add Create Content
     When I click on button Add Task
-    Then I can see create task page '-'
+    Then I can see create task page
     When I enter title 'Cy Task Creating from Task Overview Test'
     When I enter task description 'This is a task for the students.'
     When I click on button Submit
@@ -20,7 +20,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
     Then I can see task 'Cy Task Creating from Task Overview Test' on tasks overview page
     When I click on button Add Create Content
     When I click on button Add Task
-    Then I can see create task page '-'
+    Then I can see create task page
     When I enter title 'Cy Task to be delete on task page'
     When I enter task description 'This is a task to be deleted on task page.'
     When I click on button Submit
