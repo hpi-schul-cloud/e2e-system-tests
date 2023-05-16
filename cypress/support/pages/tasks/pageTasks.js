@@ -97,12 +97,6 @@ class Tasks {
 
   clickOnSubmit () {
     cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
-    cy.wait('@rooms_api')
-  }
-
-  clickOnSubmitAndStayOnCreatePage () {
-    cy.get(Tasks.#taskForm).find(Tasks.#submitButton).click()
-    cy.wait('@homework_api')
   }
 
   clickOnAddTask () {
@@ -113,7 +107,7 @@ class Tasks {
     cy.get(Tasks.#createContentButton).click()
   }
 
-  seeCreateTaskPage (taskTitle) {
+  seeEditTaskPage (taskTitle) {
     if (taskTitle === '-') {
       cy.get(Tasks.#taskForm).get(Tasks.#taskNameInput).should('be.empty')
     } else {

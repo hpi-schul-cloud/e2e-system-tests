@@ -11,9 +11,9 @@ When('I click on button Submit', () => {
   tasks.clickOnSubmit()
 })
 
-When('I click on button Submit to save and stay on task page', () => {
-  tasks.clickOnSubmitAndStayOnCreatePage()
-})
+// When('I click on button Submit to save and stay on task page', () => {
+//   tasks.clickOnSubmitAndStayOnCreatePage()
+// })
 
 When('I click on button Add Create Content', () => {
   tasks.clickOnAddCreateContent()
@@ -23,8 +23,12 @@ When('I click on button Add Task', () => {
   tasks.clickOnAddTask()
 })
 
-Then('I can see create task page {string}', (taskTitle) => {
-  tasks.seeCreateTaskPage(taskTitle)
+Then('I can see create task page', () => {
+  tasks.seeEditTaskPage('-')
+})
+
+Then('I can see edit task page {string}', (taskTitle) => {
+  tasks.seeEditTaskPage(taskTitle)
 })
 
 When ('I enter title {string}', (taskTitle) => {
