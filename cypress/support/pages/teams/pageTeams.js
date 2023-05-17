@@ -127,6 +127,7 @@ class Teams {
     const sanitizedTeamEventTitle = teamEventTitle.replace(/[^A-Za-z0-9_-]*/img, '')
     cy.get(`[data-testid=submit-btn-${sanitizedTeamEventTitle}]`)
       .should ('be.exist')
+        .click()
   }
 
   clickOnVideoStartButtonAsTeacherAndModerator () {
