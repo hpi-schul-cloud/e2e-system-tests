@@ -135,7 +135,6 @@ class Courses {
   navigateToRoomsOverview () {
     cy.get(Courses.#courseOverviewNavigationButton)
       .click()
-      .wait(['@dashboard_api', '@courses_api'])
   }
 
   navigateToRoomBoard (roomName) {
@@ -451,7 +450,6 @@ class Courses {
         cy.get(`[aria-label="${courseLabel} ${roomName}"]`).then(($rooms) => {
           if ($rooms) {
             cy.wrap($rooms).first().click()
-            cy.wait(['@board_api', '@userPermissions_api', '@rooms_api']);
             this.openCourseEditPage();
             cy.get(Courses.#deleteButton).should('exist').click()
             cy.get(Courses.#confirmDeletionPopup)
