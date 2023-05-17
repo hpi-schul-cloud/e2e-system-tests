@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Course - Add substitute teacher to course
 

@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Team - Student managed teams (on BRB)
 

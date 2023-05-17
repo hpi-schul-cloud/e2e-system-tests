@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Account - To go to account settings page on default
 
