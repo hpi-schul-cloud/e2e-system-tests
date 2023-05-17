@@ -459,19 +459,6 @@ class Courses {
                   multiple: true,
                   force: true
                 })
-                .wait(
-                    [
-                      '@runtime_config_api',
-                      '@public_api',
-                      '@me_api',
-                      '@roles_api',
-                      '@schools_api',
-                      '@alert_api',
-                      '@dashboard_api',
-                      '@rooms_overview_api'
-                    ],
-                    {timeout: 80000}
-                )
 
             if ($rooms.length > 1) {
               this.deleteAllCoursesMatchingName(roomName)
