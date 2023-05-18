@@ -80,7 +80,8 @@ class Management {
   }
 
   navigateToAdministration() {
-    cy.get(Management.#administrationOverviewNavigationButton).click()
+    cy.get(Management.#administrationOverviewNavigationButton)
+        .click()
     cy.url().should('include', '/administration')
   }
 

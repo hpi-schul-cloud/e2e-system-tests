@@ -64,13 +64,13 @@ class Teams {
   static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]'
   static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]'
   static #teamsMembersOverviewPageTitle = '[id="page-title"]'
+  static #saveEventButton = '[data-testid="submit-btn-create-event-modal"]'
 
 
 
-  clickOnSaveToCreateNewTeamEvent (teamEventName) {
-    const sanitizedTeamEventName = teamEventName.replace(/[^A-Za-z0-9_-]*/img, '')
-    cy.get(`[data-testid=submit-btn-${sanitizedTeamEventName}]`)
-      .click().wait(2000)
+  clickOnSaveToCreateNewTeamEvent () {
+    cy.get(Teams.#saveEventButton)
+      .click().wait(['@alerts_api', '@videoconference_api'])
   }
 
   seeTeamMembersOverviewPage() {
@@ -126,7 +126,8 @@ class Teams {
     cy.get(`[data-testid=start_video_conference_link`).last()
     const sanitizedTeamEventTitle = teamEventTitle.replace(/[^A-Za-z0-9_-]*/img, '')
     cy.get(`[data-testid=submit-btn-${sanitizedTeamEventTitle}]`)
-      .click()
+      .should ('be.exist')
+        .click()
   }
 
   clickOnVideoStartButtonAsTeacherAndModerator () {

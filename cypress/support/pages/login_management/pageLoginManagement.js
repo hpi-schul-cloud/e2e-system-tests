@@ -76,6 +76,7 @@ class Login_Management {
 
   clickOnSubmitButton () {
     cy.get(Login_Management.#loginFormSelector).should('be.visible').submit()
+        .wait(8000)
   }
 
   assertErrorMessageDisplay () {
@@ -113,7 +114,7 @@ class Login_Management {
   }
 
   visitLoginPage () {
-    Cypress.config('baseUrl', Cypress.env('DEFAULT'))
+    Cypress.config('baseUrl', Cypress.env('BRB'))
     cy.visit('login')
   }
 

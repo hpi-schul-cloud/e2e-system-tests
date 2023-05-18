@@ -40,11 +40,11 @@ When ('I enter task description {string}', (taskDescription) => {
 })
 
 When ('I enter text submission {string}', (submissionText) => {
-  tasks.setTaskText(submissionText)
+  tasks.setSubmissionText(submissionText)
 })
 
 When ('I enter comment {string}', (gradingText) => {
-  tasks.setTaskText(gradingText)
+  tasks.setSubmissionComment(gradingText)
 })
 
 When('I click on draft tasks tab', () => {

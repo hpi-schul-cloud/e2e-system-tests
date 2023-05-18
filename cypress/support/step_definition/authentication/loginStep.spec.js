@@ -13,12 +13,18 @@ Before(() => {
   cy.intercept('**/alerts').as('alerts_api')
   cy.intercept('**/alert').as('alert_api')
   cy.intercept('**/tasks**').as('tasks_api')
+  cy.intercept('**/tasks/**/finish').as('task_finish_api')
+  cy.intercept('**/tasks/**/restore').as('task_restore_api')
   cy.intercept('**/runtime.config.json').as('runtime_config_api')
   cy.intercept('**/board').as('board_api')
   cy.intercept('**/courses?**').as('courses_api')
   cy.intercept('**/homework/**').as('homework_api')
   cy.intercept('**/rooms/**').as('rooms_api')
   cy.intercept('**/delete/**').as('delete_api')
+  cy.intercept('**/teams**').as('teams_api')
+  cy.intercept('**/courses/**').as('course_api')
+  cy.intercept('**/rooms-overview**').as('rooms_overview_api')
+  cy.intercept('**/videoconference/event/**').as("videoconference_api")
 })
 
 Given('I am logged in as a {string} at {string}', (username, environment) => {

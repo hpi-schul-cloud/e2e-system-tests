@@ -32,7 +32,7 @@ class Courses {
   static #contentCardContent = '[data-testid="content-card-task-content"]'
   static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
   static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
-  static #dropDownCourse = '.course-title .three-dot-button'
+  static #dropDownCourse = '[data-testid="title-menu"]'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #pageTitle = '[id="page-title"]'
   static #contentCardTaskInfoSubmissionsChip =
@@ -205,22 +205,20 @@ class Courses {
 
   contentIsVisibleOnCoursePage (taskTitle) {
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-    cy.wait('@rooms_api')
-    cy.url().should('include', '/rooms/')
+        .wait([
+          '@public_api',
+          '@me_api',
+          '@roles_api',
+          '@schools_api',
+          '@userPermissions_api'
+        ])
+        .then(interceptions => {
+          expect(interceptions[0].response.statusCode).to.equal(200)
+          expect(interceptions[1].state).to.equal('Complete')
+          expect(interceptions[1].response.statusCode).to.equal(200)
+        })
     cy.contains(taskTitle)
       .should('be.visible')
-      .wait([
-        '@public_api',
-        '@me_api',
-        '@roles_api',
-        '@schools_api',
-        '@userPermissions_api'
-      ])
-      .then(interceptions => {
-        expect(interceptions[0].response.statusCode).to.equal(200)
-        expect(interceptions[1].state).to.equal('Complete')
-        expect(interceptions[1].response.statusCode).to.equal(200)
-      })
   }
 
   contentIsNotVisibleOnCoursePage (contentTitle) {
@@ -239,7 +237,9 @@ class Courses {
     cy.wait('@homework_api')
   }
   openThreeDotMenuForContent (contentTitle) {
-    cy.contains(contentTitle).prev().find('button').click()
+    cy.get(Courses.#contentCardContent).contains(contentTitle)
+        .parent()
+        .find('button').click()
   }
 
   openThreeDotMenuForTopic (contentTitle) {
@@ -277,7 +277,8 @@ class Courses {
 
   openCourseEditPage () {
     cy.get(Courses.#dropDownCourse)
-      .click()
+        .parent()
+        .click()
     cy.get(Courses.#btnCourseEdit)
       .click()
   }
@@ -313,6 +314,7 @@ class Courses {
       .find(Courses.#contentCardTaskActions)
       .find('button')
       .click()
+        .wait(['@task_finish_api'])
   }
 
   checkTaskCardDoesNotHaveButtons (taskTitle) {
@@ -423,6 +425,46 @@ class Courses {
     let userFullName = userLastName + ", " + userFirstName
     cy.get(Courses.#chosenResults).contains(userFullName).click()
     cy.get(Courses.#chosenContainer).should('contain', userFullName)
+  }
+
+  deleteAllCoursesMatchingName (roomName) {
+    cy.get('h1')
+        .eq(0)
+        .then($title => {
+          const htmlTitlePage = $title.text()
+          if (htmlTitlePage.includes('Kurse')) {
+            this.deleteCursesByName('Kurs', roomName)
+          } else if (htmlTitlePage.includes('courses')) {
+            this.deleteCursesByName('Course', roomName)
+          } else if (htmlTitlePage.includes('Cursos')) {
+            this.deleteCursesByName('Curso', roomName)
+          } else if (htmlTitlePage.includes('Поточні')) {
+            this.deleteCursesByName('Курс', roomName)
+          }
+        })
+  }
+
+  deleteCursesByName (courseLabel, roomName) {
+    cy.get(`[class="rooms-container"]`).then($roomsContainer => {
+      if ($roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length) {
+        cy.get(`[aria-label="${courseLabel} ${roomName}"]`).then(($rooms) => {
+          if ($rooms) {
+            cy.wrap($rooms).first().click()
+            this.openCourseEditPage();
+            cy.get(Courses.#deleteButton).should('exist').click()
+            cy.get(Courses.#confirmDeletionPopup)
+                .click({
+                  multiple: true,
+                  force: true
+                })
+
+            if ($rooms.length > 1) {
+              this.deleteAllCoursesMatchingName(roomName)
+            }
+          }
+        })
+      }
+    })
   }
 
 }

@@ -149,3 +149,7 @@ When('I clear substitute teacher field', () => {
 When('I add substitute teacher {string}', username => {
   courses.addSubstituteTeacher(username)
 })
+
+Then('I delete all courses named {string}', courseName => {
+  courses.deleteAllCoursesMatchingName(courseName);
+})

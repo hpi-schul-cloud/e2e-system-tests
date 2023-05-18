@@ -48,7 +48,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I enter the description 'cy team event description cy'
         When I enable the video conference toggle on the modal
         When I enter the event place 'cy TestPlace'
-        When I click on Save team event which has title 'create-event-modal'
+        When I click on Save team event button
         When I go to calendar tab
         Then I am in calendar tab on team detail page and title 'cy title' is visible
         Then I see the start video conference button
@@ -101,10 +101,10 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Teacher sees deactivated video conference check box
-        Given I am logged in as a 'teacher' at 'default'
-        When I go to teams overview
-        When I go to a team 'Musik'
-        When I click on team settings
-        When I click on edit option
-        Then I see team edit page
-        Then I see video conference option is disabled
+      Given I am logged in as a 'teacher' at 'default'
+      When I go to teams overview
+      When I go to a team 'Musik'
+      When I click on team settings
+      When I click on edit option
+      Then I see team edit page
+      Then I see video conference option is disabled

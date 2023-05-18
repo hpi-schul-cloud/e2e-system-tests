@@ -101,7 +101,10 @@ class Account {
   }
 
   selectLanguage (sel, language) {
-    return cy.contains(sel, language).should('be.visible').click().wait(500)
+    return cy.contains(sel, language)
+        .should('be.visible')
+        .click()
+        .wait(['@alerts_api'])
   }
 
   assertLanguageUpdate (updatedText) {

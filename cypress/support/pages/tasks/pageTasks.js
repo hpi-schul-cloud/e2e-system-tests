@@ -62,6 +62,8 @@ class Tasks {
     '[data-testid="task-submission-grading-tab"]'
   static #taskFeedbackTabLink = '[id="feedback-tab-link"]'
   static #feedbackSection = '[id="feedback"]'
+  static #feedbackComment = '[data-testid="feedback-comment"]'
+  static #feedbackGrade = '[data-testid="feedback-grade"]'
   static #finishedTasksTab = '[data-testid="finishedTasks"]'
   static #openTasksTab = '[data-testid="openTasks"]'
   static #finishedTasksListDiv = '[id="finished"]'
@@ -74,7 +76,9 @@ class Tasks {
   static #createContentButton =  '[data-testid="add-content-button"]'
   static #addTaskButton = '[data-testid="fab_button_add_task"]'
   static #taskNameInput = '[data-testid="homework-name"]'
-  static #homeworkDescription = '[class="ck ck-editor__main"]'
+  static #homeworkDescription = '[data-testid="homework-description"]'
+  static #submissionComment = '[data-testid="submission-comment"]'
+  static #submissionText = '[data-testid="submission-text"]'
   static #draftTasksTab = '[data-testid="draftTasks"]'
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
@@ -82,7 +86,9 @@ class Tasks {
   static #downloadFileGradingSection =
     '[data-testid="submissions-section-files"]'
   static #downloadFileTitle = '.card-title'
+  static #fileTitleCard = '[data-testid="file-title-card"]'
   static #downloadFileText = '.card-text'
+  static #downloadFileButton = '[data-testid="file-download-btn"]'
 
   navigateToTasksOverview () {
     cy.visit('/tasks')
@@ -117,8 +123,18 @@ class Tasks {
   }
 
   setTaskText (taskText) {
-    cy.get(Tasks.#homeworkDescription).find('div > p').clear()
-    cy.get(Tasks.#homeworkDescription).find('div > p').type(taskText)
+    cy.get(Tasks.#homeworkDescription).next().find("p").clear()
+    cy.get(Tasks.#homeworkDescription).next().find("p").type(taskText)
+  }
+
+  setSubmissionComment (taskComment) {
+    cy.get(Tasks.#submissionComment).next().find("p").clear()
+    cy.get(Tasks.#submissionComment).next().find("p").type(taskComment)
+  }
+
+  setSubmissionText (taskText) {
+    cy.get(Tasks.#submissionText).next().find("p").clear()
+    cy.get(Tasks.#submissionText).next().find("p").type(taskText)
   }
 
   clickOnTabDraftTasks () {
@@ -168,11 +184,11 @@ class Tasks {
   }
 
   compareFeedbackText (feedbackText) {
-    cy.get(Tasks.#feedbackSection).should('contain', feedbackText)
+    cy.get(Tasks.#feedbackComment).should('contain', feedbackText)
   }
 
   compareFeedbackGrade (feedbackGrade) {
-    cy.get(Tasks.#feedbackSection).should('contain', feedbackGrade)
+    cy.get(Tasks.#feedbackGrade).should('contain', feedbackGrade)
   }
 
   seeUploadFileButtonIsDisabled () {
@@ -423,11 +439,11 @@ class Tasks {
       .first()
       .then(elm => {
         cy.get(elm)
-          .contains(Tasks.#downloadFileTitle, fileName)
+          .find(Tasks.#fileTitleCard)
+          .contains(fileName)
           .should('be.visible')
         cy.get(elm)
-          .find(Tasks.#downloadFileText)
-          .find('button')
+          .find(Tasks.#downloadFileButton)
           .should('be.visible')
           .click()
       })
@@ -595,7 +611,9 @@ class Tasks {
   }
 
   clickTaskFinishInDotMenu () {
-    cy.get(Tasks.#taskFinishButtonInDotMenu).click()
+    cy.get(Tasks.#taskFinishButtonInDotMenu)
+        .click()
+        .wait(['@task_restore_api'])
   }
 
   clickLowerTaskSectionIcon () {
