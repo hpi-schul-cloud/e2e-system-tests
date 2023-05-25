@@ -10,7 +10,7 @@ class Account {
   static #listOfAllLanguages = '#available-languages'
   static #germanLanguage = '[data-testid="available-language-de"]'
   static #spanishLanguage = '[data-testid="available-language-es"]'
-  static #ukrainianLanguage = '[data-testid="available-language-ua"]'
+  static #ukrainianLanguage = '[data-testid="available-language-uk"]'
   static #englishLanguage = '[data-testid="available-language-en"]'
   static #pageTitle = '#page-title'
 
