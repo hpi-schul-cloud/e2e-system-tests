@@ -20,15 +20,18 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/e2e-system-tests
+          ref: ${{ inputs.ref }}
           path: e2e-system-tests
 
-      - name: Clean up previous report
-        uses: cypress-io/github-action@v5
-        with:
-          command: npm run pretest
+       #name: Clean up previous report
+        #uses: cypress-io/github-action@v5
+        #with:
+          #command: npm run pretest
 
-      - name: Set BRANCH_NAME on push
+      - name: Set BRANCH_NAME
         run: |
+            echo "secrets"
+            echo ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
             branch_arg=${{ inputs.ref }}
             echo "CYPRESS_BRB=https://brb-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
             echo "CYPRESS_NBC=https://nbc-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
@@ -37,7 +40,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          working-directory: hpi-schul-cloud/e2e-system-tests
+          working-directory: e2e-system-tests
           command: npm run tag:stable:pr
         env:
           CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
@@ -67,6 +70,7 @@ jobs:
         uses: cypress-io/github-action@v5
         if: always()
         with:
+          working-directory: e2e-system-tests
           command: npm run generate:report
 
       - name: Upload Report
@@ -74,12 +78,12 @@ jobs:
         if: always()
         with:
           name: my-report
-          path: ${{ github.workspace }}/reports
+          path: e2e-system-tests/reports
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-video-artifact
-          path: ${{ github.workspace }}/cypress/videos/
+          path: e2e-system-tests/cypress/videos/
           retention-days: 3

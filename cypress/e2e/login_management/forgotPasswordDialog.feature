@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Forget Password - Visibility of dBildungscloud Password Reset dialog
 
