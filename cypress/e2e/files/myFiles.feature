@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Files Overview - To use LibreOffice for text, calc and presentation document
 

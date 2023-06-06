@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Task - To create and delete tasks starting from task overview page by the teacher.
 

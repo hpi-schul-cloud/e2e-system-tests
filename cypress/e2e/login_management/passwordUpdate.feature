@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Password Update - Verify login functionality via password change
 

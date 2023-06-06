@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Topics - To create, edit and delete topics by the teacher.
 

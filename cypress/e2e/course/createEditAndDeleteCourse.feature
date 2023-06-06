@@ -1,4 +1,3 @@
-@pr
 @release
 Feature: Course - To add and delete a course by the teacher
 
