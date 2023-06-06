@@ -28,13 +28,13 @@ jobs:
         run: |
           check_cypress_branch=$(git ls-remote --heads "https://github.com/hpi-schul-cloud/e2e-system-tests.git" ${{ inputs.ref }})
           if [[ -z ${check_cypress_branch} ]]; then
-            echo "::set-output name=ref-exists::false"
+            echo "LOCAL_BRANCH_EXISTS=true" >> "$GITHUB_OUTPUT"
           else
-            echo "::set-output name=ref-exists::true"
+            echo "LOCAL_BRANCH_EXISTS=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Checkout branch
-        if: steps.check_branch.outputs.ref-exists == 'true'
+        if: steps.check_branch.outputs.LOCAL_BRANCH_EXISTS == 'true'
         uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/e2e-system-tests
@@ -42,7 +42,7 @@ jobs:
           path: e2e-system-tests
 
       - name: Checkout main
-        if: steps.check_branch.outputs.ref-exists == 'false'
+        if: steps.check_branch.outputs.LOCAL_BRANCH_EXISTS == 'false'
         uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/e2e-system-tests
