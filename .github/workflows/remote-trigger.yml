@@ -16,26 +16,37 @@ jobs:
         with:
           node-version: 18
 
-      - name: Checkout
+      - name: check local branch
+        id: check_branch
+        run: |
+          check_cypress_branch=$(git ls-remote --heads "https://github.com/hpi-schul-cloud/e2e-system-tests.git" ${{ inputs.ref }})
+          if [[ -z ${check_cypress_branch} ]]; then
+            echo "LOCAL_BRANCH_EXISTS=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "LOCAL_BRANCH_EXISTS=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout main
+        if: steps.check_branch.outputs.LOCAL_BRANCH_EXISTS == 'false'
+        uses: actions/checkout@v3
+        with:
+          repository: hpi-schul-cloud/e2e-system-tests
+          path: e2e-system-tests
+
+      - name: Checkout branch
+        if: steps.check_branch.outputs.LOCAL_BRANCH_EXISTS == 'true'
         uses: actions/checkout@v3
         with:
           repository: hpi-schul-cloud/e2e-system-tests
           ref: ${{ inputs.ref }}
           path: e2e-system-tests
 
-       #name: Clean up previous report
-        #uses: cypress-io/github-action@v5
-        #with:
-          #command: npm run pretest
-
-      - name: Set BRANCH_NAME
+      - name: Set target
         run: |
-            echo "secrets"
-            echo ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
-            branch_arg=${{ inputs.ref }}
-            echo "CYPRESS_BRB=https://brb-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-            echo "CYPRESS_NBC=https://nbc-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-            echo "CYPRESS_DEFAULT=https://default-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          branch_arg=${{ inputs.ref }}
+          echo "CYPRESS_BRB=https://brb-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_NBC=https://nbc-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_DEFAULT=https://default-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
