@@ -42,11 +42,17 @@ jobs:
           path: e2e-system-tests
 
       - name: Set target
+        shell: bash
         run: |
-          branch_arg=${{ inputs.ref }}
-          echo "CYPRESS_BRB=https://brb-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-          echo "CYPRESS_NBC=https://nbc-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-          echo "CYPRESS_DEFAULT=https://default-${branch_arg#refs/heads/}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          branch_name=${{ inputs.ref }}
+          
+          # This cleaning of the branch name needs to be done the same way as in deployment. 
+          # Currently done in https://github.com/hpi-schul-cloud/dof_app_deploy/blob/main/.github/workflows/clean_workflow.yml
+          cleaned_branch_name=$(echo $branch_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
+
+          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
