@@ -66,7 +66,7 @@ jobs:
         run: |
           echo "Try if version endpoint returns OK, in order to check if app is running."
           until curl -s -f -o /dev/null $CYPRESS_BRB; do
-              echo "curling $CYPRESS_BRB failed. Try again in 10 seconds.
+              echo "curling $CYPRESS_BRB failed. Try again in 10 seconds."
               sleep 10
           done
 
