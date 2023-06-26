@@ -45,6 +45,7 @@ jobs:
         shell: bash
         run: |
           branch_name=${{ inputs.ref }}
+          echo "input branch name: $branch_name"
 
           # This cleaning of the branch name needs to be done the same way as in deployment. 
           # Currently done in https://github.com/hpi-schul-cloud/dof_app_deploy/blob/main/.github/workflows/clean_workflow.yml
@@ -52,8 +53,22 @@ jobs:
           echo "cleaned branch name: $cleaned_branch_name"
 
           echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
           echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
           echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" 
+
+      - name: Check if app is running
+        shell: bash
+        run: |
+          echo "Try if version endpoint returns OK, in order to check if app is running."
+          until curl -s -f -o /dev/null $CYPRESS_BRB; do
+              echo "curling $CYPRESS_BRB failed. Try again in 10 seconds.
+              sleep 10
+          done
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
