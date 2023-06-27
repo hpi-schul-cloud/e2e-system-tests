@@ -65,8 +65,8 @@ jobs:
         shell: bash
         run: |
           echo "Try if version endpoint returns OK, in order to check if app is running."
-          until curl -s -f -o /dev/null $CYPRESS_BRB; do
-              echo "curling $CYPRESS_BRB failed. Try again in 10 seconds."
+          until curl -s -f -o /dev/null $CYPRESS_BRB/version; do
+              echo "curling $CYPRESS_BRB/version failed. Try again in 10 seconds."
               sleep 10
           done
 
@@ -75,6 +75,7 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run tag:stable:pr
+        needs: 
         env:
           CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
           CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
