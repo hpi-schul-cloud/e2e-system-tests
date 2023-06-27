@@ -75,7 +75,6 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run tag:stable:pr
-        needs: 
         env:
           CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
           CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
