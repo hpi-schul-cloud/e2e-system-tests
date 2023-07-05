@@ -68,17 +68,17 @@ jobs:
             delay=10
             max_tries=30
             tries=0
-            
-            until [ $tries -ge $max_tries ] || curl -s $1 | jq '."services-unavailable"' | grep false > /dev/null; do
-                    echo "$1 says services are unavailable. Try again in $delay seconds."
-                    tries=$((tries+1))
-                    sleep $delay
+
+            until [ $tries -ge $max_tries ] || curl -sf $1 | jq '."services-unavailable"' | grep false > /dev/null; do
+              echo "Apps are not running. Try again in $delay seconds."
+              tries=$((tries+1))
+              sleep $delay
             done
     
             if [ $tries -ge $max_tries ]; then
-                    echo "Terminated checking $1 after $tries tries without success."
+              echo "Terminated checking $1 after $tries tries without success."
             else
-                    echo "$1 says all services are available."
+              echo "$1 says all apps are running."
             fi
           }
           
