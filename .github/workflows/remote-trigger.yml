@@ -61,14 +61,30 @@ jobs:
           echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
           echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" 
 
-      - name: Check if app is running
+      - name: Check if all apps are running
         shell: bash
         run: |
-          echo "Try if version endpoint returns OK, in order to check if app is running."
-          until curl -s -f -o /dev/null $CYPRESS_BRB/version; do
-              echo "curling $CYPRESS_BRB/version failed. Try again in 10 seconds."
-              sleep 10
-          done
+          check_availability () {
+            delay=10
+            max_tries=30
+            tries=0
+            
+            until [ $tries -ge $max_tries ] || curl -s $1 | jq '."services-unavailable"' | grep false > /dev/null; do
+                    echo "$1 says services are unavailable. Try again in $delay seconds."
+                    tries=$((tries+1))
+                    sleep $delay
+            done
+    
+            if [ $tries -ge $max_tries ]; then
+                    echo "Terminated checking $1 after $tries tries without success."
+            else
+                    echo "$1 says all services are available."
+            fi
+          }
+          
+          check_availability $CYPRESS_BRB/version
+          check_availability $CYPRESS_NBC/version
+          check_availability $CYPRESS_DEFAULT/version
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
