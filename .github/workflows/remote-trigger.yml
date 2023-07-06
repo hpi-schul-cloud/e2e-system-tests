@@ -69,7 +69,7 @@ jobs:
             max_tries=30
             tries=0
 
-            until [ $tries -ge $max_tries ] || curl -sf $1 | jq '."services-unavailable"' | grep false > /dev/null; do
+            until [ $tries -ge $max_tries ] || curl -sf $1 | jq '."services-unavailable"' | grep falseee > /dev/null; do
               echo "Apps are not running. Try again in $delay seconds."
               tries=$((tries+1))
               sleep $delay
@@ -77,6 +77,8 @@ jobs:
     
             if [ $tries -ge $max_tries ]; then
               echo "Terminated checking $1 after $tries tries without success."
+              echo "Exit workflow."
+              exit 1
             else
               echo "$1 says all apps are running."
             fi
