@@ -45,7 +45,7 @@ jobs:
 
       - name: Print masked secret
         run: |
-          my_string='${{ secrets.CYPRESS_ADMIN_1_EMAIL_OO }}'; echo "length is ${#my_string}"
+          my_string=$CYPRESS_ADMIN_1_EMAIL_OO; echo "length is ${#my_string}"
 
 
       - name: Cypress run
