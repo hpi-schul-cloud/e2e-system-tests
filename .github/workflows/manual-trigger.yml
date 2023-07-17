@@ -35,17 +35,17 @@ jobs:
 
 
       - name: Load secret
+        id: op-load-secret
         uses: 1password/load-secrets-action@v1
         with:
-          # Export loaded secrets as environment variables
-          export-env: true
+          export-env: false
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
           CYPRESS_ADMIN_1_EMAIL_OO: op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_EMAIL
 
       - name: Print masked secret
         run: |
-          my_string=$CYPRESS_ADMIN_1_EMAIL_OO; echo "length is ${#my_string}"
+          my_string='${{ steps.op-load-secret.outputs.CYPRESS_ADMIN_1_EMAIL_OO }}'; echo "length is ${#my_string}"
 
 
       - name: Cypress run
