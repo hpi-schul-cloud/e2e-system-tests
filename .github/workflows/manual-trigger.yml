@@ -41,11 +41,11 @@ jobs:
           export-env: true
         env:
           OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-          CYPRESS_ADMIN_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_EMAIL
+          CYPRESS_ADMIN_1_EMAIL_OO: op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_EMAIL
 
       - name: Print masked secret
         run: |
-          echo "Secret: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}"
+          my_string='${{ secrets.CYPRESS_ADMIN_1_EMAIL_OO }}'; echo "length is ${#my_string}"
 
 
       - name: Cypress run
