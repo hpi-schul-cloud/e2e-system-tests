@@ -44,7 +44,6 @@ Feature: Course - To add and delete a course by the teacher
     Then I see the course 'Cypress Testkurs Edit' on the room overview page
 
     #Deleting the course/room created in this feature test
-    #When I go to room 'Cypress Testkurs Edit'
     When I open course edit page
     When I click on the button delete course
     Then I see the modal to confirm the deletion
