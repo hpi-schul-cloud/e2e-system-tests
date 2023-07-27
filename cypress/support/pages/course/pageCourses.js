@@ -59,6 +59,8 @@ class Courses {
   static #sectionOneAreaOnCourseCreationPage = '[data-testid="section-1-area"]'
   static #sectionTwoAreaOnCourseCreationPage = '[data-testid="section-2-area"]'
   static #courseDeleteConfirmationModal = '[data-testid="popup-title"]'
+  static #courseTitleInRoomoverview = '[data-testid="course-title"]'
+  static #learningContentTab = '[data-testid="learnContent-tab"]'
 
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
@@ -122,7 +124,7 @@ class Courses {
   }
 
   navigateToRoomBoard (roomName) {
-    cy.contains('[data-testid="course-title"]', roomName)
+    cy.contains(Courses.#courseTitleInRoomoverview, roomName)
       .should('be.visible')
       .then(title => {
         cy.wrap(title)
@@ -133,7 +135,7 @@ class Courses {
               try {
                 setTimeout(() => {
                   cy.wait(['@alert_api', '@board_api', '@userPermissions_api'])
-                    .get('[data-testid="learnContent-tab"]')
+                    .get(Courses.#learningContentTab)
                     .should('have.attr', 'aria-selected', 'true')
                   resolve()
                   return
