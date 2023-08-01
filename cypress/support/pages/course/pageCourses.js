@@ -57,6 +57,7 @@ class Courses {
   static #sectionOneAreaOnCourseCreationPage = '[data-testid="section-1-area"]'
   static #sectionTwoAreaOnCourseCreationPage = '[data-testid="section-2-area"]'
   static #courseDeleteConfirmationModal = '[data-testid="popup-title"]'
+  static #courseDetailPageTitle = '[data-testid="courses-course-title"]'
 
 
   seeSectionOneAreaOnCourseCreatePage() {
@@ -158,9 +159,8 @@ class Courses {
       })
   }
 
-  showRoomPage (room) {
-    const selectedRoom = `[aria-label='${room}']`
-    cy.get(selectedRoom).should('be.visible')
+  showRoomPage (courseName) {
+    cy.get(Courses.#courseDetailPageTitle).should('contain.text', courseName)
   }
 
   navigateToTools () {
