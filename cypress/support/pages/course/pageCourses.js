@@ -61,6 +61,7 @@ class Courses {
   static #courseDeleteConfirmationModal = '[data-testid="popup-title"]'
   static #courseTitleInRoomoverview = '[data-testid="course-title"]'
   static #learningContentTab = '[data-testid="learnContent-tab"]'
+  static #courseDetailPageTitle = '[data-testid="courses-course-title"]'
 
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
@@ -148,9 +149,8 @@ class Courses {
       })
   }
 
-  showRoomPage (room) {
-    const selectedRoom = `[aria-label='${room}']`
-    cy.get(selectedRoom).should('be.visible')
+  showRoomPage (courseName) {
+    cy.get(Courses.#courseDetailPageTitle).should('contain.text', courseName)
   }
 
   navigateToTools () {
