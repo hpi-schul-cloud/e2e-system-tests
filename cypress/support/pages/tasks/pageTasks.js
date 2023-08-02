@@ -73,7 +73,6 @@ class Tasks {
   static #tasksOverviewNavigationButton = '[data-testid="Aufgaben"]'
   static #taskForm = '[id="homework-form"]'
   static #submitButton = '[data-testid="submit-task-btn"]'
-  // static #createTaskButton =  '[data-testid="addTask"]'
   static #addTaskButton = '[data-testid="addTask"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #homeworkDescription = '[data-testid="homework-description"]'
