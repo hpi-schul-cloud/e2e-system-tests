@@ -9,18 +9,19 @@ Frameworks:
 ### Prepare development environment
 
 Install or make sure Chrome browser (at least) have it in your development machine
+
 1) Install [Node v18](https://nodejs.org/dist/)
 2) Install [Git](https://git-scm.com/downloads)
 3) Install [Github Desktop App](https://desktop.github.com/) (Optional)
-3) Install IDE of your choice e.g. [VS code](https://code.visualstudio.com/download)
-4) Install VS code extensions:
+4) Install IDE of your choice e.g. [VS code](https://code.visualstudio.com/download)
+5) Install VS code extensions:
     - [Cucumber (Gherkin) Full Support](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete)
-    -  [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+    - [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
 
 ### How to setup/run Cypress tests locally
 
 1) Clone the project
-2) Add `cypress.env.json` in the root folder with credentials and environment settings.
+2) Rename [`cypress.env.template.json`](/cypress.env.template.json) to `cypress.env.json` in the root folder with credentials available in 1Password.
 3) Execute the following command in terminal `npm install` or `npm i` for installing the required packages
 4) Execute the following command in terminal to run the tests in Cypress runner (UI) `npm run cy:open`
 5) Execute the following command in terminal to run the tests in headless mode `npm run cy:run`
@@ -28,7 +29,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 
 ### Framework Structure
 
-```
+```javascript
 (root)
 |
 |---- .github (containing github workflows)
@@ -55,7 +56,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |---- .gitattributes
 |---- .gitignore
 |---- reporter.js (for generating html reports)
-|---- cypress.env.json (credentials & environment variables)
+|---- cypress.env.template.json (credentials & environment variables `rename the file as mentioned above`)
 |---- cypress.config.json (cypress related settings)
 |---- LICENSE
 |---- package-lock.json
