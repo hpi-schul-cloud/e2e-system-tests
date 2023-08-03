@@ -5,7 +5,7 @@ Feature: Course - To add and delete a course by the teacher
 
   @stable_test
   Scenario: as a pre-condition teacher deletes undeleted tests
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher' at 'default'
     When I go to rooms overview
     When I delete all courses named 'Cypress Test Creation and Deletion'
     Then I do not see the course 'Cypress Test Creation and Deletion' on the room overview page
@@ -34,7 +34,7 @@ Feature: Course - To add and delete a course by the teacher
     When I click on button To Course Overview on the finish page
     Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
 
-  # Editing the course
+    #Editing the course
     When I go to room 'Cypress Test Creation and Deletion'
     When I open course edit page
     Then I can see course edit page
@@ -43,8 +43,7 @@ Feature: Course - To add and delete a course by the teacher
     When I click on save changes after editing the course details
     Then I see the course 'Cypress Testkurs Edit' on the room overview page
 
-  # Deleting the course/room created in this feature test
-    When I go to room 'Cypress Testkurs Edit'
+    #Deleting the course/room created in this feature test
     When I open course edit page
     When I click on the button delete course
     Then I see the modal to confirm the deletion
