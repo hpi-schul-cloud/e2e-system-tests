@@ -21,7 +21,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 ### How to setup/run Cypress tests locally
 
 1) Clone the project
-2) Rename [`cypress.env.template.json`](/cypress.env.template.json) to `cypress.env.json` in the root folder with credentials available in 1Password.
+2) Rename <a href="/cypress.env.template.json" download="cypress.env.json" target="_blank">`cypress.env.template.json`</a> to `cypress.env.json` in the root folder with credentials available in 1Password.
 3) Execute the following command in terminal `npm install` or `npm i` for installing the required packages
 4) Execute the following command in terminal to run the tests in Cypress runner (UI) `npm run cy:open`
 5) Execute the following command in terminal to run the tests in headless mode `npm run cy:run`
@@ -29,7 +29,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 
 ### Framework Structure
 
-```javascript
+```text
 (root)
 |
 |---- .github (containing github workflows)
@@ -56,7 +56,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |---- .gitattributes
 |---- .gitignore
 |---- reporter.js (for generating html reports)
-|---- cypress.env.template.json (credentials & environment variables `rename the file as mentioned above`)
+|---- cypress.env.template.json (credentials & environment variables - rename the file as mentioned above)
 |---- cypress.config.json (cypress related settings)
 |---- LICENSE
 |---- package-lock.json
