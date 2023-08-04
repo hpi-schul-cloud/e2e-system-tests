@@ -25,7 +25,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then I can see room page 'Course with subject and tasks'
     And I can see content 'Cy Task Creating and Deleting Test' on course page
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher edits and publishes task from room via form
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -61,7 +61,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And task-visibility-due-date is 'tomorrow' at '11:00'
     And Draft is disabled
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher edits file
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -181,7 +181,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I go to room 'Course with subject and tasks'
     Then I see task 'Cy Task Creating, Editing, Deleting Test' contains buttons
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher deletes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
