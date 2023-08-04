@@ -3,7 +3,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher creates topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview

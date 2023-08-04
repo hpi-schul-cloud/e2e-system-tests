@@ -4,7 +4,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
   As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher creates task as draft from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -95,7 +95,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I see file 'test_pdf.pdf' is not visible in section files
     And I see file 'example_jpg.jpg' is visible in section files
 
-  @stable_test
+  @stable_test @only
   Scenario: Student submits task
     Given I am logged in as a 'student1' at 'brb'
     When I go to rooms overview
@@ -114,7 +114,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on not graded tasks
     Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher grades task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -140,7 +140,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then I see task card info submitted contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
     And Task card info graded contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
 
-  @stable_test
+  @stable_test @only
   Scenario: Student sees grading
     Given I am logged in as a 'student1' at 'brb'
     When I go to tasks overview
@@ -154,7 +154,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I click on download file 'gradingfile-pdf.pdf' in grading
     Then file 'gradingfile-pdf.pdf' is saved in folder downloads
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher finishes task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -162,7 +162,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on link finish for task 'Cy Task Creating, Editing, Deleting Test'
     Then I see task 'Cy Task Creating, Editing, Deleting Test' does not contain any buttons
 
-  @stable_test
+  @stable_test @only
   Scenario: Teacher restores the finished task from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to tasks overview
