@@ -1,9 +1,10 @@
 @release
+@only
 Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
 
-  @stable_test @only
+  @stable_test
   Scenario: Teacher creates topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -36,7 +37,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on last breadcrump element in topbar navigation
     Then I can see content 'Cy Topic Creating and Deleting Test' on course page
 
-  @stable_test @only
+  @stable_test
   Scenario: Teacher edits topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
@@ -80,7 +81,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on last breadcrump element in topbar navigation
     Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
-  @stable_test @only
+  @stable_test
   Scenario: Teacher deletes topic from room
     Given I am logged in as a 'teacher1' at 'brb'
     When I go to rooms overview
