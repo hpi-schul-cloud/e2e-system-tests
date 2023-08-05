@@ -1,4 +1,5 @@
 @release
+@only
 Feature: Task - To create and delete tasks starting from task overview page by the teacher.
 
   As a teacher I want to create and delete a new task on the task overview page so that the student can submit it

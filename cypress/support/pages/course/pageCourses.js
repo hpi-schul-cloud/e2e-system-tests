@@ -150,6 +150,7 @@ class Courses {
   }
 
   showRoomPage (courseName) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#courseDetailPageTitle).should('contain.text', courseName)
   }
 
@@ -182,6 +183,7 @@ class Courses {
   }
 
   clickOnCreateContentFAB () {
+    cy.wait('@rooms_api')
     cy.get(Courses.#createContent).click()
   }
 
@@ -191,6 +193,7 @@ class Courses {
   }
 
   contentIsVisibleOnCoursePage (taskTitle) {
+    // cy.wait('@rooms_api')
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
       .wait([
         '@public_api',
@@ -223,6 +226,7 @@ class Courses {
     cy.wait('@homework_api')
   }
   openThreeDotMenuForContent (contentTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(contentTitle)
       .parent()
@@ -231,6 +235,7 @@ class Courses {
   }
 
   openThreeDotMenuForTopic (contentTitle) {
+    cy.wait('@rooms_api')
     cy.contains(contentTitle).prev().find('button').click()
   }
 
@@ -273,6 +278,7 @@ class Courses {
   }
 
   compareSubmittedTasksInformation (submittedTasks, contentTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(contentTitle)
       .parent()
@@ -291,6 +297,7 @@ class Courses {
   }
 
   clickOnFinishTask (taskTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -302,6 +309,7 @@ class Courses {
   }
 
   checkTaskCardDoesNotHaveButtons (taskTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -312,6 +320,7 @@ class Courses {
   }
 
   checkTaskCardDoesHaveButtons (taskTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -366,7 +375,7 @@ class Courses {
   }
 
   searchForARoom (roomName) {
-    cy.wait("@rooms_overview_api");
+    cy.wait('@rooms_overview_api');
     cy.get(Courses.#searchFieldRoomOverview).type(roomName)
   }
 

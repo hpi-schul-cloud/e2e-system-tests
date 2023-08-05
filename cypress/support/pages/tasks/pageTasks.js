@@ -99,6 +99,7 @@ class Tasks {
   }
 
   clickOnAddTask () {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#addTaskButton).click()
   }
 
@@ -133,6 +134,7 @@ class Tasks {
   }
 
   clickOnTabDraftTasks () {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#draftTasksTab).click()
   }
 
@@ -419,7 +421,7 @@ class Tasks {
     cy.get(`[data-file-viewer-savename="${fileName}"]`)
       .find('[data-method="download"]')
       .click()
-    cy.wait('@rooms_api')
+    // cy.wait('@rooms_api')
   }
 
   clickDownloadFileInSubmission (fileName) {
@@ -496,6 +498,7 @@ class Tasks {
   }
 
   clickOnTabDoneTasks () {
+    cy.wait('@tasks_api')
     cy.get(Tasks.#doneTasksTab)
       .click()
       .wait('@tasks_api')
@@ -512,6 +515,7 @@ class Tasks {
   }
 
   seeTaskNotInListAsTeacher (taskTitle) {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#taskOverviewTeacher).contains(taskTitle).should('not.exist')
   }
 
@@ -524,6 +528,7 @@ class Tasks {
   }
 
   seeTaskNotInListAsStudent (taskTitle) {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#taskOverviewStudent).contains(taskTitle).should('not.exist')
   }
 
