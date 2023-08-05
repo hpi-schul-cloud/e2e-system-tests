@@ -222,6 +222,7 @@ class Courses {
   }
 
   openTask (taskTitle) {
+    // cy.wait('@rooms_api') dont needed as on vue already
     cy.get(Courses.#contentCardContent).contains(taskTitle).click()
     cy.wait('@homework_api')
   }
