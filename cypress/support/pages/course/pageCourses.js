@@ -193,7 +193,7 @@ class Courses {
   }
 
   contentIsVisibleOnCoursePage (taskTitle) {
-    // cy.wait('@rooms_api')
+    // no cy.wait('@rooms_api') here as the reload takes care of this
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
       .wait([
         '@public_api',
@@ -222,7 +222,7 @@ class Courses {
   }
 
   openTask (taskTitle) {
-    // cy.wait('@rooms_api') dont needed as on vue already
+    // cy.wait('@rooms_api') dont needed as on vue page already where scenario is given
     cy.get(Courses.#contentCardContent).contains(taskTitle).click()
     cy.wait('@homework_api')
   }
