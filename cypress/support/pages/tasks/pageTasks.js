@@ -421,7 +421,6 @@ class Tasks {
     cy.get(`[data-file-viewer-savename="${fileName}"]`)
       .find('[data-method="download"]')
       .click()
-    // cy.wait('@rooms_api')
   }
 
   clickDownloadFileInSubmission (fileName) {
