@@ -150,6 +150,7 @@ class Courses {
   }
 
   showRoomPage (courseName) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#courseDetailPageTitle).should('contain.text', courseName)
   }
 
@@ -182,6 +183,7 @@ class Courses {
   }
 
   clickOnCreateContentFAB () {
+    cy.wait('@rooms_api')
     cy.get(Courses.#createContent).click()
   }
 
@@ -191,6 +193,7 @@ class Courses {
   }
 
   contentIsVisibleOnCoursePage (taskTitle) {
+    // no cy.wait('@rooms_api') here as the reload takes care of this
     cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
       .wait([
         '@public_api',
@@ -219,10 +222,12 @@ class Courses {
   }
 
   openTask (taskTitle) {
+    // cy.wait('@rooms_api') dont needed as on vue page already where scenario is given
     cy.get(Courses.#contentCardContent).contains(taskTitle).click()
     cy.wait('@homework_api')
   }
   openThreeDotMenuForContent (contentTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(contentTitle)
       .parent()
@@ -231,6 +236,7 @@ class Courses {
   }
 
   openThreeDotMenuForTopic (contentTitle) {
+    cy.wait('@rooms_api')
     cy.contains(contentTitle).prev().find('button').click()
   }
 
@@ -264,6 +270,7 @@ class Courses {
   }
 
   openCourseEditPage () {
+    cy.wait('@rooms_api')
     cy.get(Courses.#dropDownCourse).parent().click()
     cy.get(Courses.#btnCourseEdit).click()
   }
@@ -273,6 +280,7 @@ class Courses {
   }
 
   compareSubmittedTasksInformation (submittedTasks, contentTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(contentTitle)
       .parent()
@@ -291,6 +299,7 @@ class Courses {
   }
 
   clickOnFinishTask (taskTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -302,6 +311,7 @@ class Courses {
   }
 
   checkTaskCardDoesNotHaveButtons (taskTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -312,6 +322,7 @@ class Courses {
   }
 
   checkTaskCardDoesHaveButtons (taskTitle) {
+    cy.wait('@rooms_api')
     cy.get(Courses.#contentCardContent)
       .contains(taskTitle)
       .parent()
@@ -366,6 +377,7 @@ class Courses {
   }
 
   searchForARoom (roomName) {
+    cy.wait('@rooms_overview_api');
     cy.get(Courses.#searchFieldRoomOverview).type(roomName)
   }
 
@@ -406,18 +418,18 @@ class Courses {
       .then($title => {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
-          this.deleteCursesByName('Kurs', roomName)
+          this.deleteCoursesByName('Kurs', roomName)
         } else if (htmlTitlePage.includes('courses')) {
-          this.deleteCursesByName('Course', roomName)
+          this.deleteCoursesByName('Course', roomName)
         } else if (htmlTitlePage.includes('Cursos')) {
-          this.deleteCursesByName('Curso', roomName)
+          this.deleteCoursesByName('Curso', roomName)
         } else if (htmlTitlePage.includes('Поточні')) {
-          this.deleteCursesByName('Курс', roomName)
+          this.deleteCoursesByName('Курс', roomName)
         }
       })
   }
 
-  deleteCursesByName (courseLabel, roomName) {
+  deleteCoursesByName (courseLabel, roomName) {
     cy.get(`[class="rooms-container"]`).then($roomsContainer => {
       if (
         $roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length
