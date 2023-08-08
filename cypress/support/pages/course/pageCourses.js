@@ -418,18 +418,18 @@ class Courses {
       .then($title => {
         const htmlTitlePage = $title.text()
         if (htmlTitlePage.includes('Kurse')) {
-          this.deleteCursesByName('Kurs', roomName)
+          this.deleteCoursesByName('Kurs', roomName)
         } else if (htmlTitlePage.includes('courses')) {
-          this.deleteCursesByName('Course', roomName)
+          this.deleteCoursesByName('Course', roomName)
         } else if (htmlTitlePage.includes('Cursos')) {
-          this.deleteCursesByName('Curso', roomName)
+          this.deleteCoursesByName('Curso', roomName)
         } else if (htmlTitlePage.includes('Поточні')) {
-          this.deleteCursesByName('Курс', roomName)
+          this.deleteCoursesByName('Курс', roomName)
         }
       })
   }
 
-  deleteCursesByName (courseLabel, roomName) {
+  deleteCoursesByName (courseLabel, roomName) {
     cy.get(`[class="rooms-container"]`).then($roomsContainer => {
       if (
         $roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length
