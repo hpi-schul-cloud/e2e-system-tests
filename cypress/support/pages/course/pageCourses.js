@@ -270,6 +270,7 @@ class Courses {
   }
 
   openCourseEditPage () {
+    cy.wait('@rooms_api')
     cy.get(Courses.#dropDownCourse).parent().click()
     cy.get(Courses.#btnCourseEdit).click()
   }
