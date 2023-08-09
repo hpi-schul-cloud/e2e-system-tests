@@ -3,16 +3,16 @@ on:
   workflow_dispatch:
     inputs:
       instance1:
-        description: 'Please enter a valid BRB instance URL to run the tests on'
-        default: 'https://brb-main.cd.dbildungscloud.dev/'
+        description: "Please enter a valid BRB instance URL to run the tests on"
+        default: "https://brb-main.cd.dbildungscloud.dev/"
         required: true
       instance2:
-        description: 'Please enter a valid NBC instance URL to run the tests on'
-        default: 'https://nbc-main.cd.dbildungscloud.dev/'
+        description: "Please enter a valid NBC instance URL to run the tests on"
+        default: "https://nbc-main.cd.dbildungscloud.dev/"
         required: true
       instance3:
-        description: 'Please enter a valid DEFAULT instance URL to run the tests on'
-        default: 'https://default-main.cd.dbildungscloud.dev/'
+        description: "Please enter a valid DEFAULT instance URL to run the tests on"
+        default: "https://default-main.cd.dbildungscloud.dev/"
         required: true
 
 jobs:
@@ -32,14 +32,36 @@ jobs:
         id: op-load-secret
         uses: 1password/load-secrets-action@v1
         with:
-          export-env: false
+          export-env: true
         env:
           CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-          SECRET: op://cy-dev-brb/Main Teacher Schule 3/username
+          CYPRESS_BRB: op://cy-dev-brb/cypress/CYPRESS_BRB
+          CYPRESS_NBC: op://cy-dev-brb/cypress/CYPRESS_NBC
+          CYPRESS_DEFAULT: op://cy-dev-brb/cypress/CYPRESS_DEFAULT
+          CYPRESS_TEACHER_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL
+          CYPRESS_TEACHER_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD
+          CYPRESS_TEACHER_2_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_EMAIL
+          CYPRESS_TEACHER_2_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_PASSWORD
+          CYPRESS_STUDENT_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_EMAIL
+          CYPRESS_STUDENT_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_PASSWORD
+          CYPRESS_STUDENT_2_EMAIL: op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_EMAIL
+          CYPRESS_STUDENT_2_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_PASSWORD
+          CYPRESS_ADMIN_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_EMAIL
+          CYPRESS_ADMIN_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_PASSWORD
+          CYPRESS_EXPERT_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_EMAIL
+          CYPRESS_EXPERT_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_PASSWORD
+          CYPRESS_STUDENT_EXTERN: op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN
+          CYPRESS_STUDENT_EXTERN_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN_PASSWORD
+          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL
+          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD
+          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD
+          CYPRESS_TEACHER_1_FIRST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_FIRST_NAME
+          CYPRESS_TEACHER_1_LAST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_LAST_NAME
+          CYPRESS_TEACHER_2_FIRST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_FIRST_NAME
+          CYPRESS_TEACHER_2_LAST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_LAST_NAME
 
-      - name: Print masked secret
-        run: |
-            echo "Secret: ${{ steps.op-load-secret.outputs.SECRET }}"
+      - name: Print environment variables with masked secrets
+        run: printenv
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -52,30 +74,30 @@ jobs:
           CYPRESS_BRB: ${{ github.event.inputs.instance1 }}
           CYPRESS_NBC: ${{ github.event.inputs.instance2 }}
           CYPRESS_DEFAULT: ${{ github.event.inputs.instance3 }}
-          CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
-          CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
-          CYPRESS_TEACHER_2_EMAIL: ${{ secrets.CYPRESS_TEACHER_2_EMAIL }}
-          CYPRESS_TEACHER_2_PASSWORD: ${{ secrets.CYPRESS_TEACHER_2_PASSWORD }}
-          CYPRESS_STUDENT_1_EMAIL: ${{ secrets.CYPRESS_STUDENT_1_EMAIL }}
-          CYPRESS_STUDENT_1_PASSWORD: ${{ secrets.CYPRESS_STUDENT_1_PASSWORD }}
-          CYPRESS_STUDENT_2_EMAIL: ${{ secrets.CYPRESS_STUDENT_2_EMAIL }}
-          CYPRESS_STUDENT_2_PASSWORD: ${{ secrets.CYPRESS_STUDENT_2_PASSWORD }}
-          CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
-          CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
-          CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
-          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
-          CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
-          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD }}
-          CYPRESS_TEACHER_1_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_1_FIRST_NAME }}
-          CYPRESS_TEACHER_1_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_1_LAST_NAME }}
-          CYPRESS_TEACHER_2_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_2_FIRST_NAME }}
-          CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
-          DEBUG: '@cypress/github-action'
+          CYPRESS_TEACHER_1_EMAIL: ${{ env.CYPRESS_TEACHER_1_EMAIL }}
+          CYPRESS_TEACHER_1_PASSWORD: ${{ env.CYPRESS_TEACHER_1_PASSWORD }}
+          CYPRESS_TEACHER_2_EMAIL: ${{ env.CYPRESS_TEACHER_2_EMAIL }}
+          CYPRESS_TEACHER_2_PASSWORD: ${{ env.CYPRESS_TEACHER_2_PASSWORD }}
+          CYPRESS_STUDENT_1_EMAIL: ${{ env.CYPRESS_STUDENT_1_EMAIL }}
+          CYPRESS_STUDENT_1_PASSWORD: ${{ env.CYPRESS_STUDENT_1_PASSWORD }}
+          CYPRESS_STUDENT_2_EMAIL: ${{ env.CYPRESS_STUDENT_2_EMAIL }}
+          CYPRESS_STUDENT_2_PASSWORD: ${{ env.CYPRESS_STUDENT_2_PASSWORD }}
+          CYPRESS_ADMIN_1_EMAIL: ${{ env.CYPRESS_ADMIN_1_EMAIL }}
+          CYPRESS_ADMIN_1_PASSWORD: ${{ env.CYPRESS_ADMIN_1_PASSWORD }}
+          CYPRESS_EXPERT_1_EMAIL: ${{ env.CYPRESS_EXPERT_1_EMAIL }}
+          CYPRESS_EXPERT_1_PASSWORD: ${{ env.CYPRESS_EXPERT_1_PASSWORD }}
+          CYPRESS_STUDENT_EXTERN: ${{ env.CYPRESS_STUDENT_EXTERN }}
+          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ env.CYPRESS_STUDENT_EXTERN_PASSWORD }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ env.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ env.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ env.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD }}
+          CYPRESS_TEACHER_1_FIRST_NAME: ${{ env.CYPRESS_TEACHER_1_FIRST_NAME }}
+          CYPRESS_TEACHER_1_LAST_NAME: ${{ env.CYPRESS_TEACHER_1_LAST_NAME }}
+          CYPRESS_TEACHER_2_FIRST_NAME: ${{ env.CYPRESS_TEACHER_2_FIRST_NAME }}
+          CYPRESS_TEACHER_2_LAST_NAME: ${{ env.CYPRESS_TEACHER_2_LAST_NAME }}
+          DEBUG: "@cypress/github-action"
         with:
-          #command: npm run tag:stable
+          command: npm run tag:stable
           browser: chrome
 
       - name: Generate Report
@@ -99,19 +121,19 @@ jobs:
           path: ${{ github.workspace }}/cypress/videos/
           retention-days: 3
 
-  notify_RC:
-    runs-on: ubuntu-latest
-    needs: [e2e-system-tests]
-    if: |
-      always()
+  # notify_RC:
+  #   runs-on: ubuntu-latest
+  #   needs: [e2e-system-tests]
+  #   if: |
+  #     always()
 
-    steps:
-      - uses: technote-space/workflow-conclusion-action@v3
+  #   steps:
+  #     - uses: technote-space/workflow-conclusion-action@v3
 
-      - name: Send Notification to Rocket Chat
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
-        with:
-          type: ${{ env.WORKFLOW_CONCLUSION }}
-          job_name: 'Cypress Tests'
-          url: ${{ secrets.RC_WEBHOOK_URL }}
-          username: Manual Trigger Test Run
+  #     - name: Send Notification to Rocket Chat
+  #       uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+  #       with:
+  #         type: ${{ env.WORKFLOW_CONCLUSION }}
+  #         job_name: "Cypress Tests"
+  #         url: ${{ secrets.RC_WEBHOOK_URL }}
+  #         username: Manual Trigger Test Run
