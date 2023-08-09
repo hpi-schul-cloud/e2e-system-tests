@@ -28,6 +28,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Load secret
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: false
+        env:
+          CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+          SECRET: op://cy-dev-brb/Main Teacher Schule 3/username
+
+      - name: Print masked secret
+        run: |
+            echo "Secret: ${{ steps.op-load-secret.outputs.SECRET }}"
+
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
@@ -62,7 +75,7 @@ jobs:
           CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
           DEBUG: '@cypress/github-action'
         with:
-          command: npm run tag:stable
+          #command: npm run tag:stable
           browser: chrome
 
       - name: Generate Report
