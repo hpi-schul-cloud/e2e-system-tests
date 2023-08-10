@@ -47,7 +47,7 @@ jobs:
           branch_name=${{ inputs.ref }}
           echo "input branch name: $branch_name"
 
-          # This cleaning of the branch name needs to be done the same way as in deployment. 
+          # This cleaning of the branch name needs to be done the same way as in deployment.
           # Currently done in https://github.com/hpi-schul-cloud/dof_app_deploy/blob/main/.github/workflows/clean_workflow.yml
           cleaned_branch_name=$(echo $branch_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "cleaned branch name: $cleaned_branch_name"
@@ -59,7 +59,7 @@ jobs:
           echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
           echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-          echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" 
+          echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
       - name: Check if all apps are running
         shell: bash
@@ -74,7 +74,7 @@ jobs:
               tries=$((tries+1))
               sleep $delay
             done
-    
+
             if [ $tries -ge $max_tries ]; then
               echo "Terminated checking $1 after $tries tries without success."
               echo "Exit job."
@@ -83,10 +83,53 @@ jobs:
               echo "$1 says apps are running."
             fi
           }
-          
+
           check_availability $CYPRESS_BRB/version
           check_availability $CYPRESS_NBC/version
           check_availability $CYPRESS_DEFAULT/version
+
+      - name: Configure 1Password Service Account
+        uses: 1password/load-secrets-action/configure@v1
+        with:
+          service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+
+      - name: Load secret
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: true
+        env:
+          CYPRESS_BRB: op://cy-dev-brb/cypress/CYPRESS_BRB
+          CYPRESS_NBC: op://cy-dev-nbc/cypress/CYPRESS_NBC
+          CYPRESS_DEFAULT: op://cy-dev-dbc/cypress/CYPRESS_DEFAULT
+          CYPRESS_TEACHER_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL
+          CYPRESS_TEACHER_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD
+          CYPRESS_TEACHER_2_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_EMAIL
+          CYPRESS_TEACHER_2_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_PASSWORD
+          CYPRESS_STUDENT_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_EMAIL
+          CYPRESS_STUDENT_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_PASSWORD
+          CYPRESS_STUDENT_2_EMAIL: op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_EMAIL
+          CYPRESS_STUDENT_2_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_PASSWORD
+          CYPRESS_ADMIN_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_EMAIL
+          CYPRESS_ADMIN_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_PASSWORD
+          CYPRESS_EXPERT_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_EMAIL
+          CYPRESS_EXPERT_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_PASSWORD
+          CYPRESS_STUDENT_EXTERN: op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN
+          CYPRESS_STUDENT_EXTERN_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN_PASSWORD
+          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL
+          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD
+          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD
+          CYPRESS_TEACHER_1_FIRST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_FIRST_NAME
+          CYPRESS_TEACHER_1_LAST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_LAST_NAME
+          CYPRESS_TEACHER_2_FIRST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_FIRST_NAME
+          CYPRESS_TEACHER_2_LAST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_LAST_NAME
+
+      - name: Clean up previous report
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: e2e-system-tests
+          command: npm run pretest
+
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
@@ -94,27 +137,27 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run tag:stable:pr
         env:
-          CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
-          CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
-          CYPRESS_TEACHER_2_EMAIL: ${{ secrets.CYPRESS_TEACHER_2_EMAIL }}
-          CYPRESS_TEACHER_2_PASSWORD: ${{ secrets.CYPRESS_TEACHER_2_PASSWORD }}
-          CYPRESS_STUDENT_1_EMAIL: ${{ secrets.CYPRESS_STUDENT_1_EMAIL }}
-          CYPRESS_STUDENT_1_PASSWORD: ${{ secrets.CYPRESS_STUDENT_1_PASSWORD }}
-          CYPRESS_STUDENT_2_EMAIL: ${{ secrets.CYPRESS_STUDENT_2_EMAIL }}
-          CYPRESS_STUDENT_2_PASSWORD: ${{ secrets.CYPRESS_STUDENT_2_PASSWORD }}
-          CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
-          CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
-          CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
-          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
-          CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
-          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD }}
-          CYPRESS_TEACHER_1_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_1_FIRST_NAME }}
-          CYPRESS_TEACHER_1_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_1_LAST_NAME }}
-          CYPRESS_TEACHER_2_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_2_FIRST_NAME }}
-          CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
+          CYPRESS_TEACHER_1_EMAIL: ${{ env.CYPRESS_TEACHER_1_EMAIL }}
+          CYPRESS_TEACHER_1_PASSWORD: ${{ env.CYPRESS_TEACHER_1_PASSWORD }}
+          CYPRESS_TEACHER_2_EMAIL: ${{ env.CYPRESS_TEACHER_2_EMAIL }}
+          CYPRESS_TEACHER_2_PASSWORD: ${{ env.CYPRESS_TEACHER_2_PASSWORD }}
+          CYPRESS_STUDENT_1_EMAIL: ${{ env.CYPRESS_STUDENT_1_EMAIL }}
+          CYPRESS_STUDENT_1_PASSWORD: ${{ env.CYPRESS_STUDENT_1_PASSWORD }}
+          CYPRESS_STUDENT_2_EMAIL: ${{ env.CYPRESS_STUDENT_2_EMAIL }}
+          CYPRESS_STUDENT_2_PASSWORD: ${{ env.CYPRESS_STUDENT_2_PASSWORD }}
+          CYPRESS_ADMIN_1_EMAIL: ${{ env.CYPRESS_ADMIN_1_EMAIL }}
+          CYPRESS_ADMIN_1_PASSWORD: ${{ env.CYPRESS_ADMIN_1_PASSWORD }}
+          CYPRESS_EXPERT_1_EMAIL: ${{ env.CYPRESS_EXPERT_1_EMAIL }}
+          CYPRESS_EXPERT_1_PASSWORD: ${{ env.CYPRESS_EXPERT_1_PASSWORD }}
+          CYPRESS_STUDENT_EXTERN: ${{ env.CYPRESS_STUDENT_EXTERN }}
+          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ env.CYPRESS_STUDENT_EXTERN_PASSWORD }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ env.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ env.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD }}
+          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ env.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD }}
+          CYPRESS_TEACHER_1_FIRST_NAME: ${{ env.CYPRESS_TEACHER_1_FIRST_NAME }}
+          CYPRESS_TEACHER_1_LAST_NAME: ${{ env.CYPRESS_TEACHER_1_LAST_NAME }}
+          CYPRESS_TEACHER_2_FIRST_NAME: ${{ env.CYPRESS_TEACHER_2_FIRST_NAME }}
+          CYPRESS_TEACHER_2_LAST_NAME: ${{ env.CYPRESS_TEACHER_2_LAST_NAME }}
           DEBUG: '@cypress/github-action'
 
       - name: Generate Report
