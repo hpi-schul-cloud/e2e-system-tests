@@ -22,8 +22,8 @@ jobs:
         env:
           CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
           CYPRESS_BRB: op://cy-dev-brb/cypress/CYPRESS_BRB
-          CYPRESS_NBC: op://cy-dev-nbc/cypress/CYPRESS_NBC
-          CYPRESS_DEFAULT: op://cy-dev-dbc/cypress/CYPRESS_DEFAULT
+          CYPRESS_NBC: op://cy-dev-brb/cypress/CYPRESS_NBC
+          CYPRESS_DEFAULT: op://cy-dev-brb/cypress/CYPRESS_DEFAULT
           CYPRESS_TEACHER_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL
           CYPRESS_TEACHER_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD
           CYPRESS_TEACHER_2_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_EMAIL
