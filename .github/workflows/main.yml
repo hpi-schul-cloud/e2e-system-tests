@@ -24,6 +24,10 @@ jobs:
           cache: "npm"
           cache-dependency-path: "**/package-lock.json"
 
+      - name: Print Current Workflow
+        run: |
+          echo "The current workflow is: ${{ github.workflow }}"
+
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
         with:
@@ -100,9 +104,8 @@ jobs:
           DEBUG: "@cypress/github-action"
 
       - name: Generate Report
-        uses: cypress-io/github-action@v5
         if: always()
-        with:
+        run: |
           command: npm run generate:report
 
       - name: Upload Report
