@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    #   - name: Checkout
-    #     uses: actions/checkout@v3
-    #     with:
-    #       repository: hpi-schul-cloud/e2e-system-tests
-    #       ref: BC-4569-secrets-from-1pass-instead-of-github
-    #       path: e2e-system-tests
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: hpi-schul-cloud/e2e-system-tests
+          ref: BC-4569-secrets-from-1pass-instead-of-github
+          path: e2e-system-tests
 
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
