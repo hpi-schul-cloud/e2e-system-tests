@@ -24,8 +24,8 @@ jobs:
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
 
-      - name: Install Dependencies
-        run: npm ci
+    #   - name: Install Dependencies
+    #     run: npm ci
 
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
