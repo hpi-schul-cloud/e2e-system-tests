@@ -4,9 +4,6 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    # defaults:
-    #   run:
-    #     working-directory: ${{ github.host-workspace }}
 
     steps:
       - name: Setup Node
@@ -14,27 +11,17 @@ jobs:
         with:
           node-version: 18
 
-      # - name: Check dir
-      #   run: |
-      #     find . -type d -name '.*' -print
-
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          #     repository: hpi-schul-cloud/e2e-system-tests
           ref: BC-4569-secrets-from-1pass-instead-of-github
-      # path: e2e-system-tests
 
-      - name: Check dir
-        run: |
-          tree ${{github.workspace}} -a -C
-          find ./.github/workflows -type f -print
+  calling-reusable-workflow:
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
-      - name: Calling reusable workflow
-        uses: ./.github/workflows/main.yml
-        with:
-          secrets:
-          service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+      # - name: Calling reusable workflow
 
       # - name: Generate Report
       #   uses: cypress-io/github-action@v5
