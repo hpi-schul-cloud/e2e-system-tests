@@ -16,7 +16,7 @@ jobs:
 
       - name: Check dir
         run: |
-          tree -a -I '.git|.github'
+         find . -type d -name '.*' -print
 
       - name: Checkout
         uses: actions/checkout@v3
