@@ -14,21 +14,21 @@ jobs:
         with:
           node-version: 18
 
-      - name: Check dir
-        run: |
-         find . -type d -name '.*' -print
+      # - name: Check dir
+      #   run: |
+      #     find . -type d -name '.*' -print
 
       - name: Checkout
         uses: actions/checkout@v3
-      #   with:
-      #     repository: hpi-schul-cloud/e2e-system-tests
-      #     ref: BC-4569-secrets-from-1pass-instead-of-github
+        with:
+          #     repository: hpi-schul-cloud/e2e-system-tests
+          ref: BC-4569-secrets-from-1pass-instead-of-github
       # path: e2e-system-tests
 
-      # - name: Check dir
-      #   run: |
-      #     pwd
-      #     echo "${{ github.workspace }}"
+      - name: Check dir
+        run: |
+          tree -a -C
+          find . -type d -name '.*' -print
 
       - name: Calling reusable workflow
         uses: ./.github/workflows/main.yml@BC-4569-secrets-from-1pass-instead-of-github
