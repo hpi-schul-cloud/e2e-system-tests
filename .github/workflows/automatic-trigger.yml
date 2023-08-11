@@ -15,7 +15,8 @@ jobs:
           node-version: 18
 
       - name: Check dir
-        uses: FiorelaCiroku/XDTesting-Print-Directory-Structure@v1.0.2
+        run: |
+          tree -a
 
       - name: Checkout
         uses: actions/checkout@v3
