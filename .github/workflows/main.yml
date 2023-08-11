@@ -17,13 +17,6 @@ jobs:
           ref: BC-4569-secrets-from-1pass-instead-of-github
           path: e2e-system-tests
 
-      #   - name: Setup Node
-      #     uses: actions/setup-node@v3
-      #     with:
-      #       node-version: 18
-      #       cache: "npm"
-      #       cache-dependency-path: "**/package-lock.json"
-
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
         with:
@@ -34,6 +27,12 @@ jobs:
           workflow_name="${{ github.workflow }}"
           if [[ $workflow_name == *"manual"* ]]; then
             echo "This is a manual workflow"
+            echo "CYPRESS_BRB: ${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
+            echo "$CYPRESS_BRB"
+            echo "CYPRESS_NBC: ${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
+            echo "$CYPRESS_NBC"
+            echo "CYPRESS_DEFAULT: ${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
+            echo "$CYPRESS_DEFAULT"
           # Execute steps for manual workflow
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
             echo "This is an automatic or scheduled workflow"
@@ -54,9 +53,6 @@ jobs:
         with:
           export-env: true
         env:
-          #   CYPRESS_BRB: op://cy-dev-brb/cypress/CYPRESS_BRB
-          #   CYPRESS_NBC: op://cy-dev-nbc/cypress/CYPRESS_NBC
-          #   CYPRESS_DEFAULT: op://cy-dev-dbc/cypress/CYPRESS_DEFAULT
           CYPRESS_TEACHER_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL
           CYPRESS_TEACHER_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD
           CYPRESS_TEACHER_2_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_EMAIL
