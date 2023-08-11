@@ -17,6 +17,16 @@ jobs:
           ref: BC-4569-secrets-from-1pass-instead-of-github
           path: e2e-system-tests
 
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: subdir/package-lock.json
+
+      - name: Install Dependencies
+        run: npm ci
+
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
         with:
@@ -53,8 +63,7 @@ jobs:
           CYPRESS_TEACHER_2_FIRST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_FIRST_NAME
           CYPRESS_TEACHER_2_LAST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_LAST_NAME
 
-      - name: Install Dependencies
-        run: npm install
+
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
