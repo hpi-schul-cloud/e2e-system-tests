@@ -53,6 +53,9 @@ jobs:
           CYPRESS_TEACHER_2_FIRST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_FIRST_NAME
           CYPRESS_TEACHER_2_LAST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_LAST_NAME
 
+      - name: Install Dependencies
+        run: npm install
+
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
