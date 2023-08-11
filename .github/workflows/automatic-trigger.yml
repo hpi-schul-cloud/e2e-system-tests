@@ -4,6 +4,9 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: e2e-system-tests
 
     steps:
       - name: Setup Node
@@ -11,8 +14,7 @@ jobs:
         with:
           node-version: 18
 
-      - name: Setting working directory
-        working-directory: e2e-system-tests
+      - name: Check dir
         run: |
           pwd
           echo "${{ github.workspace }}"
