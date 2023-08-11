@@ -83,7 +83,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
-          command: npm run tag:only
+          command: npm run tag:stable
           browser: chrome
         env:
           CYPRESS_BRB: ${{ env.CYPRESS_BRB }}
