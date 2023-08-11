@@ -22,6 +22,7 @@ jobs:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   generating-and-uploading-report:
+    needs: configuring-loading-secrets-running-tests
     runs-on: ubuntu-latest
 
     steps:
@@ -29,6 +30,7 @@ jobs:
         uses: cypress-io/github-action@v5
         if: always()
         with:
+          working-directory: e2e-system-tests
           command: npm run generate:report
 
       - name: Upload Report
