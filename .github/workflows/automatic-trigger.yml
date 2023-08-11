@@ -32,7 +32,7 @@ jobs:
           find ./.github/workflows -type f -print
 
       - name: Calling reusable workflow
-        uses: ./.github/workflows/main.yml@BC-4569-secrets-from-1pass-instead-of-github
+        uses: /.github/workflows/main.yml@BC-4569-secrets-from-1pass-instead-of-github
         with:
           secrets:
           service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
