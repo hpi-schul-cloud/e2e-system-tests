@@ -27,22 +27,26 @@ jobs:
           workflow_name="${{ github.workflow }}"
           if [[ $workflow_name == *"manual"* ]]; then
             echo "This is a manual workflow"
-            echo "CYPRESS_BRB: ${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
-            echo "$CYPRESS_BRB"
-            echo "CYPRESS_NBC: ${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
-            echo "$CYPRESS_NBC"
-            echo "CYPRESS_DEFAULT: ${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
-            echo "$CYPRESS_DEFAULT"
-          # Execute steps for manual workflow
+            export CYPRESS_BRB=${{ github.event.inputs.instance1 }}
+            export CYPRESS_NBC=${{ github.event.inputs.instance2 }}
+            export CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}
+            # echo "CYPRESS_BRB: ${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
+            # echo "$CYPRESS_BRB"
+            # echo "CYPRESS_NBC: ${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
+            # echo "$CYPRESS_NBC"
+            # echo "CYPRESS_DEFAULT: ${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
+            # echo "$CYPRESS_DEFAULT"
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
             echo "This is an automatic or scheduled workflow"
-            echo "CYPRESS_BRB=op://cy-dev-brb/cypress/CYPRESS_BRB" >> $GITHUB_ENV
-            echo "$CYPRESS_BRB"
-            echo "CYPRESS_NBC=op://cy-dev-nbc/cypress/CYPRESS_NBC" >> $GITHUB_ENV
-            echo "$CYPRESS_NBC"
-            echo "CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT" >> $GITHUB_ENV
-            echo "$CYPRESS_DEFAULT"
-          # Execute steps for automatic or scheduled workflow
+            export CYPRESS_BRB=op://cy-dev-brb/cypress/CYPRESS_BRB
+            export CYPRESS_NBC=op://cy-dev-nbc/cypress/CYPRESS_NBC
+            export CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT
+            # echo "CYPRESS_BRB=op://cy-dev-brb/cypress/CYPRESS_BRB" >> $GITHUB_ENV
+            # echo "$CYPRESS_BRB"
+            # echo "CYPRESS_NBC=op://cy-dev-nbc/cypress/CYPRESS_NBC" >> $GITHUB_ENV
+            # echo "$CYPRESS_NBC"
+            # echo "CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT" >> $GITHUB_ENV
+            # echo "$CYPRESS_DEFAULT"
           else
             echo "This is an remote workflow"
             fi
