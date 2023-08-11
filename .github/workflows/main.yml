@@ -6,7 +6,7 @@ on:
         required: true
 
 jobs:
-  reusable-workflow-job:
+  configure-laod-secrets-and-run_tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +21,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
-
-    #   - name: Install Dependencies
-    #     run: npm ci
+          cache: "npm"
+          cache-dependency-path: "**/package-lock.json"
 
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
@@ -63,8 +60,6 @@ jobs:
           CYPRESS_TEACHER_2_FIRST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_FIRST_NAME
           CYPRESS_TEACHER_2_LAST_NAME: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_LAST_NAME
 
-
-
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
@@ -74,9 +69,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-            working-directory: e2e-system-tests
-            command: npm run tag:only
-            browser: chrome
+          working-directory: e2e-system-tests
+          command: npm run tag:only
+          browser: chrome
         env:
           CYPRESS_BRB: ${{ env.CYPRESS_BRB }}
           CYPRESS_NBC: ${{ env.CYPRESS_NBC }}
@@ -108,7 +103,6 @@ jobs:
         uses: cypress-io/github-action@v5
         if: always()
         with:
-          working-directory: e2e-system-tests
           command: npm run generate:report
 
       - name: Upload Report
@@ -125,4 +119,3 @@ jobs:
           name: my-video-artifact
           path: ${{ github.workspace }}/cypress/videos/
           retention-days: 3
-
