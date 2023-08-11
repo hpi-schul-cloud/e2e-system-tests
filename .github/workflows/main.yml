@@ -121,6 +121,10 @@ jobs:
         run: |
           npm run generate:report
 
+      - name: Debug Report Directory
+        run: |
+            tree
+
       - name: Upload Report
         uses: actions/upload-artifact@v3
         if: always()
