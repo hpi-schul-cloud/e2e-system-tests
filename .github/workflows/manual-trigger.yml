@@ -25,6 +25,10 @@ jobs:
         with:
           node-version: 18
 
+      - name: Check folder structure
+        run: |
+          tree -aC
+
       - name: Checkout
         uses: actions/checkout@v3
 
