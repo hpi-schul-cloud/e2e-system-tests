@@ -4,9 +4,9 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ github.workspace }}
+    # defaults:
+    #   run:
+    #     working-directory: ${{ github.host-workspace }}
 
     steps:
       - name: Setup Node
@@ -18,6 +18,7 @@ jobs:
         run: |
           pwd
           echo "${{ github.workspace }}"
+          echo "${{ github.host-workspace }}"
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -30,6 +31,7 @@ jobs:
         run: |
           pwd
           echo "${{ github.workspace }}"
+          echo "${{ github.host-workspace }}"
 
       - name: Calling reusable workflow
         uses: ./.github/workflows/main.yml@BC-4569-secrets-from-1pass-instead-of-github
