@@ -16,9 +16,7 @@ jobs:
 
       - name: Check dir
         run: |
-          pwd
-          echo "${{ github.workspace }}"
-          ls -a
+          ls ${{github.workspace}}
 
       - name: Checkout
         uses: actions/checkout@v3
