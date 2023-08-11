@@ -79,6 +79,7 @@ class News {
   }
 
   seeNewsCreationPage () {
+    cy.wait('@news_new_api')
     cy.url().should('include', '/news/new')
     cy.get(News.#newsTitleInput).should('exist')
   }
