@@ -18,7 +18,7 @@ jobs:
         run: |
           pwd
           echo "${{ github.workspace }}"
-          echo "${{ github.host-workspace }}"
+          ls -a
 
       - name: Checkout
         uses: actions/checkout@v3
@@ -27,11 +27,10 @@ jobs:
       #     ref: BC-4569-secrets-from-1pass-instead-of-github
       # path: e2e-system-tests
 
-      - name: Check dir
-        run: |
-          pwd
-          echo "${{ github.workspace }}"
-          echo "${{ github.host-workspace }}"
+      # - name: Check dir
+      #   run: |
+      #     pwd
+      #     echo "${{ github.workspace }}"
 
       - name: Calling reusable workflow
         uses: ./.github/workflows/main.yml@BC-4569-secrets-from-1pass-instead-of-github
