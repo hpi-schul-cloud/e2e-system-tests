@@ -126,12 +126,12 @@ jobs:
         if: always()
         with:
           name: my-report
-          path: ${{ github.workspace }}/reports
+          path: reports/
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-video-artifact
-          path: ${{ github.workspace }}/cypress/videos/
+          path: cypress/videos/
           retention-days: 3
