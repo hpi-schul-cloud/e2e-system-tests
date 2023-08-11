@@ -73,6 +73,10 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
+        with:
+            working-directory: e2e-system-tests
+            command: npm run tag:stable
+            browser: chrome
         env:
           CYPRESS_BRB: ${{ env.CYPRESS_BRB }}
           CYPRESS_NBC: ${{ env.CYPRESS_NBC }}
@@ -99,7 +103,3 @@ jobs:
           CYPRESS_TEACHER_2_FIRST_NAME: ${{ env.CYPRESS_TEACHER_2_FIRST_NAME }}
           CYPRESS_TEACHER_2_LAST_NAME: ${{ env.CYPRESS_TEACHER_2_LAST_NAME }}
           DEBUG: "@cypress/github-action"
-          with:
-          working-directory: e2e-system-tests
-          command: npm run tag:stable
-          browser: chrome
