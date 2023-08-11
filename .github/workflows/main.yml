@@ -26,7 +26,6 @@ jobs:
 
       - name: Print Current Workflow
         run: |
-          |
           workflow_name="${{ github.workflow }}"
           if [[ $workflow_name == *"manual"* ]]; then
             echo "This is a manual workflow"
