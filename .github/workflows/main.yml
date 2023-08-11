@@ -17,33 +17,33 @@ jobs:
           ref: BC-4569-secrets-from-1pass-instead-of-github
           path: e2e-system-tests
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "npm"
-          cache-dependency-path: "**/package-lock.json"
-
-      - name: Print Current Workflow
-        run: |
-          workflow_name="${{ github.workflow }}"
-          if [[ $workflow_name == *"manual"* ]]; then
-            echo "This is a manual workflow"
-            # Execute steps for manual workflow
-          elif [[ $workflow_name == *"automatic"* ]]; then
-            echo "This is an automatic workflow"
-            # Execute steps for automatic workflow
-          elif [[ $workflow_name == *"scheduled"* ]]; then
-            echo "This is a scheduled workflow"
-            # Execute steps for scheduled workflow
-          else
-            echo "Unknown workflow type"
-          fi
+      #   - name: Setup Node
+      #     uses: actions/setup-node@v3
+      #     with:
+      #       node-version: 18
+      #       cache: "npm"
+      #       cache-dependency-path: "**/package-lock.json"
 
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
         with:
           service-account-token: ${{ secrets.service-account-token }}
+
+      - name: Setting URL's
+        run: |
+          workflow_name="${{ github.workflow }}"
+          if [[ $workflow_name == *"manual"* ]]; then
+            echo "This is a manual workflow"
+          # Execute steps for manual workflow
+          elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
+            echo "This is an automatic or scheduled workflow"
+            export CYPRESS_BRB=op://cy-dev-brb/cypress/CYPRESS_BRB
+            export CYPRESS_NBC=op://cy-dev-nbc/cypress/CYPRESS_NBC
+            export CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT
+          # Execute steps for automatic or scheduled workflow
+          else
+            echo "This is an remote workflow"
+            fi
 
       - name: Load secret
         id: op-load-secret
@@ -51,9 +51,9 @@ jobs:
         with:
           export-env: true
         env:
-          CYPRESS_BRB: op://cy-dev-brb/cypress/CYPRESS_BRB
-          CYPRESS_NBC: op://cy-dev-nbc/cypress/CYPRESS_NBC
-          CYPRESS_DEFAULT: op://cy-dev-dbc/cypress/CYPRESS_DEFAULT
+          #   CYPRESS_BRB: op://cy-dev-brb/cypress/CYPRESS_BRB
+          #   CYPRESS_NBC: op://cy-dev-nbc/cypress/CYPRESS_NBC
+          #   CYPRESS_DEFAULT: op://cy-dev-dbc/cypress/CYPRESS_DEFAULT
           CYPRESS_TEACHER_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL
           CYPRESS_TEACHER_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD
           CYPRESS_TEACHER_2_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_EMAIL
@@ -120,10 +120,6 @@ jobs:
         working-directory: e2e-system-tests
         run: |
           npm run generate:report
-
-      - name: Debug Report Directory
-        run: |
-            tree
 
       - name: Upload Report
         uses: actions/upload-artifact@v3
