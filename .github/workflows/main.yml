@@ -6,7 +6,7 @@ on:
         required: true
 
 jobs:
-  configure-laod-secrets-and-run_tests:
+  configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -130,12 +130,12 @@ jobs:
         if: always()
         with:
           name: my-report
-          path: reports/
+          path: ${{ github.workspace }}/e2e-system-tests/reports/
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v3
         if: always()
         with:
           name: my-video-artifact
-          path: cypress/videos/
+          path: ${{ github.workspace }}/e2e-system-tests/cypress/videos/
           retention-days: 3
