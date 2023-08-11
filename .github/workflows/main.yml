@@ -103,3 +103,26 @@ jobs:
           CYPRESS_TEACHER_2_FIRST_NAME: ${{ env.CYPRESS_TEACHER_2_FIRST_NAME }}
           CYPRESS_TEACHER_2_LAST_NAME: ${{ env.CYPRESS_TEACHER_2_LAST_NAME }}
           DEBUG: "@cypress/github-action"
+
+      - name: Generate Report
+        uses: cypress-io/github-action@v5
+        if: always()
+        with:
+          working-directory: e2e-system-tests
+          command: npm run generate:report
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: my-report
+          path: ${{ github.workspace }}/reports
+
+      - name: Upload Video Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: my-video-artifact
+          path: ${{ github.workspace }}/cypress/videos/
+          retention-days: 3
+
