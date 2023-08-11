@@ -11,7 +11,8 @@ jobs:
         with:
           node-version: 18
 
-      - name: Check dir
+      - name: Setting working directory
+        working-directory: e2e-system-tests
         run: |
           pwd
           echo "${{ github.workspace }}"
