@@ -15,8 +15,7 @@ jobs:
           node-version: 18
 
       - name: Check dir
-        run: |
-          ls ${{github.workspace}}
+        uses: FiorelaCiroku/XDTesting-Print-Directory-Structure@v1.0.2
 
       - name: Checkout
         uses: actions/checkout@v3
