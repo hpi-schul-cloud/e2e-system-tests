@@ -117,6 +117,7 @@ jobs:
 
       - name: Generate Report
         if: always()
+        working-directory: e2e-system-tests
         run: |
           npm run generate:report
 
