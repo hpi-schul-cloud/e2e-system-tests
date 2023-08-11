@@ -26,7 +26,20 @@ jobs:
 
       - name: Print Current Workflow
         run: |
-          echo "The current workflow is: ${{ github.workflow }}"
+          |
+          workflow_name="${{ github.workflow }}"
+          if [[ $workflow_name == *"manual"* ]]; then
+            echo "This is a manual workflow"
+            # Execute steps for manual workflow
+          elif [[ $workflow_name == *"automatic"* ]]; then
+            echo "This is an automatic workflow"
+            # Execute steps for automatic workflow
+          elif [[ $workflow_name == *"scheduled"* ]]; then
+            echo "This is a scheduled workflow"
+            # Execute steps for scheduled workflow
+          else
+            echo "Unknown workflow type"
+          fi
 
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
@@ -106,7 +119,7 @@ jobs:
       - name: Generate Report
         if: always()
         run: |
-          command: npm run generate:report
+          npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v3
