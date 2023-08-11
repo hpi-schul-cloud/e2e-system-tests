@@ -16,30 +16,32 @@ jobs:
         with:
           ref: BC-4569-secrets-from-1pass-instead-of-github
 
-  calling-reusable-workflow:
+  configuring-loading-secrets-running-tests:
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
-      # - name: Calling reusable workflow
+  generating-and-uploading-report:
+    runs-on: ubuntu-latest
 
-      # - name: Generate Report
-      #   uses: cypress-io/github-action@v5
-      #   if: always()
-      #   with:
-      #     command: npm run generate:report
+    steps:
+      - name: Generate Report
+        uses: cypress-io/github-action@v5
+        if: always()
+        with:
+          command: npm run generate:report
 
-      # - name: Upload Report
-      #   uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: my-report
-      #     path: ${{ github.workspace }}/reports
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: my-report
+          path: ${{ github.workspace }}/reports
 
-      # - name: Upload Video Artifact
-      #   uses: actions/upload-artifact@v3
-      #   if: always()
-      #   with:
-      #     name: my-video-artifact
-      #     path: ${{ github.workspace }}/cypress/videos/
-      #     retention-days: 3
+      - name: Upload Video Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: my-video-artifact
+          path: ${{ github.workspace }}/cypress/videos/
+          retention-days: 3
