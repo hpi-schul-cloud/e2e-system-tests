@@ -16,7 +16,7 @@ jobs:
 
       - name: Check dir
         run: |
-          tree -a
+          tree -aC ${{github.workspace}}
 
       - name: Checkout
         uses: actions/checkout@v3
