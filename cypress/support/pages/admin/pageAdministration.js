@@ -33,6 +33,12 @@ class Management {
   static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
   static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
   static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
+  static #startMigrationButton = '[data-testid="migration-start-button"]'
+  static #migrationInformationText = '[data-testid="text-description"]'
+  static #agreeMigrationButton = '[data-testid="agree-btn"]'
+  static #migrationEndButton = '[data-testid="migration-end-button"]'
+  static #endMigrationConfirmationCheckbox = '[data-testid="migration-confirmation-checkbox"]'
+  static #endMigrationConfirmationButton = '[data-testid="agree-btn"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -268,6 +274,69 @@ class Management {
     cy.get(Management.#chatToggleSwitch)
       .find('input')
       .click({ force: true })
+  }
+
+  schoolNumberIsAdded() {
+    cy.get('#input-193')
+        .should('not.be.empty')
+  }
+
+
+  migrationButtonIsEnabled() {
+    cy.get(Management.#startMigrationButton)
+        .should('be.enabled')
+  }
+
+  clickStartMigration() {
+    cy.get(Management.#startMigrationButton)
+        .click()
+  }
+
+  migrationInformationIsVisible() {
+    cy.get(Management.#migrationInformationText)
+        .should('be.visible')
+  }
+
+  clickSupportLink() {
+    cy.contains("a", "Support")
+        .invoke("attr", "href")
+        .should('contain', 'mailto:nbc-support@netz-21.de')
+  }
+
+  clickInfoLink() {
+    cy.contains("[data-testid=\"text-description\"] > a", "hier")
+        .should("have.attr", "href", "https://blog.niedersachsen.cloud/umzug")
+  }
+
+  clickAgreeMigrationButton() {
+    cy.get(Management.#agreeMigrationButton)
+        .click()
+  }
+
+  migrationActiveTextInformation() {
+    cy.get('.v-alert__content > span')
+        .should('contain', 'Die Account-Migration ist aktiv.')
+  }
+
+  endMigrationButtonIsVisible() {
+    cy.get(Management.#migrationEndButton)
+        .should('be.enabled')
+  }
+
+  clickEndMigrationButton() {
+    cy.get(Management.#migrationEndButton)
+        .click()
+  }
+
+
+  clickEndMigrationConfirmationCheckbox() {
+    cy.get(Management.#endMigrationConfirmationCheckbox)
+        .check( {force: true} )
+  }
+
+  clickEndMigrationConfirmationButton() {
+    cy.get(Management.#endMigrationConfirmationButton)
+        .click()
   }
 }
 export default Management
