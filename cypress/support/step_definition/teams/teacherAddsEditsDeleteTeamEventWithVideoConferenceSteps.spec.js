@@ -44,7 +44,7 @@ When ('I enter the event place {string}', (eventPlace) =>{
 	teams.enterTeamEventPlace(eventPlace)
 })
 
-When ('I click on Save team event or I hit enter button on the keyboard to save it', () =>{
+When ('I click on button Save team event', () =>{
 	teams.clickOnSaveTeamEvent()
 })
 
@@ -68,7 +68,7 @@ When ('I re enter the description {string}', (editedEventDescription) =>{
   teams.editTeamEventDescription(editedEventDescription)
 })
 
-When ('I re enter the place {string} and press the submit button to save the event', (editedEventPlace) =>{
+When ('I re enter the place {string}', (editedEventPlace) =>{
   teams.editTeamEventPlace(editedEventPlace)
 })
 
@@ -110,6 +110,14 @@ Then ('I see URL is changed to {string}', (bbbExtURL) =>{
 
 Then ('I click on participate to video conference button as a participating student', () =>{
 	teams.clickOnVideoParticipantLinkButtonAsStudent()
+})
+
+Then('I see video icon for team event', () => {
+	teams.seeVideoPartcipationButtonInTeamEvents()
+})
+
+Then ('I see team event with description {string}', (teamEventDescription) =>{
+	teams.seeTeamEventDescription(teamEventDescription)
 })
 
 Then ('I see video conference check box is unchecked', () =>{
