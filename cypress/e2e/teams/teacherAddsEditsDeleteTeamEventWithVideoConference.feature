@@ -55,6 +55,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on start video conference button as a moderator teacher
         Then I see the modal and toggles are visible in the modal
         Then I start the team video conference which has title 'cy title'
+        Then I log out
 
     @stable_test
     Scenario: Student can see and participate in video conference
