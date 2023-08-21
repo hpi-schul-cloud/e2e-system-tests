@@ -5,6 +5,9 @@ on:
       ref:
         required: true
         type: string
+    secrets:
+      service-account-token:
+        required: true
 
 jobs:
   e2e-system-tests:
@@ -92,4 +95,4 @@ jobs:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+      service-account-token: ${{ secrets.service-account-token }}
