@@ -12,6 +12,10 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    outputs:
+      cypress_brb: ${{ steps.set_target.outputs.CYPRESS_BRB }}
+      cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
+      cypress_default: ${{ steps.set_target.outputs.CYPRESS_DEFAULT }}
 
     steps:
       - name: Setup Node
@@ -45,6 +49,7 @@ jobs:
           path: e2e-system-tests
 
       - name: Set target
+        id: set_target
         shell: bash
         run: |
           branch_name=${{ inputs.ref }}
@@ -55,14 +60,24 @@ jobs:
           cleaned_branch_name=$(echo $branch_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "cleaned branch name: $cleaned_branch_name"
 
-          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          # echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          # echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
+          # echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          # echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
+          # echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          # echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
+          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
           echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
           echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
           echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
 
       - name: Check if all apps are running
         shell: bash
@@ -96,3 +111,6 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.service-account-token }}
+      cypress_brb_url: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc_url: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_default_url: ${{ needs.e2e-system-tests.outputs.cypress_default }}
