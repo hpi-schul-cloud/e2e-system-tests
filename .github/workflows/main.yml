@@ -5,13 +5,13 @@ on:
       service-account-token:
         required: true
     inputs:
-      cypress_brb_url:
+      cypress_brb:
         description: 'brb url from remote workflow'
         type: string
-      cypress_nbc_url:
+      cypress_nbc:
         description: 'nbc url from remote workflow'
         type: string
-      cypress_default_url:
+      cypress_default:
         description: 'default url from remote workflow'
         type: string
 
@@ -54,11 +54,11 @@ jobs:
             echo "$CYPRESS_DEFAULT"
           else
             echo "This is an remote workflow"
-            echo "CYPRESS_BRB=${{ inputs.cypress_brb_url }}" >> $GITHUB_ENV
+            echo "CYPRESS_BRB=${{ inputs.cypress_brb }}" >> $GITHUB_ENV
             echo "$CYPRESS_BRB"
-            echo "CYPRESS_NBC=${{ inputs.cypress_nbc_url }}" >> $GITHUB_ENV
+            echo "CYPRESS_NBC=${{ inputs.cypress_nbc }}" >> $GITHUB_ENV
             echo "$CYPRESS_NBC"
-            echo "CYPRESS_DEFAULT=${{ inputs.cypress_default_url }}" >> $GITHUB_ENV
+            echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
             fi
 

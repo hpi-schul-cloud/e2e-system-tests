@@ -111,6 +111,7 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.service-account-token }}
-      cypress_brb_url: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      cypress_nbc_url: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      cypress_default_url: ${{ needs.e2e-system-tests.outputs.cypress_default }}
+    with:
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_default: ${{ needs.e2e-system-tests.outputs.cypress_default }}
