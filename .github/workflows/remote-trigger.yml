@@ -12,10 +12,10 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    # outputs:
-    #   cypress_brb: ${{ steps.set_target.outputs.CYPRESS_BRB }}
-    #   cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
-    #   cypress_default: ${{ steps.set_target.outputs.CYPRESS_DEFAULT }}
+    outputs:
+      cypress_brb: ${{ steps.set_target.outputs.CYPRESS_BRB }}
+      cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
+      cypress_default: ${{ steps.set_target.outputs.CYPRESS_DEFAULT }}
 
     steps:
       - name: Setup Node
@@ -60,24 +60,23 @@ jobs:
           cleaned_branch_name=$(echo $branch_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "cleaned branch name: $cleaned_branch_name"
 
-          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-          echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
-
-          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-          echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
-
-          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-          echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
-
-          # echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
+          # echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
           # echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          # echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
+          # echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
           # echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          # echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
+          # echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
           # echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
+          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
+          echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
+          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
+          echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
+
+          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
+          echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
       - name: Check if all apps are running
         shell: bash
@@ -102,9 +101,9 @@ jobs:
             fi
           }
 
-          check_availability $CYPRESS_BRB/version
-          check_availability $CYPRESS_NBC/version
-          check_availability $CYPRESS_DEFAULT/version
+          check_availability ${{ steps.set_target.outputs.cypress_brb }}/version
+          check_availability ${{ steps.set_target.outputs.cypress_nbc }}/version
+          check_availability ${{ steps.set_target.outputs.cypress_default }}/version
 
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
@@ -112,9 +111,6 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.service-account-token }}
     with:
-      cypress_brb: ${{ github.env.CYPRESS_BRB }}
-      cypress_nbc: ${{ github.env.CYPRESS_NBC }}
-      cypress_default: ${{ github.env.CYPRESS_DEFAULT }}
-      # cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      # cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      # cypress_default: ${{ needs.e2e-system-tests.outputs.cypress_default }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_default: ${{ needs.e2e-system-tests.outputs.cypress_default }}
