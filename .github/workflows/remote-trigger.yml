@@ -60,13 +60,13 @@ jobs:
           cleaned_branch_name=$(echo $branch_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "cleaned branch name: $cleaned_branch_name"
 
-          # echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
           # echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          # echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
           # echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          # echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
           # echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
           echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
