@@ -6,19 +6,20 @@ on:
         required: true
     inputs:
       cypress_brb:
-        description: 'brb url from remote workflow'
+        description: "brb url from remote workflow"
         type: string
       cypress_nbc:
-        description: 'nbc url from remote workflow'
+        description: "nbc url from remote workflow"
         type: string
       cypress_default:
-        description: 'default url from remote workflow'
+        description: "default url from remote workflow"
         type: string
-
 
 jobs:
   configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.setting_url.outputs.TAG }}
 
     steps:
       - name: Checkout
@@ -34,6 +35,7 @@ jobs:
           service-account-token: ${{ secrets.service-account-token }}
 
       - name: Setting URL's
+        id: setting_url
         run: |
           workflow_name="${{ github.workflow }}"
           if [[ $workflow_name == *"manual"* ]]; then
@@ -44,6 +46,8 @@ jobs:
             echo "$CYPRESS_NBC"
             echo "CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
+            echo "TAG=tag:stable" >> $GITHUB_OUTPUT
+            echo "$TAG"
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
             echo "This is an automatic or scheduled workflow"
             echo "CYPRESS_BRB=op://cy-dev-brb/cypress/CYPRESS_BRB" >> $GITHUB_ENV
@@ -52,6 +56,8 @@ jobs:
             echo "$CYPRESS_NBC"
             echo "CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
+            echo "TAG=tag:stable" >> $GITHUB_OUTPUT
+            echo "$TAG"
           else
             echo "This is an remote workflow"
             echo "CYPRESS_BRB=${{ inputs.cypress_brb }}" >> $GITHUB_ENV
@@ -60,6 +66,8 @@ jobs:
             echo "$CYPRESS_NBC"
             echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
+            echo "TAG=tag:stable:pr" >> $GITHUB_OUTPUT
+            echo "$TAG"
             fi
 
       - name: Load secret
@@ -100,7 +108,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
-          command: npm run tag:stable
+          command: npm run ${{ steps.setting_url.outputs.tag }}
           browser: chrome
         env:
           CYPRESS_BRB: ${{ env.CYPRESS_BRB }}
