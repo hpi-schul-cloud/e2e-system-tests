@@ -17,7 +17,7 @@ class Account {
   static #testAssertionData = {
     german: 'Deutsch',
     spanish: 'Español',
-    ukrainian: 'Yкраїнський',
+    ukrainian: 'Yкраїнська',
     english: 'English',
     overviewInGerman: 'Übersicht',
     overviewInSpanish: 'Panel',
