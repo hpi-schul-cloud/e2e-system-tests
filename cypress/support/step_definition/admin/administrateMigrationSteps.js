@@ -3,11 +3,11 @@ import Management from '../../pages/admin/pageAdministration'
 
 const management = new Management()
 
-When('I can see the school number', () => {
+Then('I can see the school number', () => {
     management.schoolNumberIsAdded()
 })
 
-Then('I can click on the start migration button',()  => {
+Then('I see button Start migration is enabled',()  => {
     management.migrationButtonIsEnabled()
 })
 
@@ -18,10 +18,10 @@ Then('I can see the migration information text',  () => {
     management.migrationInformationIsVisible()
 });
 Then('I can write an email to a pre-defined receiver', () => {
-    management.clickSupportLink()
+    management.checkSupportLink()
 });
-When('I can click on the information link that opens a new tab',  () =>{
-    management.clickInfoLink()
+Then(/^I see the information link href is blog\.niedersachsen\.cloud\/umzug$/,  () =>{
+    management.checkInfoLink()
 });
 When('I click on agree migration button',  () =>{
     management.clickAgreeMigrationButton()

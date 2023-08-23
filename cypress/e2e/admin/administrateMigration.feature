@@ -9,11 +9,11 @@ Feature: Admin Users - To administrate the Migration process.
     When I go to school administration
 
   Scenario: Admin starts the migration and the School Number is added
-    When I can see the school number
-    Then I can click on the start migration button
+    Then I can see the school number
+    Then I see button Start migration is enabled
     Then I can see the migration information text
     Then I can write an email to a pre-defined receiver
-    Then I can click on the information link that opens a new tab
+    Then I see the information link href is blog.niedersachsen.cloud/umzug
     When I click on the start migration button
     When I click on agree migration button
     Then I see the migration is active field

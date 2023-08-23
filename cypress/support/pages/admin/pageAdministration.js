@@ -41,6 +41,8 @@ class Management {
   static #endMigrationConfirmationButton = '[data-testid="agree-btn"]'
   static #migrationActiveStatus = '[data-testid="migration-active-status"]'
   static #schoolNumberForm = '[data-testid="school-number"]'
+  static #migrationTextSupportLink = '[data-testid="support-link"]'
+  static #migrationTextBlogLink = '[data-testid="migration-blog-link"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -299,14 +301,14 @@ class Management {
         .should('be.visible')
   }
 
-  clickSupportLink() {
-    cy.contains("a", "Support")
+  checkSupportLink() {
+    cy.get(Management.#migrationTextSupportLink)
         .invoke("attr", "href")
         .should('contain', 'mailto:nbc-support@netz-21.de')
   }
 
-  clickInfoLink() {
-    cy.contains("[data-testid=\"text-description\"] > a", "hier")
+  checkInfoLink() {
+    cy.get(Management.#migrationTextBlogLink)
         .should("have.attr", "href", "https://blog.niedersachsen.cloud/umzug")
   }
 
