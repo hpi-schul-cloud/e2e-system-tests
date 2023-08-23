@@ -23,7 +23,9 @@ jobs:
 
   notify_RC:
     runs-on: ubuntu-latest
-    needs: [configuring-loading-secrets-running-tests]
+    needs:
+      - e2e-system-tests
+      - configuring-loading-secrets-running-tests
     if: |
       always()
 
