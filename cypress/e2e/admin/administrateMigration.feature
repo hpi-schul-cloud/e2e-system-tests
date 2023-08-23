@@ -1,3 +1,4 @@
+@release
 Feature: Admin Users - To administrate the Migration process.
 
   As an Admin I want to start, finish and make the migration mandatory.
