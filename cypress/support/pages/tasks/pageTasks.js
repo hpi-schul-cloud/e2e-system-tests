@@ -73,8 +73,7 @@ class Tasks {
   static #tasksOverviewNavigationButton = '[data-testid="Aufgaben"]'
   static #taskForm = '[id="homework-form"]'
   static #submitButton = '[data-testid="submit-task-btn"]'
-  static #createContentButton =  '[data-testid="add-content-button"]'
-  static #addTaskButton = '[data-testid="fab_button_add_task"]'
+  static #addTaskButton = '[data-testid="addTask"]'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #homeworkDescription = '[data-testid="homework-description"]'
   static #submissionComment = '[data-testid="submission-comment"]'
@@ -100,11 +99,8 @@ class Tasks {
   }
 
   clickOnAddTask () {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#addTaskButton).click()
-  }
-
-  clickOnAddCreateContent () {
-    cy.get(Tasks.#createContentButton).click()
   }
 
   seeEditTaskPage (taskTitle) {
@@ -138,6 +134,7 @@ class Tasks {
   }
 
   clickOnTabDraftTasks () {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#draftTasksTab).click()
   }
 
@@ -424,7 +421,6 @@ class Tasks {
     cy.get(`[data-file-viewer-savename="${fileName}"]`)
       .find('[data-method="download"]')
       .click()
-    cy.wait('@rooms_api')
   }
 
   clickDownloadFileInSubmission (fileName) {
@@ -501,6 +497,7 @@ class Tasks {
   }
 
   clickOnTabDoneTasks () {
+    cy.wait('@tasks_api')
     cy.get(Tasks.#doneTasksTab)
       .click()
       .wait('@tasks_api')
@@ -517,6 +514,7 @@ class Tasks {
   }
 
   seeTaskNotInListAsTeacher (taskTitle) {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#taskOverviewTeacher).contains(taskTitle).should('not.exist')
   }
 
@@ -529,6 +527,7 @@ class Tasks {
   }
 
   seeTaskNotInListAsStudent (taskTitle) {
+    cy.wait('@tasks_api');
     cy.get(Tasks.#taskOverviewStudent).contains(taskTitle).should('not.exist')
   }
 

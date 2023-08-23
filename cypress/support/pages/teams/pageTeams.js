@@ -23,6 +23,7 @@ class Teams {
   static #teamEventStartDateTime = '[data-testid="form-datetime-input-startDate"]'
   static #teamEventEndDateTime = '[data-testid="form-datetime-input-endDate"]'
   static #teamEventDescrptionInput = '[data-testid="team_event_description"]'
+  static #teamCalendarEventDescription = '[data-testid="team-event-calendar-description"]'
   static #teamEventPlaceInput = '[data-testid="team_event_location"]'
   static #teamEventSaveButton = '[data-testid="submit-btn-edit-event-modal"]'
   static #teamEventEditIcon = '[data-testid="edit_team_event"]'
@@ -99,7 +100,11 @@ class Teams {
     cy.get(Teams.#teamVideoConferenceJoinLinkButton).last()
   }
 
-  seeVideoPartcipationButtonAsStudent () {
+  seeTeamEventDescription (teamEventDescription) {
+    cy.get(Teams.#teamCalendarEventDescription).should('contain', teamEventDescription)
+  }
+
+  seeVideoPartcipationButtonInTeamEvents () {
     cy.get(Teams.#teamVideoConferenceJoinLinkButton)
       .should('be.exist')
   }
@@ -181,8 +186,6 @@ class Teams {
     .eq(1)
     .clear()
     .type(editedEventPlace)
-
-    cy.get(Teams.#teamEventSaveButton).click()
   }
 
   editTeamEventTitle (editedEventTitle) {

@@ -5,10 +5,17 @@ on:
       ref:
         required: true
         type: string
+    secrets:
+      service-account-token:
+        required: true
 
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    outputs:
+      cypress_brb: ${{ steps.set_target.outputs.CYPRESS_BRB }}
+      cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
+      cypress_default: ${{ steps.set_target.outputs.CYPRESS_DEFAULT }}
 
     steps:
       - name: Setup Node
@@ -42,24 +49,25 @@ jobs:
           path: e2e-system-tests
 
       - name: Set target
+        id: set_target
         shell: bash
         run: |
           branch_name=${{ inputs.ref }}
           echo "input branch name: $branch_name"
 
-          # This cleaning of the branch name needs to be done the same way as in deployment. 
+          # This cleaning of the branch name needs to be done the same way as in deployment.
           # Currently done in https://github.com/hpi-schul-cloud/dof_app_deploy/blob/main/.github/workflows/clean_workflow.yml
           cleaned_branch_name=$(echo $branch_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "cleaned branch name: $cleaned_branch_name"
 
-          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
           echo "Set CYPRESS_BRB=https://brb-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
+          echo "CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
           echo "Set CYPRESS_NBC=https://nbc-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
-          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_ENV
-          echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" 
+          echo "CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev" >> $GITHUB_OUTPUT
+          echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
       - name: Check if all apps are running
         shell: bash
@@ -74,7 +82,7 @@ jobs:
               tries=$((tries+1))
               sleep $delay
             done
-    
+
             if [ $tries -ge $max_tries ]; then
               echo "Terminated checking $1 after $tries tries without success."
               echo "Exit job."
@@ -83,58 +91,17 @@ jobs:
               echo "$1 says apps are running."
             fi
           }
-          
-          check_availability $CYPRESS_BRB/version
-          check_availability $CYPRESS_NBC/version
-          check_availability $CYPRESS_DEFAULT/version
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        with:
-          working-directory: e2e-system-tests
-          command: npm run tag:stable:pr
-        env:
-          CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
-          CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
-          CYPRESS_TEACHER_2_EMAIL: ${{ secrets.CYPRESS_TEACHER_2_EMAIL }}
-          CYPRESS_TEACHER_2_PASSWORD: ${{ secrets.CYPRESS_TEACHER_2_PASSWORD }}
-          CYPRESS_STUDENT_1_EMAIL: ${{ secrets.CYPRESS_STUDENT_1_EMAIL }}
-          CYPRESS_STUDENT_1_PASSWORD: ${{ secrets.CYPRESS_STUDENT_1_PASSWORD }}
-          CYPRESS_STUDENT_2_EMAIL: ${{ secrets.CYPRESS_STUDENT_2_EMAIL }}
-          CYPRESS_STUDENT_2_PASSWORD: ${{ secrets.CYPRESS_STUDENT_2_PASSWORD }}
-          CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
-          CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
-          CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
-          CYPRESS_EXPERT_1_PASSWORD": ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
-          CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
-          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD }}
-          CYPRESS_TEACHER_1_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_1_FIRST_NAME }}
-          CYPRESS_TEACHER_1_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_1_LAST_NAME }}
-          CYPRESS_TEACHER_2_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_2_FIRST_NAME }}
-          CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
-          DEBUG: '@cypress/github-action'
+          check_availability ${{ steps.set_target.outputs.cypress_brb }}/version
+          check_availability ${{ steps.set_target.outputs.cypress_nbc }}/version
+          check_availability ${{ steps.set_target.outputs.cypress_default }}/version
 
-      - name: Generate Report
-        uses: cypress-io/github-action@v5
-        if: always()
-        with:
-          working-directory: e2e-system-tests
-          command: npm run generate:report
-
-      - name: Upload Report
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: my-report
-          path: e2e-system-tests/reports
-
-      - name: Upload Video Artifact
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: my-video-artifact
-          path: e2e-system-tests/cypress/videos/
-          retention-days: 3
+  configuring-loading-secrets-running-tests:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.service-account-token }}
+    with:
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_default: ${{ needs.e2e-system-tests.outputs.cypress_default }}

@@ -14,60 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Clean up previous report
-        uses: cypress-io/github-action@v5
-        with:
-          command: npm run pretest
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v5
-        env:
-          CYPRESS_BRB: ${{ secrets.CYPRESS_BRB }}
-          CYPRESS_NBC: ${{ secrets.CYPRESS_NBC }}
-          CYPRESS_DEFAULT: ${{ secrets.CYPRESS_DEFAULT }}
-          CYPRESS_TEACHER_1_EMAIL: ${{ secrets.CYPRESS_TEACHER_1_EMAIL }}
-          CYPRESS_TEACHER_1_PASSWORD: ${{ secrets.CYPRESS_TEACHER_1_PASSWORD }}
-          CYPRESS_TEACHER_2_EMAIL: ${{ secrets.CYPRESS_TEACHER_2_EMAIL }}
-          CYPRESS_TEACHER_2_PASSWORD: ${{ secrets.CYPRESS_TEACHER_2_PASSWORD }}
-          CYPRESS_STUDENT_1_EMAIL: ${{ secrets.CYPRESS_STUDENT_1_EMAIL }}
-          CYPRESS_STUDENT_1_PASSWORD: ${{ secrets.CYPRESS_STUDENT_1_PASSWORD }}
-          CYPRESS_STUDENT_2_EMAIL: ${{ secrets.CYPRESS_STUDENT_2_EMAIL }}
-          CYPRESS_STUDENT_2_PASSWORD: ${{ secrets.CYPRESS_STUDENT_2_PASSWORD }}
-          CYPRESS_ADMIN_1_EMAIL: ${{ secrets.CYPRESS_ADMIN_1_EMAIL }}
-          CYPRESS_ADMIN_1_PASSWORD: ${{ secrets.CYPRESS_ADMIN_1_PASSWORD }}
-          CYPRESS_EXPERT_1_EMAIL: ${{ secrets.CYPRESS_EXPERT_1_EMAIL }}
-          CYPRESS_EXPERT_1_PASSWORD: ${{ secrets.CYPRESS_EXPERT_1_PASSWORD }}
-          CYPRESS_STUDENT_EXTERN: ${{ secrets.CYPRESS_STUDENT_EXTERN }}
-          CYPRESS_STUDENT_EXTERN_PASSWORD: ${{ secrets.CYPRESS_STUDENT_EXTERN_PASSWORD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD }}
-          CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD: ${{ secrets.CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD }}
-          CYPRESS_TEACHER_1_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_1_FIRST_NAME }}
-          CYPRESS_TEACHER_1_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_1_LAST_NAME }}
-          CYPRESS_TEACHER_2_FIRST_NAME: ${{ secrets.CYPRESS_TEACHER_2_FIRST_NAME }}
-          CYPRESS_TEACHER_2_LAST_NAME: ${{ secrets.CYPRESS_TEACHER_2_LAST_NAME }}
-          DEBUG: '@cypress/github-action'
-        with:
-          command: npm run tag:stable
-          browser: chrome
-
-      - name: Generate Report
-        uses: cypress-io/github-action@v5
-        if: always()
-        with:
-          command: npm run generate:report
-
-      - name: Upload Report
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: my-report
-          path: ${{ github.workspace }}/reports
-
-      - name: Upload Video Artifact
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: my-video-artifact
-          path: ${{ github.workspace }}/cypress/videos/
-          retention-days: 3
+  configuring-loading-secrets-running-tests:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
