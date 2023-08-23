@@ -39,6 +39,8 @@ class Management {
   static #migrationEndButton = '[data-testid="migration-end-button"]'
   static #endMigrationConfirmationCheckbox = '[data-testid="migration-confirmation-checkbox"]'
   static #endMigrationConfirmationButton = '[data-testid="agree-btn"]'
+  static #migrationActiveStatus = '[data-testid="migration-active-status"]'
+  static #schoolNumberForm = '[data-testid="school-number"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -277,7 +279,7 @@ class Management {
   }
 
   schoolNumberIsAdded() {
-    cy.get('#input-193')
+    cy.get(Management.#schoolNumberForm)
         .should('not.be.empty')
   }
 
@@ -314,7 +316,7 @@ class Management {
   }
 
   migrationActiveTextInformation() {
-    cy.get('.v-alert__content > span')
+    cy.get(Management.#migrationActiveStatus)
         .should('contain', 'Die Account-Migration ist aktiv.')
   }
 
