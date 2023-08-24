@@ -280,13 +280,13 @@ class Management {
       .click({ force: true })
   }
 
-  schoolNumberIsAdded() {
+  addedSchoolNumberIsShowing() {
     cy.get(Management.#schoolNumberForm)
         .should('not.be.empty')
   }
 
 
-  migrationButtonIsEnabled() {
+  seeMigrationButtonIsEnabled() {
     cy.get(Management.#startMigrationButton)
         .should('be.enabled')
   }
@@ -296,7 +296,7 @@ class Management {
         .click()
   }
 
-  migrationInformationIsVisible() {
+  seeVisibleMigrationInformation() {
     cy.get(Management.#migrationInformationText)
         .should('be.visible')
   }
@@ -317,7 +317,7 @@ class Management {
         .click()
   }
 
-  migrationActiveTextInformation() {
+  seeMigrationActiveTextInformation() {
     cy.get(Management.#migrationActiveStatus)
         .should('contain', 'Die Account-Migration ist aktiv.')
   }

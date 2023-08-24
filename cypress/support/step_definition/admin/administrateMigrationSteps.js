@@ -4,18 +4,18 @@ import Management from '../../pages/admin/pageAdministration'
 const management = new Management()
 
 Then('I can see the school number', () => {
-    management.schoolNumberIsAdded()
+    management.addedSchoolNumberIsShowing()
 })
 
 Then('I see button Start migration is enabled',()  => {
-    management.migrationButtonIsEnabled()
+    management.seeMigrationButtonIsEnabled()
 })
 
 When('I click on the start migration button', () => {
     management.clickStartMigration()
 })
 Then('I can see the migration information text',  () => {
-    management.migrationInformationIsVisible()
+    management.seeVisibleMigrationInformation()
 });
 Then('I can write an email to a pre-defined receiver', () => {
     management.checkSupportLink()
@@ -27,7 +27,7 @@ When('I click on agree migration button',  () =>{
     management.clickAgreeMigrationButton()
 });
 Then('I see the migration is active field',  () => {
-management.migrationActiveTextInformation()
+management.seeMigrationActiveTextInformation()
 });
 Then('I see the end migration button', () => {
 management.endMigrationButtonIsVisible()
