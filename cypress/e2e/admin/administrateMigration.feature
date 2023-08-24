@@ -12,7 +12,7 @@ Feature: Admin Users - To administrate the Migration process.
     Then I can see the school number
     Then I see button Start migration is enabled
     Then I can see the migration information text
-    Then I can write an email to a pre-defined receiver
+    Then I see the email form with correct recipient
     Then I see the information link href is blog.niedersachsen.cloud/umzug
     When I click on the start migration button
     When I click on agree migration button

@@ -4,7 +4,7 @@ import Management from '../../pages/admin/pageAdministration'
 const management = new Management()
 
 Then('I can see the school number', () => {
-    management.addedSchoolNumberIsShowing()
+    management.seeAddedSchoolNumber()
 })
 
 Then('I see button Start migration is enabled',()  => {
@@ -17,7 +17,7 @@ When('I click on the start migration button', () => {
 Then('I can see the migration information text',  () => {
     management.seeVisibleMigrationInformation()
 });
-Then('I can write an email to a pre-defined receiver', () => {
+Then('I see the email form with correct recipient', () => {
     management.checkSupportLink()
 });
 Then(/^I see the information link href is blog\.niedersachsen\.cloud\/umzug$/,  () =>{
@@ -30,7 +30,7 @@ Then('I see the migration is active field',  () => {
 management.seeMigrationActiveTextInformation()
 });
 Then('I see the end migration button', () => {
-management.endMigrationButtonIsVisible()
+management.seeEndMigrationButtonIsEnabled()
 });
 When('I click on end migration button', () => {
 management.clickEndMigrationButton()

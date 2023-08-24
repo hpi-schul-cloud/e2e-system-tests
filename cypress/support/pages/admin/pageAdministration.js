@@ -280,7 +280,7 @@ class Management {
       .click({ force: true })
   }
 
-  addedSchoolNumberIsShowing() {
+  seeAddedSchoolNumber() {
     cy.get(Management.#schoolNumberForm)
         .should('not.be.empty')
   }
@@ -322,7 +322,7 @@ class Management {
         .should('contain', 'Die Account-Migration ist aktiv.')
   }
 
-  endMigrationButtonIsVisible() {
+  seeEndMigrationButtonIsEnabled() {
     cy.get(Management.#migrationEndButton)
         .should('be.enabled')
   }
