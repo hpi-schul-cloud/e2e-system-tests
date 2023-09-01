@@ -55,7 +55,7 @@ jobs:
             echo "$CYPRESS_NBC"
             echo "CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
-            echo "TAG=tag:stable" >> $GITHUB_OUTPUT
+            echo "TAG=tag:only" >> $GITHUB_OUTPUT
             echo "$TAG"
           else
             echo "This is an remote workflow"
@@ -68,6 +68,14 @@ jobs:
             echo "TAG=tag:stable:pr" >> $GITHUB_OUTPUT
             echo "$TAG"
             fi
+
+      - name: Check Urls
+        run: |
+          [[ $CYPRESS_BRB =~ \b(?:staging|schulportal)\b && $CYPRESS_NBC =~ \b(?:staging|schulportal)\b && $CYPRESS_DEFAULT =~ \b(?:staging|schulportal)\b ]]; then
+            echo "Loading staging environment variables"
+          else
+            echo "Loading test environment variables"
+          fi
 
       - name: Load secret
         id: op-load-secret
