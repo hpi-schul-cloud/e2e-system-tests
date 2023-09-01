@@ -4,6 +4,8 @@ const preprocessor = require('@badeball/cypress-cucumber-preprocessor')
 
 async function setupNodeEvents (on, config) {
   const isCI = config.env.environmentName === 'ci'
+  console.log(config.env.environmentName)
+  console.log(`-----------> ${isCI}`)
   if (isCI) {
     config.env = {
       ...config.env
