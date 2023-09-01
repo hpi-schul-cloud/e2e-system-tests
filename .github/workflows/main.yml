@@ -99,11 +99,11 @@ jobs:
           fi
 
 
-      # - name: Load secret
-      #   id: op-load-secret
-      #   uses: 1password/load-secrets-action@v1
-      #   with:
-      #     export-env: true
+      - name: Load secret
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: true
       #   env:
       #     CYPRESS_TEACHER_1_EMAIL: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL
       #     CYPRESS_TEACHER_1_PASSWORD: op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD
