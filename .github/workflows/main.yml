@@ -71,11 +71,12 @@ jobs:
 
       - name: Check Urls
         run: |
-          [[ $CYPRESS_BRB =~ \b(?:staging|schulportal)\b && $CYPRESS_NBC =~ \b(?:staging|schulportal)\b && $CYPRESS_DEFAULT =~ \b(?:staging|schulportal)\b ]]; then
+          if [[ $CYPRESS_BRB =~ \b(?:staging|schulportal)\b && $CYPRESS_NBC =~ \b(?:staging|schulportal)\b && $CYPRESS_DEFAULT =~ \b(?:staging|schulportal)\b ]]; then
             echo "Loading staging environment variables"
           else
-            echo "Loading test environment variables"
+            echo "Loading dev environment variables"
           fi
+
 
       - name: Load secret
         id: op-load-secret
