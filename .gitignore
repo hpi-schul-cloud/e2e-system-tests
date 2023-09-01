@@ -21,3 +21,4 @@ secrets
 .zshrc
 test-run-details.json
 cypress/fixtures/test-run-details.json
+configs
