@@ -45,7 +45,7 @@ jobs:
             echo "$CYPRESS_NBC"
             echo "CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
-            echo "TAG=tag:stable" >> $GITHUB_OUTPUT
+            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
             echo "This is an automatic or scheduled workflow"
@@ -65,7 +65,7 @@ jobs:
             echo "$CYPRESS_NBC"
             echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
-            echo "TAG=tag:stable:pr" >> $GITHUB_OUTPUT
+            echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
             fi
 
