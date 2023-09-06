@@ -41,7 +41,7 @@ case "$command" in
     cypress open --browser chrome -e tags='@stable_test',environmentName=$env
     ;;
   "tag:stable")
-    cypress run --headed --browser chrome -e tags='@stable_test',environmentName=$env
+    cypress run --browser chrome -e tags='@stable_test',environmentName=$env
     ;;
   "tag:stable:pr")
     cypress run --browser chrome -e tags='@pr and @stable_test',environmentName=$env

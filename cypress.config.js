@@ -51,6 +51,20 @@ async function setupNodeEvents (on, config) {
     })
   )
 
+  on('before:browser:launch', (browser, launchOptions) => {
+    // `args` is an array of all the arguments that will
+    // be passed to browsers when it launches
+    console.log(launchOptions.args) // print all current args
+
+    if (browser.name === 'chrome') {
+      launchOptions.args.push('--disable-dev-shm-usage')
+      launchOptions.args.push('--disable-gpu')
+    }
+
+    // whatever you return here becomes the launchOptions
+    return launchOptions
+  })
+
   // Make sure to return the config object as it might have been modified by the plugin.
   return config
 }
