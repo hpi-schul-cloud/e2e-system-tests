@@ -5,7 +5,7 @@ Feature: Course - To add and delete a course by the teacher
 
   @stable_test
   Scenario: as a pre-condition teacher deletes undeleted tests
-    Given I am logged in as a 'teacher' at 'default'
+    Given I am logged in as a 'teacher1_dbc' at 'default'
     When I go to rooms overview
     When I delete all courses named 'Cypress Test Creation and Deletion'
     Then I do not see the course 'Cypress Test Creation and Deletion' on the room overview page
@@ -14,7 +14,7 @@ Feature: Course - To add and delete a course by the teacher
 
   @stable_test
   Scenario: Create, edit and delete a course
-    Given I am logged in as a 'teacher' at 'default'
+    Given I am logged in as a 'teacher1_dbc' at 'default'
     When I go to rooms overview
     Then I see room search box on the room overview page
     When I click on FAB to create a new room

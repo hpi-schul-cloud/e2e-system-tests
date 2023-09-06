@@ -5,7 +5,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a pre condition Admin enables the video conference option for a team event
-        Given I am logged in as a 'admin' at 'default'
+        Given I am logged in as a 'admin1_dbc' at 'default'
         When I go to administration page
         When I click on manage school card
         Then I enable the video conference on the old school setting page
@@ -13,7 +13,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a pre condition Teacher enables the video conference option in team edit
-        Given I am logged in as a 'teacher' at 'default'
+        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I click on team settings
@@ -24,7 +24,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a pre-condition teacher adds student as an internal team member
-        Given I am logged in as a 'teacher' at 'default'
+        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I click on three dot menu on the team title
@@ -36,7 +36,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: Teacher adds  event with video conference
-        Given I am logged in as a 'teacher' at 'default'
+        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -59,7 +59,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: Student can see and participate in video conference
-        Given I am logged in as a 'student' at 'default'
+        Given I am logged in as a 'student1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -68,7 +68,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post-condition teacher deletes the student as a team member
-        Given I am logged in as a 'teacher' at 'default'
+        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I click on three dot menu on the team title
@@ -78,7 +78,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Teacher edits and deletes the event
-        Given I am logged in as a 'teacher' at 'default'
+        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -97,7 +97,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Admin disable the video conference for the team
-        Given I am logged in as a 'admin' at 'default'
+        Given I am logged in as a 'admin1_dbc' at 'default'
         When I go to administration page
         When I click on manage school card
         Then I disable the video conference on the old school setting page
@@ -105,7 +105,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Teacher sees deactivated video conference check box
-      Given I am logged in as a 'teacher' at 'default'
+      Given I am logged in as a 'teacher1_dbc' at 'default'
       When I go to teams overview
       When I go to a team 'Musik'
       When I click on team settings

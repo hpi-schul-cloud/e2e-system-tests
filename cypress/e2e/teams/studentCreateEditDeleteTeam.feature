@@ -5,7 +5,7 @@ Feature: Team - Student managed teams (on BRB)
 
   @stable_test
   Scenario: As a pre-condition admin allows student to create a team on BRB
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     When I go to team administration
     When I click the checkbox to allow students to create a team
@@ -14,7 +14,7 @@ Feature: Team - Student managed teams (on BRB)
 
   @stable_test
   Scenario: Student can create, edit and delete team on BRB
-    Given I am logged in as a 'student' at 'brb'
+    Given I am logged in as a 'student1_brb' at 'brb'
     When I go to teams overview
     When I click on button Add Team on the teams overview page
     Then I see new team creation page

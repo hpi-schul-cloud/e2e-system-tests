@@ -13,7 +13,6 @@ const oauth_url =
   'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
 const titleOnDashboardPage = '[id="page-title"]'
 
-
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
     const env = Cypress.env()
@@ -34,41 +33,41 @@ Cypress.Commands.add('login', (username, environment) => {
     let doExternalLogin = false
 
     switch (username) {
-      case 'teacher':
-        userEmail = 'TEACHER_1_EMAIL'
-        userPassword = 'TEACHER_1_PASSWORD'
+      case 'teacher1_brb':
+        userEmail = 'TEACHER_1_BRB_EMAIL'
+        userPassword = 'TEACHER_1_BRB_PASSWORD'
         break
-      case 'teacher1':
-        userEmail = 'TEACHER_1_EMAIL'
-        userPassword = 'TEACHER_1_PASSWORD'
+      case 'teacher2_brb':
+        userEmail = 'TEACHER_2_BRB_EMAIL'
+        userPassword = 'TEACHER_2_BRB_PASSWORD'
         break
-      case 'teacher2':
-        userEmail = 'TEACHER_2_EMAIL'
-        userPassword = 'TEACHER_2_PASSWORD'
+      case 'teacher1_dbc':
+        userEmail = 'TEACHER_1_DBC_EMAIL'
+        userPassword = 'TEACHER_1_DBC_PASSWORD'
         break
-      case 'student':
-        userEmail = 'STUDENT_1_EMAIL'
-        userPassword = 'STUDENT_1_PASSWORD'
+      case 'student1_brb':
+        userEmail = 'STUDENT_1_BRB_EMAIL'
+        userPassword = 'STUDENT_1_BRB_PASSWORD'
         break
-      case 'student1':
-        userEmail = 'STUDENT_1_EMAIL'
-        userPassword = 'STUDENT_1_PASSWORD'
+      case 'student1_dbc':
+        userEmail = 'STUDENT_1_DBC_EMAIL'
+        userPassword = 'STUDENT_1_DBC_PASSWORD'
         break
-      case 'student2':
-        userEmail = 'STUDENT_2_EMAIL'
-        userPassword = 'STUDENT_2_PASSWORD'
+      case 'admin1_brb':
+        userEmail = 'ADMIN_1_BRB_EMAIL'
+        userPassword = 'ADMIN_1_BRB_PASSWORD'
         break
-      case 'admin':
-        userEmail = 'ADMIN_1_EMAIL'
-        userPassword = 'ADMIN_1_PASSWORD'
+      case 'admin1_nbc':
+        userEmail = 'ADMIN_1_NBC_EMAIL'
+        userPassword = 'ADMIN_1_NBC_PASSWORD'
         break
-      case 'expert':
-        userEmail = 'EXPERT_1_EMAIL'
-        userPassword = 'EXPERT_1_PASSWORD'
+      case 'admin1_dbc':
+        userEmail = 'ADMIN_1_DBC_EMAIL'
+        userPassword = 'ADMIN_1_DBC_PASSWORD'
         break
-      case 'student_extern':
-        userEmail = 'STUDENT_EXTERN'
-        userPassword = 'STUDENT_EXTERN_PASSWORD'
+      case 'student_extern_dbc':
+        userEmail = 'STUDENT_DBC_EXTERN'
+        userPassword = 'STUDENT_DBC_EXTERN_PASSWORD'
         doExternalLogin = true
         break
     }
@@ -90,10 +89,10 @@ Cypress.Commands.add('login', (username, environment) => {
         })
       })
     } else {
+      console.log(`${env[userEmail]} ...... ${env[userPassword]}`)
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
-      cy.get(submitButton)
-        .click()
+      cy.get(submitButton).click()
     }
     cy.url().should('contain', '/dashboard')
     cy.get(initials).click()

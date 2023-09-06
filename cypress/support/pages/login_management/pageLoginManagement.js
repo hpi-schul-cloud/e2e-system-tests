@@ -162,12 +162,12 @@ class Login_Management {
   }
 
   enterEmail () {
-    let userEmail = Cypress.env('STUDENT_PASSWORD_CHANGE_EMAIL')
+    let userEmail = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_EMAIL')
     this.typeEmailIntoField(Login_Management.#emailInputBox, userEmail)
   }
 
   enterPassword () {
-    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
+    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD')
     this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
   }
 
@@ -187,7 +187,7 @@ class Login_Management {
   }
 
   enterCurrentPassword () {
-    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
+    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD')
     this.typePasswordIntoField(
       Login_Management.#userSettingsCurrentPasswordField,
       userPwd
@@ -195,7 +195,7 @@ class Login_Management {
   }
 
   enterNewPasswordInAllFields () {
-    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
+    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD')
     this.typePasswordIntoField(
       Login_Management.#userSettingsNewPasswordField,
       userPwd
@@ -233,12 +233,12 @@ class Login_Management {
   }
 
   enterNewPassword () {
-    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
+    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD')
     this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
   }
 
   enterNewPasswordInUserSettings () {
-    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_NEW_PWD')
+    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD')
     this.typePasswordIntoField(
       Login_Management.#userSettingsCurrentPasswordField,
       userPwd
@@ -246,7 +246,7 @@ class Login_Management {
   }
 
   enterOldPasswordInUserSettings () {
-    let userPwd = Cypress.env('STUDENT_PASSWORD_CHANGE_OLD_PWD')
+    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD')
     this.typePasswordIntoField(
       Login_Management.#userSettingsNewPasswordField,
       userPwd

@@ -5,7 +5,7 @@ Feature: Course - Add substitute teacher to course
 
   @stable_test
   Scenario: Adding substitute teacher to course
-    Given I am logged in as a 'teacher1' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Biologie'
     When I open course edit page
@@ -14,6 +14,6 @@ Feature: Course - Add substitute teacher to course
     And I add substitute teacher 'teacher2'
     And I click on save changes after editing the course details
     Then I log out
-    Given I am logged in as a 'teacher2' at 'brb'
+    Given I am logged in as a 'teacher2_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Biologie'

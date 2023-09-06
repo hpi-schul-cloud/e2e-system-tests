@@ -7,14 +7,14 @@ Feature: Admin External Tools - To administrate school settings by the admin.
 
   @unstable_test
   Scenario: Deactivate Chat
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to school administration
     And I go to new school administration page
     And I click on toggle switch to deactivate the chat
     And I click save general settings button
     Then I log out
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     And I go to teams overview
     And I go to a team
     Then I can not see the chat in team
@@ -24,14 +24,14 @@ Feature: Admin External Tools - To administrate school settings by the admin.
 
   @unstable_test
   Scenario: Activate Chat
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to school administration
     And I go to new school administration page
     And I click on toggle switch to activate the chat
     And I click save general settings button
     Then I log out
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
     And I go to a team
     And I open team settings
@@ -43,14 +43,14 @@ Feature: Admin External Tools - To administrate school settings by the admin.
 
   @unstable_test
   Scenario: Deactivate BigBlueButton
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to school administration
     And I go to new school administration page
     And I click on toggle switch to deactivate video conferencing
     And I click save general settings button
     And I log out
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     And I go to rooms overview
     And I go to room
     And I go to tools tab
@@ -59,14 +59,14 @@ Feature: Admin External Tools - To administrate school settings by the admin.
 
   @unstable_test
   Scenario: Activate BigBlueButton
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to school administration
     And I go to new school administration page
     And I click on toggle switch to activate video conferencing
     And I click save general settings button
     And I log out
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     And I go to rooms overview
     And I go to room
     And I go to tools tab

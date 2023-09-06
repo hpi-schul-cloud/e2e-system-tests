@@ -5,7 +5,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
 
   @stable_test
   Scenario: Create a LibreOffice text document
-    Given I am logged in as a 'student' at 'brb'
+    Given I am logged in as a 'student1_brb' at 'brb'
     When I go to files overview
     Then I go to personal files overview
     When I click create a new file button
@@ -18,7 +18,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
 
   @stable_test
   Scenario: Edit name of LibreOffice text document
-    Given I am logged in as a 'student' at 'brb'
+    Given I am logged in as a 'student1_brb' at 'brb'
     When I go to files overview
     Then I go to personal files overview
     Then I can see file with name 'Cy: LibraOffice Open.docx'
@@ -30,7 +30,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
 
   @stable_test
   Scenario: Delete a LibreOffice text document
-    Given I am logged in as a 'student' at 'brb'
+    Given I am logged in as a 'student1_brb' at 'brb'
     When I go to files overview
     Then I go to personal files overview
     Then I can see file with name 'Cy: LibraOffice Edit.docx'

@@ -5,7 +5,7 @@ Feature:  News - To read a news on the respective dashboards
 
   @stable_test
   Scenario: as a pre-condition teacher creates school news
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to news overview
     And I click on add news button
     Then I see news creation page
@@ -18,7 +18,7 @@ Feature:  News - To read a news on the respective dashboards
 
   @stable_test
   Scenario: as a pre-condition teacher creates a team news
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
     When I go to a team 'Musik'
     When I click on news tab on the team detail page
@@ -33,13 +33,13 @@ Feature:  News - To read a news on the respective dashboards
 
   @stable_test
   Scenario: Reading a school news on news overview page
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to news overview
     Then I can read the news 'News - this is a school news' with description 'test school news description'
 
   @stable_test
   Scenario: Reading a team news on teams news overview page
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
     When I go to a team 'Musik'
     When I click on news tab on the team detail page
@@ -47,7 +47,7 @@ Feature:  News - To read a news on the respective dashboards
 
   @stable_test
   Scenario: as a post-condition teacher deletes the school news
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I arrive on the dashboard
     And I click on the news teaser 'News - this is a school news'
     When I click on delete button
@@ -56,7 +56,7 @@ Feature:  News - To read a news on the respective dashboards
 
   @stable_test
   Scenario: as a post-condition teacher deletes the team news
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I arrive on the dashboard
     And I click on the news teaser 'News - this is a team news'
     When I click on delete button

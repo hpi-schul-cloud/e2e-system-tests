@@ -4,7 +4,7 @@ Feature: Admin Users - To administrate the Migration process.
   As an Admin I want to start, finish and make the migration mandatory.
 
   Background:
-    Given I am logged in as a 'admin' at 'nbc'
+    Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I go to school administration
 
