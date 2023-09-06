@@ -69,10 +69,15 @@ jobs:
             echo "$TAG"
             fi
 
+      - name: Print Directory
+        run: |
+          pwd
+          tree -a
+
       - name: Set Environment Variables
         run: |
-          chmod +x scripts/set-env-vars.sh
-          scripts/set-env-vars.sh
+          chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
+          ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
 
       # - name: Check Urls
       #   run: |
