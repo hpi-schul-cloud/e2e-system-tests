@@ -44,10 +44,10 @@ case "$command" in
     xvfb-run cypress run --browser chrome -e tags='@stable_test',environmentName=$env
     ;;
   "tag:stable:pr")
-    cypress run --browser chrome -e tags='@pr and @stable_test',environmentName=$env
+    xvfb-run cypress run --browser chrome -e tags='@pr and @stable_test',environmentName=$env
     ;;
   "tag:stable:release")
-    cypress run --browser chrome -e tags='@release and @stable_test',environmentName=$env
+    xvfb-run cypress run --browser chrome -e tags='@release and @stable_test',environmentName=$env
     ;;
   "tag:only")
     cypress run --browser chrome -e tags='@only',environmentName=$env

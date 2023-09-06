@@ -74,56 +74,6 @@ jobs:
           chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
           ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
 
-      # - name: Check Urls
-      #   run: |
-      #     if [[ $CYPRESS_BRB =~ \b(?:staging|schulportal)\b && $CYPRESS_NBC =~ \b(?:staging|schulportal)\b && $CYPRESS_DEFAULT =~ \b(?:staging|schulportal)\b ]]; then
-      #       echo "Loading staging environment variables"
-      #       echo "CYPRESS_TEACHER_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_EMAIL=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_2_EMAIL=op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_2_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_ADMIN_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_ADMIN_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_EXPERT_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_EXPERT_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_EXTERN=op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_EXTERN_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL=op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_1_FIRST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_FIRST_NAME" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_1_LAST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_LAST_NAME" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_FIRST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_FIRST_NAME" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_LAST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_LAST_NAME" >> $GITHUB_ENV
-      #     else
-      #       echo "Loading dev environment variables"
-      #       echo "CYPRESS_TEACHER_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_EMAIL=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_2_EMAIL=op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_2_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_2_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_ADMIN_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_ADMIN_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_ADMIN_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_EXPERT_1_EMAIL=op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_EXPERT_1_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_EXPERT_1_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_EXTERN=op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_EXTERN_PASSWORD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_EXTERN_PASSWORD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL=op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_EMAIL" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_OLD_PWD" >> $GITHUB_ENV
-      #       echo "CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD=op://cy-dev-brb/cypress/CYPRESS_STUDENT_PASSWORD_CHANGE_NEW_PWD" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_1_FIRST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_FIRST_NAME" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_1_LAST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_1_LAST_NAME" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_FIRST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_FIRST_NAME" >> $GITHUB_ENV
-      #       echo "CYPRESS_TEACHER_2_LAST_NAME=op://cy-dev-brb/cypress/CYPRESS_TEACHER_2_LAST_NAME" >> $GITHUB_ENV
-      #     fi
-
       - name: Load secret
         id: op-load-secret
         uses: 1password/load-secrets-action@v1
