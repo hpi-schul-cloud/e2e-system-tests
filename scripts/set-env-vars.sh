@@ -80,15 +80,15 @@ for var in "${env_vars[@]}"; do
   if [[ $var == *"_NBC_"* ]]; then
     ENV="nbc"
     echo "Setting ${var}=${ENV_PREFIX}:${var}"
-    echo "${var}=op://cy-${ENV_PREFIX}-${ENV}/cypress/${var}" >>$GITHUB_ENV
+    echo "${var}=op://cy-${ENV_PREFIX}-${ENV}/cypress/${var}" >> $GITHUB_ENV
   elif [[ $var == *"_BRB_"* ]]; then
     ENV="brb"
     echo "Setting ${var}=${ENV_PREFIX}:${var}"
-    echo "${var}=op://cy-${ENV_PREFIX}-${ENV}/cypress/${var}" >>$GITHUB_ENV
+    echo "${var}=op://cy-${ENV_PREFIX}-${ENV}/cypress/${var}" >> $GITHUB_ENV
   else
     ENV="dbc"
     echo "Setting ${var}=${ENV_PREFIX}:${var}"
-    echo "${var}=op://cy-${ENV_PREFIX}-${ENV}/cypress/${var}" >>$GITHUB_ENV
+    echo "${var}=op://cy-${ENV_PREFIX}-${ENV}/cypress/${var}" >> $GITHUB_ENV
   fi
 
 done
