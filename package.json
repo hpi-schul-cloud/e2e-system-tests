@@ -11,11 +11,13 @@
 		"tag:stable:pr:local": "scripts/script.sh tag:stable:pr local",
 		"tag:stable:release:local": "scripts/script.sh tag:stable:release local",
 		"tag:only:local": "scripts/script.sh tag:only local",
+		"tag:unstable:local": "scripts/script.sh tag:unstable local",
 		"cy:open:ci": "scripts/script.sh cy:open ci",
 		"tag:stable:ci": "scripts/script.sh tag:stable ci",
 		"tag:stable:pr:ci": "scripts/script.sh tag:stable:pr ci",
 		"tag:stable:release:ci": "scripts/script.sh tag:stable:release ci",
-		"tag:only:ci": "scripts/script.sh tag:only ci"
+		"tag:only:ci": "scripts/script.sh tag:only ci",
+		"tag:unstable:ci": "scripts/script.sh tag:unstable ci"
 	},
 	"repository": {
 		"type": "git",

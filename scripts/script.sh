@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Get the first argument passed to the script
+# Get arguments passed to the script
 command="$1"
 env="$2"
 
@@ -52,7 +52,9 @@ case "$command" in
   "tag:only")
     cypress run --browser chrome -e tags='@only',environmentName=$env
     ;;
-
+  "tag:unstable")
+    cypress run --browser chrome -e tags='@unstable_test',environmentName=$env
+    ;;
   *)
     echo "Invalid command: $command"
     exit 1

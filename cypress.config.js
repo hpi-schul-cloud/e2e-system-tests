@@ -3,14 +3,11 @@ const webpack = require('@cypress/webpack-preprocessor')
 const preprocessor = require('@badeball/cypress-cucumber-preprocessor')
 
 async function setupNodeEvents (on, config) {
-  console.log(config.env.environmentName)
   const isCI = config.env.environmentName === 'ci'
   if (isCI) {
-    console.log('It comes here')
     config.env = {
       ...config.env
     }
-    console.log(config.env)
   } else {
     const environmentName = config.env.environmentName || 'local'
     const environmentFilename = `./configs/${environmentName}.env.json`
