@@ -21,7 +21,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 ### How to setup/run Cypress tests locally
 
 1) Clone the project
-2) Rename [`cypress.env.template.json`](/cypress.env.template.json) to `cypress.env.json` in the root folder with credentials available in 1Password.
+2) Rename [`template.env.json`](configs/template.env.json) to `local.env.json` in the configs folder with credentials available in 1Password. (Remember add all instances as in 1Password we have different vaults available)
 3) Execute the following command in terminal `npm install` or `npm i` for installing the required packages
 4) Execute the following command in terminal to run the tests in Cypress runner (UI) `npm run cy:open`
 5) Execute the following command in terminal to run the tests in headless mode `npm run cy:run`
@@ -37,6 +37,8 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |____ manual-trigger.yml
 |   |____ scheduled-trigger.yml
 |---- .vscode (setting for VS code extensions)
+|---- configs
+|   |____ template.env.json (credentials & environment variables - rename the file as mentioned above)
 |---- cypress
 |   |___ downloads
 |   |___ fixtures
@@ -52,11 +54,13 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |---- reports (containing html report & assets)
 |---- logs(contains logs of the test run)
 |---- node_modules
+|---- scripts
+|   |____ script.sh (scripts used in package.json)
+|   |____ set-env-vars.sh (set environment variables in CI)
 |---- .editorconfig
 |---- .gitattributes
 |---- .gitignore
 |---- reporter.js (for generating html reports)
-|---- cypress.env.template.json (credentials & environment variables - rename the file as mentioned above)
 |---- cypress.config.json (cypress related settings)
 |---- LICENSE
 |---- package-lock.json
