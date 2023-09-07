@@ -43,6 +43,7 @@ class Management {
   static #schoolNumberForm = '[data-testid="school-number"]'
   static #migrationTextSupportLink = '[data-testid="support-link"]'
   static #migrationTextBlogLink = '[data-testid="migration-blog-link"]'
+  static #endMigrationAbortButton = '[data-testid="disagree-btn"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -332,7 +333,6 @@ class Management {
         .click()
   }
 
-
   clickEndMigrationConfirmationCheckbox() {
     cy.get(Management.#endMigrationConfirmationCheckbox)
         .check( {force: true} )
@@ -342,5 +342,26 @@ class Management {
     cy.get(Management.#endMigrationConfirmationButton)
         .click()
   }
+
+  seeEndMigrationConfirmationCheckboxIsUnchecked() {
+    cy.get(Management.#endMigrationConfirmationCheckbox)
+       .should('not.be.checked');
+  }
+
+  seeEndMigrationAbortButton(){
+    cy.get(Management.#endMigrationAbortButton)
+       .should('be.visible');
+  }
+
+  seeEndMigrationConfirmationButtonIsDisabled(){
+    cy.get(Management.#endMigrationConfirmationButton)
+        .should('be.disabled')
+  }
+
+  seeEndMigrationConfirmationButtonIsEnabled(){
+    cy.get(Management.#endMigrationConfirmationButton)
+        .should('be.enabled')
+  }
+
 }
 export default Management

@@ -42,3 +42,19 @@ When('I click on the end migration confirmation button',  () => {
 management.clickEndMigrationConfirmationButton()
 
 });
+
+Then('I see the end migration confirmation checkbox is unchecked', () => {
+    management.seeEndMigrationConfirmationCheckboxIsUnchecked()
+});
+
+Then('I see the abort button for end of migration conformation', () => {
+    management.seeEndMigrationAbortButton()
+});
+
+Then('I can see the end migration confirmation button is disabled', () => {
+    management.seeEndMigrationConfirmationButtonIsDisabled()
+});
+
+Then('I see the end migration confirmation button is enabled', () => {
+    management.seeEndMigrationConfirmationButtonIsEnabled()
+});

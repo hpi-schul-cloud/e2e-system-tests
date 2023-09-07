@@ -19,8 +19,11 @@ Feature: Admin Users - To administrate the Migration process.
     Then I see the migration is active field
     Then I see the end migration button
 
-
-  Scenario: Admin ends the migration
+  Scenario: Admin stops the migration
     When I click on end migration button
+    Then I see the end migration confirmation checkbox is unchecked
+    Then I see the abort button for end of migration conformation
+    Then I can see the end migration confirmation button is disabled
     When I click on the end migration confirmation checkbox
+    Then I see the end migration confirmation button is enabled
     When I click on the end migration confirmation button
