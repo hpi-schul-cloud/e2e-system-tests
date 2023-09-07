@@ -89,7 +89,6 @@ Cypress.Commands.add('login', (username, environment) => {
         })
       })
     } else {
-      console.log(`${env[userEmail]} ...... ${env[userPassword]}`)
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
       cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
       cy.get(submitButton).click()
