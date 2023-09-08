@@ -72,3 +72,11 @@ Then('I can see the end migration confirmation button is disabled', () => {
 Then('I see the end migration confirmation button is enabled', () => {
     management.seeEndMigrationConfirmationButtonIsEnabled()
 });
+
+When('I toggle the migration mandatory switch', () => {
+    management.toggleMigrationMandatorySwitch()
+});
+
+When('I toggle the sync during migration switch', () => {
+    management.toggleSyncDuringMigrationSwitch()
+});

@@ -47,6 +47,8 @@ class Management {
   static #endMigrationInformationTitle = '[data-testid="migration-warning-card-title"]'
   static #endMigrationInformationText = '[data-testid="migration-warning-card-info-text"]'
   static #endMigrationTextBlogLink = '[data-testid="end-warningcard-migration-blog-link"]'
+  static #migrationMandatorySwitch = '[data-testid="migration-mandatory-switch"]'
+  static #enableSyncDuringMigrationSwitch = '[data-testid="enable-sync-during-migration-switch"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -379,6 +381,24 @@ class Management {
   seeEndMigrationConfirmationButtonIsEnabled(){
     cy.get(Management.#endMigrationConfirmationButton)
         .should('be.enabled')
+  }
+
+  toggleMigrationMandatorySwitch(){
+    cy.get(Management.#migrationMandatorySwitch)
+       .should('not.be.checked');
+    cy.get(Management.#migrationMandatorySwitch)
+       .click();
+    cy.get(Management.#migrationMandatorySwitch)
+      .should('be.checked');
+  }
+
+  toggleSyncDuringMigrationSwitch(){
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+       .should('not.be.checked');
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+       .click();
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+      .should('be.checked');
   }
 
 }

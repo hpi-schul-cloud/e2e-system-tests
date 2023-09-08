@@ -18,6 +18,8 @@ Feature: Admin Users - To administrate the Migration process.
     When I click on agree migration button
     Then I see the migration is active field
     Then I see the end migration button
+    When I toggle the migration mandatory switch
+    When I toggle the sync during migration switch
 
   Scenario: Admin stops the migration
     When I click on end migration button
