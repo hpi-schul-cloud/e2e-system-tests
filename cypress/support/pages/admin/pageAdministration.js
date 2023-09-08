@@ -44,6 +44,9 @@ class Management {
   static #migrationTextSupportLink = '[data-testid="support-link"]'
   static #migrationTextBlogLink = '[data-testid="migration-blog-link"]'
   static #endMigrationAbortButton = '[data-testid="disagree-btn"]'
+  static #endMigrationInformationTitle = '[data-testid="migration-warning-card-title"]'
+  static #endMigrationInformationText = '[data-testid="migration-warning-card-info-text"]'
+  static #endMigrationTextBlogLink = '[data-testid="end-warningcard-migration-blog-link"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -341,6 +344,21 @@ class Management {
   clickEndMigrationConfirmationButton() {
     cy.get(Management.#endMigrationConfirmationButton)
         .click()
+  }
+
+  seeEndMigrationInformationTitle() {
+    cy.get(Management.#endMigrationInformationTitle)
+       .should('be.visible');
+  }
+
+  seeEndMigrationInformationText() {
+    cy.get(Management.#endMigrationInformationText)
+       .should('be.visible');
+  }
+
+  checkEndMigrationInfoLink() {
+    cy.get(Management.#endMigrationTextBlogLink)
+       .should("have.attr", "href", "https://blog.niedersachsen.cloud/umzug")
   }
 
   seeEndMigrationConfirmationCheckboxIsUnchecked() {

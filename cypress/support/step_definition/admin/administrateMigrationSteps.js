@@ -43,6 +43,20 @@ management.clickEndMigrationConfirmationButton()
 
 });
 
+
+
+Then('I see the end of migration information title', () => {
+    management.seeEndMigrationInformationTitle()
+});
+
+Then('I see the end of migration information text', () => {
+    management.seeEndMigrationInformationText()
+});
+
+Then(/^I see the end migration information link href is blog\.niedersachsen\.cloud\/umzug$/,  () =>{
+    management.checkEndMigrationInfoLink()
+});
+
 Then('I see the end migration confirmation checkbox is unchecked', () => {
     management.seeEndMigrationConfirmationCheckboxIsUnchecked()
 });

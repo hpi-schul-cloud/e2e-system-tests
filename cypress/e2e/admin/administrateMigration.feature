@@ -21,6 +21,9 @@ Feature: Admin Users - To administrate the Migration process.
 
   Scenario: Admin stops the migration
     When I click on end migration button
+    Then I see the end of migration information title
+    Then I see the end of migration information text
+    Then I see the end migration information link href is blog.niedersachsen.cloud/umzug
     Then I see the end migration confirmation checkbox is unchecked
     Then I see the abort button for end of migration conformation
     Then I can see the end migration confirmation button is disabled
