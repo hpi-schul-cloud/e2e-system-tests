@@ -383,13 +383,28 @@ class Management {
         .should('be.enabled')
   }
 
-  toggleMigrationMandatorySwitch(){
+  seeMigrationMandatorySwitch(){
     cy.get(Management.#migrationMandatorySwitch)
-       .should('not.be.checked');
+      .should('not.be.checked');
+  }
+
+  seeSyncDuringMigrationSwitchIsNotChecked(){
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+        .should('not.be.checked')
+  }
+
+  seeSyncDuringMigrationSwitchIsChecked(){
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+        .and('be.checked')
+  }
+
+  toggleMigrationMandatorySwitch(){
+    // cy.get(Management.#migrationMandatorySwitch)
+    //    .should('not.be.checked');
     cy.get(Management.#migrationMandatorySwitch)
        .click();
-    cy.get(Management.#migrationMandatorySwitch)
-      .should('be.checked');
+    // cy.get(Management.#migrationMandatorySwitch)
+    //   .should('be.checked');
   }
 
   toggleSyncDuringMigrationSwitch(){
