@@ -92,3 +92,7 @@ When('I toggle the migration mandatory switch', () => {
 When('I toggle the sync during migration switch', () => {
     management.toggleSyncDuringMigrationSwitch()
 });
+
+Then('I see the timestamp when the migration is finished', () => {
+    management.seeMigrationFinishedTimestamp()
+});

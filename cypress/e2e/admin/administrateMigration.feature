@@ -36,3 +36,4 @@ Feature: Admin Users - To administrate the Migration process.
     When I click on the end migration confirmation checkbox
     Then I see the end migration confirmation button is enabled
     When I click on the end migration confirmation button
+    Then I see the timestamp when the migration is finished

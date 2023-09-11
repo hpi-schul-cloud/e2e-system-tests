@@ -49,6 +49,7 @@ class Management {
   static #endMigrationTextBlogLink = '[data-testid="end-warningcard-migration-blog-link"]'
   static #migrationMandatorySwitch = '[data-testid="migration-mandatory-switch"]'
   static #enableSyncDuringMigrationSwitch = '[data-testid="enable-sync-during-migration-switch"]'
+  static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -406,6 +407,11 @@ class Management {
   toggleSyncDuringMigrationSwitch(){
     cy.get(Management.#enableSyncDuringMigrationSwitch)
        .click();
+  }
+
+  seeMigrationFinishedTimestamp(){
+    cy.get(Management.#migrationFinishedTimestamp)
+        .and('be.visible')
   }
 
 }
