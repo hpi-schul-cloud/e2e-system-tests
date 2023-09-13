@@ -22,4 +22,5 @@ secrets
 test-run-details.json
 cypress/fixtures/test-run-details.json
 env_variables/*.env.json
+env_variables/*
 !env_variables/template.env.json
