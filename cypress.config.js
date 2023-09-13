@@ -10,7 +10,7 @@ async function setupNodeEvents (on, config) {
     }
   } else {
     const environmentName = config.env.environmentName || 'local'
-    const environmentFilename = `./configs/${environmentName}.env.json`
+    const environmentFilename = `./env_variables/${environmentName}.env.json`
     console.log('loading %s', environmentFilename)
     const settings = require(environmentFilename)
 
