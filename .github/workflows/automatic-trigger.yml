@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   e2e-system-tests:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Setup Node

@@ -17,7 +17,7 @@ on:
 
 jobs:
   configure-load-secrets-and-run_tests:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.setting_url.outputs.TAG }}
 
