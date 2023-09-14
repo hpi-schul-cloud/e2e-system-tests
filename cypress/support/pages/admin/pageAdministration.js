@@ -43,6 +43,13 @@ class Management {
   static #schoolNumberForm = '[data-testid="school-number"]'
   static #migrationTextSupportLink = '[data-testid="support-link"]'
   static #migrationTextBlogLink = '[data-testid="migration-blog-link"]'
+  static #endMigrationAbortButton = '[data-testid="disagree-btn"]'
+  static #endMigrationInformationTitle = '[data-testid="migration-warning-card-title"]'
+  static #endMigrationInformationText = '[data-testid="migration-warning-card-info-text"]'
+  static #endMigrationTextBlogLink = '[data-testid="end-warningcard-migration-blog-link"]'
+  static #migrationMandatorySwitch = '[data-testid="migration-mandatory-switch"]'
+  static #enableSyncDuringMigrationSwitch = '[data-testid="enable-sync-during-migration-switch"]'
+  static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]'
 
 
   disableTeamsVideoConferenceByAdmin () {
@@ -332,7 +339,6 @@ class Management {
         .click()
   }
 
-
   clickEndMigrationConfirmationCheckbox() {
     cy.get(Management.#endMigrationConfirmationCheckbox)
         .check( {force: true} )
@@ -342,5 +348,71 @@ class Management {
     cy.get(Management.#endMigrationConfirmationButton)
         .click()
   }
+
+  seeEndMigrationInformationTitle() {
+    cy.get(Management.#endMigrationInformationTitle)
+       .should('be.visible');
+  }
+
+  seeEndMigrationInformationText() {
+    cy.get(Management.#endMigrationInformationText)
+       .should('be.visible');
+  }
+
+  checkEndMigrationInfoLink() {
+    cy.get(Management.#endMigrationTextBlogLink)
+       .should("have.attr", "href", "https://blog.niedersachsen.cloud/umzug")
+  }
+
+  seeEndMigrationConfirmationCheckboxIsUnchecked() {
+    cy.get(Management.#endMigrationConfirmationCheckbox)
+       .should('not.be.checked');
+  }
+
+  seeEndMigrationAbortButton(){
+    cy.get(Management.#endMigrationAbortButton)
+       .should('be.visible');
+  }
+
+  seeEndMigrationConfirmationButtonIsDisabled(){
+    cy.get(Management.#endMigrationConfirmationButton)
+        .should('be.disabled')
+  }
+
+  seeEndMigrationConfirmationButtonIsEnabled(){
+    cy.get(Management.#endMigrationConfirmationButton)
+        .should('be.enabled')
+  }
+
+  seeMigrationMandatorySwitch(){
+    cy.get(Management.#migrationMandatorySwitch)
+      .should('not.be.checked');
+  }
+
+  seeSyncDuringMigrationSwitchIsNotChecked(){
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+        .should('not.be.checked')
+  }
+
+  seeSyncDuringMigrationSwitchIsChecked(){
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+        .and('be.checked')
+  }
+
+  toggleMigrationMandatorySwitch(){
+    cy.get(Management.#migrationMandatorySwitch)
+       .click();
+  }
+
+  toggleSyncDuringMigrationSwitch(){
+    cy.get(Management.#enableSyncDuringMigrationSwitch)
+       .click();
+  }
+
+  seeMigrationFinishedTimestamp(){
+    cy.get(Management.#migrationFinishedTimestamp)
+        .and('be.visible')
+  }
+
 }
 export default Management
