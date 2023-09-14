@@ -23,9 +23,12 @@ Install or make sure Chrome browser (at least) have it in your development machi
 1) Clone the project
 2) Duplicate [`template.env.json`](env_variables/template.env.json) file and rename the duplicated file to `local.env.json` in the env_variables folder with credentials available in 1Password. (Remember add all instances as in 1Password we have different vaults available)
 3) Execute the following command in terminal `npm install` or `npm i` for installing the required packages
-4) Execute the following command in terminal to run the tests in Cypress runner (UI) `npm run cy:open`
-5) Execute the following command in terminal to run the tests in headless mode `npm run cy:run`
-6) For running specific scenario: Run `npm run tag:only` and set tag `@only` above the scenario you want to run
+4) Execute the following command in terminal to run all stable tests in Cypress runner (UI): `npm run cy:open:local`
+5) Execute the following command in terminal to run all stable tests in headless mode: `npm run tag:stable:local`
+6) For running tests which are stable and running in PR's: Run `npm run tag:stable:pr:local`
+7) For running tests which are stable and running in releases: Run `npm run tag:stable:release:local`
+8) For running specific scenario: Run `npm run tag:only:local` and set tag `@only` above the scenario you want to run
+9) For running all unstable tests: Run `npm run tag:unstable:local`
 
 ### Framework Structure
 
