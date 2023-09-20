@@ -5,7 +5,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Adding a new student
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to student administration
     When I click on FAB
@@ -16,7 +16,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Editing a new student
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to student administration
     And I enter 'student' email 'adam.riese@example.com' in search input field
@@ -29,7 +29,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Deleting a student
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to student administration
     And I enter 'student' email 'alex.abramovic@example.com' in search input field
@@ -40,7 +40,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Adding a new teacher
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to teacher administration
     When I click on FAB
@@ -51,7 +51,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Editing a new teacher
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to teacher administration
     And I enter 'teacher' email 'karl.mueller@example.com' in search input field
@@ -64,7 +64,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Deleting a teacher
-    Given I am logged in as a 'admin' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to teacher administration
     And I enter 'teacher' email 't.mueschmidt@example.com' in search input field

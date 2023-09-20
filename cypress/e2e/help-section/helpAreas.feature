@@ -5,7 +5,7 @@ Feature: Help Section - To use the help areas in dBildungscloud
 
   @stable_test
   Scenario: Use the help area in the header
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I click on the question icon in header
     And I click on help section in header
     Then I can see the help articles page
@@ -18,7 +18,7 @@ Feature: Help Section - To use the help areas in dBildungscloud
 
   @stable_test
   Scenario: Use the help area in the sidebar
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to help section in sidebar
     Then I can see the help articles page
     When I go to help articles in sidebar
@@ -30,7 +30,7 @@ Feature: Help Section - To use the help areas in dBildungscloud
 
   @stable_test
   Scenario: Use the article search inside the help articles area
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to help section in sidebar
     Then I can see the help articles page
     When I enter keyword in search bar
@@ -38,7 +38,7 @@ Feature: Help Section - To use the help areas in dBildungscloud
 
   @stable_test
   Scenario: Submit an issue via contact form inside help area
-    Given I am logged in as a 'teacher' at 'brb'
+    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to help section in sidebar
     When I go to contact in sidebar
     Then I can see the help contact page

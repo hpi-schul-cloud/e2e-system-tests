@@ -399,12 +399,12 @@ class Courses {
     let userLastName
     switch (username) {
       case 'teacher1':
-        userFirstName = Cypress.env('TEACHER_1_FIRST_NAME')
-        userLastName = Cypress.env('TEACHER_1_LAST_NAME')
+        userFirstName = Cypress.env('TEACHER_1_BRB_FIRST_NAME')
+        userLastName = Cypress.env('TEACHER_1_BRB_LAST_NAME')
         break
       case 'teacher2':
-        userFirstName = Cypress.env('TEACHER_2_FIRST_NAME')
-        userLastName = Cypress.env('TEACHER_2_LAST_NAME')
+        userFirstName = Cypress.env('TEACHER_2_BRB_FIRST_NAME')
+        userLastName = Cypress.env('TEACHER_2_BRB_LAST_NAME')
         break
     }
     let userFullName = userLastName + ', ' + userFirstName
