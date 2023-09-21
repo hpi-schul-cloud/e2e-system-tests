@@ -1,7 +1,6 @@
 'use strict'
 
 class News {
-
   static #pageTitle = '[data-testid="title_of_an_element"]'
   static #newsText = '[data-testid="body_of_element"]'
   static #newsOverviewNavigationButton = '[data-testid="Neuigkeiten"]'
@@ -31,31 +30,24 @@ class News {
   }
 
   confirmDeletionOnDialogBox () {
-    cy.get(News.#deleteNewsConfirmation)
-      .click()
+    cy.get(News.#deleteNewsConfirmation).click()
   }
 
   clickOnDeleteNewsButton () {
-    cy.get(News.#deleteNews)
-      .click()
+    cy.get(News.#deleteNews).click()
   }
 
   openNewsDetailPage (newsName) {
-    cy.get(News.#newsName)
-      .contains(newsName)
-      .click()
+    cy.get(News.#newsName).contains(newsName).click()
   }
 
   seeCreatedNews (newsTitle, newsDesc) {
-    cy.get(News.#newsTitle)
-      .contains(newsTitle)
-    cy.get(News.#newsDescriptionVisible)
-      .contains(newsDesc)
+    cy.get(News.#newsTitle).contains(newsTitle)
+    cy.get(News.#newsDescriptionVisible).contains(newsDesc)
   }
 
   clickOnCreateNewsSaveButton () {
-    cy.get(News.#newsCreateButton)
-      .click()
+    cy.get(News.#newsCreateButton).click()
   }
 
   seeTimeInput () {
@@ -67,15 +59,11 @@ class News {
   }
 
   enterNewsDescription (newsDescription) {
-    cy.get(News.#newsDescription, { timeout: 20000 }).type(
-      newsDescription
-    )
+    cy.get(News.#newsDescription, { timeout: 20000 }).type(newsDescription)
   }
 
   enterNewsTitle (newsTitle) {
-    cy.get(News.#newsTitleInput, { timeout: 20000 })
-      .eq(1)
-      .type(newsTitle)
+    cy.get(News.#newsTitleInput, { timeout: 20000 }).eq(1).type(newsTitle)
   }
 
   seeNewsCreationPage () {
@@ -85,21 +73,48 @@ class News {
   }
 
   clickOnAddNews () {
-    cy.get(News.#createNewNews)
-      .click()
+    cy.get(News.#createNewNews).click()
   }
 
   navigateToNewsOverview () {
-    cy.get(News.#newsOverviewNavigationButton)
-      .click()
-    cy.url()
-      .should('include', '/news')
+    cy.get(News.#newsOverviewNavigationButton).click()
+    cy.url().should('include', '/news')
     cy.get(News.#titlebarNewsOverviewPage).should('exist')
   }
 
-  teacherReadsNewsOnOverviewPage(titleOfNews, descriptionOfNews) {
+  teacherReadsNewsOnOverviewPage (titleOfNews, descriptionOfNews) {
     cy.get(News.#pageTitle).contains(titleOfNews).should('exist')
     cy.get(News.#newsText).contains(descriptionOfNews).should('exist')
+  }
+
+  cleanupLeftOverNews (newsTitle) {
+    cy.get('[data-testid="courses"]')
+      .should('exist')
+      .then(elm => {
+        if (elm.find('.alert').length > 0) {
+          cy.log(`No news found...`)
+        } else {
+          cy.log(`Some news is there....`)
+          cy.get('[data-testid="title_of_an_element"]').then(newsElements => {
+            if (!newsElements.length) {
+            }
+
+            for (const news of newsElements) {
+              cy.get(news).then(elm => {
+                let newsText = elm[0].innerText.trim()
+                if (newsText === newsTitle) {
+                  cy.contains(newsTitle)
+                    .click()
+                    .then(() => {
+                      cy.get('[data-testid="btn-delete-news"]').click()
+                      cy.get('[data-testid="delete-article-btn"]').click()
+                    })
+                }
+              })
+            }
+          })
+        }
+      })
   }
 }
 export default News
