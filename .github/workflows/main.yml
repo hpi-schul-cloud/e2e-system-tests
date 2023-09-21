@@ -55,7 +55,7 @@ jobs:
             echo "$CYPRESS_NBC"
             echo "CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT" >> $GITHUB_ENV
             echo "$CYPRESS_DEFAULT"
-            echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
+            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
           else
             echo "This is an remote workflow"
