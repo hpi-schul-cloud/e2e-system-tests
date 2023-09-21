@@ -35,7 +35,7 @@
 	"devDependencies": {
 		"@badeball/cypress-cucumber-preprocessor": "^16.0.2",
 		"@cypress/webpack-preprocessor": "^5.17.0",
-		"cypress": "^12.8.0",
+		"cypress": "^13.2.0",
 		"cypress-file-upload": "^5.0.8",
 		"multiple-cucumber-html-reporter": "^1.21.4",
 		"webpack": "^5.77.0"
