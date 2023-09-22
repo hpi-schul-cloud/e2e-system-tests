@@ -91,7 +91,7 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.setting_url.outputs.tag }}
-          browser: chrome
+          browser: firefox
         env:
           DEBUG: "@cypress/github-action"
 

@@ -7,7 +7,7 @@ Feature:  News - To read a news on the respective dashboards
     Given I am logged in as a 'teacher1_brb' at 'brb'
 
   @stable_test
-  Scenario: Clean up all left over news from last run
+  Scenario: as a pre-condition clean up all left over news from last run
     When I go to news overview
     Then I cleanup the news 'News - this is a school news'
     Then I cleanup the news 'News - this is a team news'

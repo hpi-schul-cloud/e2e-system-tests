@@ -16,6 +16,7 @@ class News {
   static #deleteNews = '[data-testid="btn-delete-news"]'
   static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]'
   static #titlebarNewsOverviewPage = '[id="titlebar"]'
+  static #newsSection = '[data-testid="news-section"]'
 
   doNotSeeNews (newsName) {
     cy.get('span', { timeout: 20000 }).then($span => {
@@ -88,26 +89,23 @@ class News {
   }
 
   cleanupLeftOverNews (newsTitle) {
-    cy.get('[data-testid="courses"]')
+    cy.get(News.#newsSection)
       .should('exist')
       .then(elm => {
         if (elm.find('.alert').length > 0) {
           cy.log(`No news found...`)
         } else {
-          cy.log(`Some news is there....`)
-          cy.get('[data-testid="title_of_an_element"]').then(newsElements => {
-            if (!newsElements.length) {
-            }
-
+          cy.get(News.#newsName).then(newsElements => {
             for (const news of newsElements) {
               cy.get(news).then(elm => {
                 let newsText = elm[0].innerText.trim()
                 if (newsText === newsTitle) {
+                  cy.log(`${newsTitle} exist....`)
                   cy.contains(newsTitle)
                     .click()
                     .then(() => {
-                      cy.get('[data-testid="btn-delete-news"]').click()
-                      cy.get('[data-testid="delete-article-btn"]').click()
+                      cy.get(News.#deleteNews).click()
+                      cy.get(News.#deleteNewsConfirmation).click()
                     })
                 }
               })
