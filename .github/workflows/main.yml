@@ -16,11 +16,8 @@ on:
         type: string
 
 jobs:
-  configure-load-secrets-and-run_tests:
+  configure-load-secrets:
     runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node-20.6.1-chrome-116.0.5845.187-1-ff-117.0-edge-116.0.1938.76-1
-      options: --user 1001
     outputs:
       tag: ${{ steps.setting_url.outputs.TAG }}
 
@@ -83,6 +80,22 @@ jobs:
         with:
           export-env: true
 
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: configure-load-secrets
+    container:
+     image: cypress/browsers:node-20.6.1-chrome-116.0.5845.187-1-ff-117.0-edge-116.0.1938.76-1
+     options: --user 1001
+    outputs:
+      tag: ${{ needs.configure-load-secrets.outputs.tag }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: hpi-schul-cloud/e2e-system-tests
+          path: e2e-system-tests
+
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
@@ -93,7 +106,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
-          command: npm run ${{ steps.setting_url.outputs.tag }}
+          command: npm run ${{ needs.configure-load-secrets.outputs.tag }}
           browser: chrome
         env:
           DEBUG: "@cypress/github-action"
