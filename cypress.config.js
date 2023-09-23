@@ -24,6 +24,20 @@ async function setupNodeEvents (on, config) {
     console.log('loaded settings for environment %s', environmentName)
   }
 
+  on('before:browser:launch', (browser = {}, launchOptions) => {
+    if (browser.name === 'chrome' && browser.isHeadless) {
+      launchOptions.args = launchOptions.args.map(arg => {
+        if (arg === '--headless=new') {
+          return '--headless'
+        }
+
+        return arg
+      })
+    }
+
+    return launchOptions
+  })
+
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await preprocessor.addCucumberPreprocessorPlugin(on, config)
 
