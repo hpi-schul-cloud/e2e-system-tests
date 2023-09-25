@@ -16,7 +16,7 @@ on:
         type: string
 
 jobs:
-  configure-load-secrets:
+  configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.setting_url.outputs.TAG }}
@@ -91,7 +91,7 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.setting_url.outputs.tag }}
-          browser: firefox
+          browser: chrome
         env:
           DEBUG: "@cypress/github-action"
 
