@@ -2,9 +2,9 @@
 
 Frameworks:
 
-- [Cypress v12.8.0](https://docs.cypress.io/guides/references/changelog#12-8-0)
+- [Cypress v13.2.0](https://docs.cypress.io/guides/references/changelog#12-8-0)
 
-- [Cypress cucumber pre-processor v16.0.2](https://github.com/badeball/cypress-cucumber-preprocessor)
+- [Cypress cucumber pre-processor v18.0.6](https://github.com/badeball/cypress-cucumber-preprocessor)
 
 ### Prepare development environment
 
