@@ -163,11 +163,11 @@ class Courses {
     cy.get(Courses.#ltiToolsTab).click()
   }
 
-  addNewLtiTool () {
+  clickOnAddNewLtiToolButton () {
     cy.get(Courses.#addNewToolButton).click()
   }
 
-  navigateToTools () {
+  navigateToToolsTab () {
     cy.get(Courses.#toolsTab).click()
   }
 
@@ -191,7 +191,7 @@ class Courses {
     cy.get(Courses.#toolConfigurationSelect).click()
   }
 
-  enterAnToolName (toolName) {
+  enterAnToolNameInToolConfigurationSelect (toolName) {
     cy.get(Courses.#toolConfigurationSelect).type(toolName)
   }
 

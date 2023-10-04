@@ -1,7 +1,7 @@
 @release
-Feature: Course - To add a tool to a course
+Feature: Course - To add a ctl tool to a course
 
-  As a teacher I want to add a new tool to my course.
+  As a teacher I want to add a new ctl tool to my course.
 
   @stable_test
   Scenario: Student cant see the button to add a tool
@@ -19,6 +19,6 @@ Feature: Course - To add a tool to a course
     When I click on the tools tab
     Then I can see the button to add a tool
     When I click on the button to add a tool
-    Then I can see the tool configuration page
+    Then I can see the tool configuration page title
     When I click on the tool configuration selection
-    Then I can enter 'Test' as tool name
+    Then I can enter 'Test' as tool name in the selection

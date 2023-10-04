@@ -4,7 +4,7 @@ import Courses from '../../pages/course/pageCourses'
 const courses = new Courses()
 
 When('I click on the tools tab', () => {
-	courses.navigateToTools()
+	courses.navigateToToolsTab()
 })
 
 Then('I can see the button to add a tool', () => {
@@ -19,7 +19,7 @@ When('I click on the button to add a tool', () => {
 	courses.clickOnAddNewToolFAB()
 })
 
-Then('I can see the tool configuration page', () => {
+Then('I can see the tool configuration page title', () => {
 	courses.seeContextExternalToolConfiguratorPageTitle()
 })
 
@@ -28,8 +28,8 @@ When('I click on the tool configuration selection', () => {
 	courses.clickOnToolConfigurationSelect()
 })
 
-Then('I can enter {string} as tool name', toolName => {
-	courses.enterAnToolName(toolName)
+Then('I can enter {string} as tool name in the selection', toolName => {
+	courses.enterAnToolNameInToolConfigurationSelect(toolName)
 })
 
 
