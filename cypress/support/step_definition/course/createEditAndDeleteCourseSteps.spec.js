@@ -86,3 +86,27 @@ Then ('I see the modal to confirm the deletion',() =>{
 When ('I click on the button delete on the modal to confirm the course deletion',() =>{
   courses.confirmCourseDeletionOnModal()
 })
+
+Then ('I see {string} in the class selection box',(groupName) => {
+  courses.checkIfGroupIsVisible(groupName);
+})
+
+Then ('I see {string} in the student selection box',(studentName) => {
+  courses.checkIfStudentIsVisible(studentName);
+})
+
+When('I click on the selection box to add a new group with {string}',(groupName) =>{
+  courses.selectGroup(groupName);
+})
+
+When('I click on the remove icon of group {string}',(groupName) =>{
+  courses.removeGroup(groupName);
+})
+
+Then('Then I do not see {string} in the group selection box',(groupName) =>{
+  courses.checkIfGroupIsNotVisible(groupName);
+})
+
+Then('I do not see {string} in the student selection box',(studentName) =>{
+  courses.checkIfStudentIsNotVisible(studentName);
+})
