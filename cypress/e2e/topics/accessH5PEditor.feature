@@ -5,7 +5,7 @@ As a teacher, I want to access the H5P Editor for a topic in my course to create
 
 @stable_test
 Scenario: Access H5P Editor for existing topic
-	Given I am logged in as a 'teacher_1' at 'thr' 
+	Given I am logged in as a 'teacher1_dbc' at 'default'
 	When I go to the courses page 
 	And I click on the existing course 'Mathe'
 	And I click on the existing topic 'Testthema'
