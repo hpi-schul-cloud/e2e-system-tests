@@ -67,11 +67,8 @@ class Courses {
   static #addToolButton = '[data-testid="add-tool-button"]'
   static #toolConfigurationSelect = '[data-testid="configuration-select"]'
   static #contextExternalToolConfiguratorPageTitle = '[data-testid="context-external-tool-configurator-title"]'
-  static #classAndGroupSelection = '[data-testid="select-classes-and-groups"]'
   static #groupSelection = '[id="classId_chosen"]'
-  static #chosenGroups = '[id="classId_chosen"] > .chosen-choices .search-choice'
   static #chosenStudents= '[id="studentsId_chosen"] > .chosen-choices'
-  static #removeGroup = '[id="classId_chosen"] > .chosen-choices > .search-choice'
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
   }
@@ -488,11 +485,6 @@ class Courses {
         })
       }
     })
-  }
-
-  checkIfGroupsIsEmpty(){
-    cy.get(Courses.#classAndGroupSelection).should('not.contain','Cypress-Test-Group');
-
   }
 
   checkIfGroupIsVisible (groupName) {
