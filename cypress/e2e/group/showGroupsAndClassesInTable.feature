@@ -74,4 +74,10 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the delete button
     And I click the confirmation button on the delete modal
     Then I see the new class administration page
-    #And <the class is deleted>
+
+  @stable_test
+  Scenario: As a post-condition teacher deletes the successor class and logs out
+    Given I see the new class administration page
+    When I click the delete button
+    And I click the confirmation button on the delete modal
+    Then I see the new class administration page
