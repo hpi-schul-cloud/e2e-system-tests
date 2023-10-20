@@ -1,7 +1,7 @@
 'use strict'
 
 class Groups {
-	static #cretaeClass = '[data-testid="createClass"]';
+	static #createClass = '[data-testid="createClass"]';
 	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
 	static #manageConfirm = '[data-testid="manage-confirm"]';
 	static #classTitleNew = '[data-testid="admin-class-title"]';
@@ -16,7 +16,7 @@ class Groups {
 	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
 
 	clickCreateClass() {
-		cy.get(Groups.#cretaeClass)
+		cy.get(Groups.#createClass)
 			.click();
 	}
 

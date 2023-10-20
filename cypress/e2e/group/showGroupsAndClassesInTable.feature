@@ -17,9 +17,9 @@ Feature: Group - To show groups and classes in one table with respective functio
   Scenario: As a teacher i can see all classes and groups of my school on the new class administration page.
     Given I see the new class administration page
     Then I can see the page title
-    And I can see the group 'TestSchulklasse' with source 'moin.schule'
+    And I can see the group 'Cypress-Test-Group' with source 'moin.schule'
     And I can see the class '1' without source
-    And the group 'TestSchulklasse' does not have any action items
+    And the group 'Cypress-Test-Group' does not have any action items
     And the class '1' has 4 enabled action items
 
   @stable_test
