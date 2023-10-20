@@ -3,41 +3,45 @@ import Groups from '../../pages/group/pageGroups'
 import Management from '../../pages/admin/pageAdministration';
 
 
-const groups = new Groups()
-const management = new Management()
+const groups = new Groups();
+const management = new Management();
 
 When('I go to class administration', () => {
-	management.navigateToClassAdministration()
+	management.navigateToClassAdministration();
 })
 
 When('I click on add class', () => {
-	groups.clickCreateClass()
+	groups.clickCreateClass();
 })
 
 When('I click on the confirm button', () => {
-	groups.clickConfirmCreateClass()
+	groups.clickConfirmCreateClass();
 })
 
 When('I confirm managing the class', () => {
-	groups.clickConfirmManageClass()
+	groups.clickConfirmManageClass();
 })
 
 Then('I see the new class administration page', () => {
-	groups.isNewClassAdministrationPage()
+	groups.isNewClassAdministrationPage();
 })
 
 Then('I can see the page title', () => {
-	groups.seeNewClassPageTitle()
+	groups.seeNewClassPageTitle();
 })
 
-Then('I can see at least 1 class and 1 group in the table', () => {
-	groups.newClassTableContainsClassesAndGroups()
+Then('I can see the group {string} with source {string}', (groupName, systemName) => {
+	groups.newClassTableContainsClass(groupName, systemName);
 })
 
-Then('the group does not have any action icons', () => {
-	groups.groupsHaveNoActionIcons()
+Then('I can see the class {string} without source', (className) => {
+	groups.newClassTableContainsClass(className, "");
 })
 
-Then('the class has 4 enabled action icons', () => {
-	groups.classesHave4ActiveActionIcons()
+Then('the group {string} does not have any action items', (groupName) => {
+	groups.groupsHaveNoActionItems(groupName);
+})
+
+Then('the class {string} has 4 enabled action items', (className) => {
+	groups.classesHave4ActiveActionItems(className);
 })

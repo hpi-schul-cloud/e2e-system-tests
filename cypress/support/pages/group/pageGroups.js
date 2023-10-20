@@ -46,39 +46,30 @@ class Groups {
 		cy.get(Groups.#classTitleNew).should('exist')
 	}
 
-	newClassTableContainsClassesAndGroups() {
-		cy.get(Groups.#classTableNew)
-		.find('tbody td:nth-child(2)')
-		.each(($td) => {
-			const text = $td.text().trim();
-			if (text === '' || text === 'moin.schule') {
-				cy.wrap($td).should('be.visible');
-			}
+	newClassTableContainsClass(className, sourceName) {
+		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(className);
+
+		classNameData.should('be.visible');
+		classNameData.siblings('td').eq(0).should(($td) => {
+			expect($td.text().trim()).to.equal(sourceName);
 		});
 	}
 
+	groupsHaveNoActionItems(groupName) {
+		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(groupName);
 
-	groupsHaveNoActionIcons() {
-		const entries = document.querySelector('[data-testid="admin-class-table"]').firstChild.firstChild.querySelector('tbody').children
-		const group = entries.filter((entry) => entry.children[1].innerText === "moin.schule")
-
-		expect(group.children[3].children.length).to.equal(0)
+		classNameData.siblings('td').eq(2).should('be.empty');
 	}
 
-	classesHave4ActiveActionIcons() {
-		const entries = document.querySelector('[data-testid="admin-class-table"]').firstChild.firstChild.querySelector('tbody').children
-		const clazz = entries.filter((entry) => entry.children[1].innerText === "")
-		const actionIcons = clazz.children[3].children
+	classesHave4ActiveActionItems(className) {
+		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(className);
 
-		expect(actionIcons.length).to.equal(4)
+		const buttons = classNameData.siblings('td').eq(2).find('a, button');
 
-		let activeIcons = 0
-		actionIcons.forEach((icon) => {
-			if (icon.attributes.disabled === false) {
-				activeIcons = activeIcons + 1
-			}
+		buttons.should('have.length', 4);
+		buttons.each(($btn) => {
+			cy.wrap($btn).should('not.be.disabled');
 		})
-		expect(activeIcons).to.equal(4)
 	}
 }
 
