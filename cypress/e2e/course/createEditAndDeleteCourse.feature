@@ -50,8 +50,7 @@ Feature: Course - To add and delete a course by the teacher
     When I click on the button delete on the modal to confirm the course deletion
     Then I do not see the course 'Cypress Testkurs Edit' on the room overview page
 
-  @only
-    @stable_test
+  @stable_test
   Scenario: as a pre-condition teacher deletes undeleted tests
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
@@ -60,8 +59,7 @@ Feature: Course - To add and delete a course by the teacher
     When I delete all courses named 'Cypress Testkurs Edit'
     Then I do not see the course 'Cypress Testkurs Edit' on the room overview page
 
-  @only
-    @stable_test
+  @stable_test
   Scenario: Create, edit and delete a course with groups of type class in nbc
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
