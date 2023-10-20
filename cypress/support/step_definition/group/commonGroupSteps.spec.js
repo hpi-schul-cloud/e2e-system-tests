@@ -25,3 +25,19 @@ When('I confirm managing the class', () => {
 Then('I see the new class administration page', () => {
 	groups.isNewClassAdministrationPage()
 })
+
+Then('I can see the page title', () => {
+	groups.seeNewClassPageTitle()
+})
+
+Then('I can see at least 1 class and 1 group in the table', () => {
+	groups.newClassTableContainsClassesAndGroups()
+})
+
+Then('the group does not have any action icons', () => {
+	groups.groupsHaveNoActionIcons()
+})
+
+Then('the class has 4 enabled action icons', () => {
+	groups.classesHave4ActiveActionIcons()
+})

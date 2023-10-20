@@ -13,15 +13,17 @@ Feature: Group - To show groups and classes in one table with respective functio
     And I confirm managing the class
     Then I see the new class administration page
 
+  #@stable_test
   Scenario: As a teacher i can see all classes and groups of my school on the new class administration page.
-    Given I am on the new class administration page
+    Given I see the new class administration page
     Then I can see the page title
-    And I can see 1 class and 1 group in the table
+    And I can see at least 1 class and 1 group in the table
     And the group does not have any action icons
     And the class has 4 enabled action icons
-  #test And in this context
 
+  @stable_test
   Scenario: As a teacher i can manage my classes
+    Given I see the new class administration page
     When I click the manage icon
     Then I can see the manage classes page
     When I click the cancel manage class button
