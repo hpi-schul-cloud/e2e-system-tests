@@ -25,18 +25,29 @@ Feature: Group - To show groups and classes in one table with respective functio
   @stable_test
   Scenario: As a teacher i can manage my classes
     Given I see the new class administration page
-    When I click the manage icon
+    When I click the manage button
     Then I can see the manage classes page
     When I click the cancel manage class button
     Then I can see the cancel modal
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
-    When I click the manage icon
-    Then I can see the manage classes page
-    When I confirm managing the class
+    When I click the manage button
+    And I confirm managing the class
     Then I see the new class administration page
 
+  @stable_test
   Scenario: As a teacher i can edit my classes
+    Given I see the new class administration page
+    When I click the edit button
+    Then I can see the edit classes page
+    When I click the cancel edit class button
+    Then I can see the cancel modal
+    When I click the confirmation button on the cancel modal
+    Then I see the new class administration page
+    When I click the edit button
+    When I click in the name suffix text element
+    Then I can click on the save changes button
+    And I see the new class administration page
 
   Scenario: As a teacher i can upgrade my upgradable classes
 

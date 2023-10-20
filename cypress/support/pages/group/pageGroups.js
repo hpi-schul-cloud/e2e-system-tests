@@ -6,7 +6,9 @@ class Groups {
 	static #manageConfirm = '[data-testid="manage-confirm"]'
 	static #classTitleNew = '[data-testid="admin-class-title"]'
 	static #classTableNew = '[data-testid="admin-class-table"]'
-	static #manageClassIcon = '[data-testid="class-table-manage-btn"]'
+	static #manageClassButton = '[data-testid="class-table-manage-btn"]'
+	static #cancelModal = '[data-testid="modal_content"]'
+	static #editClassButton = '[data-testid="class-table-edit-btn"]'
 
 	clickCreateClass() {
 		cy.get(Groups.#cretaeClass)
@@ -23,14 +25,36 @@ class Groups {
 			.click()
 	}
 
-	clickCancelManageClass() {
+	clickCancelButton() {
 		cy.get('.btn-cancel')
 			.click()
 	}
 
-	clickManageClassIcon() {
-		cy.get(Groups.#manageClassIcon)
+	clickManageClassButton() {
+		cy.get(Groups.#manageClassButton)
 			.first().click()
+	}
+
+	clickConfirmButton() {
+		cy.get('.historyback')
+			.click()
+	}
+
+	clickEditClassButton() {
+		cy.get(Groups.#editClassButton)
+			.first().click()
+	}
+
+	clickNameSuffixField() {
+		cy.get('[name=classsuffix]')
+			.click()
+	}
+
+	clickSaveChangesButton() {
+		cy.get('.btn-primary')
+			.eq(0)
+			.should('not.be.disabled')
+			.click()
 	}
 
 	isNewClassAdministrationPage() {
@@ -40,6 +64,15 @@ class Groups {
 	isManageClassPage() {
 		cy.url().should('include', '/administration/classes')
 		cy.url().should('include', '/manage')
+	}
+
+	isEditClassPage() {
+		cy.url().should('include', '/administration/classes')
+		cy.url().should('include', '/edit')
+	}
+
+	isCancelModal() {
+		cy.get(Groups.#cancelModal).should('exist')
 	}
 
 	seeNewClassPageTitle() {
