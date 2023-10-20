@@ -13,7 +13,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     And I confirm managing the class
     Then I see the new class administration page
 
-  #@stable_test
+  @stable_test
   Scenario: As a teacher i can see all classes and groups of my school on the new class administration page.
     Given I see the new class administration page
     Then I can see the page title

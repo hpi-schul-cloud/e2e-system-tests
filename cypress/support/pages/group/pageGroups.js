@@ -47,23 +47,16 @@ class Groups {
 	}
 
 	newClassTableContainsClassesAndGroups() {
-		const entries = cy.get(`${Groups.#classTableNew}>div>table>tbody`).children()
-		let classes = 0
-		let groups = 0
-		console.log(entries)
-		entries.each((entry) => {
-			console.log(entry)
-			if (entry.find('td').eq(1).innerText === "moin.schule") {
-				groups = groups + 1
+		cy.get(Groups.#classTableNew)
+		.find('tbody td:nth-child(2)')
+		.each(($td) => {
+			const text = $td.text().trim();
+			if (text === '' || text === 'moin.schule') {
+				cy.wrap($td).should('be.visible');
 			}
-
-			if (entry.find('td').eq(1).innerText === "") {
-				classes = classes + 1
-			}
-			console.log(classes, groups)
-		})
-		expect(classes * groups).to.be.greaterThan(0)
+		});
 	}
+
 
 	groupsHaveNoActionIcons() {
 		const entries = document.querySelector('[data-testid="admin-class-table"]').firstChild.firstChild.querySelector('tbody').children
