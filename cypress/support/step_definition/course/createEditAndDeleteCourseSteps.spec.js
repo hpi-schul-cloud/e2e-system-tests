@@ -96,14 +96,14 @@ Then ('I see {string} in the student selection box',(studentName) => {
 })
 
 When('I click on the selection box to add a new group with {string}',(groupName) =>{
-  courses.selectGroup(groupName);
+  courses.addGroup(groupName);
 })
 
 When('I click on the remove icon of group {string}',(groupName) =>{
   courses.removeGroup(groupName);
 })
 
-Then('Then I do not see {string} in the group selection box',(groupName) =>{
+Then('I do not see {string} in the group selection box',(groupName) =>{
   courses.checkIfGroupIsNotVisible(groupName);
 })
 

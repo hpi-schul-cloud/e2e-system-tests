@@ -69,9 +69,9 @@ class Courses {
   static #contextExternalToolConfiguratorPageTitle = '[data-testid="context-external-tool-configurator-title"]'
   static #classAndGroupSelection = '[data-testid="select-classes-and-groups"]'
   static #groupSelection = '[id="classId_chosen"]'
-  static #chosenGroups = '[id="classId_chosen"] > .chosen-choices > .search-choice > span'
+  static #chosenGroups = '[id="classId_chosen"] > .chosen-choices .search-choice'
   static #chosenStudents= '[id="studentsId_chosen"] > .chosen-choices'
-  static #removeGroup = '[id="classId_chosen"] > .chosen-choices > .search-choice a'
+  static #removeGroup = '[id="classId_chosen"] > .chosen-choices > .search-choice'
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
   }
@@ -496,10 +496,12 @@ class Courses {
   }
 
   checkIfGroupIsVisible (groupName) {
-    cy.get(Courses.#chosenGroups).should('contain', groupName);
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).should('be.visible');
   }
   checkIfGroupIsNotVisible (groupName) {
-    cy.get(Courses.#chosenGroups).should('not.contain', groupName);
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).should('not.exist');
+
+
   }
 
   checkIfStudentIsVisible (studentName) {
@@ -510,13 +512,13 @@ class Courses {
     cy.get(Courses.#chosenStudents).should('not.contain', studentName);
   }
 
-  selectGroup (groupName) {
-    cy.get(Courses.#groupSelection).click().type('{selectall}{backspace}').contains(groupName).click()
+  addGroup (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').click();
+    cy.get(Courses.#groupSelection).find('.chosen-results').contains(groupName).click();
   }
 
   removeGroup (groupName) {
-    cy.get(Courses.#chosenGroups).contains(groupName);
-    cy.get(Courses.#removeGroup).click()
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).siblings('a').click();
   }
 }
 export default Courses

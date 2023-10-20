@@ -79,26 +79,42 @@ Feature: Course - To add and delete a course by the teacher
     When I click on button To Course Overview on the finish page
     Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
 
-    #add group to course
+    #add groups to course
     When I go to room 'Cypress Test Creation and Deletion'
     When I open course edit page
     Then I can see course edit page
     When I edit the title of the room to 'Cypress Testkurs Edit'
     When I edit the room description to 'cy edit this is test description'
-    When I click on the selection box to add a new group with ' Cypress-Test-Group | moin.schule '
+    When I click on the selection box to add a new group with ' Cypress-Test-Group1 | moin.schule '
+    When I click on the selection box to add a new group with ' Cypress-Test-Group2 | moin.schule '
+
     When I click on save changes after editing the course details
     Then I see the course 'Cypress Testkurs Edit' on the room overview page
     When I open course edit page
-   # Then I see ' Cypress-Test-Group | moin.schule ' in the class selection box | NOT WORKING
+    Then I see ' Cypress-Test-Group1 | moin.schule ' in the class selection box
     Then I see 'Kraft, Herbert' in the student selection box
 
-    #remove group from course
-    When I click on the remove icon of group ' Cypress-Test-Group | moin.schule '
+    #remove one group from course
+    When I click on the remove icon of group ' Cypress-Test-Group2 | moin.schule '
     When I click on save changes after editing the course details
     Then I see the course 'Cypress Testkurs Edit' on the room overview page
     When I open course edit page
-    #Then I do not see ' Cypress-Test-Group | moin.schule ' in the group selection box
+    Then I see ' Cypress-Test-Group1 | moin.schule ' in the class selection box
+    Then I do not see ' Cypress-Test-Group2 | moin.schule ' in the group selection box
+    Then I see 'Kraft, Herbert' in the student selection box
+    Then I do not see 'Strobl, Amelia' in the student selection box
+
+    #remove second group
+    When I click on the remove icon of group ' Cypress-Test-Group1 | moin.schule '
+    When I click on save changes after editing the course details
+    Then I see the course 'Cypress Testkurs Edit' on the room overview page
+    When I open course edit page
+    Then I do not see ' Cypress-Test-Group1 | moin.schule ' in the group selection box
+    Then I do not see ' Cypress-Test-Group2 | moin.schule ' in the group selection box
+    Then I do not see 'Strobl, Amelia' in the student selection box
     Then I do not see 'Kraft, Herbert' in the student selection box
+    When I click on save changes after editing the course details
+    Then I see the course 'Cypress Testkurs Edit' on the room overview page
 
 
     #Deleting the course/room created in this feature test
