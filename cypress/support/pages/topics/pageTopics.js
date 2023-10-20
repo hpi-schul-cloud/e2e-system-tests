@@ -80,6 +80,7 @@ class Topics {
   seeCreateH5PInTopic() {
     cy.get(Topics.#createH5pBtn)
       .should('exist')
+      .click()
   }
 
   clickOnSubmitChangesInTopicBtn() {
