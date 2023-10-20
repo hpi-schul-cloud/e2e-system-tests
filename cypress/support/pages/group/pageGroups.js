@@ -1,82 +1,128 @@
 'use strict'
 
 class Groups {
-	static #cretaeClass = '[data-testid="createClass"]'
-	static #confirmClassCreate = '[data-testid="confirmClassCreate"]'
-	static #manageConfirm = '[data-testid="manage-confirm"]'
-	static #classTitleNew = '[data-testid="admin-class-title"]'
-	static #classTableNew = '[data-testid="admin-class-table"]'
-	static #manageClassButton = '[data-testid="class-table-manage-btn"]'
-	static #cancelModal = '[data-testid="modal_content"]'
-	static #editClassButton = '[data-testid="class-table-edit-btn"]'
+	static #cretaeClass = '[data-testid="createClass"]';
+	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
+	static #manageConfirm = '[data-testid="manage-confirm"]';
+	static #classTitleNew = '[data-testid="admin-class-title"]';
+	static #classTableNew = '[data-testid="admin-class-table"]';
+	static #manageClassButton = '[data-testid="class-table-manage-btn"]';
+	static #cancelModal = '[data-testid="modal_content"]';
+	static #editClassButton = '[data-testid="class-table-edit-btn"]';
+	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
+	static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
+	static #deleteDialog = '.v-dialog--active';
+	static #deleteDialogCancel = '[data-testid="dialog-cancel"]';
+	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
 
 	clickCreateClass() {
 		cy.get(Groups.#cretaeClass)
-			.click()
+			.click();
 	}
 
 	clickConfirmCreateClass() {
 		cy.get(Groups.#confirmClassCreate)
-			.click()
+			.click();
 	}
 
 	clickConfirmManageClass() {
 		cy.get(Groups.#manageConfirm)
-			.click()
+			.click();
 	}
 
 	clickCancelButton() {
 		cy.get('.btn-cancel')
-			.click()
+			.click();
 	}
 
 	clickManageClassButton() {
 		cy.get(Groups.#manageClassButton)
-			.first().click()
+			.first().click();
 	}
 
 	clickConfirmButton() {
 		cy.get('.historyback')
-			.click()
+			.click();
 	}
 
 	clickEditClassButton() {
 		cy.get(Groups.#editClassButton)
-			.first().click()
+			.first().click();
 	}
 
 	clickNameSuffixField() {
 		cy.get('[name=classsuffix]')
-			.click()
+			.click();
+	}
+
+	clickCreateSuccessorButton() {
+		cy.get(Groups.#createSuccessorButton)
+			.first().click();
 	}
 
 	clickSaveChangesButton() {
 		cy.get('.btn-primary')
 			.eq(0)
 			.should('not.be.disabled')
-			.click()
+			.click();
+	}
+
+	clickConfirmSuccessor() {
+		cy.get('.btn-primary')
+			.eq(0)
+			.click();
+	}
+
+	clickDeleteButton() {
+		cy.get(Groups.#deleteClassButton)
+			.first().click();
+	}
+
+	clickCancelDeleteDialogButton() {
+		cy.get(Groups.#deleteDialogCancel)
+			.click();
+	}
+
+	clickConfirmDeleteDialogButton() {
+		cy.get(Groups.#deleteDialogConfirm)
+			.click();
 	}
 
 	isNewClassAdministrationPage() {
-		cy.url().should('include', '/administration/groups/classes')
+		cy.url().should('include', '/administration/groups/classes');
 	}
 
 	isManageClassPage() {
-		cy.url().should('include', '/administration/classes')
-		cy.url().should('include', '/manage')
+		cy.url().should('include', '/administration/classes');
+		cy.url().should('include', '/manage');
 	}
 
 	isEditClassPage() {
-		cy.url().should('include', '/administration/classes')
-		cy.url().should('include', '/edit')
+		cy.url().should('include', '/administration/classes');
+		cy.url().should('include', '/edit');
 	}
 
 	isCancelModal() {
-		cy.get(Groups.#cancelModal).should('exist')
+		cy.get(Groups.#cancelModal).should('exist');
+	}
+
+	isCreateSuccessorPage() {
+		cy.url().should('include', '/administration/classes');
+		cy.url().should('include', '/createSuccessor');
 	}
 
 	seeNewClassPageTitle() {
-		cy.get(Groups.#classTitleNew).should('exist')
+		cy.get(Groups.#classTitleNew).should('exist');
+	}
+
+	isSuccessorButtonDisabled() {
+		cy.get(Groups.#createSuccessorButton)
+			.first().should('have.class', 'v-btn--disabled');
+	}
+
+	isDeleteDialog() {
+		cy.get(Groups.#deleteDialog)
+			.should('be.visible');
 	}
 
 	newClassTableContainsClass(className, sourceName) {

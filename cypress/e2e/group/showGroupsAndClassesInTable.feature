@@ -49,6 +49,29 @@ Feature: Group - To show groups and classes in one table with respective functio
     Then I can click on the save changes button
     And I see the new class administration page
 
+  @stable_test
   Scenario: As a teacher i can upgrade my upgradable classes
+    Given I see the new class administration page
+    When I click the create successor button
+    Then I can see the create successor page
+    When I click the cancel create successor button
+    Then I can see the cancel modal
+    When I click the confirmation button on the cancel modal
+    Then I see the new class administration page
+    When I click the create successor button
+    And I confirm creating the successor
+    And I confirm managing the class
+    Then I see the new class administration page
+    And the create successor button of the original class is disabled
 
+  @stable_test
   Scenario: As a teacher i can delete my classes
+    Given I see the new class administration page
+    When I click the delete button
+    Then I can see the delete modal
+    When I click the cancel button on the delete modal
+    Then I see the new class administration page
+    When I click the delete button
+    And I click the confirmation button on the delete modal
+    Then I see the new class administration page
+    #And <the class is deleted>
