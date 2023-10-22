@@ -19,7 +19,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     Then I can see the page title
     And I can see the group 'Cypress-Test-Group' with source 'moin.schule'
     And I can see the class '1' without source
-    And the group 'Cypress-Test-Group' does not have any action items
+    And the group 'Cypress-Test-Group' has a manage button
     And the class '1' has 4 enabled action items
 
   @stable_test

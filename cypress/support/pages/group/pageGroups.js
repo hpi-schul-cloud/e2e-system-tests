@@ -6,7 +6,8 @@ class Groups {
 	static #manageConfirm = '[data-testid="manage-confirm"]';
 	static #classTitleNew = '[data-testid="admin-class-title"]';
 	static #classTableNew = '[data-testid="admin-class-table"]';
-	static #manageClassButton = '[data-testid="class-table-manage-btn"]';
+	static #manageClassButton = '[data-testid="legacy-class-table-manage-btn"]';
+	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 	static #cancelModal = '[data-testid="modal_content"]';
 	static #editClassButton = '[data-testid="class-table-edit-btn"]';
 	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
@@ -134,10 +135,12 @@ class Groups {
 		});
 	}
 
-	groupsHaveNoActionItems(groupName) {
+	groupsHaveAManageButton(groupName) {
 		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(groupName);
 
-		classNameData.siblings('td').eq(2).should('be.empty');
+		//classNameData.siblings('td').eq(2).should('have.attr', 'data-testid="class-table-members-manage-btn"');
+		const buttons = classNameData.siblings('td').eq(2).find('a, button');
+		buttons.should('have.length', 1);
 	}
 
 	classesHave4ActiveActionItems(className) {
