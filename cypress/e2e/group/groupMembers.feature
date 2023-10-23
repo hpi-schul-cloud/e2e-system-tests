@@ -6,4 +6,14 @@ Feature: Group - To show members in a group
   @stable_test
   Scenario: As a teacher i can manage classes from external systems
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    # add tests
+    When I go to administration page
+    And I go to new class administration page
+    Then I see the new class administration page
+    And I can see the group 'Cypress-Test-Group' with source 'moin.schule'
+    When I click the manage group button
+    Then I can see the manage group page
+    And I can see the manage group page title
+    And I can see the group member table
+    And I can see the 'Lehrkraft' with name 'Herzog'
+    And I can see the infobox
+    And I can see the infotext

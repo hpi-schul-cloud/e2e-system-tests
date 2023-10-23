@@ -14,6 +14,11 @@ class Groups {
 	static #deleteDialog = '.v-dialog--active';
 	static #deleteDialogCancel = '[data-testid="dialog-cancel"]';
 	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
+	static #adminClassTitle = '[data-testid="admin-class-title"]';
+	static #groupMemberTable = '[data-testid="class-members-table"]';
+	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
+	static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
+	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 
 	clickCreateClass() {
 		cy.get(Groups.#cretaeClass)
@@ -150,6 +155,41 @@ class Groups {
 			cy.wrap($btn).should('not.be.disabled');
 		})
 	}
+
+	seeManageGroupPage(){
+		cy.url().should('include', '/administration/groups/classes/');
+	}
+
+	seeManageGroupPageTitle() {
+		cy.get(Groups.#adminClassTitle).should('be.visible')
+	}
+
+	seeGroupMemberTable() {
+		cy.get(Groups.#groupMemberTable).should('be.visible')
+	}
+
+	seeGroupMemberTableContainsMember(role, lastName){
+		const groupMemberData = cy.get(Groups.#groupMemberTable).find('td').contains(lastName);
+
+		groupMemberData.should('be.visible');
+		groupMemberData.siblings('td').eq(1).should(($td) => {
+			expect($td.text().trim()).to.equal(role);
+		});
+	}
+
+	seeClassMemberInfoBox() {
+		cy.get(Groups.#classMemberInfoBox).should('be.visible')
+	}
+
+	seeClassMemberInfoBoxText() {
+		cy.get(Groups.#classMemberInfoBoxText).should('be.visible')
+	}
+
+	clickManageGroupButton(){
+		cy.get(Groups.#manageGroupButton)
+			.first().click();
+	}
+
 }
 
 export default Groups
