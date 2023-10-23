@@ -14,7 +14,7 @@ class Groups {
 	static #deleteDialog = '.v-dialog--active';
 	static #deleteDialogCancel = '[data-testid="dialog-cancel"]';
 	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
-	static #adminClassTitle = '[data-testid="admin-class-title"]';
+	static #adminGroupTitle = '[data-testid="admin-class-title"]';
 	static #groupMemberTable = '[data-testid="class-members-table"]';
 	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
 	static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
@@ -162,7 +162,7 @@ class Groups {
 	}
 
 	seeManageGroupPageTitle() {
-		cy.get(Groups.#adminClassTitle).should('be.visible')
+		cy.get(Groups.#adminGroupTitle).should('be.visible')
 	}
 
 	seeGroupMemberTable() {
