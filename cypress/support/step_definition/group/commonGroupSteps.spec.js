@@ -42,8 +42,8 @@ Then('I can see the class {string} without source', (className) => {
 	groups.newClassTableContainsClass(className, "");
 })
 
-Then('the group {string} does not have any action items', (groupName) => {
-	groups.groupsHaveNoActionItems(groupName);
+Then('the group {string} has a manage button', (groupName) => {
+	groups.groupsHaveAManageButton(groupName);
 })
 
 Then('the class {string} has 4 enabled action items', (className) => {

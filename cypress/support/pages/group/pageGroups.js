@@ -1,12 +1,12 @@
 'use strict'
 
 class Groups {
-	static #cretaeClass = '[data-testid="createClass"]';
+	static #createClass = '[data-testid="createClass"]';
 	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
 	static #manageConfirm = '[data-testid="manage-confirm"]';
 	static #classTitleNew = '[data-testid="admin-class-title"]';
 	static #classTableNew = '[data-testid="admin-class-table"]';
-	static #manageClassButton = '[data-testid="class-table-manage-btn"]';
+	static #manageClassButton = '[data-testid="legacy-class-table-manage-btn"]';
 	static #cancelModal = '[data-testid="modal_content"]';
 	static #editClassButton = '[data-testid="class-table-edit-btn"]';
 	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
@@ -21,7 +21,7 @@ class Groups {
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 
 	clickCreateClass() {
-		cy.get(Groups.#cretaeClass)
+		cy.get(Groups.#createClass)
 			.click();
 	}
 
@@ -139,10 +139,11 @@ class Groups {
 		});
 	}
 
-	groupsHaveNoActionItems(groupName) {
+	groupsHaveAManageButton(groupName) {
 		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(groupName);
 
-		classNameData.siblings('td').eq(2).should('be.empty');
+		classNameData.siblings('td').eq(2).find('a[data-testid="class-table-members-manage-btn"]')
+			.should('exist');
 	}
 
 	classesHave4ActiveActionItems(className) {
