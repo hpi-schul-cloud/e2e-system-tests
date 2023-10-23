@@ -67,7 +67,8 @@ class Courses {
   static #addToolButton = '[data-testid="add-tool-button"]'
   static #toolConfigurationSelect = '[data-testid="configuration-select"]'
   static #contextExternalToolConfiguratorPageTitle = '[data-testid="context-external-tool-configurator-title"]'
-
+  static #groupSelection = '[id="classId_chosen"]'
+  static #chosenStudents= '[id="studentsId_chosen"] > .chosen-choices'
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
   }
@@ -484,6 +485,32 @@ class Courses {
         })
       }
     })
+  }
+
+  checkIfGroupIsVisible (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).should('be.visible');
+  }
+  checkIfGroupIsNotVisible (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).should('not.exist');
+
+
+  }
+
+  checkIfStudentIsVisible (studentName) {
+    cy.get(Courses.#chosenStudents).find('.search-choice').children('span').should('contain', studentName);
+  }
+
+  checkIfStudentIsNotVisible (studentName) {
+    cy.get(Courses.#chosenStudents).should('not.contain', studentName);
+  }
+
+  addGroup (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').click();
+    cy.get(Courses.#groupSelection).find('.chosen-results').contains(groupName).click();
+  }
+
+  removeGroup (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).siblings('a').click();
   }
 }
 export default Courses
