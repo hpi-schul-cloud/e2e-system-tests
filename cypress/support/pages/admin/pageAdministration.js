@@ -29,6 +29,7 @@ class Management {
   static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
   static #courseAdministrationNavigationButton = '[data-testid="Kurse"]'
   static #classAdministrationNavigationButton = '[data-testid="Klassen"]'
+  static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes_new"]'
   static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
   static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
   static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
@@ -122,6 +123,11 @@ class Management {
   navigateToClassAdministration() {
     cy.get(Management.#classAdministrationNavigationButton).click()
     cy.url().should('include', '/administration/classes')
+  }
+
+  navigateToNewClassAdministration() {
+    cy.get(Management.#newClassAdministrationNavigationButton).click()
+    cy.url().should('include', '/administration/groups/classes')
   }
 
   navigateToTeamAdministration() {
