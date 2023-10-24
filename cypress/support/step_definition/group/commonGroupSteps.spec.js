@@ -10,6 +10,10 @@ When('I go to class administration', () => {
 	management.navigateToClassAdministration();
 })
 
+When('I go to new class administration page', () => {
+	management.navigateToNewClassAdministration();
+})
+
 When('I click on add class', () => {
 	groups.clickCreateClass();
 })
