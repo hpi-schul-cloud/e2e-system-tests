@@ -4,11 +4,18 @@ Feature: Group - To show groups and classes in one table with respective functio
   As a teacher I want to see all groups and classes belonging to my school.
 
   @stable_test
-  Scenario: As a pre-condition teacher adds a class to school
+  Scenario: As a teacher i can add a class to school
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to administration page
-    And I go to class administration
-    And I click on add class
+    And I go to new class administration page
+    Then I see the new class administration page
+    When I click on add class
+    Then I can see the create class page
+    When I click the cancel create class button
+    Then I can see the cancel modal
+    When I click the confirmation button on the cancel modal
+    Then I see the new class administration page
+    When I click on add class
     And I click on the confirm button
     And I confirm managing the class
     Then I see the new class administration page

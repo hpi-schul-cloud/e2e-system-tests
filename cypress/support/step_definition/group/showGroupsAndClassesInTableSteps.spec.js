@@ -77,3 +77,11 @@ When('I click the cancel button on the delete modal', () => {
 When('I click the confirmation button on the delete modal', () => {
 	groups.clickConfirmDeleteDialogButton();
 })
+
+Then('I can see the create class page', () => {
+	groups.isCreateClassPage();
+})
+
+When('I click the cancel create class button', () => {
+	groups.clickCancelButton();
+})

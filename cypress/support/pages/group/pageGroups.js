@@ -1,7 +1,7 @@
 'use strict'
 
 class Groups {
-	static #createClass = '[data-testid="createClass"]';
+	static #createClass = '[data-testid="admin-class-add-button"]';
 	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
 	static #manageConfirm = '[data-testid="manage-confirm"]';
 	static #classTitleNew = '[data-testid="admin-class-title"]';
@@ -130,6 +130,11 @@ class Groups {
 			.should('be.visible');
 	}
 
+	isCreateClassPage() {
+		cy.url().should('include', '/administration/classes');
+		cy.url().should('include', '/create');
+	}
+
 	newClassTableContainsClass(className, sourceName) {
 		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(className);
 
@@ -142,14 +147,14 @@ class Groups {
 	groupsHaveAManageButton(groupName) {
 		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(groupName);
 
-		classNameData.siblings('td').eq(2).find('a[data-testid="class-table-members-manage-btn"]')
+		classNameData.siblings('td').eq(3).find('a[data-testid="class-table-members-manage-btn"]')
 			.should('exist');
 	}
 
 	classesHave4ActiveActionItems(className) {
 		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(className);
 
-		const buttons = classNameData.siblings('td').eq(2).find('a, button');
+		const buttons = classNameData.siblings('td').eq(3).find('a, button');
 
 		buttons.should('have.length', 4);
 		buttons.each(($btn) => {
