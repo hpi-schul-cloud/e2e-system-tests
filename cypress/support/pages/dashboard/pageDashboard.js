@@ -2,6 +2,27 @@
 
 class Dashboard {
 
+  static #initialsButton = '[data-testid="initials"]'
+  static #languageMenu = '#language-menu'
+  static #selectedLanguage = '#selected-language'
+  static #listOfAllLanguages = '#available-languages'
+  static #germanLanguage = '[data-testid="available-language-de"]'
+  static #spanishLanguage = '[data-testid="available-language-es"]'
+  static #ukrainianLanguage = '[data-testid="available-language-uk"]'
+  static #englishLanguage = '[data-testid="available-language-en"]'
+  static #getPageTitle = '#page-title'
+
+  static #testAssertionData = {
+    german: 'Deutsch',
+    spanish: 'Español',
+    ukrainian: 'Yкраїнська',
+    english: 'English',
+    overviewInGerman: 'Übersicht',
+    overviewInSpanish: 'Panel',
+    overviewInUkrainian: 'Панель керування',
+    overviewInEnglish: 'Dashboard'
+  }
+
   static #welcomeMessage = '[data-testid="welcome-section"]'
   static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]'
   static #dashboardTaskCourseName = '[data-testid="task-course-name"]'
@@ -10,6 +31,106 @@ class Dashboard {
   static #newsText = '[data-testid="body_of_element"]'
   static #newsSection = '[data-testid="news-section"]'
   static #titleOnDashboardPage = '[id="page-title"]'
+
+  assertNameInitialsIsVisible () {
+    cy.get(Dashboard.#initialsButton).should('be.visible')
+  }
+
+  clickInitialsOfName () {
+    cy.get(Dashboard.#initialsButton)
+      .should('be.visible')
+      .then($btn => {
+        if ($btn.is(':disabled')) {
+          cy.log('Button exists and is disabled!')
+          return
+        } else {
+          cy.log('Button exists and is enabled!')
+          cy.wrap($btn).click()
+        }
+      })
+  }
+
+  clickLanguagesDropDownMenu () {
+    cy.get(Dashboard.#languageMenu)
+      .should('be.visible')
+      .click()
+      .then(() => {
+        cy.get(Dashboard.#selectedLanguage).should('be.visible')
+        cy.get(Dashboard.#listOfAllLanguages).find('li').each($element => {
+          cy.get($element).should('have.prop', 'value')
+          cy.get($element).should('be.visible')
+        })
+      })
+  }
+
+  changeLanguage (language) {
+    if (language === 'german') {
+      return this.selectLanguage(
+        Dashboard.#germanLanguage,
+        Dashboard.#testAssertionData.german
+      )
+    }
+
+    if (language === 'spanish') {
+      return this.selectLanguage(
+        Dashboard.#spanishLanguage,
+        Dashboard.#testAssertionData.spanish
+      )
+    }
+
+    if (language === 'ukrainian') {
+      return this.selectLanguage(
+        Dashboard.#ukrainianLanguage,
+        Dashboard.#testAssertionData.ukrainian
+      )
+    }
+
+    return this.selectLanguage(
+      Dashboard.#englishLanguage,
+      Dashboard.#testAssertionData.english
+    )
+  }
+
+  selectLanguage (sel, language) {
+    return cy.contains(sel, language)
+        .should('be.visible')
+        .click()
+        .wait(['@alerts_api'])
+  }
+
+  assertLanguageUpdate (updatedText) {
+    cy.wait(300)
+      .get(Dashboard.#getPageTitle)
+      .invoke('text')
+      .should('eq', updatedText)
+    cy.get(Dashboard.#getPageTitle)
+      .invoke('attr', 'data-testid')
+      .should('eq', updatedText)
+  }
+
+  verifyLanguageChanged (language) {
+    if (language === 'german') {
+      return this.assertLanguageUpdate(
+        Dashboard.#testAssertionData.overviewInGerman
+      )
+    }
+
+    if (language === 'spanish') {
+      return this.assertLanguageUpdate(
+        Dashboard.#testAssertionData.overviewInSpanish
+      )
+    }
+
+    if (language === 'ukrainian') {
+      return this.assertLanguageUpdate(
+        Dashboard.#testAssertionData.overviewInUkrainian
+      )
+    }
+
+    return this.assertLanguageUpdate(
+      Dashboard.#testAssertionData.overviewInEnglish
+    )
+  }
 
   arriveOnDashboard() {
     cy.visit('/dashboard')
