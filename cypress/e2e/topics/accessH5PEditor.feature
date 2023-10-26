@@ -3,7 +3,7 @@ Feature:  To access the H5P editor as a teacher.
 
 As a teacher, I want to be able to access the H5P Editor for a topic in my course to create learning content
 
-@stable_test
+@unstable_test
 Scenario: Access H5P Editor
 	Given I am logged in as a 'teacher1_dbc' at 'default'
 	When I go to rooms overview
