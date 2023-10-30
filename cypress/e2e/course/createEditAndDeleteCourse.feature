@@ -1,9 +1,9 @@
-@release
+@unstable_test
 Feature: Course - To add and delete a course by the teacher
 
   As a teacher I want to create a new course and want to delete the newly created test course/room so that list of courses/rooms can be cleaned and not full with the newly created test courses/rooms.
 
-  @stable_test
+
   Scenario: as a pre-condition teacher deletes undeleted tests
     Given I am logged in as a 'teacher1_dbc' at 'default'
     When I go to rooms overview
@@ -12,7 +12,7 @@ Feature: Course - To add and delete a course by the teacher
     When I delete all courses named 'Cypress Testkurs Edit'
     Then I do not see the course 'Cypress Testkurs Edit' on the room overview page
 
-  @stable_test
+
   Scenario: Create, edit and delete a course
     Given I am logged in as a 'teacher1_dbc' at 'default'
     When I go to rooms overview
@@ -50,7 +50,7 @@ Feature: Course - To add and delete a course by the teacher
     When I click on the button delete on the modal to confirm the course deletion
     Then I do not see the course 'Cypress Testkurs Edit' on the room overview page
 
-  @stable_test
+
   Scenario: as a pre-condition teacher deletes undeleted tests
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
@@ -59,7 +59,7 @@ Feature: Course - To add and delete a course by the teacher
     When I delete all courses named 'Cypress Testkurs Edit'
     Then I do not see the course 'Cypress Testkurs Edit' on the room overview page
 
-  @stable_test
+
   Scenario: Create, edit and delete a course with groups of type class in nbc
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
