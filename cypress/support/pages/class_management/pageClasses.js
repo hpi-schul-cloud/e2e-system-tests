@@ -1,6 +1,6 @@
 'use strict'
 
-class Groups {
+class Classes {
 	static #createClass = '[data-testid="admin-class-add-button"]';
 	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
 	static #manageConfirm = '[data-testid="manage-confirm"]';
@@ -21,17 +21,17 @@ class Groups {
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 
 	clickCreateClass() {
-		cy.get(Groups.#createClass)
+		cy.get(Classes.#createClass)
 			.click();
 	}
 
 	clickConfirmCreateClass() {
-		cy.get(Groups.#confirmClassCreate)
+		cy.get(Classes.#confirmClassCreate)
 			.click();
 	}
 
 	clickConfirmManageClass() {
-		cy.get(Groups.#manageConfirm)
+		cy.get(Classes.#manageConfirm)
 			.click();
 	}
 
@@ -41,7 +41,7 @@ class Groups {
 	}
 
 	clickManageClassButton() {
-		cy.get(Groups.#manageClassButton)
+		cy.get(Classes.#manageClassButton)
 			.first().click();
 	}
 
@@ -51,7 +51,7 @@ class Groups {
 	}
 
 	clickEditClassButton() {
-		cy.get(Groups.#editClassButton)
+		cy.get(Classes.#editClassButton)
 			.first().click();
 	}
 
@@ -61,7 +61,7 @@ class Groups {
 	}
 
 	clickCreateSuccessorButton() {
-		cy.get(Groups.#createSuccessorButton)
+		cy.get(Classes.#createSuccessorButton)
 			.first().click();
 	}
 
@@ -79,17 +79,17 @@ class Groups {
 	}
 
 	clickDeleteButton() {
-		cy.get(Groups.#deleteClassButton)
+		cy.get(Classes.#deleteClassButton)
 			.first().click();
 	}
 
 	clickCancelDeleteDialogButton() {
-		cy.get(Groups.#deleteDialogCancel)
+		cy.get(Classes.#deleteDialogCancel)
 			.click();
 	}
 
 	clickConfirmDeleteDialogButton() {
-		cy.get(Groups.#deleteDialogConfirm)
+		cy.get(Classes.#deleteDialogConfirm)
 			.click();
 	}
 
@@ -108,7 +108,7 @@ class Groups {
 	}
 
 	isCancelModal() {
-		cy.get(Groups.#cancelModal).should('exist');
+		cy.get(Classes.#cancelModal).should('exist');
 	}
 
 	isCreateSuccessorPage() {
@@ -117,16 +117,16 @@ class Groups {
 	}
 
 	seeNewClassPageTitle() {
-		cy.get(Groups.#classTitleNew).should('exist');
+		cy.get(Classes.#classTitleNew).should('exist');
 	}
 
 	isSuccessorButtonDisabled() {
-		cy.get(Groups.#createSuccessorButton)
+		cy.get(Classes.#createSuccessorButton)
 			.first().should('have.class', 'v-btn--disabled');
 	}
 
 	isDeleteDialog() {
-		cy.get(Groups.#deleteDialog)
+		cy.get(Classes.#deleteDialog)
 			.should('be.visible');
 	}
 
@@ -135,8 +135,8 @@ class Groups {
 		cy.url().should('include', '/create');
 	}
 
-	newClassTableContainsClass(className, sourceName) {
-		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(className);
+	seeNewClassTableContainsClass(className, sourceName) {
+		const classNameData = cy.get(Classes.#classTableNew).find('td').contains(className);
 
 		classNameData.should('be.visible');
 		classNameData.siblings('td').eq(0).should(($td) => {
@@ -144,15 +144,15 @@ class Groups {
 		});
 	}
 
-	groupsHaveAManageButton(groupName) {
-		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(groupName);
+	seeGroupsHaveAManageButton(groupName) {
+		const classNameData = cy.get(Classes.#classTableNew).find('td').contains(groupName);
 
 		classNameData.siblings('td').eq(3).find('a[data-testid="class-table-members-manage-btn"]')
 			.should('exist');
 	}
 
-	classesHave4ActiveActionItems(className) {
-		const classNameData = cy.get(Groups.#classTableNew).find('td').contains(className);
+	seeClassesHave4ActiveActionItems(className) {
+		const classNameData = cy.get(Classes.#classTableNew).find('td').contains(className);
 
 		const buttons = classNameData.siblings('td').eq(3).find('a, button');
 
@@ -167,15 +167,15 @@ class Groups {
 	}
 
 	seeManageGroupPageTitle() {
-		cy.get(Groups.#adminGroupTitle).should('be.visible')
+		cy.get(Classes.#adminGroupTitle).should('be.visible')
 	}
 
 	seeGroupMemberTable() {
-		cy.get(Groups.#groupMemberTable).should('be.visible')
+		cy.get(Classes.#groupMemberTable).should('be.visible')
 	}
 
 	seeGroupMemberTableContainsMember(role, lastName){
-		const groupMemberData = cy.get(Groups.#groupMemberTable).find('td').contains(lastName);
+		const groupMemberData = cy.get(Classes.#groupMemberTable).find('td').contains(lastName);
 
 		groupMemberData.should('be.visible');
 		groupMemberData.siblings('td').eq(1).should(($td) => {
@@ -184,18 +184,18 @@ class Groups {
 	}
 
 	seeClassMemberInfoBox() {
-		cy.get(Groups.#classMemberInfoBox).should('be.visible')
+		cy.get(Classes.#classMemberInfoBox).should('be.visible')
 	}
 
 	seeClassMemberInfoBoxText() {
-		cy.get(Groups.#classMemberInfoBoxText).should('be.visible')
+		cy.get(Classes.#classMemberInfoBoxText).should('be.visible')
 	}
 
 	clickManageGroupButton(){
-		cy.get(Groups.#manageGroupButton)
+		cy.get(Classes.#manageGroupButton)
 			.first().click();
 	}
 
 }
 
-export default Groups
+export default Classes

@@ -1,7 +1,7 @@
-import Groups from "../../pages/group/pageGroups";
+import Classes from "../../pages/class_management/pageClasses";
 import {Then, When} from "@badeball/cypress-cucumber-preprocessor";
 
-const groups = new Groups();
+const groups = new Classes();
 
 When('I click the manage group button', () => {
     groups.clickManageGroupButton();

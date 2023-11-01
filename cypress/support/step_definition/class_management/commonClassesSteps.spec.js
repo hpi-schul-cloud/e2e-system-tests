@@ -1,9 +1,9 @@
 const { When, Then } = require('@badeball/cypress-cucumber-preprocessor')
-import Groups from '../../pages/group/pageGroups'
+import Classes from '../../pages/class_management/pageClasses'
 import Management from '../../pages/admin/pageAdministration';
 
 
-const groups = new Groups();
+const classes = new Classes();
 const management = new Management();
 
 When('I go to class administration', () => {
@@ -15,37 +15,37 @@ When('I go to new class administration page', () => {
 })
 
 When('I click on add class', () => {
-	groups.clickCreateClass();
+	classes.clickCreateClass();
 })
 
 When('I click on the confirm button', () => {
-	groups.clickConfirmCreateClass();
+	classes.clickConfirmCreateClass();
 })
 
 When('I confirm managing the class', () => {
-	groups.clickConfirmManageClass();
+	classes.clickConfirmManageClass();
 })
 
 Then('I see the new class administration page', () => {
-	groups.isNewClassAdministrationPage();
+	classes.isNewClassAdministrationPage();
 })
 
 Then('I can see the page title', () => {
-	groups.seeNewClassPageTitle();
+	classes.seeNewClassPageTitle();
 })
 
 Then('I can see the group {string} with source {string}', (groupName, systemName) => {
-	groups.newClassTableContainsClass(groupName, systemName);
+	classes.seeNewClassTableContainsClass(groupName, systemName);
 })
 
 Then('I can see the class {string} without source', (className) => {
-	groups.newClassTableContainsClass(className, "");
+	classes.seeNewClassTableContainsClass(className, "");
 })
 
-Then('the group {string} has a manage button', (groupName) => {
-	groups.groupsHaveAManageButton(groupName);
+Then('I can see the manage button for group {string}', (groupName) => {
+	classes.seeGroupsHaveAManageButton(groupName);
 })
 
-Then('the class {string} has 4 enabled action items', (className) => {
-	groups.classesHave4ActiveActionItems(className);
+Then('I can see 4 enabled action items for class {string}', (className) => {
+	classes.seeClassesHave4ActiveActionItems(className);
 })

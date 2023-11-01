@@ -7,7 +7,7 @@ Feature: Group - To show groups and classes in one table with respective functio
   Scenario: As a teacher i can add a class to school
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to administration page
-    And I go to new class administration page
+    When I go to new class administration page
     Then I see the new class administration page
     When I click on add class
     Then I can see the create class page
@@ -16,18 +16,18 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
     When I click on add class
-    And I click on the confirm button
-    And I confirm managing the class
+    When I click on the confirm button
+    When I confirm managing the class
     Then I see the new class administration page
 
   @stable_test
   Scenario: As a teacher i can see all classes and groups of my school on the new class administration page.
     Given I see the new class administration page
     Then I can see the page title
-    And I can see the group 'Cypress-Test-Group' with source 'moin.schule'
-    And I can see the class '1' without source
-    And the group 'Cypress-Test-Group' has a manage button
-    And the class '1' has 4 enabled action items
+    Then I can see the group 'Cypress-Test-Group' with source 'moin.schule'
+    Then I can see the class '1' without source
+    Then I can see the manage button for group 'Cypress-Test-Group'
+    Then I can see 4 enabled action items for class '1'
 
   @stable_test
   Scenario: As a teacher i can manage my classes
@@ -39,7 +39,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
     When I click the manage button
-    And I confirm managing the class
+    When I confirm managing the class
     Then I see the new class administration page
 
   @stable_test
@@ -54,7 +54,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the edit button
     When I click in the name suffix text element
     Then I can click on the save changes button
-    And I see the new class administration page
+    Then I see the new class administration page
 
   @stable_test
   Scenario: As a teacher i can upgrade my upgradable classes
@@ -69,7 +69,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     And I confirm creating the successor
     And I confirm managing the class
     Then I see the new class administration page
-    And the create successor button of the original class is disabled
+    Then I can see the disabled create successor button of the original class
 
   @stable_test
   Scenario: As a teacher i can delete my classes
@@ -79,12 +79,12 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the cancel button on the delete modal
     Then I see the new class administration page
     When I click the delete button
-    And I click the confirmation button on the delete modal
+    When I click the confirmation button on the delete modal
     Then I see the new class administration page
 
   @stable_test
   Scenario: As a post-condition teacher deletes the successor class and logs out
     Given I see the new class administration page
     When I click the delete button
-    And I click the confirmation button on the delete modal
+    When I click the confirmation button on the delete modal
     Then I see the new class administration page
