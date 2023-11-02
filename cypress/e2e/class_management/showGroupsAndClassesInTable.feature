@@ -4,7 +4,6 @@ Feature: Group - To show groups and classes in one table with respective functio
 
   As a teacher I want to see all groups and classes belonging to my school.
 
-  #@stable_test
   Scenario: As a teacher i can add a class to school
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to administration page
@@ -21,7 +20,6 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I confirm managing the class
     Then I see the new class administration page
 
-  #@stable_test
   Scenario: As a teacher i can see all classes and groups of my school on the new class administration page.
     Given I see the new class administration page
     Then I can see the page title
@@ -32,7 +30,6 @@ Feature: Group - To show groups and classes in one table with respective functio
     Then I can see the manage button for group 'Cypress-Test-Group'
     Then I can see 4 enabled action items for class '1'
 
-  #@stable_test
   Scenario: As a teacher i can manage my classes
     Given I see the new class administration page
     When I click the manage button
@@ -45,7 +42,6 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I confirm managing the class
     Then I see the new class administration page
 
-  #@stable_test
   Scenario: As a teacher i can edit my classes
     Given I see the new class administration page
     When I click the edit button
@@ -59,7 +55,6 @@ Feature: Group - To show groups and classes in one table with respective functio
     Then I can click on the save changes button
     Then I see the new class administration page
 
-  #@stable_test
   Scenario: As a teacher i can upgrade my upgradable classes
     Given I see the new class administration page
     When I click the create successor button
@@ -74,7 +69,6 @@ Feature: Group - To show groups and classes in one table with respective functio
     Then I see the new class administration page
     Then I can see the disabled create successor button of the original class
 
-  #@stable_test
   Scenario: As a teacher i can delete my classes
     Given I see the new class administration page
     When I click the delete button
@@ -85,7 +79,6 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the confirmation button on the delete modal
     Then I see the new class administration page
 
-  #@stable_test
   Scenario: As a post-condition teacher deletes the successor class and logs out
     Given I see the new class administration page
     When I click on the next year tab

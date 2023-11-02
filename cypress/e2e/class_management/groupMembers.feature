@@ -4,7 +4,6 @@ Feature: Group - To show members in a group
 
   As a teacher I want to see the members in a group
 
-  #@stable_test
   Scenario: As a teacher I can manage a group of type class from external systems
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to administration page

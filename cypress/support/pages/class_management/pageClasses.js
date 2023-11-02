@@ -14,7 +14,7 @@ class Classes {
 	static #editClassButton = '[data-testid="class-table-edit-btn"]';
 	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
 	static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
-	static #deleteDialog = '.v-dialog--active';
+	static #deleteDialog = '[data-testid="dialog-title"]';
 	static #deleteDialogCancel = '[data-testid="dialog-cancel"]';
 	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
 	static #adminGroupTitle = '[data-testid="admin-class-title"]';
