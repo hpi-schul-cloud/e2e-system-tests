@@ -1,24 +1,24 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
-import Account from '../../pages/account/pageAccount'
+import Dashboard from '../../pages/dashboard/pageDashboard'
 
-const account = new Account()
+const dashboard = new Dashboard()
 
 Then('I can see initials of my name', () => {
-  account.assertNameInitialsIsVisible()
+  dashboard.assertNameInitialsIsVisible()
 })
 
 When('I click on initials of my name', () => {
-  account.clickInitialsOfName()
+  dashboard.clickInitialsOfName()
 })
 
 Then('I click on language drop down menu', () => {
-  account.clickLanguagesDropDownMenu()
+  dashboard.clickLanguagesDropDownMenu()
 })
 
 When('I can change language to {string}', language => {
-  account.changeLanguage(language)
+  dashboard.changeLanguage(language)
 })
 
 Then('I can see title in dashboard is changed to {string}', language => {
-  account.verifyLanguageChanged(language)
+  dashboard.verifyLanguageChanged(language)
 })

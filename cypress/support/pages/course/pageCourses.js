@@ -15,7 +15,7 @@ class Courses {
   static #mainContent = '[id="main-content"]'
   static #createCourse = '[data-testid="add-course-button"]'
   static #createContent = '[data-testid="add-content-button"]'
-  static #toolsTab = '[data-testid="tools"]'
+  static #ltiToolsTab = '[data-testid="tools"]'
   static #toolsList = '[data-testid="course_tool_list_add_tool"]'
   static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]'
   static #addNewToolButton = '[data-testid="add_new_tool"]'
@@ -63,6 +63,12 @@ class Courses {
   static #learningContentTab = '[data-testid="learnContent-tab"]'
   static #courseDetailPageTitle = '[data-testid="courses-course-title"]'
 
+  static #toolsTab = '[data-testid="tools-tab"]'
+  static #addToolButton = '[data-testid="add-tool-button"]'
+  static #toolConfigurationSelect = '[data-testid="configuration-select"]'
+  static #contextExternalToolConfiguratorPageTitle = '[data-testid="context-external-tool-configurator-title"]'
+  static #groupSelection = '[id="classId_chosen"]'
+  static #chosenStudents= '[id="studentsId_chosen"] > .chosen-choices'
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
   }
@@ -154,12 +160,40 @@ class Courses {
     cy.get(Courses.#courseDetailPageTitle).should('contain.text', courseName)
   }
 
-  navigateToTools () {
+  navigateToLtiTools () {
+    cy.get(Courses.#ltiToolsTab).click()
+  }
+
+  clickOnAddNewLtiToolButton () {
+    cy.get(Courses.#addNewToolButton).click()
+  }
+
+  navigateToToolsTab () {
     cy.get(Courses.#toolsTab).click()
   }
 
-  addNewTool () {
-    cy.get(Courses.#addNewToolButton).click()
+  clickOnAddNewToolFAB () {
+    cy.get(Courses.#addToolButton).click()
+  }
+
+  seeAddNewToolFAB () {
+    cy.get(Courses.#addToolButton).should('exist')
+  }
+
+  seeNotAddNewToolFAB () {
+    cy.get(Courses.#addToolButton).should('not.exist')
+  }
+
+  seeContextExternalToolConfiguratorPageTitle () {
+    cy.get(Courses.#contextExternalToolConfiguratorPageTitle).should('exist')
+  }
+
+  clickOnToolConfigurationSelect () {
+    cy.get(Courses.#toolConfigurationSelect).click()
+  }
+
+  enterAnToolNameInToolConfigurationSelect (toolName) {
+    cy.get(Courses.#toolConfigurationSelect).type(toolName)
   }
 
   courseIsVisibleOnOverviewPage (courseName) {
@@ -451,6 +485,32 @@ class Courses {
         })
       }
     })
+  }
+
+  checkIfGroupIsVisible (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).should('be.visible');
+  }
+  checkIfGroupIsNotVisible (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).should('not.exist');
+
+
+  }
+
+  checkIfStudentIsVisible (studentName) {
+    cy.get(Courses.#chosenStudents).find('.search-choice').children('span').should('contain', studentName);
+  }
+
+  checkIfStudentIsNotVisible (studentName) {
+    cy.get(Courses.#chosenStudents).should('not.contain', studentName);
+  }
+
+  addGroup (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').click();
+    cy.get(Courses.#groupSelection).find('.chosen-results').contains(groupName).click();
+  }
+
+  removeGroup (groupName) {
+    cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).siblings('a').click();
   }
 }
 export default Courses
