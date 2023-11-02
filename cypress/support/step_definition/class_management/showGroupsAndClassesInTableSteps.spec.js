@@ -85,3 +85,7 @@ Then('I can see the create class page', () => {
 When('I click the cancel create class button', () => {
 	classes.clickCancelButton();
 })
+
+When('I click on the next year tab', () => {
+	classes.clickNextYearTab();
+})

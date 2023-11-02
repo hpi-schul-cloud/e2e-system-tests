@@ -49,3 +49,11 @@ Then('I can see the manage button for group {string}', (groupName) => {
 Then('I can see 4 enabled action items for class {string}', (className) => {
 	classes.seeClassesHave4ActiveActionItems(className);
 })
+
+Then('I can see 5 columns in the table', () => {
+	classes.seeTableHas5Columns();
+})
+
+Then('I can see 3 tabs', () => {
+	classes.see3Tabs();
+})

@@ -6,6 +6,9 @@ class Classes {
 	static #manageConfirm = '[data-testid="manage-confirm"]';
 	static #classTitleNew = '[data-testid="admin-class-title"]';
 	static #classTableNew = '[data-testid="admin-class-table"]';
+	static #nextYearTab = '[data-testid="admin-class-next-year-tab"]'
+	static #currentYearTab = '[data-testid="admin-class-current-year-tab"]'
+	static #previousYearsTab = '[data-testid="admin-class-previous-years-tab"]'
 	static #manageClassButton = '[data-testid="legacy-class-table-manage-btn"]';
 	static #cancelModal = '[data-testid="modal_content"]';
 	static #editClassButton = '[data-testid="class-table-edit-btn"]';
@@ -93,6 +96,16 @@ class Classes {
 			.click();
 	}
 
+	clickManageGroupButton() {
+		cy.get(Classes.#manageGroupButton)
+			.first().click();
+	}
+
+	clickNextYearTab() {
+		cy.get(Classes.#nextYearTab)
+			.click();
+	}
+
 	isNewClassAdministrationPage() {
 		cy.url().should('include', '/administration/groups/classes');
 	}
@@ -162,6 +175,18 @@ class Classes {
 		})
 	}
 
+	seeTableHas5Columns() {
+		const tableHeader = cy.get(Classes.#classTableNew).find('th')
+
+		tableHeader.should('have.length', 5);
+	}
+
+	see3Tabs() {
+		cy.get(Classes.#nextYearTab).should('exist')
+		cy.get(Classes.#currentYearTab).should('exist').and('have.class', 'v-tab v-tab--active')
+		cy.get(Classes.#previousYearsTab).should('exist')
+	}
+
 	seeManageGroupPage(){
 		cy.url().should('include', '/administration/groups/classes/');
 	}
@@ -190,12 +215,6 @@ class Classes {
 	seeClassMemberInfoBoxText() {
 		cy.get(Classes.#classMemberInfoBoxText).should('be.visible')
 	}
-
-	clickManageGroupButton(){
-		cy.get(Classes.#manageGroupButton)
-			.first().click();
-	}
-
 }
 
 export default Classes
