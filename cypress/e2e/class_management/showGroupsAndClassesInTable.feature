@@ -85,3 +85,10 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the delete button
     When I click the confirmation button on the delete modal
     Then I see the new class administration page
+
+  Scenario: As a teacher i can not see the new class page, when the feature flag is off
+    Given I am logged in as a 'teacher1_dbc' at 'default'
+    When I go to administration page
+    Then I cannot see the new class administration page
+    When I navigate to class administration page
+    Then I cannot see the source header in the table

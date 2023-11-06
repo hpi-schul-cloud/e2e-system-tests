@@ -57,3 +57,15 @@ Then('I can see 5 columns in the table', () => {
 Then('I can see 3 tabs', () => {
 	classes.see3Tabs();
 })
+
+Then('I cannot see the new class administration page', () => {
+	classes.seeNoNewClassAdministrationPage();
+})
+
+When('I navigate to class administration page', () => {
+	management.navigateToClassAdministration();
+})
+
+Then('I cannot see the source header in the table', () => {
+	classes.seeNoSourceHeader();
+})

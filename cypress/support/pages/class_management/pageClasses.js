@@ -22,6 +22,9 @@ class Classes {
 	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
 	static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
+	static #adminClassNavigationSidebarCard = '[data-testid="Klassen"]';
+	static #adminClassNavigationCard = '[data-testid="administrate_classes"]'
+	static #legacyClassTable = '[data-testid="table_container"]'
 
 	clickCreateClass() {
 		cy.get(Classes.#createClass)
@@ -214,6 +217,15 @@ class Classes {
 
 	seeClassMemberInfoBoxText() {
 		cy.get(Classes.#classMemberInfoBoxText).should('be.visible')
+	}
+
+	seeNoNewClassAdministrationPage() {
+		cy.get(Classes.#adminClassNavigationSidebarCard).should('not.have.attr', 'href', '/administration/groups/classes')
+		cy.get(Classes.#adminClassNavigationCard).should('not.have.attr', 'data-loclink', '/administration/groups/classes')
+	}
+
+	seeNoSourceHeader() {
+		 cy.get(Classes.#legacyClassTable).find('th').should('not.contain', 'source');
 	}
 }
 
