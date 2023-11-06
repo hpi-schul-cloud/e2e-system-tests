@@ -29,7 +29,7 @@ class Management {
   static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
   static #courseAdministrationNavigationButton = '[data-testid="Kurse"]'
   static #classAdministrationNavigationButton = '[data-testid="Klassen"]'
-  static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes_new"]'
+  static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes"]'
   static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
   static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
   static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'

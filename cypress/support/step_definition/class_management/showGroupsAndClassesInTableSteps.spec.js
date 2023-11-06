@@ -1,79 +1,91 @@
 const { When, Then } = require('@badeball/cypress-cucumber-preprocessor')
-import Groups from '../../pages/group/pageGroups';
+import Classes from '../../pages/class_management/pageClasses';
 
-const groups = new Groups()
+const classes = new Classes()
 
 When('I click the manage button', () => {
-	groups.clickManageClassButton();
+	classes.clickManageClassButton();
 })
 
 Then('I can see the manage classes page', () => {
-	groups.isManageClassPage();
+	classes.isManageClassPage();
 })
 
 When('I click the cancel manage class button', () => {
-	groups.clickCancelButton();
+	classes.clickCancelButton();
 })
 
 Then('I can see the cancel modal', () => {
-	groups.isCancelModal();
+	classes.isCancelModal();
 })
 
 When('I click the confirmation button on the cancel modal', () => {
-	groups.clickConfirmButton();
+	classes.clickConfirmButton();
 })
 
 When('I click the edit button', () => {
-	groups.clickEditClassButton();
+	classes.clickEditClassButton();
 })
 
 Then('I can see the edit classes page', () => {
-	groups.isEditClassPage();
+	classes.isEditClassPage();
 })
 
 When('I click the cancel edit class button', () => {
-	groups.clickCancelButton();
+	classes.clickCancelButton();
 })
 
 When('I click in the name suffix text element', () => {
-	groups.clickNameSuffixField();
+	classes.clickNameSuffixField();
 })
 
 Then('I can click on the save changes button', () => {
-	groups.clickSaveChangesButton();
+	classes.clickSaveChangesButton();
 })
 
 When('I click the create successor button', () => {
-	groups.clickCreateSuccessorButton();
+	classes.clickCreateSuccessorButton();
 })
 
 Then('I can see the create successor page', () => {
-	groups.isCreateSuccessorPage();
+	classes.isCreateSuccessorPage();
 })
 
 When('I click the cancel create successor button', () => {
-	groups.clickCancelButton();
+	classes.clickCancelButton();
 })
 
 When('I confirm creating the successor', () => {
-	groups.clickConfirmSuccessor();
+	classes.clickConfirmSuccessor();
 })
-Then('the create successor button of the original class is disabled', () => {
-	groups.isSuccessorButtonDisabled();
+Then('I can see the disabled create successor button of the original class', () => {
+	classes.isSuccessorButtonDisabled();
 })
 
 When('I click the delete button', () => {
-	groups.clickDeleteButton();
+	classes.clickDeleteButton();
 })
 
 Then('I can see the delete modal', () => {
-	groups.isDeleteDialog();
+	classes.isDeleteDialog();
 })
 
 When('I click the cancel button on the delete modal', () => {
-	groups.clickCancelDeleteDialogButton();
+	classes.clickCancelDeleteDialogButton();
 })
 
 When('I click the confirmation button on the delete modal', () => {
-	groups.clickConfirmDeleteDialogButton();
+	classes.clickConfirmDeleteDialogButton();
+})
+
+Then('I can see the create class page', () => {
+	classes.isCreateClassPage();
+})
+
+When('I click the cancel create class button', () => {
+	classes.clickCancelButton();
+})
+
+When('I click on the next year tab', () => {
+	classes.clickNextYearTab();
 })
