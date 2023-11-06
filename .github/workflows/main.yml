@@ -98,52 +98,51 @@ jobs:
           instances=(brb dbc nbc)
           environments=(dev ref)
 
-          for instance in "${instances[@]}"; do
-            for environment in "${environments[@]}"; do
-              file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
-              while IFS="=" read -r key value; do
-                if [[ ! "$key" =~ ^CYPRESS_(BRB|NBC|DEFAULT)_ ]]; then
-                  echo "Setting $key"
-                  echo "$key=$value" >> $GITHUB_ENV
-                fi
+          workflow_name="${{ github.workflow }}"
+          if [[ $workflow_name == *"manual"* ]]; then
+            echo "This is a manual workflow"
+            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance1 }}")
+            check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance2 }}")
+            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance3 }}")
+          elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
+            echo "This is an automatic or scheduled workflow"
+            # environment="dev"
+            check_cypress_brb=""
+            check_cypress_default=""
+            check_cypress_nbc=""
+          else
+            echo "This is a remote workflow"
+            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_brb }}")
+            check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_default }}")
+            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_nbc }}")
+          fi
 
-                workflow_name="${{ github.workflow }}"
-                if [[ $workflow_name == *"manual"* ]]; then
-                  echo "This is a manual workflow"
-                  echo "CYPRESS_BRB=${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
-                  echo "$CYPRESS_BRB"
-                  echo "CYPRESS_NBC=${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
-                  echo "$CYPRESS_NBC"
-                  echo "CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
-                  echo "$CYPRESS_DEFAULT"
-                  echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-                  echo "$TAG"
-                elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
-                  echo "This is an automatic or scheduled workflow"
-                  echo "Setting URL's $key"
-                  echo "$key=$value" >> $GITHUB_ENV
-                  echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-                  echo "$TAG"
-                else
-                  echo "This is a remote workflow"
-                  echo "CYPRESS_BRB=${{ inputs.cypress_brb }}" >> $GITHUB_ENV
-                  echo "$CYPRESS_BRB"
-                  echo "CYPRESS_NBC=${{ inputs.cypress_nbc }}" >> $GITHUB_ENV
-                  echo "$CYPRESS_NBC"
-                  echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
-                  echo "$CYPRESS_DEFAULT"
-                  echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
-                  echo "$TAG"
-                fi
-              done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "$file_path")
-            done
+          if [[ ! -z "$check_cypress_brb" || ! -z "$check_cypress_default" || ! -z "$check_cypress_nbc" ]]; then
+            environment="ref"
+          else
+            environment="dev"
+          fi
+
+          for instance in "${instances[@]}"; do
+            if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
+              file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
+            else
+              file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-dev-${instance}.json"
+            fi
+
+            while IFS="=" read -r key value; do
+              # if [[ ! "$key" =~ ^CYPRESS_(BRB|NBC|DEFAULT)_ ]]; then
+                echo "Setting $key"
+                echo "$key=$value" >> $GITHUB_ENV
+              # fi
+            done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "$file_path")
           done
 
-      - name: Load secret
-        id: op-load-secret
-        uses: 1password/load-secrets-action@v1
-        with:
-          export-env: false
+      # - name: Load secret
+      #   id: op-load-secret
+      #   uses: 1password/load-secrets-action@v1
+      #   with:
+      #     export-env: false
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
