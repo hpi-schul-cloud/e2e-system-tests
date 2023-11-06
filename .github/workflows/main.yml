@@ -158,8 +158,8 @@ jobs:
           command: npm run ${{ steps.read_variables.outputs.tag }}
           # command: npm run tag:stable:ci
           browser: chrome
-        env:
-          DEBUG: "@cypress/github-action"
+        # env:
+        #   DEBUG: "@cypress/github-action"
 
       - name: Generate Report
         if: always()
