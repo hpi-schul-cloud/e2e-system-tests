@@ -139,11 +139,11 @@ jobs:
             done
           done
 
-      # - name: Load secret
-      #   id: op-load-secret
-      #   uses: 1password/load-secrets-action@v1
-      #   with:
-      #     export-env: true
+      - name: Load secret
+        id: op-load-secret
+        uses: 1password/load-secrets-action@v1
+        with:
+          export-env: false
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
