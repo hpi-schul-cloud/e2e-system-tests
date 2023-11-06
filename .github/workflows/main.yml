@@ -105,35 +105,35 @@ jobs:
                 if [[ ! "$key" =~ ^CYPRESS_(BRB|NBC|DEFAULT)_ ]]; then
                   echo "Setting $key"
                   echo "$key=$value" >> $GITHUB_ENV
+                fi
+
+                workflow_name="${{ github.workflow }}"
+                if [[ $workflow_name == *"manual"* ]]; then
+                  echo "This is a manual workflow"
+                  echo "CYPRESS_BRB=${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
+                  echo "$CYPRESS_BRB"
+                  echo "CYPRESS_NBC=${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
+                  echo "$CYPRESS_NBC"
+                  echo "CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
+                  echo "$CYPRESS_DEFAULT"
+                  echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
+                  echo "$TAG"
+                elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
+                  echo "This is an automatic or scheduled workflow"
+                  echo "Setting URL's $key"
+                  echo "$key=$value" >> $GITHUB_ENV
+                  echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
+                  echo "$TAG"
                 else
-                  workflow_name="${{ github.workflow }}"
-                  if [[ $workflow_name == *"manual"* ]]; then
-                    echo "This is a manual workflow"
-                    echo "CYPRESS_BRB=${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
-                    echo "$CYPRESS_BRB"
-                    echo "CYPRESS_NBC=${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
-                    echo "$CYPRESS_NBC"
-                    echo "CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
-                    echo "$CYPRESS_DEFAULT"
-                    echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-                    echo "$TAG"
-                  elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
-                    echo "This is an automatic or scheduled workflow"
-                    echo "Setting URL's $key"
-                    echo "$key=$value" >> $GITHUB_ENV
-                    echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-                    echo "$TAG"
-                  else
-                    echo "This is a remote workflow"
-                    echo "CYPRESS_BRB=${{ inputs.cypress_brb }}" >> $GITHUB_ENV
-                    echo "$CYPRESS_BRB"
-                    echo "CYPRESS_NBC=${{ inputs.cypress_nbc }}" >> $GITHUB_ENV
-                    echo "$CYPRESS_NBC"
-                    echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
-                    echo "$CYPRESS_DEFAULT"
-                    echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
-                    echo "$TAG"
-                  fi
+                  echo "This is a remote workflow"
+                  echo "CYPRESS_BRB=${{ inputs.cypress_brb }}" >> $GITHUB_ENV
+                  echo "$CYPRESS_BRB"
+                  echo "CYPRESS_NBC=${{ inputs.cypress_nbc }}" >> $GITHUB_ENV
+                  echo "$CYPRESS_NBC"
+                  echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
+                  echo "$CYPRESS_DEFAULT"
+                  echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
+                  echo "$TAG"
                 fi
               done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "$file_path")
             done
