@@ -104,17 +104,22 @@ jobs:
             check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance1 }}")
             check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance2 }}")
             check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance3 }}")
+            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
+            echo "$TAG"
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
             echo "This is an automatic or scheduled workflow"
-            # environment="dev"
             check_cypress_brb=""
             check_cypress_default=""
             check_cypress_nbc=""
+            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
+            echo "$TAG"
           else
             echo "This is a remote workflow"
             check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_brb }}")
             check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_default }}")
             check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_nbc }}")
+            echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
+            echo "$TAG"
           fi
 
           if [[ ! -z "$check_cypress_brb" || ! -z "$check_cypress_default" || ! -z "$check_cypress_nbc" ]]; then
