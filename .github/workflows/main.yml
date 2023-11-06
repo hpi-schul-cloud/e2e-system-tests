@@ -138,6 +138,7 @@ jobs:
             while IFS="=" read -r key value; do
               # if [[ ! "$key" =~ ^CYPRESS_(BRB|NBC|DEFAULT)_ ]]; then
                 echo "Setting $key"
+                echo "::add-mask::$key"
                 echo "$key=$value" >> $GITHUB_ENV
               # fi
             done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "$file_path")
@@ -160,7 +161,6 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.read_variables.outputs.tag }}
-          # command: npm run tag:stable:ci
           browser: chrome
         # env:
         #   DEBUG: "@cypress/github-action"
