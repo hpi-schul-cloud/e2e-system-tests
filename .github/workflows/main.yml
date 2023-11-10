@@ -39,47 +39,6 @@ jobs:
         with:
           service-account-token: ${{ secrets.service-account-token }}
 
-      # - name: Setting URL's
-      #   id: setting_url
-      #   run: |
-      #     workflow_name="${{ github.workflow }}"
-      #     if [[ $workflow_name == *"manual"* ]]; then
-      #       echo "This is a manual workflow"
-      #       echo "CYPRESS_BRB=${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
-      #       echo "$CYPRESS_BRB"
-      #       echo "CYPRESS_NBC=${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
-      #       echo "$CYPRESS_NBC"
-      #       echo "CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
-      #       echo "$CYPRESS_DEFAULT"
-      #       echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-      #       echo "$TAG"
-      #     elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
-      #       echo "This is an automatic or scheduled workflow"
-      #       echo "CYPRESS_BRB=op://cy-dev-brb/cypress/CYPRESS_BRB" >> $GITHUB_ENV
-      #       echo "$CYPRESS_BRB"
-      #       echo "CYPRESS_NBC=op://cy-dev-nbc/cypress/CYPRESS_NBC" >> $GITHUB_ENV
-      #       echo "$CYPRESS_NBC"
-      #       echo "CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT" >> $GITHUB_ENV
-      #       echo "$CYPRESS_DEFAULT"
-      #       echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-      #       echo "$TAG"
-      #     else
-      #       echo "This is an remote workflow"
-      #       echo "CYPRESS_BRB=${{ inputs.cypress_brb }}" >> $GITHUB_ENV
-      #       echo "$CYPRESS_BRB"
-      #       echo "CYPRESS_NBC=${{ inputs.cypress_nbc }}" >> $GITHUB_ENV
-      #       echo "$CYPRESS_NBC"
-      #       echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
-      #       echo "$CYPRESS_DEFAULT"
-      #       echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
-      #       echo "$TAG"
-      #       fi
-
-      # - name: Set Environment Variables
-      #   run: |
-      #     chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
-      #     ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
-
       - name: Fetch JSON files from 1Password
         run: |
           instances=(brb dbc nbc)
@@ -88,7 +47,7 @@ jobs:
           for instance in "${instances[@]}"; do
             for environment in "${environments[@]}"; do
               vault_name="cy-${environment}-${instance}"
-              op document get test --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json
+              op document get cypress-json --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json
             done
           done
 
@@ -144,12 +103,6 @@ jobs:
             done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "$file_path")
           done
 
-      # - name: Load secret
-      #   id: op-load-secret
-      #   uses: 1password/load-secrets-action@v1
-      #   with:
-      #     export-env: false
-
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
@@ -162,8 +115,6 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.read_variables.outputs.tag }}
           browser: chrome
-        # env:
-        #   DEBUG: "@cypress/github-action"
 
       - name: Generate Report
         if: always()
