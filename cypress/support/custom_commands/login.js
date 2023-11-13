@@ -16,6 +16,7 @@ const titleOnDashboardPage = '[id="page-title"]'
 Cypress.Commands.add('login', (username, environment) => {
   cy.session([username, environment], () => {
     const env = Cypress.env()
+    console.log(env)
     const environmentUpperCased = environment.toUpperCase()
     const link = Cypress.config('baseUrl', env[environmentUpperCased])
     cy.log(link)
