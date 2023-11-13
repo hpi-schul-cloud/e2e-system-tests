@@ -108,11 +108,13 @@ jobs:
           for key in "${!key_value_pairs[@]}"; do
               json_output+="\"$key\":\"${key_value_pairs[$key]}\","
           done
-          json_output="${json_output%,}"  # Remove the trailing comma
+          json_output="${json_output%,}"
           json_output+="}}"
 
-          # Save the combined JSON object to a file
           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
+
+      # - name: Set credentials as environment variable
+      #   run: echo "CREDENTIALS_JSON=$(jq -c . ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json)" >> $GITHUB_ENV
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -126,6 +128,10 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.read_variables.outputs.tag }}
           browser: chrome
+        env:
+          CYPRESS_BRB: $(jq -r '.CYPRESS_BRB' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json")
+          CYPRESS_DEFAULT: $(jq -r '.CYPRESS_DEFAULT' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json")
+          CYPRESS_NBC: $(jq -r '.CYPRESS_NBC' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json")
 
       - name: Generate Report
         if: always()
