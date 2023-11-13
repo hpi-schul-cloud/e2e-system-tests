@@ -87,6 +87,8 @@ jobs:
             environment="dev"
           fi
 
+          file_paths=()
+
           for instance in "${instances[@]}"; do
             if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
               file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
@@ -94,12 +96,10 @@ jobs:
               file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-dev-${instance}.json"
             fi
 
-            while IFS="=" read -r key value; do
-                echo "Setting $key"
-                echo "::add-mask::$value"
-                echo "$key=$value" >> $GITHUB_ENV
-            done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "$file_path")
+            file_paths+=("$file_path")
           done
+
+          cat "${file_paths[@]}" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
