@@ -113,6 +113,13 @@ jobs:
 
           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
+      - name: JSON to variables
+        uses: rgarcia-phi/json-to-variables@v1.1.0
+        with:
+          filename: ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
+          prefix: variables
+          masked: true
+
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
@@ -125,6 +132,10 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.read_variables.outputs.tag }}
           browser: chrome
+        env:
+          CYPRESS_BRB: ${{env.variables_CYPRESS_BRB}}
+          CYPRESS_DEFAULT: ${{env.variables_CYPRESS_DEFAULT}}
+          CYPRESS_NBC: ${{env.variables_CYPRESS_NBC}}
 
       - name: Generate Report
         if: always()
