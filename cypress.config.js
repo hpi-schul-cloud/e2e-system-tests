@@ -3,12 +3,12 @@ const webpack = require('@cypress/webpack-preprocessor')
 const preprocessor = require('@badeball/cypress-cucumber-preprocessor')
 
 async function setupNodeEvents (on, config) {
-  let environmentFilename
+  let environmentFilename, environmentName
   const isCI = config.env.environmentName === 'ci'
   if (isCI) {
     environmentFilename = `./env_variables/combined_credentials.env.json`
   } else {
-    const environmentName = config.env.environmentName || 'local'
+    environmentName = config.env.environmentName || 'local'
     environmentFilename = `./env_variables/${environmentName}.env.json`
   }
   console.log('loading %s', environmentFilename)
@@ -20,7 +20,7 @@ async function setupNodeEvents (on, config) {
       ...settings.env
     }
   }
-  console.log(settings.env)
+  console.log(config.env)
   console.log('loaded settings for environment %s', environmentName)
 
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
