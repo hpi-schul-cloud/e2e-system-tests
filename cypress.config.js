@@ -15,7 +15,6 @@ async function setupNodeEvents (on, config) {
         ...settings.env
       }
     }
-    cy.log(Cypress.env('CYPRESS_BRB'))
     console.log('loaded CI env variables %s', environmentFilename)
   } else {
     const environmentName = config.env.environmentName || 'local'
