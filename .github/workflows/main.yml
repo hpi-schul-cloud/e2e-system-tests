@@ -101,6 +101,8 @@ jobs:
 
           cat "${file_paths[@]}" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
+          cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
+
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
