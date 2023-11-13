@@ -137,6 +137,10 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.read_variables.outputs.tag }}
           browser: chrome
+        env:
+          CYPRESS_BRB: $CYPRESS_BRB
+          CYPRESS_DEFAULT: $CYPRESS_DEFAULT
+          CYPRESS_NBC: $CYPRESS_NBC
 
       - name: Generate Report
         if: always()
