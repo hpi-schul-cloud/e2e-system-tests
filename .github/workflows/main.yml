@@ -113,8 +113,8 @@ jobs:
 
           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
-      # - name: Set credentials as environment variable
-      #   run: echo "CREDENTIALS_JSON=$(jq -c . ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json)" >> $GITHUB_ENV
+      - name: Set credentials as environment variable
+        run: echo "CREDENTIALS_JSON=$(jq -c . ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json)" >> $GITHUB_ENV
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -122,16 +122,16 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run pretest
 
-      - name: Debug Environment Variables
-        run: |
-          echo "GitHub Actions Environment Variables: $CYPRESS_BRB $CYPRESS_DEFAULT $CYPRESS_NBC"
-
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.read_variables.outputs.tag }}
           browser: chrome
+        env:
+          CYPRESS_BRB: ${{ fromJson(env.CREDENTIALS_JSON).CYPRESS_BRB }}
+          CYPRESS_DEFAULT: ${{ fromJson(env.CREDENTIALS_JSON).CYPRESS_DEFAULT }}
+          CYPRESS_NBC: ${{ fromJson(env.CREDENTIALS_JSON).CYPRESS_NBC }}
 
       - name: Generate Report
         if: always()
