@@ -104,12 +104,12 @@ jobs:
             done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
           done
 
-          json_output="{\"env\":{"
+          json_output="{"
           for key in "${!key_value_pairs[@]}"; do
               json_output+="\"$key\":\"${key_value_pairs[$key]}\","
           done
           json_output="${json_output%,}"
-          json_output+="}}"
+          json_output+="}"
 
           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
