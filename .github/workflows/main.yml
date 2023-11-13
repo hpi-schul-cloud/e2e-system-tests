@@ -117,6 +117,7 @@ jobs:
         uses: rgarcia-phi/json-to-variables@v1.1.0
         with:
           filename: ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
+          prefix: ''
           masked: true
 
       - name: Clean up previous report
