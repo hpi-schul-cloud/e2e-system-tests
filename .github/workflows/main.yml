@@ -110,7 +110,7 @@ jobs:
           combined_json+="}"
 
           # Save the combined JSON object to a file
-          echo "$combined_json" > > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
+          echo "$combined_json" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
           cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
