@@ -88,6 +88,7 @@ jobs:
           fi
 
           file_paths=()
+          declare -A key_value_pairs
 
           for instance in "${instances[@]}"; do
             if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
@@ -97,6 +98,10 @@ jobs:
             fi
 
             file_paths+=("$file_path")
+
+            while IFS="=" read -r key value; do
+                key_value_pairs["$key"]=$value
+            done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
           done
 
           json_output="{"
