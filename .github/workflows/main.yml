@@ -95,11 +95,9 @@ jobs:
             fi
 
             while IFS="=" read -r key value; do
-              # if [[ ! "$key" =~ ^CYPRESS_(BRB|NBC|DEFAULT)_ ]]; then
                 echo "Setting $key"
                 echo "::add-mask::$value"
                 echo "$key=$value" >> $GITHUB_ENV
-              # fi
             done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "$file_path")
           done
 

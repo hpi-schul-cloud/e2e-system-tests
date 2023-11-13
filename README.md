@@ -57,8 +57,6 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |---- reports (containing html report & assets)
 |---- logs(contains logs of the test run)
 |---- node_modules
-|---- scripts
-|   |____ set-env-vars.sh (set environment variables in CI)
 |---- .editorconfig
 |---- .gitattributes
 |---- .gitignore
