@@ -11,7 +11,7 @@ async function setupNodeEvents (on, config) {
 
     config.env = {
       ...config.env,
-      ...settings
+      ...settings.env
     }
   } else {
     const environmentName = config.env.environmentName || 'local'

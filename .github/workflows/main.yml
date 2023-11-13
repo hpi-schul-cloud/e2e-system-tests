@@ -104,17 +104,15 @@ jobs:
             done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
           done
 
-          json_output="{"
+          json_output="{\"env\":{"
           for key in "${!key_value_pairs[@]}"; do
               json_output+="\"$key\":\"${key_value_pairs[$key]}\","
           done
           json_output="${json_output%,}"  # Remove the trailing comma
-          json_output+="}"
+          json_output+="}}"
 
           # Save the combined JSON object to a file
           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
-
-          cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
