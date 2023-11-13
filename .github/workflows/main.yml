@@ -118,6 +118,13 @@ jobs:
           #   echo "$key=$value" >> $GITHUB_ENV
           # done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json")
 
+      - name: Set environment variables from JSON file
+        run: |
+          json_file_path="${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
+          export CYPRESS_BRB=$(jq -r '.CYPRESS_BRB' "$json_file_path")
+          export CYPRESS_DEFAULT=$(jq -r '.CYPRESS_DEFAULT' "$json_file_path")
+          export CYPRESS_NBC=$(jq -r '.CYPRESS_NBC' "$json_file_path")
+
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
