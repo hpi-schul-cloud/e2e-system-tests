@@ -122,16 +122,16 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run pretest
 
+      - name: Debug Environment Variables
+        run: |
+          echo "GitHub Actions Environment Variables: $CYPRESS_BRB $CYPRESS_DEFAULT $CYPRESS_NBC"
+
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ steps.read_variables.outputs.tag }}
           browser: chrome
-        env:
-          CYPRESS_BRB: $(jq -r '.CYPRESS_BRB' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json")
-          CYPRESS_DEFAULT: $(jq -r '.CYPRESS_DEFAULT' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json")
-          CYPRESS_NBC: $(jq -r '.CYPRESS_NBC' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json")
 
       - name: Generate Report
         if: always()

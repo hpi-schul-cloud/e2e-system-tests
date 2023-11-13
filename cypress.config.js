@@ -20,7 +20,7 @@ async function setupNodeEvents (on, config) {
       ...settings.env
     }
   }
-  console.log(config.env)
+  console.log(config)
   console.log('loaded settings for environment %s', environmentFilename)
 
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
