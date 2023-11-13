@@ -99,13 +99,18 @@ jobs:
             file_paths+=("$file_path")
           done
 
-          all_entries=()
-
+          # Concatenate all JSON files into one object
+          combined_json="{"
           for path in "${file_paths[@]}"; do
-              all_entries+=("$(cat "$path")")
+              # Extract the JSON object from the file and concatenate it
+              combined_json+="$(jq -c 'to_entries | .[]' "$path"),"
           done
+          # Remove the trailing comma
+          combined_json="${combined_json%,}"
+          combined_json+="}"
 
-          echo "[${all_entries[*]}]" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
+          # Save the combined JSON object to a file
+          echo "$combined_json" > > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
           cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
