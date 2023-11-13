@@ -99,7 +99,13 @@ jobs:
             file_paths+=("$file_path")
           done
 
-          cat "${file_paths[@]}" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
+          all_entries=()
+
+          for path in "${file_paths[@]}"; do
+              all_entries+=("$(cat "$path")")
+          done
+
+          echo "[${all_entries[*]}]" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
           cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.env.json
 
