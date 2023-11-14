@@ -99,39 +99,20 @@ jobs:
 
             file_paths+=("$file_path")
 
-            result=$(jq -c . < "$file_path")
-            if [ $? -eq 0 ]; then
-                key_value_pairs+=($(jq -c '. | to_entries | .[]' < "$file_path"))
-            else
-                echo "Error reading JSON file: $file_path"
-                cat "$file_path"
-                exit 1
-            fi
-
-            # while IFS="=" read -r key value; do
-            #     key_value_pairs["$key"]=$value
-            # done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
+            while IFS="=" read -r key value; do
+                key_value_pairs["$key"]=$value
+            done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
           done
 
-          json_output=$(jq -n -c 'from_entries($key_value_pairs)')
+          json_output="{"
+          for key in "${!key_value_pairs[@]}"; do
+              json_output+="\"$key\":\"${key_value_pairs[$key]}\","
+          done
+          json_output="${json_output%,}"
+          json_output+="}"
 
-          # json_output="{"
-          # for key in "${!key_value_pairs[@]}"; do
-          #     json_output+="\"$key\":\"${key_value_pairs[$key]}\","
-          # done
-          # json_output="${json_output%,}"
-          # json_output+="}"
 
-          if [ $? -eq 0 ]; then
-              # Write JSON output to file if successful
-              echo "$json_output" > "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
-              cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
-          else
-              echo "Error occurred during JSON concatenation."
-              cat "$file_path"
-              echo "$json_output"
-              exit 1
-          fi
+           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
