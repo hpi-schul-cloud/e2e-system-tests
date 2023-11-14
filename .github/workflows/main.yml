@@ -87,36 +87,58 @@ jobs:
             environment="dev"
           fi
 
-          file_paths=()
-          declare -A key_value_pairs
+          declare -A key_value_pairs=()
+
+          retrieve_environment_variables() {
+              local instance="$1"
+              local file_path
+
+              if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
+                  file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
+              else
+                  file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-dev-${instance}.json"
+              fi
+
+              while IFS="=" read -r key value; do
+                  key_value_pairs["$key"]=$value
+              done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
+          }
+
+          generate_combined_credentials() {
+              declare -p key_value_pairs | jq -r 'map_values(tostring) | to_entries | map("\(.key): \(.value)") | "{" + join(", ") + "}"' >"${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
+          }
 
           for instance in "${instances[@]}"; do
-            if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
-              file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
-            else
-              file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-dev-${instance}.json"
-            fi
-
-            file_paths+=("$file_path")
-
-            while IFS="=" read -r key value; do
-                key_value_pairs["$key"]=$value
-            done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
+              retrieve_environment_variables "$instance"
           done
 
-          json_output="{"
-          for key in "${!key_value_pairs[@]}"; do
-              json_output+="\"$key\":\"${key_value_pairs[$key]}\","
-          done
-          json_output="${json_output%,}"
-          json_output+="}"
+          generate_combined_credentials
 
-          echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
+          # file_paths=()
+          # declare -A key_value_pairs
 
-          # while IFS="=" read -r key value; do
-          #   echo "Setting $key"
-          #   echo "$key=$value" >> $GITHUB_ENV
-          # done < <(jq -r 'to_entries | .[] | .key + "=" + .value' "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json")
+          # for instance in "${instances[@]}"; do
+          #   if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
+          #     file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
+          #   else
+          #     file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-dev-${instance}.json"
+          #   fi
+
+          #   file_paths+=("$file_path")
+
+          #   while IFS="=" read -r key value; do
+          #       key_value_pairs["$key"]=$value
+          #   done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
+          # done
+
+          # json_output="{"
+          # for key in "${!key_value_pairs[@]}"; do
+          #     json_output+="\"$key\":\"${key_value_pairs[$key]}\","
+          # done
+          # json_output="${json_output%,}"
+          # json_output+="}"
+
+          # echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
