@@ -104,8 +104,7 @@ jobs:
             done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
           done
 
-          json_output=$(jq -s --compact-output 'to_entries | .[] | flatten | "\(.key)=\(.value)"' "${file_paths[@]}")
-
+          json_output=$(jq -s 'reduce .[] as $item ({}; . + ($item | with_entries(.value |= tostring)))' "${file_paths[@]}")
 
           # json_output="{"
           # for key in "${!key_value_pairs[@]}"; do
