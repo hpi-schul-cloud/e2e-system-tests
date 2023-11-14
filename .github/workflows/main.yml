@@ -113,7 +113,7 @@ jobs:
             # done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
           done
 
-          json_output=$(jq -n -c 'reduce inputs as $item ({}; . * $item)')
+          json_output=$(jq -n -c 'from_entries($key_value_pairs)')
 
           # json_output="{"
           # for key in "${!key_value_pairs[@]}"; do
