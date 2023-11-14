@@ -125,9 +125,10 @@ jobs:
           if [ $? -eq 0 ]; then
               # Write JSON output to file if successful
               echo "$json_output" > "${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
+              cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
           else
               echo "Error occurred during JSON concatenation."
-              # Print the merged JSON content
+              cat "$file_path"
               echo "$json_output"
               exit 1
           fi
