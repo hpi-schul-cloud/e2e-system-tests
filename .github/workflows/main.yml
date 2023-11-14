@@ -51,7 +51,7 @@ jobs:
             done
           done
 
-      - name: Read JSON files and set environment variables
+      - name: Aggregate JSON Data into one File
         id: read_variables
         run: |
           instances=(brb dbc nbc)
@@ -106,15 +106,7 @@ jobs:
 
           json_output=$(jq -s 'reduce .[] as $item ({}; . + ($item | with_entries(.value |= tostring)))' "${file_paths[@]}")
 
-          # json_output="{"
-          # for key in "${!key_value_pairs[@]}"; do
-          #     json_output+="\"$key\":\"${key_value_pairs[$key]}\","
-          # done
-          # json_output="${json_output%,}"
-          # json_output+="}"
-
-           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
-           cat ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
+          echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
