@@ -69,9 +69,6 @@ jobs:
             check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
             check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
             check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
-            # check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance1 }}")
-            # check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance2 }}")
-            # check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance3 }}")
             echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
@@ -89,9 +86,6 @@ jobs:
             check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
             check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
             check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
-            # check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_brb }}")
-            # check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_default }}")
-            # check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_nbc }}")
             echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
           fi
@@ -133,7 +127,7 @@ jobs:
             echo "$updated_json" > "$aggregated_json_file"
           fi
 
-          echo "$aggregated_json_file"
+          cat "$aggregated_json_file"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
