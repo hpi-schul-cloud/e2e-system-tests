@@ -54,6 +54,7 @@ jobs:
       - name: Aggregate JSON Data into one File
         id: read_variables
         run: |
+          set -x
           instances=(brb dbc nbc)
           environments=(dev ref)
 
