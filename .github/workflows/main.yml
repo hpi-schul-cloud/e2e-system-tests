@@ -57,12 +57,21 @@ jobs:
           instances=(brb dbc nbc)
           environments=(dev ref)
 
+          cypress_brb=""
+          cypress_default=""
+          cypress_nbc=""
           workflow_name="${{ github.workflow }}"
           if [[ $workflow_name == *"manual"* ]]; then
             echo "This is a manual workflow"
-            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance1 }}")
-            check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance2 }}")
-            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance3 }}")
+            cypress_brb="${{ github.event.inputs.instance1 }}"
+            cypress_default="${{ github.event.inputs.instance2 }}"
+            cypress_nbc="${{ github.event.inputs.instance3 }}"
+            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
+            check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
+            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
+            # check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance1 }}")
+            # check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance2 }}")
+            # check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ github.event.inputs.instance3 }}")
             echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
@@ -74,9 +83,15 @@ jobs:
             echo "$TAG"
           else
             echo "This is a remote workflow"
-            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_brb }}")
-            check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_default }}")
-            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_nbc }}")
+            cypress_brb="${{ inputs.cypress_brb }}"
+            cypress_default="${{ inputs.cypress_default }}"
+            cypress_nbc="${{ inputs.cypress_nbc }}"
+            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
+            check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
+            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
+            # check_cypress_brb=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_brb }}")
+            # check_cypress_default=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_default }}")
+            # check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "${{ inputs.cypress_nbc }}")
             echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
           fi
@@ -107,6 +122,18 @@ jobs:
           json_output=$(jq -s 'reduce .[] as $item ({}; . + ($item | with_entries(.value |= tostring)))' "${file_paths[@]}")
 
           echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
+
+          aggregated_json_file="${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
+
+          if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; then
+            updated_json=$(jq --arg brb "$cypress_brb" \
+            --arg default "$cypress_default" \
+            --arg nbc "$cypress_nbc" \
+            '.BRB = $brb | .DEFAULT = $default | .NBC = $nbc' "$aggregated_json_file")
+            echo "$updated_json" > "$aggregated_json_file"
+          fi
+
+          echo "$aggregated_json_file"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
