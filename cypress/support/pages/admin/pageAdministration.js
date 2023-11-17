@@ -51,7 +51,7 @@ class Management {
   static #migrationMandatorySwitch = '[data-testid="migration-mandatory-switch"]'
   static #enableSyncDuringMigrationSwitch = '[data-testid="enable-sync-during-migration-switch"]'
   static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]'
-
+  static #externalToolsPanel= '[data-testid="tools-panel"'
 
   disableTeamsVideoConferenceByAdmin () {
     cy.get(Management.#oldAdminPageVideoChatCheckBox)
@@ -418,6 +418,11 @@ class Management {
   seeMigrationFinishedTimestamp(){
     cy.get(Management.#migrationFinishedTimestamp)
         .and('be.visible')
+  }
+
+  clickExternalToolsPanel(){
+    cy.get(Management.#externalToolsPanel)
+        .click()
   }
 
 }
