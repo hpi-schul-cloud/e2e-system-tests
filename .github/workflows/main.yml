@@ -62,16 +62,32 @@ jobs:
           cypress_default=""
           cypress_nbc=""
           workflow_name="${{ github.workflow }}"
+
+          check_environment() {
+              local url="$1"
+
+              if [[ $url == *"staging"* || $url == *"schulportal"* ]]; then
+                  echo "ref"
+              else
+                  echo "dev"
+              fi
+          }
+
           if [[ $workflow_name == *"manual"* ]]; then
             echo "This is a manual workflow"
             cypress_brb="${{ github.event.inputs.instance1 }}"
             cypress_default="${{ github.event.inputs.instance2 }}"
             cypress_nbc="${{ github.event.inputs.instance3 }}"
-            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
-            check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
-            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
+            check_cypress_brb=$(check_environment "$cypress_brb")
+            check_cypress_default=$(check_environment "$cypress_default")
+            check_cypress_nbc=$(check_environment "$cypress_nbc")
             echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
+
+            # check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
+            # check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
+            # check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
+
           elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
             echo "This is an automatic or scheduled workflow"
             check_cypress_brb=""
@@ -79,23 +95,34 @@ jobs:
             check_cypress_nbc=""
             echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
+
           else
             echo "This is a remote workflow"
             cypress_brb="${{ inputs.cypress_brb }}"
             cypress_default="${{ inputs.cypress_default }}"
             cypress_nbc="${{ inputs.cypress_nbc }}"
-            check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
-            check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
-            check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
+            check_cypress_brb=$(check_environment "$cypress_brb")
+            check_cypress_default=$(check_environment "$cypress_default")
+            check_cypress_nbc=$(check_environment "$cypress_nbc")
             echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
             echo "$TAG"
+
+            # check_cypress_brb=$(grep -oE "staging|schulportal" <<< "$cypress_brb")
+            # check_cypress_default=$(grep -oE "staging|schulportal" <<< "$cypress_default")
+            # check_cypress_nbc=$(grep -oE "staging|schulportal" <<< "$cypress_nbc")
           fi
 
-          if [[ ! -z "$check_cypress_brb" || ! -z "$check_cypress_default" || ! -z "$check_cypress_nbc" ]]; then
-            environment="ref"
+          if [[ $check_cypress_brb == "ref" || $check_cypress_default == "ref" || $check_cypress_nbc == "ref" ]]; then
+              environment="ref"
           else
-            environment="dev"
+              environment="dev"
           fi
+
+          # if [[ ! -z "$check_cypress_brb" || ! -z "$check_cypress_default" || ! -z "$check_cypress_nbc" ]]; then
+          #   environment="ref"
+          # else
+          #   environment="dev"
+          # fi
 
           file_paths=()
           declare -A key_value_pairs
