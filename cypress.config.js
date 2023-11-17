@@ -28,8 +28,6 @@ async function setupNodeEvents (on, config) {
     console.log('loaded settings for environment %s', environmentName)
   }
 
-  console.log(config.env)
-
   // This is required for the preprocessor to be able to generate JSON reports after each run, and more,
   await preprocessor.addCucumberPreprocessorPlugin(on, config)
 
