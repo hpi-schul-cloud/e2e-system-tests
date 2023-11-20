@@ -1,13 +1,21 @@
 @release
-Feature: Admin CTL Tools - To administrate school external tools
+Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
 
-  As an admin I want to administrate the school external tools used in the school
+  As an admin I want to administrate the CTL tools used in the school
 
-  @stable_test
-  Scenario: Admin sees the school external tools usage
+  @unstable_test
+  Scenario: As an admin I can see the usage of external tools in courses and boards during deletion.
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I go to school administration
     When I click on external tools panel
+    Then I see the external tools table
+    Then I see at least one external tool
+    When I click on delete external tool button
+    Then I see the external tool deletion dialog
+    Then I see the external tool deletion dialog title
+    Then I see the external tool deletion information text
+    When I click on cancel external tool deletion button
+
 
 
