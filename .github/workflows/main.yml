@@ -63,9 +63,12 @@ jobs:
             default_instance=${{ github.event.inputs.instance2 }}
             nbc_instance=${{ github.event.inputs.instance3 }}
           elif [[ $workflow == *"automatic"* || $workflow == *"scheduled"* ]]; then
-            brb_instance=$(op document get cypress-json --vault cy-dev-brb | jq -r '.BRB')
-            default_instance=$(op document get cypress-json --vault cy-dev-dbc | jq -r '.DEFAULT')
-            nbc_instance=$(op document get cypress-json --vault cy-dev-nbc | jq -r '.NBC')
+            brb_instance=""
+            default_instance=""
+            nbc_instance=""
+            # brb_instance=$(op document get cypress-json --vault cy-dev-brb | jq -r '.BRB')
+            # default_instance=$(op document get cypress-json --vault cy-dev-dbc | jq -r '.DEFAULT')
+            # nbc_instance=$(op document get cypress-json --vault cy-dev-nbc | jq -r '.NBC')
           else
             brb_instance=${{ inputs.cypress_brb }}
             default_instance=${{ inputs.cypress_default }}
@@ -73,9 +76,9 @@ jobs:
           fi
 
           # Ensure that the variables don't contain extra quotes
-          brb_instance=$(echo "${brb_instance}" | tr -d '"')
-          default_instance=$(echo "${default_instance}" | tr -d '"')
-          nbc_instance=$(echo "${nbc_instance}" | tr -d '"')
+          # brb_instance=$(echo "${brb_instance}" | tr -d '"')
+          # default_instance=$(echo "${default_instance}" | tr -d '"')
+          # nbc_instance=$(echo "${nbc_instance}" | tr -d '"')
 
           chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh
           ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh \
