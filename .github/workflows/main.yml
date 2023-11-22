@@ -54,89 +54,91 @@ jobs:
       - name: Aggregate JSON Data into one File
         id: read_variables
         run: |
-          instances=(brb dbc nbc)
-          environments=(dev ref)
+           chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh
+           ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh
+          # instances=(brb dbc nbc)
+          # environments=(dev ref)
 
-          cypress_brb=""
-          cypress_default=""
-          cypress_nbc=""
-          workflow_name="${{ github.workflow }}"
+          # cypress_brb=""
+          # cypress_default=""
+          # cypress_nbc=""
+          # workflow_name="${{ github.workflow }}"
 
-          check_environment() {
-              local url="$1"
+          # check_environment() {
+          #     local url="$1"
 
-              if [[ $url == *"staging"* || $url == *"schulportal"* ]]; then
-                  echo "ref"
-              else
-                  echo "dev"
-              fi
-          }
+          #     if [[ $url == *"staging"* || $url == *"schulportal"* ]]; then
+          #         echo "ref"
+          #     else
+          #         echo "dev"
+          #     fi
+          # }
 
-          if [[ $workflow_name == *"manual"* ]]; then
-            echo "This is a manual workflow"
-            cypress_brb="${{ github.event.inputs.instance1 }}"
-            cypress_nbc="${{ github.event.inputs.instance2 }}"
-            cypress_default="${{ github.event.inputs.instance3 }}"
-            check_cypress_brb=$(check_environment "$cypress_brb")
-            check_cypress_default=$(check_environment "$cypress_default")
-            check_cypress_nbc=$(check_environment "$cypress_nbc")
-            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-            echo "$TAG"
-          elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
-            echo "This is an automatic or scheduled workflow"
-            check_cypress_brb=""
-            check_cypress_default=""
-            check_cypress_nbc=""
-            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-            echo "$TAG"
-          else
-            echo "This is a remote workflow"
-            cypress_brb="${{ inputs.cypress_brb }}"
-            cypress_default="${{ inputs.cypress_default }}"
-            cypress_nbc="${{ inputs.cypress_nbc }}"
-            check_cypress_brb=$(check_environment "$cypress_brb")
-            check_cypress_default=$(check_environment "$cypress_default")
-            check_cypress_nbc=$(check_environment "$cypress_nbc")
-            echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
-            echo "$TAG"
-          fi
+          # if [[ $workflow_name == *"manual"* ]]; then
+          #   echo "This is a manual workflow"
+          #   cypress_brb="${{ github.event.inputs.instance1 }}"
+          #   cypress_nbc="${{ github.event.inputs.instance2 }}"
+          #   cypress_default="${{ github.event.inputs.instance3 }}"
+          #   check_cypress_brb=$(check_environment "$cypress_brb")
+          #   check_cypress_default=$(check_environment "$cypress_default")
+          #   check_cypress_nbc=$(check_environment "$cypress_nbc")
+          #   echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
+          #   echo "$TAG"
+          # elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
+          #   echo "This is an automatic or scheduled workflow"
+          #   check_cypress_brb=""
+          #   check_cypress_default=""
+          #   check_cypress_nbc=""
+          #   echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
+          #   echo "$TAG"
+          # else
+          #   echo "This is a remote workflow"
+          #   cypress_brb="${{ inputs.cypress_brb }}"
+          #   cypress_default="${{ inputs.cypress_default }}"
+          #   cypress_nbc="${{ inputs.cypress_nbc }}"
+          #   check_cypress_brb=$(check_environment "$cypress_brb")
+          #   check_cypress_default=$(check_environment "$cypress_default")
+          #   check_cypress_nbc=$(check_environment "$cypress_nbc")
+          #   echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
+          #   echo "$TAG"
+          # fi
 
-          if [[ $check_cypress_brb == "ref" || $check_cypress_default == "ref" || $check_cypress_nbc == "ref" ]]; then
-              environment="ref"
-          else
-              environment="dev"
-          fi
+          # if [[ $check_cypress_brb == "ref" || $check_cypress_default == "ref" || $check_cypress_nbc == "ref" ]]; then
+          #     environment="ref"
+          # else
+          #     environment="dev"
+          # fi
 
-          file_paths=()
-          declare -A key_value_pairs
+          # file_paths=()
+          # declare -A key_value_pairs
 
-          for instance in "${instances[@]}"; do
-            if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
-              file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
-            else
-              file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-dev-${instance}.json"
-            fi
+          # for instance in "${instances[@]}"; do
+          #   if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
+          #     file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
+          #   else
+          #     file_path="${{ github.workspace }}/e2e-system-tests/env_variables/file-dev-${instance}.json"
+          #   fi
 
-            file_paths+=("$file_path")
+          #   file_paths+=("$file_path")
 
-            while IFS="=" read -r key value; do
-                key_value_pairs["$key"]=$value
-            done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
-          done
+          #   while IFS="=" read -r key value; do
+          #       key_value_pairs["$key"]=$value
+          #   done < <(jq -r 'to_entries | .[] | "\(.key)=\(.value)"' "$file_path")
+          # done
 
-          json_output=$(jq -s 'reduce .[] as $item ({}; . + ($item | with_entries(.value |= tostring)))' "${file_paths[@]}")
+          # json_output=$(jq -s 'reduce .[] as $item ({}; . + ($item | with_entries(.value |= tostring)))' "${file_paths[@]}")
 
-          echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
+          # echo "$json_output" > ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
 
-          aggregated_json_file="${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
+          # aggregated_json_file="${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
 
-          if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; then
-            updated_json=$(jq --arg brb "$cypress_brb" \
-            --arg default "$cypress_default" \
-            --arg nbc "$cypress_nbc" \
-            '.BRB = $brb | .DEFAULT = $default | .NBC = $nbc' "$aggregated_json_file")
-            echo "$updated_json" > "$aggregated_json_file"
-          fi
+          # if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; then
+          #   updated_json=$(jq --arg brb "$cypress_brb" \
+          #   --arg default "$cypress_default" \
+          #   --arg nbc "$cypress_nbc" \
+          #   '.BRB = $brb | .DEFAULT = $default | .NBC = $nbc' "$aggregated_json_file")
+          #   echo "$updated_json" > "$aggregated_json_file"
+          # fi
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
