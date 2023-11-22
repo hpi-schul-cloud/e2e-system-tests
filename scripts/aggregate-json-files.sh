@@ -9,6 +9,9 @@ default_instance=$3
 nbc_instance=$4
 workspace_path=$5
 
+echo $workflow_name
+echo $workspace_path
+
 # cypress_brb=""
 # cypress_default=""
 # cypress_nbc=""
@@ -84,9 +87,9 @@ echo "$json_output" > "$aggregated_json_file"
 
 
 if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; then
-  updated_json=$(jq --arg brb "$cypress_brb" \
-  --arg default "$cypress_default" \
-  --arg nbc "$cypress_nbc" \
+  updated_json=$(jq --arg brb "$brb_instance" \
+  --arg default "$default_instance" \
+  --arg nbc "$nbc_instance" \
   '.BRB = $brb | .DEFAULT = $default | .NBC = $nbc' "$aggregated_json_file")
   echo "$updated_json" > "$aggregated_json_file"
 fi

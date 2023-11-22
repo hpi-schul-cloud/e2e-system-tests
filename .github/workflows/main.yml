@@ -54,6 +54,7 @@ jobs:
       - name: Aggregate JSON Data into one File
         id: read_variables
         run: |
+          set -x
           workflow=${{ github.workflow }}
           workspace_path=${{ github.workspace }}
 
