@@ -59,15 +59,15 @@ jobs:
 
           if [[ $workflow == *"manual"* ]]; then
             brb_instance=${{ github.event.inputs.instance1 }}
-            default_instance=${{ github.event.inputs.instance2 }}
+            dbc_instance=${{ github.event.inputs.instance2 }}
             nbc_instance=${{ github.event.inputs.instance3 }}
           elif [[ $workflow == *"automatic"* || $workflow == *"scheduled"* ]]; then
             brb_instance=""
-            default_instance=""
+            dbc_instance=""
             nbc_instance=""
           else
             brb_instance=${{ inputs.cypress_brb }}
-            default_instance=${{ inputs.cypress_default }}
+            dbc_instance=${{ inputs.cypress_default }}
             nbc_instance=${{ inputs.cypress_nbc }}
           fi
 
@@ -75,7 +75,7 @@ jobs:
           ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh \
             "${workflow}" \
             "${brb_instance}" \
-            "${default_instance}" \
+            "${dbc_instance}" \
             "${nbc_instance}" \
             "${workspace_path}"
 

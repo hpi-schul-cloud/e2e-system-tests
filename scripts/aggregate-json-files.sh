@@ -5,7 +5,7 @@ environments=(dev ref)
 
 workflow_name=$1
 brb_instance=$2
-default_instance=$3
+dbc_instance=$3
 nbc_instance=$4
 workspace_path=$5
 
@@ -34,10 +34,10 @@ else
 fi
 
 brb_env=$(check_environment "$brb_instance")
-default_env=$(check_environment "$default_instance")
+dbc_env=$(check_environment "$dbc_instance")
 nbc_env=$(check_environment "$nbc_instance")
 
-if [[ $brb_env == "ref" || $default_env == "ref" || $nbc_env == "ref" ]]; then
+if [[ $brb_env == "ref" || $dbc_env == "ref" || $nbc_env == "ref" ]]; then
   environment="ref"
 else
   environment="dev"
@@ -68,8 +68,8 @@ echo "$json_output" >"$aggregated_json_file"
 
 if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; then
   updated_json=$(jq --arg brb "$brb_instance" \
-    --arg default "$default_instance" \
+    --arg dbc "$dbc_instance" \
     --arg nbc "$nbc_instance" \
-    '.BRB = $brb | .DEFAULT = $default | .NBC = $nbc' "$aggregated_json_file")
+    '.BRB = $brb | .DEFAULT = $dbc | .NBC = $nbc' "$aggregated_json_file")
   echo "$updated_json" >"$aggregated_json_file"
 fi
