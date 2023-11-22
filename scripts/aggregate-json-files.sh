@@ -9,8 +9,16 @@ default_instance=$3
 nbc_instance=$4
 workspace_path=$5
 
-echo $workflow_name
-echo $workspace_path
+echo "-----------------------------"
+echo "Workflow is:"$workflow_name
+echo "-----------------------------"
+echo "Working Directory:"$workspace_path
+echo "-----------------------------"
+echo "BRB Instance:"$brb_instance
+echo "-----------------------------"
+echo "Nbc Instance:"$nbc_instance
+echo "-----------------------------"
+echo "Default Instance:"$default_instance
 
 # cypress_brb=""
 # cypress_default=""

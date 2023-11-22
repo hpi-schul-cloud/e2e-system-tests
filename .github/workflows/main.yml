@@ -63,9 +63,9 @@ jobs:
             default_instance=${{ github.event.inputs.instance2 }}
             nbc_instance=${{ github.event.inputs.instance3 }}
           elif [[ $workflow == *"automatic"* || $workflow == *"scheduled"* ]]; then
-            brb_instance=""
-            default_instance=""
-            nbc_instance=""
+            brb_instance="op document get cypress-json --vault cy-dev-brb | jq '.BRB'"
+            default_instance="op document get cypress-json --vault cy-dev-dbc | jq '.DEFAULT'"
+            nbc_instance="op document get cypress-json --vault cy-dev-nbc | jq '.NBC'"
           else
             brb_instance=${{ inputs.cypress_brb }}
             default_instance=${{ inputs.cypress_default }}
