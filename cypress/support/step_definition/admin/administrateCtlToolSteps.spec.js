@@ -19,11 +19,7 @@ Then('I see the external tools table', () => {
     management.seeExternalToolTable()
 })
 
-Then('I see the external tool deletion dialog', () => {
-    management.seeExternalToolDeletionDialog()
-})
-
-Then('I see the external tool deletion information text', () => {
+Then('I see the external tool deletion dialog information text', () => {
     management.seeExternalToolDeletionDialogInfoText()
 })
 

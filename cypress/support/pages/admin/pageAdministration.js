@@ -55,7 +55,6 @@ class Management {
     static #externalToolsTable = '[data-testid="external-tool-section-table"]'
     static #editExternalToolButton = '[data-testId="editAction"]'
     static #deleteExternalToolButton = '[data-testId="deleteAction"]'
-    static #externalToolDeletionDialog = '[data-testid="delete-dialog"]'
     static #confirmSExternalToolDeletionButton = '[data-testid="delete-dialog-confirm"]'
     static #cancelExternalToolDeletionButton = '[data-testid="delete-dialog-cancel"]'
     static #externalToolDeletionDialogText = '[data-testid="delete-dialog-content"]'
@@ -449,11 +448,6 @@ class Management {
             .should('be.visible')
     }
 
-    seeExternalToolDeletionDialog() {
-        cy.get(Management.#externalToolDeletionDialog)
-            .should('exist')
-    }
-
     seeExternalToolDeletionDialogTitle() {
         cy.get(Management.#externalToolDeletionDialogTitle)
             .should('be.visible')
@@ -465,7 +459,8 @@ class Management {
     }
 
     seeOneOrMoreExternalTools() {
-        cy.get(Management.#externalToolsTable).find('tr').should('have.length.at.least', 2);
+        cy.get(Management.#externalToolsTable).find('tbody').find('tr')
+            .should('have.length.gte', 1)
     }
 
 }

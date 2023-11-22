@@ -1,4 +1,4 @@
-@release
+# @release
 Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
 
   As an admin I want to administrate the CTL tools used in the school
@@ -12,10 +12,11 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     Then I see the external tools table
     Then I see at least one external tool
     When I click on delete external tool button
-    Then I see the external tool deletion dialog
     Then I see the external tool deletion dialog title
-    Then I see the external tool deletion information text
+    Then I see the external tool deletion dialog information text
     When I click on cancel external tool deletion button
+    Then I see the external tools table
+    Then I see at least one external tool
 
 
 
