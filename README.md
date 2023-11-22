@@ -57,6 +57,8 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |---- reports (containing html report & assets)
 |---- logs(contains logs of the test run)
 |---- node_modules
+|---- scripts
+|   |____ aggregate-json-files.sh (Aggregate all json file into one json file in CI)
 |---- .editorconfig
 |---- .gitattributes
 |---- .gitignore
