@@ -27,7 +27,7 @@ check_environment() {
   fi
 }
 
-if [[ $workflow_name == *"manual"* ]]; then
+if [[ $workflow_name == *"manual" ]]; then
   echo "This is a manual workflow"
   # cypress_brb="${{ github.event.inputs.instance1 }}"
   # cypress_nbc="${{ github.event.inputs.instance2 }}"
@@ -37,7 +37,7 @@ if [[ $workflow_name == *"manual"* ]]; then
   nbc_env=$(check_environment "$nbc_instance")
   echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
   echo "$TAG"
-elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
+elif [[ $workflow_name == *"automatic" || $workflow_name == *"scheduled" ]]; then
   echo "This is an automatic or scheduled workflow"
   brb_env=""
   default_env=""
@@ -66,7 +66,7 @@ file_paths=()
 declare -A key_value_pairs
 
 for instance in "${instances[@]}"; do
-  if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
+  if [[ $workflow_name == *"manual" || $workflow_name == *"remote" ]]; then
     file_path="$workspace_path/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
   else
     file_path="$workspace_path/e2e-system-tests/env_variables/file-dev-${instance}.json"
@@ -86,7 +86,7 @@ aggregated_json_file="$workspace_path/e2e-system-tests/env_variables/combined_cr
 echo "$json_output" > "$aggregated_json_file"
 
 
-if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; then
+if [[ !($workflow_name == *"automatic" || $workflow_name == *"scheduled") ]]; then
   updated_json=$(jq --arg brb "$brb_instance" \
   --arg default "$default_instance" \
   --arg nbc "$nbc_instance" \
