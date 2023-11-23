@@ -6,11 +6,11 @@ Feature: Password Update - Verify login functionality via password change
     @stable_test
     Scenario: User change password, login and change again to old passwords.
         Given I am on the dBildungscloud login page
-        Then I see Email field is visible and empty
+        Then I see email field is visible and empty
         When I enter email
-        Then I see Password field is visible and empty
+        Then I see password field is visible and empty
         When I enter password
-        When I click submit button
+        When I click button Submit
         When I go to my account settings
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
@@ -23,18 +23,18 @@ Feature: Password Update - Verify login functionality via password change
         When I logout
         #Then I see dbildungscloud login page
         Given I am on the dBildungscloud login page
-        Then I see Email field is visible and empty
+        Then I see email field is visible and empty
         When I enter email
-        Then I see Password field is visible and empty
+        Then I see password field is visible and empty
         When I enter password
-        When I click submit button
+        When I click button Submit
         Then I see error message
         When I wait for 15 seconds
-        Then I see Email field is visible and empty
+        Then I see email field is visible and empty
         When I enter email
-        Then I see Password field is visible and empty
+        Then I see password field is visible and empty
         When I enter new password
-        When I click submit button
+        When I click button Submit
         When I go to my account settings
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
@@ -47,9 +47,9 @@ Feature: Password Update - Verify login functionality via password change
         When I logout
         #Then I see dbildungscloud login page
         Given I am on the dBildungscloud login page
-        Then I see Email field is visible and empty
+        Then I see email field is visible and empty
         When I enter email
-        Then I see Password field is visible and empty
+        Then I see password field is visible and empty
         When I enter password
-        When I click submit button
+        When I click button Submit
         Then I arrive on the dashboard

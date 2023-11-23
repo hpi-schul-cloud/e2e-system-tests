@@ -11,7 +11,7 @@ class Login_Management {
   static #emailInputBox = '[data-testid="username-email"]'
   static #passwordField = '[data-testid = "password-email"]'
   static #notificationBannerField = '[data-testid="notification"]'
-  static #loginFormSelector = 'form.login-form'
+  static #loginFormSelector = '[data-testid = "login-loginform-standard"]'
   static #inputFieldInvalidPseudoSelector = 'input:invalid'
   static #userSettingsCurrentPasswordField =
     '[data-testid="settings_password_current"]'
@@ -33,6 +33,8 @@ class Login_Management {
     errorMessageText: 'Login fehlgeschlagen.'
   }
 
+  // info about checkValidity: https://www.w3schools.com/js/js_validation_api.asp
+  // info about inputFieldInvalidPseudoSelector: https://glebbahmutov.com/blog/form-validation-in-cypress/
   assertEmailFieldIsVisibleAndEmpty () {
     cy.get(Login_Management.#loginFormSelector).within(() => {
       cy.get(Login_Management.#emailInputBox)
