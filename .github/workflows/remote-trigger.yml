@@ -16,8 +16,8 @@ jobs:
       cypress_brb: ${{ steps.set_target.outputs.CYPRESS_BRB }}
       cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
       cypress_default: ${{ steps.set_target.outputs.CYPRESS_DEFAULT }}
-      tag: ${{steps.set_target.outputs.tag}}
-      environment: ${{steps.set_target.outputs.environment}}
+      tag: ${{ steps.set_target.outputs.tag }}
+      environment: ${{ steps.set_target.outputs.environment }}
 
     steps:
       - name: Setup Node
@@ -77,7 +77,7 @@ jobs:
               environment="ref"
           fi
 
-          echo "tag=tag:stable:ci" >> $GITHUB_OUTPUT
+          echo "tag=tag:stable:pr:ci" >> $GITHUB_OUTPUT
           echo "environment=$environment" >> $GITHUB_OUTPUT
 
       - name: Check if all apps are running
@@ -116,5 +116,5 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_default: ${{ needs.e2e-system-tests.outputs.cypress_default }}
-      tag: ${{needs.e2e-system-tests.outputs.tag}}
-      environment: ${{needs.e2e-system-tests.outputs.environment}}
+      tag: ${{ needs.e2e-system-tests.outputs.tag }}
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}

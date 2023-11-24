@@ -24,8 +24,6 @@ on:
 jobs:
   configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.read_variables.outputs.TAG }}
 
     steps:
       - name: Checkout
@@ -48,13 +46,10 @@ jobs:
       - name: Fetch JSON files from 1Password
         run: |
           instances=(brb dbc nbc)
-          environments=(dev ref)
 
           for instance in "${instances[@]}"; do
-            # for environment in "${environments[@]}"; do
-              vault_name="cy-${{inputs.environment}}-${instance}"
-              op document get cypress-json --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${{inputs.environment}}-${instance}.json
-            # done
+              vault_name="cy-${{ inputs.environment }}-${instance}"
+              op document get cypress-json --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${{ inputs.environment }}-${instance}.json
           done
 
       - name: Aggregate JSON Data into one File
@@ -63,28 +58,14 @@ jobs:
           workflow=${{ github.workflow }}
           workspace_path=${{ github.workspace }}
 
-          # if [[ $workflow == *"manual"* ]]; then
-          #   brb_instance=${{ github.event.inputs.instance1 }}
-          #   dbc_instance=${{ github.event.inputs.instance2 }}
-          #   nbc_instance=${{ github.event.inputs.instance3 }}
-          # elif [[ $workflow == *"automatic"* || $workflow == *"scheduled"* ]]; then
-          #   brb_instance=""
-          #   dbc_instance=""
-          #   nbc_instance=""
-          # else
-          #   brb_instance=${{ inputs.cypress_brb }}
-          #   dbc_instance=${{ inputs.cypress_default }}
-          #   nbc_instance=${{ inputs.cypress_nbc }}
-          # fi
-
           chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh
           ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh \
             "${workflow}" \
-            "${{inputs.cypress_brb}}" \
-            "${{inputs.cypress_default}}" \
-            "${{inputs.cypress_nbc}}" \
+            "${{ inputs.cypress_brb }}" \
+            "${{ inputs.cypress_default }}" \
+            "${{ inputs.cypress_nbc }}" \
             "${workspace_path}" \
-            "${{inputs.environment}}"
+            "${{ inputs.environment }}"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
