@@ -4,12 +4,6 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    outputs:
-      cypress_brb: ${{ steps.set_variables.outputs.cypress_brb }}
-      cypress_dbc: ${{ steps.set_variables.outputs.cypress_dbc }}
-      cypress_nbc: ${{ steps.set_variables.outputs.cypress_nbc }}
-      tag: ${{ steps.set_variables.outputs.tag }}
-      environment: ${{ steps.set_variables.outputs.environment }}
 
     steps:
       - name: Setup Node
@@ -20,35 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install 1Password CLI
-        uses: 1password/install-cli-action@v1
-
-      - name: Verify 1Password was Installed
-        run: op --version
-
-      - name: Configure 1Password Service Account
-        uses: 1password/load-secrets-action/configure@v1
-        with:
-          service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-
-      - name: Set all parameters for next job
-        id: set_variables
-        shell: bash
-        run: |
-          echo "cypress_brb=$(op document get cypress-json --vault cy-dev-brb | jq -r '.BRB')" >> $GITHUB_OUTPUT
-          echo "cypress_dbc=$(op document get cypress-json --vault cy-dev-dbc | jq -r '.DEFAULT')" >> $GITHUB_OUTPUT
-          echo "cypress_nbc=$(op document get cypress-json --vault cy-dev-nbc | jq -r '.NBC')" >> $GITHUB_OUTPUT
-          echo "tag=tag:stable:ci" >> $GITHUB_OUTPUT
-          echo "environment=dev" >> $GITHUB_OUTPUT
-
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      cypress_default: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      tag: ${{ needs.e2e-system-tests.outputs.tag }}
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      cypress_brb: https://brb-main.cd.dbildungscloud.dev
+      cypress_default: https://default-main.cd.dbildungscloud.dev
+      cypress_nbc: https://nbc-main.cd.dbildungscloud.dev
+      tag: tag:stable:ci
+      environment: dev
