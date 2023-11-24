@@ -6,13 +6,13 @@ on:
         required: true
     inputs:
       cypress_brb:
-        description: "brb url from remote workflow"
+        description: "brb url from the workflow"
         type: string
       cypress_nbc:
-        description: "nbc url from remote workflow"
+        description: "nbc url from the workflow"
         type: string
       cypress_default:
-        description: "default url from remote workflow"
+        description: "default url from the workflow"
         type: string
       tag:
         description: "tag for running cypress tests"

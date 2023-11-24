@@ -41,15 +41,6 @@ jobs:
           echo "tag=tag:stable:ci" >> $GITHUB_OUTPUT
           echo "environment=dev" >> $GITHUB_OUTPUT
 
-      - name: Print output results
-        shell: bash
-        run: |
-          echo "cypress brb result: ${{steps.set_variables.outputs.cypress_brb}}"
-          echo "cypress dbc result: ${{steps.set_variables.outputs.cypress_dbc}}"
-          echo "cypress nbc result: ${{steps.set_variables.outputs.cypress_nbc}}"
-          echo "tag result: ${{steps.set_variables.outputs.tag}}"
-          echo "environment result: ${{steps.set_variables.outputs.environment}}"
-
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml

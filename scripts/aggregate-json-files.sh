@@ -49,8 +49,8 @@ declare -A key_value_pairs
 for instance in "${instances[@]}"; do
   if [[ $workflow_name == *"manual"* || $workflow_name == *"remote"* ]]; then
     file_path="$workspace_path/e2e-system-tests/env_variables/file-${environment}-${instance}.json"
-  else
-    file_path="$workspace_path/e2e-system-tests/env_variables/file-dev-${instance}.json"
+  # else
+  #   file_path="$workspace_path/e2e-system-tests/env_variables/file-dev-${instance}.json"
   fi
 
   file_paths+=("$file_path")

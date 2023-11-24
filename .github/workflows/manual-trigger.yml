@@ -18,6 +18,12 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    outputs:
+      cypress_brb: ${{steps.set_variables.outputs.cypress_brb}}
+      cypress_dbc: ${{steps.set_variables.outputs.cypress_dbc}}
+      cypress_nbc: ${{steps.set_variables.outputs.cypress_nbc}}
+      tag: ${{steps.set_variables.outputs.tag}}
+      environment: ${{steps.set_variables.outputs.environment}}
 
     steps:
       - name: Setup Node
@@ -28,11 +34,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set all parameters for next job
+        id: set_variables
+        shell: bash
+        run: |
+          echo "cypress_brb=${{inputs.instance1}}"
+          echo "cypress_nbc=${{inputs.instance2}}"
+          echo "cypress_dbc=${{inputs.instance3}}"
+
+          if [[ ! $cypress_brb =~ (staging|schulportal) && ! $cypress_dbc =~ (staging|schulportal) && ! $cypress_nbc =~ (staging|schulportal) ]]; then
+              environment="dev"
+          else
+              environment="ref"
+          fi
+
+          echo "tag=tag:stable:ci" >> $GITHUB_OUTPUT
+          echo "environment=$environment" >> $GITHUB_OUTPUT
+
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{needs.e2e-system-tests.outputs.cypress_brb}}
+      cypress_default: ${{needs.e2e-system-tests.outputs.cypress_dbc}}
+      cypress_nbc: ${{needs.e2e-system-tests.outputs.cypress_nbc}}
+      tag: ${{needs.e2e-system-tests.outputs.tag}}
+      environment: ${{needs.e2e-system-tests.outputs.environment}}
 
   notify_RC:
     runs-on: ubuntu-latest
