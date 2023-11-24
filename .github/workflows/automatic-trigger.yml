@@ -38,8 +38,8 @@ jobs:
           echo "cypress_brb=$(op document get cypress-json --vault cy-dev-brb | jq -r '.BRB')" >> $GITHUB_OUTPUT
           echo "cypress_dbc=$(op document get cypress-json --vault cy-dev-dbc | jq -r '.DEFAULT')" >> $GITHUB_OUTPUT
           echo "cypress_nbc=$(op document get cypress-json --vault cy-dev-nbc | jq -r '.NBC')" >> $GITHUB_OUTPUT
-          echo "tag='tag:stable:ci'" >> GITHUB_OUTPUT
-          echo "environment='dev'" >> GITHUB_OUTPUT
+          echo "tag=tag:stable:ci" >> $GITHUB_OUTPUT
+          echo "environment=dev" >> $GITHUB_OUTPUT
 
       - name: Print output results
         shell: bash
