@@ -1,47 +1,47 @@
 #!/bin/bash
 
 instances=(brb dbc nbc)
-environments=(dev ref)
 
 workflow_name=$1
 brb_instance=$2
 dbc_instance=$3
 nbc_instance=$4
 workspace_path=$5
+environment=$6
 
-check_environment() {
-  local url="$1"
+# check_environment() {
+#   local url="$1"
 
-  if [[ $url == *"staging"* || $url == *"schulportal"* ]]; then
-    echo "ref"
-  else
-    echo "dev"
-  fi
-}
+#   if [[ $url == *"staging"* || $url == *"schulportal"* ]]; then
+#     echo "ref"
+#   else
+#     echo "dev"
+#   fi
+# }
 
-if [[ $workflow_name == *"manual"* ]]; then
-  echo "This is a manual workflow"
-  echo "TAG=tag:stable:ci" >>$GITHUB_OUTPUT
-  echo "$TAG"
-elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
-  echo "This is an automatic or scheduled workflow"
-  echo "TAG=tag:stable:ci" >>$GITHUB_OUTPUT
-  echo "$TAG"
-else
-  echo "This is a remote workflow"
-  echo "TAG=tag:stable:pr:ci" >>$GITHUB_OUTPUT
-  echo "$TAG"
-fi
+# if [[ $workflow_name == *"manual"* ]]; then
+#   echo "This is a manual workflow"
+#   echo "TAG=tag:stable:ci" >>$GITHUB_OUTPUT
+#   echo "$TAG"
+# elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
+#   echo "This is an automatic or scheduled workflow"
+#   echo "TAG=tag:stable:ci" >>$GITHUB_OUTPUT
+#   echo "$TAG"
+# else
+#   echo "This is a remote workflow"
+#   echo "TAG=tag:stable:pr:ci" >>$GITHUB_OUTPUT
+#   echo "$TAG"
+# fi
 
-brb_env=$(check_environment "$brb_instance")
-dbc_env=$(check_environment "$dbc_instance")
-nbc_env=$(check_environment "$nbc_instance")
+# brb_env=$(check_environment "$brb_instance")
+# dbc_env=$(check_environment "$dbc_instance")
+# nbc_env=$(check_environment "$nbc_instance")
 
-if [[ $brb_env == "ref" || $dbc_env == "ref" || $nbc_env == "ref" ]]; then
-  environment="ref"
-else
-  environment="dev"
-fi
+# if [[ $brb_env == "ref" || $dbc_env == "ref" || $nbc_env == "ref" ]]; then
+#   environment="ref"
+# else
+#   environment="dev"
+# fi
 
 file_paths=()
 declare -A key_value_pairs

@@ -14,6 +14,12 @@ on:
       cypress_default:
         description: "default url from remote workflow"
         type: string
+      tag:
+        description: "tag for running cypress tests"
+        type: string
+      environment:
+        description: "environment for retriving credentials from 1Password vault"
+        type: string
 
 jobs:
   configure-load-secrets-and-run_tests:
@@ -45,10 +51,10 @@ jobs:
           environments=(dev ref)
 
           for instance in "${instances[@]}"; do
-            for environment in "${environments[@]}"; do
-              vault_name="cy-${environment}-${instance}"
-              op document get cypress-json --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${environment}-${instance}.json
-            done
+            # for environment in "${environments[@]}"; do
+              vault_name="cy-${{inputs.environment}}-${instance}"
+              op document get cypress-json --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${{inputs.environment}}-${instance}.json
+            # done
           done
 
       - name: Aggregate JSON Data into one File
@@ -57,27 +63,28 @@ jobs:
           workflow=${{ github.workflow }}
           workspace_path=${{ github.workspace }}
 
-          if [[ $workflow == *"manual"* ]]; then
-            brb_instance=${{ github.event.inputs.instance1 }}
-            dbc_instance=${{ github.event.inputs.instance2 }}
-            nbc_instance=${{ github.event.inputs.instance3 }}
-          elif [[ $workflow == *"automatic"* || $workflow == *"scheduled"* ]]; then
-            brb_instance=""
-            dbc_instance=""
-            nbc_instance=""
-          else
-            brb_instance=${{ inputs.cypress_brb }}
-            dbc_instance=${{ inputs.cypress_default }}
-            nbc_instance=${{ inputs.cypress_nbc }}
-          fi
+          # if [[ $workflow == *"manual"* ]]; then
+          #   brb_instance=${{ github.event.inputs.instance1 }}
+          #   dbc_instance=${{ github.event.inputs.instance2 }}
+          #   nbc_instance=${{ github.event.inputs.instance3 }}
+          # elif [[ $workflow == *"automatic"* || $workflow == *"scheduled"* ]]; then
+          #   brb_instance=""
+          #   dbc_instance=""
+          #   nbc_instance=""
+          # else
+          #   brb_instance=${{ inputs.cypress_brb }}
+          #   dbc_instance=${{ inputs.cypress_default }}
+          #   nbc_instance=${{ inputs.cypress_nbc }}
+          # fi
 
           chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh
           ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh \
             "${workflow}" \
-            "${brb_instance}" \
-            "${dbc_instance}" \
-            "${nbc_instance}" \
-            "${workspace_path}"
+            "${{inputs.cypress_brb}}" \
+            "${{inputs.cypress_default}}" \
+            "${{inputs.cypress_nbc}}" \
+            "${workspace_path}" \
+            "${{inputs.environment}}"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -89,7 +96,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
-          command: npm run ${{ steps.read_variables.outputs.tag }}
+          command: npm run ${{ inputs.tag }}
           browser: chrome
 
       - name: Generate Report
