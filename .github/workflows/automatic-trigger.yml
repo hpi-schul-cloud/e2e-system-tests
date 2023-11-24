@@ -40,6 +40,11 @@ jobs:
           echo "cypress_nbc=$(op document get cypress-json --vault cy-dev-nbc | jq -r '.NBC')" >> $GITHUB_OUTPUT
           echo "tag=tag:stable:ci" >> GITHUB_OUTPUT
           echo "environment=dev" >> GITHUB_OUTPUT
+          echo $cypress_brb
+          echo $cypress_dbc
+          echo $cypress_nbc
+          echo $tag
+          echo $environment
 
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
