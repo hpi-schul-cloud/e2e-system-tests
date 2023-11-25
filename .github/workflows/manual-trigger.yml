@@ -41,6 +41,11 @@ jobs:
               environment="ref" >> $GITHUB_OUTPUT
           fi
 
+      - name: Print environment
+        shell: bash
+        run: |
+          echo "environment is: ${environment}"
+
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
