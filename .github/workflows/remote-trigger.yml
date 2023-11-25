@@ -71,9 +71,9 @@ jobs:
           echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
           if [[ ! $CYPRESS_BRB =~ (staging|schulportal) && ! $CYPRESS_DEFAULT =~ (staging|schulportal) && ! $CYPRESS_NBC =~ (staging|schulportal) ]]; then
-              environment="dev" >> $GITHUB_OUTPUT
+               echo "environment=dev" >> $GITHUB_OUTPUT
           else
-              environment="ref" >> $GITHUB_OUTPUT
+              echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
       - name: Check if all apps are running
