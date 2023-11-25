@@ -19,7 +19,6 @@ jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
     outputs:
-      tag: ${{ steps.set_variables.outputs.tag }}
       environment: ${{ steps.set_variables.outputs.environment }}
 
     steps:
@@ -35,18 +34,12 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-          echo "cypress_brb=${{ inputs.instance1 }}"
-          echo "cypress_nbc=${{ inputs.instance2 }}"
-          echo "cypress_dbc=${{ inputs.instance3 }}"
 
-          if [[ ! $cypress_brb =~ (staging|schulportal) && ! $cypress_dbc =~ (staging|schulportal) && ! $cypress_nbc =~ (staging|schulportal) ]]; then
-              environment="dev"
+          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
+              environment="dev" >> $GITHUB_OUTPUT
           else
-              environment="ref"
+              environment="ref" >> $GITHUB_OUTPUT
           fi
-
-          echo "tag=tag:stable:ci" >> $GITHUB_OUTPUT
-          echo "environment=$environment" >> $GITHUB_OUTPUT
 
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
@@ -57,7 +50,7 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_default: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: ${{ needs.e2e-system-tests.outputs.tag }}
+      tag: tag:stable:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
 
   notify_RC:

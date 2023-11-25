@@ -16,7 +16,6 @@ jobs:
       cypress_brb: ${{ steps.set_target.outputs.CYPRESS_BRB }}
       cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
       cypress_default: ${{ steps.set_target.outputs.CYPRESS_DEFAULT }}
-      tag: ${{ steps.set_target.outputs.tag }}
       environment: ${{ steps.set_target.outputs.environment }}
 
     steps:
@@ -72,13 +71,10 @@ jobs:
           echo "Set CYPRESS_DEFAULT=https://default-${cleaned_branch_name}.cd.dbildungscloud.dev"
 
           if [[ ! $CYPRESS_BRB =~ (staging|schulportal) && ! $CYPRESS_DEFAULT =~ (staging|schulportal) && ! $CYPRESS_NBC =~ (staging|schulportal) ]]; then
-              environment="dev"
+              environment="dev" >> $GITHUB_OUTPUT
           else
-              environment="ref"
+              environment="ref" >> $GITHUB_OUTPUT
           fi
-
-          echo "tag=tag:stable:pr:ci" >> $GITHUB_OUTPUT
-          echo "environment=$environment" >> $GITHUB_OUTPUT
 
       - name: Check if all apps are running
         shell: bash
@@ -116,5 +112,5 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_default: ${{ needs.e2e-system-tests.outputs.cypress_default }}
-      tag: ${{ needs.e2e-system-tests.outputs.tag }}
+      tag: tag:stable:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
