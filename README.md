@@ -58,7 +58,7 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |---- logs(contains logs of the test run)
 |---- node_modules
 |---- scripts
-|   |____ set-env-vars.sh (set environment variables in CI)
+|   |____ aggregate-json-files.sh (Aggregate all json files into one json file in CI)
 |---- .editorconfig
 |---- .gitattributes
 |---- .gitignore

@@ -5,8 +5,13 @@ const preprocessor = require('@badeball/cypress-cucumber-preprocessor')
 async function setupNodeEvents (on, config) {
   const isCI = config.env.environmentName === 'ci'
   if (isCI) {
-    config.env = {
-      ...config.env
+    const environmentFilename = `./env_variables/combined_credentials.json`
+    const settings = require(environmentFilename)
+    if (settings) {
+      config.env = {
+        ...config.env,
+        ...settings
+      }
     }
   } else {
     const environmentName = config.env.environmentName || 'local'
@@ -20,7 +25,6 @@ async function setupNodeEvents (on, config) {
         ...settings.env
       }
     }
-
     console.log('loaded settings for environment %s', environmentName)
   }
 

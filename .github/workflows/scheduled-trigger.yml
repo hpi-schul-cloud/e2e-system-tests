@@ -20,6 +20,12 @@ jobs:
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: https://brb-main.cd.dbildungscloud.dev
+      cypress_default: https://default-main.cd.dbildungscloud.dev
+      cypress_nbc: https://nbc-main.cd.dbildungscloud.dev
+      tag: tag:stable:ci
+      environment: dev
 
   notify_RC:
     runs-on: ubuntu-latest

@@ -6,20 +6,24 @@ on:
         required: true
     inputs:
       cypress_brb:
-        description: "brb url from remote workflow"
+        description: "brb url from the workflow"
         type: string
       cypress_nbc:
-        description: "nbc url from remote workflow"
+        description: "nbc url from the workflow"
         type: string
       cypress_default:
-        description: "default url from remote workflow"
+        description: "default url from the workflow"
+        type: string
+      tag:
+        description: "tag for running cypress tests"
+        type: string
+      environment:
+        description: "environment for retriving credentials from 1Password vault"
         type: string
 
 jobs:
   configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.setting_url.outputs.TAG }}
 
     steps:
       - name: Checkout
@@ -28,57 +32,40 @@ jobs:
           repository: hpi-schul-cloud/e2e-system-tests
           path: e2e-system-tests
 
+      - name: Install 1Password CLI
+        uses: 1password/install-cli-action@v1
+
+      - name: Verify 1Password was Installed
+        run: op --version
+
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v1
         with:
           service-account-token: ${{ secrets.service-account-token }}
 
-      - name: Setting URL's
-        id: setting_url
+      - name: Fetch JSON files from 1Password
         run: |
-          workflow_name="${{ github.workflow }}"
-          if [[ $workflow_name == *"manual"* ]]; then
-            echo "This is a manual workflow"
-            echo "CYPRESS_BRB=${{ github.event.inputs.instance1 }}" >> $GITHUB_ENV
-            echo "$CYPRESS_BRB"
-            echo "CYPRESS_NBC=${{ github.event.inputs.instance2 }}" >> $GITHUB_ENV
-            echo "$CYPRESS_NBC"
-            echo "CYPRESS_DEFAULT=${{ github.event.inputs.instance3 }}" >> $GITHUB_ENV
-            echo "$CYPRESS_DEFAULT"
-            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-            echo "$TAG"
-          elif [[ $workflow_name == *"automatic"* || $workflow_name == *"scheduled"* ]]; then
-            echo "This is an automatic or scheduled workflow"
-            echo "CYPRESS_BRB=op://cy-dev-brb/cypress/CYPRESS_BRB" >> $GITHUB_ENV
-            echo "$CYPRESS_BRB"
-            echo "CYPRESS_NBC=op://cy-dev-nbc/cypress/CYPRESS_NBC" >> $GITHUB_ENV
-            echo "$CYPRESS_NBC"
-            echo "CYPRESS_DEFAULT=op://cy-dev-dbc/cypress/CYPRESS_DEFAULT" >> $GITHUB_ENV
-            echo "$CYPRESS_DEFAULT"
-            echo "TAG=tag:stable:ci" >> $GITHUB_OUTPUT
-            echo "$TAG"
-          else
-            echo "This is an remote workflow"
-            echo "CYPRESS_BRB=${{ inputs.cypress_brb }}" >> $GITHUB_ENV
-            echo "$CYPRESS_BRB"
-            echo "CYPRESS_NBC=${{ inputs.cypress_nbc }}" >> $GITHUB_ENV
-            echo "$CYPRESS_NBC"
-            echo "CYPRESS_DEFAULT=${{ inputs.cypress_default }}" >> $GITHUB_ENV
-            echo "$CYPRESS_DEFAULT"
-            echo "TAG=tag:stable:pr:ci" >> $GITHUB_OUTPUT
-            echo "$TAG"
-            fi
+          instances=(brb dbc nbc)
 
-      - name: Set Environment Variables
+          for instance in "${instances[@]}"; do
+              vault_name="cy-${{ inputs.environment }}-${instance}"
+              op document get cypress-json --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${{ inputs.environment }}-${instance}.json
+          done
+
+      - name: Aggregate JSON Data into one File
+        id: read_variables
         run: |
-          chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
-          ${{ github.workspace }}/e2e-system-tests/scripts/set-env-vars.sh
+          workflow=${{ github.workflow }}
+          workspace_path=${{ github.workspace }}
 
-      - name: Load secret
-        id: op-load-secret
-        uses: 1password/load-secrets-action@v1
-        with:
-          export-env: true
+          chmod +x ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh
+          ${{ github.workspace }}/e2e-system-tests/scripts/aggregate-json-files.sh \
+            "${workflow}" \
+            "${{ inputs.cypress_brb }}" \
+            "${{ inputs.cypress_default }}" \
+            "${{ inputs.cypress_nbc }}" \
+            "${workspace_path}" \
+            "${{ inputs.environment }}"
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -90,10 +77,8 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
-          command: npm run ${{ steps.setting_url.outputs.tag }}
+          command: npm run ${{ inputs.tag }}
           browser: chrome
-        env:
-          DEBUG: "@cypress/github-action"
 
       - name: Generate Report
         if: always()

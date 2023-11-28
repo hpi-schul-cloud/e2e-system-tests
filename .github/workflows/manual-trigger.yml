@@ -18,6 +18,8 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.set_variables.outputs.environment }}
 
     steps:
       - name: Setup Node
@@ -28,11 +30,28 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Set all parameters for next job
+        id: set_variables
+        shell: bash
+        run: |
+
+          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
+              echo "environment=dev" >> $GITHUB_OUTPUT
+          else
+              echo "environment=ref" >> $GITHUB_OUTPUT
+          fi
+
   configuring-loading-secrets-running-tests:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_default: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: tag:stable:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
 
   notify_RC:
     runs-on: ubuntu-latest
