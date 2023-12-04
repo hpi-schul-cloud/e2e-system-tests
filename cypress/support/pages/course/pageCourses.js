@@ -425,7 +425,7 @@ class Courses {
   }
 
   clearSubstituteTeacherField () {
-    cy.get(Courses.#addSubstituteTeacher).click().type('{selectall}{backspace}')
+    cy.get(Courses.#addSubstituteTeacher).type('{selectall}{backspace}')
   }
 
   addSubstituteTeacher (username) {
