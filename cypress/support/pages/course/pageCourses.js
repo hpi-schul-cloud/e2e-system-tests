@@ -69,6 +69,8 @@ class Courses {
   static #contextExternalToolConfiguratorPageTitle = '[data-testid="context-external-tool-configurator-title"]'
   static #groupSelection = '[id="classId_chosen"]'
   static #chosenStudents= '[id="studentsId_chosen"] > .chosen-choices'
+  static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]'
+  
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
   }
@@ -511,6 +513,10 @@ class Courses {
 
   removeGroup (groupName) {
     cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).siblings('a').click();
+  }
+
+  checkIfToolIsVisible(toolName) {
+    cy.get(Courses.#toolConfigurationSelectItem).should('not.contain', toolName);
   }
 }
 export default Courses

@@ -32,4 +32,8 @@ Then('I can enter {string} as tool name in the selection', toolName => {
 	courses.enterAnToolNameInToolConfigurationSelect(toolName)
 })
 
+Then('I can not see tool {string} in the tool selection list', toolName => {
+  	courses.checkIfToolIsVisible(toolName)
+})
+
 
