@@ -69,6 +69,9 @@ class Courses {
   static #contextExternalToolConfiguratorPageTitle = '[data-testid="context-external-tool-configurator-title"]'
   static #groupSelection = '[id="classId_chosen"]'
   static #chosenStudents= '[id="studentsId_chosen"] > .chosen-choices'
+  static #toolElements = '[data-testid="external-tool-card-1"]' // @IGOR CAP CODER PLEASE CHANGE TO '[data-testid="external-tool-card-2"]'
+  static #errorDialog = '[data-testId="error-dialog"]'
+  static #outdatedDialogTitle = '[data-testid="dialog-title"]'
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
   }
@@ -511,6 +514,19 @@ class Courses {
 
   removeGroup (groupName) {
     cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).siblings('a').click();
+  }
+
+  seeOutdatedToolInToolOverview(toolName){
+    cy.get(Courses.#toolElements).contains(toolName).should('exist');
+  }
+
+  clickOnTool(toolName){
+    cy.get(Courses.#toolElements).contains(toolName).click();
+  }
+  checkIfOutdatedDialogIsOpen(toolName){
+    cy.get(Courses.#outdatedDialogTitle).should('exist');
+    cy.get(Courses.#outdatedDialogTitle).should('contain', toolName);
+    cy.get(Courses.#errorDialog).should('exist');
   }
 }
 export default Courses
