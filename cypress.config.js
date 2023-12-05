@@ -62,6 +62,7 @@ async function setupNodeEvents (on, config) {
 module.exports = defineConfig({
   viewportWidth: 1024,
   viewportHeight: 768,
+  video: true,
   videoCompression: 18,
   chromeWebSecurity: true,
   pageLoadTimeout: 80000,
