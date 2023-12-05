@@ -10,7 +10,6 @@ Feature: Course - To add a ctl tool to a course
     When I go to room 'German'
     When I click on the tools tab
     Then I cant see the button to add a tool
-    When
 
   @stable_test
   Scenario: Teacher adds a tool to a course
