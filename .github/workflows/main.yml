@@ -75,13 +75,12 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
-        timeout-minutes: 5
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ inputs.tag }}
           browser: chrome
         env:
-          DEBUG: "*"
+          DEBUG: "cypress:*"
 
       - name: Generate Report
         if: always()
