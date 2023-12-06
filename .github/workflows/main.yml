@@ -68,19 +68,20 @@ jobs:
             "${{ inputs.environment }}"
 
       - name: Clean up previous report
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           working-directory: e2e-system-tests
           command: npm run pretest
 
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
+        timeout-minutes: 5
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ inputs.tag }}
           browser: chrome
         env:
-          DEBUG: "@cypress/github-action"
+          DEBUG: "*"
 
       - name: Generate Report
         if: always()
