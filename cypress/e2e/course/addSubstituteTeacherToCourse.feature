@@ -43,7 +43,7 @@ Feature: Course - Add substitute teacher to course
     When I open course edit page
     Then I can see course edit page
     And I clear substitute teacher field
-    And I add substitute teacher 'teacher2'
+    And I add substitute teacher 'teacher2_brb'
     And I click on save changes after editing the course details
     # Then I log out
     Given I am logged in as a 'teacher2_brb' at 'brb'
@@ -58,7 +58,7 @@ Feature: Course - Add substitute teacher to course
     When I open course edit page
     Then I can see course edit page
     And I clear substitute teacher field
-    And I add substitute teacher 'teacher2'
+    And I add substitute teacher 'teacher2_dbc'
     And I click on save changes after editing the course details
     # Then I log out
     Given I am logged in as a 'teacher2_dbc' at 'default'
@@ -73,7 +73,7 @@ Feature: Course - Add substitute teacher to course
     When I open course edit page
     Then I can see course edit page
     And I clear substitute teacher field
-    And I add substitute teacher 'teacher2'
+    And I add substitute teacher 'teacher2_nbc'
     And I click on save changes after editing the course details
     # Then I log out
     Given I am logged in as a 'teacher2_nbc' at 'nbc'
