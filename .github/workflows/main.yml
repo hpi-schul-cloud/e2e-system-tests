@@ -85,7 +85,7 @@ jobs:
 
       - name: Upload Screenshots Artifact
         uses: actions/upload-artifact@v3
-        if: always()
+        if: failure()
         with:
           name: my-screenshots-artifact
           path: ${{ github.workspace }}/e2e-system-tests/cypress/screenshots/
