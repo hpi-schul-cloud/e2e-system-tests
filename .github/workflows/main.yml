@@ -77,10 +77,18 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: e2e-system-tests
-          command: npm run ${{ inputs.tag }}
+          command: npm run tag:only:ci
+          # command: npm run ${{ inputs.tag }}
           browser: chrome
         env:
-          DEBUG: "cypress:*"
+          DEBUG: "@cypress/github-action"
+
+      - name: Upload Screenshots Artifact
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: my-screenshots-artifact
+          path: ${{ github.workspace }}/e2e-system-tests/cypress/screenshots/
 
       - name: Generate Report
         if: always()
