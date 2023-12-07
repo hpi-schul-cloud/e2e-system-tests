@@ -21,5 +21,5 @@ Feature: Course - Add substitute teacher to course
     Examples:
       | user_1       | instance | user_2       |
       | teacher1_brb | brb      | teacher2_brb |
-      | teacher1_dbc | default  | teacher2_dbc |
       | teacher1_nbc | nbc      | teacher2_nbc |
+      | teacher1_dbc | default  | teacher2_dbc |
