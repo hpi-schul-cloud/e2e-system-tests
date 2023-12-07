@@ -4,7 +4,6 @@ Feature: Course - Add substitute teacher to course
   As a teacher I want to add substitute teacher to the course.
 
   @stable_test
-  @only
   Scenario Outline: Adding substitute teacher to course at '<instance>'
     Given I am logged in as a '<user_1>' at '<instance>'
     When I go to rooms overview
