@@ -65,8 +65,10 @@ module.exports = defineConfig({
   video: true,
   videoCompression: 18,
   chromeWebSecurity: true,
-  pageLoadTimeout: 800000,
-  defaultCommandTimeout: 800000,
+  pageLoadTimeout: 180000,
+  defaultCommandTimeout: 180000,
+  // pageLoadTimeout: 80000,
+  // defaultCommandTimeout: 80000,
   requestTimeout: 60000,
   responseTimeout: 60000,
   e2e: {
