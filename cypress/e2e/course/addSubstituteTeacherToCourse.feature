@@ -4,7 +4,7 @@ Feature: Course - Add substitute teacher to course
   As a teacher I want to add substitute teacher to the course.
 
   @stable_test
-  @only
+  # @only
   Scenario Outline: Adding substitute teacher to course at '<instance>'
     Given I am logged in as a '<user_1>' at '<instance>'
     When I go to rooms overview
@@ -18,11 +18,11 @@ Feature: Course - Add substitute teacher to course
     Examples:
       | user_1       | instance |
       | teacher1_brb | brb      |
-      | teacher1_nbc | nbc      |
       | teacher1_dbc | default  |
+      | teacher1_nbc | nbc      |
 
   @stable_test
-  @only
+  # @only
   Scenario Outline: Substitute teacher navigates to course at '<instance>'
     Given I am logged in as a '<user_2>' at '<instance>'
     When I go to rooms overview
@@ -31,5 +31,5 @@ Feature: Course - Add substitute teacher to course
     Examples:
       | user_2       | instance |
       | teacher2_brb | brb      |
-      | teacher2_nbc | nbc      |
       | teacher2_dbc | default  |
+      | teacher2_nbc | nbc      |
