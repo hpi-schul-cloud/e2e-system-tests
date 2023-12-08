@@ -123,6 +123,11 @@ Cypress.Commands.add('login', (username, environment) => {
         cy.visit('/dashboard')
         cy.get(titleOnDashboardPage).should('exist')
       }
+    },
+    {
+      cacheAcrossSpecs: true
     }
   )
+  cy.visit('/dashboard')
+  cy.get(titleOnDashboardPage).should('exist')
 })
