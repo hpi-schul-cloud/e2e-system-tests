@@ -41,3 +41,7 @@ When('I click the save button on the provisioning options page', () => {
 Then('I see all 3 checkboxes are checked', () => {
 	management.seeAllCheckboxesAreChecked()
 })
+
+When('I set the checkboxes to default values', () => {
+	management.resetCheckboxValues()
+})

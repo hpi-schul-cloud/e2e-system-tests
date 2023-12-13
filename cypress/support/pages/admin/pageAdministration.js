@@ -526,6 +526,11 @@ class Management {
         cy.get(Management.#courseOptionCheckbox).should('be.checked')
         cy.get(Management.#othersOptionCheckbox).should('be.checked')
     }
+
+    resetCheckboxValues() {
+        cy.get(Management.#courseOptionCheckbox).check({force: false})
+        cy.get(Management.#othersOptionCheckbox).check({force: false})
+    }
 }
 
 export default Management

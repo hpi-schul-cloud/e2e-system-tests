@@ -24,9 +24,17 @@ Feature: Admin can edit system configuration
     Then I see a systems table
     When I click on the edit button of the 'SANIS' system
     Then I see all 3 checkboxes are checked
+  #-----------------------------------------------------------------
     #realy necessary?
     ##When I uncheck all checkboxes
     #When I click the save button on the provisioning options page
     #Then I see a systems table
     #When I click on the edit button of the 'SANIS' system
     ##Then I see all 3 checkboxes are unchecked
+  #-----------------------------------------------------------------
+  @stable_test
+  Scenario: As a post-condition admin resets the provisioning options values
+    Given I see the provisioning options page
+    When I set the checkboxes to default values
+    When I click the save button on the provisioning options page
+    Then I see a systems table
