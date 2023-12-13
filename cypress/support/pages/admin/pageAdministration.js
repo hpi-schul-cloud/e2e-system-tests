@@ -59,6 +59,13 @@ class Management {
     static #cancelExternalToolDeletionButton = '[data-testid="delete-dialog-cancel"]'
     static #externalToolDeletionDialogText = '[data-testid="delete-dialog-content"]'
     static #externalToolDeletionDialogTitle = '[data-testid="delete-dialog-title"]'
+    static #systemPanel = '[data-testid="systems-panel"]'
+    static #systemtable = '[data-testid="system-table"]'
+    static #classOptionCheckbox = '[data-testid="checkbox-option-class"]'
+    static #courseOptionCheckbox = '[data-testid="checkbox-option-course"]'
+    static #othersOptionCheckbox = '[data-testid="checkbox-option-others"]'
+    static #saveProvisioningOptionsButton = '[data-testid="provisioning-options-save-button"]'
+    static #cancelProvisioningOptionsButton = '[data-testid="provisioning-options-cancel-button"]'
 
     disableTeamsVideoConferenceByAdmin() {
         cy.get(Management.#oldAdminPageVideoChatCheckBox)
@@ -463,6 +470,62 @@ class Management {
             .should('have.length.gte', 1)
     }
 
+    clickOnAuthenticationPanel() {
+        cy.get(Management.#systemPanel)
+            .click()
+    }
+
+    seeSystemTable() {
+        cy.get(Management.#systemtable)
+            .should('be.visible')
+    }
+
+    seeSpecificSystemWithEditButton(systemName) {
+        const systemEntry = cy.get(Management.#systemtable).find('td').contains(systemName)
+        systemEntry.should('be.visible')
+
+        systemEntry.siblings('td').eq(2).find('a')
+            .should('be.visible')
+    }
+
+    clickOnSpecificSystemEditButton(systemName) {
+        const systemEntry = cy.get(Management.#systemtable).find('td').contains(systemName)
+
+        systemEntry.siblings('td').eq(2).find('a')
+            .click()
+    }
+
+    seeProvisioningOptionsPage() {
+        cy.url().should('include', '/administration/school-settings/provisioning-options?systemId=')
+    }
+
+    seeCheckboxesWithDefaultValues() {
+        cy.get('[type=checkbox]').should('have.length', 3)
+        cy.get(Management.#classOptionCheckbox).should('be.checked')
+        cy.get(Management.#courseOptionCheckbox).should('not.be.checked')
+        cy.get(Management.#othersOptionCheckbox).should('not.be.checked')
+    }
+
+    checkAllBoxes() {
+        cy.get(Management.#courseOptionCheckbox).check({force: true})
+        cy.get(Management.#othersOptionCheckbox).check({force: true})
+    }
+
+    clickOnProvisioningOptionsCancelButton() {
+        cy.get(Management.#cancelProvisioningOptionsButton)
+            .click()
+    }
+
+    clickOnProvisioningOptionsSaveButton() {
+        cy.get(Management.#saveProvisioningOptionsButton)
+            .click()
+    }
+
+    seeAllCheckboxesAreChecked() {
+        cy.get(Management.#classOptionCheckbox).should('be.checked')
+        cy.get(Management.#courseOptionCheckbox).should('be.checked')
+        cy.get(Management.#othersOptionCheckbox).should('be.checked')
+    }
 }
 
 export default Management
