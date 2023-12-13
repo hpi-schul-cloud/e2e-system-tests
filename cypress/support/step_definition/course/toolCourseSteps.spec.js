@@ -32,4 +32,20 @@ Then('I can enter {string} as tool name in the selection', toolName => {
 	courses.enterAnToolNameInToolConfigurationSelect(toolName)
 })
 
+Then('I can see the outdated tool {string} in the tool overview', toolName => {
+	courses.seeOutdatedToolInToolOverview(toolName)
+})
+
+Then('I can see the outdated dialog of {string}', toolName => {
+	courses.checkIfOutdatedDialogIsOpen(toolName);
+})
+
+When('I click on the outdated tool {string}', toolName => {
+	courses.clickOnTool(toolName);
+})
+
+Then('I can not see tool {string} in the tool selection list', toolName => {
+  	courses.checkIfToolIsVisible(toolName)
+})
+
 
