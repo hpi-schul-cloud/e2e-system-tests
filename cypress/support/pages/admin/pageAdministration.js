@@ -480,12 +480,31 @@ class Management {
             .should('be.visible')
     }
 
+    seeLdapSystem() {
+        const ldapSystemEntry = cy.get(Management.#systemtable).find('td').contains('ldap')
+        ldapSystemEntry.should('be.visible')
+
+        ldapSystemEntry.siblings('td').eq(2).find('a')
+            .should('be.visible')
+    }
+
     seeSpecificSystemWithEditButton(systemName) {
         const systemEntry = cy.get(Management.#systemtable).find('td').contains(systemName)
         systemEntry.should('be.visible')
 
         systemEntry.siblings('td').eq(2).find('a')
             .should('be.visible')
+    }
+
+    clickOnLdapEditButton() {
+        const ldapSystemEntry = cy.get(Management.#systemtable).find('td').contains('ldap')
+
+        ldapSystemEntry.siblings('td').eq(2).find('a')
+            .click()
+    }
+
+    seeLdapConfigurationPage() {
+        cy.url().should('include', '/administration/ldap/config?id=')
     }
 
     clickOnSpecificSystemEditButton(systemName) {
@@ -528,8 +547,21 @@ class Management {
     }
 
     resetCheckboxValues() {
-        cy.get(Management.#courseOptionCheckbox).check({force: false})
-        cy.get(Management.#othersOptionCheckbox).check({force: false})
+        cy.get(Management.#classOptionCheckbox).check({force: true})
+        cy.get(Management.#courseOptionCheckbox).uncheck({force: true})
+        cy.get(Management.#othersOptionCheckbox).uncheck({force: true})
+    }
+
+    uncheckAllBoxes() {
+        cy.get(Management.#classOptionCheckbox).uncheck({force: true})
+        cy.get(Management.#courseOptionCheckbox).uncheck({force: true})
+        cy.get(Management.#othersOptionCheckbox).uncheck({force: true})
+    }
+
+    seeAllCheckboxesAreUnchecked() {
+        cy.get(Management.#classOptionCheckbox).should('not.be.checked')
+        cy.get(Management.#courseOptionCheckbox).should('not.be.checked')
+        cy.get(Management.#othersOptionCheckbox).should('not.be.checked')
     }
 }
 

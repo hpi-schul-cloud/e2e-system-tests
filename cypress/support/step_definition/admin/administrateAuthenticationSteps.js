@@ -10,8 +10,20 @@ Then('I see a systems table', () => {
 	management.seeSystemTable()
 })
 
+Then('I see an ldap system', () => {
+	management.seeLdapSystem()
+})
+
 Then('I see the {string} system with an edit button', (systemName) => {
 	management.seeSpecificSystemWithEditButton(systemName)
+})
+
+When('I click on the edit button of the ldap system', () => {
+	management.clickOnLdapEditButton()
+})
+
+Then('I see the ldap configuration page', () => {
+	management.seeLdapConfigurationPage()
 })
 
 When('I click on the edit button of the {string} system', (systemName) => {
@@ -44,4 +56,12 @@ Then('I see all 3 checkboxes are checked', () => {
 
 When('I set the checkboxes to default values', () => {
 	management.resetCheckboxValues()
+})
+
+When('I uncheck all checkboxes', () => {
+	management.uncheckAllBoxes()
+})
+
+Then('I see all 3 checkboxes are unchecked', () => {
+	management.seeAllCheckboxesAreUnchecked()
 })
