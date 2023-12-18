@@ -68,27 +68,18 @@ jobs:
             "${{ inputs.environment }}"
 
       - name: Clean up previous report
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
           command: npm run pretest
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
           # command: npm run tag:only:ci
           command: npm run ${{ inputs.tag }}
           browser: chrome
-        env:
-          DEBUG: "@cypress/github-action"
-
-      - name: Upload Screenshots Artifact
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-          name: my-screenshots-artifact
-          path: ${{ github.workspace }}/e2e-system-tests/cypress/screenshots/
 
       - name: Generate Report
         if: always()
