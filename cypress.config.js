@@ -75,7 +75,6 @@ module.exports = defineConfig({
     setupNodeEvents,
     // testIsolation is set to false because when testIsolation is set to true or in v12 its anyway by default enabled, then it clears the page again that might be redundant.
     // we are using cy.session() in login custom command, which is inheriting the testIsolation properties by default as true and clearing the page (cookies, local storage..etc.) in the test.
-    testIsolation: true,
-    experimentalRunAllSpecs: true
+    testIsolation: false
   }
 })
