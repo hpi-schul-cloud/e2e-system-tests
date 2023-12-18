@@ -77,7 +77,6 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
-          # command: npm run tag:only:ci
           command: npm run ${{ inputs.tag }}
           browser: chrome
 
