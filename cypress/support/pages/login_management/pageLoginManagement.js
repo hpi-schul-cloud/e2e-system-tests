@@ -127,10 +127,11 @@ class Login_Management {
       },
       {
         validate () {
-          cy.visit('dashboard')
+          cy.location('pathname').should('contains', 'login')
         }
       }
     )
+    cy.visit('login')
   }
 
   clickOnForgotPassword () {
