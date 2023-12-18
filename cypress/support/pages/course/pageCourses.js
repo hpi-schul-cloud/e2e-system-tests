@@ -457,38 +457,6 @@ class Courses {
     cy.get(Courses.#chosenContainer).should('contain', userFullName)
   }
 
-  // addSubstituteTeacher (username) {
-  //   // let userFirstName
-  //   // let userLastName
-  //   // switch (username) {
-  //   //   case 'teacher1':
-  //   //     userFirstName = Cypress.env('TEACHER_1_BRB_FIRST_NAME')
-  //   //     userLastName = Cypress.env('TEACHER_1_BRB_LAST_NAME')
-  //   //     break
-  //   //   case 'teacher2':
-  //   //     userFirstName = Cypress.env('TEACHER_2_BRB_FIRST_NAME')
-  //   //     userLastName = Cypress.env('TEACHER_2_BRB_LAST_NAME')
-  //   //     break
-  //   // }
-  //   const usernamePattern = /teacher(\d+)_(\w+)/
-  //   const [match, teacherNumber, suffix] = username.match(usernamePattern) || []
-
-  //   userFirstName = match
-  //     ? Cypress.env(
-  //         `TEACHER_${teacherNumber}_${suffix.toUpperCase()}_FIRST_NAME`
-  //       )
-  //     : undefined
-  //   userLastName = match
-  //     ? Cypress.env(
-  //         `TEACHER_${teacherNumber}_${suffix.toUpperCase()}_LAST_NAME`
-  //       )
-  //     : undefined
-
-  //   let userFullName = userLastName + ', ' + userFirstName
-  //   cy.get(Courses.#chosenResults).contains(userFullName).click()
-  //   cy.get(Courses.#chosenContainer).should('contain', userFullName)
-  // }
-
   deleteAllCoursesMatchingName (roomName) {
     cy.get('h1')
       .eq(0)
