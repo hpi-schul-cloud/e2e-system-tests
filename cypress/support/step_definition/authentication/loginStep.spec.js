@@ -4,7 +4,7 @@ Before(() => {
   cy.intercept('**/public').as('public_api')
   cy.intercept('**/me').as('me_api')
   cy.intercept('**/user/**').as('roles_api')
-  cy.intercept('**/schools/**').as('schools_api')
+  cy.intercept('**/school/**').as('school_api')
   cy.intercept('**/dashboard').as('dashboard_api')
   cy.intercept('**/userPermissions?**').as('userPermissions_api')
   cy.intercept('**/classes?**').as('classes_api')
