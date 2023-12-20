@@ -238,7 +238,7 @@ class Courses {
         '@public_api',
         '@me_api',
         '@roles_api',
-        '@schools_api',
+        '@school_api',
         '@userPermissions_api'
       ])
       .then(interceptions => {
