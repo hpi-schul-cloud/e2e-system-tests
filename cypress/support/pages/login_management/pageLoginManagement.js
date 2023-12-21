@@ -77,8 +77,10 @@ class Login_Management {
   }
 
   clickOnSubmitButton () {
-    cy.get(Login_Management.#loginFormSelector).should('be.visible').submit()
-        .wait(8000)
+    cy.get(Login_Management.#loginFormSelector)
+      .should('be.visible')
+      .submit()
+      .wait(8000)
   }
 
   assertErrorMessageDisplay () {
@@ -116,7 +118,19 @@ class Login_Management {
   }
 
   visitLoginPage () {
-    Cypress.config('baseUrl', Cypress.env('BRB'))
+    const instance = 'DEFAULT'
+    cy.session(
+      instance,
+      () => {
+        Cypress.config('baseUrl', Cypress.env(instance))
+        cy.visit('login')
+      },
+      {
+        validate () {
+          cy.location('pathname').should('contains', 'login')
+        }
+      }
+    )
     cy.visit('login')
   }
 
@@ -125,8 +139,7 @@ class Login_Management {
   }
 
   brokerButtonIsVisible () {
-    cy.get(Login_Management.#brokerButton)
-      .should('exist')
+    cy.get(Login_Management.#brokerButton).should('exist')
   }
 
   showUpElementsOnDialog () {
