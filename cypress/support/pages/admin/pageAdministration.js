@@ -33,6 +33,7 @@ class Management {
     static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
     static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
     static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
+    static #LearnstoreCheckbox = '[id="studentlernstorevisibility"]'
     static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
     static #startMigrationButton = '[data-testid="migration-start-button"]'
     static #migrationInformationText = '[data-testid="text-description"]'
@@ -99,6 +100,10 @@ class Management {
                         .check();
                 }
             })
+    }
+
+    clickCheckboxToDisableAccessToLearnstore () {
+        cy.get(Management.#LearnstoreCheckbox).uncheck();
     }
 
     clickSaveButtonToAllowStudentCreateTeam () {
