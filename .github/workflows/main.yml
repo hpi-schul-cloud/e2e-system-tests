@@ -55,11 +55,11 @@ jobs:
       - name: Aggregate JSON Data into one File
         id: read_variables
         run: |
-          workflow=${{ github.workflow }}
-          workspace_path=/home/runner/work/e2e-system-tests/e2e-system-tests
+          workflow="${{ github.workflow }}"
+          workspace_path="${{ github.workspace }}"
 
-          chmod +x ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh
-          ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh \
+          chmod +x "${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh"
+          "${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh" \
             "${workflow}" \
             "${{ inputs.cypress_brb }}" \
             "${{ inputs.cypress_default }}" \
