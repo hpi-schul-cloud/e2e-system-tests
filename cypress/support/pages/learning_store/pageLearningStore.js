@@ -2,12 +2,17 @@
 
 class Learning_Store {
 
-  static #lernStoreOverviewNavigationButton = '[data-testid="Lern-Store"]'
+  static #learnStoreOverviewNavigationButton = '[data-testid="Lern-Store"]'
+  static #learnstoreMenuLink = '[data-testid="Lern-Store"]'
 
-  navigateToLernStoreOverview() {
+  navigateToLearnStoreOverview() {
     cy.visit('/content')
-    cy.get(Learning_Store.#lernStoreOverviewNavigationButton).click()
+    cy.get(Learning_Store.#learnStoreOverviewNavigationButton).click()
     cy.url().should('include', '/content')
+  }
+
+  assertLearnstoreNotVisibleInMenu() {
+    cy.get(Learning_Store.#learnstoreMenuLink).should('not.exist')
   }
 }
 export default Learning_Store

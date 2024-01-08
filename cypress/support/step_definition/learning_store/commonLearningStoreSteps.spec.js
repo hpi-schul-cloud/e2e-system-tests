@@ -3,6 +3,6 @@ import Learning_Store from '../../pages/learning_store/pageLearningStore'
 
 const learningStore = new Learning_Store()
 
-When('I go to LernStore overview', () => {
-  learningStore.navigateToLernStoreOverview()
+When('I go to LearnStore overview', () => {
+  learningStore.navigateToLearnStoreOverview()
 })

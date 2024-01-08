@@ -103,7 +103,15 @@ class Management {
     }
 
     clickCheckboxToDisableAccessToLearnstore () {
-        cy.get(Management.#LearnstoreCheckbox).uncheck();
+        cy.get(Management.#LearnstoreCheckbox).uncheck()
+    }
+
+    clickCheckboxToEnableAccessToLearnstore () {
+        cy.get(Management.#LearnstoreCheckbox).check()
+    }
+
+    assertStudentsAccessIsUnchecked() {
+        cy.get(Management.#LearnstoreCheckbox).should('not.be.checked');
     }
 
     clickSaveButtonToAllowStudentCreateTeam () {
