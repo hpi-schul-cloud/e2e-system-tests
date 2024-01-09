@@ -58,8 +58,8 @@ jobs:
           workflow="${{ github.workflow }}"
           workspace_path="${{ github.workspace }}"
 
-          chmod +x "${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh"
-          "${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh" \
+          chmod +x ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh
+          ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh \
             "${workflow}" \
             "${{ inputs.cypress_brb }}" \
             "${{ inputs.cypress_default }}" \
