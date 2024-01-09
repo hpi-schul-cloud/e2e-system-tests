@@ -22,6 +22,10 @@ When('I do not see Learning Store in side bar', () => {
   learnstore.assertLearnstoreNotVisibleInMenu()
 })
 
+When('I see Learning Store in side bar', () => {
+  learnstore.assertLearnstoreVisibleInMenu()
+})
+
 /*
 
 Then('I click on language drop down menu', () => {

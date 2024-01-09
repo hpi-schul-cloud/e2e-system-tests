@@ -14,5 +14,9 @@ class Learning_Store {
   assertLearnstoreNotVisibleInMenu() {
     cy.get(Learning_Store.#learnstoreMenuLink).should('not.exist')
   }
+
+  assertLearnstoreVisibleInMenu() {
+    cy.get(Learning_Store.#learnstoreMenuLink).should('exist')
+  }
 }
 export default Learning_Store
