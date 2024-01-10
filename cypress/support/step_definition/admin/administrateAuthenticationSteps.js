@@ -62,6 +62,14 @@ When('I uncheck all checkboxes', () => {
 	management.uncheckAllBoxes()
 })
 
+Then('I see a warning dialog', () => {
+	management.seeDialog()
+})
+
+When('I confirm the dialog', () => {
+	management.confirmDialog()
+})
+
 Then('I see all 3 checkboxes are unchecked', () => {
 	management.seeAllCheckboxesAreUnchecked()
 })
