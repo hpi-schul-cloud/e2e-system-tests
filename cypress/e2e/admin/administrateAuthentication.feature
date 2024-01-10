@@ -37,6 +37,8 @@ Feature: Admin can edit system configuration
     Then I see all 3 checkboxes are checked
     When I uncheck all checkboxes
     When I click the save button on the provisioning options page
+    Then I see a warning dialog
+    When I confirm the dialog
     Then I see a systems table
     When I click on the edit button of the 'SANIS' system
     Then I see all 3 checkboxes are unchecked

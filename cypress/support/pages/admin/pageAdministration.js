@@ -66,6 +66,8 @@ class Management {
     static #othersOptionCheckbox = '[data-testid="checkbox-option-others"]'
     static #saveProvisioningOptionsButton = '[data-testid="provisioning-options-save-button"]'
     static #cancelProvisioningOptionsButton = '[data-testid="provisioning-options-cancel-button"]'
+    static #dialogTitle = '[data-testid="dialog-title"]'
+    static #dialogConfirm = '[data-testid="dialog-confirm"]'
 
     disableTeamsVideoConferenceByAdmin() {
         cy.get(Management.#oldAdminPageVideoChatCheckBox)
@@ -556,6 +558,14 @@ class Management {
         cy.get(Management.#classOptionCheckbox).uncheck({force: true})
         cy.get(Management.#courseOptionCheckbox).uncheck({force: true})
         cy.get(Management.#othersOptionCheckbox).uncheck({force: true})
+    }
+
+    seeDialog() {
+        cy.get(Management.#dialogTitle).should('be.visible')
+    }
+
+    confirmDialog() {
+        cy.get(Management.#dialogConfirm).click({force: true})
     }
 
     seeAllCheckboxesAreUnchecked() {
