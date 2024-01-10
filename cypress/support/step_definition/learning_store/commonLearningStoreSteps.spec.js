@@ -1,16 +1,16 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
-import Learning_Store from '../../pages/learning_store/pageLearningstore'
+import Learning_Store from '../../pages/learning_store/pageLearningStore'
 
-const learningstore = new Learning_Store()
+const learningStore = new Learning_Store()
 
 When('I go to Learning Store overview', () => {
-  learningstore.navigateToLearningstoreOverview()
+  learningStore.navigateToLearningStoreOverview()
 })
 
 When('I do not see Learning Store in side bar', () => {
-  learningstore.assertLearningstoreNotVisibleInMenu()
+  learningStore.assertLearningStoreNotVisibleInMenu()
 })
 
 When('I see Learning Store in side bar', () => {
-  learningstore.assertLearningstoreVisibleInMenu()
+  learningStore.assertLearningStoreVisibleInMenu()
 })

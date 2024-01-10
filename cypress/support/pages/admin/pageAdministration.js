@@ -33,7 +33,7 @@ class Management {
     static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
     static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
     static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
-    static #learningstoreStudentAccessCheckbox = '[id="studentlernstorevisibility"]'
+    static #learningStoreStudentAccessCheckbox = '[id="studentlernstorevisibility"]'
     static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
     static #startMigrationButton = '[data-testid="migration-start-button"]'
     static #migrationInformationText = '[data-testid="text-description"]'
@@ -102,16 +102,16 @@ class Management {
             })
     }
 
-    clickCheckboxToDisableAccessToLearningstore () {
-        cy.get(Management.#learningstoreStudentAccessCheckbox).uncheck()
+    clickCheckboxToDisableAccessToLearningStore () {
+        cy.get(Management.#learningStoreStudentAccessCheckbox).uncheck()
     }
 
-    clickCheckboxToEnableAccessToLearningstore () {
-        cy.get(Management.#learningstoreStudentAccessCheckbox).check()
+    clickCheckboxToEnableAccessToLearningStore () {
+        cy.get(Management.#learningStoreStudentAccessCheckbox).check()
     }
 
     assertStudentsAccessIsUnchecked() {
-        cy.get(Management.#learningstoreStudentAccessCheckbox).should('not.be.checked');
+        cy.get(Management.#learningStoreStudentAccessCheckbox).should('not.be.checked');
     }
 
     clickSaveButtonToAllowStudentCreateTeam () {

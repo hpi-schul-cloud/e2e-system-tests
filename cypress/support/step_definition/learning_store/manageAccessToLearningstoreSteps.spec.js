@@ -5,11 +5,11 @@ const management = new Management()
 
 
 When('I click the checkbox to disable students access to learning store', () => {
-  management.clickCheckboxToDisableAccessToLearningstore()
+  management.clickCheckboxToDisableAccessToLearningStore()
 })
 
 When('I click the checkbox to enable students access to learning store', () => {
-  management.clickCheckboxToEnableAccessToLearningstore()
+  management.clickCheckboxToEnableAccessToLearningStore()
 })
 
 Then('I see checkbox to enable students access to learning store is unchecked', () => {
