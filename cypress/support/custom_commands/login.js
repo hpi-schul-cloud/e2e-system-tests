@@ -14,98 +14,109 @@ const oauth_url =
 const titleOnDashboardPage = '[id="page-title"]'
 
 Cypress.Commands.add('login', (username, environment) => {
-  cy.session([username, environment], () => {
-    const env = Cypress.env()
-    const environmentUpperCased = environment.toUpperCase()
-    const link = Cypress.config('baseUrl', env[environmentUpperCased])
-    cy.log(link)
-    if (environmentUpperCased === 'NBC') {
-      cy.visit('/login')
-      cy.get(nbcLoginWithEmailOptionButton).click()
-    } else if (environmentUpperCased === 'DEFAULT') {
-      cy.visit('/login')
-    } else {
-      cy.visit('/login')
-    }
+  cy.session(
+    [username, environment],
+    () => {
+      const env = Cypress.env()
+      const environmentUpperCased = environment.toUpperCase()
+      const link = Cypress.config('baseUrl', env[environmentUpperCased])
+      cy.log(link)
+      if (environmentUpperCased === 'NBC') {
+        cy.visit('/login')
+        cy.get(nbcLoginWithEmailOptionButton).click()
+      } else if (environmentUpperCased === 'DEFAULT') {
+        cy.visit('/login')
+      } else {
+        cy.visit('/login')
+      }
 
-    let userEmail
-    let userPassword
-    let doExternalLogin = false
+      let userEmail
+      let userPassword
+      let doExternalLogin = false
 
-    switch (username) {
-      case 'teacher1_brb':
-        userEmail = 'TEACHER_1_BRB_EMAIL'
-        userPassword = 'TEACHER_1_BRB_PASSWORD'
-        break
-      case 'teacher2_brb':
-        userEmail = 'TEACHER_2_BRB_EMAIL'
-        userPassword = 'TEACHER_2_BRB_PASSWORD'
-        break
-      case 'teacher1_dbc':
-        userEmail = 'TEACHER_1_DBC_EMAIL'
-        userPassword = 'TEACHER_1_DBC_PASSWORD'
-        break
-      case 'student1_brb':
-        userEmail = 'STUDENT_1_BRB_EMAIL'
-        userPassword = 'STUDENT_1_BRB_PASSWORD'
-        break
-      case 'student1_dbc':
-        userEmail = 'STUDENT_1_DBC_EMAIL'
-        userPassword = 'STUDENT_1_DBC_PASSWORD'
-        break
-      case 'admin1_brb':
-        userEmail = 'ADMIN_1_BRB_EMAIL'
-        userPassword = 'ADMIN_1_BRB_PASSWORD'
-        break
-      case 'teacher1_nbc':
-        userEmail = 'TEACHER_1_NBC_EMAIL'
-        userPassword = 'TEACHER_1_NBC_PASSWORD'
-        break
-      case 'student2_nbc':
-        userEmail = 'STUDENT_2_NBC_EMAIL'
-        userPassword = 'STUDENT_2_NBC_PASSWORD'
-        break
-      case 'admin1_nbc':
-        userEmail = 'ADMIN_1_NBC_EMAIL'
-        userPassword = 'ADMIN_1_NBC_PASSWORD'
-        break
-      case 'admin1_dbc':
-        userEmail = 'ADMIN_1_DBC_EMAIL'
-        userPassword = 'ADMIN_1_DBC_PASSWORD'
-        break
-      case 'student_extern_dbc':
-        userEmail = 'STUDENT_DBC_EXTERN'
-        userPassword = 'STUDENT_DBC_EXTERN_PASSWORD'
-        doExternalLogin = true
-        break
-    }
-    if (doExternalLogin) {
-      cy.request('GET', oauth_url).then(resp => {
-        cy.intercept(resp.requestHeaders.referer).as('oauth_url')
-        cy.visit(resp.requestHeaders.referer).then(window => {
-          expect(window.location.pathname).to.include('/Account/Login')
-          cy.get('@oauth_url').then(resp => {
-            expect(resp.response.statusCode).to.equal(308)
-            cy.get(externalUsernameInputFieldElement).should('be.visible')
-            cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
-              log: false
+      switch (username) {
+        case 'teacher1_brb':
+          userEmail = 'TEACHER_1_BRB_EMAIL'
+          userPassword = 'TEACHER_1_BRB_PASSWORD'
+          break
+        case 'teacher2_brb':
+          userEmail = 'TEACHER_2_BRB_EMAIL'
+          userPassword = 'TEACHER_2_BRB_PASSWORD'
+          break
+        case 'teacher1_dbc':
+          userEmail = 'TEACHER_1_DBC_EMAIL'
+          userPassword = 'TEACHER_1_DBC_PASSWORD'
+          break
+        case 'student1_brb':
+          userEmail = 'STUDENT_1_BRB_EMAIL'
+          userPassword = 'STUDENT_1_BRB_PASSWORD'
+          break
+        case 'student1_dbc':
+          userEmail = 'STUDENT_1_DBC_EMAIL'
+          userPassword = 'STUDENT_1_DBC_PASSWORD'
+          break
+        case 'admin1_brb':
+          userEmail = 'ADMIN_1_BRB_EMAIL'
+          userPassword = 'ADMIN_1_BRB_PASSWORD'
+          break
+        case 'teacher1_nbc':
+          userEmail = 'TEACHER_1_NBC_EMAIL'
+          userPassword = 'TEACHER_1_NBC_PASSWORD'
+          break
+        case 'student2_nbc':
+          userEmail = 'STUDENT_2_NBC_EMAIL'
+          userPassword = 'STUDENT_2_NBC_PASSWORD'
+          break
+        case 'admin1_nbc':
+          userEmail = 'ADMIN_1_NBC_EMAIL'
+          userPassword = 'ADMIN_1_NBC_PASSWORD'
+          break
+        case 'admin1_dbc':
+          userEmail = 'ADMIN_1_DBC_EMAIL'
+          userPassword = 'ADMIN_1_DBC_PASSWORD'
+          break
+        case 'student_extern_dbc':
+          userEmail = 'STUDENT_DBC_EXTERN'
+          userPassword = 'STUDENT_DBC_EXTERN_PASSWORD'
+          doExternalLogin = true
+          break
+      }
+      if (doExternalLogin) {
+        cy.request('GET', oauth_url).then(resp => {
+          cy.intercept(resp.requestHeaders.referer).as('oauth_url')
+          cy.visit(resp.requestHeaders.referer).then(window => {
+            expect(window.location.pathname).to.include('/Account/Login')
+            cy.get('@oauth_url').then(resp => {
+              expect(resp.response.statusCode).to.equal(308)
+              cy.get(externalUsernameInputFieldElement).should('be.visible')
+              cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
+                log: false
+              })
+              cy.get(externalPasswordInputFieldElement)
+                .type(env[userPassword], { log: false })
+                .type('{enter}')
             })
-            cy.get(externalPasswordInputFieldElement)
-              .type(env[userPassword], { log: false })
-              .type('{enter}')
           })
         })
-      })
-    } else {
-      cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
-      cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
-      cy.get(submitButton).click()
+      } else {
+        cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
+        cy.get(passwordInputFieldElement).type(env[userPassword], {
+          log: false
+        })
+        cy.get(submitButton).click()
+      }
+      cy.url().should('contain', '/dashboard')
+      cy.get(initials).click()
+      cy.get(languageSelection).click()
+      cy.get(languageDe).click()
+    },
+    {
+      validate () {
+        cy.location('pathname').should('contains', 'dashboard')
+      },
+      cacheAcrossSpecs: false
     }
-    cy.url().should('contain', '/dashboard')
-    cy.get(initials).click()
-    cy.get(languageSelection).click()
-    cy.get(languageDe).click()
-  })
+  )
   cy.visit('/dashboard')
   cy.get(titleOnDashboardPage).should('exist')
 })
