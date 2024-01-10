@@ -1,37 +1,37 @@
 @release
-Feature: Learnstore - Activating and deactivating access for students
+Feature: Learning store - Activating and deactivating access for students
 
-    As an admin I want to activate and deactivate students access to learnstore
+    As an admin I want to activate and deactivate students access to learning store
 
     @stable_test
-    Scenario Outline: Admin activates and deactivates students access to Learnstore
-    # Admin deactivates students access to Learnstore - pre-condition to set the needed configuration
+    Scenario Outline: Admin activates and deactivates students access to Learning store
+    # Admin deactivates students access to Learning store - pre-condition to set the needed configuration
         Given I am logged in as a '<admin>' at '<namespace>'
         When I go to administration page
         When I go to school administration
-        When I click the checkbox to disable students access to learnstore
+        When I click the checkbox to disable students access to learning store
         When I click on admin setting save button
-        Then I see checkbox Disable students is unchecked
-    # Student doesn't see link to Learnstore in menu
+        Then I see checkbox to enable students access to learning store is unchecked
+    # Student doesn't see link to Learning store in menu
         Given I am logged in as a '<student>' at '<namespace>'
         Then I do not see Learning Store in side bar
-    # Admin activates students access to Learnstore
+    # Admin activates students access to Learning store
         Given I am logged in as a '<admin>' at '<namespace>'
         When I go to administration page
         When I go to school administration
-        When I click the checkbox to enable students access to learnstore
+        When I click the checkbox to enable students access to learning store
         When I click on admin setting save button
-    # Student sees link to Learnstore in menu
+    # Student sees link to Learning store in menu
         Given I am logged in as a '<student>' at '<namespace>'
         Then I see Learning Store in side bar
-        When I go to LearnStore overview
-    # Admin deactivates students access to Learnstore again (tests change from access to no-access)
+        When I go to Learning Store overview
+    # Admin deactivates students access to Learning store again (tests change from access to no-access)
         Given I am logged in as a '<admin>' at '<namespace>'
         When I go to administration page
         When I go to school administration
-        When I click the checkbox to disable students access to learnstore
+        When I click the checkbox to disable students access to learning store
         When I click on admin setting save button
-    # Student doesn't see link to Learnstore in menu
+    # Student doesn't see link to Learning store in menu
         Given I am logged in as a '<student>' at '<namespace>'
         Then I do not see Learning Store in side bar
 
