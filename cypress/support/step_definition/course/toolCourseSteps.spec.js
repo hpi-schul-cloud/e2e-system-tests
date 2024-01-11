@@ -32,20 +32,44 @@ Then('I can enter {string} as tool name in the selection', toolName => {
 	courses.enterAnToolNameInToolConfigurationSelect(toolName)
 })
 
-Then('I can see the outdated tool {string} in the tool overview', toolName => {
-	courses.seeOutdatedToolInToolOverview(toolName)
+Then('I can see the tool {string} in the tool overview', (toolName) => {
+	courses.seeToolInToolOverview(toolName)
 })
 
-Then('I can see the outdated dialog of {string}', toolName => {
+Then('I can see the error dialog of {string}', toolName => {
 	courses.checkIfOutdatedDialogIsOpen(toolName);
 })
 
-When('I click on the outdated tool {string}', toolName => {
+When('I can launch the tool {string}', toolName => {
 	courses.clickOnTool(toolName);
 })
 
-Then('I can not see tool {string} in the tool selection list', toolName => {
-  	courses.checkIfToolIsVisible(toolName)
+Then('I can check if tool {string} is not marked as deactivated in tools table', (toolName)=>{
+	courses.checkIfToolIsLaunchable(toolName)
+})
+
+Then('I can check if tool {string} is marked as deactivated in tools table', (toolName)=>{
+	courses.checkIfToolIsNotLaunchable(toolName)
+})
+
+Then('I can not select tool {string} in available tools', toolName => {
+  	courses.checkIfToolIsNotVisibleInSelection(toolName)
+})
+
+Then('I can see tool {string} in Selection',(toolName)=> {
+		courses.checkIfToolIsVisibleInSelection(toolName)
+})
+
+Then('I can select tool {string} in available tools', (toolName)=>{
+	courses.selectTool(toolName)
+})
+
+Then('I can fill out context parameter', () => {
+	courses.fillOutContextParameter()
+})
+
+When('I click on add tool',(toolName)=> {
+	courses.clickOnSaveTool()
 })
 
 
