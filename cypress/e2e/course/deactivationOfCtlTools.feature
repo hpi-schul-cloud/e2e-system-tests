@@ -5,7 +5,6 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I go to school administration
-    When I go to new school administration page
     When I click on external tools panel
     Then I see the external tools table
     Then I can see 'CY Test Tool deactivated External Tool' is deactivated in tool table
@@ -15,7 +14,6 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I go to school administration
-    When I go to new school administration page
     When I click on external tools panel
     When I click the add external tool button
       Then I can select the tool 'CY Test Tool active External Tool' from available tools
@@ -43,7 +41,6 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I go to school administration
-    When I go to new school administration page
     When I click on external tools panel
     Then I see the external tools table
     Then I can click on edit button to edit the tool 'CY Test Tool active External Tool'
@@ -82,7 +79,6 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I go to school administration
-    When I go to new school administration page
     When I click on external tools panel
     Then I see the external tools table
     Then I can click on edit button to edit the tool 'CY Test Tool active External Tool'
@@ -133,7 +129,6 @@ Feature: Deactivation of ctl tools
       Given I am logged in as a 'admin1_nbc' at 'nbc'
       When I go to administration page
       When I go to school administration
-      When I go to new school administration page
       When I click on external tools panel
       Then I see the external tools table
       Then I can click on delete button to delete the tool 'CY Test Tool active External Tool'
