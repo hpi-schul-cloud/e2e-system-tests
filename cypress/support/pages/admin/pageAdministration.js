@@ -33,6 +33,7 @@ class Management {
     static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
     static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
     static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
+    static #learningStoreStudentAccessCheckbox = '[id="studentlernstorevisibility"]'
     static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
     static #startMigrationButton = '[data-testid="migration-start-button"]'
     static #migrationInformationText = '[data-testid="text-description"]'
@@ -66,6 +67,8 @@ class Management {
     static #othersOptionCheckbox = '[data-testid="checkbox-option-others"]'
     static #saveProvisioningOptionsButton = '[data-testid="provisioning-options-save-button"]'
     static #cancelProvisioningOptionsButton = '[data-testid="provisioning-options-cancel-button"]'
+    static #dialogTitle = '[data-testid="dialog-title"]'
+    static #dialogConfirm = '[data-testid="dialog-confirm"]'
 
     disableTeamsVideoConferenceByAdmin() {
         cy.get(Management.#oldAdminPageVideoChatCheckBox)
@@ -99,6 +102,18 @@ class Management {
                         .check();
                 }
             })
+    }
+
+    clickCheckboxToDisableAccessToLearningStore () {
+        cy.get(Management.#learningStoreStudentAccessCheckbox).uncheck()
+    }
+
+    clickCheckboxToEnableAccessToLearningStore () {
+        cy.get(Management.#learningStoreStudentAccessCheckbox).check()
+    }
+
+    assertStudentsAccessIsUnchecked() {
+        cy.get(Management.#learningStoreStudentAccessCheckbox).should('not.be.checked');
     }
 
     clickSaveButtonToAllowStudentCreateTeam () {
@@ -556,6 +571,14 @@ class Management {
         cy.get(Management.#classOptionCheckbox).uncheck({force: true})
         cy.get(Management.#courseOptionCheckbox).uncheck({force: true})
         cy.get(Management.#othersOptionCheckbox).uncheck({force: true})
+    }
+
+    seeDialog() {
+        cy.get(Management.#dialogTitle).should('be.visible')
+    }
+
+    confirmDialog() {
+        cy.get(Management.#dialogConfirm).click({force: true})
     }
 
     seeAllCheckboxesAreUnchecked() {
