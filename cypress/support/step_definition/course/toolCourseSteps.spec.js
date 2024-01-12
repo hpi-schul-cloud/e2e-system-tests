@@ -53,11 +53,11 @@ When('I can launch the tool {string} and go back', toolName => {
 })
 
 Then('I can check if tool {string} is not marked as deactivated in tools table', (toolName)=>{
-	courses.checkIfToolIsLaunchable(toolName)
+	courses.seeToolIsNotMarkedDeactivated(toolName)
 })
 
 Then('I can check if tool {string} is marked as deactivated in tools table', (toolName)=>{
-	courses.checkIfToolIsNotLaunchable(toolName)
+	courses.seeToolIsMarkedDeactivated(toolName)
 })
 
 Then('I can not select tool {string} in available tools', toolName => {

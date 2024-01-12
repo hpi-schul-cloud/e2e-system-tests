@@ -40,7 +40,7 @@ Then('I can activate the tool', ()=>{
 })
 
 Then('I can see {string} is active in tool table', (toolName)=>{
-    management.checkActivateTool(toolName)
+    management.checkActivatedTool(toolName)
 })
 
 Then('I can see {string} is deactivated in tool table', (toolName)=>{

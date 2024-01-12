@@ -492,7 +492,7 @@ class Management {
         cy.get(Management.#isDeactivatedCheckBox).uncheck({ force: true})
     }
 
-    checkActivateTool(toolName){
+    checkActivatedTool(toolName){
         cy.get(Management.#externalToolsTable).contains(toolName)
         const toolData = cy.get(Management.#externalToolsTable).find('td').contains(toolName);
 

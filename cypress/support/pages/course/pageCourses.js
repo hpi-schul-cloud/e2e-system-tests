@@ -531,7 +531,7 @@ class Courses {
 
   }
 
-  checkIfToolIsLaunchable(toolName){
+  seeToolIsNotMarkedDeactivated(toolName){
     const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
 
     toolData.parent('div').siblings('div').find('[data-testid="tool-card-status-deactivated"]')
@@ -539,12 +539,11 @@ class Courses {
 
   }
 
-  checkIfToolIsNotLaunchable(toolName){
-    cy.get(Courses.#roomExternalToolSection).contains(toolName)
+  seeToolIsMarkedDeactivated(toolName){
     const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
 
     toolData.parent('div').siblings('div').find('span').contains('Tool deaktiviert')
-        .should('exist');
+        .should('be.visible');
 
   }
 
@@ -554,9 +553,6 @@ class Courses {
 
      toolData.parent('div').find(Courses.#threeDotMenuOnTool).click()
         .should('exist');
-
-    toolData.parent('div').find(Courses.#DeleteButtonInDotMenuOfTool).click()
-
   }
 
   clickOnDeleteButton(toolName){
