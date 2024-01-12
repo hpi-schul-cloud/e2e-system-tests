@@ -33,7 +33,11 @@ Then('I can enter {string} as tool name in the selection', toolName => {
 })
 
 Then('I can see the tool {string} in the tool overview', (toolName) => {
-	courses.seeToolInToolOverview(toolName)
+	courses.checkIfToolIsVisibleInToolTable(toolName)
+})
+
+Then('I can not see the tool {string} in the tool overview', (toolName) => {
+	courses.checkIfToolIsNotVisibleInToolTable(toolName)
 })
 
 Then('I can see the error dialog of {string}', toolName => {
@@ -42,6 +46,10 @@ Then('I can see the error dialog of {string}', toolName => {
 
 When('I can launch the tool {string}', toolName => {
 	courses.clickOnTool(toolName);
+})
+
+When('I can launch the tool {string} and go back', toolName => {
+	courses.clickOnToolAndReturn(toolName);
 })
 
 Then('I can check if tool {string} is not marked as deactivated in tools table', (toolName)=>{
@@ -70,6 +78,18 @@ Then('I can fill out context parameter', () => {
 
 When('I click on add tool',(toolName)=> {
 	courses.clickOnSaveTool()
+})
+
+When('I click on three dot menu of the tool {string}',(toolName)=>{
+	courses.clickThreeDotMenuOnTool(toolName)
+})
+
+When('I click on delete button of the tool {string}', (toolName) => {
+	courses.clickOnDeleteButton(toolName)
+})
+
+Then('I can see the deletion dialog and confirm Button', ()=> {
+	courses.checkConfirmButtonOnDeletionDialog()
 })
 
 

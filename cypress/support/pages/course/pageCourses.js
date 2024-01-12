@@ -75,6 +75,8 @@ class Courses {
   static #roomExternalToolSection = '[data-testid="room-external-tool-section"]'
   static #saveToolButton = '[data-testid="save-button"]'
   static #requiredParameterInputField = '[data-testid="contextparammm"]'
+  static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]'
+  static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]'
 
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
@@ -520,14 +522,19 @@ class Courses {
     cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).siblings('a').click();
   }
 
-  seeToolInToolOverview(toolName){
+  checkIfToolIsVisibleInToolTable(toolName){
     cy.get(Courses.#roomExternalToolSection).contains(toolName).should('exist');
+  }
+
+  checkIfToolIsNotVisibleInToolTable(toolName){
+    cy.get(Courses.#roomExternalToolSection).contains(toolName).should('not.exist');
+
   }
 
   checkIfToolIsLaunchable(toolName){
     const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
 
-    const isActive = toolData.parent('div').siblings('div').find('[data-testid="tool-card-status-deactivated"]')
+    toolData.parent('div').siblings('div').find('[data-testid="tool-card-status-deactivated"]')
         .should('not.exist');
 
   }
@@ -536,13 +543,49 @@ class Courses {
     cy.get(Courses.#roomExternalToolSection).contains(toolName)
     const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
 
-    const isActive = toolData.parent('div').siblings('div').find('span').contains('Tool deaktiviert')
+    toolData.parent('div').siblings('div').find('span').contains('Tool deaktiviert')
         .should('exist');
 
   }
 
+  clickThreeDotMenuOnTool(toolName){
+    cy.get(Courses.#roomExternalToolSection).contains(toolName)
+    const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
+
+     toolData.parent('div').find(Courses.#threeDotMenuOnTool).click()
+        .should('exist');
+
+    toolData.parent('div').find(Courses.#DeleteButtonInDotMenuOfTool).click()
+
+  }
+
+  clickOnDeleteButton(toolName){
+    const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
+
+     toolData.parent('div').find(Courses.#DeleteButtonInDotMenuOfTool).should('be.visible').click({force: true})
+
+  }
+
+  checkConfirmButtonOnDeletionDialog(){
+    cy.get(Courses.#dialogConfirmButton).should('be.visible').click()
+  }
+
   clickOnTool(toolName){
     cy.get(Courses.#roomExternalToolSection).contains(toolName).click();
+  }
+
+  clickOnToolAndReturn(toolName){
+    cy.on('window:before:load', (win) => {
+    })
+
+    cy.intercept('GET', 'https://google.com', (req) => {   // catch the page as it loads
+      req.continue(res => {
+        res.body = res.body.replaceAll(
+            'window.location.replace', 'window.__location.replace')
+      })
+    }).as('index')
+    cy.get(Courses.#roomExternalToolSection).contains(toolName).click().should('contain', 'Peter Pan')
+    cy.wait('@index')
   }
 
   clickOnSaveTool(){

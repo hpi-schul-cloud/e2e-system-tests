@@ -71,4 +71,12 @@ Then('I can click on edit button to edit the tool {string}', (toolName) => {
     management.clickOnEditButton(toolName)
 })
 
+Then('I can click on delete button to delete the tool {string}',(toolName)=>{
+    management.clickDeleteButtonOnTool(toolName)
+})
+
+Then('I can confirm deletion on deletion dialog', ()=>{
+    management.clickOnConfirmInToolUsageDialog()
+})
+
 

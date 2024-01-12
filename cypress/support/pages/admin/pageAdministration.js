@@ -451,6 +451,18 @@ class Management {
             .click()
     }
 
+    clickDeleteButtonOnTool(toolName){
+        cy.get(Management.#externalToolsTable).contains(toolName)
+        const toolData = cy.get(Management.#externalToolsTable).find('td').contains(toolName);
+
+        toolData.parent('td').siblings('td').find(Management.#deleteExternalToolButton)
+            .should('exist').click();
+    }
+
+    clickOnConfirmInToolUsageDialog(){
+        cy.get(Management.#confirmSExternalToolDeletionButton).click()
+    }
+
     clickCancelExternalToolDeletionButton() {
         cy.get(Management.#cancelExternalToolDeletionButton)
             .click()
