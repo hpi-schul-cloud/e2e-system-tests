@@ -69,6 +69,12 @@ class Management {
     static #cancelProvisioningOptionsButton = '[data-testid="provisioning-options-cancel-button"]'
     static #dialogTitle = '[data-testid="dialog-title"]'
     static #dialogConfirm = '[data-testid="dialog-confirm"]'
+    static #addExternalToolButton = '[data-testid="add-external-tool-button"]'
+    static #toolSelection = '[data-testid="configuration-select"]'
+    static #addExternalToolSaveButton = '[data-testid="save-button"]'
+    static #isDeactivatedCheckBox = '[data-testid="configuration-deactivate-checkbox"]'
+    static #parameterInputField = '[data-testid="schoolParam"]'
+
 
     disableTeamsVideoConferenceByAdmin() {
         cy.get(Management.#oldAdminPageVideoChatCheckBox)
@@ -460,6 +466,18 @@ class Management {
             .click()
     }
 
+    clickDeleteButtonOnTool(toolName){
+        cy.get(Management.#externalToolsTable).contains(toolName)
+        const toolData = cy.get(Management.#externalToolsTable).find('td').contains(toolName);
+
+        toolData.parent('td').siblings('td').find(Management.#deleteExternalToolButton)
+            .should('exist').click();
+    }
+
+    clickOnConfirmInToolUsageDialog(){
+        cy.get(Management.#confirmSExternalToolDeletionButton).click()
+    }
+
     clickCancelExternalToolDeletionButton() {
         cy.get(Management.#cancelExternalToolDeletionButton)
             .click()
@@ -468,6 +486,49 @@ class Management {
     seeExternalToolTable() {
         cy.get(Management.#externalToolsTable)
             .should('be.visible')
+    }
+
+    clickAddExternalTool(){
+        cy.get(Management.#addExternalToolButton).should('be.visible')
+
+        cy.get(Management.#addExternalToolButton).click()
+    }
+
+    addExternalTool(toolName){
+        cy.get(Management.#toolSelection).click()
+        cy.get('[data-testid="configuration-select-item"]').contains(toolName).click()
+    }
+
+    deactivateTool(){
+        cy.get(Management.#isDeactivatedCheckBox).check({ force: true})
+    }
+
+    activateTool(){
+        cy.get(Management.#isDeactivatedCheckBox).uncheck({ force: true})
+    }
+
+    checkActivatedTool(toolName){
+        cy.get(Management.#externalToolsTable).contains(toolName)
+        const toolData = cy.get(Management.#externalToolsTable).find('td').contains(toolName);
+
+        toolData.parent('td').siblings('td').eq(0).contains('Aktuell')
+            .should('exist');
+    }
+
+    checkDeactivatedTool(toolName){
+        cy.get(Management.#externalToolsTable).contains(toolName)
+        const toolData = cy.get(Management.#externalToolsTable).find('td').contains(toolName);
+
+        toolData.parent('td').siblings('td').eq(0).contains('Deaktiviert')
+            .should('exist');
+    }
+
+    fillInParameter(){
+        cy.get(Management.#parameterInputField).click().type('schoolInput')
+    }
+
+    saveExternalTool(){
+        cy.get(Management.#addExternalToolSaveButton).click()
     }
 
     seeExternalToolDeletionDialogTitle() {
@@ -483,6 +544,19 @@ class Management {
     seeOneOrMoreExternalTools() {
         cy.get(Management.#externalToolsTable).find('tbody').find('tr')
             .should('have.length.gte', 1)
+    }
+
+
+    seeExternalToolStatus(toolName){
+        cy.get(Management.#externalToolsTable).contains(toolName)
+    }
+
+    clickOnEditButton(toolName){
+        cy.get(Management.#externalToolsTable).contains(toolName)
+        const toolData = cy.get(Management.#externalToolsTable).find('td').contains(toolName);
+
+        toolData.parent('td').siblings('td').eq(1).find(Management.#editExternalToolButton)
+            .should('exist').click();
     }
 
     clickOnAuthenticationPanel() {

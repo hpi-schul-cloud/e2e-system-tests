@@ -69,10 +69,14 @@ class Courses {
   static #contextExternalToolConfiguratorPageTitle = '[data-testid="context-external-tool-configurator-title"]'
   static #groupSelection = '[id="classId_chosen"]'
   static #chosenStudents= '[id="studentsId_chosen"] > .chosen-choices'
-  static #toolElements = '[data-testid="external-tool-card-2"]'
   static #errorDialog = '[data-testId="error-dialog"]'
   static #outdatedDialogTitle = '[data-testid="dialog-title"]'
   static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]'
+  static #roomExternalToolSection = '[data-testid="room-external-tool-section"]'
+  static #saveToolButton = '[data-testid="save-button"]'
+  static #requiredParameterInputField = '[data-testid="contextparammm"]'
+  static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]'
+  static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]'
 
   seeSectionOneAreaOnCourseCreatePage () {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
@@ -518,12 +522,75 @@ class Courses {
     cy.get(Courses.#groupSelection).find('.chosen-choices').contains(groupName).siblings('a').click();
   }
 
-  seeOutdatedToolInToolOverview(toolName){
-    cy.get(Courses.#toolElements).contains(toolName).should('exist');
+  checkIfToolIsVisibleInToolTable(toolName){
+    cy.get(Courses.#roomExternalToolSection).contains(toolName).should('exist');
+  }
+
+  checkIfToolIsNotVisibleInToolTable(toolName){
+    cy.get(Courses.#roomExternalToolSection).contains(toolName).should('not.exist');
+
+  }
+
+  seeToolIsNotMarkedDeactivated(toolName){
+    const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
+
+    toolData.parent('div').siblings('div').find('[data-testid="tool-card-status-deactivated"]')
+        .should('not.exist');
+
+  }
+
+  seeToolIsMarkedDeactivated(toolName){
+    const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
+
+    toolData.parent('div').siblings('div').find('span').contains('Tool deaktiviert')
+        .should('be.visible');
+
+  }
+
+  clickThreeDotMenuOnTool(toolName){
+    cy.get(Courses.#roomExternalToolSection).contains(toolName)
+    const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
+
+     toolData.parent('div').find(Courses.#threeDotMenuOnTool).click()
+        .should('exist');
+  }
+
+  clickOnDeleteButton(toolName){
+    const toolData = cy.get(Courses.#roomExternalToolSection).find('div').contains(toolName);
+
+     toolData.parent('div').find(Courses.#DeleteButtonInDotMenuOfTool).should('be.visible').click({force: true})
+
+  }
+
+  checkConfirmButtonOnDeletionDialog(){
+    cy.get(Courses.#dialogConfirmButton).should('be.visible').click()
   }
 
   clickOnTool(toolName){
-    cy.get(Courses.#toolElements).contains(toolName).click();
+    cy.get(Courses.#roomExternalToolSection).contains(toolName).click();
+  }
+
+  clickOnToolAndReturn(toolName){
+    cy.on('window:before:load', (win) => {
+    })
+
+    cy.intercept('GET', 'https://google.com', (req) => {   // catch the page as it loads
+      req.continue(res => {
+        res.body = res.body.replaceAll(
+            'window.location.replace', 'window.__location.replace')
+      })
+    }).as('index')
+    cy.get(Courses.#roomExternalToolSection).contains(toolName).click().should('contain', 'Peter Pan')
+    cy.wait('@index')
+  }
+
+  clickOnSaveTool(){
+  cy.get(Courses.#saveToolButton).click()
+
+  }
+
+  checkIfToolIsNotVisibleInSelection(toolName){
+    !cy.get(Courses.#toolConfigurationSelect).should('not.contain', toolName)
   }
   checkIfOutdatedDialogIsOpen(toolName){
     cy.get(Courses.#outdatedDialogTitle).should('exist');
@@ -534,8 +601,16 @@ class Courses {
         .invoke('text').should('have.length.gt', 0)
   }
 
-  checkIfToolIsVisible(toolName) {
-    cy.get(Courses.#toolConfigurationSelectItem).should('not.contain', toolName);
+  checkIfToolIsVisibleInSelection(toolName) {
+    cy.get(Courses.#toolConfigurationSelectItem).contains(toolName)
+  }
+
+  selectTool(toolName){
+    cy.get(Courses.#toolConfigurationSelectItem).contains(toolName).click()
+  }
+
+  fillOutContextParameter(){
+    cy.get(Courses.#requiredParameterInputField).type('parameter')
   }
 }
 export default Courses
