@@ -153,3 +153,23 @@ When('I add substitute teacher {string}', username => {
 Then('I delete all courses named {string}', courseName => {
   courses.deleteAllCoursesMatchingName(courseName);
 })
+
+When('I click on copy course button', () => {
+  courses.clickCopyCourseButton();
+})
+
+Then('I see the copy result notification', () => {
+  courses.seeCopyResultNotification();
+})
+
+When('I close the dialog', () => {
+  courses.clickOnDialogClose();
+})
+
+When('I see room page {string}', roomName => {
+  courses.seeRoomPage(roomName)
+})
+
+When('I click on edit course', () => {
+  courses.clickOnEditCourse();
+})

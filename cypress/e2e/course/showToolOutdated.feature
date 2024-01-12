@@ -8,8 +8,8 @@ Feature: Course - Show outdated tool
     When I go to rooms overview
     When I go to room 'German'
     When I click on the tools tab
-    Then I can see the outdated tool 'Cypress Test Tool School Scope' in the tool overview
-    When I click on the outdated tool 'Cypress Test Tool School Scope'
+    Then I can see the tool 'Cypress Test Tool School Scope' in the tool overview
+    When I click on the tool 'Cypress Test Tool School Scope'
     Then I can see the outdated dialog of 'Cypress Test Tool School Scope'
 
   @unstable_test
@@ -18,6 +18,6 @@ Feature: Course - Show outdated tool
     When I go to rooms overview
     When I go to room 'German'
     When I click on the tools tab
-    Then I can see the outdated tool 'Cypress Test Tool School Scope' in the tool overview
-    When I click on the outdated tool 'Cypress Test Tool School Scope'
+    Then I can see the tool 'Cypress Test Tool School Scope' in the tool overview
+    When I click on the tool 'Cypress Test Tool School Scope'
     Then I can see the outdated dialog of 'Cypress Test Tool School Scope'
