@@ -1,6 +1,6 @@
 Feature: Course - Show outdated tool
 
-  As a student and teacher I want to see the status ctl tool from my course.
+  As a student and teacher I want to see an outdated ctl tool to my course.
 
   @unstable_test
   Scenario: Student can see outdated dialog for outdated tool

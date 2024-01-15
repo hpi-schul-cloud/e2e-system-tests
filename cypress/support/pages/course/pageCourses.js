@@ -575,8 +575,10 @@ class Courses {
 
   }
 
-  checkConfirmButtonOnDeletionDialog(){
+  checkConfirmButtonOnDeletionDialog() {
     cy.get(Courses.#dialogConfirmButton).should('be.visible').click()
+  }
+
   seeToolInToolOverview(toolName) {
     cy.get(Courses.#roomExternalToolSection).contains(toolName).should('exist');
   }
@@ -615,6 +617,10 @@ class Courses {
     cy.get(Courses.#outdatedDialogTitle).siblings('div').should('have.length', '2')
     cy.get(Courses.#outdatedDialogTitle).siblings('div').eq(0).find('p')
         .invoke('text').should('have.length.gt', 0)
+  }
+
+  checkIfToolIsVisible(toolName) {
+    cy.get(Courses.#toolConfigurationSelectItem).should('not.contain', toolName);
   }
 
   checkIfToolIsVisibleInSelection(toolName) {

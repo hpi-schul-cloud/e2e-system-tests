@@ -93,6 +93,8 @@ When('I click on delete button of the tool {string}', (toolName) => {
 
 Then('I can see the deletion dialog and confirm Button', ()=> {
 	courses.checkConfirmButtonOnDeletionDialog()
+})
+
 Then('I can not see tool {string} in the tool selection list', toolName => {
   	courses.checkIfToolIsVisible(toolName);
 })
@@ -125,6 +127,3 @@ When('I confirm the update', () => {
 	courses.clickOnConfirmButton();
 })
 
-When('I click on three dot menu of the tool {string}', (toolName) => {
-	courses.clickThreeDotMenuOnTool(toolName);
-})
