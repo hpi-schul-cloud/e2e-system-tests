@@ -84,6 +84,7 @@ class Courses {
   static #saveBtn = '[data-testid="save-button"]'
   static #incompleteChip = '[data-testid="tool-card-status-incomplete"]'
   static #toolCardThreeDotBtn = '[data-testid="room-tool-three-dot-button"]'
+  static #chooseStudentSelectionBox = '[id="studentsId_chosen"]'
 
   seeSectionOneAreaOnCourseCreatePage() {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
@@ -616,6 +617,13 @@ class Courses {
   clickOnEditCourse() {
     cy.get(Courses.#dropDownCourse).parent().click()
     cy.get(Courses.#btnCourseEdit).click()
+  }
+
+  addStudentWithSearchStringToCourse(searchString) {
+    cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type('{enter}')
+    cy.get(Courses.#chooseStudentSelectionBox).contains('Amelia').should('exist')
+    cy.get(Courses.#btnSubmit).click()
+    cy.wait('@administration_api')
   }
 }
 export default Courses

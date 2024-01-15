@@ -173,3 +173,7 @@ When('I see room page {string}', roomName => {
 When('I click on edit course', () => {
   courses.clickOnEditCourse();
 })
+
+When('I add the first student with search string {string} to the course', (searchString) => {
+  courses.addStudentWithSearchStringToCourse(searchString);
+})

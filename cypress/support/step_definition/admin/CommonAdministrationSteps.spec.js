@@ -48,6 +48,10 @@ When('I go to team administration', () => {
  management.navigateToTeamAdministration();
 });
 
+When('I go to course administration', () => {
+	management.navigateToCourseAdministration()
+})
+
 When('I click on FAB', () => {
   management.clickOnFAB()
 })
