@@ -58,5 +58,8 @@
 			"enabled": false,
 			"output": "html-report/report.html"
 		}
+	},
+	"dependencies": {
+		"cypress-real-events": "^1.11.0"
 	}
 }
