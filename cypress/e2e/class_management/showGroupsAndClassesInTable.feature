@@ -83,6 +83,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     Given I see the new class administration page
     When I click on the next year tab
     When I click the delete button
+    Then I can see the delete modal
     When I click the confirmation button on the delete modal
     Then I see the new class administration page
 
