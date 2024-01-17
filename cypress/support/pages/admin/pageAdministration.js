@@ -74,7 +74,7 @@ class Management {
     static #addExternalToolSaveButton = '[data-testid="save-button"]'
     static #isDeactivatedCheckBox = '[data-testid="configuration-deactivate-checkbox"]'
     static #parameterInputField = '[data-testid="schoolParam"]'
-
+    static #dataTable = '[data-testid="table_container"]'
 
     disableTeamsVideoConferenceByAdmin() {
         cy.get(Management.#oldAdminPageVideoChatCheckBox)
@@ -659,6 +659,18 @@ class Management {
         cy.get(Management.#classOptionCheckbox).should('not.be.checked')
         cy.get(Management.#courseOptionCheckbox).should('not.be.checked')
         cy.get(Management.#othersOptionCheckbox).should('not.be.checked')
+    }
+
+    editSpecificCourse(courseName) {
+        const courseEntry = cy.get(Management.#dataTable).find('td').contains(courseName)
+        const actionButtons = courseEntry.siblings('td').eq(2)
+        actionButtons.children().first().click()
+        cy.wait('@courses_api')
+    }
+
+    seeCourseAdministrationPage() {
+        cy.url().should('include', '/administration/courses')
+
     }
 }
 
