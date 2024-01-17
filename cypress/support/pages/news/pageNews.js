@@ -55,7 +55,7 @@ class News {
 
   clickOnCreateNewsSaveButton () {
     cy.get(News.#newsCreateButton)
-      .click().wait(500)
+      .click()
   }
 
   seeTimeInput () {
@@ -67,7 +67,7 @@ class News {
   }
 
   enterNewsDescription (newsDescription) {
-    cy.get(News.#newsDescription, {timeout: 20000}).focus().wait(1000).realType(newsDescription)
+    cy.get(News.#newsDescription, {timeout: 20000}).focus().wait(1000).realType(newsDescription).wait(1000)
   }
 
   enterNewsTitle (newsTitle) {
