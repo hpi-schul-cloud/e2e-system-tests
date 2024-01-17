@@ -67,9 +67,7 @@ class News {
   }
 
   enterNewsDescription (newsDescription) {
-    cy.get(News.#newsDescription, { timeout: 20000 }).type(
-      newsDescription
-    )
+    cy.get(News.#newsDescription, {timeout: 20000}).focus().wait(1000).realType(newsDescription).wait(500)
   }
 
   enterNewsTitle (newsTitle) {
