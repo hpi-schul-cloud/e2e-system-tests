@@ -21,13 +21,9 @@ Cypress.Commands.add('login', (username, environment) => {
       const environmentUpperCased = environment.toUpperCase()
       const link = Cypress.config('baseUrl', env[environmentUpperCased])
       cy.log(link)
+      cy.visit('/login')
       if (environmentUpperCased === 'NBC') {
-        cy.visit('/login')
         cy.get(nbcLoginWithEmailOptionButton).click()
-      } else if (environmentUpperCased === 'DEFAULT') {
-        cy.visit('/login')
-      } else {
-        cy.visit('/login')
       }
 
       let userEmail
