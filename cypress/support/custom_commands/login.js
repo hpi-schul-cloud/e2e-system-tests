@@ -2,7 +2,7 @@ const emailInputFieldElement = '[data-testid="username-email"]'
 const passwordInputFieldElement = '[data-testid="password-email"]'
 const submitButton = '[data-testid="submit-login-email"]'
 const nbcLoginWithEmailOptionButton = '[data-testid="submit-cloud-site"]'
-const defaultLoginViaExternalBroker =
+const dbcLoginViaExternalBroker =
   '[data-testid="submit-oauth-login"], [data-provider="oauth"]'
 const initials = '[data-testid="initials"]'
 const languageSelection = '[id="selected-language"]'
@@ -10,7 +10,7 @@ const languageDe = '[data-language="de"]'
 const externalUsernameInputFieldElement = '[id="Username"]'
 const externalPasswordInputFieldElement = '[id="Password"]'
 const oauth_url =
-  'https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
+  'https://idm-dbc-main.cd.dbildungscloud.dev/realms/dbc/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://dbc-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock'
 const titleOnDashboardPage = '[id="page-title"]'
 
 Cypress.Commands.add('login', (username, environment) => {
@@ -22,7 +22,7 @@ Cypress.Commands.add('login', (username, environment) => {
     if (environmentUpperCased === 'NBC') {
       cy.visit('/login')
       cy.get(nbcLoginWithEmailOptionButton).click()
-    } else if (environmentUpperCased === 'DEFAULT') {
+    } else if (environmentUpperCased === 'DBC') {
       cy.visit('/login')
     } else {
       cy.visit('/login')
