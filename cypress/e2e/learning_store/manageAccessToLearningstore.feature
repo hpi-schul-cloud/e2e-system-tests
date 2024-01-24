@@ -9,6 +9,7 @@ Feature: Learning store - Activating and deactivating access for students
         Given I am logged in as a '<admin>' at '<namespace>'
         When I go to administration page
         When I go to school administration
+        When I click on general settings panel
         When I click the checkbox to disable students access to learning store
         When I click on admin setting save button
         Then I see checkbox to enable students access to learning store is unchecked
@@ -19,6 +20,7 @@ Feature: Learning store - Activating and deactivating access for students
         Given I am logged in as a '<admin>' at '<namespace>'
         When I go to administration page
         When I go to school administration
+        When I click on general settings panel
         When I click the checkbox to enable students access to learning store
         When I click on admin setting save button
     # Student sees link to Learning store in menu
@@ -29,6 +31,7 @@ Feature: Learning store - Activating and deactivating access for students
         Given I am logged in as a '<admin>' at '<namespace>'
         When I go to administration page
         When I go to school administration
+        When I click on general settings panel
         When I click the checkbox to disable students access to learning store
         When I click on admin setting save button
     # Student doesn't see link to Learning store in menu

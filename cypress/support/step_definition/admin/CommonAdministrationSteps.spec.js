@@ -28,6 +28,14 @@ When('I go to school administration', () => {
  management.navigateToSchoolAdministration()
 })
 
+When('I click on general settings panel', () => {
+  management.clickGeneralSettingsPanel()
+})
+
+When('I click on external tools panel', () => {
+  management.clickExternalToolsPanel();
+})
+
 When('I go to new school administration page', () => {
   management.clickNewAdminPageButton()
 })

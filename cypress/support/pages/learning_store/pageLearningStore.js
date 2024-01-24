@@ -3,10 +3,10 @@
 class Learning_Store {
 
   static #learningStoreMenuLink = '[data-testid="Lern-Store"]'
-  static #learningStoreSearchInput = 'input' //must be exchanged -> data-testid
-  static #searchResultCard = '[class="content-card"]'
-  static #learningStoreContentDetailContainer = '[class="content-container"]' //must be exchanged -> data-testid
-  static #learningStoreContentDetailToContentLink = 'a' //must be exchanged -> data-testid
+  static #learningStoreSearchInput = '[data-testid="learningstore-search-input"]'
+  static #searchResultCard = '[data-testid="learningstore-searchresult-item"]'
+  static #learningStoreContentDetailContainer = '[data-testid="lernStoreCardsContainer"]'
+  static #learningStoreContentDetailToContentLink = '[data-testid="learningstore-to-content-link"]'
 
   navigateToLearningStoreOverview() {
     cy.visit('/content')
@@ -32,7 +32,7 @@ class Learning_Store {
   }
 
   clickOnFirstCardOfSearchResult() {
-    cy.get(Learning_Store.#searchResultCard).eq(0).click()
+    cy.get(Learning_Store.#searchResultCard).first().click()
   }
 
   assertContentDetailPageIsVisible(){
@@ -40,7 +40,7 @@ class Learning_Store {
   }
 
   openLearningStoreContent(){
-    cy.get(Learning_Store.#learningStoreContentDetailToContentLink).eq(1)
+    cy.get(Learning_Store.#learningStoreContentDetailToContentLink).click()
   }
 
 }

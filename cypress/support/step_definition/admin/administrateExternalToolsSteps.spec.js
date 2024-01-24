@@ -31,6 +31,6 @@ When ('I selected the messenger activation checkbox',()=>{
   teams.enableMessangerInTeamEdit()
 })
 
-When ('click on save changes',()=>{
+When ('I click on save changes',()=>{
   teams.clickOnSaveAfterEdit()
 })

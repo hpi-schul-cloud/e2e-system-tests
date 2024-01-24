@@ -52,6 +52,7 @@ class Management {
     static #migrationMandatorySwitch = '[data-testid="migration-mandatory-switch"]'
     static #enableSyncDuringMigrationSwitch = '[data-testid="enable-sync-during-migration-switch"]'
     static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]'
+    static #generalSettingsPanel = '[data-testid="general-settings-panel"]'
     static #externalToolsPanel = '[data-testid="tools-panel"]'
     static #externalToolsTable = '[data-testid="external-tool-section-table"]'
     static #editExternalToolButton = '[data-testId="editAction"]'
@@ -173,6 +174,10 @@ class Management {
     navigateToSchoolAdministration() {
         cy.get(Management.#schoolAdministrationNavigationButton).click()
         cy.url().should('include', '/administration/school')
+    }
+
+    clickGeneralSettingsPanel() {
+        cy.get(Management.#generalSettingsPanel).click()
     }
 
     clickOnFAB () {
