@@ -23,7 +23,7 @@ class Management {
     static #tableContents = '[data-testid="table-data-body"]'
     static #manageSchoolCard = '[data-testid="school_administration_card"]'
     static #oldAdminPageVideoChatCheckBox ='[data-testid="school-administration-video-conference-checkbox"]'
-    static #saveGeneralAdminSetting = '[data-testid="school-administration-save-general-setting"]'
+    static #saveGeneralAdminSetting = '[data-testid="save-general-setting"]'
     static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
     static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]'
     static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
@@ -33,7 +33,7 @@ class Management {
     static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
     static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
     static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
-    static #learningStoreStudentAccessCheckbox = '[id="studentlernstorevisibility"]'
+    static #learningStoreStudentAccessCheckbox = '[data-testid="admin-school-toggle-learning-store"]'
     static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
     static #startMigrationButton = '[data-testid="migration-start-button"]'
     static #migrationInformationText = '[data-testid="text-description"]'
@@ -112,11 +112,11 @@ class Management {
     }
 
     clickCheckboxToDisableAccessToLearningStore () {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).uncheck()
+        cy.get(Management.#learningStoreStudentAccessCheckbox).first().click()
     }
 
     clickCheckboxToEnableAccessToLearningStore () {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).check()
+        cy.get(Management.#learningStoreStudentAccessCheckbox).first().click()
     }
 
     assertStudentsAccessIsUnchecked() {

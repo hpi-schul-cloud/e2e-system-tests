@@ -20,8 +20,6 @@ Feature: Learning store - Activating and deactivating access for students
         When I click on first card of search result
         Then I see card details
         When I click on button To content
-#     Then I see new open page with material
-
 
     # Admin deactivates students access to Learning store again (tests change from access to no-access)
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -35,24 +33,5 @@ Feature: Learning store - Activating and deactivating access for students
         Examples:
             | user          | admin         | namespace  | search_text   |
             | teacher1_brb  | admin1_brb    | brb        | dino          |
- #           | student1_brb  | admin1_brb    | brb        | dino          |
-  #          | admin1_brb    | admin1_brb    | brb        | dino          |
-
-
-#             Scenario Outline: Search open and download material form LerneStore
-
-#     Given I am logged in as a '<user>' at '<state>'
-#     When I go to LernStore overview
-#     And I write '<search_text>' in search container and wait for search result
-#     Then I can see LerneStore website with search result
-#     When I click on first card in website with search result
-#     Then I see website with open card
-#     When I click on button Material
-#     Then I see new open page with material
-
-# # Test data
-#     Examples:
-#         | user    | state   | search_text   |
-#         | teacher | brb     | dino          |
-#         | student | brb     | dino          |
-#         | admin   | brb     | dino          |
+            | student1_brb  | admin1_brb    | brb        | dino          |
+            | admin1_brb    | admin1_brb    | brb        | dino          |

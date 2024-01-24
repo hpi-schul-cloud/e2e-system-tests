@@ -8,6 +8,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Given I am logged in as a 'admin1_dbc' at 'default'
         When I go to administration page
         When I click on manage school card
+        When I click on general settings panel
         Then I enable the video conference on the old school setting page
         Then I click on admin setting save button
 
@@ -100,6 +101,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Given I am logged in as a 'admin1_dbc' at 'default'
         When I go to administration page
         When I click on manage school card
+        When I click on general settings panel
         Then I disable the video conference on the old school setting page
         Then I click on admin setting save button
 
