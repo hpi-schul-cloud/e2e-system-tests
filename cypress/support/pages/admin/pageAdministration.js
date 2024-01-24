@@ -22,7 +22,6 @@ class Management {
     static #saveGeneralSettingsButton = '.my-5'
     static #tableContents = '[data-testid="table-data-body"]'
     static #manageSchoolCard = '[data-testid="school_administration_card"]'
-    static #oldAdminPageVideoChatCheckBox ='[data-testid="school-administration-video-conference-checkbox"]'
     static #saveGeneralAdminSetting = '[data-testid="save-general-setting"]'
     static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
     static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]'
@@ -33,7 +32,8 @@ class Management {
     static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
     static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
     static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
-    static #learningStoreStudentAccessCheckbox = '[data-testid="admin-school-toggle-learning-store"]'
+    static #videoConferenceToggle = '[data-testid="toggle_video_conference"]'
+    static #learningStoreStudentAccessToggle = '[data-testid="admin-school-toggle-learning-store"]'
     static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
     static #startMigrationButton = '[data-testid="migration-start-button"]'
     static #migrationInformationText = '[data-testid="text-description"]'
@@ -78,8 +78,7 @@ class Management {
     static #dataTable = '[data-testid="table_container"]'
 
     disableTeamsVideoConferenceByAdmin() {
-        cy.get(Management.#oldAdminPageVideoChatCheckBox)
-            .uncheck()
+        cy.get(Management.#videoConferenceToggle).first().click()
     }
 
     clickOnAdminSettingsSave () {
@@ -88,8 +87,7 @@ class Management {
     }
 
     enableTeamsVideoConferenceByAdmin () {
-        cy.get(Management.#oldAdminPageVideoChatCheckBox)
-            .check()
+        cy.get(Management.#videoConferenceToggle).first().click()
     }
 
     clickOnManageSchoolCard () {
@@ -112,15 +110,15 @@ class Management {
     }
 
     clickCheckboxToDisableAccessToLearningStore () {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).first().click()
+        cy.get(Management.#learningStoreStudentAccessToggle).first().click()
     }
 
     clickCheckboxToEnableAccessToLearningStore () {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).first().click()
+        cy.get(Management.#learningStoreStudentAccessToggle).first().click()
     }
 
     assertStudentsAccessIsUnchecked() {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).should('not.be.checked');
+        cy.get(Management.#learningStoreStudentAccessToggle).should('not.be.checked');
     }
 
     clickSaveButtonToAllowStudentCreateTeam () {

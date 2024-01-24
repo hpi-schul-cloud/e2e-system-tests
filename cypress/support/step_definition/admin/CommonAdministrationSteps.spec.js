@@ -4,7 +4,7 @@ import Management from '../../pages/admin/pageAdministration'
 const management = new Management()
 
 
-Then ('I disable the video conference on the old school setting page', () =>{
+Then ('I disable the video conference', () =>{
 	management.disableTeamsVideoConferenceByAdmin()
 })
 
@@ -12,7 +12,7 @@ Then ('I click on admin setting save button', () =>{
 	management.clickOnAdminSettingsSave()
 })
 
-Then ('I enable the video conference on the old school setting page', () =>{
+Then ('I enable the video conference', () =>{
 	management.enableTeamsVideoConferenceByAdmin()
 })
 

@@ -9,7 +9,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I go to administration page
         When I click on manage school card
         When I click on general settings panel
-        Then I enable the video conference on the old school setting page
+        Then I enable the video conference
         Then I click on admin setting save button
 
     @stable_test
@@ -102,7 +102,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I go to administration page
         When I click on manage school card
         When I click on general settings panel
-        Then I disable the video conference on the old school setting page
+        Then I disable the video conference
         Then I click on admin setting save button
 
     @stable_test
