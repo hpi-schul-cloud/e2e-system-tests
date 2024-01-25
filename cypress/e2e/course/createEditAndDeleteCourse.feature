@@ -14,10 +14,6 @@ Feature: Course - To add and delete a course by the teacher
 
 
   Scenario: Create, edit and delete a course
-<<<<<<< HEAD
-=======
-    Given I am logged in as a 'teacher1_dbc' at 'dbc'
->>>>>>> main
     When I go to rooms overview
     Then I see room search box on the room overview page
     When I click on FAB to create a new room

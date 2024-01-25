@@ -24,10 +24,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a pre-condition teacher adds student as an internal team member
-<<<<<<< HEAD
-=======
-        Given I am logged in as a 'teacher1_dbc' at 'dbc'
->>>>>>> main
         When I go to teams overview
         When I go to a team 'Musik'
         When I click on three dot menu on the team title
@@ -38,11 +34,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I see the student named 'Herbert Kraft' on the team members table
 
     @stable_test
-    Scenario: Teacher adds  event with video conference
-<<<<<<< HEAD
-=======
-        Given I am logged in as a 'teacher1_dbc' at 'dbc'
->>>>>>> main
+    Scenario: Teacher adds event with video conference
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -84,10 +76,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Teacher edits and deletes the event
-<<<<<<< HEAD
-=======
-        Given I am logged in as a 'teacher1_dbc' at 'dbc'
->>>>>>> main
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -116,11 +104,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Teacher sees deactivated video conference check box
-<<<<<<< HEAD
-        Given I am logged in as a 'teacher1_dbc' at 'default'
-=======
         Given I am logged in as a 'teacher1_dbc' at 'dbc'
->>>>>>> main
         When I go to teams overview
         When I go to a team 'Musik'
         When I click on team settings
