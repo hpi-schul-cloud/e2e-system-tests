@@ -19,7 +19,6 @@ Feature: Team - Create, delete and edit operations on Teams
 
   @stable_test
   Scenario: Editing the newly created team by Teacher
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
     When I go to a team 'cy test team to test create edit delete team'
     When I click on team settings
@@ -34,7 +33,6 @@ Feature: Team - Create, delete and edit operations on Teams
 
   @stable_test
   Scenario: Deleting the newly created team by Teacher
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
     When I go to a team 'edited cy test team to test create edit delete team'
     When I click on team settings

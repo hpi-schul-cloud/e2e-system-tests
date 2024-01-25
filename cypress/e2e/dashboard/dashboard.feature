@@ -18,7 +18,6 @@ Feature: Dashboard - To check contents on the dashboard
 
   @stable_test
   Scenario: as a pre-condition teacher creates a team news
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
     When I go to a team 'Musik'
     When I click on news tab on the team detail page
@@ -33,7 +32,6 @@ Feature: Dashboard - To check contents on the dashboard
 
   @stable_test
   Scenario: as a pre-condition teacher adds student as team member
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
     When I go to a team 'Musik'
     When I click on three dot menu on the team title
@@ -65,7 +63,6 @@ Feature: Dashboard - To check contents on the dashboard
 
   @stable_test
   Scenario: as a post-condition teacher deletes the school news
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I arrive on the dashboard
     And I click on the news teaser 'Dashboard - this is a school news'
     When I click on delete button
@@ -74,12 +71,12 @@ Feature: Dashboard - To check contents on the dashboard
 
   @stable_test
   Scenario: as a post-condition teacher deletes the team news
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I arrive on the dashboard
     And I click on the news teaser 'Dashboard - this is a team news'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'Dashboard - this is a team news'
+    When I arrive on the dashboard
 
   @stable_test
   Scenario: student does not see news anymore on dashboard

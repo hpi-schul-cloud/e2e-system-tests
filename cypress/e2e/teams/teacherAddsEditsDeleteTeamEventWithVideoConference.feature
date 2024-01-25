@@ -24,7 +24,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a pre-condition teacher adds student as an internal team member
-        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I click on three dot menu on the team title
@@ -36,7 +35,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: Teacher adds  event with video conference
-        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -78,7 +76,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Teacher edits and deletes the event
-        Given I am logged in as a 'teacher1_dbc' at 'default'
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -93,6 +90,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I see event creation modal
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
+        When I arrive on the dashboard
 
 
     @stable_test
@@ -102,13 +100,14 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on manage school card
         Then I disable the video conference on the old school setting page
         Then I click on admin setting save button
+        When I arrive on the dashboard
 
     @stable_test
     Scenario: as a post condition Teacher sees deactivated video conference check box
-      Given I am logged in as a 'teacher1_dbc' at 'default'
-      When I go to teams overview
-      When I go to a team 'Musik'
-      When I click on team settings
-      When I click on edit option
-      Then I see team edit page
-      Then I see video conference option is disabled
+        Given I am logged in as a 'teacher1_dbc' at 'default'
+        When I go to teams overview
+        When I go to a team 'Musik'
+        When I click on team settings
+        When I click on edit option
+        Then I see team edit page
+        Then I see video conference option is disabled
