@@ -11,7 +11,7 @@ on:
         default: "https://main.nbc.dbildungscloud.dev"
         required: true
       instance3:
-        description: "Please enter a valid DEFAULT instance URL to run the tests on"
+        description: "Please enter a valid DBC instance URL to run the tests on"
         default: "https://main.dbc.dbildungscloud.dev"
         required: true
 
@@ -48,7 +48,7 @@ jobs:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: ${{ inputs.instance1 }}
-      cypress_default: ${{ inputs.instance3 }}
+      cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       tag: tag:stable:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}

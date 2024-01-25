@@ -118,7 +118,7 @@ class Login_Management {
   }
 
   visitLoginPage () {
-    const instance = 'DEFAULT'
+    const instance = 'DBC'
     cy.session(
       instance,
       () => {

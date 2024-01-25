@@ -11,8 +11,8 @@ on:
       cypress_nbc:
         description: "nbc url from the workflow"
         type: string
-      cypress_default:
-        description: "default url from the workflow"
+      cypress_dbc:
+        description: "dbc url from the workflow"
         type: string
       tag:
         description: "tag for running cypress tests"
@@ -62,7 +62,7 @@ jobs:
           ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh \
             "${workflow}" \
             "${{ inputs.cypress_brb }}" \
-            "${{ inputs.cypress_default }}" \
+            "${{ inputs.cypress_dbc }}" \
             "${{ inputs.cypress_nbc }}" \
             "${workspace_path}" \
             "${{ inputs.environment }}"
