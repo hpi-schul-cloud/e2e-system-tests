@@ -110,7 +110,7 @@ function generateReport () {
         },
         {
           label: 'Instance 3',
-          value: browserData.env.DEFAULT
+          value: browserData.env.DBC
         },
         {
           label: 'Execution Time',

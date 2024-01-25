@@ -22,7 +22,7 @@ jobs:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_default: https://main.dbc.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: tag:stable:ci
       environment: dev

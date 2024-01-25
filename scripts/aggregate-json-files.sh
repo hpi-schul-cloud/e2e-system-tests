@@ -33,6 +33,6 @@ if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; 
   updated_json=$(jq --arg brb "$brb_instance" \
     --arg dbc "$dbc_instance" \
     --arg nbc "$nbc_instance" \
-    '.BRB = $brb | .DEFAULT = $dbc | .NBC = $nbc' "$aggregated_json_file")
+    '.BRB = $brb | .DBC = $dbc | .NBC = $nbc' "$aggregated_json_file")
   echo "$updated_json" >"$aggregated_json_file"
 fi

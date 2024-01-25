@@ -17,7 +17,7 @@
 import './commands'
 import './custom_commands/login'
 import './custom_commands/logout'
-import "cypress-real-events";
+import 'cypress-real-events'
 
 // prevents blocking test by uncaught exception. This should be commented out when BC-2711 is resolved
 Cypress.on('uncaught:exception', (err, runnable) => {
@@ -28,7 +28,7 @@ let data = {
   env: {
     BRB: '',
     NBC: '',
-    DEFAULT: ''
+    DBC: ''
   },
   browser: {
     name: '',
@@ -39,15 +39,15 @@ let data = {
 }
 
 before(() => {
-  cy.exec(`ls cypress/fixtures/test-run-details.json`, { failOnNonZeroExit: false }).then(
-    result => {
-      if (result.code === 0) {
-        return
-      } else {
-        cy.writeFile('cypress/fixtures/test-run-details.json', data)
-      }
+  cy.exec(`ls cypress/fixtures/test-run-details.json`, {
+    failOnNonZeroExit: false
+  }).then(result => {
+    if (result.code === 0) {
+      return
+    } else {
+      cy.writeFile('cypress/fixtures/test-run-details.json', data)
     }
-  )
+  })
 })
 
 after(() => {
@@ -55,7 +55,7 @@ after(() => {
     const env = Cypress.env()
     data.env.BRB = env['BRB']
     data.env.NBC = env['NBC']
-    data.env.DEFAULT = env['DEFAULT']
+    data.env.DBC = env['DBC']
     data.browser.name = Cypress.browser.name
     data.browser.version = Cypress.browser.majorVersion
     data.platform = Cypress.platform

@@ -22,7 +22,7 @@ Cypress.Commands.add('login', (username, environment) => {
     if (environmentUpperCased === 'NBC') {
       cy.visit('/login')
       cy.get(nbcLoginWithEmailOptionButton).click()
-    } else if (environmentUpperCased === 'DEFAULT') {
+    } else if (environmentUpperCased === 'DBC') {
       cy.visit('/login')
     } else {
       cy.visit('/login')
