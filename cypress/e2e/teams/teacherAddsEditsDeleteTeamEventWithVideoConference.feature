@@ -53,7 +53,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on start video conference button as a moderator teacher
         Then I see the modal and toggles are visible in the modal
         Then I start the team video conference which has title 'cy title'
-        Then I log out
 
     @stable_test
     Scenario: Student can see and participate in video conference
@@ -90,8 +89,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I see event creation modal
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
-        When I arrive on the dashboard
-
 
     @stable_test
     Scenario: as a post condition Admin disable the video conference for the team
@@ -100,7 +97,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on manage school card
         Then I disable the video conference on the old school setting page
         Then I click on admin setting save button
-        When I arrive on the dashboard
 
     @stable_test
     Scenario: as a post condition Teacher sees deactivated video conference check box

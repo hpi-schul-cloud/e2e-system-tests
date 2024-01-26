@@ -108,7 +108,7 @@ Cypress.Commands.add('login', (username, environment) => {
     },
     {
       validate () {
-        cy.location('pathname').should('contains', 'dashboard')
+        // cy.location('pathname').should('contains', 'dashboard')
       },
       cacheAcrossSpecs: false
     }

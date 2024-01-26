@@ -76,7 +76,6 @@ Feature: Dashboard - To check contents on the dashboard
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'Dashboard - this is a team news'
-    When I arrive on the dashboard
 
   @stable_test
   Scenario: student does not see news anymore on dashboard
