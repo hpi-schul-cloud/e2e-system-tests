@@ -14,7 +14,6 @@ Feature: Course - To add and delete a course by the teacher
 
 
   Scenario: Create, edit and delete a course
-    Given I am logged in as a 'teacher1_dbc' at 'dbc'
     When I go to rooms overview
     Then I see room search box on the room overview page
     When I click on FAB to create a new room
@@ -61,7 +60,6 @@ Feature: Course - To add and delete a course by the teacher
 
 
   Scenario: Create, edit and delete a course with groups of type class in nbc
-    Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     Then I see room search box on the room overview page
     When I click on FAB to create a new room

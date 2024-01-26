@@ -13,7 +13,6 @@ Feature: Course - Add substitute teacher to course
     And I clear substitute teacher field
     And I add substitute teacher 'teacher2'
     And I click on save changes after editing the course details
-    Then I log out
     Given I am logged in as a 'teacher2_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Biologie'

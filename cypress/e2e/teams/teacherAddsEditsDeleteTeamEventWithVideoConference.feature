@@ -24,7 +24,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a pre-condition teacher adds student as an internal team member
-        Given I am logged in as a 'teacher1_dbc' at 'dbc'
         When I go to teams overview
         When I go to a team 'Musik'
         When I click on three dot menu on the team title
@@ -35,8 +34,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I see the student named 'Herbert Kraft' on the team members table
 
     @stable_test
-    Scenario: Teacher adds  event with video conference
-        Given I am logged in as a 'teacher1_dbc' at 'dbc'
+    Scenario: Teacher adds event with video conference
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -55,7 +53,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on start video conference button as a moderator teacher
         Then I see the modal and toggles are visible in the modal
         Then I start the team video conference which has title 'cy title'
-        Then I log out
 
     @stable_test
     Scenario: Student can see and participate in video conference
@@ -78,7 +75,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     @stable_test
     Scenario: as a post condition Teacher edits and deletes the event
-        Given I am logged in as a 'teacher1_dbc' at 'dbc'
         When I go to teams overview
         When I go to a team 'Musik'
         When I go to calendar tab
@@ -93,7 +89,6 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I see event creation modal
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
-
 
     @stable_test
     Scenario: as a post condition Admin disable the video conference for the team

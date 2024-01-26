@@ -28,7 +28,6 @@ Feature: Task - To create and delete tasks starting from task overview page by t
 
   @stable_test
   Scenario: Teacher deletes a simple task without course using the dot menu
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to tasks overview
     When I click on draft tasks tab
     When I click on three dot menu of task 'Cy Task Creating from Task Overview Test'
@@ -45,7 +44,6 @@ Feature: Task - To create and delete tasks starting from task overview page by t
 
   @stable_test
   Scenario: Teacher deletes a simple task without course using the delete button on the task edit page
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to tasks overview
     When I click on draft tasks tab
     When I click on task 'Cy Task to be delete on task page' in tasks overview

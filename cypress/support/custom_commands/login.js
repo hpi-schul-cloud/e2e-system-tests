@@ -19,13 +19,9 @@ Cypress.Commands.add('login', (username, environment) => {
     const environmentUpperCased = environment.toUpperCase()
     const link = Cypress.config('baseUrl', env[environmentUpperCased])
     cy.log(link)
+    cy.visit('/login')
     if (environmentUpperCased === 'NBC') {
-      cy.visit('/login')
       cy.get(nbcLoginWithEmailOptionButton).click()
-    } else if (environmentUpperCased === 'DBC') {
-      cy.visit('/login')
-    } else {
-      cy.visit('/login')
     }
 
     let userEmail
@@ -98,7 +94,9 @@ Cypress.Commands.add('login', (username, environment) => {
       })
     } else {
       cy.get(emailInputFieldElement).type(env[userEmail], { log: false })
-      cy.get(passwordInputFieldElement).type(env[userPassword], { log: false })
+      cy.get(passwordInputFieldElement).type(env[userPassword], {
+        log: false
+      })
       cy.get(submitButton).click()
     }
     cy.url().should('contain', '/dashboard')
