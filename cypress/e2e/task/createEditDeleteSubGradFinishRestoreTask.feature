@@ -27,7 +27,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
   @stable_test
   Scenario: Teacher edits and publishes task from room via form
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating and Deleting Test'
@@ -63,7 +62,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
   @stable_test
   Scenario: Teacher edits file
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
@@ -164,7 +162,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
   @stable_test
   Scenario: Teacher restores the finished task from room
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to tasks overview
     # And I open task list with due date // Icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
     Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
@@ -183,7 +180,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
   @stable_test
   Scenario: Teacher deletes task from room
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'

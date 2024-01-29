@@ -38,7 +38,6 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
   @stable_test
   Scenario: Teacher edits topic from room
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
@@ -82,7 +81,6 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
   @stable_test
   Scenario: Teacher deletes topic from room
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test - Edited topic'

@@ -12,7 +12,6 @@ Feature: Course - To search for a course via search input box on the course over
 
   @stable_test
   Scenario: teacher is able to search for a course and DO NOT find it
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I enter the course name 'Cy::NotExistingMathematikCourse' into the search field
     Then I do not see the course 'Cy::NotExistingMathematikCourse' on the room overview page
@@ -26,7 +25,6 @@ Feature: Course - To search for a course via search input box on the course over
 
   @stable_test
   Scenario: student is able to search for a course and DO NOT find it
-    Given I am logged in as a 'student1_brb' at 'brb'
     When I go to rooms overview
     When I enter the course name 'Cy::NotExistingMathematikCourse' into the search field
     Then I do not see the course 'Cy::NotExistingMathematikCourse' on the room overview page
