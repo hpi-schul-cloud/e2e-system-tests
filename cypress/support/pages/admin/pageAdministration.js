@@ -109,11 +109,11 @@ class Management {
             })
     }
 
-    clickCheckboxToDisableAccessToLearningStore () {
+    clickToggleSwitchToDisableAccessToLearningStore () {
         cy.get(Management.#learningStoreStudentAccessToggle).first().click()
     }
 
-    clickCheckboxToEnableAccessToLearningStore () {
+    clickToggleSwitchToEnableAccessToLearningStore () {
         cy.get(Management.#learningStoreStudentAccessToggle).first().click()
     }
 

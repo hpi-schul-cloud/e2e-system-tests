@@ -19,7 +19,7 @@ When('I write {string} in search container and wait for search result', searchTe
   learningStore.searchInLearningStore(searchText)
 })
 
-Then('I see LerneStore website with search result', () => {
+Then('I see website Learning Store with search result', () => {
   learningStore.assertSearchResultIsVisible()
 })
 
