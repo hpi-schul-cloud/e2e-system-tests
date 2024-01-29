@@ -1,5 +1,5 @@
 #@release
-@unstable_test
+@stable_test
 Feature: Group - To show groups and classes in one table with respective functionality
 
   As a teacher I want to see all groups and classes belonging to my school.
