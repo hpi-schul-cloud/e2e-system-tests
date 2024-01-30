@@ -9,17 +9,19 @@ Feature: Admin External Tools - To administrate school settings by the admin.
   Scenario: Deactivate Chat
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
-    And I go to school administration
-    And I go to new school administration page
-    And I click on toggle switch to deactivate the chat
-    And I click save general settings button
+    When I go to school administration
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
+    When I click on general settings panel
+    When I click on toggle switch to deactivate the chat
+    When I click save general settings button
     Then I log out
     Given I am logged in as a 'teacher1_brb' at 'brb'
-    And I go to teams overview
-    And I go to a team
+    When I go to teams overview
+    When I go to a team
     Then I can not see the chat in team
-    And I open team settings
-    And I choose edit team
+    Then I open team settings
+    Then I choose edit team
     Then I can not see the checkbox for messenger in a team
 
   @unstable_test
@@ -27,48 +29,54 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to school administration
-    And I go to new school administration page
-    And I click on toggle switch to activate the chat
-    And I click save general settings button
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
+    When I click on general settings panel
+    When I click on toggle switch to activate the chat
+    When I click save general settings button
     Then I log out
     Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to teams overview
-    And I go to a team
-    And I open team settings
-    And I choose edit team
+    When I go to a team
+    When I open team settings
+    When I choose edit team
     Then I can see the checkbox for messenger in a team
-    And I selected the messenger activation checkbox
-    And click on save changes
+    When I selected the messenger activation checkbox
+    When I click on save changes
     Then I can see the chat in team
 
   @unstable_test
   Scenario: Deactivate BigBlueButton
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
-    And I go to school administration
-    And I go to new school administration page
-    And I click on toggle switch to deactivate video conferencing
-    And I click save general settings button
-    And I log out
+    When I go to school administration
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
+    When I click on general settings panel
+    When I click on toggle switch to deactivate video conferencing
+    When I click save general settings button
+    When I log out
     Given I am logged in as a 'teacher1_brb' at 'brb'
-    And I go to rooms overview
-    And I go to room
-    And I go to tools tab
-    And I click add new tool button
+    When I go to rooms overview
+    When I go to room
+    When I go to tools tab
+    When I click add new tool button
     Then I can not add BigBlueButton to the room
 
   @unstable_test
   Scenario: Activate BigBlueButton
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
-    And I go to school administration
-    And I go to new school administration page
-    And I click on toggle switch to activate video conferencing
-    And I click save general settings button
-    And I log out
+    When I go to school administration
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
+    When I click on general settings panel
+    When I click on toggle switch to activate video conferencing
+    When I click save general settings button
+    When I log out
     Given I am logged in as a 'teacher1_brb' at 'brb'
-    And I go to rooms overview
-    And I go to room
-    And I go to tools tab
-    And I click add new tool button
+    When I go to rooms overview
+    When I go to room
+    When I go to tools tab
+    When I click add new tool button
     Then I can add BigBlueButton to the room

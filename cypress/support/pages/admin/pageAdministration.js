@@ -22,8 +22,7 @@ class Management {
     static #saveGeneralSettingsButton = '.my-5'
     static #tableContents = '[data-testid="table-data-body"]'
     static #manageSchoolCard = '[data-testid="school_administration_card"]'
-    static #oldAdminPageVideoChatCheckBox ='[data-testid="school-administration-video-conference-checkbox"]'
-    static #saveGeneralAdminSetting = '[data-testid="school-administration-save-general-setting"]'
+    static #saveGeneralAdminSetting = '[data-testid="save-general-setting"]'
     static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]'
     static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]'
     static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]'
@@ -33,7 +32,8 @@ class Management {
     static #teamAdministrationNavigationButton = '[data-testid="Teams"]'
     static #schoolAdministrationNavigationButton = '[data-testid="Schule"]'
     static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]'
-    static #learningStoreStudentAccessCheckbox = '[id="studentlernstorevisibility"]'
+    static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
+    static #learningStoreStudentAccessToggle = 'input[data-testid="admin-school-toggle-learning-store"]'
     static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]'
     static #startMigrationButton = '[data-testid="migration-start-button"]'
     static #migrationInformationText = '[data-testid="text-description"]'
@@ -52,6 +52,7 @@ class Management {
     static #migrationMandatorySwitch = '[data-testid="migration-mandatory-switch"]'
     static #enableSyncDuringMigrationSwitch = '[data-testid="enable-sync-during-migration-switch"]'
     static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]'
+    static #generalSettingsPanel = '[data-testid="general-settings-panel"]'
     static #externalToolsPanel = '[data-testid="tools-panel"]'
     static #externalToolsTable = '[data-testid="external-tool-section-table"]'
     static #editExternalToolButton = '[data-testId="editAction"]'
@@ -76,19 +77,25 @@ class Management {
     static #parameterInputField = '[data-testid="schoolParam"]'
     static #dataTable = '[data-testid="table_container"]'
 
-    disableTeamsVideoConferenceByAdmin() {
-        cy.get(Management.#oldAdminPageVideoChatCheckBox)
-            .uncheck()
-    }
-
     clickOnAdminSettingsSave () {
         cy.get(Management.#saveGeneralAdminSetting)
             .click()
     }
 
     enableTeamsVideoConferenceByAdmin () {
-        cy.get(Management.#oldAdminPageVideoChatCheckBox)
-            .check()
+        cy.get(Management.#videoConferenceToggle).then(el => {
+            (el.attr('aria-checked') === 'true')
+              ? cy.log('Element is already checked, skipping click')
+              : cy.get(Management.#videoConferenceToggle).click({force: true})
+          })
+    }
+
+    disableTeamsVideoConferenceByAdmin() {
+        cy.get(Management.#videoConferenceToggle).then(el => {
+            (el.attr('aria-checked') === 'false')
+              ? cy.log('Element is already unchecked, skipping click')
+              : cy.get(Management.#videoConferenceToggle).click({force: true})
+          })
     }
 
     clickOnManageSchoolCard () {
@@ -110,16 +117,36 @@ class Management {
             })
     }
 
-    clickCheckboxToDisableAccessToLearningStore () {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).uncheck()
+    clickToggleSwitchToDisableAccessToLearningStore () {
+        cy.get(Management.#learningStoreStudentAccessToggle).then(el => {
+          (el.attr('aria-checked') === 'false')
+            ? cy.log('Element is already unchecked, skipping click')
+            : cy.get(Management.#learningStoreStudentAccessToggle).click({force: true})
+        })
     }
 
-    clickCheckboxToEnableAccessToLearningStore () {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).check()
+    clickToggleSwitchToEnableAccessToLearningStore () {
+        cy.get(Management.#learningStoreStudentAccessToggle).then(el => {
+          (el.attr('aria-checked') === 'true')
+            ? cy.log('Element is already checked, skipping click')
+            : cy.get(Management.#learningStoreStudentAccessToggle).click({force: true})
+        })
     }
 
-    assertStudentsAccessIsUnchecked() {
-        cy.get(Management.#learningStoreStudentAccessCheckbox).should('not.be.checked');
+    assertStudentsAccessIsUnchecked () {
+      cy.get(Management.#learningStoreStudentAccessToggle).should(
+        'have.attr',
+        'aria-checked',
+        'false'
+      )
+    }
+
+    assertStudentsAccessIsChecked () {
+      cy.get(Management.#learningStoreStudentAccessToggle).should(
+        'have.attr',
+        'aria-checked',
+        'true'
+      )
     }
 
     clickSaveButtonToAllowStudentCreateTeam () {
@@ -173,6 +200,10 @@ class Management {
     navigateToSchoolAdministration() {
         cy.get(Management.#schoolAdministrationNavigationButton).click()
         cy.url().should('include', '/administration/school')
+    }
+
+    clickGeneralSettingsPanel() {
+        cy.get(Management.#generalSettingsPanel).click()
     }
 
     clickOnFAB () {

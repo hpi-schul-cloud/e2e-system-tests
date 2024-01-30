@@ -8,7 +8,7 @@ const teams = new Teams()
 // Rest of the defined steps can be found here:
 // -----------------------------------------
 // -\step_definition\authentication\loginStep.spec.js
-// -\step_definition\administration\CommonAdministrationSteps.spec.js
+// -\step_definition\administration\commonAdministrationSteps.spec.js
 // -\step_definition\teams\commonTeamsSteps.spec.js
 
 

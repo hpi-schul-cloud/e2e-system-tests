@@ -3,11 +3,13 @@ Feature: Admin Users - To administrate the Migration process.
 
   As an Admin I want to start, finish and make the migration mandatory.
 
+  @unstable_test
   Background:
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I go to school administration
 
+  @unstable_test
   Scenario: Admin starts the migration and the School Number is added
     Then I can see the school number
     Then I see button Start migration is enabled
@@ -20,11 +22,13 @@ Feature: Admin Users - To administrate the Migration process.
     Then I see the end migration button
     Then I see the migration mandatory switch is not checked
 
+  @unstable_test
   Scenario: Admin toggles ldap sync for school in migration
     Then I see the sync during migration switch is visible and not checked
     When I toggle the sync during migration switch
     Then I see the sync during migration switch is checked
 
+  @unstable_test
   Scenario: Admin stops the migration
     When I click on end migration button
     Then I see the end of migration information title

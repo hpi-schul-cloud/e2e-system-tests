@@ -3,10 +3,6 @@ import {Then, When} from "@badeball/cypress-cucumber-preprocessor";
 
 const management = new Management()
 
-When('I click on external tools panel', () => {
-    management.clickExternalToolsPanel();
-})
-
 When('I click on delete external tool button', () => {
     management.clickDeleteExternalToolButton()
 })
