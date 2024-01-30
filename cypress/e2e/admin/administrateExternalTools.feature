@@ -10,6 +10,8 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     When I go to school administration
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to deactivate the chat
     When I click save general settings button
@@ -27,6 +29,8 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     And I go to school administration
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to activate the chat
     When I click save general settings button
@@ -46,6 +50,8 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     When I go to school administration
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to deactivate video conferencing
     When I click save general settings button
@@ -62,6 +68,8 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to administration page
     When I go to school administration
+  #remove the following line if old admin page is hidden
+    When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to activate video conferencing
     When I click save general settings button
