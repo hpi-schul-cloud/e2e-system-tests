@@ -1,10 +1,10 @@
 @release
 Feature: Teacher can add and remove BBB tool in the course in NBC with admin permission
 
-  # As a teacher I want to activate and deactivate BBB tool inside the course in NBC
+  As a teacher I want to activate and deactivate BBB tool inside the course in NBC
 
   @stable_test
-  Scenario Outline: Admin enables the video conference option in the school settings page
+  Scenario Outline: Admin enables the video conference in the school settings page
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
     When I click on manage school card
@@ -14,7 +14,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     Then I click on admin setting save button
 
   @stable_test
-  Scenario Outline: Teacher can add and remove BBB tool in the course
+  Scenario Outline: Teacher can add and remove BBB tool in the course in NBC
   #Teacher adds the BBB tool in the course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
@@ -51,4 +51,4 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     When I go to room 'German'
     When I open course edit page
     Then I can see course edit page
-    Then I see the disabled check box for Activating video conferences in course
+    Then I see the disabled check box for Activating video conferences in course edit page

@@ -92,36 +92,36 @@ class Courses {
   static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]'
   static #toolsTabInCourseDetail = '[data-testid="tools-tab"]'
   static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]'
-  static #bbbVideoStartDialogNBC = '[data-testid="videoconference-config-dialog-title"]'
-  static #bbbDialogCancelButtonNBC = '[data-testid="dialog-cancel"]'
-  static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox" checked disabled]'
+  static #bbbVideoStartDialogBoxNBC = '[data-testid="videoconference-config-dialog-title"]'
+  static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]'
+  static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]'
 
 
-  seeDisabledCheckBoxBBBToolInCourseEditPage(){
-    cy.get(Courses.#bbbDisabledCheckBoxNBC).should('exit')
+  seeDisabledCheckBoxForBBBToolInCourseEditPage(){
+    cy.get(Courses.#bbbDisabledCheckBoxNBC).should('be.disabled')
   }
 
   uncheckVideoConferenceCheckBoxInCourseEditPage(){
     cy.get(Courses.#videoConferenceCheckBoxNBC).uncheck()
   }
 
-  doNotSeeBBBToolInNBC(){
+  doNotSeeBBBInToolTabNBC(){
     cy.get(Courses.#bbbToolIconInToolsTabNBC).should('not.exist')
   }
 
   cancelBBBToolDialogBoxNBC(){
-    cy.get(Courses.#bbbDialogCancelButtonNBC).click()
+    cy.get(Courses.#bbbDialogBoxCancelButtonNBC).click()
   }
 
-  seeBBBDialogToStartTheConferenceInNBC(){
-    cy.get(Courses.#bbbVideoStartDialogNBC).should('exist')
+  seeBBBDialogBoxToStartTheConferenceInNBC(){
+    cy.get(Courses.#bbbVideoStartDialogBoxNBC).should('exist')
   }
 
-  clickOnBBBToolInNBC(){
+  clickOnBBBInToolTabInNBC(){
     cy.get(Courses.#bbbToolIconInToolsTabNBC).click()
   }
 
-  seeBBBToolInNBC(){
+  seeBBBInToolTabNBC(){
     cy.get(Courses.#bbbToolIconInToolsTabNBC).should('exist')
   }
 
