@@ -476,7 +476,6 @@ class Courses {
   }
 
   searchForARoom(roomName) {
-    cy.wait('@rooms_overview_api');
     cy.get(Courses.#searchFieldRoomOverview).type(roomName)
   }
 
