@@ -40,7 +40,7 @@ Feature: Course - To add and delete a course by the teacher
     Then I can see course edit page
     When I edit the title of the room to 'Cypress Testkurs Edit'
     When I edit the room description to 'cy edit this is test description'
-    When I click on save changes after editing the course details
+    When I click on button Save changes in course edit page
     Then I see the course 'Cypress Testkurs Edit' on the room overview page
 
     #Deleting the course/room created in this feature test

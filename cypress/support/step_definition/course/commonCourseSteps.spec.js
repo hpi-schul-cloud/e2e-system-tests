@@ -28,7 +28,7 @@ Then('I do not see the course {string} on the room overview page', (courseName) 
   }
 )
 
-When('I click on save changes after editing the course details', () => {
+When('I click on button Save changes in course edit page', () => {
   courses.submitChangesAfterEditingCourse()
 })
 
