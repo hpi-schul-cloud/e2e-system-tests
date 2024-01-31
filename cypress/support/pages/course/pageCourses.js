@@ -89,6 +89,53 @@ class Courses {
   static #incompleteChip = '[data-testid="tool-card-status-incomplete"]'
   static #toolCardThreeDotBtn = '[data-testid="room-tool-three-dot-button"]'
   static #chooseStudentSelectionBox = '[id="studentsId_chosen"]'
+  static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]'
+  static #toolsTabInCourseDetail = '[data-testid="tools-tab"]'
+  static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]'
+  static #bbbVideoStartDialogNBC = '[data-testid="videoconference-config-dialog-title"]'
+  static #bbbDialogCancelButtonNBC = '[data-testid="dialog-cancel"]'
+
+
+
+  uncheckVideoConferenceCheckBoxInCourseEditPage(){
+    cy.get(Courses.#videoConferenceCheckBoxNBC).uncheck()
+  }
+
+
+  doNotSeeBBBToolInNBC(){
+    cy.get(Courses.#bbbToolIconInToolsTabNBC).should('not.exist')
+  }
+
+
+  cancelBBBToolDialogBoxNBC(){
+    cy.get(Courses.#bbbDialogCancelButtonNBC).click()
+  }
+
+
+  seeBBBSModalToStartTheConference(){
+    cy.get(Courses.#bbbVideoStartDialogNBC).should('exist')
+  }
+
+  clickOnBBBToolInNBC(){
+    cy.get(Courses.#bbbToolIconInToolsTabNBC).click()
+  }
+
+  seeBBBToolInNBC(){
+    cy.get(Courses.#bbbToolIconInToolsTabNBC).should('exist')
+  }
+
+  clickOnToolsTabInCourse(){
+    cy.get(Courses.#toolsTabInCourseDetail).click()
+  }
+
+  clickOnEnableVideoConferenceCheckBoxInCourseEditPage(){
+    cy.get(Courses.#videoConferenceCheckBoxNBC).check()
+  }
+
+
+
+
+
 
   seeSectionOneAreaOnCourseCreatePage() {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
