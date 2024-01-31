@@ -94,25 +94,26 @@ class Courses {
   static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]'
   static #bbbVideoStartDialogNBC = '[data-testid="videoconference-config-dialog-title"]'
   static #bbbDialogCancelButtonNBC = '[data-testid="dialog-cancel"]'
+  static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox" checked disabled]'
 
 
+  seeDisabledCheckBoxBBBToolInCourseEditPage(){
+    cy.get(Courses.#bbbDisabledCheckBoxNBC).should('exit')
+  }
 
   uncheckVideoConferenceCheckBoxInCourseEditPage(){
     cy.get(Courses.#videoConferenceCheckBoxNBC).uncheck()
   }
 
-
   doNotSeeBBBToolInNBC(){
     cy.get(Courses.#bbbToolIconInToolsTabNBC).should('not.exist')
   }
-
 
   cancelBBBToolDialogBoxNBC(){
     cy.get(Courses.#bbbDialogCancelButtonNBC).click()
   }
 
-
-  seeBBBSModalToStartTheConference(){
+  seeBBBDialogToStartTheConferenceInNBC(){
     cy.get(Courses.#bbbVideoStartDialogNBC).should('exist')
   }
 
@@ -131,11 +132,6 @@ class Courses {
   clickOnEnableVideoConferenceCheckBoxInCourseEditPage(){
     cy.get(Courses.#videoConferenceCheckBoxNBC).check()
   }
-
-
-
-
-
 
   seeSectionOneAreaOnCourseCreatePage() {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
