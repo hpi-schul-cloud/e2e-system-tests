@@ -11,7 +11,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     #remove the following line if old admin page is hidden
     When I click on general settings panel
     Then I enable the video conference
-    Then I click on admin setting save button
+    Then I click on button Save admin settings
 
   @stable_test
   Scenario Outline: Teacher can add and remove BBB tool in the course in NBC
@@ -19,20 +19,20 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'German'
-    When I open course edit page
-    Then I can see course edit page
-    When I click on check box Activate video conferences in course edit page to enable the BBB tool
-    When I click on button Save changes in course edit page
+    When I open page Edit course
+    Then I can see page Edit course
+    When I click on checkbox Activate video conferences in page Edit course to enable the BBB tool
+    When I click on button Save changes in page Edit course
     When I click on tab Tools
     Then I see the BBB Video Conference BigBlueButton in NBC
     When I click on the BBB Video Conference BigBlueButton in NBC
     Then I see the modal to start the BBB video conference
     Then I click on button Cancel in BBB dialog box
   #Teacher removes the BBB tool in the course
-    When I open course edit page
-    Then I can see course edit page
-    When I uncheck the box to Activate video conferences in course edit page to enable the BBB tool
-    When I click on button Save changes in course edit page
+    When I open page Edit course
+    Then I can see page Edit course
+    When I uncheck the checkbox to Activate video conferences in page Edit course to enable the BBB tool
+    When I click on button Save changes in page Edit course
     When I click on tab Tools
     Then I do not see the the card Video Conference BigBlueButton
 
@@ -44,11 +44,11 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     #remove the following line if old admin page is hidden
     When I click on general settings panel
     Then I disable the video conference
-    Then I click on admin setting save button
+    Then I click on button Save admin settings
   #Teacher can not add bbb tool in the course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'German'
-    When I open course edit page
-    Then I can see course edit page
-    Then I see the disabled check box for Activating video conferences in course edit page
+    When I open page Edit course
+    Then I can see page Edit course
+    Then I see the disabled check box for Activating video conferences in page Edit course

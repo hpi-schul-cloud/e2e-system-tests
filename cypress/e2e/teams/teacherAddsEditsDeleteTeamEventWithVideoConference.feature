@@ -12,7 +12,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I go to new school administration page
         When I click on general settings panel
         Then I enable the video conference
-        Then I click on admin setting save button
+        Then I click on button Save admin settings
 
     @stable_test
     Scenario: as a pre condition Teacher enables the video conference option in team edit
@@ -102,7 +102,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I go to new school administration page
         When I click on general settings panel
         Then I disable the video conference
-        Then I click on admin setting save button
+        Then I click on button Save admin settings
 
     @stable_test
     Scenario: as a post condition Teacher sees deactivated video conference check box

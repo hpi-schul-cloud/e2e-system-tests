@@ -3,7 +3,7 @@ import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()
 
-When('I click on check box Activate video conferences in course edit page to enable the BBB tool',()=>{
+When('I click on checkbox Activate video conferences in page Edit course to enable the BBB tool',()=>{
   courses.clickOnEnableVideoConferenceCheckBoxInCourseEditPage()
 })
 
@@ -31,10 +31,10 @@ Then('I do not see the the card Video Conference BigBlueButton',()=>{
   courses.doNotSeeBBBInToolTabNBC()
 })
 
-Then('I see the disabled check box for Activating video conferences in course edit page',()=>{
+Then('I see the disabled check box for Activating video conferences in page Edit course',()=>{
   courses.seeDisabledCheckBoxForBBBToolInCourseEditPage()
 })
 
-When ('I uncheck the box to Activate video conferences in course edit page to enable the BBB tool',()=>{
+When ('I uncheck the checkbox to Activate video conferences in page Edit course to enable the BBB tool',()=>{
  courses.uncheckVideoConferenceCheckBoxInCourseEditPage()
 })

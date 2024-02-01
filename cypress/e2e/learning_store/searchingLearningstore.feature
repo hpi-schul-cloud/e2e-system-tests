@@ -13,7 +13,7 @@ Feature: Learning store - Activating and deactivating access for students
     When I go to new school administration page
     When I click on general settings panel
     When I click the toggle switch to enable students access to learning store
-    When I click on admin setting save button
+    When I click on button Save admin settings
     # User uses Learning store
     Given I am logged in as a '<user>' at '<namespace>'
     When I go to Learning Store overview
@@ -31,7 +31,7 @@ Feature: Learning store - Activating and deactivating access for students
     When I go to new school administration page
     When I click on general settings panel
     When I click the toggle switch to disable students access to learning store
-    When I click on admin setting save button
+    When I click on button Save admin settings
 
 
     Examples:

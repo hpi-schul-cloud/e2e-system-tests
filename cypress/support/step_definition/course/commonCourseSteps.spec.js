@@ -28,15 +28,15 @@ Then('I do not see the course {string} on the room overview page', (courseName) 
   }
 )
 
-When('I click on button Save changes in course edit page', () => {
+When('I click on button Save changes in page Edit course', () => {
   courses.submitChangesAfterEditingCourse()
 })
 
-When('I open course edit page', () => {
+When('I open page Edit course', () => {
   courses.openCourseEditPage()
 })
 
-Then('I can see course edit page', () => {
+Then('I can see page Edit course', () => {
   courses.showCourseEditPage()
 })
 

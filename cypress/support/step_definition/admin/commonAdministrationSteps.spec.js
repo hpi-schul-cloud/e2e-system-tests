@@ -8,7 +8,7 @@ Then ('I disable the video conference', () =>{
 	management.disableTeamsVideoConferenceByAdmin()
 })
 
-Then ('I click on admin setting save button', () =>{
+Then ('I click on button Save admin settings', () =>{
 	management.clickOnAdminSettingsSave()
 })
 
