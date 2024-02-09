@@ -464,7 +464,7 @@ class Management {
 
     seeMigrationMandatorySwitchIsChecked(){
         cy.get(Management.#migrationMandatorySwitch)
-            .and('be.checked')
+            .should('be.checked')
     }
 
     seeSyncDuringMigrationSwitchIsNotChecked(){
@@ -474,7 +474,7 @@ class Management {
 
     seeSyncDuringMigrationSwitchIsChecked(){
         cy.get(Management.#enableSyncDuringMigrationSwitch)
-            .and('be.checked')
+            .should('be.checked')
     }
 
     toggleMigrationMandatorySwitch(){
