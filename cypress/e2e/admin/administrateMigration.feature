@@ -45,4 +45,22 @@ Feature: Admin Users - To administrate the Migration process.
     When I click on the end migration confirmation checkbox
     Then I see the end migration confirmation button is enabled
     When I click on the end migration confirmation button
-    Then I see the timestamp when the migration is finished
+    Then I see button Start migration is enabled
+
+  @stable_test
+  Scenario: Admin restarts the migration
+    When I click on the start migration button
+    When I click on agree migration button
+    Then I see the migration is active field
+    Then I see the end migration button
+    Then I see the migration mandatory switch is not checked
+    Then I see the sync during migration switch is checked
+
+# reset migration data
+  @stable_test
+  Scenario: Reset migration
+    When I click on end migration button
+    When I click on the end migration confirmation checkbox
+    Then I see the end migration confirmation button is enabled
+    When I click on the end migration confirmation button
+    Then I see button Start migration is enabled
