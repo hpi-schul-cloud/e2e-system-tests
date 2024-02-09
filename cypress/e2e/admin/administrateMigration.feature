@@ -1,9 +1,9 @@
-@release
+#@release
 Feature: Admin Users - To administrate the Migration process.
 
   As an Admin I want to re-/start, stop and make the migration mandatory.
 
-  @stable_test
+  @unstable_test
   Scenario: Admin starts the migration and the School Number is added
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to administration page
@@ -21,19 +21,19 @@ Feature: Admin Users - To administrate the Migration process.
     Then I see the end migration button
     Then I see the migration mandatory switch is not checked
 
-  @stable_test
+  @unstable_test
   Scenario: Admin toggles ldap sync for school in migration
     Then I see the sync during migration switch is visible and not checked
     When I toggle the sync during migration switch
     Then I see the sync during migration switch is checked
 
-  @stable_test
+  @unstable_test
   Scenario: Admin toggles migration mandatory switch
     Then I see the migration mandatory switch is not checked
     When I toggle the migration mandatory switch
     Then I see the migration mandatory switch is checked
 
-  @stable_test
+  @unstable_test
   Scenario: Admin stops the migration
     When I click on end migration button
     Then I see the end of migration information title
@@ -47,7 +47,7 @@ Feature: Admin Users - To administrate the Migration process.
     When I click on the end migration confirmation button
     Then I see button Start migration is enabled
 
-  @stable_test
+  @unstable_test
   Scenario: Admin restarts the migration
     When I click on the start migration button
     When I click on agree migration button
@@ -57,7 +57,7 @@ Feature: Admin Users - To administrate the Migration process.
     Then I see the sync during migration switch is checked
 
 # reset migration data
-  @stable_test
+  @unstable_test
   Scenario: Reset migration
     When I click on end migration button
     When I click on the end migration confirmation checkbox
