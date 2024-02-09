@@ -27,7 +27,13 @@ Feature: Admin Users - To administrate the Migration process.
     When I toggle the sync during migration switch
     Then I see the sync during migration switch is checked
 
-  @unstable_test
+  @stable_test
+  Scenario: Admin toggles migration mandatory switch
+    Then I see the migration mandatory switch is not checked
+    When I toggle the migration mandatory switch
+    Then I see the migration mandatory switch is checked
+
+  @stable_test
   Scenario: Admin stops the migration
     When I click on end migration button
     Then I see the end of migration information title

@@ -32,6 +32,10 @@ When('I click on general settings panel', () => {
   management.clickGeneralSettingsPanel()
 })
 
+When('I click on account migration panel', () => {
+    management.clickAccountMigrationPanel()
+})
+
 When('I click on external tools panel', () => {
   management.clickExternalToolsPanel();
 })

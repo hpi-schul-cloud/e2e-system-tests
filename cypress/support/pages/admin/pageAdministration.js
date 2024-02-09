@@ -54,6 +54,7 @@ class Management {
     static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]'
     static #generalSettingsPanel = '[data-testid="general-settings-panel"]'
     static #externalToolsPanel = '[data-testid="tools-panel"]'
+    static #accountMigrationPanel = '[data-testid="migration-panel"]'
     static #externalToolsTable = '[data-testid="external-tool-section-table"]'
     static #editExternalToolButton = '[data-testId="editAction"]'
     static #deleteExternalToolButton = '[data-testId="deleteAction"]'
@@ -361,7 +362,7 @@ class Management {
 
     seeAddedSchoolNumber() {
         cy.get(Management.#schoolNumberForm)
-            .should('not.be.empty')
+            .should('be.disabled')
     }
 
 
@@ -459,6 +460,11 @@ class Management {
     seeMigrationMandatorySwitch(){
         cy.get(Management.#migrationMandatorySwitch)
             .should('not.be.checked');
+    }
+
+    seeMigrationMandatorySwitchIsChecked(){
+        cy.get(Management.#migrationMandatorySwitch)
+            .and('be.checked')
     }
 
     seeSyncDuringMigrationSwitchIsNotChecked(){
@@ -702,6 +708,10 @@ class Management {
     seeCourseAdministrationPage() {
         cy.url().should('include', '/administration/courses')
 
+    }
+
+    clickAccountMigrationPanel(){
+        cy.get(Management.#accountMigrationPanel).click()
     }
 }
 
