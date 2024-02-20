@@ -78,6 +78,9 @@ class Courses {
   static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]'
   static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]'
   static #btnCopyCourse = '[data-testid="title-menu-copy"]'
+  //static #addCourseGroup = '[data-testid="add-course-group"]'
+  static #courseGroupTab = '[data-testid="groups-tab"]'
+  static #seeAddNewCourseGroupButton = '[data-testid="add-course-group"]'
   static #copyResultNotification = '[data-testid="copy-result-notifications"]'
   static #dialogTitle = '[data-testid="dialog-title"]'
   static #warningTitle = '[data-testid="warning-title"]'
@@ -191,6 +194,26 @@ class Courses {
 
   navigateToToolsTab() {
     cy.get(Courses.#toolsTab).click()
+  }
+
+  navigateToGroupsTab() {
+    cy.get(Courses.#courseGroupTab).click()
+  }
+
+  seeAddNewCourseGroupButton() {
+    cy.get(Courses.#seeAddNewCourseGroupButton).should('exist')
+  }
+
+  clickOnAddGroup() {
+    cy.get(Courses.#seeAddNewCourseGroupButton).click()
+  }
+
+  clickOnAddNewCourseGroup() {
+    cy.get(Courses.#addNewCourseGroup).click()
+  }
+
+  seeNewCourseGroupPage() {
+    cy.get(Courses.seeNewCourseGroupPage).should('exist')
   }
 
   clickOnAddNewToolFAB() {
