@@ -100,6 +100,49 @@ class Courses {
   static #editGroupButton='[data-testid="edit-group"]'
   static #deleteCourseGroupButton= '[data-testid="delete-course-group"]'
   static #deleteCourseGroupConfirmationButton='[data-testid="delete-course-group-btn"]'
+  static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]'
+  static #toolsTabInCourseDetail = '[data-testid="tools-tab"]'
+  static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]'
+  static #bbbVideoStartDialogBoxNBC = '[data-testid="videoconference-config-dialog-title"]'
+  static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]'
+  static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]'
+
+
+  seeDisabledCheckBoxForBBBToolInCourseEditPage(){
+    cy.get(Courses.#bbbDisabledCheckBoxNBC).should('be.disabled')
+  }
+
+  uncheckVideoConferenceCheckBoxInCourseEditPage(){
+    cy.get(Courses.#videoConferenceCheckBoxNBC).uncheck()
+  }
+
+  doNotSeeBBBInToolTabNBC(){
+    cy.get(Courses.#bbbToolIconInToolsTabNBC).should('not.exist')
+  }
+
+  cancelBBBToolDialogBoxNBC(){
+    cy.get(Courses.#bbbDialogBoxCancelButtonNBC).click()
+  }
+
+  seeBBBDialogBoxToStartTheConferenceInNBC(){
+    cy.get(Courses.#bbbVideoStartDialogBoxNBC).should('exist')
+  }
+
+  clickOnBBBInToolTabInNBC(){
+    cy.get(Courses.#bbbToolIconInToolsTabNBC).click()
+  }
+
+  seeBBBInToolTabNBC(){
+    cy.get(Courses.#bbbToolIconInToolsTabNBC).should('exist')
+  }
+
+  clickOnToolsTabInCourse(){
+    cy.get(Courses.#toolsTabInCourseDetail).click()
+  }
+
+  clickOnEnableVideoConferenceCheckBoxInCourseEditPage(){
+    cy.get(Courses.#videoConferenceCheckBoxNBC).check()
+  }
 
   seeSectionOneAreaOnCourseCreatePage() {
     cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
@@ -506,7 +549,6 @@ class Courses {
   }
 
   searchForARoom(roomName) {
-    cy.wait('@rooms_overview_api');
     cy.get(Courses.#searchFieldRoomOverview).type(roomName)
   }
 

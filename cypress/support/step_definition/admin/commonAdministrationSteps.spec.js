@@ -8,7 +8,7 @@ Then ('I disable the video conference', () =>{
 	management.disableTeamsVideoConferenceByAdmin()
 })
 
-Then ('I click on admin setting save button', () =>{
+Then ('I click on button Save admin settings', () =>{
 	management.clickOnAdminSettingsSave()
 })
 
@@ -30,6 +30,10 @@ When('I go to school administration', () => {
 
 When('I click on general settings panel', () => {
   management.clickGeneralSettingsPanel()
+})
+
+When('I click on account migration panel', () => {
+    management.clickAccountMigrationPanel()
 })
 
 When('I click on external tools panel', () => {

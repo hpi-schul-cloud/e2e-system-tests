@@ -43,8 +43,6 @@ management.clickEndMigrationConfirmationButton()
 
 });
 
-
-
 Then('I see the end of migration information title', () => {
     management.seeEndMigrationInformationTitle()
 });
@@ -83,6 +81,10 @@ Then('I see the sync during migration switch is visible and not checked', () => 
 
 Then('I see the sync during migration switch is checked', () => {
     management.seeSyncDuringMigrationSwitchIsChecked()
+});
+
+Then('I see the migration mandatory switch is checked', () => {
+    management.seeMigrationMandatorySwitchIsChecked()
 });
 
 When('I toggle the migration mandatory switch', () => {
