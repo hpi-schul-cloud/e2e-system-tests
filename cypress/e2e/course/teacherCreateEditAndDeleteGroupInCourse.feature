@@ -20,7 +20,6 @@ Feature: Teacher can create, edit and delete a group in the course
 
 @stable_test
   Scenario Outline: Editing a group in course
-    Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I go to room '<course_title>'
     When I click on tab Groups
@@ -38,7 +37,6 @@ Feature: Teacher can create, edit and delete a group in the course
 
   @stable_test
   Scenario Outline: Deleting a group in course
-    Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I go to room '<course_title>'
     When I click on tab Groups

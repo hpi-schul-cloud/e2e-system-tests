@@ -79,7 +79,6 @@ class Courses {
   static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]'
   static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]'
   static #btnCopyCourse = '[data-testid="title-menu-copy"]'
-  //static #addCourseGroup = '[data-testid="add-course-group"]'
   static #courseGroupTab = '[data-testid="groups-tab"]'
   static #addNewCourseGroupButton = '[data-testid="add-course-group"]'
   static #copyResultNotification = '[data-testid="copy-result-notifications"]'
