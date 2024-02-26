@@ -33,7 +33,3 @@ When I select the Delete option in the drop down
 Then I see the confirmation Modal
 When I click on the button Remove on the Modal
 Then I do not see the column
-
-
-
-
