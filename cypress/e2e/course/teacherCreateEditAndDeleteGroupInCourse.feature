@@ -6,13 +6,13 @@ Feature: Teacher can create, edit and delete a group in the course
     Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I go to room '<course_title>'
-    When I click on groups tab
-    Then I see create a new group button
-    When I click on create a new group button
-    When I see create student group page
-    When I type '<group_name>' in group name field
-    When I select '<group_member>' from group member field
-    When I click on create student group button
+    When I click on tab Groups
+    Then I see button Create a new group
+    When I click on button Create a new group
+    When I see page Create student group
+    When I type '<group_name>' in field Group name
+    When I select '<group_member>' from field Group member
+    When I click on button Create student group
     Then I see group is created with name '<group_name>'
     Examples:
             |   user         |    state  |    course_title   |    group_name  |    group_member        |
@@ -23,14 +23,14 @@ Feature: Teacher can create, edit and delete a group in the course
     Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I go to room '<course_title>'
-    When I click on groups tab
+    When I click on tab Groups
     When I click on student group '<group_name>'
-    When I click on edit group button
-    When I delete text in group name field and type '<group_rename>' in group name field
-    When I click on save changes button
+    When I click on button Edit group
+    When I delete text in field Group name and type '<group_rename>' in field Group name
+    When I click on button Save changes
     When I go to rooms overview
     When I go to room '<course_title>'
-    When I click on groups tab
+    When I click on tab Groups
     Then I see group name changed to '<group_rename>'
     Examples:
             |   user         |    state  |    course_title   |    group_name           |    group_rename    |
@@ -41,11 +41,11 @@ Feature: Teacher can create, edit and delete a group in the course
     Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I go to room '<course_title>'
-    When I click on groups tab
+    When I click on tab Groups
     When I click on student group '<group_name>'
-    When I click on delete group button
-    When I click on delete group confirmation button
-    Then I do not see group name '<group_name>' in course group tab
+    When I click on button Delete group
+    When I click on button Delete group confirmation
+    Then I do not see group name '<group_name>' in tab Course group
     Examples:
             |   user         |    state  |    course_title    |    group_name    |
             |   teacher1_brb |    brb    |    German          |    Gruppe-Arbeit |

@@ -3,30 +3,30 @@ import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()
 
-When('I click on groups tab', () => {
+When('I click on tab Groups', () => {
 	courses.navigateToGroupsTab();
 })
 
-Then('I see create a new group button', () => {
+Then('I see button Create a new group', () => {
 	courses.seeAddNewCourseGroupButton();
 })
 
-When('I click on create a new group button', () => {
+When('I click on button Create a new group', () => {
 	courses.clickOnAddGroup();
 })
 
-When('I see create student group page', () => {
+When('I see page Create student group', () => {
 	courses.seeAddNewCourseGroupPage();
 })
-When('I type {string} in group name field',(groupName) =>{
+When('I type {string} in field Group name',(groupName) =>{
  	courses.typeNameOfTheCourseGroup(groupName)
 })
 
-When('I select {string} from group member field', (groupMember)=>{
+When('I select {string} from field Group member', (groupMember)=>{
 	courses.selectGroupMember(groupMember)
 })
 
-When ('I click on create student group button',() => {
+When ('I click on button Create student group',() => {
 	courses.clickOnCreateStudentGroupButton()
 })
 
@@ -38,16 +38,16 @@ When('I click on student group {string}', (groupName)=>{
 	courses.clickOnStudentGroup(groupName)
 })
 
-When('I click on edit group button',() => {
+When('I click on button Edit group',() => {
 	courses.clickOnEditGroupButton()
 })
 
-When('I delete text in group name field and type {string} in group name field', (groupRename) =>{
+When('I delete text in field Group name and type {string} in field Group name', (groupRename) =>{
 	courses.deleteTextFromGroupNameField();
 	courses.typeNameOfTheCourseGroup(groupRename);
 })
 
-When('I click on save changes button',() =>{
+When('I click on button Save changes',() =>{
 	courses.clickOnCreateStudentGroupButton()
 })
 
@@ -55,15 +55,15 @@ Then ('I see group name changed to {string}', (groupRename)=>{
 	courses.seeCreatedStudentGroup(groupRename)
 })
 
-When('I click on delete group button',() =>{
+When('I click on button Delete group',() =>{
 	courses.clickOnDeleteCourseGroupButton()
 })
 
-When('I click on delete group confirmation button',() =>{
+When('I click on button Delete group confirmation',() =>{
 courses.clickOnDeleteCourseGroupConfirmationButton()
 })
 
-Then ('I do not see group name {string} in course group tab',(groupName) =>{
+Then ('I do not see group name {string} in tab Course group',(groupName) =>{
 courses.courseGroupNotExists(groupName)
 })
 
