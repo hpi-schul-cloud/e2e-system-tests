@@ -14,6 +14,7 @@ class Board {
   static #deleteOptionColumnThreeDot =
     '[data-testid="board-menu-action-delete"]';
   static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]';
+  static #deleteDialogBox = '[data-testid="dialog-title"]';
 
   doNotSeeColumnAfterDeletion() {
     cy.get(Board.#addColumnTitleInput).should("not.exist");
@@ -24,7 +25,7 @@ class Board {
   }
 
   seeDeleteConfirmationModal() {
-    cy.get(Board.#deleteColumnModal).should("exist");
+    cy.get(Board.#deleteDialogBox).should("exist");
   }
 
   clickOnDeleteColumnInMenu() {
