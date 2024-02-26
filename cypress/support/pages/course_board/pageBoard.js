@@ -6,12 +6,12 @@ class Board {
   static #courseBoardTitleOnPage = '[data-testid="course-board-title"]';
   static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]';
   static #addNewColumnButton = '[data-testid="add-column"]';
-  static #addColumnTitleInput = '[data-testid="column-title"]'; // this should be unique, currently each of newly created columns have the same data-testid assigned...
+  static #addColumnTitleInput = '[data-testid="column-title-1"]'; // this should be unique, currently each of newly created columns have the same data-testid assigned...
   static #addNewCardButtonInColumn = '[data-testid="add-card-1"]';
   static #mainPageArea = '[id="main-content"]';
   static #editOptionColumnThreeDot = '[data-testid="column-menu-btn-1"]';
   static #threeDotMenuInColumn = '[data-testid="column-menu-btn-1"]';
-  static #deleteOptionColumnThreeDot = '[data-testid="board-menu-action"]'; // this should be unique, currently all options in the the three dot menu list have the same data-testid assigned...
+  static #deleteOptionColumnThreeDot = '[data-testid="board-menu-action-delete"]'; // this should be unique, currently all options in the the three dot menu list have the same data-testid assigned...
   static #deleteColumnModal = '[data-testid="dialog-title"]';
   static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]';
 
