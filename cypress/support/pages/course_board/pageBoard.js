@@ -1,7 +1,7 @@
 "use strict";
 
 class Board {
-  static #courseContenttab = '[data-testid="learnContent-tab"]';
+  static #courseContentTab = '[data-testid="learnContent-tab"]';
   static #cardCourseBoardInCouseContent = '[data-testid="room-board-card"]';
   static #courseBoardTitleOnPage = '[data-testid="course-board-title"]';
   static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]';
@@ -41,7 +41,7 @@ class Board {
   }
 
   clickOnCourseContentTab() {
-    cy.get(Board.#courseContenttab).click();
+    cy.get(Board.#courseContentTab).click();
   }
 
   clickOnCourseBoardCardInCourseDetailPage() {
@@ -67,7 +67,7 @@ class Board {
       .wait(500);
   }
 
-  clickOutsideTheColumnToSaveTheCOlumn() {
+  clickOutsideTheColumnToSaveTheColumn() {
     cy.get(Board.#mainPageArea).click("center");
   }
 

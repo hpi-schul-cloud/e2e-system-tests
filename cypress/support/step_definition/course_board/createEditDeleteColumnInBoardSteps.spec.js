@@ -16,7 +16,7 @@ Then("I see the page title in Course Board page", () => {
 });
 
 Then(
-  "I see the existing card with welcom message in the existing column",
+  "I see the existing card with welcome message in the existing column",
   () => {
     board.seeByDefaultWelcomeCardInBoard();
   }
@@ -30,17 +30,20 @@ When("I enter the title name {string}", (newColumnName) => {
   board.enterNewColumnTitle(newColumnName);
 });
 
-When("I click on the page oustide the column", () => {
-  board.clickOutsideTheColumnToSaveTheCOlumn();
+When("I click on the page outside of the column", () => {
+  board.clickOutsideTheColumnToSaveTheColumn();
 });
 
 //Then("I see my column named {string}", (newColumnName) => {
 //board.seeNewlyCreatedColumn(newColumnName);
 //});   -----> this would not work as expected currently thers is an issue to fix.
 
-Then("I click on the button add new card in the column", () => {
-  board.clickOnAddNewCardButton();
-});
+Then(
+  "I click on the button with the Icon Plus to add a new card in the column",
+  () => {
+    board.clickOnAddNewCardButton();
+  }
+);
 
 When("I click on three dot menu in the column", () => {
   board.clickOnThreeDotOnColumn();
