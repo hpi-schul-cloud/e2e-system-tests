@@ -40,6 +40,7 @@ class Courses {
   static #contentCardTaskInfoGradingsChip =
       '[data-testid="room-detail-task-chip-graded"]'
   static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]'
+  static #chosenChoices= ".chosen-choices"
   static #chosenResults = '.chosen-results li'
   static #chosenContainer = '.chosen-container span'
   static #roomSearrchBox = '[data-testid="search-field"]'
@@ -78,6 +79,8 @@ class Courses {
   static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]'
   static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]'
   static #btnCopyCourse = '[data-testid="title-menu-copy"]'
+  static #courseGroupTab = '[data-testid="groups-tab"]'
+  static #addNewCourseGroupButton = '[data-testid="add-course-group"]'
   static #copyResultNotification = '[data-testid="copy-result-notifications"]'
   static #dialogTitle = '[data-testid="dialog-title"]'
   static #warningTitle = '[data-testid="warning-title"]'
@@ -89,6 +92,13 @@ class Courses {
   static #incompleteChip = '[data-testid="tool-card-status-incomplete"]'
   static #toolCardThreeDotBtn = '[data-testid="room-tool-three-dot-button"]'
   static #chooseStudentSelectionBox = '[id="studentsId_chosen"]'
+  static #groupNameField='[data-testid="group-name-field"]'
+  static #groupMemberField='[data-testid="group-member-field"]'
+  static #createStudentGroupButton='[data-testid="create-course-group"]'
+  static #studentGroupNameOnStudentGroupPage='[data-testid="group-name-entry"]'
+  static #editGroupButton='[data-testid="edit-group"]'
+  static #deleteCourseGroupButton= '[data-testid="delete-course-group"]'
+  static #deleteCourseGroupConfirmationButton='[data-testid="delete-course-group-btn"]'
   static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]'
   static #toolsTabInCourseDetail = '[data-testid="tools-tab"]'
   static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]'
@@ -234,6 +244,68 @@ class Courses {
 
   navigateToToolsTab() {
     cy.get(Courses.#toolsTab).click()
+  }
+
+  navigateToGroupsTab() {
+    cy.get(Courses.#courseGroupTab).click()
+  }
+
+  seeAddNewCourseGroupButton() {
+    cy.get(Courses.#addNewCourseGroupButton).should('exist')
+  }
+
+  clickOnAddGroup() {
+    cy.get(Courses.#addNewCourseGroupButton).click()
+  }
+
+  seeAddNewCourseGroupPage(){
+    cy.get(Courses.#groupNameField).should("exist")
+    cy.get(Courses.#groupMemberField).should("exist")
+  }
+
+  typeNameOfTheCourseGroup(groupName){
+    cy.get(Courses.#groupNameField).type(groupName)
+  }
+
+  deleteTextFromGroupNameField(){
+    cy.get(Courses.#groupNameField).clear()
+  }
+
+  selectGroupMember(groupMember) {
+    cy.get(Courses.#chosenChoices).click()
+    cy.get(Courses.#chosenResults).contains(groupMember).click()
+  }
+
+  clickOnCreateStudentGroupButton(){
+    cy.get(Courses.#createStudentGroupButton).click()
+  }
+
+  seeCreatedStudentGroup(groupName) {
+    cy.get(Courses.#studentGroupNameOnStudentGroupPage)
+      .contains(groupName)
+      .should('be.visible')
+  }
+
+  clickOnStudentGroup(groupName) {
+    cy.get(Courses.#studentGroupNameOnStudentGroupPage)
+      .contains(groupName).click()
+  }
+
+  clickOnEditGroupButton(){
+    cy.get(Courses.#editGroupButton).click()
+  }
+
+  clickOnDeleteCourseGroupButton(){
+    cy.get(Courses.#deleteCourseGroupButton).click()
+  }
+
+  clickOnDeleteCourseGroupConfirmationButton(){
+    cy.get(Courses.#deleteCourseGroupConfirmationButton).click()
+  }
+
+  courseGroupNotExists(groupName){
+    cy.contains(groupName)
+      .should('not.exist')
   }
 
   clickOnAddNewToolFAB() {
