@@ -9,7 +9,7 @@ Feature: Teacher can create, edit and delete a group in the course
     When I click on tab Groups
     Then I see button Create a new group
     When I click on button Create a new group
-    When I see page Create student group
+    Then I see page Create student group
     When I type '<group_name>' in field Group name
     When I select '<group_member>' from field Group member
     When I click on button Create student group

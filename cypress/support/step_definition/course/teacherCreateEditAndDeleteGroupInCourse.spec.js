@@ -15,7 +15,7 @@ When("I click on button Create a new group", () => {
   courses.clickOnAddGroup();
 });
 
-When("I see page Create student group", () => {
+Then("I see page Create student group", () => {
   courses.seeAddNewCourseGroupPage();
 });
 When("I type {string} in field Group name", (groupName) => {
