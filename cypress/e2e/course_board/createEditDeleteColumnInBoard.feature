@@ -24,7 +24,7 @@ Then I click on the button with the Icon Plus to add a new card in the column
 When I click on three dot menu in the column
 When I select the Edit option in the drop down menu
 When I enter the title name 'edit test cycycycycyc column'
-When I click on the page oustide the column
+When I click on the page outside of the column
 #Then I see my column named 'edit test cycycycycyc column'
 
 # Teacher deletes the column
