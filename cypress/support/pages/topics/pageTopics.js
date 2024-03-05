@@ -8,7 +8,8 @@ class Topics {
   static #topicTitleInput = '[id="topicTitleInput"]'
   static #addTextBtn = '[data-testid="topic-addcontent-text-btn"]'
   static #addGeoGebraBtn = '[data-testid="topic-addcontent-geogebra-btn"]'
-  static #addLearningMaterialBtn = '[data-testid="topic-addcontent-material-btn"]'
+  static #addLearningMaterialBtn =
+    '[data-testid="topic-addcontent-material-btn"]'
   static #addEtherpadBtn = '[data-testid="topic-addcontent-etherpad-btn"]'
   static #addTaskBtn = '[data-testid="topic-addcontent-task-btn"]'
   static #addContentH5pBtn = '[data-testid="topic-addcontent-h5p-btn"]'
@@ -17,12 +18,17 @@ class Topics {
   static #cardHeader = '[class="card-header"]'
   static #cardBlock = '[class="card-block"]'
   static #elementTextCard = '[data-testid="topic-content-element-text-0"]'
-  static #elementGeoGebraCard = '[data-testid="topic-content-element-geoGebra-1"]'
-  static #elementLearningMaterialCard =  '[data-testid="topic-content-element-resources-2"]'
-  static #elementEtherpadCardPos2 =  '[data-testid="topic-content-element-Etherpad-2"]'
-  static #elementEtherpadCardPos3 =  '[data-testid="topic-content-element-Etherpad-3"]'
+  static #elementGeoGebraCard =
+    '[data-testid="topic-content-element-geoGebra-1"]'
+  static #elementLearningMaterialCard =
+    '[data-testid="topic-content-element-resources-2"]'
+  static #elementEtherpadCardPos2 =
+    '[data-testid="topic-content-element-Etherpad-2"]'
+  static #elementEtherpadCardPos3 =
+    '[data-testid="topic-content-element-Etherpad-3"]'
   static #elementTaskCard = '[data-testid="topic-content-element-internal-4"]'
-  static #addLearningMaterialToContentBtn = '[data-testid="topic-material-addmaterial-btn"]'
+  static #addLearningMaterialToContentBtn =
+    '[data-testid="topic-material-addmaterial-btn"]'
   static #submitChangesInTopicBtn = '[data-testid="topic-submitchanges-btn"]'
   static #elementTextDescriptionTextarea = '[class="ck ck-editor__main"]'
   static #inputClassFormControl = '[class="form-control"]'
@@ -39,12 +45,10 @@ class Topics {
   // static #draftCheckbox = '[data-testid="private-checkbox"]'
 
   seeEditTopicPage (topicTitle) {
-    if (topicTitle === '-'){
-      cy.get(Topics.#topicTitleInput)
-        .should('have.value', '')
+    if (topicTitle === '-') {
+      cy.get(Topics.#topicTitleInput).should('have.value', '')
     } else {
-      cy.get(Topics.#topicTitleInput)
-        .should('have.value', topicTitle)
+      cy.get(Topics.#topicTitleInput).should('have.value', topicTitle)
     }
   }
 
@@ -53,60 +57,55 @@ class Topics {
     cy.get(Topics.#topicTitleInput).type(topicTitle)
   }
 
-  clickOnAddTextToTopic() {
+  clickOnAddTextToTopic () {
     cy.get(Topics.#addTextBtn).click()
   }
 
-  clickOnAddGeoGebraToTopic() {
+  clickOnAddGeoGebraToTopic () {
     cy.get(Topics.#addGeoGebraBtn).click()
   }
 
-  clickOnAddLearningMaterialToTopic() {
+  clickOnAddLearningMaterialToTopic () {
     cy.get(Topics.#addLearningMaterialBtn).click()
   }
 
-  clickOnAddEtherpadToTopic() {
+  clickOnAddEtherpadToTopic () {
     cy.get(Topics.#addEtherpadBtn).click()
   }
 
-  clickOnAddTaskToTopic() {
+  clickOnAddTaskToTopic () {
     cy.get(Topics.#addTaskBtn).click()
   }
 
-  clickOnAddContentH5PToTopic() {
+  clickOnAddContentH5PToTopic () {
     cy.get(Topics.#addContentH5pBtn).click()
   }
 
-  seeCreateH5PInTopic() {
-    cy.get(Topics.#createH5pBtn)
-      .should('exist')
-      .click()
+  seeCreateH5PInTopic () {
+    cy.get(Topics.#createH5pBtn).should('exist').click()
   }
 
-  clickOnSubmitChangesInTopicBtn() {
-    cy.get(Topics.#submitChangesInTopicBtn)
-      .click()
+  clickOnSubmitChangesInTopicBtn () {
+    cy.get(Topics.#submitChangesInTopicBtn).click()
   }
 
-
-
-  seeFormElementText(textElementPosition) {
-    if(textElementPosition === '0'){
+  seeFormElementText (textElementPosition) {
+    if (textElementPosition === '0') {
       cy.get(Topics.#textElementPos0).should('exist')
-    }else if(textElementPosition === '4'){
+    } else if (textElementPosition === '4') {
       cy.get(Topics.#textElementPos4).should('exist')
     }
   }
 
-  enterTitleforElementText(elementTextTitle, elementPosition) {
-    if(elementPosition === '0'){
+  enterTitleforElementText (elementTextTitle, elementPosition) {
+    if (elementPosition === '0') {
       cy.get(Topics.#textElementPos0).within(() => {
         cy.get(Topics.#cardHeader)
           .find('div > input')
           .eq(0)
           .type(elementTextTitle)
       })
-    } else if(elementPosition === '4'){
+    } else if (elementPosition === '4') {
       cy.get(Topics.#textElementPos4).within(() => {
         cy.get(Topics.#cardHeader)
           .find('div > input')
@@ -116,15 +115,15 @@ class Topics {
     }
   }
 
-  enterDescriptionforElementText(elementTextDescription, elementPosition) {
-    if(elementPosition === '0'){
+  enterDescriptionforElementText (elementTextDescription, elementPosition) {
+    if (elementPosition === '0') {
       cy.get(Topics.#textElementPos0).within(() => {
         cy.get(Topics.#elementTextDescriptionTextarea)
           .find('div > p')
           .clear()
           .type(elementTextDescription)
       })
-    } else if(elementPosition === '4'){
+    } else if (elementPosition === '4') {
       cy.get(Topics.#textElementPos4).within(() => {
         cy.get(Topics.#elementTextDescriptionTextarea)
           .find('div > p')
@@ -134,7 +133,7 @@ class Topics {
     }
   }
 
-  enterTitleforElementGeoGebra(elementGeoGebraTitle) {
+  enterTitleforElementGeoGebra (elementGeoGebraTitle) {
     cy.get(Topics.#elementGeoGebraCard).within(() => {
       cy.get(Topics.#cardHeader)
         .find('div > input')
@@ -143,15 +142,13 @@ class Topics {
     })
   }
 
-  enterIDforElementGeoGebra(geoGebraMaterialID) {
+  enterIDforElementGeoGebra (geoGebraMaterialID) {
     cy.get(Topics.#elementGeoGebraCard).within(() => {
-      cy.get(Topics.#cardBlock)
-        .find('div > input')
-        .type(geoGebraMaterialID)
+      cy.get(Topics.#cardBlock).find('div > input').type(geoGebraMaterialID)
     })
   }
 
-  enterTitleforElementLearningMaterial(elementLearningMaterialTitle) {
+  enterTitleforElementLearningMaterial (elementLearningMaterialTitle) {
     cy.get(Topics.#elementLearningMaterialCard).within(() => {
       cy.get(Topics.#cardHeader)
         .find('div > input')
@@ -160,15 +157,14 @@ class Topics {
     })
   }
 
-  seeAddMaterialBtnInContent() {
+  seeAddMaterialBtnInContent () {
     cy.get(Topics.#elementLearningMaterialCard).within(() => {
-      cy.get(Topics.#addLearningMaterialToContentBtn)
-        .should('be.visible')
+      cy.get(Topics.#addLearningMaterialToContentBtn).should('be.visible')
     })
   }
 
-  enterTitleforElementEtherpad(elementEtherpadTitle, elementPosition) {
-    if(elementPosition === '2'){
+  enterTitleforElementEtherpad (elementEtherpadTitle, elementPosition) {
+    if (elementPosition === '2') {
       cy.get(Topics.#elementEtherpadCardPos2).within(() => {
         cy.get(Topics.#cardHeader)
           .find('div > input')
@@ -176,7 +172,7 @@ class Topics {
           .clear()
           .type(elementEtherpadTitle)
       })
-    } else if(elementPosition === '3'){
+    } else if (elementPosition === '3') {
       cy.get(Topics.#elementEtherpadCardPos3).within(() => {
         cy.get(Topics.#cardHeader)
           .find('div > input')
@@ -187,15 +183,18 @@ class Topics {
     }
   }
 
-  enterDescriptionforElementEtherpad(elementEtherpadDescription, elementPosition) {
-    if(elementPosition === '2'){
+  enterDescriptionforElementEtherpad (
+    elementEtherpadDescription,
+    elementPosition
+  ) {
+    if (elementPosition === '2') {
       cy.get(Topics.#elementEtherpadCardPos2).within(() => {
         cy.get(Topics.#cardBlock)
           .find('textarea')
           .clear()
           .type(elementEtherpadDescription)
       })
-    } else if(elementPosition === '3'){
+    } else if (elementPosition === '3') {
       cy.get(Topics.#elementEtherpadCardPos3).within(() => {
         cy.get(Topics.#cardBlock)
           .find('textarea')
@@ -205,7 +204,7 @@ class Topics {
     }
   }
 
-  enterTitleforElementTask(elementEtherpadTask) {
+  enterTitleforElementTask (elementEtherpadTask) {
     cy.get(Topics.#elementTaskCard).within(() => {
       cy.get(Topics.#cardHeader)
         .find('div > input')
@@ -214,21 +213,24 @@ class Topics {
     })
   }
 
-  enterLinkforElementTask(taskId) {
-    const env = Cypress.env()
-    const taskURL = env['BRB'] + '/homework/' + taskId
+  enterLinkforElementTask (taskId) {
+    const env = Cypress.env('BRB')
+    const taskURL = `${env}homework/${taskId}`
     cy.get(Topics.#elementTaskCard).within(() => {
-      cy.get(Topics.#cardBlock)
-        .find('input')
-        .type(taskURL)
+      cy.get(Topics.#cardBlock).find('input').type(taskURL)
     })
   }
 
-  seeTopicDetailPage(topicTitle, contentTitle1, contentTitle2, contentTitle3, contentTitle4, contentTitle5) {
-    cy.get(Topics.#navCourseOverviewLink)
-      .should('have.attr', 'class', 'active')
-    cy.get(Topics.#titlebar)
-      .should('contain', topicTitle)
+  seeTopicDetailPage (
+    topicTitle,
+    contentTitle1,
+    contentTitle2,
+    contentTitle3,
+    contentTitle4,
+    contentTitle5
+  ) {
+    cy.get(Topics.#navCourseOverviewLink).should('have.attr', 'class', 'active')
+    cy.get(Topics.#titlebar).should('contain', topicTitle)
     cy.get(Topics.#sectionCourse).within(() => {
       cy.get('h2').should('contain', contentTitle1)
       cy.get('h2').should('contain', contentTitle1)
@@ -238,23 +240,21 @@ class Topics {
     })
   }
 
-  clickLastBreadcrumb() {
-    cy.get(Topics.#breadcrumbItem)
-      .last()
-      .click()
+  clickLastBreadcrumb () {
+    cy.get(Topics.#breadcrumbItem).last().click()
   }
 
-  clickIconPen() {
-    cy.get(Topics.#mainContentMain)
-      .find(Topics.#penIcon)
-      .click()
+  clickIconPen () {
+    cy.get(Topics.#mainContentMain).find(Topics.#penIcon).click()
   }
 
-  removeElementFromTopic(elementPosition) {
+  removeElementFromTopic (elementPosition) {
     // this is a special case with dynamic data-testid including the position of the elements.
     // That's why data-testids are concatinated in this method.
-    let nameOfElementId = "[data-testid='topic-dropdown-toggle-element-" + elementPosition + "']"
-    let nameOfRemoveElementId = "[data-testid='topic-dropdown-option-delete-" + elementPosition + "']"
+    let nameOfElementId =
+      "[data-testid='topic-dropdown-toggle-element-" + elementPosition + "']"
+    let nameOfRemoveElementId =
+      "[data-testid='topic-dropdown-option-delete-" + elementPosition + "']"
     cy.get(nameOfElementId).click()
     cy.get(nameOfRemoveElementId).click()
   }
@@ -265,8 +265,7 @@ class Topics {
 
   seeNoContentOnTopicPage (contentText) {
     cy.url().should('include', '/courses/')
-    cy.contains(contentText)
-      .should('be.visible')
+    cy.contains(contentText).should('be.visible')
   }
 
   clickOnButtonEditInTopicPage () {

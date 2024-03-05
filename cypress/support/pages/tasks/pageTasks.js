@@ -52,7 +52,7 @@ class Tasks {
   static #submissionDiv = '[id="submission"]'
   static #gradingPercentInput = '[data-testid="evaluation_procent"]'
   static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]'
-  static #lowertaskSectionText = '[data-testid="lowerTaskSection"]'
+  static #lowerTaskSectionText = '[data-testid="lowerTaskSection"]'
   static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]'
   static #taskSubmissionsSubmittedIcon =
     '[data-testid="task-submissions-task-submitted-icon"]'
@@ -66,14 +66,15 @@ class Tasks {
   static #feedbackGrade = '[data-testid="feedback-grade"]'
   static #finishedTasksTab = '[data-testid="finishedTasks"]'
   static #openTasksTab = '[data-testid="openTasks"]'
-  static #finishedTasksListDiv = '[id="finished"]'
+  static #finishedTasksListDiv = '[aria-label="Aufgabe"]'
   static #taskDotMenu = '[data-testid="task-menu"]'
   static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]'
   static #uploadedFileNameTag = '.card-block > div > a'
   static #tasksOverviewNavigationButton = '[data-testid="Aufgaben"]'
   static #taskForm = '[id="homework-form"]'
   static #submitButton = '[data-testid="submit-task-btn"]'
-  static #addTaskButton = '[data-testid="addTask"]'
+  // static #addTaskButton = '[data-testid="addTask"]'
+  static #addTaskButton = '#fab'
   static #taskNameInput = '[data-testid="homework-name"]'
   static #homeworkDescription = '[data-testid="homework-description"]'
   static #submissionComment = '[data-testid="submission-comment"]'
@@ -99,7 +100,7 @@ class Tasks {
   }
 
   clickOnAddTask () {
-    cy.wait('@tasks_api');
+    cy.wait('@tasks_api')
     cy.get(Tasks.#addTaskButton).click()
   }
 
@@ -119,22 +120,22 @@ class Tasks {
   }
 
   setTaskText (taskText) {
-    cy.get(Tasks.#homeworkDescription).next().find("p").clear()
-    cy.get(Tasks.#homeworkDescription).next().find("p").type(taskText)
+    cy.get(Tasks.#homeworkDescription).next().find('p').clear()
+    cy.get(Tasks.#homeworkDescription).next().find('p').type(taskText)
   }
 
   setSubmissionComment (taskComment) {
-    cy.get(Tasks.#submissionComment).next().find("p").clear()
-    cy.get(Tasks.#submissionComment).next().find("p").type(taskComment)
+    cy.get(Tasks.#submissionComment).next().find('p').clear()
+    cy.get(Tasks.#submissionComment).next().find('p').type(taskComment)
   }
 
   setSubmissionText (taskText) {
-    cy.get(Tasks.#submissionText).next().find("p").clear()
-    cy.get(Tasks.#submissionText).next().find("p").type(taskText)
+    cy.get(Tasks.#submissionText).next().find('p').clear()
+    cy.get(Tasks.#submissionText).next().find('p').type(taskText)
   }
 
   clickOnTabDraftTasks () {
-    cy.wait('@tasks_api');
+    cy.wait('@tasks_api')
     cy.get(Tasks.#draftTasksTab).click()
   }
 
@@ -176,8 +177,7 @@ class Tasks {
   }
 
   clickConfirmDeletionButtonInEditTask () {
-    cy.get(Tasks.#dialogConfirmDeletionTaskButtons)
-      .click({force: true})
+    cy.get(Tasks.#dialogConfirmDeletionTaskButtons).click({ force: true })
   }
 
   compareFeedbackText (feedbackText) {
@@ -438,10 +438,7 @@ class Tasks {
           .find(Tasks.#fileTitleCard)
           .contains(fileName)
           .should('be.visible')
-        cy.get(elm)
-          .find(Tasks.#downloadFileButton)
-          .should('be.visible')
-          .click()
+        cy.get(elm).find(Tasks.#downloadFileButton).should('be.visible').click()
       })
   }
 
@@ -471,21 +468,15 @@ class Tasks {
   }
 
   clickSubmissionTab () {
-    cy.get(Tasks.#submissionTab)
-      .click({ multiple: true })
-      .wait('@alerts_api')
+    cy.get(Tasks.#submissionTab).click({ multiple: true }).wait('@alerts_api')
   }
 
   clickSaveSubmissionBtn () {
-    cy.get(Tasks.#submissionSaveButton)
-      .click()
-      .wait('@homework_api')
+    cy.get(Tasks.#submissionSaveButton).click().wait('@homework_api')
   }
 
   clickSendSubmissionBtn () {
-    cy.get(Tasks.#submissionSendButton)
-      .click()
-      .wait('@alerts_api')
+    cy.get(Tasks.#submissionSendButton).click().wait('@alerts_api')
   }
 
   seeSubmissionReceivedHint () {
@@ -498,23 +489,21 @@ class Tasks {
 
   clickOnTabDoneTasks () {
     cy.wait('@tasks_api')
-    cy.get(Tasks.#doneTasksTab)
-      .click()
-      .wait('@tasks_api')
+    cy.get(Tasks.#doneTasksTab).click().wait('@tasks_api')
   }
 
   openNotGradedTasks () {
-    cy.contains(Tasks.#lowertaskSectionText, 'Unbewertet')
+    cy.contains(Tasks.#lowerTaskSectionText, 'Unbewertet')
       .click()
       .wait('@tasks_api')
   }
 
   seeTaskInListAsTeacher (taskTitle) {
-    cy.get(Tasks.#taskOverviewTeacher).contains(taskTitle).should('be.visible')
+    cy.contains(Tasks.#taskTitleInList, taskTitle).should('be.visible')
   }
 
   seeTaskNotInListAsTeacher (taskTitle) {
-    cy.wait('@tasks_api');
+    cy.wait('@tasks_api')
     cy.get(Tasks.#taskOverviewTeacher).contains(taskTitle).should('not.exist')
   }
 
@@ -527,7 +516,7 @@ class Tasks {
   }
 
   seeTaskNotInListAsStudent (taskTitle) {
-    cy.wait('@tasks_api');
+    cy.wait('@tasks_api')
     cy.get(Tasks.#taskOverviewStudent).contains(taskTitle).should('not.exist')
   }
 
@@ -599,20 +588,14 @@ class Tasks {
   }
 
   clickOnTaskDotMenu (taskTitle) {
-    cy.get(Tasks.#finishedTasksListDiv)
-      .find(Tasks.#taskTitleInList)
-      .contains(taskTitle)
-      .parent()
-      .parent()
-      .parent()
-      .find(Tasks.#taskDotMenu)
-      .click({ multiple: true })
+    cy.contains(Tasks.#taskTitleInList, taskTitle).then(elm => {
+      const taskIndex = Cypress.$(Tasks.#taskTitleInList).index(elm)
+      cy.get(Tasks.#finishedTasksListDiv).eq(taskIndex).click()
+    })
   }
 
   clickTaskFinishInDotMenu () {
-    cy.get(Tasks.#taskFinishButtonInDotMenu)
-        .click()
-        .wait(['@task_restore_api'])
+    cy.get(Tasks.#taskFinishButtonInDotMenu).click().wait(['@task_restore_api'])
   }
 
   clickLowerTaskSectionIcon () {
