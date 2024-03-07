@@ -101,7 +101,7 @@ class Dashboard {
   }
 
   assertLanguageUpdate (updatedText) {
-    cy.wait(300)
+    cy.wait(500)
       .get(Dashboard.#getPageTitle)
       .should('be.visible')
       .should('exist')
