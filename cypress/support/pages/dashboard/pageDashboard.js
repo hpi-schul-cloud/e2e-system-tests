@@ -1,7 +1,6 @@
 'use strict'
 
 class Dashboard {
-
   static #initialsButton = '[data-testid="initials"]'
   static #languageMenu = '#language-menu'
   static #selectedLanguage = '#selected-language'
@@ -56,10 +55,12 @@ class Dashboard {
       .click()
       .then(() => {
         cy.get(Dashboard.#selectedLanguage).should('be.visible')
-        cy.get(Dashboard.#listOfAllLanguages).find('li').each($element => {
-          cy.get($element).should('have.prop', 'value')
-          cy.get($element).should('be.visible')
-        })
+        cy.get(Dashboard.#listOfAllLanguages)
+          .find('li')
+          .each($element => {
+            cy.get($element).should('have.prop', 'value')
+            cy.get($element).should('be.visible')
+          })
       })
   }
 
@@ -92,15 +93,18 @@ class Dashboard {
   }
 
   selectLanguage (sel, language) {
-    return cy.contains(sel, language)
-        .should('be.visible')
-        .click()
-        .wait(['@alerts_api'])
+    return cy
+      .contains(sel, language)
+      .should('be.visible')
+      .click()
+      .wait(['@alerts_api'])
   }
 
   assertLanguageUpdate (updatedText) {
     cy.wait(300)
       .get(Dashboard.#getPageTitle)
+      .should('be.visible')
+      .should('exist')
       .invoke('text')
       .should('eq', updatedText)
     cy.get(Dashboard.#getPageTitle)
@@ -132,41 +136,44 @@ class Dashboard {
     )
   }
 
-  arriveOnDashboard() {
+  arriveOnDashboard () {
     cy.visit('/dashboard')
-    cy.url()
-      .should('include', '/dashboard')
+    cy.url().should('include', '/dashboard')
     cy.get(Dashboard.#titleOnDashboardPage).should('exist')
   }
 
-  seeSchoolNews(newsTitle, newsDesc) {
+  seeSchoolNews (newsTitle, newsDesc) {
     cy.get(Dashboard.#newsSection).should('be.visible')
     cy.get(Dashboard.#pageTitle).contains(newsTitle)
     cy.get(Dashboard.#newsText).contains(newsDesc)
   }
 
-  seeTeamsNews(newsTitle, newsDesc) {
+  seeTeamsNews (newsTitle, newsDesc) {
     cy.get(Dashboard.#newsSection).should('be.visible')
     cy.get(Dashboard.#pageTitle).contains(newsTitle)
     cy.get(Dashboard.#newsText).contains(newsDesc)
   }
 
-  seeWelcomeMessage(welcomeMsg) {
+  seeWelcomeMessage (welcomeMsg) {
     cy.get(Dashboard.#welcomeMessage)
     cy.contains(welcomeMsg)
   }
 
-  seeAssignedTasks(taskName) {
+  seeAssignedTasks (taskName) {
     cy.get(Dashboard.#dashboardTasksTitle).eq(0)
     cy.contains('Gestellte Aufgaben')
-    cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains('Course with subject and tasks')
+    cy.get(Dashboard.#dashboardTaskCourseName)
+      .eq(0)
+      .contains('Course with subject and tasks')
     cy.get(Dashboard.#dashboardTaskName).contains(taskName)
   }
 
-  seeDraftTasks(draftName) {
+  seeDraftTasks (draftName) {
     cy.get(Dashboard.#dashboardTasksTitle).eq(1)
     cy.contains('Entwürfe')
-    cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains('Course with subject and tasks')
+    cy.get(Dashboard.#dashboardTaskCourseName)
+      .eq(0)
+      .contains('Course with subject and tasks')
     cy.get(Dashboard.#dashboardTaskName).contains(draftName)
   }
 }
