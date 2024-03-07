@@ -600,17 +600,31 @@ class Tasks {
     cy.get(Tasks.#taskFinishButtonInDotMenu).click().wait(['@task_restore_api'])
   }
 
-  clickLowerTaskSectionIcon () {
-    cy.get(Tasks.#upperTaskSectionText)
-      .find(Tasks.#upperTaskSectionIcon)
-      .click()
-      .then(() => {
-        cy.get(Tasks.#upperTaskSectionText).should(
-          'have.attr',
-          'aria-expanded',
-          'true'
-        )
+  checkTaskSectionPanelActivation () {
+    return cy
+      .get(Tasks.#upperTaskSectionText)
+      .invoke('attr', 'aria-expanded')
+      .then(ariaExpandedValue => {
+        return ariaExpandedValue
       })
+  }
+
+  clickLowerTaskSectionIcon () {
+    const isUpperTaskSectionActive = this.checkTaskSectionPanelActivation()
+    isUpperTaskSectionActive === 'true'
+      ? cy
+          .get(Tasks.#upperTaskSectionText)
+          .find(Tasks.#upperTaskSectionIcon)
+          .click()
+          .then(() => {
+            cy.wait(500)
+            cy.get(Tasks.#upperTaskSectionText).should(
+              'have.attr',
+              'aria-expanded',
+              'false'
+            )
+          })
+      : cy.log(`Lower task sub-section already active`)
   }
 }
 export default Tasks
