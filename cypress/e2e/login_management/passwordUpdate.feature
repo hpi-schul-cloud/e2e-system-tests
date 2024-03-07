@@ -4,8 +4,8 @@ Feature: Password Update - Verify login functionality via password change
     As a user, I want to see how app behaves when I'll change password.
 
     @stable_test
-    Scenario: User change password, login and change again to old passwords.
-        Given I am on the dBildungscloud login page
+    Scenario Outline: User change password, login and change again to old passwords.
+        Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
         When I enter email
         Then I see password field is visible and empty
@@ -22,7 +22,7 @@ Feature: Password Update - Verify login functionality via password change
         #Then I see logout option
         When I logout
         #Then I see dbildungscloud login page
-        Given I am on the dBildungscloud login page
+        Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
         When I enter email
         Then I see password field is visible and empty
@@ -46,10 +46,16 @@ Feature: Password Update - Verify login functionality via password change
         #Then I see logout option
         When I logout
         #Then I see dbildungscloud login page
-        Given I am on the dBildungscloud login page
+        Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
         When I enter email
         Then I see password field is visible and empty
         When I enter password
         When I click button Submit
         Then I arrive on the dashboard
+        When I click on the initials
+        When I logout
+
+        Examples:
+            | namespace |
+            | dbc       |

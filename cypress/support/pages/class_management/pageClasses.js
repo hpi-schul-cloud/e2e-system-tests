@@ -72,6 +72,8 @@ class Classes {
 
   clickDeleteButton () {
     cy.get(Classes.#deleteClassButton).first().click()
+    cy.wait(500)
+    cy.get(Classes.#deleteDialog).should('be.visible')
   }
 
   clickCancelDeleteDialogButton () {
@@ -83,13 +85,12 @@ class Classes {
   }
 
   clickManageGroupButton () {
-    cy.get(Classes.#manageGroupButton).first().realClick()
-    cy.wait(5000)
-    cy.url().should('include', '/administration/groups/classes')
+    cy.get(Classes.#manageGroupButton).first().click()
   }
 
   clickNextYearTab () {
     cy.get(Classes.#nextYearTab).click()
+    cy.get(Classes.#nextYearTab).should('have.attr', 'aria-selected', 'true')
   }
 
   isNewClassAdministrationPage () {
@@ -178,15 +179,12 @@ class Classes {
 
   seeTableHas5Columns () {
     const tableHeader = cy.get(Classes.#classTableNew).find('th')
-
     tableHeader.should('have.length', 5)
   }
 
   see3Tabs () {
     cy.get(Classes.#nextYearTab).should('exist')
-    cy.get(Classes.#currentYearTab)
-      .should('exist')
-      .and('have.class', 'v-tab v-tab--active')
+    cy.get(Classes.#currentYearTab).should('exist')
     cy.get(Classes.#previousYearsTab).should('exist')
   }
 

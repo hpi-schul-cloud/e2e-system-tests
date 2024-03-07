@@ -4,27 +4,36 @@ Feature: Invalid Credentials - Verify login functionality via wrong user data
     As a user (teacher, student or admin), I want to see how app behaves when I'll use invalid credentials.
 
     @stable_test
-    Scenario: User uses invalid email and password
-        Given I am on the dBildungscloud login page
+    Scenario Outline: User uses invalid email and password
+        Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
         When I enter invalid email
         Then I see password field is visible and empty
         When I enter invalid password
         When I click button Submit
         Then I see error message
+        Examples:
+            | namespace |
+            | dbc       |
 
     @stable_test
-    Scenario: User login with empty fields
-        Given I am on the dBildungscloud login page
+    Scenario Outline: User login with empty fields
+        Given I am on the '<namespace>' login page
         When I click button Submit
         Then I see form validation message
+        Examples:
+            | namespace |
+            | dbc       |
 
     @stable_test
-    Scenario: User uses invalid username and password
-        Given I am on the dBildungscloud login page
+    Scenario Outline: User uses invalid username and password
+        Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
         When I enter invalid username
         Then I see password field is visible and empty
         When I enter invalid password
         When I click button Submit
         Then I see error message
+        Examples:
+            | namespace |
+            | dbc       |

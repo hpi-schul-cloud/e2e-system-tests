@@ -6,6 +6,10 @@ Feature: Broker Login - Verify brokered dBildungscloud login via OIDC provider
 
   @stable_test
   @non_staging_test
-  Scenario: User sees external identity provider button (OIDCMOCK).
-    Given I am on the dBildungscloud login page
+  Scenario Outline: User sees external identity provider button (OIDCMOCK).
+    Given I am on the '<namespace>' login page
     Then I see Login via Keycloak button
+
+    Examples:
+      | namespace |
+      | dbc       |
