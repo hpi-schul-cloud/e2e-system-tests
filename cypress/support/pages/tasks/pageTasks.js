@@ -53,6 +53,8 @@ class Tasks {
   static #gradingPercentInput = '[data-testid="evaluation_procent"]'
   static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]'
   static #lowerTaskSectionText = '[data-testid="lowerTaskSection"]'
+  static #upperTaskSectionIcon = '[data-testid="upperTaskSectionIcon"]'
+  static #upperTaskSectionText = '[data-testid="upperTaskSection"]'
   static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]'
   static #taskSubmissionsSubmittedIcon =
     '[data-testid="task-submissions-task-submitted-icon"]'
@@ -599,7 +601,16 @@ class Tasks {
   }
 
   clickLowerTaskSectionIcon () {
-    cy.get(Tasks.#lowerTaskSectionIcon).click()
+    cy.get(Tasks.#upperTaskSectionText)
+      .find(Tasks.#upperTaskSectionIcon)
+      .click()
+      .then(() => {
+        cy.get(Tasks.#upperTaskSectionText).should(
+          'have.attr',
+          'aria-expanded',
+          'true'
+        )
+      })
   }
 }
 export default Tasks
