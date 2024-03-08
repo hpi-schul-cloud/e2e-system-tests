@@ -69,14 +69,6 @@ module.exports = defineConfig({
   defaultCommandTimeout: 80000,
   requestTimeout: 60000,
   responseTimeout: 60000,
-  retries: {
-    // Configure retry attempts for `cypress run`
-    // Default is 0
-    runMode: 2,
-    // Configure retry attempts for `cypress open`
-    // Default is 0
-    openMode: 0
-  },
   e2e: {
     specPattern: 'cypress/e2e/**/*.feature',
     supportFile: 'cypress/support/e2e.js',

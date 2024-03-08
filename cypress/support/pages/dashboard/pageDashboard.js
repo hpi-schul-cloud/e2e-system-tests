@@ -10,6 +10,14 @@ class Dashboard {
   static #ukrainianLanguage = '[data-testid="available-language-uk"]'
   static #englishLanguage = '[data-testid="available-language-en"]'
   static #getPageTitle = '#page-title'
+  static #welcomeMessage = '[data-testid="welcome-section"]'
+  static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]'
+  static #dashboardTaskCourseName = '[data-testid="task-course-name"]'
+  static #dashboardTaskName = '[data-testid="task-name"]'
+  static #pageTitle = '[data-testid="title_of_an_element"]'
+  static #newsText = '[data-testid="body_of_element"]'
+  static #newsSection = '[data-testid="news-section"]'
+  static #dashboardLink = 'a[data-testid="Übersicht"]'
 
   static #testAssertionData = {
     german: 'Deutsch',
@@ -21,15 +29,6 @@ class Dashboard {
     overviewInUkrainian: 'Панель керування',
     overviewInEnglish: 'Dashboard'
   }
-
-  static #welcomeMessage = '[data-testid="welcome-section"]'
-  static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]'
-  static #dashboardTaskCourseName = '[data-testid="task-course-name"]'
-  static #dashboardTaskName = '[data-testid="task-name"]'
-  static #pageTitle = '[data-testid="title_of_an_element"]'
-  static #newsText = '[data-testid="body_of_element"]'
-  static #newsSection = '[data-testid="news-section"]'
-  static #titleOnDashboardPage = '[id="page-title"]'
 
   assertNameInitialsIsVisible () {
     cy.get(Dashboard.#initialsButton).should('be.visible')
@@ -101,14 +100,18 @@ class Dashboard {
   }
 
   assertLanguageUpdate (updatedText) {
-    cy.wait(500)
-      .get(Dashboard.#getPageTitle)
+    cy.get(Dashboard.#getPageTitle).should('be.visible').should('exist')
+
+    cy.get(Dashboard.#dashboardLink).click({ multiple: true })
+    cy.wait('@alerts_api')
+
+    cy.get(Dashboard.#getPageTitle)
+      .invoke('attr', 'data-testid')
+      .should('eq', updatedText)
+    cy.get(Dashboard.#getPageTitle)
       .should('be.visible')
       .should('exist')
       .invoke('text')
-      .should('eq', updatedText)
-    cy.get(Dashboard.#getPageTitle)
-      .invoke('attr', 'data-testid')
       .should('eq', updatedText)
   }
 
@@ -139,7 +142,7 @@ class Dashboard {
   arriveOnDashboard () {
     cy.visit('/dashboard')
     cy.url().should('include', '/dashboard')
-    cy.get(Dashboard.#titleOnDashboardPage).should('exist')
+    cy.get(Dashboard.#getPageTitle).should('exist')
   }
 
   seeSchoolNews (newsTitle, newsDesc) {
