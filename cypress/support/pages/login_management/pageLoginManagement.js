@@ -117,20 +117,8 @@ class Login_Management {
     })
   }
 
-  visitLoginPage () {
-    const instance = 'DBC'
-    cy.session(
-      instance,
-      () => {
-        Cypress.config('baseUrl', Cypress.env(instance))
-        cy.visit('login')
-      },
-      {
-        validate () {
-          cy.location('pathname').should('contains', 'login')
-        }
-      }
-    )
+  visitLoginPage (namespace) {
+    Cypress.config('baseUrl', Cypress.env(namespace.toUpperCase()))
     cy.visit('login')
   }
 
