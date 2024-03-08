@@ -1,5 +1,5 @@
 Cypress.Commands.add("createSchoolAndUsersToLoginToNbc", () => {
-  const apiKey = Cypress.env("API_KEY");
+  const authKey = Cypress.env("AUTH_KEY");
   const schoolApiEndpoint = Cypress.env("API_SCHOOL_ENDPOINT");
   const userApiEndpoint = Cypress.env("API_USERS_ENDPOINT");
   const baseUrl = Cypress.env("NBC");
@@ -20,7 +20,7 @@ Cypress.Commands.add("createSchoolAndUsersToLoginToNbc", () => {
       federalStateName: "Brandenburg",
     },
     headers: {
-      "x-api-key": apiKey,
+      "x-api-key": authKey,
     },
   }).then((firstResponse) => {
     expect(firstResponse.status).to.eq(201);
@@ -50,7 +50,7 @@ Cypress.Commands.add("createSchoolAndUsersToLoginToNbc", () => {
       url: userApiEndpoint,
       body: apiRequestBody,
       headers: {
-        "x-api-key": apiKey,
+        "x-api-key": authKey,
       },
     }).then((secondResponse) => {
       expect(secondResponse.status).to.eq(201);
