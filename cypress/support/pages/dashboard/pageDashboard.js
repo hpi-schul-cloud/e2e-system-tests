@@ -101,18 +101,14 @@ class Dashboard {
 
   assertLanguageUpdate (updatedText) {
     cy.get(Dashboard.#getPageTitle).should('be.visible').should('exist')
-
-    cy.get(Dashboard.#dashboardLink).click({ multiple: true })
     cy.wait('@alerts_api')
-
-    cy.get(Dashboard.#getPageTitle)
-      .invoke('attr', 'data-testid')
-      .should('eq', updatedText)
-    cy.get(Dashboard.#getPageTitle)
+    cy.contains(Dashboard.#dashboardLink, updatedText)
       .should('be.visible')
       .should('exist')
       .invoke('text')
-      .should('eq', updatedText)
+      .then(elm => {
+        expect(elm.trim()).to.equal(updatedText.trim())
+      })
   }
 
   verifyLanguageChanged (language) {

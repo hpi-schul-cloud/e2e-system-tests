@@ -7,8 +7,7 @@ class Board {
   static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]'
   static #addNewColumnButton = '[data-testid="add-column"]'
   static #addColumnTitleInput = '[data-testid="column-title-1"]'
-  static #addNewCardButtonInColumn =
-    'button>span span[data-testid="add-card-1"]'
+  static #addNewCardButtonInColumn = 'button>span span[data-testid="add-card"]'
   static #mainPageArea = '[id="main-content"]'
   static #editOptionColumnThreeDot = '[data-testid="board-menu-action-edit"]'
   static #threeDotMenuInColumn = '[data-testid="board-menu-button"]'
@@ -16,6 +15,7 @@ class Board {
     '[data-testid="board-menu-action-delete"]'
   static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]'
   static #deleteDialogBox = '[data-testid="dialog-title"]'
+  static #columnPlaceholder = '[placeholder="Spalte 2"]'
 
   doNotSeeColumnAfterDeletion () {
     cy.get(Board.#addColumnTitleInput).should('not.exist')
@@ -70,7 +70,7 @@ class Board {
 
   recursivelyDeleteTextFromTextArea () {
     cy.window().then(win => {
-      const textArea = win.document.querySelector('[placeholder="Spalte 2"]')
+      const textArea = win.document.querySelector(Board.#columnPlaceholder)
       const textAreaValue = textArea.value
 
       if (textAreaValue.length > 0) {
@@ -106,7 +106,7 @@ class Board {
     cy.wait(1000)
     cy.window().then(win => {
       const textareaValue = win.document.querySelector(
-        '[placeholder="Spalte 2"]'
+        Board.#columnPlaceholder
       ).value
       expect(textareaValue).to.equal(newColumnName)
     })
