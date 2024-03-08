@@ -17,7 +17,6 @@
 import "./commands";
 import "./custom_commands/login";
 import "./custom_commands/logout";
-import "./custom_commands/poc_school_api/createSchoolAndTeacherLoginToDbc";
 import "cypress-real-events";
 
 // prevents blocking test by uncaught exception. This should be commented out when BC-2711 is resolved
