@@ -3,7 +3,7 @@
 class Board {
   static #courseContentTab = '[data-testid="learnContent-tab"]';
   static #cardCourseBoardInCouseContent = '[data-testid="room-board-card"]';
-  static #courseBoardTitleOnPage = '[data-testid="course-board-title"]';
+  static #boardTitle = '[data-testid="board-title"]';
   static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]';
   static #addNewColumnButton = '[data-testid="add-column"]';
   static #addColumnTitleInput = '[data-testid="column-title-1"]';
@@ -11,10 +11,13 @@ class Board {
   static #mainPageArea = '[id="main-content"]';
   static #editOptionColumnThreeDot = '[data-testid="column-menu-btn-1"]';
   static #threeDotMenuInColumn = '[data-testid="column-menu-btn-1"]';
-  static #deleteOptionColumnThreeDot =
-    '[data-testid="board-menu-action-delete"]';
+  static #deleteOptionColumnThreeDot = '[data-testid="board-menu-action-delete"]';
   static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]';
   static #deleteDialogBox = '[data-testid="dialog-title"]';
+  static #threeDotMenuInBoardTitle = '[data-testid="board-menu-btn"]';
+  static #boardTitleMenuOptionEdit = '[data-testid="board-menu-action-edit"]';
+  static #boardTitleMenuOptionPublish = '[data-testid="board-menu-action-publish"]';
+
 
   doNotSeeColumnAfterDeletion() {
     cy.get(Board.#addColumnTitleInput).should("not.exist");
@@ -49,7 +52,7 @@ class Board {
   }
 
   seeCourseBoardTitle() {
-    cy.get(Board.#courseBoardTitleOnPage).should("exist");
+    cy.get(Board.#boardTitle).should("exist");
   }
 
   seeByDefaultWelcomeCardInBoard() {
@@ -77,6 +80,22 @@ class Board {
 
   clickOnAddNewCardButton() {
     cy.get(Board.#addNewCardButtonInColumn).click({ multiple: true });
+  }
+
+  clickOnThreeDotOnBoardTitle() {
+    cy.get(Board.#threeDotMenuInBoardTitle).click();
+  }
+
+  selectEditInBoardThreeDotMenu() {
+    cy.get(Board.#boardTitleMenuOptionEdit).click();
+  }
+
+  enterNewBoardTitle(newBoardTitle) {
+    cy.get(Board.#boardTitle)
+      .find('input')
+      .wait(1000)
+      .realType(newBoardTitle)
+      .wait(500);
   }
 }
 export default Board;

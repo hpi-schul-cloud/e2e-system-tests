@@ -11,9 +11,11 @@ class Courses {
   static #courseName = '[name="name"]'
   static #createFAB = '[name="fab-icon"]'
   static #newTopicFAB = '[data-testid="fab_button_add_lesson"]'
+  static #newBoardFAB = '[data-testid="fab_button_add_board"]'
   static #searchFieldRoomOverview = '[data-testid="search-field"]'
   static #mainContent = '[id="main-content"]'
-  static #createCourse = '[data-testid="add-course-button"]'
+ // static #createCourse = '[data-testid="add-course-button"]'
+  static #createCourse = '[id="fab"]'
   static #createContent = '[data-testid="add-content-button"]'
   static #ltiToolsTab = '[data-testid="tools"]'
   static #toolsList = '[data-testid="course_tool_list_add_tool"]'
@@ -360,6 +362,11 @@ class Courses {
   clickOnNewTaskFAB() {
     cy.get(Courses.#newTaskFAB).click()
     cy.wait('@homework_api')
+  }
+
+  clickOnNewBoardFAB() {
+    cy.get(Courses.#newBoardFAB).click()
+    cy.wait('@board_api')
   }
 
   contentIsVisibleOnCoursePage(taskTitle) {

@@ -68,3 +68,15 @@ When("I click on the button Remove on the Modal", () => {
 Then("I do not see the column", () => {
   board.doNotSeeColumnAfterDeletion();
 });
+
+When("I click on 3-dot-menu for Board title", () => {
+  board.clickOnThreeDotOnBoardTitle();
+});
+
+When("I select the option Edit for board title", () => {
+  board.clickOnDeleteColumnInMenu();
+});
+
+When("I enter new board title {string}", (newBoardTitle) => {
+  board.enterNewBoardTitle(newBoardName);
+});
