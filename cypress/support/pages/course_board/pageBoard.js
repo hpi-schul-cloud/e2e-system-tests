@@ -51,10 +51,6 @@ class Board {
     cy.get(Board.#cardCourseBoardInCouseContent).click();
   }
 
-  seeCourseBoardTitle() {
-    cy.get(Board.#boardTitle).should("exist");
-  }
-
   seeByDefaultWelcomeCardInBoard() {
     cy.get(Board.#welcomeDefaultCardInColumn).should("exist");
   }
@@ -93,9 +89,17 @@ class Board {
   enterNewBoardTitle(newBoardTitle) {
     cy.get(Board.#boardTitle)
       .find('input')
+      .clear()
       .wait(1000)
       .realType(newBoardTitle)
       .wait(500);
+  }
+
+  seeCourseBoardTitle(courseBoardTitle) {
+    cy.get(Board.#boardTitle)
+      .parent('div')
+      .find('span')
+      .should('contain', courseBoardTitle);
   }
 }
 export default Board;

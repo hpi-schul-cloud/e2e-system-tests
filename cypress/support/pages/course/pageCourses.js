@@ -14,8 +14,8 @@ class Courses {
   static #newBoardFAB = '[data-testid="fab_button_add_board"]'
   static #searchFieldRoomOverview = '[data-testid="search-field"]'
   static #mainContent = '[id="main-content"]'
- // static #createCourse = '[data-testid="add-course-button"]'
-  static #createCourse = '[id="fab"]'
+  static #createCourse = '[data-testid="add-course-button"]'
+  static #createCourseFabOptionCreate = '[data-testid="fab_button_add_course"]'
   static #createContent = '[data-testid="add-content-button"]'
   static #ltiToolsTab = '[data-testid="tools"]'
   static #toolsList = '[data-testid="course_tool_list_add_tool"]'
@@ -352,6 +352,7 @@ class Courses {
 
   clickOnCreateRoomFAB() {
     cy.get(Courses.#createCourse).click()
+    cy.get(Courses.#createCourseFabOptionCreate).click()
   }
 
   clickOnCreateContentFAB() {

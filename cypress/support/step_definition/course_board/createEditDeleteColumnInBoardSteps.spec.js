@@ -11,10 +11,6 @@ When("I click on card Course Board", () => {
   board.clickOnCourseBoardCardInCourseDetailPage();
 });
 
-Then("I see the page title in Course Board page", () => {
-  board.seeCourseBoardTitle();
-});
-
 Then(
   "I see the existing card with welcome message in the existing column",
   () => {
@@ -74,9 +70,13 @@ When("I click on 3-dot-menu for Board title", () => {
 });
 
 When("I select the option Edit for board title", () => {
-  board.clickOnDeleteColumnInMenu();
+  board.selectEditInBoardThreeDotMenu();
 });
 
 When("I enter new board title {string}", (newBoardTitle) => {
-  board.enterNewBoardTitle(newBoardName);
+  board.enterNewBoardTitle(newBoardTitle);
+});
+
+Then("I see the course board title is {string}", (courseBoardTitle) => {
+  board.seeCourseBoardTitle(courseBoardTitle);
 });
