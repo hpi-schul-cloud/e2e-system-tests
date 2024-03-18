@@ -99,7 +99,7 @@ class Board {
     cy.get(Board.#boardTitle)
       .parent('div')
       .find('span')
-      .should('contain', courseBoardTitle);
+      .contains(courseBoardTitle)
   }
 }
 export default Board;
