@@ -22,8 +22,8 @@ When("I click on the button Add column", () => {
   board.clickOnAddNewColumnButton();
 });
 
-When("I enter the title name {string}", (newColumnName) => {
-  board.enterNewColumnTitle(newColumnName);
+When("I enter the column title name {string} on position {string}", (newColumnName, columnPosition) => {
+  board.enterNewColumnTitle(newColumnName, columnPosition);
 });
 
 When("I click on the page outside of the column", () => {

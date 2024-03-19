@@ -6,7 +6,8 @@ class Board {
   static #boardTitle = '[data-testid="board-title"]';
   static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]';
   static #addNewColumnButton = '[data-testid="add-column"]';
-  static #addColumnTitleInput = '[data-testid="column-title-1"]';
+  static #addColumnTitleInputPrefix = 'column-title-';
+  static #addColumnTitleInput = '[data-testid="column-title-0"]';
   static #addNewCardButtonInColumn = '[data-testid="add-card-1"]';
   static #mainPageArea = '[id="main-content"]';
   static #editOptionColumnThreeDot = '[data-testid="column-menu-btn-1"]';
@@ -59,8 +60,9 @@ class Board {
     cy.get(Board.#addNewColumnButton).click();
   }
 
-  enterNewColumnTitle(newColumnName) {
-    cy.get(Board.#addColumnTitleInput)
+  enterNewColumnTitle(newColumnName, columnPosition) {
+    const columnTitleToChange = '[data-testid="' + Board.#addColumnTitleInputPrefix + columnPosition + '"]'
+    cy.get(columnTitleToChange)
       .wait(1000)
       .realType(newColumnName)
       .wait(500);

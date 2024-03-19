@@ -34,7 +34,7 @@ class Courses {
   static #contentCardContent = '[data-testid="content-card-task-content"]'
   static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
   static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
-  static #dropDownCourse = '[data-testid="title-menu"]'
+  static #dropDownCourse = '[data-testid="room-tool-three-dot-button"]'
   static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
   static #pageTitle = '[id="page-title"]'
   static #contentCardTaskInfoSubmissionsChip =
