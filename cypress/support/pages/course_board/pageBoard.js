@@ -72,11 +72,12 @@ class Board {
     cy.get(Board.#mainPageArea).click("center");
   }
 
-  //seeNewlyCreatedColumn(newColumnName) {
-  //cy.get(Board.#addColumnTitleInput).contains(newColumnName)
-  //}
+  seeTitleOfColumn(newColumnName, columnPosition) {
+    const columnTitleToChange = '[data-testid="' + Board.#addColumnTitleInputPrefix + columnPosition + '"]'
+    cy.get(columnTitleToChange).contains(newColumnName)
+  }
 
-  clickOnAddNewCardButton() {
+  clickOnAddNewCardButton(columnPosition) {
     cy.get(Board.#addNewCardButtonInColumn).click({ multiple: true });
   }
 

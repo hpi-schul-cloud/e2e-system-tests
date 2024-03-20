@@ -30,14 +30,13 @@ When("I click on the page outside of the column", () => {
   board.clickOutsideTheColumnToSaveTheColumn();
 });
 
-//Then("I see my column named {string}", (newColumnName) => {
-//board.seeNewlyCreatedColumn(newColumnName);
-//});   -----> this would not work as expected currently thers is an issue to fix.
+Then("I see my column named {string} for column with position {string}", (newColumnName, columnPosition) => {
+  board.seeTitleOfColumn(newColumnName, columnPosition);
+});
 
 Then(
-  "I click on the button with the Icon Plus to add a new card in the column",
-  () => {
-    board.clickOnAddNewCardButton();
+  "I click on the button with the Icon Plus to add a new card in the column with position {string}", (columnPosition) => {
+    board.clickOnAddNewCardButton(columnPosition);
   }
 );
 

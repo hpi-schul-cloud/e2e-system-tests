@@ -32,10 +32,10 @@ Then I see the course board title is '<new-board-title>'
 
 # Teacher adds a new column
 When I click on the button Add column
-When I enter the column title name 'my test cycycycy column' on position '0'
+When I enter the column title name '<column1-title>' on position '<column1-pos>'
 When I click on the page outside of the column
-#Then I see my column named 'my test cycycycycyc column'
-#Then I click on the button with the Icon Plus to add a new card in the column
+#Then I see my column named '<column1-title>' for column with position '<column1-pos>'
+#Then I click on the button with the Icon Plus to add a new card in the column with position '<column1-pos>'
 
 #When I click on card Course Board
 #Then I see the page title in Course Board page
@@ -53,12 +53,16 @@ When I click on the page outside of the column
 #When I click on the page outside of the column
 #Then I see my column named 'edit test cycycycycyc column'
 
+#Teacher publishes the board
+
 # Teacher deletes the column
 #When I click on three dot menu in the column
 #When I select the Delete option in the drop down
 #Then I see the confirmation Modal
 #When I click on the button Remove on the Modal
 #Then I do not see the column
+
+# Teacher deletes the board
 
 # Teacher deletes the course
 When I go to rooms overview
@@ -74,5 +78,5 @@ Then I do not see the course '<course-title>' on the room overview page
 
 
     Examples:
-      | user         | namespace | course-title      | default-board-title | new-board-title        |
-      | teacher1_brb | brb       | CY-Course         | Kurs-Board          | Cy Test board          |
+      | user         | namespace | course-title      | default-board-title | new-board-title        | column1-title           | column1-pos |
+      | teacher1_brb | brb       | CY-Course         | Kurs-Board          | Cy Test board          | my test cycycycy column | 0           |
