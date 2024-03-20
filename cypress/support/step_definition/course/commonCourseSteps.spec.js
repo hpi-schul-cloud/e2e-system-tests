@@ -48,12 +48,16 @@ When('I click on FAB to create new content', () => {
   courses.clickOnCreateContentFAB()
 })
 
-When('I click on New Task FAB', () => {
+When('I click on FAB option New task', () => {
   courses.clickOnNewTaskFAB()
 })
 
-When('I click on New Topic FAB', () => {
+When('I click on FAB option New topic', () => {
   courses.clickOnNewTopicFAB()
+})
+
+When('I click on FAB option New board', () => {
+  courses.clickOnNewBoardFAB()
 })
 
 When('I can see content {string} on course page', contentTitle => {

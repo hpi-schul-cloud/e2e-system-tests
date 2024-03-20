@@ -10,7 +10,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
     When I click on FAB to create new content
-    When I click on New Task FAB
+    When I click on FAB option New task
     Then I can see create task page
     When I enter title 'Cy Task Creating and Deleting Test'
     When I click on Enable Group Submission

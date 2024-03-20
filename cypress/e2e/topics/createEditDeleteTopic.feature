@@ -8,8 +8,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
     When I go to room 'Course with subject and tasks'
-    And I click on FAB to create new content
-    And I click on New Topic FAB
+    When I click on FAB to create new content
+    When I click on FAB option New topic
     Then I can see edit topic page '-'
     When I enter topic title 'Cy Topic Creating and Deleting Test'
     When I click on button Add Text to topic
