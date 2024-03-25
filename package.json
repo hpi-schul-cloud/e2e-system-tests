@@ -37,11 +37,12 @@
 	"devDependencies": {
 		"@badeball/cypress-cucumber-preprocessor": "^18.0.6",
 		"@cypress/webpack-preprocessor": "^5.17.0",
+		"axios": "^1.6.8",
 		"cypress": "^13.2.0",
 		"cypress-file-upload": "^5.0.8",
+		"cypress-real-events": "^1.11.0",
 		"multiple-cucumber-html-reporter": "^1.21.4",
-		"webpack": "^5.77.0",
-		"cypress-real-events": "^1.11.0"
+		"webpack": "^5.77.0"
 	},
 	"cypress-cucumber-preprocessor": {
 		"stepDefinitions": "cypress/support/step_definition/**/*.js",
