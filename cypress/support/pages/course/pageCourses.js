@@ -450,7 +450,7 @@ class Courses {
 
   openCourseEditPage() {
     cy.wait('@rooms_api')
-    cy.get(Courses.#dropDownCourse).parent().click()
+    cy.get(Courses.#dropDownCourse).eq(0).parent().click() //eq(1) can to be removed when the data-testid of the three dot menu is unique again.
     cy.get(Courses.#btnCourseEdit).click()
   }
 

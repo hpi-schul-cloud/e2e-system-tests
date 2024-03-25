@@ -35,7 +35,7 @@ Then("I see my column named {string} for column with position {string}", (newCol
 });
 
 Then(
-  "I click on the button with the Icon Plus to add a new card in the column with position {string}", (columnPosition) => {
+  "I click on the button with the Icon Plus to add a new card in the column on position {string}", (columnPosition) => {
     board.clickOnAddNewCardButton(columnPosition);
   }
 );

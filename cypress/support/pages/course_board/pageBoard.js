@@ -8,7 +8,8 @@ class Board {
   static #addNewColumnButton = '[data-testid="add-column"]';
   static #addColumnTitleInputPrefix = 'column-title-';
   static #addColumnTitleInput = '[data-testid="column-title-0"]';
-  static #addNewCardButtonInColumn = '[data-testid="add-card-1"]';
+  static #addNewCardButtonInColumn = '[data-testid="add-card"]';
+  static #addNewCardButtonInColumnPrefix = 'add-card-';
   static #mainPageArea = '[id="main-content"]';
   static #editOptionColumnThreeDot = '[data-testid="column-menu-btn-1"]';
   static #threeDotMenuInColumn = '[data-testid="column-menu-btn-1"]';
@@ -78,7 +79,10 @@ class Board {
   }
 
   clickOnAddNewCardButton(columnPosition) {
-    cy.get(Board.#addNewCardButtonInColumn).click({ multiple: true });
+		// currently the plus button to add a card has always the same data-testid. If it has numbered data-testids the outcommented lines can be used again.
+    // const addNewCardBtnToChange = '[data-testid="' + Board.#addNewCardButtonInColumnPrefix + columnPosition + '"]'
+    // cy.get(addNewCardBtnToChange).click({ multiple: true });
+		cy.get(Board.#addNewCardButtonInColumn).click();
   }
 
   clickOnThreeDotOnBoardTitle() {
