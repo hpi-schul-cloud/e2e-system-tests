@@ -84,8 +84,7 @@ class Tasks {
   static #taskCardTitle = '[data-testid="taskTitle"]'
   static #taskMenuDelete = '[data-testid="task-delete"]'
   static #deleteTaskButton = '[data-testid="task-details-btn-delete"]'
-  static #downloadFileGradingSection =
-    '[data-testid="submissions-section-files"]'
+  static #downloadFileGradingSection = '[data-testid="gradings-section-files"]'
   static #downloadFileTitle = '.card-title'
   static #fileTitleCard = '[data-testid="file-title-card"]'
   static #downloadFileText = '.card-text'
