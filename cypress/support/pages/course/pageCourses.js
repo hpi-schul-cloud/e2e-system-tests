@@ -111,104 +111,104 @@ class Courses {
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]'
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]'
 
-	seeDisabledCheckBoxForBBBToolInCourseEditPage () {
+	seeDisabledCheckBoxForBBBToolInCourseEditPage() {
 		cy.get(Courses.#bbbDisabledCheckBoxNBC).should('be.disabled')
 	}
 
-	uncheckVideoConferenceCheckBoxInCourseEditPage () {
+	uncheckVideoConferenceCheckBoxInCourseEditPage() {
 		cy.get(Courses.#videoConferenceCheckBoxNBC).uncheck()
 	}
 
-	doNotSeeBBBInToolTabNBC () {
+	doNotSeeBBBInToolTabNBC() {
 		cy.get(Courses.#bbbToolIconInToolsTabNBC).should('not.exist')
 	}
 
-	cancelBBBToolDialogBoxNBC () {
+	cancelBBBToolDialogBoxNBC() {
 		cy.get(Courses.#bbbDialogBoxCancelButtonNBC).click()
 	}
 
-	seeBBBDialogBoxToStartTheConferenceInNBC () {
+	seeBBBDialogBoxToStartTheConferenceInNBC() {
 		cy.get(Courses.#bbbVideoStartDialogBoxNBC).should('exist')
 	}
 
-	clickOnBBBInToolTabInNBC () {
+	clickOnBBBInToolTabInNBC() {
 		cy.get(Courses.#bbbToolIconInToolsTabNBC).click()
 	}
 
-	seeBBBInToolTabNBC () {
+	seeBBBInToolTabNBC() {
 		cy.get(Courses.#bbbToolIconInToolsTabNBC).should('exist')
 	}
 
-	clickOnToolsTabInCourse () {
+	clickOnToolsTabInCourse() {
 		cy.get(Courses.#toolsTabInCourseDetail).click()
 	}
 
-	clickOnEnableVideoConferenceCheckBoxInCourseEditPage () {
+	clickOnEnableVideoConferenceCheckBoxInCourseEditPage() {
 		cy.get(Courses.#videoConferenceCheckBoxNBC).check()
 	}
 
-	seeSectionOneAreaOnCourseCreatePage () {
+	seeSectionOneAreaOnCourseCreatePage() {
 		cy.get(Courses.#sectionOneAreaOnCourseCreationPage).should('exist')
 	}
 
-	seeSectionTwoAreaOnCourseCreatePage () {
+	seeSectionTwoAreaOnCourseCreatePage() {
 		cy.get(Courses.#sectionTwoAreaOnCourseCreationPage).should('exist')
 	}
 
-	seeSelectedDefaultTeacher (defaultTeacherName) {
+	seeSelectedDefaultTeacher(defaultTeacherName) {
 		cy.get(Courses.#chosenCourseTeacher).contains(defaultTeacherName)
 	}
 
-	seeSubstituteTeacherSelectionBox () {
+	seeSubstituteTeacherSelectionBox() {
 		cy.get(Courses.#chosenSubstituteTeacher).should('exist')
 	}
 
-	seeDatePickersForCourseInSchoolYear () {
+	seeDatePickersForCourseInSchoolYear() {
 		cy.get(Courses.#courseStartDatePicker).should('exist')
 		cy.get(Courses.#courseEndDatePicker).should('exist')
 	}
 
-	seeCreateCourseTimeTableContainer () {
+	seeCreateCourseTimeTableContainer() {
 		cy.get(Courses.#courseTimeTableContainer).should('exist')
 	}
 
-	seeSelectionBoxToSelectClass () {
+	seeSelectionBoxToSelectClass() {
 		cy.get(Courses.#addClassToCourseSelectionBox).should('exist')
 	}
 
-	seeSelectioinBoxToSelectStudent () {
+	seeSelectioinBoxToSelectStudent() {
 		cy.get(Courses.#addStudentToCourseSelectionBox).should('exist')
 	}
 
-	clickOnNextStepButtonOnCourseParticipationDetail () {
+	clickOnNextStepButtonOnCourseParticipationDetail() {
 		cy.get(Courses.#nextButtonToCreateCourseOnParticipationDeatilStep).click()
 	}
 
-	seeCourseCreationFinishPageSectionThree () {
+	seeCourseCreationFinishPageSectionThree() {
 		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should('exist')
 	}
 
-	selectRoomColour () {
+	selectRoomColour() {
 		cy.get(Courses.#RoomColourAsRed).click()
 	}
 
-	seeRoomSearchBoxOnRoomOverview () {
+	seeRoomSearchBoxOnRoomOverview() {
 		cy.get(Courses.#roomSearrchBox).should('be.exist')
 	}
 
-	courseIsVisiblOnOverviewPage (courseName) {
+	courseIsVisiblOnOverviewPage(courseName) {
 		cy.contains(courseName).should('be.visible').and('contain.text', courseName)
 	}
 
-	courseIsNotVisiblOnOverviewPage (courseName) {
+	courseIsNotVisiblOnOverviewPage(courseName) {
 		cy.contains(courseName).should('not.exist')
 	}
 
-	navigateToRoomsOverview () {
+	navigateToRoomsOverview() {
 		cy.get(Courses.#courseOverviewNavigationButton).click()
 	}
 
-	navigateToRoomBoard (roomName) {
+	navigateToRoomBoard(roomName) {
 		cy.contains(Courses.#courseTitleInRoomoverview, roomName)
 			.should('be.visible')
 			.then(title => {
@@ -233,140 +233,144 @@ class Courses {
 			})
 	}
 
-	showRoomPage (courseName) {
+	showRoomPage(courseName) {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#courseDetailPageTitle).should('contain.text', courseName)
 	}
 
-	navigateToLtiTools () {
+	navigateToLtiTools() {
 		cy.get(Courses.#ltiToolsTab).click()
 	}
 
-	clickOnAddNewLtiToolButton () {
+	clickOnAddNewLtiToolButton() {
 		cy.get(Courses.#addNewToolButton).click()
 	}
 
-	navigateToToolsTab () {
+	navigateToToolsTab() {
 		cy.get(Courses.#toolsTab).click()
 	}
 
-	navigateToGroupsTab () {
+	navigateToGroupsTab() {
 		cy.get(Courses.#courseGroupTab).click()
 	}
 
-	seeAddNewCourseGroupButton () {
+	seeAddNewCourseGroupButton() {
 		cy.get(Courses.#addNewCourseGroupButton).should('exist')
 	}
 
-	clickOnAddGroup () {
+	clickOnAddGroup() {
 		cy.get(Courses.#addNewCourseGroupButton).click()
 	}
 
-	seeAddNewCourseGroupPage () {
+	seeAddNewCourseGroupPage() {
 		cy.get(Courses.#groupNameField).should('exist')
 		cy.get(Courses.#groupMemberField).should('exist')
 	}
 
-	typeNameOfTheCourseGroup (groupName) {
+	typeNameOfTheCourseGroup(groupName) {
 		cy.get(Courses.#groupNameField).type(groupName)
 	}
 
-	deleteTextFromGroupNameField () {
+	deleteTextFromGroupNameField() {
 		cy.get(Courses.#groupNameField).clear()
 	}
 
-	selectGroupMember (groupMember) {
+	selectGroupMember(groupMember) {
 		cy.get(Courses.#chosenChoices).click()
 		cy.get(Courses.#chosenResults).contains(groupMember).click()
 	}
 
-	clickOnCreateStudentGroupButton () {
+	clickOnCreateStudentGroupButton() {
 		cy.get(Courses.#createStudentGroupButton).click()
 	}
 
-	seeCreatedStudentGroup (groupName) {
+	seeCreatedStudentGroup(groupName) {
 		cy.get(Courses.#studentGroupNameOnStudentGroupPage)
 			.contains(groupName)
 			.should('be.visible')
 	}
 
-	clickOnStudentGroup (groupName) {
+	clickOnStudentGroup(groupName) {
 		cy.get(Courses.#studentGroupNameOnStudentGroupPage)
 			.contains(groupName)
 			.click()
 	}
 
-	clickOnEditGroupButton () {
+	clickOnEditGroupButton() {
 		cy.get(Courses.#editGroupButton).click()
 	}
 
-	clickOnDeleteCourseGroupButton () {
+	clickOnDeleteCourseGroupButton() {
 		cy.get(Courses.#deleteCourseGroupButton).click()
 	}
 
-	clickOnDeleteCourseGroupConfirmationButton () {
+	clickOnDeleteCourseGroupConfirmationButton() {
 		cy.get(Courses.#deleteCourseGroupConfirmationButton).click()
 	}
 
-	courseGroupNotExists (groupName) {
+	courseGroupNotExists(groupName) {
 		cy.contains(groupName).should('not.exist')
 	}
 
-	clickOnAddNewToolFAB () {
+	clickOnAddNewToolFAB() {
 		cy.get(Courses.#addToolButton).click()
 	}
 
-	seeAddNewToolFAB () {
+	seeAddNewToolFAB() {
 		cy.get(Courses.#addToolButton).should('exist')
 	}
 
-	seeNotAddNewToolFAB () {
+	seeNotAddNewToolFAB() {
 		cy.get(Courses.#addToolButton).should('not.exist')
 	}
 
-	seeContextExternalToolConfiguratorPageTitle () {
+	seeContextExternalToolConfiguratorPageTitle() {
 		cy.get(Courses.#contextExternalToolConfiguratorPageTitle).should('exist')
 	}
 
-	clickOnToolConfigurationSelect () {
+	clickOnToolConfigurationSelect() {
 		cy.get(Courses.#toolConfigurationSelect).click()
 	}
 
-	enterAnToolNameInToolConfigurationSelect (toolName) {
+	enterAnToolNameInToolConfigurationSelect(toolName) {
 		cy.get(Courses.#toolConfigurationSelect).type(toolName)
 	}
 
-	courseIsVisibleOnOverviewPage (courseName) {
+	courseIsVisibleOnOverviewPage(courseName) {
 		cy.contains(courseName).should('be.visible').and('contain.text', courseName)
 	}
 
-	courseIsNotVisibleOnOverviewPage (courseName) {
+	courseIsNotVisibleOnOverviewPage(courseName) {
 		cy.contains(courseName).should('not.exist')
 	}
 
-	canAddBigBlueButton () {
+	canAddBigBlueButton() {
 		cy.get(Courses.#toolsList).should('be.visible')
 	}
 
-	canNotAddBigBlueButton () {
+	canNotAddBigBlueButton() {
 		cy.get(Courses.#toolsList).should('not.exist')
 	}
 
-	clickOnCreateRoomFAB () {
+	clickOnCreateRoomFAB() {
 		cy.get(Courses.#createCourse).click()
 	}
 
-	clickOnCreateContentFAB () {
+	createNewCourse() {
+		cy.get('[data-testid="fab_button_add_course"]').click()
+	}
+
+	clickOnCreateContentFAB() {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#createContent).click()
 	}
 
-	clickOnNewTaskFAB () {
+	clickOnNewTaskFAB() {
 		cy.get(Courses.#newTaskFAB).click()
 		cy.wait('@homework_api')
 	}
 
-	contentIsVisibleOnCoursePage (taskTitle) {
+	contentIsVisibleOnCoursePage(taskTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 			.wait(['@public_api', '@me_api', '@school_api', '@userPermissions_api'])
@@ -378,7 +382,7 @@ class Courses {
 		cy.contains(taskTitle).should('be.visible')
 	}
 
-	contentIsNotVisibleOnCoursePage (contentTitle) {
+	contentIsNotVisibleOnCoursePage(contentTitle) {
 		cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 			.wait(['@board_api', '@runtime_config_api', '@public_api'])
 			.then(interceptions => {
@@ -389,13 +393,13 @@ class Courses {
 		cy.contains(contentTitle).should('not.exist')
 	}
 
-	openTask (taskTitle) {
+	openTask(taskTitle) {
 		// cy.wait('@rooms_api') dont needed as on vue page already where scenario is given
 		cy.get(Courses.#contentCardContent).contains(taskTitle).click()
 		cy.wait('@homework_api')
 	}
 
-	openThreeDotMenuForContent (contentTitle) {
+	openThreeDotMenuForContent(contentTitle) {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#contentCardContent)
 			.contains(contentTitle)
@@ -404,51 +408,51 @@ class Courses {
 			.click()
 	}
 
-	openThreeDotMenuForTopic (contentTitle) {
+	openThreeDotMenuForTopic(contentTitle) {
 		cy.wait('@rooms_api')
 		cy.contains(contentTitle).prev().find('button').click()
 	}
 
-	openTopic (contentTitle) {
+	openTopic(contentTitle) {
 		cy.contains(contentTitle).parent().click()
 	}
 
-	clickDeleteInDotMenu () {
+	clickDeleteInDotMenu() {
 		cy.get(Courses.#deleteButtonInDotMenu).click()
 	}
 
-	clickDeleteInDotMenuOfTopic () {
+	clickDeleteInDotMenuOfTopic() {
 		cy.get(Courses.#deleteButtonInDotMenuOfTopic).click()
 	}
 
-	clickEditInDotMenu (linkId) {
+	clickEditInDotMenu(linkId) {
 		cy.get(Courses.#editButtonInDotMenu).click()
 		cy.wait('@homework_api')
 	}
 
-	clickEditInDotMenuOfTopic () {
+	clickEditInDotMenuOfTopic() {
 		cy.get(Courses.#editButtonInDotMenuOfTopic).click()
 	}
 
-	clickOnCancelInConfirmationWindow () {
+	clickOnCancelInConfirmationWindow() {
 		cy.get(Courses.#dialogCancelButton).click()
 	}
 
-	clickDeleteInConfirmationWindow () {
+	clickDeleteInConfirmationWindow() {
 		cy.get(Courses.#dialogConfirmButton).click()
 	}
 
-	openCourseEditPage () {
+	openCourseEditPage() {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#dropDownCourse).first().click()
 		cy.get(Courses.#btnCourseEdit).click()
 	}
 
-	showCourseEditPage () {
+	showCourseEditPage() {
 		cy.get(Courses.#pageTitle).should('exist')
 	}
 
-	compareSubmittedTasksInformation (submittedTasks, contentTitle) {
+	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#contentCardContent)
 			.contains(contentTitle)
@@ -458,7 +462,7 @@ class Courses {
 			.should('contain', submittedTasks)
 	}
 
-	compareGradedTasksInformation (gradedTasks, contentTitle) {
+	compareGradedTasksInformation(gradedTasks, contentTitle) {
 		cy.get(Courses.#contentCardContent)
 			.contains(contentTitle)
 			.parent()
@@ -467,7 +471,7 @@ class Courses {
 			.should('contain', gradedTasks)
 	}
 
-	clickOnFinishTask (taskTitle) {
+	clickOnFinishTask(taskTitle) {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#contentCardContent)
 			.contains(taskTitle)
@@ -479,7 +483,7 @@ class Courses {
 			.wait(['@task_finish_api'])
 	}
 
-	checkTaskCardDoesNotHaveButtons (taskTitle) {
+	checkTaskCardDoesNotHaveButtons(taskTitle) {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#contentCardContent)
 			.contains(taskTitle)
@@ -490,7 +494,7 @@ class Courses {
 			.should('not.exist')
 	}
 
-	checkTaskCardDoesHaveButtons (taskTitle) {
+	checkTaskCardDoesHaveButtons(taskTitle) {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#contentCardContent)
 			.contains(taskTitle)
@@ -501,55 +505,55 @@ class Courses {
 			.should('be.visible')
 	}
 
-	fillCourseCreationForm (new_course) {
+	fillCourseCreationForm(new_course) {
 		cy.get(Courses.#courseTitle).type(new_course)
 	}
 
-	clickOnCreateFAB () {
+	clickOnCreateFAB() {
 		cy.get(Courses.#createFAB).click()
 	}
 
-	fillCourseCreationForm (newCourseName) {
+	fillCourseCreationForm(newCourseName) {
 		cy.get(Courses.#courseTitle).type(newCourseName)
 	}
 
-	clickOnToCourseOverviewBtn () {
+	clickOnToCourseOverviewBtn() {
 		cy.get(Courses.#goToCourseOverviewButton).click()
 	}
 
-	clickOnNextStepsBtnAfterEnteringRoomDetails () {
+	clickOnNextStepsBtnAfterEnteringRoomDetails() {
 		cy.get(Courses.#nextButton).click()
 	}
 
-	clickOnDeleteButtonOnCourseEditPage () {
+	clickOnDeleteButtonOnCourseEditPage() {
 		cy.get(Courses.#deleteButton).click()
 	}
 
-	seeModalToConfirmCourseDeletion () {
+	seeModalToConfirmCourseDeletion() {
 		cy.get(Courses.#courseDeleteConfirmationModal).should('exist')
 	}
 
-	confirmCourseDeletionOnModal () {
+	confirmCourseDeletionOnModal() {
 		cy.get(Courses.#confirmDeletionPopup).click({ multiple: true, force: true })
 	}
 
-	submitChangesAfterEditingCourse () {
+	submitChangesAfterEditingCourse() {
 		cy.get(Courses.#btnSubmit).click()
 	}
 
-	editCourseTitle (editedRoomName) {
+	editCourseTitle(editedRoomName) {
 		cy.get(Courses.#courseName).clear().type(editedRoomName)
 	}
 
-	editCourseDescription (editedRoomDesccription) {
+	editCourseDescription(editedRoomDesccription) {
 		cy.get(Courses.#courseDescription).clear().type(editedRoomDesccription)
 	}
 
-	searchForARoom (roomName) {
+	searchForARoom(roomName) {
 		cy.get(Courses.#searchFieldRoomOverview).type(roomName)
 	}
 
-	clickOnNewTopicFAB () {
+	clickOnNewTopicFAB() {
 		cy.get(Courses.#newTopicFAB)
 			.click()
 			.wait(['@alerts_api'])
@@ -558,11 +562,11 @@ class Courses {
 			})
 	}
 
-	clearSubstituteTeacherField () {
+	clearSubstituteTeacherField() {
 		cy.get(Courses.#addSubstituteTeacher).click().type('{selectall}{backspace}')
 	}
 
-	addSubstituteTeacher (username) {
+	addSubstituteTeacher(username) {
 		let userFirstName
 		let userLastName
 		switch (username) {
@@ -580,7 +584,7 @@ class Courses {
 		cy.get(Courses.#chosenContainer).should('contain', userFullName)
 	}
 
-	deleteAllCoursesMatchingName (roomName) {
+	deleteAllCoursesMatchingName(roomName) {
 		cy.get('h1')
 			.eq(0)
 			.then($title => {
@@ -597,7 +601,7 @@ class Courses {
 			})
 	}
 
-	deleteCoursesByName (courseLabel, roomName) {
+	deleteCoursesByName(courseLabel, roomName) {
 		cy.get(`[class="rooms-container"]`).then($roomsContainer => {
 			if (
 				$roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length
@@ -609,7 +613,7 @@ class Courses {
 						cy.get(Courses.#deleteButton).should('exist').click()
 						cy.get(Courses.#confirmDeletionPopup).click({
 							multiple: true,
-							force: true
+							force: true,
 						})
 
 						if ($rooms.length > 1) {
@@ -621,32 +625,32 @@ class Courses {
 		})
 	}
 
-	checkIfGroupIsVisible (groupName) {
+	checkIfGroupIsVisible(groupName) {
 		cy.get(Courses.#groupSelection)
 			.find('.chosen-choices')
 			.contains(groupName)
 			.should('be.visible')
 	}
 
-	checkIfGroupIsNotVisible (groupName) {
+	checkIfGroupIsNotVisible(groupName) {
 		cy.get(Courses.#groupSelection)
 			.find('.chosen-choices')
 			.contains(groupName)
 			.should('not.exist')
 	}
 
-	checkIfStudentIsVisible (studentName) {
+	checkIfStudentIsVisible(studentName) {
 		cy.get(Courses.#chosenStudents)
 			.find('.search-choice')
 			.children('span')
 			.should('contain', studentName)
 	}
 
-	checkIfStudentIsNotVisible (studentName) {
+	checkIfStudentIsNotVisible(studentName) {
 		cy.get(Courses.#chosenStudents).should('not.contain', studentName)
 	}
 
-	addGroup (groupName) {
+	addGroup(groupName) {
 		cy.get(Courses.#groupSelection).find('.chosen-choices').click()
 		cy.get(Courses.#groupSelection)
 			.find('.chosen-results')
@@ -654,7 +658,7 @@ class Courses {
 			.click()
 	}
 
-	removeGroup (groupName) {
+	removeGroup(groupName) {
 		cy.get(Courses.#groupSelection)
 			.find('.chosen-choices')
 			.contains(groupName)
@@ -662,17 +666,17 @@ class Courses {
 			.click()
 	}
 
-	checkIfToolIsVisibleInToolTable (toolName) {
+	checkIfToolIsVisibleInToolTable(toolName) {
 		cy.get(Courses.#roomExternalToolSection).contains(toolName).should('exist')
 	}
 
-	checkIfToolIsNotVisibleInToolTable (toolName) {
+	checkIfToolIsNotVisibleInToolTable(toolName) {
 		cy.get(Courses.#roomExternalToolSection)
 			.contains(toolName)
 			.should('not.exist')
 	}
 
-	seeToolIsNotMarkedDeactivated (toolName) {
+	seeToolIsNotMarkedDeactivated(toolName) {
 		const toolData = cy
 			.get(Courses.#roomExternalToolSection)
 			.find('div')
@@ -685,7 +689,7 @@ class Courses {
 			.should('not.exist')
 	}
 
-	seeToolIsMarkedDeactivated (toolName) {
+	seeToolIsMarkedDeactivated(toolName) {
 		const toolData = cy
 			.get(Courses.#roomExternalToolSection)
 			.find('div')
@@ -699,7 +703,7 @@ class Courses {
 			.should('be.visible')
 	}
 
-	clickThreeDotMenuOnTool (toolName) {
+	clickThreeDotMenuOnTool(toolName) {
 		cy.get(Courses.#roomExternalToolSection).contains(toolName)
 		const toolData = cy
 			.get(Courses.#roomExternalToolSection)
@@ -713,7 +717,7 @@ class Courses {
 			.should('exist')
 	}
 
-	clickOnDeleteButton (toolName) {
+	clickOnDeleteButton(toolName) {
 		const toolData = cy
 			.get(Courses.#roomExternalToolSection)
 			.find('div')
@@ -726,19 +730,19 @@ class Courses {
 			.click({ force: true })
 	}
 
-	checkConfirmButtonOnDeletionDialog () {
+	checkConfirmButtonOnDeletionDialog() {
 		cy.get(Courses.#dialogConfirmButton).should('be.visible').click()
 	}
 
-	seeToolInToolOverview (toolName) {
+	seeToolInToolOverview(toolName) {
 		cy.get(Courses.#roomExternalToolSection).contains(toolName).should('exist')
 	}
 
-	clickOnTool (toolName) {
+	clickOnTool(toolName) {
 		cy.get(Courses.#roomExternalToolSection).contains(toolName).click()
 	}
 
-	clickOnToolAndReturn (toolName) {
+	clickOnToolAndReturn(toolName) {
 		cy.on('window:before:load', win => {})
 
 		cy.intercept('GET', 'https://google.com', req => {
@@ -757,15 +761,15 @@ class Courses {
 		cy.wait('@index')
 	}
 
-	clickOnSaveTool () {
+	clickOnSaveTool() {
 		cy.get(Courses.#saveToolButton).click()
 	}
 
-	checkIfToolIsNotVisibleInSelection (toolName) {
+	checkIfToolIsNotVisibleInSelection(toolName) {
 		!cy.get(Courses.#toolConfigurationSelect).should('not.contain', toolName)
 	}
 
-	checkIfOutdatedDialogIsOpen (toolName) {
+	checkIfOutdatedDialogIsOpen(toolName) {
 		cy.get(Courses.#outdatedDialogTitle).should('exist')
 		cy.get(Courses.#outdatedDialogTitle).should('contain', toolName)
 		cy.get(Courses.#errorDialog).should('exist')
@@ -780,29 +784,29 @@ class Courses {
 			.should('have.length.gt', 0)
 	}
 
-	checkIfToolIsVisible (toolName) {
+	checkIfToolIsVisible(toolName) {
 		cy.get(Courses.#toolConfigurationSelectItem).should('not.contain', toolName)
 	}
 
-	checkIfToolIsVisibleInSelection (toolName) {
+	checkIfToolIsVisibleInSelection(toolName) {
 		cy.get(Courses.#toolConfigurationSelectItem).contains(toolName)
 	}
 
-	selectTool (toolName) {
+	selectTool(toolName) {
 		cy.get(Courses.#toolConfigurationSelectItem).contains(toolName).click()
 	}
 
-	fillOutContextParameter () {
+	fillOutContextParameter() {
 		cy.get(Courses.#requiredParameterInputField).type('parameter')
 	}
 
-	clickCopyCourseButton () {
+	clickCopyCourseButton() {
 		cy.wait('@rooms_api')
 		cy.get(Courses.#dropDownCourse).parent().click()
 		cy.get(Courses.#btnCopyCourse).click()
 	}
 
-	seeCopyResultNotification () {
+	seeCopyResultNotification() {
 		cy.get(Courses.#copyResultNotification).should('exist')
 		cy.get(Courses.#warningTitle).should('have.length', '2')
 		cy.get(Courses.#dialogTitle).siblings('div').should('have.length', '2')
@@ -814,21 +818,21 @@ class Courses {
 			.should('have.length.gt', 0)
 	}
 
-	clickOnDialogClose () {
+	clickOnDialogClose() {
 		cy.get(Courses.#dialogClose).click()
 	}
 
-	seeRoomPage (courseName) {
+	seeRoomPage(courseName) {
 		cy.get(Courses.#courseDetailPageTitle).should('contain.text', courseName)
 	}
 
-	seeNumberOfTools () {
+	seeNumberOfTools() {
 		cy.get(Courses.#roomExternalToolSection)
 			.children()
 			.should('have.length', '3')
 	}
 
-	seeToolIsMarkedAsIncomplete (toolName) {
+	seeToolIsMarkedAsIncomplete(toolName) {
 		const toolCard = cy
 			.get(Courses.#roomExternalToolSection)
 			.find('div')
@@ -840,7 +844,7 @@ class Courses {
 			.should('exist')
 	}
 
-	seeToolIsNotMarkedAsIncomplete (toolName) {
+	seeToolIsNotMarkedAsIncomplete(toolName) {
 		const toolCard = cy
 			.get(Courses.#roomExternalToolSection)
 			.find('div')
@@ -852,7 +856,7 @@ class Courses {
 			.should('not.exist')
 	}
 
-	checkIfErrorDialogIsOpen () {
+	checkIfErrorDialogIsOpen() {
 		cy.get(Courses.#dialogTitle).should('exist')
 		cy.get(Courses.#errorDialog).should('exist')
 		cy.get(Courses.#dialogTitle).siblings('div').should('have.length', '2')
@@ -864,7 +868,7 @@ class Courses {
 			.should('have.length.gt', 0)
 	}
 
-	clickThreeDotMenuOnTool (toolName) {
+	clickThreeDotMenuOnTool(toolName) {
 		const toolCard = cy
 			.get(Courses.#roomExternalToolSection)
 			.find('div')
@@ -872,25 +876,25 @@ class Courses {
 		toolCard.parent('div').find(Courses.#toolCardThreeDotBtn).click()
 	}
 
-	clickOnToolEditButton (toolName) {
+	clickOnToolEditButton(toolName) {
 		cy.get(Courses.#toolEditBtn).click()
 	}
 
-	editMissingToolParameterValue () {
+	editMissingToolParameterValue() {
 		cy.get(Courses.#protectedParameter).click()
 		cy.get('div').contains('Nein').click()
 	}
 
-	clickOnConfirmButton () {
+	clickOnConfirmButton() {
 		cy.get(Courses.#saveBtn).click()
 	}
 
-	clickOnEditCourse () {
+	clickOnEditCourse() {
 		cy.get(Courses.#dropDownCourse).parent().click()
 		cy.get(Courses.#btnCourseEdit).click()
 	}
 
-	addStudentWithSearchStringToCourse (searchString) {
+	addStudentWithSearchStringToCourse(searchString) {
 		cy.get(Courses.#chooseStudentSelectionBox)
 			.click()
 			.type(searchString)
