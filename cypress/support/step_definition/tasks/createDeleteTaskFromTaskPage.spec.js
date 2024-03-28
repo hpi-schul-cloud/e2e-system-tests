@@ -1,7 +1,7 @@
-const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
-import Tasks from '../../pages/tasks/pageTasks'
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Tasks from "../../pages/tasks/pageTasks";
 
-const tasks = new Tasks()
+const tasks = new Tasks();
 
 // EXTERNAL COMMON STEP DEFINITIONS
 // =========================
@@ -11,10 +11,10 @@ const tasks = new Tasks()
 // -->\step_definition\course\commonCourseSteps.spec.js
 // -->\step_definition\tasks\commonTaskSteps.spec.js
 
-When('I click on button Cancel in confirmation window in edit task page', () => {
-    tasks.clickCancelDeletionButtonInEditTask()
-})
+When("I click on button Cancel in confirmation window in edit task page", () => {
+	tasks.clickCancelDeletionButtonInEditTask();
+});
 
-When('I click on button Delete in confirmation window in edit task page', () => {
-    tasks.clickConfirmDeletionButtonInEditTask()
-})
+When("I click on button Delete in confirmation window in edit task page", () => {
+	tasks.clickConfirmDeletionButtonInEditTask();
+});
