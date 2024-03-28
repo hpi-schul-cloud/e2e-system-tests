@@ -51,7 +51,26 @@ const getUserCredentials = username => {
 	}
 }
 
-const performExternalLogin = () => {
+
+// const performExternalLogin = async () => {
+// 	const resp = await cy.request('GET', oauth_url);
+// 	const oAuthUrl = resp.requestHeaders.path
+// 	  cy.intercept(oAuthUrl).as('oauth_url');
+// 	  const window = await cy.visit(oAuthUrl);
+// 	  expect(window.location.pathname).to.include('/Account/Login');
+// 	  const respOAuth = await cy.get('@oauth_url');
+// 	  expect(respOAuth.response.statusCode).to.equal(308);
+// 	  cy.get(externalUsernameInputFieldElement).should('be.visible');
+// 	  cy.get(externalUsernameInputFieldElement)
+// 	      .type(env[userEmail], { log: false });
+// 	  cy.get(externalPasswordInputFieldElement)
+// 	      .type(env[userPassword], { log: false })
+// 	      .type('{enter}');
+// };
+
+// performExternalLogin method needs to update. One suggestion is from Uwe mentioned above but its upto the dev how he needs to handle this situation.
+
+const performExternalLogin = (username, password) => {
 	cy.request('GET', oauth_url).then(resp => {
 		cy.intercept(resp.requestHeaders.referer).as('oauth_url')
 		cy.visit(resp.requestHeaders.referer).then(window => {
@@ -59,11 +78,11 @@ const performExternalLogin = () => {
 			cy.get('@oauth_url').then(resp => {
 				expect(resp.response.statusCode).to.equal(308)
 				cy.get(externalUsernameInputFieldElement).should('be.visible')
-				cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
+				cy.get(externalUsernameInputFieldElement).type(username, {
 					log: false,
 				})
 				cy.get(externalPasswordInputFieldElement)
-					.type(env[userPassword], { log: false })
+					.type(password, { log: false })
 					.type('{enter}')
 			})
 		})
@@ -139,11 +158,14 @@ const loginWithoutSchoolApi = (username, environment) => {
 	environmentUpperCased === 'NBC' &&
 		cy.get(nbcLoginWithEmailOptionButton).click()
 
-	let doExternalLogin = false
+	let doExternalLogin
+
+	username.includes('extern') ? doExternalLogin = true : doExternalLogin = false
+
 	const [userEmail, userPassword] = getUserCredentials(username)
 
 	doExternalLogin
-		? performExternalLogin()
+		? performExternalLogin(env[userEmail], env[userPassword])
 		: fillLoginForm(env[userEmail], env[userPassword])
 }
 

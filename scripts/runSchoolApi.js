@@ -37,7 +37,7 @@ const createSchool = async (schoolUrl, headers) => {
 		}
 		const response = await axios.post(schoolUrl, payload, { headers })
 		const { id } = response.data
-		console.log('School created with ID')
+		console.log(`School created with ID: ${id}`)
 		return { id }
 	} catch (error) {
 		console.error('Error creating school:', error.message)
@@ -64,7 +64,7 @@ const getUrl = baseUrl => {
 	return { schoolUrl, userUrl }
 }
 
-const createUsers = async (baseUrl, apiKeys, schoolId, userType) => {
+const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 	try {
 		const { schoolUrl, userUrl } = getUrl(baseUrl)
 
@@ -79,7 +79,7 @@ const createUsers = async (baseUrl, apiKeys, schoolId, userType) => {
 			const { id } = await createSchool(schoolUrl, finalHeaders)
 			schoolId = id
 		} else {
-			console.log('Using existing school ID')
+			console.log(`Using existing school ID: ${schoolId}`)
 		}
 
 		const role = users[userType]
@@ -112,4 +112,4 @@ const createUsers = async (baseUrl, apiKeys, schoolId, userType) => {
 	}
 }
 
-module.exports = { createUsers }
+module.exports = { createUser }
