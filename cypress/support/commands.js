@@ -25,4 +25,4 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 // -- For file upload commands --
-import 'cypress-file-upload'
+import "cypress-file-upload";

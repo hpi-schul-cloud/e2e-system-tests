@@ -1,7 +1,7 @@
-const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
-import News from '../../pages/news/pageNews'
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import News from "../../pages/news/pageNews";
 
-const news = new News()
+const news = new News();
 
 // EXTERNAL COMMON STEP DEFINITIONS
 // =========================
@@ -11,6 +11,9 @@ const news = new News()
 // --> \step_definition\teams\commonTeamsSteps.spec.js
 // --> \step_definition\news\commonNewsSteps.spec.js
 
-Then('I can read the news {string} with description {string}', (titleOfNews, descriptionOfNews) => {
-  news.teacherReadsNewsOnOverviewPage(titleOfNews, descriptionOfNews)
-})
+Then(
+	"I can read the news {string} with description {string}",
+	(titleOfNews, descriptionOfNews) => {
+		news.teacherReadsNewsOnOverviewPage(titleOfNews, descriptionOfNews);
+	}
+);

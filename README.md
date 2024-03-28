@@ -6,6 +6,7 @@ Frameworks:
 
 - [Cypress cucumber pre-processor v18.0.6](https://github.com/badeball/cypress-cucumber-preprocessor)
 
+
 ### Prepare development environment
 
 Install or make sure Chrome browser (at least) have it in your development machine
@@ -61,6 +62,8 @@ Install or make sure Chrome browser (at least) have it in your development machi
 |   |____ aggregate-json-files.sh (Aggregate all json files into one json file in CI)
 |---- .editorconfig
 |---- .gitattributes
+|---- .prettierignore
+|---- .prettierrc
 |---- .gitignore
 |---- reporter.js (for generating html reports)
 |---- cypress.config.json (cypress related settings)

@@ -1,0 +1,7 @@
+/node_modules/**
+/dist/**
+LICENSE.md
+.gitignore
+.gitattributes
+.editorconfig
+package-lock.json

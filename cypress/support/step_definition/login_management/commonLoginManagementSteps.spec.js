@@ -1,16 +1,16 @@
-const { Given, When, Then } = require('@badeball/cypress-cucumber-preprocessor')
-import Login_Management from '../../pages/login_management/pageLoginManagement'
+const { Given, When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Login_Management from "../../pages/login_management/pageLoginManagement";
 
-const loginManagement = new Login_Management()
+const loginManagement = new Login_Management();
 
-Given('I am on the {string} login page', namespace => {
-  loginManagement.visitLoginPage(namespace)
-})
+Given("I am on the {string} login page", (namespace) => {
+	loginManagement.visitLoginPage(namespace);
+});
 
-When('I click on Forgot Password', () => {
-  loginManagement.clickOnForgotPassword()
-})
+When("I click on Forgot Password", () => {
+	loginManagement.clickOnForgotPassword();
+});
 
-Then('I see Login via Keycloak button', () => {
-  loginManagement.brokerButtonIsVisible()
-})
+Then("I see Login via Keycloak button", () => {
+	loginManagement.brokerButtonIsVisible();
+});

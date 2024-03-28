@@ -1,7 +1,7 @@
-const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
-import Management from '../../pages/admin/pageAdministration'
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Management from "../../pages/admin/pageAdministration";
 
-const management = new Management()
+const management = new Management();
 
 // EXTERNAL COMMON STEP DEFINITIONS
 // =========================
@@ -12,14 +12,14 @@ const management = new Management()
 
 // Scenario: Admin allows student to create a team on BRB
 
-When('I click the checkbox to allow students to create a team', () => {
-  management.clickAllowStudentsTeamCheckbox()
-})
+When("I click the checkbox to allow students to create a team", () => {
+	management.clickAllowStudentsTeamCheckbox();
+});
 
-When('I click on Save', () => {
-  management.clickSaveButtonToAllowStudentCreateTeam()
-})
+When("I click on Save", () => {
+	management.clickSaveButtonToAllowStudentCreateTeam();
+});
 
-Then('I see checkbox is saved', () => {
-  management.seeStudentTeamsAllowed()
-})
+Then("I see checkbox is saved", () => {
+	management.seeStudentTeamsAllowed();
+});

@@ -1,7 +1,7 @@
-const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
-import Courses from '../../pages/course/pageCourses'
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Courses from "../../pages/course/pageCourses";
 
-const courses = new Courses()
+const courses = new Courses();
 
 // EXTERNAL COMMON STEP DEFINITIONS
 // =========================
@@ -12,6 +12,6 @@ const courses = new Courses()
 
 //Scenario: teacher is able to search for a course and find it
 
-When ('I enter the course name {string} into the search field',(roomName)=>{
-    courses.searchForARoom(roomName)
-})
+When("I enter the course name {string} into the search field", (roomName) => {
+	courses.searchForARoom(roomName);
+});

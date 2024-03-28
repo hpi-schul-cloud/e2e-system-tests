@@ -1,6 +1,5 @@
-const { When, Then } = require("@badeball/cypress-cucumber-preprocessor")
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 
-
-Then('I log out', () => {
-    cy.logout()
-})
+Then("I log out", () => {
+	cy.logout();
+});

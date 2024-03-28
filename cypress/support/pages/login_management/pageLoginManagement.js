@@ -1,275 +1,245 @@
-'use strict'
+"use strict";
 
 class Login_Management {
-  static #passwordRecoveryButton = '[data-testid="forgot-password"]'
-  static #usernameLabel = '[data-testid="username-label"]'
-  static #emailInput = '[data-testid="username"]'
-  static #infoMessage = '[data-testid="info-message"]'
-  static #submitButton = '[data-testid="submit-btn-password-recovery-modal"]'
-  static #cancelButton = '[data-testid="btn-cancel-"]'
-  static #brokerButton = '[data-testid="submit-oauth-login-oidcmock"]'
-  static #emailInputBox = '[data-testid="username-email"]'
-  static #passwordField = '[data-testid = "password-email"]'
-  static #notificationBannerField = '[data-testid="notification"]'
-  static #loginFormSelector = '[data-testid = "login-loginform-standard"]'
-  static #inputFieldInvalidPseudoSelector = 'input:invalid'
-  static #userSettingsCurrentPasswordField =
-    '[data-testid="settings_password_current"]'
-  static #userSettingsNewPasswordField = '[data-testid="settings_password_new"]'
-  static #userSettingsNewPasswordRepeatField =
-    '[data-testid="settings_password_control"]'
-  static #userSettingsSubmitBtn = '[data-testid="submit_new_password_btn"]'
-  static #pageTitle = '#page-title'
-  static #userSettingsNameInitials = '[data-testid="initials"]'
-  static #logoutBtn = '[data-testid="logout"]'
-  static #loginSubmitBtn = '[data-testid="submit-login-email"]'
+	static #passwordRecoveryButton = '[data-testid="forgot-password"]';
+	static #usernameLabel = '[data-testid="username-label"]';
+	static #emailInput = '[data-testid="username"]';
+	static #infoMessage = '[data-testid="info-message"]';
+	static #submitButton = '[data-testid="submit-btn-password-recovery-modal"]';
+	static #cancelButton = '[data-testid="btn-cancel-"]';
+	static #brokerButton = '[data-testid="submit-oauth-login-oidcmock"]';
+	static #emailInputBox = '[data-testid="username-email"]';
+	static #passwordField = '[data-testid = "password-email"]';
+	static #notificationBannerField = '[data-testid="notification"]';
+	static #loginFormSelector = '[data-testid = "login-loginform-standard"]';
+	static #inputFieldInvalidPseudoSelector = "input:invalid";
+	static #userSettingsCurrentPasswordField = '[data-testid="settings_password_current"]';
+	static #userSettingsNewPasswordField = '[data-testid="settings_password_new"]';
+	static #userSettingsNewPasswordRepeatField =
+		'[data-testid="settings_password_control"]';
+	static #userSettingsSubmitBtn = '[data-testid="submit_new_password_btn"]';
+	static #pageTitle = "#page-title";
+	static #userSettingsNameInitials = '[data-testid="initials"]';
+	static #logoutBtn = '[data-testid="logout"]';
+	static #loginSubmitBtn = '[data-testid="submit-login-email"]';
 
-  static #testData = {
-    usernameText:
-      'Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.',
-    emailText: 'robot.test+.exe@@@@@@@gmx.de',
-    invalidPassword:
-      'sc9lwOX#Z!ImcKVp66SP9ag$RvEX00nhR&Vn@dIW@hhREU||Zhbhbhu&&&$)Uhbwhbdbb|||',
-    errorMessageText: 'Login fehlgeschlagen.'
-  }
+	static #testData = {
+		usernameText:
+			"Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.",
+		emailText: "robot.test+.exe@@@@@@@gmx.de",
+		invalidPassword:
+			"sc9lwOX#Z!ImcKVp66SP9ag$RvEX00nhR&Vn@dIW@hhREU||Zhbhbhu&&&$)Uhbwhbdbb|||",
+		errorMessageText: "Login fehlgeschlagen.",
+	};
 
-  // info about checkValidity: https://www.w3schools.com/js/js_validation_api.asp
-  // info about inputFieldInvalidPseudoSelector: https://glebbahmutov.com/blog/form-validation-in-cypress/
-  assertEmailFieldIsVisibleAndEmpty () {
-    cy.get(Login_Management.#loginFormSelector).within(() => {
-      cy.get(Login_Management.#emailInputBox)
-        .should('be.visible')
-        .should('have.value', '')
-        .then(el => {
-          expect(el[0].checkValidity()).to.be.false
-        })
-      cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
-        'have.length',
-        2
-      )
-    })
-  }
+	// info about checkValidity: https://www.w3schools.com/js/js_validation_api.asp
+	// info about inputFieldInvalidPseudoSelector: https://glebbahmutov.com/blog/form-validation-in-cypress/
+	assertEmailFieldIsVisibleAndEmpty() {
+		cy.get(Login_Management.#loginFormSelector).within(() => {
+			cy.get(Login_Management.#emailInputBox)
+				.should("be.visible")
+				.should("have.value", "")
+				.then((el) => {
+					expect(el[0].checkValidity()).to.be.false;
+				});
+			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should("have.length", 2);
+		});
+	}
 
-  enterInvalidEmailOrUsername (usernameOrEmail) {
-    let usernameOrEmailText
-    /*
+	enterInvalidEmailOrUsername(usernameOrEmail) {
+		let usernameOrEmailText;
+		/*
         @params: Boolean
         if parameter is TRUE ---> it types Email
         else -----> it type Username
     */
-    if (usernameOrEmail) {
-      console.log(usernameOrEmail)
-      usernameOrEmailText = Login_Management.#testData.emailText // value is email, since logic is true
-    } else {
-      usernameOrEmailText = Login_Management.#testData.usernameText // value is username, since logic is false
-    }
-    this.typeEmailIntoField(
-      Login_Management.#emailInputBox,
-      usernameOrEmailText
-    )
-  }
+		if (usernameOrEmail) {
+			console.log(usernameOrEmail);
+			usernameOrEmailText = Login_Management.#testData.emailText; // value is email, since logic is true
+		} else {
+			usernameOrEmailText = Login_Management.#testData.usernameText; // value is username, since logic is false
+		}
+		this.typeEmailIntoField(Login_Management.#emailInputBox, usernameOrEmailText);
+	}
 
-  enterInvalidPassword () {
-    this.typePasswordIntoField(
-      Login_Management.#passwordField,
-      Login_Management.#testData.invalidPassword
-    )
-  }
+	enterInvalidPassword() {
+		this.typePasswordIntoField(
+			Login_Management.#passwordField,
+			Login_Management.#testData.invalidPassword
+		);
+	}
 
-  clickOnSubmitButton () {
-    cy.get(Login_Management.#loginFormSelector)
-      .should('be.visible')
-      .submit()
-      .wait(8000)
-  }
+	clickOnSubmitButton() {
+		cy.get(Login_Management.#loginFormSelector).should("be.visible").submit().wait(8000);
+	}
 
-  assertErrorMessageDisplay () {
-    cy.get(Login_Management.#notificationBannerField)
-      .should('be.visible')
-      .and('have.class', 'notification-content')
-      .contains(Login_Management.#testData.errorMessageText)
-  }
+	assertErrorMessageDisplay() {
+		cy.get(Login_Management.#notificationBannerField)
+			.should("be.visible")
+			.and("have.class", "notification-content")
+			.contains(Login_Management.#testData.errorMessageText);
+	}
 
-  assertPasswordFieldIsVisibleAndEmpty () {
-    cy.get(Login_Management.#loginFormSelector).within(() => {
-      cy.get(Login_Management.#passwordField)
-        .should('be.visible')
-        .should('have.value', '')
-        .then(el => {
-          expect(el[0].checkValidity()).to.be.false
-        })
-      cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
-        'have.length',
-        1
-      )
-    })
-  }
+	assertPasswordFieldIsVisibleAndEmpty() {
+		cy.get(Login_Management.#loginFormSelector).within(() => {
+			cy.get(Login_Management.#passwordField)
+				.should("be.visible")
+				.should("have.value", "")
+				.then((el) => {
+					expect(el[0].checkValidity()).to.be.false;
+				});
+			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should("have.length", 1);
+		});
+	}
 
-  assertFormValidationMessageDisplay () {
-    cy.get(Login_Management.#loginFormSelector).within(() => {
-      cy.get(Login_Management.#inputFieldInvalidPseudoSelector).then(el => {
-        expect(el[0].checkValidity()).to.be.false
-      })
-      cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
-        'have.length',
-        2
-      )
-    })
-  }
+	assertFormValidationMessageDisplay() {
+		cy.get(Login_Management.#loginFormSelector).within(() => {
+			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).then((el) => {
+				expect(el[0].checkValidity()).to.be.false;
+			});
+			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should("have.length", 2);
+		});
+	}
 
-  visitLoginPage (namespace) {
-    Cypress.config('baseUrl', Cypress.env(namespace.toUpperCase()))
-    cy.visit('login')
-  }
+	visitLoginPage(namespace) {
+		Cypress.config("baseUrl", Cypress.env(namespace.toUpperCase()));
+		cy.visit("login");
+	}
 
-  clickOnForgotPassword () {
-    cy.get(Login_Management.#passwordRecoveryButton).click()
-  }
+	clickOnForgotPassword() {
+		cy.get(Login_Management.#passwordRecoveryButton).click();
+	}
 
-  brokerButtonIsVisible () {
-    cy.get(Login_Management.#brokerButton).should('exist')
-  }
+	brokerButtonIsVisible() {
+		cy.get(Login_Management.#brokerButton).should("exist");
+	}
 
-  showUpElementsOnDialog () {
-    cy.get(Login_Management.#usernameLabel).should('be.visible')
-    cy.get(Login_Management.#emailInput).should('be.visible')
-    cy.get(Login_Management.#infoMessage).should('be.visible')
-    cy.get(Login_Management.#submitButton).should('be.visible')
-    cy.get(Login_Management.#cancelButton).should('be.visible')
-  }
+	showUpElementsOnDialog() {
+		cy.get(Login_Management.#usernameLabel).should("be.visible");
+		cy.get(Login_Management.#emailInput).should("be.visible");
+		cy.get(Login_Management.#infoMessage).should("be.visible");
+		cy.get(Login_Management.#submitButton).should("be.visible");
+		cy.get(Login_Management.#cancelButton).should("be.visible");
+	}
 
-  submitRequestWithoutEmail () {
-    cy.get(Login_Management.#emailInput).clear()
-    cy.get(Login_Management.#submitButton).click()
-  }
+	submitRequestWithoutEmail() {
+		cy.get(Login_Management.#emailInput).clear();
+		cy.get(Login_Management.#submitButton).click();
+	}
 
-  seeEmailInputOnSubmittingRequestWithoutEnteringEmail () {
-    cy.get(Login_Management.#emailInput).should('be.visible')
-  }
+	seeEmailInputOnSubmittingRequestWithoutEnteringEmail() {
+		cy.get(Login_Management.#emailInput).should("be.visible");
+	}
 
-  typeEmailIntoField (sel, email) {
-    cy.get(sel)
-      .type(email, { log: false, timeout: 120000 })
-      .should('have.value', email)
-  }
+	typeEmailIntoField(sel, email) {
+		cy.get(sel).type(email, { log: false, timeout: 120000 }).should("have.value", email);
+	}
 
-  typePasswordIntoField (sel, password) {
-    cy.get(sel).type(password, { log: false }).should('have.length', 1)
-  }
+	typePasswordIntoField(sel, password) {
+		cy.get(sel).type(password, { log: false }).should("have.length", 1);
+	}
 
-  assertEmptyAndVisibleField (sel) {
-    cy.get(sel).should(fieldIsVisibleAndEmpty => {
-      expect(fieldIsVisibleAndEmpty).to.be.empty
-      expect(fieldIsVisibleAndEmpty).to.be.visible
-    })
-  }
+	assertEmptyAndVisibleField(sel) {
+		cy.get(sel).should((fieldIsVisibleAndEmpty) => {
+			expect(fieldIsVisibleAndEmpty).to.be.empty;
+			expect(fieldIsVisibleAndEmpty).to.be.visible;
+		});
+	}
 
-  enterEmail () {
-    let userEmail = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_EMAIL')
-    this.typeEmailIntoField(Login_Management.#emailInputBox, userEmail)
-  }
+	enterEmail() {
+		let userEmail = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_EMAIL");
+		this.typeEmailIntoField(Login_Management.#emailInputBox, userEmail);
+	}
 
-  enterPassword () {
-    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD')
-    this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
-  }
+	enterPassword() {
+		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD");
+		this.typePasswordIntoField(Login_Management.#passwordField, userPwd);
+	}
 
-  assertCurrentPwdFieldVisibleAndEmpty () {
-    this.assertEmptyAndVisibleField(
-      Login_Management.#userSettingsCurrentPasswordField
-    )
-  }
+	assertCurrentPwdFieldVisibleAndEmpty() {
+		this.assertEmptyAndVisibleField(Login_Management.#userSettingsCurrentPasswordField);
+	}
 
-  assertNewAndRepeatPasswordFieldVisibleAndEmpty () {
-    this.assertEmptyAndVisibleField(
-      Login_Management.#userSettingsNewPasswordField
-    )
-    this.assertEmptyAndVisibleField(
-      Login_Management.#userSettingsNewPasswordRepeatField
-    )
-  }
+	assertNewAndRepeatPasswordFieldVisibleAndEmpty() {
+		this.assertEmptyAndVisibleField(Login_Management.#userSettingsNewPasswordField);
+		this.assertEmptyAndVisibleField(Login_Management.#userSettingsNewPasswordRepeatField);
+	}
 
-  enterCurrentPassword () {
-    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD')
-    this.typePasswordIntoField(
-      Login_Management.#userSettingsCurrentPasswordField,
-      userPwd
-    )
-  }
+	enterCurrentPassword() {
+		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD");
+		this.typePasswordIntoField(
+			Login_Management.#userSettingsCurrentPasswordField,
+			userPwd
+		);
+	}
 
-  enterNewPasswordInAllFields () {
-    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD')
-    this.typePasswordIntoField(
-      Login_Management.#userSettingsNewPasswordField,
-      userPwd
-    )
-    this.typePasswordIntoField(
-      Login_Management.#userSettingsNewPasswordRepeatField,
-      userPwd
-    )
-  }
+	enterNewPasswordInAllFields() {
+		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD");
+		this.typePasswordIntoField(Login_Management.#userSettingsNewPasswordField, userPwd);
+		this.typePasswordIntoField(
+			Login_Management.#userSettingsNewPasswordRepeatField,
+			userPwd
+		);
+	}
 
-  clickOnSubmitButtonInUserSettings () {
-    cy.get(Login_Management.#userSettingsSubmitBtn)
-      .should('be.visible')
-      .click()
-      .wait(500)
-      .then(() => {
-        cy.get(Login_Management.#notificationBannerField).should('be.visible')
-        cy.get(Login_Management.#pageTitle).should('be.visible')
-      })
-  }
+	clickOnSubmitButtonInUserSettings() {
+		cy.get(Login_Management.#userSettingsSubmitBtn)
+			.should("be.visible")
+			.click()
+			.wait(500)
+			.then(() => {
+				cy.get(Login_Management.#notificationBannerField).should("be.visible");
+				cy.get(Login_Management.#pageTitle).should("be.visible");
+			});
+	}
 
-  assertSuccessMessageIsDisplay () {
-    cy.get(Login_Management.#notificationBannerField).should('be.visible')
-  }
+	assertSuccessMessageIsDisplay() {
+		cy.get(Login_Management.#notificationBannerField).should("be.visible");
+	}
 
-  clickOnInitials () {
-    cy.get(Login_Management.#userSettingsNameInitials)
-      .should('be.visible')
-      .click()
-      .wait(500)
-  }
+	clickOnInitials() {
+		cy.get(Login_Management.#userSettingsNameInitials)
+			.should("be.visible")
+			.click()
+			.wait(500);
+	}
 
-  clickOnLogoutBtn () {
-    cy.get(Login_Management.#logoutBtn).should('be.visible').click().wait(500)
-  }
+	clickOnLogoutBtn() {
+		cy.get(Login_Management.#logoutBtn).should("be.visible").click().wait(500);
+	}
 
-  enterNewPassword () {
-    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD')
-    this.typePasswordIntoField(Login_Management.#passwordField, userPwd)
-  }
+	enterNewPassword() {
+		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD");
+		this.typePasswordIntoField(Login_Management.#passwordField, userPwd);
+	}
 
-  enterNewPasswordInUserSettings () {
-    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD')
-    this.typePasswordIntoField(
-      Login_Management.#userSettingsCurrentPasswordField,
-      userPwd
-    )
-  }
+	enterNewPasswordInUserSettings() {
+		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD");
+		this.typePasswordIntoField(
+			Login_Management.#userSettingsCurrentPasswordField,
+			userPwd
+		);
+	}
 
-  enterOldPasswordInUserSettings () {
-    let userPwd = Cypress.env('STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD')
-    this.typePasswordIntoField(
-      Login_Management.#userSettingsNewPasswordField,
-      userPwd
-    )
-    this.typePasswordIntoField(
-      Login_Management.#userSettingsNewPasswordRepeatField,
-      userPwd
-    )
-  }
+	enterOldPasswordInUserSettings() {
+		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD");
+		this.typePasswordIntoField(Login_Management.#userSettingsNewPasswordField, userPwd);
+		this.typePasswordIntoField(
+			Login_Management.#userSettingsNewPasswordRepeatField,
+			userPwd
+		);
+	}
 
-  waitFor15Seconds () {
-    cy.wait(15000)
-    cy.get(Login_Management.#loginSubmitBtn).then($btn => {
-      if ($btn.is(':disabled')) {
-        cy.log('Button exists and is disabled!')
-        return
-      } else {
-        cy.log('Button exists and is enabled!')
-      }
-    })
-  }
+	waitFor15Seconds() {
+		cy.wait(15000);
+		cy.get(Login_Management.#loginSubmitBtn).then(($btn) => {
+			if ($btn.is(":disabled")) {
+				cy.log("Button exists and is disabled!");
+				return;
+			} else {
+				cy.log("Button exists and is enabled!");
+			}
+		});
+	}
 }
-export default Login_Management
+export default Login_Management;
