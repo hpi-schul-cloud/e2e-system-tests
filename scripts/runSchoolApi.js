@@ -84,7 +84,7 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 
 		const role = users[userType]
 		if (!role) {
-			throw new Error('Invalid username')
+			throw new Error('Invalid user type')
 		}
 
 		const payload = {
