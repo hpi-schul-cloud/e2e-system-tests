@@ -3,65 +3,71 @@ import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()
 
-Then ('I see room search box on the room overview page', () => {
-  courses.seeRoomSearchBoxOnRoomOverview()
+Then('I see room search box on the room overview page', () => {
+	courses.seeRoomSearchBoxOnRoomOverview()
 })
 
 When('I go to rooms overview', () => {
-  courses.navigateToRoomsOverview()
+	courses.navigateToRoomsOverview()
 })
 
 When('I go to room {string}', roomName => {
-  courses.navigateToRoomBoard(roomName)
+	courses.navigateToRoomBoard(roomName)
 })
 
 Then('I can see room page {string}', roomName => {
-  courses.showRoomPage(roomName)
+	courses.showRoomPage(roomName)
 })
 
 Then('I see the course {string} on the room overview page', courseName => {
-  courses.courseIsVisiblOnOverviewPage(courseName)
+	courses.courseIsVisiblOnOverviewPage(courseName)
 })
 
-Then('I do not see the course {string} on the room overview page', (courseName) => {
-    courses.courseIsNotVisiblOnOverviewPage(courseName)
-  }
+Then(
+	'I do not see the course {string} on the room overview page',
+	courseName => {
+		courses.courseIsNotVisiblOnOverviewPage(courseName)
+	}
 )
 
 When('I click on button Save changes in page Edit course', () => {
-  courses.submitChangesAfterEditingCourse()
+	courses.submitChangesAfterEditingCourse()
 })
 
 When('I open page Edit course', () => {
-  courses.openCourseEditPage()
+	courses.openCourseEditPage()
 })
 
 Then('I can see page Edit course', () => {
-  courses.showCourseEditPage()
+	courses.showCourseEditPage()
 })
 
 When('I click on FAB to create a new room', () => {
-  courses.clickOnCreateRoomFAB()
+	courses.clickOnCreateRoomFAB()
+})
+
+When('I click on new course create button', () => {
+	courses.createNewCourse()
 })
 
 When('I click on FAB to create new content', () => {
-  courses.clickOnCreateContentFAB()
+	courses.clickOnCreateContentFAB()
 })
 
 When('I click on New Task FAB', () => {
-  courses.clickOnNewTaskFAB()
+	courses.clickOnNewTaskFAB()
 })
 
 When('I click on New Topic FAB', () => {
-  courses.clickOnNewTopicFAB()
+	courses.clickOnNewTopicFAB()
 })
 
 When('I can see content {string} on course page', contentTitle => {
-  courses.contentIsVisibleOnCoursePage(contentTitle)
+	courses.contentIsVisibleOnCoursePage(contentTitle)
 })
 
 When('I can not see content {string}', contentTitle => {
-  courses.contentIsNotVisibleOnCoursePage(contentTitle)
+	courses.contentIsNotVisibleOnCoursePage(contentTitle)
 })
 
 // When('I can see task {string} on course page', taskTitle => {
@@ -73,107 +79,110 @@ When('I can not see content {string}', contentTitle => {
 // })
 
 When('I click on topic {string} on course page', contentTitle => {
-  courses.openTopic(contentTitle)
+	courses.openTopic(contentTitle)
 })
 
 When('I click on three dot menu of content {string}', contentTitle => {
-  courses.openThreeDotMenuForContent(contentTitle)
+	courses.openThreeDotMenuForContent(contentTitle)
 })
 
 When('I click on three dot menu of topic {string}', contentTitle => {
-  courses.openThreeDotMenuForTopic(contentTitle)
+	courses.openThreeDotMenuForTopic(contentTitle)
 })
 
 When('I click on Delete in dot menu', () => {
-  courses.clickDeleteInDotMenu()
+	courses.clickDeleteInDotMenu()
 })
 
 When('I click on Delete in dot menu of topic', () => {
-  courses.clickDeleteInDotMenuOfTopic()
+	courses.clickDeleteInDotMenuOfTopic()
 })
 
 When('I click on Edit in dot menu', () => {
-  courses.clickEditInDotMenu()
+	courses.clickEditInDotMenu()
 })
 
 When('I click on Edit in dot menu of topic', () => {
-  courses.clickEditInDotMenuOfTopic()
+	courses.clickEditInDotMenuOfTopic()
 })
 
 When('I click on Cancel in confirmation window', () => {
-  courses.clickOnCancelInConfirmationWindow()
+	courses.clickOnCancelInConfirmationWindow()
 })
 
 When('I click on Delete in confirmation window', () => {
-  courses.clickDeleteInConfirmationWindow()
+	courses.clickDeleteInConfirmationWindow()
 })
 
 When('I click on task {string}', taskTitle => {
-  courses.openTask(taskTitle)
+	courses.openTask(taskTitle)
 })
 
 Then(
-  'I see task card info submitted contains {string} for task {string}',
-  (submittedTasks, taskTitle) => {
-    courses.compareSubmittedTasksInformation(submittedTasks, taskTitle)
-  }
+	'I see task card info submitted contains {string} for task {string}',
+	(submittedTasks, taskTitle) => {
+		courses.compareSubmittedTasksInformation(submittedTasks, taskTitle)
+	}
 )
 
 When(
-  'Task card info graded contains {string} for task {string}',
-  (gradedTasks, taskTitle) => {
-    courses.compareGradedTasksInformation(gradedTasks, taskTitle)
-  }
+	'Task card info graded contains {string} for task {string}',
+	(gradedTasks, taskTitle) => {
+		courses.compareGradedTasksInformation(gradedTasks, taskTitle)
+	}
 )
 
 When('I click on link finish for task {string}', taskTitle => {
-  courses.clickOnFinishTask(taskTitle)
+	courses.clickOnFinishTask(taskTitle)
 })
 
 Then('I see task {string} does not contain any buttons', taskTitle => {
-  courses.checkTaskCardDoesNotHaveButtons(taskTitle)
+	courses.checkTaskCardDoesNotHaveButtons(taskTitle)
 })
 
 Then('I see task {string} contains buttons', taskTitle => {
-  courses.checkTaskCardDoesHaveButtons(taskTitle)
+	courses.checkTaskCardDoesHaveButtons(taskTitle)
 })
 
 Then('I can see topic {string} on course page', topicTitle => {
-  courses.topicIsVisibleOnCoursePage(topicTitle)
+	courses.topicIsVisibleOnCoursePage(topicTitle)
 })
 
 When('I clear substitute teacher field', () => {
-  courses.clearSubstituteTeacherField()
+	courses.clearSubstituteTeacherField()
 })
 
 When('I add substitute teacher {string}', username => {
-  courses.addSubstituteTeacher(username)
+	courses.addSubstituteTeacher(username)
 })
 
 Then('I delete all courses named {string}', courseName => {
-  courses.deleteAllCoursesMatchingName(courseName);
+	courses.deleteAllCoursesMatchingName(courseName)
 })
 
 When('I click on copy course button', () => {
-  courses.clickCopyCourseButton();
+	courses.clickCopyCourseButton()
 })
 
 Then('I see the copy result notification', () => {
-  courses.seeCopyResultNotification();
+	courses.seeCopyResultNotification()
 })
 
 When('I close the dialog', () => {
-  courses.clickOnDialogClose();
+	courses.clickOnDialogClose()
 })
 
 When('I see room page {string}', roomName => {
-  courses.seeRoomPage(roomName)
+	courses.seeRoomPage(roomName)
 })
 
 When('I click on edit course', () => {
-  courses.clickOnEditCourse();
+	courses.clickOnEditCourse()
 })
 
-When('I add the first student with search string {string} to the course', (searchString) => {
-  courses.addStudentWithSearchStringToCourse(searchString);
-})
+When(
+	'I add the first student with search string {string} to the course',
+	searchString => {
+		courses.addStudentWithSearchStringToCourse(searchString)
+	}
+)
