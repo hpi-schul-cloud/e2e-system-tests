@@ -6,13 +6,13 @@ const languageDe = '[data-language="de"]'
 const titleOnDashboardPage = '[id="page-title"]'
 
 Cypress.Commands.add('login', (username, environment) => {
-	cy.session([username, environment], () => {
+	cy.session([username, environment], async () => {
 		const env = Cypress.env()
 		const environmentUpperCased = environment.toUpperCase()
 		const link = Cypress.config('baseUrl', env[environmentUpperCased])
 
 		!link.includes('staging') && environmentUpperCased === 'NBC'
-			? loginViaSchoolApi(username, environment)
+			? await loginViaSchoolApi(username, environment)
 			: loginWithoutSchoolApi(username, environment)
 
 		cy.url().should('contain', '/dashboard')

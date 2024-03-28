@@ -3,7 +3,7 @@ const webpack = require('@cypress/webpack-preprocessor')
 const preprocessor = require('@badeball/cypress-cucumber-preprocessor')
 const { createUsers } = require('./scripts/runSchoolApi')
 
-async function setupNodeEvents (on, config) {
+async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === 'ci'
 	if (isCI) {
 		const environmentFilename = `./env_variables/combined_credentials.json`
@@ -11,7 +11,7 @@ async function setupNodeEvents (on, config) {
 		if (settings) {
 			config.env = {
 				...config.env,
-				...settings
+				...settings,
 			}
 		}
 	} else {
@@ -23,7 +23,7 @@ async function setupNodeEvents (on, config) {
 		if (settings.env) {
 			config.env = {
 				...config.env,
-				...settings.env
+				...settings.env,
 			}
 		}
 		console.log('loaded settings for environment %s', environmentName)
@@ -37,7 +37,7 @@ async function setupNodeEvents (on, config) {
 		webpack({
 			webpackOptions: {
 				resolve: {
-					extensions: ['.ts', '.js']
+					extensions: ['.ts', '.js'],
 				},
 				module: {
 					rules: [
@@ -46,31 +46,30 @@ async function setupNodeEvents (on, config) {
 							use: [
 								{
 									loader: '@badeball/cypress-cucumber-preprocessor/webpack',
-									options: config
-								}
-							]
-						}
-					]
-				}
-			}
+									options: config,
+								},
+							],
+						},
+					],
+				},
+			},
 		})
 	)
 
 	on('task', {
-		async loginViaSchoolApi (obj) {
-			console.log(`School ID from config = ${obj.schoolId}`)
-			const { schoolId, username, initialPassword } = await createUsers(
-				obj.url,
-				obj.apiKey,
-				obj.schoolId,
-				obj.userType
-			)
-			return {
-				schoolId,
-				username,
-				initialPassword
+		async loginViaSchoolApi(obj) {
+			try {
+				return ({ schoolId, username, initialPassword } = await createUsers(
+					obj.url,
+					obj.apiKey,
+					obj.schoolId,
+					obj.userType
+				))
+			} catch (error) {
+				console.error('Error in calling createUsers method:', error)
+				throw error
 			}
-		}
+		},
 	})
 
 	// Make sure to return the config object as it might have been modified by the plugin.
@@ -93,6 +92,6 @@ module.exports = defineConfig({
 		setupNodeEvents,
 		// testIsolation is set to false because when testIsolation is set to true or in v12 its anyway by default enabled, then it clears the page again that might be redundant.
 		// we are using cy.session() in login custom command, which is inheriting the testIsolation properties by default as true and clearing the page (cookies, local storage..etc.) in the test.
-		testIsolation: false
-	}
+		testIsolation: false,
+	},
 })

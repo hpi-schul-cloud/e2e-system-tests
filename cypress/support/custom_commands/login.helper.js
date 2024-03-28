@@ -60,7 +60,7 @@ const performExternalLogin = () => {
 				expect(resp.response.statusCode).to.equal(308)
 				cy.get(externalUsernameInputFieldElement).should('be.visible')
 				cy.get(externalUsernameInputFieldElement).type(env[userEmail], {
-					log: false
+					log: false,
 				})
 				cy.get(externalPasswordInputFieldElement)
 					.type(env[userPassword], { log: false })
@@ -72,8 +72,8 @@ const performExternalLogin = () => {
 
 const fillLoginForm = (username, password) => {
 	return (
-		cy.get(emailInputFieldElement).type(username, { log: true }),
-		cy.get(passwordInputFieldElement).type(password, { log: true }),
+		cy.get(emailInputFieldElement).type(username, { log: false }),
+		cy.get(passwordInputFieldElement).type(password, { log: false }),
 		cy.get(submitButton).click()
 	)
 }
@@ -88,7 +88,7 @@ const shuffleString = str => {
 		currentIndex--
 		;[characters[currentIndex], characters[randomIndex]] = [
 			characters[randomIndex],
-			characters[currentIndex]
+			characters[currentIndex],
 		]
 	}
 
@@ -115,9 +115,6 @@ const generateStrongPassword = length => {
 const studentFirstLogin = () => {
 	const newPassword = generateStrongPassword(12)
 	Cypress.env('password', newPassword)
-	cy.log('================================')
-	cy.log(env['username'])
-	cy.log(env['password'])
 	cy.get(studentAgeSelectRadioBtn).check()
 	cy.get(nextButtonAfterAgeSelection).click()
 	cy.get(nextButtonOnFirstLoginPages).click()
@@ -130,11 +127,7 @@ const studentFirstLogin = () => {
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click()
 }
 
-const otherUsersFirstLogin = () => {
-	cy.log('================================')
-	cy.log(env['username'])
-	cy.log(env['password'])
-
+const nonStudentUsersFirstLogin = () => {
 	cy.get(nextButtonOnFirstLoginPages).click()
 	cy.get(nextButtonOnFirstLoginPages).click()
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click()
@@ -154,38 +147,44 @@ const loginWithoutSchoolApi = (username, environment) => {
 		: fillLoginForm(env[userEmail], env[userPassword])
 }
 
-const loginViaSchoolApi = (username, environment) => {
-	visitLoginPage(environment)
-	const link = Cypress.config('baseUrl')
+const loginViaSchoolApi = async (username, environment) => {
+	try {
+		visitLoginPage(environment)
+		const link = Cypress.config('baseUrl')
 
-	cy.task(
-		'loginViaSchoolApi',
-		{
-			url: link,
-			apiKey: Cypress.env('apiKey'),
-			schoolId: Cypress.env('schoolId'),
-			userType: username
-		},
-		{ log: true }
-	).as('school_api_response')
+		await cy
+			.task(
+				'loginViaSchoolApi',
+				{
+					url: link,
+					apiKey: Cypress.env('apiKey'),
+					schoolId: Cypress.env('schoolId'),
+					userType: username,
+				},
+				{ log: true }
+			)
+			.as('school_api_response')
 
-	cy.get('@school_api_response').then(res => {
-		cy.log(res)
-		console.log(res)
-		Cypress.env('schoolId', res.schoolId)
-		Cypress.env('username', res.username)
-		Cypress.env('password', res.initialPassword)
-		cy.get(nbcLoginWithEmailOptionButton).click()
+		await cy.get('@school_api_response').then(res => {
+			Cypress.env('schoolId', res.schoolId)
+			Cypress.env('username', res.username)
+			Cypress.env('password', res.initialPassword)
+			cy.get(nbcLoginWithEmailOptionButton).click()
 
-		fillLoginForm(env['username'], env['password'])
-		username.includes('student') ? studentFirstLogin() : otherUsersFirstLogin()
-	})
+			fillLoginForm(env['username'], env['password'])
+			username.includes('student')
+				? studentFirstLogin()
+				: nonStudentUsersFirstLogin()
+		})
+	} catch (error) {
+		console.error('Error in loginViaSchoolApi:', error)
+		throw error
+	}
 }
 
 const visitLoginPage = environment => {
 	environmentUpperCased = environment.toUpperCase()
 	const link = Cypress.config('baseUrl', env[environmentUpperCased])
-
 	cy.log(link)
 	cy.visit('/login')
 }

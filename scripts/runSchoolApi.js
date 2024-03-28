@@ -22,8 +22,7 @@ const headers = {
 const extractSubdomain = url => {
 	try {
 		const parsedUrl = new URL(url)
-		const subdomain = parsedUrl.hostname.split('.')[1]
-		return subdomain
+		return parsedUrl.hostname.split('.')[1]
 	} catch (error) {
 		console.error('Error parsing URL:', error.message)
 		return null
@@ -36,12 +35,9 @@ const createSchool = async (schoolUrl, headers) => {
 			name: `cypress-automated-tests`,
 			federalStateName: federalStateNames[extractSubdomain(schoolUrl)],
 		}
-
-		console.log(payload)
-
 		const response = await axios.post(schoolUrl, payload, { headers })
 		const { id } = response.data
-		console.log('School created with ID:', id)
+		console.log('School created with ID')
 		return { id }
 	} catch (error) {
 		console.error('Error creating school:', error.message)
@@ -57,14 +53,20 @@ const generateRandomUserEmail = () => {
 	return `${randomName}${randomNumber}@${emailDomain}`
 }
 
+const getUrl = baseUrl => {
+	const schoolUrl = `${baseUrl
+		.toLowerCase()
+		.replace(/\/$/, '')}${path}${endPointSchools}`
+	const userUrl = `${baseUrl
+		.toLowerCase()
+		.replace(/\/$/, '')}${path}${endPointUsers}`
+
+	return { schoolUrl, userUrl }
+}
+
 const createUsers = async (baseUrl, apiKeys, schoolId, userType) => {
 	try {
-		const schoolUrl = `${baseUrl
-			.toLowerCase()
-			.replace(/\/$/, '')}${path}${endPointSchools}`
-		const userUrl = `${baseUrl
-			.toLowerCase()
-			.replace(/\/$/, '')}${path}${endPointUsers}`
+		const { schoolUrl, userUrl } = getUrl(baseUrl)
 
 		console.log('Creating user:', userType)
 
@@ -73,13 +75,11 @@ const createUsers = async (baseUrl, apiKeys, schoolId, userType) => {
 			finalHeaders['x-api-key'] = apiKeys
 		}
 
-		console.log(`School ID received as arguments: ${schoolId}`)
-
 		if (schoolId === undefined) {
 			const { id } = await createSchool(schoolUrl, finalHeaders)
 			schoolId = id
 		} else {
-			console.log('Using existing school ID:', schoolId)
+			console.log('Using existing school ID')
 		}
 
 		const role = users[userType]
@@ -98,7 +98,6 @@ const createUsers = async (baseUrl, apiKeys, schoolId, userType) => {
 		const response = await axios.post(userUrl, payload, {
 			headers: finalHeaders,
 		})
-		console.log('User created:', response.data)
 
 		const { username, initialPassword } = response.data
 		return { schoolId, username, initialPassword }

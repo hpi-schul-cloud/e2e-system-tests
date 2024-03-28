@@ -32,8 +32,10 @@ class Courses {
 	static #contentCardContent = '[data-testid="content-card-task-content"]'
 	static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
 	static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
-	static #dropDownCourse = 'button[data-testid="room-tool-three-dot-button"]'
-	static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
+	// static #dropDownCourse = 'button[data-testid="room-tool-three-dot-button"]'
+	static #dropDownCourse = 'button[data-testid="room-menu"]'
+	// static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
+	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]'
 	static #pageTitle = '[id="page-title"]'
 	static #contentCardTaskInfoSubmissionsChip =
 		'[data-testid="room-detail-task-chip-submitted"]'
