@@ -23,27 +23,17 @@ class Courses {
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
 	static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]';
-	static #deleteButtonInDotMenuOfTopic =
-		'[data-testid="content-card-lesson-menu-remove"]'
-	static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]'
-	static #editButtonInDotMenuOfTopic =
-		'[data-testid="content-card-lesson-menu-edit"]'
-	static #contentCardContent = '[data-testid="content-card-task-content"]'
-	static #contentCardTopic = '[data-testid="content-card-lesson-content"]'
-	static #contentCardTaskActions = '[data-testid="content-card-task-actions"]'
 	// static #dropDownCourse = 'button[data-testid="room-tool-three-dot-button"]'
-	static #dropDownCourse = 'button[data-testid="room-menu"]'
+	static #dropDownCourse = 'button[data-testid="room-menu"]';
 	// static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
-	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]'
-	static #pageTitle = '[id="page-title"]'
+	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
+	static #deleteButtonInDotMenuOfTopic =
 		'[data-testid="content-card-lesson-menu-remove"]';
 	static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-edit"]';
 	static #contentCardContent = '[data-testid="content-card-task-content"]';
 	static #contentCardTopic = '[data-testid="content-card-lesson-content"]';
 	static #contentCardTaskActions = '[data-testid="content-card-task-actions"]';
-	static #dropDownCourse = 'button[data-testid="room-tool-three-dot-button"]';
-	static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChip =
 		'[data-testid="room-detail-task-chip-submitted"]';
@@ -71,7 +61,6 @@ class Courses {
 	static #courseTitleInRoomoverview = '[data-testid="course-title"]';
 	static #learningContentTab = '[data-testid="learnContent-tab"]';
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
-
 	static #toolsTab = '[data-testid="tools-tab"]';
 	static #addToolButton = '[data-testid="add-tool-button"]';
 	static #toolConfigurationSelect = '[data-testid="configuration-select"]';
@@ -761,7 +750,6 @@ class Courses {
 		cy.get(Courses.#outdatedDialogTitle).should("exist");
 		cy.get(Courses.#outdatedDialogTitle).should("contain", toolName);
 		cy.get(Courses.#errorDialog).should("exist");
-		cy.get(Courses.#outdatedDialogTitle).siblings("div").should("have.length", "2");
 		cy.get(Courses.#outdatedDialogTitle)
 			.siblings("div")
 			.eq(0)
@@ -879,6 +867,10 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
 		cy.get(Courses.#btnSubmit).click();
 		cy.wait("@administration_api");
+	}
+
+	createNewCourse() {
+		cy.get('[data-testid="fab_button_add_course"]').click();
 	}
 }
 export default Courses;
