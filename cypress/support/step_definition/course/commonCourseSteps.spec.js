@@ -1,7 +1,7 @@
-const { When, Then } = require('@badeball/cypress-cucumber-preprocessor')
-import Courses from '../../pages/course/pageCourses'
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Courses from "../../pages/course/pageCourses";
 
-const courses = new Courses()
+const courses = new Courses();
 
 Then('I see room search box on the room overview page', () => {
 	courses.seeRoomSearchBoxOnRoomOverview()
