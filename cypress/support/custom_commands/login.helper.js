@@ -16,6 +16,8 @@ const nextButtonAfterAgeSelection = "#showExistingLoginForm";
 const datePickerSelectorForDOB = '[data-testid="form-date-input-studentBirthdate"]';
 const studentUpdatePassword = '[data-testid="firstlogin_password"]';
 const studentConfirmPassword = '[data-testid="firstlogin_password_control"]';
+const studentPrivacyConsentCheckboxDBC = 'input[name="privacyConsent"]';
+const studentTermsOfUseCheckboxDBC = 'input[name="termsOfUseConsent"]';
 
 const env = Cypress.env();
 let environmentUpperCased;
@@ -128,7 +130,7 @@ const generateStrongPassword = (length) => {
 	return shuffleString(password);
 };
 
-const studentFirstLogin = () => {
+const studentFirstLogin = (environment) => {
 	const newPassword = generateStrongPassword(12);
 	Cypress.env("password", newPassword);
 	cy.get(studentAgeSelectRadioBtn).check();
@@ -137,6 +139,11 @@ const studentFirstLogin = () => {
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(datePickerSelectorForDOB).type("21").type("03").type("2000");
 	cy.get(nextButtonOnFirstLoginPages).click();
+	if (environment === "dbc") {
+		cy.get(studentPrivacyConsentCheckboxDBC).check();
+		cy.get(studentTermsOfUseCheckboxDBC).check();
+		cy.get(nextButtonOnFirstLoginPages).click();
+	}
 	cy.get(studentUpdatePassword).type(env["password"]);
 	cy.get(studentConfirmPassword).type(env["password"]);
 	cy.get(nextButtonOnFirstLoginPages).click();
@@ -175,7 +182,7 @@ const loginViaSchoolApi = async (username, environment) => {
 				"loginViaSchoolApi",
 				{
 					url: link,
-					apiKey: Cypress.env("apiKey"),
+					apiKey: Cypress.env(`apiKey-${environment}`),
 					schoolId: Cypress.env("schoolId"),
 					userType: username,
 				},
@@ -187,10 +194,14 @@ const loginViaSchoolApi = async (username, environment) => {
 			Cypress.env("schoolId", res.schoolId);
 			Cypress.env("username", res.username);
 			Cypress.env("password", res.initialPassword);
-			cy.get(nbcLoginWithEmailOptionButton).click();
+			if (environment.includes("nbc")) {
+				cy.get(nbcLoginWithEmailOptionButton).click();
+			}
 
 			fillLoginForm(env["username"], env["password"]);
-			username.includes("student") ? studentFirstLogin() : nonStudentUsersFirstLogin();
+			username.includes("student")
+				? studentFirstLogin(environment)
+				: nonStudentUsersFirstLogin();
 		});
 	} catch (error) {
 		console.error("Error in loginViaSchoolApi:", error);

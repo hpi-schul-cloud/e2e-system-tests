@@ -11,7 +11,7 @@ Cypress.Commands.add("login", (username, environment) => {
 		const environmentUpperCased = environment.toUpperCase();
 		const link = Cypress.config("baseUrl", env[environmentUpperCased]);
 
-		!link.includes("staging") && environmentUpperCased === "NBC"
+		!link.includes("staging")
 			? await loginViaSchoolApi(username, environment)
 			: loginWithoutSchoolApi(username, environment);
 
