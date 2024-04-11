@@ -103,6 +103,83 @@ class Courses {
 		'[data-testid="videoconference-config-dialog-title"]';
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #oldToolsTabInCourseDetail = '[data-testid="old-tools-tab"]';
+	static #listToolsCourse= '[data-testid="course_tool_list"]'
+	static #modalContent = '[data-testid="modal_content"]'
+  static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]'
+  static #modalContentCreateVideoconf = '[class="modal fade create-videoconference-modal in"]'
+  static #deleteBBBButtton = '[data-testid="delete-course-btn"]'
+
+	doNotSeeBBBInDBCBRB(){
+		cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').should('not.exist')
+	}
+
+	doNotSeeBBBInToolTabDBCBRB(){
+    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('not.exist')
+  }
+
+  clickDeleteButttonInBBB(){
+    cy.get(Courses.#deleteBBBButtton).click()
+  }
+
+  seeModalDeletionBBBVideoConference(){
+    cy.get(Courses.#deleteBBBButtton).should('exist')
+  }
+
+  clickIconDeletenBBBVideoconference(){
+    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.delete-tool').click()
+  }
+
+  clickCancelButttonInBBB(){
+    cy.get(Courses.#modalContentCreateVideoconf).find('.btn.btn-secondary.btn-close').click()
+  }
+
+  seeModalStartBBBVideoConference(){
+    cy.get(Courses.#modalContentCreateVideoconf).should('exist')
+  }
+
+	clickOnBBBInCourse(){
+    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.card-title-directory.bbb-state.bbb-moderator-inactive-state').click()
+  }
+
+  seeBBBInToolTabDBCBRB(){
+    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('be.visible')
+  }
+
+  clickOnButtonAdd(){
+    cy.get(Courses.#addBBBButton).click()
+  }
+
+	clickOnButtonAdd(){
+    cy.get(Courses.#addBBBButton).click()
+  }
+
+	appearsModalContentForConfirmation(){
+    cy.get(Courses.#modalContent).should('be.visible')
+  }
+
+	clickOnBBBInToolTabInDBCBRB(){
+    cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').click()
+  }
+
+	seeToolsListForCourse(){
+    cy.get(Courses.#toolsList).should('be.visible');
+  }
+
+	seeToolsTabInCourse(){
+    cy.get(Courses.#listToolsCourse).should('be.visible');
+  }
+
+	clickOnOldToolsTabInCourse(){
+		cy.url().then((url) => {
+			const uuid= url.split('/')[4]
+			cy.log('Current UUID from URL is: ' + uuid)
+			cy.get(Courses.#oldToolsTabInCourseDetail).should('have.attr', 'href').should('not.be.empty').and('contain', uuid)
+		.then((href) => {
+			cy.visit(href)
+		})
+		})
+	}
 
 	seeDisabledCheckBoxForBBBToolInCourseEditPage() {
 		cy.get(Courses.#bbbDisabledCheckBoxNBC).should("be.disabled");
@@ -209,19 +286,8 @@ class Courses {
 					.prev()
 					.click()
 					.then(() => {
-						return new Cypress.Promise((resolve, reject) => {
-							try {
-								setTimeout(() => {
-									cy.wait(["@alert_api", "@board_api", "@userPermissions_api"])
-										.get(Courses.#learningContentTab)
-										.should("have.attr", "aria-selected", "true");
-									resolve();
-									return;
-								}, 1000);
-							} catch (error) {
-								reject(error);
-							}
-						});
+						cy.get(Courses.#learningContentTab)
+							.should("have.attr", "aria-selected", "true");
 					});
 			});
 	}
