@@ -13,7 +13,7 @@ class Courses {
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldRoomOverview = '[data-testid="search-field"]';
 	static #mainContent = '[id="main-content"]';
-	static #createCourse = '[data-testid="add-course-button"]';
+	static #createCourse = '[data-testid="fab_button_add_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
@@ -22,16 +22,16 @@ class Courses {
 	static #newTaskFAB = '[data-testid="fab_button_add_task"]';
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
-	static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]';
+	static #deleteButtonInDotMenu = '[data-testid="room-task-card-menu-remove-0"]';
 	static #deleteButtonInDotMenuOfTopic =
 		'[data-testid="content-card-lesson-menu-remove"]';
-	static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]';
+	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-edit"]';
 	static #contentCardContent = '[data-testid="content-card-task-content"]';
 	static #contentCardTopic = '[data-testid="content-card-lesson-content"]';
 	static #contentCardTaskActions = '[data-testid="content-card-task-actions"]';
-	static #dropDownCourse = 'button[data-testid="room-tool-three-dot-button"]';
-	static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]';
+	static #dropDownCourse = '[data-testid="room-menu"]';
+	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChip =
 		'[data-testid="room-detail-task-chip-submitted"]';
@@ -103,6 +103,11 @@ class Courses {
 		'[data-testid="videoconference-config-dialog-title"]';
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
+
+	clickOnFABToAddOrImportCourse() {
+		cy.get(Courses.#fabButtonToAddOrImportCourse).click();
+	}
 
 	seeDisabledCheckBoxForBBBToolInCourseEditPage() {
 		cy.get(Courses.#bbbDisabledCheckBoxNBC).should("be.disabled");
@@ -212,9 +217,11 @@ class Courses {
 						return new Cypress.Promise((resolve, reject) => {
 							try {
 								setTimeout(() => {
-									cy.wait(["@alert_api", "@board_api", "@userPermissions_api"])
-										.get(Courses.#learningContentTab)
-										.should("have.attr", "aria-selected", "true");
+									cy.get(Courses.#learningContentTab).should(
+										"have.attr",
+										"aria-selected",
+										"true"
+									);
 									resolve();
 									return;
 								}, 1000);
@@ -227,7 +234,6 @@ class Courses {
 	}
 
 	showRoomPage(courseName) {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#courseDetailPageTitle).should("contain.text", courseName);
 	}
 
@@ -348,55 +354,36 @@ class Courses {
 	}
 
 	clickOnCreateContentFAB() {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#createContent).click();
 	}
 
 	clickOnNewTaskFAB() {
 		cy.get(Courses.#newTaskFAB).click();
-		cy.wait("@homework_api");
 	}
 
 	contentIsVisibleOnCoursePage(taskTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
-		cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-			.wait(["@public_api", "@me_api", "@school_api", "@userPermissions_api"])
-			.then((interceptions) => {
-				expect(interceptions[0].response.statusCode).to.equal(200);
-				expect(interceptions[1].state).to.equal("Complete");
-				expect(interceptions[1].response.statusCode).to.equal(200);
-			});
-		cy.contains(taskTitle).should("be.visible");
+		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+		cy.get('[data-testid="task-title-0"]').contains(taskTitle).should("be.visible");
 	}
 
 	contentIsNotVisibleOnCoursePage(contentTitle) {
-		cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-			.wait(["@board_api", "@runtime_config_api", "@public_api"])
-			.then((interceptions) => {
-				expect(interceptions[0].response.statusCode).to.equal(200);
-				expect(interceptions[1].response.statusCode).to.equal(200);
-				expect(interceptions[1].response.statusCode).to.equal(200);
-			});
+		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 		cy.contains(contentTitle).should("not.exist");
 	}
 
 	openTask(taskTitle) {
 		// cy.wait('@rooms_api') dont needed as on vue page already where scenario is given
-		cy.get(Courses.#contentCardContent).contains(taskTitle).click();
-		cy.wait("@homework_api");
+		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
+		cy.get('[data-testid="task-card-title-0"]').click();
 	}
 
 	openThreeDotMenuForContent(contentTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(contentTitle)
-			.parent()
-			.find("button")
-			.click();
+		cy.get('[data-testid="task-title-0"]').contains(contentTitle);
+		cy.get('[data-testid="task-card-menu-0"]').click();
 	}
 
 	openThreeDotMenuForTopic(contentTitle) {
-		cy.wait("@rooms_api");
 		cy.contains(contentTitle).prev().find("button").click();
 	}
 
@@ -412,9 +399,8 @@ class Courses {
 		cy.get(Courses.#deleteButtonInDotMenuOfTopic).click();
 	}
 
-	clickEditInDotMenu(linkId) {
+	clickEditInDotMenu() {
 		cy.get(Courses.#editButtonInDotMenu).click();
-		cy.wait("@homework_api");
 	}
 
 	clickEditInDotMenuOfTopic() {
@@ -430,7 +416,6 @@ class Courses {
 	}
 
 	openCourseEditPage() {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#dropDownCourse).first().click();
 		cy.get(Courses.#btnCourseEdit).click();
 	}
@@ -440,56 +425,34 @@ class Courses {
 	}
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(contentTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskInfoSubmissionsChip)
-			.should("contain", submittedTasks);
+		cy.get('[data-testid="task-title-0"]').contains(contentTitle);
+		cy.get('[data-testid="room-task-card-chip-submitted-0"]').should(
+			"contain",
+			submittedTasks
+		);
 	}
 
 	compareGradedTasksInformation(gradedTasks, contentTitle) {
-		cy.get(Courses.#contentCardContent)
+		cy.get('[data-testid="task-title-0"]')
 			.contains(contentTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskInfoGradingsChip)
+			.get('[data-testid="room-task-card-chip-graded-0"]')
 			.should("contain", gradedTasks);
 	}
 
 	clickOnFinishTask(taskTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(taskTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskActions)
-			.find("button")
-			.click()
-			.wait(["@task_finish_api"]);
+		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
+		cy.get('[data-testid="task-card-action-done-0"]').click();
 	}
 
 	checkTaskCardDoesNotHaveButtons(taskTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(taskTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskActions)
-			.find("button")
-			.should("not.exist");
+		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
+		cy.get('[data-testid="task-card-action-done-0"]').should("not.exist");
+		cy.get('[data-testid="room-task-card-chip-graded-0"]').should("not.exist");
 	}
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(taskTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskActions)
-			.find("button")
-			.should("be.visible");
+		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
+		cy.get('[data-testid="room-task-card-0"]').find("button").should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
@@ -543,7 +506,6 @@ class Courses {
 	clickOnNewTopicFAB() {
 		cy.get(Courses.#newTopicFAB)
 			.click()
-			.wait(["@alerts_api"])
 			.then((interceptions) => {
 				expect(interceptions.response.statusCode).to.equal(200);
 			});
@@ -775,7 +737,6 @@ class Courses {
 	}
 
 	clickCopyCourseButton() {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnCopyCourse).click();
 	}
@@ -866,7 +827,6 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type("{enter}");
 		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
 		cy.get(Courses.#btnSubmit).click();
-		cy.wait("@administration_api");
 	}
 }
 export default Courses;

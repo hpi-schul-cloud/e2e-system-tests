@@ -3,6 +3,10 @@ import Courses from "../../pages/course/pageCourses";
 
 const courses = new Courses();
 
+When("I click on FAB to add or import courses", () => {
+	courses.clickOnFABToAddOrImportCourse();
+});
+
 Then("I see room search box on the room overview page", () => {
 	courses.seeRoomSearchBoxOnRoomOverview();
 });

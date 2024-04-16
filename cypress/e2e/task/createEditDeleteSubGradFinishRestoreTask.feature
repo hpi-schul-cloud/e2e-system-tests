@@ -112,6 +112,11 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     And I click on not graded tasks
     Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
 
+
+
+
+
+
   @stable_test
   Scenario: Teacher grades task from room
     Given I am logged in as a 'teacher1_brb' at 'brb'
