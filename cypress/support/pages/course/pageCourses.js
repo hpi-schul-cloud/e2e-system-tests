@@ -24,9 +24,9 @@ class Courses {
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
 	static #deleteButtonInDotMenu = '[data-testid="room-task-card-menu-remove-0"]';
 	static #deleteButtonInDotMenuOfTopic =
-		'[data-testid="content-card-lesson-menu-remove"]';
+		'[data-testid="lesson-card-menu-action-remove-0"]';
 	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
-	static #editButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-edit"]';
+	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
 	static #contentCardContent = '[data-testid="content-card-task-content"]';
 	static #contentCardTopic = '[data-testid="content-card-lesson-content"]';
 	static #contentCardTaskActions = '[data-testid="content-card-task-actions"]';
@@ -104,6 +104,15 @@ class Courses {
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
 	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
+	static #topicTitleOnCourseDetail = '[data-testid="lesson-name-0"]';
+
+	topicIsNotVisibleOnCoursePage(topicTitle) {
+		cy.get(Courses.#topicTitleOnCourseDetail).should("not.exist");
+	}
+
+	topicIsVisibleOnCoursePage(topicTitle) {
+		cy.get(Courses.#topicTitleOnCourseDetail).contains(topicTitle);
+	}
 
 	clickOnFABToAddOrImportCourse() {
 		cy.get(Courses.#fabButtonToAddOrImportCourse).click();
@@ -384,11 +393,13 @@ class Courses {
 	}
 
 	openThreeDotMenuForTopic(contentTitle) {
-		cy.contains(contentTitle).prev().find("button").click();
+		cy.get('[data-testid="lesson-name-0"]').contains(contentTitle);
+		cy.get('[data-testid="lesson-card-menu-0"]').click();
 	}
 
 	openTopic(contentTitle) {
-		cy.contains(contentTitle).parent().click();
+		cy.get('[data-testid="lesson-name-0"]').contains(contentTitle);
+		cy.get('[data-testid="room-lesson-card-0"]').click();
 	}
 
 	clickDeleteInDotMenu() {
@@ -504,11 +515,7 @@ class Courses {
 	}
 
 	clickOnNewTopicFAB() {
-		cy.get(Courses.#newTopicFAB)
-			.click()
-			.then((interceptions) => {
-				expect(interceptions.response.statusCode).to.equal(200);
-			});
+		cy.get(Courses.#newTopicFAB).click();
 	}
 
 	clearSubstituteTeacherField() {

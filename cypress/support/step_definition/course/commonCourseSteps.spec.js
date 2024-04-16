@@ -145,6 +145,10 @@ Then("I can see topic {string} on course page", (topicTitle) => {
 	courses.topicIsVisibleOnCoursePage(topicTitle);
 });
 
+Then("I can not see topic {string} on course page", (topicTitle) => {
+	courses.topicIsNotVisibleOnCoursePage(topicTitle);
+});
+
 When("I clear substitute teacher field", () => {
 	courses.clearSubstituteTeacherField();
 });
