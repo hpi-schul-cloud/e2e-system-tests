@@ -3,7 +3,7 @@ import Courses from '../../pages/course/pageCourses'
 
 const courses = new Courses()
 
-When('I click on old tools tab',()=>{
+When('I click on tab Tools old',()=>{
   courses.clickOnOldToolsTabInCourse()
 })
 
@@ -35,7 +35,7 @@ When ('I uncheck the checkbox to Activate video conferences in page Edit course 
  courses.uncheckVideoConferenceCheckBoxInCourseEditPage()
 })
 
-Then ('I see tools tab in course',()=>{
+Then ('I see tab Tools in course',()=>{
   courses.seeToolsTabInCourse()
 })
 
@@ -47,11 +47,11 @@ Then ('I see list of tools for course',()=>{
   courses.seeToolsListForCourse()
 })
 
-When ('I click on the BBB Video Conference BigBlueButton in DBC or BRB',()=>{
+When ('I click on the BBB Video Conference BigBlueButton in DBC and BRB',()=>{
   courses.clickOnBBBInToolTabInDBCBRB()
 })
 
-Then ('modal content appears for confirmation',()=>{
+Then ('I see the modal content appears for confirmation',()=>{
   courses.appearsModalContentForConfirmation()
 })
 
@@ -59,7 +59,7 @@ When ('I click on button Add in modal content',()=>{
   courses.clickOnButtonAdd()
 })
 
-Then ('I see Videoconference BigBlueButton added in tools tab',()=>{
+Then ('I see the BBB Video Conference BigBlueButton added in tools tab',()=>{
   courses.seeBBBInToolTabDBCBRB()
 })
 
@@ -67,7 +67,7 @@ When ('I click on the BBB Video Conference BigBlueButton in course',()=>{
   courses.clickOnBBBInCourse()
 })
 
-Then ('I see the modal to start the BBB video conference in DBC or BRB',()=>{
+Then ('I see the modal to start the BBB video conference in DBC and BRB',()=>{
   courses.seeModalStartBBBVideoConference()
 })
 
@@ -75,11 +75,11 @@ Then ('I click on button Cancel in BBB modal',()=>{
   courses.clickCancelButttonInBBB()
 })
 
-When ('I click on icon Deleten with Videoconference BigBlueButton',()=>{
+When ('I click on icon Deleten on the BBB Video Conference BigBlueButton',()=>{
   courses.clickIconDeletenBBBVideoconference()
 })
 
-Then ('I see modal content for confirmation of deletion',()=>{
+Then ('I see the modal content for confirmation of deletion',()=>{
   courses.seeModalDeletionBBBVideoConference()
 })
 
@@ -87,10 +87,10 @@ When ('I click on button Delete in BBB modal',()=>{
   courses.clickDeleteButttonInBBB()
 })
 
-Then ('I do not see Videoconference BigBlueButton in tools tab',()=>{
+Then ('I do not see the BBB Video Conference BigBlueButton in tools tab',()=>{
   courses.doNotSeeBBBInToolTabDBCBRB()
 })
 
-Then ("I do not see BBB Video Conference in DBC or BRB",()=>{
+Then ("I do not see BBB Video Conference in DBC and BRB",()=>{
 	courses.doNotSeeBBBInDBCBRB()
 })
