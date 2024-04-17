@@ -27,16 +27,16 @@ class Courses {
 		'[data-testid="lesson-card-menu-action-remove-0"]';
 	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
-	static #contentCardContent = '[data-testid="content-card-task-content"]';
-	static #contentCardTopic = '[data-testid="content-card-lesson-content"]';
-	static #contentCardTaskActions = '[data-testid="content-card-task-actions"]';
+	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
+	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
+	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
 	static #dropDownCourse = '[data-testid="room-menu"]';
 	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
-	static #contentCardTaskInfoSubmissionsChip =
-		'[data-testid="room-detail-task-chip-submitted"]';
-	static #contentCardTaskInfoGradingsChip =
-		'[data-testid="room-detail-task-chip-graded"]';
+	static #contentCardTaskInfoSubmissionsChipWithIndex =
+		'[data-testid="room-task-card-chip-submitted-0"]';
+	static #contentCardTaskInfoGradingsChipWithIndex =
+		'[data-testid="room-task-card-chip-graded-0"]';
 	static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]';
 	static #chosenChoices = ".chosen-choices";
 	static #chosenResults = ".chosen-results li";
@@ -104,14 +104,18 @@ class Courses {
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
 	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
-	static #topicTitleOnCourseDetail = '[data-testid="lesson-name-0"]';
+	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
+	static #taskCardFinishButtonInCoursePageWithIndex =
+		'[data-testid="task-card-action-done-0"]';
+	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
+	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
 
 	topicIsNotVisibleOnCoursePage(topicTitle) {
-		cy.get(Courses.#topicTitleOnCourseDetail).should("not.exist");
+		cy.contains(topicTitle).should("not.exist");
 	}
 
 	topicIsVisibleOnCoursePage(topicTitle) {
-		cy.get(Courses.#topicTitleOnCourseDetail).contains(topicTitle);
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(topicTitle);
 	}
 
 	clickOnFABToAddOrImportCourse() {
@@ -373,7 +377,9 @@ class Courses {
 	contentIsVisibleOnCoursePage(taskTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-		cy.get('[data-testid="task-title-0"]').contains(taskTitle).should("be.visible");
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
+			.contains(taskTitle)
+			.should("be.visible");
 	}
 
 	contentIsNotVisibleOnCoursePage(contentTitle) {
@@ -383,23 +389,23 @@ class Courses {
 
 	openTask(taskTitle) {
 		// cy.wait('@rooms_api') dont needed as on vue page already where scenario is given
-		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
-		cy.get('[data-testid="task-card-title-0"]').click();
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardInCoursePageWithIndex).click();
 	}
 
 	openThreeDotMenuForContent(contentTitle) {
-		cy.get('[data-testid="task-title-0"]').contains(contentTitle);
-		cy.get('[data-testid="task-card-menu-0"]').click();
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#taskCardThreeDotMenuInCoursePageWithIndex).click();
 	}
 
 	openThreeDotMenuForTopic(contentTitle) {
-		cy.get('[data-testid="lesson-name-0"]').contains(contentTitle);
-		cy.get('[data-testid="lesson-card-menu-0"]').click();
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#topicCardThreeDotInCoursePageWithIndex).click();
 	}
 
 	openTopic(contentTitle) {
-		cy.get('[data-testid="lesson-name-0"]').contains(contentTitle);
-		cy.get('[data-testid="room-lesson-card-0"]').click();
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#topicCardInCoursePageWithIndex).click();
 	}
 
 	clickDeleteInDotMenu() {
@@ -436,34 +442,34 @@ class Courses {
 	}
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
-		cy.get('[data-testid="task-title-0"]').contains(contentTitle);
-		cy.get('[data-testid="room-task-card-chip-submitted-0"]').should(
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should(
 			"contain",
 			submittedTasks
 		);
 	}
 
 	compareGradedTasksInformation(gradedTasks, contentTitle) {
-		cy.get('[data-testid="task-title-0"]')
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
 			.contains(contentTitle)
-			.get('[data-testid="room-task-card-chip-graded-0"]')
+			.get(Courses.#contentCardTaskInfoGradingsChipWithIndex)
 			.should("contain", gradedTasks);
 	}
 
 	clickOnFinishTask(taskTitle) {
-		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
-		cy.get('[data-testid="task-card-action-done-0"]').click();
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardFinishButtonInCoursePageWithIndex).click();
 	}
 
 	checkTaskCardDoesNotHaveButtons(taskTitle) {
-		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
-		cy.get('[data-testid="task-card-action-done-0"]').should("not.exist");
-		cy.get('[data-testid="room-task-card-chip-graded-0"]').should("not.exist");
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardFinishButtonInCoursePageWithIndex).should("not.exist");
+		cy.get(Courses.#contentCardTaskInfoGradingsChipWithIndex).should("not.exist");
 	}
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
-		cy.get('[data-testid="task-title-0"]').contains(taskTitle);
-		cy.get('[data-testid="room-task-card-0"]').find("button").should("be.visible");
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardInCoursePageWithIndex).find("button").should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
