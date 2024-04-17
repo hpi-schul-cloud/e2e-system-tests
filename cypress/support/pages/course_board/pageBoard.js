@@ -99,6 +99,7 @@ class Board {
 		cy.get(Board.#addColumnTitleInput).wait(1000).realType(columnTitle).wait(500);
 	}
 
+	/* Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
 	recursivelyDeleteTextFromTextArea() {
 		cy.window().then((win) => {
 			const textArea = win.document.querySelector(Board.#columnPlaceholder);
@@ -118,12 +119,15 @@ class Board {
 			}
 		});
 	}
+	*/
 
+	/* Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
 	enterEditedColumnTitle(newColumnName) {
 		this.recursivelyDeleteTextFromTextArea();
 		cy.wait(500);
 		cy.get(Board.#addColumnTitleInput).wait(1000).realType(newColumnName).wait(500);
 	}
+	*/
 
 	clickOutsideTheColumnToSaveTheColumn() {
 		cy.get(Board.#mainPageArea).click("center");
