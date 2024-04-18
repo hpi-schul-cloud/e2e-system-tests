@@ -102,6 +102,7 @@ class Courses {
 		'[data-testid="videoconference-config-dialog-title"]';
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #fabBtnAddCourse = '[data-testid="fab_button_add_course"]';
 
 	seeDisabledCheckBoxForBBBToolInCourseEditPage() {
 		cy.get(Courses.#bbbDisabledCheckBoxNBC).should("be.disabled");
@@ -868,7 +869,7 @@ class Courses {
 	}
 
 	createNewCourse() {
-		cy.get('[data-testid="fab_button_add_course"]').click();
+		cy.get(Courses.#fabBtnAddCourse).click();
 	}
 }
 export default Courses;
