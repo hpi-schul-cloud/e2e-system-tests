@@ -23,9 +23,7 @@ class Courses {
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
 	static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]';
-	// static #dropDownCourse = 'button[data-testid="room-tool-three-dot-button"]'
 	static #dropDownCourse = 'button[data-testid="room-menu"]';
-	// static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]'
 	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #deleteButtonInDotMenuOfTopic =
 		'[data-testid="content-card-lesson-menu-remove"]';

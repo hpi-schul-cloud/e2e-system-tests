@@ -1,4 +1,4 @@
-## BDD Testing for "_Schulcloud-Verbund-Software_" using Cypress & Cucumber
+## BDD Testing for "*Schulcloud-Verbund-Software*" using Cypress & Cucumber
 
 Frameworks:
 
