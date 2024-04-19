@@ -104,71 +104,71 @@ class Courses {
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
 	static #oldToolsTabInCourseDetail = '[data-testid="old-tools-tab"]';
-	static #listToolsCourse= '[data-testid="course_tool_list"]'
-	static #modalContent = '[data-testid="modal_content"]'
-  static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]'
-  static #modalContentCreateVideoconf = '[class="modal fade create-videoconference-modal in"]'
-  static #deleteBBBButtton = '[data-testid="delete-course-btn"]'
+	static #listToolsCourse = '[data-testid="course_tool_list"]';
+	static #modalContent = '[data-testid="modal_content"]';
+  	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
+ 	static #modalContentCreateVideoConf = '[class="modal fade create-videoconference-modal in"]';
+  	static #deleteBBBButton = '[data-testid="delete-course-btn"]';
 
 	doNotSeeBBBInDBCBRB(){
-		cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').should('not.exist')
+		cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').should('not.exist');
 	}
 
 	doNotSeeBBBInToolTabDBCBRB(){
-    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('not.exist')
-  }
+    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('not.exist');
+  	}
 
-  clickDeleteButttonInBBB(){
-    cy.get(Courses.#deleteBBBButtton).click()
-  }
+  	clickDeleteButtonInBBB(){
+    	cy.get(Courses.#deleteBBBButton).click();
+  	}
 
-  seeModalDeletionBBBVideoConference(){
-    cy.get(Courses.#deleteBBBButtton).should('exist')
-  }
+  	seeModalDeletionBBBVideoConference(){
+    	cy.get(Courses.#deleteBBBButton).should('exist');
+  	}
 
-  clickIconDeletenBBBVideoconference(){
-    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.delete-tool').click()
-  }
+  	clickIconDeleteBBBVideoConference(){
+    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.delete-tool').click();
+  	}
 
-  clickCancelButttonInBBB(){
-    cy.get(Courses.#modalContentCreateVideoconf).find('.btn.btn-secondary.btn-close').click()
-  }
+  	clickCancelButtonInBBB(){
+    	cy.get(Courses.#modalContentCreateVideoConf).find('.btn.btn-secondary.btn-close').click();
+  	}
 
-  seeModalStartBBBVideoConference(){
-    cy.get(Courses.#modalContentCreateVideoconf).should('exist')
-  }
+  	seeModalStartBBBVideoConference(){
+    	cy.get(Courses.#modalContentCreateVideoConf).should('exist');
+  	}
 
 	clickOnBBBInCourse(){
-    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.card-title-directory.bbb-state.bbb-moderator-inactive-state').click()
-  }
+    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.card-title-directory.bbb-state.bbb-moderator-inactive-state').click();
+  	}
 
-  seeBBBInToolTabDBCBRB(){
-    cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('be.visible')
-  }
+ 	seeBBBInToolTabDBCBRB(){
+    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('be.visible');
+  	}
 
-  clickOnButtonAdd(){
-    cy.get(Courses.#addBBBButton).click()
-  }
+  	clickOnButtonAdd(){
+    	cy.get(Courses.#addBBBButton).click();
+ 	}
 
 	clickOnButtonAdd(){
-    cy.get(Courses.#addBBBButton).click()
-  }
+    	cy.get(Courses.#addBBBButton).click();
+ 	 }
 
 	appearsModalContentForConfirmation(){
-    cy.get(Courses.#modalContent).should('be.visible')
-  }
+    	cy.get(Courses.#modalContent).should('be.visible');
+ 	 }
 
 	clickOnBBBInToolTabInDBCBRB(){
-    cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').click()
-  }
+    	cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').click();
+  	}
 
 	seeToolsListForCourse(){
-    cy.get(Courses.#toolsList).should('be.visible');
-  }
+    	cy.get(Courses.#toolsList).should('be.visible');
+ 	}
 
 	seeToolsTabInCourse(){
-    cy.get(Courses.#listToolsCourse).should('be.visible');
-  }
+    	cy.get(Courses.#listToolsCourse).should('be.visible');
+  	}
 
 	clickOnOldToolsTabInCourse(){
 		cy.url().then((url) => {
@@ -287,7 +287,7 @@ class Courses {
 					.click()
 					.then(() => {
 						cy.get(Courses.#learningContentTab)
-							.should("have.attr", "aria-selected", "true");
+							.should("have.attr", "aria-selected", "true")
 					});
 			});
 	}

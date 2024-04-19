@@ -31,7 +31,7 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     Then I see the modal to start the BBB video conference in DBC and BRB
     Then I click on button Cancel in BBB modal
   #Teacher removes the BBB tool in the course
-    When I click on icon Deleten on the BBB Video Conference BigBlueButton
+    When I click on icon Delete on the BBB Video Conference BigBlueButton
     Then I see the modal content for confirmation of deletion
     When I click on button Delete in BBB modal
     Then I do not see the BBB Video Conference BigBlueButton in tools tab
