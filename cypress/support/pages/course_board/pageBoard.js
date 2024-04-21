@@ -2,7 +2,7 @@
 
 class Board {
 	static #courseContentTab = '[data-testid="learnContent-tab"]';
-	static #cardCourseBoardInCouseContent = '[data-testid="room-board-card"]';
+	static #cardCourseBoardInCouseContent = '[data-testid="room-board-card-0"]';
 	static #courseBoardTitleOnPage = '[data-testid="board-title"]';
 	static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
@@ -15,9 +15,14 @@ class Board {
 	static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #columnPlaceholder = '[placeholder="Spalte 2"]';
+	static #drawingElement = '.drawing-element-content';
 
 	doNotSeeColumnAfterDeletion() {
 		cy.get(Board.#addColumnTitleInput).should("not.exist");
+	}
+
+	clickOnOpenTldrawDrawingElement() {
+		cy.get(Board.#drawingElement).should('exist').click();
 	}
 
 	clickOnDeleteColumnModal() {
@@ -44,7 +49,7 @@ class Board {
 		cy.get(Board.#courseContentTab).click();
 	}
 
-	clickOnCourseBoardCardInCourseDetailPage() {
+	clickOnCourseBoardCardInCourseDetailPage(index) {
 		cy.get(Board.#cardCourseBoardInCouseContent).click();
 	}
 
