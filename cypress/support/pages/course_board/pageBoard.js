@@ -49,7 +49,7 @@ class Board {
 		cy.get(Board.#courseContentTab).click();
 	}
 
-	clickOnCourseBoardCardInCourseDetailPage(index) {
+	clickOnCourseBoardCardInCourseDetailPage() {
 		cy.get(Board.#cardCourseBoardInCouseContent).click();
 	}
 
