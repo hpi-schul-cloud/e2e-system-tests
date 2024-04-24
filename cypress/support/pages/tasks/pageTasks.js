@@ -464,7 +464,7 @@ class Tasks {
 	}
 
 	openNotGradedTasks() {
-		cy.contains(Tasks.#lowerTaskSectionText, "Unbewertet").click().wait("@tasks_api");
+		cy.contains(Tasks.#lowerTaskSectionText, "Unbewertet").click();
 	}
 
 	seeTaskInListAsTeacher(taskTitle) {
