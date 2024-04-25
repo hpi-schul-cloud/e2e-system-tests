@@ -4,6 +4,7 @@ class Courses {
 	static #courseTitle = '[data-testid="coursename"]';
 	static #nextButton = '[id="nextSection"]';
 	static #goToCourseOverviewButton = '[data-testid="courses-to-overview-btn"]';
+	static #createAnotherCourseButton = '[data-testid="courses-add-another-course-btn"]';
 	static #deleteButton = '[data-method="DELETE"]';
 	static #confirmDeletionPopup = '[data-testid="modal_delete_course_button"]';
 	static #btnSubmit = '[data-testid="modal-edit-course-button"]';
@@ -14,6 +15,7 @@ class Courses {
 	static #searchFieldRoomOverview = '[data-testid="search-field"]';
 	static #mainContent = '[id="main-content"]';
 	static #createCourse = '[data-testid="fab_button_add_course"]';
+	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
@@ -44,9 +46,16 @@ class Courses {
 	static #roomSearrchBox = '[data-testid="search-field"]';
 	static #selectRoomColour = '[data-testid="color-picker"]';
 	static #RoomColourAsRed = '[aria-label="#D50000"]';
+	static #selectTeacher = '[data-testid="teachersearch"]';
+	static #selectSubstituteTeacher = '[data-testid="substituent"]';
+	static #selectClass = '[data-testid="classes"]';
+	static #selectStudent = '[data-testid="pupils"]';
 	static #chosenCourseTeacher = '[id="courseTeacher_chosen"]';
 	static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]';
 	static #courseStartDatePicker = '[data-testid="date_start"]';
+	// rename to courseEndDatePicker
+	static #pickCourseEndDatePicker = '[data-testid="date_until"]';
+	// check usage. check if it works
 	static #courseEndDatePicker = '[data-testid="form-date-input-untilDate"]';
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
@@ -109,6 +118,19 @@ class Courses {
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
 	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
+
+	static #syncedGroupDialogTitle = '[data-testid="dialog-title"]';
+	static #syncedGroupDialogInfoText = '[data-testid="group-dialog-info-text"]';
+	static #syncedGroupDialogWarningText = '[data-testid="no-teacher-warning"]';
+	static #syncedGroupDialogSelection = '[data-testid="group-selection"]';
+	static #syncedGroupDialogNextButton = '[data-testid="dialog-next"]';
+	static #syncedGroupDialogCloseButton = '[data-testid="dialog-close"]';
+	static #btnEndSync = '[data-testid="title-menu-end-sync"]';
+	static #btnConfirmEndSync = '[data-testid="dialog-confirm"]';
+	static #endSyncDialogTitle = '[data-testid="dialog-title"]';
+	static #endSyncDialogWarningText = '[data-testid="end-course-sync-dialog-warning-text"]';
+	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
+	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
 
 	topicIsNotVisibleOnCoursePage(topicTitle) {
 		cy.contains(topicTitle).should("not.exist");
@@ -364,6 +386,10 @@ class Courses {
 
 	clickOnCreateRoomFAB() {
 		cy.get(Courses.#createCourse).click();
+	}
+
+	clickOnCreateSyncedCourseFAB() {
+		cy.get(Courses.#createSyncedCourse).click();
 	}
 
 	clickOnCreateContentFAB() {
@@ -841,5 +867,128 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
 		cy.get(Courses.#btnSubmit).click();
 	}
+
+	seeTitleInSyncedGroupDialog() {
+		cy.get(Courses.#endSyncDialogTitle).should("be.visible");
+	}
+
+	seeTitleInEndSyncDialog() {
+		cy.get(Courses.#syncedGroupDialogTitle).should("be.visible");
+	}
+
+	seeCreateSyncedCourseFAB() {
+		cy.get(Courses.#createSyncedCourse).should("be.visible");
+	}
+
+	seeInfoTextInSyncedGroupDialog() {
+		cy.get(Courses.#syncedGroupDialogInfoText).should("be.visible");
+	}
+
+	seeWarningTextInEndSyncDialog() {
+		cy.get(Courses.#endSyncDialogWarningText).should("be.visible");
+	}
+
+	seeInfoTextInEndSyncDialog() {
+		cy.get(Courses.#endSyncDialogInfoText).should("be.visible");
+	}
+
+	seeGroupSelectionInSyncedGroupDialog() {
+		cy.get(Courses.#syncedGroupDialogInfoText).should("be.visible");
+	}
+
+	seeWarningTextInSyncedGroupDialog() {
+		cy.get(Courses.#syncedGroupDialogWarningText).should("be.visible");
+	}
+
+	seeContinueBtnInSyncedGroupDialogIsDisabled() {
+		cy.get(Courses.#syncedGroupDialogNextButton).should("be.disabled");
+	}
+
+	seeSelectedGroup(groupName) {
+		cy.get('span.v-autocomplete__selection-text').should("have.text",groupName);
+	}
+
+	seeCourseTitleFormContains(name) {
+		cy.get(Courses.#courseTitle).should("have.value",name);
+	}
+
+	seeSelectedTeacher(teacherName) {
+		cy.get(Courses.#selectTeacher).contains("option", teacherName)
+	}
+
+	seeSelectedStudent(studentName) {
+		cy.get(Courses.#selectStudent).contains("option", studentName)
+	}
+
+	seeTeacherSelectionBoxIsDisabled() {
+		cy.get(Courses.#selectTeacher).should("be.disabled");
+	}
+
+	seeClassSelectionBoxIsDisabled() {
+		cy.get(Courses.#selectClass).should("be.disabled");
+	}
+
+	seeStudentSelectionBoxIsDisabled() {
+		cy.get(Courses.#selectStudent).should("be.disabled");
+	}
+
+	seeSubstituteTeacherSelectionBoxIsDisabled() {
+		cy.get(Courses.#selectSubstituteTeacher).should("be.disabled");
+	}
+
+	seeStartDateAndEndDatePickersAreDisabled() {
+		cy.get(Courses.#courseStartDatePicker).should("be.disabled");
+		cy.get(Courses.#pickCourseEndDatePicker).should("be.disabled");
+	}
+
+	seeCreateAnotherCourseButtonIsNotVisible() {
+		cy.get(Courses.#createAnotherCourseButton).should("not.exist");
+	}
+
+	seeEndSyncButton() {
+		cy.get(Courses.#dropDownCourse).parent().click();
+		cy.get(Courses.#btnEndSync).should("be.visible");
+	}
+
+	seeSyncedCourseChip() {
+		cy.get(Courses.#syncedCourseChip).should("be.visible");
+	}
+
+	seeSyncedCourseChipIsNotVisible() {
+		cy.get(Courses.#syncedCourseChip).should("not.exist");
+	}
+
+	seeCourseStartDate(startDate) {
+		cy.get(Courses.#courseStartDatePicker).should("have.value",startDate);
+	}
+
+	seeCourseEndDate(endDate) {
+		cy.get(Courses.#pickCourseEndDatePicker).should("have.value",endDate);
+	}
+
+	clickOnSyncedGroupSelection() {
+		cy.get(Courses.#syncedGroupDialogSelection).click();
+	}
+
+	clickContinueButtonOnSyncedGroupDialog() {
+		cy.get(Courses.#syncedGroupDialogNextButton).click();
+	}
+
+	clickCloseButtonOnSyncedGroupDialog() {
+		cy.get(Courses.#syncedGroupDialogCloseButton).click();
+	}
+
+	clickEndSyncButton() {
+		cy.get(Courses.#btnEndSync).click();
+	}
+
+	clickConfirmButtonOnEndSyncDialog() {
+		cy.get(Courses.#btnConfirmEndSync).click();
+	}
+
+	selectGroupInSyncedGroupSelection(groupName) {
+		cy.get(Courses.#syncedGroupDialogSelection).type(groupName).type('{downArrow}{enter}')
+	}
+
 }
 export default Courses;
