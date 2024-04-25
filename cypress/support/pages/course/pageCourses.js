@@ -59,7 +59,6 @@ class Courses {
 	static #courseTitleInRoomoverview = '[data-testid="course-title"]';
 	static #learningContentTab = '[data-testid="learnContent-tab"]';
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
-
 	static #toolsTab = '[data-testid="tools-tab"]';
 	static #addToolButton = '[data-testid="add-tool-button"]';
 	static #toolConfigurationSelect = '[data-testid="configuration-select"]';
@@ -106,74 +105,76 @@ class Courses {
 	static #oldToolsTabInCourseDetail = '[data-testid="old-tools-tab"]';
 	static #listToolsCourse = '[data-testid="course_tool_list"]';
 	static #modalContent = '[data-testid="modal_content"]';
-  	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
- 	static #modalContentCreateVideoConf = '[class="modal fade create-videoconference-modal in"]';
-  	static #deleteBBBButton = '[data-testid="delete-course-btn"]';
+	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
+ 	static #modalContentCreateVideoConf = '[data-testid="createVideoConference"]';
+	static #modalContentCreateVideoConfCancel = '[data-testid="btn-cancel"]';
+	static #deleteBBBButton = '[data-testid="delete-course-btn"]';
+	static #bbbTool = '[data-testid="bbb_tool_moderator_inactive"]';
+	static #deleteIconBBBTool = '[data-testid="bbb_tool_delete"]';
 
 	doNotSeeBBBInDBCBRB(){
-		cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').should('not.exist');
+		cy.get(Courses.#toolsList).contains(Courses.#modalContentCreateVideoConf).should('not.exist');
 	}
 
 	doNotSeeBBBInToolTabDBCBRB(){
-    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('not.exist');
-  	}
+		cy.get(Courses.#bbbTool).should('not.exist');
+	}
 
-  	clickDeleteButtonInBBB(){
-    	cy.get(Courses.#deleteBBBButton).click();
-  	}
+	clickDeleteButtonInBBB(){
+		cy.get(Courses.#deleteBBBButton).click();
+	}
 
-  	seeModalDeletionBBBVideoConference(){
-    	cy.get(Courses.#deleteBBBButton).should('exist');
-  	}
+	seeModalDeletionBBBVideoConference(){
+		cy.get(Courses.#deleteBBBButton).should('exist');
+	}
 
-  	clickIconDeleteBBBVideoConference(){
-    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.delete-tool').click();
-  	}
+	clickIconDeleteBBBVideoConference(){
+		cy.get(Courses.#bbbTool).first().find(Courses.#deleteIconBBBTool).click();
+	}
 
-  	clickCancelButtonInBBB(){
-    	cy.get(Courses.#modalContentCreateVideoConf).find('.btn.btn-secondary.btn-close').click();
-  	}
+	clickCancelButtonInBBB(){
+		cy.get(Courses.#modalContentCreateVideoConf).find(Courses.#modalContentCreateVideoConfCancel).click();
+	}
 
-  	seeModalStartBBBVideoConference(){
-    	cy.get(Courses.#modalContentCreateVideoConf).should('exist');
-  	}
+	seeModalStartBBBVideoConference(){
+		cy.get(Courses.#modalContentCreateVideoConf).should('exist');
+	}
 
 	clickOnBBBInCourse(){
-    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').first().find('.card-title-directory.bbb-state.bbb-moderator-inactive-state').click();
-  	}
+		cy.get(Courses.#bbbTool).first().click();
+	}
 
  	seeBBBInToolTabDBCBRB(){
-    	cy.get(Courses.#listToolsCourse).find('.card-tool.bbbTool').should('be.visible');
-  	}
+  		cy.get(Courses.#bbbTool).should('be.visible');
+	}
 
-  	clickOnButtonAdd(){
-    	cy.get(Courses.#addBBBButton).click();
+	clickOnButtonAdd(){
+  		cy.get(Courses.#addBBBButton).click();
  	}
 
 	clickOnButtonAdd(){
-    	cy.get(Courses.#addBBBButton).click();
- 	 }
+  		cy.get(Courses.#addBBBButton).click();
+ 	}
 
 	appearsModalContentForConfirmation(){
     	cy.get(Courses.#modalContent).should('be.visible');
- 	 }
+ 	}
 
 	clickOnBBBInToolTabInDBCBRB(){
-    	cy.get(Courses.#toolsList).contains('span', 'Video-Konferenz mit BigBlueButton').click();
-  	}
+  		cy.get(Courses.#toolsList).click();
+	}
 
 	seeToolsListForCourse(){
-    	cy.get(Courses.#toolsList).should('be.visible');
+  		cy.get(Courses.#toolsList).should('be.visible');
  	}
 
 	seeToolsTabInCourse(){
-    	cy.get(Courses.#listToolsCourse).should('be.visible');
-  	}
+  		cy.get(Courses.#listToolsCourse).should('be.visible');
+	}
 
 	clickOnOldToolsTabInCourse(){
 		cy.url().then((url) => {
 			const uuid= url.split('/')[4]
-			cy.log('Current UUID from URL is: ' + uuid)
 			cy.get(Courses.#oldToolsTabInCourseDetail).should('have.attr', 'href').should('not.be.empty').and('contain', uuid)
 		.then((href) => {
 			cy.visit(href)
