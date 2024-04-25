@@ -34,7 +34,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on save button to save changes
     Then I see topic detail page "Cy Topic Creating and Deleting Test" with content elements "Cy Title for Text Element in Topic", "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic" and "Cy Title for Task Element in Topic"
     When I click on last breadcrump element in topbar navigation
-    Then I can see content 'Cy Topic Creating and Deleting Test' on course page
+    Then I can see topic 'Cy Topic Creating and Deleting Test' on course page
 
   @stable_test
   Scenario: Teacher edits topic from room
@@ -45,7 +45,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
     When I enter topic title 'Cy Topic Creating and Deleting Test - Edited topic'
     When I click on save button to save changes
-    Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
+    Then I can see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
     When I click on topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
     Then I see topic detail page "Cy Topic Creating and Deleting Test - Edited topic" with content elements "Cy Title for Text Element in Topic", "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic" and "Cy Title for Task Element in Topic"
     When I click on icon Pen on topic page
@@ -77,7 +77,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     # When I click button Cancel
     # Then I see topic detail page "Cy Topic Creating and Deleting Test - Edited topic" with content elements "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic Changed", "Cy Title for Task Element in Topic" and "Cy New text element Title"
     When I click on last breadcrump element in topbar navigation
-    Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
+    Then I can see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
   @stable_test
   Scenario: Teacher deletes topic from room
@@ -86,8 +86,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test - Edited topic'
     When I click on Delete in dot menu of topic
     When I click on Cancel in confirmation window
-    Then I can see content 'Cy Topic Creating and Deleting Test - Edited topic' on course page
+    Then I can see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test - Edited topic'
     When I click on Delete in dot menu of topic
     When I click on Delete in confirmation window
-    Then I can not see content 'Cy Topic Creating and Deleting Test - Edited topic'
+    Then I can not see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page

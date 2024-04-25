@@ -147,7 +147,7 @@ class Classes {
 		classNameData.should("be.visible");
 		classNameData
 			.siblings("td")
-			.eq(0)
+			.eq(1)
 			.should(($td) => {
 				expect($td.text().trim()).to.equal(sourceName);
 			});
@@ -158,7 +158,7 @@ class Classes {
 
 		classNameData
 			.siblings("td")
-			.eq(3)
+			.eq(4)
 			.find('a[data-testid="class-table-members-manage-btn"]')
 			.should("exist");
 	}
@@ -166,7 +166,7 @@ class Classes {
 	seeClassesHave4ActiveActionItems(className) {
 		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(className);
 
-		const buttons = classNameData.siblings("td").eq(3).find("a, button");
+		const buttons = classNameData.siblings("td").eq(4).find("a, button");
 
 		buttons.should("have.length", 4);
 		buttons.each(($btn) => {
@@ -174,9 +174,9 @@ class Classes {
 		});
 	}
 
-	seeTableHas5Columns() {
+	seeTableHas6Columns() {
 		const tableHeader = cy.get(Classes.#classTableNew).find("th");
-		tableHeader.should("have.length", 5);
+		tableHeader.should("have.length", 6);
 	}
 
 	see3Tabs() {

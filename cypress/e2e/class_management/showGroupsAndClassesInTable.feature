@@ -22,9 +22,9 @@ Feature: Group - To show groups and classes in one table with respective functio
 
   Scenario: As a teacher i can see all classes and groups of my school on the new class administration page.
     Given I see the new class administration page
-    Then I can see the page title
+    # Then I can see the administration page title -> needed data-testid "admin-class-title" currently not available
     Then I can see 3 tabs
-    Then I can see 5 columns in the table
+    Then I can see 6 columns in the table
     Then I can see the group 'Cypress-Test-Group' with source 'moin.schule'
     Then I can see the class '1' without source
     Then I can see the manage button for group 'Cypress-Test-Group'
