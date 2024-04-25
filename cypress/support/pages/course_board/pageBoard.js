@@ -6,16 +6,49 @@ class Board {
 	static #courseBoardTitleOnPage = '[data-testid="board-title"]';
 	static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
-	static #addColumnTitleInput = '[data-testid="column-title-1"]';
-	static #addNewCardButtonInColumn = 'button>span span[data-testid="add-card"]';
+	static #addColumnTitleInput = '[data-testid="column-title-0"]';
+	static #addNewCardButtonInColumn = '[data-testid="column-0-add-card-btn"]';
 	static #mainPageArea = '[id="main-content"]';
 	static #editOptionColumnThreeDot = '[data-testid="board-menu-action-edit"]';
-	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-1"]';
+	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-0"]';
 	static #deleteOptionColumnThreeDot = '[data-testid="board-menu-action-delete"]';
 	static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
-	static #columnPlaceholder = '[placeholder="Spalte 2"]';
 	static #drawingElement = '.drawing-element-content';
+	static #columnPlaceholder = '[placeholder="Spalte 1"]';
+	static #newColumnBoardFABInCOurseDetail = '[data-testid="fab_button_add_board"]';
+	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
+	static #editOptionInThreeDotCourseBoardTitle = '[data-testid="board-menu-action-edit"]';
+	static #courseBoardTitle = '[data-testid="board-title"]';
+	static #draftChipInCourseBoardName = '[data-testid="board-title"]';
+
+	clickOnFABToCreateNewColumnBoard() {
+		cy.get(Board.#newColumnBoardFABInCOurseDetail).click();
+	}
+
+	seeNewCourseBoardCreatePage() {
+		cy.url().should("include", "/board");
+	}
+
+	clickOnThreeDotMenuInCourseBoardTitle() {
+		cy.get(Board.#threeDotInCourseBoardTitle).click();
+	}
+
+	clickOnEditInThreeDotCourseBoardTitle() {
+		cy.get(Board.#editOptionInThreeDotCourseBoardTitle).click();
+	}
+
+	enterCourseBoardTitle(boardTitle) {
+		cy.get(Board.#courseBoardTitle).type("{backspace}".repeat(11)).type(boardTitle);
+	}
+
+	seeCourseBoardName(boardName) {
+		cy.get(Board.#courseBoardTitle).contains(boardName);
+	}
+
+	seeDarftChipOnCourseBoard() {
+		cy.get(Board.#draftChipInCourseBoardName).should("exist");
+	}
 
 	doNotSeeColumnAfterDeletion() {
 		cy.get(Board.#addColumnTitleInput).should("not.exist");
@@ -65,10 +98,12 @@ class Board {
 		cy.get(Board.#addNewColumnButton).click();
 	}
 
-	enterNewColumnTitle(newColumnName) {
-		cy.get(Board.#addColumnTitleInput).wait(1000).realType(newColumnName).wait(500);
+	enterColumnTitleInCourseBoard(columnTitle) {
+		cy.get(Board.#addColumnTitleInput).type("{backspace}".repeat(30));
+		cy.get(Board.#addColumnTitleInput).wait(1000).realType(columnTitle).wait(500);
 	}
 
+	/* Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
 	recursivelyDeleteTextFromTextArea() {
 		cy.window().then((win) => {
 			const textArea = win.document.querySelector(Board.#columnPlaceholder);
@@ -88,13 +123,15 @@ class Board {
 			}
 		});
 	}
+	*/
 
+	/* Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
 	enterEditedColumnTitle(newColumnName) {
 		this.recursivelyDeleteTextFromTextArea();
-
 		cy.wait(500);
 		cy.get(Board.#addColumnTitleInput).wait(1000).realType(newColumnName).wait(500);
 	}
+	*/
 
 	clickOutsideTheColumnToSaveTheColumn() {
 		cy.get(Board.#mainPageArea).click("center");
@@ -109,9 +146,7 @@ class Board {
 	}
 
 	clickOnAddNewCardButton() {
-		cy.get(Board.#addNewCardButtonInColumn).eq(1).click({
-			force: true,
-		});
+		cy.get(Board.#addNewCardButtonInColumn).click();
 	}
 }
 export default Board;

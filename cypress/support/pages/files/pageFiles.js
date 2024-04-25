@@ -20,7 +20,7 @@ class Files {
 	static #cardTitle = '[data-testid="file-title"]';
 	static #pageTitle = '[data-testid="LibreOffice Online"]';
 	static #deleteDialogBoxPopupContainer = '[data-testid="modal_content"]';
-	static #filesOverviewNavigationButton = '[data-testid="Meine Dateien"]';
+	static #filesOverviewNavigationButton = '[data-testid="Dateien"]';
 	static #personalFilesOverviewNavigationButton = '[data-testid="persönliche Dateien"]';
 	static #coursesFilesOverviewNavigationButton = '[data-testid="Kurse"]';
 	static #teamsFilesOverviewNavigationButton = '[data-testid="Teams"]';
@@ -35,7 +35,6 @@ class Files {
 
 	navigateToFilesOverview() {
 		cy.get(Files.#filesOverviewNavigationButton).click();
-		cy.wait("@alerts_api");
 		cy.url().should("include", "/files");
 	}
 
