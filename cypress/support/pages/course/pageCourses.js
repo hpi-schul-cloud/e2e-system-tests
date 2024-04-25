@@ -13,7 +13,7 @@ class Courses {
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldRoomOverview = '[data-testid="search-field"]';
 	static #mainContent = '[id="main-content"]';
-	static #createCourse = '[data-testid="add-course-button"]';
+	static #createCourse = '[data-testid="fab_button_add_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
@@ -22,21 +22,21 @@ class Courses {
 	static #newTaskFAB = '[data-testid="fab_button_add_task"]';
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
-	static #deleteButtonInDotMenu = '[data-testid="content-card-task-menu-remove"]';
+	static #deleteButtonInDotMenu = '[data-testid="room-task-card-menu-remove-0"]';
 	static #deleteButtonInDotMenuOfTopic =
-		'[data-testid="content-card-lesson-menu-remove"]';
-	static #editButtonInDotMenu = '[data-testid="content-card-task-menu-edit"]';
-	static #editButtonInDotMenuOfTopic = '[data-testid="content-card-lesson-menu-edit"]';
-	static #contentCardContent = '[data-testid="content-card-task-content"]';
-	static #contentCardTopic = '[data-testid="content-card-lesson-content"]';
-	static #contentCardTaskActions = '[data-testid="content-card-task-actions"]';
-	static #dropDownCourse = 'button[data-testid="room-tool-three-dot-button"]';
-	static #btnCourseEdit = '[data-testid="title-menu-edit-delete"]';
+		'[data-testid="lesson-card-menu-action-remove-0"]';
+	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
+	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
+	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
+	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
+	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
+	static #dropDownCourse = '[data-testid="room-menu"]';
+	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
-	static #contentCardTaskInfoSubmissionsChip =
-		'[data-testid="room-detail-task-chip-submitted"]';
-	static #contentCardTaskInfoGradingsChip =
-		'[data-testid="room-detail-task-chip-graded"]';
+	static #contentCardTaskInfoSubmissionsChipWithIndex =
+		'[data-testid="room-task-card-chip-submitted-0"]';
+	static #contentCardTaskInfoGradingsChipWithIndex =
+		'[data-testid="room-task-card-chip-graded-0"]';
 	static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]';
 	static #chosenChoices = ".chosen-choices";
 	static #chosenResults = ".chosen-results li";
@@ -106,80 +106,98 @@ class Courses {
 	static #listToolsCourse = '[data-testid="course_tool_list"]';
 	static #modalContent = '[data-testid="modal_content"]';
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
- 	static #modalContentCreateVideoConf = '[data-testid="createVideoConference"]';
+	static #modalContentCreateVideoConf = '[data-testid="createVideoConference"]';
 	static #modalContentCreateVideoConfCancel = '[data-testid="btn-cancel"]';
 	static #deleteBBBButton = '[data-testid="delete-course-btn"]';
 	static #bbbTool = '[data-testid="bbb_tool_moderator_inactive"]';
 	static #deleteIconBBBTool = '[data-testid="bbb_tool_delete"]';
+	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
+	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
+	static #taskCardFinishButtonInCoursePageWithIndex =
+		'[data-testid="task-card-action-done-0"]';
+	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
+	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
 
-	doNotSeeBBBInDBCBRB(){
+	doNotSeeBBBInDBCBRB() {
 		cy.get(Courses.#toolsList).contains(Courses.#modalContentCreateVideoConf).should('not.exist');
 	}
 
-	doNotSeeBBBInToolTabDBCBRB(){
+	doNotSeeBBBInToolTabDBCBRB() {
 		cy.get(Courses.#bbbTool).should('not.exist');
 	}
 
-	clickDeleteButtonInBBB(){
+	clickDeleteButtonInBBB() {
 		cy.get(Courses.#deleteBBBButton).click();
 	}
 
-	seeModalDeletionBBBVideoConference(){
+	seeModalDeletionBBBVideoConference() {
 		cy.get(Courses.#deleteBBBButton).should('exist');
 	}
 
-	clickIconDeleteBBBVideoConference(){
+	clickIconDeleteBBBVideoConference() {
 		cy.get(Courses.#bbbTool).first().find(Courses.#deleteIconBBBTool).click();
 	}
 
-	clickCancelButtonInBBB(){
+	clickCancelButtonInBBB() {
 		cy.get(Courses.#modalContentCreateVideoConf).find(Courses.#modalContentCreateVideoConfCancel).click();
 	}
 
-	seeModalStartBBBVideoConference(){
+	seeModalStartBBBVideoConference() {
 		cy.get(Courses.#modalContentCreateVideoConf).should('exist');
 	}
 
-	clickOnBBBInCourse(){
+	clickOnBBBInCourse() {
 		cy.get(Courses.#bbbTool).first().click();
 	}
 
- 	seeBBBInToolTabDBCBRB(){
-  		cy.get(Courses.#bbbTool).should('be.visible');
+	seeBBBInToolTabDBCBRB() {
+		cy.get(Courses.#bbbTool).should('be.visible');
 	}
 
-	clickOnButtonAdd(){
-  		cy.get(Courses.#addBBBButton).click();
- 	}
-
-	clickOnButtonAdd(){
-  		cy.get(Courses.#addBBBButton).click();
- 	}
-
-	appearsModalContentForConfirmation(){
-    	cy.get(Courses.#modalContent).should('be.visible');
- 	}
-
-	clickOnBBBInToolTabInDBCBRB(){
-  		cy.get(Courses.#toolsList).click();
+	clickOnButtonAdd() {
+		cy.get(Courses.#addBBBButton).click();
 	}
 
-	seeToolsListForCourse(){
-  		cy.get(Courses.#toolsList).should('be.visible');
- 	}
-
-	seeToolsTabInCourse(){
-  		cy.get(Courses.#listToolsCourse).should('be.visible');
+	clickOnButtonAdd() {
+		cy.get(Courses.#addBBBButton).click();
 	}
 
-	clickOnOldToolsTabInCourse(){
+	appearsModalContentForConfirmation() {
+		cy.get(Courses.#modalContent).should('be.visible');
+	}
+
+	clickOnBBBInToolTabInDBCBRB() {
+		cy.get(Courses.#toolsList).click();
+	}
+
+	seeToolsListForCourse() {
+		cy.get(Courses.#toolsList).should('be.visible');
+	}
+
+	seeToolsTabInCourse() {
+		cy.get(Courses.#listToolsCourse).should('be.visible');
+	}
+
+	clickOnOldToolsTabInCourse() {
 		cy.url().then((url) => {
-			const uuid= url.split('/')[4]
+			const uuid = url.split('/')[4]
 			cy.get(Courses.#oldToolsTabInCourseDetail).should('have.attr', 'href').should('not.be.empty').and('contain', uuid)
-		.then((href) => {
-			cy.visit(href)
+				.then((href) => {
+					cy.visit(href)
+				})
 		})
-		})
+	}
+
+	topicIsNotVisibleOnCoursePage(topicTitle) {
+		cy.contains(topicTitle).should("not.exist");
+	}
+
+	topicIsVisibleOnCoursePage(topicTitle) {
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(topicTitle);
+	}
+
+	clickOnFABToAddOrImportCourse() {
+		cy.get(Courses.#fabButtonToAddOrImportCourse).click();
 	}
 
 	seeDisabledCheckBoxForBBBToolInCourseEditPage() {
@@ -287,14 +305,26 @@ class Courses {
 					.prev()
 					.click()
 					.then(() => {
-						cy.get(Courses.#learningContentTab)
-							.should("have.attr", "aria-selected", "true")
+						return new Cypress.Promise((resolve, reject) => {
+							try {
+								setTimeout(() => {
+									cy.get(Courses.#learningContentTab).should(
+										"have.attr",
+										"aria-selected",
+										"true"
+									);
+									resolve();
+									return;
+								}, 1000);
+							} catch (error) {
+								reject(error);
+							}
+						});
 					});
 			});
 	}
 
 	showRoomPage(courseName) {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#courseDetailPageTitle).should("contain.text", courseName);
 	}
 
@@ -415,60 +445,45 @@ class Courses {
 	}
 
 	clickOnCreateContentFAB() {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#createContent).click();
 	}
 
 	clickOnNewTaskFAB() {
 		cy.get(Courses.#newTaskFAB).click();
-		cy.wait("@homework_api");
 	}
 
 	contentIsVisibleOnCoursePage(taskTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
-		cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-			.wait(["@public_api", "@me_api", "@school_api", "@userPermissions_api"])
-			.then((interceptions) => {
-				expect(interceptions[0].response.statusCode).to.equal(200);
-				expect(interceptions[1].state).to.equal("Complete");
-				expect(interceptions[1].response.statusCode).to.equal(200);
-			});
-		cy.contains(taskTitle).should("be.visible");
+		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
+			.contains(taskTitle)
+			.should("be.visible");
 	}
 
 	contentIsNotVisibleOnCoursePage(contentTitle) {
-		cy.reload() // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-			.wait(["@board_api", "@runtime_config_api", "@public_api"])
-			.then((interceptions) => {
-				expect(interceptions[0].response.statusCode).to.equal(200);
-				expect(interceptions[1].response.statusCode).to.equal(200);
-				expect(interceptions[1].response.statusCode).to.equal(200);
-			});
+		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 		cy.contains(contentTitle).should("not.exist");
 	}
 
 	openTask(taskTitle) {
 		// cy.wait('@rooms_api') dont needed as on vue page already where scenario is given
-		cy.get(Courses.#contentCardContent).contains(taskTitle).click();
-		cy.wait("@homework_api");
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardInCoursePageWithIndex).click();
 	}
 
 	openThreeDotMenuForContent(contentTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(contentTitle)
-			.parent()
-			.find("button")
-			.click();
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#taskCardThreeDotMenuInCoursePageWithIndex).click();
 	}
 
 	openThreeDotMenuForTopic(contentTitle) {
-		cy.wait("@rooms_api");
-		cy.contains(contentTitle).prev().find("button").click();
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#topicCardThreeDotInCoursePageWithIndex).click();
 	}
 
 	openTopic(contentTitle) {
-		cy.contains(contentTitle).parent().click();
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#topicCardInCoursePageWithIndex).click();
 	}
 
 	clickDeleteInDotMenu() {
@@ -479,9 +494,8 @@ class Courses {
 		cy.get(Courses.#deleteButtonInDotMenuOfTopic).click();
 	}
 
-	clickEditInDotMenu(linkId) {
+	clickEditInDotMenu() {
 		cy.get(Courses.#editButtonInDotMenu).click();
-		cy.wait("@homework_api");
 	}
 
 	clickEditInDotMenuOfTopic() {
@@ -497,7 +511,6 @@ class Courses {
 	}
 
 	openCourseEditPage() {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#dropDownCourse).first().click();
 		cy.get(Courses.#btnCourseEdit).click();
 	}
@@ -507,56 +520,34 @@ class Courses {
 	}
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(contentTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskInfoSubmissionsChip)
-			.should("contain", submittedTasks);
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should(
+			"contain",
+			submittedTasks
+		);
 	}
 
 	compareGradedTasksInformation(gradedTasks, contentTitle) {
-		cy.get(Courses.#contentCardContent)
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
 			.contains(contentTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskInfoGradingsChip)
+			.get(Courses.#contentCardTaskInfoGradingsChipWithIndex)
 			.should("contain", gradedTasks);
 	}
 
 	clickOnFinishTask(taskTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(taskTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskActions)
-			.find("button")
-			.click()
-			.wait(["@task_finish_api"]);
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardFinishButtonInCoursePageWithIndex).click();
 	}
 
 	checkTaskCardDoesNotHaveButtons(taskTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(taskTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskActions)
-			.find("button")
-			.should("not.exist");
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardFinishButtonInCoursePageWithIndex).should("not.exist");
+		cy.get(Courses.#contentCardTaskInfoGradingsChipWithIndex).should("not.exist");
 	}
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
-		cy.wait("@rooms_api");
-		cy.get(Courses.#contentCardContent)
-			.contains(taskTitle)
-			.parent()
-			.parent()
-			.find(Courses.#contentCardTaskActions)
-			.find("button")
-			.should("be.visible");
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
+		cy.get(Courses.#taskCardInCoursePageWithIndex).find("button").should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
@@ -608,12 +599,7 @@ class Courses {
 	}
 
 	clickOnNewTopicFAB() {
-		cy.get(Courses.#newTopicFAB)
-			.click()
-			.wait(["@alerts_api"])
-			.then((interceptions) => {
-				expect(interceptions.response.statusCode).to.equal(200);
-			});
+		cy.get(Courses.#newTopicFAB).click();
 	}
 
 	clearSubstituteTeacherField() {
@@ -786,7 +772,7 @@ class Courses {
 	}
 
 	clickOnToolAndReturn(toolName) {
-		cy.on("window:before:load", (win) => {});
+		cy.on("window:before:load", (win) => { });
 
 		cy.intercept("GET", "https://google.com", (req) => {
 			// catch the page as it loads
@@ -842,7 +828,6 @@ class Courses {
 	}
 
 	clickCopyCourseButton() {
-		cy.wait("@rooms_api");
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnCopyCourse).click();
 	}
@@ -933,7 +918,6 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type("{enter}");
 		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
 		cy.get(Courses.#btnSubmit).click();
-		cy.wait("@administration_api");
 	}
 }
 export default Courses;

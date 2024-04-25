@@ -242,7 +242,7 @@ class Management {
 			expect(interceptions[0].response.statusCode).to.equal(201);
 			expect(interceptions[1].response.statusCode).to.equal(200);
 			expect(interceptions[2].response.statusCode).to.equal(200);
-			expect(interceptions[2].request.url).to.include("/api/v1/users/admin");
+			expect(interceptions[2].request.url).to.include("/api/v3/users/admin");
 		});
 	}
 
