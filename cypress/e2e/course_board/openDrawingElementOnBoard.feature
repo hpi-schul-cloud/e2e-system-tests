@@ -1,3 +1,4 @@
+@pr
 @release
 Feature: Course Board - Opening a drawing element on a course page
 
