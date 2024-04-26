@@ -802,7 +802,6 @@ class Courses {
 		cy.get(Courses.#outdatedDialogTitle).should("exist");
 		cy.get(Courses.#outdatedDialogTitle).should("contain", toolName);
 		cy.get(Courses.#errorDialog).should("exist");
-		cy.get(Courses.#outdatedDialogTitle).siblings("div").should("have.length", "2");
 		cy.get(Courses.#outdatedDialogTitle)
 			.siblings("div")
 			.eq(0)

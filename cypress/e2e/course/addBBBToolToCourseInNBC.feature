@@ -15,10 +15,29 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 
   @stable_test
   Scenario Outline: Teacher can add and remove BBB tool in the course in NBC
-  #Teacher adds the BBB tool in the course
+    #Teacher adds the BBB tool in the course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
-    When I go to room 'German'
+    #================================================================
+    When I click on FAB to create a new room
+    When I click on new course create button
+    Then I see section one area on the course create page
+    When I enter the course title 'Cypress Test Creation and Deletion'
+    When I select room colour as red
+    Then I see teacher 'cypress test' is selected by default
+    Then I see substitute teacher selection box
+    Then I see date pickers to start and end the course as per school year
+    Then I see button to create a course time table container
+    When I click on button Next Steps after entering the room detail in section one
+    Then I see section two area on the course create page
+    # Then I see class selection box to select the class for the room
+    # Then I see student selection box to select the class for the room
+    When I click on button Next Steps after selecting room participant details
+    Then I see the section three area as the finish page
+    When I click on button To Course Overview on the finish page
+    Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
+    #================================================================
+    When I go to room 'Cypress Test Creation and Deletion'
     When I open page Edit course
     Then I can see page Edit course
     When I click on checkbox Activate video conferences in page Edit course to enable the BBB tool
@@ -28,7 +47,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     When I click on the BBB Video Conference BigBlueButton in NBC
     Then I see the modal to start the BBB video conference
     Then I click on button Cancel in BBB dialog box
-  #Teacher removes the BBB tool in the course
+    #Teacher removes the BBB tool in the course
     When I open page Edit course
     Then I can see page Edit course
     When I uncheck the checkbox to Activate video conferences in page Edit course to enable the BBB tool
@@ -46,9 +65,11 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     Then I disable the video conference
     Then I click on button Save admin settings
   #Teacher can not add bbb tool in the course
+
+  Scenario Outline: Teacher can not add the bbb tool in the course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
-    When I go to room 'German'
+    When I go to room 'Cypress Test Creation and Deletion'
     When I open page Edit course
     Then I can see page Edit course
     Then I see the disabled check box for Activating video conferences in page Edit course
