@@ -75,7 +75,7 @@ class Teams {
 	static #saveEventButton = '[data-testid="submit-btn-create-event-modal"]';
 
 	clickOnSaveToCreateNewTeamEvent() {
-		cy.get(Teams.#saveEventButton).click().wait(["@alerts_api", "@videoconference_api"]);
+		cy.get(Teams.#saveEventButton).click();
 	}
 
 	seeTeamMembersOverviewPage() {

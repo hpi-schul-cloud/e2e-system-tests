@@ -74,8 +74,6 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 	try {
 		const { schoolUrl, userUrl } = getUrl(baseUrl);
 
-		console.log("Creating user:", userType);
-
 		const finalHeaders = { ...headers };
 		if (!finalHeaders.hasOwnProperty("x-api-key")) {
 			finalHeaders["x-api-key"] = apiKeys;

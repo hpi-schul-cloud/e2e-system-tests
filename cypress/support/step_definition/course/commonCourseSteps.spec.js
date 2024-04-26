@@ -3,6 +3,10 @@ import Courses from "../../pages/course/pageCourses";
 
 const courses = new Courses();
 
+When("I click on FAB to add or import courses", () => {
+	courses.clickOnFABToAddOrImportCourse();
+});
+
 Then("I see room search box on the room overview page", () => {
 	courses.seeRoomSearchBoxOnRoomOverview();
 });
@@ -143,6 +147,10 @@ Then("I see task {string} contains buttons", (taskTitle) => {
 
 Then("I can see topic {string} on course page", (topicTitle) => {
 	courses.topicIsVisibleOnCoursePage(topicTitle);
+});
+
+Then("I can not see topic {string} on course page", (topicTitle) => {
+	courses.topicIsNotVisibleOnCoursePage(topicTitle);
 });
 
 When("I clear substitute teacher field", () => {

@@ -29,7 +29,7 @@ Then("I see the new class administration page", () => {
 	classes.isNewClassAdministrationPage();
 });
 
-Then("I can see the page title", () => {
+Then("I can see the administration page title", () => {
 	classes.seeNewClassPageTitle();
 });
 
@@ -49,8 +49,8 @@ Then("I can see 4 enabled action items for class {string}", (className) => {
 	classes.seeClassesHave4ActiveActionItems(className);
 });
 
-Then("I can see 5 columns in the table", () => {
-	classes.seeTableHas5Columns();
+Then("I can see 6 columns in the table", () => {
+	classes.seeTableHas6Columns();
 });
 
 Then("I can see 3 tabs", () => {
