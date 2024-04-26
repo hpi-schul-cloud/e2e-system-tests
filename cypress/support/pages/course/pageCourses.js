@@ -966,10 +966,6 @@ class Courses {
 		cy.get(Courses.#pickCourseEndDatePicker).should("have.value",endDate);
 	}
 
-	clickOnSyncedGroupSelection() {
-		cy.get(Courses.#syncedGroupDialogSelection).click();
-	}
-
 	clickContinueButtonOnSyncedGroupDialog() {
 		cy.get(Courses.#syncedGroupDialogNextButton).click();
 	}
@@ -987,7 +983,7 @@ class Courses {
 	}
 
 	selectGroupInSyncedGroupSelection(groupName) {
-		cy.get(Courses.#syncedGroupDialogSelection).type(groupName).type('{downArrow}{enter}')
+		cy.get(Courses.#syncedGroupDialogSelection).click().type(groupName).type('{downArrow}{enter}')
 	}
 
 }

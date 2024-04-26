@@ -5,19 +5,20 @@ const { Then, When } = require("@badeball/cypress-cucumber-preprocessor");
 
 const courses = new Courses();
 const classes = new Classes();
-Then("I see title of the modal to select a synchronized group", () => {
-	courses.seeTitleInSyncedGroupDialog();
-});
 
-Then("I see the FAB to create a new synchronized course", () => {
+Then("I see the FAB to create a new synced course", () => {
 	courses.seeCreateSyncedCourseFAB();
 });
 
-Then("I see information text of the modal to select a synchronized group", () => {
+Then("I see title of the modal to select a synced group", () => {
+	courses.seeTitleInSyncedGroupDialog();
+});
+
+Then("I see information text of the modal to select a synced group", () => {
 	courses.seeInfoTextInSyncedGroupDialog();
 });
 
-Then("I see group selection of the modal to select a synchronized group", () => {
+Then("I see the group selection of the modal to select a synced group", () => {
 	courses.seeGroupSelectionInSyncedGroupDialog();
 });
 
@@ -74,19 +75,19 @@ Then("I see the end synchronization button", () => {
 	courses.seeEndSyncButton();
 });
 
-Then("I see the title of the end sync modal", () => {
+Then("I see the title of the modal to end the sync", () => {
 	courses.seeTitleInEndSyncDialog();
 });
 
-Then("I see the warning text of the end sync modal", () => {
+Then("I see the warning text of the modal to end the sync", () => {
 	courses.seeWarningTextInEndSyncDialog();
 });
 
-Then("I see the information text of the end sync modal", () => {
+Then("I see the information text of the modal to end the sync", () => {
 	courses.seeInfoTextInEndSyncDialog();
 });
 
-Then("I see the synced course chip", () => {
+Then("I see the synced chip next to the title on the room page", () => {
 	courses.seeSyncedCourseChip();
 });
 
@@ -110,23 +111,19 @@ Then("I see the end date picker has {string} selected", (endDate) => {
 	courses.seeCourseEndDate(endDate);
 });
 
-When("I click on FAB to create a new synchronized course", () => {
+When("I click on FAB to create a new synced course", () => {
 	courses.clickOnCreateSyncedCourseFAB();
 });
 
-When("I click on group selection", () => {
-	courses.clickOnSyncedGroupSelection();
-});
-
-When("I enter {string} as group name in the selection and select the group", (groupName) => {
+When("I select group {string} in the group selection", (groupName) => {
 	courses.selectGroupInSyncedGroupSelection(groupName);
 });
 
-When("I click continue button on the modal to select a synchronized group", (groupName) => {
+When("I click continue button on the modal to select a synced group", (groupName) => {
 	courses.clickContinueButtonOnSyncedGroupDialog();
 });
 
-When("I click cancel button on the modal to select a synchronized group", (groupName) => {
+When("I click cancel button on the modal to select a synced group", (groupName) => {
 	courses.clickCloseButtonOnSyncedGroupDialog();
 });
 
@@ -134,12 +131,16 @@ When("I click the end synchronization button", (groupName) => {
 	courses.clickEndSyncButton();
 });
 
-When("I click the confirmation button on the end sync modal", () => {
+When("I click the confirmation button of the modal to end the sync", () => {
 	courses.clickConfirmButtonOnEndSyncDialog();
 });
 
 When("I click the end sync button of group {string}", (groupName) => {
 	classes.clickEndSyncWithCourseButton(groupName);
+});
+
+When("I edit the title of the course to {string}", (newCourseName) => {
+	courses.editCourseTitle(newCourseName);
 });
 
 
