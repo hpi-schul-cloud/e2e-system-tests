@@ -119,11 +119,11 @@ class Courses {
 	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
 
 	doNotSeeBBBInDBCBRB() {
-		cy.get(Courses.#toolsList).contains(Courses.#modalContentCreateVideoConf).should('not.exist');
+		cy.get(Courses.#toolsList).contains(Courses.#modalContentCreateVideoConf).should("not.exist");
 	}
 
 	doNotSeeBBBInToolTabDBCBRB() {
-		cy.get(Courses.#bbbTool).should('not.exist');
+		cy.get(Courses.#bbbTool).should("not.exist");
 	}
 
 	clickDeleteButtonInBBB() {
