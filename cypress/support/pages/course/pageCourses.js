@@ -119,7 +119,9 @@ class Courses {
 	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
 
 	doNotSeeBBBInDBCBRB() {
-		cy.get(Courses.#toolsList).contains(Courses.#modalContentCreateVideoConf).should("not.exist");
+		cy.get(Courses.#toolsList)
+			.contains(Courses.#modalContentCreateVideoConf)
+			.should("not.exist");
 	}
 
 	doNotSeeBBBInToolTabDBCBRB() {
@@ -131,7 +133,7 @@ class Courses {
 	}
 
 	seeModalDeletionBBBVideoConference() {
-		cy.get(Courses.#deleteBBBButton).should('exist');
+		cy.get(Courses.#deleteBBBButton).should("exist");
 	}
 
 	clickIconDeleteBBBVideoConference() {
@@ -139,11 +141,13 @@ class Courses {
 	}
 
 	clickCancelButtonInBBB() {
-		cy.get(Courses.#modalContentCreateVideoConf).find(Courses.#modalContentCreateVideoConfCancel).click();
+		cy.get(Courses.#modalContentCreateVideoConf)
+			.find(Courses.#modalContentCreateVideoConfCancel)
+			.click();
 	}
 
 	seeModalStartBBBVideoConference() {
-		cy.get(Courses.#modalContentCreateVideoConf).should('exist');
+		cy.get(Courses.#modalContentCreateVideoConf).should("exist");
 	}
 
 	clickOnBBBInCourse() {
@@ -151,7 +155,7 @@ class Courses {
 	}
 
 	seeBBBInToolTabDBCBRB() {
-		cy.get(Courses.#bbbTool).should('be.visible');
+		cy.get(Courses.#bbbTool).should("be.visible");
 	}
 
 	clickOnButtonAdd() {
@@ -163,7 +167,7 @@ class Courses {
 	}
 
 	appearsModalContentForConfirmation() {
-		cy.get(Courses.#modalContent).should('be.visible');
+		cy.get(Courses.#modalContent).should("be.visible");
 	}
 
 	clickOnBBBInToolTabInDBCBRB() {
@@ -171,21 +175,24 @@ class Courses {
 	}
 
 	seeToolsListForCourse() {
-		cy.get(Courses.#toolsList).should('be.visible');
+		cy.get(Courses.#toolsList).should("be.visible");
 	}
 
 	seeToolsTabInCourse() {
-		cy.get(Courses.#listToolsCourse).should('be.visible');
+		cy.get(Courses.#listToolsCourse).should("be.visible");
 	}
 
 	clickOnOldToolsTabInCourse() {
 		cy.url().then((url) => {
-			const uuid = url.split('/')[4]
-			cy.get(Courses.#oldToolsTabInCourseDetail).should('have.attr', 'href').should('not.be.empty').and('contain', uuid)
+			const uuid = url.split("/")[4];
+			cy.get(Courses.#oldToolsTabInCourseDetail)
+				.should("have.attr", "href")
+				.should("not.be.empty")
+				.and("contain", uuid)
 				.then((href) => {
-					cy.visit(href)
-				})
-		})
+					cy.visit(href);
+				});
+		});
 	}
 
 	topicIsNotVisibleOnCoursePage(topicTitle) {
@@ -772,7 +779,7 @@ class Courses {
 	}
 
 	clickOnToolAndReturn(toolName) {
-		cy.on("window:before:load", (win) => { });
+		cy.on("window:before:load", (win) => {});
 
 		cy.intercept("GET", "https://google.com", (req) => {
 			// catch the page as it loads
