@@ -53,10 +53,7 @@ class Courses {
 	static #chosenCourseTeacher = '[id="courseTeacher_chosen"]';
 	static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]';
 	static #courseStartDatePicker = '[data-testid="date_start"]';
-	// rename to courseEndDatePicker
-	static #pickCourseEndDatePicker = '[data-testid="date_until"]';
-	// check usage. check if it works
-	static #courseEndDatePicker = '[data-testid="form-date-input-untilDate"]';
+	static #courseEndDatePicker = '[data-testid="date_until"]';
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
@@ -117,7 +114,6 @@ class Courses {
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
 	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
-
 	static #syncedGroupDialogTitle = '[data-testid="dialog-title"]';
 	static #syncedGroupDialogInfoText = '[data-testid="group-dialog-info-text"]';
 	static #syncedGroupDialogWarningText = '[data-testid="no-teacher-warning"]';
@@ -936,7 +932,7 @@ class Courses {
 
 	seeStartDateAndEndDatePickersAreDisabled() {
 		cy.get(Courses.#courseStartDatePicker).should("be.disabled");
-		cy.get(Courses.#pickCourseEndDatePicker).should("be.disabled");
+		cy.get(Courses.#courseEndDatePicker).should("be.disabled");
 	}
 
 	seeCreateAnotherCourseButtonIsNotVisible() {
@@ -961,7 +957,7 @@ class Courses {
 	}
 
 	seeCourseEndDate(endDate) {
-		cy.get(Courses.#pickCourseEndDatePicker).should("have.value",endDate);
+		cy.get(Courses.#courseEndDatePicker).should("have.value",endDate);
 	}
 
 	clickContinueButtonOnSyncedGroupDialog() {
@@ -983,6 +979,5 @@ class Courses {
 	selectGroupInSyncedGroupSelection(groupName) {
 		cy.get(Courses.#syncedGroupDialogSelection).click().type(groupName).type('{downArrow}{enter}')
 	}
-
 }
 export default Courses;
