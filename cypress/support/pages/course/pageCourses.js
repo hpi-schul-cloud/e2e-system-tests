@@ -54,6 +54,7 @@ class Courses {
 	static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]';
 	static #courseStartDatePicker = '[data-testid="date_start"]';
 	static #courseEndDatePicker = '[data-testid="date_until"]';
+	static #courseEndDatePickerInput = '[data-testid="form-date-input-untilDate"]';
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
@@ -65,7 +66,6 @@ class Courses {
 	static #courseTitleInRoomoverview = '[data-testid="course-title"]';
 	static #learningContentTab = '[data-testid="learnContent-tab"]';
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
-
 	static #toolsTab = '[data-testid="tools-tab"]';
 	static #addToolButton = '[data-testid="add-tool-button"]';
 	static #toolConfigurationSelect = '[data-testid="configuration-select"]';
@@ -194,7 +194,7 @@ class Courses {
 
 	seeDatePickersForCourseInSchoolYear() {
 		cy.get(Courses.#courseStartDatePicker).should("exist");
-		cy.get(Courses.#courseEndDatePicker).should("exist");
+		cy.get(Courses.#courseEndDatePickerInput).should("exist");
 	}
 
 	seeCreateCourseTimeTableContainer() {
