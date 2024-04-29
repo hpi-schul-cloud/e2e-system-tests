@@ -65,6 +65,7 @@ class Courses {
 	static #courseTitleInRoomoverview = '[data-testid="course-title"]';
 	static #learningContentTab = '[data-testid="learnContent-tab"]';
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
+
 	static #toolsTab = '[data-testid="tools-tab"]';
 	static #addToolButton = '[data-testid="add-tool-button"]';
 	static #toolConfigurationSelect = '[data-testid="configuration-select"]';
@@ -745,6 +746,7 @@ class Courses {
 		cy.get(Courses.#outdatedDialogTitle).should("exist");
 		cy.get(Courses.#outdatedDialogTitle).should("contain", toolName);
 		cy.get(Courses.#errorDialog).should("exist");
+		cy.get(Courses.#outdatedDialogTitle).siblings("div").should("have.length", "2");
 		cy.get(Courses.#outdatedDialogTitle)
 			.siblings("div")
 			.eq(0)

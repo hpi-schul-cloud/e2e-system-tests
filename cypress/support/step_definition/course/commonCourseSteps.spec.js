@@ -47,10 +47,6 @@ When("I click on FAB to create a new room", () => {
 	courses.clickOnCreateRoomFAB();
 });
 
-When("I click on new course create button", () => {
-	courses.createNewCourse();
-});
-
 When("I click on FAB to create new content", () => {
 	courses.clickOnCreateContentFAB();
 });

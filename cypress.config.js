@@ -1,7 +1,6 @@
 const { defineConfig } = require("cypress");
 const webpack = require("@cypress/webpack-preprocessor");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
-const { createUser } = require("./scripts/runSchoolApi");
 
 async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === "ci";
@@ -55,22 +54,6 @@ async function setupNodeEvents(on, config) {
 			},
 		})
 	);
-
-	on("task", {
-		async loginViaSchoolApi(obj) {
-			try {
-				return ({ schoolId, username, initialPassword } = await createUser(
-					obj.url,
-					obj.apiKey,
-					obj.schoolId,
-					obj.userType
-				));
-			} catch (error) {
-				console.error("Error in calling createUser method:", error);
-				throw error;
-			}
-		},
-	});
 
 	// Make sure to return the config object as it might have been modified by the plugin.
 	return config;
