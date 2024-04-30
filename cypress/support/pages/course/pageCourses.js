@@ -909,11 +909,11 @@ class Courses {
 	}
 
 	seeSelectedTeacher(teacherName) {
-		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("have.attr","selected")
+		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected")
 	}
 
 	seeSelectedStudent(studentName) {
-		cy.get(Courses.#selectStudent).contains("option", studentName).should("have.attr","selected")
+		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected")
 	}
 
 	seeTeacherSelectionBoxIsDisabled() {
