@@ -1,7 +1,7 @@
 @stable_test
 Feature: Teacher can create, update and stop a synchronized course
 
-  Scenario Outline: Create a synchronized course with a group that doesn't have a teacher fails
+  Scenario Outline: Fail to create a synchronized course with a group that doesn't have a teacher
     Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I click on FAB to add or import courses
