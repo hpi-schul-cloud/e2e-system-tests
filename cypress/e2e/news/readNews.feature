@@ -17,6 +17,14 @@ Feature:  News - To read a news on the respective dashboards
     Then I see news is created successfully with title 'News - this is a school news' and with description 'school news description'
 
   @stable_test
+  Scenario: as a pre-condition teacher creates a team
+    When I go to teams overview
+    When I click on button Add Team on the teams overview page
+    Then I see new team creation page
+    When I enter in the title 'Musik'
+    When I click on button Create Team on the team creation page
+
+  @stable_test
   Scenario: as a pre-condition teacher creates a team news
     When I go to teams overview
     When I go to a team 'Musik'
