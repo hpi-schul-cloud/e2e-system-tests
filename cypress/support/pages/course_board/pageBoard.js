@@ -2,7 +2,7 @@
 
 class Board {
 	static #courseContentTab = '[data-testid="learnContent-tab"]';
-	static #cardCourseBoardInCouseContent = '[data-testid="room-board-card"]';
+	static #cardCourseBoardInCouseContent = '[data-testid="room-board-card-0"]';
 	static #courseBoardTitleOnPage = '[data-testid="board-title"]';
 	static #welcomeDefaultCardInColumn = '[data-testid="event-handle"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
@@ -14,8 +14,8 @@ class Board {
 	static #deleteOptionColumnThreeDot = '[data-testid="board-menu-action-delete"]';
 	static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
+	static #drawingElement = '.drawing-element-content';
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
-
 	static #newColumnBoardFABInCOurseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
 	static #editOptionInThreeDotCourseBoardTitle = '[data-testid="board-menu-action-edit"]';
@@ -52,6 +52,10 @@ class Board {
 
 	doNotSeeColumnAfterDeletion() {
 		cy.get(Board.#addColumnTitleInput).should("not.exist");
+	}
+
+	clickOnOpenTldrawDrawingElement() {
+		cy.get(Board.#drawingElement).should('exist').click();
 	}
 
 	clickOnDeleteColumnModal() {
