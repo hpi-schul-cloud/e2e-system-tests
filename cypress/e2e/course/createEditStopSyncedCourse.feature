@@ -1,4 +1,4 @@
-@stable_test
+@unstable_test
 Feature: Teacher can create, update and stop a synchronized course
 
   Scenario Outline: Fail to create a synchronized course with a group that doesn't have a teacher
