@@ -6,7 +6,7 @@ const { Then, When } = require("@badeball/cypress-cucumber-preprocessor");
 const courses = new Courses();
 const classes = new Classes();
 
-Then("I see the FAB to create a new synced course", () => {
+Then("I see the button to create a new synced course", () => {
 	courses.seeCreateSyncedCourseFAB();
 });
 
@@ -111,7 +111,7 @@ Then("I see the end date picker has {string} selected", (endDate) => {
 	courses.seeCourseEndDate(endDate);
 });
 
-When("I click on FAB to create a new synced course", () => {
+When("I click on the button to create a new synced course", () => {
 	courses.clickOnCreateSyncedCourseFAB();
 });
 
@@ -141,6 +141,10 @@ When("I click the end sync button of group {string}", (groupName) => {
 
 When("I edit the title of the course to {string}", (newCourseName) => {
 	courses.editCourseTitle(newCourseName);
+});
+
+When("I click on the three dot menu button next to the course title", () => {
+	courses.clickThreeDotMenuInCourse();
 });
 
 

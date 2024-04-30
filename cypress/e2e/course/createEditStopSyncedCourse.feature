@@ -1,12 +1,12 @@
 @stable_test
 Feature: Teacher can create, update and stop a synchronized course
 
-  Scenario Outline: Try to create a synchronized course with a group that doesn't have a teacher
+  Scenario Outline: Create a synchronized course with a group that doesn't have a teacher fails
     Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I click on FAB to add or import courses
-    Then I see the FAB to create a new synced course
-    When I click on FAB to create a new synced course
+    Then I see the button to create a new synced course
+    When I click on the button to create a new synced course
     Then I see title of the modal to select a synced group
     Then I see information text of the modal to select a synced group
     Then I see the group selection of the modal to select a synced group
@@ -23,8 +23,8 @@ Feature: Teacher can create, update and stop a synchronized course
     Given I am logged in as a '<user>' at '<state>'
     When I go to rooms overview
     When I click on FAB to add or import courses
-    Then I see the FAB to create a new synced course
-    When I click on FAB to create a new synced course
+    Then I see the button to create a new synced course
+    When I click on the button to create a new synced course
     Then I see title of the modal to select a synced group
     Then I see information text of the modal to select a synced group
     Then I see the group selection of the modal to select a synced group
@@ -85,6 +85,7 @@ Feature: Teacher can create, update and stop a synchronized course
   Scenario Outline: Stop a course synchronization in a course
     When I go to rooms overview
     When I go to room '<course_title>'
+    When I click on the three dot menu button next to the course title
     Then I see the end synchronization button
     When I click the end synchronization button
     Then I see the title of the modal to end the sync

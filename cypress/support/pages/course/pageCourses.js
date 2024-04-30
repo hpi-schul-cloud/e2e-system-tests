@@ -942,8 +942,11 @@ class Courses {
 	}
 
 	seeEndSyncButton() {
-		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnEndSync).should("be.visible");
+	}
+
+	clickThreeDotMenuInCourse() {
+		cy.get(Courses.#dropDownCourse).parent().click();
 	}
 
 	seeSyncedCourseChip() {
