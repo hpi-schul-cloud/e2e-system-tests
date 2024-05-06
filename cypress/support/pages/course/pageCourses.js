@@ -14,7 +14,7 @@ class Courses {
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldRoomOverview = '[data-testid="search-field"]';
 	static #mainContent = '[id="main-content"]';
-	static #createCourse = '[data-testid="fab_button_add_course"]';
+	static #createCourse = '[data-testid="add-course-button"]';
 	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
@@ -124,9 +124,27 @@ class Courses {
 	static #btnEndSync = '[data-testid="title-menu-end-sync"]';
 	static #btnConfirmEndSync = '[data-testid="dialog-confirm"]';
 	static #endSyncDialogTitle = '[data-testid="dialog-title"]';
-	static #endSyncDialogWarningText = '[data-testid="end-course-sync-dialog-warning-text"]';
+	static #endSyncDialogWarningText =
+		'[data-testid="end-course-sync-dialog-warning-text"]';
 	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
+	static #createNewCourse = '[data-testid="fab_button_add_course"]';
+	static #teacherFieldContainer = '[data-testid="teachers_container"]';
+	static #studentFieldContainer = '[data-testid="students_container"]';
+
+	createNewCourse() {
+		cy.get(Courses.#createNewCourse).click();
+	}
+
+	selectTeacherFromTeacherField(userName) {
+		cy.get(Courses.#teacherFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(userName).click();
+	}
+
+	selectStudentFromStudentField(userName) {
+		cy.get(Courses.#studentFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(userName).click();
+	}
 
 	topicIsNotVisibleOnCoursePage(topicTitle) {
 		cy.contains(topicTitle).should("not.exist");
@@ -550,20 +568,18 @@ class Courses {
 		cy.get(Courses.#addSubstituteTeacher).click().type("{selectall}{backspace}");
 	}
 
-	addSubstituteTeacher(username) {
-		let userFirstName;
+	addSubstituteTeacher(userName) {
+		const userFirstName = "cypress";
 		let userLastName;
-		switch (username) {
+		switch (userName) {
 			case "teacher1":
-				userFirstName = Cypress.env("TEACHER_1_BRB_FIRST_NAME");
-				userLastName = Cypress.env("TEACHER_1_BRB_LAST_NAME");
+				userLastName = `teacher_1`;
 				break;
 			case "teacher2":
-				userFirstName = Cypress.env("TEACHER_2_BRB_FIRST_NAME");
-				userLastName = Cypress.env("TEACHER_2_BRB_LAST_NAME");
+				userLastName = `teacher_2`;
 				break;
 		}
-		let userFullName = userLastName + ", " + userFirstName;
+		const userFullName = `${userLastName}, ${userFirstName}`;
 		cy.get(Courses.#chosenResults).contains(userFullName).click();
 		cy.get(Courses.#chosenContainer).should("contain", userFullName);
 	}
@@ -900,19 +916,19 @@ class Courses {
 	}
 
 	seeSelectedGroup(groupName) {
-		cy.get('span.v-autocomplete__selection-text').should("have.text",groupName);
+		cy.get("span.v-autocomplete__selection-text").should("have.text", groupName);
 	}
 
 	seeCourseTitleFormContains(name) {
-		cy.get(Courses.#courseTitle).should("have.value",name);
+		cy.get(Courses.#courseTitle).should("have.value", name);
 	}
 
 	seeSelectedTeacher(teacherName) {
-		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected")
+		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected");
 	}
 
 	seeSelectedStudent(studentName) {
-		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected")
+		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
 	}
 
 	seeTeacherSelectionBoxIsDisabled() {
@@ -957,11 +973,11 @@ class Courses {
 	}
 
 	seeCourseStartDate(startDate) {
-		cy.get(Courses.#courseStartDatePicker).should("have.value",startDate);
+		cy.get(Courses.#courseStartDatePicker).should("have.value", startDate);
 	}
 
 	seeCourseEndDate(endDate) {
-		cy.get(Courses.#courseEndDatePicker).should("have.value",endDate);
+		cy.get(Courses.#courseEndDatePicker).should("have.value", endDate);
 	}
 
 	clickContinueButtonOnSyncedGroupDialog() {
@@ -981,7 +997,10 @@ class Courses {
 	}
 
 	selectGroupInSyncedGroupSelection(groupName) {
-		cy.get(Courses.#syncedGroupDialogSelection).click().type(groupName).type('{downArrow}{enter}')
+		cy.get(Courses.#syncedGroupDialogSelection)
+			.click()
+			.type(groupName)
+			.type("{downArrow}{enter}");
 	}
 }
 export default Courses;

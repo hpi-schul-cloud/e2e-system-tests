@@ -15,3 +15,15 @@ const courses = new Courses();
 When("I enter the course name {string} into the search field", (roomName) => {
 	courses.searchForARoom(roomName);
 });
+
+When("I select {string} from field teacher", (userName) => {
+	courses.selectTeacherFromTeacherField(userName);
+	// cy.get('[data-testid="teachers_container"]').click();
+	// cy.get(".chosen-results").contains(userName).click();
+});
+
+When("I select {string} from field student", (userName) => {
+	courses.selectStudentFromStudentField(userName);
+	// cy.get('[data-testid="students_container"]').click();
+	// cy.get(".chosen-results").contains(userName).click();
+});
