@@ -5,36 +5,58 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
 
   @stable_test
-  Scenario: Teacher creates task as draft from room
+  Scenario:Teacher creates a room as a pre-condition
     Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
+    When I click on FAB to create a new room
+    When I click on new course create button in sub menu
+    Then I see section one area on the course create page
+    When I enter the course title 'CypressAut Test Creation and Deletion'
+    When I select room colour as red
+    Then I see teacher 'cypress test' is selected by default
+    Then I see substitute teacher selection box
+    Then I see date pickers to start and end the course as per school year
+    Then I see button to create a course time table container
+    When I click on button Next Steps after entering the room detail in section one
+    Then I see section two area on the course create page
+    #Then I see class selection box to select the class for the room      //due to missing authorization teacher does not see this selection box.
+    #Then I see student selection box to select the student for the room  //due to missing authorization teacher does not see this selection box.
+    #When I select the student 'cypress test' in the list                 //due to missing authorization teacher does not see this selection box.
+    When I click on button Next Steps after selecting room participant details
+    Then I see the section three as the finish page
+    When I click on button To Course Overview on the finish page
+    Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
+
+
+  @stable_test
+  Scenario: Teacher creates task as draft from room
+    When I go to room 'CypressAut Test Creation and Deletion'
     When I click on FAB to create new content
     When I click on New Task FAB
     Then I can see create task page
-    When I enter title 'Cy Task Creating and Deleting Test'
+    When I enter title 'CypressAut Task Creating and Deleting Test'
     When I click on Enable Group Submission
     When I click on Draft Checkbox
     When I set task-visibility-start-date to 'today' at '0000'
     When I set task-visibility-due-date to 'tomorrow' at '1000'
     When I enter task description 'Dies ist Deine Aufgabe.'
     When I click on button Submit
-    Then I see detail page for task 'Cy Task Creating and Deleting Test'
+    Then I see detail page for task 'CypressAut Task Creating and Deleting Test'
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    Then I can see room page 'Course with subject and tasks'
-    And I can see content 'Cy Task Creating and Deleting Test' on course page
+    When I go to room 'CypressAut Test Creation and Deletion'
+    Then I can see room page 'CypressAut Test Creation and Deletion'
+    And I can see content 'CypressAut Task Creating and Deleting Test' on course page
 
   @stable_test
   Scenario: Teacher edits and publishes task from room via form
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    When I click on three dot menu of content 'Cy Task Creating and Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    When I click on three dot menu of content 'CypressAut Task Creating and Deleting Test'
     When I click on Edit in dot menu
-    Then I can see edit task page 'Cy Task Creating and Deleting Test'
+    Then I can see edit task page 'CypressAut Task Creating and Deleting Test'
     When I upload file 'example_jpg.jpg'
     #  Then the page reloads (this happens automatically after file upload)
-    When I enter title 'Cy Task Creating, Editing, Deleting Test'
+    When I enter title 'CypressAut Task Creating, Editing, Deleting Test'
     When I click on Enable Group Submission
     When I set task-visibility-start-date to 'today' at '0100'
     When I set task-visibility-due-date to 'tomorrow' at '1100'
@@ -43,12 +65,12 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I click on Submit Public Submission in confirmation window on task page
     When I click on Draft Checkbox
     When I click on button Submit
-    Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
+    Then I see detail page for task 'CypressAut Task Creating, Editing, Deleting Test'
     When I click on button To Course
-    Then I can see room page 'Course with subject and tasks'
-    And I can see content 'Cy Task Creating, Editing, Deleting Test' on course page
-    Then I see task card info submitted contains '0/2' for task 'Cy Task Creating, Editing, Deleting Test'
-    When I click on task 'Cy Task Creating, Editing, Deleting Test'
+    Then I can see room page 'CypressAut Test Creation and Deletion'
+    And I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
+    Then I see task card info submitted contains '0/0' for task 'CypressAut Task Creating, Editing, Deleting Test'
+    When I click on task 'CypressAut Task Creating, Editing, Deleting Test'
     Then I see description is 'Dies ist Deine Aufgabe. Viel Erfolg!'
     And I see file 'example_jpg.jpg' is visible in section files
     When I click on file 'example_jpg.jpg'
@@ -63,8 +85,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
   @stable_test
   Scenario: Teacher edits file
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
     And I click on Edit in dot menu
     Then I see file 'example_jpg.jpg' is visible in section files
     When I upload file 'test_pdf.pdf'
@@ -81,8 +103,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I click on download file 'test_pdf_renamed.pdf'
     Then file 'test_pdf_renamed.pdf' is saved in folder downloads
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
     And I click on Edit in dot menu
     And I click on delete file 'test_pdf_renamed.pdf'
     And I click on cancel in delete file dialog
@@ -95,11 +117,11 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
   @stable_test
   Scenario: Student submits task
-    Given I am logged in as a 'student1_brb' at 'brb'
+    Given I am logged in as a 'student1_nbc' at 'nbc'
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    And I click on task 'Cy Task Creating, Editing, Deleting Test'
-    Then I see detail page for task 'Cy Task Creating, Editing, Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    And I click on task 'CypressAut Task Creating, Editing, Deleting Test'
+    Then I see detail page for task 'CypressAut Task Creating, Editing, Deleting Test'
     When  I click on submission tab
     When I enter text submission 'Hier ist die Antwort.'
     When I upload file 'testboard_jpg' for submission
@@ -107,24 +129,20 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     When I click on button Send Submission
     Then I see hint that submission has been sent successfully
     When I go to tasks overview
-    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
+    Then I do not see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as student
     And I click completed task tab
     And I click on not graded tasks
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
-
-
-
-
+    Then I see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as student
 
 
   @stable_test
   Scenario: Teacher grades task from room
-    Given I am logged in as a 'teacher1_brb' at 'brb'
+    Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    Then I see task card info submitted contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
-    And Task card info graded contains '0/2' for task 'Cy Task Creating, Editing, Deleting Test'
-    When I click on task 'Cy Task Creating, Editing, Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    Then I see task card info submitted contains '1/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
+    And Task card info graded contains '0/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
+    When I click on task 'CypreeAut Task Creating, Editing, Deleting Test'
     And I click on submissions tab
     Then there is a tick in column delivered for 'Kraft'
     When I click on submission of 'Kraft'
@@ -140,16 +158,16 @@ Feature: Task - To create, edit and delete tasks by the teacher.
     Then there is a tick in column delivered for 'Kraft'
     And grading for 'Kraft' contains '83'
     When I click on button To Course
-    Then I see task card info submitted contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
-    And Task card info graded contains '1/2' for task 'Cy Task Creating, Editing, Deleting Test'
+    Then I see task card info submitted contains '1/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
+    And Task card info graded contains '1/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
 
   @stable_test
   Scenario: Student sees grading
-    Given I am logged in as a 'student1_brb' at 'brb'
+    Given I am logged in as a 'student1_nbc' at 'nbc'
     When I go to tasks overview
     And I click completed task tab
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as student
-    And I click on task 'Cy Task Creating, Editing, Deleting Test' in tasks overview
+    Then I see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as student
+    And I click on task 'CypressAut Task Creating, Editing, Deleting Test' in tasks overview
     Then I see submission text 'Hier ist die Antwort.'
     When I click on feedback tab
     Then I see feedback text 'Gut gemacht!'
@@ -159,48 +177,48 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
   @stable_test
   Scenario: Teacher finishes task from room
-    Given I am logged in as a 'teacher1_brb' at 'brb'
+    Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    And I click on link finish for task 'Cy Task Creating, Editing, Deleting Test'
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' does not contain any buttons
+    When I go to room 'CypressAut Test Creation and Deletion'
+    And I click on link finish for task 'CypressAut Task Creating, Editing, Deleting Test'
+    Then I see task 'CypressAut Task Creating, Editing, Deleting Test' does not contain any buttons
 
   @stable_test
   Scenario: Teacher restores the finished task from room
     When I go to tasks overview
     # And I open task list with due date // Icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
-    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    Then I do not see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as teacher
     When I click on finished tab
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
-    When I click on dot menu of task 'Cy Task Creating, Editing, Deleting Test'
+    Then I see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as teacher
+    When I click on dot menu of task 'CypressAut Task Creating, Editing, Deleting Test'
     And I click on Restore
-    Then I do not see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    Then I do not see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as teacher
     When I click on open tasks tab
     And I open task list with due date
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' in the list as teacher
+    Then I see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as teacher
     When I arrive on the dashboard
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    Then I see task 'Cy Task Creating, Editing, Deleting Test' contains buttons
+    When I go to room 'CypressAut Test Creation and Deletion'
+    Then I see task 'CypressAut Task Creating, Editing, Deleting Test' contains buttons
 
   @stable_test
   Scenario: Teacher deletes task from room
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
     And I click on Cancel in confirmation window
     # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
     When I arrive on the dashboard
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    Then I can see content 'Cy Task Creating, Editing, Deleting Test' on course page
-    When I click on three dot menu of content 'Cy Task Creating, Editing, Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    Then I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
+    When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
     And I click on Delete in dot menu
     And I click on Delete in confirmation window
     # new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
     When I arrive on the dashboard
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
-    Then I can see room page 'Course with subject and tasks'
-    And I can not see content 'Cy Task Creating, Editing, Deleting Test'
+    When I go to room 'CypressAut Test Creation and Deletion'
+    Then I can see room page 'CypressAut Test Creation and Deletion'
+    And I can not see content 'CypressAut Task Creating, Editing, Deleting Test'

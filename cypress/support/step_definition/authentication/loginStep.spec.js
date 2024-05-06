@@ -6,7 +6,7 @@ Before(() => {
 	cy.intercept("**/user/**").as("roles_api");
 	cy.intercept("**/school/**").as("school_api");
 	cy.intercept("**/dashboard").as("dashboard_api");
-	cy.intercept("**/userPermissions?**").as("userPermissions_api");
+	cy.intercept("**/user-permissions").as("userPermissions_api");
 	cy.intercept("**/classes?**").as("classes_api");
 	cy.intercept("**/students?**").as("students_api");
 	cy.intercept("**/locales/**").as("locales_api");
@@ -28,6 +28,13 @@ Before(() => {
 	cy.intercept("**/news/new").as("news_new_api");
 	cy.intercept("**/courses/**").as("courses_api");
 	cy.intercept("**/administration/**").as("administration_api");
+	cy.intercept({
+		method: "GET",
+		pathname: "/tldraw",
+		query: {
+			roomName: /\d+/,
+		},
+	}).as("tldrawRequest");
 });
 
 Given("I am logged in as a {string} at {string}", (username, environment) => {
