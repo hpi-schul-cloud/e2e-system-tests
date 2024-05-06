@@ -1049,7 +1049,7 @@ class Courses {
 	}
 
 	seeStartDateAndEndDatePickersAreDisabled() {
-		cy.get(Courses.#courseEndDatePicker).should("be.disabled");
+		cy.get(Courses.#courseStartDatePicker).should("be.disabled");
 		cy.get(Courses.#courseEndDatePicker).should("be.disabled");
 	}
 
