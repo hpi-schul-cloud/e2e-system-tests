@@ -17,10 +17,10 @@ class News {
 	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
 
-	doNotSeeNews(newsName) {
+	doNotSeeNews(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
 			if ($span.find(News.#newsName)) {
-				cy.contains(newsName).should("not.exist");
+				cy.contains(newsTitle).should("not.exist");
 			} else {
 				cy.contains(
 					"Keine aktuellen Einträge vorhanden." || "Bisher gibt es keine News."
