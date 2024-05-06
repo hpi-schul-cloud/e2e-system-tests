@@ -85,7 +85,7 @@ Then("I can fill out context parameter", () => {
 	courses.fillOutContextParameter();
 });
 
-When("I click on add tool", (toolName) => {
+When("I click on add tool", () => {
 	courses.clickOnSaveTool();
 });
 
