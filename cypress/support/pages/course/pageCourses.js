@@ -54,7 +54,6 @@ class Courses {
 	static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]';
 	static #courseStartDatePicker = '[data-testid="date_start"]';
 	static #courseEndDatePicker = '[data-testid="date_until"]';
-	static #courseEndDatePickerInput = '[data-testid="form-date-input-untilDate"]';
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
@@ -109,6 +108,15 @@ class Courses {
 		'[data-testid="videoconference-config-dialog-title"]';
 	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #oldToolsTabInCourseDetail = '[data-testid="old-tools-tab"]';
+	static #listToolsCourse = '[data-testid="course_tool_list"]';
+	static #modalContent = '[data-testid="modal_content"]';
+	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
+	static #modalContentCreateVideoConf = '[data-testid="createVideoConference"]';
+	static #modalContentCreateVideoConfCancel = '[data-testid="btn-cancel"]';
+	static #deleteBBBButton = '[data-testid="delete-course-btn"]';
+	static #bbbTool = '[data-testid="bbb_tool_moderator_inactive"]';
+	static #deleteIconBBBTool = '[data-testid="bbb_tool_delete"]';
 	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardFinishButtonInCoursePageWithIndex =
@@ -128,13 +136,10 @@ class Courses {
 		'[data-testid="end-course-sync-dialog-warning-text"]';
 	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
-	static #createNewCourse = '[data-testid="fab_button_add_course"]';
+	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
+	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
-
-	createNewCourse() {
-		cy.get(Courses.#createNewCourse).click();
-	}
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -144,6 +149,102 @@ class Courses {
 	selectStudentFromStudentField(userName) {
 		cy.get(Courses.#studentFieldContainer).click();
 		cy.get(Courses.#chosenResults).contains(userName).click();
+	}
+
+	seeFinalStepPageOnCourseCreate() {
+		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("be.visible");
+	}
+
+	selectStudentInCourseCreatePage(studentName) {
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).invoke("show");
+		cy.get(Courses.#studentSelectionBoxInCourseCreate)
+			.should("be.visible")
+			.select(studentName);
+	}
+
+	seeStudentSelectionBoxInCourseCreatePage() {
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
+	}
+
+	clickOnCreateNewCourseInSubMenu() {
+		cy.get(Courses.#subMenuFabButtonToAddNewCourse).click();
+	}
+
+	doNotSeeBBBInDBCBRB() {
+		cy.get(Courses.#toolsList)
+			.contains(Courses.#modalContentCreateVideoConf)
+			.should("not.exist");
+	}
+
+	doNotSeeBBBInToolTabDBCBRB() {
+		cy.get(Courses.#bbbTool).should("not.exist");
+	}
+
+	clickDeleteButtonInBBB() {
+		cy.get(Courses.#deleteBBBButton).click();
+	}
+
+	seeModalDeletionBBBVideoConference() {
+		cy.get(Courses.#deleteBBBButton).should("exist");
+	}
+
+	clickIconDeleteBBBVideoConference() {
+		cy.get(Courses.#bbbTool).first().find(Courses.#deleteIconBBBTool).click();
+	}
+
+	clickCancelButtonInBBB() {
+		cy.get(Courses.#modalContentCreateVideoConf)
+			.find(Courses.#modalContentCreateVideoConfCancel)
+			.click();
+	}
+
+	seeModalStartBBBVideoConference() {
+		cy.get(Courses.#modalContentCreateVideoConf).should("exist");
+	}
+
+	clickOnBBBInCourse() {
+		cy.get(Courses.#bbbTool).first().click();
+	}
+
+	seeBBBInToolTabDBCBRB() {
+		cy.get(Courses.#bbbTool).should("be.visible");
+	}
+
+	clickOnButtonAdd() {
+		cy.get(Courses.#addBBBButton).click();
+	}
+
+	clickOnButtonAdd() {
+		cy.get(Courses.#addBBBButton).click();
+	}
+
+	appearsModalContentForConfirmation() {
+		cy.get(Courses.#modalContent).should("be.visible");
+	}
+
+	clickOnBBBInToolTabInDBCBRB() {
+		cy.get(Courses.#toolsList).click();
+	}
+
+	seeToolsListForCourse() {
+		cy.get(Courses.#toolsList).should("be.visible");
+	}
+
+	seeToolsTabInCourse() {
+		cy.get(Courses.#listToolsCourse).should("be.visible");
+	}
+
+	clickOnOldToolsTabInCourse() {
+		cy.url().then((url) => {
+			const uuid = url.split("/")[4];
+			cy.get(Courses.#oldToolsTabInCourseDetail)
+				.should("have.attr", "href")
+				.should("not.be.empty")
+				.and("contain", uuid)
+				.then((href) => {
+					cy.visit(href);
+				});
+		});
 	}
 
 	topicIsNotVisibleOnCoursePage(topicTitle) {
@@ -212,7 +313,7 @@ class Courses {
 
 	seeDatePickersForCourseInSchoolYear() {
 		cy.get(Courses.#courseStartDatePicker).should("exist");
-		cy.get(Courses.#courseEndDatePickerInput).should("exist");
+		cy.get(Courses.#courseEndDatePicker).should("exist");
 	}
 
 	seeCreateCourseTimeTableContainer() {

@@ -7,7 +7,7 @@ Feature: Course Board - To create, edit and delete column in the course board
   Scenario Outline:  Teacher is able to create, edit and delete a column in the course board
 
     #Teacher creates a new course as a pre-condition ---
-    Given I am logged in as a 'teacher1_dbc' at 'dbc'
+    Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I click on FAB to add or import courses
     When I click on FAB to create a new room
