@@ -301,7 +301,7 @@ class Courses {
 
 	seeDatePickersForCourseInSchoolYear() {
 		cy.get(Courses.#courseStartDatePicker).should("exist");
-		cy.get(Courses.#courseEndDatePickerInput).should("exist");
+		cy.get(Courses.#courseEndDatePicker).should("exist");
 	}
 
 	seeCreateCourseTimeTableContainer() {
