@@ -105,8 +105,8 @@ Then("I can not see tool {string} in the tool selection list", (toolName) => {
 	courses.checkIfToolIsVisible(toolName);
 });
 
-Then("I can see 2 tools", () => {
-	courses.seeNumberOfTools();
+Then("I can see {int} tools", (count) => {
+	courses.seeNumberOfTools(count);
 });
 
 Then("I see the tool {string} is not marked as incomplete", (toolName) => {
@@ -115,6 +115,14 @@ Then("I see the tool {string} is not marked as incomplete", (toolName) => {
 
 Then("I see the tool {string} is marked as incomplete", (toolName) => {
 	courses.seeToolIsMarkedAsIncomplete(toolName);
+});
+
+Then("I see the tool {string} is marked as incomplete operational", (toolName) => {
+	courses.seeToolIsMarkedAsIncompleteOperational(toolName);
+});
+
+Then("I see the tool {string} is not marked as incomplete operational", (toolName) => {
+	courses.seeToolIsNotMarkedAsIncompleteOperational(toolName);
 });
 
 Then("I can see an error dialog", () => {
@@ -131,4 +139,16 @@ When("I fill out the required value", () => {
 
 When("I confirm the update", () => {
 	courses.clickOnConfirmButton();
+});
+
+When("I select {string} in required protected custom parameter selection", (value) => {
+	courses.editProtectedCustomParameter(value);
+})
+
+When("I enter {string} in required custom parameter field {string}", (value, paramName) => {
+	courses.fillInCustomParameter(paramName, value);
+});
+
+When("I enter {string} in optional custom parameter field {string}", (value, paramName) => {
+	courses.fillInCustomParameter(paramName, value);
 });
