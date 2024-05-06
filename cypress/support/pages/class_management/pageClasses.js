@@ -236,6 +236,38 @@ class Classes {
 	seeNoSourceHeader() {
 		cy.get(Classes.#legacyClassTable).find("th").should("not.contain", "source");
 	}
+
+	seeGroupIsSyncedWithCourse(groupName, courseName) {
+		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(groupName);
+
+		classNameData.should("be.visible");
+		classNameData
+			.siblings("td")
+			.eq(0)
+			.should(($td) => {
+				expect($td.text().trim()).to.equal(courseName);
+			});
+	}
+
+	seeGroupIsNotSyncedWithCourse(groupName) {
+		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(groupName);
+
+		classNameData.should("be.visible");
+		classNameData
+			.siblings("td")
+			.eq(0)
+			.should(($td) => {
+				expect($td.text().trim()).to.be.empty;
+			});
+	}
+
+	clickEndSyncWithCourseButton(groupName) {
+		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(groupName);
+
+		const buttons = classNameData.siblings("td").eq(4).find("a, button");
+		buttons.should("have.length", 2);
+		buttons.eq(1).click();
+	}
 }
 
 export default Classes;

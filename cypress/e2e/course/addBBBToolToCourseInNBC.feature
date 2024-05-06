@@ -20,7 +20,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
     When I go to rooms overview
     #================================================================
     When I click on FAB to create a new room
-    When I click on new course create button
+    When I click on new course create button in sub menu
     Then I see section one area on the course create page
     When I enter the course title 'Cypress Test Creation and Deletion'
     When I select room colour as red
