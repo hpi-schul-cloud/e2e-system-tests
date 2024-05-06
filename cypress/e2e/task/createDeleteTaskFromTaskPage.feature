@@ -3,6 +3,12 @@ Feature: Task - To create and delete tasks starting from task overview page by t
 
   As a teacher I want to create and delete a new task on the task overview page so that the student can submit it
 
+
+  @stable_test
+  # This scenario is to create a user using api needed for this feature file.
+  Scenario: as a pre-condition teacher logs in to create a account in a same school
+    Given I am logged in as a 'teacher1_brb' at 'brb'
+
   @stable_test
   Scenario: Teacher creates simple tasks without course
     Given I am logged in as a 'teacher1_brb' at 'brb'

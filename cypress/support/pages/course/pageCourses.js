@@ -53,7 +53,7 @@ class Courses {
 	static #chosenCourseTeacher = '[id="courseTeacher_chosen"]';
 	static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]';
 	static #courseStartDatePicker = '[data-testid="date_start"]';
-	static #courseEndDatePickerInput = '[data-testid="date_until"]';
+	static #courseEndDatePicker = '[data-testid="date_until"]';
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
@@ -224,8 +224,8 @@ class Courses {
 	}
 
 	seeDatePickersForCourseInSchoolYear() {
-		cy.get(Courses.#courseStartDatePicker).should("exist");
-		cy.get(Courses.#courseEndDatePickerInput).should("exist");
+		cy.get(Courses.#courseEndDatePicker).should("exist");
+		cy.get(Courses.#courseEndDatePicker).should("exist");
 	}
 
 	seeCreateCourseTimeTableContainer() {
@@ -963,8 +963,8 @@ class Courses {
 	}
 
 	seeStartDateAndEndDatePickersAreDisabled() {
-		cy.get(Courses.#courseStartDatePicker).should("be.disabled");
-		cy.get(Courses.#courseEndDatePickerInput).should("be.disabled");
+		cy.get(Courses.#courseEndDatePicker).should("be.disabled");
+		cy.get(Courses.#courseEndDatePicker).should("be.disabled");
 	}
 
 	seeCreateAnotherCourseButtonIsNotVisible() {
@@ -992,7 +992,7 @@ class Courses {
 	}
 
 	seeCourseEndDate(endDate) {
-		cy.get(Courses.#courseEndDatePickerInput).should("have.value", endDate);
+		cy.get(Courses.#courseEndDatePicker).should("have.value", endDate);
 	}
 
 	clickContinueButtonOnSyncedGroupDialog() {
