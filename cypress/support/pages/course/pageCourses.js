@@ -53,7 +53,7 @@ class Courses {
 	static #chosenCourseTeacher = '[id="courseTeacher_chosen"]';
 	static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]';
 	static #courseStartDatePicker = '[data-testid="date_start"]';
-	static #courseEndDatePicker = '[data-testid="date_until"]';
+	static #courseEndDatePickerInput = '[data-testid="date_until"]';
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
@@ -129,6 +129,14 @@ class Courses {
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
 	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
+	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
+
+	selectTeacherInCourseCreatePage(teacherName) {
+		cy.get(Courses.#teacherSelectionBoxInCourseCreate).invoke("show");
+		cy.get(Courses.#teacherSelectionBoxInCourseCreate)
+			.should("be.visible")
+			.select(teacherName);
+	}
 
 	seeFinalStepPageOnCourseCreate() {
 		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("be.visible");
@@ -142,7 +150,9 @@ class Courses {
 	}
 
 	seeStudentSelectionBoxInCourseCreatePage() {
-		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
+		cy.get(Courses.#studentSelectionBoxInCourseCreate)
+			.invoke("show")
+			.should("be.visible");
 	}
 
 	clickOnCreateNewCourseInSubMenu() {
@@ -954,7 +964,7 @@ class Courses {
 
 	seeStartDateAndEndDatePickersAreDisabled() {
 		cy.get(Courses.#courseStartDatePicker).should("be.disabled");
-		cy.get(Courses.#courseEndDatePicker).should("be.disabled");
+		cy.get(Courses.#courseEndDatePickerInput).should("be.disabled");
 	}
 
 	seeCreateAnotherCourseButtonIsNotVisible() {
@@ -982,7 +992,7 @@ class Courses {
 	}
 
 	seeCourseEndDate(endDate) {
-		cy.get(Courses.#courseEndDatePicker).should("have.value", endDate);
+		cy.get(Courses.#courseEndDatePickerInput).should("have.value", endDate);
 	}
 
 	clickContinueButtonOnSyncedGroupDialog() {

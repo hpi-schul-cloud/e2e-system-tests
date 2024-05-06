@@ -3,6 +3,10 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
+When("I click the toggle switch to enable student visibility for teachers", () => {
+	management.enableStudentVisibilityForTeacher();
+});
+
 Then("I disable the video conference", () => {
 	management.disableTeamsVideoConferenceByAdmin();
 });
