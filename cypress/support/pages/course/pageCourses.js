@@ -13,7 +13,7 @@ class Courses {
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldRoomOverview = '[data-testid="search-field"]';
 	static #mainContent = '[id="main-content"]';
-	static #createCourse = '[data-testid="fab_button_add_course"]';
+	static #createCourse = '[data-testid="add-course-button"]';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
@@ -47,7 +47,7 @@ class Courses {
 	static #chosenCourseTeacher = '[id="courseTeacher_chosen"]';
 	static #chosenSubstituteTeacher = '[id="courseSubstitute_chosen"]';
 	static #courseStartDatePicker = '[data-testid="date_start"]';
-	static #courseEndDatePicker = '[data-testid="form-date-input-untilDate"]';
+	static #courseEndDatePicker = '[data-testid="date_until"]';
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
@@ -108,6 +108,27 @@ class Courses {
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
 	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
+	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
+	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
+
+	seeFinalStepPageOnCourseCreate() {
+		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("be.visible");
+	}
+
+	selectStudentInCourseCreatePage(studentName) {
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).invoke("show");
+		cy.get(Courses.#studentSelectionBoxInCourseCreate)
+			.should("be.visible")
+			.select(studentName);
+	}
+
+	seeStudentSelectionBoxInCourseCreatePage() {
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
+	}
+
+	clickOnCreateNewCourseInSubMenu() {
+		cy.get(Courses.#subMenuFabButtonToAddNewCourse).click();
+	}
 
 	topicIsNotVisibleOnCoursePage(topicTitle) {
 		cy.contains(topicTitle).should("not.exist");
