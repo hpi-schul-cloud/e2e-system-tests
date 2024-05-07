@@ -138,7 +138,19 @@ class Courses {
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
 	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
+	static #teacherFieldContainer = '[data-testid="teachers_container"]';
+	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
+
+	selectTeacherFromTeacherField(userName) {
+		cy.get(Courses.#teacherFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(userName).click();
+	}
+
+	selectStudentFromStudentField(userName) {
+		cy.get(Courses.#studentFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(userName).click();
+	}
 
 	selectTeacherInCourseCreatePage(teacherName) {
 		cy.get(Courses.#teacherSelectionBoxInCourseCreate).invoke("show");
@@ -667,20 +679,18 @@ class Courses {
 		cy.get(Courses.#addSubstituteTeacher).click().type("{selectall}{backspace}");
 	}
 
-	addSubstituteTeacher(username) {
-		let userFirstName;
+	addSubstituteTeacher(userName) {
+		const userFirstName = "cypress";
 		let userLastName;
-		switch (username) {
+		switch (userName) {
 			case "teacher1":
-				userFirstName = Cypress.env("TEACHER_1_BRB_FIRST_NAME");
-				userLastName = Cypress.env("TEACHER_1_BRB_LAST_NAME");
+				userLastName = `teacher_1`;
 				break;
 			case "teacher2":
-				userFirstName = Cypress.env("TEACHER_2_BRB_FIRST_NAME");
-				userLastName = Cypress.env("TEACHER_2_BRB_LAST_NAME");
+				userLastName = `teacher_2`;
 				break;
 		}
-		let userFullName = userLastName + ", " + userFirstName;
+		const userFullName = `${userLastName}, ${userFirstName}`;
 		cy.get(Courses.#chosenResults).contains(userFullName).click();
 		cy.get(Courses.#chosenContainer).should("contain", userFullName);
 	}
