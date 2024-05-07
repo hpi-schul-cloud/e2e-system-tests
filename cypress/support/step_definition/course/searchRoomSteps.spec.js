@@ -15,3 +15,11 @@ const courses = new Courses();
 When("I enter the course name {string} into the search field", (roomName) => {
 	courses.searchForARoom(roomName);
 });
+
+When("I select {string} from field teacher", (userName) => {
+	courses.selectTeacherFromTeacherField(userName);
+});
+
+When("I select {string} from field student", (userName) => {
+	courses.selectStudentFromStudentField(userName);
+});
