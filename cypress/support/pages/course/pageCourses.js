@@ -140,6 +140,7 @@ class Courses {
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
+	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -149,6 +150,13 @@ class Courses {
 	selectStudentFromStudentField(userName) {
 		cy.get(Courses.#studentFieldContainer).click();
 		cy.get(Courses.#chosenResults).contains(userName).click();
+	}
+
+	selectTeacherInCourseCreatePage(teacherName) {
+		cy.get(Courses.#teacherSelectionBoxInCourseCreate).invoke("show");
+		cy.get(Courses.#teacherSelectionBoxInCourseCreate)
+			.should("be.visible")
+			.select(teacherName);
 	}
 
 	seeFinalStepPageOnCourseCreate() {
@@ -163,7 +171,9 @@ class Courses {
 	}
 
 	seeStudentSelectionBoxInCourseCreatePage() {
-		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
+		cy.get(Courses.#studentSelectionBoxInCourseCreate)
+			.invoke("show")
+			.should("be.visible");
 	}
 
 	clickOnCreateNewCourseInSubMenu() {

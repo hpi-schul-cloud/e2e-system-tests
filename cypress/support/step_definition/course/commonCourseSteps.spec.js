@@ -3,6 +3,10 @@ import Courses from "../../pages/course/pageCourses";
 
 const courses = new Courses();
 
+Then("I select teacher {string} is selected by default", (teacherName) => {
+	courses.selectTeacherInCourseCreatePage(teacherName);
+});
+
 Then("I see the section three as the finish page", () => {
 	courses.seeFinalStepPageOnCourseCreate();
 });
