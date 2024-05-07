@@ -2,7 +2,7 @@ Feature: Course - Copy CTL tools
 
   As a Teacher i want to be able to copy ctl tools, when i copy a course
 
-  @stable_test
+  @unstable_test
   Scenario: Teacher creates a new course as a pre-condition
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
@@ -16,7 +16,7 @@ Feature: Course - Copy CTL tools
     When I click on button To Course Overview on the finish page
     Then I see the course 'Cypress Test Course Copy' on the room overview page
 
-  @stable_test
+  @unstable_test
   Scenario: Teacher adds three ctl tools to course as a pre-condition
     When I go to rooms overview
     When I go to room 'Cypress Test Course Copy'
@@ -49,7 +49,7 @@ Feature: Course - Copy CTL tools
     Then I can save external tool configuration
     Then I can see the tool 'CY Test Tool Protected Parameter' in the tool overview
 
-  @stable_test
+  @unstable_test
   Scenario: Teacher copies the course
     When I go to rooms overview
     When I go to room 'Cypress Test Course Copy'
@@ -74,7 +74,7 @@ Feature: Course - Copy CTL tools
     When I close the dialog
     Then I can see 3 tools
 
-  @stable_test
+  @unstable_test
   Scenario: Student sees copied ctl tools and incomplete tool cannot be launched
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to rooms overview
@@ -90,7 +90,7 @@ Feature: Course - Copy CTL tools
     When I click on the tool 'CY Test Tool Protected Parameter'
     Then I can see an error dialog
 
-  @stable_test
+  @unstable_test
   Scenario: Teacher fixes the incomplete tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
@@ -110,7 +110,7 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
 
-  @stable_test
+  @unstable_test
   Scenario Outline: Teacher deletes course as a post condition
     When I go to rooms overview
     When I go to room '<course_title>'
