@@ -149,21 +149,21 @@ class Dashboard {
 		cy.contains(welcomeMsg);
 	}
 
-	seeAssignedTasks(taskName) {
+	seeAssignedTasks(taskName, courseName) {
 		cy.get(Dashboard.#dashboardTasksTitle).eq(0);
 		cy.contains("Gestellte Aufgaben");
 		cy.get(Dashboard.#dashboardTaskCourseName)
 			.eq(0)
-			.contains("Course with subject and tasks");
+			.contains(courseName);
 		cy.get(Dashboard.#dashboardTaskName).contains(taskName);
 	}
 
-	seeDraftTasks(draftName) {
+	seeDraftTasks(draftName, courseName) {
 		cy.get(Dashboard.#dashboardTasksTitle).eq(1);
 		cy.contains("Entwürfe");
 		cy.get(Dashboard.#dashboardTaskCourseName)
 			.eq(0)
-			.contains("Course with subject and tasks");
+			.contains(courseName);
 		cy.get(Dashboard.#dashboardTaskName).contains(draftName);
 	}
 }
