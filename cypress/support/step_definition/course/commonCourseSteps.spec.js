@@ -3,6 +3,22 @@ import Courses from "../../pages/course/pageCourses";
 
 const courses = new Courses();
 
+Then("I select teacher {string} is selected by default", (teacherName) => {
+	courses.selectTeacherInCourseCreatePage(teacherName);
+});
+
+Then("I see the section three as the finish page", () => {
+	courses.seeFinalStepPageOnCourseCreate();
+});
+
+When("I select the student {string} in the list", (studentName) => {
+	courses.selectStudentInCourseCreatePage(studentName);
+});
+
+When("I see student selection box to select the student for the room", () => {
+	courses.seeStudentSelectionBoxInCourseCreatePage();
+});
+
 When("I click on FAB to add or import courses", () => {
 	courses.clickOnFABToAddOrImportCourse();
 });
@@ -47,8 +63,8 @@ When("I click on FAB to create a new room", () => {
 	courses.clickOnCreateRoomFAB();
 });
 
-When("I click on new course create button", () => {
-	courses.createNewCourse();
+When("I click on new course create button in sub menu", () => {
+	courses.clickOnCreateNewCourseInSubMenu();
 });
 
 When("I click on FAB to create new content", () => {

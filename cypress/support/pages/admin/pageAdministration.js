@@ -87,6 +87,13 @@ class Management {
 	static #isDeactivatedCheckBox = '[data-testid="configuration-deactivate-checkbox"]';
 	static #parameterInputField = '[data-testid="schoolParam"]';
 	static #dataTable = '[data-testid="table_container"]';
+	static #studentVisiblityToggle =
+		'[data-testid="admin-school-toggle-student-visibility"]';
+
+	enableStudentVisibilityForTeacher() {
+		cy.get(Management.#studentVisiblityToggle).click({ force: true }).wait(500);
+		cy.get(Management.#studentVisiblityToggle).should("have.prop", "checked");
+	}
 
 	clickOnAdminSettingsSave() {
 		cy.get(Management.#saveGeneralAdminSetting).click();
