@@ -138,6 +138,14 @@ class Courses {
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
 	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
+	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
+
+	selectTeacherInCourseCreatePage(teacherName) {
+		cy.get(Courses.#teacherSelectionBoxInCourseCreate).invoke("show");
+		cy.get(Courses.#teacherSelectionBoxInCourseCreate)
+			.should("be.visible")
+			.select(teacherName);
+	}
 
 	seeFinalStepPageOnCourseCreate() {
 		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("be.visible");
@@ -151,7 +159,9 @@ class Courses {
 	}
 
 	seeStudentSelectionBoxInCourseCreatePage() {
-		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
+		cy.get(Courses.#studentSelectionBoxInCourseCreate)
+			.invoke("show")
+			.should("be.visible");
 	}
 
 	clickOnCreateNewCourseInSubMenu() {
