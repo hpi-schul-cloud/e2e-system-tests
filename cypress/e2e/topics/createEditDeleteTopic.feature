@@ -4,16 +4,14 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
 
-
   @stable_test
   # This scenario is to create the users using api needed for this feature file.
-  Scenario: as a pre-condition admin and teacher log in to create their account in a same school
+  Scenario: Admin and teacher log in to create their account in a same school as a pre-condition
     Given I am logged in as a 'teacher1_brb' at 'brb'
     Given I am logged in as a 'admin1_brb' at 'brb'
 
-
   @stable_test
-  Scenario:Admin creates a course and assign teacher to the course as a pre-condition
+  Scenario: Admin creates a course and assign teacher to the course as a pre-condition
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I go to rooms overview
     When I click on FAB to create a new room

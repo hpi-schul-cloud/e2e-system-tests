@@ -7,11 +7,10 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
 	@stable_test
 	# This scenario is to create the users using api needed for this feature file.
-	Scenario: as a pre-condition admin, teacher and student log in to create their account in a same school
+	Scenario: Admin and teacher log in to create their account in a same school as a pre-condition
 		Given I am logged in as a 'admin1_brb' at 'brb'
 		Given I am logged in as a 'teacher1_brb' at 'brb'
 		Given I am logged in as a 'student1_brb' at 'brb'
-
 
 	#@stable_test
 	#Scenario: Admin enables student visiblity for a teacher as a pre-condition
@@ -25,7 +24,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 	#When I click on button Save admin settings
 
 	@stable_test
-	Scenario:Admin creates a course and assign teacher and student to the course as a pre-condition
+	Scenario: Admin creates a course and assign teacher and student to the course as a pre-condition
 		Given I am logged in as a 'admin1_brb' at 'brb'
 		When I go to rooms overview
 		When I click on FAB to create a new room
@@ -46,7 +45,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		Then I see the section three as the finish page
 		When I click on button To Course Overview on the finish page
 	#Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page  //Not applicable for the admin user
-
 
 	@stable_test
 	Scenario: Teacher creates task as draft from room
@@ -157,7 +155,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		And I click completed task tab
 		And I click on not graded tasks
 		Then I see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as student
-
 
 	@stable_test
 	Scenario: Teacher grades task from room
