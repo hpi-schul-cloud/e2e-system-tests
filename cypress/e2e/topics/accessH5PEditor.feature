@@ -1,16 +1,16 @@
-@only
+@stable_test
 @api_migrated
 Feature:  To access the H5P editor as a teacher.
 
 	As a teacher, I want to be able to access the H5P Editor for a topic in my course to create learning content
 
-	@only
+	@stable_test
 	# This scenario is to create the users using api needed for this feature file.
 	Scenario: Admin and teacher log in to create their account in a same school as a pre-condition
 		Given I am logged in as a 'teacher1_brb' at 'brb'
 		Given I am logged in as a 'admin1_brb' at 'brb'
 
-	@only
+	@stable_test
 	Scenario: Admin creates a course and assign teacher to the course as a pre-condition
 		Given I am logged in as a 'admin1_brb' at 'brb'
 		When I go to rooms overview
@@ -35,7 +35,7 @@ Feature:  To access the H5P editor as a teacher.
 	#Note: Not applicable for the admin user so this step is commented out
 	#Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
 
-	@only
+	@stable_test
 	Scenario: Teacher creates topic in the course as a pre-condition
 		Given I am logged in as a 'teacher1_brb' at 'brb'
 		When I go to rooms overview
@@ -68,7 +68,7 @@ Feature:  To access the H5P editor as a teacher.
 		When I click on last breadcrump element in topbar navigation
 		Then I can see topic 'Cy Topic Creating and Deleting Test' on course page
 
-	@only
+	@stable_test
 	Scenario: Access H5P Editor
 		Given I am logged in as a 'teacher1_brb' at 'brb'
 		When I go to rooms overview
