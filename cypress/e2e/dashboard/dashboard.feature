@@ -1,3 +1,4 @@
+@api-migrated
 @release
 Feature: Dashboard - To check contents on the dashboard
 
@@ -5,34 +6,28 @@ Feature: Dashboard - To check contents on the dashboard
 
 	@stable_test
 	# This scenario is to create the users using api needed for this feature file.
-	Scenario: as a pre-condition admin, teacher and student log in to create their account in a same school
+	Scenario: student and a teacher see important information on the dashboard, including pre-conditions
+
+	# pre-condition: admin, teacher and student log in to create their account in a same school
 		Given I am logged in as a '<teacher>' at '<namespace>'
 		Given I am logged in as a '<student>' at '<namespace>'
 		Given I am logged in as a '<admin>' at '<namespace>'
 
-    Examples:
-      | namespace | admin      | teacher      | student      |
-      | brb       | admin1_brb | teacher1_brb | student1_brb |
-
-
-	#@stable_test
-	#Scenario: Admin enables student visiblity for a teacher as a pre-condition
-	#Given I am logged in as a 'admin1_brb' at 'brb'
-	#When I go to administration page
-	#When I go to school administration
+	# Admin enables student visiblity for a teacher as a pre-condition
+	# When I go to administration page
+	# When I go to school administration
 	#remove the following line if old admin page is hidden
-	#When I go to new school administration page  --> //Currently admin page is not opening due to the issue on admin user created by using api.
-	#When I click on general settings panel
-	#When I click the toggle switch to enable student visibility for teachers
-	#When I click on button Save admin settings
+	# When I go to new school administration page  --> //Currently admin page is not opening due to the issue on admin user created by using api.
+	# When I click on general settings panel
+	# When I click the toggle switch to enable student visibility for teachers
+	# When I click on button Save admin settings
 
-	@stable_test
-	Scenario: as a pre-condition admin creates a course and assign teacher and student to the course as a pre-condition
+	# pre-condition: admin creates a course and assign teacher and student to the course
 		When I go to rooms overview
 		When I click on FAB to create a new room
 		When I click on new course create button in sub menu
 		Then I see section one area on the course create page
-		When I enter the course title '<course_title>'
+		When I enter the course title 'CypressAut Test Dashboard Course'
 		When I select room colour as red
 		Then I select teacher '<fullname_teacher>' is selected by default
 		Then I see substitute teacher selection box
@@ -48,62 +43,47 @@ Feature: Dashboard - To check contents on the dashboard
 		When I click on button To Course Overview on the finish page
 	#Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page  //Not applicable for the admin user
 
-    Examples:
-      | fullname_teacher  | fullname_student  | course_title                     |
-      | cypress teacher_1 | cypress student_1 | CypressAut Test Dashboard Course |
-
-
-	@stable_test
-	Scenario: as a pre-condition teacher creates task and a task draft
+	# pre-condition:  pre-conditions as teacher
 		Given I am logged in as a '<teacher>' at '<namespace>'
+
+  # pre-condition: teacher creates task and a task draft
 		When I go to rooms overview
-		When I go to room '<course_title>'
+		When I go to room 'CypressAut Test Dashboard Course'
 		When I click on FAB to create new content
 		When I click on New Task FAB
 		Then I can see create task page
-		When I enter title '<task_title_published>'
+		When I enter title 'CypressAut Dashboard Task Published'
 		When I click on button Submit
-		Then I see detail page for task '<task_title_published>'
+		Then I see detail page for task 'CypressAut Dashboard Task Published'
 		When I go to rooms overview
-		When I go to room '<course_title>'
+		When I go to room 'CypressAut Test Dashboard Course'
 		When I click on FAB to create new content
 		When I click on New Task FAB
 		Then I can see create task page
-		When I enter title '<task_title_draft>'
+		When I enter title 'CypressAut Dashboard Task Draft'
 		When I click on Draft Checkbox
 		When I click on button Submit
-		Then I see detail page for task '<task_title_draft>'
+		Then I see detail page for task 'CypressAut Dashboard Task Draft'
 
-    Examples:
-      | namespace | teacher      | course_title                     | task_title_published                | task_title_draft                |
-      | brb       | teacher1_brb | CypressAut Test Dashboard Course | CypressAut Dashboard Task Published | CypressAut Dashboard Task Draft |
-
-  @stable_test
-  Scenario: as a pre-condition teacher creates school news
+  # pre-condition: teacher creates school news
     When I go to news overview
     And I click on add news button
     Then I see news creation page
-    And I enter news title '<news_title>'
-    And I enter news description '<news_description>'
+    And I enter news title 'CypressAut Dashboard - school news'
+    And I enter news description 'test school news description'
     And I see date input field
     And I see time input field
     And I click on save button
-    Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
+    Then I see news is created successfully with title 'CypressAut Dashboard - school news' and with description 'test school news description'
 
-    Examples:
-      | news_title                         | news_description             |
-      | CypressAut Dashboard - school news | test school news description |
-
-  @stable_test
-  Scenario: as a pre-condition teacher creates a team
+  # pre-condition: teacher creates a team
     When I go to teams overview
     When I click on button Add Team on the teams overview page
     Then I see new team creation page
     When I enter in the title 'CypressAut - News Team'
     When I click on button Create Team on the team creation page
 
-  @stable_test
-  Scenario: as a pre-condition teacher creates a team news
+  # pre-condition: teacher creates team news
     When I go to teams overview
     When I go to a team 'CypressAut - News Team'
     When I click on news tab on the team detail page
@@ -116,75 +96,65 @@ Feature: Dashboard - To check contents on the dashboard
     And I click on save button
     Then I see news is created successfully with title 'CypressAut Dashboard - team news' and with description 'test team news description'
 
-  @stable_test
-  #Scenario: as a pre-condition teacher creates a task
-   # When I go to teams overview
-    #When I click on button Add Team on the teams overview page
-   # Then I see new team creation page
-   # When I enter in the title 'CypressAut - News Team'
-   # When I click on button Create Team on the team creation page
-
-  @stable_test
-  Scenario: as a pre-condition teacher adds student as team member
+  # pre-condition: teacher adds student as team member
     When I go to teams overview
     When I go to a team 'CypressAut - News Team'
     When I click on three dot menu on the team title
     And I click on manage team members option
     Then I see team participants overview page
     And I click on add internal attendees button
-    And new dialog opens to select student 'student_1, cypress' from the drop down list
+    And new dialog opens to select student '<listname_student>' from the drop down list
     And I click on add user button
-    Then I see the student named 'student_1, cypress' on the team members table
+    Then I see the student named '<listname_student>' on the team members table
 
-  @stable_test
-  Scenario: student arrives on dashboard
-    Given I am logged in as a 'student1_brb' at 'brb'
+  # teacher arrives on dashboard
+    Given I am logged in as a '<student>' at '<namespace>'
     When I arrive on the dashboard
-    Then I see the welcome message 'Hallo cypress student_1!'
+    Then I see the welcome message 'Hallo <fullname_student>!'
     Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
     Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
     Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
 
-  @stable_test
-  Scenario: teacher arrives on dashboard
-    Given I am logged in as a 'teacher1_brb' at 'brb'
+  # teacher arrives on dashboard
+    Given I am logged in as a '<teacher>' at '<namespace>'
     When I arrive on the dashboard
-    Then I see the welcome message 'Hallo cypress teacher_1!'
+    Then I see the welcome message 'Hallo <fullname_teacher>!'
     Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
     Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
     Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
     Then I can see the draft task 'CypressAut Dashboard Task Draft' of course 'CypressAut Test Dashboard Course'
 
-  @stable_test
-  Scenario: as a post-condition teacher deletes the school news
+  # teacher deletes the school news
     When I arrive on the dashboard
     And I click on the news teaser 'CypressAut Dashboard - school news'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'CypressAut Dashboard - school news'
 
-  @stable_test
-  Scenario: as a post-condition teacher deletes the team news
+  # teacher deletes the team news
     When I arrive on the dashboard
     And I click on the news teaser 'CypressAut Dashboard - team news'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news 'CypressAut Dashboard - team news'
 
-  @stable_test
-  Scenario: student does not see news anymore on dashboard
-    Given I am logged in as a 'student1_brb' at 'brb'
+  # student does not see news anymore on dashboard
+    Given I am logged in as a '<student>' at '<namespace>'
     When I arrive on the dashboard
     Then I do not see school news with title 'CypressAut Dashboard - school news'
     Then I do not see teams news with title 'CypressAut Dashboard - team news'
 
-  @stable_test
-  Scenario: as a post-condition teacher deletes the student as a  team member
-    Given I am logged in as a 'teacher1_brb' at 'brb'
+  # post-condition: teacher deletes the student as a  team member
+    Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to teams overview
     When I go to a team 'CypressAut - News Team'
     When I click on three dot menu on the team title
     And I click on manage team members option
     Then I see team participants overview page
-    When I select the student 'cypress student_1' and click on delete icon
-    Then I see 'cypress student_1' is not visible on the table
+    When I select the student '<fullname_student>' and click on delete icon
+    Then I see '<fullname_student>' is not visible on the table
+
+
+    Examples:
+      | namespace | admin      | teacher      | fullname_teacher      | student      | fullname_student  | listname_student   |
+      | brb       | admin1_brb | teacher1_brb | cypress teacher_1     | student1_brb | cypress student_1 | student_1, cypress |
