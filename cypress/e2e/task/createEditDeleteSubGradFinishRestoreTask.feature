@@ -7,7 +7,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
 	@stable_test
 	# This scenario is to create the users using api needed for this feature file.
-	Scenario: Admin and teacher log in to create their account in a same school as a pre-condition
+	Scenario: Admin, Teacher and Student log in to create their account in a same school as a pre-condition
 		Given I am logged in as a 'admin1_brb' at 'brb'
 		Given I am logged in as a 'teacher1_brb' at 'brb'
 		Given I am logged in as a 'student1_brb' at 'brb'
