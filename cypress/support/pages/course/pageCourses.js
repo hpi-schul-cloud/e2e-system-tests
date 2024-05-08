@@ -92,7 +92,8 @@ class Courses {
 	static #protectedParameter = '[data-testid="protected"]';
 	static #saveBtn = '[data-testid="save-button"]';
 	static #incompleteChip = '[data-testid="tool-card-status"]';
-	static #incompleteOperationalChip = '[data-testid="tool-card-status-incompleteOperational"]';
+	static #incompleteOperationalChip =
+		'[data-testid="tool-card-status-incompleteOperational"]';
 	static #toolCardThreeDotBtn = '[data-testid="room-tool-three-dot-button"]';
 	static #chooseStudentSelectionBox = '[id="studentsId_chosen"]';
 	static #groupNameField = '[data-testid="group-name-field"]';
@@ -569,7 +570,7 @@ class Courses {
 	}
 
 	clickEditInDotMenu() {
-		cy.get(Courses.#editButtonInDotMenu).click();
+		cy.get(Courses.#editButtonInDotMenu).invoke().click();
 	}
 
 	clickEditInDotMenuOfTopic() {
@@ -906,7 +907,7 @@ class Courses {
 	seeCopyResultNotification() {
 		cy.get(Courses.#copyResultNotification).should("exist");
 		cy.get(Courses.#dialogTitle).siblings("div").should("have.length", "3");
-		cy.get(Courses.#dialogTitle).should("exist")
+		cy.get(Courses.#dialogTitle).should("exist");
 		cy.get(Courses.#warningTitle).should("have.length", "2");
 		cy.get(Courses.#dialogTitle)
 			.next()
@@ -952,7 +953,11 @@ class Courses {
 			.get(Courses.#roomExternalToolSection)
 			.find("div")
 			.contains(toolName);
-		toolCard.parent("div").siblings("div").find(Courses.#incompleteOperationalChip).should("exist");
+		toolCard
+			.parent("div")
+			.siblings("div")
+			.find(Courses.#incompleteOperationalChip)
+			.should("exist");
 	}
 
 	seeToolIsNotMarkedAsIncompleteOperational(toolName) {

@@ -1,3 +1,4 @@
+@api_migrated
 @release
 Feature: Course Board - To create, edit and delete column in the course board
 
