@@ -33,7 +33,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		Then I see section one area on the course create page
 		When I enter the course title 'CypressAut Test Creation and Deletion'
 		When I select room colour as red
-		Then I select teacher 'cypress test' is selected by default
+		Then I select teacher 'cypress teacher_1' is selected by default
 		Then I see substitute teacher selection box
 		Then I see date pickers to start and end the course as per school year
 		Then I see button to create a course time table container
@@ -41,7 +41,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		Then I see section two area on the course create page
 		Then I see class selection box to select the class for the room
 		Then I see student selection box to select the student for the room
-		When I select the student 'cypress test' in the list
+		When I select the student 'cypress student_1' in the list
 		When I click on button Next Steps after selecting room participant details
 		Then I see the section three as the finish page
 		When I click on button To Course Overview on the finish page
@@ -168,8 +168,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		And Task card info graded contains '0/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
 		When I click on task 'CypressAut Task Creating, Editing, Deleting Test'
 		And I click on submissions tab
-		Then there is a tick in column delivered for 'test'
-		When I click on submission of 'test'
+		Then there is a tick in column delivered for 'student_1'
+		When I click on submission of 'student_1'
 		Then I see submission text 'Hier ist die Antwort.'
 		When I click on download file 'testboard_jpg' in submission
 		Then file 'testboard_jpg' is saved in folder downloads
@@ -179,8 +179,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		And I enter comment 'Gut gemacht!'
 		And I enter grade '83'
 		And I click on button Save and Send grading
-		Then there is a tick in column delivered for 'test'
-		And grading for 'test' contains '83'
+		Then there is a tick in column delivered for 'student_1'
+		And grading for 'student_1' contains '83'
 		When I click on button To Course
 		Then I see task card info submitted contains '1/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
 		And Task card info graded contains '1/1' for task 'CypressAut Task Creating, Editing, Deleting Test'

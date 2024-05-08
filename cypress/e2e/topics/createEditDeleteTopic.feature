@@ -1,13 +1,47 @@
 @release
+@api-migrated
 Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
+
+
+  @stable_test
+  # This scenario is to create the users using api needed for this feature file.
+  Scenario: as a pre-condition admin and teacher log in to create their account in a same school
+    Given I am logged in as a 'teacher1_brb' at 'brb'
+    Given I am logged in as a 'admin1_brb' at 'brb'
+
+
+  @stable_test
+  Scenario:Admin creates a course and assign teacher to the course as a pre-condition
+    Given I am logged in as a 'admin1_brb' at 'brb'
+    When I go to rooms overview
+    When I click on FAB to create a new room
+    When I click on new course create button in sub menu
+    Then I see section one area on the course create page
+    When I enter the course title 'CypressAut Test Creation and Deletion'
+    When I select room colour as red
+    Then I select teacher 'cypress teacher_1' is selected by default
+    Then I see substitute teacher selection box
+    Then I see date pickers to start and end the course as per school year
+    Then I see button to create a course time table container
+    When I click on button Next Steps after entering the room detail in section one
+    Then I see section two area on the course create page
+    Then I see class selection box to select the class for the room
+    Then I see student selection box to select the student for the room
+    #Note: student user is not needed in this feature so this step is commented out
+    #When I select the student 'cypress student_1' in the list
+    When I click on button Next Steps after selecting room participant details
+    Then I see the section three as the finish page
+    When I click on button To Course Overview on the finish page
+  #Note: Not applicable for the admin user so this step is commented out
+  #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
 
   @stable_test
   Scenario: Teacher creates topic from room
     Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
+    When I go to room 'CypressAut Test Creation and Deletion'
     And I click on FAB to create new content
     And I click on New Topic FAB
     Then I can see edit topic page '-'
@@ -39,7 +73,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
   @stable_test
   Scenario: Teacher edits topic from room
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
+    When I go to room 'CypressAut Test Creation and Deletion'
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
     When I click on Edit in dot menu of topic
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
@@ -82,7 +116,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
   @stable_test
   Scenario: Teacher deletes topic from room
     When I go to rooms overview
-    When I go to room 'Course with subject and tasks'
+    When I go to room 'CypressAut Test Creation and Deletion'
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test - Edited topic'
     When I click on Delete in dot menu of topic
     When I click on Cancel in confirmation window
