@@ -570,7 +570,7 @@ class Courses {
 	}
 
 	clickEditInDotMenu() {
-		cy.get(Courses.#editButtonInDotMenu).invoke().click();
+		cy.get(Courses.#editButtonInDotMenu).invoke().show().click();
 	}
 
 	clickEditInDotMenuOfTopic() {
