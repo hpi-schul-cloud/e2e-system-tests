@@ -6,9 +6,13 @@ Feature: Dashboard - To check contents on the dashboard
 	@stable_test
 	# This scenario is to create the users using api needed for this feature file.
 	Scenario: as a pre-condition admin, teacher and student log in to create their account in a same school
-		Given I am logged in as a 'admin1_brb' at 'brb'
-		Given I am logged in as a 'teacher1_brb' at 'brb'
-		Given I am logged in as a 'student1_brb' at 'brb'
+		Given I am logged in as a '<teacher>' at '<namespace>'
+		Given I am logged in as a '<student>' at '<namespace>'
+		Given I am logged in as a '<admin>' at '<namespace>'
+
+    Examples:
+      | namespace | admin      | teacher      | student      |
+      | brb       | admin1_brb | teacher1_brb | student1_brb |
 
 
 	#@stable_test
@@ -24,14 +28,13 @@ Feature: Dashboard - To check contents on the dashboard
 
 	@stable_test
 	Scenario: as a pre-condition admin creates a course and assign teacher and student to the course as a pre-condition
-		Given I am logged in as a 'admin1_brb' at 'brb'
 		When I go to rooms overview
 		When I click on FAB to create a new room
 		When I click on new course create button in sub menu
 		Then I see section one area on the course create page
-		When I enter the course title 'CypressAut Test Dashboard Course'
+		When I enter the course title '<course_title>'
 		When I select room colour as red
-		Then I select teacher 'cypress teacher_1' is selected by default
+		Then I select teacher '<fullname_teacher>' is selected by default
 		Then I see substitute teacher selection box
 		Then I see date pickers to start and end the course as per school year
 		Then I see button to create a course time table container
@@ -39,48 +42,57 @@ Feature: Dashboard - To check contents on the dashboard
 		Then I see section two area on the course create page
 		Then I see class selection box to select the class for the room
 		Then I see student selection box to select the student for the room
-		When I select the student 'cypress student_1' in the list
+		When I select the student '<fullname_student>' in the list
 		When I click on button Next Steps after selecting room participant details
 		Then I see the section three as the finish page
 		When I click on button To Course Overview on the finish page
 	#Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page  //Not applicable for the admin user
 
+    Examples:
+      | fullname_teacher  | fullname_student  | course_title                     |
+      | cypress teacher_1 | cypress student_1 | CypressAut Test Dashboard Course |
+
 
 	@stable_test
 	Scenario: as a pre-condition teacher creates task and a task draft
-		Given I am logged in as a 'teacher1_brb' at 'brb'
+		Given I am logged in as a '<teacher>' at '<namespace>'
 		When I go to rooms overview
-		When I go to room 'CypressAut Test Dashboard Course'
+		When I go to room '<course_title>'
 		When I click on FAB to create new content
 		When I click on New Task FAB
 		Then I can see create task page
-		When I enter title 'CypressAut Dashboard Task Published'
-		When I enter task description 'Dies ist Deine Aufgabe.'
+		When I enter title '<task_title_published>'
 		When I click on button Submit
-		Then I see detail page for task 'CypressAut Dashboard Task Published'
+		Then I see detail page for task '<task_title_published>'
 		When I go to rooms overview
-		When I go to room 'CypressAut Test Dashboard Course'
+		When I go to room '<course_title>'
 		When I click on FAB to create new content
 		When I click on New Task FAB
 		Then I can see create task page
-		When I enter title 'CypressAut Dashboard Task Draft'
+		When I enter title '<task_title_draft>'
 		When I click on Draft Checkbox
-		When I enter task description 'Dies ist Deine Aufgabe.'
 		When I click on button Submit
-		Then I see detail page for task 'CypressAut Dashboard Task Draft'
+		Then I see detail page for task '<task_title_draft>'
+
+    Examples:
+      | namespace | teacher      | course_title                     | task_title_published                | task_title_draft                |
+      | brb       | teacher1_brb | CypressAut Test Dashboard Course | CypressAut Dashboard Task Published | CypressAut Dashboard Task Draft |
 
   @stable_test
   Scenario: as a pre-condition teacher creates school news
-    Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to news overview
     And I click on add news button
     Then I see news creation page
-    And I enter news title 'CypressAut Dashboard - school news'
-    And I enter news description 'test school news description'
+    And I enter news title '<news_title>'
+    And I enter news description '<news_description>'
     And I see date input field
     And I see time input field
     And I click on save button
-    Then I see news is created successfully with title 'CypressAut Dashboard - school news' and with description 'test school news description'
+    Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
+
+    Examples:
+      | news_title                         | news_description             |
+      | CypressAut Dashboard - school news | test school news description |
 
   @stable_test
   Scenario: as a pre-condition teacher creates a team
