@@ -23,7 +23,7 @@ Then("I can select the tool {string} from available tools", (toolName) => {
 	management.addExternalTool(toolName);
 });
 
-Then("I can save external tool configuration", () => {
+When("I can save external tool configuration", () => {
 	management.saveExternalTool();
 });
 

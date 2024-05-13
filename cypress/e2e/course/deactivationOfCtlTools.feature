@@ -19,7 +19,7 @@ Feature: Deactivation of ctl tools
       Then I can select the tool 'CY Test Tool active External Tool' from available tools
       Then I can deactivate the tool
       Then I can fill required parameter
-      Then I can save external tool configuration
+      When I can save external tool configuration
       When I click on external tools panel
       Then I see the external tools table
       Then I can see 'CY Test Tool active External Tool' is deactivated in tool table
@@ -45,7 +45,7 @@ Feature: Deactivation of ctl tools
     Then I see the external tools table
     Then I can click on edit button to edit the tool 'CY Test Tool active External Tool'
     Then I can activate the tool
-    Then I can save external tool configuration
+    When I can save external tool configuration
     When I click on external tools panel
     Then I see the external tools table
     Then I can see 'CY Test Tool active External Tool' is active in tool table
@@ -63,7 +63,7 @@ Feature: Deactivation of ctl tools
     Then I can see tool 'CY Test Tool active External Tool' in Selection
     Then I can select tool 'CY Test Tool active External Tool' in available tools
     Then I can fill out context parameter
-    Then I can save external tool configuration
+    When I can save external tool configuration
 
   @unstable_test
   Scenario: As a Teacher I can check if tool is launchable
@@ -83,7 +83,7 @@ Feature: Deactivation of ctl tools
     Then I see the external tools table
     Then I can click on edit button to edit the tool 'CY Test Tool active External Tool'
     Then I can deactivate the tool
-    Then I can save external tool configuration
+    When I can save external tool configuration
     When I click on external tools panel
     Then I see the external tools table
     Then I can see 'CY Test Tool active External Tool' is deactivated in tool table
