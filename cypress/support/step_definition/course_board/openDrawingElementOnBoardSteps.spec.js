@@ -19,6 +19,6 @@ Then("I select whiteboard from the menu", () => {
 	board.selectWhiteboardFromMenu();
 });
 
-When("I click on the option Publish in three dot menu in course board", () => {
+Then("I click on the option Publish in three dot menu in course board", () => {
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
 });
