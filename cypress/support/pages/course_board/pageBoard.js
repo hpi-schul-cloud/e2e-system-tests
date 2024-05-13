@@ -129,33 +129,33 @@ class Board {
 		cy.get(Board.#addColumnTitleInput).wait(1000).realType(columnTitle).wait(500);
 	}
 
-	//  Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
-	// recursivelyDeleteTextFromTextArea() {
-	// 	cy.window().then((win) => {
-	// 		const textArea = win.document.querySelector(Board.#columnPlaceholder);
-	// 		const textAreaValue = textArea.value;
+	/*  Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
+	recursivelyDeleteTextFromTextArea() {
+		cy.window().then((win) => {
+			const textArea = win.document.querySelector(Board.#columnPlaceholder);
+			const textAreaValue = textArea.value;
 
-	// 		if (textAreaValue.length > 0) {
-	// 			cy.get(Board.#addColumnTitleInput)
-	// 				.wait(100)
-	// 				.realType(`{backspace}`)
-	// 				.wait(100)
-	// 				.then(() => {
-	// 					textArea.value = textAreaValue.slice(0, -1);
-	// 				});
-	// 			this.recursivelyDeleteTextFromTextArea();
-	// 		} else {
-	// 			cy.log(`Cleared text area`);
-	// 		}
-	// 	});
-	// }
+			if (textAreaValue.length > 0) {
+				cy.get(Board.#addColumnTitleInput)
+					.wait(100)
+					.realType(`{backspace}`)
+					.wait(100)
+					.then(() => {
+						textArea.value = textAreaValue.slice(0, -1);
+					});
+				this.recursivelyDeleteTextFromTextArea();
+			} else {
+				cy.log(`Cleared text area`);
+			}
+		});
+	}
 
-	// Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
-	// enterEditedColumnTitle(newColumnName) {
-	// 	this.recursivelyDeleteTextFromTextArea();
-	// 	cy.wait(500);
-	// 	cy.get(Board.#addColumnTitleInput).wait(1000).realType(newColumnName).wait(500);
-	// }
+	Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
+	enterEditedColumnTitle(newColumnName) {
+		this.recursivelyDeleteTextFromTextArea();
+		cy.wait(500);
+		cy.get(Board.#addColumnTitleInput).wait(1000).realType(newColumnName).wait(500);
+	} */
 
 	clickOutsideTheColumnToSaveTheColumn() {
 		cy.get(Board.#mainPageArea).click("center");
