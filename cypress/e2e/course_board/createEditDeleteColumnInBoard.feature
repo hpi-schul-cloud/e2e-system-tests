@@ -5,9 +5,9 @@ Feature: Course Board - To create, edit and delete column in the course board
   As a teacher I want to create, edit and delete the column in the course board so that I can manage the column in the board.
 
   @stable_test
-  Scenario: Teacher creates, edites, deletes a column board in the course, including pre-conditions
+  Scenario: Teacher creates, edits, deletes a column board in the course, including pre-conditions
 
-    # pre-condition: teacher and student log in to create their account in a same school
+    # pre-condition: teacher and admin log in to create their account in a same school
     Given I am logged in as a '<teacher>' at '<namespace>'
     Given I am logged in as a '<admin>' at '<namespace>'
 
@@ -21,7 +21,7 @@ Feature: Course Board - To create, edit and delete column in the course board
     #When I click the toggle switch to enable student visibility for teachers
     #When I click on button Save admin settings
 
-    # pre-condition: admin creates a course and assign teacher and student to the course
+    # pre-condition: admin creates a course and assign teacher to the course
     When I go to rooms overview
     When I click on FAB to create a new room
     When I click on new course create button in sub menu
@@ -47,31 +47,31 @@ Feature: Course Board - To create, edit and delete column in the course board
     # teacher adds a new Board
     Given I am logged in as a 'teacher1_brb' at 'brb'
     When I go to rooms overview
-    When I go to room 'CypressAut Test Creation and Deletion'
+    When I go to room '<course_title>'
     When I go to the tab contents in course detail page
     When I click on FAB to create new content
     When I click on the button FAB New Column Board
     Then I see the page Course Board detail
     When I click on the button three dot menu in course board
     When I click on the option Edit in three dot menu in course board
-    Then I enter the course board title 'Board Cy Title'
+    Then I enter the course board title '<board_title>'
     When I click on the page outside of the column
     # Note: Then I see the course Board name 'Board Cy Title'
     Then I see the chip Draft in the course board
 
     # teacher adds a new column in the Board
     When I click on the button Add column in the course board
-    When I enter the title name 'my cypress test column' in the column
+    When I enter the title name '<column_board_title>' in the column
     When I click on the page outside of the column
-    Then I see my column named 'my cypress test column'
+    Then I see my column named '<edited_clumn_board_title>'
     Then I click on the button with the Icon Plus to add a new card in the column
 
     # teacher edits the column in the Board
     When I click on three dot menu in the column
     When I select the option Edit in three dot menu in the column
-    Then I enter the title name 'edit cypress test column' in the column
+    Then I enter the title name '<edited_clumn_board_title>' in the column
     When I click on the page outside of the column
-    Then I see my column named 'edit cypress test column'
+    Then I see my column named '<edited_clumn_board_title>'
 
     # teacher deletes the column in the Board
     When I click on three dot menu in the column
@@ -81,5 +81,5 @@ Feature: Course Board - To create, edit and delete column in the course board
     Then I do not see the column
 
     Examples:
-      | namespace | teacher      | admin      | fullname_teacher  |
-      | brb       | teacher1_brb | admin1_brb | cypress teacher_1 |
+      | namespace | teacher      | admin      | fullname_teacher  | course_title                          | board_title    | column_board_title     | edited_clumn_board_title |
+      | brb       | teacher1_brb | admin1_brb | cypress teacher_1 | CypressAut Test Creation and Deletion | Board Cy Title | my cypress test column | edit cypress test column |

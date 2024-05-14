@@ -6,7 +6,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 	As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
 
 	@stable_test
-	Scenario: Teacher creates, edites, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
+	Scenario: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
 
 		# pre-condition: admin, teacher and student log in to create their account in a same school
 		Given I am logged in as a '<student>' at '<namespace>'
