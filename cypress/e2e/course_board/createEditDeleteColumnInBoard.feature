@@ -45,7 +45,7 @@ Feature: Course Board - To create, edit and delete column in the course board
     #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
 
     # teacher adds a new Board
-    Given I am logged in as a 'teacher1_brb' at 'brb'
+    Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to rooms overview
     When I go to room '<course_title>'
     When I go to the tab contents in course detail page
