@@ -15,7 +15,7 @@ Feature:  To access the H5P editor as a teacher.
 		#When I go to administration page
 		#When I go to school administration
 		# Note: remove the following line if old admin page is hidden
-		# Note: Currently admin page is not opening due to the issue on admin user created by using school API
+		# Note: currently admin page is not opening due to the issue on admin user created by using school API
 		#When I go to new school administration page
 		#When I click on general settings panel
 		#When I click the toggle switch to enable student visibility for teachers

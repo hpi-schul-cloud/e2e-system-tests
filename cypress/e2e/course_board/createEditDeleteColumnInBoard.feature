@@ -15,7 +15,7 @@ Feature: Course Board - To create, edit and delete column in the course board
     #When I go to administration page
     #When I go to school administration
     # Note: remove the following line if old admin page is hidden
-    # Note: Currently admin page is not opening due to the issue on admin user created by using school API.
+    # Note: currently admin page is not opening due to the issue on admin user created by using school API.
     #When I go to new school administration page
     #When I click on general settings panel
     #When I click the toggle switch to enable student visibility for teachers
@@ -36,12 +36,12 @@ Feature: Course Board - To create, edit and delete column in the course board
     Then I see section two area on the course create page
     Then I see class selection box to select the class for the room
     Then I see student selection box to select the student for the room
-    # Note: Student user is not needed in this feature so this step is commented out
+    # Note: student user is not needed in this feature so this step is commented out
     #When I select the student '<fullname_student>' in the list
     When I click on button Next Steps after selecting room participant details
     Then I see the section three as the finish page
     When I click on button To Course Overview on the finish page
-    # Note: This step is not applicable for the admin user
+    # Note: this step is not applicable for the admin user
     #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
 
     # teacher adds a new Board
@@ -56,7 +56,7 @@ Feature: Course Board - To create, edit and delete column in the course board
     When I click on the option Edit in three dot menu in course board
     Then I enter the course board title '<board_title>'
     When I click on the page outside of the column
-    # Note: Then I see the course Board name 'Board Cy Title'
+    #Then I see the course Board name 'Board Cy Title'
     Then I see the chip Draft in the course board
 
     # teacher adds a new column in the Board

@@ -41,7 +41,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on button Next Steps after selecting room participant details
     Then I see the section three as the finish page
     When I click on button To Course Overview on the finish page
-    # Note: This step is not applicable for the admin user
+    # Note: this step is not applicable for the admin user
     #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
 
     # teacher creates topic in a course

@@ -17,7 +17,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		#When I go to administration page
 		#When I go to school administration
 		# Note: remove the following line if old admin page is hidden
-		# Note: Currently admin page is not opening due to the issue on admin user created by using school API
+		# Note: currently admin page is not opening due to the issue on admin user created by using school API
 		#When I go to new school administration page
 		#When I click on general settings panel
 		#When I click the toggle switch to enable student visibility for teachers
@@ -42,7 +42,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		When I click on button Next Steps after selecting room participant details
 		Then I see the section three as the finish page
 		When I click on button To Course Overview on the finish page
-		# Note: This step is not applicable for the admin user
+		# Note: this step is not applicable for the admin user
 		#Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
 
 		# teacher creates task as draft from room
@@ -72,7 +72,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		When I click on Edit in dot menu
 		Then I can see edit task page 'CypressAut Task Creating and Deleting Test'
 		When I upload file 'example_jpg.jpg'
-		# Note: Then the page reloads (this happens automatically after file upload)
+		# Note: then the page reloads (this happens automatically after file upload)
 		When I enter title 'CypressAut Task Creating, Editing, Deleting Test'
 		When I click on Enable Group Submission
 		When I set task-visibility-start-date to 'today' at '0100'
@@ -196,7 +196,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
 		# teacher restores the finished task from room
 		When I go to tasks overview
-		# Note: And I open task list with due date // Icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
+		# Note: below step is comented becasue icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
+		#And I open task list with due date
 		Then I do not see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as teacher
 		When I click on finished tab
 		Then I see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as teacher
