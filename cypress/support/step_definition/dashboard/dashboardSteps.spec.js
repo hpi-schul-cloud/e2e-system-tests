@@ -34,12 +34,12 @@ Then(
 	}
 );
 
-Then("I can see the assigned task {string}", (taskName) => {
-	dashboard.seeAssignedTasks(taskName);
+Then("I can see the assigned task {string} of course {string}", (taskName, courseName) => {
+	dashboard.seeAssignedTasks(taskName, courseName);
 });
 
-Then("I can see the draft task {string}", (draftName) => {
-	dashboard.seeDraftTasks(draftName);
+Then("I can see the draft task {string} of course {string}", (draftName, courseName) => {
+	dashboard.seeDraftTasks(draftName, courseName);
 });
 
 Then("I do not see school news with title {string}", (schoolNewsTitle) => {
