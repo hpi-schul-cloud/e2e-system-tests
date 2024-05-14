@@ -5,21 +5,30 @@ Feature: Topics - To create, edit and delete topics by the teacher.
   As a teacher I want to create, edit and delete a new topic so that the student can see it
 
   @stable_test
-  # This scenario is to create the users using api needed for this feature file.
-  Scenario: Admin and teacher log in to create their account in a same school as a pre-condition
-    Given I am logged in as a 'teacher1_brb' at 'brb'
-    Given I am logged in as a 'admin1_brb' at 'brb'
+  Scenario: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
-  @stable_test
-  Scenario: Admin creates a course and assign teacher to the course as a pre-condition
-    Given I am logged in as a 'admin1_brb' at 'brb'
+    # pre-condition: admin, teacher and student log in to create their account in a same school
+    Given I am logged in as a '<teacher>' at '<namespace>'
+    Given I am logged in as a '<admin>' at '<namespace>'
+
+    # pre-condition: Admin enables student visiblity for a teacher to create a new course
+    #When I go to administration page
+    #When I go to school administration
+    # Note: remove the following line if old admin page is hidden
+    # Note: Currently admin page is not opening due to the issue on admin user created by using school API
+    #When I go to new school administration page
+    #When I click on general settings panel
+    #When I click the toggle switch to enable student visibility for teachers
+    #When I click on button Save admin settings
+
+    # pre-condition: admin creates a course and assign teacher to the course
     When I go to rooms overview
     When I click on FAB to create a new room
     When I click on new course create button in sub menu
     Then I see section one area on the course create page
     When I enter the course title 'CypressAut Test Creation and Deletion'
     When I select room colour as red
-    Then I select teacher 'cypress teacher_1' is selected by default
+    Then I select teacher '<fullname_teacher>' is selected by default
     Then I see substitute teacher selection box
     Then I see date pickers to start and end the course as per school year
     Then I see button to create a course time table container
@@ -27,17 +36,16 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I see section two area on the course create page
     Then I see class selection box to select the class for the room
     Then I see student selection box to select the student for the room
-    #Note: student user is not needed in this feature so this step is commented out
+    # Note: student user is not needed in this feature so this step is commented out
     #When I select the student 'cypress student_1' in the list
     When I click on button Next Steps after selecting room participant details
     Then I see the section three as the finish page
     When I click on button To Course Overview on the finish page
-  #Note: Not applicable for the admin user so this step is commented out
-  #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
+    # Note: This step is not applicable for the admin user
+    #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
 
-  @stable_test
-  Scenario: Teacher creates topic from room
-    Given I am logged in as a 'teacher1_brb' at 'brb'
+    # teacher creates topic in a course
+    Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to rooms overview
     When I go to room 'CypressAut Test Creation and Deletion'
     And I click on FAB to create new content
@@ -54,7 +62,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on button Add Learning Material to topic
     When I enter title 'Cy Title for Learning Material Element in Topic' into element Learning Material
     Then I see second learning material button in the content area
-    # currently step for adding material is excluded because this process is via new browser window
+    # Note: currently step for adding material is excluded because this process is via new browser window
     When I click on button Add Etherpad to topic
     When I enter title 'Cy Title for Etherpad Element in Topic' into element Etherpad in element position '3'
     When I enter description for the ether pad 'this is my epad description' in element position '3'
@@ -68,8 +76,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on last breadcrump element in topbar navigation
     Then I can see topic 'Cy Topic Creating and Deleting Test' on course page
 
-  @stable_test
-  Scenario: Teacher edits topic from room
+    # teacher edits the topic
     When I go to rooms overview
     When I go to room 'CypressAut Test Creation and Deletion'
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test'
@@ -92,7 +99,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see form element Text on position '4'
     When I enter title 'Cy New text element Title' into element Text in element position '4'
     When I enter description 'Cy New this is the description of the topic. It is used for automated Cypress tests.' into element Text in element position '4'
-    # NOTICE: steps for later implementation are commented out
+    # Note: steps for later implementation are commented out
     # When I load up a file 'example_jpg.jpg' to the description of form element Text on position '4'
     # When I move Text element on position '4' to position '3'
     # Then I can see form element Text on position '3'
@@ -101,7 +108,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I enter description for the ether pad 'changed etherpad description' in element position '2'
     When I click on save button to save changes
     Then I see topic detail page "Cy Topic Creating and Deleting Test - Edited topic" with content elements "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic Changed", "Cy Title for Task Element in Topic" and "Cy New text element Title"
-    # NOTICE: steps for later implementation are commented out
+    # Note: steps for later implementation are commented out
     # Then I see file 'example_jpg.jpg' on topic page
     # When I click on button Edit on topic page
     # Then I can see form element Text on position '3'
@@ -111,8 +118,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on last breadcrump element in topbar navigation
     Then I can see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
-  @stable_test
-  Scenario: Teacher deletes topic from room
+    # teacher deletes the topic
     When I go to rooms overview
     When I go to room 'CypressAut Test Creation and Deletion'
     When I click on three dot menu of topic 'Cy Topic Creating and Deleting Test - Edited topic'
@@ -123,3 +129,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on Delete in dot menu of topic
     When I click on Delete in confirmation window
     Then I can not see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
+
+    Examples:
+      | namespace | admin      | teacher      | fullname_teacher  |
+      | brb       | admin1_brb | teacher1_brb | cypress teacher_1 |
