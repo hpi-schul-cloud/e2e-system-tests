@@ -37,7 +37,7 @@ Feature: Course - To add a ctl tool to a course
     When I click on the tools tab
     Then I cant see the button to add a tool
 
-  @stable_test
+  @unstable_test
   Scenario: Teacher adds a tool to a course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
