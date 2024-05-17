@@ -11,16 +11,6 @@ Feature:  To access the H5P editor as a teacher.
 		Given I am logged in as a '<teacher>' at '<namespace>'
 		Given I am logged in as a '<admin>' at '<namespace>'
 
-		# pre-condition: admin enables student visiblity for a teacher to create a new course
-		#When I go to administration page
-		#When I go to school administration
-		# Note: remove the following line if old admin page is hidden
-		# Note: currently admin page is not opening due to the issue on admin user created by using school API
-		#When I go to new school administration page
-		#When I click on general settings panel
-		#When I click the toggle switch to enable student visibility for teachers
-		#When I click on button Save admin settings
-
 		# pre-condition: admin creates a course and assign teacher to the course
 		When I go to rooms overview
 		When I click on FAB to create a new room
