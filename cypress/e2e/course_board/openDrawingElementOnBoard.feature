@@ -1,27 +1,16 @@
+@api-migrated
 @pr
 @release
 @stable_test
-@api-migrated
 Feature: Course Board - Opening a drawing element on a course page
 
     As a teacher and student I want to open already created drawing element on a course page
     Scenario Outline: Users (admin, teacher, student), create a course with board and open TLDraw, including pre-conditions
-        Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
-
-        # pre-Condition: Admin enables student visiblity for a teacher to create a new course
-        # When I go to administration page
-        # When I go to school administration
-        # Note: remove the following line if old admin page is hidden
-        # Note: Currently admin page is not opening due to the issue on admin user created by using school API
-        # When I go to new school administration page
-        # When I click on general settings panel
-        # When I click the toggle switch to enable student visibility for teachers
-        # When I click on button Save admin settings
-
-        # pre-Condition: Creating new course
         Given I am logged in as a '<admin>' at '<namespace>'
+
+        # pre-condition: creating new course, assign it to teacher and student
         When I go to rooms overview
         When I click on FAB to create a new room
         When I click on new course create button in sub menu
@@ -38,9 +27,9 @@ Feature: Course Board - Opening a drawing element on a course page
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
         # Note: this step is not applicable for the admin user
-        # Then I see the course '<course_name>' on the room overview page
+        #Then I see the course '<course_name>' on the room overview page
 
-        # pre-Condition: Teacher create course board, add whiteboard and publish the board
+        # pre-condition: teacher create course board, add whiteboard and publish the board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<course_name>'
@@ -56,7 +45,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on the button three dot menu in course board
         Then I click on the option Publish in three dot menu in course board
 
-        # pre-Condition: Teacher adds a new column
+        # pre-condition: teacher adds a new column
         When I click on the button Add column in the course board
         When I click on the page outside of the column
         When I click on plus icon to add card in column
