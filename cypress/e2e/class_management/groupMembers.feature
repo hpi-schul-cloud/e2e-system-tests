@@ -1,5 +1,5 @@
 #@release
-@stable_test
+@unstable_test
 Feature: Group - To show members in a group
 
   As a teacher I want to see the members in a group
