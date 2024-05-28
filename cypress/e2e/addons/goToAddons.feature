@@ -1,3 +1,4 @@
+@api_migrated
 @release
 Feature: Addons - To go to addons page on NBC
 

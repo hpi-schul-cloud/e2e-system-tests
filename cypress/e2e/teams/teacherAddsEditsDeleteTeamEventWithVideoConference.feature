@@ -1,3 +1,4 @@
+# Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @release
 Feature: Team - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 

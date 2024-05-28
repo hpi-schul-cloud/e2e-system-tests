@@ -1,5 +1,5 @@
-@release
 @api_migrated
+@release
 Feature: Course - To add a ctl tool to a course
 
   As a teacher I want to add a new ctl tool to my course.

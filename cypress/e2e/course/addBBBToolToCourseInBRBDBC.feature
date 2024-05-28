@@ -1,3 +1,4 @@
+# Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @release
 Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with admin permission
 
@@ -5,7 +6,7 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
 
   @stable_test
   Scenario Outline: Admin enables and disables the video conference option in the school settings page '<namespace>', while teachers can add and remove the video conference tool within the course
-  #Admin enables the video conference in the school settings page
+    #Admin enables the video conference in the school settings page
     Given I am logged in as a '<user_1>' at '<namespace>'
     When I go to administration page
     When I click on manage school card
@@ -13,7 +14,7 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     When I click on general settings panel
     Then I enable the video conference
     Then I click on button Save admin settings
-  #Teacher adds the BBB tool in the course
+    #Teacher adds the BBB tool in the course
     Given I am logged in as a '<user_2>' at '<namespace>'
     When I go to rooms overview
     When I go to room 'German'
@@ -28,12 +29,12 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     When I click on the BBB Video Conference BigBlueButton in course
     Then I see the modal to start the BBB video conference in DBC and BRB
     Then I click on button Cancel in BBB modal
-  #Teacher removes the BBB tool in the course
+    #Teacher removes the BBB tool in the course
     When I click on icon Delete on the BBB Video Conference BigBlueButton
     Then I see the modal content for confirmation of deletion
     When I click on button Delete in BBB modal
     Then I do not see the BBB Video Conference BigBlueButton in tools tab
-  #Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
+    #Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
     Given I am logged in as a '<user_1>' at '<namespace>'
     When I go to administration page
     When I click on manage school card
@@ -41,7 +42,7 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     When I click on general settings panel
     Then I disable the video conference
     Then I click on button Save admin settings
-  #Teacher can not add bbb tool in the course
+    #Teacher can not add bbb tool in the course
     Given I am logged in as a '<user_2>' at '<namespace>'
     When I go to rooms overview
     When I go to room 'German'
@@ -51,6 +52,6 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     Then I see list of tools for course
     Then I do not see BBB Video Conference in DBC and BRB
     Examples:
-        | user_1      | user_2        | namespace |
-        | admin1_brb  | teacher1_brb  | brb       |
-        | admin1_dbc  | teacher1_dbc  | dbc       |
+      | user_1     | user_2       | namespace |
+      | admin1_brb | teacher1_brb | brb       |
+      | admin1_dbc | teacher1_dbc | dbc       |
