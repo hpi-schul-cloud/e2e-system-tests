@@ -1,3 +1,4 @@
+# Note: School api migration is blocked due to school api users login issue in dbc.
 @release
 Feature: Account - To go to account settings page on dbc
 

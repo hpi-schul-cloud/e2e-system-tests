@@ -1,3 +1,4 @@
+@api_migrated
 @release
 Feature: Team - Create, delete and edit operations on Teams
 

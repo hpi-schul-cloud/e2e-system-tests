@@ -1,3 +1,4 @@
+# Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @release
 Feature: Team - Student managed teams (on BRB)
 
