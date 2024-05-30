@@ -8,14 +8,8 @@
 		"generate:report": "node reporter.js",
 		"cy:open:local": "cypress open --browser chrome -e tags=@stable_test,environmentName=local",
 		"cy:open:staging": "cypress open --browser chrome -e tags=\"@stable_test and (not @non_staging_test)\",environmentName=staging",
-
-"cy:open:local:non_staging": "cypress open --browser chrome -e tags=\"@stable_test and @api-migrated and (@non_staging_test or @common_data)\",environmentName=local",
-
-
-"cy:open:local:staging": "cypress open --browser chrome -e tags=\"@stable_test and @api-migrated and @staging_test\",environmentName=test",
-
-"cy:open:unstable": "cypress open --browser chrome -e tags=\"@unstable_test\",environmentName=local",
-
+		"cy:open:local:non_staging": "cypress open --browser chrome -e tags=\"@stable_test and @api-migrated and @non_staging_test\",environmentName=local",
+		"cy:open:local:staging": "cypress open --browser chrome -e tags=\"@stable_test and @api-migrated and @staging_test\",environmentName=staging",
 		"tag:stable:staging": "cypress run --browser chrome -e tags=\"@stable_test and (not @non_staging_test)\",environmentName=staging",
 		"tag:stable:local": "cypress run --browser chrome -e tags=@stable_test,environmentName=local",
 		"tag:stable:pr:local": "cypress run --browser chrome -e tags=\"@pr and @stable_test\",environmentName=local",

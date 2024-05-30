@@ -68,17 +68,11 @@ Feature: Course Board - Opening a drawing element on a course page
 
         @non_staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name   | fullname_teacher   | fullname_student   | board_title   |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | <course_name> | <fullname_teacher> | <fullname_student> | <board_title> |
+            | admin      | teacher      | student      | namespace | course_name              | fullname_teacher  | fullname_student  | board_title    |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut TLDraw Course | cypress teacher_1 | cypress student_1 | Board Cy Title |
+
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name   | fullname_teacher   | fullname_student   | board_title   |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | <course_name> | <fullname_teacher> | <fullname_student> | <board_title> |
-        @common_data
-        Examples:
-            | course_name | fullname_teacher  | fullname_student  | board_title    |
-            | German      | cypress teacher_1 | cypress student_1 | Board Cy Title |
+            | admin      | teacher      | student      | namespace | course_name              | fullname_teacher | fullname_student | board_title    |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut TLDraw Course | Karl Herzog      | Herbert Kraft    | Board Cy Title |
 
-# Examples:
-#     | admin      | teacher      | student      | namespace | course_name | fullname_teacher  | fullname_student  | board_title    |
-#     | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | German      | cypress teacher_1 | cypress student_1 | Board Cy Title |
