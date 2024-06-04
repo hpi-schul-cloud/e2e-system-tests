@@ -172,9 +172,8 @@ class Management {
 		cy.get(Management.#studentTeamCheckbox).should("be.checked");
 	}
 
-	navigateToAdministration() {
+	openAdministrationInMenu() {
 		cy.get(Management.#administrationOverviewNavigationButton).click();
-		cy.url().should("include", "/administration");
 	}
 
 	navigateToStudentAdministration() {

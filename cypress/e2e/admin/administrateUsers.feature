@@ -6,7 +6,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
   @stable_test
   Scenario: Adding a new student
     Given I am logged in as a 'admin1_brb' at 'brb'
-    When I go to administration page
+    When I click on administration in menu
     And I go to student administration
     When I click on FAB
     When I click on Add Student in opened FAB
@@ -16,7 +16,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Editing a new student
-    When I go to administration page
+    When I click on administration in menu
     And I go to student administration
     And I enter 'student' email 'adam.riese@example.com' in search input field
     And I click edit student button for 'adam.riese@example.com'
@@ -28,7 +28,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Deleting a student
-    When I go to administration page
+    When I click on administration in menu
     And I go to student administration
     And I enter 'student' email 'alex.abramovic@example.com' in search input field
     And I click edit student button for 'alex.abramovic@example.com'
@@ -38,7 +38,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Adding a new teacher
-    When I go to administration page
+    When I click on administration in menu
     And I go to teacher administration
     When I click on FAB
     When I click on Add Teacher in opened FAB
@@ -48,7 +48,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Editing a new teacher
-    When I go to administration page
+    When I click on administration in menu
     And I go to teacher administration
     And I enter 'teacher' email 'karl.mueller@example.com' in search input field
     And I click edit teacher button for 'karl.mueller@example.com'
@@ -60,7 +60,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
 
   @stable_test
   Scenario: Deleting a teacher
-    When I go to administration page
+    When I click on administration in menu
     And I go to teacher administration
     And I enter 'teacher' email 't.mueschmidt@example.com' in search input field
     And I click edit teacher button for 't.mueschmidt@example.com'

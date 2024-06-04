@@ -53,7 +53,7 @@ Feature: Course Board - To create, edit and delete column in the course board
     When I click on the button Add column in the course board
     When I enter the title name '<column_board_title>' in the column
     When I click on the page outside of the column
-    Then I see my column named '<edited_clumn_board_title>'
+    Then I see my column named '<column_board_title>'
     Then I click on the button with the Icon Plus to add a new card in the column
 
     # teacher edits the column in the Board

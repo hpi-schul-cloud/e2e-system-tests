@@ -23,8 +23,8 @@ When("I click on manage school card", () => {
 	management.clickOnManageSchoolCard();
 });
 
-When("I go to administration page", () => {
-	management.navigateToAdministration();
+When("I click on administration in menu", () => {
+	management.openAdministrationInMenu();
 });
 
 When("I go to school administration", () => {
