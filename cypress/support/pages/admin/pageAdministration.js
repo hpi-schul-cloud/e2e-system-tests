@@ -12,7 +12,7 @@ class Management {
 	static #editStudentButton = '[data-testid="edit_student_button"]';
 	static #firstNameEditForm = "input[name='firstName']";
 	static #lastNameEditForm = "input[name='lastName']";
-	static #emailEditForm = "input[name='email']";
+	static #emailEditForm = "input[id='email']";
 	static #submitButton = '[data-testid="button_save_user"]';
 	static #deleteButton = '[data-testid="button_delete_user"]';
 	static #deleteUserButtonConfirmationOnModal =
@@ -228,9 +228,10 @@ class Management {
 	}
 
 	fillUserCreationForm(forename, surname, email) {
+		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
-		cy.get(Management.#emailCreationForm).type(email);
+		cy.get(Management.#emailCreationForm).type(randomNumber + email);
 	}
 
 	clickOnAddButton(role) {
@@ -290,17 +291,18 @@ class Management {
 	}
 
 	changeEmail(newEmail) {
+		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
 		cy.get(Management.#emailEditForm).clear();
-		cy.get(Management.#emailEditForm).type(newEmail);
+		cy.get(Management.#emailEditForm).type(randomNumber + newEmail);
 	}
 
 	clickSaveButton() {
 		cy.get(Management.#submitButton).eq(0).click();
 	}
 
-	deleteUser(email) {
-		cy.get(Management.#emailEditForm)
-			.should("have.value", email)
+	deleteUser(lastName) {
+		cy.get(Management.#lastNameEditForm)
+			.should("have.value", lastName)
 			.then(($matchEmail) => {
 				this.clickDeleteButton();
 			});

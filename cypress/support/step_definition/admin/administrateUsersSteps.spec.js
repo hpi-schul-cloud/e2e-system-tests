@@ -51,7 +51,7 @@ When("I click edit student button for {string}", (email) => {
 	management.clickEditStudentButton(email);
 });
 
-When("I click delete user button to delete user with email {string}", (email) => {
+When("I click delete user button to delete user with lastname {string}", (email) => {
 	management.deleteUser(email);
 });
 
