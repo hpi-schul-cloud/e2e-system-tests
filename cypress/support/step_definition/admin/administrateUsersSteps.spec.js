@@ -10,7 +10,7 @@ const management = new Management();
 // -->\step_definition\authentication\loginStep.spec.js
 // --> \step_definition\management\CommonManagementSteps.spec.js
 
-//Scenario: Adding a new student
+//Scenario: Adding a new user
 
 When(
 	"I fill out the user creation form for {string} {string} with email {string}",
@@ -27,7 +27,7 @@ Then("I can see the user with email {string} in the table", (email) => {
 	management.userIsVisibleInTable(email);
 });
 
-//Scenario: Editing a new student
+//Scenario: Editing a new user
 
 When("I enter {string} email {string} in search input field", (role, keyword) => {
 	management.enterNameForSearch(role, keyword);
@@ -45,10 +45,10 @@ When("I click save changes button", () => {
 	management.clickSaveButton();
 });
 
-// Scenario: Deleting a student
+// Scenario: Deleting an user
 
-When("I click edit student button for {string}", (email) => {
-	management.clickEditStudentButton(email);
+When("I click edit {string} button for {string}", (role, email) => {
+	management.clickEditUserButton(role, email);
 });
 
 When("I click delete user button to delete user with lastname {string}", (email) => {
@@ -62,20 +62,6 @@ When("I click on delete button in pop up", () => {
 Then("I can not see user {string} in the table", (email) => {
 	management.userIsNotVisibleInTable(email);
 });
-
-//Scenario: Adding a new teacher
-
-//Scenario: Editing a new teacher
-
-When("I click edit teacher button for {string}", (email) => {
-	management.clickEditTeacherButton(email);
-});
-
-Then("I can see the edited teacher in the table", () => {
-	management.editedUserIsVisibleInTable();
-});
-
-//Scenario: Deleting a teacher
 
 When("I click delete user button", () => {
 	management.clickDeleteButton();

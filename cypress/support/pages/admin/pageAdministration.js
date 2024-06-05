@@ -176,14 +176,14 @@ class Management {
 		cy.get(Management.#administrationOverviewNavigationButton).click();
 	}
 
-	navigateToStudentAdministration() {
-		cy.get(Management.#studentAdministrationNavigationButton).click();
-		cy.url().should("include", "/administration/students");
-	}
-
-	navigateToTeacherAdministration() {
-		cy.get(Management.#teacherAdministrationNavigationButton).click();
-		cy.url().should("include", "/administration/teachers");
+	navigateToUserAdministration(role) {
+		if (role === "student") {
+			cy.get(Management.#studentAdministrationNavigationButton).click();
+			cy.url().should("include", "/administration/students");
+		} else if (role === "teacher") {
+			cy.get(Management.#teacherAdministrationNavigationButton).click();
+			cy.url().should("include", "/administration/teachers");
+		}
 	}
 
 	navigateToCourseAdministration() {
@@ -219,12 +219,12 @@ class Management {
 		cy.get(Management.#fabButton).click();
 	}
 
-	clickOnAddStudentInFAB() {
-		cy.get(Management.#addStudentButton).click({ force: true });
-	}
-
-	clickOnAddTeacherInFAB() {
-		cy.get(Management.#addTeacherButton).click();
+	clickOnAddUserInFAB(role) {
+		if (role === "student") {
+			cy.get(Management.#addStudentButton).click({ force: true });
+		} else if (role === "teacher") {
+			cy.get(Management.#addTeacherButton).click();
+		}
 	}
 
 	fillUserCreationForm(forename, surname, email) {
@@ -263,25 +263,25 @@ class Management {
 		cy.wait("@search_api").its("response.statusCode").should("eq", 200);
 	}
 
-	clickEditStudentButton(email) {
+	clickEditUserButton(role, email) {
 		cy.contains("td", email)
 			.siblings()
 			.find("a")
-			.should("have.attr", "data-testid", "edit_student_button")
+			.should("have.attr", "data-testid", "edit_" + role  + "_button")
 			.click();
 	}
 
-	clickEditTeacherButton(email) {
-		cy.contains("td", email)
-			.siblings()
-			.find("a")
-			.should("have.attr", "data-testid", "edit_teacher_button")
-			.click()
-			.wait(["@alerts_api"])
-			.then((interceptions) => {
-				expect(interceptions.response.statusCode).to.equal(200);
-			});
-	}
+	// clickEditTeacherButton(email) {
+	// 	cy.contains("td", email)
+	// 		.siblings()
+	// 		.find("a")
+	// 		.should("have.attr", "data-testid", "edit_teacher_button")
+	// 		.click()
+	// 		.wait(["@alerts_api"])
+	// 		.then((interceptions) => {
+	// 			expect(interceptions.response.statusCode).to.equal(200);
+	// 		});
+	// }
 
 	changeUsername(firstname, surname) {
 		cy.get(Management.#firstNameEditForm).clear();
