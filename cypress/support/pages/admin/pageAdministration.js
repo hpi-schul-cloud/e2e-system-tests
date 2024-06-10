@@ -177,13 +177,10 @@ class Management {
 	}
 
 	navigateToUserAdministration(role) {
-		if (role === "student") {
-			cy.get(Management.#studentAdministrationNavigationButton).click();
-			cy.url().should("include", "/administration/students");
-		} else if (role === "teacher") {
-			cy.get(Management.#teacherAdministrationNavigationButton).click();
-			cy.url().should("include", "/administration/teachers");
-		}
+		let navToUserManagementButton = '[data-testid="' + (role === 'student' ? 'Schüler:innen' : 'Lehrkräfte') + '"]'
+		cy.get(navToUserManagementButton).click();
+		let expectedURL = "/administration/" + role;
+		cy.url().should("include", expectedURL);
 	}
 
 	navigateToCourseAdministration() {
@@ -220,11 +217,8 @@ class Management {
 	}
 
 	clickOnAddUserInFAB(role) {
-		if (role === "student") {
-			cy.get(Management.#addStudentButton).click({ force: true });
-		} else if (role === "teacher") {
-			cy.get(Management.#addTeacherButton).click();
-		}
+		let addUserButtonInFAB = '[data-testid="fab_button_add_' + role + 's"]';
+		cy.get(addUserButtonInFAB).click({ force: true });
 	}
 
 	fillUserCreationForm(forename, surname, email) {
@@ -259,15 +253,17 @@ class Management {
 		} else {
 			cy.intercept("**/students?**").as("search_api");
 		}
+		cy.get(Management.#searchbar).clear();
 		cy.get(Management.#searchbar).type(keyword);
 		cy.wait("@search_api").its("response.statusCode").should("eq", 200);
 	}
 
 	clickEditUserButton(role, email) {
+		let editUserButton = "edit_" + role  + "_button";
 		cy.contains("td", email)
 			.siblings()
 			.find("a")
-			.should("have.attr", "data-testid", "edit_" + role  + "_button")
+			.should("have.attr", "data-testid", editUserButton)
 			.click();
 	}
 
