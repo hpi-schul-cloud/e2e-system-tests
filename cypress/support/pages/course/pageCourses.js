@@ -89,9 +89,11 @@ class Courses {
 	static #dialogClose = '[data-testid="dialog-close"]';
 	static #toolCardMenu = '[data-testid="tool-card-menu"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
+	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #protectedParameter = '[data-testid="protected"]';
 	static #saveBtn = '[data-testid="save-button"]';
 	static #incompleteChip = '[data-testid="tool-card-status"]';
+	static #deactivatedChip = '[data-testid="tool-card-status-deactivated"]';
 	static #incompleteOperationalChip =
 		'[data-testid="tool-card-status-incompleteOperational"]';
 	static #toolCardThreeDotBtn = '[data-testid="room-tool-three-dot-button"]';
@@ -143,6 +145,11 @@ class Courses {
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
+	static #toolDisplayNameInputField = '[data-testid="parameter-display-name"]';
+	static #delteToolDialog = '[data-testid="delete-dialog"]';
+	static #delteDialogTitle = '[data-testid="dialog-title"]';
+	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
+	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -395,10 +402,6 @@ class Courses {
 			});
 	}
 
-	showRoomPage(courseName) {
-		cy.get(Courses.#courseDetailPageTitle).should("contain.text", courseName);
-	}
-
 	navigateToLtiTools() {
 		cy.get(Courses.#ltiToolsTab).click();
 	}
@@ -489,10 +492,6 @@ class Courses {
 
 	clickOnToolConfigurationSelect() {
 		cy.get(Courses.#toolConfigurationSelect).click();
-	}
-
-	enterAnToolNameInToolConfigurationSelect(toolName) {
-		cy.get(Courses.#toolConfigurationSelect).type(toolName);
 	}
 
 	courseIsVisibleOnOverviewPage(courseName) {
@@ -883,22 +882,6 @@ class Courses {
 			.should("have.length.gt", 0);
 	}
 
-	checkIfToolIsVisible(toolName) {
-		cy.get(Courses.#toolConfigurationSelectItem).should("not.contain", toolName);
-	}
-
-	checkIfToolIsVisibleInSelection(toolName) {
-		cy.get(Courses.#toolConfigurationSelectItem).contains(toolName);
-	}
-
-	selectTool(toolName) {
-		cy.get(Courses.#toolConfigurationSelectItem).contains(toolName).click();
-	}
-
-	fillOutContextParameter() {
-		cy.get(Courses.#requiredParameterInputField).type("parameter");
-	}
-
 	clickCopyCourseButton() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnCopyCourse).click();
@@ -926,6 +909,26 @@ class Courses {
 
 	seeNumberOfTools(count) {
 		cy.get(Courses.#roomExternalToolSection).children().should("have.length", count);
+	}
+
+	seeToolIsMarkedAsDeactivated(toolName) {
+		const toolCard = cy
+			.get(Courses.#roomExternalToolSection)
+			.find("div")
+			.contains(toolName);
+		toolCard.parent("div").siblings("div").find(Courses.#deactivatedChip).should("exist");
+	}
+
+	seeToolIsNotMarkedAsDeactivated(toolName) {
+		const toolCard = cy
+			.get(Courses.#roomExternalToolSection)
+			.find("div")
+			.contains(toolName);
+		toolCard
+			.parent("div")
+			.siblings("div")
+			.find(Courses.#deactivatedChip)
+			.should("not.exist");
 	}
 
 	seeToolIsMarkedAsIncomplete(toolName) {
@@ -995,6 +998,26 @@ class Courses {
 		cy.get(Courses.#toolEditBtn).click();
 	}
 
+	clickOnToolDeleteButton(toolName) {
+		cy.get(Courses.#toolDeleteBtn).click();
+	}
+
+	confirmDeleteToolDialog() {
+		cy.get(Courses.#confirmDeleteDialogButton).click();
+	}
+
+	seeDeleteDialog() {
+		cy.get(Courses.#delteToolDialog).should("be.visible");
+		cy.get(Courses.#delteDialogTitle).should("be.visible");
+		cy.get(Courses.#delteDialogContent).should("be.visible");
+		cy.get(Courses.#confirmDeleteDialogButton).should("be.visible");
+	}
+
+	schoolExternalToolIsNotVisibleInToolSelection(toolName) {
+		cy.get(Courses.#toolConfigurationSelect).click();
+		cy.get(Courses.#toolConfigurationSelectItem).contains(toolName).should("not.exist");
+	}
+
 	editMissingToolParameterValue() {
 		cy.get(Courses.#protectedParameter).click();
 		cy.get("div").contains("Nein").click();
@@ -1006,7 +1029,11 @@ class Courses {
 	}
 
 	fillInCustomParameter(paramName, value) {
-		cy.get(`[data-testid="${paramName}"]`).click().type(value);
+		cy.get(`[data-testid="${paramName}"]`).find('input').clear().type(value);
+	}
+
+	fillInDisplayName(toolName) {
+		cy.get(Courses.#toolDisplayNameInputField).find('input').clear().type(toolName);
 	}
 
 	clickOnConfirmButton() {
