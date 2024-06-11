@@ -177,7 +177,9 @@ class Management {
 	}
 
 	navigateToUserAdministration(role) {
-		let navToUserManagementButton = '[data-testid="' + (role === 'student' ? 'Schüler:innen' : 'Lehrkräfte') + '"]'
+		let navToUserManagementButton = role === "student"
+			? Management.#studentAdministrationNavigationButton
+			: Management.#teacherAdministrationNavigationButton;
 		cy.get(navToUserManagementButton).click();
 		let expectedURL = "/administration/" + role;
 		cy.url().should("include", expectedURL);
@@ -217,7 +219,9 @@ class Management {
 	}
 
 	clickOnAddUserInFAB(role) {
-		let addUserButtonInFAB = '[data-testid="fab_button_add_' + role + 's"]';
+		let addUserButtonInFAB = (role === "student")
+			? Management.#addStudentButton
+			: Management.#addTeacherButton;
 		cy.get(addUserButtonInFAB).click({ force: true });
 	}
 
