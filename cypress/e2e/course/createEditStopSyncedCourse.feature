@@ -62,7 +62,7 @@ Feature: Teacher can create, update and stop a synchronized course
     When I go to room '<course_title>'
     Then I see the synced chip next to the title on the room page
     When I open page Edit course
-    Then I can see page Edit course
+    Then I see page Edit course
     Then I see the course title form contains '<course_title>'
     When I edit the title of the course to '<course_title_new>'
     Then I see the course title form contains '<course_title_new>'
