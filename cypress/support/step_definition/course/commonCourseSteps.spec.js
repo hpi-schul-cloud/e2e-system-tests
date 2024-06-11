@@ -35,10 +35,6 @@ When("I go to room {string}", (roomName) => {
 	courses.navigateToRoomBoard(roomName);
 });
 
-Then("I can see room page {string}", (roomName) => {
-	courses.showRoomPage(roomName);
-});
-
 Then("I see the course {string} on the room overview page", (courseName) => {
 	courses.courseIsVisiblOnOverviewPage(courseName);
 });
@@ -55,7 +51,7 @@ When("I open page Edit course", () => {
 	courses.openCourseEditPage();
 });
 
-Then("I can see page Edit course", () => {
+Then("I see page Edit course", () => {
 	courses.showCourseEditPage();
 });
 
@@ -193,7 +189,7 @@ When("I close the dialog", () => {
 	courses.clickOnDialogClose();
 });
 
-When("I see room page {string}", (roomName) => {
+Then("I see room page {string}", (roomName) => {
 	courses.seeRoomPage(roomName);
 });
 
