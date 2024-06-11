@@ -23,8 +23,8 @@ When("I click on manage school card", () => {
 	management.clickOnManageSchoolCard();
 });
 
-When("I go to administration page", () => {
-	management.navigateToAdministration();
+When("I click on administration in menu", () => {
+	management.openAdministrationInMenu();
 });
 
 When("I go to school administration", () => {
@@ -51,12 +51,8 @@ When("I click save general settings button", () => {
 	management.clickSaveGeneralSettingsButton();
 });
 
-When("I go to student administration", () => {
-	management.navigateToStudentAdministration();
-});
-
-When("I go to teacher administration", () => {
-	management.navigateToTeacherAdministration();
+When("I go to {string} administration", (role) => {
+	management.navigateToUserAdministration(role);
 });
 
 When("I go to team administration", () => {
@@ -71,10 +67,6 @@ When("I click on FAB", () => {
 	management.clickOnFAB();
 });
 
-When("I click on Add Student in opened FAB", () => {
-	management.clickOnAddStudentInFAB();
-});
-
-When("I click on Add Teacher in opened FAB", () => {
-	management.clickOnAddTeacherInFAB();
+When("I click on Add User in opened FAB for {string}", (role) => {
+	management.clickOnAddUserInFAB(role);
 });

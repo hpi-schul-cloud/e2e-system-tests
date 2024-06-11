@@ -3,7 +3,7 @@ Feature: Deactivation of ctl tools
   @unstable_test
   Scenario: As an admin I can see deactivated external tool in external tool section.
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table
@@ -12,7 +12,7 @@ Feature: Deactivation of ctl tools
     @unstable_test
   Scenario: As an admin I can add a tool and deactivate it for my school.
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     When I click the add external tool button
@@ -39,7 +39,7 @@ Feature: Deactivation of ctl tools
   @unstable_test
   Scenario: As an admin I can activate a tool
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table
@@ -77,7 +77,7 @@ Feature: Deactivation of ctl tools
   @unstable_test
   Scenario: As an admin I can deactivate an existing tool
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table
@@ -127,7 +127,7 @@ Feature: Deactivation of ctl tools
       @unstable_test
       Scenario: As a school admin I can delete external tool from school
       Given I am logged in as a 'admin1_nbc' at 'nbc'
-      When I go to administration page
+      When I click on administration in menu
       When I go to school administration
       When I click on external tools panel
       Then I see the external tools table

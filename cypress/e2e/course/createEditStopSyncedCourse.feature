@@ -48,7 +48,7 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the button to create another course is not visible
     When I click on button To Course Overview on the finish page
     Then I see the course '<group_title>' on the room overview page
-    When I go to administration page
+    When I click on administration in menu
     When I go to new class administration page
     Then I see the new class administration page
     Then I see the group '<group_title>' is synced with course '<group_title>'
@@ -95,7 +95,7 @@ Feature: Teacher can create, update and stop a synchronized course
     When I go to rooms overview
     When I go to room '<course_title>'
     Then I see the course '<course_title>' is unsynchronized
-    When I go to administration page
+    When I click on administration in menu
     When I go to new class administration page
     Then I see the new class administration page
     Then I see the group '<group_title>' has no synced course
@@ -104,7 +104,7 @@ Feature: Teacher can create, update and stop a synchronized course
       |  Cypress-Test-Course-Sync | Cypress-Test-Group-Course-Sync |
 
   Scenario Outline: Stop a course synchronization in the class overview
-    When I go to administration page
+    When I click on administration in menu
     When I go to new class administration page
     Then I see the new class administration page
     Then I see the group '<group_title>' is synced with course '<group_title>'

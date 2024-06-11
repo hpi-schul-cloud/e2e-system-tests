@@ -7,7 +7,7 @@ Feature: Team - Student managed teams (on BRB)
   @stable_test
   Scenario: As a pre-condition admin allows student to create a team on BRB
     Given I am logged in as a 'admin1_brb' at 'brb'
-    When I go to administration page
+    When I click on administration in menu
     When I go to team administration
     When I click the checkbox to allow students to create a team
     When I click on Save

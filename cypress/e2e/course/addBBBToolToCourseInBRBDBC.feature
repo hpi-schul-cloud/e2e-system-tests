@@ -8,7 +8,7 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
   Scenario Outline: Admin enables and disables the video conference option in the school settings page '<namespace>', while teachers can add and remove the video conference tool within the course
     #Admin enables the video conference in the school settings page
     Given I am logged in as a '<user_1>' at '<namespace>'
-    When I go to administration page
+    When I click on administration in menu
     When I click on manage school card
     When I go to new school administration page
     When I click on general settings panel
@@ -36,7 +36,7 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     Then I do not see the BBB Video Conference BigBlueButton in tools tab
     #Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
     Given I am logged in as a '<user_1>' at '<namespace>'
-    When I go to administration page
+    When I click on administration in menu
     When I click on manage school card
     When I go to new school administration page
     When I click on general settings panel

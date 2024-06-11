@@ -8,7 +8,7 @@ Feature: Learning store - Activating and deactivating access for students
   Scenario Outline: Search, open and download material form learning store
     # Admin activates students access to Learning store
     Given I am logged in as a '<admin>' at '<namespace>'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     #remove the following line if old admin page is hidden
     When I go to new school administration page
@@ -26,7 +26,7 @@ Feature: Learning store - Activating and deactivating access for students
 
     # Admin deactivates students access to Learning store again (tests change from access to no-access)
     Given I am logged in as a '<admin>' at '<namespace>'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     #remove the following line if old admin page is hidden
     When I go to new school administration page
