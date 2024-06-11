@@ -39,6 +39,6 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     Then I can not see user '<user_email_edited>' in the table
 
     Examples:
-      | namespace | admin      | role_to_manage | user_firstname   | user_lastname     | user_email                                  | user_firstname_edited | user_lastname_edited     | user_email_edited                         |
+      | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | user_firstname_edited | user_lastname_edited     | user_email_edited                         |
       | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |
       | brb       | admin1_brb | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de | cypress               | edited_teacher_admintest | edited_teacher_adminusers@cypress-mail.de |
