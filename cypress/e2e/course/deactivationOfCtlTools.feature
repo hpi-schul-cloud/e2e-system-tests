@@ -28,8 +28,7 @@ Feature: Deactivation of ctl tools
     Then I see the tool configuration infotext
 #    Admin tries to add an deactivated external tool
     Then I do not see external tool 'CY Test Tool deactivated External Tool' in the tool selection
-
-#   Admin adds a tool
+#    Admin adds a tool
     When I select the tool 'CY Test Tool 1' from available tools
     Then I see tool 'CY Test Tool 1' is selected
     When I click on save external tool button
