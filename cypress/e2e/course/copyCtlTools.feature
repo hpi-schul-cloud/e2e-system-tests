@@ -5,7 +5,7 @@ Feature: Course - Copy CTL tools
   @unstable_test
   Scenario: Pre-test: Admin adds external tools to school
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     When I click the add external tool button
@@ -40,7 +40,7 @@ Feature: Course - Copy CTL tools
     Then I see room page 'Cypress Test Course Copy'
     When I click on the tools tab
     Then I see the button to add a tool
-#    Teacher adds atool with required parameter
+#    Teacher adds a tool with required parameter
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
@@ -106,7 +106,7 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Protected Parameter' in the tool overview
     Then I see the tool 'CY Test Tool Optional Protected Parameter' in the tool overview
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
-#    Note: due to a bug in the client the following line can not be executed
+#    Note: due to a bug in the client the following line can not be executed - Bug-Ticket: N21-2021
 #    Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
     Then I see the tool 'CY Test Tool Protected Parameter' is marked as incomplete
 #    Student tries to launch incomplete tool
@@ -153,7 +153,7 @@ Feature: Course - Copy CTL tools
 
 #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table

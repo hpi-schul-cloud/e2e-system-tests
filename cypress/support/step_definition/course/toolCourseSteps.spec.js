@@ -43,18 +43,9 @@ Then("I see the error dialog of {string}", (toolName) => {
 	courses.checkIfOutdatedDialogIsOpen(toolName);
 });
 
-
-// When("I launch the tool {string}", (toolName) => {
-// 	courses.clickOnTool(toolName);
-// });
-
 When("I click on the tool {string}", (toolName) => {
 	courses.clickOnTool(toolName);
 });
-
-// When("I launch the tool {string} and go back", (toolName) => {
-// 	courses.clickOnToolAndReturn(toolName);
-// });
 
 Then("I see the delete tool dialog", () => {
 	courses.seeDeleteDialog();

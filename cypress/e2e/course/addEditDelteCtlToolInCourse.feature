@@ -27,7 +27,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
 #   Admin adds tools
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     When I click the add external tool button
@@ -150,7 +150,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
 
 #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table

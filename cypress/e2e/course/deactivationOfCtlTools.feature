@@ -181,7 +181,7 @@ Feature: Deactivation of ctl tools
 
 #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table
