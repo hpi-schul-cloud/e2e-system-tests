@@ -53,15 +53,15 @@ Feature: Course Board - To create, edit and delete column in the course board
     When I click on the button Add column in the course board
     When I enter the title name '<column_board_title>' in the column
     When I click on the page outside of the column
-    Then I see my column named '<edited_clumn_board_title>'
+    Then I see my column named '<column_board_title>'
     Then I click on the button with the Icon Plus to add a new card in the column
 
     # teacher edits the column in the Board
     When I click on three dot menu in the column
     When I select the option Edit in three dot menu in the column
-    Then I enter the title name '<edited_clumn_board_title>' in the column
+    Then I enter the title name '<edited_column_board_title>' in the column
     When I click on the page outside of the column
-    Then I see my column named '<edited_clumn_board_title>'
+    Then I see my column named '<edited_column_board_title>'
 
     # teacher deletes the column in the Board
     When I click on three dot menu in the column
@@ -71,5 +71,5 @@ Feature: Course Board - To create, edit and delete column in the course board
     Then I do not see the column
 
     Examples:
-      | namespace | teacher      | admin      | fullname_teacher  | course_title                          | board_title    | column_board_title     | edited_clumn_board_title |
+      | namespace | teacher      | admin      | fullname_teacher  | course_title                          | board_title    | column_board_title     | edited_column_board_title |
       | brb       | teacher1_brb | admin1_brb | cypress teacher_1 | CypressAut Test Creation and Deletion | Board Cy Title | my cypress test column | edit cypress test column |

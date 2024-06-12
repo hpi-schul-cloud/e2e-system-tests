@@ -7,7 +7,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
     @stable_test
     Scenario: as a pre condition Admin enables the video conference option for a team event
         Given I am logged in as a 'admin1_dbc' at 'dbc'
-        When I go to administration page
+        When I click on administration in menu
         When I click on manage school card
         #remove the following line if old admin page is hidden
         When I go to new school administration page
@@ -97,7 +97,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
     @stable_test
     Scenario: as a post condition Admin disable the video conference for the team
         Given I am logged in as a 'admin1_dbc' at 'dbc'
-        When I go to administration page
+        When I click on administration in menu
         When I click on manage school card
         #remove the following line if old admin page is hidden
         When I go to new school administration page

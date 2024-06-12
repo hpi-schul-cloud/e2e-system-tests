@@ -6,7 +6,7 @@ Feature: Admin can edit system configuration
   @unstable_test
   Scenario: As an admin i want to see my systems and edit ldap systems of provider: general
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on authentication panel
     Then I see a systems table
@@ -14,7 +14,7 @@ Feature: Admin can edit system configuration
     Then I see the 'SANIS' system with an edit button
     When I click on the edit button of the ldap system
     Then I see the ldap configuration page
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on authentication panel
     Then I see a systems table

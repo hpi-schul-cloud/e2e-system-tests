@@ -36,7 +36,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 
 		# Admin enables the video conference in the school settings page
 		Given I am logged in as a '<admin>' at '<namespace>'
-		When I go to administration page
+		When I click on administration in menu
 		When I click on manage school card
 		# Note:remove the following line if old admin page is hidden
 		When I click on general settings panel
@@ -66,7 +66,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 
 		# Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
 		Given I am logged in as a '<admin>' at '<namespace>'
-		When I go to administration page
+		When I click on administration in menu
 		When I click on manage school card
 		# Note: remove the following line if old admin page is hidden
 		When I click on general settings panel

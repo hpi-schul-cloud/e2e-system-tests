@@ -18,7 +18,7 @@ Feature: Deactivation of ctl tools
   @unstable_test
   Scenario: Admin tries to add an deactivated external tool, adds an external tool and deactivates and activates it
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table is empty
@@ -70,7 +70,7 @@ Feature: Deactivation of ctl tools
 
 #     Admin deactivates an existing tool
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table
@@ -111,7 +111,7 @@ Feature: Deactivation of ctl tools
 
 #     Admin activates existing deactivated tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
     Then I see the external tools table
