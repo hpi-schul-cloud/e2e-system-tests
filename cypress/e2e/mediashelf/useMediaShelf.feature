@@ -24,6 +24,8 @@ Feature: Media Shelf - To show media shelf with respective functionality
     When I click on external tools panel
     Then I see the tool 'CY Test Tool 1' in external tools table
     Then I see the tool 'CY Test Tool 2' in external tools table
+    Then I see the tool 'LTI Test Tool' in external tools table
+    Then I see the tool 'Moodle Fortbildung' in external tools table
 
   @unstable_test
   Scenario: Teacher opens media shelf
@@ -31,7 +33,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
     When I go to media shelf
     Then I see the media shelf page title
     Then I see the available media line
-    Then I see 2 tools in the available media line
+    Then I see 4 tools in the available media line
     Then I see the thumbnail, title and description of media element 'CY Test Tool 1'
 #    test layouts
     When I click on grid layout button
@@ -75,17 +77,18 @@ Feature: Media Shelf - To show media shelf with respective functionality
     When I click on delete media line button
     Then I see the first media line has been deleted
 
-#    When I move tool 'LTITestTool' to a new medialine
-#    Then I see 1 tools in the media line
-#    Then I see 2 tools in the available media line
-#
-#    When I move tool 'LTITestTool' to a new media line
+#    When I move tool 'CY Test Tool 1' to a new media line
+#    Then I see 1 tools in the first media line
+#    Then I see 3 tools in the available media line
+
+#    When I move tool 'CY Test Tool 2' to a new media line
 #    When I move tool 'CYTestToolSchoolScope' to a new media line
-#    When I move tool 'LTITestTool' to the available medial ine
 #    When I move tool 'CYTestToolSchoolScope' to the available media line
 #    When I move tool 'CYTestToolSchoolScope' to first media line
-#    When I move tool 'LTITestTool' to first media line
-#
+#    When I move tool 'CY Test Tool 2' to first media line
+#    When I move tool 'CY Test Tool 1' to the available media line
+
+
 #     When I click on tree dot menu button on media line
 #     Then I see the media line menu
 #     When I click on delete media line button
