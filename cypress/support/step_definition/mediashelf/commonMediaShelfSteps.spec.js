@@ -143,8 +143,8 @@ Then("I see {int} tools in the available media line", (count) => {
 	mediaShelf.seeNumberOfMediaInAvailableMediaLine(count);
 });
 
-Then("I see {int} tools in the media line", (count) => {
-	mediaShelf.seeNumberOfMediaInMediaLine(count);
+Then("I see {int} tools in the first media line", (count) => {
+	mediaShelf.seeNumberOfMediaInMediaLine1(count);
 });
 
 Then("I see the thumbnail, title and description of media element {string}", (tool) => {

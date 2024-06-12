@@ -12,7 +12,9 @@ class MediaShelf {
 	static #mediaLineHeader1 = '[data-testid="media-board-line-header-1"]';
 	static #mediaLineHeader2 = '[data-testid="media-board-line-header-2"]';
 	static #ghostLineSpace = '[data-testid="ghost-line-space"]';
-	static #mediaLineSpace = '[data-testid="media-line-space"]';
+	static #mediaLineSpace1 = '[data-testid="media-line-space-0"]';
+	static #mediaLineSpace2 = '[data-testid="media-line-space-1"]';
+	static #mediaLineSpace3 = '[data-testid="media-line-space-2"]';
 	static #availableMediaLineSpace = '[data-testid="available-media-line-space"]';
 	static #lineTitle = '[data-testid="media-line-title"]';
 	static #collapseLineButton = '[data-testid="collapse-line-btn"]';
@@ -121,9 +123,9 @@ class MediaShelf {
 			.should("have.length", count);
 	}
 
-	seeNumberOfMediaInMediaLine(count) {
+	seeNumberOfMediaInMediaLine1(count) {
 		const line = cy.get(MediaShelf.#mediaLine0);
-		line.get(MediaShelf.#mediaLineSpace)
+		line.find(MediaShelf.#mediaLineSpace1)
 			.children(".bg-white")
 			.should("have.length", count);
 	}
