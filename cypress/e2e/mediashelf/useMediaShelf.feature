@@ -75,6 +75,30 @@ Feature: Media Shelf - To show media shelf with respective functionality
     When I click on delete media line button
     Then I see the first media line has been deleted
 
+#    When I move tool 'LTITestTool' to a new medialine
+#    Then I see 1 tools in the media line
+#    Then I see 2 tools in the available media line
+#
+#    When I move tool 'LTITestTool' to a new media line
+#    When I move tool 'CYTestToolSchoolScope' to a new media line
+#    When I move tool 'LTITestTool' to the available medial ine
+#    When I move tool 'CYTestToolSchoolScope' to the available media line
+#    When I move tool 'CYTestToolSchoolScope' to first media line
+#    When I move tool 'LTITestTool' to first media line
+#
+#     When I click on tree dot menu button on media line
+#     Then I see the media line menu
+#     When I click on delete media line button
+#     Then I see the first media line has been deleted
+#
+#    Then I see the deactivated chip on media element 'LTITestTool'
+#    Then I see the not licensed chip on media element 'LizenzTestTool'
+#    Then I see the incomplete chip on media element 'CYTestToolSchoolScope'
+#    Then I see the not licensed chip on media element 'LizenzTestTool2'
+#    Then I see the incomplete chip on media element 'LizenzTestTool2'
+#    When I click on media element 'LizenzTestTool2'
+
+
   @unstable_test
   Scenario: Post-test: Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
