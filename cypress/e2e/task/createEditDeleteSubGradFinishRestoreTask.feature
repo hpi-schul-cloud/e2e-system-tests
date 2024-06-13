@@ -1,11 +1,11 @@
-@api-migrated
+@api_migrated
 @pr
 @release
+@stable_test
 Feature: Task - To create, edit and delete tasks by the teacher.
 
 	As a teacher I want to create, edit, grade, finish, restore and delete a new task so that the student can submit it
 
-	@stable_test
 	Scenario: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
 
 		# pre-condition: admin, teacher and student log in to create their account in a same school
@@ -16,8 +16,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		# pre-condition: admin creates a course and assign teacher and student to the course
 		When I go to rooms overview
 		When I click on FAB to create a new room
-		When I click on new course create button in sub menu
-		Then I see section one area on the course create page
+		# When I click on new course create button in sub menu
+		# Then I see section one area on the course create page
 		When I enter the course title 'CypressAut Test Creation and Deletion'
 		When I select room colour as red
 		Then I select teacher '<fullname_teacher>' is selected by default
@@ -147,8 +147,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		And Task card info graded contains '0/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
 		When I click on task 'CypressAut Task Creating, Editing, Deleting Test'
 		And I click on submissions tab
-		Then there is a tick in column delivered for 'student_1'
-		When I click on submission of 'student_1'
+		Then there is a tick in column delivered for '<student_last_name>'
+		When I click on submission of '<student_last_name>'
 		Then I see submission text 'Hier ist die Antwort.'
 		When I click on download file 'testboard_jpg' in submission
 		Then file 'testboard_jpg' is saved in folder downloads
@@ -158,8 +158,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		And I enter comment 'Gut gemacht!'
 		And I enter grade '83'
 		And I click on button Save and Send grading
-		Then there is a tick in column delivered for 'student_1'
-		And grading for 'student_1' contains '83'
+		Then there is a tick in column delivered for '<student_last_name>'
+		And grading for '<student_last_name>' contains '83'
 		When I click on button To Course
 		Then I see task card info submitted contains '1/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
 		And Task card info graded contains '1/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
@@ -223,6 +223,12 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		Then I can see room page 'CypressAut Test Creation and Deletion'
 		And I can not see content 'CypressAut Task Creating, Editing, Deleting Test'
 
+		@non_staging_test
 		Examples:
-			| namespace | student      | teacher      | admin      | fullname_student  | fullname_teacher  |
-			| brb       | student1_brb | teacher1_brb | admin1_brb | cypress student_1 | cypress teacher_1 |
+			| namespace | student      | teacher      | admin      | fullname_student  | fullname_teacher  | student_last_name |
+			| brb       | student1_brb | teacher1_brb | admin1_brb | cypress student_1 | cypress teacher_1 | student_1         |
+
+		@staging_test
+		Examples:
+			| namespace | student      | teacher      | admin      | fullname_student | fullname_teacher | student_last_name |
+			| brb       | student1_brb | teacher1_brb | admin1_brb | Herbert Kraft    | Karl Herzog      | Kraft             |

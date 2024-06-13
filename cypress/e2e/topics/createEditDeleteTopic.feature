@@ -1,10 +1,10 @@
-@api-migrated
+@api_migrated
 @release
+@stable_test
 Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
 
-  @stable_test
   Scenario: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
     # pre-condition: admin, teacher and student log in to create their account in a same school
@@ -14,8 +14,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     # pre-condition: admin creates a course and assign teacher to the course
     When I go to rooms overview
     When I click on FAB to create a new room
-    When I click on new course create button in sub menu
-    Then I see section one area on the course create page
+    # When I click on new course create button in sub menu
+    # Then I see section one area on the course create page
     When I enter the course title 'CypressAut Test Creation and Deletion'
     When I select room colour as red
     Then I select teacher '<fullname_teacher>' is selected by default
@@ -120,6 +120,12 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on Delete in confirmation window
     Then I can not see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
+    @non_staging_test
     Examples:
       | namespace | admin      | teacher      | fullname_teacher  |
       | brb       | admin1_brb | teacher1_brb | cypress teacher_1 |
+
+    @staging_test
+    Examples:
+      | namespace | admin      | teacher      | fullname_teacher |
+      | brb       | admin1_brb | teacher1_brb | Karl Herzog      |

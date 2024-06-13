@@ -1,5 +1,7 @@
-@api-migrated
+@api_migrated
 @release
+@non_staging_test
+@staging_test
 Feature:  News - To read a news on the respective dashboards
 
   As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news

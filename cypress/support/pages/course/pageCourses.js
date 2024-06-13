@@ -670,6 +670,9 @@ class Courses {
 	}
 
 	searchForARoom(roomName) {
+		cy.get(Courses.#searchFieldRoomOverview).type(
+			"{selectall}{backspace}{selectall}{backspace}"
+		);
 		cy.get(Courses.#searchFieldRoomOverview).type(roomName);
 	}
 
@@ -681,18 +684,7 @@ class Courses {
 		cy.get(Courses.#addSubstituteTeacher).click().type("{selectall}{backspace}");
 	}
 
-	addSubstituteTeacher(userName) {
-		const userFirstName = "cypress";
-		let userLastName;
-		switch (userName) {
-			case "teacher1":
-				userLastName = `teacher_1`;
-				break;
-			case "teacher2":
-				userLastName = `teacher_2`;
-				break;
-		}
-		const userFullName = `${userLastName}, ${userFirstName}`;
+	addSubstituteTeacher(userFullName) {
 		cy.get(Courses.#chosenResults).contains(userFullName).click();
 		cy.get(Courses.#chosenContainer).should("contain", userFullName);
 	}

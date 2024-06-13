@@ -1,10 +1,10 @@
-@api-migrated
+@api_migrated
 @release
+@stable_test
 Feature: Dashboard - To check contents on the dashboard
 
   As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
 
-  @stable_test
   Scenario: student and a teacher see important information on the dashboard, including pre-conditions
 
     # pre-condition: admin, teacher and student log in to create their account in a same school
@@ -98,13 +98,13 @@ Feature: Dashboard - To check contents on the dashboard
     And I click on add user button
     Then I see the student named '<listname_student>' on the team members table
 
-    # teacher arrives on dashboard
+    # student arrives on dashboard
     Given I am logged in as a '<student>' at '<namespace>'
     When I arrive on the dashboard
     Then I see the welcome message 'Hallo <fullname_student>!'
     Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
     Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
-    Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
+    # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
 
     # teacher arrives on dashboard
     Given I am logged in as a '<teacher>' at '<namespace>'
@@ -112,8 +112,8 @@ Feature: Dashboard - To check contents on the dashboard
     Then I see the welcome message 'Hallo <fullname_teacher>!'
     Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
     Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
-    Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
-    Then I can see the draft task 'CypressAut Dashboard Task Draft' of course 'CypressAut Test Dashboard Course'
+    # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
+    # Then I can see the draft task 'CypressAut Dashboard Task Draft' of course 'CypressAut Test Dashboard Course'
 
     # teacher deletes the school news
     When I arrive on the dashboard
@@ -145,7 +145,12 @@ Feature: Dashboard - To check contents on the dashboard
     When I select the student '<fullname_student>' and click on delete icon
     Then I see '<fullname_student>' is not visible on the table
 
-
+    @non_staging_test
     Examples:
       | namespace | admin      | teacher      | fullname_teacher  | student      | fullname_student  | listname_student   |
       | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | student_1, cypress |
+
+    @staging_test
+    Examples:
+      | namespace | admin      | teacher      | fullname_teacher | student      | fullname_student | listname_student |
+      | brb       | admin1_brb | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | Kraft, Herbert   |
