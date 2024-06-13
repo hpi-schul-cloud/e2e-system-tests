@@ -6,7 +6,7 @@ Feature: Learning store - Activating and deactivating access for students
   As an admin I want to activate and deactivate students access to learning store
 
   @stable_test
-  Scenario: Search, open and download material form learning store, including pre-conditions
+  Scenario: Search, open and download material form learning store, including pre-condition
 
     # pre-condition: admin, student and teacher log in to create their account in a same school
     Given I am logged in as a '<teacher>' at '<namespace>'
