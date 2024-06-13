@@ -177,7 +177,10 @@ class Management {
 	}
 
 	navigateToUserAdministration(role) {
-		let navToUserManagementButton = '[data-testid="' + (role === 'student' ? 'Schüler:innen' : 'Lehrkräfte') + '"]'
+		let navToUserManagementButton =
+			role === "student"
+				? Management.#studentAdministrationNavigationButton
+				: Management.#teacherAdministrationNavigationButton;
 		cy.get(navToUserManagementButton).click();
 		let expectedURL = "/administration/" + role;
 		cy.url().should("include", expectedURL);
@@ -217,12 +220,13 @@ class Management {
 	}
 
 	clickOnAddUserInFAB(role) {
-		let addUserButtonInFAB = '[data-testid="fab_button_add_' + role + 's"]';
+		let addUserButtonInFAB =
+			role === "student" ? Management.#addStudentButton : Management.#addTeacherButton;
 		cy.get(addUserButtonInFAB).click({ force: true });
 	}
 
 	fillUserCreationForm(forename, surname, email) {
-		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
+		let randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
 		cy.get(Management.#emailCreationForm).type(randomNumber + email);
@@ -259,7 +263,7 @@ class Management {
 	}
 
 	clickEditUserButton(role, email) {
-		let editUserButton = "edit_" + role  + "_button";
+		let editUserButton = "edit_" + role + "_button";
 		cy.contains("td", email)
 			.siblings()
 			.find("a")
@@ -287,7 +291,7 @@ class Management {
 	}
 
 	changeEmail(newEmail) {
-		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
+		let randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
 		cy.get(Management.#emailEditForm).clear();
 		cy.get(Management.#emailEditForm).type(randomNumber + newEmail);
 	}
