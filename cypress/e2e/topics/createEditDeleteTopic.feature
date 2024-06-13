@@ -14,8 +14,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     # pre-condition: admin creates a course and assign teacher to the course
     When I go to rooms overview
     When I click on FAB to create a new room
-    # When I click on new course create button in sub menu
-    # Then I see section one area on the course create page
+    When I click on new course create button in sub menu
+    Then I see section one area on the course create page
     When I enter the course title 'CypressAut Test Creation and Deletion'
     When I select room colour as red
     Then I select teacher '<fullname_teacher>' is selected by default
