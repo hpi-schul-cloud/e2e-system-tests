@@ -48,7 +48,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		When I go to rooms overview
 		When I go to room '<course_name>'
 		When I open page Edit course
-		Then I can see page Edit course
+		Then I see page Edit course
 		When I click on checkbox Activate video conferences in page Edit course to enable the BBB tool
 		When I click on button Save changes in page Edit course
 		When I click on tab Tools
@@ -58,7 +58,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		Then I click on button Cancel in BBB dialog box
 		#Teacher removes the BBB tool in the course
 		When I open page Edit course
-		Then I can see page Edit course
+		Then I see page Edit course
 		When I uncheck the checkbox to Activate video conferences in page Edit course to enable the BBB tool
 		When I click on button Save changes in page Edit course
 		When I click on tab Tools
@@ -80,7 +80,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		When I go to rooms overview
 		When I go to room '<course_name>'
 		When I open page Edit course
-		Then I can see page Edit course
+		Then I see page Edit course
 		Then I see the disabled check box for Activating video conferences in page Edit course
 
 		Examples:
