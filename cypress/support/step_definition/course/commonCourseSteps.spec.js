@@ -169,8 +169,8 @@ When("I clear substitute teacher field", () => {
 	courses.clearSubstituteTeacherField();
 });
 
-When("I add substitute teacher {string}", (username) => {
-	courses.addSubstituteTeacher(username);
+When("I add substitute teacher {string}", (userFullName) => {
+	courses.addSubstituteTeacher(userFullName);
 });
 
 Then("I delete all courses named {string}", (courseName) => {

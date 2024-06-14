@@ -1,12 +1,12 @@
 @api_migrated
 @release
+@stable_test
 Feature: Admin Users - To add, edit and delete new users by the admin.
 
   As an admin I want to create a new user so that I can administrate it
 
-  @stable_test
-  Scenario: Adding a new user, edit this student and delete this student
-  # admin adds a new student
+  Scenario: Adding a new user, edit and delete this user
+    # admin adds a new student
     Given I am logged in as a '<admin>' at '<namespace>'
     When I click on administration in menu
     And I go to '<role_to_manage>' administration
@@ -17,7 +17,8 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I enter '<role_to_manage>' email '<user_email>' in search input field
     Then I can see the user with email '<user_email>' in the table
 
-  # admin adds edits a student
+    # admin adds edits a student
+    # admin adds edits a student
     And I go to '<role_to_manage>' administration
     And I enter '<role_to_manage>' email '<user_email>' in search input field
     And I click edit '<role_to_manage>' button for '<user_email>'
@@ -29,7 +30,8 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I enter '<role_to_manage>' email '<user_email>' in search input field
     Then I can not see user '<user_email>' in the table
 
-  # admin deletes a student
+    # admin deletes a student
+    # admin deletes a student
     And I go to '<role_to_manage>' administration
     And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
     And I click edit '<role_to_manage>' button for '<user_email_edited>'
@@ -38,6 +40,13 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
     Then I can not see user '<user_email_edited>' in the table
 
+    @school_api_test
+    Examples:
+      | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | user_firstname_edited | user_lastname_edited     | user_email_edited                         |
+      | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |
+      | brb       | admin1_brb | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de | cypress               | edited_teacher_admintest | edited_teacher_adminusers@cypress-mail.de |
+
+    @staging_test
     Examples:
       | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | user_firstname_edited | user_lastname_edited     | user_email_edited                         |
       | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |

@@ -181,9 +181,10 @@ class Management {
 	}
 
 	navigateToUserAdministration(role) {
-		let navToUserManagementButton = role === "student"
-			? Management.#studentAdministrationNavigationButton
-			: Management.#teacherAdministrationNavigationButton;
+		let navToUserManagementButton =
+			role === "student"
+				? Management.#studentAdministrationNavigationButton
+				: Management.#teacherAdministrationNavigationButton;
 		cy.get(navToUserManagementButton).click();
 		let expectedURL = "/administration/" + role;
 		cy.url().should("include", expectedURL);
@@ -223,14 +224,13 @@ class Management {
 	}
 
 	clickOnAddUserInFAB(role) {
-		let addUserButtonInFAB = (role === "student")
-			? Management.#addStudentButton
-			: Management.#addTeacherButton;
+		let addUserButtonInFAB =
+			role === "student" ? Management.#addStudentButton : Management.#addTeacherButton;
 		cy.get(addUserButtonInFAB).click({ force: true });
 	}
 
 	fillUserCreationForm(forename, surname, email) {
-		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
+		let randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
 		cy.get(Management.#emailCreationForm).type(randomNumber + email);
@@ -256,6 +256,7 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
+		cy.reload();
 		if (!(role == "student")) {
 			cy.intercept("**/teachers?**").as("search_api");
 		} else {
@@ -267,7 +268,7 @@ class Management {
 	}
 
 	clickEditUserButton(role, email) {
-		let editUserButton = "edit_" + role  + "_button";
+		let editUserButton = "edit_" + role + "_button";
 		cy.contains("td", email)
 			.siblings()
 			.find("a")
@@ -295,7 +296,7 @@ class Management {
 	}
 
 	changeEmail(newEmail) {
-		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
+		let randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
 		cy.get(Management.#emailEditForm).clear();
 		cy.get(Management.#emailEditForm).type(randomNumber + newEmail);
 	}
@@ -342,7 +343,6 @@ class Management {
 	}
 
 	userIsVisibleInTable(email) {
-		cy.get(Management.#searchbar).clear();
 		cy.get(Management.#tableContents)
 			.contains(email)
 			.should("be.visible")

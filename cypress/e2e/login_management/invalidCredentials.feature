@@ -1,3 +1,4 @@
+@api_migrated
 @release
 Feature: Invalid Credentials - Verify login functionality via wrong user data
 
@@ -12,6 +13,9 @@ Feature: Invalid Credentials - Verify login functionality via wrong user data
         When I enter invalid password
         When I click button Submit
         Then I see error message
+
+        @school_api_test
+        @staging_test
         Examples:
             | namespace |
             | dbc       |
@@ -21,6 +25,9 @@ Feature: Invalid Credentials - Verify login functionality via wrong user data
         Given I am on the '<namespace>' login page
         When I click button Submit
         Then I see form validation message
+
+        @school_api_test
+        @staging_test
         Examples:
             | namespace |
             | dbc       |
@@ -34,6 +41,9 @@ Feature: Invalid Credentials - Verify login functionality via wrong user data
         When I enter invalid password
         When I click button Submit
         Then I see error message
+
+        @school_api_test
+        @staging_test
         Examples:
             | namespace |
             | dbc       |

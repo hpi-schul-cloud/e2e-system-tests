@@ -1,10 +1,10 @@
-@api-migrated
+@api_migrated
 @release
+@stable_test
 Feature: Task - To create and delete tasks starting from task overview page by the teacher.
 
   As a teacher I want to create and delete a new task on the task overview page so that the student can submit it
 
-  @stable_test
   Scenario: Teacher creates, edits and deletes a task from the task overview, including pre-conditions
 
     # pre-condition: teacher logs in to create their account in the school
@@ -60,6 +60,12 @@ Feature: Task - To create and delete tasks starting from task overview page by t
     When I click on draft tasks tab
     Then I can not see task 'CypressAut Task to be delete on task page' on tasks overview page
 
+    @school_api_test
     Examples:
       | namespace | teacher      | fullname_teacher  |
       | brb       | teacher1_brb | cypress teacher_1 |
+
+    @staging_test
+    Examples:
+      | namespace | teacher      | fullname_teacher |
+      | brb       | teacher1_brb | Karl Herzog      |
