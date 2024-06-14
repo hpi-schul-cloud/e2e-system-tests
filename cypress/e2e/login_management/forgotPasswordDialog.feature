@@ -1,3 +1,4 @@
+@api_migrated
 @release
 Feature: Forget Password - Visibility of dBildungscloud Password Reset dialog
 
@@ -8,6 +9,9 @@ Feature: Forget Password - Visibility of dBildungscloud Password Reset dialog
     Given I am on the '<namespace>' login page
     When I click on Forgot Password
     Then I see the Reset Password dialog
+
+    @school_api_test
+    @staging_test
     Examples:
       | namespace |
       | dbc       |
@@ -18,6 +22,9 @@ Feature: Forget Password - Visibility of dBildungscloud Password Reset dialog
     When I click on Forgot Password
     When I clear email section and submit the request
     Then I still see the email input box that request is not submitted
+
+    @school_api_test
+    @staging_test
     Examples:
       | namespace |
       | dbc       |
