@@ -18,8 +18,8 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the tool 'CY Test Tool 2' in external tools table
 
   @unstable_test
-  Scenario: Teacher opens media shelf
-    Given I am logged in as a 'teacher1_nbc' at 'nbc'
+  Scenario Outline: Teacher opens media shelf
+    Given I am logged in as a '<user>' at '<namespace>'
     When I go to media shelf
     Then I see the media shelf page title
     Then I see the available media line
@@ -67,6 +67,10 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the media line menu
     When I click on delete media line button
     Then I see the first media line has been deleted
+    Examples:
+      | user         | namespace |
+      | teacher1_nbc | nbc       |
+      | student2_nbc | nbc       |
 
   @unstable_test
   Scenario: Post-test: Admin deletes external tools
