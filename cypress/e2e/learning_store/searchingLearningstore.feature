@@ -14,7 +14,6 @@ Feature: Learning store - Activating and deactivating access for students
     Given I am logged in as a '<admin>' at '<namespace>'
 
     # Admin activates students access to Learning store
-    Given I am logged in as a '<admin>' at '<namespace>'
     When I click on administration in menu
     When I go to school administration
     #Note: remove the following line if old admin page is hidden
