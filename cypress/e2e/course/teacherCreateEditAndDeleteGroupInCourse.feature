@@ -62,7 +62,7 @@ Feature: Teacher can create, edit and delete a group in the course
     When I click on button Delete group confirmation
     Then I do not see group name '<group_rename>' in tab Course group
 
-    @non_staging_test
+    @school_api_test
     Examples:
       | admin      | teacher      | student      | namespace | course_name             | fullname_teacher  | fullname_student  | group_name | group_member      | group_rename  |
       | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Group Course | cypress teacher_1 | cypress student_1 | Group-Work | cypress student_1 | Gruppe-Arbeit |

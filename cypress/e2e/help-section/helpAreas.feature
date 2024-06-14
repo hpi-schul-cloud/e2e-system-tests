@@ -1,12 +1,12 @@
 @api_migrated
 @release
+@stable_test
 Feature: Help Section - To use the help areas in dBildungscloud
 
   As a teacher I want to use the help areas in the header and sidebar so that I can find help when needed
 
-  @stable_test
-  Scenario Outline: user can use the help area in the (header, sidebar), search article and submit an issue via contact form
-    Given I am logged in as a '<user>' at '<namespace>'
+  Scenario Outline: teacher can use the help area in the (header, sidebar), search article and submit an issue via contact form
+    Given I am logged in as a '<teacher>' at '<namespace>'
     When I click on the question icon in header
     And I click on help section in header
     Then I can see the help articles page
@@ -40,8 +40,8 @@ Feature: Help Section - To use the help areas in dBildungscloud
     When I fill out the contact form
     Then I can send it to the support
 
-    @non_staging_test
+    @school_api_test
     @staging_test
     Examples:
-      | user         | namespace |
+      | teacher      | namespace |
       | teacher1_brb | brb       |

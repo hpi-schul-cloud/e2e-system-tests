@@ -120,7 +120,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on Delete in confirmation window
     Then I can not see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
-    @non_staging_test
+    @school_api_test
     Examples:
       | namespace | admin      | teacher      | fullname_teacher  |
       | brb       | admin1_brb | teacher1_brb | cypress teacher_1 |

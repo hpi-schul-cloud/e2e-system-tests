@@ -60,7 +60,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
     When I click on draft tasks tab
     Then I can not see task 'CypressAut Task to be delete on task page' on tasks overview page
 
-    @non_staging_test
+    @school_api_test
     Examples:
       | namespace | teacher      | fullname_teacher  |
       | brb       | teacher1_brb | cypress teacher_1 |

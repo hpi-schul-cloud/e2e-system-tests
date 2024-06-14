@@ -145,7 +145,7 @@ Feature: Dashboard - To check contents on the dashboard
     When I select the student '<fullname_student>' and click on delete icon
     Then I see '<fullname_student>' is not visible on the table
 
-    @non_staging_test
+    @school_api_test
     Examples:
       | namespace | admin      | teacher      | fullname_teacher  | student      | fullname_student  | listname_student   |
       | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | student_1, cypress |

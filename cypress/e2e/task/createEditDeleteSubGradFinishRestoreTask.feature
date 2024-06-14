@@ -223,7 +223,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		Then I can see room page 'CypressAut Test Creation and Deletion'
 		And I can not see content 'CypressAut Task Creating, Editing, Deleting Test'
 
-		@non_staging_test
+		@school_api_test
 		Examples:
 			| namespace | student      | teacher      | admin      | fullname_student  | fullname_teacher  | student_last_name |
 			| brb       | student1_brb | teacher1_brb | admin1_brb | cypress student_1 | cypress teacher_1 | student_1         |

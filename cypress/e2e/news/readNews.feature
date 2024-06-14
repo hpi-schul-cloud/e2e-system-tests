@@ -1,6 +1,6 @@
 @api_migrated
 @release
-@non_staging_test
+@school_api_test
 @staging_test
 Feature:  News - To read a news on the respective dashboards
 

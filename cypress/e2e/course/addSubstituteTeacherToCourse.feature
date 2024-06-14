@@ -41,7 +41,7 @@ Feature: Course - Add substitute teacher to course
     When I go to rooms overview
     When I go to room '<course_name>'
 
-    @non_staging_test
+    @school_api_test
     Examples:
       | admin      | teacher1     | teacher2     | namespace | course_name                   | fullname_teacher  | substitute_teacher |
       | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Sub-Teacher Course | cypress teacher_1 | teacher_2, cypress |

@@ -51,7 +51,7 @@ Feature: Course - To search for a course via search input box on the course over
     When I enter the course name '<nonexistent_course_name>' into the search field
     Then I do not see the course '<nonexistent_course_name>' on the room overview page
 
-    @non_staging_test
+    @school_api_test
     Examples:
       | admin      | teacher      | student      | namespace | created_course_name      | nonexistent_course_name         | fullname_teacher  | fullname_student  |
       | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Search Course | Cy::NotExistingMathematikCourse | cypress teacher_1 | cypress student_1 |

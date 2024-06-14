@@ -66,7 +66,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on card Course Board
         When I click on open Drawing Element
 
-        @non_staging_test
+        @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name              | fullname_teacher  | fullname_student  | board_title    |
             | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut TLDraw Course | cypress teacher_1 | cypress student_1 | Board Cy Title |

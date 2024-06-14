@@ -36,7 +36,7 @@ Feature: Course - To add a ctl tool to a course
     When I click on the tools tab
     Then I cant see the button to add a tool
 
-    @non_staging_test
+    @school_api_test
     Examples:
       | admin      | teacher      | student      | namespace | course_name                 | fullname_teacher  | fullname_student  |
       | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CTL Tools Course | cypress teacher_1 | cypress student_1 |

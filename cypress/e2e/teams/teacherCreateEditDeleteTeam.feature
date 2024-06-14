@@ -39,7 +39,7 @@ Feature: Team - Create, delete and edit operations on Teams
     Then I see dialog box and click on delete button to confirm the deletion
     Then I do not see the team '<team_edited_title>'
 
-    @non_staging_test
+    @school_api_test
     @staging_test
     Examples:
       | teacher      | namespace | team_title                          | team_description              | team_edited_title                          | team_edited_description              |
