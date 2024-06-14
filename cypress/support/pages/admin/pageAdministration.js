@@ -547,11 +547,15 @@ class Management {
 	}
 
 	seeDeactivatedCheckBox(value) {
-		if(value === "checked"){
-			cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("be.checked");
-		} else if(value === "not checked"){
-			cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("not.be.checked")
-		}
+		cy.get(Management.#isDeactivatedCheckBox).should("be.visible")
+	}
+
+	seeDeactivatedCheckBoxIsChecked(value) {
+		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("be.checked");
+	}
+
+	seeDeactivatedCheckBoxIsNotChecked() {
+		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("not.be.checked")
 	}
 
 	clickAddExternalTool() {

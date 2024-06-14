@@ -53,6 +53,11 @@ Then("I do not see external tool {string} in the tool selection", (toolName) => 
 
 Then("I see the deactivate checkbox is {string}", (value) => {
 	management.seeDeactivatedCheckBox(value);
+	if(value === "checked"){
+		management.seeDeactivatedCheckBoxIsChecked()
+	} else if(value === "not checked"){
+		management.seeDeactivatedCheckBoxIsNotChecked()
+	}
 });
 
 When("I click the add external tool button", () => {

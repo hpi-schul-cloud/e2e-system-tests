@@ -40,7 +40,7 @@ Then("I do not see tool {string} in the tool selection", (toolName) => {
 });
 
 Then("I see the error dialog of {string}", (toolName) => {
-	courses.checkIfOutdatedDialogIsOpen(toolName);
+	courses.checkIfErrorDialogIsOpen(toolName);
 });
 
 When("I click on the tool {string}", (toolName) => {
