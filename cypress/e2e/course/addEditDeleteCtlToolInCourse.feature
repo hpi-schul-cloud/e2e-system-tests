@@ -33,18 +33,15 @@ Feature: Course - To add, edit and delete a ctl tool in a course
     When I click the add external tool button
     When I select the tool 'CY Test Tool 1' from available tools
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool 1' in external tools table
     When I click the add external tool button
     When I select the tool 'CY Test Tool Required Parameters' from available tools
     When I enter 'test' in required custom parameter input field 'schoolParam'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool Required Parameters' in external tools table
     When I click the add external tool button
     When I select the tool 'CY Test Tool Optional Parameters' from available tools
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
 
   @unstable_test

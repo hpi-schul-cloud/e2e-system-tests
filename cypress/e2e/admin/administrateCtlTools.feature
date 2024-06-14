@@ -20,7 +20,6 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     When I select the tool 'CY Test Tool 1' from available tools
     Then I see tool 'CY Test Tool 1' is selected
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool 1' in external tools table
 
 #    Admin adds a tool with required custom parameter
@@ -33,7 +32,6 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     When I enter 'test' in required custom parameter input field 'schoolParam'
     Then I see custom parameter input field 'schoolParam' contains 'test'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool Required Parameters' in external tools table
 
 #    Admin adds a tool with optional custom parameter
@@ -46,7 +44,6 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     When I enter 'test' in optional custom parameter input field 'schoolParam'
     Then I see custom parameter input field 'schoolParam' contains 'test'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
 
 #    Admin edits a tool
@@ -58,7 +55,6 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     When I enter 'updated test' in optional custom parameter input field 'schoolParam'
     Then I see custom parameter input field 'schoolParam' contains 'updated test'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
     When I click on edit button of tool 'CY Test Tool Optional Parameters'
     Then I see the external tools configuration page

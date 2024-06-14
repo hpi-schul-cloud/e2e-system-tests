@@ -32,7 +32,6 @@ Feature: Deactivation of ctl tools
     When I select the tool 'CY Test Tool 1' from available tools
     Then I see tool 'CY Test Tool 1' is selected
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool 1' in external tools table
     Then I see the tool 'CY Test Tool 1' is active in tools table
 #    Admin adds a tool and deactivates it
@@ -45,7 +44,6 @@ Feature: Deactivation of ctl tools
     When I deactivate the tool
     Then I see the deactivate checkbox is 'checked'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool 2' in external tools table
     Then I see the tool 'CY Test Tool 2' is deactivated in external tools table
 
@@ -83,7 +81,6 @@ Feature: Deactivation of ctl tools
     When I deactivate the tool
     Then I see the deactivate checkbox is 'checked'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool 1' in external tools table
     Then I see the tool 'CY Test Tool 1' is deactivated in external tools table
 
@@ -124,7 +121,6 @@ Feature: Deactivation of ctl tools
     When I activate the tool
     Then I see the deactivate checkbox is 'not checked'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool 1' in external tools table
     Then I see the tool 'CY Test Tool 1' is active in tools table
     Then I see the tool 'CY Test Tool 2' in external tools table
@@ -136,7 +132,6 @@ Feature: Deactivation of ctl tools
     When I activate the tool
     Then I see the deactivate checkbox is 'not checked'
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool 2' in external tools table
     Then I see the tool 'CY Test Tool 2' is active in tools table
 

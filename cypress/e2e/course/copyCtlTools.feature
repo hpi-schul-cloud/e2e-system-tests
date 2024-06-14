@@ -11,15 +11,12 @@ Feature: Course - Copy CTL tools
     When I click the add external tool button
     When I select the tool 'CY Test Tool Context Scope' from available tools
     When I click on save external tool button
-    When I click on external tools panel
     When I click the add external tool button
     When I select the tool 'CY Test Tool Optional Protected Parameter' from available tools
     When I click on save external tool button
-    When I click on external tools panel
     When I click the add external tool button
     When I select the tool 'CY Test Tool Protected Parameter' from available tools
     When I click on save external tool button
-    When I click on external tools panel
     Then I see the tool 'CY Test Tool Context Scope' in external tools table
     Then I see the tool 'CY Test Tool Optional Protected Parameter' in external tools table
     Then I see the tool 'CY Test Tool Protected Parameter' in external tools table
@@ -156,7 +153,6 @@ Feature: Course - Copy CTL tools
     When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
-    Then I see the external tools table
     Then I see the external tools table
     When I click on delete button of tool 'CY Test Tool Context Scope'
     When I confirm deletion on deletion dialog
