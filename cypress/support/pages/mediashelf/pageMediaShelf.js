@@ -130,43 +130,52 @@ class MediaShelf {
 			.should("have.length", count);
 	}
 
-	seeMediaElementDefaultThumbnail(tool) {
-		const element = cy.get('[data-testid="media-element-' + tool + '"]');
+	seeMediaElementDefaultThumbnail(toolName) {
+		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
 		element.find(MediaShelf.#mediaElementDefaultThumbnail)
 			.should("exist")
 	}
 
-	seeMediaElementTitle(tool) {
-		const element = cy.get('[data-testid="media-element-' + tool + '"]');
+	seeMediaElementTitle(toolName) {
+		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
 		element.find(MediaShelf.#mediaElementTitle)
 			.should("exist")
-			.should("contain.text", tool);
+			.should("contain.text", toolName);
 	}
 
-	seeMediaElementDescription(tool) {
-		const element = cy.get('[data-testid="media-element-' + tool + '"]');
+	seeMediaElementDescription(toolName) {
+		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
 		element.find(MediaShelf.#mediaElementDescription)
 			.should("exist")
 	}
 
-	seeMediaElementDeactivatedChip(tool) {
-		const element = cy.get('[data-testid="media-element-' + tool + '"]');
+	seeMediaElementDeactivatedChip(toolName) {
+		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
 		element.find(MediaShelf.#mediaElementDeactivatedChip)
 			.should("exist")
 	}
 
-	seeMediaElementNotLicensedChip(tool) {
-		const element = cy.get('[data-testid="media-element-' + tool + '"]');
+	seeMediaElementNotLicensedChip(toolName) {
+		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
 		element.find(MediaShelf.#mediaElementNotLicensedChip)
 			.should("exist")
 	}
 
-	seeMediaElementIncompleteChip(tool) {
-		const element = cy.get('[data-testid="media-element-' + tool + '"]');
+	seeMediaElementIncompleteChip(toolName) {
+		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
 		element.find(MediaShelf.#mediaElementIncompleteChip)
 			.should("exist")
 	}
 
+	mediaElementIsVisibleInAvailableMediaLine(toolName) {
+		const line = cy.get(MediaShelf.#availableMediaLineSpace)
+		line.find('[data-testid="media-element-' + toolName + '"]').should("exist")
+	}
+
+	mediaElementIsNotVisibleInAvailableMediaLine(toolName) {
+		const line = cy.get(MediaShelf.#availableMediaLineSpace)
+		line.find('[data-testid="media-element-' + toolName + '"]').should("not.exist")
+	}
 
 	clickGridLayoutButton() {
 		cy.get(MediaShelf.#gridLayoutButton).click()
@@ -237,22 +246,6 @@ class MediaShelf {
 	clickMediaElement(tool) {
 		cy.get('[data-testid="media-element-' + tool + '"]').click();
 	}
-
-	// moveMediaElementToNewMediaLine(tool) {
-	// 	cy.get('[data-testid="media-element-'+ tool +'"]')
-	// 		.drag(MediaShelf.#ghostLineSpace, {force: true, scrollBehavior: "nearest"})
-	// }
-
-	// moveMediaElementToAvailableMediaLine(tool) {
-	// 	// cy.get('[data-testid="media-element-'+ tool +'"]')
-	// 	// 	.drag(MediaShelf.#availableMediaLineSpace, {force: true, scrollBehavior: "nearest"})
-	// }
-
-	// moveMediaElementToFirstMediaLine(tool) {
-	// 	cy.get('[data-testid="media-element-'+ tool +'"]')
-	// 		.drag("[data-testid='media-line-space-0']", {force: true, scrollBehavior: "nearest"})
-	// }
-
 }
 
 export default MediaShelf;
