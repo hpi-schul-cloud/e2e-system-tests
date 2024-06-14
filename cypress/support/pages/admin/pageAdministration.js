@@ -62,11 +62,16 @@ class Management {
 	static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]';
 	static #generalSettingsPanel = '[data-testid="general-settings-panel"]';
 	static #externalToolsPanel = '[data-testid="tools-panel"]';
+	static #externalToolConfigInfotext = '[data-testid="tool-configuration-infotext"]';
+	static #externalToolConfigPageTitle = '[data-testid="school-external-tool-configurator-title"]';
+	static #toolConfigurationSelectedItem = '[data-testid="configuration-selected-item"]';
+	static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]';
+	static #toolErrorAlert = '[data-testId="tool-error-alert"]';
 	static #accountMigrationPanel = '[data-testid="migration-panel"]';
 	static #externalToolsTable = '[data-testid="external-tool-section-table"]';
 	static #editExternalToolButton = '[data-testId="editAction"]';
 	static #deleteExternalToolButton = '[data-testId="deleteAction"]';
-	static #confirmSExternalToolDeletionButton = '[data-testid="delete-dialog-confirm"]';
+	static #confirmExternalToolDeletionButton = '[data-testid="delete-dialog-confirm"]';
 	static #cancelExternalToolDeletionButton = '[data-testid="delete-dialog-cancel"]';
 	static #externalToolDeletionDialogText = '[data-testid="delete-dialog-content"]';
 	static #externalToolDeletionDialogTitle = '[data-testid="delete-dialog-title"]';
@@ -85,7 +90,6 @@ class Management {
 	static #toolSelection = '[data-testid="configuration-select"]';
 	static #addExternalToolSaveButton = '[data-testid="save-button"]';
 	static #isDeactivatedCheckBox = '[data-testid="configuration-deactivate-checkbox"]';
-	static #parameterInputField = '[data-testid="schoolParam"]';
 	static #dataTable = '[data-testid="table_container"]';
 	static #studentVisiblityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
@@ -494,7 +498,7 @@ class Management {
 	}
 
 	clickOnConfirmInToolUsageDialog() {
-		cy.get(Management.#confirmSExternalToolDeletionButton).click();
+		cy.get(Management.#confirmExternalToolDeletionButton).click();
 	}
 
 	clickCancelExternalToolDeletionButton() {
@@ -505,6 +509,51 @@ class Management {
 		cy.get(Management.#externalToolsTable).should("be.visible");
 	}
 
+	seeEmptyExternalToolTable() {
+		cy.get(Management.#externalToolsTable).should("not.exist");
+	}
+
+	seeExternalToolConfigurationPage() {
+		cy.url().should("include", "/administration/school-settings/tool-configuration");
+	}
+
+	seeToolConfigurationInfoText() {
+		cy.get(Management.#externalToolConfigInfotext).should("be.visible");
+	}
+
+	seeExternalToolConfiguratorPageTitle() {
+		cy.get(Management.#externalToolConfigPageTitle).should("exist");
+	}
+
+	seeSelectedExternalTool(toolName) {
+		cy.get(Management.#toolConfigurationSelectedItem).should("contain.text", toolName);;
+	}
+
+	seeCustomParameterFormContains(paramName, value) {
+		cy.get(`[data-testid="${paramName}"]`).find("input").should("have.value", value);
+	}
+
+	fillInCustomParameter(paramName, value) {
+		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
+	}
+
+	externalToolIsNotVisibleInToolSelection(toolName) {
+		cy.get(Management.#toolSelection).click();
+		cy.get(Management.#toolConfigurationSelectItem).contains(toolName).should("not.exist");
+	}
+
+	seeToolErrorAlert() {
+		cy.get(Management.#toolErrorAlert).should("be.visible");
+	}
+
+	seeDeactivatedCheckBox(value) {
+		if(value === "checked"){
+			cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("be.checked");
+		} else if(value === "not checked"){
+			cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("not.be.checked")
+		}
+	}
+
 	clickAddExternalTool() {
 		cy.get(Management.#addExternalToolButton).should("be.visible");
 
@@ -513,15 +562,15 @@ class Management {
 
 	addExternalTool(toolName) {
 		cy.get(Management.#toolSelection).click();
-		cy.get('[data-testid="configuration-select-item"]').contains(toolName).click();
+		cy.get(Management.#toolConfigurationSelectItem).contains(toolName).click();
 	}
 
 	deactivateTool() {
-		cy.get(Management.#isDeactivatedCheckBox).check({ force: true });
+		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').check({ force: true });
 	}
 
 	activateTool() {
-		cy.get(Management.#isDeactivatedCheckBox).uncheck({ force: true });
+		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').uncheck({ force: true });
 	}
 
 	checkActivatedTool(toolName) {
@@ -538,10 +587,6 @@ class Management {
 		toolData.parent("td").siblings("td").eq(0).contains("Deaktiviert").should("exist");
 	}
 
-	fillInParameter() {
-		cy.get(Management.#parameterInputField).click().type("schoolInput");
-	}
-
 	saveExternalTool() {
 		cy.get(Management.#addExternalToolSaveButton).click();
 	}
@@ -554,15 +599,12 @@ class Management {
 		cy.get(Management.#externalToolDeletionDialogText).should("be.visible");
 	}
 
-	seeOneOrMoreExternalTools() {
-		cy.get(Management.#externalToolsTable)
-			.find("tbody")
-			.find("tr")
-			.should("have.length.gte", 1);
+	seeExternalTool(toolName) {
+		cy.get(Management.#externalToolsTable).contains(toolName);
 	}
 
-	seeExternalToolStatus(toolName) {
-		cy.get(Management.#externalToolsTable).contains(toolName);
+	toolIsNotVisibleInExternalToolTable(toolName) {
+		cy.get(Management.#externalToolsTable).contains(toolName).should('not.exist');
 	}
 
 	clickOnEditButton(toolName) {

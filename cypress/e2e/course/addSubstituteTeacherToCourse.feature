@@ -33,7 +33,7 @@ Feature: Course - Add substitute teacher to course
     When I go to rooms overview
     When I go to room '<course_name>'
     When I open page Edit course
-    Then I can see page Edit course
+    Then I see page Edit course
     And I clear substitute teacher field
     And I add substitute teacher '<substitute_teacher>'
     When I click on button Save changes in page Edit course

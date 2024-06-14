@@ -52,7 +52,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		Then I see detail page for task 'CypressAut Task Creating and Deleting Test'
 		When I go to rooms overview
 		When I go to room 'CypressAut Test Creation and Deletion'
-		Then I can see room page 'CypressAut Test Creation and Deletion'
+		Then I see room page 'CypressAut Test Creation and Deletion'
 		And I can see content 'CypressAut Task Creating and Deleting Test' on course page
 
 		# teacher edits and publishes task from room via form
@@ -74,7 +74,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		When I click on button Submit
 		Then I see detail page for task 'CypressAut Task Creating, Editing, Deleting Test'
 		When I click on button To Course
-		Then I can see room page 'CypressAut Test Creation and Deletion'
+		Then I see room page 'CypressAut Test Creation and Deletion'
 		And I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
 		Then I see task card info submitted contains '0/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
 		When I click on task 'CypressAut Task Creating, Editing, Deleting Test'
@@ -220,7 +220,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 		When I arrive on the dashboard
 		When I go to rooms overview
 		When I go to room 'CypressAut Test Creation and Deletion'
-		Then I can see room page 'CypressAut Test Creation and Deletion'
+		Then I see room page 'CypressAut Test Creation and Deletion'
 		And I can not see content 'CypressAut Task Creating, Editing, Deleting Test'
 
 		@school_api_test
