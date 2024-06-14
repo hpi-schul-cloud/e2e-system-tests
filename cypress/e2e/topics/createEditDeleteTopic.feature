@@ -1,10 +1,10 @@
-@api-migrated
+@api_migrated
 @release
+@stable_test
 Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
 
-  @stable_test
   Scenario: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
     # pre-condition: admin, teacher and student log in to create their account in a same school
@@ -120,6 +120,12 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     When I click on Delete in confirmation window
     Then I can not see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
+    @school_api_test
     Examples:
       | namespace | admin      | teacher      | fullname_teacher  |
       | brb       | admin1_brb | teacher1_brb | cypress teacher_1 |
+
+    @staging_test
+    Examples:
+      | namespace | admin      | teacher      | fullname_teacher |
+      | brb       | admin1_brb | teacher1_brb | Karl Herzog      |

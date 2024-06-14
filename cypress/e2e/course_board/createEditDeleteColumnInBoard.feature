@@ -1,11 +1,11 @@
 @api_migrated
 @release
+@stable_test
 Feature: Course Board - To create, edit and delete column in the course board
 
   As a teacher I want to create, edit and delete the column in the course board so that I can manage the column in the board.
 
-  @stable_test
-  Scenario: Teacher creates, edits, deletes a column board in the course, including pre-conditions
+  Scenario Outline: user creation, course creation, and creating, editing, deleting a column board in the course
 
     # pre-condition: teacher and admin log in to create their account in a same school
     Given I am logged in as a '<teacher>' at '<namespace>'
@@ -16,7 +16,7 @@ Feature: Course Board - To create, edit and delete column in the course board
     When I click on FAB to create a new room
     When I click on new course create button in sub menu
     Then I see section one area on the course create page
-    When I enter the course title 'CypressAut Test Creation and Deletion'
+    When I enter the course title '<course_name>'
     When I select room colour as red
     Then I select teacher '<fullname_teacher>' is selected by default
     Then I see substitute teacher selection box
@@ -37,7 +37,7 @@ Feature: Course Board - To create, edit and delete column in the course board
     # teacher adds a new Board
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to rooms overview
-    When I go to room '<course_title>'
+    When I go to room '<course_name>'
     When I go to the tab contents in course detail page
     When I click on FAB to create new content
     When I click on the button FAB New Column Board
@@ -70,6 +70,12 @@ Feature: Course Board - To create, edit and delete column in the course board
     When I click on the button Remove on the Modal
     Then I do not see the column
 
+    @school_api_test
     Examples:
-      | namespace | teacher      | admin      | fullname_teacher  | course_title                          | board_title    | column_board_title     | edited_column_board_title |
-      | brb       | teacher1_brb | admin1_brb | cypress teacher_1 | CypressAut Test Creation and Deletion | Board Cy Title | my cypress test column | edit cypress test column |
+      | teacher      | admin      | namespace | fullname_teacher  | course_name                    | board_title    | column_board_title     | edited_column_board_title |
+      | teacher1_brb | admin1_brb | brb       | cypress teacher_1 | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |
+
+    @staging_test
+    Examples:
+      | teacher      | admin      | namespace | fullname_teacher | course_name                    | board_title    | column_board_title     | edited_column_board_title |
+      | teacher1_brb | admin1_brb | brb       | Karl Herzog      | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |

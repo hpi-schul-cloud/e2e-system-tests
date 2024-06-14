@@ -1,11 +1,11 @@
 # Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @api_migrated
 @release
+@stable_test
 Feature: Learning store - Activating and deactivating access for students
 
   As an admin I want to activate and deactivate students access to learning store
 
-  @stable_test
   Scenario: Search, open and download material form learning store, including pre-condition
 
     # pre-condition: admin, student and teacher log in to create their account in a same school
@@ -47,7 +47,8 @@ Feature: Learning store - Activating and deactivating access for students
     When I click the toggle switch to disable students access to learning store
     When I click on button Save admin settings
 
-
+    @school_api_test
+    @staging_test
     Examples:
       | admin      | teacher      | student      | namespace | search_text |
       | admin1_brb | teacher1_brb | student1_brb | brb       | dino        |

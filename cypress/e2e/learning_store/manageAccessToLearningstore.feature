@@ -1,11 +1,11 @@
 # Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @api_migrated
 @release
+@stable_test
 Feature: Learning store - Activating and deactivating access for students
 
         As an admin I want to activate and deactivate students access to learning store
 
-        @stable_test
         Scenario: Admin activates and deactivates the learnstore and student can access it, including pre-conditions
 
                 # pre-condition: admin, student log in to create their account in a same school
@@ -38,7 +38,8 @@ Feature: Learning store - Activating and deactivating access for students
                 Given I am logged in as a '<student>' at '<namespace>'
                 Then I do not see Learning Store in side bar
 
-
+                @school_api_test
+                @staging_test
                 Examples:
                         | admin      | student      | namespace |
                         | admin1_brb | student1_brb | brb       |

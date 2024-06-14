@@ -210,14 +210,14 @@ class Topics {
 		contentTitle4,
 		contentTitle5
 	) {
-		cy.get(Topics.#navCourseOverviewLink).should("have.attr", "class", "active");
+		cy.get(Topics.#navCourseOverviewLink).should("have.class", "active");
 		cy.get(Topics.#titlebar).should("contain", topicTitle);
 		cy.get(Topics.#sectionCourse).within(() => {
 			cy.get("h2").should("contain", contentTitle1);
-			cy.get("h2").should("contain", contentTitle1);
-			cy.get("h2").should("contain", contentTitle1);
-			cy.get("h2").should("contain", contentTitle1);
-			cy.get("h2").should("contain", contentTitle1);
+			cy.get("h2").should("contain", contentTitle2);
+			cy.get("h2").should("contain", contentTitle3);
+			cy.get("h2").should("contain", contentTitle4);
+			cy.get("h2").should("contain", contentTitle5);
 		});
 	}
 

@@ -256,6 +256,7 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
+		cy.reload();
 		if (!(role == "student")) {
 			cy.intercept("**/teachers?**").as("search_api");
 		} else {
@@ -342,7 +343,6 @@ class Management {
 	}
 
 	userIsVisibleInTable(email) {
-		cy.get(Management.#searchbar).clear();
 		cy.get(Management.#tableContents)
 			.contains(email)
 			.should("be.visible")
