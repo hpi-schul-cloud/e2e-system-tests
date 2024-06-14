@@ -18,6 +18,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     Then I can see the user with email '<user_email>' in the table
 
     # admin adds edits a student
+    # admin adds edits a student
     And I go to '<role_to_manage>' administration
     And I enter '<role_to_manage>' email '<user_email>' in search input field
     And I click edit '<role_to_manage>' button for '<user_email>'
@@ -29,6 +30,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
     And I enter '<role_to_manage>' email '<user_email>' in search input field
     Then I can not see user '<user_email>' in the table
 
+    # admin deletes a student
     # admin deletes a student
     And I go to '<role_to_manage>' administration
     And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
