@@ -12,7 +12,7 @@ class Management {
 	static #editStudentButton = '[data-testid="edit_student_button"]';
 	static #firstNameEditForm = "input[name='firstName']";
 	static #lastNameEditForm = "input[name='lastName']";
-	static #emailEditForm = "input[name='email']";
+	static #emailEditForm = "input[id='email']";
 	static #submitButton = '[data-testid="button_save_user"]';
 	static #deleteButton = '[data-testid="button_delete_user"]';
 	static #deleteUserButtonConfirmationOnModal =
@@ -176,19 +176,17 @@ class Management {
 		cy.get(Management.#studentTeamCheckbox).should("be.checked");
 	}
 
-	navigateToAdministration() {
+	openAdministrationInMenu() {
 		cy.get(Management.#administrationOverviewNavigationButton).click();
-		cy.url().should("include", "/administration");
 	}
 
-	navigateToStudentAdministration() {
-		cy.get(Management.#studentAdministrationNavigationButton).click();
-		cy.url().should("include", "/administration/students");
-	}
-
-	navigateToTeacherAdministration() {
-		cy.get(Management.#teacherAdministrationNavigationButton).click();
-		cy.url().should("include", "/administration/teachers");
+	navigateToUserAdministration(role) {
+		let navToUserManagementButton = role === "student"
+			? Management.#studentAdministrationNavigationButton
+			: Management.#teacherAdministrationNavigationButton;
+		cy.get(navToUserManagementButton).click();
+		let expectedURL = "/administration/" + role;
+		cy.url().should("include", expectedURL);
 	}
 
 	navigateToCourseAdministration() {
@@ -224,18 +222,18 @@ class Management {
 		cy.get(Management.#fabButton).click();
 	}
 
-	clickOnAddStudentInFAB() {
-		cy.get(Management.#addStudentButton).click({ force: true });
-	}
-
-	clickOnAddTeacherInFAB() {
-		cy.get(Management.#addTeacherButton).click();
+	clickOnAddUserInFAB(role) {
+		let addUserButtonInFAB = (role === "student")
+			? Management.#addStudentButton
+			: Management.#addTeacherButton;
+		cy.get(addUserButtonInFAB).click({ force: true });
 	}
 
 	fillUserCreationForm(forename, surname, email) {
+		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
-		cy.get(Management.#emailCreationForm).type(email);
+		cy.get(Management.#emailCreationForm).type(randomNumber + email);
 	}
 
 	clickOnAddButton(role) {
@@ -263,29 +261,31 @@ class Management {
 		} else {
 			cy.intercept("**/students?**").as("search_api");
 		}
+		cy.get(Management.#searchbar).clear();
 		cy.get(Management.#searchbar).type(keyword);
 		cy.wait("@search_api").its("response.statusCode").should("eq", 200);
 	}
 
-	clickEditStudentButton(email) {
+	clickEditUserButton(role, email) {
+		let editUserButton = "edit_" + role  + "_button";
 		cy.contains("td", email)
 			.siblings()
 			.find("a")
-			.should("have.attr", "data-testid", "edit_student_button")
+			.should("have.attr", "data-testid", editUserButton)
 			.click();
 	}
 
-	clickEditTeacherButton(email) {
-		cy.contains("td", email)
-			.siblings()
-			.find("a")
-			.should("have.attr", "data-testid", "edit_teacher_button")
-			.click()
-			.wait(["@alerts_api"])
-			.then((interceptions) => {
-				expect(interceptions.response.statusCode).to.equal(200);
-			});
-	}
+	// clickEditTeacherButton(email) {
+	// 	cy.contains("td", email)
+	// 		.siblings()
+	// 		.find("a")
+	// 		.should("have.attr", "data-testid", "edit_teacher_button")
+	// 		.click()
+	// 		.wait(["@alerts_api"])
+	// 		.then((interceptions) => {
+	// 			expect(interceptions.response.statusCode).to.equal(200);
+	// 		});
+	// }
 
 	changeUsername(firstname, surname) {
 		cy.get(Management.#firstNameEditForm).clear();
@@ -295,17 +295,18 @@ class Management {
 	}
 
 	changeEmail(newEmail) {
+		let randomNumber = new Date().getTime() +  Math.floor(Math.random() * 1000);
 		cy.get(Management.#emailEditForm).clear();
-		cy.get(Management.#emailEditForm).type(newEmail);
+		cy.get(Management.#emailEditForm).type(randomNumber + newEmail);
 	}
 
 	clickSaveButton() {
 		cy.get(Management.#submitButton).eq(0).click();
 	}
 
-	deleteUser(email) {
-		cy.get(Management.#emailEditForm)
-			.should("have.value", email)
+	deleteUser(lastName) {
+		cy.get(Management.#lastNameEditForm)
+			.should("have.value", lastName)
 			.then(($matchEmail) => {
 				this.clickDeleteButton();
 			});

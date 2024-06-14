@@ -1,69 +1,44 @@
+@api_migrated
 @release
 Feature: Admin Users - To add, edit and delete new users by the admin.
 
   As an admin I want to create a new user so that I can administrate it
 
   @stable_test
-  Scenario: Adding a new student
-    Given I am logged in as a 'admin1_brb' at 'brb'
-    When I go to administration page
-    And I go to student administration
+  Scenario: Adding a new user, edit this student and delete this student
+  # admin adds a new student
+    Given I am logged in as a '<admin>' at '<namespace>'
+    When I click on administration in menu
+    And I go to '<role_to_manage>' administration
     When I click on FAB
-    When I click on Add Student in opened FAB
-    And I fill out the user creation form for 'Adam' 'Riese' with email 'adam.riese@example.com'
-    And I click on add button to add 'student'
-    Then I can see the user with email 'adam.riese@example.com' in the table
+    When I click on Add User in opened FAB for '<role_to_manage>'
+    And I fill out the user creation form for '<user_firstname>' '<user_lastname>' with email '<user_email>'
+    And I click on add button to add '<role_to_manage>'
+    And I enter '<role_to_manage>' email '<user_email>' in search input field
+    Then I can see the user with email '<user_email>' in the table
 
-  @stable_test
-  Scenario: Editing a new student
-    When I go to administration page
-    And I go to student administration
-    And I enter 'student' email 'adam.riese@example.com' in search input field
-    And I click edit student button for 'adam.riese@example.com'
-    And I change username to 'Alex' 'Abramovic'
-    And I change email to 'alex.abramovic@example.com'
+  # admin adds edits a student
+    And I go to '<role_to_manage>' administration
+    And I enter '<role_to_manage>' email '<user_email>' in search input field
+    And I click edit '<role_to_manage>' button for '<user_email>'
+    And I change username to '<user_firstname_edited>' '<user_lastname_edited>'
+    And I change email to '<user_email_edited>'
     And I click save changes button
-    Then I can see the user with email 'alex.abramovic@example.com' in the table
-    Then I can not see user 'adam.riese@example.com' in the table
+    And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+    Then I can see the user with email '<user_email_edited>' in the table
+    And I enter '<role_to_manage>' email '<user_email>' in search input field
+    Then I can not see user '<user_email>' in the table
 
-  @stable_test
-  Scenario: Deleting a student
-    When I go to administration page
-    And I go to student administration
-    And I enter 'student' email 'alex.abramovic@example.com' in search input field
-    And I click edit student button for 'alex.abramovic@example.com'
-    And I click delete user button to delete user with email 'alex.abramovic@example.com'
+  # admin deletes a student
+    And I go to '<role_to_manage>' administration
+    And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+    And I click edit '<role_to_manage>' button for '<user_email_edited>'
+    And I click delete user button to delete user with lastname '<user_lastname_edited>'
     And I click on delete button in pop up
-    Then I can not see user 'alex.abramovic@example.com' in the table
+    And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+    Then I can not see user '<user_email_edited>' in the table
 
-  @stable_test
-  Scenario: Adding a new teacher
-    When I go to administration page
-    And I go to teacher administration
-    When I click on FAB
-    When I click on Add Teacher in opened FAB
-    And I fill out the user creation form for 'Karl' 'Müller' with email 'karl.mueller@example.com'
-    And I click on add button to add 'teacher'
-    Then I can see the user with email 'karl.mueller@example.com' in the table
-
-  @stable_test
-  Scenario: Editing a new teacher
-    When I go to administration page
-    And I go to teacher administration
-    And I enter 'teacher' email 'karl.mueller@example.com' in search input field
-    And I click edit teacher button for 'karl.mueller@example.com'
-    And I change username to 'Theodor' 'Müller-Schmidt'
-    And I change email to 't.mueschmidt@example.com'
-    And I click save changes button
-    Then I can see the user with email 't.mueschmidt@example.com' in the table
-    Then I can not see user 'karl.mueller@example.com' in the table
-
-  @stable_test
-  Scenario: Deleting a teacher
-    When I go to administration page
-    And I go to teacher administration
-    And I enter 'teacher' email 't.mueschmidt@example.com' in search input field
-    And I click edit teacher button for 't.mueschmidt@example.com'
-    And I click delete user button to delete user with email 't.mueschmidt@example.com'
-    And I click on delete button in pop up
-    Then I can not see user 't.mueschmidt@example.com' in the table
+    Examples:
+      | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | user_firstname_edited | user_lastname_edited     | user_email_edited                         |
+      | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |
+      | brb       | admin1_brb | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de | cypress               | edited_teacher_admintest | edited_teacher_adminusers@cypress-mail.de |

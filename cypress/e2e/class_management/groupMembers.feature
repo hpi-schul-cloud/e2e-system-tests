@@ -6,7 +6,7 @@ Feature: Group - To show members in a group
 
   Scenario: As a teacher I can manage a group of type class from external systems
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to administration page
+    When I click on administration in menu
     When I go to new class administration page
     Then I see the new class administration page
     Then I can see the group 'Cypress-Test-Group' with source 'moin.schule'
