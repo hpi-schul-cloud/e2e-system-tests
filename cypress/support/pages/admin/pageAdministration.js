@@ -506,7 +506,7 @@ class Management {
 	}
 
 	seeExternalToolTable() {
-		cy.get(Management.#externalToolsTable).should("be.visible");
+		cy.get(Management.#externalToolsTable).scrollIntoView().should("be.visible");
 	}
 
 	seeEmptyExternalToolTable() {
@@ -559,8 +559,7 @@ class Management {
 	}
 
 	clickAddExternalTool() {
-		cy.get(Management.#addExternalToolButton).should("be.visible");
-
+		cy.get(Management.#addExternalToolButton).scrollIntoView().should("be.visible");
 		cy.get(Management.#addExternalToolButton).click();
 	}
 

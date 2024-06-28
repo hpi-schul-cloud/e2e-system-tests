@@ -103,8 +103,7 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Protected Parameter' in the tool overview
     Then I see the tool 'CY Test Tool Optional Protected Parameter' in the tool overview
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
-#    Note: due to a bug in the client the following line can not be executed - Bug-Ticket: N21-2021
-#    Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
+    Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
     Then I see the tool 'CY Test Tool Protected Parameter' is marked as incomplete
 #    Student tries to launch incomplete tool
     When I click on the tool 'CY Test Tool Protected Parameter'

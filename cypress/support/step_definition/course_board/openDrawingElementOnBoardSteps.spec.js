@@ -22,3 +22,11 @@ Then("I select whiteboard from the menu", () => {
 Then("I click on the option Publish in three dot menu in course board", () => {
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
 });
+
+When("I select external tools from the menu", () => {
+	board.selectExternalToolsFromMenu();
+});
+
+Then("I see an external tool element with tool {string}", (toolName) => {
+	board.seeExternalToolElementWithTool(toolName);
+});
