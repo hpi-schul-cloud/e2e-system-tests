@@ -24,6 +24,8 @@ class Board {
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
 	static #selectWhiteboardFromMenu = '[data-testid="create-element-drawing-element"]';
+	static #selectExternalToolsFromMenu = '[data-testid="create-element-external-tool-container"]';
+	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #boardMenuActionPublish = '[data-testid="board-menu-action-publish"]';
 
 	clickPlusIconToAddCardInColumn() {
@@ -36,6 +38,16 @@ class Board {
 
 	selectWhiteboardFromMenu() {
 		cy.get(Board.#selectWhiteboardFromMenu).click();
+	}
+
+	selectExternalToolsFromMenu() {
+		cy.get(Board.#selectExternalToolsFromMenu).click();
+	}
+
+	seeExternalToolElementWithTool(toolName) {
+		cy.get(Board.#externalToolElement)
+			.find('.content-element-title')
+			.should('contain.text', toolName);
 	}
 
 	clickPublishOptionInThreeDotMenuInCourseBoard() {
