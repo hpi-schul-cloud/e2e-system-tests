@@ -63,7 +63,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see edit topic page 'Cy Topic Creating and Deleting Test'
     When I click on save button to save changes
     Then I see topic detail page "Cy Topic Creating and Deleting Test" with content elements "Cy Title for Text Element in Topic", "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic" and "Cy Title for Task Element in Topic"
-    When I click on last breadcrump element in topbar navigation
+    When I navigate back to topic via breadcrump menu
     Then I can see topic 'Cy Topic Creating and Deleting Test' on course page
 
     # teacher edits the topic
@@ -105,7 +105,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     # Then I can see form element Task on position '4'
     # When I click button Cancel
     # Then I see topic detail page "Cy Topic Creating and Deleting Test - Edited topic" with content elements "Cy Title for GeoGebra Element in Topic", "Cy Title for Learning Material Element in Topic", "Cy Title for Etherpad Element in Topic Changed", "Cy Title for Task Element in Topic" and "Cy New text element Title"
-    When I click on last breadcrump element in topbar navigation
+    When I navigate back to topic via breadcrump menu
     Then I can see topic 'Cy Topic Creating and Deleting Test - Edited topic' on course page
 
     # teacher deletes the topic
