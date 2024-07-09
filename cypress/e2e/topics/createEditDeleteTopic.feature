@@ -11,7 +11,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Given I am logged in as a '<teacher>' at '<namespace>'
     Given I am logged in as a '<admin>' at '<namespace>'
 
-    # pre-condition: admin creates a course and assign teacher to the courseCypressAut
+    # pre-condition: admin creates a course and assign teacher to the course
     When I go to rooms overview
     When I click on FAB to create a new room
     When I click on new course create button in sub menu
