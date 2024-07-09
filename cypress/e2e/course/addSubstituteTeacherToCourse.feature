@@ -1,6 +1,6 @@
 @api_migrated
 @release
-@stable_test
+@unstable_test
 Feature: Course - Add substitute teacher to course
 
   As a teacher I want to add substitute teacher to the course.

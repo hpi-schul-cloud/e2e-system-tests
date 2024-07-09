@@ -126,7 +126,7 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 			const { id } = await createSchool(schoolUrl, finalHeaders);
 			schoolId = id;
 		} else {
-			console.log(`Using existing school ID: ${schoolId}`);
+			console.log(`User created using existing school ID: ${schoolId}`);
 		}
 
 		const role = getUserRole(userType);

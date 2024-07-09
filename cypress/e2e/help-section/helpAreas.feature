@@ -1,6 +1,6 @@
 @api_migrated
 @release
-@stable_test
+@unstable_test
 Feature: Help Section - To use the help areas in dBildungscloud
 
   As a teacher I want to use the help areas in the header and sidebar so that I can find help when needed

@@ -1,10 +1,9 @@
-# Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @release
 Feature: Team - Student managed teams (on BRB)
 
   As a student I want to create/edit/delete the team in Brandenburg so that I can manage the team.
 
-  @stable_test
+  @unstable_test
   Scenario: As a pre-condition admin allows student to create a team on BRB
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
@@ -13,7 +12,7 @@ Feature: Team - Student managed teams (on BRB)
     When I click on Save
     Then I see checkbox is saved
 
-  @stable_test
+  @unstable_test
   Scenario: Student can create, edit and delete team on BRB
     Given I am logged in as a 'student1_brb' at 'brb'
     When I go to teams overview

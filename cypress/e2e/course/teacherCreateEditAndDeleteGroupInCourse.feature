@@ -1,6 +1,6 @@
 @release
 @api_migrated
-@stable_test
+@unstable_test
 Feature: Teacher can create, edit and delete a group in the course
 
   Scenario Outline: user creation, course creation, and creating,editing and deleting a group

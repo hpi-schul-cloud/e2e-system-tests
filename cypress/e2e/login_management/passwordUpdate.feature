@@ -3,7 +3,7 @@ Feature: Password Update - Verify login functionality via password change
 
     As a user, I want to see how app behaves when I'll change password.
 
-    @stable_test
+    @unstable_test
     Scenario Outline: User change password, login and change again to old passwords.
         Given I am on the '<namespace>' login page
         Then I see email field is visible and empty

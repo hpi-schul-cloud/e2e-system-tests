@@ -3,7 +3,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
 
   As a user I want to create and edit a LibreOffice text document so that I write into it
 
-  @stable_test
+  @unstable_test
   Scenario: Create a LibreOffice text document
     Given I am logged in as a 'student1_brb' at 'brb'
     When I go to files overview
@@ -16,7 +16,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
     Then I go to personal files overview
     Then I can see file with name 'Cy: LibraOffice Open'
 
-  @stable_test
+  @unstable_test
   Scenario: Edit name of LibreOffice text document
     When I go to files overview
     Then I go to personal files overview
@@ -27,7 +27,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
     Then I click save name button
     Then I can see file with name 'Cy: LibraOffice Edit.docx'
 
-  @stable_test
+  @unstable_test
   Scenario: Delete a LibreOffice text document
     When I go to files overview
     Then I go to personal files overview

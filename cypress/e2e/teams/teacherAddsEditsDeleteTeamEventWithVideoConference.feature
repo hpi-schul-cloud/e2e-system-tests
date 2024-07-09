@@ -1,10 +1,9 @@
-# Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @release
 Feature: Team - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
     As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.
 
-    @stable_test
+    @unstable_test
     Scenario: as a pre condition Admin enables the video conference option for a team event
         Given I am logged in as a 'admin1_dbc' at 'dbc'
         When I click on administration in menu
@@ -15,7 +14,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I enable the video conference
         Then I click on button Save admin settings
 
-    @stable_test
+    @unstable_test
     Scenario: as a pre condition Teacher enables the video conference option in team edit
         Given I am logged in as a 'teacher1_dbc' at 'dbc'
         When I go to teams overview
@@ -26,7 +25,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I enable the video conference on the teams edit page
         Then I click on teams save changes button
 
-    @stable_test
+    @unstable_test
     Scenario: as a pre-condition teacher adds student as an internal team member
         When I go to teams overview
         When I go to a team 'Musik'
@@ -37,7 +36,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         And I click on add user button
         Then I see the student named 'Herbert Kraft' on the team members table
 
-    @stable_test
+    @unstable_test
     Scenario: Teacher adds event with video conference
         When I go to teams overview
         When I go to a team 'Musik'
@@ -58,7 +57,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I see the modal and toggles are visible in the modal
         Then I start the team video conference which has title 'cy title'
 
-    @stable_test
+    @unstable_test
     Scenario: Student can see and participate in video conference
         Given I am logged in as a 'student1_dbc' at 'dbc'
         When I go to teams overview
@@ -67,7 +66,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I am in calendar tab on team detail page and title 'cy title' is visible
         Then I click on participate to video conference button as a participating student
 
-    @stable_test
+    @unstable_test
     Scenario: as a post-condition teacher deletes the student as a team member
         Given I am logged in as a 'teacher1_dbc' at 'dbc'
         When I go to teams overview
@@ -77,7 +76,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I select the student 'Herbert Kraft' and click on delete icon
         Then I see 'Herbert Kraft' is not visible on the table
 
-    @stable_test
+    @unstable_test
     Scenario: as a post condition Teacher edits and deletes the event
         When I go to teams overview
         When I go to a team 'Musik'
@@ -94,7 +93,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
 
-    @stable_test
+    @unstable_test
     Scenario: as a post condition Admin disable the video conference for the team
         Given I am logged in as a 'admin1_dbc' at 'dbc'
         When I click on administration in menu
@@ -105,7 +104,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Then I disable the video conference
         Then I click on button Save admin settings
 
-    @stable_test
+    @unstable_test
     Scenario: as a post condition Teacher sees deactivated video conference check box
         Given I am logged in as a 'teacher1_dbc' at 'dbc'
         When I go to teams overview

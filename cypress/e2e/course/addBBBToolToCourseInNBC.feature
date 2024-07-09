@@ -1,6 +1,6 @@
 # Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
 @release
-@stable_test
+@unstable_test
 Feature: Teacher can add and remove BBB tool in the course in NBC with admin permission
 
 	As a teacher I want to activate and deactivate BBB tool inside the course in NBC

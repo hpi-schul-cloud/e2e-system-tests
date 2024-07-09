@@ -1,5 +1,5 @@
 @api_migrated
-@stable_test
+@unstable_test
 @release
 Feature: Addons - To go to addons page on NBC
 

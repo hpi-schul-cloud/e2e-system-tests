@@ -1,10 +1,10 @@
 @api_migrated
 @release
+@stable_test
 Feature: Team - Create, delete and edit operations on Teams
 
   As a teacher I want to create/edit/delete the team so that I can manage the team.
 
-  @stable_test
   Scenario Outline: Teacher create, edit and deletes the team
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to teams overview
