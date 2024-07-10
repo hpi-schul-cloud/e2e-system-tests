@@ -32,7 +32,7 @@ class Topics {
 	static #titlebar = '[id="titlebar"]';
 	static #sectionCourse = '[data-testid="section-topic"]';
 	static #topNavbar = '[id="top-navbar"]';
-	static #breadcrumbItem = '[class="breadcrumb-item "]';
+	static #breadcrumbBackToCourse = '[data-testid="navigate-to-course-from-topic"]';
 	static #penIcon = '[data-testid="edit-icon-pencil"]';
 	static #editTopicButton = '[data-testid="topic-button-edit"]';
 	static #textElementPos0 = '[data-testid="topic-content-element-text-0"]';
@@ -221,8 +221,8 @@ class Topics {
 		});
 	}
 
-	clickLastBreadcrumb() {
-		cy.get(Topics.#breadcrumbItem).last().click();
+	navigateBackToCourseViaBreadcrumb() {
+		cy.get(Topics.#breadcrumbBackToCourse).click();
 	}
 
 	clickIconPen() {

@@ -129,8 +129,8 @@ Then(
 	}
 );
 
-When("I click on last breadcrump element in topbar navigation", () => {
-	topics.clickLastBreadcrumb();
+When("I navigate back to course detail page via breadcrump menu", () => {
+	topics.navigateBackToCourseViaBreadcrumb();
 });
 
 When(`I click on icon Pen on topic page`, () => {
