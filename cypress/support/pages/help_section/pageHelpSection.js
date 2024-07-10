@@ -1,10 +1,7 @@
 "use strict";
 
 class Help {
-	// static #questionIcon = '[data-testid="help_top_menu"]';
-	static #helpSectionInSidebar = '[data-testid="Hilfeartikel"]';
-	// static #sendRequestOrProblemInHeader = '[data-testid="Hilfekontakt"]';
-	// static #advancedTrainingsInHeader = '[data-testid="Fortbildung"]';
+	static #helpSectionInSidebar = '[data-testid="Hilfeartikel"]';;
 	static #helpPageTitle = '[id="page-title"]';
 	static #helpFirstSteps = "#erste_schritte > .icon-card__content > .icon-card__title";
 	static #helpLessons = '[id="Unterricht"]';
@@ -14,7 +11,7 @@ class Help {
 	static #popUpLink = "https://lernen.cloud/";
 	static #searchBar = '[data-testid="help_search_bar"]';
 	static #searchResult = '[data-testid="help_search_results"]';
-	static #bugFormHeadline = '[data-testid="bug_headline"]';
+	static #bugFormSubject = '[data-testid="bug_headline"]';
 	static #bugFormMail = '[data-testid="bug_email"]';
 	static #bugFormSubmitButton = '[data-testid="bug_submit"]';
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
@@ -45,25 +42,6 @@ class Help {
 		});
 	}
 
-	/* clickQuestionIcon() {
-		cy.get(Help.#questionIcon).click();
-	} */
-
-	/* clickHelpSectionInHeader() {
-		cy.get(Help.#helpSectionInHeader).click();
-	} */
-
-	/* clickSendRequestOrProblemInHeader() {
-		cy.get(Help.#sendRequestOrProblemInHeader).click();
-	} */
-
-/* 	advancedTrainingsInHeader() {
-		cy.get(Help.#advancedTrainingsInHeader).should(($a) => {
-			expect($a.attr("href"), "href").to.equal(Help.#popUpLink);
-			expect($a.attr("target"), "target").to.equal("_blank");
-		});
-	} */
-
 	seeHelpArticlesPage() {
 		cy.get(Help.#helpPageTitle);
 		cy.contains("Hilfeartikel");
@@ -78,34 +56,31 @@ class Help {
 	}
 
 	seeHelpContactPage() {
-		cy.get(Help.#helpPageTitle);
-		cy.contains("Kontakt");
-		cy.get(Help.#helpContactform);
-		cy.contains("Kontaktformular");
+		cy.get(Help.#helpPageTitle).contains("Kontakt");
+		cy.get(Help.#helpContactform).contains("Kontaktformular");
 	}
 
-	enterKeywordInHelpArticlesSearchbar() {
-		cy.get(Help.#searchBar).type("Hilfe");
+	enterKeywordInHelpArticlesSearchbar(search_term) {
+		cy.get(Help.#searchBar).type(search_term);
 	}
 
-	fillOutContactForm() {
-		cy.get(Help.#selectProblemDropdown).select("Aufgaben", { force: true });
-		cy.get(Help.#bugFormHeadline).focus().type("Dies ist ein Test! Bitte ignorieren!");
-		cy.get(Help.#bugFormMail).type("test@example.com");
+	fillOutContactForm(problem_option, subject, email) {
+		cy.get(Help.#selectProblemDropdown).select(problem_option, { force: true });
+		cy.get(Help.#bugFormSubject).type(subject);
+		cy.wait(500);
+		cy.get(Help.#bugFormMail).type(email);
 	}
 
-	seeHelpArticle() {
-		cy.get(Help.#searchResult);
-		cy.contains("Erste Schritte");
+	seeHelpArticle(result_term) {
+		cy.get(Help.#searchResult).contains(result_term);
 	}
 
 	sendFormToSupport() {
 		cy.get(Help.#bugFormSubmitButton).click();
 	}
 
-	seeConfirmationFormSended() {
-		cy.get(Help.#feedbackSendConfirmation);
-		cy.contains("Feedback erfolgreich versendet!");
+	seeConfirmationFormSended(message) {
+		cy.get(Help.#feedbackSendConfirmation).contains(message);
 	}
 }
 export default Help;
