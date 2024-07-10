@@ -1,6 +1,6 @@
 @api_migrated
 @release
-@unstable_test
+@stable_test
 Feature: Topics - To create, edit and delete topics by the teacher.
 
   As a teacher I want to create, edit and delete a new topic so that the student can see it
