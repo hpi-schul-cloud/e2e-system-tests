@@ -63,7 +63,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     Then I can see edit topic page 'CypressAut Topic Creating and Deleting Test'
     When I click on save button to save changes
     Then I see topic detail page "CypressAut Topic Creating and Deleting Test" with content elements "CypressAut Title for Text Element in Topic", "CypressAut Title for GeoGebra Element in Topic", "CypressAut Title for Learning Material Element in Topic", "CypressAut Title for Etherpad Element in Topic" and "CypressAut Title for Task Element in Topic"
-    When I navigate back to course via breadcrump menu
+    When I navigate back to course detail page via breadcrump menu
     Then I can see topic 'CypressAut Topic Creating and Deleting Test' on course page
 
     # teacher edits the topic
@@ -105,7 +105,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
     # Then I can see form element Task on position '4'
     # When I click button Cancel
     # Then I see topic detail page "CypressAut Topic Creating and Deleting Test - Edited topic" with content elements "CypressAut Title for GeoGebra Element in Topic", "CypressAut Title for Learning Material Element in Topic", "CypressAut Title for Etherpad Element in Topic Changed", "CypressAut Title for Task Element in Topic" and "CypressAut New text element Title"
-    When I navigate back to course via breadcrump menu
+    When I navigate back to course detail page via breadcrump menu
     Then I can see topic 'CypressAut Topic Creating and Deleting Test - Edited topic' on course page
 
     # teacher deletes the topic
