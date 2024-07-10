@@ -129,7 +129,7 @@ Then(
 	}
 );
 
-When("I navigate back to topic via breadcrump menu", () => {
+When("I navigate back to course via breadcrump menu", () => {
 	topics.navigateBackToTopicViaBreadcrumb();
 });
 

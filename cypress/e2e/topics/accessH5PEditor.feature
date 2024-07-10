@@ -64,7 +64,7 @@ Feature:  To access the H5P editor as a teacher.
 		When I click on save button to save changes
 		Then I see topic detail page '<topic_title>' with content elements '<topic_text_element_title>', '<topic_geogebra_title>', '<topic_learning_store_title>', '<topic_etherpad_title>' and '<topic_task_title>'
 		# Note: Below step will not work in dev environments due to new side menu. This needs to adapt in future.
-		# When I navigate back to topic via breadcrump menu
+		# When I navigate back to course via breadcrump menu
 		# Then I can see topic '<topic_title>' on course page
 
 		# teacher can access H5P editor
