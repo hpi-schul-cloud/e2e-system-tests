@@ -130,7 +130,7 @@ Then(
 );
 
 When("I navigate back to course via breadcrump menu", () => {
-	topics.navigateBackToTopicViaBreadcrumb();
+	topics.navigateBackToCourseViaBreadcrumb();
 });
 
 When(`I click on icon Pen on topic page`, () => {

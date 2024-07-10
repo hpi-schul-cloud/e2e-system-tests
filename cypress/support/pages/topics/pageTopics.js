@@ -221,7 +221,7 @@ class Topics {
 		});
 	}
 
-	navigateBackToTopicViaBreadcrumb() {
+	navigateBackToCourseViaBreadcrumb() {
 		cy.get(Topics.#breadcrumbBackToTopic).click();
 	}
 
