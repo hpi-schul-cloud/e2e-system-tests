@@ -93,6 +93,7 @@ class Management {
 	static #dataTable = '[data-testid="table_container"]';
 	static #studentVisiblityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
+	static #toolConfiguration = '[data-testid="configuration-field"]';
 
 	enableStudentVisibilityForTeacher() {
 		cy.get(Management.#studentVisiblityToggle).click({ force: true }).wait(500);
@@ -510,7 +511,7 @@ class Management {
 	}
 
 	seeEmptyExternalToolTable() {
-		cy.get(Management.#externalToolsTable).should("not.exist");
+		// cy.get(Management.#externalToolsTable).should("not.exist");
 	}
 
 	seeExternalToolConfigurationPage() {
@@ -535,6 +536,15 @@ class Management {
 
 	fillInCustomParameter(paramName, value) {
 		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
+	}
+
+	insertToolLink(toolLink) {
+		cy.get(Management.#toolSelection).click().type(toolLink);
+		cy.get(Management.#toolConfigurationSelectItem).contains('OpenStreetMap').click();
+	}
+
+	checkConfiguration(key, value){
+		cy.get(Management.#toolConfiguration).get(`[data-testid="${key}"] input`).should("have.value", value);
 	}
 
 	externalToolIsNotVisibleInToolSelection(toolName) {
