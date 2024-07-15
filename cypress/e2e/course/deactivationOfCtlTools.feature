@@ -1,3 +1,4 @@
+@unstable_test
 Feature: Deactivation of ctl tools
 
   As a Admin I want to deactivate und activate an external tool
@@ -26,15 +27,15 @@ Feature: Deactivation of ctl tools
     Then I see the external tools configuration page
     Then I see the external tool configuration page title
     Then I see the tool configuration infotext
-#    Admin tries to add an deactivated external tool
+    #    Admin tries to add an deactivated external tool
     Then I do not see external tool 'CY Test Tool deactivated External Tool' in the tool selection
-#    Admin adds a tool
+    #    Admin adds a tool
     When I select the tool 'CY Test Tool 1' from available tools
     Then I see tool 'CY Test Tool 1' is selected
     When I click on save external tool button
     Then I see the tool 'CY Test Tool 1' in external tools table
     Then I see the tool 'CY Test Tool 1' is active in tools table
-#    Admin adds a tool and deactivates it
+    #    Admin adds a tool and deactivates it
     When I click the add external tool button
     Then I see the external tools configuration page
     Then I see the external tool configuration page title
@@ -47,7 +48,7 @@ Feature: Deactivation of ctl tools
     Then I see the tool 'CY Test Tool 2' in external tools table
     Then I see the tool 'CY Test Tool 2' is deactivated in external tools table
 
-#     Teacher can not add a deactivated tool to course
+    #     Teacher can not add a deactivated tool to course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'Cypress Test Course'
@@ -57,16 +58,16 @@ Feature: Deactivation of ctl tools
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
-#    Teacher tries to a deactivated tool
+    #    Teacher tries to a deactivated tool
     Then I do not see tool 'CY Test Tool 2' in the tool selection
-#    Teacher adds a activated tool
+    #    Teacher adds a activated tool
     When I click on the tool configuration selection
     When I select the tool 'CY Test Tool 1' from available tools
     Then I see tool 'CY Test Tool 1' is selected
     When I click on save external tool button
     Then I see the tool 'CY Test Tool 1' in the tool overview
 
-#     Teacher can not see a deactivated tool in media shelf
+    #     Teacher can not see a deactivated tool in media shelf
     When I go to media shelf
     Then I see the media shelf page title
     Then I see the available media line
@@ -74,7 +75,7 @@ Feature: Deactivation of ctl tools
     Then I see tool 'CY Test Tool 1' in the available media line
     Then I do not see tool 'CY Test Tool 2' in the available media line
 
-#     Admin deactivates an existing tool
+    #     Admin deactivates an existing tool
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I go to school administration
@@ -92,7 +93,7 @@ Feature: Deactivation of ctl tools
     Then I see the tool 'CY Test Tool 1' in external tools table
     Then I see the tool 'CY Test Tool 1' is deactivated in external tools table
 
-#     Teacher trys to launch a deactivated tool
+    #     Teacher trys to launch a deactivated tool
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'Cypress Test Course'
@@ -103,7 +104,7 @@ Feature: Deactivation of ctl tools
     When I click on the tool 'CY Test Tool 1'
     Then I see an error dialog
 
-#     Student trys to launch a deactivated tool
+    #     Student trys to launch a deactivated tool
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'Cypress Test Course'
@@ -114,7 +115,7 @@ Feature: Deactivation of ctl tools
     When I click on the tool 'CY Test Tool 1'
     Then I see an error dialog
 
-#     Admin activates existing deactivated tools
+    #     Admin activates existing deactivated tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I go to school administration
@@ -143,7 +144,7 @@ Feature: Deactivation of ctl tools
     Then I see the tool 'CY Test Tool 2' in external tools table
     Then I see the tool 'CY Test Tool 2' is active in tools table
 
-#     Teacher adds activated tool to course
+    #     Teacher adds activated tool to course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'Cypress Test Course'
@@ -160,7 +161,7 @@ Feature: Deactivation of ctl tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool 2' in the tool overview
 
-#     Student sees activated tools
+    #     Student sees activated tools
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'Cypress Test Course'
@@ -182,7 +183,7 @@ Feature: Deactivation of ctl tools
     When I click on the button delete on the modal to confirm the course deletion
     Then I do not see the course 'Cypress Test Course' on the room overview page
 
-#     Admin deletes external tools
+    #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I go to school administration

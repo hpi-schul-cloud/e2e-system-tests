@@ -1,6 +1,6 @@
 @api_migrated
 @release
-@unstable_test
+@stable_test
 Feature: Learning store - Activating and deactivating access for students
 
   As an admin I want to activate and deactivate students access to learning store

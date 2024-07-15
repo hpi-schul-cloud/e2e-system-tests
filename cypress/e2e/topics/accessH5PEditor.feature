@@ -1,6 +1,6 @@
 @api_migrated
 @release
-@unstable_test
+@stable_test
 Feature:  To access the H5P editor as a teacher.
 
 	As a teacher, I want to be able to access the H5P Editor for a topic in my course to create learning content

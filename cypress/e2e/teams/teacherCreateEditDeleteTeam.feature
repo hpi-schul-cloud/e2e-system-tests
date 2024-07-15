@@ -1,5 +1,6 @@
 @api_migrated
 @release
+@pr
 @stable_test
 Feature: Team - Create, delete and edit operations on Teams
 

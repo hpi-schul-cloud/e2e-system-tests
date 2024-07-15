@@ -1,5 +1,4 @@
 @api_migrated
-@release
 @unstable_test
 Feature: Course - To search for a course via search input box on the course overview page
 

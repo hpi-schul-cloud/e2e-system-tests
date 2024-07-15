@@ -1,4 +1,3 @@
-#@release
 @unstable_test
 Feature: Group - To show members in a group
 

@@ -1,4 +1,3 @@
-#@release
 @unstable_test
 Feature: Group - To show groups and classes in one table with respective functionality
 

@@ -1,5 +1,4 @@
 @api_migrated
-@release
 @unstable_test
 Feature: Account - Change language of the user from user setting
 

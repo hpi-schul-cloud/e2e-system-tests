@@ -1,10 +1,11 @@
-# Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
+@api_migrated
 @release
-@unstable_test
+@stable_test
 Feature: Teacher can add and remove BBB tool in the course in NBC with admin permission
 
 	As a teacher I want to activate and deactivate BBB tool inside the course in NBC
 
+	@stable_test
 	Scenario: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
 		# pre-condition: admin, teacher and student log in to create their account in a same school
@@ -37,7 +38,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		# Admin enables the video conference in the school settings page
 		Given I am logged in as a '<admin>' at '<namespace>'
 		When I click on administration in menu
-		When I click on manage school card
+		When I click on sub menu school
 		# Note:remove the following line if old admin page is hidden
 		When I click on general settings panel
 		Then I enable the video conference
@@ -83,6 +84,8 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		Then I see page Edit course
 		Then I see the disabled check box for Activating video conferences in page Edit course
 
+		@staging_test
+		@school_api_test
 		Examples:
 			| namespace | admin      | teacher      | fullname_teacher  | course_name                           |
 			| nbc       | admin1_nbc | teacher1_nbc | cypress teacher_1 | CypressAut Test Creation and Deletion |

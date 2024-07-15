@@ -1,5 +1,5 @@
 @api_migrated
-@release
+@unstable_test
 Feature: Invalid Credentials - Verify login functionality via wrong user data
 
     As a user (teacher, student or admin), I want to see how app behaves when I'll use invalid credentials.

@@ -1,3 +1,4 @@
+@unstable_test
 Feature: Course - Show outdated tool
 
   As a student and teacher I want to see an outdated ctl tool to my course.

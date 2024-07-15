@@ -1,5 +1,6 @@
 @api_migrated
 @release
+@pr
 @stable_test
 Feature: Dashboard - To check contents on the dashboard
 
