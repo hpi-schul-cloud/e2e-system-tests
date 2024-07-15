@@ -119,3 +119,11 @@ When("I enter {string} in required custom parameter input field {string}", (valu
 When("I enter {string} in optional custom parameter input field {string}", (value, paramName) => {
 	management.fillInCustomParameter(paramName, value);
 });
+
+When("I insert the external tool link {string}", (toolLink) => {
+	management.insertToolLink(toolLink);
+});
+
+Then("I see configuration {string} is filled below with {string}", (key, value) =>{
+	management.checkConfiguration(key, value);
+})

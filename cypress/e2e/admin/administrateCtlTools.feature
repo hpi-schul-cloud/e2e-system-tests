@@ -16,6 +16,7 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     Then I see the tool configuration infotext
 #    Admin tries to find a hidden external tool
     Then I do not see external tool 'CY Test Tool Hidden' in the tool selection
+
 #    Admin adds a tool
     When I select the tool 'CY Test Tool 1' from available tools
     Then I see tool 'CY Test Tool 1' is selected
@@ -33,6 +34,16 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     Then I see custom parameter input field 'schoolParam' contains 'test'
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Required Parameters' in external tools table
+
+#    Admin adds a tool via tool link with parameter
+    When I click the add external tool button
+    Then I see the external tools configuration page
+    Then I see the external tool configuration page title
+    Then I see the tool configuration infotext
+    When I insert the external tool link 'https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823'
+    Then I see tool 'OpenStreetMap' is selected
+    When I click on save external tool button
+    Then I see the tool 'OpenStreetMap' in external tools table
 
 #    Admin adds a tool with optional custom parameter
     When I click the add external tool button
@@ -82,4 +93,9 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     Then I see the external tool deletion dialog title
     Then I see the external tool deletion dialog information text
     When I confirm deletion on deletion dialog
+    When I click on delete button of tool 'OpenStreetMap'
+    Then I see the external tool deletion dialog title
+    Then I see the external tool deletion dialog information text
+    When I confirm deletion on deletion dialog
+    Then I do not see the tool 'OpenStreetMap' in external tools table
     Then I see the external tools table is empty
