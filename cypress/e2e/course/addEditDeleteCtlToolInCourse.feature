@@ -13,6 +13,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
     Scenario: Pre-test: Admin creates a course and adds external tools to school
         Given I am logged in as a 'admin1_nbc' at 'nbc'
         When I go to rooms overview
+
         #    Admin creates a course
         When I click on FAB to create a new room
         When I click on new course create button in sub menu
@@ -25,7 +26,8 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I click on button Next Steps after selecting room participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
-        #   Admin adds tools
+
+        #   Admin adds tools via selection
         When I click on administration in menu
         When I go to school administration
         When I click on external tools panel
@@ -42,6 +44,15 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I select the tool 'CY Test Tool Optional Parameters' from available tools
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
+
+        #   Admin adds tools via tool link
+        When I click on administration in menu
+        When I go to school administration
+        When I click on external tools panel
+        When I click the add external tool button
+        When I insert the external tool link 'https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823'
+        When I click on save external tool button
+        Then I see the tool 'OpenStreetMap' in external tools table
 
     @unstable_test
     Scenario: Teacher adds, edits and deletes tools in a course, Student sees course tools but does not see the button to add a tool
@@ -70,12 +81,25 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I enter 'CY Test Tool 1 New' in display name field
         When I click on save external tool button
         Then I see the tool 'CY Test Tool 1 New' in the tool overview
+
+        #    Teacher adds tool via tool link
+        When I click on the button to add a tool
+        Then I see the tool configuration page title
+        When I click on the tool configuration selection
+        When I insert the external tool link 'https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823'
+        Then I see tool 'OpenStreetMap' is selected
+        Then I see configuration 'mlat' is filled below with '52.40847'
+        Then I see configuration 'mlon' is filled below with '9.80823'
+        Then I see configuration 'zoom' is filled below with '19'
+        When I click on save external tool button
+
         #    Teacher adds tool with a required custom parameter
         When I click on the button to add a tool
         Then I see the tool configuration page title
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Required Parameters' from available tools
         Then I see tool 'CY Test Tool Required Parameters' is selected
+
         #    when required field is empty
         When I click on save external tool button
         Then I see an error alert
@@ -83,6 +107,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see custom parameter input field 'contextParam' contains 'test'
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Required Parameters' in the tool overview
+
         #    Teacher adds a tool with an optional custom parameter
         When I click on the button to add a tool
         Then I see the tool configuration page title
@@ -93,6 +118,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see custom parameter input field 'contextParam' contains 'test'
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Optional Parameters' in the tool overview
+
         #    Teacher edits a tool
         When I click on three dot menu of the tool 'CY Test Tool Optional Parameters'
         When I click on the tool edit button of 'CY Test Tool Optional Parameters'
@@ -113,7 +139,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see room page 'Cypress Test Course'
         When I click on the tools tab
         Then I do not see the button to add a tool
-        Then I see 4 tools
+        Then I see 5 tools
         Then I see the tool 'CY Test Tool 1' in the tool overview
         Then I see the tool 'CY Test Tool 1 New' in the tool overview
         Then I see the tool 'CY Test Tool Required Parameters' in the tool overview
@@ -125,13 +151,13 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I go to room 'Cypress Test Course'
         Then I see room page 'Cypress Test Course'
         When I click on the tools tab
-        Then I see 4 tools
+        Then I see 5 tools
         When I click on three dot menu of the tool 'CY Test Tool Optional Parameters'
         When I click on the tool delete of 'CY Test Tool Optional Parameters'
         Then I see the delete tool dialog
         When I confirm the delete tool dialog
         Then I do not see tool 'CY Test Tool Optional Parameters' in the tool overview
-        Then I see 3 tools
+        Then I see 4 tools
 
     @unstable_test
     Scenario: Post-test: Teacher deletes course, admin deletes external tools
@@ -155,4 +181,6 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I click on delete button of tool 'CY Test Tool Required Parameters'
         When I confirm deletion on deletion dialog
         When I click on delete button of tool 'CY Test Tool Optional Parameters'
+        When I confirm deletion on deletion dialog
+        When I click on delete button of tool 'OpenStreetMap'
         When I confirm deletion on deletion dialog

@@ -74,7 +74,7 @@ class Management {
 	static #deleteExternalToolButton = '[data-testId="deleteAction"]';
 	static #confirmExternalToolDeletionButton = '[data-testid="delete-dialog-confirm"]';
 	static #cancelExternalToolDeletionButton = '[data-testid="delete-dialog-cancel"]';
-	static #externalToolDeletionDialogText = '[data-testid="delete-dialog-content"]';
+	static #externalToolDeletionDialogText = '[data-testid="delete-dialog-content-header"]';
 	static #externalToolDeletionDialogTitle = '[data-testid="delete-dialog-title"]';
 	static #systemPanel = '[data-testid="systems-panel"]';
 	static #systemtable = '[data-testid="system-table"]';
@@ -94,6 +94,7 @@ class Management {
 	static #dataTable = '[data-testid="table_container"]';
 	static #studentVisiblityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
+	static #toolConfiguration = '[data-testid="configuration-field"]';
 
 	enableStudentVisibilityForTeacher() {
 		cy.get(Management.#studentVisiblityToggle).click({ force: true }).wait(500);
@@ -536,6 +537,15 @@ class Management {
 
 	fillInCustomParameter(paramName, value) {
 		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
+	}
+
+	insertToolLink(toolLink) {
+		cy.get(Management.#toolSelection).click().type(toolLink);
+		cy.get(Management.#toolConfigurationSelectItem).contains('OpenStreetMap').click();
+	}
+
+	checkConfiguration(key, value){
+		cy.get(Management.#toolConfiguration).get(`[data-testid="${key}"] input`).should("have.value", value);
 	}
 
 	externalToolIsNotVisibleInToolSelection(toolName) {

@@ -10,50 +10,36 @@ const help = new Help();
 // -->\step_definition\authentication\loginStep.spec.js
 // --> \step_definition\help_section\commonHelpSectionRelatedSteps.spec.js
 
-//Scenario: Use the help area in the header
-
-When("I click on the question icon in header", () => {
-	help.clickQuestionIcon();
-});
-
-When("I click on help section in header", () => {
-	help.clickHelpSectionInHeader();
-});
-
-When("I click on send request or problem in header", () => {
-	help.clickSendRequestOrProblemInHeader();
-});
-
-Then("I can see the help contact page", () => {
-	help.seeHelpContactPage();
-});
-
-When("I click on advanced trainings in header", () => {
-	help.advancedTrainingsInHeader();
-});
-
 //Scenario: Use the help area in the sidebar
 
-Then("I can see the help articles page", () => {
+Then("I see the help articles page", () => {
 	help.seeHelpArticlesPage();
+});
+
+Then("I see the help contact page", () => {
+	help.seeHelpContactPage();
 });
 
 //Scenario: Use the article search inside the help articles area
 
-When("I enter keyword in search bar", () => {
-	help.enterKeywordInSearchbar();
+When("I enter {string} in search bar for help articles", (search_term) => {
+	help.enterKeywordInHelpArticlesSearchbar(search_term);
 });
 
-Then("I can see an help article related to my search", () => {
-	help.seeHelpArticle();
+Then("I see an help article containing {string}", (result_term) => {
+	help.seeHelpArticle(result_term);
 });
 
 //Scenario: Submit an issue via contact form inside help area
 
-When("I fill out the contact form", () => {
-	help.fillOutContactForm();
+When("I fill out the contact form with option {string}, subject {string} and sender email {string}", (contact_option, contact_subject, contact_email) => {
+	help.fillOutContactForm(contact_option, contact_subject, contact_email);
 });
 
-Then("I can send it to the support", () => {
+When("I click on button Submit to send form", () => {
 	help.sendFormToSupport();
+});
+
+Then("I see message {string}", (message) => {
+	help.seeConfirmationFormSended(message);
 });
