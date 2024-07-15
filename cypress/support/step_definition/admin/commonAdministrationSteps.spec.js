@@ -20,7 +20,7 @@ Then("I enable the video conference", () => {
 });
 
 When("I click on sub menu school", () => {
-	management.clickOnManageSchoolCard();
+	management.clickOnSchoolAdministrationInSideMenu();
 });
 
 When("I click on administration in menu", () => {

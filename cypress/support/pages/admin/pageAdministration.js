@@ -130,7 +130,7 @@ class Management {
 		this.toggleTeamsVideoConferenceByAdmin(false);
 	}
 
-	clickOnManageSchoolCard() {
+	clickOnSchoolAdministrationInSideMenu() {
 		cy.get(Management.#manageSchoolPage).click();
 	}
 
@@ -541,11 +541,13 @@ class Management {
 
 	insertToolLink(toolLink) {
 		cy.get(Management.#toolSelection).click().type(toolLink);
-		cy.get(Management.#toolConfigurationSelectItem).contains('OpenStreetMap').click();
+		cy.get(Management.#toolConfigurationSelectItem).contains("OpenStreetMap").click();
 	}
 
-	checkConfiguration(key, value){
-		cy.get(Management.#toolConfiguration).get(`[data-testid="${key}"] input`).should("have.value", value);
+	checkConfiguration(key, value) {
+		cy.get(Management.#toolConfiguration)
+			.get(`[data-testid="${key}"] input`)
+			.should("have.value", value);
 	}
 
 	externalToolIsNotVisibleInToolSelection(toolName) {
