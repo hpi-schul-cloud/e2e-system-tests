@@ -511,7 +511,7 @@ class Management {
 	}
 
 	seeEmptyExternalToolTable() {
-		// cy.get(Management.#externalToolsTable).should("not.exist");
+		cy.get(Management.#externalToolsTable).should("not.exist");
 	}
 
 	seeExternalToolConfigurationPage() {
