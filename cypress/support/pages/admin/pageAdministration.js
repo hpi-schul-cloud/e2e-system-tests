@@ -22,7 +22,7 @@ class Management {
 	static #videoconferenceToggleSwitch = ".videoconference-switch";
 	static #saveGeneralSettingsButton = ".my-5";
 	static #tableContents = '[data-testid="table-data-body"]';
-	static #manageSchoolPage = '[data-testid="Schule"]';
+	static #schoolAdministrationNavigationSubMenu = '[data-testid="Schule"]';
 	static #saveGeneralAdminSetting = '[data-testid="save-general-setting"]';
 	static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]';
 	static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]';
@@ -131,7 +131,7 @@ class Management {
 	}
 
 	clickOnSchoolAdministrationInSideMenu() {
-		cy.get(Management.#manageSchoolPage).click();
+		cy.get(Management.#schoolAdministrationNavigationSubMenu).click();
 	}
 
 	clickAllowStudentsTeamCheckbox() {
