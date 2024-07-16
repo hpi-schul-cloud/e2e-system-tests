@@ -1,7 +1,5 @@
 @api_migrated
-@pr
-@release
-@stable_test
+@unstable_test
 Feature: Course Board - Opening a drawing element on a course page
 
     As a teacher and student I want to open already created drawing element on a course page

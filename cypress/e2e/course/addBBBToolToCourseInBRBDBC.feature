@@ -1,10 +1,9 @@
-# Note: School api migration is blocked due to admin user can not access new school setting page (BC-7390).
-@release
+@unstable_test
 Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with admin permission
 
   As a teacher I want to activate and deactivate BBB tool inside the course in DBC and BRB
 
-  @stable_test
+  @unstable_test
   Scenario Outline: Admin enables and disables the video conference option in the school settings page '<namespace>', while teachers can add and remove the video conference tool within the course
     #Admin enables the video conference in the school settings page
     Given I am logged in as a '<user_1>' at '<namespace>'

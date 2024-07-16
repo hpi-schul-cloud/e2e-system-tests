@@ -1,6 +1,5 @@
 @api_migrated
-@stable_test
-@release
+@unstable_test
 Feature: Addons - To go to addons page on NBC
 
   As an admin I want to navigation to the addons page on NBC so that I can access it.

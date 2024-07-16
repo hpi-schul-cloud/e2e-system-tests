@@ -1,3 +1,4 @@
+@unstable_test
 Feature: Media Shelf - To show media shelf with respective functionality
 
   As an teacher I want to use the media shelf
@@ -31,7 +32,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the grid layout
     When I click on list layout button
     Then I see the list layout
-#    Teachers tests available media line
+    #    Teachers tests available media line
     When I click on collapse available media line button
     Then I see the available media line is collapsed
     When I click on collapse available media line button
@@ -42,7 +43,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the available background colors
     When I select the background color
     Then I see the available media line has background color 'rgb(251, 233, 231)'
-#    Teachers tests first media line
+    #    Teachers tests first media line
     When I click add media line button
     Then I see the first media line
     When I double click on the title of the first median line

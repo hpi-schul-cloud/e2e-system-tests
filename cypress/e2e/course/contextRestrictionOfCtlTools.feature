@@ -1,3 +1,4 @@
+@unstable_test
 Feature: Course - Restrict CTL tools to context course, board-element, media-board
 
   As a teacher I want add ctl tools with a certain context restriction
@@ -6,7 +7,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
   Scenario: Pre-test: Admin creates a course and adds external tools to school
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to rooms overview
-#    Admin creates a course
+    #    Admin creates a course
     When I click on FAB to create a new room
     When I click on new course create button in sub menu
     Then I see section one area on the course create page
@@ -17,7 +18,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on button Next Steps after selecting room participant details
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
-#   Admin adds tools
+    #   Admin adds tools
     When I click on administration in menu
     When I go to school administration
     When I click on external tools panel
@@ -53,16 +54,16 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
-#    Teacher tries to a tool with context restriction board-element
+    #    Teacher tries to a tool with context restriction board-element
     Then I do not see tool 'CY Test Tool Board-Element Restriction' in the tool selection
-#    Teacher tries to a tool with context restriction media-board
+    #    Teacher tries to a tool with context restriction media-board
     Then I do not see tool 'CY Test Tool Media-Board Restriction' in the tool selection
-#    Teacher adds a tool with context restriction course
+    #    Teacher adds a tool with context restriction course
     When I select the tool 'CY Test Tool Course Restriction' from available tools
     Then I see tool 'CY Test Tool Course Restriction' is selected
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Course Restriction' in the tool overview
-#    Teacher adds a tool with all context restrictions
+    #    Teacher adds a tool with all context restrictions
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
@@ -70,7 +71,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     Then I see tool 'CY Test Tool All Restrictions' is selected
     When I click on save external tool button
     Then I see the tool 'CY Test Tool All Restrictions' in the tool overview
-#    Teacher adds a tool without any context restriction
+    #    Teacher adds a tool without any context restriction
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
@@ -79,7 +80,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on save external tool button
     Then I see the tool 'CY Test Tool 1' in the tool overview
 
-#    Teacher adds ctl tools with context restriction board-element to a board
+    #    Teacher adds ctl tools with context restriction board-element to a board
     When I go to rooms overview
     When I go to room 'Cypress Test Course'
     When I go to the tab contents in course detail page
@@ -93,16 +94,16 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on plus icon to add content into card
     When I select external tools from the menu
     When I click on the tool configuration selection
-#    Teacher tries to a tool with context restriction course
+    #    Teacher tries to a tool with context restriction course
     Then I do not see tool 'CY Test Tool Course Restriction' in the tool selection
-#    Teacher tries to a tool with context restriction media-board
+    #    Teacher tries to a tool with context restriction media-board
     Then I do not see tool 'CY Test Tool Media-Board Restriction' in the tool selection
-#    Teacher adds a tool with context restriction board-element
+    #    Teacher adds a tool with context restriction board-element
     When I select the tool 'CY Test Tool Board-Element Restriction' from available tools
     Then I see tool 'CY Test Tool Board-Element Restriction' is selected
     When I click on save external tool button
     Then I see an external tool element with tool 'CY Test Tool Board-Element Restriction'
-#    Teacher adds a tool with all context restrictions
+    #    Teacher adds a tool with all context restrictions
     When I click on plus icon to add card in column
     When I click on plus icon to add content into card
     When I select external tools from the menu
@@ -110,7 +111,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     Then I see tool 'CY Test Tool All Restrictions' is selected
     When I click on save external tool button
     Then I see an external tool element with tool 'CY Test Tool All Restrictions'
-#    Teacher adds a tool without any context restriction
+    #    Teacher adds a tool without any context restriction
     When I click on plus icon to add card in column
     When I click on plus icon to add content into card
     When I select external tools from the menu
@@ -119,7 +120,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on save external tool button
     Then I see an external tool element with tool 'CY Test Tool 1'
 
-#    Teacher sees ctl tools with context restriction media-board in the media-shelf
+    #    Teacher sees ctl tools with context restriction media-board in the media-shelf
     When I go to media shelf
     Then I see the media shelf page title
     Then I see the available media line
@@ -141,7 +142,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on the button delete on the modal to confirm the course deletion
     Then I do not see the course 'Cypress Test Course' on the room overview page
 
-#     Admin deletes external tools
+    #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I go to school administration

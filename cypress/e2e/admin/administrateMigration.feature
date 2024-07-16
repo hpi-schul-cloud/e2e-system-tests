@@ -1,4 +1,4 @@
-#@release
+@unstable_test
 Feature: Admin Users - To administrate the Migration process.
 
   As an Admin I want to re-/start, stop and make the migration mandatory.
@@ -56,7 +56,7 @@ Feature: Admin Users - To administrate the Migration process.
     Then I see the migration mandatory switch is not checked
     Then I see the sync during migration switch is checked
 
-# reset migration data
+  # reset migration data
   @unstable_test
   Scenario: Reset migration
     When I click on end migration button

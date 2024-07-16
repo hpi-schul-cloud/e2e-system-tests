@@ -19,8 +19,8 @@ Then("I enable the video conference", () => {
 	management.enableTeamsVideoConferenceByAdmin();
 });
 
-When("I click on manage school card", () => {
-	management.clickOnManageSchoolCard();
+When("I click on sub menu school", () => {
+	management.clickOnSchoolAdministrationInSideMenu();
 });
 
 When("I click on administration in menu", () => {

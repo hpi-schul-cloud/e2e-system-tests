@@ -5,14 +5,14 @@ Feature: Course - Add substitute teacher to course
 
   As a teacher I want to add substitute teacher to the course.
 
-  Scenario Outline: user creation, course creation, and adding substitute teacher to the course
+  Scenario Outline: user creation, course creation, and adding substitute teacher to the course, including pre-conditions
 
     # pre-condition: creating all users and creating course
     Given I am logged in as a '<teacher1>' at '<namespace>'
     Given I am logged in as a '<teacher2>' at '<namespace>'
     Given I am logged in as a '<admin>' at '<namespace>'
 
-    # pre-condition: creating new course
+    # pre-condition: admin creates a course and assign teacher to the course
     When I go to rooms overview
     When I click on FAB to create a new room
     When I click on new course create button in sub menu

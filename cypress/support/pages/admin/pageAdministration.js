@@ -22,7 +22,7 @@ class Management {
 	static #videoconferenceToggleSwitch = ".videoconference-switch";
 	static #saveGeneralSettingsButton = ".my-5";
 	static #tableContents = '[data-testid="table-data-body"]';
-	static #manageSchoolCard = '[data-testid="school_administration_card"]';
+	static #schoolAdministrationNavigationSubMenu = '[data-testid="Schule"]';
 	static #saveGeneralAdminSetting = '[data-testid="save-general-setting"]';
 	static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]';
 	static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]';
@@ -31,7 +31,6 @@ class Management {
 	static #classAdministrationNavigationButton = '[data-testid="Klassen"]';
 	static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes"]';
 	static #teamAdministrationNavigationButton = '[data-testid="Teams"]';
-	static #schoolAdministrationNavigationButton = '[data-testid="Schule"]';
 	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =
@@ -63,7 +62,8 @@ class Management {
 	static #generalSettingsPanel = '[data-testid="general-settings-panel"]';
 	static #externalToolsPanel = '[data-testid="tools-panel"]';
 	static #externalToolConfigInfotext = '[data-testid="tool-configuration-infotext"]';
-	static #externalToolConfigPageTitle = '[data-testid="school-external-tool-configurator-title"]';
+	static #externalToolConfigPageTitle =
+		'[data-testid="school-external-tool-configurator-title"]';
 	static #toolConfigurationSelectedItem = '[data-testid="configuration-selected-item"]';
 	static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]';
 	static #toolErrorAlert = '[data-testId="tool-error-alert"]';
@@ -129,8 +129,8 @@ class Management {
 		this.toggleTeamsVideoConferenceByAdmin(false);
 	}
 
-	clickOnManageSchoolCard() {
-		cy.get(Management.#manageSchoolCard).click();
+	clickOnSchoolAdministrationInSideMenu() {
+		cy.get(Management.#schoolAdministrationNavigationSubMenu).click();
 	}
 
 	clickAllowStudentsTeamCheckbox() {
@@ -212,7 +212,7 @@ class Management {
 	}
 
 	navigateToSchoolAdministration() {
-		cy.get(Management.#schoolAdministrationNavigationButton).click();
+		cy.get(Management.#schoolAdministrationNavigationSubMenu).click();
 		cy.url().should("include", "/administration/school");
 	}
 
@@ -527,7 +527,7 @@ class Management {
 	}
 
 	seeSelectedExternalTool(toolName) {
-		cy.get(Management.#toolConfigurationSelectedItem).should("contain.text", toolName);;
+		cy.get(Management.#toolConfigurationSelectedItem).should("contain.text", toolName);
 	}
 
 	seeCustomParameterFormContains(paramName, value) {
@@ -540,16 +540,20 @@ class Management {
 
 	insertToolLink(toolLink) {
 		cy.get(Management.#toolSelection).click().type(toolLink);
-		cy.get(Management.#toolConfigurationSelectItem).contains('OpenStreetMap').click();
+		cy.get(Management.#toolConfigurationSelectItem).contains("OpenStreetMap").click();
 	}
 
-	checkConfiguration(key, value){
-		cy.get(Management.#toolConfiguration).get(`[data-testid="${key}"] input`).should("have.value", value);
+	checkConfiguration(key, value) {
+		cy.get(Management.#toolConfiguration)
+			.get(`[data-testid="${key}"] input`)
+			.should("have.value", value);
 	}
 
 	externalToolIsNotVisibleInToolSelection(toolName) {
 		cy.get(Management.#toolSelection).click();
-		cy.get(Management.#toolConfigurationSelectItem).contains(toolName).should("not.exist");
+		cy.get(Management.#toolConfigurationSelectItem)
+			.contains(toolName)
+			.should("not.exist");
 	}
 
 	seeToolErrorAlert() {
@@ -557,15 +561,19 @@ class Management {
 	}
 
 	seeDeactivatedCheckBox(value) {
-		cy.get(Management.#isDeactivatedCheckBox).should("be.visible")
+		cy.get(Management.#isDeactivatedCheckBox).should("be.visible");
 	}
 
 	seeDeactivatedCheckBoxIsChecked(value) {
-		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("be.checked");
+		cy.get(Management.#isDeactivatedCheckBox)
+			.find('input[type="checkbox"]')
+			.should("be.checked");
 	}
 
 	seeDeactivatedCheckBoxIsNotChecked() {
-		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').should("not.be.checked")
+		cy.get(Management.#isDeactivatedCheckBox)
+			.find('input[type="checkbox"]')
+			.should("not.be.checked");
 	}
 
 	clickAddExternalTool() {
@@ -579,11 +587,15 @@ class Management {
 	}
 
 	deactivateTool() {
-		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').check({ force: true });
+		cy.get(Management.#isDeactivatedCheckBox)
+			.find('input[type="checkbox"]')
+			.check({ force: true });
 	}
 
 	activateTool() {
-		cy.get(Management.#isDeactivatedCheckBox).find('input[type="checkbox"]').uncheck({ force: true });
+		cy.get(Management.#isDeactivatedCheckBox)
+			.find('input[type="checkbox"]')
+			.uncheck({ force: true });
 	}
 
 	checkActivatedTool(toolName) {
@@ -617,7 +629,7 @@ class Management {
 	}
 
 	toolIsNotVisibleInExternalToolTable(toolName) {
-		cy.get(Management.#externalToolsTable).contains(toolName).should('not.exist');
+		cy.get(Management.#externalToolsTable).contains(toolName).should("not.exist");
 	}
 
 	clickOnEditButton(toolName) {

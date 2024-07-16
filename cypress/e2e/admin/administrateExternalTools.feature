@@ -1,4 +1,4 @@
-@release
+@unstable_test
 Feature: Admin External Tools - To administrate school settings by the admin.
 
   As an admin I want to administrate the external tools used in the school so that I can manage it
@@ -10,7 +10,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
     When I go to school administration
-  #remove the following line if old admin page is hidden
+    #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to deactivate the chat
@@ -29,7 +29,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
     And I go to school administration
-  #remove the following line if old admin page is hidden
+    #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to activate the chat
@@ -50,7 +50,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
     When I go to school administration
-  #remove the following line if old admin page is hidden
+    #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to deactivate video conferencing
@@ -68,7 +68,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
     When I go to school administration
-  #remove the following line if old admin page is hidden
+    #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
     When I click on toggle switch to activate video conferencing

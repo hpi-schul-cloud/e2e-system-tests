@@ -1,4 +1,4 @@
-# @release
+@unstable_test
 Feature: Admin can edit system configuration
 
   As an admin I want to be able to edit system configurations

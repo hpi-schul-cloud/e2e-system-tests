@@ -1,3 +1,4 @@
+@unstable_test
 Feature: Course - Copy CTL tools
 
   As a Teacher I want to be able to copy ctl tools, when i copy a course
@@ -21,7 +22,7 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Optional Protected Parameter' in external tools table
     Then I see the tool 'CY Test Tool Protected Parameter' in external tools table
 
-#     Teacher creates a course and adds tools to the course
+    #     Teacher creates a course and adds tools to the course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I click on FAB to create a new room
@@ -37,7 +38,7 @@ Feature: Course - Copy CTL tools
     Then I see room page 'Cypress Test Course Copy'
     When I click on the tools tab
     Then I see the button to add a tool
-#    Teacher adds a tool with required parameter
+    #    Teacher adds a tool with required parameter
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
@@ -45,7 +46,7 @@ Feature: Course - Copy CTL tools
     When I enter 'test' in required custom parameter field 'searchparam'
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Context Scope' in the tool overview
-#    Teacher adds a tool with optional protected parameter
+    #    Teacher adds a tool with optional protected parameter
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
@@ -54,7 +55,7 @@ Feature: Course - Copy CTL tools
     When I enter 'protected' in optional custom parameter field 'protected'
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Optional Protected Parameter' in the tool overview
-#    Teacher adds a tool with required protected parameter
+    #    Teacher adds a tool with required protected parameter
     When I click on the button to add a tool
     Then I see the tool configuration page title
     When I click on the tool configuration selection
@@ -74,7 +75,7 @@ Feature: Course - Copy CTL tools
     Then I see the copy result notification
     When I close the dialog
     Then I see room page 'Cypress Test Course Copy (1)'
-#    Teacher adds a student to newly copied course
+    #    Teacher adds a student to newly copied course
     When I open page Edit course
     Then I see page Edit course
     When I add the first student with search string 'Amelia' to the course
@@ -86,13 +87,13 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is marked as incomplete operational
     Then I see the tool 'CY Test Tool Protected Parameter' is marked as incomplete
-#    Teacher tries to launch incomplete tool
+    #    Teacher tries to launch incomplete tool
     When I click on the tool 'CY Test Tool Protected Parameter'
     Then I see an error dialog
     When I close the dialog
     Then I see 3 tools
 
-#  Student sees copied ctl tools and incomplete tool cannot be launched
+    #  Student sees copied ctl tools and incomplete tool cannot be launched
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'Cypress Test Course Copy (1)'
@@ -105,11 +106,11 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
     Then I see the tool 'CY Test Tool Protected Parameter' is marked as incomplete
-#    Student tries to launch incomplete tool
+    #    Student tries to launch incomplete tool
     When I click on the tool 'CY Test Tool Protected Parameter'
     Then I see an error dialog
 
-#     Teacher fixes the incomplete tools
+    #     Teacher fixes the incomplete tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to rooms overview
     When I go to room 'Cypress Test Course Copy (1)'
@@ -147,7 +148,7 @@ Feature: Course - Copy CTL tools
     When I click on the button delete on the modal to confirm the course deletion
     Then I do not see the course 'Cypress Test Course Copy (1)' on the room overview page
 
-#     Admin deletes external tools
+    #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I go to school administration

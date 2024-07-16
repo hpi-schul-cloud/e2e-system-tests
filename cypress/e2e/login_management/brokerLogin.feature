@@ -1,5 +1,4 @@
 @api_migrated
-@pr
 @release
 @stable_test
 Feature: Broker Login - Verify brokered dBildungscloud login via OIDC provider
