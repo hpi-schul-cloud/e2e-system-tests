@@ -31,7 +31,6 @@ class Management {
 	static #classAdministrationNavigationButton = '[data-testid="Klassen"]';
 	static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes"]';
 	static #teamAdministrationNavigationButton = '[data-testid="Teams"]';
-	static #schoolAdministrationNavigationButton = '[data-testid="Schule"]';
 	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =
@@ -213,7 +212,7 @@ class Management {
 	}
 
 	navigateToSchoolAdministration() {
-		cy.get(Management.#schoolAdministrationNavigationButton).click();
+		cy.get(Management.#schoolAdministrationNavigationSubMenu).click();
 		cy.url().should("include", "/administration/school");
 	}
 
