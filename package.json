@@ -7,7 +7,7 @@
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node reporter.js",
 		"cy:open:school_api_test": "cypress open --browser chrome -e tags=\"@stable_test and @release and @school_api_test\",environmentName=local",
-		"cy:open:staging": "cypress open --browser chrome -e tags=\"@stable_test and @release and @staging_test\",environmentName=local",
+		"cy:open:staging": "cypress open --browser chrome -e tags=\"@stable_test and @release and @staging_test\",environmentName=staging",
 		"tag:stable:school_api_test": "cypress run --browser chrome -e tags=\"@stable_test and @release and @school_api_test\",environmentName=local",
 		"tag:stable:staging": "cypress run --browser chrome -e tags=\"@stable_test and @release @staging_test \",environmentName=staging",
 		"tag:stable:pr:local": "cypress run --browser chrome -e tags=\"@pr and @stable_test\",environmentName=local",
