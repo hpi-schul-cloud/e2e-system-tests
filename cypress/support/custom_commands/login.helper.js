@@ -223,4 +223,4 @@ const visitLoginPage = (environment) => {
 	cy.visit("/login");
 };
 
-module.exports = { loginWithoutSchoolApi, loginViaSchoolApi };
+module.exports = { loginWithoutSchoolApi, loginViaSchoolApi, getUserCredentials };
