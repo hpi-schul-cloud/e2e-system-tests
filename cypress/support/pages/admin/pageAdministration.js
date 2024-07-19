@@ -201,7 +201,7 @@ class Management {
 	}
 
 	navigateToNewClassAdministration() {
-		cy.get(Management.#newClassAdministrationNavigationButton).click();
+		cy.get(Management.#classAdministrationNavigationButton).click();
 		cy.url().should("include", "/administration/groups/classes");
 	}
 
