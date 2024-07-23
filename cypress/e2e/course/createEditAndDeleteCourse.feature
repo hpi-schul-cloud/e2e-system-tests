@@ -1,3 +1,4 @@
+@api_migrated
 @stable_test
 @release
 Feature: Course - To add and delete a course by the teacher
