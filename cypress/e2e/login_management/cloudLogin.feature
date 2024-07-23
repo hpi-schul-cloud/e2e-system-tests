@@ -4,19 +4,19 @@ Feature: Cloud Login - Login of users managed by SVS
 
     Scenario Outline: User makes a direct login with username and password
         # Given I am logged in as '<user>' on '<namespace>'
-        Given I am on the login page on '<namespace>'
+        Given I am on the login page on '<env>'
         When I am logging in as '<user>'
         Then I will be redirected to the dashboard
-        Then I will be abel to logout
+        Then I will be able to logout
 
     Examples:
-        | namespace | user         |
-        | brb       | admin1_brb   |
-        | brb       | teacher1_brb |
-        | brb       | student1_brb |
-        | dbc       | admin1_dbc   |
-        | dbc       | teacher1_dbc |
-        | dbc       | student1_dbc |
-        | nbc       | admin1_nbc   |
-        | nbc       | teacher1_nbc |
-        | nbc       | student1_nbc |
+        | env | user         |
+        | brb | admin1_brb   |
+        | brb | teacher1_brb |
+        | brb | student1_brb |
+        | dbc | admin1_dbc   |
+        | dbc | teacher1_dbc |
+        | dbc | student1_dbc |
+        | nbc | admin1_nbc   |
+        | nbc | teacher1_nbc |
+        | nbc | student1_nbc |

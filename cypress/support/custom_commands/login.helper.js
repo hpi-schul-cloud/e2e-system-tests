@@ -22,7 +22,7 @@ const termsOfUseCheckboxDBC = 'input[name="termsOfUseConsent"]';
 const env = Cypress.env();
 let environmentUpperCased;
 
-const getUserCredentials = (username) => {
+export const getUserCredentials = (username) => {
 	switch (username) {
 		case "teacher1_brb":
 			return ["TEACHER_1_BRB_EMAIL", "TEACHER_1_BRB_PASSWORD"];
@@ -163,7 +163,7 @@ const nonStudentUsersFirstLogin = (environment) => {
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
 
-const loginWithoutSchoolApi = (username, environment) => {
+export const loginWithoutSchoolApi = (username, environment) => {
 	visitLoginPage(environment);
 
 	environmentUpperCased === "NBC" && cy.get(nbcLoginWithEmailOptionButton).click();
@@ -179,7 +179,7 @@ const loginWithoutSchoolApi = (username, environment) => {
 		: fillLoginForm(env[userEmail], env[userPassword]);
 };
 
-const loginViaSchoolApi = async (username, environment) => {
+export const loginViaSchoolApi = async (username, environment) => {
 	try {
 		visitLoginPage(environment);
 		const link = Cypress.config("baseUrl");
@@ -222,5 +222,3 @@ const visitLoginPage = (environment) => {
 	cy.log(link);
 	cy.visit("/login");
 };
-
-module.exports = { loginWithoutSchoolApi, loginViaSchoolApi, getUserCredentials };
