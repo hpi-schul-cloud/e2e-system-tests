@@ -14,7 +14,7 @@ Feature: Course - To add and delete a course by the teacher
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to rooms overview
     When I click on FAB to create a new room
-    #When I click on new course create button in sub menu
+    When I click on new course create button in sub menu
     Then I see section one area on the course create page
     When I enter the course title '<course_title>'
     When I select room colour as red
