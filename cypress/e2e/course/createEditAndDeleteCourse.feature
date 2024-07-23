@@ -9,11 +9,6 @@ Feature: Course - To add and delete a course by the teacher
   # pre-conditions: creating users
     Given I am logged in as a '<teacher>' at '<namespace>'
     Given I am logged in as a '<student>' at '<namespace>'
-    # When I go to rooms overview
-    # When I delete all courses named 'Cypress Test Creation and Deletion' -> do we need this for staging?
-    # Then I do not see the course 'Cypress Test Creation and Deletion' on the room overview page -> do we need this for staging?
-    # When I delete all courses named 'Cypress Testkurs Edit' -> do we need this for staging?
-    # Then I do not see the course 'Cypress Testkurs Edit' on the room overview page -> do we need this for staging?
 
 # teacher creates course
     Given I am logged in as a '<teacher>' at '<namespace>'
