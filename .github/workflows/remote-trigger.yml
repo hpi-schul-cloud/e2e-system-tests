@@ -107,7 +107,7 @@ jobs:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
-      service-account-token: ${{ secrets.service-account-token }}
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
