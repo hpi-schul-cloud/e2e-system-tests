@@ -27,10 +27,6 @@ When("I click on administration in menu", () => {
 	management.openAdministrationInMenu();
 });
 
-When("I go to school administration", () => {
-	management.navigateToSchoolAdministration();
-});
-
 When("I click on general settings panel", () => {
 	management.clickGeneralSettingsPanel();
 });
