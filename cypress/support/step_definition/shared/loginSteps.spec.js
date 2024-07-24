@@ -7,18 +7,19 @@ Given("I am logged in as {string} on {string}", (user, environment) => {
 });
 
 And("Opened management page for teachers on {string}", (environment) => {
-	cy.visitPage(environment, "/administration/teachers/new");
+	cy.visit("/administration/teachers/new");
+	cy.location("pathname").should("equal", "/administration/teachers/new");
 });
 
-And(
-	"Created teacher {string} {string} with email {string}",
-	(firstname, lastname, email) => {
-		cy.writeToInput("[data-testid='input_create-user_firstname']", firstname);
-		cy.writeToInput("[data-testid='input_create-user_lastname']", lastname);
-		cy.writeToInput("[data-testid='input_create-user_email']", email);
-		cy.clickOnElement("[data-testid='button_create-user_submit']");
-	}
-);
+// And(
+// 	"Created teacher {string} {string} with email {string}",
+// 	(firstname, lastname, email) => {
+// 		cy.writeToInput("[data-testid='input_create-user_firstname']", firstname);
+// 		cy.writeToInput("[data-testid='input_create-user_lastname']", lastname);
+// 		cy.writeToInput("[data-testid='input_create-user_email']", email);
+// 		cy.clickOnElement("[data-testid='button_create-user_submit']");
+// 	}
+// );
 
 And("Opened management page for teachers on {string}", (environment) => {
 	cy.visitPage(environment, "/administration/teachers/new");

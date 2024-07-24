@@ -3,15 +3,20 @@ import { getUserCredentials } from "./login.helper";
 export function getPageUrl(environment, page) {
 	const env = Cypress.env();
 	const environmentUpperCased = environment.toUpperCase();
-	const linkPrefix = Cypress.config("baseUrl", env[environmentUpperCased]);
-	const fullLink = `${linkPrefix}${page}`;
+	const fullLink = `${env[environmentUpperCased]}${page}`;
+
+	console.log(fullLink, "#####################################");
 
 	return fullLink;
 }
 
 Cypress.Commands.add("apiLogin", (user, environment) => {
+	const env = Cypress.env();
+	const environmentUpperCased = environment.toUpperCase();
+
+	Cypress.config("baseUrl", env[environmentUpperCased]);
+
 	cy.session([user, environment], () => {
-		const env = Cypress.env();
 		const [username, password] = getUserCredentials(user);
 
 		cy.request({
@@ -23,7 +28,8 @@ Cypress.Commands.add("apiLogin", (user, environment) => {
 			},
 		}).then(({ body }) => {
 			cy.setCookie("jwt", body.accessToken);
-			cy.visitPage(environment, "/dashboard");
+			cy.visit("/dashboard");
+			cy.location("pathname").should("equal", "/dashboard");
 		});
 	});
 });
@@ -33,9 +39,9 @@ Cypress.Commands.add(
 	{ prevSubject: "optional" },
 	(subject, selector, wait = 0) => {
 		if (subject) {
-			return cy.wrap(subject).get(selector).should("be.visible").click().wait(wait);
+			cy.wrap(subject).get(selector).should("be.visible").click().wait(wait);
 		} else {
-			return cy.get(selector).should("be.visible").click().wait(wait);
+			cy.get(selector).should("be.visible").click().wait(wait);
 		}
 	}
 );
@@ -49,11 +55,11 @@ Cypress.Commands.add("tryClickOnElement", (selector, wait = 0) => {
 });
 
 Cypress.Commands.add("clearOutInput", (selector, wait = 0) => {
-	return cy.get(selector).should("be.visible").clear().wait(wait);
+	cy.get(selector).should("be.visible").clear().wait(wait);
 });
 
 Cypress.Commands.add("writeToInput", (selector, input, wait = 0) => {
-	return cy.get(selector).should("be.visible").type(input).wait(wait);
+	cy.get(selector).should("be.visible").type(input).wait(wait);
 });
 
 Cypress.Commands.add("visitPage", (environment, page) => {
@@ -62,3 +68,27 @@ Cypress.Commands.add("visitPage", (environment, page) => {
 	cy.visit(url);
 	cy.url().should("equal", url);
 });
+
+// Cypress.Commands.add("createUser", (environment, user) => {
+// 	const { role } = user;
+// 	const env = Cypress.env();
+// 	const validRoles = ["teacher", "student"];
+
+// 	if(!validRoles.includes(role)) {
+// 		throw new Error(`${role} is not valid`);
+// 	}
+
+// 	cy.request({
+// 		method: "POST",
+// 		url: getPageUrl(environment, `/api/v1/users/admin/${role}s`),
+// 		body: {
+// 			firstName: user.firstname,
+// 			las
+// 			username: env[username],
+// 			password: env[password],
+// 		},
+// 	}).then(({ body }) => {
+// 		cy.setCookie("jwt", body.accessToken);
+// 		cy.visitPage(environment, "/dashboard");
+// 	});
+// })
