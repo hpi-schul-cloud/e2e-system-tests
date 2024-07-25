@@ -39,7 +39,7 @@ Cypress.Commands.add(
 	{ prevSubject: "optional" },
 	(subject, selector, wait = 0) => {
 		if (subject) {
-			cy.wrap(subject).get(selector).should("be.visible").click().wait(wait);
+			cy.wrap(subject).should("be.visible").click().wait(wait);
 		} else {
 			cy.get(selector).should("be.visible").click().wait(wait);
 		}
