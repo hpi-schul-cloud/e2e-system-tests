@@ -8,7 +8,8 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     #Admin enables the video conference in the school settings page
     Given I am logged in as a '<user_1>' at '<namespace>'
     When I click on administration in menu
-    When I click on manage school card
+    When I click on sub menu school
+    #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
     Then I enable the video conference
@@ -36,7 +37,8 @@ Feature: Teacher can add and remove BBB tool in the course in DBC and BRB with a
     #Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
     Given I am logged in as a '<user_1>' at '<namespace>'
     When I click on administration in menu
-    When I click on manage school card
+    When I click on sub menu school
+    #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
     Then I disable the video conference
