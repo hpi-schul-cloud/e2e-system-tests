@@ -7,7 +7,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
   Scenario: as a pre condition Admin enables the video conference option for a team event
     Given I am logged in as a 'admin1_dbc' at 'dbc'
     When I click on administration in menu
-    When I click on manage school card
+    When I click on sub menu school
     #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel

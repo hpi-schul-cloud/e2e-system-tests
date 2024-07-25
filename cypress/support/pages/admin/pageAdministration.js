@@ -211,11 +211,6 @@ class Management {
 		cy.url().should("include", "/administration/teams");
 	}
 
-	navigateToSchoolAdministration() {
-		cy.get(Management.#schoolAdministrationNavigationSubMenu).click();
-		cy.url().should("include", "/administration/school");
-	}
-
 	clickGeneralSettingsPanel() {
 		cy.get(Management.#generalSettingsPanel).click();
 	}

@@ -20,7 +20,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on button To Course Overview on the finish page
     #   Admin adds tools
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     When I click the add external tool button
     When I select the tool 'CY Test Tool 1' from available tools
@@ -145,7 +145,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     Then I see the external tools table
     When I click on delete button of tool 'CY Test Tool 1'
