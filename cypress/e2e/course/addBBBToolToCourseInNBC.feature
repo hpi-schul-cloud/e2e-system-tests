@@ -14,8 +14,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 
 		# pre-condition: admin creates a course and assign teacher to the course
 		When I go to rooms overview
-		When I click on FAB to create a new room
-		When I click on new course create button in sub menu
+		When I click on FAB to create a new room depending on sub menu
 		Then I see section one area on the course create page
 		When I enter the course title '<course_name>'
 		When I select room colour as red
@@ -84,6 +83,10 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		Then I see the disabled check box for Activating video conferences in page Edit course
 
 		@staging_test
+		Examples:
+			| namespace | admin      | teacher      | fullname_teacher | course_name                           |
+			| nbc       | admin1_nbc | teacher1_nbc | Karl Herzog      | CypressAut Test Creation and Deletion |
+
 		@school_api_test
 		Examples:
 			| namespace | admin      | teacher      | fullname_teacher  | course_name                           |
