@@ -15,7 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import "./commands";
-import "./custom_commands/input.utils"
+import "./custom_commands/input.utils";
 import "./custom_commands/login";
 import "./custom_commands/logout";
 import "cypress-real-events";
@@ -52,15 +52,15 @@ before(() => {
 });
 
 after(() => {
-	cy.readFile("cypress/fixtures/test-run-details.json").then((data) => {
-		const env = Cypress.env();
-		data.env.BRB = env["BRB"];
-		data.env.NBC = env["NBC"];
-		data.env.DBC = env["DBC"];
-		data.browser.name = Cypress.browser.name;
-		data.browser.version = Cypress.browser.majorVersion;
-		data.platform = Cypress.platform;
-		data.time = new Date().toLocaleString("en-GB");
-		cy.writeFile("cypress/fixtures/test-run-details.json", data);
-	});
+	// cy.readFile("cypress/fixtures/test-run-details.json").then((data) => {
+	// 	const env = Cypress.env();
+	// 	data.env.BRB = env["BRB"];
+	// 	data.env.NBC = env["NBC"];
+	// 	data.env.DBC = env["DBC"];
+	// 	data.browser.name = Cypress.browser.name;
+	// 	data.browser.version = Cypress.browser.majorVersion;
+	// 	data.platform = Cypress.platform;
+	// 	data.time = new Date().toLocaleString("en-GB");
+	// 	cy.writeFile("cypress/fixtures/test-run-details.json", data);
+	// });
 });
