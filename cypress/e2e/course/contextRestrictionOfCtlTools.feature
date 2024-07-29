@@ -8,8 +8,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to rooms overview
     #    Admin creates a course
-    When I click on FAB to create a new room
-    When I click on new course create button in sub menu
+    When I click on FAB to create a new room depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title 'Cypress Test Course'
     When I select 'Karl Herzog' from field teacher

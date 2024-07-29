@@ -55,7 +55,7 @@ Then("I see page Edit course", () => {
 	courses.showCourseEditPage();
 });
 
-When("I click on FAB to create a new room", () => {
+When("I click on FAB to create a new room depending on sub menu", () => {
 	courses.clickOnCreateRoomFAB();
 });
 

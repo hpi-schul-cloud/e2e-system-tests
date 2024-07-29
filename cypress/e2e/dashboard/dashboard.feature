@@ -15,8 +15,7 @@ Feature: Dashboard - To check contents on the dashboard
 
     # pre-condition: admin creates a course and assign teacher and student to the course
     When I go to rooms overview
-    When I click on FAB to create a new room
-    When I click on new course create button in sub menu
+    When I click on FAB to create a new room depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title 'CypressAut Test Dashboard Course'
     When I select room colour as red
