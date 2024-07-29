@@ -7,7 +7,7 @@ Feature: Course - To add and delete a course by the teacher
   As a teacher I want to create a new course and want to delete the newly created test course/room so that list of courses/rooms can be cleaned and not full with the newly created test courses/rooms.
 
 
-  Scenario: Create, edit and delete course - for dev environments
+  Scenario: Create, edit and delete course
     # pre-conditions: creating users
     Given I am logged in as a '<teacher>' at '<namespace>'
     Given I am logged in as a '<student>' at '<namespace>'
@@ -69,11 +69,11 @@ Feature: Course - To add and delete a course by the teacher
       | namespace | teacher      | fullname_teacher | student      | student_listname | course_title                          | course_title_edited      | course_description               |
       | brb       | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | CypressAut Test Creation and Deletion | CypressAut Testkurs Edit | cy edit this is test description |
 
+    # Note: This can not be run against BRB/NBC because student visibility is forbidden for Teacher while creating a new course.
     @school_api_test
     Examples:
       | namespace | teacher      | fullname_teacher  | student      | student_listname  | course_title                          | course_title_edited      | course_description               |
       | dbc       | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Testkurs Edit | cy edit this is test description |
-
 
 
 # Note: Need to confirm below scenarios can be removed or on purppose kept and commented?
