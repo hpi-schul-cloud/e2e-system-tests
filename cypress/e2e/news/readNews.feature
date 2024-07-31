@@ -7,6 +7,9 @@ Feature:  News - To read a news on the respective dashboards
 
   @stable_test
   Scenario: Teacher creates news. reads them and deletes them
+  # as a pre-condition create teacher and student
+    Given I am logged in as a '<teacher>' at '<namespace>'
+    Given I am logged in as a '<student>' at '<namespace>'
   # as a pre-condition teacher creates school news
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to news overview
@@ -44,7 +47,14 @@ Feature:  News - To read a news on the respective dashboards
     When I go to a team '<team_name>'
     When I click on news tab on the team detail page
     Then I can read the news '<team_news_title>' with description '<team_news_description>'
+
+  # student reads a school news on news overview page
+    Given I am logged in as a '<student>' at '<namespace>'
+    When I go to news overview
+    Then I can read the news '<news_title>' with description '<news_description>'
+
   # as a post-condition teacher deletes the school news
+    Given I am logged in as a '<teacher>' at '<namespace>'
     When I arrive on the dashboard
     And I click on the news teaser '<news_title>'
     When I click on delete button
@@ -60,5 +70,5 @@ Feature:  News - To read a news on the respective dashboards
     @school_api_test
     @staging_test
     Examples:
-      | teacher      | namespace | news_title                         | news_description        | team_name              | team_news_title                  | team_news_description      |
-      | teacher1_brb | brb       | CypressAut - this is a school news | school news description | CypressAut - News Team | CypressAut - this is a team news | test team news description |
+      | teacher      | student      | namespace | news_title                         | news_description        | team_name              | team_news_title                  | team_news_description      |
+      | teacher1_brb | student1_brb | brb       | CypressAut - this is a school news | school news description | CypressAut - News Team | CypressAut - this is a team news | test team news description |
