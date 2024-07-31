@@ -10,7 +10,7 @@ Feature:  News - To read a news on the respective dashboards
   # as a pre-condition create teacher and student
     Given I am logged in as a '<teacher>' at '<namespace>'
     Given I am logged in as a '<student>' at '<namespace>'
-  # as a pre-condition teacher creates school news
+  # teacher creates school news
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to news overview
     And I click on add news button
@@ -21,13 +21,13 @@ Feature:  News - To read a news on the respective dashboards
     And I see time input field
     And I click on save button
     Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
-  # as a pre-condition teacher creates a team
+  # teacher creates a team
     When I go to teams overview
     When I click on button Add Team on the teams overview page
     Then I see new team creation page
     When I enter in the title '<team_name>'
     When I click on button Create Team on the team creation page
-  # as a pre-condition teacher creates a team news
+  # teacher creates a team news
     When I go to teams overview
     When I go to a team '<team_name>'
     When I click on news tab on the team detail page
@@ -39,10 +39,10 @@ Feature:  News - To read a news on the respective dashboards
     And I see time input field
     And I click on save button
     Then I see news is created successfully with title '<team_news_title>' and with description '<team_news_description>'
-  # Reading a school news on news overview page
+  # teacher reads a school news on news overview page
     When I go to news overview
     Then I can read the news '<news_title>' with description '<news_description>'
-  # Reading a team news on teams news overview page
+  # teacher reads a team news on teams news overview page
     When I go to teams overview
     When I go to a team '<team_name>'
     When I click on news tab on the team detail page
@@ -53,19 +53,26 @@ Feature:  News - To read a news on the respective dashboards
     When I go to news overview
     Then I can read the news '<news_title>' with description '<news_description>'
 
-  # as a post-condition teacher deletes the school news
+  # teacher deletes the school news
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I arrive on the dashboard
     And I click on the news teaser '<news_title>'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news '<news_title>'
-  # as a post-condition teacher deletes the team news
+  # teacher deletes the team news
     When I arrive on the dashboard
     And I click on the news teaser '<team_news_title>'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news '<team_news_title>'
+  # teacher deletes the team
+    When I go to teams overview
+    When I go to a team '<team_name>'
+    When I click on team settings
+    When I click on delete option
+    Then I see dialog box and click on delete button to confirm the deletion
+    Then I do not see the team '<team_name>'
 
     @school_api_test
     @staging_test
