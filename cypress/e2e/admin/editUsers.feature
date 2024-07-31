@@ -2,7 +2,7 @@ Feature: Editing Users - Editing user information in the SVS
 
     As a user, I want to edit other users account information
 
-    Scenario Outline: An admin can edit teacher user informa
+    Scenario Outline: An admin can edit teacher user information
         Given I am logged in as '<admin>' on '<env>'
         And Opened management page for teachers on '<env>'
         And Created teacher 'John' 'Teacher' with email 'john.teacher@mail.tld'

@@ -5,8 +5,6 @@ export function getPageUrl(environment, page) {
 	const environmentUpperCased = environment.toUpperCase();
 	const fullLink = `${env[environmentUpperCased]}${page}`;
 
-	console.log(fullLink, "#####################################");
-
 	return fullLink;
 }
 
@@ -16,7 +14,7 @@ Cypress.Commands.add("apiLogin", (user, environment) => {
 
 	Cypress.config("baseUrl", env[environmentUpperCased]);
 
-	cy.session([user, environment], () => {
+	cy.session(`${user} on ${environment}`, () => {
 		const [username, password] = getUserCredentials(user);
 
 		cy.request({
