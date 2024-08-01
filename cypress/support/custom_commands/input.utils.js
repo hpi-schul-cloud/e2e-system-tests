@@ -14,22 +14,32 @@ Cypress.Commands.add("apiLogin", (user, environment) => {
 
 	Cypress.config("baseUrl", env[environmentUpperCased]);
 
-	cy.session(`${user} on ${environment}`, () => {
+	cy.session([user, environment], () => {
 		const [username, password] = getUserCredentials(user);
 
-		cy.request({
-			method: "POST",
-			url: getPageUrl(environment, "/api/v3/authentication/local"),
-			body: {
-				username: env[username],
-				password: env[password],
-			},
-		}).then(({ body }) => {
-			cy.setCookie("jwt", body.accessToken);
-			cy.visit("/dashboard");
-			cy.location("pathname").should("equal", "/dashboard");
-		});
+		cy.visit("/login");
+		cy.location("pathname").should("equal", "/login");
+		cy.tryClickOnElement('[data-testid="submit-cloud-site"]');
+		cy.writeToInput('[data-testid="username-email"]', env[username]);
+		cy.writeToInput('[data-testid="password-email"]', env[password]);
+		cy.clickOnElement('[data-testid="submit-login-email"');
+
+		// cy.request({
+		// 	method: "POST",
+		// 	url: getPageUrl(environment, "/api/v3/authentication/local"),
+		// 	body: {
+		// 		username: env[username],
+		// 		password: env[password],
+		// 	},
+		// }).then(({ body }) => {
+		// 	cy.setCookie("jwt", body.accessToken);
+		// 	cy.visit("/dashboard");
+		// 	cy.location("pathname").should("equal", "/dashboard");
+		// });
 	});
+
+	cy.visit("/dashboard");
+	cy.location("pathname").should("equal", "/dashboard");
 });
 
 Cypress.Commands.add(

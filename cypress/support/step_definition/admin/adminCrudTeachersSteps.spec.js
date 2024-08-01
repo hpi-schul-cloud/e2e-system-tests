@@ -37,8 +37,11 @@ defineStep(
 );
 
 defineStep("Changing consent for the teacher", () => {
-	cy.clickOnElement("button[id='edit-consent']");
-	cy.get("input[name='form']").first().clickOnElement();
-	cy.clickOnElement("input[name='privacyConsent']");
-	cy.clickOnElement("input[name='termsOfUseConsent']");
+	// Only teachers on DBC have a consent option
+	if (Cypress.config().baseUrl.includes("dbc")) {
+		cy.clickOnElement("button[id='edit-consent']");
+		cy.get("input[name='form']").first().clickOnElement();
+		cy.clickOnElement("input[name='privacyConsent']");
+		cy.clickOnElement("input[name='termsOfUseConsent']");
+	}
 });

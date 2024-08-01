@@ -23,6 +23,7 @@ defineStep("I am able to set a new password", () => {
 
 defineStep("I can save the changes", () => {
 	cy.clickOnElement("[data-testid='button_save_user']");
+	cy.get("div[class*='alert-danger']").should("not.be.exist");
 });
 
 defineStep("Changing the password to {string}", (password) => {

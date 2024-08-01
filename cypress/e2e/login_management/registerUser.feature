@@ -7,6 +7,7 @@ Feature: Admin creates, reads, updates and deletes students
         When Created student 'John' 'Student' with email 'john.student@mail.tld'
         Then I am on the students management page
         And Student 'John' with email 'john.student@mail.tld' was created
+        When Register 'john.student@mail.tld' with link
 
     Examples:
         | env | user       |

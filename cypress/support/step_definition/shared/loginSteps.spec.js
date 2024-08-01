@@ -49,7 +49,6 @@ Then("I can update email with {string}", (email) => {
 
 Then("I can save the user changes", () => {
 	cy.clickOnElement("[data-testid='button_save_user']");
-	cy.pause();
 });
 
 // And("Opened management page for students", () => {});
