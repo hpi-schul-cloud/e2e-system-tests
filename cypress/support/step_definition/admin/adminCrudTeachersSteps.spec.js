@@ -8,6 +8,7 @@ defineStep(
 		cy.writeToInput("[data-testid='input_create-user_firstname']", firstname);
 		cy.writeToInput("[data-testid='input_create-user_lastname']", lastname);
 		cy.writeToInput("[data-testid='input_create-user_email']", email);
+		cy.contains("label", "registrierungslink", { matchCase: false }).clickOnElement();
 		cy.clickOnElement("[data-testid='button_create-user_submit']");
 	}
 );

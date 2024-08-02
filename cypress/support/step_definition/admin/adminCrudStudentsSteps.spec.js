@@ -3,7 +3,7 @@ import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 defineStep(
 	"Created student {string} {string} with email {string}",
 	(firstname, lastname, email) => {
-	  cy.pause();
+		cy.pause();
 
 		const birthDate = new Date();
 
@@ -25,7 +25,7 @@ defineStep(
 );
 
 defineStep("Pause", () => {
-  cy.pause();
+	cy.pause();
 });
 
 defineStep("Student {string} with email {string} was created", (firstname, email) => {
