@@ -1,6 +1,6 @@
-Feature: Teacher can edit an existing student
+Feature: Teacher reads and updates students
 
-    As a teacher, I want to edit existing students
+    As a teacher, I want to read and update student information
 
     Scenario: Admin creates and registers a student
         Given I am logged in as '<user>' on '<env>'
@@ -12,8 +12,8 @@ Feature: Teacher can edit an existing student
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        # | brb | admin1_brb |
-        # | nbc | admin1_nbc |
+        | brb | admin1_brb |
+        | nbc | admin1_nbc |
 
     Scenario: Teacher changes students user information
         Given I am logged in as '<user>' on '<env>'
@@ -28,8 +28,8 @@ Feature: Teacher can edit an existing student
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        # | brb | admin1_brb |
-        # | nbc | admin1_nbc |
+        | brb | admin1_brb |
+        | nbc | admin1_nbc |
 
     Scenario: Teacher reverts student user information
         Given I am logged in as '<user>' on '<env>'
@@ -42,8 +42,8 @@ Feature: Teacher can edit an existing student
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        # | brb | admin1_brb |
-        # | nbc | admin1_nbc |
+        | brb | admin1_brb |
+        | nbc | admin1_nbc |
 
     Scenario: Admin deletes a student
         Given I am logged in as '<user>' on '<env>'
@@ -56,5 +56,5 @@ Feature: Teacher can edit an existing student
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        # | brb | admin1_brb |
-        # | nbc | admin1_nbc |
+        | brb | admin1_brb |
+        | nbc | admin1_nbc |

@@ -29,7 +29,7 @@ Feature: Admin initiates a password change for a user
         Given I am logged in as '<user>' on '<env>'
         And Created teacher 'John' 'Teacher' with email 'john.teacher@mail.tld'
         And Teacher 'John' with email 'john.teacher@mail.tld' was created
-        And Registering teacher 'John' with email 'john.teacher@mail.tld'
+        And Registering teacher 'john.teacher@mail.tld' with email 'john.teacher@mail.tld'
         And I am on the teachers management page
         When Going to teacher edit page for 'John' with email 'john.teacher@mail.tld'
         Then Changing the password to 'Password1!'

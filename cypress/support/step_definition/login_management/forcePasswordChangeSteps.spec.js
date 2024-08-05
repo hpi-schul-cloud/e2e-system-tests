@@ -5,6 +5,8 @@ defineStep("Clear session", () => {
 	cy.clearLocalStorage();
 });
 
+defineStep("Registering teacher {string} {string}", (username, password) => {});
+
 defineStep("{string} {string} force password change", (username, password) => {
 	cy.visit("/login");
 	cy.location("pathname").should("equal", "/login");

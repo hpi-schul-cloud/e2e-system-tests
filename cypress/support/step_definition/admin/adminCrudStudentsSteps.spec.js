@@ -7,7 +7,7 @@ defineStep(
 
 		const birthDate = new Date();
 
-		birthDate.setFullYear(birthDate.getFullYear() - 12);
+		birthDate.setFullYear(birthDate.getFullYear() - 17);
 
 		cy.visit("/administration/students/new");
 		cy.location("pathname").should("equal", "/administration/students/new");

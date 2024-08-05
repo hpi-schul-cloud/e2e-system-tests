@@ -3,13 +3,14 @@ import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 defineStep(
 	"Created teacher {string} {string} with email {string}",
 	(firstname, lastname, email) => {
+		cy.pause();
 		cy.visit("/administration/teachers/new");
 		cy.location("pathname").should("equal", "/administration/teachers/new");
 		cy.writeToInput("[data-testid='input_create-user_firstname']", firstname);
 		cy.writeToInput("[data-testid='input_create-user_lastname']", lastname);
 		cy.writeToInput("[data-testid='input_create-user_email']", email);
-		cy.contains("label", "registrierungslink", { matchCase: false }).clickOnElement();
 		cy.clickOnElement("[data-testid='button_create-user_submit']");
+		cy.location("pathname").should("equal", "/administration/teachers");
 	}
 );
 
