@@ -1,11 +1,15 @@
-import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 import { getUserCredentials } from "../../custom_commands/login.helper";
 
-Given("I am on the login page on {string}", (environment) => {
+defineStep("I am logged in as {string} on {string}", (user, environment) => {
+	cy.apiLogin(user, environment);
+});
+
+defineStep("I am on the login page on {string}", (environment) => {
 	cy.visitPage(environment, "/login");
 });
 
-When("I am logging in as {string}", (user) => {
+defineStep("I am logging in as {string}", (user) => {
 	const env = Cypress.env();
 	const [username, password] = getUserCredentials(user);
 
@@ -15,11 +19,11 @@ When("I am logging in as {string}", (user) => {
 	cy.clickOnElement('[data-testid="submit-login-email"');
 });
 
-Then("I will be redirected to the dashboard", () => {
+defineStep("I will be redirected to the dashboard", () => {
 	cy.url().should("contain", "/dashboard");
 });
 
-Then("I will be able to logout", () => {
+defineStep("I will be able to logout", () => {
 	cy.clickOnElement('[data-testid="initials"');
 	cy.clickOnElement('[data-testid="logout"');
 });
