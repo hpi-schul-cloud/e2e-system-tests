@@ -78,7 +78,7 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ inputs.tag }}
-          browser: electron
+          browser: edge
 
       - name: Generate Report
         if: always()
