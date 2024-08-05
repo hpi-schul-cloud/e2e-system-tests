@@ -1,4 +1,3 @@
-@school_api_test
 @release
 @stable_test
 Feature:  News - To read a news on the respective dashboards

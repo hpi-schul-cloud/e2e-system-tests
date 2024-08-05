@@ -1,4 +1,3 @@
-@api_migrated
 @stable_test
 @release
 Feature: Team - Student managed teams (on BRB)
