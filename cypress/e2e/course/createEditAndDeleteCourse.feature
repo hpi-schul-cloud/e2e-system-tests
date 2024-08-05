@@ -1,4 +1,3 @@
-@api_migrated
 @stable_test
 @release
 @pr

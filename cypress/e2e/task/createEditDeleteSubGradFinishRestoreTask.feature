@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Task - To create, edit and delete tasks by the teacher.

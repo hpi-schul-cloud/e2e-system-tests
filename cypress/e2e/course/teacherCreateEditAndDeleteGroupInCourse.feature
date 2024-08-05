@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Teacher can create, edit and delete a group in the course

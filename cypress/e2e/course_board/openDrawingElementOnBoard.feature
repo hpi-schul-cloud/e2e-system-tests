@@ -1,4 +1,3 @@
-@api_migrated
 @unstable_test
 Feature: Course Board - Opening a drawing element on a course page
 

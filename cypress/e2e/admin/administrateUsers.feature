@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Admin Users - To add, edit and delete new users by the admin.
