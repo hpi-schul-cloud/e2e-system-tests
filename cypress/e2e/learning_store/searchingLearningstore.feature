@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Learning store - Activating and deactivating access for students

@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature:  To access the H5P editor as a teacher.

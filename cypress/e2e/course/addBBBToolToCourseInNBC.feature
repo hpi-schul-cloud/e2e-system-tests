@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Teacher can add and remove BBB tool in the course in NBC with admin permission

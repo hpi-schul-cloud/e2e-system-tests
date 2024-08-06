@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Help Section - To use the help areas in dBildungscloud
@@ -30,5 +29,5 @@ Feature: Help Section - To use the help areas in dBildungscloud
     @school_api_test
     @staging_test
     Examples:
-      | user         | namespace | search_term      | search_result               | contact_option | contact_subject                     | contact_email    |
-      | teacher1_brb | brb       | archivieren      | Aufgaben archivieren        | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com |
+      | user         | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    |
+      | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com |
