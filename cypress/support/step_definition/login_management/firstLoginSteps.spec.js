@@ -16,7 +16,17 @@ And("I am logging in as {string}", (user) => {
 	cy.writeToInput('[data-testid="password-email"]', env[password]);
 	cy.clickOnElement('[data-testid="submit-login-email"');
 	cy.url().should("contain", "/dashboard");
-	cy.pause();
+	// cy.pause();
+});
+
+And("I will check if an account for the student already exists then delete {string}", (environment) => {
+	cy.visitPage(environment, "/administration/students");
+	cy.clearOutInput("input[data-testid='searchbar']");
+	cy.writeToInput('input[data-testid="searchbar"]', "john.doe@email.eu", 2000);
+	cy.contains("tr", 'john.doe@email.eu').find("svg").first().should("be.visible").click(), 2000;
+	cy.tryClickOnElement("[data-test-id='context-menu-open']");
+	cy.tryClickOnElement("[data-testid='delete_action']");
+	cy.tryClickOnElement("[data-testid='btn-dialog-confirm']");
 });
 
 And("I will navigate to create new student page {string}", (environment) => {

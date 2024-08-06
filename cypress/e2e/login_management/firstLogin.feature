@@ -5,6 +5,7 @@ Feature: First Login - Login of new user
     Scenario Outline: User makes a direct login with username and password
         Given I am on the login page on '<env>'
         And  I am logging in as '<user>'
+        And  I will check if an account for the student already exists then delete '<env>'
         And  I will navigate to create new student page '<env>'
         And  I will be able to create a new student
         And  I will be able to activate the student account manually
