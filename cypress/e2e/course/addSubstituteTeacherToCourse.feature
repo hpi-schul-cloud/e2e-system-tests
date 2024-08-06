@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Course - Add substitute teacher to course
