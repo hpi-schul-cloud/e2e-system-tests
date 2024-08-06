@@ -3,9 +3,9 @@ import { getUserCredentials } from "./login.helper";
 export function getPageUrl(environment, page) {
 	const env = Cypress.env();
 	const environmentUpperCased = environment.toUpperCase();
-	const fullLink = `${env[environmentUpperCased]}${page}`;
+	const fullLink = new URL(page, env[environmentUpperCased]);
 
-	return fullLink;
+	return fullLink.href;
 }
 
 Cypress.Commands.add("apiLogin", (user, environment) => {

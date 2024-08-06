@@ -1,3 +1,5 @@
+@release
+@unstable_test
 Feature: Self Service
 
     As as user, I can change my own user information

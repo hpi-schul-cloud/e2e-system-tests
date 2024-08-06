@@ -22,10 +22,6 @@ defineStep(
 	}
 );
 
-defineStep("Pause", () => {
-	cy.pause();
-});
-
 defineStep("Student {string} with email {string} was created", (firstname, email) => {
 	cy.clearOutInput("input[data-testid='searchbar']");
 	cy.writeToInput("input[data-testid='searchbar']", firstname);
