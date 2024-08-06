@@ -39,10 +39,10 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
     When I go to teams overview
     When I go to a team '<team_title>'
     When I click on three dot menu on the team title
-    And I click on manage team members option
-    And I click on add internal attendees button
-    And new dialog opens to select student '<student_listname>' from the drop down list
-    And I click on add user button
+    When I click on manage team members option
+    When I click on add internal attendees button
+    When new dialog opens to select student '<student_listname>' from the drop down list
+    When I click on add user button
     Then I see the student named '<student_fullname>' on the team members table
 
   # Teacher adds event with video conference
@@ -66,7 +66,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
     Then I start the team video conference which has title '<event_title>'
 
   # Student can see and participate in video conference
-    Given I am logged in as a '<student>' at '<nameplace>'
+    Given I am logged in as a '<student>' at '<namespace>'
     When I go to teams overview
     When I go to a team '<team_title>'
     When I go to calendar tab
@@ -78,7 +78,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
     When I go to teams overview
     When I go to a team '<team_title>'
     When I click on three dot menu on the team title
-    And I click on manage team members option
+    When I click on manage team members option
     When I select the student '<student_fullname>' and click on delete icon
     Then I see '<student_fullname>' is not visible on the table
 
@@ -101,7 +101,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
   # as a post condition Admin disable the video conference for the team
     Given I am logged in as a '<admin>' at '<namespace>'
     When I click on administration in menu
-    When I click on manage school card
+    When I click on sub menu school
     #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
