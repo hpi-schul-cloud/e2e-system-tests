@@ -8,7 +8,7 @@ Frameworks:
 
 ### Prepare development environment
 
-Install or make sure Chrome and Edge browser (at least) have it in your development machine
+Install or make sure Chrome and Edge browsers (at least) have it in your development machine
 
 1. Install [Node v18](https://nodejs.org/dist/)
 2. Install [Git](https://git-scm.com/downloads)
