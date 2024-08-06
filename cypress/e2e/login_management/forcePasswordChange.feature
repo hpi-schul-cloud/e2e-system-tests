@@ -1,49 +1,88 @@
-Feature: Admin initiates a password change for a user
+@release
+Feature: Admin forces password change for users
 
-    As an admin, I want to perform the 4 CRUD operations on students
+    As an admin, I want to force a password change for users
 
-    # Scenario Outline: Admin creates a student and forces a password change
+    # Scenario Outline: Setup for student
     #     Given I am logged in as '<user>' on '<env>'
-    #     And Created student 'John' 'Student' with email 'john.student@mail.tld'
-    #     And Student 'John' with email 'john.student@mail.tld' was created
+    #     When Created student 'John' 'Student' with email 'john.student@mail.tld'
     #     And Registering student 'John' with email 'john.student@mail.tld'
     #     And I am on the students management page
-    #     When Going to student edit page for 'John' with email 'john.student@mail.tld'
+    #     And Going to student edit page for 'John' with email 'john.student@mail.tld'
+    #     And I am able to set a new password
     #     Then Changing the password to 'Password1!'
-    #     And Clear session
 
     # Examples:
     #     | env | user       |
     #     | dbc | admin1_dbc |
+    #     | brb | admin1_brb |
+    #     | nbc | admin1_nbc |
 
-
-    # Scenario Outline: Student changes password after forced password change
+    # Scenario Outline: Student must set a new password
     #     Given I am on the login page on '<env>'
-    #     Given 'john.student@mail.tld' 'Password1!' force password change
+    #     And I am logging with email 'john.student@mail.tld' and password 'Password1!'
+    #     When I am changing my password to 'Password2!'
+    #     Then I am on the dashboard page
 
     # Examples:
     #     | env |
     #     | dbc |
+    #     | brb |
+    #     | nbc |
 
-    Scenario Outline: Admin creates a teacher and forces a password change
+    # Scenario Outline: Teardown for student
+    #     Given I am logged in as '<user>' on '<env>'
+    #     When I am on the students management page
+    #     And Going to student edit page for 'John' with email 'john.student@mail.tld'
+    #     And Deleting the user
+    #     Then I am on the students management page
+
+    # Examples:
+    #     | env | user       |
+    #     | dbc | admin1_dbc |
+    #     | brb | admin1_brb |
+    #     | nbc | admin1_nbc |
+
+    Scenario Outline: Setup for teacher
         Given I am logged in as '<user>' on '<env>'
-        And Created teacher 'John' 'Teacher' with email 'john.teacher@mail.tld'
-        And Teacher 'John' with email 'john.teacher@mail.tld' was created
-        And Registering teacher 'john.teacher@mail.tld' with email 'john.teacher@mail.tld'
+        When Created teacher 'John' 'Teacher' with email 'john.teacher@mail.tld'
         And I am on the teachers management page
-        When Going to teacher edit page for 'John' with email 'john.teacher@mail.tld'
-        Then Changing the password to 'Password1!'
-        And Clear session
+        And Going to teacher edit page for 'John' with email 'john.teacher@mail.tld'
+        And Going to teacher registration page
+        And I am registering as teacher with email 'john.teacher@mail.tld' and password 'Password1!' on '<env>'
+        Then I am able to logout
+        Given I am logged in as '<user>' on '<env>'
+        And I am on the teachers management page
+        And Going to teacher edit page for 'John' with email 'john.teacher@mail.tld'
+        And I am able to set a new password
+        Then Changing the password to 'Password2!'
 
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
+        # | brb | admin1_brb |
+        # | nbc | admin1_nbc |
 
-
-    Scenario Outline: Teacher changes password after forced password change
+    Scenario Outline: Teacher must set a new password
         Given I am on the login page on '<env>'
-        Given 'john.teacher@mail.tld' 'Password1!' force password change
+        And I am logging with email 'john.teacher@mail.tld' and password 'Password2!'
+        When I am changing my password to 'Password1!'
+        Then I am on the dashboard page
 
     Examples:
         | env |
         | dbc |
+        # | brb |
+        # | nbc |
+
+    Scenario Outline: Teardown for teacher
+        Given I am logged in as '<user>' on '<env>'
+        When I am on the teachers management page
+        And Going to teacher edit page for 'John' with email 'john.teacher@mail.tld'
+        Then Deleting the user
+
+    Examples:
+        | env | user       |
+        | dbc | admin1_dbc |
+        # | brb | admin1_brb |
+        # | nbc | admin1_nbc |

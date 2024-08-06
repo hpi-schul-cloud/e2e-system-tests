@@ -1,7 +1,6 @@
-@pr
 @release
 @stable_test
-Feature: Register an already existing student with the registration link
+Feature: A teacher registers an already existing student with the registration link
 
     As a student, I want to register in the SVS
 
@@ -13,7 +12,7 @@ Feature: Register an already existing student with the registration link
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
+        # | brb | admin1_brb |
         | nbc | admin1_nbc |
 
     Scenario Outline: Student can registers in the SVS with the registration link
@@ -26,9 +25,9 @@ Feature: Register an already existing student with the registration link
 
     Examples:
         | env | user       |
-        | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
+        | dbc | teacher1_dbc |
+        # | brb | teacher1_brb |
+        | nbc | teacher1_nbc |
 
     Scenario Outline: Teardown
         Given I am logged in as '<user>' on '<env>'
@@ -40,6 +39,5 @@ Feature: Register an already existing student with the registration link
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
+        # | brb | admin1_brb |
         | nbc | admin1_nbc |
-

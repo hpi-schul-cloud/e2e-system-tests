@@ -1,7 +1,6 @@
-@pr
 @release
 @stable_test
-Feature: Register an already existing teacher with the registration link
+Feature: An admin registers an already existing teacher with the registration link
 
     As a teacher, I want to register in the SVS
 

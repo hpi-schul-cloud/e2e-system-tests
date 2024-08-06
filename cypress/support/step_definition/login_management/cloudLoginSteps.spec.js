@@ -6,6 +6,7 @@ defineStep("I am logged in as {string} on {string}", (user, environment) => {
 });
 
 defineStep("I am on the login page on {string}", (environment) => {
+	cy.clearCookies();
 	cy.visitPage(environment, "/login");
 });
 

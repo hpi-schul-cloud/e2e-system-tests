@@ -3,8 +3,6 @@ import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 defineStep(
 	"Created student {string} {string} with email {string}",
 	(firstname, lastname, email) => {
-		cy.pause();
-
 		const birthDate = new Date();
 
 		birthDate.setFullYear(birthDate.getFullYear() - 17);
