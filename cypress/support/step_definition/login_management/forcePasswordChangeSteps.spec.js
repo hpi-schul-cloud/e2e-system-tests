@@ -1,12 +1,5 @@
 import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 
-defineStep("Clear session", () => {
-	cy.clearCookies();
-	cy.clearLocalStorage();
-});
-
-defineStep("Registering teacher {string} {string}", (username, password) => {});
-
 defineStep(
 	"I am logging with email {string} and password {string}",
 	(username, password) => {
