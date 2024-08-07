@@ -7,9 +7,11 @@ const titleOnDashboardPage = '[id="page-title"]';
 
 Cypress.Commands.add("login", (username, environment) => {
 	cy.session([username, environment], async () => {
-		const env = Cypress.env();
-		const environmentUpperCased = environment.toUpperCase();
-		const link = Cypress.config("baseUrl", env[environmentUpperCased]);
+		const link = Cypress.env(environment.toUpperCase());
+		Cypress.config("baseUrl", link);
+
+		Cypress.env("testId", `${new Date().getTime()}${Math.floor(Math.random() * 1000)}`);
+		Cypress.env("environment", environment);
 
 		!link.includes("staging")
 			? await loginViaSchoolApi(username, environment)
