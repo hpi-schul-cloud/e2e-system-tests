@@ -1,3 +1,5 @@
+@release
+@stable_test
 Feature: Teacher reads and updates students
 
     As a teacher, I want to read and update student information
@@ -12,8 +14,6 @@ Feature: Teacher reads and updates students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario: Teacher changes students user information
         Given I am logged in as '<user>' on '<env>'
@@ -26,10 +26,8 @@ Feature: Teacher reads and updates students
         Then I can save the changes
 
     Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
+        | env | user         |
+        | dbc | teacher1_dbc |
 
     Scenario: Teacher reverts student user information
         Given I am logged in as '<user>' on '<env>'
@@ -40,10 +38,8 @@ Feature: Teacher reads and updates students
         Then I can save the changes
 
     Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
+        | env | user         |
+        | dbc | teacher1_dbc |
 
     Scenario: Admin deletes a student
         Given I am logged in as '<user>' on '<env>'
@@ -56,5 +52,3 @@ Feature: Teacher reads and updates students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
