@@ -8,32 +8,6 @@ export function getPageUrl(environment, page) {
 	return fullLink.href;
 }
 
-Cypress.Commands.add("apiLogin", (user, environment) => {
-	const env = Cypress.env();
-	const environmentUpperCased = environment.toUpperCase();
-
-	Cypress.config("baseUrl", env[environmentUpperCased]);
-
-	cy.session([user, environment], () => {
-		const [username, password] = getUserCredentials(user);
-
-		cy.request({
-			method: "POST",
-			url: getPageUrl(environment, "/api/v3/authentication/local"),
-			body: {
-				username: env[username],
-				password: env[password],
-			},
-		}).then(({ body }) => {
-			const domain = new URL(Cypress.config("baseUrl")).hostname;
-
-			cy.setCookie("jwt", body.accessToken, { domain });
-		});
-	});
-
-	cy.visitPage(environment, "/dashboard");
-});
-
 Cypress.Commands.add(
 	"clickOnElement",
 	{ prevSubject: "optional" },
@@ -68,27 +42,3 @@ Cypress.Commands.add("visitPage", (environment, page) => {
 	cy.visit(url);
 	cy.url().should("equal", url);
 });
-
-// Cypress.Commands.add("createUser", (environment, user) => {
-// 	const { role } = user;
-// 	const env = Cypress.env();
-// 	const validRoles = ["teacher", "student"];
-
-// 	if(!validRoles.includes(role)) {
-// 		throw new Error(`${role} is not valid`);
-// 	}
-
-// 	cy.request({
-// 		method: "POST",
-// 		url: getPageUrl(environment, `/api/v1/users/admin/${role}s`),
-// 		body: {
-// 			firstName: user.firstname,
-// 			las
-// 			username: env[username],
-// 			password: env[password],
-// 		},
-// 	}).then(({ body }) => {
-// 		cy.setCookie("jwt", body.accessToken);
-// 		cy.visitPage(environment, "/dashboard");
-// 	});
-// })
