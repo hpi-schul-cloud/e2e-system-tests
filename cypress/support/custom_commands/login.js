@@ -3,6 +3,7 @@ import {
 	loginViaSchoolApi,
 	getUserCredentials,
 } from "./login.helper";
+import { getPageUrl } from "./input.utils";
 
 const initials = '[data-testid="initials"]';
 const languageSelection = '[id="selected-language"]';
