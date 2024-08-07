@@ -112,5 +112,5 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: tag:stable:pr:ci
+      tag: cy:headless:stable:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}

@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Account - Change language of the user from user setting
 

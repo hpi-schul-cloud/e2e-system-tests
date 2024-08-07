@@ -1,4 +1,4 @@
-@release
+@regression_test
 Feature: Account - To go to account settings page on dbc
 
   As a user I want to navigation to my account's settings page so that I can see my account details (e. g. email).
