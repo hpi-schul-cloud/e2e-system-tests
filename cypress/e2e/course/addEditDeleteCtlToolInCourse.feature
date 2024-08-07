@@ -15,8 +15,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I go to rooms overview
 
         #    Admin creates a course
-        When I click on FAB to create a new room
-        When I click on new course create button in sub menu
+        When I click on FAB to create a new room depending on sub menu
         Then I see section one area on the course create page
         When I enter the course title 'Cypress Test Course'
         When I select 'Karl Herzog' from field teacher
@@ -29,7 +28,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
 
         #   Admin adds tools via selection
         When I click on administration in menu
-        When I go to school administration
+        When I click on sub menu school
         When I click on external tools panel
         When I click the add external tool button
         When I select the tool 'CY Test Tool 1' from available tools
@@ -47,7 +46,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
 
         #   Admin adds tools via tool link
         When I click on administration in menu
-        When I go to school administration
+        When I click on sub menu school
         When I click on external tools panel
         When I click the add external tool button
         When I insert the external tool link 'https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823'
@@ -173,7 +172,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         #     Admin deletes external tools
         Given I am logged in as a 'admin1_nbc' at 'nbc'
         When I click on administration in menu
-        When I go to school administration
+        When I click on sub menu school
         When I click on external tools panel
         Then I see the external tools table
         When I click on delete button of tool 'CY Test Tool 1'

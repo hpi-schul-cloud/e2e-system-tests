@@ -1,4 +1,3 @@
-@api_migrated
 @unstable_test
 Feature: Course - To search for a course via search input box on the course overview page
 
@@ -13,8 +12,7 @@ Feature: Course - To search for a course via search input box on the course over
 
     # pre-condition: creating new course
     When I go to rooms overview
-    When I click on FAB to create a new room
-    When I click on new course create button in sub menu
+    When I click on FAB to create a new room depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title '<created_course_name>'
     When I select room colour as red

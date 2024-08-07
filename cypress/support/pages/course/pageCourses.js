@@ -185,10 +185,6 @@ class Courses {
 			.should("be.visible");
 	}
 
-	clickOnCreateNewCourseInSubMenu() {
-		cy.get(Courses.#subMenuFabButtonToAddNewCourse).click();
-	}
-
 	doNotSeeBBBInDBCBRB() {
 		cy.get(Courses.#toolsList)
 			.contains(Courses.#modalContentCreateVideoConf)
@@ -511,7 +507,14 @@ class Courses {
 	}
 
 	clickOnCreateRoomFAB() {
-		cy.get(Courses.#createCourse).click();
+		cy.get(Courses.#createCourse).first().click();
+		cy.get("body").then((body) => {
+			if (body.find(Courses.#subMenuFabButtonToAddNewCourse).length) {
+				cy.get(Courses.#subMenuFabButtonToAddNewCourse).click();
+			} else {
+				cy.log("No sub menu found in create course FAB");
+			}
+		});
 	}
 
 	clickOnCreateSyncedCourseFAB() {
@@ -1021,11 +1024,11 @@ class Courses {
 	}
 
 	fillInCustomParameter(paramName, value) {
-		cy.get(`[data-testid="${paramName}"]`).find('input').clear().type(value);
+		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
 	}
 
 	fillInDisplayName(toolName) {
-		cy.get(Courses.#toolDisplayNameInputField).find('input').clear().type(toolName);
+		cy.get(Courses.#toolDisplayNameInputField).find("input").clear().type(toolName);
 	}
 
 	clickOnConfirmButton() {

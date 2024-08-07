@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Teacher can add and remove BBB tool in the course in NBC with admin permission
@@ -14,8 +13,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 
 		# pre-condition: admin creates a course and assign teacher to the course
 		When I go to rooms overview
-		When I click on FAB to create a new room
-		When I click on new course create button in sub menu
+		When I click on FAB to create a new room depending on sub menu
 		Then I see section one area on the course create page
 		When I enter the course title '<course_name>'
 		When I select room colour as red
@@ -68,8 +66,7 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		# Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
 		Given I am logged in as a '<admin>' at '<namespace>'
 		When I click on administration in menu
-		When I click on manage school card
-		# Note: remove the following line if old admin page is hidden
+		When I click on sub menu school
 		When I click on general settings panel
 		Then I disable the video conference
 		Then I click on button Save admin settings
@@ -85,6 +82,10 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		Then I see the disabled check box for Activating video conferences in page Edit course
 
 		@staging_test
+		Examples:
+			| namespace | admin      | teacher      | fullname_teacher | course_name                           |
+			| nbc       | admin1_nbc | teacher1_nbc | Karl Herzog      | CypressAut Test Creation and Deletion |
+
 		@school_api_test
 		Examples:
 			| namespace | admin      | teacher      | fullname_teacher  | course_name                           |

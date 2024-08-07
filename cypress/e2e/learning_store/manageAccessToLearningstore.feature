@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @pr
 @stable_test
@@ -14,7 +13,7 @@ Feature: Learning store - Activating and deactivating access for students
 
     # Admin activates students access to Learning store
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     #Note: remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
@@ -27,7 +26,7 @@ Feature: Learning store - Activating and deactivating access for students
     # Admin deactivates students access to Learning store - pre-condition to set the needed configuration
     Given I am logged in as a '<admin>' at '<namespace>'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     #Note: remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel

@@ -9,7 +9,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
   Scenario: Deactivate Chat
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
@@ -28,7 +28,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
   Scenario: Activate Chat
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
-    And I go to school administration
+    And I click on sub menu school
     #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
@@ -49,7 +49,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
   Scenario: Deactivate BigBlueButton
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel
@@ -67,7 +67,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
   Scenario: Activate BigBlueButton
     Given I am logged in as a 'admin1_brb' at 'brb'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     #remove the following line if old admin page is hidden
     When I go to new school administration page
     When I click on general settings panel

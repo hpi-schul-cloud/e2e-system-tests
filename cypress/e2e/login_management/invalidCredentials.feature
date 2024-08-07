@@ -1,4 +1,3 @@
-@api_migrated
 @unstable_test
 Feature: Invalid Credentials - Verify login functionality via wrong user data
 

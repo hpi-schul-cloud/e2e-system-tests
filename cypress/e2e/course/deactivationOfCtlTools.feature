@@ -7,8 +7,7 @@ Feature: Deactivation of ctl tools
   Scenario: Pre-test: Admin creates a course
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to rooms overview
-    When I click on FAB to create a new room
-    When I click on new course create button in sub menu
+    When I click on FAB to create a new room depending on sub menu
     When I enter the course title 'Cypress Test Course'
     When I select 'Karl Herzog' from field teacher
     When I click on button Next Steps after entering the room detail in section one
@@ -20,7 +19,7 @@ Feature: Deactivation of ctl tools
   Scenario: Admin tries to add an deactivated external tool, adds an external tool and deactivates and activates it
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     Then I see the external tools table is empty
     When I click the add external tool button
@@ -78,7 +77,7 @@ Feature: Deactivation of ctl tools
     #     Admin deactivates an existing tool
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     Then I see the external tools table
     Then I see the tool 'CY Test Tool 1' in external tools table
@@ -118,7 +117,7 @@ Feature: Deactivation of ctl tools
     #     Admin activates existing deactivated tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     Then I see the external tools table
     Then I see the tool 'CY Test Tool 1' in external tools table
@@ -186,7 +185,7 @@ Feature: Deactivation of ctl tools
     #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     Then I see the external tools table
     When I click on delete button of tool 'CY Test Tool 1'

@@ -1,5 +1,5 @@
-@api_migrated
-@unstable_test
+@release
+@stable_test
 Feature: Account - Change language of the user from user setting
 
 	As a user, I want to language change from user menu for all users i.e. (Admin, Teacher, Student)

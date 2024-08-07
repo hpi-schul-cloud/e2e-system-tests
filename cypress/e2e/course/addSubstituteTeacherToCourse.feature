@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Course - Add substitute teacher to course
@@ -14,8 +13,7 @@ Feature: Course - Add substitute teacher to course
 
     # pre-condition: admin creates a course and assign teacher to the course
     When I go to rooms overview
-    When I click on FAB to create a new room
-    When I click on new course create button in sub menu
+    When I click on FAB to create a new room depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title '<course_name>'
     When I select room colour as red

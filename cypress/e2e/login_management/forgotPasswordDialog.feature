@@ -1,4 +1,3 @@
-@api_migrated
 @unstable_test
 Feature: Forget Password - Visibility of dBildungscloud Password Reset dialog
 

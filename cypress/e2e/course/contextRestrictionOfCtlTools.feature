@@ -8,8 +8,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to rooms overview
     #    Admin creates a course
-    When I click on FAB to create a new room
-    When I click on new course create button in sub menu
+    When I click on FAB to create a new room depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title 'Cypress Test Course'
     When I select 'Karl Herzog' from field teacher
@@ -20,7 +19,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click on button To Course Overview on the finish page
     #   Admin adds tools
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     When I click the add external tool button
     When I select the tool 'CY Test Tool 1' from available tools
@@ -145,7 +144,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I go to school administration
+    When I click on sub menu school
     When I click on external tools panel
     Then I see the external tools table
     When I click on delete button of tool 'CY Test Tool 1'

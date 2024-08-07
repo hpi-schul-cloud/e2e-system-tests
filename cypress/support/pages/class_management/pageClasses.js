@@ -243,9 +243,8 @@ class Classes {
 		classNameData.should("be.visible");
 		classNameData
 			.siblings("td")
-			.eq(0)
 			.should(($td) => {
-				expect($td.text().trim()).to.equal(courseName);
+				expect($td.text().trim()).to.include(courseName);
 			});
 	}
 

@@ -202,18 +202,13 @@ class Management {
 	}
 
 	navigateToNewClassAdministration() {
-		cy.get(Management.#newClassAdministrationNavigationButton).click();
+		cy.get(Management.#classAdministrationNavigationButton).click();
 		cy.url().should("include", "/administration/groups/classes");
 	}
 
 	navigateToTeamAdministration() {
 		cy.get(Management.#teamAdministrationNavigationButton).eq(1).click();
 		cy.url().should("include", "/administration/teams");
-	}
-
-	navigateToSchoolAdministration() {
-		cy.get(Management.#schoolAdministrationNavigationSubMenu).click();
-		cy.url().should("include", "/administration/school");
 	}
 
 	clickGeneralSettingsPanel() {

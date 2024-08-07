@@ -40,9 +40,6 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the date pickers to start and end the course are disabled
     When I click on button Next Steps after entering the room detail in section one
     Then I see section two area on the course create page
-    Then I see the student '<student_name>' is selected
-    Then I see the student selection box is disabled
-    Then I see the class selection box is disabled
     When I click on button Next Steps after selecting room participant details
     Then I see the section three area as the finish page
     Then I see the button to create another course is not visible
@@ -53,9 +50,12 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the new class administration page
     Then I see the group '<group_title>' is synced with course '<group_title>'
     Examples:
-      | user         | state | group_title                     | teacher_name |  student_name  | start_date | end_date   |
-      | teacher1_nbc | nbc   | Cypress-Test-Group-Course-Sync  | Karl Herzog  |  Herbert Kraft | 01.08.2023 | 31.07.2024 |
-      | teacher1_nbc | nbc   | Cypress-Test-Group-Course-Sync2 | Karl Herzog  |  Herbert Kraft | 01.08.2023 | 31.07.2024 |
+      | user         | state | group_title                     | teacher_name | student_name  | start_date | end_date   |
+      | teacher1_nbc | nbc   | Cypress-Test-Group-Course-Sync  | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
+      | teacher1_nbc | nbc   | Cypress-Test-Group-Course-Sync2 | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
+      | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
+      | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
+
 
   Scenario Outline: Edit a synchronized course
     When I go to rooms overview
@@ -67,7 +67,6 @@ Feature: Teacher can create, update and stop a synchronized course
     When I edit the title of the course to '<course_title_new>'
     Then I see the course title form contains '<course_title_new>'
     Then I see the teacher '<teacher_name>' is selected
-    Then I see the student '<student_name>' is selected
     Then I see the start date picker has '<start_date>' selected
     Then I see the end date picker has '<end_date>' selected
     Then I see the teacher selection box is disabled
@@ -79,8 +78,8 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the course '<course_title_new>' on the room overview page
     Then I do not see the course '<course_title>' on the room overview page
     Examples:
-      |  course_title                   | course_title_new         | teacher_name  | student_name   | start_date | end_date   |
-      |  Cypress-Test-Group-Course-Sync | Cypress-Test-Course-Sync | Herzog, Karl  | Kraft, Herbert | 01.08.2023 | 31.07.2024 |
+      | course_title                   | course_title_new         | teacher_name | student_name   | start_date | end_date   |
+      | Cypress-Test-Group-Course-Sync | Cypress-Test-Course-Sync | Herzog, Karl | Kraft, Herbert | 01.08.2024 | 31.07.2025 |
 
   Scenario Outline: Stop a course synchronization in a course
     When I go to rooms overview

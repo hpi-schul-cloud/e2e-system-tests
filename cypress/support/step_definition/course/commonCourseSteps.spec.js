@@ -55,7 +55,7 @@ Then("I see page Edit course", () => {
 	courses.showCourseEditPage();
 });
 
-When("I click on FAB to create a new room", () => {
+When("I click on FAB to create a new room depending on sub menu", () => {
 	courses.clickOnCreateRoomFAB();
 });
 
@@ -203,3 +203,51 @@ When(
 		courses.addStudentWithSearchStringToCourse(searchString);
 	}
 );
+
+Then("I see section one area on the course create page", () => {
+	courses.seeSectionOneAreaOnCourseCreatePage();
+});
+
+When("I enter the course title {string}", (newCourseName) => {
+	courses.fillCourseCreationForm(newCourseName);
+});
+
+When("I select room colour as red", () => {
+	courses.selectRoomColour();
+});
+
+Then("I see teacher {string} is selected by default", (defaultTeacherName) => {
+	courses.seeSelectedDefaultTeacher(defaultTeacherName);
+});
+
+Then("I see substitute teacher selection box", () => {
+	courses.seeSubstituteTeacherSelectionBox();
+});
+
+Then("I see date pickers to start and end the course as per school year", () => {
+	courses.seeDatePickersForCourseInSchoolYear();
+});
+
+Then("I see button to create a course time table container", () => {
+	courses.seeCreateCourseTimeTableContainer();
+});
+
+When("I click on button Next Steps after entering the room detail in section one", () => {
+	courses.clickOnNextStepsBtnAfterEnteringRoomDetails();
+});
+
+Then("I see section two area on the course create page", () => {
+	courses.seeSectionTwoAreaOnCourseCreatePage();
+});
+
+When("I click on button Next Steps after selecting room participant details", () => {
+	courses.clickOnNextStepButtonOnCourseParticipationDetail();
+});
+
+Then("I see the section three area as the finish page", () => {
+	courses.seeCourseCreationFinishPageSectionThree();
+});
+
+When("I click on button To Course Overview on the finish page", () => {
+	courses.clickOnToCourseOverviewBtn();
+});
