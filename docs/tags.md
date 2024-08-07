@@ -1,4 +1,4 @@
-[← Back to documentation](../README.md)
+[← Back to README](../README.md)
 
 # Tags
 
@@ -6,18 +6,38 @@ This document explains the tagging system used in your project for Cypress and C
 
 ---
 
-In our Cypress and Cucumber setup, tags are used to categorize and selectively run tests. They can be applied at various levels, including `Feature`, `Scenario`, `Scenario Outline`, and `Examples`. Tags applied at a higher level are inherited by all child elements, unless overridden by more specific tags.
+In our Cypress and Cucumber setup, tags are used to categorize and selectively run tests. They can be applied at various levels, including `Feature`, `Scenario`, `Scenario Outline`, and `Examples`. Tags applied at a higher level are inherited by all child elements, unless overridden by more specific tags. Following tags we are currently using in our framework:
+
+**Tag Descriptions**
+
+- **@stable_test:** These tests are considered stable and are expected to run successfully in both the staging and school API environments.
+
+<br>
+
+- **@regression_test:** This tag is used for tests that are run against both the dev (32.41...) and staging environments before a release.
+  <br>
+
+- **@school_api_test:** This tag is specific to tests that interact with the school API.
+  <br>
+
+- **@staging_test:** Tests marked with this tag are specific to the staging environment.
+  <br>
+
+- **@pr:** Tests tagged with @pr are executed as part of the CI process for Pull Requests. These tests provide quick feedback on the stability of changes before merging.
+  <br>
+
+- **@unstable_test:** These are tests that have been identified as unstable. They may fail intermittently due to issues in either the staging or development environments. This tag helps in identifying flaky tests that require attention.
 
 ## Tag Hierarchy and Inheritance
 
-Tags applied at the `Feature` level are inherited by all scenarios within that feature. For example, if a `Feature` is tagged with `@release`, all scenarios under that feature are also considered part of the release unless explicitly marked otherwise. This hierarchy allows for efficient and consistent application of test conditions across multiple tests.
+Tags applied at the `Feature` level are inherited by all scenarios within that feature. For example, if a `Feature` is tagged with `@regression_test`, all scenarios under that feature are also considered part of the release unless explicitly marked otherwise. This hierarchy allows for efficient and consistent application of test conditions across multiple tests.
 
 ## Examples
 
-### @release and @stable_test
+### @regression_test and @stable_test
 
 ```cucumber
-@release
+@regression_test
 Feature: Account Management
 
   @stable_test
@@ -29,7 +49,7 @@ Feature: Account Management
 
 _Explanation_:
 
-- The `@release` tag at the `Feature` level indicates that all scenarios in this feature are part of the release test suite.
+- The `@regression_test` tag at the `Feature` level indicates that all scenarios in this feature are part of the release test suite.
 - The `@stable_test` tag on the specific scenario indicates that this test is reliable and expected to pass in all environments.
 
 ### @unstable_test
@@ -57,7 +77,7 @@ _Explanation_:
 ### @school_api_test and @staging_test
 
 ```cucumber
-@release
+@regression_test
 @stable_test
 Feature: User Management
 
@@ -83,7 +103,7 @@ Feature: User Management
 
 _Explanation_:
 
-- The `@release` and `@stable_test` tags are applied at the `Feature` level, indicating that all scenarios are part of stable, release-ready tests.
+- The `@regression_test` and `@stable_test` tags are applied at the `Feature` level, indicating that all scenarios are part of stable, release-ready tests.
 - The `@school_api_test` and `@staging_test` tags are applied to specific examples to denote testing in different environments, demonstrating selective tagging at the `Examples` level.
 
 ### @pr
