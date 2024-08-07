@@ -11,8 +11,7 @@ In our Cypress and Cucumber setup, tags are used to categorize and selectively r
 **Tag Descriptions**
 
 - **@stable_test:** These tests are considered stable and are expected to run successfully in both the staging and school API environments.
-
-<br>
+  <br>
 
 - **@regression_test:** This tag is used for tests that are run against both the dev (32.41...) and staging environments before a release.
   <br>

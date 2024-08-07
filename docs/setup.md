@@ -29,8 +29,11 @@ This document provides comprehensive instructions for setting up the project env
    <br>
 
 3. **Setting Up Environment Configuration**
+   <br>
 
-   - **Duplicate Environment Configuration:** - Duplicate [`template.env.json`](env_variables/template.env.json) file and rename the duplicated file to `local.env.json` in the env_variables folder - Add your credentials and environment-specific variables to `local.env.json` from 1Password including api keys - **(Remember add all instances as in 1Password we have different vaults available for each namespace)**
+   - Duplicate [`template.env.json`](env_variables/template.env.json) file and rename the duplicated file to `local.env.json` in the env_variables folder
+   - Add your credentials and environment-specific variables to `local.env.json` from 1Password including api keys
+     **(Remember add all instances as in 1Password we have different vaults available for each namespace)**
      <br>
 
 4. **Installing Dependencies**
