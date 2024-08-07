@@ -17,25 +17,21 @@ Cypress.Commands.add("apiLogin", (user, environment) => {
 	cy.session([user, environment], () => {
 		const [username, password] = getUserCredentials(user);
 
-		cy.visit("/login");
-		cy.tryClickOnElement('[data-testid="submit-cloud-site"]');
-		cy.writeToInput('[data-testid="username-email"]', env[username]);
-		cy.writeToInput('[data-testid="password-email"]', env[password]);
-		cy.clickOnElement('[data-testid="submit-login-email"');
-		// cy.request({
-		// 	method: "POST",
-		// 	url: getPageUrl(environment, "/api/v3/authentication/local"),
-		// 	body: {
-		// 		username: env[username],
-		// 		password: env[password],
-		// 	},
-		// }).then(({ body }) => {
-		// 	cy.setCookie("jwt", body.accessToken);
-		// });
+		cy.request({
+			method: "POST",
+			url: getPageUrl(environment, "/api/v3/authentication/local"),
+			body: {
+				username: env[username],
+				password: env[password],
+			},
+		}).then(({ body }) => {
+			const domain = new URL(Cypress.config("baseUrl")).hostname;
+
+			cy.setCookie("jwt", body.accessToken, { domain });
+		});
 	});
 
-	cy.visit("/dashboard");
-	cy.location("pathname").should("equal", "/dashboard");
+	cy.visitPage(environment, "/dashboard");
 });
 
 Cypress.Commands.add(

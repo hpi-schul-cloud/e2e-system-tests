@@ -1,4 +1,6 @@
 @release
+@stable_test
+@unstable_test
 Feature: Admin forces password change for users
 
     As an admin, I want to force a password change for users
