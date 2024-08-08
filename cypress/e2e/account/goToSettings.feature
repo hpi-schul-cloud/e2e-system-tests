@@ -9,6 +9,12 @@ Feature: Account - To go to account settings page on dbc
     When I go to my account settings
     Then I see my email is editable
 
+    @school_api_test
+    @staging_test
+    Examples:
+      | user         | namespace |
+      | student1_dbc | dbc       |
+
   @unstable_test
   Scenario: I see my e-mail is not editable as an external student user
     Given I am logged in as a 'student_extern_dbc' at 'dbc'
