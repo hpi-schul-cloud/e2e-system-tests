@@ -1,4 +1,3 @@
-@api_migrated
 @release
 @stable_test
 Feature: Account - To go to account settings page

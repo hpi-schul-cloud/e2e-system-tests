@@ -4,12 +4,12 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
   As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.
 
-  @stable_test
   Scenario: Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
   # as a pre-condition create teacher and student
     Given I am logged in as a '<admin>' at '<namespace>'
     Given I am logged in as a '<teacher>' at '<namespace>'
     Given I am logged in as a '<student>' at '<namespace>'
+
   # as a pre condition Admin enables the video conference option for a team event
     Given I am logged in as a '<admin>' at '<namespace>'
     When I click on administration in menu
@@ -121,6 +121,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
     Examples:
       | admin      | teacher      | student      | namespace | student_listname | student_fullname | team_title                             | event_title        | event_description            | event_place  | event_title_edited        | event_description_edited               | event_description_edited |
       | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Kraft, Herbert   | Herbert Kraft    | CypressAut - team for video conference | CypressAut - Event | this is cy event description | Cypress Aula | CypressAut - Edited Event | this is an edited cy event description | Cypress Mensa            |
+
     @school_api_test
     Examples:
       | admin      | teacher      | student      | namespace | student_listname   | student_fullname  | team_title                             | event_title        | event_description            | event_place  | event_title_edited        | event_description_edited               | event_description_edited |

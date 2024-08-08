@@ -1,8 +1,8 @@
 @stable_test
 @release
-Feature: Team - Student managed teams (on BRB)
+Feature: Team - Student managed teams
 
-  As a student I want to create/edit/delete the team so that I can manage the team.
+  As a student I want to create/edit/delete the team so that I can manage the team. This is not possible for NBC, because there students are generally not allowed to create teams.
 
   Scenario: student creates, edits and deletes team
   # as a pre-condition create teacher and student
@@ -30,6 +30,7 @@ Feature: Team - Student managed teams (on BRB)
     Then I see team title '<team_title>' is visible
     Then I see the description '<team_description>' is visible
 
+  # student edits team
     When I go to a team '<team_title>'
     When I click on team settings
     When I click on edit option
@@ -41,6 +42,7 @@ Feature: Team - Student managed teams (on BRB)
     Then I see team title '<team_title_edited>' is visible
     Then I see the description '<team_description_edited>' is visible
 
+  # student deletes team
     When I go to a team '<team_title_edited>'
     When I click on team settings
     When I click on delete option
@@ -52,5 +54,3 @@ Feature: Team - Student managed teams (on BRB)
     Examples:
       | admin      | student      | namespace | team_title                 | team_description                    | team_title_edited             | team_description_edited                    |
       | admin1_brb | student1_brb | brb       | CypressAut - students team | this is cy student team description | CypressAut - Edited News Team | edited this is cy student team description |
-      # | admin1_dbc | student1_dbc | dbc       | CypressAut - students team | this is cy student team description | CypressAut - Edited News Team | edited this is cy student team description |
-      # | admin1_nbc | student1_nbc | nbc       | CypressAut - students team | this is cy student team description | CypressAut - Edited News Team | edited this is cy student team description |

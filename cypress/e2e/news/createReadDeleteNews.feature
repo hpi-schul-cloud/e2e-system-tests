@@ -4,11 +4,11 @@ Feature:  News - To read a news on the respective dashboards
 
   As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
 
-  @stable_test
-  Scenario: Teacher creates news. reads them and deletes them
+  Scenario: Teacher creates news, reads them and deletes them
   # as a pre-condition create teacher and student
     Given I am logged in as a '<teacher>' at '<namespace>'
     Given I am logged in as a '<student>' at '<namespace>'
+
   # teacher creates school news
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to news overview
@@ -20,12 +20,14 @@ Feature:  News - To read a news on the respective dashboards
     And I see time input field
     And I click on save button
     Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
+
   # teacher creates a team
     When I go to teams overview
     When I click on button Add Team on the teams overview page
     Then I see new team creation page
     When I enter in the title '<team_name>'
     When I click on button Create Team on the team creation page
+
   # teacher creates a team news
     When I go to teams overview
     When I go to a team '<team_name>'
@@ -38,9 +40,11 @@ Feature:  News - To read a news on the respective dashboards
     And I see time input field
     And I click on save button
     Then I see news is created successfully with title '<team_news_title>' and with description '<team_news_description>'
+
   # teacher reads a school news on news overview page
     When I go to news overview
     Then I can read the news '<news_title>' with description '<news_description>'
+
   # teacher reads a team news on teams news overview page
     When I go to teams overview
     When I go to a team '<team_name>'
@@ -59,12 +63,14 @@ Feature:  News - To read a news on the respective dashboards
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news '<news_title>'
+
   # teacher deletes the team news
     When I arrive on the dashboard
     And I click on the news teaser '<team_news_title>'
     When I click on delete button
     And I confirm the deletion on confirmation dialog box
     Then I do not see the news '<team_news_title>'
+
   # teacher deletes the team
     When I go to teams overview
     When I go to a team '<team_name>'
