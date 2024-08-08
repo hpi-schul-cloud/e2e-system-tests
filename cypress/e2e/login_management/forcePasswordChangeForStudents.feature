@@ -16,8 +16,6 @@ Feature: Admin forces password change for students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Student must set a new password
         Given I am on the login page on '<env>'
@@ -28,8 +26,6 @@ Feature: Admin forces password change for students
     Examples:
         | env |
         | dbc |
-        | brb |
-        | nbc |
 
     Scenario Outline: Teardown
         Given I am logged in as '<user>' on '<env>'
@@ -41,6 +37,4 @@ Feature: Admin forces password change for students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 

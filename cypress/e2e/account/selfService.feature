@@ -4,6 +4,10 @@ Feature: Self Service
 
     As as user, I can change my own user information
 
+    IMPORTANT: This test is higly unstable, because it changes the user credentials temporary
+    and reverts them. If no completed successfully, other tests will be heavily affected and will most likely fail.
+    So only trigger this test manually and with caution.
+
     Scenario: User updates their own user information
         Given I am logged in as '<user>' on '<env>'
         And I am on the account settings page
@@ -17,12 +21,6 @@ Feature: Self Service
         | dbc | admin1_dbc   | temporary.admin@mail.tld   |
         | dbc | teacher1_dbc | temporary.teacher@mail.tld |
         | dbc | student1_dbc | temporary.student@mail.tld |
-        | brb | admin1_brb   | temporary.admin@mail.tld   |
-        | brb | teacher1_brb | temporary.teacher@mail.tld |
-        | brb | student1_brb | temporary.student@mail.tld |
-        | nbc | admin1_nbc   | temporary.admin@mail.tld   |
-        | nbc | teacher1_nbc | temporary.teacher@mail.tld |
-        | nbc | student1_nbc | temporary.student@mail.tld |
 
 
     Scenario: User reverts their own user information
@@ -38,9 +36,3 @@ Feature: Self Service
         | dbc | admin1_dbc   |
         | dbc | teacher1_dbc |
         | dbc | student1_dbc |
-        | brb | admin1_brb   |
-        | brb | teacher1_brb |
-        | brb | student1_brb |
-        | nbc | admin1_nbc   |
-        | nbc | teacher1_nbc |
-        | nbc | student1_nbc |

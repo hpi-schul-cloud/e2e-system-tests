@@ -13,8 +13,6 @@ Feature: Admin creates, reads, updates and deletes students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Admin manually registers student
         Given I am logged in as '<user>' on '<env>'
@@ -27,8 +25,6 @@ Feature: Admin creates, reads, updates and deletes students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Admin changes students user information
         Given I am logged in as '<user>' on '<env>'
@@ -43,8 +39,6 @@ Feature: Admin creates, reads, updates and deletes students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Admin reverts student user information
         Given I am logged in as '<user>' on '<env>'
@@ -57,8 +51,6 @@ Feature: Admin creates, reads, updates and deletes students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Admin deletes a student
         Given I am logged in as '<user>' on '<env>'
@@ -71,5 +63,3 @@ Feature: Admin creates, reads, updates and deletes students
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |

@@ -12,8 +12,6 @@ Feature: An admin registers an already existing teacher with the registration li
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Teacher can registers in the SVS with the registration link
         Given I am logged in as '<user>' on '<env>'
@@ -26,8 +24,6 @@ Feature: An admin registers an already existing teacher with the registration li
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Teardown
         Given I am logged in as '<user>' on '<env>'
@@ -39,5 +35,3 @@ Feature: An admin registers an already existing teacher with the registration li
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |

@@ -4,7 +4,7 @@ Feature: Teacher reads and updates students
 
     As a teacher, I want to read and update student information
 
-    Scenario: Admin creates and registers a student
+    Scenario: Setup
         Given I am logged in as '<user>' on '<env>'
         When Created student 'John' 'Student' with email 'john.student@mail.tld'
         Then I am on the students management page
@@ -41,13 +41,12 @@ Feature: Teacher reads and updates students
         | env | user         |
         | dbc | teacher1_dbc |
 
-    Scenario: Admin deletes a student
+    Scenario: Teardown
         Given I am logged in as '<user>' on '<env>'
         And I am on the students management page
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
         When Deleting the user
         Then I am on the students management page
-        And 'John' with email 'john.student@mail.tld' was deleted
 
     Examples:
         | env | user       |

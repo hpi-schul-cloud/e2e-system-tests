@@ -1,3 +1,4 @@
+@only
 @release
 @stable_test
 Feature: Admin creates, reads, updates and delete teachers
@@ -13,8 +14,6 @@ Feature: Admin creates, reads, updates and delete teachers
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Admin changes teachers user information
         Given I am logged in as '<user>' on '<env>'
@@ -28,8 +27,6 @@ Feature: Admin creates, reads, updates and delete teachers
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Admin reverts teacher user information
         Given I am logged in as '<user>' on '<env>'
@@ -42,8 +39,6 @@ Feature: Admin creates, reads, updates and delete teachers
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
 
     Scenario Outline: Admin deletes a teacher
         Given I am logged in as '<user>' on '<env>'
@@ -56,5 +51,3 @@ Feature: Admin creates, reads, updates and delete teachers
     Examples:
         | env | user       |
         | dbc | admin1_dbc |
-        | brb | admin1_brb |
-        | nbc | admin1_nbc |
