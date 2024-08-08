@@ -7,11 +7,11 @@ Feature: Help Section - To use the help areas in dBildungscloud
   Scenario Outline: User can use the help area in the (header, sidebar), search article and submit an issue via contact form
     Given I am logged in as a '<user>' at '<namespace>'
     When I click on Help Section in sidebar
+    Then I see Advanced trainings with correct link '<link_trainings>' in sidebar
     When I click on Help articles in sidebar
     Then I see the help articles page
     When I click on Contact in sidebar
     Then I see the help contact page
-    When I click on  Advanced trainings in sidebar
     #Then a new tab in browser opens
 
     # use the article search inside the help articles area
@@ -29,5 +29,7 @@ Feature: Help Section - To use the help areas in dBildungscloud
     @school_api_test
     @staging_test
     Examples:
-      | user         | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    |
-      | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com |
+      | user         | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    | link_trainings                                                |
+      | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home                                 |
+    # | student1_dbc | dbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://lernen.dbildungscloud.de                              |
+    # | admin1_nbc   | nbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://openelec.moodle-nds.de/course/index.php?categoryid=53 |

@@ -8,7 +8,7 @@ class Help {
 	static #helpOrganization = '[id="Organisation"]';
 	static #helpNutzungshilfen = '[id="nutzungshilfen"]';
 	static #helpContactform = "h2.h4";
-	static #popUpLink = "https://lernen.cloud/";
+	//static #popUpLink = "https://lernen.cloud/";
 	static #searchBar = '[data-testid="help_search_bar"]';
 	static #searchResult = '[data-testid="help_search_results"]';
 	static #bugFormSubject = '[data-testid="bug_headline"]';
@@ -16,7 +16,6 @@ class Help {
 	static #bugFormSubmitButton = '[data-testid="bug_submit"]';
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
 	static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]';
-	static #helpArticlesNavigationButton = '[data-testid="Hilfeartikel"]';
 	static #helpContactNavigationButton = '[data-testid="Kontakt"]';
 	static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]';
 	static #selectProblemDropdown = "[data-testid=select-problem]";
@@ -35,9 +34,9 @@ class Help {
 		cy.url().should("include", "/help/contact");
 	}
 
-	navigateToAdvancedTrainings() {
+	checkLinkToAdvancedTrainings(linkUrl) {
 		cy.get(Help.#advancedTrainingsNavigationButton).should(($a) => {
-			//expect($a.attr("href"), "href").to.equal(Help.#popUpLink); -> is different on staging and main, so this is removed to have a stable test
+			expect($a.attr("href"), "href").to.equal(linkUrl);
 			expect($a.attr("target"), "target").to.equal("_blank");
 		});
 	}

@@ -43,3 +43,7 @@ When("I click on button Submit to send form", () => {
 Then("I see message {string}", (message) => {
 	help.seeConfirmationFormSended(message);
 });
+
+When("I see Advanced trainings with correct link {string} in sidebar", (linkUrl) => {
+	help.checkLinkToAdvancedTrainings(linkUrl);
+});
