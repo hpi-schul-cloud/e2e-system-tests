@@ -12,7 +12,6 @@ Feature: Help Section - To use the help areas in dBildungscloud
     Then I see the help articles page
     When I click on Contact in sidebar
     Then I see the help contact page
-    #Then a new tab in browser opens
 
     # use the article search inside the help articles area
     When I click on Help articles in sidebar
@@ -24,12 +23,12 @@ Feature: Help Section - To use the help areas in dBildungscloud
     Then I see the help contact page
     When I fill out the contact form with option '<contact_option>', subject '<contact_subject>' and sender email '<contact_email>'
     When I click on button Submit to send form
-    Then I see message 'Feedback erfolgreich versendet!'
+    Then I see message '<feedback_message>'
 
     @school_api_test
     @staging_test
     Examples:
-      | user         | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    | link_trainings                                                |
-      | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home                                 |
-    # | student1_dbc | dbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://lernen.dbildungscloud.de                              |
-    # | admin1_nbc   | nbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://openelec.moodle-nds.de/course/index.php?categoryid=53 |
+      | user         | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    | link_trainings                                                | feedback_message                |
+      | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home                                 | Feedback erfolgreich versendet! |
+      | student1_dbc | dbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://lernen.dbildungscloud.de                              | Feedback erfolgreich versendet! |
+      | admin1_nbc   | nbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://openelec.moodle-nds.de/course/index.php?categoryid=53 | Feedback erfolgreich versendet! |
