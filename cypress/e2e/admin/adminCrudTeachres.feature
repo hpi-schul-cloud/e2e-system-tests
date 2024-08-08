@@ -1,4 +1,3 @@
-@only
 @release
 @stable_test
 Feature: Admin creates, reads, updates and delete teachers

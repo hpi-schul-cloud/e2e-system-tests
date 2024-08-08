@@ -1,4 +1,5 @@
 import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
+import { getUserCredentials } from "../../custom_commands/login.helper";
 
 defineStep(
 	"I am logging with email {string} and password {string}",
@@ -10,20 +11,13 @@ defineStep(
 	}
 );
 
-defineStep("I am changing my password to {string}", (password) => {
-	// Skipping welcome page
-	cy.clickOnElement("button[id='nextSection']");
+defineStep("I am changing my password back for {string}", (user) => {
+	const env = Cypress.env();
+	const [, password] = getUserCredentials(user);
 
-	// Skipping email confirmation page
+	cy.writeToInput("input[id='password']", env[password]);
+	cy.writeToInput("input[id='password_control']", env[password]);
 	cy.clickOnElement("button[id='nextSection']");
-
-	// Entering new password
-	cy.writeToInput("input[id='password']", password);
-	cy.writeToInput("input[id='password_control']", password);
-	cy.clickOnElement("button[id='nextSection']");
-
-	// Skipping first steps page
-	cy.clickOnElement("[data-testid='btn_schul-cloud_erkunden']");
 });
 
 defineStep("I am on the dashboard page", () => {

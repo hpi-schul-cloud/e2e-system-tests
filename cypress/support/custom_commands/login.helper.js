@@ -30,10 +30,14 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_2_BRB_EMAIL", "TEACHER_2_BRB_PASSWORD"];
 		case "teacher1_dbc":
 			return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
+		case "teacher2_dbc":
+			return ["TEACHER_2_DBC_EMAIL", "TEACHER_2_DBC_PASSWORD"];
 		case "student1_brb":
 			return ["STUDENT_1_BRB_EMAIL", "STUDENT_1_BRB_PASSWORD"];
 		case "student1_dbc":
 			return ["STUDENT_1_DBC_EMAIL", "STUDENT_1_DBC_PASSWORD"];
+		case "student2_dbc":
+			return ["STUDENT_2_DBC_EMAIL", "STUDENT_2_DBC_PASSWORD"];
 		case "student1_nbc":
 			return ["STUDENT_1_NBC_EMAIL", "STUDENT_1_NBC_PASSWORD"];
 		case "admin1_brb":
