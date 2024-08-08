@@ -1,5 +1,5 @@
 @stable_test
-@release
+@regression_test
 @pr
 Feature: Course - To add and delete a course by the teacher
 

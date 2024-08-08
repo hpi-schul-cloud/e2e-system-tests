@@ -1,4 +1,4 @@
-@release
+@regression_test
 @pr
 @stable_test
 Feature: Topics - To create, edit and delete topics by the teacher.

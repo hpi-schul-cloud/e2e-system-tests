@@ -1,4 +1,4 @@
-@release
+@regression_test
 @unstable_test
 Feature: Broker Login - Verify brokered dBildungscloud login via OIDC provider
 

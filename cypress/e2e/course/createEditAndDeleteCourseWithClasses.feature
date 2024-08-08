@@ -1,5 +1,5 @@
 @unstable_test
-@release
+@regression_test
 Feature: Course - To add and delete a course by the teacher using classes
 
   # step definitions aren't created yet.

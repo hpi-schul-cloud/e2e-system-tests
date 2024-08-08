@@ -50,7 +50,7 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: tag:stable:ci
+      tag: cy:headless:stable:pr:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
 
   notify_RC:
