@@ -5,28 +5,21 @@ root = true
 
 # Unix-style newlines with a newline ending every file
 [*]
+charset = utf-8
 end_of_line = unset
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-# Matches multiple files with brace expansion notation
-# Set default charset
-[*.{js,py}]
-charset = utf-8
-
-# Tab indentation (no size specified)
-[Makefile]
+[*.feature]
 indent_style = space
+indent_size = 4
 
 # Tab indentation with a size of 2 spaces for TypeScript and JavaScript files
 [*.{ts,tsx,js,jsx}]
 indent_style = tab
-indent_size = 2
+indent_size = 4
 
 # Matches the exact files either package.json or .travis.yml
 [{package.json,.travis.yml}]
 indent_style = tab
 indent_size = 2
-
-[*]
-trim_trailing_whitespace = true
