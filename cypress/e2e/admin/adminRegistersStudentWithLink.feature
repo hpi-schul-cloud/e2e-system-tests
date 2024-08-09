@@ -1,6 +1,6 @@
 @release
 @stable_test
-Feature: An admin registers an already existing student with the registration link
+Feature: Student registration with registration link send by admin
 
     As a student, I want to register in the SVS
 

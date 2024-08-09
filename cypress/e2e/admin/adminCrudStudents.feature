@@ -6,9 +6,9 @@ Feature: Admin creates, reads, updates and deletes students
 
     Scenario Outline: Admin creates a student
         Given I am logged in as '<user>' on '<env>'
-        When Created student 'John' 'Student' with email 'john.student@mail.tld'
-        Then I am on the students management page
-        And Student 'John' with email 'john.student@mail.tld' was created
+        And Created student 'John' 'Student' with email 'john.student@mail.tld'
+        When I am on the students management page
+        Then Student 'John' with email 'john.student@mail.tld' was created
 
     Examples:
         | env | user       |
@@ -18,7 +18,6 @@ Feature: Admin creates, reads, updates and deletes students
         Given I am logged in as '<user>' on '<env>'
         And I am on the students management page
         When Registering student 'John' with email 'john.student@mail.tld'
-        Then I am on the students management page
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
         Then I am able to set a new password
 

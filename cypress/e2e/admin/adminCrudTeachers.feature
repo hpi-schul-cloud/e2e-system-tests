@@ -6,9 +6,9 @@ Feature: Admin creates, reads, updates and delete teachers
 
     Scenario Outline: Admin creates a teacher
         Given I am logged in as '<user>' on '<env>'
-        When Created teacher 'John' 'Teacher' with email 'john.teacher@mail.tld'
-        Then I am on the teachers management page
-        And Teacher 'John' with email 'john.teacher@mail.tld' was created
+        And Created teacher 'John' 'Teacher' with email 'john.teacher@mail.tld'
+        When I am on the teachers management page
+        Then Teacher 'John' with email 'john.teacher@mail.tld' was created
 
     Examples:
         | env | user       |

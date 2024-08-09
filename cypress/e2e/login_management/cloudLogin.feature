@@ -3,11 +3,10 @@ Feature: Cloud Login - Login of users managed by SVS
     As a user, I want to login with username and password into SVS
 
     Scenario Outline: User makes a direct login with username and password
-        # Given I am logged in as '<user>' on '<namespace>'
         Given I am on the login page on '<env>'
         When I am logging in as '<user>'
         Then I will be redirected to the dashboard
-        Then I will be able to logout
+        And I will be able to logout
 
     Examples:
         | env | user         |

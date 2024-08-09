@@ -1,6 +1,6 @@
 @release
 @stable_test
-Feature: A teacher registers an already existing student with the registration link
+Feature: Student registration with registration link send by teacher
 
     As a student, I want to register in the SVS
 

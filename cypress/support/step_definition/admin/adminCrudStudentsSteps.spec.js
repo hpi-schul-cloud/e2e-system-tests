@@ -7,6 +7,9 @@ defineStep(
 
 		birthDate.setFullYear(birthDate.getFullYear() - 17);
 
+		cy.visit("/administration/students");
+		cy.writeToInput("input[data-testid='searchbar']", firstname);
+		cy.contains("tr", email).should("not.exist");
 		cy.visit("/administration/students/new");
 		cy.location("pathname").should("equal", "/administration/students/new");
 		cy.writeToInput("[data-testid='input_create-user_firstname']", firstname);

@@ -3,6 +3,9 @@ import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 defineStep(
 	"Created teacher {string} {string} with email {string}",
 	(firstname, lastname, email) => {
+		cy.visit("/administration/teachers");
+		cy.writeToInput("input[data-testid='searchbar']", firstname);
+		cy.contains("tr", email).should("not.exist");
 		cy.visit("/administration/teachers/new");
 		cy.location("pathname").should("equal", "/administration/teachers/new");
 		cy.writeToInput("[data-testid='input_create-user_firstname']", firstname);

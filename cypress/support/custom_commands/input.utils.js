@@ -1,5 +1,3 @@
-import { getUserCredentials } from "./login.helper";
-
 export function getPageUrl(environment, page) {
 	const env = Cypress.env();
 	const environmentUpperCased = environment.toUpperCase();
