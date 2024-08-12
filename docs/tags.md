@@ -6,7 +6,7 @@ This document explains the tagging system used in your project for Cypress and C
 
 ---
 
-In our Cypress and Cucumber setup, tags are used to categorize and selectively run tests. They can be applied at various levels, including `Feature`, `Scenario`, `Scenario Outline`, and `Examples`. Tags applied at a higher level are inherited by all child elements, unless overridden by more specific tags. Following tags we are currently using in our framework:
+In our Cypress and Cucumber setup, tags are used to categorize and selectively run tests. They can be applied at various levels, including `Feature`, `Scenario`, `Scenario Outline`, and `Examples`. Tags applied at a higher level are inherited by all child elements, unless overridden by more specific tags. The following tags we are currently using in our framework:
 
 **Tag Descriptions**
 

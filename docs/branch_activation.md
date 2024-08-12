@@ -2,7 +2,7 @@
 
 ## Branch Activation Process
 
-To use e2e tests in other repositories, you must follow a branch activation process. This process is critical for ensuring that tests run smoothly and that branches remain active during development.
+To use e2e tests in other repositories, you must follow a branch activation process. This process is critical for ensuring that tests run smoothly, and that branches remain active during development.
 
 ---
 
