@@ -1,11 +1,11 @@
-@release
-@stable_test
-Feature: Account - To go to account settings page
+@regression_test
+Feature: Account - To go to account settings page on dbc
 
   As a user I want to navigation to my account's settings page so that I can see my account details (e. g. email).
 
-  Scenario: I see my e-mail is editable as an internal user
-    Given I am logged in as a '<user>' at '<namespace>'
+  @stable_test
+  Scenario: I see my e-mail is editable as an internal student user
+    Given I am logged in as a 'student1_dbc' at 'dbc'
     When I go to my account settings
     Then I see my email is editable
 

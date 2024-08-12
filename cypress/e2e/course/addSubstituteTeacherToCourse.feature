@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Course - Add substitute teacher to course
 

@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Help Section - To use the help areas in dBildungscloud
 
