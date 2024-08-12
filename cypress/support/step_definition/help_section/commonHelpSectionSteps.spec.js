@@ -14,7 +14,3 @@ When("I click on Help articles in sidebar", () => {
 When("I click on Contact in sidebar", () => {
 	help.navigateToHelpContact();
 });
-
-When("I click on  Advanced trainings in sidebar", () => {
-	help.navigateToAdvancedTrainings();
-});
