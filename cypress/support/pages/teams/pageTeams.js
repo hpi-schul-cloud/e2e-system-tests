@@ -204,7 +204,7 @@ class Teams {
 	}
 
 	enterTeamEventTitle(eventTitle) {
-		cy.get(Teams.#teamEventTitleInput).eq(1).type(eventTitle);
+		cy.get(Teams.#teamEventTitleInput).eq(1).type(eventTitle).wait(500);
 	}
 
 	seeTeamEventCreationModal() {
