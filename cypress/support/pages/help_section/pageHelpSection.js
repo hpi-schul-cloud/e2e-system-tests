@@ -8,7 +8,6 @@ class Help {
 	static #helpOrganization = '[id="Organisation"]';
 	static #helpNutzungshilfen = '[id="nutzungshilfen"]';
 	static #helpContactform = "h2.h4";
-	//static #popUpLink = "https://lernen.cloud/";
 	static #searchBar = '[data-testid="help_search_bar"]';
 	static #searchResult = '[data-testid="help_search_results"]';
 	static #bugFormSubject = '[data-testid="bug_headline"]';
