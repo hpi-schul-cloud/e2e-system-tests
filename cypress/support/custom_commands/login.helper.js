@@ -22,7 +22,7 @@ const termsOfUseCheckboxDBC = 'input[name="termsOfUseConsent"]';
 const env = Cypress.env();
 let environmentUpperCased;
 
-const getUserCredentials = (username) => {
+export const getUserCredentials = (username) => {
 	switch (username) {
 		case "teacher1_brb":
 			return ["TEACHER_1_BRB_EMAIL", "TEACHER_1_BRB_PASSWORD"];
@@ -30,10 +30,14 @@ const getUserCredentials = (username) => {
 			return ["TEACHER_2_BRB_EMAIL", "TEACHER_2_BRB_PASSWORD"];
 		case "teacher1_dbc":
 			return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
+		case "teacher2_dbc":
+			return ["TEACHER_2_DBC_EMAIL", "TEACHER_2_DBC_PASSWORD"];
 		case "student1_brb":
 			return ["STUDENT_1_BRB_EMAIL", "STUDENT_1_BRB_PASSWORD"];
 		case "student1_dbc":
 			return ["STUDENT_1_DBC_EMAIL", "STUDENT_1_DBC_PASSWORD"];
+		case "student2_dbc":
+			return ["STUDENT_2_DBC_EMAIL", "STUDENT_2_DBC_PASSWORD"];
 		case "student1_nbc":
 			return ["STUDENT_1_NBC_EMAIL", "STUDENT_1_NBC_PASSWORD"];
 		case "admin1_brb":
@@ -163,7 +167,7 @@ const nonStudentUsersFirstLogin = (environment) => {
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
 
-const loginWithoutSchoolApi = (username, environment) => {
+export const loginWithoutSchoolApi = (username, environment) => {
 	visitLoginPage(environment);
 
 	environmentUpperCased === "NBC" && cy.get(nbcLoginWithEmailOptionButton).click();
@@ -179,7 +183,7 @@ const loginWithoutSchoolApi = (username, environment) => {
 		: fillLoginForm(env[userEmail], env[userPassword]);
 };
 
-const loginViaSchoolApi = async (username, environment) => {
+export const loginViaSchoolApi = async (username, environment) => {
 	try {
 		visitLoginPage(environment);
 		const link = Cypress.config("baseUrl");
@@ -222,5 +226,3 @@ const visitLoginPage = (environment) => {
 	cy.log(link);
 	cy.visit("/login");
 };
-
-module.exports = { loginWithoutSchoolApi, loginViaSchoolApi };

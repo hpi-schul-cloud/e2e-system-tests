@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import "./commands";
+import "./custom_commands/input.utils";
 import "./custom_commands/login";
 import "./custom_commands/logout";
 import "cypress-real-events";
