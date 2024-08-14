@@ -1,3 +1,5 @@
+@pr
+@stable_test
 Feature: First Login - Login of new Teacher user by SVS
 
     As a user, I want to login the first time with username and password into SVS

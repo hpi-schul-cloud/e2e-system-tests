@@ -52,6 +52,12 @@ export const getUserCredentials = (username) => {
 			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
 		case "student_extern_dbc":
 			return ["STUDENT_DBC_EXTERN", "STUDENT_DBC_EXTERN_PASSWORD"];
+		case "student_ldap_dbc":
+			return ["STUDENT_LDAP_DBC", "STUDENT_LDAP_DBC_PASSWORD"];
+		case "student_ldap_nbc":
+			return ["STUDENT_LDAP_NBC", "STUDENT_LDAP_NBC_PASSWORD"];
+		case "student_ldap_brb":
+			return ["STUDENT_LDAP_BRB", "STUDENT_LDAP_BRB_PASSWORD"];
 		default:
 			return [null, null];
 	}
