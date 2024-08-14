@@ -1,5 +1,5 @@
 @stable_test
-@release
+@regression_test
 Feature: Team - Student managed teams
 
   As a student I want to create/edit/delete the team so that I can manage the team. This is not possible for NBC, because there students are generally not allowed to create teams.

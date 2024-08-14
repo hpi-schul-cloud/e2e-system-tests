@@ -11,16 +11,17 @@ Feature: Calendar - create a simple event in the calendar
     Then I see calendar page
     When I click on icon Next
     When I click on day '<event_start_day>'
-    # Then I see modal for creating an event
-    # When I enter title '<event_title>' in calendar
-    # When I enter start time with time '<event_start_date>' and '<event_start_time>' in calendar
-    # When I enter start time with time '<event_end_date>' and '<event_end_time>' in calendar
-    # When I enter content '<event_description>' in calendar
-    # When I enter location '<event_location>' in calendar
-    # When I click button Add event
-    # Then I see monthly calendar page
-    # When I click on icon Next
+    Then I see modal for creating an event
+    When I enter event title '<event_title>'
+    When I enter start time with time '<event_start_time>'
+    When I enter end time with time '<event_end_time>'
+    When I enter event description '<event_description>'
+    When I enter event location '<event_location>'
+    When I click button Add event
+    Then I see calendar page
+    When I click on icon Next
     # Then I see an event on day '<event_start_day>' with start time '<event_start_time>' and event title '<event_title>'
+    # has to be deleted in the end
 
     @school_api_test
     @staging_test
