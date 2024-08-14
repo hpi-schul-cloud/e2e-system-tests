@@ -1,4 +1,4 @@
-@release
+@regression_test
 @unstable_test
 Feature: Course Board - To create, edit and delete column in the course board
 

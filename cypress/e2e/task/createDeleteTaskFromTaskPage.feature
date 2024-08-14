@@ -1,4 +1,4 @@
-@release
+@regression_test
 @pr
 @stable_test
 Feature: Task - To create and delete tasks starting from task overview page by the teacher.
