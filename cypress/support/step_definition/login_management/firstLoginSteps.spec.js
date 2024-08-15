@@ -31,7 +31,23 @@ Then("I will be able to do first steps", () => {
 		cy.get("button[class*='pull-right']")
 		.should("be.visible")
 		.click();
+		cy.writeToInput('[data-testid="firstlogin_password"]', "Password2!");
+		cy.writeToInput('[data-testid="firstlogin_password_control"]', "Password2!");
+		cy.get("button[class*='pull-right']")
+		.should("be.visible")
+		.click();
+		cy.clickOnElement('[data-testid="btn_schul-cloud_erkunden"');
+});
+
+Then("I will be able to do first steps as teacher", () => {
+	cy.get("button[class*='pull-right']")
+		.should("be.visible")
+		.click();
+		cy.get("button[class*='pull-right']")
+		.should("be.visible")
+		.click();
 		// as we have a bug with force change password, we need to comment this out
+		// whenever the bug is fixed, we can use the previous step
 		// cy.writeToInput('[data-testid="firstlogin_password"]', "Password2!");
 		// cy.writeToInput('[data-testid="firstlogin_password_control"]', "Password2!");
 		// cy.get("button[class*='pull-right']")

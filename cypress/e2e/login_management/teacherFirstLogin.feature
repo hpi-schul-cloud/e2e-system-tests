@@ -13,7 +13,7 @@ Feature: First Login - Login of new Teacher user by SVS
         And I am registering as teacher with email 'john.teacher@mail.tld' and password 'Password1!' on '<env>'
         And  I am able to logout
         When I login with new teacher account '<env>'
-        Then I will be able to do first steps
+        Then I will be able to do first steps as teacher
         Then I will be able to logout
 
         Examples:
