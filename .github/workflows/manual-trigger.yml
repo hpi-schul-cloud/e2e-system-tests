@@ -69,8 +69,8 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - e2e-system-tests
-      - configuring-loading-secrets-running-tests-1
-      - configuring-loading-secrets-running-tests-2
+      - run-tests-groupA
+      - run-tests-groupB
     if: |
       always()
 
