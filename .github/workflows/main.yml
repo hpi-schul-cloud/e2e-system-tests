@@ -24,10 +24,6 @@ on:
 jobs:
   configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        spec: ["groupA", "groupB"]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -80,7 +76,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
-          command: npm run cy:headless:stable:${{ matrix.spec }}:school_api_test:ci
+          command: npm run ${{ inputs.tag }}
           browser: edge
 
       - name: Generate Report
