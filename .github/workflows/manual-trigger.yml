@@ -18,14 +18,10 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-     strategy:
+    strategy:
       fail-fast: false
       matrix:
-        spec:
-          [
-            'groupA',
-            'groupB',
-          ]
+        spec: ["groupA", "groupB"]
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
 
