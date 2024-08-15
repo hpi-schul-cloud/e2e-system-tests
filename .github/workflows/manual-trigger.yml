@@ -41,7 +41,7 @@ jobs:
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
-  configuring-loading-secrets-running-tests-1:
+  run-tests-groupA:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -53,7 +53,7 @@ jobs:
       tag: cy:headless:stable:groupA:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
 
-  configuring-loading-secrets-running-tests-2:
+  run-tests-groupB:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
