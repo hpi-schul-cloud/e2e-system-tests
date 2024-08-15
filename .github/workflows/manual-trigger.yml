@@ -41,7 +41,7 @@ jobs:
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
-  configuring-loading-secrets-running-tests:
+  configuring-loading-secrets-running-tests-1:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -50,7 +50,19 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag:
+      tag: cy:headless:stable:groupA:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+
+  configuring-loading-secrets-running-tests-2:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupB:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
 
   notify_RC:
