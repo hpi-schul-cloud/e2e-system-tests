@@ -18,10 +18,6 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        spec: ["groupA", "groupB"]
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
 
@@ -54,7 +50,7 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:${{ matrix.spec }}:school_api_test:ci
+      tag:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
 
   notify_RC:
