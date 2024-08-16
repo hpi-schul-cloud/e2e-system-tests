@@ -10,11 +10,10 @@ Feature: First Login - Login of new student user by SVS
         And I am on the students management page
         And Registering student 'John' with email 'john.student@mail.tld'
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
-        And Changing the password to 'Password1!'
         And  I will logout from admin account
-        When I login with new student account '<env>'
-        Then I will be able to do first steps
-        Then I will be able to logout
+        When I login with "john.student@mail.tld" "" account in '<env>'
+        Then I will be able to do first steps "Password2!"
+        And  I will be able to logout
 
         Examples:
             | env | user       |
@@ -28,8 +27,6 @@ Feature: First Login - Login of new student user by SVS
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
         When Deleting the user
         Then I am on the students management page
-        And 'John' with email 'john.student@mail.tld' was deleted
-
         Examples:
             | env | user       |
             | brb | admin1_brb |

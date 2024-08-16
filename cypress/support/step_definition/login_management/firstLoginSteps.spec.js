@@ -1,57 +1,41 @@
-import { Given, defineStep as And, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 import { getUserCredentials } from "../../custom_commands/login.helper";
 import { visitPage } from "../../custom_commands/input.utils";
 
-
-And("I will logout from admin account", () => {
+defineStep("I will logout from admin account", () => {
 	cy.clickOnElement('[data-testid="initials"');
 	cy.clickOnElement('[data-testid="logout"');
 });
 
-When("I login with new student account {string}", (environment) => {
-	cy.visitPage(environment, "/login");
-	cy.tryClickOnElement('[data-testid="submit-cloud-site"]');
-	cy.writeToInput('input[data-testid="username-email"]', "john.student@mail.tld");
-	cy.writeToInput('input[data-testid="password-email"]', "Password1!");
-	cy.clickOnElement('[data-testid="submit-login-email"');
+defineStep(
+	"I login with {string} {string} account in {string}",
+	(username, password, environment) => {
+		cy.visitPage(environment, "/login");
+		cy.tryClickOnElement('[data-testid="submit-cloud-site"]');
+		cy.writeToInput('input[data-testid="username-email"]', username);
+		cy.writeToInput('input[data-testid="password-email"]', password);
+		cy.clickOnElement('[data-testid="submit-login-email"');
+	}
+);
+
+defineStep("I will be able to do first steps {string}", (password) => {
+	cy.get("button[class*='pull-right']").should("be.visible").click();
+	cy.get("button[class*='pull-right']").should("be.visible").click();
+	cy.writeToInput('[data-testid="firstlogin_password"]', password);
+	cy.writeToInput('[data-testid="firstlogin_password_control"]', password);
+	cy.get("button[class*='pull-right']").should("be.visible").click();
+	cy.clickOnElement('[data-testid="btn_schul-cloud_erkunden"');
 });
 
-When("I login with new teacher account {string}", (environment) => {
-	cy.visitPage(environment, "/login");
-	cy.tryClickOnElement('[data-testid="submit-cloud-site"]');
-	cy.writeToInput('input[data-testid="username-email"]', "john.teacher@mail.tld");
-	cy.writeToInput('input[data-testid="password-email"]', "Password1!");
-	cy.clickOnElement('[data-testid="submit-login-email"');
-});
-
-Then("I will be able to do first steps", () => {
-	cy.get("button[class*='pull-right']")
-		.should("be.visible")
-		.click();
-		cy.get("button[class*='pull-right']")
-		.should("be.visible")
-		.click();
-		cy.writeToInput('[data-testid="firstlogin_password"]', "Password2!");
-		cy.writeToInput('[data-testid="firstlogin_password_control"]', "Password2!");
-		cy.get("button[class*='pull-right']")
-		.should("be.visible")
-		.click();
-		cy.clickOnElement('[data-testid="btn_schul-cloud_erkunden"');
-});
-
-Then("I will be able to do first steps as teacher", () => {
-	cy.get("button[class*='pull-right']")
-		.should("be.visible")
-		.click();
-		cy.get("button[class*='pull-right']")
-		.should("be.visible")
-		.click();
-		// as we have a bug with force change password, we need to comment this out
-		// whenever the bug is fixed, we can use the previous step
-		// cy.writeToInput('[data-testid="firstlogin_password"]', "Password2!");
-		// cy.writeToInput('[data-testid="firstlogin_password_control"]', "Password2!");
-		// cy.get("button[class*='pull-right']")
-		// .should("be.visible")
-		// .click();
-		cy.clickOnElement('[data-testid="btn_schul-cloud_erkunden"');
+defineStep("I will be able to do first steps as teacher {string}", (password) => {
+	cy.get("button[class*='pull-right']").should("be.visible").click();
+	cy.get("button[class*='pull-right']").should("be.visible").click();
+	// as we have a bug with force change password, we need to comment this out
+	// whenever the bug is fixed, we can use the previous step
+	// cy.writeToInput('[data-testid="firstlogin_password"]', password);
+	// cy.writeToInput('[data-testid="firstlogin_password_control"]', password);
+	// cy.get("button[class*='pull-right']")
+	// .should("be.visible")
+	// .click();
+	cy.clickOnElement('[data-testid="btn_schul-cloud_erkunden"');
 });

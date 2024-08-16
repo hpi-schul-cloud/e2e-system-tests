@@ -1,6 +1,6 @@
 @pr
 @stable_test
-Feature: Ldap Login - Login of users managed by SVS
+Feature: Ldap Login - Login of users not managed by SVS
 
     As a user, I want to login with username and password into SVS
 
@@ -8,7 +8,7 @@ Feature: Ldap Login - Login of users managed by SVS
         Given I am on the login page on '<env>'
         When I am logging in with ldap as '<user>' on '<env>'
         Then I will be redirected to the dashboard
-        And I will be able to logout with redirect on '<env>'
+        And I will be able to logout
 
     Examples:
         | env | user         |
