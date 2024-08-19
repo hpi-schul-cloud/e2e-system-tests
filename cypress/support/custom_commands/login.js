@@ -1,7 +1,7 @@
 import {
-	loginWithoutSchoolApi,
-	loginViaSchoolApi,
 	getUserCredentials,
+	loginViaSchoolApi,
+	loginWithoutSchoolApi,
 } from "./login.helper";
 import { getPageUrl } from "./input.utils";
 
