@@ -23,12 +23,3 @@ defineStep("I am logging in with ldap as {string} on {string}", (user, environme
 	}
 });
 
-// for now, we are not using this step because we have a bug
-// if we logout with redirect the schoolId stay in cache and we cloud login will fail
-defineStep("I will be able to logout with redirect on {string}", (environment) => {
-	const env = Cypress.env();
-	const environmentUpperCased = environment.toUpperCase();
-	const url = env[environmentUpperCased].replace("https://", "https://oauth-");
-
-	cy.visit(`${url}/oauth2/sessions/logout`);
-});

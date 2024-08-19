@@ -27,6 +27,7 @@ Feature: First Login - Login of new student user by SVS
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
         When Deleting the user
         Then I am on the students management page
+
         Examples:
             | env | user       |
             | brb | admin1_brb |
