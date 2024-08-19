@@ -29,12 +29,5 @@ defineStep("I will be able to do first steps {string}", (password) => {
 defineStep("I will be able to do first steps as teacher {string}", (password) => {
 	cy.get("button[class*='pull-right']").should("be.visible").click();
 	cy.get("button[class*='pull-right']").should("be.visible").click();
-	// as we have a bug with force change password (EW-996), we need to comment this out
-	// whenever the bug is fixed, we can use the previous step
-	// cy.writeToInput('[data-testid="firstlogin_password"]', password);
-	// cy.writeToInput('[data-testid="firstlogin_password_control"]', password);
-	// cy.get("button[class*='pull-right']")
-	// .should("be.visible")
-	// .click();
 	cy.clickOnElement('[data-testid="btn_schul-cloud_erkunden"');
 });
