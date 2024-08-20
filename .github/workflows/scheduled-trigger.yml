@@ -24,7 +24,7 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:pr:school_api_test:ci
+      tag: cy:headless:stable:schedule_run:school_api_test:ci
       environment: dev
 
   notify_RC:
