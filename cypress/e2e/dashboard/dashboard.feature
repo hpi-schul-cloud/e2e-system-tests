@@ -1,3 +1,4 @@
+@group-A
 @regression_test
 @pr
 @stable_test
