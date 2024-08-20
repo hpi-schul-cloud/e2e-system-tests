@@ -46,6 +46,8 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_1_NBC_EMAIL", "TEACHER_1_NBC_PASSWORD"];
 		case "student2_nbc":
 			return ["STUDENT_2_NBC_EMAIL", "STUDENT_2_NBC_PASSWORD"];
+		case "student2_brb":
+			return ["STUDENT_2_BRB_EMAIL", "STUDENT_2_BRB_PASSWORD"];
 		case "admin1_nbc":
 			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
 		case "admin1_dbc":

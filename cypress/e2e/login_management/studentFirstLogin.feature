@@ -8,10 +8,10 @@ Feature: First Login - Login of new student user by SVS
         Given I am logged in as '<user>' on '<env>'
         And Created student 'John' 'Student' with email 'john.student@mail.tld'
         And I am on the students management page
-        And Registering student 'John' with email 'john.student@mail.tld'
+        And Registering student 'John' 'Password1!' with email 'john.student@mail.tld'
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
         And  I will logout from admin account
-        When I login with "john.student@mail.tld" "" account in '<env>'
+        When I login with "john.student@mail.tld" "Password1!" account in '<env>'
         Then I will be able to do first steps "Password2!"
         And  I will be able to logout
 
