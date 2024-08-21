@@ -9,7 +9,7 @@ Feature: Teacher reads and updates students
         When Created student 'John' 'Student' with email 'john.student@mail.tld'
         Then I am on the students management page
         And Student 'John' with email 'john.student@mail.tld' was created
-        And Registering student 'John' with email 'john.student@mail.tld'
+        And Registering student 'John' 'Password2!' with email 'john.student@mail.tld'
 
         Examples:
             | env | user       |

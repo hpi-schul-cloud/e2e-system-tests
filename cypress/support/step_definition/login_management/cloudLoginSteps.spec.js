@@ -15,6 +15,7 @@ defineStep("I am logging in as {string}", (user) => {
 	const [username, password] = getUserCredentials(user);
 
 	cy.tryClickOnElement('[data-testid="submit-cloud-site"]');
+	cy.tryClickOnElement("button[class*='btn-hide-providers']");
 	cy.writeToInput('[data-testid="username-email"]', env[username]);
 	cy.writeToInput('[data-testid="password-email"]', env[password]);
 	cy.clickOnElement('[data-testid="submit-login-email"');
