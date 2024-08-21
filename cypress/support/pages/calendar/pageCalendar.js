@@ -3,6 +3,7 @@
 class Calendar {
 	static #calendarOverviewNavigationButton = '[data-testid="Termine"]';
 	static #calendarOverviewPageTitle = '[data-testid="Kalender"]';
+	static #calendar = '[id="calendar"]';
 	static #calendarContent = '[class="fc-widget-content"]'; // has to be replaced by data-testid
 	static #nextCalendarPage = '[aria-label="next"]'; // has to be replaced by data-testid
 	static #eventNameFormElement = '[data-testid="team_event_name"]';
@@ -11,6 +12,7 @@ class Calendar {
 	static #eventDescriptionFormElement = '[data-testid="team_event_description"]';
 	static #eventLocationFormElement = '[data-testid="team_event_location"]';
 	static #eventFormSubmitButton = '[data-testid="submit-btn-create-event-modal"]';
+	static #eventFormDeleteButton = '[class="btn btn-primary btn-danger btn-delete"]'; // has to be replaced by data-testid
 
 	navigateToCalendarOverview() {
 		cy.visit("/calendar");
@@ -59,6 +61,22 @@ class Calendar {
 
 	submitEventForm() {
 		cy.get(Calendar.#eventFormSubmitButton).click();
+	}
+
+	seeEventInCalendar(eventStartTime, eventTitle) {
+		cy.get(Calendar.#calendarContent).find("span").contains(eventTitle).prev().contains(eventStartTime);
+	}
+
+	clickOnEventInCalendar(eventStartTime, eventTitle) {
+		cy.get(Calendar.#calendarContent).find("span").contains(eventTitle).prev().contains(eventStartTime).click();
+	}
+
+	clickDeleteEventButton() {
+		cy.get(Calendar.#eventFormDeleteButton).click();
+	}
+
+	doNotSeeEventInCalendar(eventTitle) {
+		cy.get(Calendar.#calendar).should('not.contain', eventTitle);
 	}
 }
 export default Calendar;

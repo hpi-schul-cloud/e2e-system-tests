@@ -46,3 +46,20 @@ When("I enter event location {string}", (eventLocation) => {
 When("I click button Add event", () => {
 	calendar.submitEventForm();
 })
+
+Then("I see an event with start time {string} and event title {string}", (eventStartTime, eventTitle) => {
+	calendar.seeEventInCalendar(eventStartTime, eventTitle);
+})
+
+When("I click on event with start time {string} and event title {string}", (eventStartTime, eventTitle) => {
+	calendar.clickOnEventInCalendar(eventStartTime, eventTitle);
+})
+
+When("I click on button Delete event", () => {
+	calendar.clickDeleteEventButton();
+})
+
+Then("I do not see an event with event title {string}", (eventTitle) => {
+	calendar.doNotSeeEventInCalendar(eventTitle);
+})
+
