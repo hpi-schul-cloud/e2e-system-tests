@@ -103,7 +103,7 @@ jobs:
           check_availability ${{ steps.set_target.outputs.cypress_nbc }}/version
           check_availability ${{ steps.set_target.outputs.cypress_dbc }}/version
 
-  configuring-loading-secrets-running-tests:
+  run-tests-groupA:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -112,5 +112,17 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:pr:school_api_test:ci
+      tag: cy:headless:stable:groupA:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+
+  run-tests-groupB:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.service-account-token }}
+    with:
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
+      tag: cy:headless:stable:groupB:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
