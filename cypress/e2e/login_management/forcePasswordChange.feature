@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Force Password Change - user must set a new password during login
 
@@ -11,9 +11,9 @@ Feature: Force Password Change - user must set a new password during login
         When I am able to set a new password
         Then Changing the password to 'Password1!'
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Student must set a new password
         Given I am on the login page on '<env>'
@@ -21,9 +21,9 @@ Feature: Force Password Change - user must set a new password during login
         When I am changing my password back for '<user>'
         Then I am on the dashboard page
 
-    Examples:
-        | env | user         |
-        | dbc | student2_dbc |
+        Examples:
+            | env | user         |
+            | dbc | student2_dbc |
 
     Scenario Outline: Admin sets new password for teacher
         Given I am logged in as '<user>' on '<env>'
@@ -32,9 +32,9 @@ Feature: Force Password Change - user must set a new password during login
         When I am able to set a new password
         Then Changing the password to 'Password1!'
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Teacher must set a new password
         Given I am on the login page on '<env>'
@@ -42,6 +42,6 @@ Feature: Force Password Change - user must set a new password during login
         When I am changing my password back for '<user>'
         Then I am on the dashboard page
 
-    Examples:
-        | env | user         |
-        | dbc | teacher2_dbc |
+        Examples:
+            | env | user         |
+            | dbc | teacher2_dbc |

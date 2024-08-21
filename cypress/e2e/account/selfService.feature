@@ -1,4 +1,4 @@
-@release
+@regression_test
 @unstable_test
 Feature: Self Service
 
@@ -16,11 +16,11 @@ Feature: Self Service
         And I am saving the changes
         Then Saving was successful
 
-    Examples:
-        | env | user         | email                      |
-        | dbc | admin1_dbc   | temporary.admin@mail.tld   |
-        | dbc | teacher1_dbc | temporary.teacher@mail.tld |
-        | dbc | student1_dbc | temporary.student@mail.tld |
+        Examples:
+            | env | user         | email                      |
+            | dbc | admin1_dbc   | temporary.admin@mail.tld   |
+            | dbc | teacher1_dbc | temporary.teacher@mail.tld |
+            | dbc | student1_dbc | temporary.student@mail.tld |
 
 
     Scenario: User reverts their own user information
@@ -31,8 +31,8 @@ Feature: Self Service
         And I am saving the changes
         Then Saving was successful
 
-    Examples:
-        | env | user         |
-        | dbc | admin1_dbc   |
-        | dbc | teacher1_dbc |
-        | dbc | student1_dbc |
+        Examples:
+            | env | user         |
+            | dbc | admin1_dbc   |
+            | dbc | teacher1_dbc |
+            | dbc | student1_dbc |
