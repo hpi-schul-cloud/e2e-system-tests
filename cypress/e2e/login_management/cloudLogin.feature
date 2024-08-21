@@ -1,3 +1,5 @@
+@pr
+@stable_test
 Feature: Cloud Login - Login of users managed by SVS
 
     As a user, I want to login with username and password into SVS
