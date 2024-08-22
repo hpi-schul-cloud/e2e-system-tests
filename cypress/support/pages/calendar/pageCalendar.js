@@ -4,14 +4,14 @@ class Calendar {
 	static #calendarOverviewNavigationButton = '[data-testid="Termine"]';
 	static #calendarOverviewPageTitle = '[data-testid="Kalender"]';
 	static #calendar = '[id="calendar"]';
-	static #nextCalendarPage = '[aria-label="next"]'; // has to be replaced by data-testid
+	static #nextCalendarPage = '[aria-label="next"]';
 	static #eventNameFormElement = '[data-testid="team_event_name"]';
 	static #eventStartDateFormElement = '[data-testid="form-datetime-input-startDate"]';
 	static #eventEndDateFormElement = '[data-testid="form-datetime-input-endDate"]';
 	static #eventDescriptionFormElement = '[data-testid="team_event_description"]';
 	static #eventLocationFormElement = '[data-testid="team_event_location"]';
 	static #eventFormSubmitButton = '[data-testid="submit-btn-create-event-modal"]';
-	static #eventFormDeleteButton = '[class="btn btn-primary btn-danger btn-delete"]'; // has to be replaced by data-testid
+	static #eventFormDeleteButton = '[data-testid="calendar-event-btn-delete"]';
 
 	navigateToCalendarOverview() {
 		cy.visit("/calendar");
