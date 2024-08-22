@@ -9,23 +9,28 @@ class Board {
 	static #addColumnTitleInput = '[data-testid="column-title-0"]';
 	static #addNewCardButtonInColumn = '[data-testid="column-0-add-card-btn"]';
 	static #mainPageArea = '[id="main-content"]';
-	static #editOptionColumnThreeDot = '[data-testid="board-menu-action-edit"]';
+	static #editOptionThreeDot = '[data-testid="board-menu-action-edit"]';
 	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-0"]';
-	static #deleteOptionColumnThreeDot = '[data-testid="board-menu-action-delete"]';
-	static #columnDeleteButtonInModal = '[data-testid="dialog-confirm"]';
+	static #threeDotMenuInCard = '[data-testid="card-menu-btn"]';
+	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
+	static #deleteOptionThreeDot = '[data-testid="board-menu-action-delete"]';
+	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
-	static #editOptionInThreeDotCourseBoardTitle = '[data-testid="board-menu-action-edit"]';
+	static #editOptionInThreeDotCourseBoardTitle =
+		'[data-testid="board-menu-action-edit"]';
 	static #courseBoardTitle = '[data-testid="board-title"]';
 	static #draftChipInCourseBoardName = '[data-testid="board-title"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
 	static #selectWhiteboardFromMenu = '[data-testid="create-element-drawing-element"]';
-	static #selectExternalToolsFromMenu = '[data-testid="create-element-external-tool-container"]';
+	static #selectExternalToolsFromMenu =
+		'[data-testid="create-element-external-tool-container"]';
 	static #externalToolElement = '[data-testid="board-external-tool-element"]';
+	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="board-menu-action-publish"]';
 
 	clickPlusIconToAddCardInColumn() {
@@ -46,8 +51,12 @@ class Board {
 
 	seeExternalToolElementWithTool(toolName) {
 		cy.get(Board.#externalToolElement)
-			.find('.content-element-title')
-			.should('contain.text', toolName);
+			.find(".content-element-title")
+			.should("contain.text", toolName);
+	}
+
+	canNotSeeDeletedElements() {
+		cy.get(Board.#deletedElement).should("not.be.visible");
 	}
 
 	clickPublishOptionInThreeDotMenuInCourseBoard() {
@@ -93,25 +102,35 @@ class Board {
 		});
 	}
 
-	clickOnDeleteColumnModal() {
-		cy.get(Board.#columnDeleteButtonInModal).click();
+	clickOnConfirmInModal() {
+		cy.get(Board.#confirmButtonInModal).click();
 	}
 
 	seeDeleteConfirmationModal() {
 		cy.get(Board.#deleteDialogBox).should("exist");
 	}
 
-	clickOnDeleteColumnInMenu() {
-		cy.get(Board.#deleteOptionColumnThreeDot).click();
+	selectDeleteInThreeDotMenu() {
+		cy.get(Board.#deleteOptionThreeDot).click();
 	}
 
 	clickOnThreeDotOnColumn() {
 		cy.get(Board.#threeDotMenuInColumn).click();
-		cy.get(Board.#editOptionColumnThreeDot).should("be.visible");
+		cy.get(Board.#editOptionThreeDot).should("be.visible");
 	}
 
-	selectEditInColumnThreeDotMenu() {
-		cy.get(Board.#editOptionColumnThreeDot).click();
+	clickOnThreeDotOnCard() {
+		cy.get(Board.#threeDotMenuInCard).click();
+		cy.get(Board.#editOptionThreeDot).should("be.visible");
+	}
+
+	clickOnThreeDotOnDeletedElement() {
+		cy.get(Board.#threeDotMenuOnDeletedElement).click();
+		cy.get(Board.#deleteOptionThreeDot).should("be.visible");
+	}
+
+	selectEditInThreeDotMenu() {
+		cy.get(Board.#editOptionThreeDot).click();
 	}
 
 	clickOnCourseContentTab() {
@@ -176,7 +195,9 @@ class Board {
 	seeNewlyCreatedColumn(newColumnName) {
 		cy.wait(1000);
 		cy.window().then((win) => {
-			const textareaValue = win.document.querySelector(Board.#columnPlaceholder).value;
+			const textareaValue = win.document.querySelector(
+				Board.#columnPlaceholder
+			).value;
 			expect(textareaValue).to.equal(newColumnName);
 		});
 	}
