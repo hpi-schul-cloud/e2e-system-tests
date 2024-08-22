@@ -4,7 +4,6 @@ class Calendar {
 	static #calendarOverviewNavigationButton = '[data-testid="Termine"]';
 	static #calendarOverviewPageTitle = '[data-testid="Kalender"]';
 	static #calendar = '[id="calendar"]';
-	static #calendarContent = '[class="fc-widget-content"]'; // has to be replaced by data-testid
 	static #nextCalendarPage = '[aria-label="next"]'; // has to be replaced by data-testid
 	static #eventNameFormElement = '[data-testid="team_event_name"]';
 	static #eventStartDateFormElement = '[data-testid="form-datetime-input-startDate"]';
@@ -26,7 +25,7 @@ class Calendar {
 	}
 
 	clickOnDay(daynumber) {
-		cy.get(Calendar.#calendarContent).find("span").contains(daynumber).click();
+		cy.get(Calendar.#calendar).find("span").contains(daynumber).click();
 	}
 
 	clickOnNextCalendarPage() {
@@ -64,11 +63,11 @@ class Calendar {
 	}
 
 	seeEventInCalendar(eventStartTime, eventTitle) {
-		cy.get(Calendar.#calendarContent).find("span").contains(eventTitle).prev().contains(eventStartTime);
+		cy.get(Calendar.#calendar).find("span").contains(eventTitle).prev().contains(eventStartTime);
 	}
 
 	clickOnEventInCalendar(eventStartTime, eventTitle) {
-		cy.get(Calendar.#calendarContent).find("span").contains(eventTitle).prev().contains(eventStartTime).click();
+		cy.get(Calendar.#calendar).find("span").contains(eventTitle).prev().contains(eventStartTime).click();
 	}
 
 	clickDeleteEventButton() {
