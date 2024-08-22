@@ -1,4 +1,5 @@
-@unstable_test
+@regression_test
+@stable_test
 Feature: Course Board - Opening a drawing element on a course page
 
     As a teacher and student I want to open already created drawing element on a course page
@@ -32,6 +33,10 @@ Feature: Course Board - Opening a drawing element on a course page
         When I go to the tab contents in course detail page
         When I click on FAB to create new content
         When I click on the button FAB New Column Board
+        Then I see a dialog box for column board
+        Then I see in dialog box option for multi-column board
+        Then I see in dialog box option for single column board
+        When I choose multi-column board in the dialog box
         Then I see the page Course Board detail
         When I click on the button three dot menu in course board
         When I click on the option Edit in three dot menu in course board

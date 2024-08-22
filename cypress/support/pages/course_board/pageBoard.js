@@ -20,10 +20,8 @@ class Board {
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
-	static #editOptionInThreeDotCourseBoardTitle =
-		'[data-testid="board-menu-action-edit"]';
-	static #courseBoardTitle = '[data-testid="board-title"]';
-	static #draftChipInCourseBoardName = '[data-testid="board-title"]';
+	static #editOptionInThreeDotCourseBoardTitle = '[data-testid="board-menu-action-edit"]';
+	static #draftChipInCourseBoardName = '[data-testid="board-draft-chip"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
 	static #selectWhiteboardFromMenu = '[data-testid="create-element-drawing-element"]';
@@ -32,6 +30,11 @@ class Board {
 	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="board-menu-action-publish"]';
+	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
+	static #multiColumnBoardOptionInDialogBox =
+		'[data-testid="dialog-add-multi-column-board"]';
+	static #singleColumnBoardOptionInDialogBox =
+		'[data-testid="dialog-add-single-column-board"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -79,15 +82,29 @@ class Board {
 		cy.get(Board.#editOptionInThreeDotCourseBoardTitle).click();
 	}
 
+	clearAndType(selector, newTitle) {
+		cy.get(selector)
+			.first()
+			.then((element) => {
+				const currentTitle = element.val();
+				if (currentTitle) {
+					cy.wrap(element).type("{backspace}".repeat(currentTitle.length));
+				}
+				cy.wrap(element).type(newTitle);
+			});
+	}
+
 	enterCourseBoardTitle(boardTitle) {
-		cy.get(Board.#courseBoardTitle).type("{backspace}".repeat(11)).type(boardTitle);
+		cy.get(Board.#courseBoardTitleOnPage).within(() => {
+			this.clearAndType("input", boardTitle);
+		});
 	}
 
 	seeCourseBoardName(boardName) {
-		cy.get(Board.#courseBoardTitle).contains(boardName);
+		cy.get(Board.#courseBoardTitleOnPage).contains(boardName);
 	}
 
-	seeDarftChipOnCourseBoard() {
+	seeDraftChipOnCourseBoard() {
 		cy.get(Board.#draftChipInCourseBoardName).should("exist");
 	}
 
@@ -155,38 +172,10 @@ class Board {
 	}
 
 	enterColumnTitleInCourseBoard(columnTitle) {
-		cy.get(Board.#addColumnTitleInput).type("{backspace}".repeat(30));
-		cy.wait(500);
-		cy.get(Board.#addColumnTitleInput).wait(1000).realType(columnTitle).wait(500);
-	}
-
-	/*  Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
-	recursivelyDeleteTextFromTextArea() {
-		cy.window().then((win) => {
-			const textArea = win.document.querySelector(Board.#columnPlaceholder);
-			const textAreaValue = textArea.value;
-
-			if (textAreaValue.length > 0) {
-				cy.get(Board.#addColumnTitleInput)
-					.wait(100)
-					.realType(`{backspace}`)
-					.wait(100)
-					.then(() => {
-						textArea.value = textAreaValue.slice(0, -1);
-					});
-				this.recursivelyDeleteTextFromTextArea();
-			} else {
-				cy.log(`Cleared text area`);
-			}
+		cy.get(Board.#addColumnTitleInput).within(() => {
+			this.clearAndType("textarea", columnTitle);
 		});
 	}
-
-	Commented out because it's being handled in the same another method -> enterColumnTitleInCourseBoard()
-	enterEditedColumnTitle(newColumnName) {
-		this.recursivelyDeleteTextFromTextArea();
-		cy.wait(500);
-		cy.get(Board.#addColumnTitleInput).wait(1000).realType(newColumnName).wait(500);
-	} */
 
 	clickOutsideTheColumnToSaveTheColumn() {
 		cy.get(Board.#mainPageArea).click("center");
@@ -194,16 +183,30 @@ class Board {
 
 	seeNewlyCreatedColumn(newColumnName) {
 		cy.wait(1000);
-		cy.window().then((win) => {
-			const textareaValue = win.document.querySelector(
-				Board.#columnPlaceholder
-			).value;
-			expect(textareaValue).to.equal(newColumnName);
-		});
+		cy.get(Board.#addColumnTitleInput)
+			.find("textarea")
+			.should("be.visible")
+			.should("have.attr", "value", newColumnName);
 	}
 
 	clickOnAddNewCardButton() {
 		cy.get(Board.#addNewCardButtonInColumn).click();
+	}
+
+	seeColumnBoardDialogBox() {
+		cy.get(Board.#boardLayoutDialogBoxTitle).should("be.visible");
+	}
+
+	seeMultiColumnBoardOptionInDialogBox() {
+		cy.get(Board.#multiColumnBoardOptionInDialogBox).should("be.visible");
+	}
+
+	seeSingleColumnBoardOptionInDialogBox() {
+		cy.get(Board.#singleColumnBoardOptionInDialogBox).should("be.visible");
+	}
+
+	clickOnMultiColumnBoardOptionInDialogBox() {
+		cy.get(Board.#multiColumnBoardOptionInDialogBox).click();
 	}
 }
 export default Board;

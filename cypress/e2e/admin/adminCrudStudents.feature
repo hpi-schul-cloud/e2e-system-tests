@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Admin creates, reads, updates and deletes students
 
@@ -10,9 +10,9 @@ Feature: Admin creates, reads, updates and deletes students
         When I am on the students management page
         Then Student 'John' with email 'john.student@mail.tld' was created
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Admin manually registers student
         Given I am logged in as '<user>' on '<env>'
@@ -21,9 +21,9 @@ Feature: Admin creates, reads, updates and deletes students
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
         Then I am able to set a new password
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Admin changes students user information
         Given I am logged in as '<user>' on '<env>'
@@ -35,9 +35,9 @@ Feature: Admin creates, reads, updates and deletes students
         And Changing parents and students consent
         Then I can save the changes
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Admin reverts student user information
         Given I am logged in as '<user>' on '<env>'
@@ -47,9 +47,9 @@ Feature: Admin creates, reads, updates and deletes students
         And Changing the email to 'john.student@mail.tld'
         Then I can save the changes
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Admin deletes a student
         Given I am logged in as '<user>' on '<env>'
@@ -59,6 +59,6 @@ Feature: Admin creates, reads, updates and deletes students
         Then I am on the students management page
         And 'John' with email 'john.student@mail.tld' was deleted
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |

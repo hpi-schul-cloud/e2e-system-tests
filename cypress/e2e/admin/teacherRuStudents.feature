@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Teacher reads and updates students
 
@@ -11,9 +11,9 @@ Feature: Teacher reads and updates students
         And Student 'John' with email 'john.student@mail.tld' was created
         And Registering student 'John' 'Password2!' with email 'john.student@mail.tld'
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario: Teacher changes students user information
         Given I am logged in as '<user>' on '<env>'
@@ -25,9 +25,9 @@ Feature: Teacher reads and updates students
         And Changing parents and students consent
         Then I can save the changes
 
-    Examples:
-        | env | user         |
-        | dbc | teacher1_dbc |
+        Examples:
+            | env | user         |
+            | dbc | teacher1_dbc |
 
     Scenario: Teacher reverts student user information
         Given I am logged in as '<user>' on '<env>'
@@ -37,9 +37,9 @@ Feature: Teacher reads and updates students
         And Changing the email to 'john.student@mail.tld'
         Then I can save the changes
 
-    Examples:
-        | env | user         |
-        | dbc | teacher1_dbc |
+        Examples:
+            | env | user         |
+            | dbc | teacher1_dbc |
 
     Scenario: Teardown
         Given I am logged in as '<user>' on '<env>'
@@ -48,6 +48,6 @@ Feature: Teacher reads and updates students
         When Deleting the user
         Then I am on the students management page
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |

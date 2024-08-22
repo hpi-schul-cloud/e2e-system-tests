@@ -2,6 +2,7 @@
 @regression_test
 @pr
 @stable_test
+@schedule_run
 Feature: Topics - To create, edit and delete topics by the teacher.
 
     As a teacher I want to create, edit and delete a new topic so that the student can see it
