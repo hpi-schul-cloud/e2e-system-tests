@@ -20,7 +20,7 @@ Cypress.Commands.add(
 
 Cypress.Commands.add("tryClickOnElement", (selector, wait = 0) => {
 	cy.get("body").then((body) => {
-		if (body.find(selector).length) {
+		if (body.find(selector).length && body.find(selector).is(":visible")) {
 			cy.clickOnElement(selector, wait);
 		}
 	});

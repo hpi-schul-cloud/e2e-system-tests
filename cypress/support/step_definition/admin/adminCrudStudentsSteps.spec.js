@@ -33,13 +33,14 @@ defineStep("Student {string} with email {string} was created", (firstname, email
 		.should("be.visible");
 });
 
-defineStep("Registering student {string} with email {string}", (firstname, email) => {
+defineStep("Registering student {string} {string} with email {string}", (firstname, password, email) => {
 	cy.clearOutInput("input[data-testid='searchbar']");
 	cy.writeToInput("input[data-testid='searchbar']", firstname);
 	cy.contains("tr", email).find("svg").first().should("be.visible").click();
 	cy.clickOnElement("[data-test-id='context-menu-open']");
 	cy.clickOnElement("[data-testid='consent_action");
 	cy.clearOutInput("input[data-testid='password-input']");
+	cy.writeToInput("input[data-testid='password-input']", password);
 	cy.clickOnElement("[data-testid='button-next");
 	cy.tryClickOnElement("div[id='consent-checkbox']");
 	cy.clickOnElement("[data-testid='button-next-2");

@@ -27,6 +27,10 @@ In our Cypress and Cucumber setup, tags are used to categorize and selectively r
 
 - **@unstable_test:** These are tests that have been identified as unstable. They may fail intermittently due to issues in either the staging or development environments. This tag helps in identifying flaky tests that require attention.
 
+- **@group-A:** This tag is used for grouping the certain feature files into 'group-A' for the parallel tests execution in the CI/Github actions.
+
+- **@group-B:** This tag is used for grouping the certain feature files into 'group-B' for the parallel tests execution in the CI/Github actions.
+
 ## Tag Hierarchy and Inheritance
 
 Tags applied at the `Feature` level are inherited by all scenarios within that feature. For example, if a `Feature` is tagged with `@regression_test`, all scenarios under that feature are also considered part of the release unless explicitly marked otherwise. This hierarchy allows for efficient and consistent application of test conditions across multiple tests.

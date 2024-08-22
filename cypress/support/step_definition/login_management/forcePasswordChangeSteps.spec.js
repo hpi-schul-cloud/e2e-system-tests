@@ -15,8 +15,8 @@ defineStep("I am changing my password back for {string}", (user) => {
 	const env = Cypress.env();
 	const [, password] = getUserCredentials(user);
 
-	cy.writeToInput("input[id='password']", env[password]);
-	cy.writeToInput("input[id='password_control']", env[password]);
+	cy.writeToInput("input[data-testid='firstlogin_password']", env[password]);
+	cy.writeToInput("input[data-testid='firstlogin_password_control']", env[password]);
 	cy.clickOnElement("button[id='nextSection']");
 });
 
