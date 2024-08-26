@@ -14,8 +14,16 @@ Then("I see title of the modal to select a synced group", () => {
 	courses.seeTitleInSyncedGroupDialog();
 });
 
+Then("I see the title of the modal for synchronization confirmation", () => {
+	courses.seeTitleInSynchronizationConfirmationDialog();
+});
+
 Then("I see information text of the modal to select a synced group", () => {
 	courses.seeInfoTextInSyncedGroupDialog();
+});
+
+Then("I see information text of the modal asking for confirmation of synchronization", () => {
+	courses.seeInfoTextInSynchronizationConfirmationDialog();
 });
 
 Then("I see the group selection of the modal to select a synced group", () => {
@@ -24,6 +32,10 @@ Then("I see the group selection of the modal to select a synced group", () => {
 
 Then("I see the warning text of the modal to select a synced group", () => {
 	courses.seeWarningTextInSyncedGroupDialog();
+});
+
+Then("I see a warning about the consequences of synchronization", () => {
+	courses.seeWarningTextInSynchronizationConfirmationDialog();
 });
 
 Then("I see continue button of the modal to select a synced group is disabled", () => {
@@ -75,6 +87,10 @@ Then("I see the end synchronization button", () => {
 	courses.seeEndSyncButton();
 });
 
+Then("I see the start synchronization button", () => {
+	courses.seeStartSyncButton();
+});
+
 Then("I see the title of the modal to end the sync", () => {
 	courses.seeTitleInEndSyncDialog();
 });
@@ -119,16 +135,24 @@ When("I select group {string} in the group selection", (groupName) => {
 	courses.selectGroupInSyncedGroupSelection(groupName);
 });
 
-When("I click continue button on the modal to select a synced group", (groupName) => {
+When("I click continue button on the modal to select a synced group",() => {
 	courses.clickContinueButtonOnSyncedGroupDialog();
 });
 
-When("I click cancel button on the modal to select a synced group", (groupName) => {
+When("I click the confirm button on the synchronization confirmation modal",() => {
+	courses.clickConfirmButtonOnSynchronizationConfirmationDialog();
+});
+
+When("I click cancel button on the modal to select a synced group", () => {
 	courses.clickCloseButtonOnSyncedGroupDialog();
 });
 
-When("I click the end synchronization button", (groupName) => {
+When("I click the end synchronization button", () => {
 	courses.clickEndSyncButton();
+});
+
+When("I click the start synchronization button", () => {
+	courses.clickStartSyncButton();
 });
 
 When("I click the confirmation button of the modal to end the sync", () => {
