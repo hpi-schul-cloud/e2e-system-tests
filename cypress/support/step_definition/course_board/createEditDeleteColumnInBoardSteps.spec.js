@@ -28,7 +28,7 @@ Then("I see the course Board name {string}", (boardName) => {
 });
 
 Then("I see the chip Draft in the course board", () => {
-	board.seeDarftChipOnCourseBoard();
+	board.seeDraftChipOnCourseBoard();
 });
 
 When("I go to the tab contents in course detail page", () => {
@@ -76,11 +76,11 @@ When("I click on three dot menu in the column", () => {
 });
 
 When("I select the option Edit in three dot menu in the column", () => {
-	board.selectEditInColumnThreeDotMenu();
+	board.selectEditInThreeDotMenu();
 });
 
 When("I select the option Delete in three dot menu in the column", () => {
-	board.clickOnDeleteColumnInMenu();
+	board.selectDeleteInThreeDotMenu();
 });
 
 Then("I see the confirmation Modal", () => {
@@ -88,9 +88,25 @@ Then("I see the confirmation Modal", () => {
 });
 
 When("I click on the button Remove on the Modal", () => {
-	board.clickOnDeleteColumnModal();
+	board.clickOnConfirmInModal();
 });
 
 Then("I do not see the column", () => {
 	board.doNotSeeColumnAfterDeletion();
+});
+
+Then("I see a dialog box for column board", () => {
+	board.seeColumnBoardDialogBox();
+});
+
+Then("I see in dialog box option for multi-column board", () => {
+	board.seeMultiColumnBoardOptionInDialogBox();
+});
+
+Then("I see in dialog box option for single column board", () => {
+	board.seeSingleColumnBoardOptionInDialogBox();
+});
+
+When("I choose multi-column board in the dialog box", () => {
+	board.clickOnMultiColumnBoardOptionInDialogBox();
 });

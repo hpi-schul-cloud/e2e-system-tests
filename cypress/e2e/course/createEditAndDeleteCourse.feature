@@ -2,6 +2,7 @@
 @stable_test
 @regression_test
 @pr
+@schedule_run
 Feature: Course - To add and delete a course by the teacher
 
     As a teacher I want to create a new course and want to delete the newly created test course/room so that list of courses/rooms can be cleaned and not full with the newly created test courses/rooms.

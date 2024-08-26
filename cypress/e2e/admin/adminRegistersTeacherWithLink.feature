@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Teacher registration with registration link send by admin
 
@@ -9,9 +9,9 @@ Feature: Teacher registration with registration link send by admin
         When Created teacher 'John' 'Teacher' with email 'john.teacher@mail.tld'
         Then I am on the teachers management page
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Teacher can registers in the SVS with the registration link
         Given I am logged in as '<user>' on '<env>'
@@ -21,9 +21,9 @@ Feature: Teacher registration with registration link send by admin
         And I am registering as teacher with email 'john.teacher@mail.tld' and password 'Password1!' on '<env>'
         Then I am able to logout
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Teardown
         Given I am logged in as '<user>' on '<env>'
@@ -32,6 +32,6 @@ Feature: Teacher registration with registration link send by admin
         When Deleting the user
         Then I am on the teachers management page
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |

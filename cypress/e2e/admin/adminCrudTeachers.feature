@@ -1,4 +1,4 @@
-@release
+@regression_test
 @stable_test
 Feature: Admin creates, reads, updates and delete teachers
 
@@ -10,9 +10,9 @@ Feature: Admin creates, reads, updates and delete teachers
         When I am on the teachers management page
         Then Teacher 'John' with email 'john.teacher@mail.tld' was created
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Admin changes teachers user information
         Given I am logged in as '<user>' on '<env>'
@@ -23,9 +23,9 @@ Feature: Admin creates, reads, updates and delete teachers
         And Changing consent for the teacher
         Then I can save the changes
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Admin reverts teacher user information
         Given I am logged in as '<user>' on '<env>'
@@ -35,9 +35,9 @@ Feature: Admin creates, reads, updates and delete teachers
         And Changing the email to 'john.teacher@mail.tld'
         Then I can save the changes
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
 
     Scenario Outline: Admin deletes a teacher
         Given I am logged in as '<user>' on '<env>'
@@ -47,6 +47,6 @@ Feature: Admin creates, reads, updates and delete teachers
         Then I am on the teachers management page
         And 'John' with email 'john.teacher@mail.tld' was deleted
 
-    Examples:
-        | env | user       |
-        | dbc | admin1_dbc |
+        Examples:
+            | env | user       |
+            | dbc | admin1_dbc |
