@@ -4,12 +4,12 @@ Feature: Calendar - create a simple event in the calendar
 
   As a user, I want to be able to create a simple event in the calendar without course/team and check if it's displayed properly.
 
-
   Scenario Outline: create an event in the calendar as an admin, teacher and student
     Given I am logged in as a '<user>' at '<namespace>'
     When I go to calendar overview
     Then I see calendar page
-    When I click on icon Next
+    # next step is to change to the next month to ensure that the chosen day is not in the past.
+    When I click on icon Next to go to next month
     When I click on day '<event_start_day>'
     Then I see modal for creating an event
     When I enter event title '<event_title>'
@@ -19,7 +19,8 @@ Feature: Calendar - create a simple event in the calendar
     When I enter event location '<event_location>'
     When I click button Add event
     Then I see calendar page
-    When I click on icon Next
+    # next step is to change to the next month to ensure that the chosen day is not in the past.
+    When I click on icon Next to go to next month
     Then I see an event with start time '<event_start_text>' and event title '<event_title>'
     When I click on event with start time '<event_start_text>' and event title '<event_title>'
     Then I see modal for creating an event

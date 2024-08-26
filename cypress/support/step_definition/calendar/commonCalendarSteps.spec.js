@@ -11,7 +11,7 @@ Then("I see calendar page", () => {
 	calendar.seeCalendarOverviewPage();
 });
 
-When ("I click on icon Next", () => {
+When ("I click on icon Next to go to next month", () => {
 	calendar.clickOnNextCalendarPage();
 });
 
