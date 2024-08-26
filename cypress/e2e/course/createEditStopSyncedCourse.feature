@@ -1,4 +1,8 @@
-@unstable_test
+@group-A
+@stable_test
+@regression_test
+@pr
+@schedule_run
 Feature: Teacher can create, update and stop a synchronized course
 
   Scenario Outline: Fail to create a synchronized course with a group that doesn't have a teacher
@@ -56,6 +60,50 @@ Feature: Teacher can create, update and stop a synchronized course
       | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
       | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
 
+  Scenario Outline: Create a non-synchronized course
+    Given I am logged in as a '<user>' at '<state>'
+    When I go to rooms overview
+    When I click on FAB to create a new room depending on sub menu
+    Then I see section one area on the course create page
+    When I enter the course title '<course_title>'
+    When I select room colour as red
+    Then I see teacher '<teacher_name>' is selected by default
+    Then I see substitute teacher selection box
+    Then I see date pickers to start and end the course as per school year
+    Then I see button to create a course time table container
+    When I click on button Next Steps after entering the room detail in section one
+    Then I see section two area on the course create page
+    Then I see class selection box to select the class for the room
+    Then I see student selection box to select the class for the room
+    When I select the student '<student_name>' in the list
+    When I click on button Next Steps after selecting room participant details
+    Then I see the section three area as the finish page
+    When I click on button To Course Overview on the finish page
+    Then I see the course '<course_title>' on the room overview page
+    Examples:
+        | user         | state | course_title            | teacher_name | student_name  |
+        | teacher1_nbc | nbc   | Cypress-Test-Course     | Karl Herzog  | Herbert Kraft |
+
+  Scenario Outline: Synchronize course with group
+    When I go to rooms overview
+    When I go to room '<course_title>'
+    When I click on the three dot menu button next to the course title
+    Then I see the start synchronization button
+    When I click the start synchronization button
+    Then I see title of the modal to select a synced group
+    Then I see information text of the modal to select a synced group
+    Then I see the group selection of the modal to select a synced group
+    When I select group '<group_title>' in the group selection
+    Then I see the group '<group_title>' is selected
+    When I click continue button on the modal to select a synced group
+    Then I see the title of the modal for synchronization confirmation
+    Then I see a warning about the consequences of synchronization
+    Then I see information text of the modal asking for confirmation of synchronization
+    When I click the confirm button on the synchronization confirmation modal
+    Then I see the synced chip next to the title on the room page
+    Examples:
+        | group_title          | course_title         |
+        | Cypress-Test-Group1  | Cypress-Test-Course  |
 
   Scenario Outline: Edit a synchronized course
     When I go to rooms overview
@@ -101,6 +149,7 @@ Feature: Teacher can create, update and stop a synchronized course
     Examples:
       |  course_title             | group_title                    |
       |  Cypress-Test-Course-Sync | Cypress-Test-Group-Course-Sync |
+      |  Cypress-Test-Course      | Cypress-Test-Group1            |
 
   Scenario Outline: Stop a course synchronization in the class overview
     When I click on administration in menu
@@ -132,3 +181,4 @@ Feature: Teacher can create, update and stop a synchronized course
       |   course_title                    |
       |   Cypress-Test-Course-Sync        |
       |   Cypress-Test-Group-Course-Sync2 |
+      |   Cypress-Test-Course             |
