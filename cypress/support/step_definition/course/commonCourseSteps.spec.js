@@ -1,7 +1,10 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Management from '../../pages/admin/pageAdministration';
 import Courses from "../../pages/course/pageCourses";
+import CourseManagement from '../../pages/course_management/pageCourseManagement';
 
 const courses = new Courses();
+const management = new Management();
 
 Then("I select teacher {string} is selected by default", (teacherName) => {
 	courses.selectTeacherInCourseCreatePage(teacherName);
@@ -26,6 +29,10 @@ When("I click on FAB to add or import courses", () => {
 Then("I see room search box on the room overview page", () => {
 	courses.seeRoomSearchBoxOnRoomOverview();
 });
+
+When("I go to new course administration page", () => {
+	management.navigateToNewCourseAdministration();
+})
 
 When("I go to rooms overview", () => {
 	courses.navigateToRoomsOverview();
@@ -219,6 +226,14 @@ When("I select room colour as red", () => {
 Then("I see teacher {string} is selected by default", (defaultTeacherName) => {
 	courses.seeSelectedDefaultTeacher(defaultTeacherName);
 });
+
+When("I select the teacher {string} in the list", (teacherName) => {
+	courses.selectTeacherInCourseCreatePage(teacherName)
+})
+
+Then("I see teacher selection box", () => {
+	courses.seeTeacherSelectionBox();
+})
 
 Then("I see substitute teacher selection box", () => {
 	courses.seeSubstituteTeacherSelectionBox();

@@ -327,6 +327,10 @@ class Courses {
 		cy.get(Courses.#chosenCourseTeacher).contains(defaultTeacherName);
 	}
 
+	seeTeacherSelectionBox() {
+		cy.get(Courses.#chosenCourseTeacher).should("exist");
+	}
+
 	seeSubstituteTeacherSelectionBox() {
 		cy.get(Courses.#chosenSubstituteTeacher).should("exist");
 	}
