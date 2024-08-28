@@ -32,29 +32,18 @@ Feature: Course - To show courses in a table with respective functionality
         Then I see the course '<course_title>' on the new course administration page
         Examples:
             | user         | state | course_title                | teacher_name | student_name  |
-            | admin1_nbc | nbc   | Cypress-Admin-Test-Course   | Karl Herzog  | Herbert Kraft |
+            | admin1_nbc   | nbc   | Cypress-Admin-Test-Course   | Karl Herzog  | Herbert Kraft |
 
-    #Scenario: As a teacher i can see all classes and groups of my school on the new class administration page.
-    #    Given I see the new class administration page
-    ## Then I can see the administration page title -> needed data-testid "admin-class-title" currently not available
-    #    Then I can see 3 tabs
-    #    Then I can see 6 columns in the table
-    #    Then I can see the group 'Cypress-Test-Group' with source 'moin.schule'
-    #    Then I can see the class '1' without source
-    #    Then I can see the manage button for group 'Cypress-Test-Group'
-    #    Then I can see 4 enabled action items for class '1'
-#
-    #Scenario: As a teacher i can manage my classes
-    #    Given I see the new class administration page
-    #    When I click the manage button
-    #    Then I can see the manage classes page
-    #    When I click the cancel manage class button
-    #    Then I can see the cancel modal
-    #    When I click the confirmation button on the cancel modal
-    #    Then I see the new class administration page
-    #    When I click the manage button
-    #    When I confirm managing the class
-    #    Then I see the new class administration page
+    Scenario Outline: As an admin i can see all courses of my school on the new course administration page.
+        I see the new course administration page
+        # Then I can see the administration page title -> needed data-testid "admin-course-title" currently not available
+        Then I can see 2 tabs
+        Then I can see 4 columns in the table
+        Then I can see the course '<course_title>' without classes and with teacher '<teacher_name>'
+        Then I can see 3 enabled action items for course '<course_title>'
+        Examples:
+            | course_title               | teacher_name  |
+            | Cypress-Admin-Test-Course  | Karl Herzog   |
 #
     #Scenario: As a teacher i can edit my classes
     #    Given I see the new class administration page
@@ -69,31 +58,9 @@ Feature: Course - To show courses in a table with respective functionality
     #    Then I can click on the save changes button
     #    Then I see the new class administration page
 #
-    #Scenario: As a teacher i can upgrade my upgradable classes
-    #    Given I see the new class administration page
-    #    When I click the create successor button
-    #    Then I can see the create successor page
-    #    When I click the cancel create successor button
-    #    Then I can see the cancel modal
-    #    When I click the confirmation button on the cancel modal
-    #    Then I see the new class administration page
-    #    When I click the create successor button
-    #    And I confirm creating the successor
-    #    And I confirm managing the class
-    #    Then I see the new class administration page
-    #    Then I can see the disabled create successor button of the original class
+    #Scenario Outline: As an admin i can synchronize a course with a group
 #
-    #Scenario: As a teacher i can delete my classes
-    #    Given I see the new class administration page
-    #    When I click the delete button
-    #    Then I can see the delete modal
-    #    When I click the cancel button on the delete modal
-    #    Then I see the new class administration page
-    #    When I click the delete button
-    #    When I click the confirmation button on the delete modal
-    #    Then I see the new class administration page
-#
-    Scenario Outline: As a post-condition admin deletes created course
+    Scenario Outline: As an admin i can delete courses
         Given I see the new course administration page
         When I click the delete button for course '<course_title>' in course table
         Then I can see the delete modal

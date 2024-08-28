@@ -3,7 +3,10 @@
 class CourseManagement {
 	static #createCourseAdminButton = '[data-testid="admin-courses-add-button"]'
 	static #courseTable = '[data-testid="admin-rooms-table"]'
-	static courseTableDeleteButton = '[data-testid="course-table-delete-btn"]'
+	static #courseTableDeleteButton = '[data-testid="course-table-delete-btn"]'
+	static #courseTableNew = '[data-testid="admin-rooms-table"]'
+	static #currentYearTab = '[data-testid="admin-course-current-tab"]'
+	static #previousYearsTab = '[data-testid="admin-course-archive-tab"]'
 
 	isNewCourseAdministrationPage() {
 		cy.url().should("include", "/administration/rooms/new");
@@ -25,9 +28,48 @@ class CourseManagement {
 		courseNameData
 			.siblings("td")
 			.eq(2)
-			.find(CourseManagement.courseTableDeleteButton)
+			.find(CourseManagement.#courseTableDeleteButton)
 			.should("exist")
 			.click();
+	}
+
+	seeTableHas4Columns() {
+		const tableHeader = cy.get(CourseManagement.#courseTableNew).find("th");
+		tableHeader.should("have.length", 4);
+	}
+
+	see2Tabs() {
+		cy.get(CourseManagement.#currentYearTab).should("exist");
+		cy.get(CourseManagement.#previousYearsTab).should("exist");
+	}
+
+	seeNewCourseTableContainsCourseWithoutClass(courseName, teacherName) {
+		const courseNameData = cy.get(CourseManagement.#courseTableNew).find("td").contains(courseName);
+
+		courseNameData.should("be.visible");
+		courseNameData
+			.siblings("td")
+			.eq(0)
+			.should(($td) => {
+				expect($td.text().trim()).to.equal("");
+			});
+		courseNameData
+			.siblings("td")
+			.eq(1)
+			.should(($td) => {
+				expect($td.text().trim()).to.equal(teacherName);
+			});
+	}
+
+	seeCourseHas3ActiveActionItems(courseName) {
+		const courseNameData = cy.get(CourseManagement.#courseTableNew).find("td").contains(courseName);
+
+		const buttons = courseNameData.siblings("td").eq(2).find("a, button");
+
+		buttons.should("have.length", 3);
+		buttons.each(($btn) => {
+			cy.wrap($btn).should("not.be.disabled");
+		});
 	}
 }
 

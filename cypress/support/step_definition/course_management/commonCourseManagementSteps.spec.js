@@ -28,3 +28,19 @@ When("I click on add course", () => {
 When("I click the delete button for course {string} in course table", (courseName) => {
 	courseManagement.clickDeleteButtonForCourse(courseName);
 })
+
+Then("I can see 4 columns in the table", () => {
+	courseManagement.seeTableHas4Columns();
+});
+
+Then("I can see 2 tabs", () => {
+	courseManagement.see2Tabs();
+});
+
+Then("I can see the course {string} without classes and with teacher {string}", (courseName, teacherName) => {
+	courseManagement.seeNewCourseTableContainsCourseWithoutClass(courseName, teacherName)
+})
+
+Then("I can see 3 enabled action items for course {string}", (courseName) => {
+	courseManagement.seeCourseHas3ActiveActionItems(courseName);
+});
