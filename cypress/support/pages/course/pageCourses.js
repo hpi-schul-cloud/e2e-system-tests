@@ -605,6 +605,10 @@ class Courses {
 		cy.get(Courses.#pageTitle).should("exist");
 	}
 
+	isCorrectCourseEditPage(courseName) {
+		cy.get(Courses.#courseTitle).should("have.value", courseName);
+	}
+
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
 		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should(
@@ -1200,6 +1204,14 @@ class Courses {
 			.click()
 			.type(groupName)
 			.type("{downArrow}{enter}");
+	}
+
+	clickCancelButton() {
+		cy.get(".btn-cancel").click();
+	}
+
+	clickSaveChangesButton() {
+		cy.get(".btn-primary").eq(0).should("not.be.disabled").click();
 	}
 }
 export default Courses;

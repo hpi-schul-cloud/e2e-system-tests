@@ -62,6 +62,10 @@ Then("I see page Edit course", () => {
 	courses.showCourseEditPage();
 });
 
+Then("I see the course title is {string}", (courseName) => {
+	courses.isCorrectCourseEditPage(courseName)
+})
+
 When("I click on FAB to create a new room depending on sub menu", () => {
 	courses.clickOnCreateRoomFAB();
 });
@@ -265,4 +269,12 @@ Then("I see the section three area as the finish page", () => {
 
 When("I click on button To Course Overview on the finish page", () => {
 	courses.clickOnToCourseOverviewBtn();
+});
+
+When("I click the cancel edit course button", () => {
+	courses.clickCancelButton();
+});
+
+Then("I click on the save course changes button", () => {
+	courses.clickSaveChangesButton();
 });

@@ -45,18 +45,21 @@ Feature: Course - To show courses in a table with respective functionality
             | course_title               | teacher_name  |
             | Cypress-Admin-Test-Course  | Karl Herzog   |
 #
-    #Scenario: As a teacher i can edit my classes
-    #    Given I see the new class administration page
-    #    When I click the edit button
-    #    Then I can see the edit classes page
-    #    When I click the cancel edit class button
-    #    Then I can see the cancel modal
-    #    When I click the confirmation button on the cancel modal
-    #    Then I see the new class administration page
-    #    When I click the edit button
-    #    When I click in the name suffix text element
-    #    Then I can click on the save changes button
-    #    Then I see the new class administration page
+    Scenario Outline: As an admin i can edit the courses of my school
+        Given I see the new course administration page
+        When I click the edit button on the '<course_title>' course
+        Then I see page Edit course
+        Then I see the course title is '<course_title>'
+        When I click the cancel edit course button
+        Then I can see the cancel modal
+        When I click the confirmation button on the cancel modal
+        Then I see the new course administration page
+        When I click the edit button on the '<course_title>' course
+        Then I click on the save course changes button
+        Then I see the new course administration page
+    Examples:
+        | course_title               |
+        | Cypress-Admin-Test-Course  |
 #
     #Scenario Outline: As an admin i can synchronize a course with a group
 #
