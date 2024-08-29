@@ -91,9 +91,8 @@ Feature: Course - To show courses in a table with respective functionality
         |course_title               |
         |Cypress-Admin-Test-Course  |
 #
-    #Scenario: As a teacher i can not see the new class page, when the feature flag is off
-    #    Given I am logged in as a 'teacher1_dbc' at 'dbc'
-    #    When I click on administration in menu
-    #    Then I cannot see the new class administration page
-    #    When I navigate to class administration page
-    #    Then I cannot see the source header in the table
+    Scenario: As a teacher i can not see the new course admin page, when the feature flag is off
+        Given I am logged in as a 'teacher1_dbc' at 'dbc'
+        When I click on administration in menu
+        When I go to course administration
+        Then I do not see the new course administration page

@@ -14,6 +14,10 @@ class CourseManagement {
 		cy.url().should("include", "/administration/rooms/new");
 	}
 
+	isNotNewCourseAdministrationPage() {
+		cy.url().should("not.include", "/administration/rooms/new");
+	}
+
 	clickCreateCourseAdminButton() {
 		cy.get(CourseManagement.#createCourseAdminButton).click()
 	}
@@ -101,7 +105,7 @@ class CourseManagement {
 	seeNoSynchronizeButtonForCourse(courseName) {
 		//just temporary
 		cy.reload();
-		cy.wait(5000);
+		cy.wait(2000);
 
 		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
 			.should("be.visible");

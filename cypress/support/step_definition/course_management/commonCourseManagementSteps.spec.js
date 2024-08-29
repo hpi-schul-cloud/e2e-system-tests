@@ -17,6 +17,10 @@ Then("I see the new course administration page", () => {
 	courseManagement.isNewCourseAdministrationPage();
 });
 
+Then("I do not see the new course administration page", () => {
+	courseManagement.isNotNewCourseAdministrationPage();
+})
+
 Then("I see the course {string} on the new course administration page", (courseName) => {
 	courseManagement.seeCourseTableContainsCourse(courseName)
 });
