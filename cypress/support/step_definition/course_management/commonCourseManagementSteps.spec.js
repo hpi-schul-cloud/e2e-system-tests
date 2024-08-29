@@ -48,3 +48,11 @@ Then("I can see 3 enabled action items for course {string}", (courseName) => {
 When("I click the edit button on the {string} course", (courseName) =>{
 	courseManagement.clickEditButtonForCourse(courseName);
 });
+
+When("I click the start synchronization button on the {string} course", (courseName) => {
+	courseManagement.clickSynchronizeButtonForCourse(courseName);
+});
+
+Then("I do not see the start synchronize button for {string} anymore", (courseName) => {
+	courseManagement.seeNoSynchronizeButtonForCourse(courseName);
+});

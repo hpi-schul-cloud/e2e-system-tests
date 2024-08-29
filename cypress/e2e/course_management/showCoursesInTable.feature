@@ -61,7 +61,25 @@ Feature: Course - To show courses in a table with respective functionality
         | course_title               |
         | Cypress-Admin-Test-Course  |
 #
-    #Scenario Outline: As an admin i can synchronize a course with a group
+    Scenario Outline: As an admin i can synchronize a course with a group
+        Given I see the new course administration page
+        When I click the start synchronization button on the '<course_title>' course
+        Then I see title of the modal to select a synced group
+        Then I see information text of the modal to select a synced group
+        Then I see the group selection of the modal to select a synced group
+        When I select group '<group_title>' in the group selection
+        Then I see the group '<group_title>' is selected
+        When I click continue button on the modal to select a synced group
+        Then I see the title of the modal for synchronization confirmation
+        Then I see a warning about the consequences of synchronization
+        Then I see information text of the modal asking for confirmation of synchronization
+        When I click the confirm button on the synchronization confirmation modal
+        Then I see the new course administration page
+        #in future a stop synchronization button will be seen here and should be tested
+        Then I do not see the start synchronize button for '<course_title>' anymore
+    Examples:
+        | course_title               | group_title         |
+        | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
 #
     Scenario Outline: As an admin i can delete courses
         Given I see the new course administration page
