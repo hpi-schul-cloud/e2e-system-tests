@@ -1,14 +1,12 @@
-@stable_test
-@regression_test
-@school_api_test
+@unstable_test
 Feature: Course - To show courses in a table with respective functionality
 
     As an administrator I want to see all courses belonging to my school.
 
-    Scenario Outline: As an admin i can add a course to school
-        Given I am logged in as a '<user>' at '<state>'
+    Scenario Outline: As an admin I can add a course to school
+        Given I am logged in as a '<user>' at '<namespace>'
         When I click on administration in menu
-        When I go to new course administration page
+        When I go to course administration page
         Then I see the new course administration page
         When I click on add course
         Then I see section one area on the course create page
@@ -28,14 +26,14 @@ Feature: Course - To show courses in a table with respective functionality
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
         When I click on administration in menu
-        When I go to new course administration page
+        When I go to course administration page
         Then I see the course '<course_title>' on the new course administration page
         Examples:
-            | user         | state | course_title                | teacher_name | student_name  |
+            | user         | namespace | course_title                | teacher_name | student_name  |
             | admin1_nbc   | nbc   | Cypress-Admin-Test-Course   | Karl Herzog  | Herbert Kraft |
 
     Scenario Outline: As an admin i can see all courses of my school on the new course administration page.
-        I see the new course administration page
+        Given I see the new course administration page
         # Then I can see the administration page title -> needed data-testid "admin-course-title" currently not available
         Then I can see 2 tabs
         Then I can see 4 columns in the table
@@ -87,12 +85,13 @@ Feature: Course - To show courses in a table with respective functionality
         Then I can see the delete modal
         When I click the confirmation button on the delete modal
         Then I see the new course administration page
+        Then I do not see '<course_title>' in course table
     Examples:
         |course_title               |
         |Cypress-Admin-Test-Course  |
 #
-    Scenario: As a teacher i can not see the new course admin page, when the feature flag is off
-        Given I am logged in as a 'teacher1_dbc' at 'dbc'
+    Scenario: As an admin i can not see the new course admin page, when the feature flag is off
+        Given I am logged in as a 'admin1_dbc' at 'dbc'
         When I click on administration in menu
-        When I go to course administration
+        When I go to legacy course administration
         Then I do not see the new course administration page

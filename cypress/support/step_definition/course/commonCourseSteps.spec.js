@@ -30,8 +30,8 @@ Then("I see room search box on the room overview page", () => {
 	courses.seeRoomSearchBoxOnRoomOverview();
 });
 
-When("I go to new course administration page", () => {
-	management.navigateToNewCourseAdministration();
+When("I go to course administration page", () => {
+	management.navigateToCourseAdministration();
 })
 
 When("I go to rooms overview", () => {

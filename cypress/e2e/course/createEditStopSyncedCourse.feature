@@ -1,10 +1,8 @@
-@stable_test
-@regression_test
-@school_api_test
+@unstable_test
 Feature: Teacher can create, update and stop a synchronized course
 
   Scenario Outline: Fail to create a synchronized course with a group that doesn't have a teacher
-    Given I am logged in as a '<user>' at '<state>'
+    Given I am logged in as a '<user>' at '<namespace>'
     When I go to rooms overview
     When I click on FAB to add or import courses
     Then I see the button to create a new synced course
@@ -18,11 +16,11 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see continue button of the modal to select a synced group is disabled
     When I click cancel button on the modal to select a synced group
     Examples:
-      | user       | state | group_title                                    |
+      | user       | namespace | group_title                                    |
       | admin1_nbc | nbc   | Cypress-Test-Group-Course-Sync-Without-Teacher |
 
   Scenario Outline: Create a synchronized course
-    Given I am logged in as a '<user>' at '<state>'
+    Given I am logged in as a '<user>' at '<namespace>'
     When I go to rooms overview
     When I click on FAB to add or import courses
     Then I see the button to create a new synced course
@@ -52,14 +50,14 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the new class administration page
     Then I see the group '<group_title>' is synced with course '<group_title>'
     Examples:
-      | user         | state | group_title                     | teacher_name | student_name  | start_date | end_date   |
+      | user         | namespace | group_title                     | teacher_name | student_name  | start_date | end_date   |
       | teacher1_nbc | nbc   | Cypress-Test-Group-Course-Sync  | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
       | teacher1_nbc | nbc   | Cypress-Test-Group-Course-Sync2 | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
       | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
       | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
 
-  Scenario Outline: Create a non-synchronized course
-    Given I am logged in as a '<user>' at '<state>'
+  Scenario Outline: As a setup teacher creates a non-synchronized course
+    Given I am logged in as a '<user>' at '<namespace>'
     When I go to rooms overview
     When I click on FAB to create a new room depending on sub menu
     Then I see section one area on the course create page
@@ -71,16 +69,12 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see button to create a course time table container
     When I click on button Next Steps after entering the room detail in section one
     Then I see section two area on the course create page
-    #Student visibility is turned off atm - have to check why
-    #Then I see class selection box to select the class for the room
-    #Then I see student selection box to select the class for the room
-    #When I select the student '<student_name>' in the list
     When I click on button Next Steps after selecting room participant details
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
     Then I see the course '<course_title>' on the room overview page
     Examples:
-        | user         | state | course_title                     | teacher_name | student_name  |
+        | user         | namespace | course_title                     | teacher_name | student_name  |
         | teacher1_nbc | nbc   | Cypress-Test-Existing-Course     | Karl Herzog  | Herbert Kraft |
 
   Scenario Outline: Synchronize course with group

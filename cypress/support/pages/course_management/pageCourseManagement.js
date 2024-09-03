@@ -27,6 +27,11 @@ class CourseManagement {
 			.should("be.visible");
 	}
 
+	doNotSeeCourseInTable(courseName) {
+		cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
+			.should("not.exist");
+	}
+
 	clickDeleteButtonForCourse(courseName) {
 		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
 			.should("be.visible");
@@ -103,9 +108,6 @@ class CourseManagement {
 	}
 
 	seeNoSynchronizeButtonForCourse(courseName) {
-		//just temporary
-		cy.reload();
-		cy.wait(2000);
 
 		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
 			.should("be.visible");

@@ -25,6 +25,10 @@ Then("I see the course {string} on the new course administration page", (courseN
 	courseManagement.seeCourseTableContainsCourse(courseName)
 });
 
+Then("I do not see {string} in course table", (courseName) => {
+	courseManagement.doNotSeeCourseInTable(courseName);
+})
+
 When("I click on add course", () => {
 	courseManagement.clickCreateCourseAdminButton()
 });

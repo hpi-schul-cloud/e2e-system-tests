@@ -191,16 +191,17 @@ class Management {
 		cy.url().should("include", expectedURL);
 	}
 
-	navigateToCourseAdministration() {
-		cy.get(Management.#courseAdministrationNavigationButton).click();
+	navigateToLegacyCourseAdministration() {
+		cy.get(Management.#administrationOverviewNavigationButton).siblings()
+			.find(Management.#courseAdministrationNavigationButton)
+			.click();
 		cy.url().should("include", "/administration/courses");
 	}
 
-	navigateToNewCourseAdministration() {
+	navigateToCourseAdministration() {
 		cy.get(Management.#administrationOverviewNavigationButton).siblings()
 			.find(Management.#courseAdministrationNavigationButton)
 			.click()
-		//cy.get(Management.#courseAdministrationNavigationButton).click();
 		cy.url().should("include", "/administration/rooms/new");
 	}
 
