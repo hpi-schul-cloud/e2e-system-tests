@@ -118,7 +118,7 @@ Then(
 		contentTitle4,
 		contentTitle5
 	) => {
-		topics.seeTopicDetailPage(
+		topics.seeTopicDetailPageWithContent(
 			topicTitle,
 			contentTitle1,
 			contentTitle2,
@@ -126,6 +126,11 @@ Then(
 			contentTitle4,
 			contentTitle5
 		);
+	}
+);
+
+Then("I see topic detail page {string}", (topicTitle) => {
+		topics.seeTopicDetailPage(topicTitle);
 	}
 );
 

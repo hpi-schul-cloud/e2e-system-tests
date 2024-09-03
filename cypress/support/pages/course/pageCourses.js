@@ -29,6 +29,7 @@ class Courses {
 		'[data-testid="lesson-card-menu-action-remove-0"]';
 	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
+	static #backToDraftButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
@@ -578,6 +579,10 @@ class Courses {
 
 	clickEditInDotMenuOfTopic() {
 		cy.get(Courses.#editButtonInDotMenuOfTopic).click();
+	}
+
+	clickBackToDraftInDotMenuOfTopic() {
+		cy.get(Courses.#backToDraftButtonInDotMenuOfTopic).click();
 	}
 
 	clickOnCancelInConfirmationWindow() {

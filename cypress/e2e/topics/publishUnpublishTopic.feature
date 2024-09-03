@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 Feature: Topics - To publish and unpublish topic by teacher.
 
     As a teacher I want to create, edit and delete a new topic so that the student can see it
@@ -60,12 +61,31 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I go to rooms overview
         When I go to room '<course_title>'
         Then I can see topic '<topic_title>' on course page
+        When I click on topic '<topic_title>' on course page
+        Then I see topic detail page "<topic_title>"
 
         # teacher unpublishs topic
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I go to room '<course_title>'
+        When I click on three dot menu of topic '<topic_title>'
+        When I click on option Back to draft in dot menu of first topic
 
         # student does not see topic in a course
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I go to room '<course_title>'
+        Then I can not see topic '<topic_title>' on course page
 
         # teacher deletes course
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I go to room '<course_title>'
+        When I open page Edit course
+        When I click on the button delete course
+        #Then I see the modal to confirm the deletion
+        When I click on the button delete on the modal to confirm the course deletion
+        Then I do not see the course '<course_title>' on the room overview page
 
 
         @school_api_test
