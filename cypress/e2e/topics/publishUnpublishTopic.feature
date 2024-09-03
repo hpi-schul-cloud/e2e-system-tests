@@ -3,7 +3,7 @@
 @schedule_run
 Feature: Topics - To publish and unpublish topic by teacher.
 
-    As a teacher I want to create, edit and delete a new topic so that the student can see it
+    As a teacher I want to publish and unpublish as draft version
 
     Scenario: Teacher publishs a topic in the course, student can see this course, then teacher unpublishs topic, student cannot see it
 
@@ -12,7 +12,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # pre-condition: teacher creates a course
+        # pre-condition: admin creates a course
         When I go to rooms overview
         When I click on FAB to create a new room depending on sub menu
         Then I see section one area on the course create page
