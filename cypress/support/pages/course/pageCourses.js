@@ -33,7 +33,7 @@ class Courses {
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
-	static #topicCardActions = '[data-testid="lesson-card-actions-0"]'
+	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]'
 	static #dropDownCourse = '[data-testid="room-menu"]';
 	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
@@ -603,7 +603,7 @@ class Courses {
 	}
 
 	clickPublishLinkForFirstTopic() {
-		cy.get(Courses.#topicCardActions).find('button').click();
+		cy.get(Courses.#topicCardPublishBtn).click();
 	}
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
