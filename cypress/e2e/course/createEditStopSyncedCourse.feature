@@ -74,7 +74,7 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
     Then I see the course '<course_title>' on the room overview page
-    #syncronize course
+    #synchronize course
     When I go to room '<course_title>'
     When I click on the three dot menu button next to the course title
     Then I see the start synchronization button

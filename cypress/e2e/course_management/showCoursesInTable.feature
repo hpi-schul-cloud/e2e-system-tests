@@ -74,7 +74,7 @@ Feature: Course - To show courses in a table with respective functionality
         When I click the confirm button on the synchronization confirmation modal
         Then I see the new course administration page
         #in future a stop synchronization button will be seen here and should be tested
-        Then I do not see the start synchronize button on '<course_title>'
+        Then I do not see the start synchronize button on course '<course_title>'
     Examples:
         | course_title               | group_title         |
         | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
