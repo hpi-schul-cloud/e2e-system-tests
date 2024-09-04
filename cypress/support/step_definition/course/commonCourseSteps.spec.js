@@ -275,6 +275,6 @@ When("I click the cancel edit course button", () => {
 	courses.clickCancelButton();
 });
 
-Then("I click on the save course changes button", () => {
+When("I click on the save course changes button", () => {
 	courses.clickSaveChangesButton();
 });

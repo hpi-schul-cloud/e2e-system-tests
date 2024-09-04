@@ -3,12 +3,12 @@ Feature: Course - To show courses in a table with respective functionality
 
     As an administrator I want to see all courses belonging to my school.
 
-    Scenario Outline: As an admin I can add a course to school
+    Scenario Outline: Admin adds a course to school
         Given I am logged in as a '<user>' at '<namespace>'
         When I click on administration in menu
         When I go to course administration page
         Then I see the new course administration page
-        When I click on add course
+        When I click on add course button
         Then I see section one area on the course create page
         When I enter the course title '<course_title>'
         When I select room colour as red
@@ -32,36 +32,36 @@ Feature: Course - To show courses in a table with respective functionality
             | user         | namespace | course_title                | teacher_name | student_name  |
             | admin1_nbc   | nbc   | Cypress-Admin-Test-Course   | Karl Herzog  | Herbert Kraft |
 
-    Scenario Outline: As an admin i can see all courses of my school on the new course administration page.
+    Scenario Outline: Admin sees all courses of his school on the new course administration page.
         Given I see the new course administration page
         # Then I can see the administration page title -> needed data-testid "admin-course-title" currently not available
-        Then I can see 2 tabs
-        Then I can see 4 columns in the table
-        Then I can see the course '<course_title>' without classes and with teacher '<teacher_name>'
-        Then I can see 3 enabled action items for course '<course_title>'
+        Then I see 2 tabs
+        Then I see 4 columns in the table
+        Then I see the course '<course_title>' without classes and with teacher '<teacher_name>'
+        Then I see 3 enabled action items for course '<course_title>'
         Examples:
             | course_title               | teacher_name  |
             | Cypress-Admin-Test-Course  | Karl Herzog   |
 #
-    Scenario Outline: As an admin i can edit the courses of my school
+    Scenario Outline: Admin edits courses
         Given I see the new course administration page
-        When I click the edit button on the '<course_title>' course
+        When I click the edit button on course '<course_title>'
         Then I see page Edit course
         Then I see the course title is '<course_title>'
         When I click the cancel edit course button
-        Then I can see the cancel modal
+        Then I see the cancel modal
         When I click the confirmation button on the cancel modal
         Then I see the new course administration page
-        When I click the edit button on the '<course_title>' course
-        Then I click on the save course changes button
+        When I click the edit button on course '<course_title>'
+        When I click on the save course changes button
         Then I see the new course administration page
     Examples:
         | course_title               |
         | Cypress-Admin-Test-Course  |
 #
-    Scenario Outline: As an admin i can synchronize a course with a group
+    Scenario Outline: Admin synchronizes a course with a group
         Given I see the new course administration page
-        When I click the start synchronization button on the '<course_title>' course
+        When I click the start synchronization button on course '<course_title>'
         Then I see title of the modal to select a synced group
         Then I see information text of the modal to select a synced group
         Then I see the group selection of the modal to select a synced group
@@ -74,23 +74,23 @@ Feature: Course - To show courses in a table with respective functionality
         When I click the confirm button on the synchronization confirmation modal
         Then I see the new course administration page
         #in future a stop synchronization button will be seen here and should be tested
-        Then I do not see the start synchronize button for '<course_title>' anymore
+        Then I do not see the start synchronize button on '<course_title>'
     Examples:
         | course_title               | group_title         |
         | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
 #
-    Scenario Outline: As an admin i can delete courses
+    Scenario Outline: Admin deletes courses
         Given I see the new course administration page
         When I click the delete button for course '<course_title>' in course table
-        Then I can see the delete modal
+        Then I see the delete modal
         When I click the confirmation button on the delete modal
         Then I see the new course administration page
-        Then I do not see '<course_title>' in course table
+        Then I do not see course '<course_title>' in course table
     Examples:
         |course_title               |
         |Cypress-Admin-Test-Course  |
 #
-    Scenario: As an admin i can not see the new course admin page, when the feature flag is off
+    Scenario: Admin does not see the new course admin page, when the feature flag is off
         Given I am logged in as a 'admin1_dbc' at 'dbc'
         When I click on administration in menu
         When I go to legacy course administration

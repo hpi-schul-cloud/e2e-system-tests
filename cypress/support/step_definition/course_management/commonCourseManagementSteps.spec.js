@@ -25,11 +25,11 @@ Then("I see the course {string} on the new course administration page", (courseN
 	courseManagement.seeCourseTableContainsCourse(courseName)
 });
 
-Then("I do not see {string} in course table", (courseName) => {
+Then("I do not see course {string} in course table", (courseName) => {
 	courseManagement.doNotSeeCourseInTable(courseName);
 })
 
-When("I click on add course", () => {
+When("I click on add course button", () => {
 	courseManagement.clickCreateCourseAdminButton()
 });
 
@@ -37,30 +37,30 @@ When("I click the delete button for course {string} in course table", (courseNam
 	courseManagement.clickDeleteButtonForCourse(courseName);
 });
 
-Then("I can see 4 columns in the table", () => {
+Then("I see 4 columns in the table", () => {
 	courseManagement.seeTableHas4Columns();
 });
 
-Then("I can see 2 tabs", () => {
+Then("I see 2 tabs", () => {
 	courseManagement.see2Tabs();
 });
 
-Then("I can see the course {string} without classes and with teacher {string}", (courseName, teacherName) => {
+Then("I see the course {string} without classes and with teacher {string}", (courseName, teacherName) => {
 	courseManagement.seeNewCourseTableContainsCourseWithoutClass(courseName, teacherName)
 });
 
-Then("I can see 3 enabled action items for course {string}", (courseName) => {
+Then("I see 3 enabled action items for course {string}", (courseName) => {
 	courseManagement.seeCourseHas3ActiveActionItems(courseName);
 });
 
-When("I click the edit button on the {string} course", (courseName) =>{
+When("I click the edit button on course {string}", (courseName) =>{
 	courseManagement.clickEditButtonForCourse(courseName);
 });
 
-When("I click the start synchronization button on the {string} course", (courseName) => {
+When("I click the start synchronization button on course {string}", (courseName) => {
 	courseManagement.clickSynchronizeButtonForCourse(courseName);
 });
 
-Then("I do not see the start synchronize button for {string} anymore", (courseName) => {
+Then("I do not see the start synchronize button on course {string}", (courseName) => {
 	courseManagement.seeNoSynchronizeButtonForCourse(courseName);
 });

@@ -56,7 +56,8 @@ Feature: Teacher can create, update and stop a synchronized course
       | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
       | teacher1_nbc | nbc   | Cypress-Test-Group1             | Karl Herzog  | Herbert Kraft | 01.08.2024 | 31.07.2025 |
 
-  Scenario Outline: As a setup teacher creates a non-synchronized course
+  Scenario Outline: Synchronize course with group
+    # create course
     Given I am logged in as a '<user>' at '<namespace>'
     When I go to rooms overview
     When I click on FAB to create a new room depending on sub menu
@@ -73,12 +74,7 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
     Then I see the course '<course_title>' on the room overview page
-    Examples:
-        | user         | namespace | course_title                     | teacher_name | student_name  |
-        | teacher1_nbc | nbc   | Cypress-Test-Existing-Course     | Karl Herzog  | Herbert Kraft |
-
-  Scenario Outline: Synchronize course with group
-    When I go to rooms overview
+    #syncronize course
     When I go to room '<course_title>'
     When I click on the three dot menu button next to the course title
     Then I see the start synchronization button
@@ -95,8 +91,8 @@ Feature: Teacher can create, update and stop a synchronized course
     When I click the confirm button on the synchronization confirmation modal
     Then I see the synced chip next to the title on the room page
     Examples:
-        | group_title          | course_title                  |
-        | Cypress-Test-Group   | Cypress-Test-Existing-Course  |
+      | user         | namespace | course_title                     | group_title                   | teacher_name | student_name  |
+      | teacher1_nbc | nbc       | Cypress-Test-Existing-Course     | Cypress-Test-Existing-Course  | Karl Herzog  | Herbert Kraft |
 
   Scenario Outline: Edit a synchronized course
     When I go to rooms overview
