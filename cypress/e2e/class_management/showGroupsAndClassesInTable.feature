@@ -11,7 +11,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click on add class
     Then I can see the create class page
     When I click the cancel create class button
-    Then I can see the cancel modal
+    Then I see the cancel modal
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
     When I click on add class
@@ -34,7 +34,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the manage button
     Then I can see the manage classes page
     When I click the cancel manage class button
-    Then I can see the cancel modal
+    Then I see the cancel modal
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
     When I click the manage button
@@ -46,7 +46,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the edit button
     Then I can see the edit classes page
     When I click the cancel edit class button
-    Then I can see the cancel modal
+    Then I see the cancel modal
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
     When I click the edit button
@@ -59,7 +59,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the create successor button
     Then I can see the create successor page
     When I click the cancel create successor button
-    Then I can see the cancel modal
+    Then I see the cancel modal
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
     When I click the create successor button
@@ -71,7 +71,7 @@ Feature: Group - To show groups and classes in one table with respective functio
   Scenario: As a teacher i can delete my classes
     Given I see the new class administration page
     When I click the delete button
-    Then I can see the delete modal
+    Then I see the delete modal
     When I click the cancel button on the delete modal
     Then I see the new class administration page
     When I click the delete button
@@ -82,7 +82,7 @@ Feature: Group - To show groups and classes in one table with respective functio
     Given I see the new class administration page
     When I click on the next year tab
     When I click the delete button
-    Then I can see the delete modal
+    Then I see the delete modal
     When I click the confirmation button on the delete modal
     Then I see the new class administration page
 

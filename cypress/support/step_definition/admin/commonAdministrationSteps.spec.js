@@ -55,8 +55,8 @@ When("I go to team administration", () => {
 	management.navigateToTeamAdministration();
 });
 
-When("I go to course administration", () => {
-	management.navigateToCourseAdministration();
+When("I go to legacy course administration", () => {
+	management.navigateToLegacyCourseAdministration();
 });
 
 When("I click on FAB", () => {
