@@ -134,7 +134,7 @@ Then("I see topic detail page {string}", (topicTitle) => {
 	}
 );
 
-When("I navigate back to course detail page via breadcrump menu", () => {
+When("I navigate back to course detail page via breadcrumb menu", () => {
 	topics.navigateBackToCourseViaBreadcrumb();
 });
 

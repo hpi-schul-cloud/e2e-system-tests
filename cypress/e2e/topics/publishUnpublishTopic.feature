@@ -5,7 +5,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
 
     As a teacher I want to publish and unpublish as draft version
 
-    Scenario: Teacher publishs a topic in the course, student can see this course, then teacher unpublishs topic, student cannot see it
+    Scenario: Teacher publishes a topic in the course, student can see this course, then teacher unpublishes topic, student cannot see it
 
         # pre-condition: teacher and student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'
@@ -26,7 +26,6 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I click on button Next Steps after selecting room participant details
         Then I see the section three as the finish page
         When I click on button To Course Overview on the finish page
-
 
         # teacher creates topic in a course
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -86,7 +85,6 @@ Feature: Topics - To publish and unpublish topic by teacher.
         #Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_title>' on the room overview page
-
 
         @school_api_test
         Examples:
