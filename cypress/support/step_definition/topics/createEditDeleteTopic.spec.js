@@ -118,7 +118,7 @@ Then(
 		contentTitle4,
 		contentTitle5
 	) => {
-		topics.seeTopicDetailPage(
+		topics.seeTopicDetailPageWithContent(
 			topicTitle,
 			contentTitle1,
 			contentTitle2,
@@ -129,7 +129,12 @@ Then(
 	}
 );
 
-When("I navigate back to course detail page via breadcrump menu", () => {
+Then("I see topic detail page {string}", (topicTitle) => {
+		topics.seeTopicDetailPage(topicTitle);
+	}
+);
+
+When("I navigate back to course detail page via breadcrumb menu", () => {
 	topics.navigateBackToCourseViaBreadcrumb();
 });
 

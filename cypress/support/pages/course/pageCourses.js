@@ -29,9 +29,11 @@ class Courses {
 		'[data-testid="lesson-card-menu-action-remove-0"]';
 	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
+	static #backToDraftButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
+	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]'
 	static #dropDownCourse = '[data-testid="room-menu"]';
 	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
@@ -588,6 +590,10 @@ class Courses {
 		cy.get(Courses.#editButtonInDotMenuOfTopic).click();
 	}
 
+	clickBackToDraftInDotMenuOfTopic() {
+		cy.get(Courses.#backToDraftButtonInDotMenuOfTopic).click();
+	}
+
 	clickOnCancelInConfirmationWindow() {
 		cy.get(Courses.#dialogCancelButton).click();
 	}
@@ -607,6 +613,10 @@ class Courses {
 
 	isCorrectCourseEditPage(courseName) {
 		cy.get(Courses.#courseTitle).should("have.value", courseName);
+	}
+
+	clickPublishLinkForFirstTopic() {
+		cy.get(Courses.#topicCardPublishBtn).click();
 	}
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
