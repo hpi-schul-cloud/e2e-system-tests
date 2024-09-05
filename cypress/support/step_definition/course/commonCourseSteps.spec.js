@@ -1,7 +1,10 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Management from '../../pages/admin/pageAdministration';
 import Courses from "../../pages/course/pageCourses";
+import CourseManagement from '../../pages/course_management/pageCourseManagement';
 
 const courses = new Courses();
+const management = new Management();
 
 Then("I select teacher {string} is selected by default", (teacherName) => {
 	courses.selectTeacherInCourseCreatePage(teacherName);
@@ -26,6 +29,10 @@ When("I click on FAB to add or import courses", () => {
 Then("I see room search box on the room overview page", () => {
 	courses.seeRoomSearchBoxOnRoomOverview();
 });
+
+When("I go to course administration page", () => {
+	management.navigateToCourseAdministration();
+})
 
 When("I go to rooms overview", () => {
 	courses.navigateToRoomsOverview();
@@ -54,6 +61,10 @@ When("I open page Edit course", () => {
 Then("I see page Edit course", () => {
 	courses.showCourseEditPage();
 });
+
+Then("I see the course title is {string}", (courseName) => {
+	courses.isCorrectCourseEditPage(courseName)
+})
 
 When("I click on FAB to create a new room depending on sub menu", () => {
 	courses.clickOnCreateRoomFAB();
@@ -220,6 +231,14 @@ Then("I see teacher {string} is selected by default", (defaultTeacherName) => {
 	courses.seeSelectedDefaultTeacher(defaultTeacherName);
 });
 
+When("I select the teacher {string} in the list", (teacherName) => {
+	courses.selectTeacherInCourseCreatePage(teacherName)
+})
+
+Then("I see teacher selection box", () => {
+	courses.seeTeacherSelectionBox();
+})
+
 Then("I see substitute teacher selection box", () => {
 	courses.seeSubstituteTeacherSelectionBox();
 });
@@ -250,4 +269,12 @@ Then("I see the section three area as the finish page", () => {
 
 When("I click on button To Course Overview on the finish page", () => {
 	courses.clickOnToCourseOverviewBtn();
+});
+
+When("I click the cancel edit course button", () => {
+	courses.clickCancelButton();
+});
+
+When("I click on the save course changes button", () => {
+	courses.clickSaveChangesButton();
 });

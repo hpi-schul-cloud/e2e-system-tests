@@ -129,13 +129,18 @@ class Courses {
 	static #topicCardInCoursePageWithIndex = '[data-testid="room-lesson-card-0"]';
 	static #syncedGroupDialogTitle = '[data-testid="dialog-title"]';
 	static #syncedGroupDialogInfoText = '[data-testid="group-dialog-info-text"]';
+	static #syncedConfirmDialogInfoText = '[data-testid="group-dialog-info-text"]';
 	static #syncedGroupDialogWarningText = '[data-testid="no-teacher-warning"]';
+	static #syncedConfirmDialogWarningText = '[data-testid="no-teacher-warning"]';
 	static #syncedGroupDialogSelection = '[data-testid="group-selection"]';
 	static #syncedGroupDialogNextButton = '[data-testid="dialog-next"]';
+	static #syncedConfirmDialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #syncedGroupDialogCloseButton = '[data-testid="dialog-close"]';
 	static #btnEndSync = '[data-testid="title-menu-end-sync"]';
+	static #btnStartSync = '[data-testid="title-menu-start-sync"]';
 	static #btnConfirmEndSync = '[data-testid="dialog-confirm"]';
 	static #endSyncDialogTitle = '[data-testid="dialog-title"]';
+	static #SyncConfirmDialogTitle = '[data-testid="dialog-title"]';
 	static #endSyncDialogWarningText =
 		'[data-testid="end-course-sync-dialog-warning-text"]';
 	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
@@ -320,6 +325,10 @@ class Courses {
 
 	seeSelectedDefaultTeacher(defaultTeacherName) {
 		cy.get(Courses.#chosenCourseTeacher).contains(defaultTeacherName);
+	}
+
+	seeTeacherSelectionBox() {
+		cy.get(Courses.#chosenCourseTeacher).should("exist");
 	}
 
 	seeSubstituteTeacherSelectionBox() {
@@ -594,6 +603,10 @@ class Courses {
 
 	showCourseEditPage() {
 		cy.get(Courses.#pageTitle).should("exist");
+	}
+
+	isCorrectCourseEditPage(courseName) {
+		cy.get(Courses.#courseTitle).should("have.value", courseName);
 	}
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
@@ -1050,6 +1063,10 @@ class Courses {
 		cy.get(Courses.#endSyncDialogTitle).should("be.visible");
 	}
 
+	seeTitleInSynchronizationConfirmationDialog() {
+		cy.get(Courses.#SyncConfirmDialogTitle).should("be.visible");
+	}
+
 	seeTitleInEndSyncDialog() {
 		cy.get(Courses.#syncedGroupDialogTitle).should("be.visible");
 	}
@@ -1060,6 +1077,10 @@ class Courses {
 
 	seeInfoTextInSyncedGroupDialog() {
 		cy.get(Courses.#syncedGroupDialogInfoText).should("be.visible");
+	}
+
+	seeInfoTextInSynchronizationConfirmationDialog() {
+		cy.get(Courses.#syncedConfirmDialogInfoText).should("be.visible");
 	}
 
 	seeWarningTextInEndSyncDialog() {
@@ -1076,6 +1097,9 @@ class Courses {
 
 	seeWarningTextInSyncedGroupDialog() {
 		cy.get(Courses.#syncedGroupDialogWarningText).should("be.visible");
+	}
+	seeWarningTextInSynchronizationConfirmationDialog() {
+		cy.get(Courses.#syncedConfirmDialogWarningText).should("be.visible");
 	}
 
 	seeContinueBtnInSyncedGroupDialogIsDisabled() {
@@ -1127,6 +1151,10 @@ class Courses {
 		cy.get(Courses.#btnEndSync).should("be.visible");
 	}
 
+	seeStartSyncButton() {
+		cy.get(Courses.#btnStartSync).should("be.visible");
+	}
+
 	clickThreeDotMenuInCourse() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 	}
@@ -1151,12 +1179,20 @@ class Courses {
 		cy.get(Courses.#syncedGroupDialogNextButton).click();
 	}
 
+	clickConfirmButtonOnSynchronizationConfirmationDialog() {
+		cy.get(Courses.#syncedConfirmDialogConfirmButton).click();
+	}
+
 	clickCloseButtonOnSyncedGroupDialog() {
 		cy.get(Courses.#syncedGroupDialogCloseButton).click();
 	}
 
 	clickEndSyncButton() {
 		cy.get(Courses.#btnEndSync).click();
+	}
+
+	clickStartSyncButton() {
+		cy.get(Courses.#btnStartSync).click();
 	}
 
 	clickConfirmButtonOnEndSyncDialog() {
@@ -1168,6 +1204,14 @@ class Courses {
 			.click()
 			.type(groupName)
 			.type("{downArrow}{enter}");
+	}
+
+	clickCancelButton() {
+		cy.get(".btn-cancel").click();
+	}
+
+	clickSaveChangesButton() {
+		cy.get(".btn-primary").eq(0).should("not.be.disabled").click();
 	}
 }
 export default Courses;
