@@ -27,7 +27,7 @@ When("I click the button delete for the class {string}", (customClassName) => {
 });
 
 When("I click on the button save change on the page edit class", () => {
-	classes.clickOnSaveChangesOnEditClasspage();
+	classes.clickOnSaveChangesOnEditClassPage();
 });
 
 When("I click on the button edit for the class {string}", (customClassName) => {
@@ -47,7 +47,7 @@ Then("I see old class administration page", () => {
 });
 
 When("I click on the button Save changes", () => {
-	classes.clickOnSaveChangesClassses();
+	classes.clickOnSaveChangesClass();
 });
 
 Then("I select the {string} from the student selection dropdown", (fullNameStudent) => {

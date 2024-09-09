@@ -10,7 +10,7 @@ When("I click on the button add class", () => {
 });
 
 When("I click on sub menu class", () => {
-	classes.clickOnClassInAdministrationSubmenu();
+	classes.clickOnClassInAdministrationSubMenu();
 });
 
 When("I go to class administration", () => {
