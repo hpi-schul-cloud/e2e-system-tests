@@ -5,6 +5,14 @@ import Management from "../../pages/admin/pageAdministration";
 const classes = new Classes();
 const management = new Management();
 
+When("I click on the button add class", () => {
+	classes.clickOnAddClassButtonOnOldClassPage();
+});
+
+When("I click on sub menu class", () => {
+	classes.clickOnClassInAdministrationSubmenu();
+});
+
 When("I go to class administration", () => {
 	management.navigateToClassAdministration();
 });

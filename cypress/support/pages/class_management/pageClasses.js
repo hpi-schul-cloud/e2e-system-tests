@@ -25,6 +25,125 @@ class Classes {
 	static #adminClassNavigationSidebarCard = '[data-testid="Klassen"]';
 	static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
 	static #legacyClassTable = '[data-testid="table_container"]';
+	static #buttonAddClassOldPage = '[data-testid="createClass"]';
+	static #classSchoolYearDropdown = '[data-testid="class-school-year-selection"]';
+	static #classSubMenuInAdministration = '[data-testid="Klassen"]';
+	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
+	static #moreOptionButtonInClassPage = '[data-testid="classCreationExtraOptions"]';
+	static #customClassNameTextBox = '[data-testid="Klassenbezeichnung"]';
+	static #miantainSchoolYearInClassCheckBox =
+		'[data-testid="maintain-school-year-in-class"]';
+	static #addClassButtonOnClassCreate = '[data-testid="confirmClassCreate"]';
+	static #seeTeacherSelectonOnClassManagePage =
+		'[data-testid="teacher-selection-on-manage-class"]';
+	static #seeAndSelectStudentOnClassManage =
+		'[data-testid="student-selection-on-manage-class"]';
+	static #buttonSaveChangedClassManage = '[data-testid="manage-confirm"]';
+	static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
+	static #tableOldClassOverview = '[data-testid="table_container"]';
+	static #buttonEditClassOnOldOverview = '[data-testid="edit-class"]';
+	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
+	static #buttonDeleteClassOnOldOverview = '[data-testid="delete-class"]';
+	static #modalDeleteOnOldClassPage = '[data-testid="popup-title"]';
+	static #btnCancelOnDeleteModalOldClassPage = '[data-testid="btn-cancel"]';
+	static #btnDeleteOnDeleteModalOldClassPage =
+		'[data-testid="submit-btn-delete-systems-modal"]';
+
+	doNotSeeClassOnOldClassAdministrationPageAfterDeletion(customClassName) {
+		cy.get(Classes.#tableOldClassOverview).find(customClassName).should("not.exist");
+	}
+
+	clickOnConfirmDeleteOnModalOldClassPage() {
+		cy.get(Classes.#btnDeleteOnDeleteModalOldClassPage).click();
+	}
+
+	clickOnCancelDeleteModalOnOldClassPage() {
+		cy.get(Classes.#btnCancelOnDeleteModalOldClassPage).click();
+	}
+
+	seeDeleteModalOnOldClassAdministrationPage() {
+		cy.get(Classes.#modalDeleteOnOldClassPage).should("exist");
+	}
+
+	clickOnDeleteClassOnOldClassOverview(customClassName) {
+		cy.get(Classes.#tableOldClassOverview)
+			.find(Classes.#buttonDeleteClassOnOldOverview)
+			.click();
+	}
+
+	clickOnSaveChangesOnEditClasspage() {
+		cy.get(Classes.#buttonSaveChangeOnEditClass).click();
+	}
+
+	clickOnEditClassOnOldClassOverview(customClassName) {
+		cy.get(Classes.#tableOldClassOverview)
+			.find(Classes.#buttonEditClassOnOldOverview)
+			.click();
+	}
+
+	seeCustomClassNameOnClassOverviewTable(customClassName) {
+		cy.get(Classes.#tableOldClassOverview).contains(customClassName);
+	}
+
+	seeNumberOfStudentOnClassOverviewTable(numberOfStudent) {
+		cy.get(Classes.#tableOldClassOverview).contains(numberOfStudent);
+	}
+
+	seeOldClassAdministrationPage() {
+		cy.url().should("include", "/classes");
+	}
+
+	clickOnSaveChangesClassses() {
+		cy.get(Classes.#buttonSaveChangedClassManage).click();
+	}
+
+	selectStudentInManageClassPage(fullNameStudent) {
+		cy.get(Classes.#seeAndSelectStudentOnClassManage).click();
+		cy.get(Classes.#selectionBoxStudentInManageClass)
+			.contains(fullNameStudent)
+			.click();
+	}
+
+	seeSelectedTeacherOnManageClassPage(teacherName) {
+		cy.get(Classes.#seeTeacherSelectonOnClassManagePage).contains(teacherName);
+	}
+
+	clickOnAddClassButtonOnClassCreatePage() {
+		cy.get(Classes.#addClassButtonOnClassCreate).click();
+	}
+
+	clickOnCheckBoxMaintainSchoolYearClassCreatePage() {
+		cy.get(Classes.#miantainSchoolYearInClassCheckBox).check();
+	}
+
+	enterCustomClassName(customClassName) {
+		cy.get(Classes.#customClassNameTextBox).clear();
+		cy.get(Classes.#customClassNameTextBox).type(customClassName);
+	}
+
+	clickOnMoreOptionsInClassCreatePage() {
+		cy.get(Classes.#moreOptionButtonInClassPage).click({ force: true });
+	}
+
+	seeTeacherNameInClassCreatePage(teacherName) {
+		cy.get(Classes.#teacherNameInClassPage).contains(teacherName);
+	}
+
+	clickOnClassesSubMenuInAdministration() {
+		cy.get(Classes.#classSubMenuInAdministration).click();
+	}
+
+	selectSchoolYearInClass(schoolYear) {
+		cy.get(Classes.#classSchoolYearDropdown).contains(schoolYear);
+	}
+
+	clickOnClassInAdministrationSubmenu() {
+		cy.get(Classes.#adminClassNavigationSidebarCard).click();
+	}
+
+	clickOnAddClassButtonOnOldClassPage() {
+		cy.get(Classes.#buttonAddClassOldPage).click();
+	}
 
 	clickCreateClass() {
 		cy.get(Classes.#createClass).click();
@@ -142,7 +261,10 @@ class Classes {
 	}
 
 	seeNewClassTableContainsClass(className, sourceName) {
-		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(className);
+		const classNameData = cy
+			.get(Classes.#classTableNew)
+			.find("td")
+			.contains(className);
 
 		classNameData.should("be.visible");
 		classNameData
@@ -154,7 +276,10 @@ class Classes {
 	}
 
 	seeGroupsHaveAManageButton(groupName) {
-		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(groupName);
+		const classNameData = cy
+			.get(Classes.#classTableNew)
+			.find("td")
+			.contains(groupName);
 
 		classNameData
 			.siblings("td")
@@ -164,7 +289,10 @@ class Classes {
 	}
 
 	seeClassesHave4ActiveActionItems(className) {
-		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(className);
+		const classNameData = cy
+			.get(Classes.#classTableNew)
+			.find("td")
+			.contains(className);
 
 		const buttons = classNameData.siblings("td").eq(4).find("a, button");
 
@@ -238,18 +366,22 @@ class Classes {
 	}
 
 	seeGroupIsSyncedWithCourse(groupName, courseName) {
-		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(groupName);
+		const classNameData = cy
+			.get(Classes.#classTableNew)
+			.find("td")
+			.contains(groupName);
 
 		classNameData.should("be.visible");
-		classNameData
-			.siblings("td")
-			.should(($td) => {
-				expect($td.text().trim()).to.include(courseName);
-			});
+		classNameData.siblings("td").should(($td) => {
+			expect($td.text().trim()).to.include(courseName);
+		});
 	}
 
 	seeGroupIsNotSyncedWithCourse(groupName) {
-		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(groupName);
+		const classNameData = cy
+			.get(Classes.#classTableNew)
+			.find("td")
+			.contains(groupName);
 
 		classNameData.should("be.visible");
 		classNameData
@@ -261,7 +393,10 @@ class Classes {
 	}
 
 	clickEndSyncWithCourseButton(groupName) {
-		const classNameData = cy.get(Classes.#classTableNew).find("td").contains(groupName);
+		const classNameData = cy
+			.get(Classes.#classTableNew)
+			.find("td")
+			.contains(groupName);
 
 		const buttons = classNameData.siblings("td").eq(4).find("a, button");
 		buttons.should("have.length", 2);
