@@ -2,6 +2,7 @@
 @stable_test
 @schedule_test
 Feature:  To create, edit and delete class on dBC or on BRB
+    # Note: On main-BRB student list is not loading on class management page, so test doesn't execute on brb.
 
     As a teacher, I want to create, edit and delete class, so that I can manage the class
 
