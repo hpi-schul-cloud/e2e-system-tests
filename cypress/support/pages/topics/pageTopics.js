@@ -202,7 +202,7 @@ class Topics {
 		});
 	}
 
-	seeTopicDetailPage(
+	seeTopicDetailPageWithContent(
 		topicTitle,
 		contentTitle1,
 		contentTitle2,
@@ -219,6 +219,11 @@ class Topics {
 			cy.get("h2").should("contain", contentTitle4);
 			cy.get("h2").should("contain", contentTitle5);
 		});
+	}
+
+	seeTopicDetailPage(topicTitle) {
+		cy.get(Topics.#navCourseOverviewLink).should("have.class", "active");
+		cy.get(Topics.#titlebar).should("contain", topicTitle);
 	}
 
 	navigateBackToCourseViaBreadcrumb() {
