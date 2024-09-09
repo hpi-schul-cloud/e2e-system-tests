@@ -1,7 +1,7 @@
-@group-A
+# @group-A
 @stable_test
 @regression_test
-@pr
+# @pr
 @schedule_run
 Feature: Course - To add and delete a course by the teacher
 
