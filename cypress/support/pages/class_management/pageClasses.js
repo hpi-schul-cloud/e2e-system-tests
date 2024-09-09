@@ -71,7 +71,7 @@ class Classes {
 			.click();
 	}
 
-	clickOnSaveChangesOnEditClasspage() {
+	clickOnSaveChangesOnEditClassPage() {
 		cy.get(Classes.#buttonSaveChangeOnEditClass).click();
 	}
 
@@ -93,7 +93,7 @@ class Classes {
 		cy.url().should("include", "/classes");
 	}
 
-	clickOnSaveChangesClassses() {
+	clickOnSaveChangesClass() {
 		cy.get(Classes.#buttonSaveChangedClassManage).click();
 	}
 
@@ -137,7 +137,7 @@ class Classes {
 		cy.get(Classes.#classSchoolYearDropdown).contains(schoolYear);
 	}
 
-	clickOnClassInAdministrationSubmenu() {
+	clickOnClassInAdministrationSubMenu() {
 		cy.get(Classes.#adminClassNavigationSidebarCard).click();
 	}
 

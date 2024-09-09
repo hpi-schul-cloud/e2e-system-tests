@@ -30,7 +30,7 @@ When("I click on the button save change on the page edit class", () => {
 	classes.clickOnSaveChangesOnEditClasspage();
 });
 
-When("I click the button edit for the class {string}", (customClassName) => {
+When("I click on the button edit for the class {string}", (customClassName) => {
 	classes.clickOnEditClassOnOldClassOverview();
 });
 

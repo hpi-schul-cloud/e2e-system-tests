@@ -31,7 +31,7 @@ Feature:  To create, edit and delete class on dBC or on BRB
         Then I see number of student '<number_of_students>' on the overview
 
         # Teacher edits the class
-        When I click the button edit for the class '<custom_class_name>'
+        When I click on the button edit for the class '<custom_class_name>'
         When I enter a custom Class name '<edit_custom_class_name>'
         When I click on the checkbox Maintain school year assignment
         When I click on the button save change on the page edit class
