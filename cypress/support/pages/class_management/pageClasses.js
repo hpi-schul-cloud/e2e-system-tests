@@ -26,17 +26,17 @@ class Classes {
 	static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
 	static #legacyClassTable = '[data-testid="table_container"]';
 	static #buttonAddClassOldPage = '[data-testid="createClass"]';
-	static #classSchoolYearDropdown = '[data-testid="class-school-year-selection"]';
-	static #classSubMenuInAdministration = '[data-testid="Klassen"]';
+	static #dropDownSchoolYearCreateClass = '[data-testid="class-school-year-selection"]';
+	static #subMenuClassInAdministration = '[data-testid="Klassen"]';
 	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
 	static #moreOptionButtonInClassPage = '[data-testid="classCreationExtraOptions"]';
-	static #customClassNameTextBox = '[data-testid="Klassenbezeichnung"]';
-	static #miantainSchoolYearInClassCheckBox =
+	static #textBoxCustomClassName = '[data-testid="Klassenbezeichnung"]';
+	static #checkBoxMiantainSchoolYearInClassCreate =
 		'[data-testid="maintain-school-year-in-class"]';
 	static #addClassButtonOnClassCreate = '[data-testid="confirmClassCreate"]';
-	static #seeTeacherSelectonOnClassManagePage =
+	static #dropDownTeacherSelectonOnClassManage =
 		'[data-testid="teacher-selection-on-manage-class"]';
-	static #seeAndSelectStudentOnClassManage =
+	static #dropDownStudentSelectonOnClassManage =
 		'[data-testid="student-selection-on-manage-class"]';
 	static #buttonSaveChangedClassManage = '[data-testid="manage-confirm"]';
 	static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
@@ -45,8 +45,8 @@ class Classes {
 	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
 	static #buttonDeleteClassOnOldOverview = '[data-testid="delete-class"]';
 	static #modalDeleteOnOldClassPage = '[data-testid="popup-title"]';
-	static #btnCancelOnDeleteModalOldClassPage = '[data-testid="btn-cancel"]';
-	static #btnDeleteOnDeleteModalOldClassPage =
+	static #buttonCancelOnDeleteModalOldClassPage = '[data-testid="btn-cancel"]';
+	static #buttonDeleteOnDeleteModalOldClassPage =
 		'[data-testid="submit-btn-delete-systems-modal"]';
 
 	doNotSeeClassOnOldClassAdministrationPageAfterDeletion(customClassName) {
@@ -54,11 +54,11 @@ class Classes {
 	}
 
 	clickOnConfirmDeleteOnModalOldClassPage() {
-		cy.get(Classes.#btnDeleteOnDeleteModalOldClassPage).click();
+		cy.get(Classes.#buttonDeleteOnDeleteModalOldClassPage).click();
 	}
 
 	clickOnCancelDeleteModalOnOldClassPage() {
-		cy.get(Classes.#btnCancelOnDeleteModalOldClassPage).click();
+		cy.get(Classes.#buttonCancelOnDeleteModalOldClassPage).click();
 	}
 
 	seeDeleteModalOnOldClassAdministrationPage() {
@@ -98,14 +98,14 @@ class Classes {
 	}
 
 	selectStudentInManageClassPage(fullNameStudent) {
-		cy.get(Classes.#seeAndSelectStudentOnClassManage).click();
+		cy.get(Classes.#dropDownStudentSelectonOnClassManage).click();
 		cy.get(Classes.#selectionBoxStudentInManageClass)
 			.contains(fullNameStudent)
 			.click();
 	}
 
 	seeSelectedTeacherOnManageClassPage(teacherName) {
-		cy.get(Classes.#seeTeacherSelectonOnClassManagePage).contains(teacherName);
+		cy.get(Classes.#dropDownTeacherSelectonOnClassManage).contains(teacherName);
 	}
 
 	clickOnAddClassButtonOnClassCreatePage() {
@@ -113,12 +113,12 @@ class Classes {
 	}
 
 	clickOnCheckBoxMaintainSchoolYearClassCreatePage() {
-		cy.get(Classes.#miantainSchoolYearInClassCheckBox).check();
+		cy.get(Classes.#checkBoxMiantainSchoolYearInClassCreate).check();
 	}
 
 	enterCustomClassName(customClassName) {
-		cy.get(Classes.#customClassNameTextBox).clear();
-		cy.get(Classes.#customClassNameTextBox).type(customClassName);
+		cy.get(Classes.#textBoxCustomClassName).clear();
+		cy.get(Classes.#textBoxCustomClassName).type(customClassName);
 	}
 
 	clickOnMoreOptionsInClassCreatePage() {
@@ -130,11 +130,11 @@ class Classes {
 	}
 
 	clickOnClassesSubMenuInAdministration() {
-		cy.get(Classes.#classSubMenuInAdministration).click();
+		cy.get(Classes.#subMenuClassInAdministration).click();
 	}
 
 	selectSchoolYearInClass(schoolYear) {
-		cy.get(Classes.#classSchoolYearDropdown).contains(schoolYear);
+		cy.get(Classes.#dropDownSchoolYearCreateClass).contains(schoolYear);
 	}
 
 	clickOnClassInAdministrationSubMenu() {
