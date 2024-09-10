@@ -7,7 +7,7 @@ Feature:  To create, edit and delete class on dBC or on BRB
 
   Scenario: Teacher creates, edits and delete a class, including pre-conditions
 
-    # Note: On main-BRB student list is not loading on class management page, so test doesn't execute on brb.
+    # Note: On main-BRB student list is not loading on class management page when using schoolApi, so test doesn't execute on brb.
 
     # pre-condition: admin, teacher and student log in to create their account in a same school
     Given I am logged in as a '<student>' at '<namespace>'
