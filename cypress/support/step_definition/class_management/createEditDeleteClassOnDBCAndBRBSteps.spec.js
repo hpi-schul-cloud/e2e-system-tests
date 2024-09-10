@@ -38,7 +38,7 @@ Then("I see class {string} on the overview", (customClassName) => {
 	classes.seeCustomClassNameOnClassOverviewTable(customClassName);
 });
 
-Then("I see number of student {string} on the overview", (numberOfStudent) => {
+Then("I see number of students {string} on the overview", (numberOfStudent) => {
 	classes.seeNumberOfStudentOnClassOverviewTable(numberOfStudent);
 });
 
@@ -63,7 +63,7 @@ When("I click on the button Add class", () => {
 });
 
 When("I click on the checkbox Maintain school year assignment", () => {
-	classes.clickOnCheckBoxMaintainSchoolYearClassCreatePage();
+	classes.clickOnCheckBoxMaintainSchoolYearAssignment();
 });
 
 When("I enter a custom Class name {string}", (customClassName) => {
@@ -79,7 +79,7 @@ Then("I see the teacher name {string} is selected", (teacherName) => {
 });
 
 Then("I see the current school year {string} is selected", (schoolYear) => {
-	classes.selectSchoolYearInClass(schoolYear);
+	classes.seeSelectedSchoolYearInClass(schoolYear);
 });
 
 When("When I click on sub menu class", () => {

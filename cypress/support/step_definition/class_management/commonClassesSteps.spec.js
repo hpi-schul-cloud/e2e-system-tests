@@ -21,7 +21,7 @@ When("I go to new class administration page", () => {
 	management.navigateToNewClassAdministration();
 });
 
-When("I click on add class", () => {
+When("I click on Add class", () => {
 	classes.clickCreateClass();
 });
 

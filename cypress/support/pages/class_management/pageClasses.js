@@ -31,12 +31,12 @@ class Classes {
 	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
 	static #moreOptionButtonInClassPage = '[data-testid="classCreationExtraOptions"]';
 	static #textBoxCustomClassName = '[data-testid="Klassenbezeichnung"]';
-	static #checkBoxMiantainSchoolYearInClassCreate =
+	static #checkBoxMaintainSchoolYearInClassCreate =
 		'[data-testid="maintain-school-year-in-class"]';
-	static #addClassButtonOnClassCreate = '[data-testid="confirmClassCreate"]';
-	static #dropDownTeacherSelectonOnClassManage =
+	static confirmClassCreate = '[data-testid="confirmClassCreate"]';
+	static #dropDownTeacherSelectionOnClassManage =
 		'[data-testid="teacher-selection-on-manage-class"]';
-	static #dropDownStudentSelectonOnClassManage =
+	static #dropDownStudentSelectionOnClassManage =
 		'[data-testid="student-selection-on-manage-class"]';
 	static #buttonSaveChangedClassManage = '[data-testid="manage-confirm"]';
 	static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
@@ -98,22 +98,22 @@ class Classes {
 	}
 
 	selectStudentInManageClassPage(fullNameStudent) {
-		cy.get(Classes.#dropDownStudentSelectonOnClassManage).click();
+		cy.get(Classes.#dropDownStudentSelectionOnClassManage).click();
 		cy.get(Classes.#selectionBoxStudentInManageClass)
 			.contains(fullNameStudent)
 			.click();
 	}
 
 	seeSelectedTeacherOnManageClassPage(teacherName) {
-		cy.get(Classes.#dropDownTeacherSelectonOnClassManage).contains(teacherName);
+		cy.get(Classes.#dropDownTeacherSelectionOnClassManage).contains(teacherName);
 	}
 
 	clickOnAddClassButtonOnClassCreatePage() {
-		cy.get(Classes.#addClassButtonOnClassCreate).click();
+		cy.get(Classes.confirmClassCreate).click();
 	}
 
-	clickOnCheckBoxMaintainSchoolYearClassCreatePage() {
-		cy.get(Classes.#checkBoxMiantainSchoolYearInClassCreate).check();
+	clickOnCheckBoxMaintainSchoolYearAssignment() {
+		cy.get(Classes.#checkBoxMaintainSchoolYearInClassCreate).check();
 	}
 
 	enterCustomClassName(customClassName) {
@@ -132,7 +132,7 @@ class Classes {
 		cy.get(Classes.#subMenuClassInAdministration).click();
 	}
 
-	selectSchoolYearInClass(schoolYear) {
+	seeSelectedSchoolYearInClass(schoolYear) {
 		cy.get(Classes.#dropDownSchoolYearCreateClass).contains(schoolYear);
 	}
 

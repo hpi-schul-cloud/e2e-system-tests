@@ -22,7 +22,7 @@ class Teams {
 	static #teamEventTitleInput = '[data-testid="team_event_name"]';
 	static #teamEventStartDateTime = '[data-testid="form-datetime-input-startDate"]';
 	static #teamEventEndDateTime = '[data-testid="form-datetime-input-endDate"]';
-	static #teamEventDescrptionInput = '[data-testid="team_event_description"]';
+	static #teamEventDescriptionInput = '[data-testid="team_event_description"]';
 	static #teamCalendarEventDescription =
 		'[data-testid="team-event-calendar-description"]';
 	static #teamEventPlaceInput = '[data-testid="team_event_location"]';
@@ -168,7 +168,7 @@ class Teams {
 	}
 
 	editTeamEventDescription(editedEventDescription) {
-		cy.get(Teams.#teamEventDescrptionInput)
+		cy.get(Teams.#teamEventDescriptionInput)
 			.eq(1)
 			.clear()
 			.type(editedEventDescription);
@@ -199,7 +199,7 @@ class Teams {
 	}
 
 	enterTeamEventDescription(eventDescription) {
-		cy.get(Teams.#teamEventDescrptionInput).eq(1).type(eventDescription);
+		cy.get(Teams.#teamEventDescriptionInput).eq(1).type(eventDescription);
 	}
 
 	selectTeamEventEndDate() {
