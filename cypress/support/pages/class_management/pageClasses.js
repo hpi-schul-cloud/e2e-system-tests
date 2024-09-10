@@ -66,7 +66,7 @@ class Classes {
 	}
 
 	clickOnDeleteClassOnOldClassOverview(customClassName) {
-		cy.get(Classes.#tableOldClassOverview)
+		cy.get(Classes.#tableOldClassOverview).contains(customClassName)
 			.find(Classes.#buttonDeleteClassOnOldOverview)
 			.click();
 	}
@@ -76,7 +76,7 @@ class Classes {
 	}
 
 	clickOnEditClassOnOldClassOverview(customClassName) {
-		cy.get(Classes.#tableOldClassOverview)
+		cy.get(Classes.#tableOldClassOverview).contains(customClassName)
 			.find(Classes.#buttonEditClassOnOldOverview)
 			.click();
 	}
@@ -117,8 +117,7 @@ class Classes {
 	}
 
 	enterCustomClassName(customClassName) {
-		cy.get(Classes.#textBoxCustomClassName).clear();
-		cy.get(Classes.#textBoxCustomClassName).type(customClassName);
+		cy.get(Classes.#textBoxCustomClassName).clear().type(customClassName);
 	}
 
 	clickOnMoreOptionsInClassCreatePage() {
