@@ -22,15 +22,15 @@ Then("I can see the delete modal on old class administration page", () => {
 	classes.seeDeleteModalOnOldClassAdministrationPage();
 });
 
-When("I click the button delete for the class {string}", (customClassName) => {
-	classes.clickOnDeleteClassOnOldClassOverview(customClassName);
+When("I click the button delete to delete the class", () => {
+	classes.clickOnDeleteClassOnOldClassOverview();
 });
 
 When("I click on the button save change on the page edit class", () => {
 	classes.clickOnSaveChangesOnEditClassPage();
 });
 
-When("I click on the button edit for the class {string}", (customClassName) => {
+When("I click on the button edit to edit the class", () => {
 	classes.clickOnEditClassOnOldClassOverview();
 });
 

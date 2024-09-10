@@ -65,8 +65,8 @@ class Classes {
 		cy.get(Classes.#modalDeleteOnOldClassPage).should("exist");
 	}
 
-	clickOnDeleteClassOnOldClassOverview(customClassName) {
-		cy.get(Classes.#tableOldClassOverview).contains(customClassName)
+	clickOnDeleteClassOnOldClassOverview() {
+		cy.get(Classes.#tableOldClassOverview)
 			.find(Classes.#buttonDeleteClassOnOldOverview)
 			.click();
 	}
@@ -75,8 +75,8 @@ class Classes {
 		cy.get(Classes.#buttonSaveChangeOnEditClass).click();
 	}
 
-	clickOnEditClassOnOldClassOverview(customClassName) {
-		cy.get(Classes.#tableOldClassOverview).contains(customClassName)
+	clickOnEditClassOnOldClassOverview() {
+		cy.get(Classes.#tableOldClassOverview)
 			.find(Classes.#buttonEditClassOnOldOverview)
 			.click();
 	}
