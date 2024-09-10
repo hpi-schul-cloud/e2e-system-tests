@@ -108,8 +108,8 @@ class Classes {
 		cy.get(Classes.#dropDownTeacherSelectionOnClassManage).contains(teacherName);
 	}
 
-	clickOnAddClassButtonOnClassCreatePage() {
-		cy.get(Classes.confirmClassCreate).click();
+	clickOnAddClassButtonOnClassOverviewPage() {
+		cy.get(Classes.#buttonAddClassOldPage).click();
 	}
 
 	clickOnCheckBoxMaintainSchoolYearAssignment() {

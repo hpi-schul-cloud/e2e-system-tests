@@ -3,6 +3,10 @@ import Classes from "../../pages/class_management/pageClasses";
 
 const classes = new Classes();
 
+When("I click on the button Add class on the page create class", () => {
+	classes.clickConfirmCreateClass();
+});
+
 When("I do not see the class {string}", (customClassName) => {
 	classes.doNotSeeClassOnOldClassAdministrationPageAfterDeletion(customClassName);
 });
@@ -58,8 +62,8 @@ Then("I see the teacher name {string} in the teacher dropdown", (teacherName) =>
 	classes.seeSelectedTeacherOnManageClassPage(teacherName);
 });
 
-When("I click on the button Add class", () => {
-	classes.clickOnAddClassButtonOnClassCreatePage();
+When("I click on the button Add class on the page class overview", () => {
+	classes.clickOnAddClassButtonOnClassOverviewPage();
 });
 
 When("I click on the checkbox Maintain school year assignment", () => {

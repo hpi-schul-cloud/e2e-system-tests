@@ -17,14 +17,14 @@ Feature:  To create, edit and delete class on dBC or on BRB
         When I click on administration in menu
         When I click on sub menu class
         Then I see old class administration page
-        When I click on the button Add class
+        When I click on the button Add class on the page class overview
         Then I can see the create class page
         Then I see the current school year '<school_year>' is selected
         Then I see the teacher name '<fullname_teacher>' is selected
         When I click on the button More Options
         When I enter a custom Class name '<custom_class_name>'
         When I click on the checkbox Maintain school year assignment
-        When I click on the button Add class
+        When I click on the button Add class on the page create class
         Then I see the teacher name '<fullname_teacher>' in the teacher dropdown
         Then I select the '<fullname_student>' from the student selection dropdown
         When I click on the button Save changes
@@ -45,7 +45,7 @@ Feature:  To create, edit and delete class on dBC or on BRB
         Then I can see the delete modal on old class administration page
         When I click the cancel button on the delete modal on old class administration page
         Then I see old class administration page
-        When I click the button delete for the class
+        When I click the button delete to delete the class
         Then I can see the delete modal on old class administration page
         When I click on delete confirmation button on the delete modal
         Then I see old class administration page
