@@ -91,8 +91,8 @@ Feature: Teacher can create, update and stop a synchronized course
     When I click the confirm button on the synchronization confirmation modal
     Then I see the synced chip next to the title on the room page
     Examples:
-      | user         | namespace | course_title                     | group_title                   | teacher_name | student_name  |
-      | teacher1_nbc | nbc       | Cypress-Test-Existing-Course     | Cypress-Test-Existing-Course  | Karl Herzog  | Herbert Kraft |
+      | user         | namespace | course_title                     | group_title         | teacher_name | student_name  |
+      | teacher1_nbc | nbc       | Cypress-Test-Existing-Course     | Cypress-Test-Group  | Karl Herzog  | Herbert Kraft |
 
   Scenario Outline: Edit a synchronized course
     When I go to rooms overview
@@ -125,7 +125,6 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see the end synchronization button
     When I click the end synchronization button
     Then I see the title of the modal to end the sync
-    Then I see the warning text of the modal to end the sync
     Then I see the information text of the modal to end the sync
     When I click the confirmation button of the modal to end the sync
     When I go to rooms overview
@@ -141,13 +140,10 @@ Feature: Teacher can create, update and stop a synchronized course
       |  Cypress-Test-Existing-Course  | Cypress-Test-Group             |
 
   Scenario Outline: Stop a course synchronization in the class overview
-    When I click on administration in menu
-    When I go to new class administration page
-    Then I see the new class administration page
+    Given I see the new class administration page
     Then I see the group '<group_title>' is synced with course '<group_title>'
     When I click the end sync button of group '<group_title>'
     Then I see the title of the modal to end the sync
-    Then I see the warning text of the modal to end the sync
     Then I see the information text of the modal to end the sync
     When I click the confirmation button of the modal to end the sync
     Then I see the group '<group_title>' has no synced course

@@ -73,11 +73,23 @@ Feature: Course - To show courses in a table with respective functionality
         Then I see information text of the modal asking for confirmation of synchronization
         When I click the confirm button on the synchronization confirmation modal
         Then I see the new course administration page
-        #in future a stop synchronization button will be seen here and should be tested
-        Then I do not see the start synchronize button on course '<course_title>'
+        #Then I do not see the start synchronize button on course '<course_title>'
+        Then I see the end synchronization button on course '<course_title>'
     Examples:
         | course_title               | group_title         |
         | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
+
+    Scenario Outline: Admin ends synchronization of a course with a group
+        Given I see the new course administration page
+        When I click the end synchronization button on course '<course_title>'
+        Then I see the title of the modal to end the sync
+        Then I see the information text of the modal to end the sync
+        When I click the confirmation button of the modal to end the sync
+        Then I see the new course administration page
+        Then I see the start synchronization button on course '<course_title>'
+        Examples:
+            |course_title               |
+            |Cypress-Admin-Test-Course  |
 #
     Scenario Outline: Admin deletes courses
         Given I see the new course administration page
