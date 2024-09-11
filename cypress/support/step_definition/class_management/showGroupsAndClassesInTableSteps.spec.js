@@ -15,7 +15,7 @@ When("I click the cancel manage class button", () => {
 	classes.clickCancelButton();
 });
 
-Then("I see the cancel modal", () => {
+Then("I can see the cancel modal", () => {
 	classes.isCancelModal();
 });
 
@@ -66,7 +66,7 @@ When("I click the delete button", () => {
 	classes.clickDeleteButton();
 });
 
-Then("I see the delete modal", () => {
+Then("I can see the delete modal", () => {
 	classes.isDeleteDialog();
 });
 
