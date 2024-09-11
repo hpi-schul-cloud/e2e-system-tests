@@ -178,7 +178,12 @@ class Management {
 	}
 
 	openAdministrationInMenu() {
-		cy.get(Management.#administrationOverviewNavigationButton).click();
+		cy.get(Management.#administrationOverviewNavigationButton).parent().then(($element) => {
+			if(!$element.hasClass("v-list-group--open"))
+			{
+				cy.get(Management.#administrationOverviewNavigationButton).click();
+			}
+		});
 	}
 
 	navigateToUserAdministration(role) {

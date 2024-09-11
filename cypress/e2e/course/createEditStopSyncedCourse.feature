@@ -17,7 +17,7 @@ Feature: Teacher can create, update and stop a synchronized course
     When I click cancel button on the modal to select a synced group
     Examples:
       | user       | namespace | group_title                                    |
-      | admin1_nbc | nbc   | Cypress-Test-Group-Course-Sync-Without-Teacher |
+      | admin1_nbc | nbc       | Cypress-Test-Group-Course-Sync-Without-Teacher |
 
   Scenario Outline: Create a synchronized course
     Given I am logged in as a '<user>' at '<namespace>'
