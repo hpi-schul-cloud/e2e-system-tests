@@ -107,13 +107,13 @@ class Courses {
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
 	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
-	static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
-	static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]';
-	static #bbbVideoStartDialogBoxNBC =
+	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
+	static #bbbVideoStartDialogBoxCourse =
 		'[data-testid="videoconference-config-dialog-title"]';
-	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
-	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #bbbDialogBoxCancelButtonCourse = '[data-testid="dialog-cancel"]';
+	static #bbbDisabledCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #oldToolsTabInCourseDetail = '[data-testid="old-tools-tab"]';
 	static #listToolsCourse = '[data-testid="course_tool_list"]';
 	static #modalContent = '[data-testid="modal_content"]';
@@ -282,31 +282,31 @@ class Courses {
 	}
 
 	seeDisabledCheckBoxForBBBToolInCourseEditPage() {
-		cy.get(Courses.#bbbDisabledCheckBoxNBC).should("be.disabled");
+		cy.get(Courses.#bbbDisabledCheckBoxCourse).should("be.disabled");
 	}
 
 	uncheckVideoConferenceCheckBoxInCourseEditPage() {
-		cy.get(Courses.#videoConferenceCheckBoxNBC).uncheck();
+		cy.get(Courses.#videoConferenceCheckBoxCourse).uncheck();
 	}
 
-	doNotSeeBBBInToolTabNBC() {
-		cy.get(Courses.#bbbToolIconInToolsTabNBC).should("not.exist");
+	doNotSeeBBBInCourseToolTab() {
+		cy.get(Courses.#bbbToolIconInToolsTabCourse).should("not.exist");
 	}
 
-	cancelBBBToolDialogBoxNBC() {
-		cy.get(Courses.#bbbDialogBoxCancelButtonNBC).click();
+	clickOnCancelBBBToolDialogBoxInCourse() {
+		cy.get(Courses.#bbbDialogBoxCancelButtonCourse).click();
 	}
 
-	seeBBBDialogBoxToStartTheConferenceInNBC() {
-		cy.get(Courses.#bbbVideoStartDialogBoxNBC).should("exist");
+	seeBBBDialogBoxToStartTheConferenceInCourse() {
+		cy.get(Courses.#bbbVideoStartDialogBoxCourse).should("exist");
 	}
 
-	clickOnBBBInToolTabInNBC() {
-		cy.get(Courses.#bbbToolIconInToolsTabNBC).click();
+	clickOnBBBInCourseToolTab() {
+		cy.get(Courses.#bbbToolIconInToolsTabCourse).click();
 	}
 
-	seeBBBInToolTabNBC() {
-		cy.get(Courses.#bbbToolIconInToolsTabNBC).should("exist");
+	seeBBBInCourseToolTab() {
+		cy.get(Courses.#bbbToolIconInToolsTabCourse).should("exist");
 	}
 
 	clickOnToolsTabInCourse() {
@@ -314,7 +314,7 @@ class Courses {
 	}
 
 	clickOnEnableVideoConferenceCheckBoxInCourseEditPage() {
-		cy.get(Courses.#videoConferenceCheckBoxNBC).check();
+		cy.get(Courses.#videoConferenceCheckBoxCourse).check();
 	}
 
 	seeSectionOneAreaOnCourseCreatePage() {
