@@ -8,13 +8,13 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click on administration in menu
     When I go to new class administration page
     Then I see the new class administration page
-    When I click on add class
+    When I click on Add class
     Then I can see the create class page
     When I click the cancel create class button
     Then I see the cancel modal
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
-    When I click on add class
+    When I click on Add class
     When I click on the confirm button
     When I confirm managing the class
     Then I see the new class administration page

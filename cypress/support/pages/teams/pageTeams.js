@@ -22,7 +22,7 @@ class Teams {
 	static #teamEventTitleInput = '[data-testid="team_event_name"]';
 	static #teamEventStartDateTime = '[data-testid="form-datetime-input-startDate"]';
 	static #teamEventEndDateTime = '[data-testid="form-datetime-input-endDate"]';
-	static #teamEventDescrptionInput = '[data-testid="team_event_description"]';
+	static #teamEventDescriptionInput = '[data-testid="team_event_description"]';
 	static #teamCalendarEventDescription =
 		'[data-testid="team-event-calendar-description"]';
 	static #teamEventPlaceInput = '[data-testid="team_event_location"]';
@@ -35,7 +35,8 @@ class Teams {
 		'[data-testid="start_video_conference_link"]';
 	static #teamVideoConferenceModal = '[data-testid="modal_content"]';
 	static #muteParticipantToggle = '[data-testid="toggle_mute_participants"]';
-	static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]';
+	static #moderatorApprovalToggle =
+		'[data-testid="toggle_moderator_approval_required"]';
 	static #allPartipantsAreModeratorToggel =
 		'[data-testid="toggle_all_participants_moderator"]';
 	static #disabledVideoCheckboxOnTeamEditpage = '[disabled=""]';
@@ -101,7 +102,10 @@ class Teams {
 	}
 
 	seeTeamEventDescription(teamEventDescription) {
-		cy.get(Teams.#teamCalendarEventDescription).should("contain", teamEventDescription);
+		cy.get(Teams.#teamCalendarEventDescription).should(
+			"contain",
+			teamEventDescription
+		);
 	}
 
 	seeVideoPartcipationButtonInTeamEvents() {
@@ -164,7 +168,10 @@ class Teams {
 	}
 
 	editTeamEventDescription(editedEventDescription) {
-		cy.get(Teams.#teamEventDescrptionInput).eq(1).clear().type(editedEventDescription);
+		cy.get(Teams.#teamEventDescriptionInput)
+			.eq(1)
+			.clear()
+			.type(editedEventDescription);
 	}
 
 	editTeamEventPlace(editedEventPlace) {
@@ -192,7 +199,7 @@ class Teams {
 	}
 
 	enterTeamEventDescription(eventDescription) {
-		cy.get(Teams.#teamEventDescrptionInput).eq(1).type(eventDescription);
+		cy.get(Teams.#teamEventDescriptionInput).eq(1).type(eventDescription);
 	}
 
 	selectTeamEventEndDate() {
@@ -310,7 +317,9 @@ class Teams {
 
 	canNotSeeTeamVideoCheckbox() {
 		cy.get(Teams.#teamOptions);
-		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should("not.exist");
+		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should(
+			"not.exist"
+		);
 		cy.get(Teams.#activateConfCheckbox).should("not.exist");
 	}
 

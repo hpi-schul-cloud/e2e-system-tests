@@ -31,7 +31,8 @@ class Courses {
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
 	static #backToDraftButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
-	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
+	static #taskCardThreeDotMenuInCoursePageWithIndex =
+		'[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
 	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]'
 	static #dropDownCourse = '[data-testid="room-menu"]';
@@ -106,7 +107,8 @@ class Courses {
 	static #studentGroupNameOnStudentGroupPage = '[data-testid="group-name-entry"]';
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
-	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
+	static #deleteCourseGroupConfirmationButton =
+		'[data-testid="delete-course-group-btn"]';
 	static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]';
@@ -647,7 +649,9 @@ class Courses {
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
-		cy.get(Courses.#taskCardInCoursePageWithIndex).find("button").should("be.visible");
+		cy.get(Courses.#taskCardInCoursePageWithIndex)
+			.find("button")
+			.should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
@@ -733,7 +737,9 @@ class Courses {
 
 	deleteCoursesByName(courseLabel, roomName) {
 		cy.get(`[class="rooms-container"]`).then(($roomsContainer) => {
-			if ($roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length) {
+			if (
+				$roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length
+			) {
 				cy.get(`[aria-label="${courseLabel} ${roomName}"]`).then(($rooms) => {
 					if ($rooms) {
 						cy.wrap($rooms).first().click();
@@ -780,7 +786,10 @@ class Courses {
 
 	addGroup(groupName) {
 		cy.get(Courses.#groupSelection).find(".chosen-choices").click();
-		cy.get(Courses.#groupSelection).find(".chosen-results").contains(groupName).click();
+		cy.get(Courses.#groupSelection)
+			.find(".chosen-results")
+			.contains(groupName)
+			.click();
 	}
 
 	removeGroup(groupName) {
@@ -934,7 +943,11 @@ class Courses {
 			.get(Courses.#roomExternalToolSection)
 			.find("div")
 			.contains(toolName);
-		toolCard.parent("div").siblings("div").find(Courses.#deactivatedChip).should("exist");
+		toolCard
+			.parent("div")
+			.siblings("div")
+			.find(Courses.#deactivatedChip)
+			.should("exist");
 	}
 
 	seeToolIsNotMarkedAsDeactivated(toolName) {
@@ -954,7 +967,11 @@ class Courses {
 			.get(Courses.#roomExternalToolSection)
 			.find("div")
 			.contains(toolName);
-		toolCard.parent("div").siblings("div").find(Courses.#incompleteChip).should("exist");
+		toolCard
+			.parent("div")
+			.siblings("div")
+			.find(Courses.#incompleteChip)
+			.should("exist");
 	}
 
 	seeToolIsNotMarkedAsIncomplete(toolName) {
@@ -1033,7 +1050,9 @@ class Courses {
 
 	schoolExternalToolIsNotVisibleInToolSelection(toolName) {
 		cy.get(Courses.#toolConfigurationSelect).click();
-		cy.get(Courses.#toolConfigurationSelectItem).contains(toolName).should("not.exist");
+		cy.get(Courses.#toolConfigurationSelectItem)
+			.contains(toolName)
+			.should("not.exist");
 	}
 
 	editMissingToolParameterValue() {
@@ -1064,7 +1083,10 @@ class Courses {
 	}
 
 	addStudentWithSearchStringToCourse(searchString) {
-		cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type("{enter}");
+		cy.get(Courses.#chooseStudentSelectionBox)
+			.click()
+			.type(searchString)
+			.type("{enter}");
 		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
 		cy.get(Courses.#btnSubmit).click();
 	}
@@ -1125,11 +1147,15 @@ class Courses {
 	}
 
 	seeSelectedTeacher(teacherName) {
-		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected");
+		cy.get(Courses.#selectTeacher)
+			.contains("option", teacherName)
+			.should("be.selected");
 	}
 
 	seeSelectedStudent(studentName) {
-		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
+		cy.get(Courses.#selectStudent)
+			.contains("option", studentName)
+			.should("be.selected");
 	}
 
 	seeTeacherSelectionBoxIsDisabled() {
