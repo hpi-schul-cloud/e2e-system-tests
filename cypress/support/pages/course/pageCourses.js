@@ -145,8 +145,6 @@ class Courses {
 	static #btnConfirmEndSync = '[data-testid="dialog-confirm"]';
 	static #endSyncDialogTitle = '[data-testid="dialog-title"]';
 	static #SyncConfirmDialogTitle = '[data-testid="dialog-title"]';
-	static #endSyncDialogWarningText =
-		'[data-testid="end-course-sync-dialog-warning-text"]';
 	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
 	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
@@ -1115,16 +1113,12 @@ class Courses {
 		cy.get(Courses.#syncedConfirmDialogInfoText).should("be.visible");
 	}
 
-	seeWarningTextInEndSyncDialog() {
-		cy.get(Courses.#endSyncDialogWarningText).should("be.visible");
-	}
-
 	seeInfoTextInEndSyncDialog() {
 		cy.get(Courses.#endSyncDialogInfoText).should("be.visible");
 	}
 
 	seeGroupSelectionInSyncedGroupDialog() {
-		cy.get(Courses.#syncedGroupDialogInfoText).should("be.visible");
+		cy.get(Courses.#syncedGroupDialogSelection).should("be.visible");
 	}
 
 	seeWarningTextInSyncedGroupDialog() {
