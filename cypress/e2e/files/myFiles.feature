@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 Feature: Files Overview - To use LibreOffice for text, calc and presentation document
 
   As a user I want to create and edit a LibreOffice text document so that I write into it
