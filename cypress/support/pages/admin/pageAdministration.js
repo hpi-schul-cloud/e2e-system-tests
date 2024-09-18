@@ -94,6 +94,7 @@ class Management {
 	static #studentVisiblityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
 	static #toolConfiguration = '[data-testid="configuration-field"]';
+	static #buttonNewAdminPage = '[data-testid="button_new_admin_page"]';
 
 	enableStudentVisibilityForTeacher() {
 		cy.get(Management.#studentVisiblityToggle).click({ force: true }).wait(500);
@@ -130,7 +131,14 @@ class Management {
 	}
 
 	clickOnSchoolAdministrationInSideMenu() {
-		cy.get(Management.#schoolAdministrationNavigationSubMenu).click();
+		cy.get(Management.#schoolAdministrationNavigationSubMenu).first().click();
+		cy.get("body").then((body) => {
+			if (body.find(Management.#buttonNewAdminPage).length) {
+				cy.get(Management.#buttonNewAdminPage).click();
+			} else {
+				cy.log("It is the new admin page");
+			}
+		});
 	}
 
 	clickAllowStudentsTeamCheckbox() {

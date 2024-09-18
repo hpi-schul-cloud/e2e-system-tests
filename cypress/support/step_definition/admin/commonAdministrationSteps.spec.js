@@ -19,7 +19,7 @@ Then("I enable the video conference", () => {
 	management.enableTeamsVideoConferenceByAdmin();
 });
 
-When("I click on sub menu school", () => {
+When("I click on sub menu school and see new admin page", () => {
 	management.clickOnSchoolAdministrationInSideMenu();
 });
 
@@ -39,9 +39,9 @@ When("I click on external tools panel", () => {
 	management.clickExternalToolsPanel();
 });
 
-When("I go to new school administration page", () => {
-	management.clickNewAdminPageButton();
-});
+//When("I go to new school administration page", () => {
+	//management.clickNewAdminPageButton();
+//});
 
 When("I click save general settings button", () => {
 	management.clickSaveGeneralSettingsButton();
