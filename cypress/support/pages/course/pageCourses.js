@@ -30,7 +30,8 @@ class Courses {
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
 	static #backToDraftButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
-	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
+	static #taskCardThreeDotMenuInCoursePageWithIndex =
+		'[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
 	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]'
 	static #dropDownCourse = '[data-testid="room-menu"]';
@@ -88,7 +89,7 @@ class Courses {
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="dialog-close"]';
-	//static #toolCardMenu = '[data-testid="tool-card-menu"]';
+	static #toolCardMenu = '[data-testid="tool-card-menu"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #protectedParameter = '[data-testid="protected"]';
@@ -106,7 +107,7 @@ class Courses {
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
 	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
-	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
+	static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
 	static #bbbVideoStartDialogBoxCourse =
@@ -134,8 +135,6 @@ class Courses {
 	static #btnConfirmEndSync = '[data-testid="dialog-confirm"]';
 	static #endSyncDialogTitle = '[data-testid="dialog-title"]';
 	static #SyncConfirmDialogTitle = '[data-testid="dialog-title"]';
-	static #endSyncDialogWarningText =
-		'[data-testid="end-course-sync-dialog-warning-text"]';
 	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
 	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
@@ -181,6 +180,46 @@ class Courses {
 		cy.get(Courses.#studentSelectionBoxInCourseCreate)
 			.invoke("show")
 			.should("be.visible");
+	}
+
+	doNotSeeBBBInDBCBRB() {
+		cy.get(Courses.#toolsList)
+			.contains(Courses.#modalContentCreateVideoConf)
+			.should("not.exist");
+	}
+
+	doNotSeeBBBInToolTabDBCBRB() {
+		cy.get(Courses.#bbbTool).should("not.exist");
+	}
+
+	clickDeleteButtonInBBB() {
+		cy.get(Courses.#deleteBBBButton).click();
+	}
+
+	seeModalDeletionBBBVideoConference() {
+		cy.get(Courses.#deleteBBBButton).should("exist");
+	}
+
+	clickIconDeleteBBBVideoConference() {
+		cy.get(Courses.#bbbTool).first().find(Courses.#deleteIconBBBTool).click();
+	}
+
+	clickCancelButtonInBBB() {
+		cy.get(Courses.#modalContentCreateVideoConf)
+			.find(Courses.#modalContentCreateVideoConfCancel)
+			.click();
+	}
+
+	seeModalStartBBBVideoConference() {
+		cy.get(Courses.#modalContentCreateVideoConf).should("exist");
+	}
+
+	clickOnBBBInCourse() {
+		cy.get(Courses.#bbbTool).first().click();
+	}
+
+	seeBBBInToolTabDBCBRB() {
+		cy.get(Courses.#bbbTool).should("be.visible");
 	}
 
 	clickOnButtonAdd() {
@@ -561,7 +600,9 @@ class Courses {
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
-		cy.get(Courses.#taskCardInCoursePageWithIndex).find("button").should("be.visible");
+		cy.get(Courses.#taskCardInCoursePageWithIndex)
+			.find("button")
+			.should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
@@ -647,7 +688,9 @@ class Courses {
 
 	deleteCoursesByName(courseLabel, roomName) {
 		cy.get(`[class="rooms-container"]`).then(($roomsContainer) => {
-			if ($roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length) {
+			if (
+				$roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length
+			) {
 				cy.get(`[aria-label="${courseLabel} ${roomName}"]`).then(($rooms) => {
 					if ($rooms) {
 						cy.wrap($rooms).first().click();
@@ -694,7 +737,10 @@ class Courses {
 
 	addGroup(groupName) {
 		cy.get(Courses.#groupSelection).find(".chosen-choices").click();
-		cy.get(Courses.#groupSelection).find(".chosen-results").contains(groupName).click();
+		cy.get(Courses.#groupSelection)
+			.find(".chosen-results")
+			.contains(groupName)
+			.click();
 	}
 
 	removeGroup(groupName) {
@@ -848,7 +894,11 @@ class Courses {
 			.get(Courses.#roomExternalToolSection)
 			.find("div")
 			.contains(toolName);
-		toolCard.parent("div").siblings("div").find(Courses.#deactivatedChip).should("exist");
+		toolCard
+			.parent("div")
+			.siblings("div")
+			.find(Courses.#deactivatedChip)
+			.should("exist");
 	}
 
 	seeToolIsNotMarkedAsDeactivated(toolName) {
@@ -868,7 +918,11 @@ class Courses {
 			.get(Courses.#roomExternalToolSection)
 			.find("div")
 			.contains(toolName);
-		toolCard.parent("div").siblings("div").find(Courses.#incompleteChip).should("exist");
+		toolCard
+			.parent("div")
+			.siblings("div")
+			.find(Courses.#incompleteChip)
+			.should("exist");
 	}
 
 	seeToolIsNotMarkedAsIncomplete(toolName) {
@@ -947,7 +1001,9 @@ class Courses {
 
 	schoolExternalToolIsNotVisibleInToolSelection(toolName) {
 		cy.get(Courses.#toolConfigurationSelect).click();
-		cy.get(Courses.#toolConfigurationSelectItem).contains(toolName).should("not.exist");
+		cy.get(Courses.#toolConfigurationSelectItem)
+			.contains(toolName)
+			.should("not.exist");
 	}
 
 	editMissingToolParameterValue() {
@@ -978,7 +1034,10 @@ class Courses {
 	}
 
 	addStudentWithSearchStringToCourse(searchString) {
-		cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type("{enter}");
+		cy.get(Courses.#chooseStudentSelectionBox)
+			.click()
+			.type(searchString)
+			.type("{enter}");
 		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
 		cy.get(Courses.#btnSubmit).click();
 	}
@@ -1007,16 +1066,12 @@ class Courses {
 		cy.get(Courses.#syncedConfirmDialogInfoText).should("be.visible");
 	}
 
-	seeWarningTextInEndSyncDialog() {
-		cy.get(Courses.#endSyncDialogWarningText).should("be.visible");
-	}
-
 	seeInfoTextInEndSyncDialog() {
 		cy.get(Courses.#endSyncDialogInfoText).should("be.visible");
 	}
 
 	seeGroupSelectionInSyncedGroupDialog() {
-		cy.get(Courses.#syncedGroupDialogInfoText).should("be.visible");
+		cy.get(Courses.#syncedGroupDialogSelection).should("be.visible");
 	}
 
 	seeWarningTextInSyncedGroupDialog() {
@@ -1039,11 +1094,15 @@ class Courses {
 	}
 
 	seeSelectedTeacher(teacherName) {
-		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected");
+		cy.get(Courses.#selectTeacher)
+			.contains("option", teacherName)
+			.should("be.selected");
 	}
 
 	seeSelectedStudent(studentName) {
-		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
+		cy.get(Courses.#selectStudent)
+			.contains("option", studentName)
+			.should("be.selected");
 	}
 
 	seeTeacherSelectionBoxIsDisabled() {

@@ -58,9 +58,21 @@ When("I click the edit button on course {string}", (courseName) =>{
 });
 
 When("I click the start synchronization button on course {string}", (courseName) => {
-	courseManagement.clickSynchronizeButtonForCourse(courseName);
+	courseManagement.clickStartSynchronizeButtonForCourse(courseName);
+});
+
+When("I click the end synchronization button on course {string}", (courseName) => {
+	courseManagement.clickEndSynchronizeButtonForCourse(courseName);
 });
 
 Then("I do not see the start synchronize button on course {string}", (courseName) => {
 	courseManagement.seeNoSynchronizeButtonForCourse(courseName);
+});
+
+Then("I see the start synchronization button on course {string}", (courseName) => {
+	courseManagement.seeStartSynchronizeButtonForCourse(courseName);
+});
+
+Then("I see the end synchronization button on course {string}", (courseName) => {
+	courseManagement.seeEndSynchronizeButtonForCourse(courseName);
 });
