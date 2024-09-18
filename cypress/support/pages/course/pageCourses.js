@@ -13,7 +13,6 @@ class Courses {
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldRoomOverview = '[data-testid="search-field"]';
-	//static #mainContent = '[id="main-content"]';
 	static #createCourse = '[data-testid="add-course-button"]';
 	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
@@ -46,7 +45,6 @@ class Courses {
 	static #chosenResults = ".chosen-results li";
 	static #chosenContainer = ".chosen-container span";
 	static #roomSearrchBox = '[data-testid="search-field"]';
-	//static #selectRoomColour = '[data-testid="color-picker"]';
 	static #RoomColourAsRed = '[aria-label="#D50000"]';
 	static #selectTeacher = '[data-testid="teachersearch"]';
 	static #selectSubstituteTeacher = '[data-testid="substituent"]';
@@ -79,7 +77,6 @@ class Courses {
 	static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]';
 	static #roomExternalToolSection = '[data-testid="room-external-tool-section"]';
 	static #saveToolButton = '[data-testid="save-button"]';
-	//static #requiredParameterInputField = '[data-testid="contextparammm"]';
 	static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]';
 	static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]';
 	static #btnCopyCourse = '[data-testid="room-menu-copy"]';
@@ -89,7 +86,6 @@ class Courses {
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="dialog-close"]';
-	static #toolCardMenu = '[data-testid="tool-card-menu"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #protectedParameter = '[data-testid="protected"]';

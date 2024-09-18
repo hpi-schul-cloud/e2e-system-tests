@@ -39,10 +39,6 @@ When("I click on external tools panel", () => {
 	management.clickExternalToolsPanel();
 });
 
-//When("I go to new school administration page", () => {
-	//management.clickNewAdminPageButton();
-//});
-
 When("I click save general settings button", () => {
 	management.clickSaveGeneralSettingsButton();
 });
