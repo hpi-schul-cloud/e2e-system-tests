@@ -107,7 +107,7 @@ class Courses {
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
 	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
-	static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
 	static #bbbVideoStartDialogBoxCourse =
@@ -180,46 +180,6 @@ class Courses {
 		cy.get(Courses.#studentSelectionBoxInCourseCreate)
 			.invoke("show")
 			.should("be.visible");
-	}
-
-	doNotSeeBBBInDBCBRB() {
-		cy.get(Courses.#toolsList)
-			.contains(Courses.#modalContentCreateVideoConf)
-			.should("not.exist");
-	}
-
-	doNotSeeBBBInToolTabDBCBRB() {
-		cy.get(Courses.#bbbTool).should("not.exist");
-	}
-
-	clickDeleteButtonInBBB() {
-		cy.get(Courses.#deleteBBBButton).click();
-	}
-
-	seeModalDeletionBBBVideoConference() {
-		cy.get(Courses.#deleteBBBButton).should("exist");
-	}
-
-	clickIconDeleteBBBVideoConference() {
-		cy.get(Courses.#bbbTool).first().find(Courses.#deleteIconBBBTool).click();
-	}
-
-	clickCancelButtonInBBB() {
-		cy.get(Courses.#modalContentCreateVideoConf)
-			.find(Courses.#modalContentCreateVideoConfCancel)
-			.click();
-	}
-
-	seeModalStartBBBVideoConference() {
-		cy.get(Courses.#modalContentCreateVideoConf).should("exist");
-	}
-
-	clickOnBBBInCourse() {
-		cy.get(Courses.#bbbTool).first().click();
-	}
-
-	seeBBBInToolTabDBCBRB() {
-		cy.get(Courses.#bbbTool).should("be.visible");
 	}
 
 	clickOnButtonAdd() {
