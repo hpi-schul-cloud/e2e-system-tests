@@ -25,3 +25,4 @@ jobs:
       cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:regression_test:school_api_test:ci
       environment: dev
+      groups: automatic

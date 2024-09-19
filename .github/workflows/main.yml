@@ -20,6 +20,9 @@ on:
       environment:
         description: "environment for retriving credentials from 1Password vault"
         type: string
+      groups:
+        description: "groups for running parallel tests"
+        type: string
 
 jobs:
   configure-load-secrets-and-run_tests:
@@ -89,13 +92,13 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: my-report
+          name: ${{ inputs.groups }}-cypress-report
           path: ${{ github.workspace }}/e2e-system-tests/reports/
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: my-video-artifact
-          path: ${{ github.workspace }}/e2e-system-tests/cypress/videos/
+          name: ${{ inputs.groups }}-cypress-video-artifact
+          path: ${{ github.workspace }}/e2e-system-tests/cypress/videos/${{ inputs.groups }}
           retention-days: 3
