@@ -73,6 +73,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
       | teacher1_nbc | nbc       |
       | student2_nbc | nbc       |
 
+#  This test is not complete. There are missing steps that depend on the ticket N21-2043
   @unstable_test
   Scenario: Teacher deletes tool
       Given I am logged in as a 'teacher1_nbc' at 'nbc'
@@ -84,6 +85,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
       When I click confirm delete media element button
       Then I see tool 'CY Test Tool 1' in the available media line
 
+#  This test is not complete. There are missing steps that depend on the ticket N21-2043
   @unstable_test
   Scenario: Deleting a tool from another location
 #     Admin deletes tool from school admin page
