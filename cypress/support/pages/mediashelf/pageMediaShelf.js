@@ -31,6 +31,11 @@ class MediaShelf {
 	static #mediaElementDeactivatedChip = '[data-testid="warning-chip-deactivated"]';
 	static #mediaElementNotLicensedChip = '[data-testid="warning-chip-not-licensed"]';
 	static #mediaElementIncompleteChip = '[data-testid="warning-chip-incomplete"]';
+	static #mediaElementNoLongerAvailableChip = '[data-testid="warning-chip-no-longer-available"]';
+	static #threeDotMenuOnMediaElement = '[data-testid="board-menu-icon"]';
+	static #deleteMediaElementButton = '[data-testid="board-menu-action-delete"]';
+	static #deleteMediaElementDialog = '[data-testid="delete-dialog-item"]';
+	static #confirmDeletionDialogButton = '[data-testid="dialog-confirm"]';
 	static #createLineButton = '[data-testid="create-line-button"]';
 
 	navigateToMediaShelf() {
@@ -167,6 +172,12 @@ class MediaShelf {
 			.should("exist")
 	}
 
+	seeDeletedMediaElementPlaceholder(toolName) {
+		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
+		element.find(MediaShelf.#mediaElementNoLongerAvailableChip)
+			.should("exist")
+	}
+
 	mediaElementIsVisibleInAvailableMediaLine(toolName) {
 		const line = cy.get(MediaShelf.#availableMediaLineSpace)
 		line.find('[data-testid="media-element-' + toolName + '"]').should("exist")
@@ -246,6 +257,28 @@ class MediaShelf {
 	clickMediaElement(tool) {
 		cy.get('[data-testid="media-element-' + tool + '"]').click();
 	}
+
+	clickThreeDotMenuButtonOnMediaElement(toolName) {
+		cy.get('[data-testid="media-element-' + toolName + '"]')
+			.find(MediaShelf.#threeDotMenuOnMediaElement)
+			.click()
+	}
+
+	clickDeleteMediaElementButton() {
+		cy.get(MediaShelf.#deleteMediaElementButton)
+			.click()
+	}
+
+	seeDeleteMediaDialog() {
+		cy.get(MediaShelf.#deleteMediaElementDialog)
+			.should("exist")
+	}
+
+	clickConfirmDeleteDialog() {
+		cy.get(MediaShelf.#confirmDeletionDialogButton)
+			.click()
+	}
+
 }
 
 export default MediaShelf;
