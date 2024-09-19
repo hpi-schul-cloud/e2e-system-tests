@@ -74,6 +74,37 @@ Feature: Media Shelf - To show media shelf with respective functionality
       | student2_nbc | nbc       |
 
   @unstable_test
+  Scenario: Teacher deletes tool
+      Given I am logged in as a 'teacher1_nbc' at 'nbc'
+      When I go to media shelf
+      Then I see the thumbnail, title and description of media element 'CY Test Tool 1'
+      When I click the tree dot menu button on media element 'CY Test Tool 1'
+      When I click on delete media element button
+      Then I see delete media element dialog
+      When I click confirm delete media element button
+      Then I see tool 'CY Test Tool 1' in the available media line
+
+  @unstable_test
+  Scenario: Deleting a tool from another location
+#     Admin deletes tool from school admin page
+      Given I am logged in as a 'admin1_nbc' at 'nbc'
+      When I click on administration in menu
+      When I click on sub menu school
+      When I click on external tools panel
+      Then I see the external tools table
+      When I click on delete button of tool 'CY Test Tool 2'
+      When I confirm deletion on deletion dialog
+#    Teachers removes deleted media element placeholder
+      Given I am logged in as a 'teacher1_nbc' at 'nbc'
+      When I go to media shelf
+      Then I see the deleted placeholder element of media element 'CY Test Tool 2'
+      When I click the tree dot menu button on media element 'CY Test Tool 2'
+      When I click on delete media element button
+      Then I see delete media element dialog
+      When I click confirm delete media element button
+      Then I do not see tool 'CY Test Tool 2' in the available media line
+
+  @unstable_test
   Scenario: Post-test: Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
