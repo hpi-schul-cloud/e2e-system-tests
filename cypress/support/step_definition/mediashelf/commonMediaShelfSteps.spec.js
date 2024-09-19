@@ -161,3 +161,22 @@ Then("I do not see tool {string} in the available media line", (toolName) => {
 	mediaShelf.mediaElementIsNotVisibleInAvailableMediaLine(toolName);
 });
 
+When("I click the tree dot menu button on media element {string}", (toolName) => {
+	mediaShelf.clickThreeDotMenuButtonOnMediaElement(toolName)
+});
+
+When("I click on delete media element button", () => {
+	mediaShelf.clickDeleteMediaElementButton()
+});
+
+Then("I see the deleted placeholder element of media element {string}", (toolName) => {
+	mediaShelf.seeDeletedMediaElementPlaceholder(toolName)
+});
+
+Then("I see delete media element dialog", () => {
+	mediaShelf.seeDeleteMediaDialog()
+});
+
+When("I click confirm delete media element button", () => {
+	mediaShelf.clickConfirmDeleteDialog()
+});
