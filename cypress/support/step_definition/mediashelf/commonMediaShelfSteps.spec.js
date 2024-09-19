@@ -15,7 +15,7 @@ When("I click on collapse available media line button", () => {
 	mediaShelf.clickCollapseAvailableMediaLineButton();
 });
 
-When("I click on tree dot menu button on available media line", () => {
+When("I click on three dot menu button on available media line", () => {
 	mediaShelf.clickThreeDotMenuButtonOnAvailableMediaLine();
 });
 
@@ -35,7 +35,7 @@ When("I click add media line button", () => {
 	mediaShelf.clickAddMediaLineButton()
 })
 
-When("I click the tree dot menu button on the first media line", () => {
+When("I click the three dot menu button on the first media line", () => {
 	mediaShelf.clickThreeDotMenuButtonOnMediaLine()
 })
 
@@ -161,7 +161,7 @@ Then("I do not see tool {string} in the available media line", (toolName) => {
 	mediaShelf.mediaElementIsNotVisibleInAvailableMediaLine(toolName);
 });
 
-When("I click the tree dot menu button on media element {string}", (toolName) => {
+When("I click the three dot menu button on media element {string}", (toolName) => {
 	mediaShelf.clickThreeDotMenuButtonOnMediaElement(toolName)
 });
 

@@ -37,7 +37,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the available media line is collapsed
     When I click on collapse available media line button
     Then I see the available media line is not collapsed
-    When I click on tree dot menu button on available media line
+    When I click on three dot menu button on available media line
     Then I see the available media line menu
     When I click on color picker button
     Then I see the available background colors
@@ -53,18 +53,18 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the first media line is collapsed
     When I click the collapse button on the first media line
     Then I see the first media line is not collapsed
-    When I click the tree dot menu button on the first media line
+    When I click the three dot menu button on the first media line
     Then I see the media line menu
     When I click on edit title button
     When I edit the title of the first median line to 'Favoriten'
     Then I see the first media line with title 'Favoriten'
-    When I click the tree dot menu button on the first media line
+    When I click the three dot menu button on the first media line
     Then I see the media line menu
     When I click on color picker button
     Then I see the available background colors
     When I select the background color
     Then I see the first media line has background color 'rgb(251, 233, 231)'
-    When I click the tree dot menu button on the first media line
+    When I click the three dot menu button on the first media line
     Then I see the media line menu
     When I click on delete media line button
     Then I see the first media line has been deleted
@@ -78,7 +78,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
       Given I am logged in as a 'teacher1_nbc' at 'nbc'
       When I go to media shelf
       Then I see the thumbnail, title and description of media element 'CY Test Tool 1'
-      When I click the tree dot menu button on media element 'CY Test Tool 1'
+      When I click the three dot menu button on media element 'CY Test Tool 1'
       When I click on delete media element button
       Then I see delete media element dialog
       When I click confirm delete media element button
@@ -98,7 +98,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
       Given I am logged in as a 'teacher1_nbc' at 'nbc'
       When I go to media shelf
       Then I see the deleted placeholder element of media element 'CY Test Tool 2'
-      When I click the tree dot menu button on media element 'CY Test Tool 2'
+      When I click the three dot menu button on media element 'CY Test Tool 2'
       When I click on delete media element button
       Then I see delete media element dialog
       When I click confirm delete media element button
