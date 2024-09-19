@@ -21,7 +21,7 @@ on:
         description: "environment for retriving credentials from 1Password vault"
         type: string
       groups:
-        description: "groups for running parallel tests"
+        description: "identifier to store test results, reports, and artifacts separately, preventing overwrites in parallel runs."
         type: string
 
 jobs:
