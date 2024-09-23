@@ -81,6 +81,12 @@ Feature: Teacher can add and remove BBB tool in the course in NBC with admin per
 		Then I see page Edit course
 		Then I see the disabled check box for Activating video conferences in page Edit course
 
+		# Teacher deletes the created course
+        When I click on the button delete course
+        Then I see the modal to confirm the deletion
+        When I click on the button delete on the modal to confirm the course deletion
+        Then I do not see the course '<course_name>' on the room overview page
+
 		@staging_test
 		Examples:
 			| namespace | admin      | teacher      | fullname_teacher | course_name                           |

@@ -39,6 +39,17 @@ Feature: Course - Add substitute teacher to course
     When I go to rooms overview
     When I go to room '<course_name>'
 
+
+    # Teacher1 deletes the created course
+    Given I am logged in as a '<teacher1>' at '<namespace>'
+    When I go to rooms overview
+    When I go to room '<course_name>'
+    When I open page Edit course
+    When I click on the button delete course
+    Then I see the modal to confirm the deletion
+    When I click on the button delete on the modal to confirm the course deletion
+    Then I do not see the course '<course_name>' on the room overview page
+
     @school_api_test
     Examples:
       | admin      | teacher1     | teacher2     | namespace | course_name                   | fullname_teacher  | substitute_teacher |
