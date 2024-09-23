@@ -26,6 +26,7 @@ jobs:
       cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:schedule_run:school_api_test:ci
       environment: dev
+      groups: scheduled
 
   notify_RC:
     runs-on: ubuntu-latest
