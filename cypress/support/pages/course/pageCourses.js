@@ -13,14 +13,12 @@ class Courses {
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldRoomOverview = '[data-testid="search-field"]';
-	static #mainContent = '[id="main-content"]';
 	static #createCourse = '[data-testid="add-course-button"]';
 	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
 	static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]';
-	static #addNewToolButton = '[data-testid="add_new_tool"]';
 	static #newTaskFAB = '[data-testid="fab_button_add_task"]';
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
@@ -47,7 +45,6 @@ class Courses {
 	static #chosenResults = ".chosen-results li";
 	static #chosenContainer = ".chosen-container span";
 	static #roomSearrchBox = '[data-testid="search-field"]';
-	static #selectRoomColour = '[data-testid="color-picker"]';
 	static #RoomColourAsRed = '[aria-label="#D50000"]';
 	static #selectTeacher = '[data-testid="teachersearch"]';
 	static #selectSubstituteTeacher = '[data-testid="substituent"]';
@@ -80,7 +77,6 @@ class Courses {
 	static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]';
 	static #roomExternalToolSection = '[data-testid="room-external-tool-section"]';
 	static #saveToolButton = '[data-testid="save-button"]';
-	static #requiredParameterInputField = '[data-testid="contextparammm"]';
 	static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]';
 	static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]';
 	static #btnCopyCourse = '[data-testid="room-menu-copy"]';
@@ -90,7 +86,6 @@ class Courses {
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="dialog-close"]';
-	static #toolCardMenu = '[data-testid="tool-card-menu"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #protectedParameter = '[data-testid="protected"]';
@@ -107,24 +102,15 @@ class Courses {
 	static #studentGroupNameOnStudentGroupPage = '[data-testid="group-name-entry"]';
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
-	static #deleteCourseGroupConfirmationButton =
-		'[data-testid="delete-course-group-btn"]';
-	static #videoConferenceCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
+	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
+	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
-	static #bbbToolIconInToolsTabNBC = '[data-testid="vc-card-logo"]';
-	static #bbbVideoStartDialogBoxNBC =
+	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
+	static #bbbVideoStartDialogBoxCourse =
 		'[data-testid="videoconference-config-dialog-title"]';
-	static #bbbDialogBoxCancelButtonNBC = '[data-testid="dialog-cancel"]';
-	static #bbbDisabledCheckBoxNBC = '[data-testid="videoconf_checkbox"]';
-	static #oldToolsTabInCourseDetail = '[data-testid="old-tools-tab"]';
-	static #listToolsCourse = '[data-testid="course_tool_list"]';
-	static #modalContent = '[data-testid="modal_content"]';
+	static #bbbDialogBoxCancelButtonCourse = '[data-testid="dialog-cancel"]';
+	static #bbbDisabledCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
-	static #modalContentCreateVideoConf = '[data-testid="createVideoConference"]';
-	static #modalContentCreateVideoConfCancel = '[data-testid="btn-cancel"]';
-	static #deleteBBBButton = '[data-testid="delete-course-btn"]';
-	static #bbbTool = '[data-testid="bbb_tool_moderator_inactive"]';
-	static #deleteIconBBBTool = '[data-testid="bbb_tool_delete"]';
 	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardFinishButtonInCoursePageWithIndex =
@@ -192,81 +178,8 @@ class Courses {
 			.should("be.visible");
 	}
 
-	doNotSeeBBBInDBCBRB() {
-		cy.get(Courses.#toolsList)
-			.contains(Courses.#modalContentCreateVideoConf)
-			.should("not.exist");
-	}
-
-	doNotSeeBBBInToolTabDBCBRB() {
-		cy.get(Courses.#bbbTool).should("not.exist");
-	}
-
-	clickDeleteButtonInBBB() {
-		cy.get(Courses.#deleteBBBButton).click();
-	}
-
-	seeModalDeletionBBBVideoConference() {
-		cy.get(Courses.#deleteBBBButton).should("exist");
-	}
-
-	clickIconDeleteBBBVideoConference() {
-		cy.get(Courses.#bbbTool).first().find(Courses.#deleteIconBBBTool).click();
-	}
-
-	clickCancelButtonInBBB() {
-		cy.get(Courses.#modalContentCreateVideoConf)
-			.find(Courses.#modalContentCreateVideoConfCancel)
-			.click();
-	}
-
-	seeModalStartBBBVideoConference() {
-		cy.get(Courses.#modalContentCreateVideoConf).should("exist");
-	}
-
-	clickOnBBBInCourse() {
-		cy.get(Courses.#bbbTool).first().click();
-	}
-
-	seeBBBInToolTabDBCBRB() {
-		cy.get(Courses.#bbbTool).should("be.visible");
-	}
-
 	clickOnButtonAdd() {
 		cy.get(Courses.#addBBBButton).click();
-	}
-
-	clickOnButtonAdd() {
-		cy.get(Courses.#addBBBButton).click();
-	}
-
-	appearsModalContentForConfirmation() {
-		cy.get(Courses.#modalContent).should("be.visible");
-	}
-
-	clickOnBBBInToolTabInDBCBRB() {
-		cy.get(Courses.#toolsList).click();
-	}
-
-	seeToolsListForCourse() {
-		cy.get(Courses.#toolsList).should("be.visible");
-	}
-
-	seeToolsTabInCourse() {
-		cy.get(Courses.#listToolsCourse).should("be.visible");
-	}
-
-	clickOnOldToolsTabInCourse() {
-		cy.url().then((url) => {
-			const uuid = url.split("/")[4];
-			cy.get(Courses.#oldToolsTabInCourseDetail)
-				.should("have.attr", "href")
-				.should("not.be.empty")
-				.and("contain", uuid)
-				.then((href) => {
-					cy.visit(href);
-				});
-		});
 	}
 
 	topicIsNotVisibleOnCoursePage(topicTitle) {
@@ -282,31 +195,31 @@ class Courses {
 	}
 
 	seeDisabledCheckBoxForBBBToolInCourseEditPage() {
-		cy.get(Courses.#bbbDisabledCheckBoxNBC).should("be.disabled");
+		cy.get(Courses.#bbbDisabledCheckBoxCourse).should("be.disabled");
 	}
 
 	uncheckVideoConferenceCheckBoxInCourseEditPage() {
-		cy.get(Courses.#videoConferenceCheckBoxNBC).uncheck();
+		cy.get(Courses.#videoConferenceCheckBoxCourse).uncheck();
 	}
 
-	doNotSeeBBBInToolTabNBC() {
-		cy.get(Courses.#bbbToolIconInToolsTabNBC).should("not.exist");
+	doNotSeeBBBInCourseToolTab() {
+		cy.get(Courses.#bbbToolIconInToolsTabCourse).should("not.exist");
 	}
 
-	cancelBBBToolDialogBoxNBC() {
-		cy.get(Courses.#bbbDialogBoxCancelButtonNBC).click();
+	clickOnCancelBBBToolDialogBoxInCourse() {
+		cy.get(Courses.#bbbDialogBoxCancelButtonCourse).click();
 	}
 
-	seeBBBDialogBoxToStartTheConferenceInNBC() {
-		cy.get(Courses.#bbbVideoStartDialogBoxNBC).should("exist");
+	seeBBBDialogBoxToStartTheConferenceInCourse() {
+		cy.get(Courses.#bbbVideoStartDialogBoxCourse).should("exist");
 	}
 
-	clickOnBBBInToolTabInNBC() {
-		cy.get(Courses.#bbbToolIconInToolsTabNBC).click();
+	clickOnBBBInCourseToolTab() {
+		cy.get(Courses.#bbbToolIconInToolsTabCourse).click();
 	}
 
-	seeBBBInToolTabNBC() {
-		cy.get(Courses.#bbbToolIconInToolsTabNBC).should("exist");
+	seeBBBInCourseToolTab() {
+		cy.get(Courses.#bbbToolIconInToolsTabCourse).should("exist");
 	}
 
 	clickOnToolsTabInCourse() {
@@ -314,7 +227,7 @@ class Courses {
 	}
 
 	clickOnEnableVideoConferenceCheckBoxInCourseEditPage() {
-		cy.get(Courses.#videoConferenceCheckBoxNBC).check();
+		cy.get(Courses.#videoConferenceCheckBoxCourse).check();
 	}
 
 	seeSectionOneAreaOnCourseCreatePage() {
@@ -411,10 +324,6 @@ class Courses {
 
 	navigateToLtiTools() {
 		cy.get(Courses.#ltiToolsTab).click();
-	}
-
-	clickOnAddNewLtiToolButton() {
-		cy.get(Courses.#addNewToolButton).click();
 	}
 
 	navigateToToolsTab() {

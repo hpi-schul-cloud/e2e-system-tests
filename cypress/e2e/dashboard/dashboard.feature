@@ -18,7 +18,7 @@ Feature: Dashboard - To check contents on the dashboard
         When I go to rooms overview
         When I click on FAB to create a new room depending on sub menu
         Then I see section one area on the course create page
-        When I enter the course title 'CypressAut Test Dashboard Course'
+        When I enter the course title '<course_name>'
         When I select room colour as red
         Then I select teacher '<fullname_teacher>' is selected by default
         Then I see substitute teacher selection box
@@ -40,7 +40,7 @@ Feature: Dashboard - To check contents on the dashboard
 
         # pre-condition: teacher creates task and a task draft
         When I go to rooms overview
-        When I go to room 'CypressAut Test Dashboard Course'
+        When I go to room '<course_name>'
         When I click on FAB to create new content
         When I click on New Task FAB
         Then I can see create task page
@@ -48,7 +48,7 @@ Feature: Dashboard - To check contents on the dashboard
         When I click on button Submit
         Then I see detail page for task 'CypressAut Dashboard Task Published'
         When I go to rooms overview
-        When I go to room 'CypressAut Test Dashboard Course'
+        When I go to room '<course_name>'
         When I click on FAB to create new content
         When I click on New Task FAB
         Then I can see create task page
@@ -105,7 +105,7 @@ Feature: Dashboard - To check contents on the dashboard
         Then I see the welcome message 'Hallo <fullname_student>!'
         Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
         Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
-        # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
+        # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course '<course_name>'
 
         # teacher arrives on dashboard
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -113,8 +113,8 @@ Feature: Dashboard - To check contents on the dashboard
         Then I see the welcome message 'Hallo <fullname_teacher>!'
         Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
         Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
-        # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course 'CypressAut Test Dashboard Course'
-        # Then I can see the draft task 'CypressAut Dashboard Task Draft' of course 'CypressAut Test Dashboard Course'
+        # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course '<course_name>'
+        # Then I can see the draft task 'CypressAut Dashboard Task Draft' of course '<course_name>'
 
         # teacher deletes the school news
         When I arrive on the dashboard
@@ -146,12 +146,22 @@ Feature: Dashboard - To check contents on the dashboard
         When I select the student '<fullname_student>' and click on delete icon
         Then I see '<fullname_student>' is not visible on the table
 
+        # Post-condition: Teacher deletes the course
+        When I go to rooms overview
+        When I go to room '<course_name>'
+        When I open page Edit course
+        When I click on the button delete course
+        Then I see the modal to confirm the deletion
+        When I click on the button delete on the modal to confirm the course deletion
+        Then I do not see the course '<course_name>' on the room overview page
+
+
         @school_api_test
         Examples:
-            | namespace | admin      | teacher      | fullname_teacher  | student      | fullname_student  | listname_student   |
-            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | student_1, cypress |
+            | namespace | admin      | teacher      | fullname_teacher  | student      | fullname_student  | listname_student   | course_name                      |
+            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | student_1, cypress | CypressAut Test Dashboard Course |
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | fullname_teacher | student      | fullname_student | listname_student |
-            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | Kraft, Herbert   |
+            | namespace | admin      | teacher      | fullname_teacher | student      | fullname_student | listname_student | course_name                      |
+            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | Kraft, Herbert   | CypressAut Test Dashboard Course |
