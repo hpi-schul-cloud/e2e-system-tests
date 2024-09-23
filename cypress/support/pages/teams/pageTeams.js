@@ -211,7 +211,7 @@ class Teams {
 	}
 
 	enterTeamEventTitle(eventTitle) {
-		cy.get(Teams.#teamEventTitleInput).eq(1).type(eventTitle).wait(1000);
+		cy.get(Teams.#teamEventTitleInput).eq(1).type(eventTitle, {force:true}).wait(1000);
 	}
 
 	seeTeamEventCreationModal() {
@@ -223,7 +223,7 @@ class Teams {
 	}
 
 	goToTeamsCalendarTab() {
-		cy.get(Teams.#teamCalanderTab).click();
+		cy.get(Teams.#teamCalanderTab).click({force: true});
 	}
 
 	doNotSeeDeletedStudentInTeam(studentName) {

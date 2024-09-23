@@ -460,7 +460,7 @@ class Tasks {
 
 	clickOnTabDoneTasks() {
 		cy.wait("@tasks_api");
-		cy.get(Tasks.#doneTasksTab).click().wait("@tasks_api");
+		cy.get(Tasks.#doneTasksTab).click();
 	}
 
 	openNotGradedTasks() {

@@ -17,7 +17,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I go to rooms overview
         When I click on FAB to create a new room depending on sub menu
         Then I see section one area on the course create page
-        When I enter the course title 'CypressAut Test Creation and Deletion'
+        When I enter the course title '<course_name>'
         When I select room colour as red
         Then I select teacher '<fullname_teacher>' is selected by default
         Then I see substitute teacher selection box
@@ -33,12 +33,12 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Then I see the section three as the finish page
         When I click on button To Course Overview on the finish page
         # Note: this step is not applicable for the admin user
-        #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
+        #Then I see the course '<course_name>' on the room overview page
 
         # teacher creates topic in a course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to rooms overview
-        When I go to room 'CypressAut Test Creation and Deletion'
+        When I go to room '<course_name>'
         And I click on FAB to create new content
         And I click on New Topic FAB
         Then I can see edit topic page '-'
@@ -69,7 +69,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
         # teacher edits the topic
         When I go to rooms overview
-        When I go to room 'CypressAut Test Creation and Deletion'
+        When I go to room '<course_name>'
         When I click on three dot menu of topic 'CypressAut Topic Creating and Deleting Test'
         When I click on Edit in dot menu of topic
         Then I can see edit topic page 'CypressAut Topic Creating and Deleting Test'
@@ -111,7 +111,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
         # teacher deletes the topic
         When I go to rooms overview
-        When I go to room 'CypressAut Test Creation and Deletion'
+        When I go to room '<course_name>'
         When I click on three dot menu of topic 'CypressAut Topic Creating and Deleting Test - Edited topic'
         When I click on Delete in dot menu of topic
         When I click on Cancel in confirmation window
@@ -121,12 +121,21 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I click on Delete in confirmation window
         Then I can not see topic 'CypressAut Topic Creating and Deleting Test - Edited topic' on course page
 
+        # Post-condition: Teacher deletes the course
+        When I go to rooms overview
+        When I go to room '<course_name>'
+        When I open page Edit course
+        When I click on the button delete course
+        Then I see the modal to confirm the deletion
+        When I click on the button delete on the modal to confirm the course deletion
+        Then I do not see the course '<course_name>' on the room overview page
+
         @school_api_test
         Examples:
-            | namespace | admin      | teacher      | fullname_teacher  |
-            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 |
+            | namespace | admin      | teacher      | fullname_teacher  | course_name                           |
+            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | CypressAut Test Creation and Deletion |
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | fullname_teacher |
-            | brb       | admin1_brb | teacher1_brb | Karl Herzog      |
+            | namespace | admin      | teacher      | fullname_teacher | course_name                           |
+            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | CypressAut Test Creation and Deletion |
