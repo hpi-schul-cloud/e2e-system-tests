@@ -9,7 +9,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Scenario: Deactivate Chat
         Given I am logged in as a 'admin1_brb' at 'brb'
         When I click on administration in menu
-        When I click on sub menu school and see new admin page
+        When I navigate to new school admin page via sub menu
         When I click on general settings panel
         When I click on toggle switch to deactivate the chat
         When I click save general settings button
@@ -26,7 +26,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Scenario: Activate Chat
         Given I am logged in as a 'admin1_brb' at 'brb'
         When I click on administration in menu
-        And I click on sub menu school and see new admin page
+        And I navigate to new school admin page via sub menu
         When I click on general settings panel
         When I click on toggle switch to activate the chat
         When I click save general settings button
@@ -45,7 +45,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Scenario: Deactivate BigBlueButton
         Given I am logged in as a 'admin1_brb' at 'brb'
         When I click on administration in menu
-        When I click on sub menu school and see new admin page
+        When I navigate to new school admin page via sub menu
         When I click on general settings panel
         When I click on toggle switch to deactivate video conferencing
         When I click save general settings button
@@ -61,7 +61,7 @@ Feature: Admin External Tools - To administrate school settings by the admin.
     Scenario: Activate BigBlueButton
         Given I am logged in as a 'admin1_brb' at 'brb'
         When I click on administration in menu
-        When I click on sub menu school and see new admin page
+        When I navigate to new school admin page via sub menu
         When I click on general settings panel
         When I click on toggle switch to activate video conferencing
         When I click save general settings button

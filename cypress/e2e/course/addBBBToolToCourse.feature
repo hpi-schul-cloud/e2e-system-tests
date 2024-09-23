@@ -37,7 +37,7 @@ Feature: Teacher can add and remove BBB tool in the course with admin permission
         # Admin enables the video conference in the school settings page
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
-        When I click on sub menu school and see new admin page
+        When I navigate to new school admin page via sub menu
         When I click on general settings panel
         Then I enable the video conference
         Then I click on button Save admin settings
@@ -66,7 +66,7 @@ Feature: Teacher can add and remove BBB tool in the course with admin permission
         # Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
-        When I click on sub menu school and see new admin page
+        When I navigate to new school admin page via sub menu
         When I click on general settings panel
         Then I disable the video conference
         Then I click on button Save admin settings

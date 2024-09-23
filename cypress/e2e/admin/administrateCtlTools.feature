@@ -7,7 +7,7 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
     Scenario: Admin  adds, edits and deletes external tools
         Given I am logged in as a 'admin1_nbc' at 'nbc'
         When I click on administration in menu
-        When I click on sub menu school and see new admin page
+        When I navigate to new school admin page via sub menu
         When I click on external tools panel
         Then I see the external tools table is empty
         When I click the add external tool button
@@ -73,7 +73,7 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
 
         #    Admin deletes tools
         When I click on administration in menu
-        When I click on sub menu school and see new admin page
+        When I navigate to new school admin page via sub menu
         When I click on external tools panel
         Then I see the external tools table
         Then I see the tool 'CY Test Tool 1' in external tools table

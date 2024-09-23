@@ -19,7 +19,7 @@ Then("I enable the video conference", () => {
 	management.enableTeamsVideoConferenceByAdmin();
 });
 
-When("I click on sub menu school and see new admin page", () => {
+When("I navigate to new school admin page via sub menu", () => {
 	management.clickOnSchoolAdministrationInSideMenu();
 });
 

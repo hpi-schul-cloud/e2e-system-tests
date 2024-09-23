@@ -7,7 +7,7 @@ Feature: Admin Users - To administrate the Migration process.
   Scenario: Admin starts the migration and the School Number is added
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I click on sub menu school and see new admin page
+    When I navigate to new school admin page via sub menu
     When I click on general settings panel
     Then I can see the school number
     When I click on account migration panel

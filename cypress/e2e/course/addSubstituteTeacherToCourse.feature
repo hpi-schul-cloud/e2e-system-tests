@@ -48,6 +48,7 @@ Feature: Course - Add substitute teacher to course
         Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the room overview page
+
         @school_api_test
         Examples:
             | admin      | teacher1     | teacher2     | namespace | course_name                   | fullname_teacher  | substitute_teacher |

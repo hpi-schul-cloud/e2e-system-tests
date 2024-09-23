@@ -14,7 +14,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 		# as a pre condition Admin enables the video conference option for a team event
 		Given I am logged in as a '<admin>' at '<namespace>'
 		When I click on administration in menu
-		When I click on sub menu school and see new admin page
+		When I navigate to new school admin page via sub menu
 		When I click on general settings panel
 		Then I enable the video conference
 		Then I click on button Save admin settings
@@ -100,7 +100,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 		# as a post condition Admin disable the video conference for the team
 		Given I am logged in as a '<admin>' at '<namespace>'
 		When I click on administration in menu
-		When I click on sub menu school and see new admin page
+		When I navigate to new school admin page via sub menu
 		When I click on general settings panel
 		Then I disable the video conference
 		Then I click on button Save admin settings
