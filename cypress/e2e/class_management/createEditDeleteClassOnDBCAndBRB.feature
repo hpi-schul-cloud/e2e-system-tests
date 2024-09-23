@@ -1,6 +1,5 @@
 @regression_test
 @stable_test
-@schedule_test
 Feature:  To create, edit and delete class on dBC or on BRB
 
     As a teacher, I want to create, edit and delete class, so that I can manage the class
