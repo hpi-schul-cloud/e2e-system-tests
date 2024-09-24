@@ -58,7 +58,11 @@ When("I click the edit button on course {string}", (courseName) =>{
 });
 
 When("I click the start synchronization button on course {string}", (courseName) => {
-	courseManagement.clickSynchronizeButtonForCourse(courseName);
+	courseManagement.clickStartSynchronizeButtonForCourse(courseName);
+});
+
+When("I click the end synchronization button on course {string}", (courseName) => {
+	courseManagement.clickEndSynchronizeButtonForCourse(courseName);
 });
 
 When("I click the end synchronization button on course {string}", (courseName) => {
@@ -95,4 +99,8 @@ Then("I see information text of the confirmation modal to end the synchronizatio
 
 When("I click the confirm button on the end synchronization confirmation modal", () => {
 	courseManagement.clickConfirmSynchronizationButton();
+});
+
+Then("I see the start synchronization button on course {string}", (courseName) => {
+	courseManagement.seeStartSynchronizeButtonForCourse(courseName);
 });

@@ -9,7 +9,7 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
         # admin adds a new student
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
-        And I go to '<role_to_manage>' administration
+        When I go to '<role_to_manage>' administration
         When I click on FAB
         When I click on Add User in opened FAB for '<role_to_manage>'
         And I fill out the user creation form for '<user_firstname>' '<user_lastname>' with email '<user_email>'

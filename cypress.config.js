@@ -2,6 +2,7 @@ const { defineConfig } = require("cypress");
 const webpack = require("@cypress/webpack-preprocessor");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const { createUser } = require("./scripts/runSchoolApi");
+const path = require("path");
 
 async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === "ci";
@@ -28,6 +29,12 @@ async function setupNodeEvents(on, config) {
 		}
 		console.log("loaded settings for environment %s", environmentName);
 	}
+
+	const parallelGroup = config.env.parallelGroup || "";
+
+	config.env.jsonOutput = `logs/${parallelGroup}/json-report.json`;
+	config.videosFolder = path.join("cypress", "videos", parallelGroup);
+	config.screenshotsFolder = path.join("cypress", "screenshots", parallelGroup);
 
 	// This is required for the preprocessor to be able to generate JSON reports after each run, and more,
 	await preprocessor.addCucumberPreprocessorPlugin(on, config);

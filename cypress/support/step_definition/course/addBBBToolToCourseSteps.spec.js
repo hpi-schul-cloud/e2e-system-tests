@@ -14,24 +14,24 @@ When("I click on tab Tools", () => {
 	courses.clickOnToolsTabInCourse();
 });
 
-Then("I see the BBB Video Conference BigBlueButton in NBC", () => {
-	courses.seeBBBInToolTabNBC();
+Then("I see the BBB Video Conference BigBlueButton in the course", () => {
+	courses.seeBBBInCourseToolTab();
 });
 
-When("I click on the BBB Video Conference BigBlueButton in NBC", () => {
-	courses.clickOnBBBInToolTabInNBC();
+When("I click on the BBB Video Conference BigBlueButton in the course", () => {
+	courses.clickOnBBBInCourseToolTab();
 });
 
 Then("I see the modal to start the BBB video conference", () => {
-	courses.seeBBBDialogBoxToStartTheConferenceInNBC();
+	courses.seeBBBDialogBoxToStartTheConferenceInCourse();
 });
 
 Then("I click on button Cancel in BBB dialog box", () => {
-	courses.cancelBBBToolDialogBoxNBC();
+	courses.clickOnCancelBBBToolDialogBoxInCourse();
 });
 
 Then("I do not see the the card Video Conference BigBlueButton", () => {
-	courses.doNotSeeBBBInToolTabNBC();
+	courses.doNotSeeBBBInCourseToolTab();
 });
 
 Then(

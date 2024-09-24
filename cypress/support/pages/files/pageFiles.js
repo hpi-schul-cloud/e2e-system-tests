@@ -33,9 +33,8 @@ class Files {
 		libraOfficeOpenTitleText: "LibreOffice Online",
 	};
 
-	navigateToFilesOverview() {
+	openFilesMenu() {
 		cy.get(Files.#filesOverviewNavigationButton).click();
-		cy.url().should("include", "/files");
 	}
 
 	navigateToPersonalFilesOverview() {

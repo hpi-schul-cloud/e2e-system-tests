@@ -95,10 +95,6 @@ Then("I see the title of the modal to end the sync", () => {
 	courses.seeTitleInEndSyncDialog();
 });
 
-Then("I see the warning text of the modal to end the sync", () => {
-	courses.seeWarningTextInEndSyncDialog();
-});
-
 Then("I see the information text of the modal to end the sync", () => {
 	courses.seeInfoTextInEndSyncDialog();
 });

@@ -52,6 +52,7 @@ jobs:
       cypress_nbc: ${{ inputs.instance2 }}
       tag: cy:headless:stable:groupA:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-A
 
   run-tests-groupB:
     needs: e2e-system-tests
@@ -64,6 +65,7 @@ jobs:
       cypress_nbc: ${{ inputs.instance2 }}
       tag: cy:headless:stable:groupB:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-B
 
   notify_RC:
     runs-on: ubuntu-latest

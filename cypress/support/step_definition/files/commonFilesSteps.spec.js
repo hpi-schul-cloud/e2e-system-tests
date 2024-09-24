@@ -3,8 +3,8 @@ import Files from "../../pages/files/pageFiles";
 
 const files = new Files();
 
-When("I go to files overview", () => {
-	files.navigateToFilesOverview();
+When("I click on Files in menu", () => {
+	files.openFilesMenu();
 });
 
 Then("I go to personal files overview", () => {
