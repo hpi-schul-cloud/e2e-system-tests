@@ -152,8 +152,8 @@ class CourseManagement {
 		courseNameData
 			.siblings("td")
 			.eq(3)
-			.find(CourseManagement.#courseTableSynchronizeButton)
-			.should("exist")
+			.find(CourseManagement.#courseTableStartSynchronizeButton)
+			.should("be.visible")
 	}
 
 	seeNoSynchronizeButtonForCourse(courseName) {
@@ -176,18 +176,6 @@ class CourseManagement {
 			.siblings("td")
 			.eq(3)
 			.find(CourseManagement.#courseTableEndSynchronizeButton)
-			.should("be.visible")
-	}
-
-	seeStartSynchronizeButtonForCourse(courseName) {
-
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableStartSynchronizeButton)
 			.should("be.visible")
 	}
 

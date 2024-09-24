@@ -65,10 +65,6 @@ When("I click the end synchronization button on course {string}", (courseName) =
 	courseManagement.clickEndSynchronizeButtonForCourse(courseName);
 });
 
-When("I click the end synchronization button on course {string}", (courseName) => {
-	courseManagement.clickEndSynchronizeButtonForCourse(courseName);
-});
-
 Then("I see {string} is synchronized with {string}", (courseName, groupName) => {
 	courseManagement.seeCourseSynchronizedWithGroup(courseName, groupName);
 });
@@ -99,8 +95,4 @@ Then("I see information text of the confirmation modal to end the synchronizatio
 
 When("I click the confirm button on the end synchronization confirmation modal", () => {
 	courseManagement.clickConfirmSynchronizationButton();
-});
-
-Then("I see the start synchronization button on course {string}", (courseName) => {
-	courseManagement.seeStartSynchronizeButtonForCourse(courseName);
 });
