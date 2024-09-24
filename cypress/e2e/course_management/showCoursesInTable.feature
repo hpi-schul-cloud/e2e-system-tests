@@ -80,6 +80,19 @@ Feature: Course - To show courses in a table with respective functionality
         | course_title               | group_title         |
         | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
 #
+    Scenario Outline: Admin ends synchronization of a course with a group
+        Given I see the new course administration page
+        When I click the end synchronization button on course '<course_title>'
+        Then I see title of the confirmation modal to end the synchronization
+        Then I see information text of the confirmation modal to end the synchronization of course '<course_title>' with group '<group_title>'
+        When I click the confirm button on the end synchronization confirmation modal
+        Then I see the new course administration page
+        Then I see '<course_title>' is not synchronized
+         Then I see the start synchronize button on course '<course_title>'
+    Examples:
+        | course_title               | group_title         |
+        | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
+#
     Scenario Outline: Admin deletes courses
         Given I see the new course administration page
         When I click the delete button for course '<course_title>' in course table

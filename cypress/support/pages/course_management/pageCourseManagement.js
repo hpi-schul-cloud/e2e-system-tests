@@ -2,6 +2,9 @@
 
 class CourseManagement {
 	static #createCourseAdminButton = '[data-testid="admin-courses-add-button"]'
+	static #confirmDialogButton = '[data-testid="dialog-confirm"]'
+	static #confirmDialogTitle = '[data-testid="dialog-title"]'
+	static #confirmSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]'
 	static #courseTable = '[data-testid="admin-rooms-table"]'
 	static #courseTableDeleteButton = '[data-testid="course-table-delete-btn"]'
 	static #courseTableEditButton = '[data-testid="course-table-edit-btn"]'
@@ -108,6 +111,18 @@ class CourseManagement {
 			.click();
 	}
 
+	clickEndSynchronizeButtonForCourse(courseName) {
+		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
+			.should("be.visible");
+
+		courseNameData
+			.siblings("td")
+			.eq(3)
+			.find(CourseManagement.#courseTableEndSynchronizeButton)
+			.should("exist")
+			.click();
+	}
+
 	seeCourseSynchronizedWithGroup(courseName, groupName) {
 		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
 			.should("be.visible");
@@ -117,6 +132,28 @@ class CourseManagement {
 			.should(($td) => {
 				expect($td.text().trim()).to.equal(groupName);
 			});
+	}
+
+	seeCourseNotSynchronized(courseName) {
+		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
+			.should("be.visible");
+
+		courseNameData
+			.siblings("td").eq(0)
+			.should(($td) => {
+				expect($td.text().trim()).to.equal("");
+			});
+	}
+
+	seeStartSynchronizeButtonForCourse(courseName) {
+		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
+			.should("be.visible");
+
+		courseNameData
+			.siblings("td")
+			.eq(3)
+			.find(CourseManagement.#courseTableSynchronizeButton)
+			.should("exist")
 	}
 
 	seeNoSynchronizeButtonForCourse(courseName) {
@@ -140,6 +177,20 @@ class CourseManagement {
 			.eq(3)
 			.find(CourseManagement.#courseTableEndSynchronizeButton)
 			.should("exist")
+	}
+
+	seeSynchronizationConfirmationModalTitle() {
+		cy.get(CourseManagement.#confirmDialogTitle).should("be.visible");
+	}
+
+	seeSynchronizationInfoTextForCourseAndGroup(courseName, groupName) {
+		cy.get(CourseManagement.#confirmSyncDialogInfoText)
+			.should("contain.text", courseName)
+			.should("contain.text", groupName)
+	}
+
+	clickConfirmSynchronizationButton() {
+		cy.get(CourseManagement.#confirmDialogButton).click();
 	}
 }
 
