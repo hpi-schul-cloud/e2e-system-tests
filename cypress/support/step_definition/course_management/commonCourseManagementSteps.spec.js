@@ -37,8 +37,8 @@ When("I click the delete button for course {string} in course table", (courseNam
 	courseManagement.clickDeleteButtonForCourse(courseName);
 });
 
-Then("I see 4 columns in the table", () => {
-	courseManagement.seeTableHas4Columns();
+Then("I see 5 columns in the table", () => {
+	courseManagement.seeTableHas5Columns();
 });
 
 Then("I see 2 tabs", () => {
@@ -65,14 +65,34 @@ When("I click the end synchronization button on course {string}", (courseName) =
 	courseManagement.clickEndSynchronizeButtonForCourse(courseName);
 });
 
+Then("I see {string} is synchronized with {string}", (courseName, groupName) => {
+	courseManagement.seeCourseSynchronizedWithGroup(courseName, groupName);
+});
+
+Then("I see {string} is not synchronized", (courseName) => {
+	courseManagement.seeCourseNotSynchronized(courseName);
+});
+
+Then("I see the start synchronize button on course {string}", (courseName) => {
+	courseManagement.seeStartSynchronizeButtonForCourse(courseName);
+});
+
 Then("I do not see the start synchronize button on course {string}", (courseName) => {
 	courseManagement.seeNoSynchronizeButtonForCourse(courseName);
 });
 
-Then("I see the start synchronization button on course {string}", (courseName) => {
-	courseManagement.seeStartSynchronizeButtonForCourse(courseName);
+Then("I see the end synchronize button on course {string}", (courseName) => {
+	courseManagement.seeEndSynchronizeButtonForCourse(courseName);
 });
 
-Then("I see the end synchronization button on course {string}", (courseName) => {
-	courseManagement.seeEndSynchronizeButtonForCourse(courseName);
+Then("I see title of the confirmation modal to end the synchronization", () => {
+	courseManagement.seeSynchronizationConfirmationModalTitle();
+});
+
+Then("I see information text of the confirmation modal to end the synchronization of course {string} with group {string}", (courseName, groupName) => {
+	courseManagement.seeSynchronizationInfoTextForCourseAndGroup(courseName, groupName);
+});
+
+When("I click the confirm button on the end synchronization confirmation modal", () => {
+	courseManagement.clickConfirmSynchronizationButton();
 });

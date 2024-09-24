@@ -2,6 +2,9 @@
 
 class CourseManagement {
 	static #createCourseAdminButton = '[data-testid="admin-courses-add-button"]'
+	static #confirmDialogButton = '[data-testid="dialog-confirm"]'
+	static #confirmDialogTitle = '[data-testid="dialog-title"]'
+	static #confirmSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]'
 	static #courseTable = '[data-testid="admin-rooms-table"]'
 	static #courseTableDeleteButton = '[data-testid="course-table-delete-btn"]'
 	static #courseTableEditButton = '[data-testid="course-table-edit-btn"]'
@@ -39,15 +42,15 @@ class CourseManagement {
 
 		courseNameData
 			.siblings("td")
-			.eq(2)
+			.eq(3)
 			.find(CourseManagement.#courseTableDeleteButton)
 			.should("exist")
 			.click();
 	}
 
-	seeTableHas4Columns() {
+	seeTableHas5Columns() {
 		const tableHeader = cy.get(CourseManagement.#courseTableNew).find("th");
-		tableHeader.should("have.length", 4);
+		tableHeader.should("have.length", 5);
 	}
 
 	see2Tabs() {
@@ -61,13 +64,13 @@ class CourseManagement {
 		courseNameData.should("be.visible");
 		courseNameData
 			.siblings("td")
-			.eq(0)
+			.eq(1)
 			.should(($td) => {
 				expect($td.text().trim()).to.equal("");
 			});
 		courseNameData
 			.siblings("td")
-			.eq(1)
+			.eq(2)
 			.should(($td) => {
 				expect($td.text().trim()).to.equal(teacherName);
 			});
@@ -76,7 +79,7 @@ class CourseManagement {
 	seeCourseHas3ActiveActionItems(courseName) {
 		const courseNameData = cy.get(CourseManagement.#courseTableNew).find("td").contains(courseName);
 
-		const buttons = courseNameData.siblings("td").eq(2).find("a, button");
+		const buttons = courseNameData.siblings("td").eq(3).find("a, button");
 
 		buttons.should("have.length", 3);
 		buttons.each(($btn) => {
@@ -90,7 +93,7 @@ class CourseManagement {
 
 		courseNameData
 			.siblings("td")
-			.eq(2)
+			.eq(3)
 			.find(CourseManagement.#courseTableEditButton)
 			.should("exist")
 			.click();
@@ -102,7 +105,7 @@ class CourseManagement {
 
 		courseNameData
 			.siblings("td")
-			.eq(2)
+			.eq(3)
 			.find(CourseManagement.#courseTableStartSynchronizeButton)
 			.should("exist")
 			.click();
@@ -114,10 +117,43 @@ class CourseManagement {
 
 		courseNameData
 			.siblings("td")
-			.eq(2)
+			.eq(3)
 			.find(CourseManagement.#courseTableEndSynchronizeButton)
 			.should("exist")
 			.click();
+	}
+
+	seeCourseSynchronizedWithGroup(courseName, groupName) {
+		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
+			.should("be.visible");
+
+		courseNameData
+			.siblings("td").eq(0)
+			.should(($td) => {
+				expect($td.text().trim()).to.equal(groupName);
+			});
+	}
+
+	seeCourseNotSynchronized(courseName) {
+		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
+			.should("be.visible");
+
+		courseNameData
+			.siblings("td").eq(0)
+			.should(($td) => {
+				expect($td.text().trim()).to.equal("");
+			});
+	}
+
+	seeStartSynchronizeButtonForCourse(courseName) {
+		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
+			.should("be.visible");
+
+		courseNameData
+			.siblings("td")
+			.eq(3)
+			.find(CourseManagement.#courseTableStartSynchronizeButton)
+			.should("be.visible")
 	}
 
 	seeNoSynchronizeButtonForCourse(courseName) {
@@ -127,33 +163,34 @@ class CourseManagement {
 
 		courseNameData
 			.siblings("td")
-			.eq(2)
+			.eq(3)
 			.find(CourseManagement.#courseTableStartSynchronizeButton)
 			.should("not.exist")
 	}
 
 	seeEndSynchronizeButtonForCourse(courseName) {
-
 		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
 			.should("be.visible");
 
 		courseNameData
 			.siblings("td")
-			.eq(2)
+			.eq(3)
 			.find(CourseManagement.#courseTableEndSynchronizeButton)
 			.should("be.visible")
 	}
 
-	seeStartSynchronizeButtonForCourse(courseName) {
+	seeSynchronizationConfirmationModalTitle() {
+		cy.get(CourseManagement.#confirmDialogTitle).should("be.visible");
+	}
 
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
+	seeSynchronizationInfoTextForCourseAndGroup(courseName, groupName) {
+		cy.get(CourseManagement.#confirmSyncDialogInfoText)
+			.should("contain.text", courseName)
+			.should("contain.text", groupName)
+	}
 
-		courseNameData
-			.siblings("td")
-			.eq(2)
-			.find(CourseManagement.#courseTableStartSynchronizeButton)
-			.should("be.visible")
+	clickConfirmSynchronizationButton() {
+		cy.get(CourseManagement.#confirmDialogButton).click();
 	}
 }
 
