@@ -37,8 +37,8 @@ When("I click the delete button for course {string} in course table", (courseNam
 	courseManagement.clickDeleteButtonForCourse(courseName);
 });
 
-Then("I see 4 columns in the table", () => {
-	courseManagement.seeTableHas4Columns();
+Then("I see 5 columns in the table", () => {
+	courseManagement.seeTableHas5Columns();
 });
 
 Then("I see 2 tabs", () => {
@@ -61,6 +61,14 @@ When("I click the start synchronization button on course {string}", (courseName)
 	courseManagement.clickSynchronizeButtonForCourse(courseName);
 });
 
+Then("I see {string} is synchronized with {string}", (courseName, groupName) => {
+	courseManagement.seeCourseSynchronizedWithGroup(courseName, groupName);
+});
+
 Then("I do not see the start synchronize button on course {string}", (courseName) => {
 	courseManagement.seeNoSynchronizeButtonForCourse(courseName);
+});
+
+Then("I see the end synchronize button on course {string}", (courseName) => {
+	courseManagement.seeEndSynchronizeButtonForCourse(courseName);
 });
