@@ -16,7 +16,12 @@ Cypress.Commands.add("login", (username, environment) => {
 		const environmentUpperCased = environment.toUpperCase();
 		const link = Cypress.config("baseUrl", env[environmentUpperCased]);
 
-		!link.includes("staging")
+		const stagingRegex =
+			/^https:\/\/(staging\.[\w-]+\.(dbildungscloud\.org)|test\.schulportal-thueringen\.de|staging\.dbildungscloud\.org)\/?/;
+
+		let isStaging = stagingRegex.test(link);
+
+		!isStaging
 			? await loginViaSchoolApi(username, environment)
 			: loginWithoutSchoolApi(username, environment);
 
