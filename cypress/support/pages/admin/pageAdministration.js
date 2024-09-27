@@ -29,7 +29,8 @@ class Management {
 	static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]';
 	static #courseAdministrationNavigationButton = '[data-testid="Kurse"]';
 	static #classAdministrationNavigationButton = '[data-testid="Klassen"]';
-	static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes"]';
+	static #newClassAdministrationNavigationButton =
+		'[data-testid="administrate_classes"]';
 	static #teamAdministrationNavigationButton = '[data-testid="Teams"]';
 	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
@@ -73,7 +74,8 @@ class Management {
 	static #deleteExternalToolButton = '[data-testId="deleteAction"]';
 	static #confirmExternalToolDeletionButton = '[data-testid="delete-dialog-confirm"]';
 	static #cancelExternalToolDeletionButton = '[data-testid="delete-dialog-cancel"]';
-	static #externalToolDeletionDialogText = '[data-testid="delete-dialog-content-header"]';
+	static #externalToolDeletionDialogText =
+		'[data-testid="delete-dialog-content-header"]';
 	static #externalToolDeletionDialogTitle = '[data-testid="delete-dialog-title"]';
 	static #systemPanel = '[data-testid="systems-panel"]';
 	static #systemtable = '[data-testid="system-table"]';
@@ -95,6 +97,120 @@ class Management {
 		'[data-testid="admin-school-toggle-student-visibility"]';
 	static #toolConfiguration = '[data-testid="configuration-field"]';
 	static #buttonNewAdminPage = '[data-testid="button_new_admin_page"]';
+	static #birthDateFieldCreateStudent =
+		'[data-testid="input_create-student_birthdate"]';
+
+	logoutFromApplication() {
+		cy.logout();
+	}
+	seeTheLastStepPageSummaryManualRegistration() {
+		cy.get('[data-testid="consent_table_3"]').should("be.visible");
+	}
+
+	visitUrlForFirstLogin(namespace) {
+		const envNameSpace = namespace.toUpperCase();
+		const baseURl = Cypress.env(envNameSpace);
+		const urlEndPoint = "/login";
+		cy.visit(baseURl + urlEndPoint);
+	}
+
+	enterEmailOnFirstLogin() {
+		const uniqueEmail = this.fillUserCreationForm();
+		cy.get('[data-testid="username-email"]').type(uniqueEmail);
+	}
+
+	enterPasswordOnFirstLogin(userPassword) {
+		cy.get('[data-testid="password-email"]').type(userPassword);
+	}
+
+	clickOnLoginButtonForFirstLogin() {
+		cy.get('[data-testid="submit-login-email"]').click();
+	}
+
+	seeSectionOneFirstLoginPageOndBC() {
+		cy.get('[data-panel="section-1"]').should("exist");
+	}
+
+	clickOnNextButtonOnFirstLoginSectionOne() {
+		cy.get('[id="nextSection"]').click();
+	}
+
+	seeSectionTwoFirstLoginPageOndBC() {
+		cy.get('[data-panel="section-2"]').should("exist");
+	}
+
+	clickOnNextButtonOnFirstLoginSectionTwo() {
+		cy.get('[id="nextSection"]').click();
+	}
+
+	seeSectionThreeFirstLoginPageOndBC() {
+		cy.get('[data-panel="section-3"]').should("exist");
+	}
+
+	setNewPasswordOnFirstLogin(setNewPassword) {
+		cy.get('[data-testid="firstlogin_password"]').type(setNewPassword);
+	}
+
+	reEnterPasswordOnManualRegistration(reEnterPassword) {
+		cy.get('[data-testid="firstlogin_password_control"]').type(reEnterPassword);
+	}
+
+	clickOnActionsOnStudentOverview() {
+		cy.clickOnElement("[data-test-id='context-menu-open']");
+	}
+
+	clickOnManualRegistrationOption() {
+		cy.clickOnElement("[data-testid='consent_action");
+	}
+
+	seeManualRegistrationPage() {
+		cy.get('[data-testid="breadcrumb-2"]').should("be.visible");
+	}
+
+	clearDefaultPasswordInManualRegistration() {
+		cy.clearOutInput("input[data-testid='password-input']");
+	}
+
+	enterPasswordOnManualRegistration(manual_password) {
+		cy.writeToInput("input[data-testid='password-input']", manual_password);
+	}
+	clickOnApplyDataButton() {
+		cy.clickOnElement("[data-testid='button-next");
+	}
+
+	clickOnConsentCheckBox() {
+		cy.tryClickOnElement("div[id='consent-checkbox']");
+	}
+
+	clickOnRegisterUserButton() {
+		cy.clickOnElement("[data-testid='button-next-2");
+	}
+
+	clickOnCancelButton() {
+		cy.contains("button", "abbrechen", { matchCase: false }).clickOnElement();
+	}
+
+	clickOnCancelRegarlessOnModalButton() {
+		cy.contains("button", "trotzdem abbrechen", {
+			matchCase: false,
+		}).clickOnElement();
+	}
+
+	beingOnStudentManagementOverview() {
+		cy.visit("/administration/students");
+		cy.location("pathname").should("equal", "/administration/students");
+	}
+
+	navigateToStudentManagementOverview() {
+		cy.visit("/administration/students");
+		cy.location("pathname").should("equal", "/administration/students");
+	}
+
+	selectStudentOnStudentOverview(firstname, userEmail) {
+		cy.clearOutInput("input[data-testid='searchbar']");
+		cy.writeToInput("input[data-testid='searchbar']", firstname);
+		cy.contains("tr", userEmail).find("svg").first().should("be.visible").click();
+	}
 
 	enableStudentVisibilityForTeacher() {
 		cy.get(Management.#studentVisiblityToggle).click({ force: true }).wait(500);
@@ -113,7 +229,10 @@ class Management {
 		this.checkingToggleButtonStatus().then((toggleBtnStatus) => {
 			toggleBtnStatus === desiredState
 				? cy.log(`Element is already in the desired state, skipping click`)
-				: cy.get(Management.#videoConferenceToggle).click({ force: true }).wait(500);
+				: cy
+						.get(Management.#videoConferenceToggle)
+						.click({ force: true })
+						.wait(500);
 		});
 		cy.get(Management.#videoConferenceToggle).should(
 			"have.prop",
@@ -157,7 +276,9 @@ class Management {
 		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
 			!el.is(":checked")
 				? cy.log("Element is already unchecked, skipping click")
-				: cy.get(Management.#learningStoreStudentAccessToggle).click({ force: true });
+				: cy
+						.get(Management.#learningStoreStudentAccessToggle)
+						.click({ force: true });
 		});
 	}
 
@@ -165,7 +286,9 @@ class Management {
 		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
 			el.is(":checked")
 				? cy.log("Element is already checked, skipping click")
-				: cy.get(Management.#learningStoreStudentAccessToggle).click({ force: true });
+				: cy
+						.get(Management.#learningStoreStudentAccessToggle)
+						.click({ force: true });
 		});
 	}
 
@@ -186,12 +309,13 @@ class Management {
 	}
 
 	openAdministrationInMenu() {
-		cy.get(Management.#administrationOverviewNavigationButton).parent().then(($element) => {
-			if(!$element.hasClass("v-list-group--open"))
-			{
-				cy.get(Management.#administrationOverviewNavigationButton).click();
-			}
-		});
+		cy.get(Management.#administrationOverviewNavigationButton)
+			.parent()
+			.then(($element) => {
+				if (!$element.hasClass("v-list-group--open")) {
+					cy.get(Management.#administrationOverviewNavigationButton).click();
+				}
+			});
 	}
 
 	navigateToUserAdministration(role) {
@@ -205,16 +329,18 @@ class Management {
 	}
 
 	navigateToLegacyCourseAdministration() {
-		cy.get(Management.#administrationOverviewNavigationButton).siblings()
+		cy.get(Management.#administrationOverviewNavigationButton)
+			.siblings()
 			.find(Management.#courseAdministrationNavigationButton)
 			.click();
 		cy.url().should("include", "/administration/courses");
 	}
 
 	navigateToCourseAdministration() {
-		cy.get(Management.#administrationOverviewNavigationButton).siblings()
+		cy.get(Management.#administrationOverviewNavigationButton)
+			.siblings()
 			.find(Management.#courseAdministrationNavigationButton)
-			.click()
+			.click();
 		cy.url().should("include", "/administration/rooms/new");
 	}
 
@@ -243,15 +369,29 @@ class Management {
 
 	clickOnAddUserInFAB(role) {
 		let addUserButtonInFAB =
-			role === "student" ? Management.#addStudentButton : Management.#addTeacherButton;
+			role === "student"
+				? Management.#addStudentButton
+				: Management.#addTeacherButton;
 		cy.get(addUserButtonInFAB).click({ force: true });
 	}
 
 	fillUserCreationForm(forename, surname, email) {
 		let randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
+		let uniqueEmail = randomNumber + email;
+
+		// Fill in form
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
-		cy.get(Management.#emailCreationForm).type(randomNumber + email);
+		cy.get(Management.#emailCreationForm).type(uniqueEmail);
+
+		// Setting the birth date to 17 years ago
+		const birthDate = new Date();
+		birthDate.setFullYear(birthDate.getFullYear() - 17);
+		cy.writeToInput(
+			Management.#birthDateFieldCreateStudent,
+			birthDate.toISOString().split("T")[0],
+			100
+		);
 	}
 
 	clickOnAddButton(role) {
@@ -350,7 +490,9 @@ class Management {
 	clickVideoConferenceToggleSwitch() {
 		cy.intercept("**/federalStates/**").as("federalStates");
 		cy.wait("@federalStates");
-		cy.get(Management.#videoconferenceToggleSwitch).find("input").click({ force: true });
+		cy.get(Management.#videoconferenceToggleSwitch)
+			.find("input")
+			.click({ force: true });
 	}
 
 	clickSaveGeneralSettingsButton() {
@@ -505,7 +647,10 @@ class Management {
 
 	clickDeleteButtonOnTool(toolName) {
 		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
 		toolData
 			.parent("td")
@@ -544,7 +689,10 @@ class Management {
 	}
 
 	seeSelectedExternalTool(toolName) {
-		cy.get(Management.#toolConfigurationSelectedItem).should("contain.text", toolName);
+		cy.get(Management.#toolConfigurationSelectedItem).should(
+			"contain.text",
+			toolName
+		);
 	}
 
 	seeCustomParameterFormContains(paramName, value) {
@@ -617,16 +765,27 @@ class Management {
 
 	checkActivatedTool(toolName) {
 		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
 		toolData.parent("td").siblings("td").eq(0).contains("Aktuell").should("exist");
 	}
 
 	checkDeactivatedTool(toolName) {
 		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
-		toolData.parent("td").siblings("td").eq(0).contains("Deaktiviert").should("exist");
+		toolData
+			.parent("td")
+			.siblings("td")
+			.eq(0)
+			.contains("Deaktiviert")
+			.should("exist");
 	}
 
 	saveExternalTool() {
@@ -651,7 +810,10 @@ class Management {
 
 	clickOnEditButton(toolName) {
 		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
 		toolData
 			.parent("td")
@@ -671,21 +833,30 @@ class Management {
 	}
 
 	seeLdapSystem() {
-		const ldapSystemEntry = cy.get(Management.#systemtable).find("td").contains("ldap");
+		const ldapSystemEntry = cy
+			.get(Management.#systemtable)
+			.find("td")
+			.contains("ldap");
 		ldapSystemEntry.should("be.visible");
 
 		ldapSystemEntry.siblings("td").eq(2).find("a").should("be.visible");
 	}
 
 	seeSpecificSystemWithEditButton(systemName) {
-		const systemEntry = cy.get(Management.#systemtable).find("td").contains(systemName);
+		const systemEntry = cy
+			.get(Management.#systemtable)
+			.find("td")
+			.contains(systemName);
 		systemEntry.should("be.visible");
 
 		systemEntry.siblings("td").eq(2).find("a").should("be.visible");
 	}
 
 	clickOnLdapEditButton() {
-		const ldapSystemEntry = cy.get(Management.#systemtable).find("td").contains("ldap");
+		const ldapSystemEntry = cy
+			.get(Management.#systemtable)
+			.find("td")
+			.contains("ldap");
 
 		ldapSystemEntry.siblings("td").eq(2).find("a").click();
 	}
@@ -695,7 +866,10 @@ class Management {
 	}
 
 	clickOnSpecificSystemEditButton(systemName) {
-		const systemEntry = cy.get(Management.#systemtable).find("td").contains(systemName);
+		const systemEntry = cy
+			.get(Management.#systemtable)
+			.find("td")
+			.contains(systemName);
 
 		systemEntry.siblings("td").eq(2).find("a").click();
 	}

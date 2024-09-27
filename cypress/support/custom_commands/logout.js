@@ -1,4 +1,4 @@
-const initials = '[data-testid="initials"]';
+const initials = '[data-testid="user-menu-btn"]';
 const logoutButton = '[data-testid="logout"]';
 
 Cypress.Commands.add("logout", () => {

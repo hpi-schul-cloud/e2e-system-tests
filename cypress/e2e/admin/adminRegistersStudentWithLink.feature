@@ -1,10 +1,10 @@
 @regression_test
-@stable_test
+@unstable_test
 Feature: Student registration with registration link send by admin
 
     As a student, I want to register in the SVS
 
-    Scenario Outline: Setup
+    Scenario: Setup
         Given I am logged in as '<user>' on '<env>'
         When Created student 'John' 'Student' with email 'john.student@mail.tld'
         Then I am on the students management page
@@ -13,7 +13,7 @@ Feature: Student registration with registration link send by admin
             | env | user       |
             | dbc | admin1_dbc |
 
-    Scenario Outline: Student can registers in the SVS with the registration link
+    Scenario: Student can registers in the SVS with the registration link
         Given I am logged in as '<user>' on '<env>'
         And I am on the students management page
         Given Going to student edit page for 'John' with email 'john.student@mail.tld'
@@ -25,7 +25,7 @@ Feature: Student registration with registration link send by admin
             | env | user       |
             | dbc | admin1_dbc |
 
-    Scenario Outline: Teardown
+    Scenario: Teardown
         Given I am logged in as '<user>' on '<env>'
         And I am on the students management page
         And Going to student edit page for 'John' with email 'john.student@mail.tld'
