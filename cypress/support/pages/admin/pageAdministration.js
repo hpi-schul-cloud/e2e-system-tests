@@ -114,11 +114,6 @@ class Management {
 		cy.visit(baseURl + urlEndPoint);
 	}
 
-	enterEmailOnFirstLogin() {
-		const uniqueEmail = this.fillUserCreationForm();
-		cy.get('[data-testid="username-email"]').type(uniqueEmail);
-	}
-
 	enterPasswordOnFirstLogin(userPassword) {
 		cy.get('[data-testid="password-email"]').type(userPassword);
 	}
@@ -143,8 +138,20 @@ class Management {
 		cy.get('[id="nextSection"]').click();
 	}
 
+	clickOnNextButtonOnFirstLoginSectionThree() {
+		cy.get('[id="nextSection"]').click();
+	}
+
 	seeSectionThreeFirstLoginPageOndBC() {
 		cy.get('[data-panel="section-3"]').should("exist");
+	}
+
+	clickOnStartImmediateButtonOnFirstLoginSectionFourse() {
+		cy.get('[data-testid="btn_schul-cloud_erkunden"]').click();
+	}
+
+	seeDashboardAfterFirstLogin() {
+		cy.get('[id="page-title"]').should("be.visible");
 	}
 
 	setNewPasswordOnFirstLogin(setNewPassword) {
@@ -374,12 +381,17 @@ class Management {
 				: Management.#addTeacherButton;
 		cy.get(addUserButtonInFAB).click({ force: true });
 	}
+	fillUserCreationForm(forename, surname, baseEmail) {
+		const randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
+		const uniqueEmail = randomNumber + baseEmail;
 
-	fillUserCreationForm(forename, surname, email) {
-		let randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
-		let uniqueEmail = randomNumber + email;
+		// Store the generated unique email as an alias for later use
+		cy.wrap(uniqueEmail).as("uniqueEmail");
 
-		// Fill in form
+		// Log the generated unique email
+		cy.log("Generated Unique Email:", uniqueEmail);
+
+		// Fill in the form with the generated email and other details
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
 		cy.get(Management.#emailCreationForm).type(uniqueEmail);
@@ -392,6 +404,14 @@ class Management {
 			birthDate.toISOString().split("T")[0],
 			100
 		);
+	}
+
+	enterEmailOnFirstLogin() {
+		// Retrieve the same unique email assigned to the student during the user creation
+		cy.get("@uniqueEmail").then((uniqueEmail) => {
+			cy.log("Using Unique Email for Login:", uniqueEmail);
+			cy.get('[data-testid="username-email"]').type(uniqueEmail);
+		});
 	}
 
 	clickOnAddButton(role) {

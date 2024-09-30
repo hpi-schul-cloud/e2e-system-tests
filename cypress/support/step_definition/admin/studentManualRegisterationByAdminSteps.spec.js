@@ -15,7 +15,7 @@ When("I visit the url {string}", (namespace) => {
 	management.visitUrlForFirstLogin(namespace);
 });
 
-When("I enter the email generated during user creation", () => {
+When("I enter the email assigned during user creation", () => {
 	management.enterEmailOnFirstLogin();
 });
 
@@ -59,11 +59,7 @@ Then("I enter new password {string}", (setNewPassword) => {
 	management.setNewPasswordOnFirstLogin(setNewPassword);
 });
 
-Then("I see the section 4", () => {
-	management.seeSectionFourFirstLoginPageOndBC();
-});
-
-Then("I click on the button Start immediately in section 4", () => {
+Then("I click on the button Get started now in section 4", () => {
 	management.clickOnStartImmediateButtonOnFirstLoginSectionFourse();
 });
 

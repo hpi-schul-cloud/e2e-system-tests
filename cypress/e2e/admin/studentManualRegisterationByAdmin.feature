@@ -19,7 +19,7 @@ Feature: Admin creates, manually register and deletes students
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
-        # Admin manually registers student
+        # Admin manually registers the student
         When I am on the students management page
         When I select student '<user_firstname>' with email '<user_email>'
         When I click on the button Actions
@@ -34,27 +34,28 @@ Feature: Admin creates, manually register and deletes students
         Then I click on the button Abbrechen
         Then I click on the button Trotzdem abbrechen on the confirmation modal
         Then I navigate to the students management page
-        #Then I logout from the application
+        Then I logout from the application
 
-        # Newly registered student do the first login
-        #When I visit the url '<namespace>'
-        #When I enter the email generated during user creation
-        #When I enter the password '<manual_password>'
-        #When I click on the button Login
-        #Then I see the first login page section 1
-        #When I click on the button Next in section 1
-        #Then I see the section 2
-        #Then I see my assigned Email '<user_email>'
-        #When I click on the button Next in section 2
-        #Then I see the section 3
-        #Then I enter new password '<set_new_password>'
-        #Then I re enter the new password '<repaet_new_password>'
-        #When I click on the button Next in section 3
-        #Then I see the section 4
-        #Then I click on the button Start immediately in section 4
-        #Then I see the dashboard
+        # Newly manual registered student does the first login
+        When I visit the url '<namespace>'
+        When I enter the email assigned during user creation
+        When I enter the password '<manual_password>'
+        When I click on the button Login
+        Then I see the first login page section 1
+        When I click on the button Next in section 1
+        Then I see the section 2
+        When I click on the button Next in section 2
+        Then I see the section 3
+        Then I enter new password '<set_new_password>'
+        Then I re enter the new password '<repaet_new_password>'
+        When I click on the button Next in section 3
+        Then I click on the button Get started now in section 4
+        Then I see the dashboard
+        Then I logout from the application
 
         # Admin deletes a student
+        Given I am logged in as a '<admin>' at '<namespace>'
+        When I click on administration in menu
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
@@ -62,7 +63,6 @@ Feature: Admin creates, manually register and deletes students
         When I click on delete button in pop up
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
-
 
         @school_api_test
         Examples:
