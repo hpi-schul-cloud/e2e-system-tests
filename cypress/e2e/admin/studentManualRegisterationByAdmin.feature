@@ -67,9 +67,9 @@ Feature: Admin creates, manually register and deletes students
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | manual_password | set_new_password | repaet_new_password |
-            | dbc       | admin1_dbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | Schulcloud1!    | Schulcloud1!!    | Schulcloud1!!       |
+            | nbc       | admin1_nbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | Schulcloud1!    | Schulcloud1!!    | Schulcloud1!!       |
 
         @staging_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | manual_password | set_new_password | repaet_new_password |
-            | dbc       | admin1_dbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | Schulcloud1!    | Schulcloud1!!    | Schulcloud1!!       |
+            | nbc       | admin1_nbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | Schulcloud1!    | Schulcloud1!!    | Schulcloud1!!       |

@@ -186,7 +186,13 @@ class Management {
 	}
 
 	clickOnConsentCheckBox() {
-		cy.tryClickOnElement("div[id='consent-checkbox']");
+		cy.get("body").then((body) => {
+			if (body.find("div[id='consent-checkbox']").length) {
+				cy.get("div[id='consent-checkbox']").click();
+			} else {
+				cy.log("No consent checkbox required on BRB and NBC");
+			}
+		});
 	}
 
 	clickOnRegisterUserButton() {
@@ -381,6 +387,7 @@ class Management {
 				: Management.#addTeacherButton;
 		cy.get(addUserButtonInFAB).click({ force: true });
 	}
+
 	fillUserCreationForm(forename, surname, baseEmail) {
 		const randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
 		const uniqueEmail = randomNumber + baseEmail;
@@ -396,7 +403,7 @@ class Management {
 		cy.get(Management.#lastNameCreationForm).type(surname);
 		cy.get(Management.#emailCreationForm).type(uniqueEmail);
 
-		// Setting the birth date to 17 years ago
+		// Setting the birth date to 17 years ago in the form
 		const birthDate = new Date();
 		birthDate.setFullYear(birthDate.getFullYear() - 17);
 		cy.writeToInput(
@@ -410,7 +417,16 @@ class Management {
 		// Retrieve the same unique email assigned to the student during the user creation
 		cy.get("@uniqueEmail").then((uniqueEmail) => {
 			cy.log("Using Unique Email for Login:", uniqueEmail);
-			cy.get('[data-testid="username-email"]').type(uniqueEmail);
+			cy.get("body").then((body) => {
+				if (body.find('[data-testid="submit-cloud-site"]').length) {
+					// For NBC
+					cy.get('[data-testid="submit-cloud-site"]').click();
+					cy.get('[data-testid="username-email"]').type(uniqueEmail);
+				} else {
+					// For dBC/BRB
+					cy.get('[data-testid="username-email"]').type(uniqueEmail);
+				}
+			});
 		});
 	}
 
