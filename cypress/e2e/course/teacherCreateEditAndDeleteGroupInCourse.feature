@@ -61,6 +61,16 @@ Feature: Teacher can create, edit and delete a group in the course
         When I click on button Delete group confirmation
         Then I do not see group name '<group_rename>' in tab Course group
 
+        # Post-condition: Teacher deletes the course
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I go to room '<course_name>'
+        When I open page Edit course
+        When I click on the button delete course
+        Then I see the modal to confirm the deletion
+        When I click on the button delete on the modal to confirm the course deletion
+        Then I do not see the course '<course_name>' on the room overview page
+
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name             | fullname_teacher  | fullname_student  | group_name | group_member      | group_rename  |

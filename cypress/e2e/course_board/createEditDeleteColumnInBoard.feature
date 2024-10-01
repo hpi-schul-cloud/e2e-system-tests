@@ -72,6 +72,15 @@ Feature: Course Board - To create, edit and delete column in the course board
         When I click on the button Remove on the Modal
         Then I do not see the column
 
+        # Post-condition: Teacher deletes the course
+        When I go to rooms overview
+        When I go to room '<course_name>'
+        When I open page Edit course
+        When I click on the button delete course
+        Then I see the modal to confirm the deletion
+        When I click on the button delete on the modal to confirm the course deletion
+        Then I do not see the course '<course_name>' on the room overview page
+
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | fullname_teacher  | course_name                    | board_title    | column_board_title     | edited_column_board_title |

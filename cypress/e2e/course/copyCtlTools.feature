@@ -7,7 +7,7 @@ Feature: Course - Copy CTL tools
   Scenario: Pre-test: Admin adds external tools to school
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I click on sub menu school
+    When I navigate to new school admin page via sub menu
     When I click on external tools panel
     When I click the add external tool button
     When I select the tool 'CY Test Tool Context Scope' from available tools
@@ -150,7 +150,7 @@ Feature: Course - Copy CTL tools
     #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
-    When I click on sub menu school
+    When I navigate to new school admin page via sub menu
     When I click on external tools panel
     Then I see the external tools table
     When I click on delete button of tool 'CY Test Tool Context Scope'

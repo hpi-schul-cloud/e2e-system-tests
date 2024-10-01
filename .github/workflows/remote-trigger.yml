@@ -114,6 +114,7 @@ jobs:
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       tag: cy:headless:stable:groupA:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-A
 
   run-tests-groupB:
     needs: e2e-system-tests
@@ -126,3 +127,4 @@ jobs:
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       tag: cy:headless:stable:groupB:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-B

@@ -36,7 +36,7 @@ Feature: Course - To show courses in a table with respective functionality
         Given I see the new course administration page
         # Then I can see the administration page title -> needed data-testid "admin-course-title" currently not available
         Then I see 2 tabs
-        Then I see 4 columns in the table
+        Then I see 5 columns in the table
         Then I see the course '<course_title>' without classes and with teacher '<teacher_name>'
         Then I see 3 enabled action items for course '<course_title>'
         Examples:
@@ -73,23 +73,25 @@ Feature: Course - To show courses in a table with respective functionality
         Then I see information text of the modal asking for confirmation of synchronization
         When I click the confirm button on the synchronization confirmation modal
         Then I see the new course administration page
-        #Then I do not see the start synchronize button on course '<course_title>'
-        Then I see the end synchronization button on course '<course_title>'
+        Then I see '<course_title>' is synchronized with '<group_title>'
+        Then I do not see the start synchronize button on course '<course_title>'
+        Then I see the end synchronize button on course '<course_title>'
     Examples:
         | course_title               | group_title         |
         | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
-
+#
     Scenario Outline: Admin ends synchronization of a course with a group
         Given I see the new course administration page
         When I click the end synchronization button on course '<course_title>'
-        Then I see the title of the modal to end the sync
-        Then I see the information text of the modal to end the sync
-        When I click the confirmation button of the modal to end the sync
+        Then I see title of the confirmation modal to end the synchronization
+        Then I see information text of the confirmation modal to end the synchronization of course '<course_title>' with group '<group_title>'
+        When I click the confirm button on the end synchronization confirmation modal
         Then I see the new course administration page
-        Then I see the start synchronization button on course '<course_title>'
-        Examples:
-            |course_title               |
-            |Cypress-Admin-Test-Course  |
+        Then I see '<course_title>' is not synchronized
+         Then I see the start synchronize button on course '<course_title>'
+    Examples:
+        | course_title               | group_title         |
+        | Cypress-Admin-Test-Course  | Cypress-Test-Group  |
 #
     Scenario Outline: Admin deletes courses
         Given I see the new course administration page
