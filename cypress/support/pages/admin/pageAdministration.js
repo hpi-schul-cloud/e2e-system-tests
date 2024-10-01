@@ -99,12 +99,34 @@ class Management {
 	static #buttonNewAdminPage = '[data-testid="button_new_admin_page"]';
 	static #birthDateFieldCreateStudent =
 		'[data-testid="input_create-student_birthdate"]';
+	static #manualRegistrationSummaryPage = '[data-testid="consent_table_3"]';
+	static #userEmailLoginPage = '[data-testid="password-email"]';
+	static #submitButtonOnLoginPage = '[data-testid="submit-login-email"]';
+	static #sectionOneOnFirstLogin = '[data-panel="section-1"]';
+	static #nextButtonFirstLogin = '[id="nextSection"]';
+	static #sectionTwoOnFirstLogin = '[data-panel="section-2"]';
+	static #sectionThreeOnFirstLogin = '[data-panel="section-3"]';
+	static #getStartedFirstLoginButton = '[data-testid="btn_schul-cloud_erkunden"]';
+	static #pageTitleOnDashboard = '[id="page-title"]';
+	static #passwordInputFirstLogin = '[data-testid="firstlogin_password"]';
+	static #reEnterPasswordInputFirstLogin =
+		'[data-testid="firstlogin_password_control"]';
+	static #actionButtonUserOverview = '[data-test-id="context-menu-open"]';
+	static #manualRegitrationOption = '[data-testid="consent_action"]';
+	static #breadcrumbManualRegistration = '[data-testid="breadcrumb-2"]';
+	static #inputPasswordMaualRegistrationStepOne = 'input[data-testid="password-input"]';
+	static #applyDataManualRegistrationButton = '[data-testid="button-next"]';
+	static #consentCheckboxManulRegistration = 'div[id="consent-checkbox"]';
+	static #buttonRegisterUserOnManualPage = '[data-testid="button-next-2"]';
+	static #searchBarUserOverview = 'input[data-testid="searchbar"]';
+	static #buttonLoginViaEmailNbc = '[data-testid="submit-cloud-site"]';
+	static #inputBoxUserEmailOnLoginPage = '[data-testid="username-email"]';
 
 	logoutFromApplication() {
 		cy.logout();
 	}
 	seeTheLastStepPageSummaryManualRegistration() {
-		cy.get('[data-testid="consent_table_3"]').should("be.visible");
+		cy.get(Management.#manualRegistrationSummaryPage).should("be.visible");
 	}
 
 	visitUrlForFirstLogin(namespace) {
@@ -115,80 +137,80 @@ class Management {
 	}
 
 	enterPasswordOnFirstLogin(userPassword) {
-		cy.get('[data-testid="password-email"]').type(userPassword);
+		cy.get(Management.#userEmailLoginPage).type(userPassword);
 	}
 
 	clickOnLoginButtonForFirstLogin() {
-		cy.get('[data-testid="submit-login-email"]').click();
+		cy.get(Management.#submitButtonOnLoginPage).click();
 	}
 
 	seeSectionOneFirstLoginPageOndBC() {
-		cy.get('[data-panel="section-1"]').should("exist");
+		cy.get(Management.#sectionOneOnFirstLogin).should("exist");
 	}
 
 	clickOnNextButtonOnFirstLoginSectionOne() {
-		cy.get('[id="nextSection"]').click();
+		cy.get(Management.#nextButtonFirstLogin).click();
 	}
 
 	seeSectionTwoFirstLoginPageOndBC() {
-		cy.get('[data-panel="section-2"]').should("exist");
+		cy.get(Management.#sectionTwoOnFirstLogin).should("exist");
 	}
 
 	clickOnNextButtonOnFirstLoginSectionTwo() {
-		cy.get('[id="nextSection"]').click();
+		cy.get(Management.#nextButtonFirstLogin).click();
 	}
 
 	clickOnNextButtonOnFirstLoginSectionThree() {
-		cy.get('[id="nextSection"]').click();
+		cy.get(Management.#nextButtonFirstLogin).click();
 	}
 
 	seeSectionThreeFirstLoginPageOndBC() {
-		cy.get('[data-panel="section-3"]').should("exist");
+		cy.get(Management.#sectionThreeOnFirstLogin).should("exist");
 	}
 
 	clickOnStartImmediateButtonOnFirstLoginSectionFourse() {
-		cy.get('[data-testid="btn_schul-cloud_erkunden"]').click();
+		cy.get(Management.#getStartedFirstLoginButton).click();
 	}
 
 	seeDashboardAfterFirstLogin() {
-		cy.get('[id="page-title"]').should("be.visible");
+		cy.get(Management.#pageTitleOnDashboard).should("be.visible");
 	}
 
 	setNewPasswordOnFirstLogin(setNewPassword) {
-		cy.get('[data-testid="firstlogin_password"]').type(setNewPassword);
+		cy.get(Management.#passwordInputFirstLogin).type(setNewPassword);
 	}
 
 	reEnterPasswordOnManualRegistration(reEnterPassword) {
-		cy.get('[data-testid="firstlogin_password_control"]').type(reEnterPassword);
+		cy.get(Management.#reEnterPasswordInputFirstLogin).type(reEnterPassword);
 	}
 
 	clickOnActionsOnStudentOverview() {
-		cy.clickOnElement("[data-test-id='context-menu-open']");
+		cy.get(Management.#actionButtonUserOverview).click();
 	}
 
 	clickOnManualRegistrationOption() {
-		cy.clickOnElement("[data-testid='consent_action");
+		cy.get(Management.#manualRegitrationOption).click();
 	}
 
 	seeManualRegistrationPage() {
-		cy.get('[data-testid="breadcrumb-2"]').should("be.visible");
+		cy.get(Management.#breadcrumbManualRegistration).should("be.visible");
 	}
 
 	clearDefaultPasswordInManualRegistration() {
-		cy.clearOutInput("input[data-testid='password-input']");
+		cy.get(Management.#inputPasswordMaualRegistrationStepOne).clear();
 	}
 
 	enterPasswordOnManualRegistration(manual_password) {
-		cy.writeToInput("input[data-testid='password-input']", manual_password);
+		cy.get(Management.#inputPasswordMaualRegistrationStepOne).type(manual_password);
 	}
 	clickOnApplyDataButton() {
-		cy.clickOnElement("[data-testid='button-next");
+		cy.get(Management.#applyDataManualRegistrationButton).click();
 	}
 
 	clickOnConsentCheckBox() {
 		cy.get("body").then((body) => {
-			if (body.find("div[id='consent-checkbox']").length) {
-				cy.get("div[id='consent-checkbox']").click();
+			if (body.find(Management.#consentCheckboxManulRegistration).length) {
+				cy.get(Management.#consentCheckboxManulRegistration).click();
 			} else {
 				cy.log("No consent checkbox required on BRB and NBC");
 			}
@@ -196,7 +218,7 @@ class Management {
 	}
 
 	clickOnRegisterUserButton() {
-		cy.clickOnElement("[data-testid='button-next-2");
+		cy.get(Management.#buttonRegisterUserOnManualPage).click();
 	}
 
 	clickOnCancelButton() {
@@ -220,8 +242,8 @@ class Management {
 	}
 
 	selectStudentOnStudentOverview(firstname, userEmail) {
-		cy.clearOutInput("input[data-testid='searchbar']");
-		cy.writeToInput("input[data-testid='searchbar']", firstname);
+		cy.clearOutInput(Management.#searchBarUserOverview);
+		cy.writeToInput(Management.#searchBarUserOverview, firstname);
 		cy.contains("tr", userEmail).find("svg").first().should("be.visible").click();
 	}
 
@@ -414,17 +436,16 @@ class Management {
 	}
 
 	enterEmailOnFirstLogin() {
-		// Retrieve the same unique email assigned to the student during the user creation
+		// Retrieve and use the same unique email assigned to the student during the user creation
 		cy.get("@uniqueEmail").then((uniqueEmail) => {
-			cy.log("Using Unique Email for Login:", uniqueEmail);
 			cy.get("body").then((body) => {
-				if (body.find('[data-testid="submit-cloud-site"]').length) {
+				if (body.find(Management.#buttonLoginViaEmailNbc).length) {
 					// For NBC
-					cy.get('[data-testid="submit-cloud-site"]').click();
-					cy.get('[data-testid="username-email"]').type(uniqueEmail);
+					cy.get(Management.#buttonLoginViaEmailNbc).click();
+					cy.get(Management.#inputBoxUserEmailOnLoginPage).type(uniqueEmail);
 				} else {
 					// For dBC/BRB
-					cy.get('[data-testid="username-email"]').type(uniqueEmail);
+					cy.get(Management.#inputBoxUserEmailOnLoginPage).type(uniqueEmail);
 				}
 			});
 		});
