@@ -30,12 +30,12 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I select the tool 'CY Test Tool Course Restriction' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Course Restriction' in external tools table
-    Then I see the tool 'CY Test Tool Course Restriction' in external tools table has context restriction 'Kurs'
+    Then I see the tool 'CY Test Tool Course Restriction' in external tools table has context restriction 'Kurs-Tools'
     When I click the add external tool button
     When I select the tool 'CY Test Tool Board-Element Restriction' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Board-Element Restriction' in external tools table
-    Then I see the tool 'CY Test Tool Board-Element Restriction' in external tools table has context restriction 'Bereich'
+    Then I see the tool 'CY Test Tool Board-Element Restriction' in external tools table has context restriction 'Bereiche'
     When I click the add external tool button
     When I select the tool 'CY Test Tool Media-Board Restriction' from available tools
     When I click on save external tool button
@@ -45,7 +45,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I select the tool 'CY Test Tool All Restrictions' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool All Restrictions' in external tools table
-    Then I see the tool 'CY Test Tool All Restrictions' in external tools table has context restriction 'Kurs, Bereich, Medienregal'
+    Then I see the tool 'CY Test Tool All Restrictions' in external tools table has context restriction 'Kurs-Tools, Bereiche, Medienregal'
 
   @unstable_test
   Scenario: Teacher adds ctl tools to context course, board-element and media-board
