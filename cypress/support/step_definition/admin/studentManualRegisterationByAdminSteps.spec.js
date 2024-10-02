@@ -28,7 +28,7 @@ When("I click on the button Login", () => {
 });
 
 Then("I see the first login page section 1", () => {
-	management.seeSectionOneFirstLoginPageOndBC();
+	management.seeSectionOneFirstLoginPage();
 });
 
 When("I click on the button Next in section 1", () => {
@@ -36,7 +36,7 @@ When("I click on the button Next in section 1", () => {
 });
 
 Then("I see the section 2", () => {
-	management.seeSectionTwoFirstLoginPageOndBC();
+	management.seeSectionTwoFirstLoginPage();
 });
 
 When("I click on the button Next in section 2", () => {
@@ -44,7 +44,7 @@ When("I click on the button Next in section 2", () => {
 });
 
 Then("I see the section 3", () => {
-	management.seeSectionThreeFirstLoginPageOndBC();
+	management.seeSectionThreeFirstLoginPage();
 });
 
 Then("I re enter the new password", () => {
@@ -60,7 +60,7 @@ Then("I set a new password", () => {
 });
 
 Then("I click on the button Get started now in section 4", () => {
-	management.clickOnStartImmediateButtonOnFirstLoginSectionFourse();
+	management.clickOnStartImmediateButtonOnFirstLoginSectionFour();
 });
 
 Then("I see the dashboard", () => {

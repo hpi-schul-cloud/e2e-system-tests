@@ -144,7 +144,7 @@ class Management {
 		cy.get(Management.#submitButtonOnLoginPage).click();
 	}
 
-	seeSectionOneFirstLoginPageOndBC() {
+	seeSectionOneFirstLoginPage() {
 		cy.get(Management.#sectionOneOnFirstLogin).should("exist");
 	}
 
@@ -152,7 +152,7 @@ class Management {
 		cy.get(Management.#nextButtonFirstLogin).click();
 	}
 
-	seeSectionTwoFirstLoginPageOndBC() {
+	seeSectionTwoFirstLoginPage() {
 		cy.get(Management.#sectionTwoOnFirstLogin).should("exist");
 	}
 
@@ -164,11 +164,11 @@ class Management {
 		cy.get(Management.#nextButtonFirstLogin).click();
 	}
 
-	seeSectionThreeFirstLoginPageOndBC() {
+	seeSectionThreeFirstLoginPage() {
 		cy.get(Management.#sectionThreeOnFirstLogin).should("exist");
 	}
 
-	clickOnStartImmediateButtonOnFirstLoginSectionFourse() {
+	clickOnStartImmediateButtonOnFirstLoginSectionFour() {
 		cy.get(Management.#getStartedFirstLoginButton).click();
 	}
 
