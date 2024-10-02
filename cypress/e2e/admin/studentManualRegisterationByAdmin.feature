@@ -26,7 +26,7 @@ Feature: Admin creates, manually register and deletes students
         When I click on the option Manual Registration
         Then I see the page Manual Registration
         When I clear the default assigned password
-        Then I enter the initial password '<manual_password>'
+        Then I enter the initial password
         When I click on the button Apply data
         When I click on the checkbox to confirm the consent
         When I click on the button Register users
@@ -37,17 +37,17 @@ Feature: Admin creates, manually register and deletes students
         Then I logout from the application
 
         # Newly manual registered student does the first login
-        When I visit the url '<namespace>'
+        When I visit the url for first login
         When I enter the email assigned during user creation
-        When I enter the password '<manual_password>'
+        When I enter the password
         When I click on the button Login
         Then I see the first login page section 1
         When I click on the button Next in section 1
         Then I see the section 2
         When I click on the button Next in section 2
         Then I see the section 3
-        Then I enter new password '<set_new_password>'
-        Then I re enter the new password '<repaet_new_password>'
+        Then I set a new password
+        Then I re enter the new password
         When I click on the button Next in section 3
         Then I click on the button Get started now in section 4
         Then I see the dashboard
@@ -66,10 +66,10 @@ Feature: Admin creates, manually register and deletes students
 
         @school_api_test
         Examples:
-            | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | manual_password | set_new_password | repaet_new_password |
-            | nbc       | admin1_nbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | Schulcloud1!    | Schulcloud1!!    | Schulcloud1!!       |
+            | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
+            | nbc       | admin1_nbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
 
         @staging_test
         Examples:
-            | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | manual_password | set_new_password | repaet_new_password |
-            | nbc       | admin1_nbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | Schulcloud1!    | Schulcloud1!!    | Schulcloud1!!       |
+            | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
+            | nbc       | admin1_nbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |

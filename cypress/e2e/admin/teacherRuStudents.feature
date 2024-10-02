@@ -1,5 +1,5 @@
 @regression_test
-@stable_test
+@unstable_test
 Feature: Teacher reads and updates students
 
     As a teacher, I want to read and update student information

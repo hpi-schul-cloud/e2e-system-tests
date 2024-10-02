@@ -64,6 +64,7 @@ When("I click on Add User in opened FAB for {string}", (role) => {
 	management.clickOnAddUserInFAB(role);
 });
 
+// Defining step this way would be updated in BC-8179.
 defineStep(
 	"Created teacher {string} {string} with email {string}",
 	(firstname, lastname, email) => {
@@ -80,6 +81,7 @@ defineStep(
 	}
 );
 
+// Defining step this way would be updated in BC-8179.
 defineStep(
 	"Going to teacher edit page for {string} with email {string}",
 	(firstname, email) => {

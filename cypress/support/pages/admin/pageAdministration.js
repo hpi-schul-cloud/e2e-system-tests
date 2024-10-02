@@ -114,9 +114,10 @@ class Management {
 	static #actionButtonUserOverview = '[data-test-id="context-menu-open"]';
 	static #manualRegitrationOption = '[data-testid="consent_action"]';
 	static #breadcrumbManualRegistration = '[data-testid="breadcrumb-2"]';
-	static #inputPasswordMaualRegistrationStepOne = 'input[data-testid="password-input"]';
+	static #inputPasswordManualRegistrationStepOne =
+		'input[data-testid="password-input"]';
 	static #applyDataManualRegistrationButton = '[data-testid="button-next"]';
-	static #consentCheckboxManulRegistration = 'div[id="consent-checkbox"]';
+	static #consentCheckboxManualRegistration = 'div[id="consent-checkbox"]';
 	static #buttonRegisterUserOnManualPage = '[data-testid="button-next-2"]';
 	static #searchBarUserOverview = 'input[data-testid="searchbar"]';
 	static #buttonLoginViaEmailNbc = '[data-testid="submit-cloud-site"]';
@@ -129,15 +130,14 @@ class Management {
 		cy.get(Management.#manualRegistrationSummaryPage).should("be.visible");
 	}
 
-	visitUrlForFirstLogin(namespace) {
-		const envNameSpace = namespace.toUpperCase();
-		const baseURl = Cypress.env(envNameSpace);
-		const urlEndPoint = "/login";
-		cy.visit(baseURl + urlEndPoint);
+	visitUrlForFirstLogin() {
+		const urlEndPoint = "login";
+		cy.visit(urlEndPoint);
 	}
 
-	enterPasswordOnFirstLogin(userPassword) {
-		cy.get(Management.#userEmailLoginPage).type(userPassword);
+	enterPasswordOnFirstLogin() {
+		const userPassword = Cypress.env("INITIAL_PWD_BY_ADMIN");
+		cy.get(Management.#userEmailLoginPage).type(userPassword, { log: false });
 	}
 
 	clickOnLoginButtonForFirstLogin() {
@@ -176,12 +176,16 @@ class Management {
 		cy.get(Management.#pageTitleOnDashboard).should("be.visible");
 	}
 
-	setNewPasswordOnFirstLogin(setNewPassword) {
-		cy.get(Management.#passwordInputFirstLogin).type(setNewPassword);
+	setNewPasswordOnFirstLogin() {
+		const setNewPassword = Cypress.env("SET_NEW_PWD_BY_STUDENT");
+		cy.get(Management.#passwordInputFirstLogin).type(setNewPassword, { log: false });
 	}
 
-	reEnterPasswordOnManualRegistration(reEnterPassword) {
-		cy.get(Management.#reEnterPasswordInputFirstLogin).type(reEnterPassword);
+	reEnterPasswordOnManualRegistration() {
+		const reEnterPassword = Cypress.env("SET_NEW_PWD_BY_STUDENT");
+		cy.get(Management.#reEnterPasswordInputFirstLogin).type(reEnterPassword, {
+			log: false,
+		});
 	}
 
 	clickOnActionsOnStudentOverview() {
@@ -197,11 +201,14 @@ class Management {
 	}
 
 	clearDefaultPasswordInManualRegistration() {
-		cy.get(Management.#inputPasswordMaualRegistrationStepOne).clear();
+		cy.get(Management.#inputPasswordManualRegistrationStepOne).clear();
 	}
 
-	enterPasswordOnManualRegistration(manual_password) {
-		cy.get(Management.#inputPasswordMaualRegistrationStepOne).type(manual_password);
+	enterPasswordOnManualRegistration() {
+		const manualPassword = Cypress.env("INITIAL_PWD_BY_ADMIN");
+		cy.get(Management.#inputPasswordManualRegistrationStepOne).type(manualPassword, {
+			log: false,
+		});
 	}
 	clickOnApplyDataButton() {
 		cy.get(Management.#applyDataManualRegistrationButton).click();
@@ -209,8 +216,8 @@ class Management {
 
 	clickOnConsentCheckBox() {
 		cy.get("body").then((body) => {
-			if (body.find(Management.#consentCheckboxManulRegistration).length) {
-				cy.get(Management.#consentCheckboxManulRegistration).click();
+			if (body.find(Management.#consentCheckboxManualRegistration).length) {
+				cy.get(Management.#consentCheckboxManualRegistration).click();
 			} else {
 				cy.log("No consent checkbox required on BRB and NBC");
 			}
@@ -225,7 +232,7 @@ class Management {
 		cy.contains("button", "abbrechen", { matchCase: false }).clickOnElement();
 	}
 
-	clickOnCancelRegarlessOnModalButton() {
+	clickOnCancelRegardlessOnModalButton() {
 		cy.contains("button", "trotzdem abbrechen", {
 			matchCase: false,
 		}).clickOnElement();

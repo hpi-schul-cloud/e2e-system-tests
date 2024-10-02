@@ -11,16 +11,16 @@ Then("I see the page download access data with info table", () => {
 	management.seeTheLastStepPageSummaryManualRegistration();
 });
 
-When("I visit the url {string}", (namespace) => {
-	management.visitUrlForFirstLogin(namespace);
+When("I visit the url for first login", () => {
+	management.visitUrlForFirstLogin();
 });
 
 When("I enter the email assigned during user creation", () => {
 	management.enterEmailOnFirstLogin();
 });
 
-When("I enter the password {string}", (userPassword) => {
-	management.enterPasswordOnFirstLogin(userPassword);
+When("I enter the password", () => {
+	management.enterPasswordOnFirstLogin();
 });
 
 When("I click on the button Login", () => {
@@ -47,16 +47,16 @@ Then("I see the section 3", () => {
 	management.seeSectionThreeFirstLoginPageOndBC();
 });
 
-Then("I re enter the new password {string}", (reEnterPassword) => {
-	management.reEnterPasswordOnManualRegistration(reEnterPassword);
+Then("I re enter the new password", () => {
+	management.reEnterPasswordOnManualRegistration();
 });
 
 When("I click on the button Next in section 3", () => {
 	management.clickOnNextButtonOnFirstLoginSectionThree();
 });
 
-Then("I enter new password {string}", (setNewPassword) => {
-	management.setNewPasswordOnFirstLogin(setNewPassword);
+Then("I set a new password", () => {
+	management.setNewPasswordOnFirstLogin();
 });
 
 Then("I click on the button Get started now in section 4", () => {
@@ -87,8 +87,8 @@ When("I clear the default assigned password", () => {
 	management.clearDefaultPasswordInManualRegistration();
 });
 
-Then("I enter the initial password {string}", (manual_password) => {
-	management.enterPasswordOnManualRegistration(manual_password);
+Then("I enter the initial password", () => {
+	management.enterPasswordOnManualRegistration();
 });
 
 When("I click on the button Apply data", () => {
@@ -107,7 +107,7 @@ When("I click on the button Abbrechen", () => {
 });
 
 When("I click on the button Trotzdem abbrechen on the confirmation modal", () => {
-	management.clickOnCancelRegarlessOnModalButton();
+	management.clickOnCancelRegardlessOnModalButton();
 });
 
 Then("I am on the students management page", () => {
