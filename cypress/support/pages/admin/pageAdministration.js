@@ -426,13 +426,21 @@ class Management {
 		cy.get(Management.#emailCreationForm).type(uniqueEmail);
 
 		// Setting the birth date to 17 years ago in the form
-		const birthDate = new Date();
-		birthDate.setFullYear(birthDate.getFullYear() - 17);
-		cy.writeToInput(
-			Management.#birthDateFieldCreateStudent,
-			birthDate.toISOString().split("T")[0],
-			100
-		);
+		cy.get("body").then((body) => {
+			if (body.find(Management.#birthDateFieldCreateStudent).length) {
+				// For Student
+				const birthDate = new Date();
+				birthDate.setFullYear(birthDate.getFullYear() - 17);
+				cy.writeToInput(
+					Management.#birthDateFieldCreateStudent,
+					birthDate.toISOString().split("T")[0],
+					100
+				);
+			} else {
+				//For Teacher
+				cy.log("Birthdate is not required while creating a new teacher");
+			}
+		});
 	}
 
 	enterEmailOnFirstLogin() {
