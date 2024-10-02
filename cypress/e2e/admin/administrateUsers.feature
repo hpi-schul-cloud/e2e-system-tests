@@ -12,32 +12,39 @@ Feature: Admin Users - To add, edit and delete new users by the admin.
         When I go to '<role_to_manage>' administration
         When I click on FAB
         When I click on Add User in opened FAB for '<role_to_manage>'
-        And I fill out the user creation form for '<user_firstname>' '<user_lastname>' with email '<user_email>'
-        And I click on add button to add '<role_to_manage>'
-        And I enter '<role_to_manage>' email '<user_email>' in search input field
+        When I fill out the user creation form for '<user_firstname>' '<user_lastname>' with email '<user_email>'
+        When I click on add button to add '<role_to_manage>'
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
         # admin adds edits a student
         # admin adds edits a student
-        And I go to '<role_to_manage>' administration
-        And I enter '<role_to_manage>' email '<user_email>' in search input field
-        And I click edit '<role_to_manage>' button for '<user_email>'
-        And I change username to '<user_firstname_edited>' '<user_lastname_edited>'
-        And I change email to '<user_email_edited>'
-        And I click save changes button
-        And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+        When I go to '<role_to_manage>' administration
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
+        When I click edit '<role_to_manage>' button for '<user_email>'
+        When I change username to '<user_firstname_edited>' '<user_lastname_edited>'
+        When I change email to '<user_email_edited>'
+        When I click save changes button
+        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         Then I can see the user with email '<user_email_edited>' in the table
-        And I enter '<role_to_manage>' email '<user_email>' in search input field
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
+
+        # Admin reverts teacher user information (Note: This scenario can be further implemented)
+        #When I am on the teachers management page
+        #When I go to teacher edit page for '<user_firstname>' with email '<user_email>'
+        #When I Change the name to '<user_firstname>' '<user_firstname_edited>'
+        #When I  Change the email to '<user_email>'
+        #Then I can save the changes
 
         # admin deletes a student
         # admin deletes a student
-        And I go to '<role_to_manage>' administration
-        And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
-        And I click edit '<role_to_manage>' button for '<user_email_edited>'
-        And I click delete user button to delete user with lastname '<user_lastname_edited>'
-        And I click on delete button in pop up
-        And I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+        When I go to '<role_to_manage>' administration
+        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+        When I click edit '<role_to_manage>' button for '<user_email_edited>'
+        When I click delete user button to delete user with lastname '<user_lastname_edited>'
+        When I click on delete button in pop up
+        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         Then I can not see user '<user_email_edited>' in the table
 
         @school_api_test
