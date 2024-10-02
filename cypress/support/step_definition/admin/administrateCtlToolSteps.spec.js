@@ -127,3 +127,11 @@ When("I insert the external tool link {string}", (toolLink) => {
 Then("I see configuration {string} is filled below with {string}", (key, value) =>{
 	management.checkConfiguration(key, value);
 })
+
+Then("I see the tool {string} in external tools table has no context restriction", (toolName) =>{
+	management.seeToolHasNoContextRestriction(toolName);
+})
+
+Then("I see the tool {string} in external tools table has context restriction {string}", (toolName, contextRestriction) =>{
+	management.seeToolHasContextRestriction(toolName,contextRestriction);
+})

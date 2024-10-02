@@ -745,7 +745,11 @@ class Management {
 	}
 
 	seeEmptyExternalToolTable() {
-		cy.get(Management.#externalToolsTable).should("not.exist");
+		cy.get(Management.#externalToolsTable)
+			.within( ()=> {
+				cy.get("tbody tr.v-data-table-rows-no-data td")
+					.should("have.text", "Keine Daten vorhanden");
+			});
 	}
 
 	seeExternalToolConfigurationPage() {
@@ -836,21 +840,13 @@ class Management {
 	}
 
 	checkActivatedTool(toolName) {
-		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
+		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
 
 		toolData.parent("td").siblings("td").eq(0).contains("Aktuell").should("exist");
 	}
 
 	checkDeactivatedTool(toolName) {
-		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
+		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
 
 		toolData
 			.parent("td")
@@ -881,19 +877,35 @@ class Management {
 	}
 
 	clickOnEditButton(toolName) {
-		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
+		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+
+		toolData
+			.parent("td")
+			.siblings("td")
+			.eq(2)
+			.find(Management.#editExternalToolButton)
+			.should("exist")
+			.click();
+	}
+
+	seeToolHasNoContextRestriction(toolName) {
+		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
 
 		toolData
 			.parent("td")
 			.siblings("td")
 			.eq(1)
-			.find(Management.#editExternalToolButton)
-			.should("exist")
-			.click();
+			.should('have.text', '')
+	}
+
+	seeToolHasContextRestriction(toolName,contextRestriction) {
+		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+
+		toolData
+			.parent("td")
+			.siblings("td")
+			.eq(1)
+			.should('have.text', contextRestriction)
 	}
 
 	clickOnAuthenticationPanel() {

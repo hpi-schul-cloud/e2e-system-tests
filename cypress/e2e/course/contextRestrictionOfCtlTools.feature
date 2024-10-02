@@ -4,10 +4,10 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
   As a teacher I want add ctl tools with a certain context restriction
 
   @unstable_test
-  Scenario: Pre-test: Admin creates a course and adds external tools to school
+  Scenario: Admin creates a course and adds external tools to school
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I go to rooms overview
-    #    Admin creates a course
+    #    Pre-Test: Admin creates a course
     When I click on FAB to create a new room depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title 'Cypress Test Course'
@@ -25,22 +25,27 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I select the tool 'CY Test Tool 1' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool 1' in external tools table
+    Then I see the tool 'CY Test Tool 1' in external tools table has no context restriction
     When I click the add external tool button
     When I select the tool 'CY Test Tool Course Restriction' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Course Restriction' in external tools table
+    Then I see the tool 'CY Test Tool Course Restriction' in external tools table has context restriction 'Kurs-Tools'
     When I click the add external tool button
     When I select the tool 'CY Test Tool Board-Element Restriction' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Board-Element Restriction' in external tools table
+    Then I see the tool 'CY Test Tool Board-Element Restriction' in external tools table has context restriction 'Bereiche'
     When I click the add external tool button
     When I select the tool 'CY Test Tool Media-Board Restriction' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool Media-Board Restriction' in external tools table
+    Then I see the tool 'CY Test Tool Media-Board Restriction' in external tools table has context restriction 'Medienregal'
     When I click the add external tool button
     When I select the tool 'CY Test Tool All Restrictions' from available tools
     When I click on save external tool button
     Then I see the tool 'CY Test Tool All Restrictions' in external tools table
+    Then I see the tool 'CY Test Tool All Restrictions' in external tools table has context restriction 'Kurs-Tools, Bereiche, Medienregal'
 
   @unstable_test
   Scenario: Teacher adds ctl tools to context course, board-element and media-board
@@ -85,6 +90,10 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I go to the tab contents in course detail page
     When I click on FAB to create new content
     When I click on the button FAB New Column Board
+    Then I see a dialog box for column board
+    Then I see in dialog box option for multi-column board
+    Then I see in dialog box option for single column board
+    When I choose multi-column board in the dialog box
     Then I see the page Course Board detail
     Then I see the chip Draft in the course board
     When I click on the button Add column in the course board
