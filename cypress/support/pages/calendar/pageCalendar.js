@@ -37,16 +37,29 @@ class Calendar {
 	}
 
 	enterEventTitle(eventTitle) {
-		cy.get(Calendar.#eventNameFormElement).eq(1).type(eventTitle);
+		cy.get(Calendar.#eventNameFormElement)
+			.eq(1)
+			.should("be.visible")
+			.clear()
+			.type(eventTitle)
+			.should("have.value", eventTitle);
+		// cy.get(Calendar.#eventNameFormElement).eq(1).type(eventTitle);
+		// cy.get(Calendar.#eventNameFormElement).eq(1).should("have.value", eventTitle);
 	}
 
 	enterEventStartTime(eventStartTime) {
-		cy.get(Calendar.#eventStartDateFormElement).eq(1).type("{backspace}".repeat(4)).type(eventStartTime);
+		cy.get(Calendar.#eventStartDateFormElement)
+			.eq(1)
+			.type("{backspace}".repeat(4))
+			.type(eventStartTime);
 		cy.get(Calendar.#eventNameFormElement).eq(1).click();
 	}
 
 	enterEventEndTime(eventEndTime) {
-		cy.get(Calendar.#eventEndDateFormElement).eq(1).type("{backspace}".repeat(4)).type(eventEndTime);
+		cy.get(Calendar.#eventEndDateFormElement)
+			.eq(1)
+			.type("{backspace}".repeat(4))
+			.type(eventEndTime);
 		cy.get(Calendar.#eventNameFormElement).eq(1).click();
 	}
 
@@ -63,11 +76,20 @@ class Calendar {
 	}
 
 	seeEventInCalendar(eventStartTime, eventTitle) {
-		cy.get(Calendar.#calendarElement).find("span").contains(eventTitle).prev().contains(eventStartTime);
+		cy.get(Calendar.#calendarElement)
+			.find("span")
+			.contains(eventTitle)
+			.prev()
+			.contains(eventStartTime);
 	}
 
 	clickOnEventInCalendar(eventStartTime, eventTitle) {
-		cy.get(Calendar.#calendarElement).find("span").contains(eventTitle).prev().contains(eventStartTime).click();
+		cy.get(Calendar.#calendarElement)
+			.find("span")
+			.contains(eventTitle)
+			.prev()
+			.contains(eventStartTime)
+			.click();
 	}
 
 	clickDeleteEventButton() {
@@ -75,7 +97,7 @@ class Calendar {
 	}
 
 	doNotSeeEventInCalendar(eventTitle) {
-		cy.get(Calendar.#calendarElement).should('not.contain', eventTitle);
+		cy.get(Calendar.#calendarElement).should("not.contain", eventTitle);
 	}
 }
 export default Calendar;
