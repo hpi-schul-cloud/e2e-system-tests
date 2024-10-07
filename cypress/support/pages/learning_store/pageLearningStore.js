@@ -40,9 +40,7 @@ class Learning_Store {
 	}
 
 	openLearningStoreContent() {
-		cy.get(Learning_Store.#learningStoreContentDetailToContentLink)
-			.invoke("removeAttr", "target")
-			.click();
+		cy.get(Learning_Store.#learningStoreContentDetailToContentLink).click();
 	}
 }
 export default Learning_Store;
