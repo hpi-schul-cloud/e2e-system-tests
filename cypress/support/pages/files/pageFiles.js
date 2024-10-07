@@ -75,8 +75,8 @@ class Files {
 
 	typeFilename(fileName) {
 		cy.get(Files.#filenameInputField)
-			.type(fileName)
-			.wait(500)
+			.should("be.visible")
+			.type(fileName, { delay: 50 })
 			.should("have.value", fileName);
 	}
 

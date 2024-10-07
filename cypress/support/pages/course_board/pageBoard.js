@@ -113,10 +113,24 @@ class Board {
 	}
 
 	clickOnOpenTldrawDrawingElement() {
-		cy.get(Board.#drawingElement).should("exist").click();
-		cy.wait("@tldrawRequest").then((interception) => {
-			assert.isTrue(interception.response.statusCode === 200, "Status code is 200");
-		});
+		let clickSpy;
+
+		cy.get(Board.#drawingElement)
+			.should("exist")
+			.then((el) => {
+				clickSpy = cy.spy().as("clickSpy");
+				el.on("click", (event) => {
+					event.preventDefault();
+					clickSpy();
+					cy.log("The drawing element was clicked.");
+				});
+			});
+
+		cy.get(Board.#drawingElement).click();
+
+		cy.get("@clickSpy").should("have.been.called");
+
+		cy.get("@clickSpy").should("have.callCount", 1);
 	}
 
 	clickOnConfirmInModal() {

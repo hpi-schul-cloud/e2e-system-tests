@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Learning store - Activating and deactivating access for students
+Feature: Learning store - Search Learning Material in Learning Store
 
     As an admin I want to activate and deactivate students access to learning store
 
@@ -17,6 +17,7 @@ Feature: Learning store - Activating and deactivating access for students
         When I click on general settings panel
         When I click the toggle switch to enable students access to learning store
         When I click on button Save admin settings
+
         # Teacher uses Learning store
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to Learning Store overview
@@ -25,6 +26,7 @@ Feature: Learning store - Activating and deactivating access for students
         When I click on first card of search result
         Then I see card details
         When I click on button To content
+
         # Student uses Learning store
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to Learning Store overview
@@ -33,6 +35,7 @@ Feature: Learning store - Activating and deactivating access for students
         When I click on first card of search result
         Then I see card details
         When I click on button To content
+
         # Admin deactivates students access to Learning store again (tests change from access to no-access)
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
