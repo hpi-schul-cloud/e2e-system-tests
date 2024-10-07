@@ -43,8 +43,6 @@ class Calendar {
 			.clear()
 			.type(eventTitle)
 			.should("have.value", eventTitle);
-		// cy.get(Calendar.#eventNameFormElement).eq(1).type(eventTitle);
-		// cy.get(Calendar.#eventNameFormElement).eq(1).should("have.value", eventTitle);
 	}
 
 	enterEventStartTime(eventStartTime) {
