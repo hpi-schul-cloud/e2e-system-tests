@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Admin creates, manually register and deletes students
+Feature: Admin - Admin creates, manually register and deletes students
 
     As an admin, I want to perform the 4 CRUD operations and manual reegistration on students
 
