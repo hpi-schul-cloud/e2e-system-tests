@@ -12,7 +12,7 @@ class Courses {
 	static #courseName = '[name="name"]';
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
-	static #searchFieldRoomOverview = '[data-testid="search-field"]';
+	static #searchFieldCourseOverview = '[data-testid="search-field-course"]';
 	static #createCourse = '[data-testid="add-course-button"]';
 	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
@@ -606,10 +606,10 @@ class Courses {
 	}
 
 	searchForARoom(roomName) {
-		cy.get(Courses.#searchFieldRoomOverview).type(
+		cy.get(Courses.#searchFieldCourseOverview).type(
 			"{selectall}{backspace}{selectall}{backspace}"
 		);
-		cy.get(Courses.#searchFieldRoomOverview).type(roomName);
+		cy.get(Courses.#searchFieldCourseOverview).type(roomName);
 	}
 
 	clickOnNewTopicFAB() {

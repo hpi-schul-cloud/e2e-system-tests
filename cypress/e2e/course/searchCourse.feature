@@ -1,4 +1,6 @@
-@unstable_test
+@stable_test
+@schedule_run
+@regression_test
 Feature: Course - To search for a course via search input box on the course overview page
 
   As a user (teacher & student) I want to search for dedicated course so that I can quickly find it.
@@ -47,6 +49,16 @@ Feature: Course - To search for a course via search input box on the course over
     When I go to rooms overview
     When I enter the course name '<nonexistent_course_name>' into the search field
     Then I do not see the course '<nonexistent_course_name>' on the room overview page
+
+    # Post-condition: Teacher deletes the course
+    Given I am logged in as a '<teacher>' at '<namespace>'
+    When I go to rooms overview
+    When I go to room '<created_course_name>'
+    When I open page Edit course
+    When I click on the button delete course
+    Then I see the modal to confirm the deletion
+    When I click on the button delete on the modal to confirm the course deletion
+    Then I do not see the course '<created_course_name>' on the room overview page
 
     @school_api_test
     Examples:
