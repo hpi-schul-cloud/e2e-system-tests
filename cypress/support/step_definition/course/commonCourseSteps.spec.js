@@ -26,7 +26,7 @@ When("I click on FAB to add or import courses", () => {
 	courses.clickOnFABToAddOrImportCourse();
 });
 
-Then("I see room search box on the room overview page", () => {
+Then("I see room search box on the course overview page", () => {
 	courses.seeRoomSearchBoxOnRoomOverview();
 });
 
@@ -34,19 +34,19 @@ When("I go to course administration page", () => {
 	management.navigateToCourseAdministration();
 })
 
-When("I go to rooms overview", () => {
-	courses.navigateToRoomsOverview();
+When("I go to courses overview", () => {
+	courses.navigateToCoursesOverview();
 });
 
-When("I go to room {string}", (roomName) => {
-	courses.navigateToRoomBoard(roomName);
+When("I go to course {string}", (courseName) => {
+	courses.navigateToCourseBoard(courseName);
 });
 
-Then("I see the course {string} on the room overview page", (courseName) => {
+Then("I see the course {string} on the course overview page", (courseName) => {
 	courses.courseIsVisiblOnOverviewPage(courseName);
 });
 
-Then("I do not see the course {string} on the room overview page", (courseName) => {
+Then("I do not see the course {string} on the course overview page", (courseName) => {
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
 
@@ -66,8 +66,8 @@ Then("I see the course title is {string}", (courseName) => {
 	courses.isCorrectCourseEditPage(courseName)
 })
 
-When("I click on FAB to create a new room depending on sub menu", () => {
-	courses.clickOnCreateRoomFAB();
+When("I click on FAB to create a new course depending on sub menu", () => {
+	courses.clickOnCreateCourseFAB();
 });
 
 When("I click on new course create button in sub menu", () => {
@@ -231,8 +231,8 @@ When("I enter the course title {string}", (newCourseName) => {
 	courses.fillCourseCreationForm(newCourseName);
 });
 
-When("I select room colour as red", () => {
-	courses.selectRoomColour();
+When("I select course colour as red", () => {
+	courses.selectCourseColour();
 });
 
 Then("I see teacher {string} is selected by default", (defaultTeacherName) => {
@@ -259,15 +259,15 @@ Then("I see button to create a course time table container", () => {
 	courses.seeCreateCourseTimeTableContainer();
 });
 
-When("I click on button Next Steps after entering the room detail in section one", () => {
-	courses.clickOnNextStepsBtnAfterEnteringRoomDetails();
+When("I click on button Next Steps after entering the course detail in section one", () => {
+	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 });
 
 Then("I see section two area on the course create page", () => {
 	courses.seeSectionTwoAreaOnCourseCreatePage();
 });
 
-When("I click on button Next Steps after selecting room participant details", () => {
+When("I click on button Next Steps after selecting course participant details", () => {
 	courses.clickOnNextStepButtonOnCourseParticipationDetail();
 });
 

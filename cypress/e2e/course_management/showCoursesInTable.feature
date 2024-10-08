@@ -11,18 +11,18 @@ Feature: Course - To show courses in a table with respective functionality
         When I click on add course button
         Then I see section one area on the course create page
         When I enter the course title '<course_title>'
-        When I select room colour as red
+        When I select course colour as red
         Then I see teacher selection box
         Then I see substitute teacher selection box
         Then I see date pickers to start and end the course as per school year
         Then I see button to create a course time table container
         When I select the teacher '<teacher_name>' in the list
-        When I click on button Next Steps after entering the room detail in section one
+        When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
         Then I see class selection box to select the class for the room
         Then I see student selection box to select the class for the room
         When I select the student '<student_name>' in the list
-        When I click on button Next Steps after selecting room participant details
+        When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
         When I click on administration in menu

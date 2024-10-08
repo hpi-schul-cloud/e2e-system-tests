@@ -15,40 +15,40 @@ Feature: Dashboard - To check contents on the dashboard
         Given I am logged in as a '<admin>' at '<namespace>'
 
         # pre-condition: admin creates a course and assign teacher and student to the course
-        When I go to rooms overview
-        When I click on FAB to create a new room depending on sub menu
+        When I go to courses overview
+        When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
         When I enter the course title '<course_name>'
-        When I select room colour as red
+        When I select course colour as red
         Then I select teacher '<fullname_teacher>' is selected by default
         Then I see substitute teacher selection box
         Then I see date pickers to start and end the course as per school year
         Then I see button to create a course time table container
-        When I click on button Next Steps after entering the room detail in section one
+        When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
         Then I see class selection box to select the class for the room
         Then I see student selection box to select the student for the room
         When I select the student '<fullname_student>' in the list
-        When I click on button Next Steps after selecting room participant details
+        When I click on button Next Steps after selecting course participant details
         Then I see the section three as the finish page
         When I click on button To Course Overview on the finish page
         # Note: This step is not applicable for the admin user
-        #Then I see the course 'CypressAut Test Creation and Deletion' on the room overview page
+        #Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
 
         # pre-condition: pre-condition as teacher login
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creates task and a task draft
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I click on FAB to create new content
         When I click on New Task FAB
         Then I can see create task page
         When I enter title 'CypressAut Dashboard Task Published'
         When I click on button Submit
         Then I see detail page for task 'CypressAut Dashboard Task Published'
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I click on FAB to create new content
         When I click on New Task FAB
         Then I can see create task page
@@ -147,13 +147,13 @@ Feature: Dashboard - To check contents on the dashboard
         Then I see '<fullname_student>' is not visible on the table
 
         # Post-condition: Teacher deletes the course
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I open page Edit course
         When I click on the button delete course
         Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
-        Then I do not see the course '<course_name>' on the room overview page
+        Then I do not see the course '<course_name>' on the course overview page
 
 
         @school_api_test

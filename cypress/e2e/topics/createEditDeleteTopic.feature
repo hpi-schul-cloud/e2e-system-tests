@@ -14,31 +14,31 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Given I am logged in as a '<admin>' at '<namespace>'
 
         # pre-condition: admin creates a course and assign teacher to the course
-        When I go to rooms overview
-        When I click on FAB to create a new room depending on sub menu
+        When I go to courses overview
+        When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
         When I enter the course title '<course_name>'
-        When I select room colour as red
+        When I select course colour as red
         Then I select teacher '<fullname_teacher>' is selected by default
         Then I see substitute teacher selection box
         Then I see date pickers to start and end the course as per school year
         Then I see button to create a course time table container
-        When I click on button Next Steps after entering the room detail in section one
+        When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
         Then I see class selection box to select the class for the room
         Then I see student selection box to select the student for the room
         # Note: student user is not needed in this feature so this step is commented out
         #When I select the student 'cypress student_1' in the list
-        When I click on button Next Steps after selecting room participant details
+        When I click on button Next Steps after selecting course participant details
         Then I see the section three as the finish page
         When I click on button To Course Overview on the finish page
         # Note: this step is not applicable for the admin user
-        #Then I see the course '<course_name>' on the room overview page
+        #Then I see the course '<course_name>' on the course overview page
 
         # teacher creates topic in a course
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         And I click on FAB to create new content
         And I click on New Topic FAB
         Then I can see edit topic page '-'
@@ -68,8 +68,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Then I can see topic 'CypressAut Topic Creating and Deleting Test' on course page
 
         # teacher edits the topic
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I click on three dot menu of topic 'CypressAut Topic Creating and Deleting Test'
         When I click on Edit in dot menu of topic
         Then I can see edit topic page 'CypressAut Topic Creating and Deleting Test'
@@ -110,8 +110,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Then I can see topic 'CypressAut Topic Creating and Deleting Test - Edited topic' on course page
 
         # teacher deletes the topic
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I click on three dot menu of topic 'CypressAut Topic Creating and Deleting Test - Edited topic'
         When I click on Delete in dot menu of topic
         When I click on Cancel in confirmation window
@@ -122,13 +122,13 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Then I can not see topic 'CypressAut Topic Creating and Deleting Test - Edited topic' on course page
 
         # Post-condition: Teacher deletes the course
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I open page Edit course
         When I click on the button delete course
         Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
-        Then I do not see the course '<course_name>' on the room overview page
+        Then I do not see the course '<course_name>' on the course overview page
 
         @school_api_test
         Examples:

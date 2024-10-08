@@ -12,24 +12,24 @@ Feature: Course - To add and delete a course by the teacher using classes
 
 
   Scenario: Create a course with groups of type class in nbc
-    When I go to rooms overview
-    When I click on FAB to create a new room depending on sub menu
+    When I go to courses overview
+    When I click on FAB to create a new course depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title 'Cypress Test Creation and Deletion'
-    When I select room colour as red
+    When I select course colour as red
     Then I see teacher '<fullname_teacher>' is selected by default
     Then I see substitute teacher selection box
     Then I see date pickers to start and end the course as per school year
     Then I see button to create a course time table container
-    When I click on button Next Steps after entering the room detail in section one
+    When I click on button Next Steps after entering the course detail in section one
     Then I see section two area on the course create page
-    When I click on button Next Steps after selecting room participant details
+    When I click on button Next Steps after selecting course participant details
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
-    Then I see the course 'Cypress Test Creation and Deletion' on the room overview page
+    Then I see the course 'Cypress Test Creation and Deletion' on the course overview page
 
     # Editing the course
-    When I go to room 'Cypress Test Creation and Deletion'
+    When I go to course 'Cypress Test Creation and Deletion'
     When I open page Edit course
     Then I see page Edit course
     When I edit the title of the room to 'Cypress Testkurs Edit'
@@ -39,7 +39,7 @@ Feature: Course - To add and delete a course by the teacher using classes
     When I click on the selection box to add a new group with ' Cypress-Test-Group1 | moin.schule '
     When I click on the selection box to add a new group with ' Cypress-Test-Group2 | moin.schule '
     When I click on button Save changes in page Edit course
-    Then I see the course 'Cypress Testkurs Edit' on the room overview page
+    Then I see the course 'Cypress Testkurs Edit' on the course overview page
     When I open page Edit course
     Then I see ' Cypress-Test-Group1 | moin.schule ' in the class selection box
     Then I see 'Kraft, Herbert' in the student selection box
@@ -61,7 +61,7 @@ Feature: Course - To add and delete a course by the teacher using classes
 #   # Remove one group from course
 #   When I click on the remove icon of group ' Cypress-Test-Group2 | moin.schule '
 #   When I click on button Save changes in page Edit course
-#   Then I see the course 'Cypress Testkurs Edit' on the room overview page
+#   Then I see the course 'Cypress Testkurs Edit' on the course overview page
 #   When I open page Edit course
 #   Then I see ' Cypress-Test-Group1 | moin.schule ' in the class selection box
 #   Then I do not see ' Cypress-Test-Group2 | moin.schule ' in the group selection box
@@ -71,14 +71,14 @@ Feature: Course - To add and delete a course by the teacher using classes
 #   # Remove second group from course
 #   When I click on the remove icon of group ' Cypress-Test-Group1 | moin.schule '
 #   When I click on button Save changes in page Edit course
-#   Then I see the course 'Cypress Testkurs Edit' on the room overview page
+#   Then I see the course 'Cypress Testkurs Edit' on the course overview page
 #   When I open page Edit course
 #   Then I do not see ' Cypress-Test-Group1 | moin.schule ' in the group selection box
 #   Then I do not see ' Cypress-Test-Group2 | moin.schule ' in the group selection box
 #   Then I do not see 'Strobl, Amelia' in the student selection box
 #   Then I do not see 'Kraft, Herbert' in the student selection box
 #   When I click on button Save changes in page Edit course
-#   Then I see the course 'Cypress Testkurs Edit' on the room overview page
+#   Then I see the course 'Cypress Testkurs Edit' on the course overview page
 
 
 #   # Deleting the course/room created in this feature test
@@ -86,5 +86,5 @@ Feature: Course - To add and delete a course by the teacher using classes
 #   When I click on the button delete course
 #   Then I see the modal to confirm the deletion
 #   When I click on the button delete on the modal to confirm the course deletion
-#   Then I do not see the course 'Cypress Testkurs Edit' on the room overview page
+#   Then I do not see the course 'Cypress Testkurs Edit' on the course overview page
 

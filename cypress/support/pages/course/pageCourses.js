@@ -275,7 +275,7 @@ class Courses {
 		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("exist");
 	}
 
-	selectRoomColour() {
+	selectCourseColour() {
 		cy.get(Courses.#RoomColourAsRed).click();
 	}
 
@@ -291,11 +291,11 @@ class Courses {
 		cy.contains(courseName).should("not.exist");
 	}
 
-	navigateToRoomsOverview() {
+	navigateToCoursesOverview() {
 		cy.get(Courses.#courseOverviewNavigationButton).click();
 	}
 
-	navigateToRoomBoard(roomName) {
+	navigateToCourseBoard(roomName) {
 		cy.contains(Courses.#courseTitleInRoomoverview, roomName)
 			.should("be.visible")
 			.then((title) => {
@@ -426,7 +426,7 @@ class Courses {
 		cy.get(Courses.#toolsList).should("not.exist");
 	}
 
-	clickOnCreateRoomFAB() {
+	clickOnCreateCourseFAB() {
 		cy.get(Courses.#createCourse).first().click();
 		cy.get("body").then((body) => {
 			if (body.find(Courses.#subMenuFabButtonToAddNewCourse).length) {
@@ -577,7 +577,7 @@ class Courses {
 		cy.get(Courses.#goToCourseOverviewButton).click();
 	}
 
-	clickOnNextStepsBtnAfterEnteringRoomDetails() {
+	clickOnNextStepsBtnAfterEnteringCourseDetails() {
 		cy.get(Courses.#nextButton).click();
 	}
 
