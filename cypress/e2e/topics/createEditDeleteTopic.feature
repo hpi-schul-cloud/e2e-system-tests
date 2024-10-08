@@ -25,8 +25,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Then I see button to create a course time table container
         When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
-        Then I see class selection box to select the class for the room
-        Then I see student selection box to select the student for the room
+        Then I see class selection box to select the class for the course
+        Then I see student selection box to select the student for the course
         # Note: student user is not needed in this feature so this step is commented out
         #When I select the student 'cypress student_1' in the list
         When I click on button Next Steps after selecting course participant details

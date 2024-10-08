@@ -89,7 +89,7 @@ Feature: Teacher can create, update and stop a synchronized course
     Then I see a warning about the consequences of synchronization
     Then I see information text of the modal asking for confirmation of synchronization
     When I click the confirm button on the synchronization confirmation modal
-    Then I see the synced chip next to the title on the room page
+    Then I see the synced chip next to the title on the course page
     Examples:
       | user         | namespace | course_title                     | group_title         | teacher_name | student_name  |
       | teacher1_nbc | nbc       | Cypress-Test-Existing-Course     | Cypress-Test-Group  | Karl Herzog  | Herbert Kraft |
@@ -97,7 +97,7 @@ Feature: Teacher can create, update and stop a synchronized course
   Scenario Outline: Edit a synchronized course
     When I go to courses overview
     When I go to course '<course_title>'
-    Then I see the synced chip next to the title on the room page
+    Then I see the synced chip next to the title on the course page
     When I open page Edit course
     Then I see page Edit course
     Then I see the course title form contains '<course_title>'

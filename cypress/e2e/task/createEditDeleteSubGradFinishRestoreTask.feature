@@ -23,8 +23,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Then I see button to create a course time table container
         When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
-        Then I see class selection box to select the class for the room
-        Then I see student selection box to select the student for the room
+        Then I see class selection box to select the class for the course
+        Then I see student selection box to select the student for the course
         When I select the student '<fullname_student>' in the list
         When I click on button Next Steps after selecting course participant details
         Then I see the section three as the finish page
@@ -32,7 +32,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         # Note: this step is not applicable for the admin user
         #Then I see the course '<course_name>' on the course overview page
 
-        # teacher creates task as draft from room
+        # teacher creates task as draft from course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -49,10 +49,10 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Then I see detail page for task 'CypressAut Task Creating and Deleting Test'
         When I go to courses overview
         When I go to course '<course_name>'
-        Then I see room page '<course_name>'
+        Then I see course page '<course_name>'
         And I can see content 'CypressAut Task Creating and Deleting Test' on course page
 
-        # teacher edits and publishes task from room via form
+        # teacher edits and publishes task from course via form
         When I go to courses overview
         When I go to course '<course_name>'
         When I click on three dot menu of content 'CypressAut Task Creating and Deleting Test'
@@ -71,7 +71,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I click on button Submit
         Then I see detail page for task 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on button To Course
-        Then I see room page '<course_name>'
+        Then I see course page '<course_name>'
         And I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
         Then I see task card info submitted contains '0/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on task 'CypressAut Task Creating, Editing, Deleting Test'
@@ -136,7 +136,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         And I click on not graded tasks
         Then I see task 'CypressAut Task Creating, Editing, Deleting Test' in the list as student
 
-        # teacher grades task from room
+        # teacher grades task from course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -174,14 +174,14 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I click on download file 'gradingfile-pdf.pdf' in grading
         Then file 'gradingfile-pdf.pdf' is saved in folder downloads
 
-        # teacher finishes task from room
+        # teacher finishes task from course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
         And I click on link finish for task 'CypressAut Task Creating, Editing, Deleting Test'
         Then I see task 'CypressAut Task Creating, Editing, Deleting Test' does not contain any buttons
 
-        # teacher restores the finished task from room
+        # teacher restores the finished task from course
         When I go to tasks overview
         # Note: below step is comented becasue icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
         #And I open task list with due date
@@ -199,13 +199,13 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I go to course '<course_name>'
         Then I see task 'CypressAut Task Creating, Editing, Deleting Test' contains buttons
 
-        # teacher deletes task from room
+        # teacher deletes task from course
         When I go to courses overview
         When I go to course '<course_name>'
         When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
         And I click on Delete in dot menu
         And I click on Cancel in confirmation window
-        # Note: new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'
@@ -213,11 +213,11 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
         And I click on Delete in dot menu
         And I click on Delete in confirmation window
-        # Note: new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'
-        Then I see room page '<course_name>'
+        Then I see course page '<course_name>'
         And I can not see content 'CypressAut Task Creating, Editing, Deleting Test'
 
         # Post-condition: Teacher deletes the course

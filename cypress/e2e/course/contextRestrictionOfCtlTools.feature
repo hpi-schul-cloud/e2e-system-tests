@@ -52,7 +52,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the button to add a tool
     When I click on the button to add a tool

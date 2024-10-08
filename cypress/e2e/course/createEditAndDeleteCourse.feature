@@ -5,7 +5,7 @@
 @schedule_run
 Feature: Course - To add and delete a course by the teacher
 
-    As a teacher I want to create a new course and want to delete the newly created test course/room so that list of courses/rooms can be cleaned and not full with the newly created test courses/rooms.
+    As a teacher I want to create a new course and want to delete the newly created test course so that list of courses can be cleaned and not full with the newly created test courses.
 
 
     Scenario: Create, edit and delete course
@@ -26,8 +26,8 @@ Feature: Course - To add and delete a course by the teacher
         Then I see button to create a course time table container
         When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
-        Then I see class selection box to select the class for the room
-        Then I see student selection box to select the class for the room
+        Then I see class selection box to select the class for the course
+        Then I see student selection box to select the class for the course
         When I select the student '<student_listname>' in the list
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
@@ -38,8 +38,8 @@ Feature: Course - To add and delete a course by the teacher
         When I go to course '<course_title>'
         When I open page Edit course
         Then I see page Edit course
-        When I edit the title of the room to '<course_title_edited>'
-        When I edit the room description to '<course_description>'
+        When I edit the title of the course to '<course_title_edited>'
+        When I edit the course description to '<course_description>'
         When I click on button Save changes in page Edit course
         Then I see the course '<course_title_edited>' on the course overview page
 
@@ -48,9 +48,9 @@ Feature: Course - To add and delete a course by the teacher
         When I go to courses overview
         Then I see the course '<course_title_edited>' on the course overview page
         When I go to course '<course_title_edited>'
-        Then I see room page '<course_title_edited>'
+        Then I see course page '<course_title_edited>'
 
-        # Deleting the course/room created in this feature test
+        # Deleting the course created in this feature test
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title_edited>'
@@ -93,8 +93,8 @@ Feature: Course - To add and delete a course by the teacher
 #Then I see button to create a course time table container
 #When I click on button Next Steps after entering the course detail in section one
 #Then I see section two area on the course create page
-# Then I see class selection box to select the class for the room
-# Then I see student selection box to select the class for the room
+# Then I see class selection box to select the class for the course
+# Then I see student selection box to select the class for the course
 # When I select the student '<student_listname>' in the list
 #When I click on button Next Steps after selecting course participant details
 #Then I see the section three area as the finish page
@@ -105,8 +105,8 @@ Feature: Course - To add and delete a course by the teacher
 #When I go to course '<course_title>'
 # When I open page Edit course
 #Then I see page Edit course
-#When I edit the title of the room to '<course_title_edited>'
-#When I edit the room description to '<course_description>'
+#When I edit the title of the course to '<course_title_edited>'
+#When I edit the course description to '<course_description>'
 # When I click on button Save changes in page Edit course
 #Then I see the course '<course_title_edited>' on the course overview page
 
@@ -115,9 +115,9 @@ Feature: Course - To add and delete a course by the teacher
 #   When I go to courses overview
 #   Then I see the course '<course_title_edited>' on the course overview page
 #   When I go to course '<course_title_edited>'
-#   Then I see room page '<course_title_edited>'
+#   Then I see course page '<course_title_edited>'
 
-# Deleting the course/room created in this feature test
+# Deleting the course created in this feature test
 #Given I am logged in as a '<teacher>' at '<namespace>'
 #When I go to courses overview
 #When I go to course '<course_title_edited>'
@@ -160,8 +160,8 @@ Feature: Course - To add and delete a course by the teacher
 #     Then I see button to create a course time table container
 #     When I click on button Next Steps after entering the course detail in section one
 #     Then I see section two area on the course create page
-#   #  Then I see class selection box to select the class for the room
-#   #  Then I see student selection box to select the class for the room
+#   #  Then I see class selection box to select the class for the course
+#   #  Then I see student selection box to select the class for the course
 #     When I click on button Next Steps after selecting course participant details
 #     Then I see the section three area as the finish page
 #     When I click on button To Course Overview on the finish page
@@ -171,12 +171,12 @@ Feature: Course - To add and delete a course by the teacher
 #     When I go to course '<course_title>'
 #     When I open page Edit course
 #     Then I see page Edit course
-#     When I edit the title of the room to '<course_title_edited>'
-#     When I edit the room description to '<course_description>'
+#     When I edit the title of the course to '<course_title_edited>'
+#     When I edit the course description to '<course_description>'
 #     When I click on button Save changes in page Edit course
 #     Then I see the course '<course_title_edited>' on the course overview page
 
-#   # Deleting the course/room created in this feature test
+#   # Deleting the course created in this feature test
 #     When I open page Edit course
 #     When I click on the button delete course
 #     Then I see the modal to confirm the deletion

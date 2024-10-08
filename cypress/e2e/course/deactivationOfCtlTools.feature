@@ -51,7 +51,7 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the button to add a tool
     When I click on the button to add a tool
@@ -96,7 +96,7 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is marked as deactivated
@@ -107,7 +107,7 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is marked as deactivated
@@ -147,7 +147,7 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is not marked as deactivated
@@ -164,7 +164,7 @@ Feature: Deactivation of ctl tools
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is not marked as deactivated

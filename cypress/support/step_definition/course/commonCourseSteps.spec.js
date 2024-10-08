@@ -18,7 +18,7 @@ When("I select the student {string} in the list", (studentName) => {
 	courses.selectStudentInCourseCreatePage(studentName);
 });
 
-When("I see student selection box to select the student for the room", () => {
+When("I see student selection box to select the student for the course", () => {
 	courses.seeStudentSelectionBoxInCourseCreatePage();
 });
 
@@ -26,8 +26,8 @@ When("I click on FAB to add or import courses", () => {
 	courses.clickOnFABToAddOrImportCourse();
 });
 
-Then("I see room search box on the course overview page", () => {
-	courses.seeRoomSearchBoxOnRoomOverview();
+Then("I see course search box on the course overview page", () => {
+	courses.seeCourseSearchBoxOnCourseOverview();
 });
 
 When("I go to course administration page", () => {
@@ -208,8 +208,8 @@ When("I close the dialog", () => {
 	courses.clickOnDialogClose();
 });
 
-Then("I see room page {string}", (roomName) => {
-	courses.seeRoomPage(roomName);
+Then("I see course page {string}", (courseName) => {
+	courses.seeCoursePage(courseName);
 });
 
 When("I click on edit course", () => {
@@ -285,4 +285,8 @@ When("I click the cancel edit course button", () => {
 
 When("I click on the save course changes button", () => {
 	courses.clickSaveChangesButton();
+});
+
+When("I edit the title of the course to {string}", (newCourseName) => {
+	courses.editCourseTitle(newCourseName);
 });

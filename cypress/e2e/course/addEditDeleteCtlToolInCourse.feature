@@ -58,7 +58,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Given I am logged in as a 'teacher1_nbc' at 'nbc'
         When I go to courses overview
         When I go to course 'Cypress Test Course'
-        Then I see room page 'Cypress Test Course'
+        Then I see course page 'Cypress Test Course'
         When I click on the tools tab
         Then I see the button to add a tool
         #    Teacher adds a tool without a custom parameter
@@ -125,7 +125,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I enter 'updated test' in optional custom parameter field 'contextParam'
         Then I see custom parameter input field 'contextParam' contains 'updated test'
         When I confirm the update
-        Then I see room page 'Cypress Test Course'
+        Then I see course page 'Cypress Test Course'
         When I click on three dot menu of the tool 'CY Test Tool Optional Parameters'
         When I click on the tool edit button of 'CY Test Tool Optional Parameters'
         Then I see the tool configuration page title
@@ -135,7 +135,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Given I am logged in as a 'student2_nbc' at 'nbc'
         When I go to courses overview
         When I go to course 'Cypress Test Course'
-        Then I see room page 'Cypress Test Course'
+        Then I see course page 'Cypress Test Course'
         When I click on the tools tab
         Then I do not see the button to add a tool
         Then I see 5 tools
@@ -148,7 +148,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Given I am logged in as a 'teacher1_nbc' at 'nbc'
         When I go to courses overview
         When I go to course 'Cypress Test Course'
-        Then I see room page 'Cypress Test Course'
+        Then I see course page 'Cypress Test Course'
         When I click on the tools tab
         Then I see 5 tools
         When I click on three dot menu of the tool 'CY Test Tool Optional Parameters'

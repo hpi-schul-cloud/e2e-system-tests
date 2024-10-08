@@ -4,7 +4,7 @@ Feature: Course - To add and delete a course by the teacher using classes
 
   # step definitions aren't created yet.
 
-  As a teacher I want to create a new course with a class and want to delete the newly created test course/room so that list of courses/rooms can be cleaned and not full with the newly created test courses/rooms.
+  As a teacher I want to create a new course with a class and want to delete the newly created test course so that list of courses can be cleaned and not full with the newly created test courses.
 
   Scenario: Create, edit and delete a course with groups of type class
     # pre-conditions: creating users
@@ -32,8 +32,8 @@ Feature: Course - To add and delete a course by the teacher using classes
     When I go to course 'Cypress Test Creation and Deletion'
     When I open page Edit course
     Then I see page Edit course
-    When I edit the title of the room to 'Cypress Testkurs Edit'
-    When I edit the room description to 'cy edit this is test description'
+    When I edit the title of the course to 'Cypress Testkurs Edit'
+    When I edit the course description to 'cy edit this is test description'
 
     # Add groups to course
     When I click on the selection box to add a new group with ' Cypress-Test-Group1 | moin.schule '
@@ -81,7 +81,7 @@ Feature: Course - To add and delete a course by the teacher using classes
 #   Then I see the course 'Cypress Testkurs Edit' on the course overview page
 
 
-#   # Deleting the course/room created in this feature test
+#   # Deleting the course created in this feature test
 #   When I open page Edit course
 #   When I click on the button delete course
 #   Then I see the modal to confirm the deletion

@@ -34,7 +34,7 @@ Feature: Course - Copy CTL tools
     When I click on button To Course Overview on the finish page
     Then I see the course 'Cypress Test Course Copy' on the course overview page
     When I go to course 'Cypress Test Course Copy'
-    Then I see room page 'Cypress Test Course Copy'
+    Then I see course page 'Cypress Test Course Copy'
     When I click on the tools tab
     Then I see the button to add a tool
     #    Teacher adds a tool with required parameter
@@ -69,11 +69,11 @@ Feature: Course - Copy CTL tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course Copy'
-    Then I see room page 'Cypress Test Course Copy'
+    Then I see course page 'Cypress Test Course Copy'
     When I click on copy course button
     Then I see the copy result notification
     When I close the dialog
-    Then I see room page 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     #    Teacher adds a student to newly copied course
     When I open page Edit course
     Then I see page Edit course
@@ -96,7 +96,7 @@ Feature: Course - Copy CTL tools
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course Copy (1)'
-    Then I see room page 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     When I click on the tools tab
     Then I see 3 tools
     Then I see the tool 'CY Test Tool Context Scope' in the tool overview
@@ -113,7 +113,7 @@ Feature: Course - Copy CTL tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course Copy (1)'
-    Then I see room page 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     When I click on the tools tab
     When I click on three dot menu of the tool 'CY Test Tool Protected Parameter'
     When I click on the tool edit button of 'CY Test Tool Protected Parameter'
@@ -125,7 +125,7 @@ Feature: Course - Copy CTL tools
     Then I see the tool configuration page title
     When I enter 'protected' in optional custom parameter field 'protected'
     When I confirm the update
-    Then I see room page 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
 
