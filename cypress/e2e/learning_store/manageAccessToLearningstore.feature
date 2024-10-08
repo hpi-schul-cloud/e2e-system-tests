@@ -19,10 +19,12 @@ Feature: Learning store - Activating and deactivating access for students
         When I click on general settings panel
         When I click the toggle switch to enable students access to learning store
         When I click on button Save admin settings
+
         # Student sees link to Learning store in menu
         Given I am logged in as a '<student>' at '<namespace>'
         Then I see Learning Store in side bar
         When I go to Learning Store overview
+
         # Admin deactivates students access to Learning store - pre-condition to set the needed configuration
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
@@ -31,6 +33,7 @@ Feature: Learning store - Activating and deactivating access for students
         When I click the toggle switch to disable students access to learning store
         When I click on button Save admin settings
         Then I see toggle switch to enable students access to learning store is unchecked
+
         # Student doesn't see link to Learning store in menu
         Given I am logged in as a '<student>' at '<namespace>'
         Then I do not see Learning Store in side bar
