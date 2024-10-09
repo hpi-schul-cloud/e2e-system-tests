@@ -9,7 +9,7 @@ class Courses {
 	static #confirmDeletionPopup = '[data-testid="modal_delete_course_button"]';
 	static #btnSubmit = '[data-testid="modal-edit-course-button"]';
 	static #courseDescription = '[id="courseDescription"]';
-	static #courseName = '[name="name"]';
+	static #courseName = '[data-testid="coursename"]';
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldCourseOverview = '[data-testid="search-field-course"]';
