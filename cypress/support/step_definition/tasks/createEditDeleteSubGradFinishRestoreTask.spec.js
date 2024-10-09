@@ -178,8 +178,8 @@ Then("I see hint that submission has been sent successfully", () => {
 	tasks.seeSubmissionReceivedHint();
 });
 
-When("I click on button To-Room", () => {
-	tasks.clickOnToRoomBtn();
+When("I click on button To-Course", () => {
+	tasks.clickOnToCourseBtn();
 });
 
 When("I click completed task tab", () => {

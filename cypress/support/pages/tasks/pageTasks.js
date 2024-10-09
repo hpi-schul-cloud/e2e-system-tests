@@ -454,7 +454,7 @@ class Tasks {
 		cy.get(Tasks.#hintForSubmissionReceived).should("be.visible");
 	}
 
-	clickOnToRoomBtn() {
+	clickOnToCourseBtn() {
 		cy.get(Tasks.#taskSection).find("a").eq(1).click();
 	}
 

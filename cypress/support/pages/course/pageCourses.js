@@ -9,7 +9,7 @@ class Courses {
 	static #confirmDeletionPopup = '[data-testid="modal_delete_course_button"]';
 	static #btnSubmit = '[data-testid="modal-edit-course-button"]';
 	static #courseDescription = '[id="courseDescription"]';
-	static #courseName = '[name="name"]';
+	static #courseName = '[data-testid="coursename"]';
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldCourseOverview = '[data-testid="search-field-course"]';
@@ -44,8 +44,8 @@ class Courses {
 	static #chosenChoices = ".chosen-choices";
 	static #chosenResults = ".chosen-results li";
 	static #chosenContainer = ".chosen-container span";
-	static #roomSearrchBox = '[data-testid="search-field"]';
-	static #RoomColourAsRed = '[aria-label="#D50000"]';
+	static #courseSearchBox = '[data-testid="search-field"]';
+	static #courseColourAsRed = '[aria-label="#D50000"]';
 	static #selectTeacher = '[data-testid="teachersearch"]';
 	static #selectSubstituteTeacher = '[data-testid="substituent"]';
 	static #selectClass = '[data-testid="classes"]';
@@ -62,7 +62,7 @@ class Courses {
 	static #sectionOneAreaOnCourseCreationPage = '[data-testid="section-1-area"]';
 	static #sectionTwoAreaOnCourseCreationPage = '[data-testid="section-2-area"]';
 	static #courseDeleteConfirmationModal = '[data-testid="popup-title"]';
-	static #courseTitleInRoomoverview = '[data-testid="course-title"]';
+	static #courseTitleInCourseoverview = '[data-testid="course-title"]';
 	static #learningContentTab = '[data-testid="learnContent-tab"]';
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
 	static #toolsTab = '[data-testid="tools-tab"]';
@@ -75,7 +75,7 @@ class Courses {
 	static #errorDialog = '[data-testId="error-dialog"]';
 	static #outdatedDialogTitle = '[data-testid="dialog-title"]';
 	static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]';
-	static #roomExternalToolSection = '[data-testid="room-external-tool-section"]';
+	static #courseExternalToolSection = '[data-testid="room-external-tool-section"]';
 	static #saveToolButton = '[data-testid="save-button"]';
 	static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]';
 	static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]';
@@ -263,7 +263,7 @@ class Courses {
 		cy.get(Courses.#addClassToCourseSelectionBox).should("exist");
 	}
 
-	seeSelectioinBoxToSelectStudent() {
+	seeSelectionInBoxToSelectStudent() {
 		cy.get(Courses.#addStudentToCourseSelectionBox).should("exist");
 	}
 
@@ -275,12 +275,12 @@ class Courses {
 		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("exist");
 	}
 
-	selectRoomColour() {
-		cy.get(Courses.#RoomColourAsRed).click();
+	selectCourseColour() {
+		cy.get(Courses.#courseColourAsRed).click();
 	}
 
-	seeRoomSearchBoxOnRoomOverview() {
-		cy.get(Courses.#roomSearrchBox).should("be.exist");
+	seeCourseSearchBoxOnCourseOverview() {
+		cy.get(Courses.#courseSearchBox).should("be.exist");
 	}
 
 	courseIsVisiblOnOverviewPage(courseName) {
@@ -291,12 +291,12 @@ class Courses {
 		cy.contains(courseName).should("not.exist");
 	}
 
-	navigateToRoomsOverview() {
+	navigateToCoursesOverview() {
 		cy.get(Courses.#courseOverviewNavigationButton).click();
 	}
 
-	navigateToRoomBoard(roomName) {
-		cy.contains(Courses.#courseTitleInRoomoverview, roomName)
+	navigateToCourseBoard(courseName) {
+		cy.contains(Courses.#courseTitleInCourseoverview, courseName)
 			.should("be.visible")
 			.then((title) => {
 				cy.wrap(title)
@@ -426,7 +426,7 @@ class Courses {
 		cy.get(Courses.#toolsList).should("not.exist");
 	}
 
-	clickOnCreateRoomFAB() {
+	clickOnCreateCourseFAB() {
 		cy.get(Courses.#createCourse).first().click();
 		cy.get("body").then((body) => {
 			if (body.find(Courses.#subMenuFabButtonToAddNewCourse).length) {
@@ -577,7 +577,7 @@ class Courses {
 		cy.get(Courses.#goToCourseOverviewButton).click();
 	}
 
-	clickOnNextStepsBtnAfterEnteringRoomDetails() {
+	clickOnNextStepsBtnAfterEnteringCourseDetails() {
 		cy.get(Courses.#nextButton).click();
 	}
 
@@ -597,19 +597,19 @@ class Courses {
 		cy.get(Courses.#btnSubmit).click();
 	}
 
-	editCourseTitle(editedRoomName) {
-		cy.get(Courses.#courseName).clear().type(editedRoomName);
+	editCourseTitle(editedCourseName) {
+		cy.get(Courses.#courseName).clear().type(editedCourseName);
 	}
 
-	editCourseDescription(editedRoomDesccription) {
-		cy.get(Courses.#courseDescription).clear().type(editedRoomDesccription);
+	editCourseDescription(editedCourseDescription) {
+		cy.get(Courses.#courseDescription).clear().type(editedCourseDescription);
 	}
 
-	searchForARoom(roomName) {
+	searchForACourse(courseName) {
 		cy.get(Courses.#searchFieldCourseOverview).type(
 			"{selectall}{backspace}{selectall}{backspace}"
 		);
-		cy.get(Courses.#searchFieldCourseOverview).type(roomName);
+		cy.get(Courses.#searchFieldCourseOverview).type(courseName);
 	}
 
 	clickOnNewTopicFAB() {
@@ -625,31 +625,31 @@ class Courses {
 		cy.get(Courses.#chosenContainer).should("contain", userFullName);
 	}
 
-	deleteAllCoursesMatchingName(roomName) {
+	deleteAllCoursesMatchingName(courseName) {
 		cy.get("h1")
 			.eq(0)
 			.then(($title) => {
 				const htmlTitlePage = $title.text();
 				if (htmlTitlePage.includes("Kurse")) {
-					this.deleteCoursesByName("Kurs", roomName);
+					this.deleteCoursesByName("Kurs", courseName);
 				} else if (htmlTitlePage.includes("courses")) {
-					this.deleteCoursesByName("Course", roomName);
+					this.deleteCoursesByName("Course", courseName);
 				} else if (htmlTitlePage.includes("Cursos")) {
-					this.deleteCoursesByName("Curso", roomName);
+					this.deleteCoursesByName("Curso", courseName);
 				} else if (htmlTitlePage.includes("Поточні")) {
-					this.deleteCoursesByName("Курс", roomName);
+					this.deleteCoursesByName("Курс", courseName);
 				}
 			});
 	}
 
-	deleteCoursesByName(courseLabel, roomName) {
-		cy.get(`[class="rooms-container"]`).then(($roomsContainer) => {
+	deleteCoursesByName(courseLabel, courseName) {
+		cy.get(`[class="rooms-container"]`).then(($coursesContainer) => {
 			if (
-				$roomsContainer.find(`[aria-label="${courseLabel} ${roomName}"]`).length
+				$coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`).length
 			) {
-				cy.get(`[aria-label="${courseLabel} ${roomName}"]`).then(($rooms) => {
-					if ($rooms) {
-						cy.wrap($rooms).first().click();
+				cy.get(`[aria-label="${courseLabel} ${courseName}"]`).then(($courses) => {
+					if ($courses) {
+						cy.wrap($courses).first().click();
 						this.openCourseEditPage();
 						cy.get(Courses.#deleteButton).should("exist").click();
 						cy.get(Courses.#confirmDeletionPopup).click({
@@ -657,8 +657,8 @@ class Courses {
 							force: true,
 						});
 
-						if ($rooms.length > 1) {
-							this.deleteAllCoursesMatchingName(roomName);
+						if ($courses.length > 1) {
+							this.deleteAllCoursesMatchingName(courseName);
 						}
 					}
 				});
@@ -708,16 +708,16 @@ class Courses {
 	}
 
 	checkIfToolIsVisibleInToolTable(toolName) {
-		cy.get(Courses.#roomExternalToolSection).contains(toolName).should("exist");
+		cy.get(Courses.#courseExternalToolSection).contains(toolName).should("exist");
 	}
 
 	checkIfToolIsNotVisibleInToolTable(toolName) {
-		cy.get(Courses.#roomExternalToolSection).contains(toolName).should("not.exist");
+		cy.get(Courses.#courseExternalToolSection).contains(toolName).should("not.exist");
 	}
 
 	seeToolIsNotMarkedDeactivated(toolName) {
 		const toolData = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 
@@ -730,7 +730,7 @@ class Courses {
 
 	seeToolIsMarkedDeactivated(toolName) {
 		const toolData = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 
@@ -743,9 +743,9 @@ class Courses {
 	}
 
 	clickThreeDotMenuOnTool(toolName) {
-		cy.get(Courses.#roomExternalToolSection).contains(toolName);
+		cy.get(Courses.#courseExternalToolSection).contains(toolName);
 		const toolData = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 
@@ -754,7 +754,7 @@ class Courses {
 
 	clickOnDeleteButton(toolName) {
 		const toolData = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 
@@ -770,11 +770,11 @@ class Courses {
 	}
 
 	seeToolInToolOverview(toolName) {
-		cy.get(Courses.#roomExternalToolSection).contains(toolName).should("exist");
+		cy.get(Courses.#courseExternalToolSection).contains(toolName).should("exist");
 	}
 
 	clickOnTool(toolName) {
-		cy.get(Courses.#roomExternalToolSection).contains(toolName).click();
+		cy.get(Courses.#courseExternalToolSection).contains(toolName).click();
 	}
 
 	clickOnToolAndReturn(toolName) {
@@ -789,7 +789,7 @@ class Courses {
 				);
 			});
 		}).as("index");
-		cy.get(Courses.#roomExternalToolSection)
+		cy.get(Courses.#courseExternalToolSection)
 			.contains(toolName)
 			.click()
 			.should("contain", "Peter Pan");
@@ -837,17 +837,17 @@ class Courses {
 		cy.get(Courses.#dialogClose).click();
 	}
 
-	seeRoomPage(courseName) {
+	seeCoursePage(courseName) {
 		cy.get(Courses.#courseDetailPageTitle).should("contain.text", courseName);
 	}
 
 	seeNumberOfTools(count) {
-		cy.get(Courses.#roomExternalToolSection).children().should("have.length", count);
+		cy.get(Courses.#courseExternalToolSection).children().should("have.length", count);
 	}
 
 	seeToolIsMarkedAsDeactivated(toolName) {
 		const toolCard = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 		toolCard
@@ -859,7 +859,7 @@ class Courses {
 
 	seeToolIsNotMarkedAsDeactivated(toolName) {
 		const toolCard = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 		toolCard
@@ -871,7 +871,7 @@ class Courses {
 
 	seeToolIsMarkedAsIncomplete(toolName) {
 		const toolCard = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 		toolCard
@@ -883,7 +883,7 @@ class Courses {
 
 	seeToolIsNotMarkedAsIncomplete(toolName) {
 		const toolCard = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 		toolCard
@@ -895,7 +895,7 @@ class Courses {
 
 	seeToolIsMarkedAsIncompleteOperational(toolName) {
 		const toolCard = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 		toolCard
@@ -907,7 +907,7 @@ class Courses {
 
 	seeToolIsNotMarkedAsIncompleteOperational(toolName) {
 		const toolCard = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 		toolCard
@@ -930,7 +930,7 @@ class Courses {
 
 	clickThreeDotMenuOnTool(toolName) {
 		const toolCard = cy
-			.get(Courses.#roomExternalToolSection)
+			.get(Courses.#courseExternalToolSection)
 			.find("div")
 			.contains(toolName);
 		toolCard.parent("div").find(Courses.#toolCardThreeDotBtn).click();

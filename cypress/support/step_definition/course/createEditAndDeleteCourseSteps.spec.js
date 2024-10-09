@@ -10,20 +10,16 @@ const courses = new Courses();
 // --> \step_definition\authentication\loginStep.spec.js
 // --> \step_definition\courses\commonCourseSteps.spec.js
 
-Then("I see class selection box to select the class for the room", () => {
+Then("I see class selection box to select the class for the course", () => {
 	courses.seeSelectionBoxToSelectClass();
 });
 
-Then("I see student selection box to select the class for the room", () => {
-	courses.seeSelectioinBoxToSelectStudent();
+Then("I see student selection box to select the class for the course", () => {
+	courses.seeSelectionInBoxToSelectStudent();
 });
 
-When("I edit the title of the room to {string}", (editedRoomName) => {
-	courses.editCourseTitle(editedRoomName);
-});
-
-When("I edit the room description to {string}", (editedRoomDesccription) => {
-	courses.editCourseDescription(editedRoomDesccription);
+When("I edit the course description to {string}", (editedCourseDescription) => {
+	courses.editCourseDescription(editedCourseDescription);
 });
 
 When("I click on the button delete course", () => {

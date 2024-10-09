@@ -6,13 +6,13 @@ Feature: Deactivation of ctl tools
   @unstable_test
   Scenario: Pre-test: Admin creates a course
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I click on FAB to create a new room depending on sub menu
+    When I go to courses overview
+    When I click on FAB to create a new course depending on sub menu
     When I enter the course title 'Cypress Test Course'
     When I select 'Karl Herzog' from field teacher
-    When I click on button Next Steps after entering the room detail in section one
+    When I click on button Next Steps after entering the course detail in section one
     When I select 'Amelia Strobl' from field student
-    When I click on button Next Steps after selecting room participant details
+    When I click on button Next Steps after selecting course participant details
     When I click on button To Course Overview on the finish page
 
   @unstable_test
@@ -49,9 +49,9 @@ Feature: Deactivation of ctl tools
 
     #     Teacher can not add a deactivated tool to course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the button to add a tool
     When I click on the button to add a tool
@@ -94,9 +94,9 @@ Feature: Deactivation of ctl tools
 
     #     Teacher trys to launch a deactivated tool
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is marked as deactivated
@@ -105,9 +105,9 @@ Feature: Deactivation of ctl tools
 
     #     Student trys to launch a deactivated tool
     Given I am logged in as a 'student2_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is marked as deactivated
@@ -145,9 +145,9 @@ Feature: Deactivation of ctl tools
 
     #     Teacher adds activated tool to course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is not marked as deactivated
@@ -162,9 +162,9 @@ Feature: Deactivation of ctl tools
 
     #     Student sees activated tools
     Given I am logged in as a 'student2_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the tool 'CY Test Tool 1' in the tool overview
     Then I see the tool 'CY Test Tool 1' is not marked as deactivated
@@ -174,13 +174,13 @@ Feature: Deactivation of ctl tools
   @unstable_test
   Scenario: Post-test: Teacher deletes course, admin deletes external tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
     When I open page Edit course
     When I click on the button delete course
     Then I see the modal to confirm the deletion
     When I click on the button delete on the modal to confirm the course deletion
-    Then I do not see the course 'Cypress Test Course' on the room overview page
+    Then I do not see the course 'Cypress Test Course' on the course overview page
 
     #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'

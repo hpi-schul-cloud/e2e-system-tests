@@ -6,15 +6,15 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
   @unstable_test
   Scenario: Admin creates a course and adds external tools to school
     Given I am logged in as a 'admin1_nbc' at 'nbc'
-    When I go to rooms overview
+    When I go to courses overview
     #    Pre-Test: Admin creates a course
-    When I click on FAB to create a new room depending on sub menu
+    When I click on FAB to create a new course depending on sub menu
     Then I see section one area on the course create page
     When I enter the course title 'Cypress Test Course'
     When I select 'Karl Herzog' from field teacher
-    When I click on button Next Steps after entering the room detail in section one
+    When I click on button Next Steps after entering the course detail in section one
     Then I see section two area on the course create page
-    When I click on button Next Steps after selecting room participant details
+    When I click on button Next Steps after selecting course participant details
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
     #   Admin adds tools
@@ -50,9 +50,9 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
   @unstable_test
   Scenario: Teacher adds ctl tools to context course, board-element and media-board
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
-    Then I see room page 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
+    Then I see course page 'Cypress Test Course'
     When I click on the tools tab
     Then I see the button to add a tool
     When I click on the button to add a tool
@@ -85,8 +85,8 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     Then I see the tool 'CY Test Tool 1' in the tool overview
 
     #    Teacher adds ctl tools with context restriction board-element to a board
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
     When I go to the tab contents in course detail page
     When I click on FAB to create new content
     When I click on the button FAB New Column Board
@@ -142,13 +142,13 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
   @unstable_test
   Scenario: Post-test: Teacher deletes course, admin deletes external tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course'
     When I open page Edit course
     When I click on the button delete course
     Then I see the modal to confirm the deletion
     When I click on the button delete on the modal to confirm the course deletion
-    Then I do not see the course 'Cypress Test Course' on the room overview page
+    Then I do not see the course 'Cypress Test Course' on the course overview page
 
     #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'

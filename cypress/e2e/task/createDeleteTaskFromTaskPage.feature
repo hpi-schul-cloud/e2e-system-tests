@@ -42,7 +42,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
         When I click on three dot menu of task 'CypressAut Task Creating from Task Overview Test'
         When I click on Delete Task in dot menu
         When I click on Delete in confirmation window
-        # Note: new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to tasks overview
         When I click on draft tasks tab
@@ -56,7 +56,7 @@ Feature: Task - To create and delete tasks starting from task overview page by t
         When I click on button Cancel in confirmation window in edit task page
         When I click on button Delete
         When I click on button Delete in confirmation window in edit task page
-        # Note: new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to tasks overview
         When I click on draft tasks tab

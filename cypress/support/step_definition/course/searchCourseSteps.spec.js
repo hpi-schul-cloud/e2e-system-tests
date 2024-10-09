@@ -12,8 +12,8 @@ const courses = new Courses();
 
 //Scenario: teacher is able to search for a course and find it
 
-When("I enter the course name {string} into the search field", (roomName) => {
-	courses.searchForARoom(roomName);
+When("I enter the course name {string} into the search field", (courseName) => {
+	courses.searchForACourse(courseName);
 });
 
 When("I select {string} from field teacher", (userName) => {

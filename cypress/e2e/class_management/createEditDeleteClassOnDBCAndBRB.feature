@@ -54,7 +54,7 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
         @staging_test
         Examples:
             | namespace | teacher      | student      | school_year | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher | fullname_student |
-            | dbc       | teacher1_dbc | student1_dbc | 2023/24     | cyTestClassName   | cyEditClassName        | 1                  | Karl Herzog      | Herbert Kraft    |
+            | brb       | teacher1_brb | student1_brb | 2023/24     | cyTestClassName   | cyEditClassName        | 1                  | Karl Herzog      | Herbert Kraft    |
 
         @school_api_test
         Examples:
