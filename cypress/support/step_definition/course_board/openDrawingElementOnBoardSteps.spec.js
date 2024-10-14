@@ -38,3 +38,7 @@ Then("I see preferred tool {string} in the menu", (toolName) => {
 Then("I select preferred tool {string} from the menu", (toolName) => {
 	board.selectPreferredExternalToolFromMenu(toolName);
 });
+
+Then("I do not see preferred tool {string} in the menu", (toolName) => {
+	board.preferredExternalToolIsNotVisibleInMenu(toolName);
+});

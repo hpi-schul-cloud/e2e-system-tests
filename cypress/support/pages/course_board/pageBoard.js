@@ -232,5 +232,10 @@ class Board {
 		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
 			.click();
 	}
+
+	preferredExternalToolIsNotVisibleInMenu(toolName) {
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.should("not.exist")
+	}
 }
 export default Board;
