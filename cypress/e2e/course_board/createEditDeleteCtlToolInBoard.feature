@@ -51,20 +51,17 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I click on the page outside of the column
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
-
-#        Then I see preferred tool 'CY Test Tool Preferred' menu
-#        Then I see preferred tool 'CY Test Tool Preferred With Param' in the add element dialog
-#        Then I see an external tool element with tool 'CY Test Tool Preferred'
-#
-#        When I select preferred tool 'CY Test Tool Preferred With Param' from the menu
-#        Then I see tool 'CY Test Tool Preferred With Param' is selected
-#
-#        When I enter 'test' in required custom parameter field 'contextParam'
-#        Then I see custom parameter input field 'contextParam' contains 'test'
-#        When I click on save external tool button
-#        Then I see an external tool element with tool 'CY Test Tool Preferred With Param'
-
-
+        Then I see preferred tool 'CY Test Tool Preferred' in the menu
+        When I select preferred tool 'CY Test Tool Preferred' from the menu
+        Then I see an external tool element with tool 'CY Test Tool Preferred'
+        When I click on plus icon to add content into card
+        Then I see preferred tool 'CY Test Tool Preferred With Param' in the menu
+        When I select preferred tool 'CY Test Tool Preferred With Param' from the menu
+        Then I see tool 'CY Test Tool Preferred With Param' is selected
+        When I enter 'test' in required custom parameter field 'contextParam'
+        Then I see custom parameter input field 'contextParam' contains 'test'
+        When I click on save external tool button
+        Then I see an external tool element with tool 'CY Test Tool Preferred With Param'
 
     @unstable_test
     Scenario: Post-test: Admin deletes a course and external tools

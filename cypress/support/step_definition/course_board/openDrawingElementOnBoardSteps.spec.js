@@ -30,3 +30,11 @@ When("I select external tools from the menu", () => {
 Then("I see an external tool element with tool {string}", (toolName) => {
 	board.seeExternalToolElementWithTool(toolName);
 });
+
+Then("I see preferred tool {string} in the menu", (toolName) => {
+	board.seePreferredExternalToolInMenu(toolName);
+});
+
+Then("I select preferred tool {string} from the menu", (toolName) => {
+	board.selectPreferredExternalToolFromMenu(toolName);
+});
