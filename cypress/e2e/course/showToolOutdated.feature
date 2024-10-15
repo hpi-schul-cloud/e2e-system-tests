@@ -6,8 +6,8 @@ Feature: Course - Show outdated tool
   @unstable_test
   Scenario: Student can see outdated dialog for outdated tool
     Given I am logged in as a 'student2_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'German'
+    When I go to courses overview
+    When I go to course 'German'
     When I click on the tools tab
     Then I see the tool 'Cypress Test Tool School Scope' in the tool overview
     When I click on the tool 'Cypress Test Tool School Scope'
@@ -16,8 +16,8 @@ Feature: Course - Show outdated tool
   @unstable_test
   Scenario: Teacher can see outdated dialog for outdated tool
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'German'
+    When I go to courses overview
+    When I go to course 'German'
     When I click on the tools tab
     Then I see the tool 'Cypress Test Tool School Scope' in the tool overview
     When I click on the tool 'Cypress Test Tool School Scope'
