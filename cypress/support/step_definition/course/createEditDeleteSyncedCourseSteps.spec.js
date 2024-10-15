@@ -99,7 +99,7 @@ Then("I see the information text of the modal to end the sync", () => {
 	courses.seeInfoTextInEndSyncDialog();
 });
 
-Then("I see the synced chip next to the title on the room page", () => {
+Then("I see the synced chip next to the title on the course page", () => {
 	courses.seeSyncedCourseChip();
 });
 
@@ -157,10 +157,6 @@ When("I click the confirmation button of the modal to end the sync", () => {
 
 When("I click the end sync button of group {string}", (groupName) => {
 	classes.clickEndSyncWithCourseButton(groupName);
-});
-
-When("I edit the title of the course to {string}", (newCourseName) => {
-	courses.editCourseTitle(newCourseName);
 });
 
 When("I click on the three dot menu button next to the course title", () => {
