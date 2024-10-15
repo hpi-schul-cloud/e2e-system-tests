@@ -12,20 +12,20 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Given I am logged in as a '<admin>' at '<namespace>'
 
         # pre-condition: admin creates a course and assign teacher and student to the course
-        When I go to rooms overview
-        When I click on FAB to create a new room depending on sub menu
+        When I go to courses overview
+        When I click on FAB to create a new course depending on sub menu
         When I enter the course title '<course_name>'
-        When I select room colour as red
+        When I select course colour as red
         Then I select teacher '<fullname_teacher>' is selected by default
-        When I click on button Next Steps after entering the room detail in section one
+        When I click on button Next Steps after entering the course detail in section one
         When I select the student '<fullname_student>' in the list
-        When I click on button Next Steps after selecting room participant details
+        When I click on button Next Steps after selecting course participant details
         When I click on button To Course Overview on the finish page
 
-        # teacher creates task as draft from room
+        # teacher creates task as draft from course
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I click on FAB to create new content
         When I click on New Task FAB
         Then I can see create task page
@@ -37,15 +37,15 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I enter task description 'Dies ist Deine Aufgabe.'
         When I click on button Submit
         Then I see detail page for task '<task_name>'
-        When I go to rooms overview
-        When I go to room '<course_name>'
-        Then I see room page '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
+        Then I see course page '<course_name>'
         And I can see content '<task_name>' on course page
 
         # student submits task
         Given I am logged in as a '<student>' at '<namespace>'
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         And I click on task '<task_name>'
         Then I see detail page for task '<task_name>'
         When  I click on submission tab
@@ -60,10 +60,10 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         And I click on not graded tasks
         Then I see task '<task_name>' in the list as student
 
-        # teacher grades task from room
+        # teacher grades task from course
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         Then I see task card info submitted contains '1/1' for task '<task_name>'
         And Task card info graded contains '0/1' for task '<task_name>'
         When I click on task '<task_name>'
@@ -98,14 +98,14 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I click on download file 'gradingfile-pdf.pdf' in grading
         Then file 'gradingfile-pdf.pdf' is saved in folder downloads
 
-        # teacher finishes task from room
+        # teacher finishes task from course
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         And I click on link finish for task '<task_name>'
         Then I see task '<task_name>' does not contain any buttons
 
-        # teacher restores the finished task from room
+        # teacher restores the finished task from course
         When I go to tasks overview
         # Note: below step is comented becasue icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
         #And I open task list with due date
@@ -119,40 +119,40 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         And I open task list with due date
         Then I see task '<task_name>' in the list as teacher
         When I arrive on the dashboard
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         Then I see task '<task_name>' contains buttons
 
-        # teacher deletes task from room
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        # teacher deletes task from course
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I click on three dot menu of content '<task_name>'
         And I click on Delete in dot menu
         And I click on Cancel in confirmation window
-        # Note: new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         Then I can see content '<task_name>' on course page
         When I click on three dot menu of content '<task_name>'
         And I click on Delete in dot menu
         And I click on Delete in confirmation window
-        # Note: new opening of the room page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
-        When I go to rooms overview
-        When I go to room '<course_name>'
-        Then I see room page '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
+        Then I see course page '<course_name>'
         And I can not see content '<task_name>'
 
         # Post-condition: Teacher deletes the course
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to rooms overview
-        When I go to room '<course_name>'
+        When I go to courses overview
+        When I go to course '<course_name>'
         When I open page Edit course
         When I click on the button delete course
         Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
-        Then I do not see the course '<course_name>' on the room overview page
+        Then I do not see the course '<course_name>' on the course overview page
 
         @school_api_test
         Examples:
