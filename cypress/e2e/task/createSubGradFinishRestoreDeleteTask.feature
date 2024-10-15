@@ -40,13 +40,13 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        And I can see content '<task_name>' on course page
+        Then I can see content '<task_name>' on course page
 
         # student submits task
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
-        And I click on task '<task_name>'
+        When I click on task '<task_name>'
         Then I see detail page for task '<task_name>'
         When  I click on submission tab
         When I enter text submission '<submission_text>'
@@ -56,8 +56,8 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Then I see hint that submission has been sent successfully
         When I go to tasks overview
         Then I do not see task '<task_name>' in the list as student
-        And I click completed task tab
-        And I click on not graded tasks
+        When I click completed task tab
+        When I click on not graded tasks
         Then I see task '<task_name>' in the list as student
 
         # teacher grades task from course
@@ -65,36 +65,36 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see task card info submitted contains '1/1' for task '<task_name>'
-        And Task card info graded contains '0/1' for task '<task_name>'
+        Then Task card info graded contains '0/1' for task '<task_name>'
         When I click on task '<task_name>'
-        And I click on submissions tab
+        When I click on submissions tab
         Then there is a tick in column delivered for '<student_last_name>'
         When I click on submission of '<student_last_name>'
         Then I see submission text '<submission_text>'
         When I click on download file 'testboard_jpg' in submission
         Then file 'testboard_jpg' is saved in folder downloads
         When I click on grading tab
-        And I upload file 'gradingfile-pdf.pdf'
+        When I upload file 'gradingfile-pdf.pdf'
         Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
-        And I enter comment 'Gut gemacht!'
-        And I enter grade '83'
-        And I click on button Save and Send grading
+        When I enter comment 'Gut gemacht!'
+        When I enter grade '83'
+        When I click on button Save and Send grading
         Then there is a tick in column delivered for '<student_last_name>'
-        And grading for '<student_last_name>' contains '83'
+        Then grading for '<student_last_name>' contains '83'
         When I click on button To Course
         Then I see task card info submitted contains '1/1' for task '<task_name>'
-        And Task card info graded contains '1/1' for task '<task_name>'
+        Then Task card info graded contains '1/1' for task '<task_name>'
 
         # student sees grading
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to tasks overview
-        And I click completed task tab
+        When I click completed task tab
         Then I see task '<task_name>' in the list as student
-        And I click on task '<task_name>' in tasks overview
+        When I click on task '<task_name>' in tasks overview
         Then I see submission text '<submission_text>'
         When I click on feedback tab
         Then I see feedback text 'Gut gemacht!'
-        And I see grade is '83'
+        Then I see grade is '83'
         When I click on download file 'gradingfile-pdf.pdf' in grading
         Then file 'gradingfile-pdf.pdf' is saved in folder downloads
 
@@ -102,21 +102,21 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
-        And I click on link finish for task '<task_name>'
+        When I click on link finish for task '<task_name>'
         Then I see task '<task_name>' does not contain any buttons
 
         # teacher restores the finished task from course
         When I go to tasks overview
         # Note: below step is comented becasue icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
-        #And I open task list with due date
+        #When I open task list with due date
         Then I do not see task '<task_name>' in the list as teacher
         When I click on finished tab
         Then I see task '<task_name>' in the list as teacher
         When I click on dot menu of task '<task_name>'
-        And I click on Restore
+        When I click on Restore
         Then I do not see task '<task_name>' in the list as teacher
         When I click on open tasks tab
-        And I open task list with due date
+        When I open task list with due date
         Then I see task '<task_name>' in the list as teacher
         When I arrive on the dashboard
         When I go to courses overview
@@ -127,22 +127,14 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I go to courses overview
         When I go to course '<course_name>'
         When I click on three dot menu of content '<task_name>'
-        And I click on Delete in dot menu
-        And I click on Cancel in confirmation window
-        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
-        When I arrive on the dashboard
-        When I go to courses overview
-        When I go to course '<course_name>'
-        Then I can see content '<task_name>' on course page
-        When I click on three dot menu of content '<task_name>'
-        And I click on Delete in dot menu
-        And I click on Delete in confirmation window
+        When I click on Delete in dot menu
+        When I click on Delete in confirmation window
         # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        And I can not see content '<task_name>'
+        Then I can not see content '<task_name>'
 
         # Post-condition: Teacher deletes the course
         Given I am logged in as a '<teacher>' at '<namespace>'
