@@ -277,3 +277,13 @@ When("I click on Restore", () => {
 When("I open task list with due date", () => {
 	tasks.clickLowerTaskSectionIcon();
 });
+
+// steps from createDeleteTaskFromTaskPage.feature
+
+When("I click on button Cancel in confirmation window in edit task page", () => {
+	tasks.clickCancelDeletionButtonInEditTask();
+});
+
+When("I click on button Delete in confirmation window in edit task page", () => {
+	tasks.clickConfirmDeletionButtonInEditTask();
+});
