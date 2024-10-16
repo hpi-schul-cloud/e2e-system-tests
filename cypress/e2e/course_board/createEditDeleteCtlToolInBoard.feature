@@ -6,17 +6,17 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
     @unstable_test
     Scenario: Pre-test: Admin creates a course and adds external tools to school
         Given I am logged in as a 'admin1_nbc' at 'nbc'
-        When I go to rooms overview
+        When I go to courses overview
 
         #    Admin creates a course
-        When I click on FAB to create a new room depending on sub menu
+        When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
         When I enter the course title 'Cypress Test Course'
         When I select 'Karl Herzog' from field teacher
-        When I click on button Next Steps after entering the room detail in section one
+        When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
         When I select 'Amelia Strobl' from field student
-        When I click on button Next Steps after selecting room participant details
+        When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
 
@@ -36,8 +36,8 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
     @unstable_test
     Scenario: Teacher adds, edits and deletes tools in a column board
         Given I am logged in as a 'teacher1_nbc' at 'nbc'
-        When I go to rooms overview
-        When I go to room 'Cypress Test Course'
+        When I go to courses overview
+        When I go to course 'Cypress Test Course'
         When I go to the tab contents in course detail page
         When I click on FAB to create new content
         When I click on the button FAB New Column Board
@@ -71,6 +71,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I click the delete button for course 'Cypress Test Course' in course table
         Then I see the delete modal
         When I click the confirmation button on the delete modal
+        Then I do not see course 'Cypress Test Course' in course table
 
         #     Admin deletes external tools
         When I click on administration in menu

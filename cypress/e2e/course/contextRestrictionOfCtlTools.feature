@@ -165,6 +165,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     When I click the delete button for course 'Cypress Test Course' in course table
     Then I see the delete modal
     When I click the confirmation button on the delete modal
+    Then I do not see course 'Cypress Test Course' in course table
 
     #     Admin deletes external tools
     When I click on administration in menu
