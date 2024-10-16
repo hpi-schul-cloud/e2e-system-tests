@@ -24,17 +24,17 @@ Feature: Course - Copy CTL tools
 
     #     Teacher creates a course and adds tools to the course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I click on FAB to create a new room depending on sub menu
+    When I go to courses overview
+    When I click on FAB to create a new course depending on sub menu
     When I enter the course title 'Cypress Test Course Copy'
     Then I see teacher 'Karl Herzog' is selected by default
-    When I click on button Next Steps after entering the room detail in section one
-    When I click on button Next Steps after selecting room participant details
+    When I click on button Next Steps after entering the course detail in section one
+    When I click on button Next Steps after selecting course participant details
     Then I see the section three area as the finish page
     When I click on button To Course Overview on the finish page
-    Then I see the course 'Cypress Test Course Copy' on the room overview page
-    When I go to room 'Cypress Test Course Copy'
-    Then I see room page 'Cypress Test Course Copy'
+    Then I see the course 'Cypress Test Course Copy' on the course overview page
+    When I go to course 'Cypress Test Course Copy'
+    Then I see course page 'Cypress Test Course Copy'
     When I click on the tools tab
     Then I see the button to add a tool
     #    Teacher adds a tool with required parameter
@@ -67,13 +67,13 @@ Feature: Course - Copy CTL tools
   @unstable_test
   Scenario: Teacher copies the course, student sees copied ctl tools and tries to launch a incomplete tool
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course Copy'
-    Then I see room page 'Cypress Test Course Copy'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course Copy'
+    Then I see course page 'Cypress Test Course Copy'
     When I click on copy course button
     Then I see the copy result notification
     When I close the dialog
-    Then I see room page 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     #    Teacher adds a student to newly copied course
     When I open page Edit course
     Then I see page Edit course
@@ -94,9 +94,9 @@ Feature: Course - Copy CTL tools
 
     #  Student sees copied ctl tools and incomplete tool cannot be launched
     Given I am logged in as a 'student2_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course Copy (1)'
-    Then I see room page 'Cypress Test Course Copy (1)'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     When I click on the tools tab
     Then I see 3 tools
     Then I see the tool 'CY Test Tool Context Scope' in the tool overview
@@ -111,9 +111,9 @@ Feature: Course - Copy CTL tools
 
     #     Teacher fixes the incomplete tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course Copy (1)'
-    Then I see room page 'Cypress Test Course Copy (1)'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     When I click on the tools tab
     When I click on three dot menu of the tool 'CY Test Tool Protected Parameter'
     When I click on the tool edit button of 'CY Test Tool Protected Parameter'
@@ -125,27 +125,27 @@ Feature: Course - Copy CTL tools
     Then I see the tool configuration page title
     When I enter 'protected' in optional custom parameter field 'protected'
     When I confirm the update
-    Then I see room page 'Cypress Test Course Copy (1)'
+    Then I see course page 'Cypress Test Course Copy (1)'
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
 
   @unstable_test
   Scenario: Post-test: Teacher deletes courses, admin deletes external tools
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course Copy'
+    When I go to courses overview
+    When I go to course 'Cypress Test Course Copy'
     When I open page Edit course
     When I click on the button delete course
     Then I see the modal to confirm the deletion
     When I click on the button delete on the modal to confirm the course deletion
-    Then I do not see the course 'Cypress Test Course Copy' on the room overview page
-    When I go to rooms overview
-    When I go to room 'Cypress Test Course Copy (1)'
+    Then I do not see the course 'Cypress Test Course Copy' on the course overview page
+    When I go to courses overview
+    When I go to course 'Cypress Test Course Copy (1)'
     When I open page Edit course
     When I click on the button delete course
     Then I see the modal to confirm the deletion
     When I click on the button delete on the modal to confirm the course deletion
-    Then I do not see the course 'Cypress Test Course Copy (1)' on the room overview page
+    Then I do not see the course 'Cypress Test Course Copy (1)' on the course overview page
 
     #     Admin deletes external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
