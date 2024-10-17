@@ -35,6 +35,8 @@ class Board {
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
+	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
+
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -53,7 +55,7 @@ class Board {
 	}
 
 	seeExternalToolElementWithTool(toolName) {
-		cy.get(Board.#externalToolElement)
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
 			.find(".content-element-title")
 			.should("contain.text", toolName);
 	}
@@ -236,6 +238,20 @@ class Board {
 	preferredExternalToolIsNotVisibleInMenu(toolName) {
 		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
 			.should("not.exist")
+	}
+
+	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find('[data-testid="board-menu-button"]')
+			.click();
+	}
+
+	clickEditButtonInThreeDotMenu(){
+		cy.get(Board.#editButtonInThreeDotMenu).click();
+	}
+
+	clickDeleteButtonInThreeDotMenu(){
+		cy.get(Board.#deleteOptionThreeDot).click();
 	}
 }
 export default Board;

@@ -87,10 +87,6 @@ Then("I see the confirmation Modal", () => {
 	board.seeDeleteConfirmationModal();
 });
 
-When("I click on the button Remove on the Modal", () => {
-	board.clickOnConfirmInModal();
-});
-
 Then("I do not see the column", () => {
 	board.doNotSeeColumnAfterDeletion();
 });
