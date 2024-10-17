@@ -107,12 +107,12 @@ class MediaShelf {
 	}
 
 	seeGridLayout() {
-		const line = cy.get(MediaShelf.#availableMediaLineSpace)
+		cy.get(MediaShelf.#availableMediaLineSpace)
 			.should('have.class', 'flex-wrap')
 	}
 
 	seeListLayout() {
-		const line = cy.get(MediaShelf.#availableMediaLineSpace)
+		cy.get(MediaShelf.#availableMediaLineSpace)
 			.should('not.have.class', 'flex-wrap')
 	}
 
