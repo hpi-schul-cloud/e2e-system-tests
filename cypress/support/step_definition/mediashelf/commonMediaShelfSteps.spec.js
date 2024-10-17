@@ -36,7 +36,7 @@ When("I click add media line button", () => {
 })
 
 When("I click the three dot menu button on the first media line", () => {
-	mediaShelf.clickThreeDotMenuButtonOnMediaLine()
+	mediaShelf.clickThreeDotMenuButtonOnFirstMediaLine()
 })
 
 When("I click on edit title button", () => {
@@ -44,7 +44,7 @@ When("I click on edit title button", () => {
 })
 
 When("I click the collapse button on the first media line", () => {
-	mediaShelf.clickCollapseMediaLineButton()
+	mediaShelf.clickCollapseButtonOnFirstMediaLine()
 })
 
 When("I click on color picker button", () => {
@@ -52,11 +52,11 @@ When("I click on color picker button", () => {
 })
 
 When("I edit the title of the first median line to {string}", (title) => {
-	mediaShelf.editMediaLineTitlte(title)
+	mediaShelf.editTitleOfFirstMediaLine(title)
 })
 
 When("I double click on the title of the first median line", () => {
-	mediaShelf.clickOnMediaLineTitle()
+	mediaShelf.clickOnFirstMediaLineTitle()
 })
 
 When("I click on media element {string}", (toolName) => {
@@ -72,15 +72,15 @@ Then("I see the available media line", () => {
 });
 
 Then("I see the first media line", () => {
-	mediaShelf.seeMediaLine();
+	mediaShelf.seeFirstMediaLine();
 });
 
 Then("I see the first media line has been deleted", () => {
-	mediaShelf.seeDeletedMediaLine();
+	mediaShelf.firstMediaLineIsNotVisible();
 });
 
 Then("I see the first media line with title {string}", (toolName) => {
-	mediaShelf.seeMediaLineWithTitle(toolName);
+	mediaShelf.seeFirstMediaLineWithTitle(toolName);
 });
 
 Then("I see the media line menu", () => {
@@ -100,7 +100,7 @@ Then("I see the available media line has background color {string}", (color) => 
 });
 
 Then("I see the first media line has background color {string}", (color) => {
-	mediaShelf.seeMediaLineMenuColor(color);
+	mediaShelf.seeFirstMediaLineMenuColor(color);
 });
 
 Then("I see the available media line is collapsed", () => {
@@ -112,11 +112,11 @@ Then("I see the available media line is not collapsed", () => {
 });
 
 Then("I see the first media line is collapsed", () => {
-	mediaShelf.isMediaLineCollapsed();
+	mediaShelf.isFirstMediaLineCollapsed();
 });
 
 Then("I see the first media line is not collapsed", () => {
-	mediaShelf.isMediaLineNotCollapsed();
+	mediaShelf.isFirstMediaLineNotCollapsed();
 });
 
 Then("I see the grid layout", () => {
@@ -132,7 +132,7 @@ Then("I see {int} tools in the available media line", (count) => {
 });
 
 Then("I see {int} tools in the first media line", (count) => {
-	mediaShelf.seeNumberOfMediaInMediaLine1(count);
+	mediaShelf.seeNumberOfMediaInFirstMediaLine(count);
 });
 
 Then("I see the thumbnail, title and description of media element {string}", (toolName) => {
@@ -179,4 +179,36 @@ Then("I see delete media element dialog", () => {
 
 When("I click confirm delete media element button", () => {
 	mediaShelf.clickConfirmDeleteDialog()
+});
+
+When("I move tool {string} in to ghost media line", (toolName) => {
+	mediaShelf.moveToolInGhostMediaLine(toolName);
+});
+
+When("I move tool {string} in the first media line", (toolName) => {
+	mediaShelf.moveToolInFirstMediaLine(toolName);
+});
+
+When("I move tool {string} in the empty first media line", (toolName) => {
+	mediaShelf.moveToolInEmptyFirstMediaLine(toolName);
+});
+
+When("I move tool {string} to the available media line", (toolName) => {
+	mediaShelf.moveToolInAvailableMediaLine(toolName);
+});
+
+When("I move tool {string} to the empty available media line", (toolName) => {
+	mediaShelf.moveToolInEmptyAvailableMediaLine(toolName);
+});
+
+When("I move tool {string} next to tool {string}", (toolNameSource, toolNameTarget) => {
+	mediaShelf.moveToolNextToTool(toolNameSource, toolNameTarget);
+});
+
+Then("I see tool {string} in the first media line", (toolName) => {
+	mediaShelf.mediaElementIsVisibleInFirstMediaLine(toolName);
+});
+
+When("I select default line color", () => {
+	mediaShelf.selectLineColorWhite();
 });

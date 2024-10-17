@@ -5,16 +5,10 @@ class MediaShelf {
 	static #mediaShelfPageTitle = '[data-testid="page-title"]';
 	static #gridLayoutButton = '[data-testid="media-board-layout-grid"]';
 	static #listLayoutButton = '[data-testid="media-board-layout-list"]';
-	static #mediaLine0 = '[data-testid="media-board-line-0"]';
-	static #mediaLine1 = '[data-testid="media-board-line-1"]';
-	static #mediaLine2 = '[data-testid="media-board-line-2"]';
-	static #mediaLineHeader0 = '[data-testid="media-board-line-header-0"]';
-	static #mediaLineHeader1 = '[data-testid="media-board-line-header-1"]';
-	static #mediaLineHeader2 = '[data-testid="media-board-line-header-2"]';
+	static #mediaLine1 = '[data-testid="media-board-line-0"]';
+	static #mediaLineHeader1 = '[data-testid="media-board-line-header-0"]';
 	static #ghostLineSpace = '[data-testid="ghost-line-space"]';
 	static #mediaLineSpace1 = '[data-testid="media-line-space-0"]';
-	static #mediaLineSpace2 = '[data-testid="media-line-space-1"]';
-	static #mediaLineSpace3 = '[data-testid="media-line-space-2"]';
 	static #availableMediaLineSpace = '[data-testid="available-media-line-space"]';
 	static #lineTitle = '[data-testid="media-line-title"]';
 	static #collapseLineButton = '[data-testid="collapse-line-btn"]';
@@ -52,16 +46,16 @@ class MediaShelf {
 		cy.get(MediaShelf.#availableLine).should("exist")
 	}
 
-	seeMediaLine() {
-		cy.get(MediaShelf.#mediaLine0).should("exist")
+	seeFirstMediaLine() {
+		cy.get(MediaShelf.#mediaLine1).should("exist")
 	}
 
-	seeDeletedMediaLine() {
-		cy.get(MediaShelf.#mediaLine0).should("not.exist")
+	firstMediaLineIsNotVisible() {
+		cy.get(MediaShelf.#mediaLine1).should("not.exist")
 	}
 
-	seeMediaLineWithTitle(title) {
-		const line = cy.get(MediaShelf.#mediaLineHeader0)
+	seeFirstMediaLineWithTitle(title) {
+		const line = cy.get(MediaShelf.#mediaLineHeader1)
 		line.find('textarea.v-field__input')
 			.should('have.value', title);
 	}
@@ -84,8 +78,8 @@ class MediaShelf {
 		cy.get(MediaShelf.#availableLine).should('have.css', 'background-color', color);
 	}
 
-	seeMediaLineMenuColor(color) {
-		cy.get(MediaShelf.#mediaLine0).should('have.css', 'background-color', color);
+	seeFirstMediaLineMenuColor(color) {
+		cy.get(MediaShelf.#mediaLine1).should('have.css', 'background-color', color);
 	}
 
 	isAvailableMediaLineCollapsed() {
@@ -100,14 +94,14 @@ class MediaShelf {
 			.should("not.have.css", "display", "none");
 	}
 
-	isMediaLineCollapsed() {
-		const line = cy.get(MediaShelf.#mediaLine0)
+	isFirstMediaLineCollapsed() {
+		const line = cy.get(MediaShelf.#mediaLine1)
 		line.find(".v-expansion-panel-text.no-inner-padding")
 			.should("have.css", "display", "none");
 	}
 
-	isMediaLineNotCollapsed() {
-		const line = cy.get(MediaShelf.#mediaLine0)
+	isFirstMediaLineNotCollapsed() {
+		const line = cy.get(MediaShelf.#mediaLine1)
 		line.find(".v-expansion-panel-text.no-inner-padding")
 			.should("not.have.css", "display", "none");
 	}
@@ -128,8 +122,8 @@ class MediaShelf {
 			.should("have.length", count);
 	}
 
-	seeNumberOfMediaInMediaLine1(count) {
-		const line = cy.get(MediaShelf.#mediaLine0);
+	seeNumberOfMediaInFirstMediaLine(count) {
+		const line = cy.get(MediaShelf.#mediaLine1);
 		line.find(MediaShelf.#mediaLineSpace1)
 			.children(".bg-white")
 			.should("have.length", count);
@@ -206,8 +200,8 @@ class MediaShelf {
 			.click();
 	}
 
-	clickCollapseMediaLineButton() {
-		cy.get(MediaShelf.#mediaLine0)
+	clickCollapseButtonOnFirstMediaLine() {
+		cy.get(MediaShelf.#mediaLine1)
 			.find(MediaShelf.#collapseLineButton)
 			.click();
 	}
@@ -218,8 +212,8 @@ class MediaShelf {
 			.click();
 	}
 
-	clickThreeDotMenuButtonOnMediaLine() {
-		cy.get(MediaShelf.#mediaLine0)
+	clickThreeDotMenuButtonOnFirstMediaLine() {
+		cy.get(MediaShelf.#mediaLine1)
 			.find(MediaShelf.#threeDotMenuInMediaLine)
 			.click();
 	}
@@ -228,16 +222,16 @@ class MediaShelf {
 		cy.get(MediaShelf.#editLineTitleButton).click();
 	}
 
-	editMediaLineTitlte(title) {
-		const line = cy.get(MediaShelf.#mediaLine0)
+	editTitleOfFirstMediaLine(title) {
+		const line = cy.get(MediaShelf.#mediaLine1)
 		line.find(MediaShelf.#lineTitle)
 			.type('{selectAll}{backspace}')
 			.type(title)
 			.type('{esc}');
 	}
 
-	clickOnMediaLineTitle() {
-		const line = cy.get(MediaShelf.#mediaLine0)
+	clickOnFirstMediaLineTitle() {
+		const line = cy.get(MediaShelf.#mediaLine1)
 		line.find(MediaShelf.#lineTitle).dblclick();
 	}
 
@@ -252,6 +246,11 @@ class MediaShelf {
 	selectLineColor() {
 		const colorPicker = cy.get(MediaShelf.#colorPicker);
 		colorPicker.get('[style="background: rgb(255, 204, 188);"]').click();
+	}
+
+	selectLineColorWhite() {
+		const colorPicker = cy.get(MediaShelf.#colorPicker);
+		colorPicker.get('[style="background: rgb(255, 255, 255);"]').click();
 	}
 
 	clickMediaElement(tool) {
@@ -279,6 +278,38 @@ class MediaShelf {
 			.click()
 	}
 
+	moveToolInGhostMediaLine(toolName) {
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#ghostLineSpace);
+	}
+
+	moveToolInEmptyFirstMediaLine(toolName) {
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#mediaLineSpace1);
+	}
+
+	moveToolInFirstMediaLine(toolName) {
+		const options = { target: {x: 0 , y: 0}, source: { position: "right" }, force: true }
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#mediaLineSpace1, options);
+	}
+
+	moveToolInAvailableMediaLine(toolName) {
+		const options = { target: {x: 0 , y: 0}, source: { position: "right" }, force: true }
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#availableMediaLineSpace, options);
+	}
+
+	moveToolInEmptyAvailableMediaLine(toolName) {
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#availableMediaLineSpace);
+	}
+
+	moveToolNextToTool(toolNameSource, toolNameTarget) {
+		const options = { target: {x: 0 , y: 0}, source: { position: "right" }, force: true }
+		cy.get('[data-testid="media-element-' + toolNameSource + '"]')
+			.drag('[data-testid="media-element-' + toolNameTarget + '"]', options)
+	}
+
+	mediaElementIsVisibleInFirstMediaLine(toolName) {
+		const line = cy.get(MediaShelf.#mediaLineSpace1)
+		line.find('[data-testid="media-element-' + toolName + '"]').should("exist")
+	}
 }
 
 export default MediaShelf;
