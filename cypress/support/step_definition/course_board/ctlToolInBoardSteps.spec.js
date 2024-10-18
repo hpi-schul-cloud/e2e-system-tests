@@ -46,3 +46,11 @@ Then("I see external tool element with tool {string} is marked as incomplete ope
 When("I click on external tool element with tool {string}", (toolName) => {
 	board.clickExternalToolElementWithTool(toolName);
 });
+
+Then("I see an external tool element with tool {string} is marked as deactivated", (toolName) => {
+	board.seeToolIsMarkedAsDeactivated(toolName);
+});
+
+Then("I see an external tool element with tool {string} is not marked as deactivated", (toolName) => {
+	board.seeToolIsNotMarkedAsDeactivated(toolName);
+});

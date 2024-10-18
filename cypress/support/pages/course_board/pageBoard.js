@@ -302,5 +302,21 @@ class Board {
 			.find(Board.#threeDotInCourseBoardTitle)
 			.click();
 	}
+
+	seeToolIsMarkedAsDeactivated(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.within(() => {
+				cy.get(Board.#externalToolElementAlert)
+					.children(".v-alert.v-theme--light.text-warning")
+					.should("have.class", "text-warning");
+			});
+	}
+
+	seeToolIsNotMarkedAsDeactivated(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find(Board.#externalToolElementAlert)
+			.children()
+			.should('have.length', 0);
+	}
 }
 export default Board;
