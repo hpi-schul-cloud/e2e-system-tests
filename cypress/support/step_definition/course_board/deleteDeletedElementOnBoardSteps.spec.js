@@ -5,16 +5,8 @@ const { Then } = require("@badeball/cypress-cucumber-preprocessor");
 
 const board = new Board();
 
-When("I click on three dot menu in the card", () => {
-	board.clickOnThreeDotOnCard();
-});
-
 When("I click on three dot menu on the deleted element", () => {
 	board.clickOnThreeDotOnDeletedElement();
-});
-
-When("I select the option Edit in three dot menu on the card", () => {
-	board.selectEditInThreeDotMenu();
 });
 
 When("I select the option Delete in three dot menu on the card", () => {

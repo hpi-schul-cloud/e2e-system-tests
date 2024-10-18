@@ -11,9 +11,6 @@ Then("I see the page Course Board detail", () => {
 	board.seeNewCourseBoardCreatePage();
 });
 
-When("I click on the button three dot menu in course board", () => {
-	board.clickOnThreeDotMenuInCourseBoardTitle();
-});
 
 When("I click on the option Edit in three dot menu in course board", () => {
 	board.clickOnEditInThreeDotCourseBoardTitle();
@@ -25,10 +22,6 @@ Then("I enter the course board title {string}", (boardTitle) => {
 
 Then("I see the course Board name {string}", (boardName) => {
 	board.seeCourseBoardName(boardName);
-});
-
-Then("I see the chip Draft in the course board", () => {
-	board.seeDraftChipOnCourseBoard();
 });
 
 When("I go to the tab contents in course detail page", () => {
@@ -85,10 +78,6 @@ When("I select the option Delete in three dot menu in the column", () => {
 
 Then("I see the confirmation Modal", () => {
 	board.seeDeleteConfirmationModal();
-});
-
-When("I click on the button Remove on the Modal", () => {
-	board.clickOnConfirmInModal();
 });
 
 Then("I do not see the column", () => {
