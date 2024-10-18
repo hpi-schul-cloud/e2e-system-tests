@@ -36,6 +36,7 @@ class Board {
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
+	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
 
 
 	clickPlusIconToAddCardInColumn() {
@@ -108,6 +109,10 @@ class Board {
 
 	seeDraftChipOnCourseBoard() {
 		cy.get(Board.#draftChipInCourseBoardName).should("exist");
+	}
+
+	doNotSeeDraftChipOnCourseBoard() {
+		cy.get(Board.#draftChipInCourseBoardName).should("not.exist");
 	}
 
 	doNotSeeColumnAfterDeletion() {
@@ -252,6 +257,50 @@ class Board {
 
 	clickDeleteButtonInThreeDotMenu(){
 		cy.get(Board.#deleteOptionThreeDot).click();
+	}
+
+	seeToolIsNotMarkedAsIncomplete(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find(Board.#externalToolElementAlert)
+			.children()
+			.should('have.length', 0);
+	}
+
+
+	seeToolIsMarkedAsIncomplete(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.within(() => {
+				cy.get(Board.#externalToolElementAlert)
+					.children(".v-alert.v-theme--light.text-warning")
+					.should("have.class", "text-warning");
+			});
+	}
+
+	seeToolIsMarkedAsIncompleteOperational(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.within(() => {
+				cy.get(Board.#externalToolElementAlert)
+					.children(".v-alert.v-theme--light.text-info")
+					.should("have.class", "text-info");
+			});
+	}
+
+	seeToolIsNotMarkedAsIncompleteOperational(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find(Board.#externalToolElementAlert)
+			.children()
+			.should('have.length', 0);
+	}
+
+	clickExternalToolElementWithTool(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click()
+	}
+
+	clickOnThreeDotMenuInBoardHeader(){
+		cy.get(Board.#draftChipInCourseBoardName)
+			.siblings()
+			.find(Board.#threeDotInCourseBoardTitle)
+			.click();
 	}
 }
 export default Board;

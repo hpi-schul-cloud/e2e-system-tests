@@ -26,3 +26,23 @@ Then("I select preferred tool {string} from the menu", (toolName) => {
 Then("I do not see preferred tool {string} in the menu", (toolName) => {
 	board.preferredExternalToolIsNotVisibleInMenu(toolName);
 });
+
+Then("I see external tool element with tool {string} is not marked as incomplete", (toolName) => {
+	board.seeToolIsNotMarkedAsIncomplete(toolName);
+});
+
+Then("I see external tool element with tool {string} is not marked as incomplete operational", (toolName) => {
+	board.seeToolIsNotMarkedAsIncompleteOperational(toolName);
+});
+
+Then("I see external tool element with tool {string} is marked as incomplete", (toolName) => {
+	board.seeToolIsMarkedAsIncomplete(toolName);
+});
+
+Then("I see external tool element with tool {string} is marked as incomplete operational", (toolName) => {
+	board.seeToolIsMarkedAsIncompleteOperational(toolName);
+});
+
+When("I click on external tool element with tool {string}", (toolName) => {
+	board.clickExternalToolElementWithTool(toolName);
+});

@@ -27,12 +27,28 @@ When("I click on plus icon to add card in column", () => {
 	board.clickPlusIconToAddCardInColumn();
 });
 
+When("I click on the button three dot menu in course board", () => {
+	board.clickOnThreeDotMenuInCourseBoardTitle();
+});
+
 When("I click on plus icon to add content into card", () => {
 	board.clickPlusIconToAddContentIntoCard();
 });
 
-Then("I click on the option Publish in three dot menu in course board", () => {
+When("I click on the option Publish in three dot menu in course board", () => {
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
+});
+
+Then("I see the chip Draft in the course board", () => {
+	board.seeDraftChipOnCourseBoard();
+});
+
+Then("I do not see the chip Draft in the course board", () => {
+	board.doNotSeeDraftChipOnCourseBoard();
+});
+
+When("I click on three dot menu in the board header", () => {
+	board.clickOnThreeDotMenuInBoardHeader();
 });
 
 
