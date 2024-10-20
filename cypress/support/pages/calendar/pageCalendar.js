@@ -3,7 +3,7 @@
 class Calendar {
 	static #calendarOverviewNavigationButton = '[data-testid="Termine"]';
 	static #calendarOverviewPageTitle = '[data-testid="Kalender"]';
-	static #calendarElement = '[id="calendar"]';
+	static #calendarElement = '[data-testid="calendar"]';
 	static #nextCalendarPage = '[data-testid="right-next-button"]';
 	static #createEventNameFormElement = '[data-testid="create-event-name"]';
 	static #editEventNameFormElement = '[data-testid="edit-event-name"]';
