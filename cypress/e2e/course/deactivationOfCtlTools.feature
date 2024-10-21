@@ -129,7 +129,7 @@ Feature: Deactivation of ctl tools
     When I click on the tool 'CY Test Tool 1'
     Then I see an error dialog
     When I close the dialog
-    When I see 1 tools
+    Then I see 1 tools
 
     #     Teacher tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
@@ -153,7 +153,7 @@ Feature: Deactivation of ctl tools
     When I click on the tool 'CY Test Tool 1'
     Then I see an error dialog
     When I close the dialog
-    When I see 1 tools
+    Then I see 1 tools
 
     #     Student tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
