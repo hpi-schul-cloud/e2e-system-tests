@@ -30,8 +30,8 @@ Feature: Student registration with registration link send by admin
         Then I click on the button Next to proceed to the age selection
         When I select the age over 16 years for registration
         Then I click on the button Next to proceed to the personal data information page
-        Then I see my first name
-        Then I see my last name
+        Then I see my first name '<user_firstname>'
+        Then I see my last name '<user_lastname>'
         When I click on the button Next to proceed to the next step
         When I accept the privacy and terms of use consents
         Then I click on the button Next to proceed to the registration pin step

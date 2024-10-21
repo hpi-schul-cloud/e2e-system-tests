@@ -6,6 +6,14 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
+Then("I see my first name {string}", (firstName) => {
+	cy.get('[name="firstName"]').should("have.value", firstName);
+});
+
+Then("I see my last name {string}", (lastName) => {
+	cy.get('[name="lastName"]').should("have.value", lastName);
+});
+
 Then("I click on the button Generate Personal Registration Link", () => {
 	//management.clickOnGeneratePersonalRegistrationLink()
 	cy.get("button[class*='btn-invitation-link-with-hash student']").click();
@@ -69,6 +77,8 @@ When("I request a new registration pin", () => {
 
 Then("I retrieve the registration pin to enter it into the form", () => {
 	//management.retrieveAndEnterRegistrationCode()
+	const environment = Cypress.env("environment");
+	const email = Cypress.env("studentEmail");
 	cy.request({
 		method: "GET",
 		headers: {
