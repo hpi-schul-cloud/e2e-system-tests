@@ -44,7 +44,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on the page outside of the column
         Then I see the chip Draft in the course board
         When I click on the button three dot menu in course board
-        Then I click on the option Publish in three dot menu in course board
+        When I click on the option Publish in three dot menu in course board
 
         # pre-condition: teacher adds a new column
         When I click on the button Add column in the course board
