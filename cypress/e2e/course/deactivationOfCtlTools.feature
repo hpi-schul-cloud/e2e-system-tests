@@ -118,7 +118,7 @@ Feature: Deactivation of ctl tools
     Then I see the tool 'CY Test Tool 1' in external tools table
     Then I see the tool 'CY Test Tool 1' is deactivated in external tools table
 
-    #     Teacher trys to launch a deactivated tool in course
+    #     Teacher tries to launch a deactivated tool in course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
@@ -131,7 +131,7 @@ Feature: Deactivation of ctl tools
     When I close the dialog
     When I see 1 tools
 
-    #     Teacher trys to launch a deactivated tool in board
+    #     Teacher tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
     Then I see the page Course Board detail
@@ -142,7 +142,7 @@ Feature: Deactivation of ctl tools
     # Then nothing should happen
 
 
-    #     Student trys to launch a deactivated tool in course
+    #     Student tries to launch a deactivated tool in course
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course'
@@ -155,7 +155,7 @@ Feature: Deactivation of ctl tools
     When I close the dialog
     When I see 1 tools
 
-    #     Student trys to launch a deactivated tool in board
+    #     Student tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
     Then I see the page Course Board detail
@@ -239,7 +239,7 @@ Feature: Deactivation of ctl tools
     Then I see the tool 'CY Test Tool 2' in the tool overview
     Then I see the tool 'CY Test Tool 2' is not marked as deactivated
 
-    #    Student trys to launch a deactivated tool in board
+    #    Student tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
     Then I see the page Course Board detail
