@@ -35,6 +35,9 @@ class Board {
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
+	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
+	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
+
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -53,7 +56,7 @@ class Board {
 	}
 
 	seeExternalToolElementWithTool(toolName) {
-		cy.get(Board.#externalToolElement)
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
 			.find(".content-element-title")
 			.should("contain.text", toolName);
 	}
@@ -106,6 +109,10 @@ class Board {
 
 	seeDraftChipOnCourseBoard() {
 		cy.get(Board.#draftChipInCourseBoardName).should("exist");
+	}
+
+	doNotSeeDraftChipOnCourseBoard() {
+		cy.get(Board.#draftChipInCourseBoardName).should("not.exist");
 	}
 
 	doNotSeeColumnAfterDeletion() {
@@ -221,6 +228,95 @@ class Board {
 
 	clickOnMultiColumnBoardOptionInDialogBox() {
 		cy.get(Board.#multiColumnBoardOptionInDialogBox).click();
+	}
+
+	seePreferredExternalToolInMenu(toolName) {
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.should("be.visible");
+	}
+
+	selectPreferredExternalToolFromMenu(toolName) {
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.click();
+	}
+
+	preferredExternalToolIsNotVisibleInMenu(toolName) {
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.should("not.exist")
+	}
+
+	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find('[data-testid="board-menu-button"]')
+			.click();
+	}
+
+	clickEditButtonInThreeDotMenu(){
+		cy.get(Board.#editButtonInThreeDotMenu).click();
+	}
+
+	clickDeleteButtonInThreeDotMenu(){
+		cy.get(Board.#deleteOptionThreeDot).click();
+	}
+
+	seeToolIsNotMarkedAsIncomplete(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find(Board.#externalToolElementAlert)
+			.children()
+			.should('have.length', 0);
+	}
+
+
+	seeToolIsMarkedAsIncomplete(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.within(() => {
+				cy.get(Board.#externalToolElementAlert)
+					.children(".v-alert.v-theme--light.text-warning")
+					.should("have.class", "text-warning");
+			});
+	}
+
+	seeToolIsMarkedAsIncompleteOperational(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.within(() => {
+				cy.get(Board.#externalToolElementAlert)
+					.children(".v-alert.v-theme--light.text-info")
+					.should("have.class", "text-info");
+			});
+	}
+
+	seeToolIsNotMarkedAsIncompleteOperational(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find(Board.#externalToolElementAlert)
+			.children()
+			.should('have.length', 0);
+	}
+
+	clickExternalToolElementWithTool(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click()
+	}
+
+	clickOnThreeDotMenuInBoardHeader(){
+		cy.get(Board.#draftChipInCourseBoardName)
+			.siblings()
+			.find(Board.#threeDotInCourseBoardTitle)
+			.click();
+	}
+
+	seeToolIsMarkedAsDeactivated(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.within(() => {
+				cy.get(Board.#externalToolElementAlert)
+					.children(".v-alert.v-theme--light.text-warning")
+					.should("have.class", "text-warning");
+			});
+	}
+
+	seeToolIsNotMarkedAsDeactivated(toolName){
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.find(Board.#externalToolElementAlert)
+			.children()
+			.should('have.length', 0);
 	}
 }
 export default Board;
