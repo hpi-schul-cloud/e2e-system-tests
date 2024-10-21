@@ -230,6 +230,10 @@ class Board {
 		cy.get(Board.#multiColumnBoardOptionInDialogBox).click();
 	}
 
+	clickOnSingleColumnBoardOptionInDialogBox() {
+		cy.get(Board.#singleColumnBoardOptionInDialogBox).click();
+	}
+
 	seePreferredExternalToolInMenu(toolName) {
 		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
 			.should("be.visible");

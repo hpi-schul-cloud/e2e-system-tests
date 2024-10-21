@@ -99,3 +99,7 @@ Then("I see in dialog box option for single column board", () => {
 When("I choose multi-column board in the dialog box", () => {
 	board.clickOnMultiColumnBoardOptionInDialogBox();
 });
+
+When("I choose single-column board in the dialog box", () => {
+	board.clickOnSingleColumnBoardOptionInDialogBox();
+});
