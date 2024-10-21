@@ -19,8 +19,8 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the tool 'CY Test Tool 2' in external tools table
 
   @unstable_test
-  Scenario Outline: Teacher opens media shelf
-    Given I am logged in as a '<user>' at '<namespace>'
+  Scenario: Teacher opens media shelf
+    Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to media shelf
     Then I see the media shelf page title
     Then I see the available media line
@@ -68,43 +68,69 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Then I see the media line menu
     When I click on delete media line button
     Then I see the first media line has been deleted
-    Examples:
-      | user         | namespace |
-      | teacher1_nbc | nbc       |
-      | student2_nbc | nbc       |
 
-#  This test is not complete. There are missing steps that depend on the ticket N21-2043
-  @unstable_test
-  Scenario: Teacher deletes tool
-      Given I am logged in as a 'teacher1_nbc' at 'nbc'
-      When I go to media shelf
-      Then I see the thumbnail, title and description of media element 'CY Test Tool 1'
-      When I click the three dot menu button on media element 'CY Test Tool 1'
-      When I click on delete media element button
-      Then I see delete media element dialog
-      When I click confirm delete media element button
-      Then I see tool 'CY Test Tool 1' in the available media line
+    #    Test Drag & Drop in media shelf
+    #    Drag & Drop tool in new Line
+    When I move tool 'CY Test Tool 1' in to ghost media line
+    Then I see the first media line
+    Then I see tool 'CY Test Tool 1' in the first media line
+    #    Drag & Drop tool from one line to another line
+    When I move tool 'CY Test Tool 2' in the first media line
+    Then I see tool 'CY Test Tool 2' in the first media line
+    #    Drag & Drop tool in available line
+    When I move tool 'CY Test Tool 2' to the empty available media line
+    Then I see tool 'CY Test Tool 2' in the available media line
+    #     Delete line with tool
+    When I click the three dot menu button on the first media line
+    Then I see the media line menu
+    When I click on delete media line button
+    Then I see the first media line has been deleted
+    Then I see tool 'CY Test Tool 1' in the available media line
+    Then I see the first media line has been deleted
 
-#  This test is not complete. There are missing steps that depend on the ticket N21-2043
-  @unstable_test
-  Scenario: Deleting a tool from another location
-#     Admin deletes tool from school admin page
-      Given I am logged in as a 'admin1_nbc' at 'nbc'
-      When I click on administration in menu
-      When I click on sub menu school
-      When I click on external tools panel
-      Then I see the external tools table
-      When I click on delete button of tool 'CY Test Tool 2'
-      When I confirm deletion on deletion dialog
-#    Teachers removes deleted media element placeholder
-      Given I am logged in as a 'teacher1_nbc' at 'nbc'
-      When I go to media shelf
-      Then I see the deleted placeholder element of media element 'CY Test Tool 2'
-      When I click the three dot menu button on media element 'CY Test Tool 2'
-      When I click on delete media element button
-      Then I see delete media element dialog
-      When I click confirm delete media element button
-      Then I do not see tool 'CY Test Tool 2' in the available media line
+    When I move tool 'CY Test Tool 1' in to ghost media line
+    Then I see the first media line
+    Then I see tool 'CY Test Tool 1' in the first media line
+    When I move tool 'CY Test Tool 2' in the first media line
+    Then I see tool 'CY Test Tool 2' in the first media line
+
+    #     Teacher deletes tool
+    When I click the three dot menu button on media element 'CY Test Tool 1'
+    When I click on delete media element button
+    Then I see delete media element dialog
+    When I click confirm delete media element button
+    Then I see tool 'CY Test Tool 1' in the available media line
+
+    #     Deleting a tool from another location
+    #     Admin deletes tool from school admin page
+    Given I am logged in as a 'admin1_nbc' at 'nbc'
+    When I click on administration in menu
+    When I navigate to new school admin page via sub menu
+    When I click on external tools panel
+    Then I see the external tools table
+    When I click on delete button of tool 'CY Test Tool 2'
+    When I confirm deletion on deletion dialog
+    #     Teachers removes deleted media element placeholder
+    Given I am logged in as a 'teacher1_nbc' at 'nbc'
+    When I go to media shelf
+    Then I see the deleted placeholder element of media element 'CY Test Tool 2'
+    When I click the three dot menu button on media element 'CY Test Tool 2'
+    When I click on delete media element button
+    Then I see delete media element dialog
+    When I click confirm delete media element button
+    Then I do not see tool 'CY Test Tool 2' in the available media line
+
+    #     Post Test: Reset Media Shelf
+    When I click the three dot menu button on the first media line
+    Then I see the media line menu
+    When I click on delete media line button
+    Then I see the first media line has been deleted
+    When I click on three dot menu button on available media line
+    Then I see the available media line menu
+    When I click on color picker button
+    Then I see the available background colors
+    When I select default line color
+    Then I see the available media line has background color 'rgb(255, 255, 255)'
 
   @unstable_test
   Scenario: Post-test: Admin deletes external tools
@@ -114,6 +140,4 @@ Feature: Media Shelf - To show media shelf with respective functionality
     When I click on external tools panel
     Then I see the external tools table
     When I click on delete button of tool 'CY Test Tool 1'
-    When I confirm deletion on deletion dialog
-    When I click on delete button of tool 'CY Test Tool 2'
     When I confirm deletion on deletion dialog
