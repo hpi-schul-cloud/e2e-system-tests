@@ -22,7 +22,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I click on button Next Steps after selecting course participant details
         When I click on button To Course Overview on the finish page
 
-        # teacher creates task as draft from course
+        # teacher creates task from course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
