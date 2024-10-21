@@ -3,15 +3,16 @@
 class Calendar {
 	static #calendarOverviewNavigationButton = '[data-testid="Termine"]';
 	static #calendarOverviewPageTitle = '[data-testid="Kalender"]';
-	static #calendarElement = '[id="calendar"]';
-	static #nextCalendarPage = '[aria-label="next"]';
-	static #eventNameFormElement = '[data-testid="team_event_name"]';
-	static #eventStartDateFormElement = '[data-testid="form-datetime-input-startDate"]';
-	static #eventEndDateFormElement = '[data-testid="form-datetime-input-endDate"]';
-	static #eventDescriptionFormElement = '[data-testid="team_event_description"]';
-	static #eventLocationFormElement = '[data-testid="team_event_location"]';
-	static #eventFormSubmitButton = '[data-testid="submit-btn-create-event-modal"]';
-	static #eventFormDeleteButton = '[data-testid="calendar-event-btn-delete"]';
+	static #calendarElement = '[data-testid="calendar"]';
+	static #nextCalendarPage = '[data-testid="right-next-button"]';
+	static #createEventNameFormElement = '[data-testid="create-event-name"]';
+	static #editEventNameFormElement = '[data-testid="edit-event-name"]';
+	static #createEventStartDateFormElement = '[data-testid="create-startDate"]';
+	static #createEventEndDateFormElement = '[data-testid="create-endDate"]';
+	static #createEventDescriptionFormElement = '[data-testid="create-event-description"]';
+	static #createEventLocationFormElement = '[data-testid="create-event-location"]';
+	static #createEventFormSubmitButton = '[data-testid="submit-btn-create-event-modal"]';
+	static #editEventFormDeleteButton = '[data-testid="calendar-event-btn-delete"]';
 
 	navigateToCalendarOverview() {
 		cy.visit("/calendar");
@@ -29,16 +30,19 @@ class Calendar {
 	}
 
 	clickOnNextCalendarPage() {
-		cy.get(Calendar.#nextCalendarPage).eq(1).click();
+		cy.get(Calendar.#nextCalendarPage).click();
 	}
 
 	seeCreateEventModal() {
-		cy.get(Calendar.#eventNameFormElement).should("be.visible");
+		cy.get(Calendar.#createEventNameFormElement).should("be.visible");
+	}
+
+	seeEditEventModal() {
+		cy.get(Calendar.#editEventNameFormElement).should("be.visible");
 	}
 
 	enterEventTitle(eventTitle) {
-		cy.get(Calendar.#eventNameFormElement)
-			.eq(1)
+		cy.get(Calendar.#createEventNameFormElement)
 			.should("be.visible")
 			.clear()
 			.type(eventTitle)
@@ -46,31 +50,29 @@ class Calendar {
 	}
 
 	enterEventStartTime(eventStartTime) {
-		cy.get(Calendar.#eventStartDateFormElement)
-			.eq(1)
+		cy.get(Calendar.#createEventStartDateFormElement)
 			.type("{backspace}".repeat(4))
 			.type(eventStartTime);
-		cy.get(Calendar.#eventNameFormElement).eq(1).click();
+		cy.get(Calendar.#createEventNameFormElement).click();
 	}
 
 	enterEventEndTime(eventEndTime) {
-		cy.get(Calendar.#eventEndDateFormElement)
-			.eq(1)
+		cy.get(Calendar.#createEventEndDateFormElement)
 			.type("{backspace}".repeat(4))
 			.type(eventEndTime);
-		cy.get(Calendar.#eventNameFormElement).eq(1).click();
+		cy.get(Calendar.#createEventNameFormElement).click();
 	}
 
 	enterEventDescription(eventDescription) {
-		cy.get(Calendar.#eventDescriptionFormElement).eq(1).type(eventDescription);
+		cy.get(Calendar.#createEventDescriptionFormElement).type(eventDescription);
 	}
 
 	enterEventLocation(eventLocation) {
-		cy.get(Calendar.#eventLocationFormElement).eq(1).type(eventLocation);
+		cy.get(Calendar.#createEventLocationFormElement).type(eventLocation);
 	}
 
 	submitEventForm() {
-		cy.get(Calendar.#eventFormSubmitButton).click();
+		cy.get(Calendar.#createEventFormSubmitButton).click();
 	}
 
 	seeEventInCalendar(eventStartTime, eventTitle) {
@@ -91,7 +93,7 @@ class Calendar {
 	}
 
 	clickDeleteEventButton() {
-		cy.get(Calendar.#eventFormDeleteButton).click();
+		cy.get(Calendar.#editEventFormDeleteButton).click();
 	}
 
 	doNotSeeEventInCalendar(eventTitle) {
