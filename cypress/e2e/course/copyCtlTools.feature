@@ -237,11 +237,11 @@ Feature: Course - Copy CTL tools
     When I click the delete button for course 'Cypress Test Course Copy' in course table
     Then I see the delete modal
     When I click the confirmation button on the delete modal
-    Then I do not see course 'Cypress Test Course Copy' in course table
-    When I click the delete button for course 'Cypress Test Course Copy (1)' in course table
+    When I click the delete button for course 'Cypress Test Course Copy(1)' in course table
     Then I see the delete modal
     When I click the confirmation button on the delete modal
-    Then I do not see course 'Cypress Test Course Copy (1)' in course table
+    Then I do not see course 'Cypress Test Course Copy' in course table
+    Then I do not see course 'Cypress Test Course Copy(1)' in course table
 
     #     Admin deletes external tools
     When I click on administration in menu

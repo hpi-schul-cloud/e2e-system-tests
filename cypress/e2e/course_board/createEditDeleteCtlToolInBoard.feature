@@ -193,3 +193,11 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I confirm deletion on deletion dialog
         When I click on delete button of tool 'CY Test Tool Preferred With Param'
         When I confirm deletion on deletion dialog
+        When I click on delete button of tool 'CY Test Tool 1'
+        When I confirm deletion on deletion dialog
+        When I click on delete button of tool 'CY Test Tool Required Parameters'
+        When I confirm deletion on deletion dialog
+        When I click on delete button of tool 'CY Test Tool Optional Parameters'
+        When I confirm deletion on deletion dialog
+        When I click on delete button of tool 'OpenStreetMap'
+        When I confirm deletion on deletion dialog
