@@ -86,8 +86,12 @@ When("I click on New Topic FAB", () => {
 	courses.clickOnNewTopicFAB();
 });
 
-When("I can see content {string} on course page", (contentTitle) => {
-	courses.contentIsVisibleOnCoursePage(contentTitle);
+When("I can see task {string} on course page", (contentTitle) => {
+	courses.taskIsVisibleOnCoursePage(contentTitle);
+});
+
+When("I can see board {string} on course page", (contentTitle) => {
+	courses.boardIsVisibleOnCoursePage(contentTitle);
 });
 
 When("I can not see content {string}", (contentTitle) => {

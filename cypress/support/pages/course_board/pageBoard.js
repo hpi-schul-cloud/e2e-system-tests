@@ -199,7 +199,7 @@ class Board {
 	}
 
 	clickOutsideTheColumnToSaveTheColumn() {
-		cy.get(Board.#mainPageArea).click("center");
+		cy.get(Board.#mainPageArea).click("bottom");
 	}
 
 	seeNewlyCreatedColumn(newColumnName) {

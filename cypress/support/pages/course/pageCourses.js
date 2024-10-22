@@ -29,6 +29,7 @@ class Courses {
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
 	static #backToDraftButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
+	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex =
 		'[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
@@ -449,11 +450,19 @@ class Courses {
 		cy.get(Courses.#newTaskFAB).click();
 	}
 
-	contentIsVisibleOnCoursePage(taskTitle) {
+	taskIsVisibleOnCoursePage(taskTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
 			.contains(taskTitle)
+			.should("be.visible");
+	}
+
+	boardIsVisibleOnCoursePage(boardTitle) {
+		// no cy.wait('@rooms_api') here as the reload takes care of this
+		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+		cy.get(Courses.#boardCardTitleInCoursePageWithIndex)
+			.contains(boardTitle)
 			.should("be.visible");
 	}
 

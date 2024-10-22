@@ -72,7 +72,7 @@ Feature: Deactivation of ctl tools
     When I click on the button FAB New Column Board
     Then I see a dialog box for column board
     When I choose multi-column board in the dialog box
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see the chip Draft in the course board
     When I click on three dot menu in the board header
     When I click on the option Publish in three dot menu in course board
@@ -134,7 +134,7 @@ Feature: Deactivation of ctl tools
     #     Teacher tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see an external tool element with tool 'CY Test Tool 1'
     Then I see an external tool element with tool 'CY Test Tool 1' is marked as deactivated
     #    Teacher tries to launch incomplete tool
@@ -158,7 +158,7 @@ Feature: Deactivation of ctl tools
     #     Student tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see an external tool element with tool 'CY Test Tool 1'
     Then I see an external tool element with tool 'CY Test Tool 1' is marked as deactivated
     #      Student tries to launch incomplete tool
@@ -214,7 +214,7 @@ Feature: Deactivation of ctl tools
     #     Teacher adds activated tool to a board
     When I go to the tab contents in course detail page
     When I click on card Course Board
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see an external tool element with tool 'CY Test Tool 1'
     Then I see an external tool element with tool 'CY Test Tool 1' is not marked as deactivated
     When I click on three dot menu in the card
@@ -242,7 +242,7 @@ Feature: Deactivation of ctl tools
     #    Student tries to launch a deactivated tool in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see an external tool element with tool 'CY Test Tool 1'
     Then I see an external tool element with tool 'CY Test Tool 1' is not marked as deactivated
     Then I see an external tool element with tool 'CY Test Tool 2'

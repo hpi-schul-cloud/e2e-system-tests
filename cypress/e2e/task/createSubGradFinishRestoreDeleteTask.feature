@@ -40,7 +40,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        Then I can see content '<task_name>' on course page
+        Then I can see task '<task_name>' on course page
 
         # student submits task
         Given I am logged in as a '<student>' at '<namespace>'

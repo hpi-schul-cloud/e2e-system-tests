@@ -40,7 +40,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        Then I can see content 'CypressAut Task Creating and Deleting Test' on course page
+        Then I can see task 'CypressAut Task Creating and Deleting Test' on course page
 
         # student does not see task because it is a draft
         Given I am logged in as a '<student>' at '<namespace>'
@@ -69,7 +69,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Then I see detail page for task 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on button To Course
         Then I see course page '<course_name>'
-        Then I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
+        Then I can see task 'CypressAut Task Creating, Editing, Deleting Test' on course page
         Then I see task card info submitted contains '0/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on task 'CypressAut Task Creating, Editing, Deleting Test'
         Then I see description is 'Dies ist Deine Aufgabe. Viel Erfolg!'
@@ -133,7 +133,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'
-        Then I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
+        Then I can see task 'CypressAut Task Creating, Editing, Deleting Test' on course page
         When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on Delete in dot menu
         When I click on Delete in confirmation window
