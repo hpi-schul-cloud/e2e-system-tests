@@ -47,6 +47,10 @@ When("I click on the tool {string}", (toolName) => {
 	courses.clickOnTool(toolName);
 });
 
+When("I launch tool {string}", (toolName) => {
+	courses.checkIfLTIToolLaunches(toolName);
+});
+
 Then("I see the delete tool dialog", () => {
 	courses.seeDeleteDialog();
 });

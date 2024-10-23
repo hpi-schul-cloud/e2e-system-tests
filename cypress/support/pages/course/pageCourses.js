@@ -391,7 +391,7 @@ class Courses {
 	}
 
 	clickOnAddNewToolFAB() {
-		cy.get(Courses.#addToolButton).click();
+		cy.get(Courses.#addToolButton).invoke('css', 'transform', 'translateY(5px)').click();
 	}
 
 	seeAddNewToolFAB() {
@@ -1151,6 +1151,25 @@ class Courses {
 
 	clickSaveChangesButton() {
 		cy.get(".btn-primary").eq(0).should("not.be.disabled").click();
+	}
+
+	checkIfLTIToolLaunches (toolName) {
+		cy.on("window:before:load", (win) => {});
+
+		cy.intercept("POST","https://saltire.lti.app/tool", (req) => {
+			req.continue((res) => {
+				res.body = res.body.replaceAll(
+					"window.location.replace",
+					"window.__location.replace"
+				);
+			});
+		}).as("launchLTITool");
+		cy.get(Courses.#courseExternalToolSection)
+			.contains(toolName)
+			.click();
+		cy.wait('@launchLTITool').then(interception => {
+			expect(interception.response.statusCode).equal(302);
+		})
 	}
 }
 export default Courses;
