@@ -58,12 +58,14 @@ Feature: Course Board - To create, edit and delete a single course board
         When I click on the option Publish in three dot menu in course board
         Then I do not see the chip Draft in the course board
 
-        # teacher adds a new column in the Board
+        # teacher adds a new column with whiteboard in the Board
         When I click on the button Add column in the course board
         When I enter the title name '<column_board_title>' in the column
         When I click on the page outside of the column
         Then I see my column named '<column_board_title>'
         Then I click on the button with the Icon Plus to add a new card in the column
+        When I click on plus icon to add content into card
+        Then I select whiteboard from the menu
 
         # student sees the board
         Given I am logged in as a '<student>' at '<namespace>'
