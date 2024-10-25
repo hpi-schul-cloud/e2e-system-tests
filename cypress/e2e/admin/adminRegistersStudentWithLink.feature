@@ -24,7 +24,7 @@ Feature: Student registration with registration link send by admin
         When I click edit '<role_to_manage>' button for '<user_email>'
         Then I click on the button Generate Personal Registration Link
 
-        # Student performs registration via the generated link and do the first login
+        # Student performs registration via the generated link with PIN
         Then I visit to the generated student registration link
         When I choose the language for the registration process
         Then I click on the button Next to proceed to the age selection
@@ -38,7 +38,7 @@ Feature: Student registration with registration link send by admin
         When I request a new registration pin
         Then I retrieve the registration pin to enter it into the form
         Then I click on the button Send and Get Started to successfully complete the registration process
-        Then I see the page user data summary
+        Then I see the final step user data summary
 
         # Admin deletes the newly added student
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -51,6 +51,7 @@ Feature: Student registration with registration link send by admin
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
+        @staging_test
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |

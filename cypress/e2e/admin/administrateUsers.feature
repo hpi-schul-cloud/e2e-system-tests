@@ -7,6 +7,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
 
     Scenario: Adding a new user, edit and delete this user
         # admin adds a new student
+        # admin adds a new teacher
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
@@ -18,7 +19,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         Then I can see the user with email '<user_email>' in the table
 
         # admin adds edits a student
-        # admin adds edits a student
+        # admin adds edits a teacher
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
@@ -38,7 +39,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         #Then I can save the changes
 
         # admin deletes a student
-        # admin deletes a student
+        # admin deletes a teacher
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email_edited>'

@@ -93,7 +93,7 @@ class Tasks {
 
 	clickOnAddTask() {
 		cy.wait("@tasks_api");
-		cy.get(Tasks.#addTaskButton).click({ force: true });
+		cy.get(Tasks.#addTaskButton).click();
 	}
 
 	seeEditTaskPage(taskTitle) {

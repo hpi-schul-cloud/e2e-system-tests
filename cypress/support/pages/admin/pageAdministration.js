@@ -1,4 +1,5 @@
 "use strict";
+import { getPageUrl } from "../../custom_commands/input.utils";
 
 class Management {
 	static #fabButton = "#fab";
@@ -122,6 +123,140 @@ class Management {
 	static #searchBarUserOverview = 'input[data-testid="searchbar"]';
 	static #buttonLoginViaEmailNbc = '[data-testid="submit-cloud-site"]';
 	static #inputBoxUserEmailOnLoginPage = '[data-testid="username-email"]';
+	static #userSummaryDiv = '[id = "userdata-summary"]';
+	static #getStartedButtonOnRegistration = "button[id='nextSection']";
+	static #pinInputField = "div[id='pinverification'] input[class='digit']";
+	static #requestPinButton = "button[id='resend-pin']";
+	static #pinSuccessMessage = "div[class*='alert-success']";
+	static #nextButtonOnRegistration = "button[id='nextSection']";
+	static #checkBoxPrivacyConsentRegistration = "input[name='privacyConsent']";
+	static #checkBoxTermsOfUseConsentRegistration = "input[name='termsOfUseConsent']";
+	static #nextButtonOnRegitrationFurtherStep = "button[id='nextSection']";
+	static #nextButtonToPeronalRegistrationData = "button[id='showRegistrationForm']";
+	static #ageSelectionBox = "input[id='reg-16']";
+	static #nextButtonToAgeSelectionPage = "button[id='showAgeSelection']";
+	static #languageSelectionBox = "div[id='language_chosen']";
+	static #registrationLinkTextBox = "input[id='invitation-link']";
+	static #generatePersonalLinkButton =
+		"button[class='btn-invitation-link-with-hash student']";
+	static #firstNameTextBoxOnRegistrationPage = "input[name='firstName']";
+	static #lastNameTextBoxOnRegistrationPage = "input[name='lastName']";
+	static #passwordTextBoxOneOnRegistration = "input[id='password']";
+	static #passwordTextBoxTwoOnRegistration = "input[id='password-control']";
+	static #generateRegLinkButtonforTeacher =
+		"button[class='btn btn-secondary btn-invitation-link-with-hash teacher']";
+	static #nextButtonTeacherRegistrationPage = "[id='nextSection']";
+
+	clickOnNextButtonOnTecherRegistration() {
+		cy.get(Management.#nextButtonTeacherRegistrationPage).click();
+	}
+
+	generateRegistrationLinkForTeacher() {
+		cy.get(Management.#generateRegLinkButtonforTeacher).click();
+	}
+
+	setNewPasswordAsTeacherOnRegistration() {
+		const setNewPassword = Cypress.env("SET_NEW_PWD_BY_TEACHER");
+		cy.get(Management.#passwordTextBoxOneOnRegistration).type(setNewPassword, {
+			log: false,
+		});
+		cy.get(Management.#passwordTextBoxTwoOnRegistration).type(setNewPassword, {
+			log: false,
+		});
+	}
+
+	seeUserSummaryOnRegistrationFinalPage() {
+		cy.get(Management.#userSummaryDiv).should("be.visible");
+	}
+
+	clickOnSendAndGetStartedOnRegistration() {
+		cy.get(Management.#getStartedButtonOnRegistration).click();
+	}
+
+	retrieveAndEnterRegistrationPinViaApi() {
+		//const environment = Cypress.env("environment");
+		//const email = Cypress.env("studentEmail");
+		cy.request({
+			method: "GET",
+			headers: {
+				"X-API-KEY": Cypress.env(`apiKey-${environment}`),
+			},
+			url: getPageUrl(environment, `/admin/api/v1/registration-pin/${email}`),
+		}).then(({ body }) => {
+			expect(body).to.be.an("array").that.is.not.empty; // Ensure the response contains the pin data
+			const pin = body.pop().registrationPin.split("");
+
+			cy.get(Management.#pinInputField).each((el, index) => {
+				cy.wrap(el).type(pin[index]); // Enter each digit of the pin into the form
+			});
+		});
+	}
+
+	requestRegistrationPin() {
+		cy.get(Management.#requestPinButton).click();
+		cy.get(Management.#pinSuccessMessage).should("be.visible");
+	}
+
+	clickOnNextToProceedToRegistrationPinPage() {
+		cy.get(Management.#nextButtonOnRegistration).click();
+	}
+
+	acceptingConsentOnRegistrationProcess() {
+		if (Cypress.config().baseUrl.includes("dbc")) {
+			cy.get(Management.#checkBoxPrivacyConsentRegistration).click();
+			cy.get(Management.#checkBoxTermsOfUseConsentRegistration).click();
+		}
+	}
+
+	clickOnNextOnRegistrationPage() {
+		cy.get(Management.#nextButtonOnRegitrationFurtherStep).click();
+	}
+
+	clickOnNextToProcceedToPersonalRegistrationData() {
+		cy.get(Management.#nextButtonToPeronalRegistrationData).click();
+	}
+
+	selectAgeOnRegistrationProcess() {
+		cy.get(Management.#ageSelectionBox).click();
+	}
+
+	clickOnNextForAgeSelection() {
+		cy.get(Management.#nextButtonToAgeSelectionPage).click();
+	}
+
+	chooseLanguageOnRegistrationProcess() {
+		cy.get(Management.#languageSelectionBox).click();
+		cy.contains("li", "deutsch", { matchCase: false }).click(); // Select 'Deutsch' from the list
+	}
+
+	openAndVisitToStudentRegistrationPage() {
+		cy.get(Management.#registrationLinkTextBox)
+			.should("be.visible")
+			.invoke("val")
+			.then((val) => {
+				expect(val).to.be.a("string").and.not.to.be.empty;
+				cy.clearCookies();
+				cy.visit(val);
+			});
+	}
+
+	clickOnGeneratePersonalRegistrationLink() {
+		cy.get(Management.#generatePersonalLinkButton).click();
+	}
+
+	seeFirstNameOnREgistrationPage(firstName) {
+		cy.get(Management.#firstNameTextBoxOnRegistrationPage).should(
+			"have.value",
+			firstName
+		);
+	}
+
+	seeLastNameOnREgistrationPage(lastName) {
+		cy.get(Management.#lastNameTextBoxOnRegistrationPage).should(
+			"have.value",
+			lastName
+		);
+	}
 
 	logoutFromApplication() {
 		cy.logout();
@@ -745,11 +880,12 @@ class Management {
 	}
 
 	seeEmptyExternalToolTable() {
-		cy.get(Management.#externalToolsTable)
-			.within( ()=> {
-				cy.get("tbody tr.v-data-table-rows-no-data td")
-					.should("have.text", "Keine Daten vorhanden");
-			});
+		cy.get(Management.#externalToolsTable).within(() => {
+			cy.get("tbody tr.v-data-table-rows-no-data td").should(
+				"have.text",
+				"Keine Daten vorhanden"
+			);
+		});
 	}
 
 	seeExternalToolConfigurationPage() {
@@ -840,13 +976,19 @@ class Management {
 	}
 
 	checkActivatedTool(toolName) {
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
 		toolData.parent("td").siblings("td").eq(0).contains("Aktuell").should("exist");
 	}
 
 	checkDeactivatedTool(toolName) {
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
 		toolData
 			.parent("td")
@@ -877,7 +1019,10 @@ class Management {
 	}
 
 	clickOnEditButton(toolName) {
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
 		toolData
 			.parent("td")
@@ -889,23 +1034,25 @@ class Management {
 	}
 
 	seeToolHasNoContextRestriction(toolName) {
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
-		toolData
-			.parent("td")
-			.siblings("td")
-			.eq(1)
-			.should('have.text', '')
+		toolData.parent("td").siblings("td").eq(1).should("have.text", "");
 	}
 
-	seeToolHasContextRestriction(toolName,contextRestriction) {
-		const toolData = cy.get(Management.#externalToolsTable).find("td").contains(toolName);
+	seeToolHasContextRestriction(toolName, contextRestriction) {
+		const toolData = cy
+			.get(Management.#externalToolsTable)
+			.find("td")
+			.contains(toolName);
 
 		toolData
 			.parent("td")
 			.siblings("td")
 			.eq(1)
-			.should('have.text', contextRestriction)
+			.should("have.text", contextRestriction);
 	}
 
 	clickOnAuthenticationPanel() {
