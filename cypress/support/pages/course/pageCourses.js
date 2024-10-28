@@ -391,7 +391,9 @@ class Courses {
 	}
 
 	clickOnAddNewToolFAB() {
-		cy.get(Courses.#addToolButton).invoke('css', 'transform', 'translateY(5px)').click();
+		cy.get(Courses.#addToolButton)
+			.invoke('css', 'transform', 'translateY(5px)')
+			.click();
 	}
 
 	seeAddNewToolFAB() {
@@ -1153,23 +1155,34 @@ class Courses {
 		cy.get(".btn-primary").eq(0).should("not.be.disabled").click();
 	}
 
-	checkIfLTIToolLaunches (toolName) {
-		cy.on("window:before:load", (win) => {});
+	launchTool(toolName, toolURL) {
+		const launchedTool =  { toolName: toolName, isLaunched: false };
 
-		cy.intercept("POST","https://saltire.lti.app/tool", (req) => {
-			req.continue((res) => {
-				res.body = res.body.replaceAll(
-					"window.location.replace",
-					"window.__location.replace"
-				);
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("openStub").callsFake((url) => {
+				expect(url).to.contain(toolURL);
+				launchedTool.isLaunched = true;
 			});
-		}).as("launchLTITool");
+		});
+
+		cy.wrap(launchedTool).as("launchedTool");
+
+
 		cy.get(Courses.#courseExternalToolSection)
-			.contains(toolName)
-			.click();
-		cy.wait('@launchLTITool').then(interception => {
-			expect(interception.response.statusCode).equal(302);
-		})
+            .contains(toolName)
+            .click();
+
+		cy.get("@openStub").invoke("restore")
 	}
+
+	toolWasLaunched(toolName){
+		cy.get("@launchedTool").then((launchedTool) => {
+			expect(launchedTool.toolName).to.equal(toolName);
+			expect(launchedTool.isLaunched).to.be.true;
+		});
+
+		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
+	}
+
 }
 export default Courses;

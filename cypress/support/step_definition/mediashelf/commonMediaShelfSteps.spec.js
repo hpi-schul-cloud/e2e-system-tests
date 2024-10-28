@@ -212,3 +212,15 @@ Then("I see tool {string} in the first media line", (toolName) => {
 When("I select default line color", () => {
 	mediaShelf.selectLineColorWhite();
 });
+
+When("I launch tool {string} in the available media line with given url {string}", (toolName, url) => {
+	mediaShelf.launchToolInAvailableMediaLine(toolName, url);
+});
+
+When("I launch tool {string} in the first media line with given url {string}", (toolName, url) => {
+	mediaShelf.launchToolInFirstMediaLine(toolName, url);
+});
+
+Then("I see tool {string} on media element was launched", (toolName) => {
+	mediaShelf.toolWasLaunched(toolName);
+});

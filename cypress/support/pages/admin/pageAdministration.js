@@ -255,8 +255,8 @@ class Management {
 	}
 
 	enableStudentVisibilityForTeacher() {
-		cy.get(Management.#studentVisiblityToggle).click({ force: true }).wait(500);
-		cy.get(Management.#studentVisiblityToggle).should("have.prop", "checked");
+		cy.get(Management.#studentVisiblityToggle).find("input").check({ force: true }).wait(500);
+		cy.get(Management.#studentVisiblityToggle).find("input").should("have.prop", "checked");
 	}
 
 	clickOnAdminSettingsSave() {

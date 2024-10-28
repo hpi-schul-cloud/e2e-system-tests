@@ -47,10 +47,6 @@ When("I click on the tool {string}", (toolName) => {
 	courses.clickOnTool(toolName);
 });
 
-When("I launch tool {string}", (toolName) => {
-	courses.checkIfLTIToolLaunches(toolName);
-});
-
 Then("I see the delete tool dialog", () => {
 	courses.seeDeleteDialog();
 });
@@ -133,4 +129,12 @@ When("I enter {string} in optional custom parameter field {string}", (value, par
 
 When("I enter {string} in display name field", (toolName) => {
 	courses.fillInDisplayName(toolName);
+});
+
+When("I lauch tool {string} with given url {string}", (toolName, url) => {
+	courses.launchTool(toolName, url);
+});
+
+Then("I see tool {string} was launched", (toolName) => {
+	courses.toolWasLaunched(toolName);
 });
