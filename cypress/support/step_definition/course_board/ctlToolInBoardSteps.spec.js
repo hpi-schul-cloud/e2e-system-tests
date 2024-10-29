@@ -54,3 +54,11 @@ Then("I see an external tool element with tool {string} is marked as deactivated
 Then("I see an external tool element with tool {string} is not marked as deactivated", (toolName) => {
 	board.seeToolIsNotMarkedAsDeactivated(toolName);
 });
+
+When("I launch tool {string} on external tool element with given url {string}", (toolName, url) => {
+	board.launchTool(toolName, url);
+});
+
+Then("I see tool {string} on external tool element was launched", (toolName) => {
+	board.toolWasLaunched(toolName);
+});
