@@ -51,6 +51,14 @@ When("I click on three dot menu in the board header", () => {
 	board.clickOnThreeDotMenuInBoardHeader();
 });
 
+When("I enter {string} to board card text element", (textContent) => {
+	board.enterTextToTextFieldInCard(textContent);
+});
+
+Then("I see {string} to board card text element", (textContent) => {
+	board.seeTextInTextFieldInCard(textContent);
+});
+
 
 
 

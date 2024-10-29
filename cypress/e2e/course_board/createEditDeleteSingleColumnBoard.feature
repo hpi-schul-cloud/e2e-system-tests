@@ -64,8 +64,10 @@ Feature: Course Board - To create, edit and delete a single course board
         When I click on the page outside of the column
         Then I see my column named '<column_board_title>'
         Then I click on the button with the Icon Plus to add a new card in the column
+        When I enter '<card_text_content>' to board card text element
         When I click on plus icon to add content into card
-        Then I select whiteboard from the menu
+        When I select whiteboard from the menu
+        Then I see '<card_text_content>' to board card text element
 
         # student sees the board
         Given I am logged in as a '<student>' at '<namespace>'
@@ -98,8 +100,8 @@ Feature: Course Board - To create, edit and delete a single course board
 
         @school_api_test
         Examples:
-            | teacher      | admin      | student      | namespace | fullname_teacher  | fullname_student | course_name                           | board_title                    | column_board_title     | edited_column_board_title |
-            | teacher1_brb | admin1_brb | student1_brb | brb       | cypress teacher_1 | cypress student_1    | CypressAut Single Column Board Course | CypressAut Single Column Board | My Cypress Test Column | Edit Cypress Test Column  |
+            | teacher      | admin      | student      | namespace | fullname_teacher  | fullname_student  | course_name                           | board_title                    | column_board_title     | edited_column_board_title | card_text_content |
+            | teacher1_brb | admin1_brb | student1_brb | brb       | cypress teacher_1 | cypress student_1 | CypressAut Single Column Board Course | CypressAut Single Column Board | My Cypress Test Column | Edit Cypress Test Column  | Lorem ipsum ...   |
 
         @staging_test
         Examples:

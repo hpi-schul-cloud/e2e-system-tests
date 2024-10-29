@@ -17,6 +17,7 @@ class Board {
 	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
+	static #textElement = '[data-testid="ckeditor"]';
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
@@ -321,6 +322,15 @@ class Board {
 			.find(Board.#externalToolElementAlert)
 			.children()
 			.should('have.length', 0);
+	}
+
+	enterTextToTextFieldInCard(textContent){
+		cy.get(Board.#textElement).find("p").type(textContent);
+	}
+
+	seeTextInTextFieldInCard(textContent){
+		cy.get(Board.#textElement)
+			.should("contain.text", textContent);
 	}
 }
 export default Board;
