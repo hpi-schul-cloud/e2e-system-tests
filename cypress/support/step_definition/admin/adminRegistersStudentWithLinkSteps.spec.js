@@ -15,8 +15,8 @@ Then("I see my last name {string}", (lastName) => {
 	management.seeLastNameOnREgistrationPage(lastName);
 });
 
-Then("I click on the button Generate Personal Registration Link", () => {
-	management.clickOnGeneratePersonalRegistrationLink();
+Then("I click on the button Generate Personal Registration Link for student", () => {
+	management.generateRegistrationLinkForStudent();
 });
 
 Then("I visit to the generated student registration link", () => {

@@ -315,7 +315,7 @@ class Management {
 			});
 	}
 
-	clickOnGeneratePersonalRegistrationLink() {
+	generateRegistrationLinkForStudent() {
 		cy.get(Management.#generatePersonalLinkButton).click();
 	}
 

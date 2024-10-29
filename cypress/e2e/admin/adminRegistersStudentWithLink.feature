@@ -22,7 +22,7 @@ Feature: Student registration with registration link send by admin
         # Admin generates the registeration link to proceed with student registration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
-        Then I click on the button Generate Personal Registration Link
+        Then I click on the button Generate Personal Registration Link for student
 
         # Student performs registration via the generated link with PIN
         Then I visit to the generated student registration link
