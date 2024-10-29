@@ -392,7 +392,7 @@ class Courses {
 
 	clickOnAddNewToolFAB() {
 		cy.get(Courses.#addToolButton)
-			.invoke('css', 'transform', 'translateY(5px)')
+			.invoke('css', 'transform', 'translateY(5px)') // remove this invoke after the bug is fixed - Ticket:
 			.click();
 	}
 
@@ -1166,7 +1166,6 @@ class Courses {
 		});
 
 		cy.wrap(launchedTool).as("launchedTool");
-
 
 		cy.get(Courses.#courseExternalToolSection)
             .contains(toolName)
