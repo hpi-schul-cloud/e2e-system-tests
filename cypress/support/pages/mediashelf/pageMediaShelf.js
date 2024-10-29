@@ -310,6 +310,51 @@ class MediaShelf {
 		const line = cy.get(MediaShelf.#mediaLineSpace1)
 		line.find('[data-testid="media-element-' + toolName + '"]').should("exist")
 	}
+
+	launchToolInAvailableMediaLine(toolName, toolURL) {
+		const launchedTool =  { toolName: toolName, isLaunched: false };
+
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("openStub").callsFake((url) => {
+				expect(url).to.contain(toolURL);
+				launchedTool.isLaunched = true;
+			});
+		});
+
+		cy.wrap(launchedTool).as("launchedTool");
+
+		const line = cy.get(MediaShelf.#availableMediaLineSpace)
+		line.find('[data-testid="media-element-' + toolName + '"]').click()
+
+		cy.get("@openStub").invoke("restore")
+	}
+
+	launchToolInFirstMediaLine(toolName, toolURL) {
+		const launchedTool =  { toolName: toolName, isLaunched: false };
+
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("openStub").callsFake((url) => {
+				expect(url).to.contain(toolURL);
+				launchedTool.isLaunched = true;
+			});
+		});
+
+		cy.wrap(launchedTool).as("launchedTool");
+
+		const line = cy.get(MediaShelf.#mediaLineSpace1)
+		line.find('[data-testid="media-element-' + toolName + '"]').click()
+
+		cy.get("@openStub").invoke("restore")
+	}
+
+	toolWasLaunched(toolName){
+		cy.get("@launchedTool").then((launchedTool) => {
+			expect(launchedTool.toolName).to.equal(toolName);
+			expect(launchedTool.isLaunched).to.be.true;
+		});
+
+		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
+	}
 }
 
 export default MediaShelf;
