@@ -137,22 +137,71 @@ class Management {
 	static #nextButtonToAgeSelectionPage = "button[id='showAgeSelection']";
 	static #languageSelectionBox = "div[id='language_chosen']";
 	static #registrationLinkTextBox = "input[id='invitation-link']";
-	static #generatePersonalLinkButton =
-		"button[class='btn-invitation-link-with-hash student']";
+	static #generatePersonalLinkButton = '[data-testid="generate-registration-link"]';
 	static #firstNameTextBoxOnRegistrationPage = "input[name='firstName']";
 	static #lastNameTextBoxOnRegistrationPage = "input[name='lastName']";
 	static #passwordTextBoxOneOnRegistration = "input[id='password']";
 	static #passwordTextBoxTwoOnRegistration = "input[id='password-control']";
-	static #generateRegLinkButtonforTeacher =
-		"button[class='btn btn-secondary btn-invitation-link-with-hash teacher']";
 	static #nextButtonTeacherRegistrationPage = "[id='nextSection']";
+	static #summarySectionTeacherRegistration =
+		'[data-testid="teacher-registration-summary"]';
+	static #nextButtonOnTeacherFirstLoginSectionOne = '[id="nextSection"]';
+	static #sectionOneButtonOnTeacherFirstLogin = '[data-testid="sectionButton-1"]';
+	static #sectionTwoButtonOnTeacherFirstLogin = '[data-testid="sectionButton-2"]';
+	static #sectionThreeButtonOnTeacherFirstLogin = '[data-testid="sectionButton-3"]';
+
+	static #emailOnSectionTwoFirstLoginTeacher = '[id="email"]';
+	static #nextButtonOnTeacherFirstLoginSectionTwo = '[id="nextSection"]';
+
+	static #getStartedImmediateButtonTeacherFisrtLogin =
+		'[data-testid="btn_schul-cloud_erkunden"]';
+
+	static #initialPasswordTextOnStudentRegistration =
+		'[data-testid="student-initial-pwd"]';
+
+	clickOnNextOnSectionOneTeacherFirstLogin() {
+		cy.get(Management.#sectionOneButtonOnTeacherFirstLogin).should("be.visible");
+		cy.get(Management.#nextButtonOnTeacherFirstLoginSectionOne).click();
+	}
+
+	seeTeacherEmailOnFisrtLoginSectionTwoPage() {
+		cy.get("@uniqueEmail").then((uniqueEmail) => {
+			cy.get(Management.#emailOnSectionTwoFirstLoginTeacher)
+				.should("be.visible")
+				.invoke("val")
+				.then((inputValue) => {
+					expect(inputValue).to.equal(uniqueEmail);
+				});
+		});
+	}
+
+	clickOnNextOnSectionTwoTeacherFirstLogin() {
+		cy.get(Management.#sectionTwoButtonOnTeacherFirstLogin).should("be.visible");
+		cy.get(Management.#nextButtonOnTeacherFirstLoginSectionTwo).click();
+	}
+
+	clickOnGetStartedOnSectionThreeTeacherFirstLogin() {
+		cy.get(Management.#sectionThreeButtonOnTeacherFirstLogin).should("be.visible");
+		cy.get(Management.#getStartedImmediateButtonTeacherFisrtLogin).click();
+	}
+
+	seeSummaryOnTeacherRegistration() {
+		cy.get(Management.#summarySectionTeacherRegistration).should("be.visible");
+	}
+
+	enterNewSetPasswordAsTeacher() {
+		const manualPassword = Cypress.env("SET_NEW_PWD_BY_TEACHER");
+		cy.get(Management.#userEmailLoginPage).type(manualPassword, {
+			log: false,
+		});
+	}
 
 	clickOnNextButtonOnTecherRegistration() {
 		cy.get(Management.#nextButtonTeacherRegistrationPage).click();
 	}
 
 	generateRegistrationLinkForTeacher() {
-		cy.get(Management.#generateRegLinkButtonforTeacher).click();
+		cy.get(Management.#generatePersonalLinkButton).click();
 	}
 
 	setNewPasswordAsTeacherOnRegistration() {
@@ -167,27 +216,53 @@ class Management {
 
 	seeUserSummaryOnRegistrationFinalPage() {
 		cy.get(Management.#userSummaryDiv).should("be.visible");
+		// Store the intial password as alias on the summary page for the first login in later step for the method enterInitialPasswordAsStudentAfterRegistration()
+		cy.get(Management.#initialPasswordTextOnStudentRegistration)
+			.should("exist")
+			.and("not.be.empty")
+			.invoke("text")
+			.then((initialPwd) => {
+				cy.log(`Initial password invoked from summary page: ${initialPwd}`);
+				cy.wrap(initialPwd).as("initialStudentdPwd");
+			});
+	}
+
+	enterInitialPasswordAsStudentAfterRegistration() {
+		// Retrieve the stored password from the alias defined in the method seeUserSummaryOnRegistrationFinalPage()
+		cy.get("@initialStudentdPwd").then((initialStudentdPwd) => {
+			cy.get(Management.#userEmailLoginPage).type(initialStudentdPwd, {
+				log: false,
+			});
+		});
 	}
 
 	clickOnSendAndGetStartedOnRegistration() {
 		cy.get(Management.#getStartedButtonOnRegistration).click();
 	}
 
-	retrieveAndEnterRegistrationPinViaApi() {
-		//const environment = Cypress.env("environment");
-		//const email = Cypress.env("studentEmail");
-		cy.request({
-			method: "GET",
-			headers: {
-				"X-API-KEY": Cypress.env(`apiKey-${environment}`),
-			},
-			url: getPageUrl(environment, `/admin/api/v1/registration-pin/${email}`),
-		}).then(({ body }) => {
-			expect(body).to.be.an("array").that.is.not.empty; // Ensure the response contains the pin data
-			const pin = body.pop().registrationPin.split("");
-
-			cy.get(Management.#pinInputField).each((el, index) => {
-				cy.wrap(el).type(pin[index]); // Enter each digit of the pin into the form
+	retrieveAndEnterRegistrationPinViaApi(environment) {
+		// Retrieve the unique email from the Cypress alias coming from the method fillUserCreationForm()
+		cy.get("@uniqueEmail").then((uniqueEmail) => {
+			// Make an API request to retrieve the registration pin
+			cy.request({
+				method: "GET",
+				headers: {
+					"X-API-KEY": Cypress.env(`apiKey-${environment}`),
+				},
+				// Construct the URL with the unique email
+				url: getPageUrl(
+					environment,
+					`/admin/api/v1/registration-pin/${uniqueEmail}`
+				),
+			}).then(({ body }) => {
+				// Check if the response is an array and is not empty
+				expect(body).to.be.an("array").that.is.not.empty;
+				// Extract the registration pin from the response
+				const pin = body.pop().registrationPin.split("");
+				// Enter each digit of the pin into the form input fields
+				cy.get(Management.#pinInputField).each((el, index) => {
+					cy.wrap(el).type(pin[index]);
+				});
 			});
 		});
 	}

@@ -3,6 +3,10 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
+When("I enter the initial generated password", () => {
+	management.enterInitialPasswordAsStudentAfterRegistration();
+});
+
 Then("I see my first name {string}", (firstName) => {
 	management.seeFirstNameOnREgistrationPage(firstName);
 });
@@ -54,9 +58,12 @@ When("I request a new registration pin", () => {
 	management.requestRegistrationPin();
 });
 
-Then("I retrieve the registration pin to enter it into the form", () => {
-	management.retrieveAndEnterRegistrationPinViaApi();
-});
+Then(
+	"I retrieve the registration pin to enter it into the form for {string}",
+	(environment) => {
+		management.retrieveAndEnterRegistrationPinViaApi(environment);
+	}
+);
 
 Then(
 	"I click on the button Send and Get Started to successfully complete the registration process",

@@ -36,9 +36,26 @@ Feature: Student registration with registration link send by admin
         When I accept the privacy and terms of use consents
         Then I click on the button Next to proceed to the registration pin step
         When I request a new registration pin
-        Then I retrieve the registration pin to enter it into the form
+        Then I retrieve the registration pin to enter it into the form for '<namespace>'
         Then I click on the button Send and Get Started to successfully complete the registration process
-        Then I see the final step user data summary
+        Then I see the page user data summary
+
+        # Newly registered student does the first login
+        When I visit the url for first login
+        When I enter the email assigned during user creation
+        When I enter the initial generated password
+        When I click on the button Login
+        Then I see the first login page section 1
+        When I click on the button Next in section 1
+        Then I see the section 2
+        When I click on the button Next in section 2
+        Then I see the section 3
+        Then I set a new password
+        Then I re enter the new password
+        When I click on the button Next in section 3
+        Then I click on the button Get started now in section 4
+        Then I see the dashboard
+        Then I logout from the application
 
         # Admin deletes the newly added student
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -51,7 +68,6 @@ Feature: Student registration with registration link send by admin
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
-        @staging_test
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |

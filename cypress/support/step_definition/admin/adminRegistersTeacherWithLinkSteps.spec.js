@@ -3,7 +3,27 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
-Then("I see the summary page", () => {});
+When("I click on the button Next on the section 1", () => {
+	management.clickOnNextOnSectionOneTeacherFirstLogin();
+});
+Then("I see my email", () => {
+	management.seeTeacherEmailOnFisrtLoginSectionTwoPage();
+});
+
+When("I click on the button Next on the section 2", () => {
+	management.clickOnNextOnSectionTwoTeacherFirstLogin();
+});
+When("I click on the button Get started right away on the section 3", () => {
+	management.clickOnGetStartedOnSectionThreeTeacherFirstLogin();
+});
+
+When("I enter the set password", () => {
+	management.enterNewSetPasswordAsTeacher();
+});
+
+Then("I see the summary page", () => {
+	management.seeSummaryOnTeacherRegistration();
+});
 
 Then("I click on the button Next to proceed to next step", () => {
 	management.clickOnNextButtonOnTecherRegistration();
