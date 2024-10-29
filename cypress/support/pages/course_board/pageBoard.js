@@ -331,7 +331,6 @@ class Board {
 
 		cy.wrap(launchedTool).as("launchedTool");
 
-
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click()
 
 		cy.get("@openStub").invoke("restore")
