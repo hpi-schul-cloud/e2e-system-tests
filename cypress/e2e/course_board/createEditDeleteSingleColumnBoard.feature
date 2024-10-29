@@ -64,17 +64,19 @@ Feature: Course Board - To create, edit and delete a single course board
         When I click on the page outside of the column
         Then I see my column named '<column_board_title>'
         Then I click on the button with the Icon Plus to add a new card in the column
-        When I enter '<card_text_content>' to board card text element
+        #When I enter '<card_text_content>' to board card text element
         When I click on plus icon to add content into card
         When I select whiteboard from the menu
-        Then I see '<card_text_content>' to board card text element
+        Then I see a whiteboard on the board
+        #Then I see '<card_text_content>' to board card text element
 
         # student sees the board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
         Then I can see board '<board_title>' on course page
-        # When I click on card Course Board
+        When I click on card Course Board
+        Then I see a whiteboard on the board
 
         # # teacher deletes the column in the Board
         Given I am logged in as a '<teacher>' at '<namespace>'

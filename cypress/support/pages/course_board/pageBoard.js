@@ -52,6 +52,10 @@ class Board {
 		cy.get(Board.#selectWhiteboardFromMenu).click();
 	}
 
+	seeWhiteboardOnPage() {
+		cy.get(Board.#drawingElement).should('exist');
+	}
+
 	selectExternalToolsFromMenu() {
 		cy.get(Board.#selectExternalToolsFromMenu).click();
 	}
