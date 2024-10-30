@@ -8,6 +8,9 @@ Feature: Course - Copy CTL tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I navigate to new school admin page via sub menu
+    When I click on general settings panel
+    When I click the toggle switch to enable student visibility for teachers
+    When I click on button Save admin settings
     When I click on external tools panel
     When I click the add external tool button
     When I select the tool 'CY Test Tool Context Scope' from available tools
@@ -132,6 +135,9 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is marked as incomplete operational
     Then I see the tool 'CY Test Tool Protected Parameter' is marked as incomplete
+    #    Teacher launches incomplete operational tool
+    When I lauch tool 'CY Test Tool Optional Protected Parameter' with given url 'https://google.com/'
+    Then I see tool 'CY Test Tool Optional Protected Parameter' was launched
     #    Teacher tries to launch incomplete tool
     When I click on the tool 'CY Test Tool Protected Parameter'
     Then I see an error dialog
@@ -151,6 +157,9 @@ Feature: Course - Copy CTL tools
     Then I see external tool element with tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see external tool element with tool 'CY Test Tool Optional Protected Parameter' is marked as incomplete operational
     Then I see external tool element with tool 'CY Test Tool Protected Parameter' is marked as incomplete
+    #    Teacher launches incomplete operational tool
+    When I launch tool 'CY Test Tool Optional Protected Parameter' on external tool element with given url 'https://google.com/'
+    Then I see tool 'CY Test Tool Optional Protected Parameter' on external tool element was launched
     #    Teacher tries to launch incomplete tool
     When I click on external tool element with tool 'CY Test Tool Protected Parameter'
     # Then nothing should happen
@@ -237,11 +246,11 @@ Feature: Course - Copy CTL tools
     When I click the delete button for course 'Cypress Test Course Copy' in course table
     Then I see the delete modal
     When I click the confirmation button on the delete modal
-    When I click the delete button for course 'Cypress Test Course Copy(1)' in course table
+    When I click the delete button for course 'Cypress Test Course Copy (1)' in course table
     Then I see the delete modal
     When I click the confirmation button on the delete modal
     Then I do not see course 'Cypress Test Course Copy' in course table
-    Then I do not see course 'Cypress Test Course Copy(1)' in course table
+    Then I do not see course 'Cypress Test Course Copy (1)' in course table
 
     #     Admin deletes external tools
     When I click on administration in menu

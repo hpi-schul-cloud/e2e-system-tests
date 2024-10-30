@@ -43,7 +43,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I select the tool 'CY Test Tool Preferred With Param' from available tools
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Preferred With Param' in external tools table
-       #   Admin adds tools via tool link
+        #   Admin adds tools via tool link
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
@@ -78,6 +78,9 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see tool 'CY Test Tool 1' is selected
         When I click on save external tool button
         Then I see an external tool element with tool 'CY Test Tool 1'
+        #    Teacher launches tool
+        When I launch tool 'CY Test Tool 1' on external tool element with given url 'https://google.com/'
+        Then I see tool 'CY Test Tool 1' on external tool element was launched
 
         #    Teacher adds a tool twice with different name
         When I click on three dot menu in the card

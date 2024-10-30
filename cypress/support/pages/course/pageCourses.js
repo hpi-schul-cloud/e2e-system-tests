@@ -392,7 +392,9 @@ class Courses {
 	}
 
 	clickOnAddNewToolFAB() {
-		cy.get(Courses.#addToolButton).click();
+		cy.get(Courses.#addToolButton)
+			.invoke('css', 'transform', 'translateY(5px)') // remove this invoke after the bug is fixed - Ticket:
+			.click();
 	}
 
 	seeAddNewToolFAB() {
@@ -1161,5 +1163,34 @@ class Courses {
 	clickSaveChangesButton() {
 		cy.get(".btn-primary").eq(0).should("not.be.disabled").click();
 	}
+
+	launchTool(toolName, toolURL) {
+		const launchedTool =  { toolName: toolName, isLaunched: false };
+
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("openStub").callsFake((url) => {
+				expect(url).to.contain(toolURL);
+				launchedTool.isLaunched = true;
+			});
+		});
+
+		cy.wrap(launchedTool).as("launchedTool");
+
+		cy.get(Courses.#courseExternalToolSection)
+            .contains(toolName)
+            .click();
+
+		cy.get("@openStub").invoke("restore")
+	}
+
+	toolWasLaunched(toolName){
+		cy.get("@launchedTool").then((launchedTool) => {
+			expect(launchedTool.toolName).to.equal(toolName);
+			expect(launchedTool.isLaunched).to.be.true;
+		});
+
+		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
+	}
+
 }
 export default Courses;

@@ -74,6 +74,12 @@ Feature: Media Shelf - To show media shelf with respective functionality
     When I move tool 'CY Test Tool 1' in to ghost media line
     Then I see the first media line
     Then I see tool 'CY Test Tool 1' in the first media line
+    #    Launch tool in available media line
+    When I launch tool 'CY Test Tool 2' in the available media line with given url 'https://google.com/'
+    Then I see tool 'CY Test Tool 2' on media element was launched
+    #    Launch tool in first media line
+    When I launch tool 'CY Test Tool 1' in the first media line with given url 'https://google.com/'
+    Then I see tool 'CY Test Tool 1' on media element was launched
     #    Drag & Drop tool from one line to another line
     When I move tool 'CY Test Tool 2' in the first media line
     Then I see tool 'CY Test Tool 2' in the first media line

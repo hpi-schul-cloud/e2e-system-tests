@@ -69,6 +69,9 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see tool 'CY Test Tool 1' is selected
         When I click on save external tool button
         Then I see the tool 'CY Test Tool 1' in the tool overview
+        #    Teacher launches tool
+        When I lauch tool 'CY Test Tool 1' with given url 'https://google.com/'
+        Then I see tool 'CY Test Tool 1' was launched
         #    Teacher adds a tool twice with different name
         When I click on the button to add a tool
         Then I see the tool configuration page title
