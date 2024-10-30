@@ -55,7 +55,7 @@ When("I enter {string} to board card text element", (textContent) => {
 	board.enterTextToTextFieldInCard(textContent);
 });
 
-Then("I see {string} to board card text element", (textContent) => {
+Then("I see {string} in board card text element", (textContent) => {
 	board.seeTextInTextFieldInCard(textContent);
 });
 

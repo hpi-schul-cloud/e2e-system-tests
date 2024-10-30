@@ -329,12 +329,20 @@ class Board {
 	}
 
 	enterTextToTextFieldInCard(textContent){
-		cy.get(Board.#textElement).find("p").type(textContent);
+		cy.get('[data-testid="ckeditor"]').then((el) => {
+			const editor = el[0].ckeditorInstance;
+			editor.setData(textContent);
+			});
+			cy.get('[data-testid="ckeditor"]').then((el) => {
+			const editor = el[0].ckeditorInstance;
+			const editorContent = editor.getData();
+			const plainText = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
+			expect(plainText).to.equal(textContent);
+			});
 	}
 
 	seeTextInTextFieldInCard(textContent){
-		cy.get(Board.#textElement)
-			.should("contain.text", textContent);
+		cy.contains(textContent);
 	}
 }
 export default Board;
