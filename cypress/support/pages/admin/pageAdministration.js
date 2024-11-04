@@ -145,9 +145,9 @@ class Management {
 	static #nextButtonOnTeacherRegistration = "[id='nextSection']";
 	static #summarySectionTeacherRegistration =
 		'[data-testid="teacher-registration-summary"]';
-	static #sectionOneButtonOnTeacherFirstLogin = '[data-testid="sectionButton-1"]';
-	static #sectionTwoButtonOnTeacherFirstLogin = '[data-testid="sectionButton-2"]';
-	static #sectionThreeButtonOnTeacherFirstLogin = '[data-testid="sectionButton-3"]';
+	static #sectionOneButtonOnTeacherFirstLogin = '[data-testid="section-button-1"]';
+	static #sectionTwoButtonOnTeacherFirstLogin = '[data-testid="section-button-2"]';
+	static #sectionThreeButtonOnTeacherFirstLogin = '[data-testid="section-button-3"]';
 
 	static #emailOnSectionTwoFirstLoginTeacher = '[id="email"]';
 
