@@ -3,6 +3,52 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
+Then("I click on the button Next to proceed to the registration pin step", () => {
+	management.clickOnNextToProceedToRegistrationPinPage();
+});
+
+Then(
+	"I click on the button Send and Get Started to successfully complete the registration process",
+	() => {
+		management.clickOnSendAndGetStartedOnRegistration();
+	}
+);
+
+Then(
+	"I retrieve the registration pin to enter it into the form for {string}",
+	(environment) => {
+		management.retrieveAndEnterRegistrationPinViaApi(environment);
+	}
+);
+
+When("I request a new registration pin", () => {
+	management.requestRegistrationPin();
+});
+
+When("I accept the privacy and terms of use consents", () => {
+	management.acceptingConsentOnRegistrationProcess();
+});
+
+When("I click on the button Next to proceed to the next step", () => {
+	management.clickOnNextOnRegistrationPage();
+});
+
+When("I choose the language for the registration process", () => {
+	management.chooseLanguageOnRegistrationProcess();
+});
+
+Then("I visit to the generated registration link", () => {
+	management.openAndVisitToRegistrationPage();
+});
+
+Then("I see my first name {string}", (firstName) => {
+	management.seeFirstNameOnRegistrationPage(firstName);
+});
+
+Then("I see my last name {string}", (lastName) => {
+	management.seeLastNameOnRegistrationPage(lastName);
+});
+
 When("I click the toggle switch to enable student visibility for teachers", () => {
 	management.enableStudentVisibilityForTeacher();
 });

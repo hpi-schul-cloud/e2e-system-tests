@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Teacher registration with registration link send by admin
+Feature: Admin - Teacher registration with registration link send by admin
 
     As a teacher, I want to register in the SVS
 
@@ -9,7 +9,7 @@ Feature: Teacher registration with registration link send by admin
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # Admin creates a new teacher
+        # admin creates a new teacher
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
         When I click on FAB
@@ -19,13 +19,13 @@ Feature: Teacher registration with registration link send by admin
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
-        # Admin generates the registeration link to proceed with teacher registration
+        # admin generates the registeration link to proceed with teacher registration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
         Then I click on the button Generate Personal Registration Link for teacher
 
-        # Teacher performs registration via the generated link with PIN
-        Then I visit to the generated student registration link
+        # teacher performs registration via the generated link with PIN
+        Then I visit to the generated registration link
         When I choose the language for the registration process
         Then I click on the button Next to proceed to next step
         Then I click again on the button Next to proceed to the personal data information page
@@ -40,7 +40,7 @@ Feature: Teacher registration with registration link send by admin
         Then I click on the button Send and Get Started to successfully complete the registration process
         Then I see the summary page
 
-        # Newly registered teacher does the first login
+        # newly registered teacher does the first login
         When I visit the url for first login
         When I enter the email assigned during user creation
         When I enter the set password
@@ -52,7 +52,7 @@ Feature: Teacher registration with registration link send by admin
         Then I see the dashboard
         Then I logout from the application
 
-        # Admin deletes the newly added teacher
+        # admin deletes the newly added teacher
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
@@ -62,6 +62,9 @@ Feature: Teacher registration with registration link send by admin
         When I click on delete button in pop up
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
+
+        # @staging_test
+        # This feature is not executable on staging as we do not access the API calls on staging.
 
         @school_api_test
         Examples:

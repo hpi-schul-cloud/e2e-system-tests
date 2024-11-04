@@ -131,8 +131,8 @@ class Management {
 	static #nextButtonOnRegistration = "button[id='nextSection']";
 	static #checkBoxPrivacyConsentRegistration = "input[name='privacyConsent']";
 	static #checkBoxTermsOfUseConsentRegistration = "input[name='termsOfUseConsent']";
-	static #nextButtonOnRegitrationFurtherStep = "button[id='nextSection']";
-	static #nextButtonToPeronalRegistrationData = "button[id='showRegistrationForm']";
+	static #nextButtonOnRegistrationFurtherStep = "button[id='nextSection']";
+	static #nextButtonToPersonalRegistrationData = "button[id='showRegistrationForm']";
 	static #ageSelectionBox = "input[id='reg-16']";
 	static #nextButtonToAgeSelectionPage = "button[id='showAgeSelection']";
 	static #languageSelectionBox = "div[id='language_chosen']";
@@ -142,26 +142,26 @@ class Management {
 	static #lastNameTextBoxOnRegistrationPage = "input[name='lastName']";
 	static #passwordTextBoxOneOnRegistration = "input[id='password']";
 	static #passwordTextBoxTwoOnRegistration = "input[id='password-control']";
-	static #nextButtonTeacherRegistrationPage = "[id='nextSection']";
+	static #nextButtonOnTeacherRegistration = "[id='nextSection']";
 	static #summarySectionTeacherRegistration =
 		'[data-testid="teacher-registration-summary"]';
-	static #nextButtonOnTeacherFirstLoginSectionOne = '[id="nextSection"]';
 	static #sectionOneButtonOnTeacherFirstLogin = '[data-testid="sectionButton-1"]';
 	static #sectionTwoButtonOnTeacherFirstLogin = '[data-testid="sectionButton-2"]';
 	static #sectionThreeButtonOnTeacherFirstLogin = '[data-testid="sectionButton-3"]';
 
 	static #emailOnSectionTwoFirstLoginTeacher = '[id="email"]';
-	static #nextButtonOnTeacherFirstLoginSectionTwo = '[id="nextSection"]';
 
-	static #getStartedImmediateButtonTeacherFisrtLogin =
+	static #getStartedImmediateButtonTeacherFirstLogin =
 		'[data-testid="btn_schul-cloud_erkunden"]';
 
 	static #initialPasswordTextOnStudentRegistration =
-		'[data-testid="student-initial-pwd"]';
+		'[data-testid="student-initial-password"]';
+
+	static #tableExternalTool = "tbody tr.v-data-table-rows-no-data td";
 
 	clickOnNextOnSectionOneTeacherFirstLogin() {
 		cy.get(Management.#sectionOneButtonOnTeacherFirstLogin).should("be.visible");
-		cy.get(Management.#nextButtonOnTeacherFirstLoginSectionOne).click();
+		cy.get(Management.#nextButtonOnTeacherRegistration).click();
 	}
 
 	seeTeacherEmailOnFisrtLoginSectionTwoPage() {
@@ -177,12 +177,12 @@ class Management {
 
 	clickOnNextOnSectionTwoTeacherFirstLogin() {
 		cy.get(Management.#sectionTwoButtonOnTeacherFirstLogin).should("be.visible");
-		cy.get(Management.#nextButtonOnTeacherFirstLoginSectionTwo).click();
+		cy.get(Management.#nextButtonOnTeacherRegistration).click();
 	}
 
 	clickOnGetStartedOnSectionThreeTeacherFirstLogin() {
 		cy.get(Management.#sectionThreeButtonOnTeacherFirstLogin).should("be.visible");
-		cy.get(Management.#getStartedImmediateButtonTeacherFisrtLogin).click();
+		cy.get(Management.#getStartedImmediateButtonTeacherFirstLogin).click();
 	}
 
 	seeSummaryOnTeacherRegistration() {
@@ -196,8 +196,8 @@ class Management {
 		});
 	}
 
-	clickOnNextButtonOnTecherRegistration() {
-		cy.get(Management.#nextButtonTeacherRegistrationPage).click();
+	clickOnNextButtonOnTeacherRegistration() {
+		cy.get(Management.#nextButtonOnTeacherRegistration).click();
 	}
 
 	generateRegistrationLinkForTeacher() {
@@ -216,7 +216,7 @@ class Management {
 
 	seeUserSummaryOnRegistrationFinalPage() {
 		cy.get(Management.#userSummaryDiv).should("be.visible");
-		// Store the intial password as alias on the summary page for the first login in later step for the method enterInitialPasswordAsStudentAfterRegistration()
+		// Store the initial password as alias on the summary page for the first login in later step for the method enterInitialPasswordAsStudentAfterRegistration()
 		cy.get(Management.#initialPasswordTextOnStudentRegistration)
 			.should("exist")
 			.and("not.be.empty")
@@ -284,11 +284,11 @@ class Management {
 	}
 
 	clickOnNextOnRegistrationPage() {
-		cy.get(Management.#nextButtonOnRegitrationFurtherStep).click();
+		cy.get(Management.#nextButtonOnRegistrationFurtherStep).click();
 	}
 
-	clickOnNextToProcceedToPersonalRegistrationData() {
-		cy.get(Management.#nextButtonToPeronalRegistrationData).click();
+	clickOnNextToProceedToPersonalRegistrationData() {
+		cy.get(Management.#nextButtonToPersonalRegistrationData).click();
 	}
 
 	selectAgeOnRegistrationProcess() {
@@ -304,7 +304,7 @@ class Management {
 		cy.contains("li", "deutsch", { matchCase: false }).click(); // Select 'Deutsch' from the list
 	}
 
-	openAndVisitToStudentRegistrationPage() {
+	openAndVisitToRegistrationPage() {
 		cy.get(Management.#registrationLinkTextBox)
 			.should("be.visible")
 			.invoke("val")
@@ -319,14 +319,14 @@ class Management {
 		cy.get(Management.#generatePersonalLinkButton).click();
 	}
 
-	seeFirstNameOnREgistrationPage(firstName) {
+	seeFirstNameOnRegistrationPage(firstName) {
 		cy.get(Management.#firstNameTextBoxOnRegistrationPage).should(
 			"have.value",
 			firstName
 		);
 	}
 
-	seeLastNameOnREgistrationPage(lastName) {
+	seeLastNameOnRegistrationPage(lastName) {
 		cy.get(Management.#lastNameTextBoxOnRegistrationPage).should(
 			"have.value",
 			lastName
@@ -956,7 +956,7 @@ class Management {
 
 	seeEmptyExternalToolTable() {
 		cy.get(Management.#externalToolsTable).within(() => {
-			cy.get("tbody tr.v-data-table-rows-no-data td").should(
+			cy.get(Management.#tableExternalTool).should(
 				"have.text",
 				"Keine Daten vorhanden"
 			);

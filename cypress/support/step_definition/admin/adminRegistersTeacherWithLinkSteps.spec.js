@@ -26,12 +26,12 @@ Then("I see the summary page", () => {
 });
 
 Then("I click on the button Next to proceed to next step", () => {
-	management.clickOnNextButtonOnTecherRegistration();
+	management.clickOnNextButtonOnTeacherRegistration();
 });
 Then(
 	"I click again on the button Next to proceed to the personal data information page",
 	() => {
-		management.clickOnNextButtonOnTecherRegistration();
+		management.clickOnNextButtonOnTeacherRegistration();
 	}
 );
 Then("I set a new password on personal data page", () => {
