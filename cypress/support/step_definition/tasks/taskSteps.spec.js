@@ -118,8 +118,8 @@ When("I click on file-viewer for file {string}", (fileName) => {
 	tasks.clickOnFileViewer(fileName);
 });
 
-When("I click on rename file {string}", (fileName) => {
-	tasks.clickOnRenameFile(fileName);
+When("I click on rename file", () => {
+	tasks.clickOnRenameFile();
 });
 
 When("I enter filename {string} in modal dialog", (newFileName) => {
@@ -134,24 +134,24 @@ When("I click on save in confirmation window", () => {
 	tasks.submitRenameFileDialog();
 });
 
-When("I click on download file {string}", (fileName) => {
-	tasks.clickDownloadFile(fileName);
+When("I click on download file", () => {
+	tasks.clickDownloadFile();
 });
 
-When("I click on download file {string} in submission", (fileName) => {
-	tasks.clickDownloadFileInSubmission(fileName);
+When("I click on download file in submission", () => {
+	tasks.clickDownloadFileInSubmission();
 });
 
-When("I click on download file {string} in grading", (fileName) => {
-	tasks.clickDownloadFileInGrading(fileName);
+When("I click on download file in grading", () => {
+	tasks.clickDownloadFileInGrading();
 });
 
 Then("file {string} is saved in folder downloads", (fileName) => {
 	tasks.seeFileIsSavedInDownloads(fileName);
 });
 
-When("I click on delete file {string}", (fileName) => {
-	tasks.clickOnDeleteFile(fileName);
+When("I click on delete file", () => {
+	tasks.clickOnDeleteFile();
 });
 
 When("I click on cancel in delete file dialog", () => {
