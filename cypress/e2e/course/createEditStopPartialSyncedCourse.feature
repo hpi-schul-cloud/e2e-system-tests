@@ -1,5 +1,5 @@
 @unstable_test
-Feature: Teacher can create partial synchronized course
+Feature: Teacher can create partially synchronized course
 
     As a Teacher I want to create a partially synchronized course and partially synchronize an existing course with a group
 
@@ -24,7 +24,7 @@ Feature: Teacher can create partial synchronized course
         When I click on button To Course Overview on the finish page
 
     @unstable_test
-    Scenario: Create a partial synchronized course
+    Scenario: Create a partially synchronized course
         Given I am logged in as a 'teacher1_nbc' at 'nbc'
         When I go to courses overview
         When I click on FAB to add or import courses
