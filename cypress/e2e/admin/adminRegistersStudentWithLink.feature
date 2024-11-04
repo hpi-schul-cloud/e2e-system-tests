@@ -55,7 +55,6 @@ Feature: Admin - Student registration with registration link send by admin
         When I click on the button Next in section 3
         Then I click on the button Get started now in section 4
         Then I see the dashboard
-        Then I logout from the application
 
         # admin deletes the newly added student
         Given I am logged in as a '<admin>' at '<namespace>'

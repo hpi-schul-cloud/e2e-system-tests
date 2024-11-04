@@ -50,7 +50,6 @@ Feature: Admin - Teacher registration with registration link send by admin
         When I click on the button Next on the section 2
         When I click on the button Get started right away on the section 3
         Then I see the dashboard
-        Then I logout from the application
 
         # admin deletes the newly added teacher
         Given I am logged in as a '<admin>' at '<namespace>'
