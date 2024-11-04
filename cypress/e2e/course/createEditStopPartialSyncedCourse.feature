@@ -1,7 +1,7 @@
 @unstable_test
 Feature: Teacher can create partial synchronized course
 
-    As a Teacher I want to create a partial synchronized course and partial synchronize an existing course with a group
+    As a Teacher I want to create a partially synchronized course and partially synchronize an existing course with a group
 
     @unstable_test
     Scenario: Pre-Condition: activate student visibility
