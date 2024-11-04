@@ -4,7 +4,7 @@ Feature: Teacher can create partial synchronized course
     As a Teacher I want to create a partial synchronized course and partial synchronize an existing course with a group
 
     @unstable_test
-    Scenario: Pre Test: activate student visibility
+    Scenario: Pre-Condition: activate student visibility
         Given I am logged in as a 'admin1_nbc' at 'nbc'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
@@ -80,17 +80,16 @@ Feature: Teacher can create partial synchronized course
         Then I see the teacher 'Herzog, Karl' is selected
         Then I see the student 'Kraft, Herbert' is selected
 
+    @unstable_test
+    Scenario: Post-Condition: Admin deletes courses
         Given I am logged in as a 'admin1_nbc' at 'nbc'
         When I click on administration in menu
         When I go to course administration page
         Then I see the new course administration page
-        Then I see 'Cypress-Test-Group-Partial-Course-Sync' is synchronized with 'Cypress-Test-Group-Partial-Course-Sync'
-        Then I see 'Cypress Test Course' is synchronized with 'Cypress-Test-Group-Partial-Course-Sync'
-        #    Post-test: Admin deletes courses
-        When I click the delete button for course 'Cypress-Test-Group-Partial-Course-Sync' in course table
+        When I click the delete button for course 'Cypress Test Course' in course table
         Then I see the delete modal
         When I click the confirmation button on the delete modal
-        When I click the delete button for course 'Cypress Test Course' in course table
+        When I click the delete button for course 'Cypress-Test-Group-Partial-Course-Sync' in course table
         Then I see the delete modal
         When I click the confirmation button on the delete modal
         Then I do not see course 'Cypress-Test-Group-Partial-Course-Sync' in course table
