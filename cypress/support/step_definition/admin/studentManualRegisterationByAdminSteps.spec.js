@@ -1,4 +1,3 @@
-import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Management from "../../pages/admin/pageAdministration";
 
@@ -116,27 +115,4 @@ Then("I am on the students management page", () => {
 
 When("I navigate to the students management page", () => {
 	management.navigateToStudentManagementOverview();
-});
-
-defineStep("Student {string} with email {string} was created", (firstname, email) => {
-	cy.clearOutInput("input[data-testid='searchbar']");
-	cy.writeToInput("input[data-testid='searchbar']", firstname);
-	cy.contains("tr", email)
-		.find("[data-testid='edit_student_button']")
-		.should("be.visible");
-});
-
-defineStep("Changing parents and students consent", () => {
-	// Only on DBC can we modify the consent
-	if (Cypress.config().baseUrl.includes("dbc")) {
-		cy.clickOnElement("button[id='edit-consent']");
-
-		cy.get("input[name='parent_form']").first().clickOnElement();
-		cy.clickOnElement("input[name='parent_privacyConsent']");
-		cy.clickOnElement("input[name='parent_termsOfUseConsent']");
-
-		cy.get("input[name='student_form']").first().clickOnElement();
-		cy.clickOnElement("input[name='student_privacyConsent']");
-		cy.clickOnElement("input[name='student_termsOfUseConsent']");
-	}
 });
