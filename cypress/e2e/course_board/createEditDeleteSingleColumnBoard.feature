@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Course Board - To create, edit and delete a single course board
+Feature: Course Board - To create, edit and delete a single column course board
 
     As a teacher I want to create, edit and delete a single column course board so that I can use this option.
 
-    Scenario Outline: user creation, course creation, and creating, editing, deleting a single column board in the course
+    Scenario Outline: user creation, course creation, and creating single column board, adding a card with text and whiteboard, deleting the single column board in the course
 
         # pre-condition: teacher and admin log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -24,7 +24,7 @@ Feature: Course Board - To create, edit and delete a single course board
         # Note: this step is not applicable for the admin user
         #Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
 
-        # teacher adds a new Board
+        # teacher adds a new single column Board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -43,13 +43,13 @@ Feature: Course Board - To create, edit and delete a single course board
         # Then I see the course Board name '<board_title>'
         Then I see the chip Draft in the course board
 
-        # student does not see the board
+        # student does not see the single column board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
         Then I can not see content '<board_title>'
 
-        # teacher publishs the column board
+        # teacher publishes the column board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -58,7 +58,7 @@ Feature: Course Board - To create, edit and delete a single course board
         When I click on the option Publish in three dot menu in course board
         Then I do not see the chip Draft in the course board
 
-        # teacher adds a new column with whiteboard in the Board
+        # teacher adds a new column with text and whiteboard in the column board
         When I click on the button Add column in the course board
         When I enter the title name '<column_board_title>' in the column
         When I click on the page outside of the column
@@ -70,7 +70,14 @@ Feature: Course Board - To create, edit and delete a single course board
         Then I see a whiteboard on the board
         Then I see '<card_text_content>' in board card text element
 
-        # student sees the board
+        # teacher edits the column in the single column board
+        When I click on three dot menu in the column
+        When I select the option Edit in three dot menu in the column
+        Then I enter the title name '<edited_column_board_title>' in the column
+        When I click on the page outside of the column
+        Then I see my column named '<edited_column_board_title>'
+
+        # student sees the single column board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -79,7 +86,7 @@ Feature: Course Board - To create, edit and delete a single course board
         Then I see a whiteboard on the board
         Then I see '<card_text_content>' in board card text element
 
-        # # teacher deletes the column in the Board
+        # # teacher deletes the column in the single column board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -90,8 +97,7 @@ Feature: Course Board - To create, edit and delete a single course board
         When I click on the button Remove on the Modal
         Then I do not see the column
 
-
-        # Post-condition: Teacher deletes the course
+        # post-condition: Teacher deletes the course
         When I go to courses overview
         When I go to course '<course_name>'
         When I open page Edit course
@@ -108,5 +114,5 @@ Feature: Course Board - To create, edit and delete a single course board
 
         @staging_test
         Examples:
-            | teacher      | admin      | student      | namespace | fullname_teacher | fullname_student | course_name                           | board_title      | column_board_title     | edited_column_board_title |
-            | teacher1_brb | admin1_brb | student1_brb | brb       | Karl Herzog      | Herbert Kraft    | CypressAut Single Column Board Course | CypressAut Board | My Cypress Test Column | Edit Cypress Test Column  |
+            | teacher      | admin      | student      | namespace | fullname_teacher | fullname_student | course_name                           | board_title      | column_board_title     | edited_column_board_title | card_text_content |
+            | teacher1_brb | admin1_brb | student1_brb | brb       | Karl Herzog      | Herbert Kraft    | CypressAut Single Column Board Course | CypressAut Board | My Cypress Test Column | Edit Cypress Test Column  | Lorem ipsum ...   |
