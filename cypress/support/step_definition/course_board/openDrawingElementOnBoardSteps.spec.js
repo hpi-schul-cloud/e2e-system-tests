@@ -6,8 +6,3 @@ const board = new Board();
 When("I click on open Drawing Element", () => {
 	board.clickOnOpenTldrawDrawingElement();
 });
-
-Then("I select whiteboard from the menu", () => {
-	board.selectWhiteboardFromMenu();
-});
-
