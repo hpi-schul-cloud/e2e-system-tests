@@ -1,8 +1,53 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Management from "../../pages/admin/pageAdministration";
-import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
 
 const management = new Management();
+
+Then("I click on the button Next to proceed to the registration pin step", () => {
+	management.clickOnNextToProceedToRegistrationPinPage();
+});
+
+Then(
+	"I click on the button Send and Get Started to successfully complete the registration process",
+	() => {
+		management.clickOnSendAndGetStartedOnRegistration();
+	}
+);
+
+Then(
+	"I retrieve the registration pin to enter it into the form for {string}",
+	(environment) => {
+		management.retrieveAndEnterRegistrationPinViaApi(environment);
+	}
+);
+
+When("I request a new registration pin", () => {
+	management.requestRegistrationPin();
+});
+
+When("I accept the privacy and terms of use consents", () => {
+	management.acceptingConsentOnRegistrationProcess();
+});
+
+When("I click on the button Next to proceed to the next step", () => {
+	management.clickOnNextOnRegistrationPage();
+});
+
+When("I choose the language for the registration process", () => {
+	management.chooseLanguageOnRegistrationProcess();
+});
+
+Then("I visit to the generated registration link", () => {
+	management.openAndVisitToRegistrationPage();
+});
+
+Then("I see my first name {string}", (firstName) => {
+	management.seeFirstNameOnRegistrationPage(firstName);
+});
+
+Then("I see my last name {string}", (lastName) => {
+	management.seeLastNameOnRegistrationPage(lastName);
+});
 
 When("I click the toggle switch to enable student visibility for teachers", () => {
 	management.enableStudentVisibilityForTeacher();
@@ -63,32 +108,3 @@ When("I click on FAB", () => {
 When("I click on Add User in opened FAB for {string}", (role) => {
 	management.clickOnAddUserInFAB(role);
 });
-
-// Defining step this way would be updated in BC-8179.
-defineStep(
-	"Created teacher {string} {string} with email {string}",
-	(firstname, lastname, email) => {
-		cy.visit("/administration/teachers");
-		cy.writeToInput("input[data-testid='searchbar']", firstname);
-		cy.contains("tr", email).should("not.exist");
-		cy.visit("/administration/teachers/new");
-		cy.location("pathname").should("equal", "/administration/teachers/new");
-		cy.writeToInput("[data-testid='input_create-user_firstname']", firstname);
-		cy.writeToInput("[data-testid='input_create-user_lastname']", lastname);
-		cy.writeToInput("[data-testid='input_create-user_email']", email);
-		cy.clickOnElement("[data-testid='button_create-user_submit']");
-		cy.location("pathname").should("equal", "/administration/teachers");
-	}
-);
-
-// Defining step this way would be updated in BC-8179.
-defineStep(
-	"Going to teacher edit page for {string} with email {string}",
-	(firstname, email) => {
-		cy.clearOutInput("input[data-testid='searchbar']");
-		cy.writeToInput("input[data-testid='searchbar']", firstname);
-		cy.contains("tr", email)
-			.find("[data-testid='edit_teacher_button']")
-			.clickOnElement();
-	}
-);

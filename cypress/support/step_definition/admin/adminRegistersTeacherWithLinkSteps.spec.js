@@ -1,62 +1,43 @@
-import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
-import { getPageUrl } from "../../custom_commands/input.utils";
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Management from "../../pages/admin/pageAdministration";
 
-defineStep("Going to teacher registration page", () => {
-	cy.clickOnElement("button[class*='btn-invitation-link-with-hash teacher']");
-	cy.get("input[id='invitation-link']")
-		.should("be.visible")
-		.invoke("val")
-		.then((val) => {
-			cy.clearCookies();
-			cy.visit(val);
-		});
+const management = new Management();
+
+When("I click on the button Next on the section 1", () => {
+	management.clickOnNextOnSectionOneTeacherFirstLogin();
+});
+Then("I see my email", () => {
+	management.seeTeacherEmailOnFisrtLoginSectionTwoPage();
 });
 
-defineStep(
-	"I am registering as teacher with email {string} and password {string} on {string}",
-	(email, password, environment) => {
-		// Choosing language
-		cy.get("div[id='language_chosen']")
-			.clickOnElement()
-			.contains("li", "deutsch", { matchCase: false })
-			.clickOnElement();
-		cy.clickOnElement("button[id='nextSection']");
+When("I click on the button Next on the section 2", () => {
+	management.clickOnNextOnSectionTwoTeacherFirstLogin();
+});
+When("I click on the button Get started right away on the section 3", () => {
+	management.clickOnGetStartedOnSectionThreeTeacherFirstLogin();
+});
 
-		// Going to next section
-		cy.clickOnElement("button[id='nextSection']");
+When("I enter the set password", () => {
+	management.enterNewSetPasswordAsTeacher();
+});
 
-		// Entering new password
-		cy.writeToInput("input[id='password']", password);
-		cy.writeToInput("input[id='password-control']", password);
-		cy.clickOnElement("button[id='nextSection']");
+Then("I see the summary page", () => {
+	management.seeSummaryOnTeacherRegistration();
+});
 
-		// Accepting consents only for DBC environment
-		if (Cypress.config().baseUrl.includes("dbc")) {
-			cy.clickOnElement("input[name='privacyConsent']");
-			cy.clickOnElement("input[name='termsOfUseConsent']");
-			cy.clickOnElement("button[id='nextSection']");
-		}
-
-		// Entering registration pin
-		cy.clickOnElement("button[id='resend-pin']");
-		cy.get("div[class*='alert-success']").should("be.visible");
-		cy.request({
-			method: "GET",
-			headers: {
-				"X-API-KEY": Cypress.env(`apiKey-${environment}`),
-			},
-			url: getPageUrl(environment, `/admin/api/v1/registration-pin/${email}`),
-		}).then(({ body }) => {
-			const pin = body.pop().registrationPin.split("");
-
-			cy.get("div[id='pinverification'] input[class='digit']").each((el, index) => {
-				cy.wrap(el).type(pin[index]);
-			});
-		});
-		cy.clickOnElement("button[id='nextSection']");
+Then("I click on the button Next to proceed to next step", () => {
+	management.clickOnNextButtonOnTeacherRegistration();
+});
+Then(
+	"I click again on the button Next to proceed to the personal data information page",
+	() => {
+		management.clickOnNextButtonOnTeacherRegistration();
 	}
 );
+Then("I set a new password on personal data page", () => {
+	management.setNewPasswordAsTeacherOnRegistration();
+});
 
-defineStep("I am able to logout", () => {
-	cy.clickOnElement("a[href='/logout']");
+Then("I click on the button Generate Personal Registration Link for teacher", () => {
+	management.generateRegistrationLinkForTeacher();
 });
