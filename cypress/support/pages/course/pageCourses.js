@@ -452,7 +452,7 @@ class Courses {
 		cy.get(Courses.#newTaskFAB).click();
 	}
 
-	taskIsVisibleOnCoursePage(taskTitle) {
+	seeTaskOnCoursePage(taskTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
@@ -460,7 +460,7 @@ class Courses {
 			.should("be.visible");
 	}
 
-	boardIsVisibleOnCoursePage(boardTitle) {
+	seeBoardOnCoursePage(boardTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 		cy.get(Courses.#boardCardTitleInCoursePageWithIndex)
