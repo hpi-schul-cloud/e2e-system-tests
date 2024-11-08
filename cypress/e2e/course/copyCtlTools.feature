@@ -75,7 +75,7 @@ Feature: Course - Copy CTL tools
     Then I see in dialog box option for multi-column board
     Then I see in dialog box option for single column board
     When I choose multi-column board in the dialog box
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see the chip Draft in the course board
     When I click on the button Add column in the course board
     When I click on the page outside of the column
@@ -146,7 +146,7 @@ Feature: Course - Copy CTL tools
 
     When I go to the tab contents in course detail page
     When I click on card Course Board
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see the chip Draft in the course board
     When I click on three dot menu in the board header
     When I click on the option Publish in three dot menu in course board
@@ -185,7 +185,7 @@ Feature: Course - Copy CTL tools
 
     When I go to the tab contents in course detail page
     When I click on card Course Board
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see an external tool element with tool 'CY Test Tool Optional Protected Parameter'
     Then I see an external tool element with tool 'CY Test Tool Protected Parameter'
     Then I see an external tool element with tool 'CY Test Tool Context Scope'
@@ -220,7 +220,7 @@ Feature: Course - Copy CTL tools
     #     Teacher fixes the incomplete tools in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     When I click on three dot menu in the card
     When I select the option Edit in three dot menu on the card
     When I click on three dot menu of external tool element 'CY Test Tool Protected Parameter'

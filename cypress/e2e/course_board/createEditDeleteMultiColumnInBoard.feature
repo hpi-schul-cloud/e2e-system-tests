@@ -43,7 +43,7 @@ Feature: Course Board - To create, edit and delete column in the course board
         Then I see in dialog box option for multi-column board
         Then I see in dialog box option for single column board
         When I choose multi-column board in the dialog box
-        Then I see the page Course Board detail
+        Then I see the page Course Board details
         When I click on the button three dot menu in course board
         When I click on the option Edit in three dot menu in course board
         Then I enter the course board title '<board_title>'
@@ -68,7 +68,7 @@ Feature: Course Board - To create, edit and delete column in the course board
         # teacher deletes the column in the Board
         When I click on three dot menu in the column
         When I select the option Delete in three dot menu in the column
-        Then I see the confirmation Modal
+        Then I see the modal Confirmation
         When I click on the button Remove on the Modal
         Then I do not see the column
 

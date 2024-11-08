@@ -17,6 +17,7 @@ class Board {
 	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
+	static #textElement = '[data-testid="ckeditor"]';
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
@@ -49,6 +50,10 @@ class Board {
 
 	selectWhiteboardFromMenu() {
 		cy.get(Board.#selectWhiteboardFromMenu).click();
+	}
+
+	seeWhiteboardOnPage() {
+		cy.get(Board.#drawingElement).should('exist');
 	}
 
 	selectExternalToolsFromMenu() {
@@ -199,7 +204,7 @@ class Board {
 	}
 
 	clickOutsideTheColumnToSaveTheColumn() {
-		cy.get(Board.#mainPageArea).click("center");
+		cy.get(Board.#mainPageArea).click("bottom");
 	}
 
 	seeNewlyCreatedColumn(newColumnName) {
@@ -228,6 +233,10 @@ class Board {
 
 	clickOnMultiColumnBoardOptionInDialogBox() {
 		cy.get(Board.#multiColumnBoardOptionInDialogBox).click();
+	}
+
+	clickOnSingleColumnBoardOptionInDialogBox() {
+		cy.get(Board.#singleColumnBoardOptionInDialogBox).click();
 	}
 
 	seePreferredExternalToolInMenu(toolName) {
@@ -343,6 +352,23 @@ class Board {
 		});
 
 		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
+	}
+
+	enterTextToTextFieldInCard(textContent){
+		cy.get('[data-testid="ckeditor"]').then((el) => {
+			const editor = el[0].ckeditorInstance;
+			editor.setData(textContent);
+			});
+			cy.get('[data-testid="ckeditor"]').then((el) => {
+			const editor = el[0].ckeditorInstance;
+			const editorContent = editor.getData();
+			const plainText = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
+			expect(plainText).to.equal(textContent);
+			});
+	}
+
+	seeTextInTextFieldInCard(textContent){
+		cy.contains(textContent);
 	}
 }
 export default Board;
