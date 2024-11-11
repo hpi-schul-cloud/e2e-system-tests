@@ -1,23 +1,26 @@
-@pr
+@regression_test
 @stable_test
 Feature: Cloud Login - Login of users managed by SVS
 
     As a user, I want to login with username and password into SVS
 
     Scenario Outline: User makes a direct login with username and password
-        Given I am on the login page on '<env>'
-        When I am logging in as '<user>'
-        Then I will be redirected to the dashboard
-        And I will be able to logout
 
-    Examples:
-        | env | user         |
-        | brb | admin1_brb   |
-        | brb | teacher1_brb |
-        | brb | student1_brb |
-        | dbc | admin1_dbc   |
-        | dbc | teacher1_dbc |
-        | dbc | student1_dbc |
-        | nbc | admin1_nbc   |
-        | nbc | teacher1_nbc |
-        | nbc | student1_nbc |
+        Given I am logged in as a '<student>' at '<namespace>'
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
+
+        @staging_test
+        Examples:
+            | namespace | teacher      | admin      | student      |
+            | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |
+            | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
+            | brb       | teacher1_brb | admin1_brb | student1_brb |
+
+        #@school_api_test
+        # Currently, there is an issue (BC-7880), that consecutive logins one after another for different users/instances, shows internal server error after clicking on the button Login.
+        Examples:
+            | namespace | teacher      | admin      | student      |
+            | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |
+            | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
+            | brb       | teacher1_brb | admin1_brb | student1_brb |
