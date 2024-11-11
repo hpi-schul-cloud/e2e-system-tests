@@ -7,7 +7,7 @@ When("I click on the button FAB New Column Board", () => {
 	board.clickOnFABToCreateNewColumnBoard();
 });
 
-Then("I see the page Course Board detail", () => {
+Then("I see the page Course Board details", () => {
 	board.seeNewCourseBoardCreatePage();
 });
 
@@ -76,7 +76,7 @@ When("I select the option Delete in three dot menu in the column", () => {
 	board.selectDeleteInThreeDotMenu();
 });
 
-Then("I see the confirmation Modal", () => {
+Then("I see the modal Confirmation", () => {
 	board.seeDeleteConfirmationModal();
 });
 
@@ -98,4 +98,8 @@ Then("I see in dialog box option for single column board", () => {
 
 When("I choose multi-column board in the dialog box", () => {
 	board.clickOnMultiColumnBoardOptionInDialogBox();
+});
+
+When("I choose single-column board in the dialog box", () => {
+	board.clickOnSingleColumnBoardOptionInDialogBox();
 });

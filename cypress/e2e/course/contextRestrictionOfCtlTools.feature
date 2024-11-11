@@ -104,7 +104,7 @@ Feature: Course - Restrict CTL tools to context course, board-element, media-boa
     Then I see in dialog box option for multi-column board
     Then I see in dialog box option for single column board
     When I choose multi-column board in the dialog box
-    Then I see the page Course Board detail
+    Then I see the page Course Board details
     Then I see the chip Draft in the course board
     When I click on the button Add column in the course board
     When I click on the page outside of the column

@@ -40,7 +40,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        Then I can see content 'CypressAut Task Creating and Deleting Test' on course page
+        Then I can see task 'CypressAut Task Creating and Deleting Test' on course page
 
         # student does not see task because it is a draft
         Given I am logged in as a '<student>' at '<namespace>'
@@ -69,7 +69,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Then I see detail page for task 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on button To Course
         Then I see course page '<course_name>'
-        Then I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
+        Then I can see task 'CypressAut Task Creating, Editing, Deleting Test' on course page
         Then I see task card info submitted contains '0/1' for task 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on task 'CypressAut Task Creating, Editing, Deleting Test'
         Then I see description is 'Dies ist Deine Aufgabe. Viel Erfolg!'
@@ -92,24 +92,24 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I upload file 'test_pdf.pdf'
         When I see file 'example_jpg.jpg' is visible in section files
         When I see file 'test_pdf.pdf' is visible in section files
-        When I click on rename file 'test_pdf.pdf'
+        When I click on rename file
         When I enter filename 'test_pdf_renamed.pdf' in modal dialog
         When I click on cancel in dialog window
         Then I see file 'test_pdf.pdf' is visible in section files
-        When I click on rename file 'test_pdf.pdf'
+        When I click on rename file
         When I enter filename 'test_pdf_renamed.pdf' in modal dialog
         When I click on save in confirmation window
         Then I see file 'test_pdf_renamed.pdf' is visible in section files
-        When I click on download file 'test_pdf_renamed.pdf'
+        When I click on download file
         Then file 'test_pdf_renamed.pdf' is saved in folder downloads
         When I go to courses overview
         When I go to course '<course_name>'
         When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on Edit in dot menu
-        When I click on delete file 'test_pdf_renamed.pdf'
+        When I click on delete file
         When I click on cancel in delete file dialog
         Then I see file 'test_pdf_renamed.pdf' is visible in section files
-        When I click on delete file 'test_pdf_renamed.pdf'
+        When I click on delete file
         When I click on submit in delete file dialog
         Then I see file 'test_pdf_renamed.pdf' is not visible in section files
         Then I see file 'test_pdf.pdf' is not visible in section files
@@ -133,7 +133,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'
-        Then I can see content 'CypressAut Task Creating, Editing, Deleting Test' on course page
+        Then I can see task 'CypressAut Task Creating, Editing, Deleting Test' on course page
         When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on Delete in dot menu
         When I click on Delete in confirmation window
@@ -145,9 +145,6 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Then I can not see content 'CypressAut Task Creating, Editing, Deleting Test'
 
         # Post-condition: Teacher deletes the course
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to courses overview
-        When I go to course '<course_name>'
         When I open page Edit course
         When I click on the button delete course
         Then I see the modal to confirm the deletion

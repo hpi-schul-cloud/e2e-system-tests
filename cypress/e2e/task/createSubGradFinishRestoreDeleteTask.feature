@@ -40,7 +40,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        Then I can see content '<task_name>' on course page
+        Then I can see task '<task_name>' on course page
 
         # student submits task
         Given I am logged in as a '<student>' at '<namespace>'
@@ -71,7 +71,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         Then there is a tick in column delivered for '<student_last_name>'
         When I click on submission of '<student_last_name>'
         Then I see submission text '<submission_text>'
-        When I click on download file 'testboard_jpg' in submission
+        When I click on download file in submission
         Then file 'testboard_jpg' is saved in folder downloads
         When I click on grading tab
         When I upload file 'gradingfile-pdf.pdf'
@@ -95,7 +95,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I click on feedback tab
         Then I see feedback text 'Gut gemacht!'
         Then I see grade is '83'
-        When I click on download file 'gradingfile-pdf.pdf' in grading
+        When I click on download file in grading
         Then file 'gradingfile-pdf.pdf' is saved in folder downloads
 
         # teacher finishes task from course
@@ -137,9 +137,6 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         Then I can not see content '<task_name>'
 
         # Post-condition: Teacher deletes the course
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to courses overview
-        When I go to course '<course_name>'
         When I open page Edit course
         When I click on the button delete course
         Then I see the modal to confirm the deletion
