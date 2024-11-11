@@ -11,7 +11,7 @@ Feature: Teacher can create partially synchronized course
         When I click on general settings panel
         When I click the toggle switch to enable student visibility for teachers
         When I click on button Save admin settings
-        #    Pre-Test: Admin creates a course
+        #    Pre-Condition: Admin creates a course
         When I go to courses overview
         When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
