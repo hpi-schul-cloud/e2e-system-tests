@@ -4,7 +4,7 @@ Feature: Course - Copy CTL tools
   As a Teacher I want to be able to copy ctl tools, when i copy a course
 
   @unstable_test
-  Scenario: Pre-test: Admin adds external tools to school
+  Scenario: Pre-Condition: Admin adds external tools to school
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I navigate to new school admin page via sub menu
@@ -177,6 +177,9 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
     Then I see the tool 'CY Test Tool Protected Parameter' is marked as incomplete
+    #    Teacher launches incomplete operational tool
+    When I lauch tool 'CY Test Tool Optional Protected Parameter' with given url 'https://google.com/'
+    Then I see tool 'CY Test Tool Optional Protected Parameter' was launched
     #    Student tries to launch incomplete tool
     When I click on the tool 'CY Test Tool Protected Parameter'
     Then I see an error dialog
@@ -190,8 +193,11 @@ Feature: Course - Copy CTL tools
     Then I see an external tool element with tool 'CY Test Tool Protected Parameter'
     Then I see an external tool element with tool 'CY Test Tool Context Scope'
     Then I see external tool element with tool 'CY Test Tool Context Scope' is not marked as incomplete
-    Then I see external tool element with tool 'CY Test Tool Protected Parameter' is not marked as incomplete operational
+    Then I see external tool element with tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
     Then I see external tool element with tool 'CY Test Tool Protected Parameter' is marked as incomplete
+    #    Teacher launches incomplete operational tool
+    When I launch tool 'CY Test Tool Optional Protected Parameter' on external tool element with given url 'https://google.com/'
+    Then I see tool 'CY Test Tool Optional Protected Parameter' on external tool element was launched
     #    Student tries to launch incomplete tool
     When I click on external tool element with tool 'CY Test Tool Protected Parameter'
     # Then nothing should happen
@@ -238,7 +244,7 @@ Feature: Course - Copy CTL tools
     Then I see external tool element with tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
 
   @unstable_test
-  Scenario: Post-test: Admin deletes courses and external tools
+  Scenario: Post-Condition: Admin deletes courses and external tools
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu
     When I go to course administration page
