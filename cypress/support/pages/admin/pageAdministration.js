@@ -148,16 +148,39 @@ class Management {
 	static #sectionOneButtonOnTeacherFirstLogin = '[data-testid="section-button-1"]';
 	static #sectionTwoButtonOnTeacherFirstLogin = '[data-testid="section-button-2"]';
 	static #sectionThreeButtonOnTeacherFirstLogin = '[data-testid="section-button-3"]';
-
 	static #emailOnSectionTwoFirstLoginTeacher = '[id="email"]';
-
 	static #getStartedImmediateButtonTeacherFirstLogin =
 		'[data-testid="btn_schul-cloud_erkunden"]';
-
 	static #initialPasswordTextOnStudentRegistration =
 		'[data-testid="student-initial-password"]';
-
 	static #tableExternalTool = "tbody tr.v-data-table-rows-no-data td";
+	static #buttonChangePasswordUserSetting = '[data-testid="button-change-password"]';
+	static #modalPasswordChangeUserSetting = '[data-testid="modal_content"]';
+	static #inputBoxChangePasswordUserSetting = '[id="change_password"]';
+	static #buttonSaveChangePasswordModalUserSetting =
+		'[data-testid="submit-btn-change-password-modal"]';
+	static #successNotificationChangePassword = '[data-testid="notification"]';
+
+	seeSuccessMessageAfterChangingPasswordByPassword() {
+		cy.get(Management.#successNotificationChangePassword).should("be.visible");
+	}
+
+	clickOnSaveAfterChangingPasswordByAdmin() {
+		cy.get(Management.#buttonSaveChangePasswordModalUserSetting).click();
+	}
+
+	enterNewPasswordForUserByAdmin() {
+		const userPassword = Cypress.env("INITIAL_PWD_BY_ADMIN");
+		cy.get(Management.#inputBoxChangePasswordUserSetting).type(userPassword);
+	}
+
+	seeChangePasswordDialogForAdmin() {
+		cy.get(Management.#modalPasswordChangeUserSetting).should("be.visible");
+	}
+
+	clickOnChanagePasswordByAdmin() {
+		cy.get(Management.#buttonChangePasswordUserSetting).click();
+	}
 
 	clickOnNextOnSectionOneTeacherFirstLogin() {
 		cy.get(Management.#sectionOneButtonOnTeacherFirstLogin).should("be.visible");
@@ -465,8 +488,13 @@ class Management {
 	}
 
 	enableStudentVisibilityForTeacher() {
-		cy.get(Management.#studentVisiblityToggle).find("input").check({ force: true }).wait(500);
-		cy.get(Management.#studentVisiblityToggle).find("input").should("have.prop", "checked");
+		cy.get(Management.#studentVisiblityToggle)
+			.find("input")
+			.check({ force: true })
+			.wait(500);
+		cy.get(Management.#studentVisiblityToggle)
+			.find("input")
+			.should("have.prop", "checked");
 	}
 
 	clickOnAdminSettingsSave() {
