@@ -164,7 +164,7 @@ Feature: Course - Copy CTL tools
     When I click on external tool element with tool 'CY Test Tool Protected Parameter'
     # Then nothing should happen
 
-    #  Student sees copied ctl tools and incomplete tool cannot be launched
+    #    Student sees copied ctl tools and incomplete tool cannot be launched
     Given I am logged in as a 'student2_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course Copy (1)'
@@ -177,7 +177,7 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
     Then I see the tool 'CY Test Tool Protected Parameter' is marked as incomplete
-    #    Teacher launches incomplete operational tool
+    #    Student launches incomplete operational tool
     When I lauch tool 'CY Test Tool Optional Protected Parameter' with given url 'https://google.com/'
     Then I see tool 'CY Test Tool Optional Protected Parameter' was launched
     #    Student tries to launch incomplete tool
@@ -195,14 +195,14 @@ Feature: Course - Copy CTL tools
     Then I see external tool element with tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see external tool element with tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
     Then I see external tool element with tool 'CY Test Tool Protected Parameter' is marked as incomplete
-    #    Teacher launches incomplete operational tool
+    #    Student launches incomplete operational tool
     When I launch tool 'CY Test Tool Optional Protected Parameter' on external tool element with given url 'https://google.com/'
     Then I see tool 'CY Test Tool Optional Protected Parameter' on external tool element was launched
     #    Student tries to launch incomplete tool
     When I click on external tool element with tool 'CY Test Tool Protected Parameter'
     # Then nothing should happen
 
-    #     Teacher fixes the incomplete tools in course
+    #    Teacher fixes the incomplete tools in course
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to courses overview
     When I go to course 'Cypress Test Course Copy (1)'
@@ -222,7 +222,7 @@ Feature: Course - Copy CTL tools
     Then I see the tool 'CY Test Tool Context Scope' is not marked as incomplete
     Then I see the tool 'CY Test Tool Optional Protected Parameter' is not marked as incomplete operational
 
-    #     Teacher fixes the incomplete tools in board
+    #    Teacher fixes the incomplete tools in board
     When I go to the tab contents in course detail page
     When I click on card Course Board
     Then I see the page Course Board details
