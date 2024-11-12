@@ -190,10 +190,9 @@ Feature: Course - Copy CTL tools
     Then I see an external tool element with tool 'CY Test Tool Protected Parameter'
     Then I see an external tool element with tool 'CY Test Tool Context Scope'
     Then I see external tool element with tool 'CY Test Tool Context Scope' is not marked as incomplete
-#    Note: This step is commented out due to a bug
-#    Then I see external tool element with tool 'CY Test Tool Protected Parameter' is not marked as incomplete operational
+    Then I see external tool element with tool 'CY Test Tool Protected Parameter' is not marked as incomplete operational
     Then I see external tool element with tool 'CY Test Tool Protected Parameter' is marked as incomplete
-     #    Student tries to launch incomplete tool
+    #    Student tries to launch incomplete tool
     When I click on external tool element with tool 'CY Test Tool Protected Parameter'
     # Then nothing should happen
 
