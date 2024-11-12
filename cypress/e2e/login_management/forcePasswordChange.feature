@@ -34,7 +34,7 @@ Feature: Force Password Change - user must set a new password during login
         When I enter the password
         When I click on the button Login
         Then I see the first login page section 1
-        #Then I see my assigned Email
+        Then I see my assigned Email
         When I click on the button Next in section 1
         Then I see the section 2
         When I click on the button Next in section 2

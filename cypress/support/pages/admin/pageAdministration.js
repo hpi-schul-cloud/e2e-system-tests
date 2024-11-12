@@ -148,7 +148,7 @@ class Management {
 	static #sectionOneButtonOnTeacherFirstLogin = '[data-testid="section-button-1"]';
 	static #sectionTwoButtonOnTeacherFirstLogin = '[data-testid="section-button-2"]';
 	static #sectionThreeButtonOnTeacherFirstLogin = '[data-testid="section-button-3"]';
-	static #emailOnSectionTwoFirstLoginTeacher = '[id="email"]';
+	static #emailOnSectionTwoFirstLogin = '[id="email"]';
 	static #getStartedImmediateButtonTeacherFirstLogin =
 		'[data-testid="btn_schul-cloud_erkunden"]';
 	static #initialPasswordTextOnStudentRegistration =
@@ -187,9 +187,9 @@ class Management {
 		cy.get(Management.#nextButtonOnTeacherRegistration).click();
 	}
 
-	seeTeacherEmailOnFisrtLoginSectionTwoPage() {
+	seeEmailOnFisrtLoginSectionTwoPage() {
 		cy.get("@uniqueEmail").then((uniqueEmail) => {
-			cy.get(Management.#emailOnSectionTwoFirstLoginTeacher)
+			cy.get(Management.#emailOnSectionTwoFirstLogin)
 				.should("be.visible")
 				.invoke("val")
 				.then((inputValue) => {

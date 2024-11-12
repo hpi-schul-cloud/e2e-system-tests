@@ -7,7 +7,7 @@ When("I click on the button Next on the section 1", () => {
 	management.clickOnNextOnSectionOneTeacherFirstLogin();
 });
 Then("I see my email", () => {
-	management.seeTeacherEmailOnFisrtLoginSectionTwoPage();
+	management.seeEmailOnFisrtLoginSectionTwoPage();
 });
 
 When("I click on the button Next on the section 2", () => {
