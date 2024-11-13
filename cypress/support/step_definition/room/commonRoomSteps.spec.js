@@ -19,7 +19,7 @@ Then("I see room creation page", () => {
 	rooms.showRoomCreationPage();
 });
 
-Then("I see edit page of room {sring}", (roomName) => {
+Then("I see edit page of room {string}", (roomName) => {
 	rooms.showRoomEditPage(roomName);
 });
 
@@ -87,12 +87,9 @@ When("I enter {string} in name dropdown", (participantName) => {
 	rooms.fillParticipantFormName(participantName);
 });
 
-When(
-	"I select the name {string} from the dropdown",
-	(participantName) => {
-		rooms.selectParticipantName(participantName);
-	}
-);
+When("I select the name {string} from the dropdown", (participantName) => {
+	rooms.selectParticipantName(participantName);
+});
 
 When("I click on the button to add the participant", () => {
 	rooms.addParticipant();

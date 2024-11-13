@@ -119,3 +119,4 @@ class Rooms {
 		cy.get(Rooms.#participantTable).contains(participantName);
 	}
 }
+export default Rooms;
