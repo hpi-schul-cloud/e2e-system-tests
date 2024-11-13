@@ -171,7 +171,13 @@ class Management {
 
 	enterNewPasswordForUserByAdmin() {
 		const userPassword = Cypress.env("INITIAL_PWD_BY_ADMIN");
-		cy.get(Management.#inputBoxChangePasswordUserSetting).type(userPassword);
+		cy.get(Management.#inputBoxChangePasswordUserSetting)
+			.should("exist")
+			.and("be.visible")
+			.and("not.be.disabled")
+			.clear()
+			.type(userPassword, { log: false, force: true })
+			.should("have.value", userPassword);
 	}
 
 	seeChangePasswordDialogForAdmin() {
