@@ -50,7 +50,7 @@ Then("I re enter the new password", () => {
 	management.reEnterPasswordOnManualRegistration();
 });
 
-When("I click on the button Next in section 3", () => {
+When("I click on the button Next to proceed", () => {
 	management.clickOnNextButtonOnFirstLoginSectionThree();
 });
 

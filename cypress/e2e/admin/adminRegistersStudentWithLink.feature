@@ -52,7 +52,7 @@ Feature: Admin - Student registration with registration link send by admin
         Then I see the section 3
         Then I set a new password
         Then I re enter the new password
-        When I click on the button Next in section 3
+        When I click on the button Next to proceed
         Then I click on the button Get started now in section 4
         Then I see the dashboard
 

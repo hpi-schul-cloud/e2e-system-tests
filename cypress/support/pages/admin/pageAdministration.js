@@ -154,7 +154,7 @@ class Management {
 	static #initialPasswordTextOnStudentRegistration =
 		'[data-testid="student-initial-password"]';
 	static #tableExternalTool = "tbody tr.v-data-table-rows-no-data td";
-	static #buttonChangePasswordUserSetting = '[data-testid="button-change-password"]';
+	static #buttonChangePasswordUserSetting = '[data-testid="button_change_password"]';
 	static #modalPasswordChangeUserSetting = '[data-testid="modal_content"]';
 	static #inputBoxChangePasswordUserSetting = '[id="change_password"]';
 	static #buttonSaveChangePasswordModalUserSetting =

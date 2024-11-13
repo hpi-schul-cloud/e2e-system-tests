@@ -1,5 +1,5 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import Management from "../../pages/login_management/pageLoginManagement";
+import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
