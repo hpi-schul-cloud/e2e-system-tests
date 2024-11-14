@@ -1,11 +1,12 @@
-@unstable_test
+@regression_test
+@stable_test
 Feature: Room - To create, edit and delete room
 
   As a teacher I want to create, edit and delete rooms.
-
-  @unstable_test
-  Scenario: Teacher creates room
+  Scenario Outline: Teacher creates room, edits room and deletes room
     Given I am logged in as a '<teacher>' at '<namespace>'
+
+    # pre-condition: creating new room
     When I go to room overview
     When I click on FAB to create new room
     Then I see room creation page
@@ -13,12 +14,7 @@ Feature: Room - To create, edit and delete room
     When I click on the button to save the room
     Then I see the detail page of room '<room_name>'
 
-    Examples:
-        | teacher      | namespace         | room_name           |
-        | teacher1_brb | brb               | Cypress Room Name   |
-
-@unstable_test
-  Scenario: Teacher edits room
+    # teacher is able to edit the room
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to room overview
     When I go to room '<room_name>'
@@ -30,12 +26,7 @@ Feature: Room - To create, edit and delete room
     When I click on the button to save the room
     Then I see the detail page of room '<room_name_new>'
 
-    Examples:
-        | teacher      | namespace         | room_name           | room_name_new         |
-        | teacher1_brb | brb               | Cypress Room Name   | Cypress Room Name New |
-
-@unstable_test
-  Scenario: Teacher edits room
+    # teacher is able to delete the room
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to room overview
     When I go to room '<room_name_new>'
@@ -46,6 +37,12 @@ Feature: Room - To create, edit and delete room
     When I click on delete button in confirmation modal
     Then I do not see '<room_name_new>' on room overview page
 
+    @school_api_test
     Examples:
-        | teacher      | namespace         | room_name_new         |
-        | teacher1_brb | brb               | Cypress Room Name New |
+        | teacher      | namespace         | room_name           | room_name_new         |
+        | teacher1_brb | brb               | Cypress Room Name   | Cypress Room Name New |
+
+    @staging_test
+    Examples:
+        | teacher      | namespace         | room_name           | room_name_new         |
+        | teacher1_brb | brb               | Cypress Room Name   | Cypress Room Name New |

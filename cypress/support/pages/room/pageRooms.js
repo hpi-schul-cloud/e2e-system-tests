@@ -1,7 +1,7 @@
 "use strict";
 
 class Rooms {
-	static #pageTitle = '[id="page-title"]';
+	static #pageTitle = '[data-testid="page-title"]';
 	static #roomTitle = '[data-testid="room-title"]';
 	static #roomNameInput = '[data-testid="room-name-input"]';
 	// static #goToRoomOverviewButton = '[data-testid="Rooms"]';
@@ -18,9 +18,9 @@ class Rooms {
 	static #btnSubmit = '[data-testid="room-form-save-btn"]';
 	static #btnAddParticipant = '[data-testid="add-participant-save-btn"]';
 	static #createRoom = '[data-testid="fab-add-room"]';
-	static #addParticipants = '[data-testid="fab-add-participant"]';
+	static #addParticipants = '[data-testid="fab-add-members"]';
 	static #participantTable = '[data-testid="participants-table"]';
-	static #roomOverviewNavigationButton = '[data-testid="Räume"]';
+	static #roomOverviewNavigationButton = '[data-testid="Rooms"]';
 
 	navigateToRoomsOverview() {
 		cy.get(Rooms.#roomOverviewNavigationButton).click();

@@ -1,10 +1,12 @@
-@unstable_test
+@regression_test
+@stable_test
 Feature: Room - Add and delete participants
 
   As a teacher I want to add and delete participants in the room.
+  Scenario Outline: Teacher adds participants and deletes participants
+    Given I am logged in as a '<teacher>' at '<namespace>'
 
-  @unstable_test
-  Scenario: Teacher creates room
+    # pre-condition: creating new room
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to room overview
     When I click on FAB to create new room
@@ -13,12 +15,7 @@ Feature: Room - Add and delete participants
     When I click on the button to save the room
     Then I see the detail page of room '<room_name>'
 
-    Examples:
-        | teacher      | namespace         | room_name           |
-        | teacher1_brb | brb               | Cypress Room Name   |
-
-@unstable_test
-  Scenario: Teacher adds participants
+    # teacher is able to add participants
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to room overview
     When I go to room '<room_name>'
@@ -35,12 +32,7 @@ Feature: Room - Add and delete participants
     When I click on the button to add the participant
     Then I see '<participant_name>' in the room participants list
 
-    Examples:
-        | teacher      | namespace         | room_name           |  school_name             |   role_name              |    participant_name       |
-        | teacher1_brb | brb               | Cypress Room Name   |  Paul-Gerhardt-Gymnasium |   Teacher                |    Vera                   |
-
-@unstable_test
-  Scenario: Teacher deletes participants
+    # teacher is able to delete participants
     Given I am logged in as a '<teacher>' at '<namespace>'
     When I go to room overview
     When I go to room '<room_name>'
@@ -52,6 +44,12 @@ Feature: Room - Add and delete participants
     When I click on delete button in the participant '<participant_name>'
     Then I see the participant '<participant_name>' is deleted from the room participants list
 
+    @school_api_test
     Examples:
-        | teacher      | namespace         | room_name           |  participant_name       |
-        | teacher1_brb | brb               | Cypress Room Name   |  Vera                   |
+        | teacher      | namespace         | room_name           |  school_name             |   role_name              |    participant_name       |
+        | teacher1_brb | brb               | Cypress Room Name   |  Felix Mendelssohn-Gymnasium |   Lehrkraft                |    Lara                   |
+
+    @staging_test
+    Examples:
+        | teacher      | namespace         | room_name           |  school_name             |   role_name              |    participant_name       |
+        | teacher1_brb | brb               | Cypress Room Name   |  Felix Mendelssohn-Gymnasium |   Lehrkraft                |    Lara                   |

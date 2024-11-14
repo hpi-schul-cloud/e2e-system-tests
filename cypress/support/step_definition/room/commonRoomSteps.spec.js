@@ -35,8 +35,8 @@ Then("I see the detail page of room {string}", (newRoomName) => {
 	rooms.seeRoomDetailPage(newRoomName);
 });
 
-Then("I see the edit participants page of room {string}", (newRoomName) => {
-	rooms.seeRoomDetailPage(newRoomName);
+Then("I see the edit participants page of room {string}", () => {
+	rooms.seeRoomEditParticipantsPage();
 });
 
 When("I go to room {string}", (roomName) => {
