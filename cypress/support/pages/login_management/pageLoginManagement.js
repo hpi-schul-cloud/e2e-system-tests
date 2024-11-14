@@ -7,13 +7,13 @@ class Login_Management {
 	static #infoMessage = '[data-testid="info-message"]';
 	static #submitButton = '[data-testid="submit-btn-password-recovery-modal"]';
 	static #cancelButton = '[data-testid="btn-cancel"]';
-	static #brokerButton = '[data-testid="submit-oauth-login-oidcmock"]';
 	static #emailInputBox = '[data-testid="username-email"]';
 	static #passwordField = '[data-testid = "password-email"]';
 	static #notificationBannerField = '[data-testid="notification"]';
 	static #loginFormSelector = '[data-testid = "login-loginform-standard"]';
 	static #inputFieldInvalidPseudoSelector = "input:invalid";
-	static #userSettingsCurrentPasswordField = '[data-testid="settings_password_current"]';
+	static #userSettingsCurrentPasswordField =
+		'[data-testid="settings_password_current"]';
 	static #userSettingsNewPasswordField = '[data-testid="settings_password_new"]';
 	static #userSettingsNewPasswordRepeatField =
 		'[data-testid="settings_password_control"]';
@@ -42,7 +42,10 @@ class Login_Management {
 				.then((el) => {
 					expect(el[0].checkValidity()).to.be.false;
 				});
-			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should("have.length", 2);
+			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
+				"have.length",
+				2
+			);
 		});
 	}
 
@@ -70,7 +73,10 @@ class Login_Management {
 	}
 
 	clickOnSubmitButton() {
-		cy.get(Login_Management.#loginFormSelector).should("be.visible").submit().wait(8000);
+		cy.get(Login_Management.#loginFormSelector)
+			.should("be.visible")
+			.submit()
+			.wait(8000);
 	}
 
 	assertErrorMessageDisplay() {
@@ -88,7 +94,10 @@ class Login_Management {
 				.then((el) => {
 					expect(el[0].checkValidity()).to.be.false;
 				});
-			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should("have.length", 1);
+			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
+				"have.length",
+				1
+			);
 		});
 	}
 
@@ -97,7 +106,10 @@ class Login_Management {
 			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).then((el) => {
 				expect(el[0].checkValidity()).to.be.false;
 			});
-			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should("have.length", 2);
+			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
+				"have.length",
+				2
+			);
 		});
 	}
 
@@ -108,10 +120,6 @@ class Login_Management {
 
 	clickOnForgotPassword() {
 		cy.get(Login_Management.#passwordRecoveryButton).click();
-	}
-
-	brokerButtonIsVisible() {
-		cy.get(Login_Management.#brokerButton).should("exist");
 	}
 
 	showUpElementsOnDialog() {
@@ -132,7 +140,9 @@ class Login_Management {
 	}
 
 	typeEmailIntoField(sel, email) {
-		cy.get(sel).type(email, { log: false, timeout: 120000 }).should("have.value", email);
+		cy.get(sel)
+			.type(email, { log: false, timeout: 120000 })
+			.should("have.value", email);
 	}
 
 	typePasswordIntoField(sel, password) {
@@ -157,12 +167,16 @@ class Login_Management {
 	}
 
 	assertCurrentPwdFieldVisibleAndEmpty() {
-		this.assertEmptyAndVisibleField(Login_Management.#userSettingsCurrentPasswordField);
+		this.assertEmptyAndVisibleField(
+			Login_Management.#userSettingsCurrentPasswordField
+		);
 	}
 
 	assertNewAndRepeatPasswordFieldVisibleAndEmpty() {
 		this.assertEmptyAndVisibleField(Login_Management.#userSettingsNewPasswordField);
-		this.assertEmptyAndVisibleField(Login_Management.#userSettingsNewPasswordRepeatField);
+		this.assertEmptyAndVisibleField(
+			Login_Management.#userSettingsNewPasswordRepeatField
+		);
 	}
 
 	enterCurrentPassword() {
@@ -175,7 +189,10 @@ class Login_Management {
 
 	enterNewPasswordInAllFields() {
 		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD");
-		this.typePasswordIntoField(Login_Management.#userSettingsNewPasswordField, userPwd);
+		this.typePasswordIntoField(
+			Login_Management.#userSettingsNewPasswordField,
+			userPwd
+		);
 		this.typePasswordIntoField(
 			Login_Management.#userSettingsNewPasswordRepeatField,
 			userPwd
@@ -223,7 +240,10 @@ class Login_Management {
 
 	enterOldPasswordInUserSettings() {
 		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD");
-		this.typePasswordIntoField(Login_Management.#userSettingsNewPasswordField, userPwd);
+		this.typePasswordIntoField(
+			Login_Management.#userSettingsNewPasswordField,
+			userPwd
+		);
 		this.typePasswordIntoField(
 			Login_Management.#userSettingsNewPasswordRepeatField,
 			userPwd

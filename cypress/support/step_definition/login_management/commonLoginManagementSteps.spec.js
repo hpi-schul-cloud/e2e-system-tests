@@ -9,7 +9,3 @@ Given("I am on the {string} login page", (namespace) => {
 When("I click on Forgot Password", () => {
 	loginManagement.clickOnForgotPassword();
 });
-
-Then("I see Login via Keycloak button", () => {
-	loginManagement.brokerButtonIsVisible();
-});
