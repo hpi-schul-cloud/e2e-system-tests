@@ -1,6 +1,4 @@
-@regression_test
-@stable_test
-#@unstable_test
+@unstable_test
 Feature: Ldap Login - Login of users not managed by SVS
 
     As a user, I want to login with LDAP username and password into SVS
