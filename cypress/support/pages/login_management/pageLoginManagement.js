@@ -1,4 +1,5 @@
-"use strict";
+import { getUserCredentials } from "../../custom_commands/login.helper";
+("use strict");
 
 class Login_Management {
 	static #passwordRecoveryButton = '[data-testid="forgot-password"]';
@@ -34,6 +35,29 @@ class Login_Management {
 
 	// info about checkValidity: https://www.w3schools.com/js/js_validation_api.asp
 	// info about inputFieldInvalidPseudoSelector: https://glebbahmutov.com/blog/form-validation-in-cypress/
+
+	performLdapLogin(user, instance) {
+		const env = Cypress.env();
+		const [username, password] = getUserCredentials(user);
+
+		cy.get('[data-testid="submit-ldap-site"]').click;
+		cy.get("button[class*='btn-toggle-providers']").click();
+		cy.get("div[id='school_chosen']")
+			.click()
+			.contains("li", "School One 0", { matchCase: false })
+			.click();
+
+		if (instance === "nbc") {
+			cy.get('[data-testid="username-ldap"]').type(env[username]);
+			cy.get('[data-testid="password-ldap"]').type(env[password]);
+			cy.get('[data-testid="submit-login-ldap"').click();
+		} else {
+			cy.get('[data-testid="username-email"]').type(env[username]);
+			cy.get('[data-testid="password-email"]').type(env[password]);
+			cy.get('[data-testid="submit-login-email"').click();
+		}
+	}
+
 	assertEmailFieldIsVisibleAndEmpty() {
 		cy.get(Login_Management.#loginFormSelector).within(() => {
 			cy.get(Login_Management.#emailInputBox)
