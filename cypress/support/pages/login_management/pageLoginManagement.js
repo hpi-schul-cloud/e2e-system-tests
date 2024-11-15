@@ -23,7 +23,6 @@ class Login_Management {
 	static #userSettingsNameInitials = '[data-testid="initials"]';
 	static #logoutBtn = '[data-testid="logout"]';
 	static #loginSubmitBtn = '[data-testid="submit-login-email"]';
-
 	static #testData = {
 		usernameText:
 			"Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.",
@@ -32,30 +31,71 @@ class Login_Management {
 			"sc9lwOX#Z!ImcKVp66SP9ag$RvEX00nhR&Vn@dIW@hhREU||Zhbhbhu&&&$)Uhbwhbdbb|||",
 		errorMessageText: "Login fehlgeschlagen.",
 	};
+	static #buttonLoginViaLdapOption = '[data-testid="submit-ldap-site"]';
+	static #toggleLdapProvider = "button[class*='btn-toggle-providers']";
+	static #dropDownLdapSchoolList = "div[id='school_chosen']";
+	static #userNameForLdapSchool = '[data-testid="username-ldap"]';
+	static #passwordForLdapSchool = '[data-testid="password-ldap"]';
+	static #loginButtonForLdapSchool = '[data-testid="submit-login-ldap"';
 
 	// info about checkValidity: https://www.w3schools.com/js/js_validation_api.asp
 	// info about inputFieldInvalidPseudoSelector: https://glebbahmutov.com/blog/form-validation-in-cypress/
 
-	performLdapLogin(user, instance) {
-		const env = Cypress.env();
-		const [username, password] = getUserCredentials(user);
+	clickOnLdapLoginOption() {
+		cy.get("body").then((body) => {
+			if (body.find(Login_Management.#buttonLoginViaLdapOption).length) {
+				//On NBC
+				cy.get(Login_Management.#buttonLoginViaLdapOption).click();
+			} else {
+				//On BRB/dBC
+				cy.get(Login_Management.#toggleLdapProvider).click();
+			}
+		});
+	}
 
-		cy.get('[data-testid="submit-ldap-site"]').click;
-		cy.get("button[class*='btn-toggle-providers']").click();
-		cy.get("div[id='school_chosen']")
+	selectLdapSchoolOnLoginPage(ldapSchoolName) {
+		cy.get(Login_Management.#dropDownLdapSchoolList)
 			.click()
-			.contains("li", "School One 0", { matchCase: false })
+			.contains("li", ldapSchoolName, { matchCase: false })
 			.click();
+	}
 
-		if (instance === "nbc") {
-			cy.get('[data-testid="username-ldap"]').type(env[username]);
-			cy.get('[data-testid="password-ldap"]').type(env[password]);
-			cy.get('[data-testid="submit-login-ldap"').click();
+	enterLdapUserName(user, namespace) {
+		const env = Cypress.env();
+		const [username] = getUserCredentials(user);
+		if (namespace === "nbc") {
+			cy.get(Login_Management.#userNameForLdapSchool).type(env[username], {
+				log: false,
+			});
 		} else {
-			cy.get('[data-testid="username-email"]').type(env[username]);
-			cy.get('[data-testid="password-email"]').type(env[password]);
-			cy.get('[data-testid="submit-login-email"').click();
+			cy.get(Login_Management.#emailInputBox).type(env[username], {
+				log: false,
+			});
 		}
+	}
+
+	enterLdapUserPassword(user, namespace) {
+		const env = Cypress.env();
+		const [, password] = getUserCredentials(user); // it fetches/stores only password from the helper function as a second element in the array.
+		if (namespace === "nbc") {
+			cy.get(Login_Management.#passwordForLdapSchool).type(env[password], {
+				log: false,
+			});
+		} else {
+			cy.get(Login_Management.#passwordField).type(env[password], {
+				log: false,
+			});
+		}
+	}
+
+	clickOnLdapLoginButton(namespace) {
+		cy.get("body").then((body) => {
+			if (namespace === "nbc") {
+				cy.get(Login_Management.#loginButtonForLdapSchool).click();
+			} else {
+				cy.get(Login_Management.#loginSubmitBtn).click();
+			}
+		});
 	}
 
 	assertEmailFieldIsVisibleAndEmpty() {
