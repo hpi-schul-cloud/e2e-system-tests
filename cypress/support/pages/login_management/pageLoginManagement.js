@@ -32,7 +32,7 @@ class Login_Management {
 		errorMessageText: "Login fehlgeschlagen.",
 	};
 	static #buttonLoginViaLdapOption = '[data-testid="submit-ldap-site"]';
-	static #toggleLdapProvider = '[data-testid="login-more-options"]'; //old selector : "button[class*='btn-toggle-providers']"
+	static #toggleLdapProvider = '[data-testid="login-more-options"]'; //old selector can be used to run until new selector deployed on the staging : "button[class*='btn-toggle-providers']"
 	static #dropDownLdapSchoolList = "div[id='school_chosen']";
 	static #userNameForLdapSchool = '[data-testid="username-ldap"]';
 	static #passwordForLdapSchool = '[data-testid="password-ldap"]';
