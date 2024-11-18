@@ -22,7 +22,39 @@ class Rooms {
 	static #addParticipants = '[data-testid="fab-add-members"]';
 	static #participantTable = '[data-testid="participants-table"]';
 	static #roomOverviewNavigationButton = '[data-testid="Rooms"]';
+	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
+	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
+	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
 
+	selectEndDateForRoom() {
+		const currentDate = new Date();
+		//set the date which is two days later than the current day
+		const nextLaterDate = new Date(currentDate);
+		nextLaterDate.setDate(currentDate.getDate() + 2);
+
+		//Get the day, month, and year of the later date
+		const day = nextLaterDate.getDate();
+		const month = nextLaterDate.getMonth() + 1;
+		const year = nextLaterDate.getFullYear();
+
+		//Format the date as DD.MM.YYYY
+		const formattedDate = `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
+		cy.get(Rooms.#inputEndtdateForRoom).clear().type(formattedDate);
+	}
+
+	selectTodayStartDateForRoom() {
+		//Get today's date with the format as DD.MM.YYYY
+		const today = new Date();
+		const day = String(today.getDate()).padStart(2, "0");
+		const month = String(today.getMonth() + 1).padStart(2, "0");
+		const year = today.getFullYear();
+		const formattedDate = `${day}.${month}.${year}`;
+		cy.get(Rooms.#inputSatrtdateForRoom).clear().type(formattedDate);
+	}
+
+	selectRoomColour() {
+		cy.get(Rooms.#colourPickerForRoom).click();
+	}
 	navigateToRoomsOverview() {
 		cy.get(Rooms.#roomOverviewNavigationButton).click();
 	}

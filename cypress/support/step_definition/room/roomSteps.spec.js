@@ -3,6 +3,17 @@ import Rooms from "../../pages/room/pageRooms";
 
 const rooms = new Rooms();
 
+When("I select the colour for the room", () => {
+	rooms.selectRoomColour();
+});
+When("I select the start date for the room", () => {
+	rooms.selectTodayStartDateForRoom();
+});
+
+When("I select the end date for the room", () => {
+	rooms.selectEndDateForRoom();
+});
+
 When("I go to room overview", () => {
 	rooms.navigateToRoomsOverview();
 });
