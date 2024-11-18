@@ -71,8 +71,12 @@ When("I click on delete button in confirmation modal", () => {
 	rooms.clickDeleteInConfirmationModal();
 });
 
+Then("I see {string} on room overview page", (roomName) => {
+	rooms.roomIsVisibleOnOverviewPage(roomName);
+});
+
 Then("I do not see {string} on room overview page", (roomName) => {
-	rooms.roomIsNotVisiblOnOverviewPage(roomName);
+	rooms.roomIsNotVisibleOnOverviewPage(roomName);
 });
 
 Then("I see school {string} in school dropdown", (participantSchool) => {
@@ -87,8 +91,8 @@ When("I enter {string} in name dropdown", (participantName) => {
 	rooms.fillParticipantFormName(participantName);
 });
 
-When("I select the name {string} from the dropdown", (participantName) => {
-	rooms.selectParticipantName(participantName);
+When("I select the first name from the dropdown", () => {
+	rooms.selectParticipantName();
 });
 
 When("I click on the button to add the participant", () => {
@@ -98,3 +102,17 @@ When("I click on the button to add the participant", () => {
 Then("I see {string} in the room participants list", (participantName) => {
 	rooms.seeParticipantInList(participantName);
 });
+
+When(
+	"I click on delete button in the participant list for participant {string}",
+	(participantName) => {
+		rooms.removeParticipant(participantName);
+	}
+);
+
+Then(
+	"I see the participant {string} is removed from the room participants list",
+	(participantName) => {
+		rooms.notSeeParticipantInList(participantName);
+	}
+);

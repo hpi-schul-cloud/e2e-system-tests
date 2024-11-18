@@ -93,7 +93,11 @@ class Rooms {
 		cy.get(Rooms.#confirmDeletionModalDelete).click();
 	}
 
-	roomIsNotVisiblOnOverviewPage(roomName) {
+	roomIsVisibleOnOverviewPage(roomName) {
+		cy.contains(roomName).should("exist");
+	}
+
+	roomIsNotVisibleOnOverviewPage(roomName) {
 		cy.contains(roomName).should("not.exist");
 	}
 
@@ -109,16 +113,28 @@ class Rooms {
 		cy.get(Rooms.#addParticipantName).type(participantName);
 	}
 
-	selectParticipantName(participantName) {
-		cy.get(Rooms.#addParticipantName).should("be.visible").select(participantName);
+	selectParticipantName() {
+		cy.get(Rooms.#addParticipantName).should("be.visible").type("{downArrow}{enter}");
 	}
 
 	addParticipant() {
 		cy.get(Rooms.#btnAddParticipant).click();
 	}
 
+	removeParticipant(participantName) {
+		cy.get(Rooms.#participantTable)
+			.contains(participantName)
+			.parent("tr")
+			.then((removeUser) => cy.wrap(removeUser).find("td").eq(4))
+			.click();
+	}
+
 	seeParticipantInList(participantName) {
 		cy.get(Rooms.#participantTable).contains(participantName);
+	}
+
+	notSeeParticipantInList(participantName) {
+		cy.get(Rooms.#participantTable).should("not.contain", participantName);
 	}
 }
 export default Rooms;
