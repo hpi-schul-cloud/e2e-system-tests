@@ -4,6 +4,7 @@ class Rooms {
 	static #pageTitle = '[data-testid="page-title"]';
 	static #roomTitle = '[data-testid="room-title"]';
 	static #roomNameInput = '[data-testid="room-name-input"]';
+	// for getting to the room overview from new client:
 	// static #goToRoomOverviewButton = '[data-testid="Rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
@@ -40,10 +41,11 @@ class Rooms {
 
 	showRoomEditPage(roomName) {
 		cy.get(Rooms.#pageTitle).should("exist").and("contain.text", "Raum bearbeiten");
-		cy.get(Rooms.#roomNameInput).should("contain.text", roomName);
+		cy.get(Rooms.#roomNameInput + ` input`).should("have.value", roomName);
 	}
 
 	fillRoomFormName(newRoomName) {
+		cy.get(Rooms.#roomNameInput).type("{selectall}{backspace}{selectall}{backspace}");
 		cy.get(Rooms.#roomNameInput).type(newRoomName);
 	}
 
