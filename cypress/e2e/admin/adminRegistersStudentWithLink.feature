@@ -19,7 +19,7 @@ Feature: Admin - Student registration with registration link send by admin
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
-        # admin generates the registeration link to proceed with student registration
+        # admin generates the registration link to proceed with student registration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
         Then I click on the button Generate Personal Registration Link for student
