@@ -63,7 +63,7 @@ Feature: Admin - Teacher registration with registration link send by admin
         Then I can not see user '<user_email>' in the table
 
         # @staging_test
-        # This feature is not executable on staging as we do not access the API calls on staging.
+        # this feature is not executable on staging as we do not access the API calls on staging.
 
         @school_api_test
         Examples:

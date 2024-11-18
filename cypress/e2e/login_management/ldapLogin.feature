@@ -1,5 +1,5 @@
 @unstable_test
-Feature: Ldap Login - Login of users not managed by SVS
+Feature: Login Management - Login of users not managed by SVS
 
     As a user, I want to login with LDAP username and password into SVS
 
@@ -14,10 +14,10 @@ Feature: Ldap Login - Login of users not managed by SVS
         Then I logout from the application
 
         #@school_api_test
-        #This feature can not be executed using the school api, as we do not create LDAP external user using this api.
+        # this feature can not be executed using the school api, as we do not create LDAP external user using this api.
 
         @staging_test
-        #Login credentials need to be clarified in order to execute this test. LDAP school is also not available on staging dropdown.
+        # login credentials need to be clarified in order to execute this test. LDAP school is also not available on staging dropdown.
         Examples:
             | namespace | user             | ldap_school_name |
             | brb       | student_ldap_brb | School One 0     |

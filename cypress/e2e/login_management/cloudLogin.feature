@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Cloud Login - Login of users managed by SVS
+Feature: Login Management - Login of users managed by SVS
 
     As a user, I want to login with username and password into SVS
 
@@ -17,8 +17,8 @@ Feature: Cloud Login - Login of users managed by SVS
             | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
             | brb       | teacher1_brb | admin1_brb | student1_brb |
 
-        #@school_api_test
-        # Currently, there is an issue (BC-7880), that consecutive logins one after another for different users/instances, shows internal server error after clicking on the button Login.
+        @school_api_test
+        # currently, there is an issue (BC-7880), that consecutive logins one after another for different users/instances, shows internal server error after clicking on the button Login.
         Examples:
             | namespace | teacher      | admin      | student      |
             | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |

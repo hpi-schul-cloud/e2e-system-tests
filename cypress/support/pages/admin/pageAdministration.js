@@ -161,7 +161,7 @@ class Management {
 		'[data-testid="submit-btn-change-password-modal"]';
 	static #successNotificationChangePassword = '[data-testid="notification"]';
 
-	seeSuccessMessageAfterChangingPasswordByPassword() {
+	seeSuccessMessageAfterChangingPasswordByAdmin() {
 		cy.get(Management.#successNotificationChangePassword).should("be.visible");
 	}
 
@@ -193,7 +193,7 @@ class Management {
 		cy.get(Management.#nextButtonOnTeacherRegistration).click();
 	}
 
-	seeEmailOnFisrtLoginSectionTwoPage() {
+	seeEmailOnFirstLoginSectionTwoPage() {
 		cy.get("@uniqueEmail").then((uniqueEmail) => {
 			cy.get(Management.#emailOnSectionTwoFirstLogin)
 				.should("be.visible")

@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Force Password Change - user must set a new password during login
+Feature: Admin - user must set a new password during login
 
     As a user, I have to set a new password during login
 
@@ -19,7 +19,7 @@ Feature: Force Password Change - user must set a new password during login
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
-        # admin generates the registeration link to proceed with teacher  registration
+        # admin generates the registration link to proceed with teacher  registration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
         Then I click on the button Generate Personal Registration Link for teacher
@@ -64,7 +64,7 @@ Feature: Force Password Change - user must set a new password during login
         Then I see the success message
         Then I logout from the application
 
-        # Teacher do the login and set a new password
+        # teacher do the login and set a new password
         When I visit the url for first login
         When I enter the email assigned during user creation
         When I enter the password
@@ -74,7 +74,7 @@ Feature: Force Password Change - user must set a new password during login
         When I click on the button Next to proceed
         Then I see the dashboard
 
-        # Admin deletes a teacher
+        # admin deletes a teacher
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
@@ -86,7 +86,7 @@ Feature: Force Password Change - user must set a new password during login
         Then I can not see user '<user_email>' in the table
 
         #@staging_test
-        #This feature is not executable on staging as we do not access the API calls on staging.
+        # this feature is not executable on staging as we do not access the API calls on staging.
 
         @school_api_test
         Examples:

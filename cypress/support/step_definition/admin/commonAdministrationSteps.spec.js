@@ -90,7 +90,7 @@ When("I click on the button Next on the section 1", () => {
 	management.clickOnNextOnSectionOneTeacherFirstLogin();
 });
 Then("I see my email", () => {
-	management.seeEmailOnFisrtLoginSectionTwoPage();
+	management.seeEmailOnFirstLoginSectionTwoPage();
 });
 
 When("I click on the button Next on the section 2", () => {
@@ -126,7 +126,7 @@ Then("I click on the button Generate Personal Registration Link for teacher", ()
 });
 
 Then("I see my assigned Email", () => {
-	management.seeEmailOnFisrtLoginSectionTwoPage();
+	management.seeEmailOnFirstLoginSectionTwoPage();
 });
 
 When("I click on the button Change password", () => {
@@ -142,7 +142,7 @@ Then("I click on the button Save", () => {
 	management.clickOnSaveAfterChangingPasswordByAdmin();
 });
 Then("I see the success message", () => {
-	management.seeSuccessMessageAfterChangingPasswordByPassword();
+	management.seeSuccessMessageAfterChangingPasswordByAdmin();
 });
 
 Then("I click on the button Next to proceed to the registration pin step", () => {
