@@ -1,3 +1,4 @@
+@regression_test
 @stable_test
 Feature: Course - To add, edit and delete a ctl tool in a course
 
@@ -183,3 +184,6 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Examples:
             | admin      | teacher      | student      | namespace | fullname_teacher | fullname_student |
             | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    |
+
+        # @school_api_test
+        # This feature is not executable with the school_api
