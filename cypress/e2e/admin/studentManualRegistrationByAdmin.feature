@@ -34,7 +34,6 @@ Feature: Admin - Admin creates, manually register and deletes students
         Then I click on the button Abbrechen
         Then I click on the button Trotzdem abbrechen on the confirmation modal
         Then I navigate to the students management page
-        Then I logout from the application
 
         # newly manual registered student does the first login
         When I visit the url for first login
@@ -51,7 +50,6 @@ Feature: Admin - Admin creates, manually register and deletes students
         When I click on the button Next to proceed
         Then I click on the button Get started now in section 4
         Then I see the dashboard
-        Then I logout from the application
 
         # admin deletes a student
         Given I am logged in as a '<admin>' at '<namespace>'
