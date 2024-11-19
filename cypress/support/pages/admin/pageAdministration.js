@@ -370,8 +370,8 @@ class Management {
 	}
 
 	visitUrlForFirstLogin() {
-		const urlEndPoint = "login";
-		cy.visit(urlEndPoint);
+		cy.clearCookies();
+		cy.visit("login");
 	}
 
 	enterPasswordOnFirstLogin() {

@@ -62,7 +62,6 @@ Feature: Admin - user must set a new password during login
         Then I enter a new password in the pop-up window
         Then I click on the button Save
         Then I see the success message
-        Then I logout from the application
 
         # teacher do the login and set a new password
         When I visit the url for first login
