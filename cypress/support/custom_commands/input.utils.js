@@ -33,10 +33,3 @@ Cypress.Commands.add("clearOutInput", (selector, wait = 0) => {
 Cypress.Commands.add("writeToInput", (selector, input, wait = 0) => {
 	cy.get(selector).should("be.visible").type(input).wait(wait);
 });
-
-Cypress.Commands.add("visitPage", (environment, page) => {
-	const url = getPageUrl(environment, page);
-
-	cy.visit(url);
-	cy.url().should("equal", url);
-});
