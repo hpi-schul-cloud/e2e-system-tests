@@ -1,5 +1,4 @@
 "use strict";
-import { getPageUrl } from "../../custom_commands/input.utils";
 
 class Management {
 	static #fabButton = "#fab";
@@ -468,13 +467,13 @@ class Management {
 	}
 
 	clickOnCancelButton() {
-		cy.contains("button", "abbrechen", { matchCase: false }).clickOnElement();
+		cy.contains("button", "abbrechen", { matchCase: false }).click();
 	}
 
 	clickOnCancelRegardlessOnModalButton() {
 		cy.contains("button", "trotzdem abbrechen", {
 			matchCase: false,
-		}).clickOnElement();
+		}).click();
 	}
 
 	beingOnStudentManagementOverview() {
@@ -488,8 +487,8 @@ class Management {
 	}
 
 	selectStudentOnStudentOverview(firstname, userEmail) {
-		cy.clearOutInput(Management.#searchBarUserOverview);
-		cy.writeToInput(Management.#searchBarUserOverview, firstname);
+		cy.get(Management.#searchBarUserOverview).clear();
+		cy.get(Management.#searchBarUserOverview).type(firstname);
 		cy.contains("tr", userEmail).find("svg").first().should("be.visible").click();
 	}
 
@@ -682,8 +681,7 @@ class Management {
 				// For Student
 				const birthDate = new Date();
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
-				cy.writeToInput(
-					Management.#birthDateFieldCreateStudent,
+				cy.get(Management.#birthDateFieldCreateStudent).type(
 					birthDate.toISOString().split("T")[0],
 					100
 				);
