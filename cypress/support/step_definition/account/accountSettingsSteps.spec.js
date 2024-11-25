@@ -4,7 +4,7 @@ import Account from "../../pages/account/pageAccount";
 const account = new Account();
 
 When("I enter my current password", () => {
-	account.enterCurrentPasswordOnUserSettingPage();
+	account.enterCurrentPasswordOnUserSettingsPage();
 });
 
 When("I change my email to a new email", () => {
@@ -12,9 +12,9 @@ When("I change my email to a new email", () => {
 });
 
 When("I click on the button Save Account Settings", () => {
-	account.clickOnSaveAccountSettingButton();
+	account.clickOnSaveAccountSettingsButton();
 });
 
 Then("I see the message successful", () => {
-	account.seeSuccessMessageOnAccountSettingPage();
+	account.seeSuccessMessageOnAccountSettingsPage();
 });

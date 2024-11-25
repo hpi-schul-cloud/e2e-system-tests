@@ -12,7 +12,6 @@ Feature: Login Management - Verify login functionality via password change
         When I enter password
         When I click button Submit
         When I go to my account settings
-
         Then I see current password field is visible and empty
         Then I see new and repeat password field is visible and empty
         When I enter current password

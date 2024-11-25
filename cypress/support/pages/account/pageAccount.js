@@ -11,7 +11,7 @@ class Account {
 	static #submitButtonOnAccountSettings = '[data-testid="submit_new_password_btn"]';
 	static #successMessageOnAccountSettings = '[data-testid="notification"]';
 
-	enterCurrentPasswordOnUserSettingPage() {
+	enterCurrentPasswordOnUserSettingsPage() {
 		const currentPassword = Cypress.env("password");
 		cy.get(Account.#inputBoxCurrentPasswordOnUserSettings).type(currentPassword);
 	}
@@ -21,10 +21,10 @@ class Account {
 		cy.get(Account.#inputBoxEmailOnUserSettings).clear();
 		cy.get(Account.#inputBoxEmailOnUserSettings).type(newEmail);
 	}
-	clickOnSaveAccountSettingButton() {
+	clickOnSaveAccountSettingsButton() {
 		cy.get(Account.#submitButtonOnAccountSettings).click();
 	}
-	seeSuccessMessageOnAccountSettingPage() {
+	seeSuccessMessageOnAccountSettingsPage() {
 		cy.get(Account.#successMessageOnAccountSettings).should("be.visible");
 	}
 
