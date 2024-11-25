@@ -2,6 +2,7 @@ import Management from "../../pages/admin/pageAdministration";
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 
 const management = new Management();
+
 When("I click on authentication panel", () => {
 	management.clickOnAuthenticationPanel();
 });
