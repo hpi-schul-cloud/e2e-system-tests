@@ -1,4 +1,5 @@
 "use strict";
+import { getPageUrl } from "../../custom_commands/input.utils";
 
 class Management {
 	static #fabButton = "#fab";
