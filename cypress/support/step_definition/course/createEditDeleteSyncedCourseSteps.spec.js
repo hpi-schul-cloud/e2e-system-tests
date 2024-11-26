@@ -55,8 +55,8 @@ Then("I see the teacher {string} is selected", (teacherName) => {
 	courses.seeSelectedTeacher(teacherName);
 });
 
-Then("I see the substitute teacher {string} is selected", (teacherName) => {
-	courses.seeSelectedSubstituteTeacher(teacherName);
+Then("I see the substitute teacher {string} is selected", (substituteTeacher) => {
+	courses.seeSelectedSubstituteTeacher(substituteTeacher);
 });
 
 
