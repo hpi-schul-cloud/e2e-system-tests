@@ -159,7 +159,7 @@ const generateStrongPassword = (length) => {
 	return shuffleString(password);
 };
 
-export const studentFirstLogin = (environment) => {
+const studentFirstLogin = (environment) => {
 	const newPassword = generateStrongPassword(12);
 	Cypress.env("password", newPassword);
 	cy.get(studentAgeSelectRadioBtn).check();
@@ -179,7 +179,7 @@ export const studentFirstLogin = (environment) => {
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
 
-export const nonStudentUsersFirstLogin = (environment) => {
+const nonStudentUsersFirstLogin = (environment) => {
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(nextButtonOnFirstLoginPages).click();
 	if (environment === "dbc") {
