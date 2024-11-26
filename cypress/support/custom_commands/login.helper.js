@@ -141,22 +141,37 @@ const shuffleString = (str) => {
 
 	return characters.join("");
 };
+
 const generateStrongPassword = (length) => {
-	const lowercase = "abcdefghijklmnopqrstuvwxyz";
-	const uppercase = lowercase.toUpperCase();
-	const numbers = "0123456789";
-	const symbols = "!@#$%^&*";
-
-	const allChars = lowercase + uppercase + numbers + symbols;
-
-	let password = "";
-	for (let i = 0; i < length; i++) {
-		const charSet = allChars[Math.floor(Math.random() * allChars.length)];
-		const randomIndex = Math.floor(Math.random() * charSet.length);
-		password += charSet[randomIndex];
+	if (length < 8) {
+		throw new Error("Password length must be at least 8 characters.");
 	}
 
-	return shuffleString(password);
+	const charPools = {
+		lowercase: "abcdefghijklmnopqrstuvwxyz",
+		uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+		numbers: "0123456789",
+		symbols: "!@#$%^&*-_<>§$%&/()=?\\;:,.#+*~'",
+	};
+
+	// to conform password pattern mentioned in server repo
+	// https://github.com/hpi-schul-cloud/schulcloud-server/blob/990ad4e71d51c3dfb4b5e274dd5e8281a298e9dc/apps/server/src/modules/account/api/dto/password-pattern.ts
+	// we need to at least contain one letter from each categories.
+	// this thing we are doing in the below code
+	const requiredChars = [
+		charPools.lowercase[Math.floor(Math.random() * charPools.lowercase.length)],
+		charPools.uppercase[Math.floor(Math.random() * charPools.uppercase.length)],
+		charPools.numbers[Math.floor(Math.random() * charPools.numbers.length)],
+		charPools.symbols[Math.floor(Math.random() * charPools.symbols.length)],
+	];
+
+	// fill up rest of the length with some random characters mentioned in charPools object
+	const allChars = Object.values(charPools).join("");
+	while (requiredChars.length < length) {
+		requiredChars.push(allChars[Math.floor(Math.random() * allChars.length)]);
+	}
+
+	return shuffleString(requiredChars.join(""));
 };
 
 const studentFirstLogin = (environment) => {
