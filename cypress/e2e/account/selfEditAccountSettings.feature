@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Account - Edit e-mail in the account setting page on dBC
+Feature: Account - Edit e-mail in the account setting page
 
     As a user I want to navigation to my account's settings page so that I can see and edit my account details (e. g. email).
 
@@ -15,7 +15,14 @@ Feature: Account - Edit e-mail in the account setting page on dBC
         When I click on the button Save Account Settings
         Then I see the message successful
 
-        @staging_test
+        # user can login with the changed E-mail
+        When I visit the login page
+        When I enter my updated email
+        When I enter my current password on the login page
+        When I click on the button Login
+        Then I see the dashboard
+
+        # @staging_test
         # Please do not execute this feature against STAGING environment, because after changing the e-mail user can not revert the old e-mail again.
         # The system does not allow reverting to an old or existing e-mail.
 
@@ -26,9 +33,9 @@ Feature: Account - Edit e-mail in the account setting page on dBC
             | teacher1_dbc | dbc       |
             | admin1_dbc   | dbc       |
 
-    @unstable_test
-    Scenario: I see my e-mail is not editable as an external student user
-        Given I am logged in as a 'student_extern_dbc' at 'dbc'
-        When I go to my account settings
-        Then I see my email is not editable
+# E-mail is not editable by an external student user
+# Note: this scenario is currently unstable
+#Given I am logged in as a 'student_extern_dbc' at 'dbc'
+#When I go to my account settings
+#Then I see my email is not editable
 

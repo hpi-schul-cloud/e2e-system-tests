@@ -36,7 +36,7 @@ Feature: Admin - Admin creates, manually register and deletes students
         Then I navigate to the students management page
 
         # newly manual registered student does the first login
-        When I visit the url for first login
+        When I visit the login page
         When I enter the email assigned during user creation
         When I enter the password
         When I click on the button Login

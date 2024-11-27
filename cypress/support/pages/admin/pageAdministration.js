@@ -19,7 +19,6 @@ class Management {
 	static #deleteUserButtonConfirmationOnModal =
 		'[data-testid="submit-btn-delete-user-modal"]';
 	static #newSchoolAdminPageButton = '[data-testid="button_new_admin_page"]';
-	static #chatToggleSwitch = ".rocketchat-switch";
 	static #videoconferenceToggleSwitch = ".videoconference-switch";
 	static #saveGeneralSettingsButton = ".my-5";
 	static #tableContents = '[data-testid="table-data-body"]';
@@ -101,7 +100,7 @@ class Management {
 	static #birthDateFieldCreateStudent =
 		'[data-testid="input_create-student_birthdate"]';
 	static #manualRegistrationSummaryPage = '[data-testid="consent_table_3"]';
-	static #userEmailLoginPage = '[data-testid="password-email"]';
+	static #userPasswordLoginPage = '[data-testid="password-email"]';
 	static #submitButtonOnLoginPage = '[data-testid="submit-login-email"]';
 	static #sectionOneOnFirstLogin = '[data-panel="section-1"]';
 	static #nextButtonFirstLogin = '[id="nextSection"]';
@@ -220,7 +219,7 @@ class Management {
 
 	enterNewSetPasswordAsTeacher() {
 		const manualPassword = Cypress.env("SET_NEW_PWD_BY_TEACHER");
-		cy.get(Management.#userEmailLoginPage).type(manualPassword, {
+		cy.get(Management.#userPasswordLoginPage).type(manualPassword, {
 			log: false,
 		});
 	}
@@ -259,7 +258,7 @@ class Management {
 	enterInitialPasswordAsStudentAfterRegistration() {
 		// Retrieve the stored password from the alias defined in the method seeUserSummaryOnRegistrationFinalPage()
 		cy.get("@initialStudentdPwd").then((initialStudentdPwd) => {
-			cy.get(Management.#userEmailLoginPage).type(initialStudentdPwd, {
+			cy.get(Management.#userPasswordLoginPage).type(initialStudentdPwd, {
 				log: false,
 			});
 		});
@@ -376,7 +375,7 @@ class Management {
 
 	enterPasswordOnFirstLogin() {
 		const userPassword = Cypress.env("INITIAL_PWD_BY_ADMIN");
-		cy.get(Management.#userEmailLoginPage).type(userPassword, { log: false });
+		cy.get(Management.#userPasswordLoginPage).type(userPassword, { log: false });
 	}
 
 	clickOnLoginButtonForFirstLogin() {
@@ -827,12 +826,6 @@ class Management {
 	userIsNotVisibleInTable(email) {
 		cy.get(Management.#searchbar).clear(Management.#searchbar);
 		cy.get(Management.#tableContents).contains(email).should("not.exist");
-	}
-
-	clickChatToggleSwitch() {
-		cy.intercept("**/federalStates/**").as("federalStates");
-		cy.wait("@federalStates");
-		cy.get(Management.#chatToggleSwitch).find("input").click({ force: true });
 	}
 
 	seeAddedSchoolNumber() {

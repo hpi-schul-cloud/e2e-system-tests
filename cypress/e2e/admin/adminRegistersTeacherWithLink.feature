@@ -41,7 +41,7 @@ Feature: Admin - Teacher registration with registration link send by admin
         Then I see the summary page
 
         # newly registered teacher does the first login
-        When I visit the url for first login
+        When I visit the login page
         When I enter the email assigned during user creation
         When I enter the set password
         When I click on the button Login

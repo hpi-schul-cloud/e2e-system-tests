@@ -5,6 +5,10 @@ const management = new Management();
 
 //Scenario: Adding a new user
 
+When("I visit the login page", () => {
+	management.visitUrlForFirstLogin();
+});
+
 When(
 	"I fill out the user creation form for {string} {string} with email {string}",
 	(forename, surname, email) => {
