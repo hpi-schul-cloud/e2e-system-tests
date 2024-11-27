@@ -54,8 +54,6 @@ Feature: Teacher can create, update and stop a synchronized course
             | user         | namespace | group_title                     | teacher_name | substitute_teacher_name | student_name  | start_date | end_date   |
             | teacher1_nbc | nbc       | Cypress-Test-Group-Course-Sync  | Karl Herzog  | Lara Hande              | Herbert Kraft | 01.08.2024 | 31.07.2025 |
             | teacher1_nbc | nbc       | Cypress-Test-Group-Course-Sync2 | Karl Herzog  | Lara Hande              | Herbert Kraft | 01.08.2024 | 31.07.2025 |
-            | teacher1_nbc | nbc       | Cypress-Test-Group1             | Karl Herzog  | Lara Hande              | Herbert Kraft | 01.08.2024 | 31.07.2025 |
-            | teacher1_nbc | nbc       | Cypress-Test-Group1             | Karl Herzog  | Lara Hande              | Herbert Kraft | 01.08.2024 | 31.07.2025 |
 
     Scenario Outline: Synchronize course with group
         # create course
@@ -66,6 +64,7 @@ Feature: Teacher can create, update and stop a synchronized course
         When I enter the course title '<course_title>'
         When I select course colour as red
         Then I see teacher '<teacher_name>' is selected by default
+        Then I see the substitute teacher '<substitute_teacher_name>' is selected
         Then I see substitute teacher selection box
         Then I see date pickers to start and end the course as per school year
         Then I see button to create a course time table container
@@ -92,8 +91,8 @@ Feature: Teacher can create, update and stop a synchronized course
         When I click the confirm button on the synchronization confirmation modal
         Then I see the synced chip next to the title on the course page
         Examples:
-            | user         | namespace | course_title                 | group_title        | teacher_name  | substitute_teacher_name | student_name  |
-            | teacher1_nbc | nbc       | Cypress-Test-Existing-Course | Cypress-Test-Group | Karl Herzog  | Lara Hande  | Herbert Kraft |
+            | user         | namespace | course_title                 | group_title        | teacher_name | student_name  |
+            | teacher1_nbc | nbc       | Cypress-Test-Existing-Course | Cypress-Test-Group | Karl Herzog  | Herbert Kraft |
 
     Scenario Outline: Edit a synchronized course
         When I go to courses overview
@@ -105,6 +104,7 @@ Feature: Teacher can create, update and stop a synchronized course
         When I edit the title of the course to '<course_title_new>'
         Then I see the course title form contains '<course_title_new>'
         Then I see the teacher '<teacher_name>' is selected
+        Then I see the substitute teacher '<substitute_teacher_name>' is selected
         Then I see the start date picker has '<start_date>' selected
         Then I see the end date picker has '<end_date>' selected
         Then I see the teacher selection box is disabled
@@ -116,8 +116,8 @@ Feature: Teacher can create, update and stop a synchronized course
         Then I see the course '<course_title_new>' on the course overview page
         Then I do not see the course '<course_title>' on the course overview page
         Examples:
-            | course_title                   | course_title_new         | teacher_name | student_name   | start_date | end_date   |
-            | Cypress-Test-Group-Course-Sync | Cypress-Test-Course-Sync | Herzog, Karl | Kraft, Herbert | 01.08.2024 | 31.07.2025 |
+            | course_title                   | course_title_new         | teacher_name | substitute_teacher_name | student_name   | start_date | end_date   |
+            | Cypress-Test-Group-Course-Sync | Cypress-Test-Course-Sync | Herzog, Karl | Lara Hande              | Kraft, Herbert | 01.08.2024 | 31.07.2025 |
 
     Scenario Outline: Stop a course synchronization in a course
         When I go to courses overview
@@ -168,5 +168,3 @@ Feature: Teacher can create, update and stop a synchronized course
             | Cypress-Test-Course-Sync        |
             | Cypress-Test-Group-Course-Sync2 |
             | Cypress-Test-Existing-Course    |
-            | Cypress-Test-Group1             |
-            | Cypress-Test-Group1             |
