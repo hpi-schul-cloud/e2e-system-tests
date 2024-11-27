@@ -34,8 +34,9 @@ Cypress.Commands.add("login", (username, environment) => {
 		},
 		{
 			validate: () => {
-				cy.visit("/dashboard");
-				cy.get(titleOnDashboardPage).should("exist");
+				cy.request({
+					url: getPageUrl(environment, "/api/v3/me"),
+				});
 			},
 		}
 	);
