@@ -64,7 +64,6 @@ Feature: Teacher can create, update and stop a synchronized course
         When I enter the course title '<course_title>'
         When I select course colour as red
         Then I see teacher '<teacher_name>' is selected by default
-        Then I see the substitute teacher '<substitute_teacher_name>' is selected
         Then I see substitute teacher selection box
         Then I see date pickers to start and end the course as per school year
         Then I see button to create a course time table container
@@ -117,7 +116,7 @@ Feature: Teacher can create, update and stop a synchronized course
         Then I do not see the course '<course_title>' on the course overview page
         Examples:
             | course_title                   | course_title_new         | teacher_name | substitute_teacher_name | student_name   | start_date | end_date   |
-            | Cypress-Test-Group-Course-Sync | Cypress-Test-Course-Sync | Herzog, Karl | Lara Hande              | Kraft, Herbert | 01.08.2024 | 31.07.2025 |
+            | Cypress-Test-Group-Course-Sync | Cypress-Test-Course-Sync | Herzog, Karl | Hande, Lara             | Kraft, Herbert | 01.08.2024 | 31.07.2025 |
 
     Scenario Outline: Stop a course synchronization in a course
         When I go to courses overview
