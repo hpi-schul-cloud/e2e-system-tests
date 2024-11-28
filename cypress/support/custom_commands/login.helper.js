@@ -196,9 +196,9 @@ export const loginWithoutSchoolApi = (username, environment) => {
 		: fillLoginForm(env[userEmail], env[userPassword]);
 };
 
-export const loginViaSchoolApi = async (username, namespace) => {
+export const loginViaSchoolApi = async (username, environment) => {
 	try {
-		visitLoginPage(namespace);
+		visitLoginPage(environment);
 		const link = Cypress.config("baseUrl");
 
 		await cy
@@ -206,8 +206,8 @@ export const loginViaSchoolApi = async (username, namespace) => {
 				"loginViaSchoolApi",
 				{
 					url: link,
-					apiKey: Cypress.env(`apiKey-${namespace}`),
-					schoolId: Cypress.env(`schoolId-${namespace}`),
+					apiKey: Cypress.env(`apiKey-${environment}`),
+					schoolId: Cypress.env(`schoolId-${environment}`),
 					userType: username,
 				},
 				{ log: false }
@@ -215,17 +215,17 @@ export const loginViaSchoolApi = async (username, namespace) => {
 			.as("school_api_response");
 
 		await cy.get("@school_api_response").then((res) => {
-			Cypress.env(`schoolId-${namespace}`, res.schoolId);
+			Cypress.env(`schoolId-${environment}`, res.schoolId);
 			Cypress.env("username", res.username);
 			Cypress.env("password", res.initialPassword);
-			if (namespace.includes("nbc")) {
+			if (environment.includes("nbc")) {
 				cy.get(nbcLoginWithEmailOptionButton).click();
 			}
 
 			fillLoginForm(env["username"], env["password"]);
 			username.includes("student")
-				? studentFirstLogin(namespace)
-				: nonStudentUsersFirstLogin(namespace);
+				? studentFirstLogin(environment)
+				: nonStudentUsersFirstLogin(environment);
 		});
 	} catch (error) {
 		console.error("Error in loginViaSchoolApi:", error);
