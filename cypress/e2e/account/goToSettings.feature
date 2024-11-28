@@ -5,7 +5,7 @@ Feature: Account - To go to account settings page on dbc
 
   @stable_test
   Scenario: I see my e-mail is editable as an internal student user
-    Given I am logged in as a 'student1_dbc' at 'dbc'
+    Given I am logged in as a '<user>' at '<namespace>'
     When I go to my account settings
     Then I see my email is editable
 
