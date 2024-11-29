@@ -224,3 +224,7 @@ When("I launch tool {string} in the first media line with given url {string}", (
 Then("I see tool {string} on media element was launched", (toolName) => {
 	mediaShelf.toolWasLaunched(toolName);
 });
+
+When("I try to launch tool {string} in the first media line", (toolName) => {
+	mediaShelf.clickToolInFirstMediaLine(toolName);
+});

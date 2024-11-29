@@ -355,6 +355,11 @@ class MediaShelf {
 
 		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
 	}
+
+	clickToolInFirstMediaLine(toolName) {
+		const line = cy.get(MediaShelf.#mediaLineSpace1)
+		line.find('[data-testid="media-element-' + toolName + '"]').click()
+	}
 }
 
 export default MediaShelf;
