@@ -1,15 +1,15 @@
 @regression_test
 @stable_test
-Feature: Admin - Teacher registration with registration link send by admin
+Feature: Admin - user must set a new password during login
 
-    As a teacher, I want to register in the SVS
+    As a user, I have to set a new password during login
 
-    Scenario: Admin add a new teacher and register it via registration link
+    Scenario: Admin updates the password for the users, they set a new password during login.
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # admin creates a new teacher
+        # admin creates a new student
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
         When I click on FAB
@@ -19,39 +19,66 @@ Feature: Admin - Teacher registration with registration link send by admin
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
-        # admin generates the registeration link to proceed with teacher registration
+        # admin generates the registration link to proceed with student  registration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
-        Then I click on the button Generate Personal Registration Link for teacher
+        Then I click on the button Generate Personal Registration Link for student
 
-        # teacher performs registration via the generated link with PIN
+        # student perform registration via the generated link with PIN
         Then I visit to the generated registration link
         When I choose the language for the registration process
-        Then I click on the button Next to proceed to next step
-        Then I click again on the button Next to proceed to the personal data information page
+        Then I click on the button Next to proceed to the age selection
+        When I select the age over 16 years for registration
+        Then I click on the button Next to proceed to the personal data information page
         Then I see my first name '<user_firstname>'
         Then I see my last name '<user_lastname>'
-        Then I set a new password on personal data page
         When I click on the button Next to proceed to the next step
         When I accept the privacy and terms of use consents
         Then I click on the button Next to proceed to the registration pin step
         When I request a new registration pin
         Then I retrieve the registration pin to enter it into the form for '<namespace>'
         Then I click on the button Send and Get Started to successfully complete the registration process
-        Then I see the summary page
+        Then I see the page user data summary
 
-        # newly registered teacher does the first login
+        # newly registered student do the first login
         When I visit the url for first login
         When I enter the email assigned during user creation
-        When I enter the set password
+        When I enter the initial generated password
         When I click on the button Login
-        When I click on the button Next on the section 1
-        Then I see my email
-        When I click on the button Next on the section 2
-        When I click on the button Get started right away on the section 3
+        Then I see the first login page section 1
+        When I click on the button Next in section 1
+        Then I see the section 2
+        When I click on the button Next in section 2
+        Then I see the section 3
+        Then I set a new password
+        Then I re enter the new password
+        When I click on the button Next to proceed
+        Then I click on the button Get started now in section 4
         Then I see the dashboard
 
-        # admin deletes the newly added teacher
+        # admin changes the password for the student
+        Given I am logged in as a '<admin>' at '<namespace>'
+        When I click on administration in menu
+        When I go to '<role_to_manage>' administration
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
+        When I click edit '<role_to_manage>' button for '<user_email>'
+        When I click on the button Change password
+        Then I see the pop-up window
+        Then I enter a new password in the pop-up window
+        Then I click on the button Save
+        Then I see the success message
+
+        # student do the login and set a new password
+        When I visit the url for first login
+        When I enter the email assigned during user creation
+        When I enter the password
+        When I click on the button Login
+        Then I set a new password
+        Then I re enter the new password
+        When I click on the button Next to proceed
+        Then I see the dashboard
+
+        # admin deletes a student
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
@@ -62,10 +89,11 @@ Feature: Admin - Teacher registration with registration link send by admin
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
-        # @staging_test
+        #@staging_test
         # this feature is not executable on staging as we do not access the API calls on staging.
 
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | dbc       | admin1_dbc | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de |
+            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
+

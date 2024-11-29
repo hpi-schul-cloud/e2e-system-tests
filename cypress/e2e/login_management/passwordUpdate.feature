@@ -1,5 +1,5 @@
 @unstable_test
-Feature: Password Update - Verify login functionality via password change
+Feature: Login Management - Verify login functionality via password change
 
     As a user, I want to see how app behaves when I'll change password.
 

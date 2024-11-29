@@ -19,7 +19,7 @@ Feature: Admin - Student registration with registration link send by admin
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
-        # admin generates the registeration link to proceed with student registration
+        # admin generates the registration link to proceed with student registration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
         Then I click on the button Generate Personal Registration Link for student
@@ -52,7 +52,7 @@ Feature: Admin - Student registration with registration link send by admin
         Then I see the section 3
         Then I set a new password
         Then I re enter the new password
-        When I click on the button Next in section 3
+        When I click on the button Next to proceed
         Then I click on the button Get started now in section 4
         Then I see the dashboard
 
@@ -68,7 +68,7 @@ Feature: Admin - Student registration with registration link send by admin
         Then I can not see user '<user_email>' in the table
 
         # @staging_test
-        # This feature is not executable on staging as we do not access the API calls on staging.
+        # this feature is not executable on staging as we do not access the API calls on staging.
 
         @school_api_test
         Examples:
