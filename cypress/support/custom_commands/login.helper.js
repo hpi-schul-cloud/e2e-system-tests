@@ -126,7 +126,7 @@ const fillLoginForm = (username, password) => {
 };
 
 const studentFirstLogin = (environment) => {
-	Cypress.env("password", "SET_NEW_PWD_BY_STUDENT");
+	Cypress.env("password", Cypress.env("SET_NEW_PWD_BY_STUDENT"));
 	cy.get(studentAgeSelectRadioBtn).check();
 	cy.get(nextButtonAfterAgeSelection).click();
 	cy.get(nextButtonOnFirstLoginPages).click();
