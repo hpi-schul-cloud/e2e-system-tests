@@ -10,10 +10,6 @@ Then("I see the page download access data with info table", () => {
 	management.seeTheLastStepPageSummaryManualRegistration();
 });
 
-When("I visit the url for first login", () => {
-	management.visitUrlForFirstLogin();
-});
-
 When("I enter the email assigned during user creation", () => {
 	management.enterEmailOnFirstLogin();
 });

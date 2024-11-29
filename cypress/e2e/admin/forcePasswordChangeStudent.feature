@@ -41,7 +41,7 @@ Feature: Admin - user must set a new password during login
         Then I see the page user data summary
 
         # newly registered student do the first login
-        When I visit the url for first login
+        When I visit the login page
         When I enter the email assigned during user creation
         When I enter the initial generated password
         When I click on the button Login
@@ -69,7 +69,7 @@ Feature: Admin - user must set a new password during login
         Then I see the success message
 
         # student do the login and set a new password
-        When I visit the url for first login
+        When I visit the login page
         When I enter the email assigned during user creation
         When I enter the password
         When I click on the button Login
