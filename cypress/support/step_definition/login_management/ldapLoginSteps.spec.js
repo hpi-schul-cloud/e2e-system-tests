@@ -1,25 +1,23 @@
-import { defineStep } from "@badeball/cypress-cucumber-preprocessor";
-import { getUserCredentials } from "../../custom_commands/login.helper";
+const { Given, When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Login_Management from "../../pages/login_management/pageLoginManagement";
+const loginManagement = new Login_Management();
 
-defineStep("I am logging in with ldap as {string} on {string}", (user, environment) => {
-	const env = Cypress.env();
-	const [username, password] = getUserCredentials(user);
-
-	cy.tryClickOnElement('[data-testid="submit-ldap-site"]');
-	cy.tryClickOnElement("button[class*='btn-toggle-providers']");
-	cy.get("div[id='school_chosen']")
-		.clickOnElement()
-		.contains("li", "School One 0", { matchCase: false })
-		.clickOnElement();
-
-	if (environment === "nbc") {
-		cy.writeToInput('[data-testid="username-ldap"]', env[username]);
-		cy.writeToInput('[data-testid="password-ldap"]', env[password]);
-		cy.clickOnElement('[data-testid="submit-login-ldap"');
-	} else {
-		cy.writeToInput('[data-testid="username-email"]', env[username]);
-		cy.writeToInput('[data-testid="password-email"]', env[password]);
-		cy.clickOnElement('[data-testid="submit-login-email"');
-	}
+When("I click on the option button for the login via LDAP", () => {
+	loginManagement.clickOnLdapLoginOption();
 });
 
+When("I select the LDAP school {string}", (ldapSchoolName) => {
+	loginManagement.selectLdapSchoolOnLoginPage(ldapSchoolName);
+});
+
+When("I enter LDAP user name for {string} on {string}", (user, namespace) => {
+	loginManagement.enterLdapUserName(user, namespace);
+});
+
+When("I enter LDAP password {string} on {string}", (user, namespace) => {
+	loginManagement.enterLdapUserPassword(user, namespace);
+});
+
+When("I click on the button LDAP login on {string}", (namespace) => {
+	loginManagement.clickOnLdapLoginButton(namespace);
+});

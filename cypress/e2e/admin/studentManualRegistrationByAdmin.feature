@@ -9,7 +9,7 @@ Feature: Admin - Admin creates, manually register and deletes students
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # Admin adds a new student
+        # admin adds a new student
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
         When I click on FAB
@@ -19,7 +19,7 @@ Feature: Admin - Admin creates, manually register and deletes students
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
-        # Admin manually registers the student
+        # admin manually registers the student
         When I am on the students management page
         When I select student '<user_firstname>' with email '<user_email>'
         When I click on the button Actions
@@ -34,9 +34,8 @@ Feature: Admin - Admin creates, manually register and deletes students
         Then I click on the button Abbrechen
         Then I click on the button Trotzdem abbrechen on the confirmation modal
         Then I navigate to the students management page
-        Then I logout from the application
 
-        # Newly manual registered student does the first login
+        # newly manual registered student does the first login
         When I visit the url for first login
         When I enter the email assigned during user creation
         When I enter the password
@@ -48,12 +47,11 @@ Feature: Admin - Admin creates, manually register and deletes students
         Then I see the section 3
         Then I set a new password
         Then I re enter the new password
-        When I click on the button Next in section 3
+        When I click on the button Next to proceed
         Then I click on the button Get started now in section 4
         Then I see the dashboard
-        Then I logout from the application
 
-        # Admin deletes a student
+        # admin deletes a student
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
