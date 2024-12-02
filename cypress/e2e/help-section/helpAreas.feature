@@ -13,13 +13,10 @@ Feature: Help Section - To use the help areas in dBildungscloud
         # user sees the contents of help section
         When I click on Help Section in sidebar
         Then I see Advanced trainings with correct link '<link_trainings>' in sidebar
-        When I click on Help articles in sidebar
-        Then I see the help articles page
-        When I click on Contact in sidebar
-        Then I see the help contact page
 
         # use the article search inside the help articles area
         When I click on Help articles in sidebar
+        Then I see the help articles page
         When I enter '<search_term>' in search bar for help articles
         Then I see an help article containing '<search_result>'
 
@@ -45,3 +42,5 @@ Feature: Help Section - To use the help areas in dBildungscloud
         Examples:
             | teacher      | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    | link_trainings                | feedback_message                |
             | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home | Feedback erfolgreich versendet! |
+# | student1_dbc | dbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://lernen.dbildungscloud.de                              | Feedback erfolgreich versendet! |
+# | admin1_nbc   | nbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://openelec.moodle-nds.de/course/index.php?categoryid=53 | Feedback erfolgreich versendet! |
