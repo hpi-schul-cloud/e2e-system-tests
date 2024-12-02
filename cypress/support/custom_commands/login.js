@@ -6,25 +6,34 @@ const languageDe = '[data-language="de"]';
 const titleOnDashboardPage = '[id="page-title"]';
 
 Cypress.Commands.add("login", (username, environment) => {
-	cy.session([username, environment], async () => {
-		const env = Cypress.env();
-		const environmentUpperCased = environment.toUpperCase();
-		const link = Cypress.config("baseUrl", env[environmentUpperCased]);
+	cy.session(
+		[username, environment],
+		async () => {
+			const env = Cypress.env();
+			const environmentUpperCased = environment.toUpperCase();
+			const link = Cypress.config("baseUrl", env[environmentUpperCased]);
 
-		const stagingRegex =
-			/^https:\/\/(staging\.[\w-]+\.(dbildungscloud\.org)|test\.schulportal-thueringen\.de|staging\.dbildungscloud\.org)\/?/;
+			const stagingRegex =
+				/^https:\/\/(staging\.[\w-]+\.(dbildungscloud\.org)|test\.schulportal-thueringen\.de|staging\.dbildungscloud\.org)\/?/;
 
-		let isStaging = stagingRegex.test(link);
+			let isStaging = stagingRegex.test(link);
 
-		!isStaging
-			? await loginViaSchoolApi(username, environment)
-			: loginWithoutSchoolApi(username, environment);
+			!isStaging
+				? await loginViaSchoolApi(username, environment)
+				: loginWithoutSchoolApi(username, environment);
 
-		cy.url().should("contain", "/dashboard");
-		cy.get(initials).click();
-		cy.get(languageSelection).click();
-		cy.get(languageDe).click();
-	});
+			cy.url().should("contain", "/dashboard");
+			cy.get(initials).click();
+			cy.get(languageSelection).click();
+			cy.get(languageDe).click();
+		},
+		{
+			validate: () => {
+				cy.request({
+					url: getPageUrl(environment, "/api/v3/me"),
+				});
+			},
+		}
+	);
 	cy.visit("/dashboard");
-	cy.get(titleOnDashboardPage).should("exist");
 });
