@@ -119,7 +119,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
     #     Teachers removes deleted media element placeholder
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to media shelf
-    Then I see the deleted placeholder element of media element 'CY Test Tool 2'
+    Then I see the no longer available chip on media element 'CY Test Tool 2'
     When I click the three dot menu button on media element 'CY Test Tool 2'
     When I click on delete media element button
     Then I see delete media element dialog
