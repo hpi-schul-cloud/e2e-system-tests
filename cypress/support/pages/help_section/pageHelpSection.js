@@ -10,15 +10,25 @@ class Help {
 	static #helpContactform = "h2.h4";
 	static #searchBar = '[data-testid="help_search_bar"]';
 	static #searchResult = '[data-testid="help_search_results"]';
-	static #bugFormSubject = '[data-testid="bug_headline"]';
+	static #contactFormSubject = '[data-testid="bug_headline"]';
 	static #bugFormMail = '[data-testid="bug_email"]';
+	static #requestFormTitle = '[id="wishTitle"]';
 	static #bugFormSubmitButton = '[data-testid="bug_submit"]';
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
 	static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]';
 	static #helpContactNavigationButton = '[data-testid="Kontakt"]';
 	static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
-	static #selectDropDownOptions = ".chosen-drop .chosen-results";
+	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
+	static #selectDropdownOptions = ".chosen-drop .chosen-results";
+	static #contactTypeWishButton = '[id="wish"]';
+	static #contactFormWish = '.wish_form';
+	static #requestFormRole = '[name="role"]';
+	static #requestFormDesire = '[name="desire"]';
+	static #requestFormBenefit = '[name="benefit"]';
+	static #requestFormDevice = '[name="device"]';
+	static #requestFormMail = '[name="replyEmail"]';
+	static #requestFormSendButton = '[id="wish_submit"]';
 
 	navigateToHelpSection() {
 		cy.get(Help.#helpOverviewNavigationButton).click();
@@ -71,19 +81,79 @@ class Help {
 		cy.get(Help.#selectProblemDropdown).should("be.visible").click();
 
 		// Select the desired option from the dropdown using its text
-		cy.get(Help.#selectDropDownOptions)
+		cy.get(Help.#selectDropdownOptions)
 			.contains(problem_option)
 			.should("be.visible")
 			.click();
 
 		// Fill out the subject field
-		cy.get(Help.#bugFormSubject)
+		cy.get(Help.#contactFormSubject)
 			.should("be.visible")
 			.type(subject)
 			.should("have.value", subject);
 
 		// Fill out the email field
 		cy.get(Help.#bugFormMail)
+			.should("be.visible")
+			.type(email)
+			.should("have.value", email);
+	}
+
+	selectContactType(contactType) {
+		if(contactType == 'wish'){
+			cy.get(Help.#contactTypeWishButton).next().click();
+		}
+	}
+
+	seeContactFormType(formType) {
+		if(formType == 'wish'){
+			cy.get(Help.#contactFormWish).should("be.visible");
+		}
+	}
+
+	selectRequestOption(request_option) {
+		// Open a dropdown options
+		cy.get(Help.#selectRequestDropdown).should("be.visible").click();
+
+		// Select the desired option from the dropdown using its text
+		cy.get(Help.#selectDropdownOptions)
+			.contains(request_option)
+			.should("be.visible")
+			.click();
+	}
+
+	enterRequestContactFormTitle(subject) {
+		// Fill out the subject field
+		cy.get(Help.#requestFormTitle)
+			.should("be.visible")
+			.type(subject)
+			.should("have.value", subject);
+	}
+
+	enterRequestContactFormDescription(role, desire, benefit, device) {
+		// Fill out the fields role, desire, benefit, device
+		cy.get(Help.#requestFormRole)
+			.should("be.visible")
+			.type(role)
+			.should("have.value", role);
+		cy.get(Help.#requestFormDesire)
+			.should("be.visible")
+			.type(desire)
+			.should("have.value", desire);
+		cy.get(Help.#requestFormBenefit)
+			.should("be.visible")
+			.type(benefit)
+			.should("have.value", benefit);
+		cy.get(Help.#requestFormDevice)
+			.eq(0)
+			.should("be.visible")
+			.type(device)
+			.should("have.value", device);
+	}
+
+	enterRequestContactFormMail(email) {
+		cy.get(Help.#requestFormMail)
+			.eq(0)
 			.should("be.visible")
 			.type(email)
 			.should("have.value", email);
@@ -99,6 +169,10 @@ class Help {
 
 	seeConfirmationFormSended(message) {
 		cy.get(Help.#feedbackSendConfirmation).contains(message);
+	}
+
+	sendRequestFormToSupport() {
+		cy.get(Help.#requestFormSendButton).click();
 	}
 }
 export default Help;
