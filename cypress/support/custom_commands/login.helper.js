@@ -125,43 +125,8 @@ const fillLoginForm = (username, password) => {
 	);
 };
 
-const shuffleString = (str) => {
-	const characters = str.split("");
-	let currentIndex = characters.length;
-	let randomIndex;
-
-	while (currentIndex !== 0) {
-		randomIndex = Math.floor(Math.random() * currentIndex);
-		currentIndex--;
-		[characters[currentIndex], characters[randomIndex]] = [
-			characters[randomIndex],
-			characters[currentIndex],
-		];
-	}
-
-	return characters.join("");
-};
-const generateStrongPassword = (length) => {
-	const lowercase = "abcdefghijklmnopqrstuvwxyz";
-	const uppercase = lowercase.toUpperCase();
-	const numbers = "0123456789";
-	const symbols = "!@#$%^&*";
-
-	const allChars = lowercase + uppercase + numbers + symbols;
-
-	let password = "";
-	for (let i = 0; i < length; i++) {
-		const charSet = allChars[Math.floor(Math.random() * allChars.length)];
-		const randomIndex = Math.floor(Math.random() * charSet.length);
-		password += charSet[randomIndex];
-	}
-
-	return shuffleString(password);
-};
-
 const studentFirstLogin = (environment) => {
-	const newPassword = generateStrongPassword(12);
-	Cypress.env("password", newPassword);
+	Cypress.env("password", Cypress.env("SET_NEW_PWD_BY_STUDENT"));
 	cy.get(studentAgeSelectRadioBtn).check();
 	cy.get(nextButtonAfterAgeSelection).click();
 	cy.get(nextButtonOnFirstLoginPages).click();
@@ -173,8 +138,8 @@ const studentFirstLogin = (environment) => {
 		cy.get(termsOfUseCheckboxDBC).check();
 		cy.get(nextButtonOnFirstLoginPages).click();
 	}
-	cy.get(studentUpdatePassword).type(env["password"]);
-	cy.get(studentConfirmPassword).type(env["password"]);
+	cy.get(studentUpdatePassword).type(env["password"], { log: false });
+	cy.get(studentConfirmPassword).type(env["password"], { log: false });
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
