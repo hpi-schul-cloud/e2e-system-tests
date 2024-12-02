@@ -31,6 +31,9 @@ class MediaShelf {
 	static #deleteMediaElementDialog = '[data-testid="delete-dialog-item"]';
 	static #confirmDeletionDialogButton = '[data-testid="dialog-confirm"]';
 	static #createLineButton = '[data-testid="create-line-button"]';
+	static #emptyStateSign = '[data-testid="empty-state"]';
+	static #emptyStateInfoText = '[data-testid="emptyTaskMessage"]';
+
 
 	navigateToMediaShelf() {
 		cy.get(MediaShelf.#mediaShelfNavigationButton).click();
@@ -166,7 +169,7 @@ class MediaShelf {
 			.should("exist")
 	}
 
-	seeDeletedMediaElementPlaceholder(toolName) {
+	seeMediaElementNoLongerAvailableChip(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
 		element.find(MediaShelf.#mediaElementNoLongerAvailableChip)
 			.should("exist")
@@ -358,7 +361,12 @@ class MediaShelf {
 
 	clickToolInFirstMediaLine(toolName) {
 		const line = cy.get(MediaShelf.#mediaLineSpace1)
-		line.find('[data-testid="media-element-' + toolName + '"]').click()
+		line.find('[data-testid="media-element-' + toolName + '"]').click();
+	}
+
+	seeNoAvailableMediaInfoText() {
+		cy.get(MediaShelf.#emptyStateInfoText).should("be.visible");
+		cy.get(MediaShelf.#emptyStateSign).find("svg").should("be.visible");
 	}
 }
 

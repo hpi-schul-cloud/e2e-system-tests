@@ -93,6 +93,7 @@ Feature: Deactivation of ctl tools in media shelf
         Then I see the media line menu
         When I click on delete media line button
         Then I see the first media line has been deleted
+        Then I see the no available media infotext
 
         # Student sees a deactivated tool in media shelf
         Given I am logged in as a '<student>' at '<namespace>'
@@ -107,6 +108,7 @@ Feature: Deactivation of ctl tools in media shelf
         Then I see the media line menu
         When I click on delete media line button
         Then I see the first media line has been deleted
+        Then I see the no available media infotext
 
         # Post-condition: Admin deletes tools
         Given I am logged in as a '<admin>' at '<namespace>'

@@ -153,6 +153,10 @@ Then("I see the incomplete chip on media element {string}", (toolName) => {
 	mediaShelf.seeMediaElementIncompleteChip(toolName);
 });
 
+Then("I see the no longer available chip on media element {string}", (toolName) => {
+	mediaShelf.seeMediaElementNoLongerAvailableChip(toolName)
+});
+
 Then("I see tool {string} in the available media line", (toolName) => {
 	mediaShelf.mediaElementIsVisibleInAvailableMediaLine(toolName);
 });
@@ -167,10 +171,6 @@ When("I click the three dot menu button on media element {string}", (toolName) =
 
 When("I click on delete media element button", () => {
 	mediaShelf.clickDeleteMediaElementButton()
-});
-
-Then("I see the deleted placeholder element of media element {string}", (toolName) => {
-	mediaShelf.seeDeletedMediaElementPlaceholder(toolName)
 });
 
 Then("I see delete media element dialog", () => {
@@ -227,4 +227,8 @@ Then("I see tool {string} on media element was launched", (toolName) => {
 
 When("I try to launch tool {string} in the first media line", (toolName) => {
 	mediaShelf.clickToolInFirstMediaLine(toolName);
+});
+
+Then("I see the no available media infotext", () => {
+	mediaShelf.seeNoAvailableMediaInfoText();
 });
