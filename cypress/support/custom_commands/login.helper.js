@@ -138,8 +138,8 @@ const studentFirstLogin = (environment) => {
 		cy.get(termsOfUseCheckboxDBC).check();
 		cy.get(nextButtonOnFirstLoginPages).click();
 	}
-	cy.get(studentUpdatePassword).type(env["password"]);
-	cy.get(studentConfirmPassword).type(env["password"]);
+	cy.get(studentUpdatePassword).type(env["password"], { log: false });
+	cy.get(studentConfirmPassword).type(env["password"], { log: false });
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
