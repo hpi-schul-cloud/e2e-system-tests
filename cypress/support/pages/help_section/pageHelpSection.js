@@ -20,7 +20,7 @@ class Help {
 	static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
-	static #selectDropDownOptions = ".chosen-drop .chosen-results";
+	static #selectDropdownOptions = ".chosen-drop .chosen-results";
 	static #contactTypeWishButton = '[id="wish"]';
 	static #contactFormWish = '.wish_form';
 	static #requestFormRole = '[name="role"]';
@@ -81,7 +81,7 @@ class Help {
 		cy.get(Help.#selectProblemDropdown).should("be.visible").click();
 
 		// Select the desired option from the dropdown using its text
-		cy.get(Help.#selectDropDownOptions)
+		cy.get(Help.#selectDropdownOptions)
 			.contains(problem_option)
 			.should("be.visible")
 			.click();
@@ -116,7 +116,7 @@ class Help {
 		cy.get(Help.#selectRequestDropdown).should("be.visible").click();
 
 		// Select the desired option from the dropdown using its text
-		cy.get(Help.#selectDropDownOptions)
+		cy.get(Help.#selectDropdownOptions)
 			.contains(request_option)
 			.should("be.visible")
 			.click();

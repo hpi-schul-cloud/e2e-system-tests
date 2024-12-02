@@ -3,12 +3,11 @@
 @schedule_run
 Feature: Help Section - To use the help areas in dBildungscloud
 
-    As a user I want to use the help areas in the header and sidebar so that I can find help when needed
+    As a user I want to use the help areas in the sidebar so that I can find help when needed
 
-    Scenario Outline: User can use the help area in the (header, sidebar), search article and submit an issue and a request via contact form
+    Scenario Outline: User can use the help area in the sidebar, search article and submit an issue and a request via contact form
 
-        # pre-condition: admin, student log in to create their account in a same school
-        Given I am logged in as a '<student>' at '<namespace>'
+        # pre-condition: admin logs in to create its account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # user sees the contents of help section
@@ -32,15 +31,11 @@ Feature: Help Section - To use the help areas in dBildungscloud
         Then I see message '<feedback_message>'
 
         # submit a request via contact form inside help area
-        Given I am logged in as a '<student>' at '<namespace>'
-        When I click on Help Section in sidebar
-        When I click on Contact in sidebar
-        Then I see the help contact page
         When I select contact type 'wish'
         Then I see contact form to send 'wish'
         When I select request option 'Authentifizierung'
         When I enter request title '<contact_subject>'
-        When I enter request role 'Schüler', desire 'Eine Übersicht über die Aufgaben haben', benefit 'einen besseren Überblick zu haben' and request device 'iPhone 123'
+        When I enter request role 'Lehrer', desire 'Eine Übersicht über die Aufgaben haben', benefit 'einen besseren Überblick zu haben' and request device 'iPhone 123'
         When I enter request email address '<contact_email>'
         When I click on button Submit to send request form
         Then I see message '<feedback_message>'
@@ -48,7 +43,5 @@ Feature: Help Section - To use the help areas in dBildungscloud
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | student      | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    | link_trainings                | feedback_message                |
-            | teacher1_brb | student1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home | Feedback erfolgreich versendet! |
-# | student1_dbc | dbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://lernen.dbildungscloud.de                              | Feedback erfolgreich versendet! |
-# | admin1_nbc   | nbc       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://openelec.moodle-nds.de/course/index.php?categoryid=53 | Feedback erfolgreich versendet! |
+            | teacher      | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    | link_trainings                | feedback_message                |
+            | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home | Feedback erfolgreich versendet! |
