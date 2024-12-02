@@ -7,7 +7,7 @@ Feature: Help Section - To use the help areas in dBildungscloud
 
     Scenario Outline: User can use the help area in the sidebar, search article and submit an issue and a request via contact form
 
-        # pre-condition: admin logs in to create its account in a same school
+        # pre-condition: teacher logs in to create its account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # user sees the contents of help section
