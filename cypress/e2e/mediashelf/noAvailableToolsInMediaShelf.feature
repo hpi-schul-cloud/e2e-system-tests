@@ -2,10 +2,10 @@
 @stable_test
 Feature: No available tools in media shelf
 
-    As an User I want to see the no longer available chip on media element in media shelf
+    As a User I want to see the no longer available chip on media element in media shelf
 
     @stable_test
-    Scenario Outline: Users sees no longer available chip on media element in media shelf
+    Scenario Outline: User sees no longer available chip on media element in media shelf
         Given I am logged in as a '<admin>' at '<namespace>'
 
         # Pre-condition: admin adds a tool
