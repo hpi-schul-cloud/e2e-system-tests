@@ -182,7 +182,7 @@ export const loginViaSchoolApi = async (username, environment) => {
 				{
 					url: link,
 					apiKey: Cypress.env(`apiKey-${environment}`),
-					schoolId: Cypress.env("schoolId"),
+					schoolId: Cypress.env(`schoolId-${environment}`),
 					userType: username,
 				},
 				{ log: false }
@@ -190,7 +190,7 @@ export const loginViaSchoolApi = async (username, environment) => {
 			.as("school_api_response");
 
 		await cy.get("@school_api_response").then((res) => {
-			Cypress.env("schoolId", res.schoolId);
+			Cypress.env(`schoolId-${environment}`, res.schoolId);
 			Cypress.env("username", res.username);
 			Cypress.env("password", res.initialPassword);
 			if (environment.includes("nbc")) {
