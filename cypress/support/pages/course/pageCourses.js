@@ -1066,6 +1066,12 @@ class Courses {
 			.should("be.selected");
 	}
 
+	seeSelectedSubstituteTeacher(substituteTeacher) {
+		cy.get(Courses.#selectSubstituteTeacher)
+			.contains("option", substituteTeacher)
+			.should("be.selected");
+	}
+
 	seeSelectedStudent(studentName) {
 		cy.get(Courses.#selectStudent)
 			.contains("option", studentName)
