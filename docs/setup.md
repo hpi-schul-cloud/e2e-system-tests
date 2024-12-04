@@ -31,11 +31,14 @@ This document provides comprehensive instructions for setting up the project env
 3. **Setting Up Environment Variables for Testing User Credentials and URLs**
    <br>
 
-   - Duplicate [devClusterTemplate.env.json](../env_variables/devClusterTemplate.env.json) file and rename the duplicated file to `local.env.json` in the env_variables folder
-   - Duplicate [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) file and rename the duplicated file to `staging.env.json` in the env_variables folder
-   - Add your credentials and environment-specific variables to `local.env.json` from 1Password including api keys
-     **(Remember add all instances as in 1Password we have different vaults available for each namespace)**
-     <br>
+   - Duplicate [devClusterTemplate.env.json](../env_variables/devClusterTemplate.env.json) file and rename the duplicated file to `local.env.json` in the env_variables folder.
+     - Test data on development clusters are created using school API.
+   - Duplicate [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) file and rename the duplicated file to `staging.env.json` in the env_variables folder.
+     - Test data on the staging environment is fetched from the seed data on the server.
+   - Add your credentials and environment-specific variables to `local.env.json` and `staging.env.json` from 1Password including api keys.
+     - Remember to add all instances, as in 1Password, we have different vaults available for each namespace.
+     - Contact the QA team for the required 1Password links.
+       <br>
 
 4. **Installing Dependencies**
 
