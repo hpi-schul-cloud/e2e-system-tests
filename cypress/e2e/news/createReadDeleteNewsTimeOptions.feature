@@ -9,7 +9,7 @@ Feature:  News - To read a news on the respective dashboards
         Given I am logged in as a '<news_author>' at '<namespace>'
         Given I am logged in as a '<news_reader>' at '<namespace>'
 
-        # teacher creates school news with current date and time
+        # first user creates school news with different time options
         Given I am logged in as a '<news_author>' at '<namespace>'
         When I go to news overview
         And I click on add news button
@@ -21,14 +21,14 @@ Feature:  News - To read a news on the respective dashboards
         And I click on save button
         Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
 
-        # # teacher creates a team
+        # # first user creates a team
         # When I go to teams overview
         # When I click on button Add Team on the teams overview page
         # Then I see new team creation page
         # When I enter in the title '<team_name>'
         # When I click on button Create Team on the team creation page
 
-        # # teacher creates a team news
+        # # first user creates a team news
         # When I go to teams overview
         # When I go to a team '<team_name>'
         # When I click on news tab on the team detail page
@@ -41,7 +41,7 @@ Feature:  News - To read a news on the respective dashboards
         # And I click on save button
         # Then I see news is created successfully with title '<team_news_title>' and with description '<team_news_description>'
 
-        # teacher reads a school news on news overview page
+        # first user reads a school news on news overview page, then teacher opens news and reads news detail page
         When I go to news overview
         Then I can read the news '<news_title>' with description '<news_description>'
         Then I can see the publishing time info '<news_time_info_overviewpage>' on overview page
@@ -49,13 +49,13 @@ Feature:  News - To read a news on the respective dashboards
         Then I can read the news '<news_title>' with description '<news_description>' on news detail page
         Then I can see the publishing time info '<news_time_info_detailpage>' on news detail page
 
-        # # teacher reads a team news on teams news overview page
+        # # first user reads a team news on teams news overview page
         # When I go to teams overview
         # When I go to a team '<team_name>'
         # When I click on news tab on the team detail page
         # Then I can read the news '<team_news_title>' with description '<team_news_description>'
 
-        # student reads a school news on news overview page
+        # second user reads a school news on news overview page, then second user opens news and reads news detail page
         Given I am logged in as a '<news_reader>' at '<namespace>'
         When I go to news overview
         Then I can read the news '<news_title>' with description '<news_description>'
@@ -63,9 +63,8 @@ Feature:  News - To read a news on the respective dashboards
         When I click on the news teaser '<news_title>'
         Then I can read the news '<news_title>' with description '<news_description>' on news detail page
         Then I can see the publishing time info '<news_time_info_detailpage>' on news detail page
-        #Then I can see the publishing time info '<news_time_info>'
 
-        # teacher deletes the school news
+        # first user deletes the school news
         Given I am logged in as a '<news_author>' at '<namespace>'
         When I arrive on the dashboard
         And I click on the news teaser '<news_title>'
@@ -73,14 +72,14 @@ Feature:  News - To read a news on the respective dashboards
         And I confirm the deletion on confirmation dialog box
         Then I do not see the news '<news_title>'
 
-        # # teacher deletes the team news
+        # # first user deletes the team news
         # When I arrive on the dashboard
         # And I click on the news teaser '<team_news_title>'
         # When I click on delete button
         # And I confirm the deletion on confirmation dialog box
         # Then I do not see the news '<team_news_title>'
 
-        # # teacher deletes the team
+        # # first user deletes the team
         # When I go to teams overview
         # When I go to a team '<team_name>'
         # When I click on team settings
