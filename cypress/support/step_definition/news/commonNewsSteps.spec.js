@@ -57,3 +57,25 @@ When("I confirm the deletion on confirmation dialog box", () => {
 Then("I do not see the news {string}", (newsName) => {
 	news.doNotSeeNews(newsName);
 });
+
+When("I set news-visibility-start-date to {string} days at {string}", (newsDayDifference, newsTime) => {
+	news.setNewsStartDate(newsDayDifference, newsTime);
+});
+
+When("I can see the publishing time info {string} on overview page", (newsTimeInfo) => {
+	news.seeNewsTimeInfoOnOverviewPage(newsTimeInfo);
+});
+
+When("I can see the publishing time info {string} on news detail page", (newsTimeInfo) => {
+	news.seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo);
+});
+
+Then(
+	"I can read the news {string} with description {string} on news detail page",
+	(titleOfNews, descriptionOfNews) => {
+		news.seeNewsOnNewsDetailPage(titleOfNews, descriptionOfNews);
+	}
+);
+
+
+
