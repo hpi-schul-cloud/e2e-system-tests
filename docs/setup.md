@@ -25,6 +25,7 @@ This document provides comprehensive instructions for setting up the project env
       git clone <repository-url>
       cd <repository-folder>
    ```
+
    <br>
 
 3. **Setting Up Environment Variables for the Testing User Credentials and URLs**
@@ -59,4 +60,4 @@ This document provides comprehensive instructions for setting up the project env
    <br>
 
 5. **Running Cypress Tests**
-   For details on running Cypress tests, including options and configurations, refer to the [Executing Tests Guide](running_tests_guide.md)
+   For details on running Cypress tests, including options and configurations, refer to the [Executing Tests Guide](executing_tests_guide.md)
