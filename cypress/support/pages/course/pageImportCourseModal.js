@@ -5,28 +5,49 @@ class ImportCourseModal {
 	static #importShareCourseDialog = '[data-testid="import-modal"]'
 	static #importShareCourseToolsInfo = '[data-testid="import-modal-external-tools-info"]'
 	static #importShareCourseNameInput = '[data-testid="import-modal-name-input"]'
-	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
+	static #importShareCourseDialogConfirmButton = '[data-testid="dialog-confirm"]';
+	static #importShareCourseDialogTitle = '[data-testid="dialog-title"]';
+	static #importShareCourseDialogTableHeader = '[data-testid="import-options-table-header"]';
+	static #importShareCourseDialogPersonalData = '[data-testid="import-options-personal-data-text"]';
+	static #importShareCourseDialogFilesInfo = '[data-testid="import-modal-coursefiles-info"]';
+	static #importShareCourseDialogExternalToolsInfo = '[data-testid="import-modal-external-tools-protected-parameter-info"]';
 
 	seeImportShareCourseDialogBox() {
-		cy.get(ImportCourseModal.#importShareCourseDialog).should("exist");
+		cy.get(ImportCourseModal.#importShareCourseDialog).should("be.visible");
 	}
 
 	seeImportShareCourseToolsInfo() {
-		cy.get(ImportCourseModal.#importShareCourseToolsInfo).should("exist");
+		cy.get(ImportCourseModal.#importShareCourseToolsInfo).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseDialogTitle).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseDialogTableHeader).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseDialogPersonalData).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseDialogFilesInfo).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseDialogExternalToolsInfo).should("be.visible");
 	}
 
 	enterCourseNameForImportCourse(input) {
-		cy.get(ImportCourseModal.#importShareCourseNameInput).should("exist");
+		cy.get(ImportCourseModal.#importShareCourseNameInput).should("be.visible");
 		cy.get(ImportCourseModal.#importShareCourseNameInput).clear();
 		cy.get(ImportCourseModal.#importShareCourseNameInput).type(input);
 	}
 
-	clickOnConfirmButtonInDialog() {
-		cy.get(ImportCourseModal.#dialogConfirmButton).click();
+	clickOnConfirmButtonInImportShareCourseDialog() {
+		cy.get(ImportCourseModal.#importShareCourseDialogConfirmButton).click();
 	}
 
 	visitSavedShareCourseUrl() {
-		cy.visit(Cypress.env('importShareCourseUrl'));
+		cy.get("@importShareCourseUrl").then((url) => {
+			cy.visit(url)
+		});
+	}
+
+	seeDefaultCourseNameForImportCourse(defaultCourseName) {
+		cy.get(ImportCourseModal.#importShareCourseNameInput).should("be.visible")
+			.invoke("attr", "value")
+			.then((value) => {
+				expect(value).to.equal(defaultCourseName);
+			});
+
 	}
 }
 

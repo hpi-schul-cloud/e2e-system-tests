@@ -6,31 +6,38 @@ class ShareCourseModal {
 	static #shareCourseDialogInfoTextContainer = '[data-testid="share-options-table-header"]';
 	static #shareCourseDialogPersonalDataInfo = '[data-testid="share-options-personal-data-text"]';
 	static #shareCourseDialogExternalToolsInfo = '[data-testid="share-modal-external-tools-info"]';
+	static #shareCourseDialogToolProtectedParamsInfo = '[data-testid="share-modal-external-tools-protected-parameter-info"]';
+	static #shareCourseDialogFilesInfo = '[data-testid="share-modal-coursefiles-info"]';
 	static #shareCourseDialogSchoolInternalCheckBox = '[data-testid="isSchoolInternal"]';
 	static #shareCourseDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
 	static #shareCourseResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #dialogNextButton = '[data-testid="dialog-next"]';
+	static #shareCourseDialogMailButton = '[data-testid="shareMailAction"]';
+	static #shareCourseDialogCopyLinkButton = '[data-testid="copyAction"]';
+	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
 
 	seeShareCourseDialogBox() {
-		cy.get(ShareCourseModal.#shareCourseDialog).should("exist");
+		cy.get(ShareCourseModal.#shareCourseDialog).should("be.visible");
 	}
 
 	seeInfoTextInShareCourseDialog() {
-		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("exist");
-		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("exist");
-		cy.get(ShareCourseModal.#shareCourseDialogPersonalDataInfo).should("exist");
-		cy.get(ShareCourseModal.#shareCourseDialogExternalToolsInfo).should("exist");
+		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogPersonalDataInfo).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogExternalToolsInfo).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogToolProtectedParamsInfo).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogFilesInfo).should("be.visible");
 	}
 
 	seeSchoolInternalCheckBoxAsChecked() {
-		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox).should("exist");
+		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
 			.find('input[type="checkbox"]')
 			.should("be.checked");
 	}
 
 	seeExpiryDateCheckBoxAsChecked() {
-		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should("exist");
+		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
 			.find('input[type="checkbox"]')
 			.should("be.checked");
@@ -47,7 +54,7 @@ class ShareCourseModal {
 	}
 
 	seeCopyUrlInShareCourseResultDialog() {
-		cy.get(ShareCourseModal.#shareCourseResultUrlTextBox).should("exist");
+		cy.get(ShareCourseModal.#shareCourseResultUrlTextBox).should("be.visible");
 	}
 
 	saveTheUrlInShareCourseResultDialog() {
@@ -55,9 +62,22 @@ class ShareCourseModal {
 			.find(".v-field__input")
 			.invoke("attr", "value")
 			.then((value) => {
-				Cypress.env('importShareCourseUrl', value);
+				cy.wrap(value).as("importShareCourseUrl");
 			});
 	}
+
+	seeMailButtonInShareCourseResultDialog() {
+		cy.get(ShareCourseModal.#shareCourseDialogMailButton).should("be.visible");
+	}
+
+	seeCopyLinkButtonInShareCourseResultDialog() {
+		cy.get(ShareCourseModal.#shareCourseDialogCopyLinkButton).should("be.visible");
+	}
+
+	seeQrCodeButtonInShareCourseResultDialog() {
+		cy.get(ShareCourseModal.#shareCourseDialogQrCodeButton).should("be.visible");
+	}
+
 }
 
 export default ShareCourseModal;

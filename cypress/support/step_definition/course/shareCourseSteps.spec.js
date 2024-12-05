@@ -31,12 +31,24 @@ When("I uncheck the school internal checkbox", () => {
 	shareCourseModal.uncheckSchoolInternalCheckBoxInShareCourseDialog();
 });
 
-When("I click on the continue button", () => {
+When("I click on the continue button in the share course dialog", () => {
 	shareCourseModal.clickContinueButtonInDialog();
 });
 
-Then("I see the import share course url", () => {
+Then("I see the import share course url in the share course result dialog", () => {
 	shareCourseModal.seeCopyUrlInShareCourseResultDialog();
+});
+
+Then("I see the mail button in the share course result dialog", () => {
+	shareCourseModal.seeMailButtonInShareCourseResultDialog();
+});
+
+Then("I see the copy link button in the share course result dialog", () => {
+	shareCourseModal.seeCopyLinkButtonInShareCourseResultDialog();
+});
+
+Then("I see the mail QR-Code button in the share course result dialog", () => {
+	shareCourseModal.seeQrCodeButtonInShareCourseResultDialog();
 });
 
 When("I save the import share course url", () => {
@@ -55,10 +67,14 @@ Then("I see the import share course tools info", () => {
 	importCourseModal.seeImportShareCourseToolsInfo();
 });
 
+Then("I see {string} in the course name field", (defaultCourseName) => {
+	importCourseModal.seeDefaultCourseNameForImportCourse(defaultCourseName);
+});
+
 When("I enter {string} in the course name field", (importCourseName) => {
 	importCourseModal.enterCourseNameForImportCourse(importCourseName);
 });
 
 When("I click on the import course button", () => {
-	importCourseModal.clickOnConfirmButtonInDialog();
+	importCourseModal.clickOnConfirmButtonInImportShareCourseDialog();
 });

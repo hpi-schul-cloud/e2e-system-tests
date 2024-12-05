@@ -371,7 +371,7 @@ class Board {
 		cy.contains(textContent);
 	}
 
-	canSeeDeletedElement(name) {
+	seeDeletedElement(name) {
 		cy.get(Board.#deletedElement).contains(name).should("be.visible");
 	}
 }
