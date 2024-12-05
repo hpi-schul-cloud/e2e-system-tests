@@ -6,3 +6,7 @@ const board = new Board();
 When("I click on open Drawing Element", () => {
 	board.clickOnOpenTldrawDrawingElement();
 });
+
+When("I click on the whiteboard element", () => {
+	board.clickOnWhiteboardElement();
+});
