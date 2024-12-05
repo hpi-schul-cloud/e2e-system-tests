@@ -42,6 +42,7 @@ This document provides comprehensive instructions for setting up the project env
    Setting Up Environment Variables for Staging:
 
    - Duplicate the file [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) and rename the duplicated file to `staging.env.json` in the `env_variables` folder.
+   - Include the required staging namespace URLs for BRB/dBC/NBC.
    - Test data on the staging environment are fetched from the seed data on the server.
    - Add the environment-specific credentials to `staging.env.json` from 1Password (1PW).
    - Ensure all instances are included, as 1Password contains different vaults for each namespace with testing credentials.
