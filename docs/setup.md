@@ -25,7 +25,6 @@ This document provides comprehensive instructions for setting up the project env
       git clone <repository-url>
       cd <repository-folder>
    ```
-
    <br>
 
 3. **Setting Up Environment Variables for the Testing User Credentials and URLs**
