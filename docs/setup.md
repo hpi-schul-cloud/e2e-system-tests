@@ -28,17 +28,24 @@ This document provides comprehensive instructions for setting up the project env
 
    <br>
 
-3. **Setting Up Environment Variables for Testing User Credentials and URLs**
+3. **Setting Up Environment Variables for the Testing User Credentials and URLs**
    <br>
 
-   - Duplicate [devClusterTemplate.env.json](../env_variables/devClusterTemplate.env.json) file and rename the duplicated file to `local.env.json` in the env_variables folder.
-     - Test data on development clusters are created using school API.
-   - Duplicate [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) file and rename the duplicated file to `staging.env.json` in the env_variables folder.
-     - Test data on the staging environment is fetched from the seed data on the server.
-   - Add your credentials and environment-specific variables to `local.env.json` and `staging.env.json` from 1Password including api keys.
-     - Remember to add all instances, as in 1Password, we have different vaults available for each namespace.
-     - Contact the QA team for the required 1Password links.
-       <br>
+   # Setting Up Environment Variables for Dev Clusters:
+
+   Duplicate the file [devClusterTemplate.env.json](../env_variables/devClusterTemplate.env.json) and rename the duplicated file to `local.env.json` inside the `env_variables` folder.
+   Include the required development namespace URLs for BRB/dBC/NBC.
+   Test user data on development clusters are created using the school API.
+   To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
+   Contact the QA team for the necessary 1Password links.
+
+   # Setting Up Environment Variables for Staging:
+
+   Duplicate the file [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) and rename the duplicated file to `staging.env.json` in the `env_variables` folder.
+   Test data on the staging environment are fetched from the seed data on the server.
+   Add the environment-specific credentials to `staging.env.json` from 1Password (1PW).
+   Ensure all instances are included, as 1Password contains different vaults for each namespace with testing credentials.
+   Contact the QA team for the necessary 1Password links.
 
 4. **Installing Dependencies**
 
