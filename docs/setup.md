@@ -60,4 +60,4 @@ This document provides comprehensive instructions for setting up the project env
    <br>
 
 5. **Running Cypress Tests**
-   For details on running Cypress tests, including options and configurations, refer to the [Running Tests Guide](running_tests_guide.md)
+   For details on running Cypress tests, including options and configurations, refer to the [Executing Tests Guide](running_tests_guide.md)
