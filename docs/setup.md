@@ -31,21 +31,21 @@ This document provides comprehensive instructions for setting up the project env
 3. **Setting Up Environment Variables for the Testing User Credentials and URLs**
    <br>
 
-   # Setting Up Environment Variables for Dev Clusters:
+   Setting Up Environment Variables for Dev Clusters:
 
-   Duplicate the file [devClusterTemplate.env.json](../env_variables/devClusterTemplate.env.json) and rename the duplicated file to `local.env.json` inside the `env_variables` folder.
-   Include the required development namespace URLs for BRB/dBC/NBC.
-   Test user data on development clusters are created using the school API.
-   To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
-   Contact the QA team for the necessary 1Password links.
+   - Duplicate the file [devClusterTemplate.env.json](../env_variables/devClusterTemplate.env.json) and rename the duplicated file to `local.env.json` inside the `env_variables` folder.
+   - Include the required development namespace URLs for BRB/dBC/NBC.
+   - Test user data on development clusters are created using the school API.
+   - To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
+   - Contact the QA team for the necessary 1Password links.
 
-   # Setting Up Environment Variables for Staging:
+   Setting Up Environment Variables for Staging:
 
-   Duplicate the file [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) and rename the duplicated file to `staging.env.json` in the `env_variables` folder.
-   Test data on the staging environment are fetched from the seed data on the server.
-   Add the environment-specific credentials to `staging.env.json` from 1Password (1PW).
-   Ensure all instances are included, as 1Password contains different vaults for each namespace with testing credentials.
-   Contact the QA team for the necessary 1Password links.
+   - Duplicate the file [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) and rename the duplicated file to `staging.env.json` in the `env_variables` folder.
+   - Test data on the staging environment are fetched from the seed data on the server.
+   - Add the environment-specific credentials to `staging.env.json` from 1Password (1PW).
+   - Ensure all instances are included, as 1Password contains different vaults for each namespace with testing credentials.
+   - Contact the QA team for the necessary 1Password links.
 
 4. **Installing Dependencies**
 
