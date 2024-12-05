@@ -5,22 +5,19 @@ import Courses from "../../pages/course/pageCourses";
 const courses = new Courses();
 const board = new Board();
 
-Given(
-	"a course board exists in course {string} with name {string}",
-	(courseName, boardName) => {
-		courses.navigateToCoursesOverview();
-		courses.navigateToCourseBoard(courseName);
-		courses.clickOnCreateContentFAB();
-		board.clickOnFABToCreateNewColumnBoard();
-		board.clickOnMultiColumnBoardOptionInDialogBox();
-		board.clickOnThreeDotMenuInCourseBoardTitle();
-		board.clickOnEditInThreeDotCourseBoardTitle();
-		board.enterCourseBoardTitle(boardName);
-		board.clickOutsideTheColumnToSaveTheColumn();
-		board.clickOnThreeDotMenuInCourseBoardTitle();
-		board.clickPublishOptionInThreeDotMenuInCourseBoard();
-	}
-);
+Given("a board exists in course {string} with name {string}", (courseName, boardName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCourseBoard(courseName);
+	courses.clickOnCreateContentFAB();
+	board.clickOnFABToCreateNewColumnBoard();
+	board.clickOnMultiColumnBoardOptionInDialogBox();
+	board.clickOnThreeDotMenuInCourseBoardTitle();
+	board.clickOnEditInThreeDotCourseBoardTitle();
+	board.enterCourseBoardTitle(boardName);
+	board.clickOutsideTheColumnToSaveTheColumn();
+	board.clickOnThreeDotMenuInCourseBoardTitle();
+	board.clickPublishOptionInThreeDotMenuInCourseBoard();
+});
 
 Given("the board has a column with a card", (columnName) => {
 	board.clickOnAddNewColumnButton();
