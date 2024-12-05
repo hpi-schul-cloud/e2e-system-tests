@@ -21,6 +21,25 @@ class News {
 	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
 	static #newsContent = '[id="main-content"]';
+	static #newsOverviewTabUnpublished = '[data-tab="b"]'
+
+	doNotSeeNewsWhenNewsNotYetPublished(newsTitle) {
+		cy.get("span", { timeout: 20000 }).then(($span) => {
+			if ($span.find(News.#newsName)) {
+				cy.contains(newsTitle).should("not.be.visible");
+			} else {
+				cy.contains(
+					"Keine aktuellen Einträge vorhanden." || "Bisher gibt es keine News."
+				).should("exist");
+			}
+		});
+	}
+
+	seeNewsWhenNewsNotYetPublished(newsTitle) {
+		cy.get("span", { timeout: 20000 }).then(($span) => {
+			cy.contains(newsTitle).should("be.visible");
+		});
+	}
 
 	doNotSeeNews(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
@@ -32,6 +51,10 @@ class News {
 				).should("exist");
 			}
 		});
+	}
+
+	clickOnTabUnpublishedNews() {
+		cy.get(News.#newsOverviewTabUnpublished).click();
 	}
 
 	confirmDeletionOnDialogBox() {
@@ -121,7 +144,14 @@ class News {
 
 			if (newsStartTime === "currentTime") {
 				startTime = new Date(today);
-				startTimeText = startDate.toLocaleString(News.#deDateFormat, {
+				startTimeText = startTime.toLocaleString(News.#deDateFormat, {
+					hour: "2-digit",
+					minute: "2-digit"
+				});
+			} else if (newsStartTime === "+2minutes") {
+				startTime = new Date(today);
+				startTime.setMinutes(startTime.getMinutes() + 2);
+				startTimeText = startTime.toLocaleString(News.#deDateFormat, {
 					hour: "2-digit",
 					minute: "2-digit"
 				});
@@ -154,5 +184,11 @@ class News {
 	seeNewsTimeInfoOnOverviewPage(newsTimeInfo) {
 		cy.get(News.#elementHeader).contains(newsTimeInfo).should("exist");
 	}
+
+	waitBeforeReload(timeInSeconds) {
+		timeInSeconds = parseInt(timeInSeconds);
+		cy.wait(timeInSeconds*1000).reload();
+	}
+
 }
 export default News;

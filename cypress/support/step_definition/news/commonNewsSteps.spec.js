@@ -58,6 +58,10 @@ Then("I do not see the news {string}", (newsName) => {
 	news.doNotSeeNews(newsName);
 });
 
+Then("I do not see the unpublished news {string}", (newsName) => {
+	news.doNotSeeNewsWhenNewsNotYetPublished(newsName);
+});
+
 When("I set news-visibility-start-date to {string} days at {string}", (newsDayDifference, newsTime) => {
 	news.setNewsStartDate(newsDayDifference, newsTime);
 });
@@ -77,5 +81,16 @@ Then(
 	}
 );
 
+When("I wait {string} seconds and reload", (timeInSeconds) => {
+	news.waitBeforeReload(timeInSeconds)
+});
+
+When("I click on tab for unpublished news", () => {
+	news.clickOnTabUnpublishedNews()
+});
+
+Then("I see the unpublished news {string}", (newsTitle) => {
+	news.seeNewsWhenNewsNotYetPublished(newsTitle)
+});
 
 
