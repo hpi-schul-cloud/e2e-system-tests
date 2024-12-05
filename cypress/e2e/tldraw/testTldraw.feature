@@ -11,6 +11,10 @@ Feature: Test tldraw on board
         When I click on plus icon to add content into card
         When I select whiteboard from the menu
         When I click on the whiteboard element
+        When I click on the pencil tool
+        When I draw a line on the canvas
+        When I click on the text tool
+        When I type text on the canvas
 
         Examples:
 		    | namespace | teacher       | course_name              | board_name              |
