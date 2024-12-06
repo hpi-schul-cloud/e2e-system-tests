@@ -216,5 +216,8 @@ class Rooms {
 	seeBtnDialogCancel() {
 		cy.get(Rooms.#btnDialogCancel).should("be.visible");
 	}
+	clickOnBtnDialogCancel() {
+		cy.get(Rooms.#btnDialogCancel).click();
+	}
 }
 export default Rooms;

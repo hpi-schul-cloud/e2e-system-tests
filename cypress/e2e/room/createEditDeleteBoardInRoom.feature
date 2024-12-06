@@ -32,6 +32,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on the button three dot menu in room board
         When I click on delete in board menu
         Then I see the button to cancel the dialog
+        When I click on the button to cancel the deletion
 
 
 

@@ -173,3 +173,6 @@ When("I click on delete in board menu", () => {
 Then("I see the button to cancel the dialog", () => {
 	rooms.seeBtnDialogCancel();
 });
+When("I click on the button to cancel the deletion", () => {
+	rooms.clickOnBtnDialogCancel();
+});
