@@ -25,6 +25,8 @@ Feature: Room - Add, edit and delete board in room
         When I click on button to add multi column board
         Then I see the page room board details
         When I click on the button three dot menu in room board
+        When I click on edit in board menu
+        Then I enter the course board title '<board_title>'
 
 
 
@@ -32,8 +34,8 @@ Feature: Room - Add, edit and delete board in room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name          |   board_name         | school_name             | role_name | participant_name |
-            | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | cypress-automated-tests | Lehrkraft | teacher_2        |
+            | teacher      | namespace | room_name          |   board_name         | board_title    | school_name             | role_name | participant_name |
+            | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title | cypress-automated-tests | Lehrkraft | teacher_2        |
 
         # @staging_test
         # Examples:

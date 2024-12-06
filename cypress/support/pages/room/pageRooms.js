@@ -30,6 +30,9 @@ class Rooms {
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
 	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
+	static #btnBoardMenuActionEdit = '[data-testid="board-menu-action-edit"]';
+	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
+
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -193,6 +196,14 @@ class Rooms {
 	}
 	clickOnThreeDotMenuInRoomBoardTitle() {
 		cy.get(Rooms.#boardMenuIcon).click();
+	}
+	clickOnEditInBoardMenu() {
+		cy.get(Rooms.#btnBoardMenuActionEdit).click();
+	}
+	enterRoomBoardTitle(boardTitle) {
+		cy.get(Board.#roomBoardTitleOnPage).within(() => {
+			this.clearAndType("input", boardTitle);
+		});
 	}
 
 }

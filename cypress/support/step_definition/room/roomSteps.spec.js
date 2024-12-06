@@ -155,3 +155,11 @@ Then("I see the page room board details", () => {
 When("I click on the button three dot menu in room board", () => {
 	rooms.clickOnThreeDotMenuInRoomBoardTitle();
 });
+
+When("I click on edit in board menu", () => {
+	rooms.clickOnEditInBoardMenu();
+});
+
+Then("I enter the room board title {string}", (boardTitle) => {
+	rooms.enterRoomBoardTitle(boardTitle);
+});
