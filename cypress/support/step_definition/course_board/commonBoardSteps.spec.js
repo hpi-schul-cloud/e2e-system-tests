@@ -1,7 +1,29 @@
-import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
+import Courses from "../../pages/course/pageCourses";
 
+const courses = new Courses();
 const board = new Board();
+
+Given("a board exists in course {string}", (courseName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCourseBoard(courseName);
+	courses.clickOnCreateContentFAB();
+	board.clickOnFABToCreateNewColumnBoard();
+	board.clickOnMultiColumnBoardOptionInDialogBox();
+	board.clickOnThreeDotMenuInCourseBoardTitle();
+	board.clickPublishOptionInThreeDotMenuInCourseBoard();
+});
+
+Given("the board has a column with a card", (columnName) => {
+	board.clickOnAddNewColumnButton();
+	board.clickOutsideTheColumnToSaveTheColumn();
+	board.clickPlusIconToAddCardInColumn();
+});
+
+When("I click on the board", () => {
+	board.clickOnCourseBoardCardInCourseDetailPage();
+});
 
 When("I click on three dot menu in the card", () => {
 	board.clickOnThreeDotOnCard();
@@ -66,9 +88,3 @@ Then("I see a whiteboard on the board", () => {
 Then("I select whiteboard from the menu", () => {
 	board.selectWhiteboardFromMenu();
 });
-
-
-
-
-
-
