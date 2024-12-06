@@ -127,3 +127,31 @@ Then(
 		rooms.notSeeParticipantInList(participantName);
 	}
 );
+
+When("I click on the add content button to see the creation button", () => {
+	rooms.clickOnAddContentButton();
+});
+
+Then("I see the button to add board", () => {
+	rooms.seeFabButtonToAddBoard();
+});
+
+When ("I click on the fab button to add a Board", () => {
+	rooms.clickOnFabButtonToAddBoard();
+});
+
+Then("I see the column board dialog box", () => {
+	rooms.seeColumnBoardDialogBox();
+});
+
+When("I click on button to add multi column board", () => {
+	rooms.clickOnButtonToAddMultiColumnBoard();
+});
+
+Then("I see the page room board details", () => {
+	rooms.seeNewRoomBoardCreatePage();
+});
+
+When("I click on the button three dot menu in room board", () => {
+	rooms.clickOnThreeDotMenuInRoomBoardTitle();
+});

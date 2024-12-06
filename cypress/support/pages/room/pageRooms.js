@@ -10,6 +10,8 @@ class Rooms {
 	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
 	static #roomDetailFABParticipants = '[data-testid="room-action-manage-participants"]';
 	static #roomDetailFABDelete = '[data-testid="room-action-delete"]';
+	static #addContentButton = '[data-testid="add-content-button"]';
+	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
 	static #confirmDeletionModalTitle = '[data-testid="delete-dialog-item"]';
 	static #confirmDeletionModalDelete = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
@@ -25,6 +27,9 @@ class Rooms {
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
+	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
+	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
+	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -168,5 +173,27 @@ class Rooms {
 	notSeeParticipantInList(participantName) {
 		cy.get(Rooms.#participantTable).should("not.contain", participantName);
 	}
+	clickOnAddContentButton() {
+		cy.get(Rooms.#addContentButton).click();
+	}
+	seeFabButtonToAddBoard() {
+		cy.get(Rooms.#fabButtonAddBoard).should("be.visible");
+	}
+	clickOnFabButtonToAddBoard() {
+		cy.get(Rooms.#fabButtonAddBoard).click();
+	}
+	seeColumnBoardDialogBox() {
+		cy.get(Rooms.#boardLayoutDialogTitle).should("be.visible");
+	}
+	clickOnButtonToAddMultiColumnBoard() {
+		cy.get(Rooms.#dialogAddMultiColumnBoard).click();
+	}
+	seeNewRoomBoardCreatePage() {
+		cy.url().should("include", "/board");
+	}
+	clickOnThreeDotMenuInRoomBoardTitle() {
+		cy.get(Rooms.#boardMenuIcon).click();
+	}
+
 }
 export default Rooms;
