@@ -1018,7 +1018,7 @@ class Management {
 
 	insertToolLink(toolLink) {
 		cy.get(Management.#toolSelection).click().type(toolLink);
-		cy.get(Management.#toolConfigurationSelectItem).contains("OpenStreetMap").click();
+		cy.get(Management.#toolConfigurationSelectItem).contains("CY Test Tool OpenStreetMap").click();
 	}
 
 	checkConfiguration(key, value) {

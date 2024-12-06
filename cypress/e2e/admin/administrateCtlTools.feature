@@ -1,11 +1,14 @@
-@unstable_test
-Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
+@regression_test
+@stable_test
+Feature: Admin adds, edits and deletes CTL tools in school
 
     As an admin I want to administrate the CTL tools used in the school
 
-    @unstable_test
-    Scenario: Admin  adds, edits and deletes external tools
-        Given I am logged in as a 'admin1_nbc' at 'nbc'
+    @stable_test
+    Scenario Outline: Admin adds, edits and deletes external tools
+        Given I am logged in as a '<admin>' at '<namespace>'
+
+        # Admin tries to find a hidden external tool
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
@@ -14,16 +17,15 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
         Then I see the external tools configuration page
         Then I see the external tool configuration page title
         Then I see the tool configuration infotext
-        #    Admin tries to find a hidden external tool
         Then I do not see external tool 'CY Test Tool Hidden' in the tool selection
 
-        #    Admin adds a tool
+        # Admin adds a tool
         When I select the tool 'CY Test Tool 1' from available tools
         Then I see tool 'CY Test Tool 1' is selected
         When I click on save external tool button
         Then I see the tool 'CY Test Tool 1' in external tools table
 
-        #    Admin adds a tool with required custom parameter
+        # Admin adds a tool with required custom parameter
         When I click the add external tool button
         Then I see the external tools configuration page
         Then I see the external tool configuration page title
@@ -35,17 +37,17 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Required Parameters' in external tools table
 
-        #    Admin adds a tool via tool link with parameter
+        # Admin adds a tool via tool link with parameter
         When I click the add external tool button
         Then I see the external tools configuration page
         Then I see the external tool configuration page title
         Then I see the tool configuration infotext
         When I insert the external tool link 'https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823'
-        Then I see tool 'OpenStreetMap' is selected
+        Then I see tool 'CY Test Tool OpenStreetMap' is selected
         When I click on save external tool button
-        Then I see the tool 'OpenStreetMap' in external tools table
+        Then I see the tool 'CY Test Tool OpenStreetMap' in external tools table
 
-        #    Admin adds a tool with optional custom parameter
+        # Admin adds a tool with optional custom parameter
         When I click the add external tool button
         Then I see the external tools configuration page
         Then I see the external tool configuration page title
@@ -57,7 +59,7 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
 
-        #    Admin edits a tool
+        # Admin edits a tool
         When I click on edit button of tool 'CY Test Tool Optional Parameters'
         Then I see the external tools configuration page
         Then I see the external tool configuration page title
@@ -71,7 +73,7 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
         Then I see the external tools configuration page
         Then I see custom parameter input field 'schoolParam' contains 'updated test'
 
-        #    Admin deletes tools
+        # Admin deletes tools
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
@@ -79,6 +81,7 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
         Then I see the tool 'CY Test Tool 1' in external tools table
         Then I see the tool 'CY Test Tool Required Parameters' in external tools table
         Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
+        Then I see the tool 'CY Test Tool OpenStreetMap' in external tools table
         When I click on delete button of tool 'CY Test Tool 1'
         Then I see the external tool deletion dialog title
         Then I see the external tool deletion dialog information text
@@ -93,9 +96,18 @@ Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
         Then I see the external tool deletion dialog title
         Then I see the external tool deletion dialog information text
         When I confirm deletion on deletion dialog
-        When I click on delete button of tool 'OpenStreetMap'
+        Then I do not see the tool 'CY Test Tool Optional Parameters' in external tools table
+        When I click on delete button of tool 'CY Test Tool OpenStreetMap'
         Then I see the external tool deletion dialog title
         Then I see the external tool deletion dialog information text
         When I confirm deletion on deletion dialog
-        Then I do not see the tool 'OpenStreetMap' in external tools table
+        Then I do not see the tool 'CY Test Tool OpenStreetMap' in external tools table
         Then I see the external tools table is empty
+
+        @staging_test
+        Examples:
+            | admin      | namespace |
+            | admin1_nbc | nbc       |
+
+        # @school_api_test
+        # This feature is not executable with the school_api
