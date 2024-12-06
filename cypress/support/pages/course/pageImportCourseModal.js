@@ -4,7 +4,8 @@ class ImportCourseModal {
 
 	static #importShareCourseDialog = '[data-testid="import-modal"]'
 	static #importShareCourseToolsInfo = '[data-testid="import-modal-external-tools-info"]'
-	static #importShareCourseNameInput = '[data-testid="import-modal-name-input"]'
+	static #importShareCourseNameInputDiv = '[data-testid="import-modal-name-input"]'
+	static #importShareCourseNameInputField = 'div[data-testid="import-modal-name-input"] input[class="v-field__input"]'
 	static #importShareCourseDialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #importShareCourseDialogTitle = '[data-testid="dialog-title"]';
 	static #importShareCourseDialogTableHeader = '[data-testid="import-options-table-header"]';
@@ -26,9 +27,9 @@ class ImportCourseModal {
 	}
 
 	enterCourseNameForImportCourse(input) {
-		cy.get(ImportCourseModal.#importShareCourseNameInput).should("be.visible");
-		cy.get(ImportCourseModal.#importShareCourseNameInput).clear();
-		cy.get(ImportCourseModal.#importShareCourseNameInput).type(input);
+		cy.get(ImportCourseModal.#importShareCourseNameInputDiv).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseNameInputDiv).clear();
+		cy.get(ImportCourseModal.#importShareCourseNameInputDiv).type(input);
 	}
 
 	clickOnConfirmButtonInImportShareCourseDialog() {
@@ -42,7 +43,9 @@ class ImportCourseModal {
 	}
 
 	seeDefaultCourseNameForImportCourse(defaultCourseName) {
-		cy.get(ImportCourseModal.#importShareCourseNameInput).should("be.visible")
+		cy.get(ImportCourseModal.#importShareCourseNameInputDiv).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseNameInputField).should("be.visible");
+		cy.get(ImportCourseModal.#importShareCourseNameInputField)
 			.invoke("attr", "value")
 			.then((value) => {
 				expect(value).to.equal(defaultCourseName);
