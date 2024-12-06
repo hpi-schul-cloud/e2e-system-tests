@@ -33,6 +33,8 @@ class Rooms {
 	static #btnBoardMenuActionEdit = '[data-testid="board-menu-action-edit"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
 	static #mainPageArea = '[id="main-content"]';
+	static #boardMenuActionDelete = '[data-testid="board-menu-action-delete"]';
+	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -207,6 +209,12 @@ class Rooms {
 	}
 	clickOutsideTheTitleToSaveTheModifiedTitle() {
 		cy.get(Rooms.#mainPageArea).click("bottom");
+	}
+	clickOnDeleteInBoardMenu() {
+		cy.get(Rooms.#boardMenuActionDelete).click();
+	}
+	seeBtnDialogCancel() {
+		cy.get(Rooms.#btnDialogCancel).should("be.visible");
 	}
 }
 export default Rooms;
