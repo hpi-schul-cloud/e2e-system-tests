@@ -15,6 +15,16 @@ Given("a course with name {string} exists with me as teacher", (courseName) => {
 	courses.clickOnNextStepButtonOnCourseParticipationDetail();
 });
 
+Given("a course with name {string} exists with me as teacher and {string} as student", (courseName, studentName) => {
+	courses.navigateToCoursesOverview();
+	courses.clickOnCreateCourseFAB();
+	courses.fillCourseCreationForm(courseName);
+	courses.selectCourseColour();
+	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+	courses.selectStudentInCourseCreatePage(studentName);
+	courses.clickOnNextStepButtonOnCourseParticipationDetail();
+});
+
 Then("I select teacher {string} is selected by default", (teacherName) => {
 	courses.selectTeacherInCourseCreatePage(teacherName);
 });

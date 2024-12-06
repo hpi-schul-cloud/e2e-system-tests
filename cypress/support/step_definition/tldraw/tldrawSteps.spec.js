@@ -12,9 +12,9 @@ When("I click on the text tool", () => {
 });
 
 When("I draw a line on the canvas", () => {
-	tldraw.drawALine();
+	tldraw.drawLine(100,100,300,300);
 });
 
 When("I type text on the canvas", () => {
-	tldraw.typeText();
+	tldraw.typeText(500, 500, "Hello World");
 });

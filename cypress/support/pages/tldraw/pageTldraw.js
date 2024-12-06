@@ -1,5 +1,5 @@
 export class Tldraw {
-	static #tldrawEditor = ".tldraw";
+	static #canvas = "#canvas";
 	static #pencilButton = "#TD-PrimaryTools-Pencil";
 	static #textButton = "#TD-PrimaryTools-Text";
 
@@ -11,14 +11,14 @@ export class Tldraw {
 		cy.get(Tldraw.#textButton).click();
 	}
 
-	drawALine() {
-		cy.get(Tldraw.#tldrawEditor)
-			.trigger("mousedown", 100, 100)
-			.trigger("mousemove", 200, 200)
-			.trigger("mouseup", 200, 200);
+	drawLine(startX, startY, endX, endY) {
+		cy.get(Tldraw.#canvas)
+			.realMouseDown({ button: "left", x: startX, y: startY })
+			.realMouseMove(endX, endY)
+			.realMouseUp({ button: "left", x: endX, y: endY });
 	}
 
-	typeText() {
-		cy.get(Tldraw.#tldrawEditor).click(300, 300).type("text");
+	typeText(x, y, text) {
+		cy.get(Tldraw.#canvas).realClick({ x: 500, y: 500 }).realType(text);
 	}
 }

@@ -21,6 +21,10 @@ Given("the board has a column with a card", (columnName) => {
 	board.clickPlusIconToAddCardInColumn();
 });
 
+When("I click on the board", () => {
+	board.clickOnCourseBoardCardInCourseDetailPage();
+});
+
 When("I click on three dot menu in the card", () => {
 	board.clickOnThreeDotOnCard();
 });
