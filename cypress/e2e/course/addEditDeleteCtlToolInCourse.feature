@@ -69,14 +69,12 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I lauch tool 'CY Test Tool 1' with given url 'https://google.com/'
         Then I see tool 'CY Test Tool 1' was launched
 
-        # Teacher adds a tool twice with different name
+        # Teacher adds a tool twice but with a different name
         When I click on the button to add a tool
         Then I see the tool configuration page title
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool 1' from available tools
         Then I see tool 'CY Test Tool 1' is selected
-        When I click on save external tool button
-        Then I see an error alert
         When I enter 'CY Test Tool 1 New' in display name field
         When I click on save external tool button
         Then I see the tool 'CY Test Tool 1 New' in the tool overview
@@ -173,12 +171,17 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see the external tools table
         When I click on delete button of tool 'CY Test Tool 1'
         When I confirm deletion on deletion dialog
+        Then I do not see the tool 'CY Test Tool 1' in external tools table
         When I click on delete button of tool 'CY Test Tool Required Parameters'
         When I confirm deletion on deletion dialog
+        Then I do not see the tool 'Y Test Tool Required Parameters' in external tools table
         When I click on delete button of tool 'CY Test Tool Optional Parameters'
         When I confirm deletion on deletion dialog
+        Then I do not see the tool 'CY Test Tool Optional Parameters' in external tools table
         When I click on delete button of tool 'CY Test Tool OpenStreetMap'
         When I confirm deletion on deletion dialog
+        Then I do not see the tool 'CY Test Tool OpenStreetMap' in external tools table
+        Then I see the external tools table is empty
 
         @staging_test
         Examples:
