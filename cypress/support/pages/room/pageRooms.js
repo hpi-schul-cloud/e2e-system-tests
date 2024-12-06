@@ -32,7 +32,7 @@ class Rooms {
 	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
 	static #btnBoardMenuActionEdit = '[data-testid="board-menu-action-edit"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
-
+	static #mainPageArea = '[id="main-content"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -201,10 +201,12 @@ class Rooms {
 		cy.get(Rooms.#btnBoardMenuActionEdit).click();
 	}
 	enterRoomBoardTitle(boardTitle) {
-		cy.get(Board.#roomBoardTitleOnPage).within(() => {
+		cy.get(Rooms.#roomBoardTitleOnPage).within(() => {
 			this.clearAndType("input", boardTitle);
 		});
 	}
-
+	clickOutsideTheTitleToSaveTheModifiedTitle() {
+		cy.get(Rooms.#mainPageArea).click("bottom");
+	}
 }
 export default Rooms;

@@ -163,3 +163,7 @@ When("I click on edit in board menu", () => {
 Then("I enter the room board title {string}", (boardTitle) => {
 	rooms.enterRoomBoardTitle(boardTitle);
 });
+
+When("I click on the page outside of the title of the board", () => {
+	rooms.clickOutsideTheTitleToSaveTheModifiedTitle();
+});

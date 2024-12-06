@@ -27,7 +27,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on the button three dot menu in room board
         When I click on edit in board menu
         Then I enter the course board title '<board_title>'
-
+        When I click on the page outside of the title of the board
 
 
 
