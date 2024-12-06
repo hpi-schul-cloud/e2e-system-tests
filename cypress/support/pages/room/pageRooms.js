@@ -207,6 +207,9 @@ class Rooms {
 			this.clearAndType("input", boardTitle);
 		});
 	}
+	seeGivenRoomBoardTitle(boardTitle) {
+		cy.get(Rooms.#roomBoardTitleOnPage).find('input').should('have.value', boardTitle);
+	}
 	clickOutsideTheTitleToSaveTheModifiedTitle() {
 		cy.get(Rooms.#mainPageArea).click("bottom");
 	}

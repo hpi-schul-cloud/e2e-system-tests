@@ -26,8 +26,9 @@ Feature: Room - Add, edit and delete board in room
         Then I see the page room board details
         When I click on the button three dot menu in room board
         When I click on edit in board menu
-        Then I enter the course board title '<board_title>'
+        Then I enter the course board title '<edited_board_title>'
         When I click on the page outside of the title of the board
+        Then I see my room board is named '<edited_board_title>'
         # TODO test if renaming worked
         When I click on the button three dot menu in room board
         When I click on delete in board menu
@@ -42,7 +43,7 @@ Feature: Room - Add, edit and delete board in room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name          |   board_name         | board_title    | school_name             | role_name | participant_name |
+            | teacher      | namespace | room_name          |   board_name         | edited_board_title    | school_name             | role_name | participant_name |
             | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title | cypress-automated-tests | Lehrkraft | teacher_2        |
 
         # @staging_test

@@ -167,6 +167,9 @@ Then("I enter the room board title {string}", (boardTitle) => {
 When("I click on the page outside of the title of the board", () => {
 	rooms.clickOutsideTheTitleToSaveTheModifiedTitle();
 });
+Then("I see my room board is named {string}", (boardTitle) => {
+	rooms.seeGivenRoomBoardTitle(boardTitle);
+});
 When("I click on delete in board menu", () => {
 	rooms.clickOnDeleteInBoardMenu();
 });
@@ -176,3 +179,4 @@ Then("I see the button to cancel the dialog", () => {
 When("I click on the button to cancel the deletion", () => {
 	rooms.clickOnBtnDialogCancel();
 });
+
