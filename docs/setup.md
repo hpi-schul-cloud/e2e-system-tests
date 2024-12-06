@@ -37,7 +37,7 @@ This document provides comprehensive instructions for setting up the project env
    - Include the required development namespace URLs for BRB/dBC/NBC.
    - Test user data on development clusters are created using the school API.
    - To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
-   - Contact QA tem for the necessary 1Password links.
+   - Contact QA team for the necessary 1Password links.
 
    Setting Up Environment Variables for Staging:
 
