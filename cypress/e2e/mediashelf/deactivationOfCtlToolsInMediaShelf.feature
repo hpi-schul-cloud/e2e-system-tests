@@ -11,7 +11,6 @@ Feature: Deactivation of ctl tools in media shelf
         Given I am logged in as a '<admin>' at '<namespace>'
 
         # Admin adds a tool
-        Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
@@ -118,8 +117,11 @@ Feature: Deactivation of ctl tools in media shelf
         Then I see the external tools table
         When I click on delete button of tool 'CY Test Tool 1'
         When I confirm deletion on deletion dialog
+        Then I do not see the tool 'CY Test Tool 1' in external tools table
         When I click on delete button of tool 'CY Test Tool 2'
         When I confirm deletion on deletion dialog
+        Then I do not see the tool 'CY Test Tool 2' in external tools table
+        Then I see the external tools table is empty
 
         @staging_test
         Examples:
