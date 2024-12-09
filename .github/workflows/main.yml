@@ -78,7 +78,6 @@ jobs:
 
       - name: Start Edge (Headless)
         run: |
-          # nohup microsoft-edge-stable --headless --no-sandbox --remote-debugging-port=127.0.0.1:9222 > edge.log 2>&1 &
           nohup microsoft-edge-stable --headless --no-sandbox > edge.log 2>&1 &
           echo $! > edge_pid
 
