@@ -90,18 +90,18 @@ jobs:
           # sleep 5
           # cat edge.log
 
-      - name: Wait for Edge to Warm Up
-        run: |
-          n=0
-          until curl -s http://localhost:9222/json | grep -q "WebSocketDebuggerUrl" || [ $n -ge 30 ]; do
-            echo "Waiting for Edge to start..."
-            n=$((n+1))
-            sleep 1
-          done
-          if [ $n -ge 30 ]; then
-            echo "Edge failed to start within 30 seconds"
-            exit 1
-          fi
+      # - name: Wait for Edge to Warm Up
+      #   run: |
+      #     n=0
+      #     until curl -s http://localhost:9222/json | grep -q "WebSocketDebuggerUrl" || [ $n -ge 30 ]; do
+      #       echo "Waiting for Edge to start..."
+      #       n=$((n+1))
+      #       sleep 1
+      #     done
+      #     if [ $n -ge 30 ]; then
+      #       echo "Edge failed to start within 30 seconds"
+      #       exit 1
+      #     fi
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
