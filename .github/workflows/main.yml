@@ -69,12 +69,12 @@ jobs:
             "${workspace_path}" \
             "${{ inputs.environment }}"
 
-      - name: Install Edge
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y microsoft-edge-stable
-          sudo apt-get install -y libnss3 libatk-bridge2.0-0 libcups2 libxkbcommon-x11-0 dbus-x11
-          microsoft-edge-stable --version
+      # - name: Install Edge
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y microsoft-edge-stable
+      #     sudo apt-get install -y libnss3 libatk-bridge2.0-0 libcups2 libxkbcommon-x11-0 dbus-x11
+      #     microsoft-edge-stable --version
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -85,8 +85,8 @@ jobs:
 
       - name: Start Edge (Headless)
         run: |
-          export DBUS_SESSION_BUS_ADDRESS=/dev/null
-          # nohup microsoft-edge-stable --headless --no-sandbox --remote-debugging-port=9222 > edge.log 2>&1 &
+          # export DBUS_SESSION_BUS_ADDRESS=/dev/null
+          nohup microsoft-edge-stable --headless --no-sandbox --remote-debugging-port=9222 > edge.log 2>&1 &
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
