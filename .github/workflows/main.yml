@@ -69,10 +69,10 @@ jobs:
             "${workspace_path}" \
             "${{ inputs.environment }}"
 
-      # - name: Install Edge
-      #   run: |
-      #     sudo apt-get update
-      #     sudo apt-get install -y microsoft-edge-stable
+      - name: Install Edge
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y microsoft-edge-stable
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -80,6 +80,24 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run pretest
           browser: edge
+
+      - name: Warm-Up Edge
+        run: |
+          # Open Edge to warm it up
+          nohup microsoft-edge-stable --headless --remote-debugging-port=9222 > edge-warmup.log 2>&1 &
+
+      - name: Wait for Edge to Warm Up
+        run: |
+          n=0
+          until curl -s http://localhost:9222/json | grep -q "WebSocketDebuggerUrl" || [ $n -ge 30 ]; do
+            echo "Waiting for Edge to start..."
+            n=$((n+1))
+            sleep 1
+          done
+          if [ $n -ge 30 ]; then
+            echo "Edge failed to start within 30 seconds"
+            exit 1
+          fi
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
