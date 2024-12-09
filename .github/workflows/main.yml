@@ -26,7 +26,7 @@ on:
 
 jobs:
   configure-load-secrets-and-run_tests:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -69,16 +69,17 @@ jobs:
             "${workspace_path}" \
             "${{ inputs.environment }}"
 
-      - name: Install Edge
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y microsoft-edge-stable
+      # - name: Install Edge
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y microsoft-edge-stable
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
         with:
           working-directory: e2e-system-tests
           command: npm run pretest
+          browser: edge
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
