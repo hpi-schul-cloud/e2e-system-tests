@@ -17,7 +17,7 @@
 		"cy:headless:only:local": "cypress run --browser edge -e tags=@only,environmentName=local",
 		"cy:headless:unstable:local": "cypress run --browser edge -e tags=@unstable_test,environmentName=local",
 		"cy:gui:stable:regression_test:school_api_test:ci": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci",
-		"cy:headless:stable:schedule_run:school_api_test:ci":"xvfb-run cypress run --browser edge -e tags=\"@stable_test and @school_api_test and @schedule_run\",environmentName=ci,parallelGroup=scheduled",
+		"cy:headless:stable:schedule_run:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@stable_test and @school_api_test and @schedule_run\",environmentName=ci,parallelGroup=scheduled",
 		"cy:headless:stable:regression_test:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci,parallelGroup=automatic",
 		"cy:headless:stable:pr:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@pr and @stable_test and @school_api_test\",environmentName=ci",
 		"cy:headless:stable:groupA:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-A and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-A",
@@ -45,7 +45,7 @@
 		"axios": "^1.6.8",
 		"cypress": "^13.2.0",
 		"cypress-file-upload": "^5.0.8",
-		"cypress-real-events": "^1.11.0",
+		"cypress-real-events": "^1.13.0",
 		"multiple-cucumber-html-reporter": "^1.21.4",
 		"prettier": "^3.2.5",
 		"webpack": "^5.77.0"
