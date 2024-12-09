@@ -14,7 +14,7 @@ class Dashboard {
 	static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
 	static #dashboardTaskCourseName = '[data-testid="task-course-name"]';
 	static #dashboardTaskName = '[data-testid="task-name"]';
-	static #pageTitle = '[data-testid="title_of_an_element"]';
+	static #elementTitle = '[data-testid="title_of_an_element"]';
 	static #newsText = '[data-testid="body_of_element"]';
 	static #newsSection = '[data-testid="news-section"]';
 	static #dashboardLink = 'a[data-testid="Übersicht"]';
@@ -134,13 +134,13 @@ class Dashboard {
 
 	seeSchoolNews(newsTitle, newsDesc) {
 		cy.get(Dashboard.#newsSection).should("be.visible");
-		cy.get(Dashboard.#pageTitle).contains(newsTitle);
+		cy.get(Dashboard.#elementTitle).contains(newsTitle);
 		cy.get(Dashboard.#newsText).contains(newsDesc);
 	}
 
 	seeTeamsNews(newsTitle, newsDesc) {
 		cy.get(Dashboard.#newsSection).should("be.visible");
-		cy.get(Dashboard.#pageTitle).contains(newsTitle);
+		cy.get(Dashboard.#elementTitle).contains(newsTitle);
 		cy.get(Dashboard.#newsText).contains(newsDesc);
 	}
 
