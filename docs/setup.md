@@ -48,6 +48,8 @@ This document provides comprehensive instructions for setting up the project env
    - Ensure all instances are included, as 1Password contains different vaults for each namespace with testing credentials.
    - Contact QA team for the necessary 1Password links.
 
+<br>
+
 4. **Installing Dependencies**
 
    Use `npm ci` for a clean and consistent installation of project dependencies:
