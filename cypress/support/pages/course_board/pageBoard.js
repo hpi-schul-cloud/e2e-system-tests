@@ -11,7 +11,7 @@ class Board {
 	static #mainPageArea = '[id="main-content"]';
 	static #editOptionThreeDot = '[data-testid="board-menu-action-edit"]';
 	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-0"]';
-	static #threeDotMenuInCard = '[data-testid="card-menu-btn"]';
+	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
 	static #deleteOptionThreeDot = '[data-testid="board-menu-action-delete"]';
 	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
@@ -369,6 +369,10 @@ class Board {
 
 	seeTextInTextFieldInCard(textContent){
 		cy.contains(textContent);
+	}
+
+	seeDeletedElement(name) {
+		cy.get(Board.#deletedElement).contains(name).should("be.visible");
 	}
 }
 export default Board;
