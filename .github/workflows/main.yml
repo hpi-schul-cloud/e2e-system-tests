@@ -86,7 +86,8 @@ jobs:
       - name: Start Edge (Headless)
         run: |
           # export DBUS_SESSION_BUS_ADDRESS=/dev/null
-          nohup microsoft-edge-stable --headless --no-sandbox --remote-debugging-port=9222 > edge.log 2>&1 &
+          nohup microsoft-edge-stable --headless --no-sandbox --remote-debugging-port=127.0.0.1:9222 > edge.log 2>&1 &
+          echo $! > edge_pid
 
       - name: Cypress run
         uses: cypress-io/github-action@v5
@@ -94,6 +95,14 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run ${{ inputs.tag }}
           browser: edge
+
+      - name: Clean Up Edge Process
+        if: always()
+        run: |
+          if [ -f edge_pid ]; then
+            kill $(cat edge_pid) || true
+            rm edge_pid
+          fi
 
       - name: Generate Report
         if: always()
