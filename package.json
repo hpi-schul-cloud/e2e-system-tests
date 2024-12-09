@@ -16,14 +16,14 @@
 		"cy:headless:stable:pr:staging:local": "cypress run --browser edge -e tags=\"@pr and @stable_test and @staging_test\",environmentName=staging",
 		"cy:headless:only:local": "cypress run --browser edge -e tags=@only,environmentName=local",
 		"cy:headless:unstable:local": "cypress run --browser edge -e tags=@unstable_test,environmentName=local",
-		"cy:gui:stable:regression_test:school_api_test:ci": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci",
-		"cy:headless:stable:schedule_run:school_api_test:ci":"cypress run --browser edge -e tags=\"@stable_test and @school_api_test and @schedule_run\",environmentName=ci,parallelGroup=scheduled",
-		"cy:headless:stable:regression_test:school_api_test:ci": "cypress run --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci,parallelGroup=automatic",
-		"cy:headless:stable:pr:school_api_test:ci": "cypress run --browser edge -e tags=\"@pr and @stable_test and @school_api_test\",environmentName=ci",
-		"cy:headless:stable:groupA:school_api_test:ci": "cypress run --browser edge -e tags=\"@group-A and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-A",
-		"cy:headless:stable:groupB:school_api_test:ci": "cypress run --browser edge -e tags=\"@group-B and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-B",
-		"cy:headless:only:ci": "cypress run --browser edge -e tags=@only,environmentName=ci",
-		"cy:headless:unstable:ci": "cypress run --browser edge -e tags=@unstable_test,environmentName=ci"
+		"cy:gui:stable:regression_test:school_api_test:ci": "xvfb-run cypress open --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci",
+		"cy:headless:stable:schedule_run:school_api_test:ci":"xvfb-run cypress run --browser edge -e tags=\"@stable_test and @school_api_test and @schedule_run\",environmentName=ci,parallelGroup=scheduled",
+		"cy:headless:stable:regression_test:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci,parallelGroup=automatic",
+		"cy:headless:stable:pr:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@pr and @stable_test and @school_api_test\",environmentName=ci",
+		"cy:headless:stable:groupA:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-A and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-A",
+		"cy:headless:stable:groupB:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-B and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-B",
+		"cy:headless:only:ci": "xvfb-run cypress run --browser edge -e tags=@only,environmentName=ci",
+		"cy:headless:unstable:ci": "xvfb-run cypress run --browser edge -e tags=@unstable_test,environmentName=ci"
 	},
 	"repository": {
 		"type": "git",
