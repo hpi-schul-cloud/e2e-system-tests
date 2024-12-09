@@ -69,10 +69,10 @@ jobs:
             "${workspace_path}" \
             "${{ inputs.environment }}"
 
-      - uses: browser-actions/setup-edge@v1
-
-      - name: Print Edge version
-        run: (Get-Item (Get-Command msedge).Source).VersionInfo.ProductVersion
+      - name: Install Edge
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y microsoft-edge-stable
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
