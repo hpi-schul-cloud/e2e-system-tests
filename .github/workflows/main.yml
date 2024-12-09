@@ -73,6 +73,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y microsoft-edge-stable
+          sudo apt-get install -y libnss3 libatk-bridge2.0-0 libcups2 libxkbcommon-x11-0 dbus-x11
           microsoft-edge-stable --version
 
       - name: Clean up previous report
@@ -84,9 +85,10 @@ jobs:
 
       - name: Start Edge (Headless)
         run: |
-          nohup microsoft-edge-stable --headless --remote-debugging-port=9222 > edge.log 2>&1 &
-          sleep 5
-          cat edge.log
+          export DBUS_SESSION_BUS_ADDRESS=/dev/null
+          nohup microsoft-edge-stable --headless --no-sandbox --remote-debugging-port=9222 > edge.log 2>&1 &
+          # sleep 5
+          # cat edge.log
 
       - name: Wait for Edge to Warm Up
         run: |
