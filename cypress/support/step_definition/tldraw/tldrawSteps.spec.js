@@ -1,4 +1,4 @@
-import { When } from "@badeball/cypress-cucumber-preprocessor";
+import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import { Tldraw } from "../../pages/tldraw/pageTldraw";
 
 const tldraw = new Tldraw();
@@ -16,5 +16,13 @@ When("I draw a line on the canvas", () => {
 });
 
 When("I type text on the canvas", () => {
-	tldraw.typeText(500, 500, "Hello World");
+	tldraw.typeText("Hello World", 500, 500);
+});
+
+Then("I should see the line drawn by the teacher", () => {
+	tldraw.checkLine();
+});
+
+Then("I should see the text drawn by the teacher", () => {
+	tldraw.checkText("Hello World");
 });

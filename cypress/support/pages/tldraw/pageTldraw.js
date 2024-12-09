@@ -2,6 +2,8 @@ export class Tldraw {
 	static #canvas = "#canvas";
 	static #pencilButton = "#TD-PrimaryTools-Pencil";
 	static #textButton = "#TD-PrimaryTools-Text";
+	static drawShape = '[data-shape="draw"]';
+	static textShape = '[data-shape="text"]';
 
 	selectPencilTool() {
 		cy.get(Tldraw.#pencilButton).click();
@@ -18,7 +20,15 @@ export class Tldraw {
 			.realMouseUp({ button: "left", x: endX, y: endY });
 	}
 
-	typeText(x, y, text) {
-		cy.get(Tldraw.#canvas).realClick({ x: 500, y: 500 }).realType(text);
+	typeText(text, x, y) {
+		cy.get(Tldraw.#canvas).realClick({ x: x, y: y }).realType(text);
+	}
+
+	checkLine() {
+		cy.get(Tldraw.drawShape).should("be.visible");
+	}
+
+	checkText(text) {
+		cy.get(Tldraw.textShape).should("be.visible").should("contain", text);
 	}
 }
