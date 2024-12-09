@@ -73,6 +73,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y microsoft-edge-stable
+          microsoft-edge-stable --version
 
       - name: Clean up previous report
         uses: cypress-io/github-action@v5
@@ -81,10 +82,11 @@ jobs:
           command: npm run pretest
           browser: edge
 
-      - name: Warm-Up Edge
+      - name: Start Edge (Headless)
         run: |
-          # Open Edge to warm it up
-          nohup microsoft-edge-stable --headless --remote-debugging-port=9222 > edge-warmup.log 2>&1 &
+          nohup microsoft-edge-stable --headless --remote-debugging-port=9222 > edge.log 2>&1 &
+          sleep 5
+          cat edge.log
 
       - name: Wait for Edge to Warm Up
         run: |
