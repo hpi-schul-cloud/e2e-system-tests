@@ -50,7 +50,7 @@ When("I go to courses overview", () => {
 });
 
 When("I go to course {string}", (courseName) => {
-	courses.navigateToCourseBoard(courseName);
+	courses.navigateToCoursePage(courseName);
 });
 
 Then("I see the course {string} on the course overview page", (courseName) => {

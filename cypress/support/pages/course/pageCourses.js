@@ -296,7 +296,7 @@ class Courses {
 		cy.get(Courses.#courseOverviewNavigationButton).click();
 	}
 
-	navigateToCourseBoard(courseName) {
+	navigateToCoursePage(courseName) {
 		cy.contains(Courses.#courseTitleInCourseoverview, courseName)
 			.should("be.visible")
 			.then((title) => {

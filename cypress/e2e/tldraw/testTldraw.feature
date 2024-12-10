@@ -34,13 +34,9 @@ Feature: Test tldraw on board
         Then I should see the line drawn
         Then I should see the text drawn
 
-        # clean up the created course
+        # post-condition: clean up the created course
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to courses overview
-        When I go to course '<course_name>'
-        When I open page Edit course
-        When I click on the button delete course
-        When I click on the button delete on the modal to confirm the course deletion
+        Given course with name '<course_name>' is deleted
 
         @school_api_test
         Examples:

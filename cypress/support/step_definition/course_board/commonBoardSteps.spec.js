@@ -7,7 +7,7 @@ const board = new Board();
 
 Given("a board exists in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
-	courses.navigateToCourseBoard(courseName);
+	courses.navigateToCoursePage(courseName);
 	courses.clickOnCreateContentFAB();
 	board.clickOnFABToCreateNewColumnBoard();
 	board.clickOnMultiColumnBoardOptionInDialogBox();
@@ -19,6 +19,14 @@ Given("the board has a column with a card", (columnName) => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();
 	board.clickPlusIconToAddCardInColumn();
+});
+
+Given("course with name {string} is deleted", (courseName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCoursePage(courseName);
+	courses.openCourseEditPage();
+	courses.clickOnDeleteButtonOnCourseEditPage();
+	courses.confirmCourseDeletionOnModal();
 });
 
 When("I click on the board", () => {
