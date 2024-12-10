@@ -144,6 +144,7 @@ class Courses {
 	static #delteDialogTitle = '[data-testid="dialog-title"]';
 	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
+	static #btnShareCourse = '[data-testid="room-menu-share"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -1192,5 +1193,9 @@ class Courses {
 		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
 	}
 
+	clickShareCourseButton() {
+		cy.get(Courses.#dropDownCourse).parent().click();
+		cy.get(Courses.#btnShareCourse).click();
+	}
 }
 export default Courses;
