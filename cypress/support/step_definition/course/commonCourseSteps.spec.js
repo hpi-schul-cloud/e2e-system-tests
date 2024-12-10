@@ -6,20 +6,12 @@ import CourseManagement from "../../pages/course_management/pageCourseManagement
 const courses = new Courses();
 const management = new Management();
 
-Given("a course with name {string} exists with me as teacher", (courseName) => {
+Given("a course with name {string} exists with {string} as teacher and {string} as student", (courseName, teacherName, studentName) => {
 	courses.navigateToCoursesOverview();
 	courses.clickOnCreateCourseFAB();
 	courses.fillCourseCreationForm(courseName);
 	courses.selectCourseColour();
-	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-	courses.clickOnNextStepButtonOnCourseParticipationDetail();
-});
-
-Given("a course with name {string} exists with me as teacher and {string} as student", (courseName, studentName) => {
-	courses.navigateToCoursesOverview();
-	courses.clickOnCreateCourseFAB();
-	courses.fillCourseCreationForm(courseName);
-	courses.selectCourseColour();
+	courses.selectTeacherInCourseCreatePage(teacherName);
 	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 	courses.selectStudentInCourseCreatePage(studentName);
 	courses.clickOnNextStepButtonOnCourseParticipationDetail();

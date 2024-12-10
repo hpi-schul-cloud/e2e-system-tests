@@ -19,10 +19,10 @@ When("I type text on the canvas", () => {
 	tldraw.typeText("Hello World", 500, 500);
 });
 
-Then("I should see the line drawn by the teacher", () => {
+Then("I should see the line drawn", () => {
 	tldraw.checkLine();
 });
 
-Then("I should see the text drawn by the teacher", () => {
+Then("I should see the text drawn", () => {
 	tldraw.checkText("Hello World");
 });
