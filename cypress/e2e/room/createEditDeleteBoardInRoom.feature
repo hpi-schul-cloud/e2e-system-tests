@@ -15,6 +15,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on the button to save the room
         Then I see the detail page of room '<room_name>'
 
+        # teacher creates a new multi column board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
@@ -24,6 +25,8 @@ Feature: Room - Add, edit and delete board in room
         Then I see the column board dialog box
         When I click on button to add multi column board
         Then I see the page room board details
+
+        # teacher edites title of the new multi column board
         When I click on the button three dot menu in room board
         When I click on edit in board menu
         Then I enter the course board title '<edited_board_title>'
@@ -50,11 +53,6 @@ Feature: Room - Add, edit and delete board in room
         When I click on delete option in room menu
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
-
-
-
-
-
 
 
 
