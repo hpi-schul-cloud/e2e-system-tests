@@ -11,18 +11,18 @@ When("I click on the text tool", () => {
 	tldraw.selectTextTool();
 });
 
-When("I draw a line on the canvas", () => {
-	tldraw.drawLine(100,100,300,300);
+When("I draw a line on the canvas with startpoint {string}, {string} and endpoint {string}, {string}", (startX, startY, endX, endY) => {
+	tldraw.drawLine(startX,startY,endX,endY);
 });
 
-When("I type text on the canvas", () => {
-	tldraw.typeText("Hello World", 500, 500);
+When("I type text {string} on the canvas on position {string}, {string}", (text, posX, posY) => {
+	tldraw.typeText(text, posX, posY);
 });
 
 Then("I should see the line drawn", () => {
 	tldraw.checkLine();
 });
 
-Then("I should see the text drawn", () => {
-	tldraw.checkText("Hello World");
+Then("I should see the text {string} drawn", (text) => {
+	tldraw.checkText(text);
 });

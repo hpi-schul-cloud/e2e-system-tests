@@ -2,8 +2,8 @@ export class Tldraw {
 	static #canvas = "#canvas";
 	static #pencilButton = "#TD-PrimaryTools-Pencil";
 	static #textButton = "#TD-PrimaryTools-Text";
-	static drawShape = '[data-shape="draw"]';
-	static textShape = '[data-shape="text"]';
+	static #drawShape = '[data-shape="draw"]';
+	static #textShape = '[data-shape="text"]';
 
 	selectPencilTool() {
 		cy.get(Tldraw.#pencilButton).click();
@@ -25,10 +25,10 @@ export class Tldraw {
 	}
 
 	checkLine() {
-		cy.get(Tldraw.drawShape).should("be.visible");
+		cy.get(Tldraw.#drawShape).should("be.visible");
 	}
 
 	checkText(text) {
-		cy.get(Tldraw.textShape).should("be.visible").should("contain", text);
+		cy.get(Tldraw.#textShape).should("be.visible").should("contain", text);
 	}
 }
