@@ -1,21 +1,9 @@
 const { When, Then, Given } = require("@badeball/cypress-cucumber-preprocessor");
 import Management from "../../pages/admin/pageAdministration";
 import Courses from "../../pages/course/pageCourses";
-import CourseManagement from "../../pages/course_management/pageCourseManagement";
 
 const courses = new Courses();
 const management = new Management();
-
-Given("a course with name {string} exists with {string} as teacher and {string} as student", (courseName, teacherName, studentName) => {
-	courses.navigateToCoursesOverview();
-	courses.clickOnCreateCourseFAB();
-	courses.fillCourseCreationForm(courseName);
-	courses.selectCourseColour();
-	courses.selectTeacherInCourseCreatePage(teacherName);
-	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-	courses.selectStudentInCourseCreatePage(studentName);
-	courses.clickOnNextStepButtonOnCourseParticipationDetail();
-});
 
 Then("I select teacher {string} is selected by default", (teacherName) => {
 	courses.selectTeacherInCourseCreatePage(teacherName);

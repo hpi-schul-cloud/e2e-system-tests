@@ -58,7 +58,7 @@ class Courses {
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
-	static #nextButtonToCreateCourseOnParticipationDeatilStep = '[id="nextSection"]';
+	static #nextButtonToCreateCourseOnParticipationDetailStep = '[id="nextSection"]';
 	static #sectionThreeAreaOnCourseCreationPage = '[data-testid="section-3-area"]';
 	static #sectionOneAreaOnCourseCreationPage = '[data-testid="section-1-area"]';
 	static #sectionTwoAreaOnCourseCreationPage = '[data-testid="section-2-area"]';
@@ -270,7 +270,8 @@ class Courses {
 	}
 
 	clickOnNextStepButtonOnCourseParticipationDetail() {
-		cy.get(Courses.#nextButtonToCreateCourseOnParticipationDeatilStep).click();
+		cy.get(Courses.#nextButtonToCreateCourseOnParticipationDetailStep).click();
+		cy.wait(500);
 	}
 
 	seeCourseCreationFinishPageSectionThree() {
