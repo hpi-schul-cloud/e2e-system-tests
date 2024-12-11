@@ -11,13 +11,13 @@ Feature:  News - To read a news on the respective dashboards
 
         # first user creates school news with different time options
         When I go to news overview
-        And I click on add news button
+        When I click on add news button
         Then I see news creation page
-        And I enter news title '<news_title>'
-        And I enter news description '<news_description>'
+        When I enter news title '<news_title>'
+        When I enter news description '<news_description>'
         When I set news-visibility-start-date to '<news_day_from_today>' days at '<news_time>'
-        And I see time input field
-        And I click on save button
+        Then I see time input field
+        When I click on save button
         Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
 
         # first user reads a school news on news overview page, then teacher opens news and reads news detail page
@@ -40,9 +40,9 @@ Feature:  News - To read a news on the respective dashboards
         # first user deletes the school news
         Given I am logged in as a '<news_author>' at '<namespace>'
         When I arrive on the dashboard
-        And I click on the news teaser '<news_title>'
+        When I click on the news teaser '<news_title>'
         When I click on delete button
-        And I confirm the deletion on confirmation dialog box
+        When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<news_title>'
 
         @school_api_test

@@ -20,13 +20,13 @@ Feature:  News - To read a news on the respective dashboards
         When I go to teams overview
         When I go to a team '<team_name>'
         When I click on news tab on the team detail page
-        And I click on create news button
+        When I click on create news button
         Then I see news creation page
-        And I enter news title '<team_news_title>'
-        And I enter news description '<team_news_description>'
+        When I enter news title '<team_news_title>'
+        When I enter news description '<team_news_description>'
         When I set news-visibility-start-date to '<news_day_from_today>' days at '<news_time>'
-        And I see time input field
-        And I click on save button
+        Then I see time input field
+        When I click on save button
         Then I see news is created successfully with title '<team_news_title>' and with description '<team_news_description>'
 
         # first user reads a team news on teams news overview page
@@ -41,9 +41,9 @@ Feature:  News - To read a news on the respective dashboards
 
         # first user deletes the team news
         When I arrive on the dashboard
-        And I click on the news teaser '<team_news_title>'
+        When I click on the news teaser '<team_news_title>'
         When I click on delete button
-        And I confirm the deletion on confirmation dialog box
+        When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<team_news_title>'
 
         # first user deletes the team

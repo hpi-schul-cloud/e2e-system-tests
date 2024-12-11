@@ -11,13 +11,13 @@ Feature:  News - To read a news on the respective dashboards
 
         # first user creates school news with different time options
         When I go to news overview
-        And I click on add news button
+        When I click on add news button
         Then I see news creation page
-        And I enter news title '<news_title>'
-        And I enter news description '<news_description>'
+        When I enter news title '<news_title>'
+        When I enter news description '<news_description>'
         When I set news-visibility-start-date to '<news_day_from_today>' days at '<news_time>'
-        And I see time input field
-        And I click on save button
+        Then I see time input field
+        When I click on save button
         When I go to news overview
         Then I do not see the unpublished news '<news_title>'
         When I click on tab for unpublished news
@@ -37,9 +37,9 @@ Feature:  News - To read a news on the respective dashboards
         When I arrive on the dashboard
         When I go to news overview
         Then I can read the news '<news_title>' with description '<news_description>'
-        And I click on the news teaser '<news_title>'
+        When I click on the news teaser '<news_title>'
         When I click on delete button
-        And I confirm the deletion on confirmation dialog box
+        When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<news_title>'
 
         @school_api_test
