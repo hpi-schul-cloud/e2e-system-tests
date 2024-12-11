@@ -256,7 +256,7 @@ class Board {
 
 	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
-			.find('[data-testid="board-menu-button"]')
+			.find('[data-testid*="element-menu-button"]')
 			.click();
 	}
 

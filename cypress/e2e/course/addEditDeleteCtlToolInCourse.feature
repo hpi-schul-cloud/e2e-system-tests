@@ -40,7 +40,6 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I select the tool 'CY Test Tool Optional Parameters' from available tools
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
-
         # Pre-condition: Admin adds tools via tool link
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
