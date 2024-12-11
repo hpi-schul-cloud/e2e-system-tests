@@ -23,4 +23,5 @@ test-run-details.json
 cypress/fixtures/test-run-details.json
 env_variables/*.env.json
 env_variables/*
-!env_variables/template.env.json
+!env_variables/devTemplate.env.json
+!env_variables/stagingTemplate.env.json
