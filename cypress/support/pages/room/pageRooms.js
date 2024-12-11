@@ -10,6 +10,8 @@ class Rooms {
 	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
 	static #roomDetailFABParticipants = '[data-testid="room-action-manage-participants"]';
 	static #roomDetailFABDelete = '[data-testid="room-action-delete"]';
+	static #addContentButton = '[data-testid="add-content-button"]';
+	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
 	static #confirmDeletionModalTitle = '[data-testid="delete-dialog-item"]';
 	static #confirmDeletionModalDelete = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
@@ -25,6 +27,8 @@ class Rooms {
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
+
+
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -168,5 +172,16 @@ class Rooms {
 	notSeeParticipantInList(participantName) {
 		cy.get(Rooms.#participantTable).should("not.contain", participantName);
 	}
+	clickOnAddContentButton() {
+		cy.get(Rooms.#addContentButton).click();
+	}
+	seeFabButtonToAddBoard() {
+		cy.get(Rooms.#fabButtonAddBoard).should("be.visible");
+	}
+	clickOnFabButtonToAddBoard() {
+		cy.get(Rooms.#fabButtonAddBoard).click();
+	}
+
+
 }
 export default Rooms;

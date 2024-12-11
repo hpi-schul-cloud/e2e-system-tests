@@ -39,7 +39,6 @@ class Board {
 	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
 	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
 
-
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
 	}
