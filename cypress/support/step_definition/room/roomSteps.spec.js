@@ -130,7 +130,7 @@ Then(
 	}
 );
 
-When("I click on the add content button to see the creation button", () => {
+When("I click on the button add content", () => {
 	rooms.clickOnAddContentButton();
 });
 

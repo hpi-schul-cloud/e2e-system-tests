@@ -34,10 +34,10 @@ class RoomBoards {
 	clickOnDeleteInBoardMenu() {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
 	}
-	boardIsVisibleOnOverviewPage(boardName) {
+	seeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("exist");
 	}
-	boardIsNotVisibleOnOverviewPage(boardName) {
+	doNotSeeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("not.exist");
 	}
 	seeBtnDialogCancel() {

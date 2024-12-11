@@ -3,8 +3,7 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-
-Then("I see the column board dialog box", () => {
+Then("I see the dialog box to select the Board type", () => {
 	roomBoards.seeColumnBoardDialogBox();
 });
 
@@ -16,7 +15,7 @@ Then("I see the page room board details", () => {
 	roomBoards.seeNewRoomBoardCreatePage();
 });
 
-When("I click on the button three dot menu in room board", () => {
+When("I click on the three dot menu in room board", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
@@ -44,7 +43,7 @@ When("I click on the button to cancel the deletion", () => {
 	roomBoards.clickOnBtnDialogCancel();
 });
 Then("I see the board {string} on the room overview page", (boardTitle) => {
-	roomBoards.boardIsVisibleOnOverviewPage(boardTitle);
+	roomBoards.seeBoardOnRoomDetailPage(boardTitle);
 });
 Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
@@ -53,6 +52,6 @@ When("I click on the button to confirm the deletion", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
 Then("I do not see the board {string} in the room", (boardTitle) => {
-	roomBoards.boardIsNotVisibleOnOverviewPage(boardTitle);
+	roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
 });
 

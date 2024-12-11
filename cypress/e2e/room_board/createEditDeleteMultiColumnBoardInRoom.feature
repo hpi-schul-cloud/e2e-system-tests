@@ -7,7 +7,7 @@ Feature: Room - Add, edit and delete board in room
     Scenario: Teacher add, edit, and delete board in the room, including pre-conditions
         Given I am logged in as a '<teacher>' at '<namespace>'
 
-        # pre-condition: first teacher creating a new room
+        # pre-condition: teacher creating a new room
         When I go to room overview
         When I click on FAB to create new room
         Then I see room creation page
@@ -15,26 +15,26 @@ Feature: Room - Add, edit and delete board in room
         When I click on the button to save the room
         Then I see the detail page of room '<room_name>'
 
-        # teacher creates a new multi column board
+        # teacher creates a new multi column board in the room
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
-        When I click on the add content button to see the creation button
+        When I click on the button add content
         Then I see the button to add board
         When I click on the fab button to add a Board
-        Then I see the column board dialog box
+        Then I see the dialog box to select the Board type
         When I click on button to add multi column board
         Then I see the page room board details
 
         # teacher edites title of the new multi column board
-        When I click on the button three dot menu in room board
+        When I click on the three dot menu in room board
         When I click on edit in board menu
-        Then I enter the course board title '<edited_board_title>'
+        Then I enter the room board title '<edited_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
 
         # cancel delete-process
-        When I click on the button three dot menu in room board
+        When I click on the three dot menu in room board
         When I click on delete in board menu
         Then I see the button to cancel the dialog
         When I click on the button to cancel the deletion
@@ -42,7 +42,7 @@ Feature: Room - Add, edit and delete board in room
         Then I see the board '<edited_board_title>' on the room overview page
 
         # confirm delete-process
-        When I click on the button three dot menu in room board
+        When I click on the three dot menu in room board
         When I click on delete in board menu
         Then I see the button to cancel the dialog
         Then I click on the button to confirm the deletion
@@ -53,7 +53,6 @@ Feature: Room - Add, edit and delete board in room
         When I click on delete option in room menu
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
-
 
 
         @school_api_test

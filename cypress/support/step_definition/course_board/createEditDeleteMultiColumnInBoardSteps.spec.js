@@ -16,7 +16,7 @@ When("I click on the option Edit in three dot menu in course board", () => {
 	board.clickOnEditInThreeDotCourseBoardTitle();
 });
 
-Then("I enter the course board title {string}", (boardTitle) => {
+Then("I enter the room board title {string}", (boardTitle) => {
 	board.enterCourseBoardTitle(boardTitle);
 });
 
