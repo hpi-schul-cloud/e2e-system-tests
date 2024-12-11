@@ -188,7 +188,7 @@ Then("I see the button to confirm the dialog", () => {
 When("I click on the button to confirm the deletion", () => {
 	rooms.clickBtnDialogConfirmDelete();
 });
-Then("I do not see the board {string} on the room overview page", (boardTitle) => {
+Then("I do not see the board {string} in the room", (boardTitle) => {
 	rooms.boardIsNotVisibleOnOverviewPage(boardTitle);
 });
 
