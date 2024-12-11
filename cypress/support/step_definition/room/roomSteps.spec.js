@@ -179,7 +179,16 @@ Then("I see the button to cancel the dialog", () => {
 When("I click on the button to cancel the deletion", () => {
 	rooms.clickOnBtnDialogCancel();
 });
+Then("I see the board {string} on the room overview page", (boardTitle) => {
+	rooms.boardIsVisibleOnOverviewPage(boardTitle);
+});
 Then("I see the button to confirm the dialog", () => {
 	rooms.seeBtnDialogConfirmDelete();
+});
+When("I click on the button to confirm the deletion", () => {
+	rooms.clickBtnDialogConfirmDelete();
+});
+Then("I do not see the board {string} on the room overview page", (boardTitle) => {
+	rooms.boardIsNotVisibleOnOverviewPage(boardTitle);
 });
 

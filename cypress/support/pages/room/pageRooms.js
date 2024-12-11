@@ -223,11 +223,17 @@ class Rooms {
 	clickOnBtnDialogCancel() {
 		cy.get(Rooms.#btnDialogCancel).click();
 	}
+	boardIsVisibleOnOverviewPage(boardName) {
+		cy.contains(boardName).should("exist");
+	}
 	seeBtnDialogConfirmDelete() {
 		cy.get(Rooms.#btnDialogConfirm).should("be.visible");
 	}
 	clickBtnDialogConfirmDelete() {
 		cy.get(Rooms.#btnDialogConfirm).click();
+	}
+	boardIsNotVisibleOnOverviewPage(boardName) {
+		cy.contains(boardName).should("not.exist");
 	}
 }
 export default Rooms;

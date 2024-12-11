@@ -37,9 +37,12 @@ Feature: Room - Add, edit and delete board in room
         Then I see the button to cancel the dialog
         When I click on the button to cancel the deletion
         Then I see the page room board details
+        Then I see the board '<edited_board_title>' on the room overview page
         When I click on the button three dot menu in room board
         When I click on delete in board menu
         Then I see the button to cancel the dialog
+        Then I click on the button to confirm the deletion
+        Then I do not see the board '<edited_board_title>' on the room overview page
 
 
 
