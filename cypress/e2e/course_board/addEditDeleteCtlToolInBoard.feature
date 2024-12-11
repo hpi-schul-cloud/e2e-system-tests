@@ -21,7 +21,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
 
-        # Pre-condition: Admin adds tools via selection
+        # Pre-condition: Admin adds external tools to school
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
