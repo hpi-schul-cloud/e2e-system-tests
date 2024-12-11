@@ -30,10 +30,18 @@ Feature: Room - Add, edit and delete board in room
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
         # TODO test if renaming worked
+
+        # cancel delete-process
         When I click on the button three dot menu in room board
         When I click on delete in board menu
         Then I see the button to cancel the dialog
         When I click on the button to cancel the deletion
+        Then I see the page room board details
+        When I click on the button three dot menu in room board
+        When I click on delete in board menu
+        Then I see the button to cancel the dialog
+
+
 
 
 

@@ -179,4 +179,7 @@ Then("I see the button to cancel the dialog", () => {
 When("I click on the button to cancel the deletion", () => {
 	rooms.clickOnBtnDialogCancel();
 });
+Then("I see the button to confirm the dialog", () => {
+	rooms.seeBtnDialogConfirmDelete();
+});
 

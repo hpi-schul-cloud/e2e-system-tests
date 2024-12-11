@@ -35,6 +35,7 @@ class Rooms {
 	static #mainPageArea = '[id="main-content"]';
 	static #boardMenuActionDelete = '[data-testid="board-menu-action-delete"]';
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
+	static #btnDialogConfirm = '[data-testid="dialog-confirm"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -221,6 +222,12 @@ class Rooms {
 	}
 	clickOnBtnDialogCancel() {
 		cy.get(Rooms.#btnDialogCancel).click();
+	}
+	seeBtnDialogConfirmDelete() {
+		cy.get(Rooms.#btnDialogConfirm).should("be.visible");
+	}
+	clickBtnDialogConfirmDelete() {
+		cy.get(Rooms.#btnDialogConfirm).click();
 	}
 }
 export default Rooms;
