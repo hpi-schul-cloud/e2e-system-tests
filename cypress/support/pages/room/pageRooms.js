@@ -27,15 +27,8 @@ class Rooms {
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
-	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
-	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
-	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
-	static #btnBoardMenuActionEdit = '[data-testid="board-menu-action-edit"]';
-	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
-	static #mainPageArea = '[id="main-content"]';
-	static #boardMenuActionDelete = '[data-testid="board-menu-action-delete"]';
-	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
-	static #btnDialogConfirm = '[data-testid="dialog-confirm"]';
+
+
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -188,52 +181,7 @@ class Rooms {
 	clickOnFabButtonToAddBoard() {
 		cy.get(Rooms.#fabButtonAddBoard).click();
 	}
-	seeColumnBoardDialogBox() {
-		cy.get(Rooms.#boardLayoutDialogTitle).should("be.visible");
-	}
-	clickOnButtonToAddMultiColumnBoard() {
-		cy.get(Rooms.#dialogAddMultiColumnBoard).click();
-	}
-	seeNewRoomBoardCreatePage() {
-		cy.url().should("include", "/board");
-	}
-	clickOnThreeDotMenuInRoomBoardTitle() {
-		cy.get(Rooms.#boardMenuIcon).click();
-	}
-	clickOnEditInBoardMenu() {
-		cy.get(Rooms.#btnBoardMenuActionEdit).click();
-	}
-	enterRoomBoardTitle(boardTitle) {
-		cy.get(Rooms.#roomBoardTitleOnPage).within(() => {
-			this.clearAndType("input", boardTitle);
-		});
-	}
-	seeGivenRoomBoardTitle(boardTitle) {
-		cy.get(Rooms.#roomBoardTitleOnPage).find('input').should('have.value', boardTitle);
-	}
-	clickOutsideTheTitleToSaveTheModifiedTitle() {
-		cy.get(Rooms.#mainPageArea).click("bottom");
-	}
-	clickOnDeleteInBoardMenu() {
-		cy.get(Rooms.#boardMenuActionDelete).click();
-	}
-	seeBtnDialogCancel() {
-		cy.get(Rooms.#btnDialogCancel).should("be.visible");
-	}
-	clickOnBtnDialogCancel() {
-		cy.get(Rooms.#btnDialogCancel).click();
-	}
-	boardIsVisibleOnOverviewPage(boardName) {
-		cy.contains(boardName).should("exist");
-	}
-	seeBtnDialogConfirmDelete() {
-		cy.get(Rooms.#btnDialogConfirm).should("be.visible");
-	}
-	clickBtnDialogConfirmDelete() {
-		cy.get(Rooms.#btnDialogConfirm).click();
-	}
-	boardIsNotVisibleOnOverviewPage(boardName) {
-		cy.contains(boardName).should("not.exist");
-	}
+
+
 }
 export default Rooms;

@@ -1,7 +1,9 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Rooms from "../../pages/room/pageRooms";
+import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const rooms = new Rooms();
+const roomBoards = new RoomBoards();
 
 When("I select the colour for the room", () => {
 	rooms.selectRoomColour();
@@ -141,54 +143,54 @@ When ("I click on the fab button to add a Board", () => {
 });
 
 Then("I see the column board dialog box", () => {
-	rooms.seeColumnBoardDialogBox();
+	roomBoards.seeColumnBoardDialogBox();
 });
 
 When("I click on button to add multi column board", () => {
-	rooms.clickOnButtonToAddMultiColumnBoard();
+	roomBoards.clickOnButtonToAddMultiColumnBoard();
 });
 
 Then("I see the page room board details", () => {
-	rooms.seeNewRoomBoardCreatePage();
+	roomBoards.seeNewRoomBoardCreatePage();
 });
 
 When("I click on the button three dot menu in room board", () => {
-	rooms.clickOnThreeDotMenuInRoomBoardTitle();
+	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
 When("I click on edit in board menu", () => {
-	rooms.clickOnEditInBoardMenu();
+	roomBoards.clickOnEditInBoardMenu();
 });
 
 Then("I enter the room board title {string}", (boardTitle) => {
-	rooms.enterRoomBoardTitle(boardTitle);
+	roomBoards.enterRoomBoardTitle(boardTitle);
 });
 
 When("I click on the page outside of the title of the board", () => {
-	rooms.clickOutsideTheTitleToSaveTheModifiedTitle();
+	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 });
 Then("I see my room board is named {string}", (boardTitle) => {
-	rooms.seeGivenRoomBoardTitle(boardTitle);
+	roomBoards.seeGivenRoomBoardTitle(boardTitle);
 });
 When("I click on delete in board menu", () => {
-	rooms.clickOnDeleteInBoardMenu();
+	roomBoards.clickOnDeleteInBoardMenu();
 });
 Then("I see the button to cancel the dialog", () => {
-	rooms.seeBtnDialogCancel();
+	roomBoards.seeBtnDialogCancel();
 });
 When("I click on the button to cancel the deletion", () => {
-	rooms.clickOnBtnDialogCancel();
+	roomBoards.clickOnBtnDialogCancel();
 });
 Then("I see the board {string} on the room overview page", (boardTitle) => {
-	rooms.boardIsVisibleOnOverviewPage(boardTitle);
+	roomBoards.boardIsVisibleOnOverviewPage(boardTitle);
 });
 Then("I see the button to confirm the dialog", () => {
-	rooms.seeBtnDialogConfirmDelete();
+	roomBoards.seeBtnDialogConfirmDelete();
 });
 When("I click on the button to confirm the deletion", () => {
-	rooms.clickBtnDialogConfirmDelete();
+	roomBoards.clickBtnDialogConfirmDelete();
 });
 Then("I do not see the board {string} in the room", (boardTitle) => {
-	rooms.boardIsNotVisibleOnOverviewPage(boardTitle);
+	roomBoards.boardIsNotVisibleOnOverviewPage(boardTitle);
 });
 
