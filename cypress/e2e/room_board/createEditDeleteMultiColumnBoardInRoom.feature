@@ -65,9 +65,3 @@ Feature: Room - Add, edit and delete board in room
         Examples:
             | teacher      | namespace | room_name          |   board_name         | edited_board_title     |
             | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title         |
-
-
-        # @staging_test
-        # Examples:
-        #     | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name | participant_name |
-        #     | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lehrkraft | Hande            |
