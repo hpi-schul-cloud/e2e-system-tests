@@ -58,8 +58,14 @@ Feature: Room - Add, edit and delete board in room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name          |   board_name         | edited_board_title    | school_name             | role_name | participant_name |
-            | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title | cypress-automated-tests | Lehrkraft | teacher_2        |
+            | teacher      | namespace | room_name          |   board_name         | edited_board_title     |
+            | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title         |
+
+        @staging_test
+        Examples:
+            | teacher      | namespace | room_name          |   board_name         | edited_board_title     |
+            | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title         |
+
 
         # @staging_test
         # Examples:
