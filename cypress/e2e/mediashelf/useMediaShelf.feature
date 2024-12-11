@@ -6,8 +6,8 @@ Feature: Media Shelf - To show media shelf with respective functionality
 
     @stable_test
     Scenario: Teacher uses the media shelf
-        Given I am logged in as a 'teacher1_nbc' at 'nbc'
-        Given I am logged in as a 'admin1_nbc' at 'nbc'
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
 
         # Pre-condition: Admin adds external tools to school
         When I click on administration in menu
@@ -23,7 +23,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
         Then I see the tool 'CY Test Tool 2' in external tools table
 
         # Teacher opens media shelf
-        Given I am logged in as a 'teacher1_nbc' at 'nbc'
+        Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to media shelf
         Then I see the media shelf page title
         Then I see the available media line
@@ -35,6 +35,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
         Then I see the grid layout
         When I click on list layout button
         Then I see the list layout
+
         # Teacher tests available media line
         When I click on collapse available media line button
         Then I see the available media line is collapsed
@@ -46,6 +47,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
         Then I see the available background colors
         When I select the background color
         Then I see the available media line has background color 'rgb(251, 233, 231)'
+
         # Teacher tests first media line
         When I click add media line button
         Then I see the first media line
@@ -77,18 +79,21 @@ Feature: Media Shelf - To show media shelf with respective functionality
         When I move tool 'CY Test Tool 1' in to ghost media line
         Then I see the first media line
         Then I see tool 'CY Test Tool 1' in the first media line
+
         # Teacher launches tool in available media line
         When I launch tool 'CY Test Tool 2' in the available media line with given url 'https://google.com/'
         Then I see tool 'CY Test Tool 2' on media element was launched
         # Teacher launches tool in first media line
         When I launch tool 'CY Test Tool 1' in the first media line with given url 'https://google.com/'
         Then I see tool 'CY Test Tool 1' on media element was launched
+
         # Teacher drags & drops tool from one line to another line
         When I move tool 'CY Test Tool 2' in the first media line
         Then I see tool 'CY Test Tool 2' in the first media line
         # Teacher drags & drops tool in available line
         When I move tool 'CY Test Tool 2' to the empty available media line
         Then I see tool 'CY Test Tool 2' in the available media line
+
         # Teacher deletes line with tool
         When I click the three dot menu button on the first media line
         Then I see the media line menu
@@ -123,7 +128,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
         Then I see the available media line has background color 'rgb(255, 255, 255)'
 
         # Post-condition: Admin deletes external tools
-        Given I am logged in as a 'admin1_nbc' at 'nbc'
+        Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
