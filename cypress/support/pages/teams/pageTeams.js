@@ -21,9 +21,9 @@ class Teams {
 	static #teamEventCreteModal = '[data-testid="modal_content"]';
 	static #teamCreateEventTitleInput = '[data-testid="create-event-name"]';
 	static #teamEditEventTitleInput = '[data-testid="edit-event-name"]';
-	static #teamEventStartDateTime = '[data-testid="create-startDate"]';
-	static #teamEventEndDateTime = '[data-testid="create-endDate"]';
-	static #teamEventDescriptionInput = '[data-testid="create-event-description"]';
+	static #teamCreateEventStartDateTime = '[data-testid="create-startDate"]';
+	static #teamCreateEventEndDateTime = '[data-testid="create-endDate"]';
+	static #teamCreateEventDescriptionInput = '[data-testid="create-event-description"]';
 	static #teamEditEventDescriptionInput = '[data-testid="edit-event-description"]';
 	static #teamCalendarEventDescription =
 		'[data-testid="team-event-calendar-description"]';
@@ -193,15 +193,15 @@ class Teams {
 	}
 
 	enterTeamEventDescription(eventDescription) {
-		cy.get(Teams.#teamEventDescriptionInput).type(eventDescription);
+		cy.get(Teams.#teamCreateEventDescriptionInput).type(eventDescription);
 	}
 
 	selectTeamEventEndDate() {
-		cy.get(Teams.#teamEventEndDateTime).should("be.visible");
+		cy.get(Teams.#teamCreateEventEndDateTime).should("be.visible");
 	}
 
 	selectTeamEventStartDate() {
-		cy.get(Teams.#teamEventStartDateTime).should("be.visible");
+		cy.get(Teams.#teamCreateEventStartDateTime).should("be.visible");
 	}
 
 	enterTeamEventTitle(eventTitle) {
