@@ -11,7 +11,7 @@ When("I click on button to add multi column board", () => {
 	roomBoards.clickOnButtonToAddMultiColumnBoard();
 });
 
-Then("I see the page room board details", () => {
+Then("I see the page board details", () => {
 	roomBoards.seeNewRoomBoardCreatePage();
 });
 
@@ -23,7 +23,7 @@ When("I click on edit in board menu", () => {
 	roomBoards.clickOnEditInBoardMenu();
 });
 
-Then("I enter the room board title {string}", (boardTitle) => {
+Then("I change the room board title to {string}", (boardTitle) => {
 	roomBoards.enterRoomBoardTitle(boardTitle);
 });
 

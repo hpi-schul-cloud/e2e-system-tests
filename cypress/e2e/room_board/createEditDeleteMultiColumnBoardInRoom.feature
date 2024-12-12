@@ -24,12 +24,12 @@ Feature: Room - Add, edit and delete board in room
         When I click on the fab button to add a Board
         Then I see the dialog box to select the Board type
         When I click on button to add multi column board
-        Then I see the page room board details
+        Then I see the page board details
 
         # teacher edites title of the new multi column board
         When I click on the three dot menu in room board
         When I click on edit in board menu
-        Then I enter the room board title '<edited_board_title>'
+        Then I change the room board title to '<edited_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
 
@@ -38,7 +38,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on delete in board menu
         Then I see the button to cancel the dialog
         When I click on the button to cancel the deletion
-        Then I see the page room board details
+        Then I see the page board details
         Then I see the board '<edited_board_title>' on the room overview page
 
         # confirm delete-process
