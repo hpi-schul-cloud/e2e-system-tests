@@ -19,13 +19,16 @@ class Teams {
 	static #teamCalanderTab = '[data-testid="team_calendar_tab"]';
 	static #addTeamEventButton = '[data-testid="add_team_event"]';
 	static #teamEventCreteModal = '[data-testid="modal_content"]';
-	static #teamEventTitleInput = '[data-testid="team_event_name"]';
-	static #teamEventStartDateTime = '[data-testid="form-datetime-input-startDate"]';
-	static #teamEventEndDateTime = '[data-testid="form-datetime-input-endDate"]';
-	static #teamEventDescriptionInput = '[data-testid="team_event_description"]';
+	static #teamEventTitleInput = '[data-testid="create-event-name"]';
+	static #teamEditEventTitleInput = '[data-testid="edit-event-name"]';
+	static #teamEventStartDateTime = '[data-testid="create-startDate"]';
+	static #teamEventEndDateTime = '[data-testid="create-endDate"]';
+	static #teamEventDescriptionInput = '[data-testid="create-event-description"]';
+	static #teamEditEventDescriptionInput = '[data-testid="edit-event-description"]';
 	static #teamCalendarEventDescription =
 		'[data-testid="team-event-calendar-description"]';
-	static #teamEventPlaceInput = '[data-testid="team_event_location"]';
+	static #teamEventPlaceInput = '[data-testid="create-event-location"]';
+	static #teamEditEventPlaceInput = '[data-testid="edit-event-location"]';
 	static #teamEventSaveButton = '[data-testid="submit-btn-edit-event-modal"]';
 	static #teamEventEditIcon = '[data-testid="edit_team_event"]';
 	static #teamEventDeleteButton = '[data-testid="delete_team_event"]';
@@ -35,8 +38,7 @@ class Teams {
 		'[data-testid="start_video_conference_link"]';
 	static #teamVideoConferenceModal = '[data-testid="modal_content"]';
 	static #muteParticipantToggle = '[data-testid="toggle_mute_participants"]';
-	static #moderatorApprovalToggle =
-		'[data-testid="toggle_moderator_approval_required"]';
+	static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]';
 	static #allPartipantsAreModeratorToggel =
 		'[data-testid="toggle_all_participants_moderator"]';
 	static #disabledVideoCheckboxOnTeamEditpage = '[disabled=""]';
@@ -100,10 +102,7 @@ class Teams {
 	}
 
 	seeTeamEventDescription(teamEventDescription) {
-		cy.get(Teams.#teamCalendarEventDescription).should(
-			"contain",
-			teamEventDescription
-		);
+		cy.get(Teams.#teamCalendarEventDescription).should("contain", teamEventDescription);
 	}
 
 	seeVideoPartcipationButtonInTeamEvents() {
@@ -166,18 +165,15 @@ class Teams {
 	}
 
 	editTeamEventDescription(editedEventDescription) {
-		cy.get(Teams.#teamEventDescriptionInput)
-			.eq(1)
-			.clear()
-			.type(editedEventDescription);
+		cy.get(Teams.#teamEditEventDescriptionInput).clear().type(editedEventDescription);
 	}
 
 	editTeamEventPlace(editedEventPlace) {
-		cy.get(Teams.#teamEventPlaceInput).eq(1).clear().type(editedEventPlace);
+		cy.get(Teams.#teamEditEventPlaceInput).clear().type(editedEventPlace);
 	}
 
 	editTeamEventTitle(editedEventTitle) {
-		cy.get(Teams.#teamEventTitleInput).eq(1).clear().type(editedEventTitle);
+		cy.get(Teams.#teamEditEventTitleInput).clear().type(editedEventTitle);
 	}
 
 	clickOnTeamsEventEditOption() {
@@ -193,11 +189,11 @@ class Teams {
 	}
 
 	enterTeamEventPlace(eventPlace) {
-		cy.get(Teams.#teamEventPlaceInput).eq(1).type(eventPlace);
+		cy.get(Teams.#teamEventPlaceInput).type(eventPlace);
 	}
 
 	enterTeamEventDescription(eventDescription) {
-		cy.get(Teams.#teamEventDescriptionInput).eq(1).type(eventDescription);
+		cy.get(Teams.#teamEventDescriptionInput).type(eventDescription);
 	}
 
 	selectTeamEventEndDate() {
@@ -209,10 +205,7 @@ class Teams {
 	}
 
 	enterTeamEventTitle(eventTitle) {
-		cy.get(Teams.#teamEventTitleInput)
-			.eq(1)
-			.type(eventTitle, { force: true })
-			.wait(1000);
+		cy.get(Teams.#teamEventTitleInput).type(eventTitle, { force: true }).wait(1000);
 	}
 
 	seeTeamEventCreationModal() {
@@ -318,9 +311,7 @@ class Teams {
 
 	canNotSeeTeamVideoCheckbox() {
 		cy.get(Teams.#teamOptions);
-		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should(
-			"not.exist"
-		);
+		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should("not.exist");
 		cy.get(Teams.#activateConfCheckbox).should("not.exist");
 	}
 
