@@ -1,6 +1,6 @@
 "use strict";
-class MediaShelf {
 
+class MediaShelf {
 	static #mediaShelfNavigationButton = '[data-testid="Media-shelf"]';
 	static #mediaShelfPageTitle = '[data-testid="page-title"]';
 	static #gridLayoutButton = '[data-testid="media-board-layout-grid"]';
@@ -19,21 +19,20 @@ class MediaShelf {
 	static #deleteLineButton = '[data-testid="action-delete-line"]';
 	static #availableLine = '[data-testid="available-line"]';
 	static #mediaElementThumbnail = '[data-testid="media-element-thumbnail"]';
-	static #mediaElementDefaultThumbnail = '[data-testid="media-element-default-thumbnail"]';
+	static #mediaElementDefaultThumbnail =
+		'[data-testid="media-element-default-thumbnail"]';
 	static #mediaElementTitle = '[data-testid="media-element-title"]';
 	static #mediaElementDescription = '[data-testid="media-element-description"]';
 	static #mediaElementDeactivatedChip = '[data-testid="warning-chip-deactivated"]';
 	static #mediaElementNotLicensedChip = '[data-testid="warning-chip-not-licensed"]';
 	static #mediaElementIncompleteChip = '[data-testid="warning-chip-incomplete"]';
-	static #mediaElementNoLongerAvailableChip = '[data-testid="warning-chip-no-longer-available"]';
+	static #mediaElementNoLongerAvailableChip =
+		'[data-testid="warning-chip-no-longer-available"]';
 	static #threeDotMenuOnMediaElement = '[data-testid="board-menu-icon"]';
 	static #deleteMediaElementButton = '[data-testid="board-menu-action-delete"]';
-	static #deleteMediaElementDialog = '[data-testid="delete-dialog-item"]';
-	static #confirmDeletionDialogButton = '[data-testid="dialog-confirm"]';
 	static #createLineButton = '[data-testid="create-line-button"]';
 	static #emptyStateSign = '[data-testid="empty-state"]';
 	static #emptyStateInfoText = '[data-testid="emptyTaskMessage"]';
-
 
 	navigateToMediaShelf() {
 		cy.get(MediaShelf.#mediaShelfNavigationButton).click();
@@ -41,82 +40,86 @@ class MediaShelf {
 	}
 
 	seeMediaShelfPageTitle() {
-		cy.get(MediaShelf.#mediaShelfPageTitle).should("exist")
+		cy.get(MediaShelf.#mediaShelfPageTitle).should("exist");
 	}
 
-
 	seeAvailableMediaLine() {
-		cy.get(MediaShelf.#availableLine).should("exist")
+		cy.get(MediaShelf.#availableLine).should("exist");
 	}
 
 	seeFirstMediaLine() {
-		cy.get(MediaShelf.#mediaLine1).should("exist")
+		cy.get(MediaShelf.#mediaLine1).should("exist");
 	}
 
 	firstMediaLineIsNotVisible() {
-		cy.get(MediaShelf.#mediaLine1).should("not.exist")
+		cy.get(MediaShelf.#mediaLine1).should("not.exist");
 	}
 
 	seeFirstMediaLineWithTitle(title) {
-		const line = cy.get(MediaShelf.#mediaLineHeader1)
-		line.find('textarea.v-field__input')
-			.should('have.value', title);
+		const line = cy.get(MediaShelf.#mediaLineHeader1);
+		line.find("textarea.v-field__input").should("have.value", title);
 	}
 
 	seeMediaLineMenu() {
-		cy.get(MediaShelf.#editLineTitleButton).should("exist")
-		cy.get(MediaShelf.#colorPickerButton).should("exist")
-		cy.get(MediaShelf.#deleteLineButton).should("exist")
+		cy.get(MediaShelf.#editLineTitleButton).should("exist");
+		cy.get(MediaShelf.#colorPickerButton).should("exist");
+		cy.get(MediaShelf.#deleteLineButton).should("exist");
 	}
 
 	seeAvailableMediaLineMenu() {
-		cy.get(MediaShelf.#colorPickerButton).should("exist")
+		cy.get(MediaShelf.#colorPickerButton).should("exist");
 	}
 
 	seeAvailableBackgroundColors() {
-		cy.get(MediaShelf.#colorPicker).should("exist")
+		cy.get(MediaShelf.#colorPicker).should("exist");
 	}
 
 	seeAvailableMediaLineMenuColor(color) {
-		cy.get(MediaShelf.#availableLine).should('have.css', 'background-color', color);
+		cy.get(MediaShelf.#availableLine).should("have.css", "background-color", color);
 	}
 
 	seeFirstMediaLineMenuColor(color) {
-		cy.get(MediaShelf.#mediaLine1).should('have.css', 'background-color', color);
+		cy.get(MediaShelf.#mediaLine1).should("have.css", "background-color", color);
 	}
 
 	isAvailableMediaLineCollapsed() {
-		const availableLine = cy.get(MediaShelf.#availableLine)
-		availableLine.find(".v-expansion-panel-text.no-inner-padding")
+		const availableLine = cy.get(MediaShelf.#availableLine);
+		availableLine
+			.find(".v-expansion-panel-text.no-inner-padding")
 			.should("have.css", "display", "none");
 	}
 
 	isAvailableMediaLineNotCollapsed() {
-		const availableLine = cy.get(MediaShelf.#availableLine)
-		availableLine.find(".v-expansion-panel-text.no-inner-padding")
+		const availableLine = cy.get(MediaShelf.#availableLine);
+		availableLine
+			.find(".v-expansion-panel-text.no-inner-padding")
 			.should("not.have.css", "display", "none");
 	}
 
 	isFirstMediaLineCollapsed() {
-		const line = cy.get(MediaShelf.#mediaLine1)
-		line.find(".v-expansion-panel-text.no-inner-padding")
-			.should("have.css", "display", "none");
+		const line = cy.get(MediaShelf.#mediaLine1);
+		line.find(".v-expansion-panel-text.no-inner-padding").should(
+			"have.css",
+			"display",
+			"none"
+		);
 	}
 
 	isFirstMediaLineNotCollapsed() {
-		const line = cy.get(MediaShelf.#mediaLine1)
-		line.find(".v-expansion-panel-text.no-inner-padding")
-			.should("not.have.css", "display", "none");
+		const line = cy.get(MediaShelf.#mediaLine1);
+		line.find(".v-expansion-panel-text.no-inner-padding").should(
+			"not.have.css",
+			"display",
+			"none"
+		);
 	}
 
 	seeGridLayout() {
-		cy.get(MediaShelf.#availableMediaLineSpace)
-			.should('have.class', 'flex-wrap')
+		cy.get(MediaShelf.#availableMediaLineSpace).should("have.class", "flex-wrap");
 	}
 
 	seeListLayout() {
-		cy.get(MediaShelf.#availableMediaLineSpace)
-			.should('not.have.class', 'flex-wrap')
+		cy.get(MediaShelf.#availableMediaLineSpace).should("not.have.class", "flex-wrap");
 	}
 
 	seeNumberOfMediaInAvailableMediaLine(count) {
@@ -134,79 +137,70 @@ class MediaShelf {
 
 	seeMediaElementDefaultThumbnail(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
-		element.find(MediaShelf.#mediaElementDefaultThumbnail)
-			.should("exist")
+		element.find(MediaShelf.#mediaElementDefaultThumbnail).should("exist");
 	}
 
 	seeMediaElementTitle(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
-		element.find(MediaShelf.#mediaElementTitle)
+		element
+			.find(MediaShelf.#mediaElementTitle)
 			.should("exist")
 			.should("contain.text", toolName);
 	}
 
 	seeMediaElementDescription(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
-		element.find(MediaShelf.#mediaElementDescription)
-			.should("exist")
+		element.find(MediaShelf.#mediaElementDescription).should("exist");
 	}
 
 	seeMediaElementDeactivatedChip(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
-		element.find(MediaShelf.#mediaElementDeactivatedChip)
-			.should("exist")
+		element.find(MediaShelf.#mediaElementDeactivatedChip).should("exist");
 	}
 
 	seeMediaElementNotLicensedChip(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
-		element.find(MediaShelf.#mediaElementNotLicensedChip)
-			.should("exist")
+		element.find(MediaShelf.#mediaElementNotLicensedChip).should("exist");
 	}
 
 	seeMediaElementIncompleteChip(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
-		element.find(MediaShelf.#mediaElementIncompleteChip)
-			.should("exist")
+		element.find(MediaShelf.#mediaElementIncompleteChip).should("exist");
 	}
 
 	seeMediaElementNoLongerAvailableChip(toolName) {
 		const element = cy.get('[data-testid="media-element-' + toolName + '"]');
-		element.find(MediaShelf.#mediaElementNoLongerAvailableChip)
-			.should("exist")
+		element.find(MediaShelf.#mediaElementNoLongerAvailableChip).should("exist");
 	}
 
 	mediaElementIsVisibleInAvailableMediaLine(toolName) {
-		const line = cy.get(MediaShelf.#availableMediaLineSpace)
-		line.find('[data-testid="media-element-' + toolName + '"]').should("exist")
+		const line = cy.get(MediaShelf.#availableMediaLineSpace);
+		line.find('[data-testid="media-element-' + toolName + '"]').should("exist");
 	}
 
 	mediaElementIsNotVisibleInAvailableMediaLine(toolName) {
-		const line = cy.get(MediaShelf.#availableMediaLineSpace)
-		line.find('[data-testid="media-element-' + toolName + '"]').should("not.exist")
+		const line = cy.get(MediaShelf.#availableMediaLineSpace);
+		line.find('[data-testid="media-element-' + toolName + '"]').should("not.exist");
 	}
 
 	clickGridLayoutButton() {
-		cy.get(MediaShelf.#gridLayoutButton).click()
+		cy.get(MediaShelf.#gridLayoutButton).click();
 	}
 
 	clickListLayoutButton() {
-		cy.get(MediaShelf.#listLayoutButton).click()
+		cy.get(MediaShelf.#listLayoutButton).click();
 	}
 
 	clickAddMediaLineButton() {
-		cy.get(MediaShelf.#createLineButton).click()
+		cy.get(MediaShelf.#createLineButton).click();
 	}
 
 	clickCollapseAvailableMediaLineButton() {
-		cy.get(MediaShelf.#availableLine)
-			.find(MediaShelf.#collapseLineButton)
-			.click();
+		cy.get(MediaShelf.#availableLine).find(MediaShelf.#collapseLineButton).click();
 	}
 
 	clickCollapseButtonOnFirstMediaLine() {
-		cy.get(MediaShelf.#mediaLine1)
-			.find(MediaShelf.#collapseLineButton)
-			.click();
+		cy.get(MediaShelf.#mediaLine1).find(MediaShelf.#collapseLineButton).click();
 	}
 
 	clickThreeDotMenuButtonOnAvailableMediaLine() {
@@ -216,9 +210,7 @@ class MediaShelf {
 	}
 
 	clickThreeDotMenuButtonOnFirstMediaLine() {
-		cy.get(MediaShelf.#mediaLine1)
-			.find(MediaShelf.#threeDotMenuInMediaLine)
-			.click();
+		cy.get(MediaShelf.#mediaLine1).find(MediaShelf.#threeDotMenuInMediaLine).click();
 	}
 
 	clickEditTitleButton() {
@@ -226,15 +218,15 @@ class MediaShelf {
 	}
 
 	editTitleOfFirstMediaLine(title) {
-		const line = cy.get(MediaShelf.#mediaLine1)
+		const line = cy.get(MediaShelf.#mediaLine1);
 		line.find(MediaShelf.#lineTitle)
-			.type('{selectAll}{backspace}')
+			.type("{selectAll}{backspace}")
 			.type(title)
-			.type('{esc}');
+			.type("{esc}");
 	}
 
 	clickOnFirstMediaLineTitle() {
-		const line = cy.get(MediaShelf.#mediaLine1)
+		const line = cy.get(MediaShelf.#mediaLine1);
 		line.find(MediaShelf.#lineTitle).dblclick();
 	}
 
@@ -263,94 +255,113 @@ class MediaShelf {
 	clickThreeDotMenuButtonOnMediaElement(toolName) {
 		cy.get('[data-testid="media-element-' + toolName + '"]')
 			.find(MediaShelf.#threeDotMenuOnMediaElement)
-			.click()
+			.click();
 	}
 
 	clickDeleteMediaElementButton() {
-		cy.get(MediaShelf.#deleteMediaElementButton)
-			.click()
-	}
-
-	seeDeleteMediaDialog() {
-		cy.get(MediaShelf.#deleteMediaElementDialog)
-			.should("exist")
-	}
-
-	clickConfirmDeleteDialog() {
-		cy.get(MediaShelf.#confirmDeletionDialogButton)
-			.click()
+		cy.get(MediaShelf.#deleteMediaElementButton).click();
 	}
 
 	moveToolInGhostMediaLine(toolName) {
-		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#ghostLineSpace);
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(
+			MediaShelf.#ghostLineSpace
+		);
 	}
 
 	moveToolInEmptyFirstMediaLine(toolName) {
-		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#mediaLineSpace1);
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(
+			MediaShelf.#mediaLineSpace1
+		);
 	}
 
 	moveToolInFirstMediaLine(toolName) {
-		const options = { target: {x: 0 , y: 0}, source: { position: "right" }, force: true }
-		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#mediaLineSpace1, options);
+		const options = {
+			target: { x: 0, y: 0 },
+			source: { position: "right" },
+			force: true,
+		};
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(
+			MediaShelf.#mediaLineSpace1,
+			options
+		);
 	}
 
 	moveToolInAvailableMediaLine(toolName) {
-		const options = { target: {x: 0 , y: 0}, source: { position: "right" }, force: true }
-		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#availableMediaLineSpace, options);
+		const options = {
+			target: { x: 0, y: 0 },
+			source: { position: "right" },
+			force: true,
+		};
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(
+			MediaShelf.#availableMediaLineSpace,
+			options
+		);
 	}
 
 	moveToolInEmptyAvailableMediaLine(toolName) {
-		cy.get('[data-testid="media-element-' + toolName + '"]').drag(MediaShelf.#availableMediaLineSpace);
+		cy.get('[data-testid="media-element-' + toolName + '"]').drag(
+			MediaShelf.#availableMediaLineSpace
+		);
 	}
 
 	moveToolNextToTool(toolNameSource, toolNameTarget) {
-		const options = { target: {x: 0 , y: 0}, source: { position: "right" }, force: true }
-		cy.get('[data-testid="media-element-' + toolNameSource + '"]')
-			.drag('[data-testid="media-element-' + toolNameTarget + '"]', options)
+		const options = {
+			target: { x: 0, y: 0 },
+			source: { position: "right" },
+			force: true,
+		};
+		cy.get('[data-testid="media-element-' + toolNameSource + '"]').drag(
+			'[data-testid="media-element-' + toolNameTarget + '"]',
+			options
+		);
 	}
 
 	mediaElementIsVisibleInFirstMediaLine(toolName) {
-		const line = cy.get(MediaShelf.#mediaLineSpace1)
-		line.find('[data-testid="media-element-' + toolName + '"]').should("exist")
+		const line = cy.get(MediaShelf.#mediaLineSpace1);
+		line.find('[data-testid="media-element-' + toolName + '"]').should("exist");
 	}
 
 	launchToolInAvailableMediaLine(toolName, toolURL) {
-		const launchedTool =  { toolName: toolName, isLaunched: false };
+		const launchedTool = { toolName: toolName, isLaunched: false };
 
 		cy.window().then((win) => {
-			cy.stub(win, "open").as("openStub").callsFake((url) => {
-				expect(url).to.contain(toolURL);
-				launchedTool.isLaunched = true;
-			});
+			cy.stub(win, "open")
+				.as("openStub")
+				.callsFake((url) => {
+					expect(url).to.contain(toolURL);
+					launchedTool.isLaunched = true;
+				});
 		});
 
 		cy.wrap(launchedTool).as("launchedTool");
 
-		const line = cy.get(MediaShelf.#availableMediaLineSpace)
-		line.find('[data-testid="media-element-' + toolName + '"]').click()
+		const line = cy.get(MediaShelf.#availableMediaLineSpace);
+		line.find('[data-testid="media-element-' + toolName + '"]').click();
 
-		cy.get("@openStub").invoke("restore")
+		cy.get("@openStub").invoke("restore");
 	}
 
 	launchToolInFirstMediaLine(toolName, toolURL) {
-		const launchedTool =  { toolName: toolName, isLaunched: false };
+		const launchedTool = { toolName: toolName, isLaunched: false };
 
 		cy.window().then((win) => {
-			cy.stub(win, "open").as("openStub").callsFake((url) => {
-				expect(url).to.contain(toolURL);
-				launchedTool.isLaunched = true;
-			});
+			cy.stub(win, "open")
+				.as("openStub")
+				.callsFake((url) => {
+					expect(url).to.contain(toolURL);
+					launchedTool.isLaunched = true;
+				});
 		});
 
 		cy.wrap(launchedTool).as("launchedTool");
 
-		const line = cy.get(MediaShelf.#mediaLineSpace1)
-		line.find('[data-testid="media-element-' + toolName + '"]').click()
+		const line = cy.get(MediaShelf.#mediaLineSpace1);
+		line.find('[data-testid="media-element-' + toolName + '"]').click();
 
-		cy.get("@openStub").invoke("restore")
+		cy.get("@openStub").invoke("restore");
 	}
 
-	toolWasLaunched(toolName){
+	toolWasLaunched(toolName) {
 		cy.get("@launchedTool").then((launchedTool) => {
 			expect(launchedTool.toolName).to.equal(toolName);
 			expect(launchedTool.isLaunched).to.be.true;
@@ -360,7 +371,7 @@ class MediaShelf {
 	}
 
 	clickToolInFirstMediaLine(toolName) {
-		const line = cy.get(MediaShelf.#mediaLineSpace1)
+		const line = cy.get(MediaShelf.#mediaLineSpace1);
 		line.find('[data-testid="media-element-' + toolName + '"]').click();
 	}
 
