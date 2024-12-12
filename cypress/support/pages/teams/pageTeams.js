@@ -19,7 +19,7 @@ class Teams {
 	static #teamCalanderTab = '[data-testid="team_calendar_tab"]';
 	static #addTeamEventButton = '[data-testid="add_team_event"]';
 	static #teamEventCreteModal = '[data-testid="modal_content"]';
-	static #teamEventTitleInput = '[data-testid="create-event-name"]';
+	static #teamCreateEventTitleInput = '[data-testid="create-event-name"]';
 	static #teamEditEventTitleInput = '[data-testid="edit-event-name"]';
 	static #teamEventStartDateTime = '[data-testid="create-startDate"]';
 	static #teamEventEndDateTime = '[data-testid="create-endDate"]';
@@ -205,7 +205,7 @@ class Teams {
 	}
 
 	enterTeamEventTitle(eventTitle) {
-		cy.get(Teams.#teamEventTitleInput).type(eventTitle, { force: true }).wait(1000);
+		cy.get(Teams.#teamCreateEventTitleInput).type(eventTitle, { force: true }).wait(1000);
 	}
 
 	seeTeamEventCreationModal() {
