@@ -33,7 +33,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
 
-        # cancel delete-process
+        # cancel delete-process of the new multi column board
         When I click on the three dot menu in room board
         When I click on delete in board menu
         Then I see the button to cancel the dialog
@@ -41,7 +41,7 @@ Feature: Room - Add, edit and delete board in room
         Then I see the page board details
         Then I see the board '<edited_board_title>' on the room overview page
 
-        # confirm delete-process
+        # confirm delete-process of the new multi column board
         When I click on the three dot menu in room board
         When I click on delete in board menu
         Then I see the button to confirm the dialog
