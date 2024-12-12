@@ -44,7 +44,7 @@ Feature: Room - Add, edit and delete board in room
         # confirm delete-process
         When I click on the three dot menu in room board
         When I click on delete in board menu
-        Then I see the button to cancel the dialog
+        Then I see the button to confirm the dialog
         Then I click on the button to confirm the deletion
         Then I do not see the board '<edited_board_title>' in the room
 
