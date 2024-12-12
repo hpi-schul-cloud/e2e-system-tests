@@ -63,8 +63,8 @@ Feature: Group - To show groups and classes in one table with respective functio
     When I click the confirmation button on the cancel modal
     Then I see the new class administration page
     When I click the create successor button
-    And I confirm creating the successor
-    And I confirm managing the class
+    When I confirm creating the successor
+    When I confirm managing the class
     Then I see the new class administration page
     Then I can see the disabled create successor button of the original class
 

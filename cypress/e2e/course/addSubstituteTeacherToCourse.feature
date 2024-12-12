@@ -32,8 +32,8 @@ Feature: Course - Add substitute teacher to course
         When I go to course '<course_name>'
         When I open page Edit course
         Then I see page Edit course
-        And I clear substitute teacher field
-        And I add substitute teacher '<substitute_teacher>'
+        When I clear substitute teacher field
+        When I add substitute teacher '<substitute_teacher>'
         When I click on button Save changes in page Edit course
         Given I am logged in as a '<teacher2>' at '<namespace>'
         When I go to courses overview
