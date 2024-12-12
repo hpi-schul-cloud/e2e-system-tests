@@ -18,7 +18,6 @@ Feature: Login Management - Login of users managed by SVS
             | brb       | teacher1_brb | admin1_brb | student1_brb |
 
         @school_api_test
-        # currently, there is an issue (BC-7880), that consecutive logins one after another for different users/instances, shows internal server error after clicking on the button Login.
         Examples:
             | namespace | teacher      | admin      | student      |
             | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |
