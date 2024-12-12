@@ -11,6 +11,17 @@ class RoomBoards {
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
 
+	clearAndType(selector, newTitle) {
+		cy.get(selector)
+			.first()
+			.then((element) => {
+				const currentTitle = element.val();
+				if (currentTitle) {
+					cy.wrap(element).type("{backspace}".repeat(currentTitle.length));
+				}
+				cy.wrap(element).type(newTitle);
+			});
+	}
 	seeColumnBoardDialogBox() {
 		cy.get(RoomBoards.#boardLayoutDialogTitle).should("be.visible");
 	}
