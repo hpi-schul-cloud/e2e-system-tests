@@ -28,13 +28,27 @@ This document provides comprehensive instructions for setting up the project env
 
    <br>
 
-3. **Setting Up Environment Configuration**
+3. **Setting Up Environment Variables for the Testing User Credentials and URLs**
    <br>
 
-   - Duplicate [`template.env.json`](env_variables/template.env.json) file and rename the duplicated file to `local.env.json` in the env_variables folder
-   - Add your credentials and environment-specific variables to `local.env.json` from 1Password including api keys
-     **(Remember add all instances as in 1Password we have different vaults available for each namespace)**
-     <br>
+   ##### Setting Up Environment Variables for Dev Environment/Cluster:
+
+   - Duplicate the file [devTemplate.env.json](../env_variables/devTemplate.env.json) and rename the duplicated file to `local.env.json` inside the `env_variables` folder.
+   - Include the required development namespace URLs for BRB/DBC/NBC.
+   - Test user data on development clusters are created using the school API.
+   - To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
+   - Contact QA team for the necessary 1Password links.
+
+   ##### Setting Up Environment Variables for Staging Environment/Cluster:
+
+   - Duplicate the file [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) and rename the duplicated file to `staging.env.json` in the `env_variables` folder.
+   - Include the required staging namespace URLs for BRB/DBC/NBC.
+   - Test data on the staging environment are fetched from the seed data on the server.
+   - Add the environment-specific credentials to `staging.env.json` from 1Password (1PW).
+   - Ensure all instances are included, as 1Password contains different vaults for each namespace with testing credentials.
+   - Contact QA team for the necessary 1Password links.
+
+<br>
 
 4. **Installing Dependencies**
 
@@ -49,4 +63,4 @@ This document provides comprehensive instructions for setting up the project env
    <br>
 
 5. **Running Cypress Tests**
-   For details on running Cypress tests, including options and configurations, refer to the [Running Tests Guide](running_tests_guide.md)
+   For details on running Cypress tests, including options and configurations, refer to the [Executing Tests Guide](executing_tests_guide.md)

@@ -13,13 +13,13 @@ Feature:  News - To read a news on the respective dashboards
         # teacher creates school news
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to news overview
-        And I click on add news button
+        When I click on add news button
         Then I see news creation page
-        And I enter news title '<news_title>'
-        And I enter news description '<news_description>'
-        And I see date input field
-        And I see time input field
-        And I click on save button
+        When I enter news title '<news_title>'
+        When I enter news description '<news_description>'
+        Then I see date input field
+        Then I see time input field
+        When I click on save button
         Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
 
         # teacher creates a team
@@ -33,13 +33,13 @@ Feature:  News - To read a news on the respective dashboards
         When I go to teams overview
         When I go to a team '<team_name>'
         When I click on news tab on the team detail page
-        And I click on create news button
+        When I click on create news button
         Then I see news creation page
-        And I enter news title '<team_news_title>'
-        And I enter news description '<team_news_description>'
-        And I see date input field
-        And I see time input field
-        And I click on save button
+        When I enter news title '<team_news_title>'
+        When I enter news description '<team_news_description>'
+        Then I see date input field
+        Then I see time input field
+        When I click on save button
         Then I see news is created successfully with title '<team_news_title>' and with description '<team_news_description>'
 
         # teacher reads a school news on news overview page
@@ -60,16 +60,16 @@ Feature:  News - To read a news on the respective dashboards
         # teacher deletes the school news
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I arrive on the dashboard
-        And I click on the news teaser '<news_title>'
+        When I click on the news teaser '<news_title>'
         When I click on delete button
-        And I confirm the deletion on confirmation dialog box
+        When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<news_title>'
 
         # teacher deletes the team news
         When I arrive on the dashboard
-        And I click on the news teaser '<team_news_title>'
+        When I click on the news teaser '<team_news_title>'
         When I click on delete button
-        And I confirm the deletion on confirmation dialog box
+        When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<team_news_title>'
 
         # teacher deletes the team

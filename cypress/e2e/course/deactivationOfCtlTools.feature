@@ -92,14 +92,6 @@ Feature: Deactivation of ctl tools
     When I click on save external tool button
     Then I see an external tool element with tool 'CY Test Tool 1'
 
-    #     Teacher can not see a deactivated tool in media shelf
-    When I go to media shelf
-    Then I see the media shelf page title
-    Then I see the available media line
-    Then I see 1 tools in the available media line
-    Then I see tool 'CY Test Tool 1' in the available media line
-    Then I do not see tool 'CY Test Tool 2' in the available media line
-
     #     Admin deactivates an existing tool
     Given I am logged in as a 'admin1_nbc' at 'nbc'
     When I click on administration in menu

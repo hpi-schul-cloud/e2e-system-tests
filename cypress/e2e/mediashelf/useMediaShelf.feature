@@ -103,8 +103,6 @@ Feature: Media Shelf - To show media shelf with respective functionality
     #     Teacher deletes tool
     When I click the three dot menu button on media element 'CY Test Tool 1'
     When I click on delete media element button
-    Then I see delete media element dialog
-    When I click confirm delete media element button
     Then I see tool 'CY Test Tool 1' in the available media line
 
     #     Deleting a tool from another location
@@ -119,11 +117,9 @@ Feature: Media Shelf - To show media shelf with respective functionality
     #     Teachers removes deleted media element placeholder
     Given I am logged in as a 'teacher1_nbc' at 'nbc'
     When I go to media shelf
-    Then I see the deleted placeholder element of media element 'CY Test Tool 2'
+    Then I see the no longer available chip on media element 'CY Test Tool 2'
     When I click the three dot menu button on media element 'CY Test Tool 2'
     When I click on delete media element button
-    Then I see delete media element dialog
-    When I click confirm delete media element button
     Then I do not see tool 'CY Test Tool 2' in the available media line
 
     #     Post Test: Reset Media Shelf

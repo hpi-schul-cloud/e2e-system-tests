@@ -4,7 +4,7 @@ Feature: Admin - Admin creates, manually register and deletes students
 
     As an admin, I want to perform the 4 CRUD operations and manual reegistration on students
 
-    Scenario: Admin creates a student and perform manual registration, inckuding pre condition.
+    Scenario: Admin creates a student and perform manual registration, including pre-conditions.
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -36,7 +36,7 @@ Feature: Admin - Admin creates, manually register and deletes students
         Then I navigate to the students management page
 
         # newly manual registered student does the first login
-        When I visit the url for first login
+        When I visit the login page
         When I enter the email assigned during user creation
         When I enter the password
         When I click on the button Login

@@ -31,7 +31,14 @@ This document outlines the directory layout of the project and the purpose of ea
 |   |    |___ e2e.js
 |   |___ videos
 |---- docs
-|     |___ tags.md (detailed documentation for relevant topic)
+|     |___ branch_activation.md
+      |___ folder_structure.md
+      |___ executing_tests.md
+      |___ setup.md
+      |___ tags.md
+|---- env_variables
+|     |___ devTemplate.env.json
+      |___ stagingTemplate.env.json
 |---- reports (containing html report & assets)
 |---- logs(contains logs of the test run)
 |---- node_modules

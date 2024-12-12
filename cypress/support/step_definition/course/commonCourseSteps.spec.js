@@ -1,7 +1,6 @@
-const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import Management from '../../pages/admin/pageAdministration';
+const { When, Then, Given } = require("@badeball/cypress-cucumber-preprocessor");
+import Management from "../../pages/admin/pageAdministration";
 import Courses from "../../pages/course/pageCourses";
-import CourseManagement from '../../pages/course_management/pageCourseManagement';
 
 const courses = new Courses();
 const management = new Management();
@@ -32,14 +31,14 @@ Then("I see course search box on the course overview page", () => {
 
 When("I go to course administration page", () => {
 	management.navigateToCourseAdministration();
-})
+});
 
 When("I go to courses overview", () => {
 	courses.navigateToCoursesOverview();
 });
 
 When("I go to course {string}", (courseName) => {
-	courses.navigateToCourseBoard(courseName);
+	courses.navigateToCoursePage(courseName);
 });
 
 Then("I see the course {string} on the course overview page", (courseName) => {
@@ -63,8 +62,8 @@ Then("I see page Edit course", () => {
 });
 
 Then("I see the course title is {string}", (courseName) => {
-	courses.isCorrectCourseEditPage(courseName)
-})
+	courses.isCorrectCourseEditPage(courseName);
+});
 
 When("I click on FAB to create a new course depending on sub menu", () => {
 	courses.clickOnCreateCourseFAB();
@@ -244,12 +243,12 @@ Then("I see teacher {string} is selected by default", (defaultTeacherName) => {
 });
 
 When("I select the teacher {string} in the list", (teacherName) => {
-	courses.selectTeacherInCourseCreatePage(teacherName)
-})
+	courses.selectTeacherInCourseCreatePage(teacherName);
+});
 
 Then("I see teacher selection box", () => {
 	courses.seeTeacherSelectionBox();
-})
+});
 
 Then("I see substitute teacher selection box", () => {
 	courses.seeSubstituteTeacherSelectionBox();
@@ -263,9 +262,12 @@ Then("I see button to create a course time table container", () => {
 	courses.seeCreateCourseTimeTableContainer();
 });
 
-When("I click on button Next Steps after entering the course detail in section one", () => {
-	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-});
+When(
+	"I click on button Next Steps after entering the course detail in section one",
+	() => {
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+	}
+);
 
 Then("I see section two area on the course create page", () => {
 	courses.seeSectionTwoAreaOnCourseCreatePage();
