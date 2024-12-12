@@ -27,7 +27,7 @@ class Teams {
 	static #teamEditEventDescriptionInput = '[data-testid="edit-event-description"]';
 	static #teamCalendarEventDescription =
 		'[data-testid="team-event-calendar-description"]';
-	static #teamEventPlaceInput = '[data-testid="create-event-location"]';
+	static #teamCreateEventPlaceInput = '[data-testid="create-event-location"]';
 	static #teamEditEventPlaceInput = '[data-testid="edit-event-location"]';
 	static #teamEventSaveButton = '[data-testid="submit-btn-edit-event-modal"]';
 	static #teamEventEditIcon = '[data-testid="edit_team_event"]';
@@ -189,7 +189,7 @@ class Teams {
 	}
 
 	enterTeamEventPlace(eventPlace) {
-		cy.get(Teams.#teamEventPlaceInput).type(eventPlace);
+		cy.get(Teams.#teamCreateEventPlaceInput).type(eventPlace);
 	}
 
 	enterTeamEventDescription(eventDescription) {
