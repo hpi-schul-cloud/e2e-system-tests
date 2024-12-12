@@ -53,6 +53,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on delete option in room menu
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
+        Then I do not see '<room_name>' on room overview page
 
 
         @school_api_test
