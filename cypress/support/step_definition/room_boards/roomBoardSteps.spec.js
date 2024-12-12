@@ -11,8 +11,16 @@ When("I click on button to add multi column board", () => {
 	roomBoards.clickOnButtonToAddMultiColumnBoard();
 });
 
+When("I click on button to add single column board", () => {
+	roomBoards.clickOnButtonToAddSingleColumnBoard();
+});
+
 Then("I see the page board details", () => {
 	roomBoards.seeNewRoomBoardCreatePage();
+});
+
+Then("I do not see the page board details", () => {
+	roomBoards.doNotSeeNewRoomBoardCreatePage();
 });
 
 When("I click on the three dot menu in room board", () => {

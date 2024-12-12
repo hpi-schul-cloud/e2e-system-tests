@@ -48,6 +48,24 @@ Feature: Room - Add, edit and delete board in room
         Then I click on the button to confirm the deletion
         Then I do not see the board '<edited_board_title>' in the room
 
+        # teacher creates a new single column board in the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to room overview
+        When I go to room '<room_name>'
+        When I click on the button add content
+        Then I see the button to add board
+        When I click on the fab button to add a Board
+        Then I see the dialog box to select the Board type
+        When I click on button to add single column board
+        Then I see the page board details
+
+        # confirm delete-process of single column board
+        When I click on the three dot menu in room board
+        When I click on delete in board menu
+        Then I see the button to confirm the dialog
+        Then I click on the button to confirm the deletion
+        Then I do not see the page board details
+
         # post-condition: delete room
         When I click on three dot menu in room page
         When I click on delete option in room menu

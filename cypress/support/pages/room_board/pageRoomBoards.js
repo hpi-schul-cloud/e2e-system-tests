@@ -9,6 +9,7 @@ class RoomBoards {
 	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
 	static #btnBoardMenuActionEdit = '[data-testid="board-menu-action-edit"]';
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
+	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
 
 	clearAndType(selector, newTitle) {
@@ -28,8 +29,14 @@ class RoomBoards {
 	clickOnButtonToAddMultiColumnBoard() {
 		cy.get(RoomBoards.#dialogAddMultiColumnBoard).click();
 	}
+	clickOnButtonToAddSingleColumnBoard() {
+		cy.get(RoomBoards.#dialogAddSingleColumnBoard).click();
+	}
 	seeNewRoomBoardCreatePage() {
 		cy.url().should("include", "/board");
+	}
+	doNotSeeNewRoomBoardCreatePage() {
+		cy.url().should("not.include", "/board");
 	}
 	enterRoomBoardTitle(boardTitle) {
 		cy.get(RoomBoards.#roomBoardTitleOnPage).within(() => {
