@@ -90,7 +90,7 @@ class Rooms {
 	}
 
 	seeRoomEditParticipantsPage() {
-		cy.get(Rooms.#roomTitle).contains("Teilnehmende verwalten");
+		cy.get(Rooms.#roomTitle).contains("Raum-Teilnehmende");
 	}
 
 	navigateToRoom(roomName) {
@@ -157,7 +157,7 @@ class Rooms {
 		cy.get(Rooms.#participantTable)
 			.contains(participantName)
 			.parent("tr")
-			.then((removeUser) => cy.wrap(removeUser).find("td").eq(4))
+			.then((removeUser) => cy.wrap(removeUser).find("td").eq(5))
 			.click();
 	}
 
