@@ -1,7 +1,11 @@
-import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 
 const board = new Board();
+
+When("I click on the board", () => {
+	board.clickOnCourseBoardCardInCourseDetailPage();
+});
 
 When("I click on three dot menu in the card", () => {
 	board.clickOnThreeDotOnCard();
@@ -66,9 +70,3 @@ Then("I see a whiteboard on the board", () => {
 Then("I select whiteboard from the menu", () => {
 	board.selectWhiteboardFromMenu();
 });
-
-
-
-
-
-

@@ -36,8 +36,8 @@ Feature: Topics - To access the H5P editor as a teacher.
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
-        And I click on FAB to create new content
-        And I click on New Topic FAB
+        When I click on FAB to create new content
+        When I click on New Topic FAB
         Then I can see edit topic page '-'
         When I enter topic title '<topic_title>'
         When I click on button Add Text to topic
