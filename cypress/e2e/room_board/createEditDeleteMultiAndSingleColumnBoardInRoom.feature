@@ -26,7 +26,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on button to add multi column board
         Then I see the page board details
 
-        # teacher edites title of the new multi column board
+        # teacher edits title of the new multi column board
         When I click on the three dot menu in room board
         When I click on edit in board menu
         Then I change the room board title to '<edited_board_title>'
@@ -59,6 +59,13 @@ Feature: Room - Add, edit and delete board in room
         When I click on button to add single column board
         Then I see the page board details
 
+        # teacher edits title of the new multi column board
+        When I click on the three dot menu in room board
+        When I click on edit in board menu
+        Then I change the room board title to '<edited_board_title>'
+        When I click on the page outside of the title of the board
+        Then I see my room board is named '<edited_board_title>'
+
         # confirm delete-process of single column board
         When I click on the three dot menu in room board
         When I click on delete in board menu
@@ -66,7 +73,7 @@ Feature: Room - Add, edit and delete board in room
         Then I click on the button to confirm the deletion
         Then I do not see the page board details
 
-        # post-condition: delete room
+        # post-condition: teacher deletes room
         When I click on three dot menu in room page
         When I click on delete option in room menu
         Then I see confirmation modal for deleting the room
