@@ -20,7 +20,7 @@ jobs:
 
     steps:
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -36,14 +36,14 @@ jobs:
 
       - name: Checkout main
         if: steps.check_branch.outputs.LOCAL_BRANCH_EXISTS == 'false'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/e2e-system-tests
           path: e2e-system-tests
 
       - name: Checkout branch
         if: steps.check_branch.outputs.LOCAL_BRANCH_EXISTS == 'true'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/e2e-system-tests
           ref: ${{ inputs.ref }}
