@@ -59,13 +59,13 @@ Feature: Dashboard - To check contents on the dashboard
 
         # pre-condition: teacher creates school news
         When I go to news overview
-        And I click on add news button
+        When I click on add news button
         Then I see news creation page
-        And I enter news title 'CypressAut Dashboard - school news'
-        And I enter news description 'test school news description'
-        And I see date input field
-        And I see time input field
-        And I click on save button
+        When I enter news title 'CypressAut Dashboard - school news'
+        When I enter news description 'test school news description'
+        Then I see date input field
+        Then I see time input field
+        When I click on save button
         Then I see news is created successfully with title 'CypressAut Dashboard - school news' and with description 'test school news description'
 
         # pre-condition: teacher creates a team
@@ -79,24 +79,24 @@ Feature: Dashboard - To check contents on the dashboard
         When I go to teams overview
         When I go to a team 'CypressAut - News Team'
         When I click on news tab on the team detail page
-        And I click on create news button
+        When I click on create news button
         Then I see news creation page
-        And I enter news title 'CypressAut Dashboard - team news'
-        And I enter news description 'test team news description'
-        And I see date input field
-        And I see time input field
-        And I click on save button
+        When I enter news title 'CypressAut Dashboard - team news'
+        When I enter news description 'test team news description'
+        Then I see date input field
+        Then I see time input field
+        When I click on save button
         Then I see news is created successfully with title 'CypressAut Dashboard - team news' and with description 'test team news description'
 
         # pre-condition: teacher adds student as team member
         When I go to teams overview
         When I go to a team 'CypressAut - News Team'
         When I click on three dot menu on the team title
-        And I click on manage team members option
+        When I click on manage team members option
         Then I see team participants overview page
-        And I click on add internal attendees button
-        And new dialog opens to select student '<listname_student>' from the drop down list
-        And I click on add user button
+        When I click on add internal attendees button
+        Then new dialog opens to select student '<listname_student>' from the drop down list
+        When I click on add user button
         Then I see the student named '<listname_student>' on the team members table
 
         # student arrives on dashboard
@@ -118,16 +118,16 @@ Feature: Dashboard - To check contents on the dashboard
 
         # teacher deletes the school news
         When I arrive on the dashboard
-        And I click on the news teaser 'CypressAut Dashboard - school news'
+        When I click on the news teaser 'CypressAut Dashboard - school news'
         When I click on delete button
-        And I confirm the deletion on confirmation dialog box
+        When I confirm the deletion on confirmation dialog box
         Then I do not see the news 'CypressAut Dashboard - school news'
 
         # teacher deletes the team news
         When I arrive on the dashboard
-        And I click on the news teaser 'CypressAut Dashboard - team news'
+        When I click on the news teaser 'CypressAut Dashboard - team news'
         When I click on delete button
-        And I confirm the deletion on confirmation dialog box
+        When I confirm the deletion on confirmation dialog box
         Then I do not see the news 'CypressAut Dashboard - team news'
 
         # student does not see news anymore on dashboard
@@ -141,7 +141,7 @@ Feature: Dashboard - To check contents on the dashboard
         When I go to teams overview
         When I go to a team 'CypressAut - News Team'
         When I click on three dot menu on the team title
-        And I click on manage team members option
+        When I click on manage team members option
         Then I see team participants overview page
         When I select the student '<fullname_student>' and click on delete icon
         Then I see '<fullname_student>' is not visible on the table
