@@ -59,7 +59,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on button to add single column board
         Then I see the page board details
 
-        # teacher edits title of the new multi column board
+        # teacher edits title of the new single column board
         When I click on the three dot menu in room board
         When I click on edit in board menu
         Then I change the room board title to '<edited_board_title>'
