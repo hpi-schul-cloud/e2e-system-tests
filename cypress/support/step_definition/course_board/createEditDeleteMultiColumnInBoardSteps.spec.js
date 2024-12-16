@@ -11,7 +11,6 @@ Then("I see the page Course Board details", () => {
 	board.seeNewCourseBoardCreatePage();
 });
 
-
 When("I click on the option Edit in three dot menu in course board", () => {
 	board.clickOnEditInThreeDotCourseBoardTitle();
 });

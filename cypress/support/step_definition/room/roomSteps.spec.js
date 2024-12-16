@@ -1,7 +1,9 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Rooms from "../../pages/room/pageRooms";
+import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const rooms = new Rooms();
+const roomBoards = new RoomBoards();
 
 When("I select the colour for the room", () => {
 	rooms.selectRoomColour();
@@ -127,3 +129,17 @@ Then(
 		rooms.notSeeParticipantInList(participantName);
 	}
 );
+
+When("I click on the button add content", () => {
+	rooms.clickOnAddContentButton();
+});
+
+Then("I see the button to add board", () => {
+	rooms.seeFabButtonToAddBoard();
+});
+
+When ("I click on the fab button to add a Board", () => {
+	rooms.clickOnFabButtonToAddBoard();
+});
+
+
