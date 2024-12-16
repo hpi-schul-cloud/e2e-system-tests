@@ -159,7 +159,7 @@ class Management {
 	static #buttonSaveChangePasswordModalUserSetting =
 		'[data-testid="submit-btn-change-password-modal"]';
 	static #successNotificationChangePassword = '[data-testid="notification"]';
-	static #inputBoxParamNameCtlToolConfig = '[data-testid="schoolParam"]';
+
 	seeSuccessMessageAfterChangingPasswordByAdmin() {
 		cy.get(Management.#successNotificationChangePassword).should("be.visible");
 	}
@@ -1008,17 +1008,12 @@ class Management {
 		);
 	}
 
-	seeCustomParameterFormContains(value) {
-		cy.get(Management.#inputBoxParamNameCtlToolConfig)
-			.find("input")
-			.should("have.value", value);
+	seeCustomParameterFormContains(paramName, value) {
+		cy.get(`[data-testid="${paramName}"]`).find("input").should("have.value", value);
 	}
 
-	fillInCustomParameter(value) {
-		cy.get(Management.#inputBoxParamNameCtlToolConfig)
-			.find("input")
-			.clear()
-			.type(value);
+	fillInCustomParameter(paramName, value) {
+		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
 	}
 
 	insertToolLink(toolLink) {

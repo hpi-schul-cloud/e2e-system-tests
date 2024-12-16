@@ -35,8 +35,8 @@ Then("I see tool {string} is selected", (toolName) => {
 	management.seeSelectedExternalTool(toolName);
 });
 
-Then("I see custom parameter input field schoolParam contains {string}", (value) => {
-	management.seeCustomParameterFormContains(value);
+Then("I see custom parameter input field {string} contains {string}", (paramName, value) => {
+	management.seeCustomParameterFormContains(paramName, value);
 });
 
 Then("I do not see the tool {string} in external tools table", (toolName) => {
@@ -53,10 +53,10 @@ Then("I do not see external tool {string} in the tool selection", (toolName) => 
 
 Then("I see the deactivate checkbox is {string}", (value) => {
 	management.seeDeactivatedCheckBox(value);
-	if (value === "checked") {
-		management.seeDeactivatedCheckBoxIsChecked();
-	} else if (value === "not checked") {
-		management.seeDeactivatedCheckBoxIsNotChecked();
+	if(value === "checked"){
+		management.seeDeactivatedCheckBoxIsChecked()
+	} else if(value === "not checked"){
+		management.seeDeactivatedCheckBoxIsNotChecked()
 	}
 });
 
@@ -112,32 +112,26 @@ When("I confirm deletion on deletion dialog", () => {
 	management.clickOnConfirmInToolUsageDialog();
 });
 
-When("I enter {string} in required custom parameter input field schoolParam", (value) => {
-	management.fillInCustomParameter(value);
+When("I enter {string} in required custom parameter input field {string}", (value, paramName) => {
+	management.fillInCustomParameter(paramName, value);
 });
 
-When("I enter {string} in optional custom parameter input field schoolParam", (value) => {
-	management.fillInCustomParameter(value);
+When("I enter {string} in optional custom parameter input field {string}", (value, paramName) => {
+	management.fillInCustomParameter(paramName, value);
 });
 
 When("I insert the external tool link {string}", (toolLink) => {
 	management.insertToolLink(toolLink);
 });
 
-Then("I see configuration {string} is filled below with {string}", (key, value) => {
+Then("I see configuration {string} is filled below with {string}", (key, value) =>{
 	management.checkConfiguration(key, value);
-});
+})
 
-Then(
-	"I see the tool {string} in external tools table has no context restriction",
-	(toolName) => {
-		management.seeToolHasNoContextRestriction(toolName);
-	}
-);
+Then("I see the tool {string} in external tools table has no context restriction", (toolName) =>{
+	management.seeToolHasNoContextRestriction(toolName);
+})
 
-Then(
-	"I see the tool {string} in external tools table has context restriction {string}",
-	(toolName, contextRestriction) => {
-		management.seeToolHasContextRestriction(toolName, contextRestriction);
-	}
-);
+Then("I see the tool {string} in external tools table has context restriction {string}", (toolName, contextRestriction) =>{
+	management.seeToolHasContextRestriction(toolName,contextRestriction);
+})

@@ -28,7 +28,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see the tool 'CY Test Tool 1' in external tools table
         When I click the add external tool button
         When I select the tool 'CY Test Tool Required Parameters' from available tools
-        When I enter 'test' in required custom parameter input field schoolParam
+        When I enter 'test' in required custom parameter input field 'schoolParam'
         When I click on save external tool button
         Then I see the tool 'CY Test Tool Required Parameters' in external tools table
         When I click the add external tool button
