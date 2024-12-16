@@ -58,7 +58,7 @@ class Courses {
 	static #courseTimeTableContainer = '[data-timesref="#timesContainer"]';
 	static #addClassToCourseSelectionBox = '[id="addClassesToCourse_chosen"]';
 	static #addStudentToCourseSelectionBox = '[id="addStudentsToCourse_chosen"]';
-	static #nextButtonToCreateCourseOnParticipationDeatilStep = '[id="nextSection"]';
+	static #nextButtonToCreateCourseOnParticipationDetailStep = '[id="nextSection"]';
 	static #sectionThreeAreaOnCourseCreationPage = '[data-testid="section-3-area"]';
 	static #sectionOneAreaOnCourseCreationPage = '[data-testid="section-1-area"]';
 	static #sectionTwoAreaOnCourseCreationPage = '[data-testid="section-2-area"]';
@@ -144,6 +144,7 @@ class Courses {
 	static #delteDialogTitle = '[data-testid="dialog-title"]';
 	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
+	static #btnShareCourse = '[data-testid="room-menu-share"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -269,7 +270,8 @@ class Courses {
 	}
 
 	clickOnNextStepButtonOnCourseParticipationDetail() {
-		cy.get(Courses.#nextButtonToCreateCourseOnParticipationDeatilStep).click();
+		cy.get(Courses.#nextButtonToCreateCourseOnParticipationDetailStep).click();
+		cy.wait(500);
 	}
 
 	seeCourseCreationFinishPageSectionThree() {
@@ -296,7 +298,7 @@ class Courses {
 		cy.get(Courses.#courseOverviewNavigationButton).click();
 	}
 
-	navigateToCourseBoard(courseName) {
+	navigateToCoursePage(courseName) {
 		cy.contains(Courses.#courseTitleInCourseoverview, courseName)
 			.should("be.visible")
 			.then((title) => {
@@ -1192,5 +1194,9 @@ class Courses {
 		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
 	}
 
+	clickShareCourseButton() {
+		cy.get(Courses.#dropDownCourse).parent().click();
+		cy.get(Courses.#btnShareCourse).click();
+	}
 }
 export default Courses;

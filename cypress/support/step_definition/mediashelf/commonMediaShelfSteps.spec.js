@@ -1,7 +1,7 @@
 import MediaShelf from "../../pages/mediashelf/pageMediaShelf";
 import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
 
-const mediaShelf = new MediaShelf()
+const mediaShelf = new MediaShelf();
 
 When("I go to media shelf", () => {
 	mediaShelf.navigateToMediaShelf();
@@ -20,48 +20,48 @@ When("I click on three dot menu button on available media line", () => {
 });
 
 When("I select the background color", () => {
-	mediaShelf.selectLineColor()
-})
+	mediaShelf.selectLineColor();
+});
 
 When("I click on grid layout button", () => {
-	mediaShelf.clickGridLayoutButton()
-})
+	mediaShelf.clickGridLayoutButton();
+});
 
 When("I click on list layout button", () => {
-	mediaShelf.clickListLayoutButton()
-})
+	mediaShelf.clickListLayoutButton();
+});
 
 When("I click add media line button", () => {
-	mediaShelf.clickAddMediaLineButton()
-})
+	mediaShelf.clickAddMediaLineButton();
+});
 
 When("I click the three dot menu button on the first media line", () => {
-	mediaShelf.clickThreeDotMenuButtonOnFirstMediaLine()
-})
+	mediaShelf.clickThreeDotMenuButtonOnFirstMediaLine();
+});
 
 When("I click on edit title button", () => {
-	mediaShelf.clickEditTitleButton()
-})
+	mediaShelf.clickEditTitleButton();
+});
 
 When("I click the collapse button on the first media line", () => {
-	mediaShelf.clickCollapseButtonOnFirstMediaLine()
-})
+	mediaShelf.clickCollapseButtonOnFirstMediaLine();
+});
 
 When("I click on color picker button", () => {
-	mediaShelf.clickColorPickerButton()
-})
+	mediaShelf.clickColorPickerButton();
+});
 
 When("I edit the title of the first median line to {string}", (title) => {
-	mediaShelf.editTitleOfFirstMediaLine(title)
-})
+	mediaShelf.editTitleOfFirstMediaLine(title);
+});
 
 When("I double click on the title of the first median line", () => {
-	mediaShelf.clickOnFirstMediaLineTitle()
-})
+	mediaShelf.clickOnFirstMediaLineTitle();
+});
 
 When("I click on media element {string}", (toolName) => {
-	mediaShelf.clickMediaElement(toolName)
-})
+	mediaShelf.clickMediaElement(toolName);
+});
 
 Then("I see the media shelf page title", () => {
 	mediaShelf.seeMediaShelfPageTitle();
@@ -135,11 +135,14 @@ Then("I see {int} tools in the first media line", (count) => {
 	mediaShelf.seeNumberOfMediaInFirstMediaLine(count);
 });
 
-Then("I see the thumbnail, title and description of media element {string}", (toolName) => {
-	mediaShelf.seeMediaElementDefaultThumbnail(toolName);
-	mediaShelf.seeMediaElementTitle(toolName);
-	mediaShelf.seeMediaElementDescription(toolName);
-});
+Then(
+	"I see the thumbnail, title and description of media element {string}",
+	(toolName) => {
+		mediaShelf.seeMediaElementDefaultThumbnail(toolName);
+		mediaShelf.seeMediaElementTitle(toolName);
+		mediaShelf.seeMediaElementDescription(toolName);
+	}
+);
 
 Then("I see the deactivated chip on media element {string}", (toolName) => {
 	mediaShelf.seeMediaElementDeactivatedChip(toolName);
@@ -154,7 +157,7 @@ Then("I see the incomplete chip on media element {string}", (toolName) => {
 });
 
 Then("I see the no longer available chip on media element {string}", (toolName) => {
-	mediaShelf.seeMediaElementNoLongerAvailableChip(toolName)
+	mediaShelf.seeMediaElementNoLongerAvailableChip(toolName);
 });
 
 Then("I see tool {string} in the available media line", (toolName) => {
@@ -166,19 +169,11 @@ Then("I do not see tool {string} in the available media line", (toolName) => {
 });
 
 When("I click the three dot menu button on media element {string}", (toolName) => {
-	mediaShelf.clickThreeDotMenuButtonOnMediaElement(toolName)
+	mediaShelf.clickThreeDotMenuButtonOnMediaElement(toolName);
 });
 
 When("I click on delete media element button", () => {
-	mediaShelf.clickDeleteMediaElementButton()
-});
-
-Then("I see delete media element dialog", () => {
-	mediaShelf.seeDeleteMediaDialog()
-});
-
-When("I click confirm delete media element button", () => {
-	mediaShelf.clickConfirmDeleteDialog()
+	mediaShelf.clickDeleteMediaElementButton();
 });
 
 When("I move tool {string} in to ghost media line", (toolName) => {
@@ -213,13 +208,19 @@ When("I select default line color", () => {
 	mediaShelf.selectLineColorWhite();
 });
 
-When("I launch tool {string} in the available media line with given url {string}", (toolName, url) => {
-	mediaShelf.launchToolInAvailableMediaLine(toolName, url);
-});
+When(
+	"I launch tool {string} in the available media line with given url {string}",
+	(toolName, url) => {
+		mediaShelf.launchToolInAvailableMediaLine(toolName, url);
+	}
+);
 
-When("I launch tool {string} in the first media line with given url {string}", (toolName, url) => {
-	mediaShelf.launchToolInFirstMediaLine(toolName, url);
-});
+When(
+	"I launch tool {string} in the first media line with given url {string}",
+	(toolName, url) => {
+		mediaShelf.launchToolInFirstMediaLine(toolName, url);
+	}
+);
 
 Then("I see tool {string} on media element was launched", (toolName) => {
 	mediaShelf.toolWasLaunched(toolName);

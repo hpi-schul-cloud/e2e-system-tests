@@ -39,8 +39,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
-        And I click on FAB to create new content
-        And I click on New Topic FAB
+        When I click on FAB to create new content
+        When I click on New Topic FAB
         Then I can see edit topic page '-'
         When I enter topic title 'CypressAut Topic Creating and Deleting Test'
         When I click on button Add Text to topic
