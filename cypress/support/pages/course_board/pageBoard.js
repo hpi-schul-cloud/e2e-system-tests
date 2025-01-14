@@ -9,11 +9,11 @@ class Board {
 	static #addColumnTitleInput = '[data-testid="column-title-0"]';
 	static #addNewCardButtonInColumn = '[data-testid="column-0-add-card-btn"]';
 	static #mainPageArea = '[id="main-content"]';
-	static #editOptionThreeDot = '[data-testid="board-menu-action-edit"]';
+	static #editOptionThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-0"]';
 	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
-	static #deleteOptionThreeDot = '[data-testid="board-menu-action-delete"]';
+	static #deleteOptionThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
@@ -22,7 +22,7 @@ class Board {
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
 	static #editOptionInThreeDotCourseBoardTitle =
-		'[data-testid="board-menu-action-edit"]';
+		'[data-testid="kebab-menu-action-edit"]';
 	static #draftChipInCourseBoardName = '[data-testid="board-draft-chip"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
@@ -31,13 +31,13 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
-	static #boardMenuActionPublish = '[data-testid="board-menu-action-publish"]';
+	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
-	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
+	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
 	static #externalToolElementAlert =
 		'[data-testid="board-external-tool-element-alert"]';
 

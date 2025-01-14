@@ -3,11 +3,11 @@
 class RoomBoards {
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
 	static #btnDialogConfirm = '[data-testid="dialog-confirm"]';
-	static #boardMenuActionDelete = '[data-testid="board-menu-action-delete"]';
+	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #mainPageArea = '[id="main-content"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
 	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
-	static #btnBoardMenuActionEdit = '[data-testid="board-menu-action-edit"]';
+	static #btnBoardMenuActionEdit = '[data-testid="kebab-menu-action-edit"]';
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
 	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
@@ -44,7 +44,9 @@ class RoomBoards {
 		});
 	}
 	seeGivenRoomBoardTitle(boardTitle) {
-		cy.get(RoomBoards.#roomBoardTitleOnPage).find('input').should('have.value', boardTitle);
+		cy.get(RoomBoards.#roomBoardTitleOnPage)
+			.find("input")
+			.should("have.value", boardTitle);
 	}
 	clickOutsideTheTitleToSaveTheModifiedTitle() {
 		cy.get(RoomBoards.#mainPageArea).click("bottom");
