@@ -10,6 +10,7 @@ class Board {
 	static #addNewCardButtonInColumn = '[data-testid="column-0-add-card-btn"]';
 	static #mainPageArea = '[id="main-content"]';
 	static #editOptionThreeDot = '[data-testid="kebab-menu-action-edit"]';
+	static #renameOptionThreeDot = '[data-testid="kebab-menu-action-rename"]';
 	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-0"]';
 	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
@@ -21,8 +22,8 @@ class Board {
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
-	static #editOptionInThreeDotCourseBoardTitle =
-		'[data-testid="kebab-menu-action-edit"]';
+	static #renameOptionInThreeDotCourseBoardTitle =
+		'[data-testid="kebab-menu-action-rename"]';
 	static #draftChipInCourseBoardName = '[data-testid="board-draft-chip"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
@@ -85,10 +86,11 @@ class Board {
 
 	clickOnThreeDotMenuInCourseBoardTitle() {
 		cy.get(Board.#threeDotInCourseBoardTitle).click();
+		cy.get(Board.#renameOptionThreeDot).should("be.visible");
 	}
 
-	clickOnEditInThreeDotCourseBoardTitle() {
-		cy.get(Board.#editOptionInThreeDotCourseBoardTitle).click();
+	clickOnRenameInThreeDotCourseBoardTitle() {
+		cy.get(Board.#renameOptionInThreeDotCourseBoardTitle).click();
 	}
 
 	clearAndType(selector, newTitle) {
@@ -162,9 +164,15 @@ class Board {
 		cy.get(Board.#deleteOptionThreeDot).click();
 	}
 
+	clickOnKebabMenuAction(kebabMenuAction) {
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
+	}
+
 	clickOnThreeDotOnColumn() {
 		cy.get(Board.#threeDotMenuInColumn).click();
-		cy.get(Board.#editOptionThreeDot).should("be.visible");
+		cy.get(Board.#renameOptionThreeDot).should("be.visible");
 	}
 
 	clickOnThreeDotOnCard() {
@@ -177,8 +185,8 @@ class Board {
 		cy.get(Board.#deleteOptionThreeDot).should("be.visible");
 	}
 
-	selectEditInThreeDotMenu() {
-		cy.get(Board.#editOptionThreeDot).click();
+	selectRenameInThreeDotMenu() {
+		cy.get(Board.#renameOptionThreeDot).click();
 	}
 
 	clickOnCourseContentTab() {
@@ -209,6 +217,7 @@ class Board {
 	}
 
 	clickOutsideTheColumnToSaveTheColumn() {
+		cy.wait(1000);
 		cy.get(Board.#mainPageArea).click("bottom");
 	}
 
