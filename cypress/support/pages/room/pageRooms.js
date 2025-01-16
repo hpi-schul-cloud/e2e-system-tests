@@ -8,7 +8,7 @@ class Rooms {
 	// static #goToRoomOverviewButton = '[data-testid="Rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
-	static #roomDetailFABParticipants = '[data-testid="room-action-manage-participants"]';
+	static #roomDetailFABParticipants = '[data-testid="room-action-manage-members"]';
 	static #roomDetailFABDelete = '[data-testid="room-action-delete"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
