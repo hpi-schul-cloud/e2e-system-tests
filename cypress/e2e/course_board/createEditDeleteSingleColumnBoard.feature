@@ -37,7 +37,7 @@ Feature: Course Board - To create, edit and delete a single column course board
         When I choose single-column board in the dialog box
         Then I see the page Course Board details
         When I click on the button three dot menu in course board
-        When I click on the option Edit in three dot menu in course board
+        When I select the three dot menu action 'rename'
         Then I enter the course board title '<board_title>'
         When I click on the page outside of the column
         # Then I see the course Board name '<board_title>'
@@ -72,7 +72,7 @@ Feature: Course Board - To create, edit and delete a single column course board
 
         # teacher edits the column in the single column board
         When I click on three dot menu in the column
-        When I select the option Edit in three dot menu in the column
+        When I select the three dot menu action 'rename'
         Then I enter the title name '<edited_column_board_title>' in the column
         When I click on the page outside of the column
         Then I see my column named '<edited_column_board_title>'
@@ -92,7 +92,7 @@ Feature: Course Board - To create, edit and delete a single column course board
         When I go to course '<course_name>'
         When I click on card Course Board
         When I click on three dot menu in the column
-        When I select the option Delete in three dot menu in the column
+        When I select the three dot menu action 'delete'
         Then I see the modal Confirmation
         When I click on the button Remove on the Modal
         Then I do not see the column
