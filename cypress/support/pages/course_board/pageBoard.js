@@ -40,6 +40,8 @@ class Board {
 	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
 	static #externalToolElementAlert =
 		'[data-testid="board-external-tool-element-alert"]';
+	static #boardCard = '[data-testid="board-card-0-0"]';
+	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -377,6 +379,38 @@ class Board {
 
 	seeDeletedElement(name) {
 		cy.get(Board.#deletedElement).contains(name).should("be.visible");
+	}
+
+	seeBoardCard() {
+		cy.get(Board.#boardCard).should("be.visible");
+	}
+
+	selectCopyLinkToCardInThreeDotMenu(){
+		cy.get(Board.#copyBoardCardLinkButton).click();
+
+		cy.window().then((win) => {
+			return win.navigator.clipboard.readText();
+		}).then((link) => {
+			cy.wrap(link).as("boardCardLink");
+
+			cy.url().then((currentUrl) => {
+				expect(link).to.include(currentUrl);
+			});
+		});
+	}
+
+	openBoardCardLink(){
+		cy.get("@boardCardLink").then((link) => {
+			cy.visit(link);
+		});
+	}
+
+	clickOutsideTheCardToSaveTheCard() {
+		cy.get(Board.#mainPageArea).click("bottom");
+	}
+
+	seeFocusedBoardCard() {
+		cy.get(Board.#boardCard).should("be.focused");
 	}
 }
 export default Board;
