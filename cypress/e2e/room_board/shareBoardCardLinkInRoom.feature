@@ -55,7 +55,7 @@ Feature: Room Board - To share a board card link
         Then I see the page Course Board details
         Then I see the focused board card
 
-        # post-condition: second teacher deletes the room
+        # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
