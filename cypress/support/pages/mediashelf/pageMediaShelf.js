@@ -29,7 +29,7 @@ class MediaShelf {
 	static #mediaElementNoLongerAvailableChip =
 		'[data-testid="warning-chip-no-longer-available"]';
 	static #threeDotMenuOnMediaElement = '[data-testid="board-menu-icon"]';
-	static #deleteMediaElementButton = '[data-testid="board-menu-action-delete"]';
+	static #deleteMediaElementButton = '[data-testid="kebab-menu-action-delete"]';
 	static #createLineButton = '[data-testid="create-line-button"]';
 	static #emptyStateSign = '[data-testid="empty-state"]';
 	static #emptyStateInfoText = '[data-testid="emptyTaskMessage"]';

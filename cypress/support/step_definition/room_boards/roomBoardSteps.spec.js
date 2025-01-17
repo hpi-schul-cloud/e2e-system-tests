@@ -31,7 +31,7 @@ When("I click on edit in board menu", () => {
 	roomBoards.clickOnEditInBoardMenu();
 });
 
-Then("I change the room board title to {string}", (boardTitle) => {
+Then("I change the default room board title to {string}", (boardTitle) => {
 	roomBoards.enterRoomBoardTitle(boardTitle);
 });
 
@@ -62,4 +62,3 @@ When("I click on the button to confirm the deletion", () => {
 Then("I do not see the board {string} in the room", (boardTitle) => {
 	roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
 });
-

@@ -1,4 +1,4 @@
-import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 import Courses from "../../pages/course/pageCourses";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";

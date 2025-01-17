@@ -26,10 +26,10 @@ Feature: Room - Add, edit and delete board in room
         When I click on button to add multi column board
         Then I see the page board details
 
-        # teacher edits title of the new multi column board
+        # teacher edits the default title of the new multi column board
         When I click on the three dot menu in room board
         When I click on edit in board menu
-        Then I change the room board title to '<edited_board_title>'
+        Then I change the default room board title to '<edited_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
 
@@ -59,10 +59,10 @@ Feature: Room - Add, edit and delete board in room
         When I click on button to add single column board
         Then I see the page board details
 
-        # teacher edits title of the new single column board
+        # teacher edits the default title of the new single column board
         When I click on the three dot menu in room board
         When I click on edit in board menu
-        Then I change the room board title to '<edited_board_title>'
+        Then I change the default room board title to '<edited_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
 
@@ -83,10 +83,10 @@ Feature: Room - Add, edit and delete board in room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name          |   board_name         | edited_board_title     |
-            | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title         |
+            | teacher      | namespace | room_name         | edited_board_title |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title     |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name          |   board_name         | edited_board_title     |
-            | teacher1_brb | brb       | Cypress Room Name  |   Cypress Board Name | Board Cy Title         |
+            | teacher      | namespace | room_name         | edited_board_title |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title     |

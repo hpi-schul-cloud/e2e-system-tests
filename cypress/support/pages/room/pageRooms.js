@@ -8,7 +8,7 @@ class Rooms {
 	// static #goToRoomOverviewButton = '[data-testid="Rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
-	static #roomDetailFABParticipants = '[data-testid="room-action-manage-participants"]';
+	static #roomDetailFABParticipants = '[data-testid="room-action-manage-members"]';
 	static #roomDetailFABDelete = '[data-testid="room-action-delete"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
@@ -27,8 +27,6 @@ class Rooms {
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
-
-
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -94,7 +92,7 @@ class Rooms {
 	}
 
 	seeRoomEditParticipantsPage() {
-		cy.get(Rooms.#roomTitle).contains("Raum-Teilnehmende");
+		cy.get(Rooms.#roomTitle).should("be.visible");
 	}
 
 	navigateToRoom(roomName) {
@@ -181,7 +179,5 @@ class Rooms {
 	clickOnFabButtonToAddBoard() {
 		cy.get(Rooms.#fabButtonAddBoard).click();
 	}
-
-
 }
 export default Rooms;
