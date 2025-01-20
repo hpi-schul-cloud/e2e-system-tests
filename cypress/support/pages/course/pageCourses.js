@@ -27,13 +27,14 @@ class Courses {
 		'[data-testid="lesson-card-menu-action-remove-0"]';
 	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
-	static #backToDraftButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-revert-0"]';
+	static #backToDraftButtonInDotMenuOfTopic =
+		'[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex =
 		'[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
-	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]'
+	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]';
 	static #dropDownCourse = '[data-testid="room-menu"]';
 	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
@@ -103,7 +104,8 @@ class Courses {
 	static #studentGroupNameOnStudentGroupPage = '[data-testid="group-name-entry"]';
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
-	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
+	static #deleteCourseGroupConfirmationButton =
+		'[data-testid="delete-course-group-btn"]';
 	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
@@ -395,7 +397,7 @@ class Courses {
 
 	clickOnAddNewToolFAB() {
 		cy.get(Courses.#addToolButton)
-			.invoke('css', 'transform', 'translateY(5px)') // remove this invoke after the bug is fixed - Ticket:
+			.invoke("css", "transform", "translateY(5px)") // remove this invoke after the bug is fixed - Ticket:
 			.click();
 	}
 
@@ -658,7 +660,8 @@ class Courses {
 	deleteCoursesByName(courseLabel, courseName) {
 		cy.get(`[class="rooms-container"]`).then(($coursesContainer) => {
 			if (
-				$coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`).length
+				$coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`)
+					.length
 			) {
 				cy.get(`[aria-label="${courseLabel} ${courseName}"]`).then(($courses) => {
 					if ($courses) {
@@ -855,7 +858,9 @@ class Courses {
 	}
 
 	seeNumberOfTools(count) {
-		cy.get(Courses.#courseExternalToolSection).children().should("have.length", count);
+		cy.get(Courses.#courseExternalToolSection)
+			.children()
+			.should("have.length", count);
 	}
 
 	seeToolIsMarkedAsDeactivated(toolName) {
@@ -1173,25 +1178,25 @@ class Courses {
 	}
 
 	launchTool(toolName, toolURL) {
-		const launchedTool =  { toolName: toolName, isLaunched: false };
+		const launchedTool = { toolName: toolName, isLaunched: false };
 
 		cy.window().then((win) => {
-			cy.stub(win, "open").as("openStub").callsFake((url) => {
-				expect(url).to.contain(toolURL);
-				launchedTool.isLaunched = true;
-			});
+			cy.stub(win, "open")
+				.as("openStub")
+				.callsFake((url) => {
+					expect(url).to.contain(toolURL);
+					launchedTool.isLaunched = true;
+				});
 		});
 
 		cy.wrap(launchedTool).as("launchedTool");
 
-		cy.get(Courses.#courseExternalToolSection)
-            .contains(toolName)
-            .click();
+		cy.get(Courses.#courseExternalToolSection).contains(toolName).click();
 
-		cy.get("@openStub").invoke("restore")
+		cy.get("@openStub").invoke("restore");
 	}
 
-	toolWasLaunched(toolName){
+	toolWasLaunched(toolName) {
 		cy.get("@launchedTool").then((launchedTool) => {
 			expect(launchedTool.toolName).to.equal(toolName);
 			expect(launchedTool.isLaunched).to.be.true;

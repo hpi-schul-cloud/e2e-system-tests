@@ -8,8 +8,10 @@ class Rooms {
 	// static #goToRoomOverviewButton = '[data-testid="Rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
-	static #roomDetailFABParticipants = '[data-testid="room-action-manage-participants"]';
+	static #roomDetailFABParticipants = '[data-testid="room-action-manage-members"]';
 	static #roomDetailFABDelete = '[data-testid="room-action-delete"]';
+	static #addContentButton = '[data-testid="add-content-button"]';
+	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
 	static #confirmDeletionModalTitle = '[data-testid="delete-dialog-item"]';
 	static #confirmDeletionModalDelete = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
@@ -90,7 +92,7 @@ class Rooms {
 	}
 
 	seeRoomEditParticipantsPage() {
-		cy.get(Rooms.#roomTitle).contains("Raum-Teilnehmende");
+		cy.get(Rooms.#roomTitle).contains("Raum-Mitglieder");
 	}
 
 	navigateToRoom(roomName) {
@@ -167,6 +169,15 @@ class Rooms {
 
 	notSeeParticipantInList(participantName) {
 		cy.get(Rooms.#participantTable).should("not.contain", participantName);
+	}
+	clickOnAddContentButton() {
+		cy.get(Rooms.#addContentButton).click();
+	}
+	seeFabButtonToAddBoard() {
+		cy.get(Rooms.#fabButtonAddBoard).should("be.visible");
+	}
+	clickOnFabButtonToAddBoard() {
+		cy.get(Rooms.#fabButtonAddBoard).click();
 	}
 }
 export default Rooms;
