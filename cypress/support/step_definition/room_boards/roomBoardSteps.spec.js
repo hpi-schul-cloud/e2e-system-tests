@@ -3,6 +3,30 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+When("I click on the multicolumn board in the room detail page", () => {
+	roomBoards.clickMulticolumnBoardInRoomDetailPage();
+});
+
+When("I click on the option Copy", () => {
+	roomBoards.clickOptionCopy();
+});
+
+When("I click on the menu Publish", () => {
+	roomBoards.clickMenuPublish(); // Method to click on the Publish menu
+});
+
+Then("I do not see the chip Draft", () => {
+	roomBoards.verifyDraftChipNotVisible(); // Method to verify the Draft chip is not visible
+});
+
+Then("I see the chip Draft", () => {
+	roomBoards.verifyChipDraftVisible();
+});
+
+When("I click on the breadcrumb to navigate to the room detail page", () => {
+	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
+});
+
 Then("I see the dialog box to select the Board type", () => {
 	roomBoards.seeColumnBoardDialogBox();
 });

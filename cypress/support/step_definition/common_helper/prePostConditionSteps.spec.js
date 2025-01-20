@@ -17,7 +17,7 @@ Given("room with name {string} is deleted", (room_name) => {
 	rooms.roomIsNotVisibleOnOverviewPage(room_name);
 });
 
-Given("a room with name {string} exist", (room_name) => {
+Given("a room named {string} exists", (room_name) => {
 	rooms.navigateToRoomsOverview();
 	rooms.clickOnCreateRoomFAB();
 	rooms.showRoomCreationPage();
@@ -26,27 +26,25 @@ Given("a room with name {string} exist", (room_name) => {
 	rooms.selectTodayStartDateForRoom();
 	rooms.selectEndDateForRoom();
 	rooms.submitRoom();
-	rooms.seeRoomDetailPage(newRoomName);
+	rooms.seeRoomDetailPage(room_name);
 });
 
-Given(
-	"a multicolumn board with the name {string} exists in the room",
-	(edited_board_title) => {
-		rooms.clickOnAddContentButton();
-		rooms.seeFabButtonToAddBoard();
-		rooms.clickOnFabButtonToAddBoard();
-		roomBoards.seeColumnBoardDialogBox();
-		roomBoards.clickOnButtonToAddMultiColumnBoard();
-		roomBoards.seeNewRoomBoardCreatePage();
-		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
-		roomBoards.clickOnEditInBoardMenu();
-		roomBoards.enterRoomBoardTitle(edited_board_title);
-		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-		roomBoards.seeGivenRoomBoardTitle(edited_board_title);
-	}
-);
+Given("a multicolumn board named {string} exists in the room", (edited_board_title) => {
+	rooms.clickOnAddContentButton();
+	rooms.seeFabButtonToAddBoard();
+	rooms.clickOnFabButtonToAddBoard();
+	roomBoards.seeColumnBoardDialogBox();
+	roomBoards.clickOnButtonToAddMultiColumnBoard();
+	roomBoards.seeNewRoomBoardCreatePage();
+	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+	roomBoards.clickOnEditInBoardMenu();
+	roomBoards.enterRoomBoardTitle(edited_board_title);
+	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+	roomBoards.seeGivenRoomBoardTitle(edited_board_title);
+	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
+});
 
-Given("a list board with the name {string} exists in the room", (edited_board_title) => {
+Given("a list board named {string} exists in the room", (edited_board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -58,6 +56,7 @@ Given("a list board with the name {string} exists in the room", (edited_board_ti
 	roomBoards.enterRoomBoardTitle(edited_board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 	roomBoards.seeGivenRoomBoardTitle(edited_board_title);
+	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
 Given(
