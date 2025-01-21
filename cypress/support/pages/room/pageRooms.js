@@ -28,8 +28,6 @@ class Rooms {
 	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
 
-
-
 	selectEndDateForRoom() {
 		const currentDate = new Date();
 		//set the date which is two days later than the current day
@@ -94,7 +92,7 @@ class Rooms {
 	}
 
 	seeRoomEditParticipantsPage() {
-		cy.get(Rooms.#roomTitle).contains("Raum-Teilnehmende");
+		cy.get(Rooms.#roomTitle).contains("Raum-Mitglieder");
 	}
 
 	navigateToRoom(roomName) {
@@ -181,7 +179,5 @@ class Rooms {
 	clickOnFabButtonToAddBoard() {
 		cy.get(Rooms.#fabButtonAddBoard).click();
 	}
-
-
 }
 export default Rooms;

@@ -28,14 +28,14 @@ Feature: Room - Add, edit and delete board in room
 
         # teacher edits title of the new multi column board
         When I click on the three dot menu in room board
-        When I click on edit in board menu
+        When I select the three dot menu action 'rename'
         Then I change the room board title to '<edited_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
 
         # cancel delete-process of the new multi column board
         When I click on the three dot menu in room board
-        When I click on delete in board menu
+        When I select the three dot menu action 'delete'
         Then I see the button to cancel the dialog
         When I click on the button to cancel the deletion
         Then I see the page board details
@@ -43,7 +43,7 @@ Feature: Room - Add, edit and delete board in room
 
         # confirm delete-process of the new multi column board
         When I click on the three dot menu in room board
-        When I click on delete in board menu
+        When I select the three dot menu action 'delete'
         Then I see the button to confirm the dialog
         Then I click on the button to confirm the deletion
         Then I do not see the board '<edited_board_title>' in the room
@@ -61,7 +61,7 @@ Feature: Room - Add, edit and delete board in room
 
         # teacher edits title of the new single column board
         When I click on the three dot menu in room board
-        When I click on edit in board menu
+        When I select the three dot menu action 'rename'
         Then I change the room board title to '<edited_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<edited_board_title>'
