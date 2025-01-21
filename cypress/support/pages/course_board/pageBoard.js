@@ -9,7 +9,8 @@ class Board {
 	static #addColumnTitleInput = '[data-testid="column-title-0"]';
 	static #addNewCardButtonInColumn = '[data-testid="column-0-add-card-btn"]';
 	static #mainPageArea = '[id="main-content"]';
-	static #editOptionThreeDot = '[data-testid="kebab-menu-action-rename"]';
+	static #editOptionThreeDot = '[data-testid="kebab-menu-action-edit"]';
+	static #renameOptionThreeDot = '[data-testid="kebab-menu-action-rename"]';
 	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-0"]';
 	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
@@ -37,7 +38,7 @@ class Board {
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
-	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
+	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
 	static #externalToolElementAlert =
 		'[data-testid="board-external-tool-element-alert"]';
 
@@ -85,9 +86,10 @@ class Board {
 
 	clickOnThreeDotMenuInCourseBoardTitle() {
 		cy.get(Board.#threeDotInCourseBoardTitle).click();
+		cy.get(Board.#renameOptionThreeDot).should("be.visible");
 	}
 
-	clickOnEditInThreeDotCourseBoardTitle() {
+	clickOnRenameInThreeDotCourseBoardTitle() {
 		cy.get(Board.#renameOptionInThreeDotCourseBoardTitle).click();
 	}
 
@@ -162,9 +164,15 @@ class Board {
 		cy.get(Board.#deleteOptionThreeDot).click();
 	}
 
+	clickOnKebabMenuAction(kebabMenuAction) {
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
+	}
+
 	clickOnThreeDotOnColumn() {
 		cy.get(Board.#threeDotMenuInColumn).click();
-		cy.get(Board.#editOptionThreeDot).should("be.visible");
+		cy.get(Board.#renameOptionThreeDot).should("be.visible");
 	}
 
 	clickOnThreeDotOnCard() {
@@ -177,8 +185,8 @@ class Board {
 		cy.get(Board.#deleteOptionThreeDot).should("be.visible");
 	}
 
-	selectEditInThreeDotMenu() {
-		cy.get(Board.#editOptionThreeDot).click();
+	selectRenameInThreeDotMenu() {
+		cy.get(Board.#renameOptionThreeDot).click();
 	}
 
 	clickOnCourseContentTab() {
@@ -209,6 +217,7 @@ class Board {
 	}
 
 	clickOutsideTheColumnToSaveTheColumn() {
+		cy.wait(1000);
 		cy.get(Board.#mainPageArea).click("bottom");
 	}
 
