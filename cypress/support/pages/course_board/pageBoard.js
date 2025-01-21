@@ -9,11 +9,12 @@ class Board {
 	static #addColumnTitleInput = '[data-testid="column-title-0"]';
 	static #addNewCardButtonInColumn = '[data-testid="column-0-add-card-btn"]';
 	static #mainPageArea = '[id="main-content"]';
-	static #editOptionThreeDot = '[data-testid="board-menu-action-edit"]';
+	static #editOptionThreeDot = '[data-testid="kebab-menu-action-edit"]';
+	static #renameOptionThreeDot = '[data-testid="kebab-menu-action-rename"]';
 	static #threeDotMenuInColumn = '[data-testid="column-menu-btn-0"]';
 	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
-	static #deleteOptionThreeDot = '[data-testid="board-menu-action-delete"]';
+	static #deleteOptionThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
@@ -21,7 +22,8 @@ class Board {
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
-	static #editOptionInThreeDotCourseBoardTitle = '[data-testid="board-menu-action-edit"]';
+	static #renameOptionInThreeDotCourseBoardTitle =
+		'[data-testid="kebab-menu-action-rename"]';
 	static #draftChipInCourseBoardName = '[data-testid="board-draft-chip"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
@@ -30,15 +32,15 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
-	static #boardMenuActionPublish = '[data-testid="board-menu-action-publish"]';
+	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
-	static #editButtonInThreeDotMenu = '[data-testid="board-menu-action"]';
-	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
-
+	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
+	static #externalToolElementAlert =
+		'[data-testid="board-external-tool-element-alert"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -53,7 +55,7 @@ class Board {
 	}
 
 	seeWhiteboardOnPage() {
-		cy.get(Board.#drawingElement).should('exist');
+		cy.get(Board.#drawingElement).should("exist");
 	}
 
 	selectExternalToolsFromMenu() {
@@ -84,10 +86,11 @@ class Board {
 
 	clickOnThreeDotMenuInCourseBoardTitle() {
 		cy.get(Board.#threeDotInCourseBoardTitle).click();
+		cy.get(Board.#renameOptionThreeDot).should("be.visible");
 	}
 
-	clickOnEditInThreeDotCourseBoardTitle() {
-		cy.get(Board.#editOptionInThreeDotCourseBoardTitle).click();
+	clickOnRenameInThreeDotCourseBoardTitle() {
+		cy.get(Board.#renameOptionInThreeDotCourseBoardTitle).click();
 	}
 
 	clearAndType(selector, newTitle) {
@@ -124,6 +127,10 @@ class Board {
 		cy.get(Board.#addColumnTitleInput).should("not.exist");
 	}
 
+	clickOnWhiteboardElement() {
+		cy.get(Board.#drawingElement).invoke("removeAttr", "target").click();
+	}
+
 	clickOnOpenTldrawDrawingElement() {
 		let clickSpy;
 
@@ -157,9 +164,15 @@ class Board {
 		cy.get(Board.#deleteOptionThreeDot).click();
 	}
 
+	clickOnKebabMenuAction(kebabMenuAction) {
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
+	}
+
 	clickOnThreeDotOnColumn() {
 		cy.get(Board.#threeDotMenuInColumn).click();
-		cy.get(Board.#editOptionThreeDot).should("be.visible");
+		cy.get(Board.#renameOptionThreeDot).should("be.visible");
 	}
 
 	clickOnThreeDotOnCard() {
@@ -172,8 +185,8 @@ class Board {
 		cy.get(Board.#deleteOptionThreeDot).should("be.visible");
 	}
 
-	selectEditInThreeDotMenu() {
-		cy.get(Board.#editOptionThreeDot).click();
+	selectRenameInThreeDotMenu() {
+		cy.get(Board.#renameOptionThreeDot).click();
 	}
 
 	clickOnCourseContentTab() {
@@ -204,6 +217,7 @@ class Board {
 	}
 
 	clickOutsideTheColumnToSaveTheColumn() {
+		cy.wait(1000);
 		cy.get(Board.#mainPageArea).click("bottom");
 	}
 
@@ -240,18 +254,19 @@ class Board {
 	}
 
 	seePreferredExternalToolInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
-			.should("be.visible");
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
+			"be.visible"
+		);
 	}
 
 	selectPreferredExternalToolFromMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
-			.click();
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).click();
 	}
 
 	preferredExternalToolIsNotVisibleInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
-			.should("not.exist")
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
+			"not.exist"
+		);
 	}
 
 	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {
@@ -260,92 +275,90 @@ class Board {
 			.click();
 	}
 
-	clickEditButtonInThreeDotMenu(){
+	clickEditButtonInThreeDotMenu() {
 		cy.get(Board.#editButtonInThreeDotMenu).click();
 	}
 
-	clickDeleteButtonInThreeDotMenu(){
+	clickDeleteButtonInThreeDotMenu() {
 		cy.get(Board.#deleteOptionThreeDot).click();
 	}
 
-	seeToolIsNotMarkedAsIncomplete(toolName){
+	seeToolIsNotMarkedAsIncomplete(toolName) {
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
 			.find(Board.#externalToolElementAlert)
 			.children()
-			.should('have.length', 0);
+			.should("have.length", 0);
 	}
 
-
-	seeToolIsMarkedAsIncomplete(toolName){
-		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
-			.within(() => {
-				cy.get(Board.#externalToolElementAlert)
-					.children(".v-alert.v-theme--light.text-warning")
-					.should("have.class", "text-warning");
-			});
+	seeToolIsMarkedAsIncomplete(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).within(() => {
+			cy.get(Board.#externalToolElementAlert)
+				.children(".v-alert.v-theme--light.text-warning")
+				.should("have.class", "text-warning");
+		});
 	}
 
-	seeToolIsMarkedAsIncompleteOperational(toolName){
-		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
-			.within(() => {
-				cy.get(Board.#externalToolElementAlert)
-					.children(".v-alert.v-theme--light.text-info")
-					.should("have.class", "text-info");
-			});
+	seeToolIsMarkedAsIncompleteOperational(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).within(() => {
+			cy.get(Board.#externalToolElementAlert)
+				.children(".v-alert.v-theme--light.text-info")
+				.should("have.class", "text-info");
+		});
 	}
 
-	seeToolIsNotMarkedAsIncompleteOperational(toolName){
+	seeToolIsNotMarkedAsIncompleteOperational(toolName) {
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
 			.find(Board.#externalToolElementAlert)
 			.children()
-			.should('have.length', 0);
+			.should("have.length", 0);
 	}
 
-	clickExternalToolElementWithTool(toolName){
-		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click()
+	clickExternalToolElementWithTool(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click();
 	}
 
-	clickOnThreeDotMenuInBoardHeader(){
+	clickOnThreeDotMenuInBoardHeader() {
 		cy.get(Board.#draftChipInCourseBoardName)
 			.siblings()
 			.find(Board.#threeDotInCourseBoardTitle)
 			.click();
 	}
 
-	seeToolIsMarkedAsDeactivated(toolName){
-		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
-			.within(() => {
-				cy.get(Board.#externalToolElementAlert)
-					.children(".v-alert.v-theme--light.text-warning")
-					.should("have.class", "text-warning");
-			});
+	seeToolIsMarkedAsDeactivated(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).within(() => {
+			cy.get(Board.#externalToolElementAlert)
+				.children(".v-alert.v-theme--light.text-warning")
+				.should("have.class", "text-warning");
+		});
 	}
 
-	seeToolIsNotMarkedAsDeactivated(toolName){
+	seeToolIsNotMarkedAsDeactivated(toolName) {
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
 			.find(Board.#externalToolElementAlert)
 			.children()
-			.should('have.length', 0);
+			.should("have.length", 0);
 	}
 
 	launchTool(toolName, toolURL) {
-		const launchedTool =  { toolName: toolName, isLaunched: false };
+		const launchedTool = { toolName: toolName, isLaunched: false };
 
 		cy.window().then((win) => {
-			cy.stub(win, "open").as("openStub").callsFake((url) => {
-				expect(url).to.contain(toolURL);
-				launchedTool.isLaunched = true;
-			});
+			cy.stub(win, "open")
+				.as("openStub")
+				.callsFake((url) => {
+					expect(url).to.contain(toolURL);
+					launchedTool.isLaunched = true;
+				});
 		});
 
 		cy.wrap(launchedTool).as("launchedTool");
 
-		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click()
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click();
 
-		cy.get("@openStub").invoke("restore")
+		cy.get("@openStub").invoke("restore");
 	}
 
-	toolWasLaunched(toolName){
+	toolWasLaunched(toolName) {
 		cy.get("@launchedTool").then((launchedTool) => {
 			expect(launchedTool.toolName).to.equal(toolName);
 			expect(launchedTool.isLaunched).to.be.true;
@@ -354,20 +367,20 @@ class Board {
 		cy.wrap({ toolName: "", isLaunched: false }).as("launchedTool");
 	}
 
-	enterTextToTextFieldInCard(textContent){
+	enterTextToTextFieldInCard(textContent) {
 		cy.get('[data-testid="ckeditor"]').then((el) => {
 			const editor = el[0].ckeditorInstance;
 			editor.setData(textContent);
-			});
-			cy.get('[data-testid="ckeditor"]').then((el) => {
+		});
+		cy.get('[data-testid="ckeditor"]').then((el) => {
 			const editor = el[0].ckeditorInstance;
 			const editorContent = editor.getData();
 			const plainText = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
 			expect(plainText).to.equal(textContent);
-			});
+		});
 	}
 
-	seeTextInTextFieldInCard(textContent){
+	seeTextInTextFieldInCard(textContent) {
 		cy.contains(textContent);
 	}
 

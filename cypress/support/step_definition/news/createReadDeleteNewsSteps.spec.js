@@ -14,6 +14,6 @@ const news = new News();
 Then(
 	"I can read the news {string} with description {string}",
 	(titleOfNews, descriptionOfNews) => {
-		news.teacherReadsNewsOnOverviewPage(titleOfNews, descriptionOfNews);
+		news.seeNewsOnOverviewPage(titleOfNews, descriptionOfNews);
 	}
 );

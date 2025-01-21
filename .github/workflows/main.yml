@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/e2e-system-tests
           path: e2e-system-tests
@@ -70,17 +70,30 @@ jobs:
             "${{ inputs.environment }}"
 
       - name: Clean up previous report
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           working-directory: e2e-system-tests
           command: npm run pretest
 
+      - name: Start Edge (Headless)
+        run: |
+          nohup microsoft-edge-stable --headless --no-sandbox &
+          echo $! > edge_pid
+
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           working-directory: e2e-system-tests
           command: npm run ${{ inputs.tag }}
           browser: edge
+
+      - name: Clean Up Edge Process
+        if: always()
+        run: |
+          if [ -f edge_pid ]; then
+            kill $(cat edge_pid) || true
+            rm edge_pid
+          fi
 
       - name: Generate Report
         if: always()
@@ -89,14 +102,14 @@ jobs:
           npm run generate:report
 
       - name: Upload Report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ${{ inputs.groups }}-cypress-report
           path: ${{ github.workspace }}/e2e-system-tests/reports/
 
       - name: Upload Video Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ${{ inputs.groups }}-cypress-video-artifact
