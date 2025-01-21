@@ -63,7 +63,7 @@ When("I click on the three dot menu in room board", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
-When("I click on edit in board menu", () => {
+When("I click on the option Rename in board three dot menu", () => {
 	roomBoards.clickOnEditInBoardMenu();
 });
 

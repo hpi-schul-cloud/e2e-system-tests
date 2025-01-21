@@ -28,7 +28,7 @@ Feature: Room - Add, edit and delete board in room
 
         # teacher edits the default title of the new multi column board
         When I click on the three dot menu in room board
-        When I click on edit in board menu
+        When I click on the option Rename in board three dot menu
         Then I change the default room board title to '<new_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<new_board_title>'
@@ -61,7 +61,7 @@ Feature: Room - Add, edit and delete board in room
 
         # teacher edits the default title of the new single column board
         When I click on the three dot menu in room board
-        When I click on edit in board menu
+        When I click on the option Rename in board three dot menu
         Then I change the default room board title to '<new_board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<new_board_title>'

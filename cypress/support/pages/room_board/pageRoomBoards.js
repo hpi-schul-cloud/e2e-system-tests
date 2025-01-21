@@ -7,7 +7,7 @@ class RoomBoards {
 	static #mainPageArea = '[id="main-content"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
 	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
-	static #btnBoardMenuActionEdit = '[data-testid="kebab-menu-action-rename"]';
+	static #btnBoardMenuActionRename = '[data-testid="kebab-menu-action-rename"]';
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
 	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
@@ -122,7 +122,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#boardMenuIcon).click();
 	}
 	clickOnEditInBoardMenu() {
-		cy.get(RoomBoards.#btnBoardMenuActionEdit).click();
+		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
 	}
 }
 

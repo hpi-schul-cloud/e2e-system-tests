@@ -21,7 +21,7 @@ class Board {
 	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
-	static #editOptionInThreeDotCourseBoardTitle =
+	static #renameOptionInThreeDotCourseBoardTitle =
 		'[data-testid="kebab-menu-action-rename"]';
 	static #draftChipInCourseBoardName = '[data-testid="board-draft-chip"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
@@ -88,7 +88,7 @@ class Board {
 	}
 
 	clickOnEditInThreeDotCourseBoardTitle() {
-		cy.get(Board.#editOptionInThreeDotCourseBoardTitle).click();
+		cy.get(Board.#renameOptionInThreeDotCourseBoardTitle).click();
 	}
 
 	clearAndType(selector, newTitle) {
