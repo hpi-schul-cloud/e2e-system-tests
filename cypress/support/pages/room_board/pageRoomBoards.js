@@ -17,13 +17,18 @@ class RoomBoards {
 	static #copyOptionSelector = '[data-testid="kebab-menu-action-copy"]';
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
+	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
+
+	clickSingleColumnBoardInRoomDetailPage() {
+		cy.get(RoomBoards.#singleColumnBoardSelector).click();
+	}
 
 	clickMenuPublish() {
 		cy.get(RoomBoards.#publishMenuSelector).click();
 	}
 
 	verifyDraftChipNotVisible() {
-		cy.get(RoomBoards.#chipDraftSelector).should("not.be.visible");
+		cy.get(RoomBoards.#chipDraftSelector).should("not.exist");
 	}
 
 	clickMulticolumnBoardInRoomDetailPage() {

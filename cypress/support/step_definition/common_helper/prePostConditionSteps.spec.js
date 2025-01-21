@@ -9,7 +9,7 @@ const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
 
-Given("room with name {string} is deleted", (room_name) => {
+Given("the room named {string} is deleted", (room_name) => {
 	rooms.openThreeDotMenuForRoom();
 	rooms.openDeleteInThreeDotMenuForRoom();
 	rooms.seeConfirmationModalForRoomDeletion();

@@ -8,7 +8,7 @@ Feature: Room - Add and Remove BBB Tool in Room Boards
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multicolumn board named '<edited_board_title>' exists in the room
-        #Given a list board named '<edited_board_title>' exists in the room
+        Given a list board named '<edited_board_title>' exists in the room
 
         # Teacher copies the multicolumn board
         When I click on the multicolumn board in the room detail page
@@ -42,7 +42,7 @@ Feature: Room - Add and Remove BBB Tool in Room Boards
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | edited_board_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title     |
+            | teacher1_nbc | nbc       | Cypress Room Name | Board Cy Title     |
 
         @staging_test
         Examples:

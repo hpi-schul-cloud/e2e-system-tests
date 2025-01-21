@@ -3,6 +3,10 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+When("I click on the single-column board in the room detail page", () => {
+	roomBoards.clickSingleColumnBoardInRoomDetailPage();
+});
+
 When("I click on the multicolumn board in the room detail page", () => {
 	roomBoards.clickMulticolumnBoardInRoomDetailPage();
 });
