@@ -13,6 +13,7 @@ Feature: Room - Add BBB Tool in the Room Board
 		Given a multi-column board named '<new_board_title>' exists in the room
 		#Give column exist in the multi-column board in the toom
 		#Given Card exist in the column in the multi-column board in the room
+		#Given Admin enable video ocnference for the school in school seting page
 
 		# teacher adds BBB Tool to the multi-column board
 		When I click on the multi-column board in the room detail page
