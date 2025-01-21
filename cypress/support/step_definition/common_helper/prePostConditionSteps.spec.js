@@ -29,7 +29,7 @@ Given("a room named {string} exists", (room_name) => {
 	rooms.seeRoomDetailPage(room_name);
 });
 
-Given("a multicolumn board named {string} exists in the room", (edited_board_title) => {
+Given("a multi-column board named {string} exists in the room", (edited_board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -44,7 +44,7 @@ Given("a multicolumn board named {string} exists in the room", (edited_board_tit
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
-Given("a list board named {string} exists in the room", (edited_board_title) => {
+Given("a sinlge-column board named {string} exists in the room", (edited_board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();

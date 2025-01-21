@@ -3,11 +3,19 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I see multi-column copied board v-card on the room detail page", () => {
+	roomBoards.verifyMultiColumnCopiedBoardVCardVisibleOnRoomDetailPage();
+});
+
+Then("I see single-column copied board v-card on the room detail page", () => {
+	roomBoards.verifyListColumnCopiedBoardVCardVisibleOnRoomDetailPage();
+});
+
 When("I click on the single-column board in the room detail page", () => {
 	roomBoards.clickSingleColumnBoardInRoomDetailPage();
 });
 
-When("I click on the multicolumn board in the room detail page", () => {
+When("I click on the multi-column board in the room detail page", () => {
 	roomBoards.clickMulticolumnBoardInRoomDetailPage();
 });
 

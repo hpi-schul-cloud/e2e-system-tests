@@ -12,12 +12,21 @@ class RoomBoards {
 	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
 	static #breadCrumbToRoomNavigationFromBoard = '[data-testid="breadcrumb-1"]';
-
 	static #multicolumnBoardSelector = '[data-testid="board-tile-subtitle-0"]';
 	static #copyOptionSelector = '[data-testid="kebab-menu-action-copy"]';
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
 	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
+	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-2"]';
+	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-3"]';
+
+	verifyMultiColumnCopiedBoardVCardVisibleOnRoomDetailPage() {
+		cy.get(RoomBoards.#multiColumnCopiedBoardSelector).should("be.visible");
+	}
+
+	verifyListColumnCopiedBoardVCardVisibleOnRoomDetailPage() {
+		cy.get(RoomBoards.#singleColumnCopiedBoardSelector).should("be.visible");
+	}
 
 	clickSingleColumnBoardInRoomDetailPage() {
 		cy.get(RoomBoards.#singleColumnBoardSelector).click();

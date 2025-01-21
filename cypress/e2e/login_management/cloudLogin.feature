@@ -7,8 +7,11 @@ Feature: Login Management - Login of users managed by SVS
     Scenario Outline: User makes a direct login with username and password
 
         Given I am logged in as a '<student>' at '<namespace>'
+        Then I log out
         Given I am logged in as a '<teacher>' at '<namespace>'
+        Then I log out
         Given I am logged in as a '<admin>' at '<namespace>'
+        Then I log out
 
         @staging_test
         Examples:
