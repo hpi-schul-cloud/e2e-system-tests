@@ -121,9 +121,6 @@ class RoomBoards {
 	clickOnThreeDotMenuInRoomBoardTitle() {
 		cy.get(RoomBoards.#boardMenuIcon).click();
 	}
-	clickOnEditInBoardMenu() {
-		cy.get(RoomBoards.#btnBoardMenuActionEdit).click();
-	}
 }
 
 export default RoomBoards;

@@ -110,7 +110,7 @@ class Courses {
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
 	static #bbbVideoStartDialogBoxCourse =
-		'[data-testid="video-conference-config-dialog"]';
+		'[data-testid="video-conference-config-dialog-title"]';
 	static #bbbDialogBoxCancelButtonCourse = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
@@ -1068,6 +1068,12 @@ class Courses {
 	seeSelectedTeacher(teacherName) {
 		cy.get(Courses.#selectTeacher)
 			.contains("option", teacherName)
+			.should("be.selected");
+	}
+
+	seeSelectedSubstituteTeacher(substituteTeacher) {
+		cy.get(Courses.#selectSubstituteTeacher)
+			.contains("option", substituteTeacher)
 			.should("be.selected");
 	}
 

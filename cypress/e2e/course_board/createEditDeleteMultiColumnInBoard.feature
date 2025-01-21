@@ -45,7 +45,7 @@ Feature: Course Board - To create, edit and delete column in the course board
         When I choose multi-column board in the dialog box
         Then I see the page Course Board details
         When I click on the button three dot menu in course board
-        When I click on the option Edit in three dot menu in course board
+        When I select the three dot menu action 'rename'
         Then I enter the course board title '<board_title>'
         When I click on the page outside of the column
         #Then I see the course Board name 'Board Cy Title'
@@ -60,7 +60,7 @@ Feature: Course Board - To create, edit and delete column in the course board
 
         # teacher edits the column in the Board
         When I click on three dot menu in the column
-        When I select the option Edit in three dot menu in the column
+        When I select the three dot menu action 'rename'
         Then I enter the title name '<edited_column_board_title>' in the column
         When I click on the page outside of the column
         Then I see my column named '<edited_column_board_title>'

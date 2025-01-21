@@ -35,7 +35,7 @@ Feature: Room - Add, edit and delete board in room
 
         # cancel delete-process of the new multi column board
         When I click on the three dot menu in room board
-        When I click on delete in board menu
+        When I select the three dot menu action 'delete'
         Then I see the button to cancel the dialog
         When I click on the button to cancel the deletion
         Then I see the page board details
@@ -43,7 +43,7 @@ Feature: Room - Add, edit and delete board in room
 
         # confirm delete-process of the new multi column board
         When I click on the three dot menu in room board
-        When I click on delete in board menu
+        When I select the three dot menu action 'delete'
         Then I see the button to confirm the dialog
         Then I click on the button to confirm the deletion
         Then I do not see the board '<new_board_title>' in the room
