@@ -29,7 +29,7 @@ Given("a room named {string} exists", (room_name) => {
 	rooms.seeRoomDetailPage(room_name);
 });
 
-Given("a multi-column board named {string} exists in the room", (edited_board_title) => {
+Given("a multi-column board named {string} exists in the room", (new_board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -38,13 +38,13 @@ Given("a multi-column board named {string} exists in the room", (edited_board_ti
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(edited_board_title);
+	roomBoards.enterRoomBoardTitle(new_board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeGivenRoomBoardTitle(edited_board_title);
+	roomBoards.seeGivenRoomBoardTitle(new_board_title);
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
-Given("a sinlge-column board named {string} exists in the room", (edited_board_title) => {
+Given("a sinlge-column board named {string} exists in the room", (new_board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -53,9 +53,9 @@ Given("a sinlge-column board named {string} exists in the room", (edited_board_t
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(edited_board_title);
+	roomBoards.enterRoomBoardTitle(new_board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeGivenRoomBoardTitle(edited_board_title);
+	roomBoards.seeGivenRoomBoardTitle(new_board_title);
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 

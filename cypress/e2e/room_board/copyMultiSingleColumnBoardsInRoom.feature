@@ -7,8 +7,8 @@ Feature: Room - Copy multi-column and single-column boards in the room
     Scenario: Copy multi-column and single-column board in the room, including pre & post conditions
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
-        Given a multi-column board named '<edited_board_title>' exists in the room
-        Given a sinlge-column board named '<edited_board_title>' exists in the room
+        Given a multi-column board named '<new_board_title>' exists in the room
+        Given a sinlge-column board named '<new_board_title>' exists in the room
 
         # Teacher copies the multi-column board
         When I click on the multi-column board in the room detail page
@@ -44,11 +44,11 @@ Feature: Room - Copy multi-column and single-column boards in the room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | edited_board_title |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title     |
+            | teacher      | namespace | room_name         | new_board_title |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | edited_board_title |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title     |
+            | teacher      | namespace | room_name         | new_board_title |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
 
