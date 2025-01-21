@@ -40,7 +40,7 @@ Feature: Room - Copy multi-column and single-column boards in the room
         Then I see the detail page of room '<room_name>'
         Then I see single-column copied board v-card on the room detail page
 
-        # post-condition: Delete the room
+        # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
