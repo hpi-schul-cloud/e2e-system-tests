@@ -47,6 +47,10 @@ When("I click on the option Publish in three dot menu in course board", () => {
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
 });
 
+When("I click on the option Change layout in three dot menu in course board", () => {
+	board.clickChangeLayoutOptionInThreeDotMenuInCourseBoard();
+});
+
 Then("I see the chip Draft in the course board", () => {
 	board.seeDraftChipOnCourseBoard();
 });
