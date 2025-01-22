@@ -1,10 +1,13 @@
-@regression_test
-@stable_test
+# @regression_test
+# @stable_test
+# Note: the test can be set to stable when the feature is on staging
+@unstable
 Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout
 
-    @stable_test
+    # @stable_test
+    @unstable
     Scenario: Teacher changes board layout
         Given I am logged in as a '<teacher>' at '<namespace>'
 
