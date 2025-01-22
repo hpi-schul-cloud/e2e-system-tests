@@ -1,11 +1,11 @@
 @regression_test
 @stable_test
-Feature: Course Board - To change the board type
+Feature: Course Board - To change the board layout
 
-    As a teacher I want to change the board type
+    As a teacher I want to change the board layout
 
     @stable_test
-    Scenario: Teacher changes board type
+    Scenario: Teacher changes board layout
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creates a course
@@ -39,7 +39,7 @@ Feature: Course Board - To change the board type
         When I click on the page outside of the card
         Then I see a board card
 
-        # teacher changes board type to signle column
+        # teacher changes board layout to signle column
         When I click on three dot menu in the board header
         When I click on the option Change layout in three dot menu in course board
         Then I see a dialog box for column board
@@ -48,7 +48,7 @@ Feature: Course Board - To change the board type
         When I choose single-column board in the dialog box
         Then I see the single-column board
 
-        # teacher changes board type to multi column
+        # teacher changes board layout to multi column
         When I click on three dot menu in the board header
         When I click on the option Change layout in three dot menu in course board
         Then I see a dialog box for column board
