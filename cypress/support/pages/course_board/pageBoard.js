@@ -42,9 +42,9 @@ class Board {
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
 	static #externalToolElementAlert =
 		'[data-testid="board-external-tool-element-alert"]';
-		static #boardCard = '[data-testid="board-card-0-0"]';
-		static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
-		static #firstBoardColumn = '[data-testid="board-column-0"]'
+	static #boardCard = '[data-testid="board-card-0-0"]';
+	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
+	static #firstBoardColumn = '[data-testid="board-column-0"]'
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
