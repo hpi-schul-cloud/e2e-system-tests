@@ -1,10 +1,13 @@
-@regression_test
-@stable_test
+# @regression_test
+# @stable_test
+# Note: the test can be set to stable when the feature is on staging
+@unstable
 Feature: Course Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
 
-    @stable_test
+    # @stable_test
+    @unstable
     Scenario: Teacher shares a link to a board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
