@@ -838,10 +838,10 @@ class Courses {
 	}
 
 	seeCopyResultNotification() {
-		cy.get(Courses.#copyResultNotification).should("exist");
+		cy.get(Courses.#copyResultNotification).should("be.visible");
 		cy.get(Courses.#dialogTitle).siblings("div").should("have.length", "3");
-		cy.get(Courses.#dialogTitle).should("exist");
-		cy.get(Courses.#warningTitle).should("have.length", "2");
+		cy.get(Courses.#dialogTitle).should("be.visible");
+		cy.get(Courses.#warningTitle).should("have.length", "1");
 		cy.get(Courses.#dialogTitle)
 			.next()
 			.find("p")
@@ -1012,8 +1012,7 @@ class Courses {
 			.click()
 			.type(searchString)
 			.type("{enter}");
-		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
-		cy.get(Courses.#btnSubmit).click();
+		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
 	seeTitleInSyncedGroupDialog() {

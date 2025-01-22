@@ -396,6 +396,10 @@ class Board {
 		cy.get(Board.#deletedElement).contains(name).should("be.visible");
 	}
 
+	selectEditInThreeDotMenu() {
+		cy.get(Board.#editOptionThreeDot).click();
+	}
+
 	seeBoardCard() {
 		cy.get(Board.#boardCard).should("be.visible");
 	}

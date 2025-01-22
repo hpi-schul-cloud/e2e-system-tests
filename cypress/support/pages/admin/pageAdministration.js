@@ -1038,17 +1038,19 @@ class Management {
 		cy.get(Management.#toolErrorAlert).should("be.visible");
 	}
 
-	seeDeactivatedCheckBox(value) {
+	seeDeactivatedCheckBox() {
 		cy.get(Management.#isDeactivatedCheckBox).should("be.visible");
 	}
 
-	seeDeactivatedCheckBoxIsChecked(value) {
+	seeDeactivatedCheckBoxIsChecked() {
+		cy.get(Management.#isDeactivatedCheckBox).should("be.visible");
 		cy.get(Management.#isDeactivatedCheckBox)
 			.find('input[type="checkbox"]')
 			.should("be.checked");
 	}
 
 	seeDeactivatedCheckBoxIsNotChecked() {
+		cy.get(Management.#isDeactivatedCheckBox).should("be.visible");
 		cy.get(Management.#isDeactivatedCheckBox)
 			.find('input[type="checkbox"]')
 			.should("not.be.checked");
