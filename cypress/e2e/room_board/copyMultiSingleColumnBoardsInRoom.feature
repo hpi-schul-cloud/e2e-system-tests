@@ -10,35 +10,35 @@ Feature: Room - Copy multi-column and single-column boards in the room
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<new_board_title>' exists in the room
-        Given a sinlge-column board named '<new_board_title>' exists in the room
+        Given a single-column board named '<new_board_title>' exists in the room
 
         # teacher copies the multi-column board
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
         When I click on the three dot menu in room board
-        When I click on the menu Publish
+        When I select the three dot menu action 'publish'
         Then I do not see the chip Draft
         When I click on the three dot menu in room board
-        When I click on the option Copy
+        When I select the three dot menu action 'copy'
         Then I see the chip Draft
         When I click on the breadcrumb to navigate to the room detail page
         Then I see the detail page of room '<room_name>'
-        Then I see multi-column copied board v-card on the room detail page
+        Then I see copied multi-column board tile in the rooms details page
 
         # teacher copies the single-column board
         When I click on the single-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
         When I click on the three dot menu in room board
-        When I click on the menu Publish
+        When I select the three dot menu action 'publish'
         Then I do not see the chip Draft
         When I click on the three dot menu in room board
-        When I click on the option Copy
+        When I select the three dot menu action 'copy'
         Then I see the chip Draft
         When I click on the breadcrumb to navigate to the room detail page
         Then I see the detail page of room '<room_name>'
-        Then I see single-column copied board v-card on the room detail page
+        Then I see copied single-column board tile in the room details page
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

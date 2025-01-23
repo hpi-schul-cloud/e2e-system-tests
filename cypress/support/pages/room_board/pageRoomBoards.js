@@ -11,8 +11,8 @@ class RoomBoards {
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
 	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
-	static #breadCrumbToRoomNavigationFromBoard = '[data-testid="breadcrumb-1"]';
-	static #multicolumnBoardSelector = '[data-testid="board-tile-subtitle-0"]';
+	static #breadcrumbToRoomNavigationFromBoard = '[data-testid="breadcrumb-1"]';
+	static #multiColumnBoardSelector = '[data-testid="board-tile-subtitle-0"]';
 	static #copyOptionSelector = '[data-testid="kebab-menu-action-copy"]';
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
@@ -20,11 +20,11 @@ class RoomBoards {
 	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-2"]';
 	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-3"]';
 
-	verifyMultiColumnCopiedBoardVCardVisibleOnRoomDetailPage() {
+	verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage() {
 		cy.get(RoomBoards.#multiColumnCopiedBoardSelector).should("be.visible");
 	}
 
-	verifyListColumnCopiedBoardVCardVisibleOnRoomDetailPage() {
+	verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage() {
 		cy.get(RoomBoards.#singleColumnCopiedBoardSelector).should("be.visible");
 	}
 
@@ -40,8 +40,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#chipDraftSelector).should("not.exist");
 	}
 
-	clickMulticolumnBoardInRoomDetailPage() {
-		cy.get(RoomBoards.#multicolumnBoardSelector).click();
+	clickMultiColumnBoardInRoomDetailPage() {
+		cy.get(RoomBoards.#multiColumnBoardSelector).click();
 	}
 
 	clickOptionCopy() {
@@ -53,7 +53,7 @@ class RoomBoards {
 	}
 
 	clickOnBreadcrumbToNavigateToRoomDetail() {
-		cy.get(RoomBoards.#breadCrumbToRoomNavigationFromBoard).click();
+		cy.get(RoomBoards.#breadcrumbToRoomNavigationFromBoard).click();
 	}
 
 	clearAndType(selector, newTitle) {
@@ -89,7 +89,7 @@ class RoomBoards {
 		});
 	}
 
-	seeGivenRoomBoardTitle(boardTitle) {
+	seeUpdatedRoomBoardTitle(boardTitle) {
 		cy.get(RoomBoards.#roomBoardTitleOnPage)
 			.find("input")
 			.should("have.value", boardTitle);

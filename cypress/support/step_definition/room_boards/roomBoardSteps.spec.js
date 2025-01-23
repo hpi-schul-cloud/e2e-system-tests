@@ -3,12 +3,12 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-Then("I see multi-column copied board v-card on the room detail page", () => {
-	roomBoards.verifyMultiColumnCopiedBoardVCardVisibleOnRoomDetailPage();
+Then("I see copied multi-column board tile in the rooms details page", () => {
+	roomBoards.verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage();
 });
 
-Then("I see single-column copied board v-card on the room detail page", () => {
-	roomBoards.verifyListColumnCopiedBoardVCardVisibleOnRoomDetailPage();
+Then("I see copied single-column board tile in the room details page", () => {
+	roomBoards.verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage();
 });
 
 When("I click on the single-column board in the room detail page", () => {
@@ -16,15 +16,7 @@ When("I click on the single-column board in the room detail page", () => {
 });
 
 When("I click on the multi-column board in the room detail page", () => {
-	roomBoards.clickMulticolumnBoardInRoomDetailPage();
-});
-
-When("I click on the option Copy", () => {
-	roomBoards.clickOptionCopy();
-});
-
-When("I click on the menu Publish", () => {
-	roomBoards.clickMenuPublish(); // Method to click on the Publish menu
+	roomBoards.clickMultiColumnBoardInRoomDetailPage();
 });
 
 Then("I do not see the chip Draft", () => {
@@ -63,10 +55,6 @@ When("I click on the three dot menu in room board", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
-When("I click on the option Rename in board three dot menu", () => {
-	roomBoards.clickOnEditInBoardMenu();
-});
-
 Then("I change the default room board title to {string}", (boardTitle) => {
 	roomBoards.enterRoomBoardTitle(boardTitle);
 });
@@ -75,7 +63,7 @@ When("I click on the page outside of the title of the board", () => {
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 });
 Then("I see my room board is named {string}", (boardTitle) => {
-	roomBoards.seeGivenRoomBoardTitle(boardTitle);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 When("I click on delete in board menu", () => {
 	roomBoards.clickOnDeleteInBoardMenu();

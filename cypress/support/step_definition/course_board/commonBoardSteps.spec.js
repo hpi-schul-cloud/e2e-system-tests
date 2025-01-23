@@ -3,6 +3,10 @@ import Board from "../../pages/course_board/pageBoard";
 
 const board = new Board();
 
+When("I select the three dot menu action {string}", (kebabMenuAction) => {
+	board.clickOnKebabMenuAction(kebabMenuAction);
+});
+
 When("I click on the board", () => {
 	board.clickOnCourseBoardCardInCourseDetailPage();
 });
