@@ -13,8 +13,8 @@ Feature: TLDraw - Test tldraw on board
 
         # pre-condition: teacher creates a board with column and a card
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given a board exists in course '<course_name>'
-        Given the board has a column with a card
+        Given a multi-column board exists in course '<course_name>'
+        Given the multi-column board has a column with a card
 
         # teacher creates a whiteboard element in the card and draws on it
         When I click on plus icon to add content into card

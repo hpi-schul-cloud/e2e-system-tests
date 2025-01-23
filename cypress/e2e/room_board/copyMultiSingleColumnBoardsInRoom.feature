@@ -11,6 +11,7 @@ Feature: Room - Copy multi-column and single-column boards in the room
         Given a room named '<room_name>' exists
         Given a multi-column board named '<new_board_title>' exists in the room
         Given a sinlge-column board named '<new_board_title>' exists in the room
+        Given I am on the room details page
 
         # teacher copies the multi-column board
         When I click on the multi-column board in the room detail page

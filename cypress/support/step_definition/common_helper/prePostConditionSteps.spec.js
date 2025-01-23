@@ -3,11 +3,21 @@ import Board from "../../pages/course_board/pageBoard";
 import Courses from "../../pages/course/pageCourses";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
+import Management from "../../pages/admin/pageAdministration";
 
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
+const management = new Management();
+
+Given("admin enables video conference for the school in the school settings page", () => {
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickGeneralSettingsPanel();
+	management.enableTeamsVideoConferenceByAdmin();
+	management.clickOnAdminSettingsSave();
+});
 
 Given("the room named {string} is deleted", (room_name) => {
 	rooms.openThreeDotMenuForRoom();
@@ -41,7 +51,6 @@ Given("a multi-column board named {string} exists in the room", (new_board_title
 	roomBoards.enterRoomBoardTitle(new_board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 	roomBoards.seeGivenRoomBoardTitle(new_board_title);
-	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
 Given("a sinlge-column board named {string} exists in the room", (new_board_title) => {
@@ -56,6 +65,9 @@ Given("a sinlge-column board named {string} exists in the room", (new_board_titl
 	roomBoards.enterRoomBoardTitle(new_board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 	roomBoards.seeGivenRoomBoardTitle(new_board_title);
+});
+
+Given("I am on the room details page", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
@@ -73,7 +85,7 @@ Given(
 	}
 );
 
-Given("a board exists in course {string}", (courseName) => {
+Given("a multi-column board exists in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickOnCreateContentFAB();
@@ -83,7 +95,7 @@ Given("a board exists in course {string}", (courseName) => {
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
 });
 
-Given("the board has a column with a card", (columnName) => {
+Given("the multi-column board has a column with a card", () => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();
 	board.clickPlusIconToAddCardInColumn();
