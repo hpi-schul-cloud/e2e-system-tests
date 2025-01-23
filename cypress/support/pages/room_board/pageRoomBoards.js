@@ -95,7 +95,7 @@ class RoomBoards {
 			.should("have.value", boardTitle);
 	}
 	clickOutsideTheTitleToSaveTheModifiedTitle() {
-		cy.get(RoomBoards.#mainPageArea).click("bottom").wait(500);
+		cy.get(RoomBoards.#mainPageArea).click("bottom");
 	}
 	clickOnDeleteInBoardMenu() {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
