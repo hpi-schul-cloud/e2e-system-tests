@@ -2,7 +2,7 @@ import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 import Courses from "../../pages/course/pageCourses";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
-import Rooms from "../../pages/room/pageRooms";
+import Rooms from "../../pages/rooms/pageRooms";
 
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
