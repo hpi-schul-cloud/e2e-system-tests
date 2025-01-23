@@ -39,7 +39,7 @@ Feature: Room - Add BBB Tool in the Room Board
         # student can see and participant in the video confernce from the multi-column board
         # note: adding student to the room feature is not yet implementred.
 
-        # teacher deletes the BBB Tool from the multi-column board
+        # teacher deletes the BBB Tool from the multi-column board card
         When I double-click on the card
         When I click on the three-dot menu in the video conference element
         When I click on the delete option in the three-dot menu
@@ -52,11 +52,11 @@ Feature: Room - Add BBB Tool in the Room Board
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | new_board_title | video_conference_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  | Cy BBB Tool            |
+            | teacher      | admin      | namespace | room_name         | new_board_title | video_conference_title |
+            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Board Cy Title  | Cy BBB Tool            |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | new_board_title | video_conference_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  | Cy BBB Tool            |
+            | teacher      | admin      | namespace | room_name         | new_board_title | video_conference_title |
+            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Board Cy Title  | Cy BBB Tool            |
 
