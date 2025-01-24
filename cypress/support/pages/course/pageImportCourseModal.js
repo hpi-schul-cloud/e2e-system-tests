@@ -50,7 +50,6 @@ class ImportCourseModal {
 			.then((value) => {
 				expect(value).to.equal(defaultCourseName);
 			});
-
 	}
 }
 

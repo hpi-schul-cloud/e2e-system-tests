@@ -262,9 +262,8 @@ class Board {
 	}
 
 	seePreferredExternalToolInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
-			"be.visible"
-		);
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.should("be.visible");
 	}
 
 	selectPreferredExternalToolFromMenu(toolName) {
@@ -272,9 +271,8 @@ class Board {
 	}
 
 	preferredExternalToolIsNotVisibleInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
-			"not.exist"
-		);
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.should("not.exist");
 	}
 
 	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {

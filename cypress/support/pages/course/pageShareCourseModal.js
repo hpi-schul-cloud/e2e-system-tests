@@ -77,7 +77,6 @@ class ShareCourseModal {
 	seeQrCodeButtonInShareCourseResultDialog() {
 		cy.get(ShareCourseModal.#shareCourseDialogQrCodeButton).should("be.visible");
 	}
-
 }
 
 export default ShareCourseModal;
