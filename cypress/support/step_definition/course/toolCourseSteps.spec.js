@@ -19,28 +19,12 @@ When("I click on the button to add a tool", () => {
 	courses.clickOnAddNewToolFAB();
 });
 
-Then("I see the tool configuration page title", () => {
-	courses.seeContextExternalToolConfiguratorPageTitle();
-});
-
-When("I click on the tool configuration selection", () => {
-	courses.clickOnToolConfigurationSelect();
-});
-
 Then("I see the tool {string} in the tool overview", (toolName) => {
 	courses.checkIfToolIsVisibleInToolTable(toolName);
 });
 
 Then("I do not see tool {string} in the tool overview", (toolName) => {
 	courses.checkIfToolIsNotVisibleInToolTable(toolName);
-});
-
-Then("I do not see tool {string} in the tool selection", (toolName) => {
-	courses.schoolExternalToolIsNotVisibleInToolSelection(toolName);
-});
-
-Then("I see the error dialog of {string}", (toolName) => {
-	courses.checkIfErrorDialogIsOpen(toolName);
 });
 
 When("I click on the tool {string}", (toolName) => {
@@ -99,36 +83,12 @@ Then("I see an error dialog", () => {
 	courses.checkIfErrorDialogIsOpen();
 });
 
-When("I click on the tool edit button of {string}", (toolName) => {
-	courses.clickOnToolEditButton(toolName);
+When("I click on the tool edit button", () => {
+	courses.clickOnToolEditButton();
 });
 
-When("I click on the tool delete of {string}", (toolName) => {
-	courses.clickOnToolDeleteButton(toolName);
-});
-
-When("I fill out the required value", () => {
-	courses.editMissingToolParameterValue();
-});
-
-When("I confirm the update", () => {
-	courses.clickOnConfirmButton();
-});
-
-When("I select {string} in required protected custom parameter selection", (value) => {
-	courses.editProtectedCustomParameter(value);
-})
-
-When("I enter {string} in required custom parameter field {string}", (value, paramName) => {
-	courses.fillInCustomParameter(paramName, value);
-});
-
-When("I enter {string} in optional custom parameter field {string}", (value, paramName) => {
-	courses.fillInCustomParameter(paramName, value);
-});
-
-When("I enter {string} in display name field", (toolName) => {
-	courses.fillInDisplayName(toolName);
+When("I click on the tool delete button", () => {
+	courses.clickOnToolDeleteButton();
 });
 
 When("I lauch tool {string} with given url {string}", (toolName, url) => {

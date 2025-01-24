@@ -142,7 +142,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I click on the tools tab
         Then I see 5 tools
         When I click on three dot menu of the tool '<ctl_tool_optional_param>'
-        When I click on the tool delete
+        When I click on the tool delete button
         Then I see the delete tool dialog
         When I confirm the delete tool dialog
         Then I do not see tool '<ctl_tool_optional_param>' in the tool overview
