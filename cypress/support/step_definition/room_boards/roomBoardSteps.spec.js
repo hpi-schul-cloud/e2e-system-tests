@@ -58,7 +58,6 @@ When("I enter the video conference title {string}", (videoConferenceTitle) => {
 	roomBoards.enterVideoConferenceTitle(videoConferenceTitle);
 });
 
-//***** id needed in UI
 When("I click on the save button or press the button enter key", () => {
 	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
 });

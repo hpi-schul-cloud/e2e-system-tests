@@ -29,8 +29,6 @@ class RoomBoards {
 	static #moderatorApprovalCheckbox =
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
-
-	static #cardInColumn = '[data-testid="board-card-0-0"]';
 	static #globalCommonthreeDotButton = '[data-testid="board-menu-icon"]';
 	static #deleteOptionOnVideoConferenceElementDialog =
 		'[data-testid="kebab-menu-action-delete"]';
@@ -42,6 +40,7 @@ class RoomBoards {
 
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
+			//three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonthreeDotButton)
 			.click();
 	}
@@ -52,6 +51,7 @@ class RoomBoards {
 
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
+			//three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonthreeDotButton)
 			.click();
 	}
@@ -80,7 +80,7 @@ class RoomBoards {
 
 	verifyModeratorApprovalCheckboxCheckedInBBBModal() {
 		cy.get(RoomBoards.#moderatorApprovalCheckbox)
-			.find('input[type="checkbox"]') // Find the checkbox inside it
+			.find('input[type="checkbox"]') // Find the checkbox inside the parent options
 			.should("be.checked");
 	}
 
