@@ -67,6 +67,6 @@ Then("I see a whiteboard on the board", () => {
 	board.seeWhiteboardOnPage();
 });
 
-Then("I select whiteboard from the menu", () => {
-	board.selectWhiteboardFromMenu();
+Then("I select {string} from the menu", (cardElementName) => {
+	board.selectCardElementFromMenu(cardElementName);
 });

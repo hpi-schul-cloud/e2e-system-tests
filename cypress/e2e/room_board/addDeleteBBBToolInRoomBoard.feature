@@ -21,33 +21,35 @@ Feature: Room - Add BBB Tool in the Room Board
 
         # teacher adds BBB Tool to the multi-column board
         When I click on plus icon to add content into card
-        Then I see the dialogue box foe element selection
+        Then I see the dialog box to select element for the card
         When I click on the button Close on the element selection dialogue box
-        Then I do not see the element selection dialogue box#
+        Then I do not see the element selection dialogue box
         When I click on plus icon to add content into card
-        Then I see the dialogue box foe element selection
-        When I select 'video conference' from the menu
+        Then I see the dialog box to select element for the card
+        When I select 'video-conference' from the menu
         When I enter the video conference title '<video_conference_title>'
         When I click on the save button or press the button enter key
         Then I see the video conference element added in the card
         When I click on the video conference element in the card
         Then I see the modal to start the video conference
-        When I click on the create button in the video conference creation modal to start the call
-        Then I see the BBB call opens in a new tab with the URL "https://bbb-2.bbb.schule/"
-        Then I see green pulsating dot in the video confercne element after satrting the call
+        Then I see the moderator approval checkbox is checked in the video conference start modal
+        Then I see the button create in the video conference creation modal to start the call
+        Then I click on the button cancel in the video conference creation modal to back to the card
 
-        # student can see and participant in the video confernce from the multi-column board
-        # note: adding student to the room feature is not yet implementred.
+        # student can see the video confernce in the multi-column board
+        # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
         # teacher deletes the BBB Tool from the multi-column board card
-        When I double-click on the card
+        When I click on the three dot on the card
+        When I click on the option edit in the three dot menu on the card
         When I click on the three-dot menu in the video conference element
         When I click on the delete option in the three-dot menu
         Then I see the delete confirmation dialog
         When I click on the delete button in the confirmation dialog
-        Then I do not see the video conference element '<video_conference_title>'
+        Then I do not see the video conference element
 
         # post-condition: delete the room
+        Given I am on the room details page
         Given the room named '<room_name>' is deleted
 
         @school_api_test

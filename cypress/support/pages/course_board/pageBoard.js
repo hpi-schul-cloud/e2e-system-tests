@@ -26,7 +26,6 @@ class Board {
 	static #draftChipInCourseBoardName = '[data-testid="board-draft-chip"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
-	static #selectWhiteboardFromMenu = '[data-testid="create-element-drawing-element"]';
 	static #selectExternalToolsFromMenu =
 		'[data-testid="create-element-external-tool-container"]';
 	static #externalToolElement = '[data-testid="board-external-tool-element"]';
@@ -49,8 +48,8 @@ class Board {
 		cy.get(Board.#addContentIntoCardButton).click();
 	}
 
-	selectWhiteboardFromMenu() {
-		cy.get(Board.#selectWhiteboardFromMenu).click();
+	selectCardElementFromMenu(cardElementName) {
+		cy.get(`[data-testid="create-element-${cardElementName}"]`).click();
 	}
 
 	seeWhiteboardOnPage() {
