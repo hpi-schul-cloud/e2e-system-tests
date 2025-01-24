@@ -95,6 +95,14 @@ When("I choose single-column board in the dialog box", () => {
 	board.clickOnSingleColumnBoardOptionInDialogBox();
 });
 
+When("I see the single-column board", () => {
+	board.seeSingleColumnBoard();
+});
+
+When("I see the multi-column board", () => {
+	board.seeMultiColumnBoard();
+});
+
 Then("I see an external tool element with tool {string}", (toolName) => {
 	board.seeExternalToolElementWithTool(toolName);
 });

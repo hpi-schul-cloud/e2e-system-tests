@@ -33,6 +33,7 @@ class Board {
 	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
+	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
@@ -41,6 +42,9 @@ class Board {
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
 	static #externalToolElementAlert =
 		'[data-testid="board-external-tool-element-alert"]';
+	static #boardCard = '[data-testid="board-card-0-0"]';
+	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
+	static #firstBoardColumn = '[data-testid="board-column-0"]'
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -74,6 +78,10 @@ class Board {
 
 	clickPublishOptionInThreeDotMenuInCourseBoard() {
 		cy.get(Board.#boardMenuActionPublish).click();
+	}
+
+	clickChangeLayoutOptionInThreeDotMenuInCourseBoard() {
+		cy.get(Board.#boardMenuActionChangeLayout).click();
 	}
 
 	clickOnFABToCreateNewColumnBoard() {
@@ -386,6 +394,50 @@ class Board {
 
 	seeDeletedElement(name) {
 		cy.get(Board.#deletedElement).contains(name).should("be.visible");
+	}
+
+	seeBoardCard() {
+		cy.get(Board.#boardCard).should("be.visible");
+	}
+
+	selectCopyLinkToCardInThreeDotMenu(){
+		cy.get(Board.#copyBoardCardLinkButton).click();
+
+		cy.window().then((win) => {
+			return win.navigator.clipboard.readText();
+		}).then((link) => {
+			cy.wrap(link).as("boardCardLink");
+
+			cy.url().then((currentUrl) => {
+				expect(link).to.include(currentUrl);
+			});
+		});
+	}
+
+	openBoardCardLink(){
+		cy.get("@boardCardLink").then((link) => {
+			cy.visit(link);
+		});
+	}
+
+	clickOutsideTheCardToSaveTheCard() {
+		cy.get(Board.#mainPageArea).click("bottom");
+	}
+
+	seeFocusedBoardCard() {
+		cy.get(Board.#boardCard).should("be.focused");
+	}
+
+	seeSingleColumnBoard(){
+		cy.get(Board.#firstBoardColumn)
+			.should("have.class", "d-flex flex-column align-stretch my-0")
+			.should("not.have.attr", "style", "min-width: 400px; max-width: 400px;");
+	}
+
+	seeMultiColumnBoard(){
+		cy.get(Board.#firstBoardColumn)
+			.should("have.class", "px-4")
+			.should("have.attr", "style", "min-width: 400px; max-width: 400px;");
 	}
 }
 export default Board;
