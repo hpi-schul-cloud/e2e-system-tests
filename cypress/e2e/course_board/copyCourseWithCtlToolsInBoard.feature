@@ -61,7 +61,6 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
         When I select external tools from the menu
-        When I click on the tool configuration selection
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
         When I click on save external tool button
@@ -71,7 +70,6 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
         When I select external tools from the menu
-        When I click on the tool configuration selection
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
@@ -82,7 +80,6 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
         When I select external tools from the menu
-        When I click on the tool configuration selection
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I select '<param_required_protected_value>' in required protected custom parameter selection

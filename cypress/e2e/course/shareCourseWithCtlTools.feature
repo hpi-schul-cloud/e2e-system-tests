@@ -44,16 +44,14 @@ Feature: Teacher can share a course with ctl tools
         Then I see the button to add a tool
         # pre-condition: teacher adds a tool with required parameter
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
         When I click on save external tool button
         Then I see the tool '<ctl_tool_scope_context>' in the tool overview
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
@@ -61,8 +59,7 @@ Feature: Teacher can share a course with ctl tools
         Then I see the tool '<ctl_tool_optional_protected_param>' in the tool overview
         # pre-condition: teacher adds a tool with required protected parameter
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I select '<param_required_protected_value>' in required protected custom parameter selection
@@ -85,7 +82,6 @@ Feature: Teacher can share a course with ctl tools
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
         When I select external tools from the menu
-        When I click on the tool configuration selection
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
         When I click on save external tool button
@@ -95,7 +91,6 @@ Feature: Teacher can share a course with ctl tools
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
         When I select external tools from the menu
-        When I click on the tool configuration selection
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
@@ -106,7 +101,6 @@ Feature: Teacher can share a course with ctl tools
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
         When I select external tools from the menu
-        When I click on the tool configuration selection
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I select '<param_required_protected_value>' in required protected custom parameter selection

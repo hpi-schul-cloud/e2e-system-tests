@@ -50,16 +50,14 @@ Feature: Course - Copy course with CTL tools
         When I click on the tools tab
         Then I see the button to add a tool
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
         When I click on save external tool button
         Then I see the tool '<ctl_tool_scope_context>' in the tool overview
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
@@ -67,8 +65,7 @@ Feature: Course - Copy course with CTL tools
         Then I see the tool '<ctl_tool_optional_protected_param>' in the tool overview
         # pre-condition: teacher adds a tool with required protected parameter
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I select '<param_required_protected_value>' in required protected custom parameter selection
@@ -137,15 +134,15 @@ Feature: Course - Copy course with CTL tools
         Then I see course page '<course_name_copy>'
         When I click on the tools tab
         When I click on three dot menu of the tool '<ctl_tool_protected_param>'
-        When I click on the tool edit button of '<ctl_tool_protected_param>'
-        Then I see the tool configuration page title
+        When I click on the tool edit button
+        Then I see the context external tool configuration page
         When I select '<param_required_protected_value>' in required protected custom parameter selection
-        When I confirm the update
+        When I click on save external tool button
         When I click on three dot menu of the tool '<ctl_tool_optional_protected_param>'
-        When I click on the tool edit button of '<ctl_tool_optional_protected_param>'
-        Then I see the tool configuration page title
+        When I click on the tool edit button
+        Then I see the context external tool configuration page
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
-        When I confirm the update
+        When I click on save external tool button
         Then I see course page '<course_name_copy>'
         Then I see the tool '<ctl_tool_scope_context>' is not marked as incomplete
         Then I see the tool '<ctl_tool_optional_protected_param>' is not marked as incomplete operational

@@ -79,7 +79,6 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
         When I select external tools from the menu
-        When I click on the tool configuration selection
         Then I do not see tool '<ctl_tool_restriction_course>' in the tool selection
         # teacher tries to add a tool with context restriction media-board
         Then I do not see tool '<ctl_tool_restriction_media_board>' in the tool selection

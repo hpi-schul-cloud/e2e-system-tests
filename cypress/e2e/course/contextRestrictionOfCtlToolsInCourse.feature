@@ -60,8 +60,7 @@ Feature: Media Shelf - Restrict CTL tools to context course
         When I click on the tools tab
         Then I see the button to add a tool
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         Then I do not see tool '<ctl_tool_restriction_boad_element>' in the tool selection
         # teacher tries to a tool with context restriction media-board
         Then I do not see tool '<ctl_tool_restriction_media_board>' in the tool selection
@@ -74,8 +73,7 @@ Feature: Media Shelf - Restrict CTL tools to context course
 
         # teacher adds a tool with all context restrictions
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_restriction_all>' from available tools
         Then I see tool '<ctl_tool_restriction_all>' is selected
         When I click on save external tool button
@@ -83,8 +81,7 @@ Feature: Media Shelf - Restrict CTL tools to context course
 
         # teacher adds a tool without any context restriction
         When I click on the button to add a tool
-        Then I see the tool configuration page title
-        When I click on the tool configuration selection
+        Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
         When I click on save external tool button

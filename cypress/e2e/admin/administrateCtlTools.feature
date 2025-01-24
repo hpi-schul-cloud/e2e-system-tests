@@ -12,11 +12,10 @@ Feature: Admin adds, edits and deletes CTL tools in school
         When I click on external tools panel
         Then I see the external tools table is empty
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
         # admin tries to find a hidden external tool
-        Then I do not see external tool '<ctl_tool_hidden>' in the tool selection
+        Then I do not see tool '<ctl_tool_hidden>' in the tool selection
 
         # admin adds a tool
         When I select the tool '<ctl_tool_1>' from available tools
@@ -26,21 +25,19 @@ Feature: Admin adds, edits and deletes CTL tools in school
 
         # admin adds a tool with required custom parameter
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
         When I select the tool '<ctl_tool_required_param>' from available tools
         Then I see tool '<ctl_tool_required_param>' is selected
-        When I enter '<param_value>' in required custom parameter input field '<param_name>'
+        When I enter '<param_value>' in required custom parameter field '<param_name>'
         Then I see custom parameter input field '<param_name>' contains '<param_value>'
         When I click on save external tool button
         Then I see the tool '<ctl_tool_required_param>' in external tools table
 
         # admin adds a tool via tool link with parameter
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
         When I insert the external tool link '<ctl_tool_link>'
         Then I see tool '<ctl_tool_openstreetmap>' is selected
         When I click on save external tool button
@@ -48,26 +45,24 @@ Feature: Admin adds, edits and deletes CTL tools in school
 
         # admin adds a tool with optional custom parameter
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
         When I select the tool '<ctl_tool_optional_param>' from available tools
         Then I see tool '<ctl_tool_optional_param>' is selected
-        When I enter '<param_value>' in optional custom parameter input field '<param_name>'
+        When I enter '<param_value>' in optional custom parameter field '<param_name>'
         Then I see custom parameter input field '<param_name>' contains '<param_value>'
         When I click on save external tool button
         Then I see the tool '<ctl_tool_optional_param>' in external tools table
 
         # admin edits a tool
         When I click on edit button of tool '<ctl_tool_optional_param>'
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
         Then I see tool '<ctl_tool_optional_param>' is selected
-        When I enter '<param_value_updated>' in optional custom parameter input field '<param_name>'
+        When I enter '<param_value_updated>' in optional custom parameter field '<param_name>'
         When I click on save external tool button
         When I click on edit button of tool '<ctl_tool_optional_param>'
-        Then I see the external tools configuration page
+        Then I see the school external tool configuration page
         Then I see custom parameter input field '<param_name>' contains '<param_value_updated>'
 
         # admin deletes tools

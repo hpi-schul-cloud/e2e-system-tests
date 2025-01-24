@@ -15,9 +15,8 @@ Feature: No available tools in media shelf
         When I click on external tools panel
         Then I see the external tools table is empty
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
         When I click on save external tool button
