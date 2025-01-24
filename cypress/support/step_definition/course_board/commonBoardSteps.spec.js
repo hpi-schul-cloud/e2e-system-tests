@@ -15,6 +15,10 @@ When("I select the option Edit in three dot menu on the card", () => {
 	board.selectEditInThreeDotMenu();
 });
 
+When("I select the option Copy link to card in three dot menu on the card", () => {
+	board.selectCopyLinkToCardInThreeDotMenu();
+});
+
 When("I click the edit button in three dot menu on the element", () => {
 	board.clickEditButtonInThreeDotMenu();
 });
@@ -43,6 +47,10 @@ When("I click on the option Publish in three dot menu in course board", () => {
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
 });
 
+When("I click on the option Change layout in three dot menu in course board", () => {
+	board.clickChangeLayoutOptionInThreeDotMenuInCourseBoard();
+});
+
 Then("I see the chip Draft in the course board", () => {
 	board.seeDraftChipOnCourseBoard();
 });
@@ -69,4 +77,20 @@ Then("I see a whiteboard on the board", () => {
 
 Then("I select {string} from the menu", (cardElementName) => {
 	board.selectCardElementFromMenu(cardElementName);
+});
+
+Then("I see a board card", () => {
+	board.seeBoardCard();
+});
+
+When("I open the link to a board card", () => {
+	board.openBoardCardLink();
+});
+
+When("I click on the page outside of the card", () => {
+	board.clickOutsideTheCardToSaveTheCard();
+});
+
+Then("I see the focused board card", () => {
+	board.seeFocusedBoardCard();
 });

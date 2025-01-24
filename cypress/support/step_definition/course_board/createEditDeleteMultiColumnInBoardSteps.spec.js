@@ -11,10 +11,6 @@ Then("I see the page Course Board details", () => {
 	board.seeNewCourseBoardCreatePage();
 });
 
-When("I click on the option Edit in three dot menu in course board", () => {
-	board.clickOnEditInThreeDotCourseBoardTitle();
-});
-
 Then("I enter the course board title {string}", (boardTitle) => {
 	board.enterCourseBoardTitle(boardTitle);
 });
@@ -67,8 +63,8 @@ When("I click on three dot menu in the column", () => {
 	board.clickOnThreeDotOnColumn();
 });
 
-When("I select the option Edit in three dot menu in the column", () => {
-	board.selectEditInThreeDotMenu();
+When("I select the three dot menu action {string}", (kebabMenuAction) => {
+	board.clickOnKebabMenuAction(kebabMenuAction);
 });
 
 When("I select the option Delete in three dot menu in the column", () => {
@@ -101,4 +97,12 @@ When("I choose multi-column board in the dialog box", () => {
 
 When("I choose single-column board in the dialog box", () => {
 	board.clickOnSingleColumnBoardOptionInDialogBox();
+});
+
+When("I see the single-column board", () => {
+	board.seeSingleColumnBoard();
+});
+
+When("I see the multi-column board", () => {
+	board.seeMultiColumnBoard();
 });
