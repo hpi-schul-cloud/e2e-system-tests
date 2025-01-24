@@ -86,6 +86,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#roomBoardTitleOnPage).within(() => {
 			this.clearAndType("input", boardTitle); // Clear and type the new title
 			cy.get("input").type("{esc}"); // Press Esc after typing, it works this way to save the title in a stable way.
+			cy.wait(500);
 		});
 	}
 
