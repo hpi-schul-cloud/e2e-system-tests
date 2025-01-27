@@ -77,7 +77,7 @@ Feature: Admin - user must set a new password during login
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
-        When I enter '<role_to_manage>' email '<ustudentser_email>' in search input field
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
         When I click delete user button to delete user with lastname '<user_lastname>'
         When I click on delete button in pop up

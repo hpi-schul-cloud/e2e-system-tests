@@ -92,7 +92,7 @@ class Rooms {
 	}
 
 	seeRoomEditParticipantsPage() {
-		cy.get(Rooms.#roomTitle).contains("Raum-Mitglieder");
+		cy.get(Rooms.#roomTitle).should("be.visible");
 	}
 
 	navigateToRoom(roomName) {

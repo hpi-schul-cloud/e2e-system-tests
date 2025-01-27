@@ -3,6 +3,34 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I see copied multi-column board tile in the rooms details page", () => {
+	roomBoards.verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+});
+
+Then("I see copied single-column board tile in the room details page", () => {
+	roomBoards.verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+});
+
+When("I click on the single-column board in the room detail page", () => {
+	roomBoards.clickSingleColumnBoardInRoomDetailPage();
+});
+
+When("I click on the multi-column board in the room detail page", () => {
+	roomBoards.clickMultiColumnBoardInRoomDetailPage();
+});
+
+Then("I do not see the chip Draft", () => {
+	roomBoards.verifyDraftChipNotVisible(); // Method to verify the Draft chip is not visible
+});
+
+Then("I see the chip Draft", () => {
+	roomBoards.verifyChipDraftVisible();
+});
+
+When("I click on the breadcrumb to navigate to the room detail page", () => {
+	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
+});
+
 Then("I see the dialog box to select the Board type", () => {
 	roomBoards.seeColumnBoardDialogBox();
 });
@@ -27,7 +55,7 @@ When("I click on the three dot menu in room board", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
-Then("I change the room board title to {string}", (boardTitle) => {
+Then("I change the default room board title to {string}", (boardTitle) => {
 	roomBoards.enterRoomBoardTitle(boardTitle);
 });
 
@@ -35,7 +63,7 @@ When("I click on the page outside of the title of the board", () => {
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 });
 Then("I see my room board is named {string}", (boardTitle) => {
-	roomBoards.seeGivenRoomBoardTitle(boardTitle);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 When("I click on delete in board menu", () => {
 	roomBoards.clickOnDeleteInBoardMenu();
