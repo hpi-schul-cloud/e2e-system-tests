@@ -7,12 +7,12 @@ class RoomBoards {
 	static #mainPageArea = '[id="main-content"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
 	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
-	static #btnBoardMenuActionEdit = '[data-testid="kebab-menu-action-rename"]';
+	static #btnBoardMenuActionRename = '[data-testid="kebab-menu-action-rename"]';
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
 	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
-	static #breadCrumbToRoomNavigationFromBoard = '[data-testid="breadcrumb-1"]';
-	static #multicolumnBoardSelector = '[data-testid="board-tile-subtitle-0"]';
+	static #breadcrumbToRoomNavigationFromBoard = '[data-testid="breadcrumb-1"]';
+	static #multiColumnBoardSelector = '[data-testid="board-tile-subtitle-0"]';
 	static #copyOptionSelector = '[data-testid="kebab-menu-action-copy"]';
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
@@ -120,11 +120,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#createVideoConferenceButton).should("be.visible");
 	}
 
-	verifyMultiColumnCopiedBoardVCardVisibleOnRoomDetailPage() {
+	verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage() {
 		cy.get(RoomBoards.#multiColumnCopiedBoardSelector).should("be.visible");
 	}
 
-	verifyListColumnCopiedBoardVCardVisibleOnRoomDetailPage() {
+	verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage() {
 		cy.get(RoomBoards.#singleColumnCopiedBoardSelector).should("be.visible");
 	}
 
@@ -140,8 +140,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#chipDraftSelector).should("not.exist");
 	}
 
-	clickMulticolumnBoardInRoomDetailPage() {
-		cy.get(RoomBoards.#multicolumnBoardSelector).click();
+	clickMultiColumnBoardInRoomDetailPage() {
+		cy.get(RoomBoards.#multiColumnBoardSelector).click();
 	}
 
 	clickOptionCopy() {
@@ -153,7 +153,7 @@ class RoomBoards {
 	}
 
 	clickOnBreadcrumbToNavigateToRoomDetail() {
-		cy.get(RoomBoards.#breadCrumbToRoomNavigationFromBoard).click();
+		cy.get(RoomBoards.#breadcrumbToRoomNavigationFromBoard).click();
 	}
 
 	clearAndType(selector, newTitle) {
@@ -186,16 +186,17 @@ class RoomBoards {
 		cy.get(RoomBoards.#roomBoardTitleOnPage).within(() => {
 			this.clearAndType("input", boardTitle);
 			cy.get("input").type("{esc}"); // Press Esc after typing, it works this way to save the title in a stable way.
+			cy.wait(1000);
 		});
 	}
 
-	seeGivenRoomBoardTitle(boardTitle) {
+	seeUpdatedRoomBoardTitle(boardTitle) {
 		cy.get(RoomBoards.#roomBoardTitleOnPage)
 			.find("input")
 			.should("have.value", boardTitle);
 	}
 	clickOutsideTheTitleToSaveTheModifiedTitle() {
-		cy.get(RoomBoards.#mainPageArea).click("bottom").wait(500);
+		cy.get(RoomBoards.#mainPageArea).click("bottom");
 	}
 	clickOnDeleteInBoardMenu() {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
@@ -222,7 +223,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#boardMenuIcon).click();
 	}
 	clickOnEditInBoardMenu() {
-		cy.get(RoomBoards.#btnBoardMenuActionEdit).click();
+		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
 	}
 }
 
