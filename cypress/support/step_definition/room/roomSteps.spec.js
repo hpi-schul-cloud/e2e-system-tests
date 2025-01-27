@@ -117,9 +117,12 @@ Then("I see {string} in the room participants list", (participantName) => {
 });
 
 When(
-	"I click on delete button in the participant list for participant {string}",
-	(participantName) => {
-		rooms.removeParticipant(participantName);
+	"I click on {string} button in the participant list for participant {string}",
+	(kebabMenuOption, participantName) => {
+		rooms.performKebabMenuActionOnParticipantInRoomMembershipTable(
+			kebabMenuOption,
+			participantName
+		);
 	}
 );
 
@@ -138,8 +141,6 @@ Then("I see the button to add board", () => {
 	rooms.seeFabButtonToAddBoard();
 });
 
-When ("I click on the fab button to add a Board", () => {
+When("I click on the fab button to add a Board", () => {
 	rooms.clickOnFabButtonToAddBoard();
 });
-
-

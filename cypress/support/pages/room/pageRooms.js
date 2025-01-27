@@ -28,8 +28,6 @@ class Rooms {
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndDateForRoom = '[data-testid="room-end-date-input"]';
 	static #memberRowInRoomMembershipTable = '[data-testid^="kebab-menu-"]';
-	static #removeParticipantBtnInRoomTable =
-		'[data-testid="kebab-menu-action-remove-member"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -127,7 +125,7 @@ class Rooms {
 	}
 
 	// The following code finds and clicks the dialog with the highest z-index value.
-	// - First, it collects all the dialog elements and logs their z-index values.
+	// - First, it collects all the dialog elements.
 	// - It then sorts the dialogs in descending order based on their z-index, so the dialog on top (with the highest z-index) comes first.
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
@@ -171,19 +169,22 @@ class Rooms {
 		cy.get(Rooms.#btnAddParticipant).click();
 	}
 
-	// The following code removes a participant from the room:
-	// - First, it searches for the participant's name in the room's participant table.
-	// - It locates the row containing the participant by looking for the table cell (td) that contains the participant's name.
-	// - Then, it clicks the kebab menu (three dots) in the corresponding row to open the menu for that participant.
-	// - Afterward, it clicks the "Remove" button to remove the participant from the room.
-	removeParticipant(participantName) {
+	// This method performs a specified action from the kebab menu for a given participant.
+	// - It accepts a participant name and an action (such as "remove-member" or "change-permission").
+	// - The participant's row in the table is located based on the provided name.
+	// - The corresponding kebab menu for that participant is clicked.
+	// - The specified action is performed by clicking on the appropriate option in the kebab menu.
+	performKebabMenuActionOnParticipantInRoomMembershipTable(
+		kebabMenuAction,
+		participantName
+	) {
 		cy.get(Rooms.#participantTable)
 			.contains("td", participantName)
 			.parents("tr")
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(Rooms.#removeParticipantBtnInRoomTable).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
