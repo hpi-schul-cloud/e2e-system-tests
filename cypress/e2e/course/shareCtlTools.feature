@@ -79,7 +79,7 @@ Feature: Teacher can share a course
         # Pre-condition: teacher adds a tool with required parameter
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Context Scope' from available tools
         When I enter 'test' in required custom parameter field 'searchparam'
@@ -89,7 +89,7 @@ Feature: Teacher can share a course
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Optional Protected Parameter' from available tools
         When I enter 'test' in required custom parameter field 'search'
@@ -100,7 +100,7 @@ Feature: Teacher can share a course
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Protected Parameter' from available tools
         When I enter 'test' in required custom parameter field 'search'

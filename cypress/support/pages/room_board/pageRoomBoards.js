@@ -29,19 +29,19 @@ class RoomBoards {
 	static #moderatorApprovalCheckbox =
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
-	static #globalCommonthreeDotButton = '[data-testid="board-menu-icon"]';
+	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
 	static #deleteOptionOnVideoConferenceElementDialog =
 		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
-	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
+	static #ThreeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 
 	clickOnThreeDotInCard() {
-		cy.get(RoomBoards.#threeDotButtonInCard)
+		cy.get(RoomBoards.#ThreeDotButtonInCard)
 			//three dot has same data-testid and needs to be located inside the parent element
-			.find(RoomBoards.#globalCommonthreeDotButton)
+			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 	}
 
@@ -52,7 +52,7 @@ class RoomBoards {
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
 			//three dot has same data-testid and needs to be located inside the parent element
-			.find(RoomBoards.#globalCommonthreeDotButton)
+			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 	}
 
@@ -185,7 +185,8 @@ class RoomBoards {
 	enterRoomBoardTitle(boardTitle) {
 		cy.get(RoomBoards.#roomBoardTitleOnPage).within(() => {
 			this.clearAndType("input", boardTitle);
-			cy.get("input").type("{esc}"); // Press Esc after typing, it works this way to save the title in a stable way.
+			// Press Esc after typing, it works this way to save the title in a stable way.
+			cy.get("input").type("{esc}");
 			cy.wait(1000);
 		});
 	}

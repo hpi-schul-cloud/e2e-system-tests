@@ -39,7 +39,7 @@ Given("a room named {string} exists", (room_name) => {
 	rooms.seeRoomDetailPage(room_name);
 });
 
-Given("a multi-column board named {string} exists in the room", (new_board_title) => {
+Given("a multi-column board named {string} exists in the room", (board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -48,12 +48,12 @@ Given("a multi-column board named {string} exists in the room", (new_board_title
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(new_board_title);
+	roomBoards.enterRoomBoardTitle(board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeGivenRoomBoardTitle(new_board_title);
+	roomBoards.seeGivenRoomBoardTitle(board_title);
 });
 
-Given("a single-column board named {string} exists in the room", (new_board_title) => {
+Given("a single-column board named {string} exists in the room", (board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -62,12 +62,12 @@ Given("a single-column board named {string} exists in the room", (new_board_titl
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(new_board_title);
+	roomBoards.enterRoomBoardTitle(board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeGivenRoomBoardTitle(new_board_title);
+	roomBoards.seeGivenRoomBoardTitle(board_title);
 });
 
-Given("I am on the room details page", () => {
+Given("I navigate to the room detail page from the board page", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
@@ -99,6 +99,7 @@ Given("the multi-column board has a column with a card", () => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();
 	board.clickPlusIconToAddCardInColumn();
+	board.clickOutsideTheCardToSaveTheCardInColumn();
 });
 
 Given("course with name {string} is deleted", (courseName) => {

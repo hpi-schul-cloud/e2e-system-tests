@@ -72,7 +72,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         #    Teacher adds a tool without a custom parameter
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool 1' from available tools
         Then I see tool 'CY Test Tool 1' is selected
@@ -86,7 +86,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool 1' from available tools
         Then I see tool 'CY Test Tool 1' is selected
@@ -98,7 +98,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I insert the external tool link 'https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823'
         Then I see tool 'OpenStreetMap' is selected
@@ -112,7 +112,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Required Parameters' from available tools
         Then I see tool 'CY Test Tool Required Parameters' is selected
@@ -128,7 +128,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Optional Parameters' from available tools
         Then I see tool 'CY Test Tool Optional Parameters' is selected
@@ -166,11 +166,11 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
         Then I see preferred tool 'CY Test Tool Preferred' in the menu
-        When I select preferred tool 'CY Test Tool Preferred' from the menu
+        When I select preferred tool 'CY Test Tool Preferred' from the element selection dialog box
         Then I see an external tool element with tool 'CY Test Tool Preferred'
         When I click on plus icon to add content into card
         Then I see preferred tool 'CY Test Tool Preferred With Param' in the menu
-        When I select preferred tool 'CY Test Tool Preferred With Param' from the menu
+        When I select preferred tool 'CY Test Tool Preferred With Param' from the element selection dialog box
         Then I see tool 'CY Test Tool Preferred With Param' is selected
         When I enter 'test' in required custom parameter field 'contextParam'
         Then I see custom parameter input field 'contextParam' contains 'test'

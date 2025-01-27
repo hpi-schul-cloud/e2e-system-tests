@@ -17,8 +17,9 @@ Feature: TLDraw - Test tldraw on board
         Given the multi-column board has a column with a card
 
         # teacher creates a whiteboard element in the card and draws on it
+        When I click on the three dot on the card
         When I click on plus icon to add content into card
-        When I select 'drawing-element' from the menu
+        When I select 'drawing-element' from the element selection dialog box
         When I click on the whiteboard element
         When I click on the pencil tool
         When I draw a line on the canvas with startpoint '100', '100' and endpoint '300', '300'
