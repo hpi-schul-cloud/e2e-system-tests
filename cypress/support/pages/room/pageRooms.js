@@ -171,6 +171,11 @@ class Rooms {
 		cy.get(Rooms.#btnAddParticipant).click();
 	}
 
+	// The following code removes a participant from the room:
+	// - First, it searches for the participant's name in the room's participant table.
+	// - It locates the row containing the participant by looking for the table cell (td) that contains the participant's name.
+	// - Then, it clicks the kebab menu (three dots) in the corresponding row to open the menu for that participant.
+	// - Afterward, it clicks the "Remove" button to remove the participant from the room.
 	removeParticipant(participantName) {
 		cy.get(Rooms.#participantTable)
 			.contains("td", participantName)
