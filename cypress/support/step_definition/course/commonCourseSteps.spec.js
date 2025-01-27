@@ -89,8 +89,8 @@ When("I can see task {string} on course page", (taskTitle) => {
 	courses.seeTaskOnCoursePage(taskTitle);
 });
 
-When("I can see board on course page", () => {
-	courses.seeBoardOnCoursePage();
+When("I can see board on course page {string}", (boardTitle) => {
+	courses.seeBoardOnCoursePage(boardTitle);
 });
 
 When("I can not see content {string}", (contentTitle) => {

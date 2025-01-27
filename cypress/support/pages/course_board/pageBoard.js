@@ -231,7 +231,7 @@ class Board {
 	}
 
 	clickOutsideTheCardToSaveTheCardInColumn() {
-		cy.get(Board.#outsideClickAreaforCardInColumn).clik(0, 0);
+		cy.get(Board.#outsideClickAreaforCardInColumn).click(0, 0);
 	}
 
 	seeNewlyCreatedColumn(newColumnName) {

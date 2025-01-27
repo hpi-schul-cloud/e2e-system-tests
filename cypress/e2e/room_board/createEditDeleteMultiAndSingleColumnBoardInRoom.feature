@@ -29,7 +29,7 @@ Feature: Room - Add, edit and delete board in room
         # teacher edits the default title of the new multi column board
         When I click on the three dot menu in room board
         When I select the three dot menu action 'rename'
-        Then I change the room board title to '<edited_board_title>'
+        Then I change the default room board title to '<board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<board_title>'
 
@@ -83,10 +83,10 @@ Feature: Room - Add, edit and delete board in room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | board_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
+            | teacher      | namespace | room_name         | board_title    |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
+            | teacher      | namespace | room_name         | board_title    |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |

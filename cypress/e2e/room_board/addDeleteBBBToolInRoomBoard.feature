@@ -21,6 +21,7 @@ Feature: Room - Add BBB Tool in the Room Board
 
         # teacher adds BBB Tool to the multi-column board
         When I click on the three dot on the card
+        When I click on the option edit in the three dot menu on the card
         When I click on plus icon to add content into card
         Then I see the dialog box to select element for the card
         When I click on the button Close on the element selection dialogue box

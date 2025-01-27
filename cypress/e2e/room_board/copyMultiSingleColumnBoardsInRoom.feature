@@ -10,7 +10,10 @@ Feature: Room - Copy multi-column and single-column boards in the room
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
-        Given a sinlge-column board named '<board_title>' exists in the room
+        # this step is needed to navigate back to the room details page after creating multi-column board
+        Given I navigate to the room detail page from the board page
+        Given a single column board named '<board_title>' exists in the room
+        # this step is needed to navigate back to the room details page after creating single-column board
         Given I navigate to the room detail page from the board page
 
         # teacher copies the multi-column board
