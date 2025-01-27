@@ -25,8 +25,11 @@ class Rooms {
 	static #participantTable = '[data-testid="participants-table"]';
 	static #roomOverviewNavigationButton = '[data-testid="Rooms"]';
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
-	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
-	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
+	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
+	static #inputEndDateForRoom = '[data-testid="room-end-date-input"]';
+	static #memberRowInRoomMembershipTable = '[data-testid^="kebab-menu-"]';
+	static #removeParticipantBtnInRoomTable =
+		'[data-testid="kebab-menu-action-remove-member"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -41,7 +44,7 @@ class Rooms {
 
 		//Format the date as DD.MM.YYYY
 		const formattedDate = `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
-		cy.get(Rooms.#inputEndtdateForRoom).clear().type(formattedDate);
+		cy.get(Rooms.#inputEndDateForRoom).clear().type(formattedDate);
 	}
 
 	selectTodayStartDateForRoom() {
@@ -51,7 +54,7 @@ class Rooms {
 		const month = String(today.getMonth() + 1).padStart(2, "0");
 		const year = today.getFullYear();
 		const formattedDate = `${day}.${month}.${year}`;
-		cy.get(Rooms.#inputSatrtdateForRoom).clear().type(formattedDate);
+		cy.get(Rooms.#inputStartDateForRoom).clear().type(formattedDate);
 	}
 
 	selectRoomColour() {
@@ -123,8 +126,21 @@ class Rooms {
 		cy.get(Rooms.#addParticipantsModal).should("exist");
 	}
 
+	// The following code finds and clicks the dialog with the highest z-index value.
+	// - First, it collects all the dialog elements and logs their z-index values.
+	// - It then sorts the dialogs in descending order based on their z-index, so the dialog on top (with the highest z-index) comes first.
+	// - If there is only one dialog, it will automatically be selected as the highest.
+	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#confirmDeletionModalDelete).click();
+		cy.get(Rooms.#confirmDeletionModalTitle).then((dialogs) => {
+			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
+				return (
+					parseInt(Cypress.$(dialogB).css("z-index")) -
+					parseInt(Cypress.$(dialogA).css("z-index"))
+				);
+			})[0];
+			cy.wrap(highestZIndexDialog).find(Rooms.#confirmDeletionModalDelete).click();
+		});
 	}
 
 	roomIsVisibleOnOverviewPage(roomName) {
@@ -157,10 +173,12 @@ class Rooms {
 
 	removeParticipant(participantName) {
 		cy.get(Rooms.#participantTable)
-			.contains(participantName)
-			.parent("tr")
-			.then((removeUser) => cy.wrap(removeUser).find("td").eq(5))
-			.click();
+			.contains("td", participantName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
+			});
+		cy.get(Rooms.#removeParticipantBtnInRoomTable).click();
 	}
 
 	seeParticipantInList(participantName) {
