@@ -44,7 +44,7 @@ Feature: Room - Add and delete participants
         When I click on participants option in room menu
         Then I see the edit participants page of room '<room_name>'
         Then I see '<participant_name>' in the room participants list
-        When I click on delete button in the participant list for participant '<participant_name>'
+        When I click on 'remove-member' button in the participant list for participant '<participant_name>'
         When I click on delete button in confirmation modal
         Then I see the participant '<participant_name>' is removed from the room participants list
 

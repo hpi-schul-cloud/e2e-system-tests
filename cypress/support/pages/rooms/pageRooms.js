@@ -25,8 +25,9 @@ class Rooms {
 	static #participantTable = '[data-testid="participants-table"]';
 	static #roomOverviewNavigationButton = '[data-testid="Rooms"]';
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
-	static #inputSatrtdateForRoom = '[data-testid="room-start-date-input"]';
-	static #inputEndtdateForRoom = '[data-testid="room-end-date-input"]';
+	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
+	static #inputEndDateForRoom = '[data-testid="room-end-date-input"]';
+	static #memberRowInRoomMembershipTable = '[data-testid^="kebab-menu-"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -41,7 +42,7 @@ class Rooms {
 
 		//Format the date as DD.MM.YYYY
 		const formattedDate = `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
-		cy.get(Rooms.#inputEndtdateForRoom).clear().type(formattedDate);
+		cy.get(Rooms.#inputEndDateForRoom).clear().type(formattedDate);
 	}
 
 	selectTodayStartDateForRoom() {
@@ -51,7 +52,7 @@ class Rooms {
 		const month = String(today.getMonth() + 1).padStart(2, "0");
 		const year = today.getFullYear();
 		const formattedDate = `${day}.${month}.${year}`;
-		cy.get(Rooms.#inputSatrtdateForRoom).clear().type(formattedDate);
+		cy.get(Rooms.#inputStartDateForRoom).clear().type(formattedDate);
 	}
 
 	selectRoomColour() {
@@ -123,8 +124,21 @@ class Rooms {
 		cy.get(Rooms.#addParticipantsModal).should("exist");
 	}
 
+	// The following code finds and clicks the dialog with the highest z-index value.
+	// - First, it collects all the dialog elements.
+	// - It then sorts the dialogs in descending order based on their z-index, so the dialog on top (with the highest z-index) comes first.
+	// - If there is only one dialog, it will automatically be selected as the highest.
+	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#confirmDeletionModalDelete).click();
+		cy.get(Rooms.#confirmDeletionModalTitle).then((dialogs) => {
+			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
+				return (
+					parseInt(Cypress.$(dialogB).css("z-index")) -
+					parseInt(Cypress.$(dialogA).css("z-index"))
+				);
+			})[0];
+			cy.wrap(highestZIndexDialog).find(Rooms.#confirmDeletionModalDelete).click();
+		});
 	}
 
 	roomIsVisibleOnOverviewPage(roomName) {
@@ -155,12 +169,22 @@ class Rooms {
 		cy.get(Rooms.#btnAddParticipant).click();
 	}
 
-	removeParticipant(participantName) {
+	// This method performs a specified action from the kebab menu for a given participant.
+	// - It accepts a participant name and an action (such as "remove-member" or "change-permission").
+	// - The participant's row in the table is located based on the provided name.
+	// - The corresponding kebab menu for that participant is clicked.
+	// - The specified action is performed by clicking on the appropriate option in the kebab menu.
+	performKebabMenuActionOnParticipantInRoomMembershipTable(
+		kebabMenuAction,
+		participantName
+	) {
 		cy.get(Rooms.#participantTable)
-			.contains(participantName)
-			.parent("tr")
-			.then((removeUser) => cy.wrap(removeUser).find("td").eq(5))
-			.click();
+			.contains("td", participantName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
+			});
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
