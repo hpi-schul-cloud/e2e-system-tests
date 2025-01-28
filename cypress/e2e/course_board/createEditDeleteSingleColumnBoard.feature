@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Course Board - To create, edit and delete a single column course board
+Feature: Course Board - To create, edit and delete a single-column course board
 
-    As a teacher I want to create, edit and delete a single column course board so that I can use this option.
+    As a teacher I want to create, edit and delete a single-column course board so that I can use this option.
 
-    Scenario Outline: user creation, course creation, and creating single column board, adding a card with text and whiteboard, deleting the single column board in the course
+    Scenario Outline: user creation, course creation, and creating single-column board, adding a card with text and whiteboard, deleting the single-column board in the course
 
         # pre-condition: teacher and admin log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -24,7 +24,7 @@ Feature: Course Board - To create, edit and delete a single column course board
         # Note: this step is not applicable for the admin user
         #Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
 
-        # teacher adds a new single column Board
+        # teacher adds a new single-column Board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -33,7 +33,7 @@ Feature: Course Board - To create, edit and delete a single column course board
         When I click on the button FAB New Column Board
         Then I see a dialog box for column board
         Then I see in dialog box option for multi-column board
-        Then I see in dialog box option for single column board
+        Then I see in dialog box option for single-column board
         When I choose single-column board in the dialog box
         Then I see the page Course Board details
         When I click on the button three dot menu in course board
@@ -43,7 +43,7 @@ Feature: Course Board - To create, edit and delete a single column course board
         # Then I see the course Board name '<board_title>'
         Then I see the chip Draft in the course board
 
-        # student does not see the single column board
+        # student does not see the single-column board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -66,27 +66,27 @@ Feature: Course Board - To create, edit and delete a single column course board
         Then I click on the button with the Icon Plus to add a new card in the column
         When I enter '<card_text_content>' to board card text element
         When I click on plus icon to add content into card
-        When I select whiteboard from the menu
+        When I select 'drawing-element' from the element selection dialog box
         Then I see a whiteboard on the board
         Then I see '<card_text_content>' in board card text element
 
-        # teacher edits the column in the single column board
+        # teacher edits the column in the single-column board
         When I click on three dot menu in the column
         When I select the three dot menu action 'rename'
         Then I enter the title name '<edited_column_board_title>' in the column
         When I click on the page outside of the column
         Then I see my column named '<edited_column_board_title>'
 
-        # student sees the single column board
+        # student sees the single-column board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
-        Then I can see board on course page
+        Then I can see board '<board_title>' on course page
         When I click on card Course Board
         Then I see a whiteboard on the board
         Then I see '<card_text_content>' in board card text element
 
-        # # teacher deletes the column in the single column board
+        # # teacher deletes the column in the single-column board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'

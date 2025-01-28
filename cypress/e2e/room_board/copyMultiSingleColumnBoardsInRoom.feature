@@ -9,8 +9,12 @@ Feature: Room - Copy multi-column and single-column boards in the room
         # pre-condition: room and boards are existing
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
-        Given a multi-column board named '<new_board_title>' exists in the room
-        Given a single-column board named '<new_board_title>' exists in the room
+        Given a multi-column board named '<board_title>' exists in the room
+        # this step is needed to navigate back to the room details page after creating multi-column board
+        Given I navigate to the room detail page from the board page
+        Given a single-column board named '<board_title>' exists in the room
+        # this step is needed to navigate back to the room details page after creating single-column board
+        Given I navigate to the room detail page from the board page
 
         # teacher copies the multi-column board
         When I click on the multi-column board in the room detail page
@@ -45,11 +49,11 @@ Feature: Room - Copy multi-column and single-column boards in the room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | new_board_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
+            | teacher      | namespace | room_name         | board_title    |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | new_board_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
+            | teacher      | namespace | room_name         | board_title    |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
 

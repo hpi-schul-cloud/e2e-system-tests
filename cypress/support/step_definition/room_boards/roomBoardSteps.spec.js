@@ -3,6 +3,91 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+When("I click on the option edit in the three dot menu on the card", () => {
+	roomBoards.clickEditOptionInCardThreeDot();
+});
+
+When("I click on the three dot on the card", () => {
+	roomBoards.clickOnThreeDotInCard();
+});
+
+When("I click on the three-dot menu in the video conference element", () => {
+	roomBoards.clickThreeDotMenuInVideoConferenceElement();
+});
+
+When("I click on the delete option in the three-dot menu", () => {
+	roomBoards.clickDeleteOptionInThreeDotMenu();
+});
+
+Then("I see the delete confirmation dialog", () => {
+	roomBoards.verifyDeleteConfirmationDialogVisible();
+});
+
+When("I click on the delete button in the confirmation dialog", () => {
+	roomBoards.clickDeleteButtonInConfirmationDialog();
+});
+
+Then("I do not see the video conference element", () => {
+	roomBoards.verifyVideoConferenceElementNotVisible();
+});
+
+Then(
+	"I see the moderator approval checkbox is checked in the video conference start modal",
+	() => {
+		roomBoards.verifyModeratorApprovalCheckboxCheckedInBBBModal();
+	}
+);
+
+Then("I see the dialog box for element selection", () => {
+	roomBoards.seeElementSelectionDialog();
+});
+
+When("I click on the button Close on the element selection dialogue box", () => {
+	roomBoards.clickCloseButtonOnElementSelectionDialog();
+});
+
+Then("I do not see the element selection dialogue box", () => {
+	roomBoards.doNotSeeElementSelectionDialog();
+});
+
+Then("I see the dialog box to select element for the card", () => {
+	roomBoards.seeElementSelectionDialog();
+});
+
+When("I enter the video conference title {string}", (videoConferenceTitle) => {
+	roomBoards.enterVideoConferenceTitle(videoConferenceTitle);
+});
+
+When("I click on the save button or press the button enter key", () => {
+	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
+});
+
+Then("I see the video conference element added in the card", () => {
+	roomBoards.verifyVideoConferenceElementAddedInCard();
+});
+
+When("I click on the video conference element in the card", () => {
+	roomBoards.clickVideoConferenceElementInCard();
+});
+
+Then("I see the modal to start the video conference", () => {
+	roomBoards.seeVideoConferenceStartDaialog();
+});
+
+Then(
+	"I see the button create in the video conference creation modal to start the call",
+	() => {
+		roomBoards.seeCreateButtonInVideoConferenceDialog();
+	}
+);
+
+Then(
+	"I click on the button cancel in the video conference creation modal to go back to the card",
+	() => {
+		roomBoards.clickCancelButtonInVideoConferenceCreationModal();
+	}
+);
+
 Then("I see copied multi-column board tile in the rooms details page", () => {
 	roomBoards.verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage();
 });
@@ -35,11 +120,11 @@ Then("I see the dialog box to select the Board type", () => {
 	roomBoards.seeColumnBoardDialogBox();
 });
 
-When("I click on button to add multi column board", () => {
+When("I click on button to add multi-column board", () => {
 	roomBoards.clickOnButtonToAddMultiColumnBoard();
 });
 
-When("I click on button to add single column board", () => {
+When("I click on button to add single-column board", () => {
 	roomBoards.clickOnButtonToAddSingleColumnBoard();
 });
 

@@ -83,7 +83,7 @@ Then("I see in dialog box option for multi-column board", () => {
 	board.seeMultiColumnBoardOptionInDialogBox();
 });
 
-Then("I see in dialog box option for single column board", () => {
+Then("I see in dialog box option for single-column board", () => {
 	board.seeSingleColumnBoardOptionInDialogBox();
 });
 
@@ -111,7 +111,7 @@ When("I click on three dot menu of external tool element {string}", (toolName) =
 	board.clickThreeDotMenuOnExternalToolElementWithTool(toolName);
 });
 
-When("I select external tools from the menu", () => {
+When("I select external tools from the element selection dialog box", () => {
 	board.selectExternalToolsFromMenu();
 });
 
@@ -119,9 +119,12 @@ Then("I see preferred tool {string} in the menu", (toolName) => {
 	board.seePreferredExternalToolInMenu(toolName);
 });
 
-Then("I select preferred tool {string} from the menu", (toolName) => {
-	board.selectPreferredExternalToolFromMenu(toolName);
-});
+Then(
+	"I select preferred tool {string} from the element selection dialog box",
+	(toolName) => {
+		board.selectPreferredExternalToolFromMenu(toolName);
+	}
+);
 
 Then("I do not see preferred tool {string} in the menu", (toolName) => {
 	board.preferredExternalToolIsNotVisibleInMenu(toolName);
