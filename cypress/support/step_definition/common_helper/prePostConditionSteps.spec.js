@@ -1,20 +1,77 @@
-import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 import Courses from "../../pages/course/pageCourses";
+import RoomBoards from "../../pages/room_board/pageRoomBoards";
+import Rooms from "../../pages/room/pageRooms";
 
+const roomBoards = new RoomBoards();
+const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
 
-Given("a course with name {string} exists with {string} as teacher and {string} as student", (courseName, teacherName, studentName) => {
-	courses.navigateToCoursesOverview();
-	courses.clickOnCreateCourseFAB();
-	courses.fillCourseCreationForm(courseName);
-	courses.selectCourseColour();
-	courses.selectTeacherInCourseCreatePage(teacherName);
-	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-	courses.selectStudentInCourseCreatePage(studentName);
-	courses.clickOnNextStepButtonOnCourseParticipationDetail();
+Given("the room named {string} is deleted", (room_name) => {
+	rooms.openThreeDotMenuForRoom();
+	rooms.openDeleteInThreeDotMenuForRoom();
+	rooms.seeConfirmationModalForRoomDeletion();
+	rooms.clickDeleteInConfirmationModal();
+	rooms.roomIsNotVisibleOnOverviewPage(room_name);
 });
+
+Given("a room named {string} exists", (room_name) => {
+	rooms.navigateToRoomsOverview();
+	rooms.clickOnCreateRoomFAB();
+	rooms.showRoomCreationPage();
+	rooms.fillRoomFormName(room_name);
+	rooms.selectRoomColour();
+	rooms.selectTodayStartDateForRoom();
+	rooms.selectEndDateForRoom();
+	rooms.submitRoom();
+	rooms.seeRoomDetailPage(room_name);
+});
+
+Given("a multi-column board named {string} exists in the room", (new_board_title) => {
+	rooms.clickOnAddContentButton();
+	rooms.seeFabButtonToAddBoard();
+	rooms.clickOnFabButtonToAddBoard();
+	roomBoards.seeColumnBoardDialogBox();
+	roomBoards.clickOnButtonToAddMultiColumnBoard();
+	roomBoards.seeNewRoomBoardCreatePage();
+	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+	roomBoards.clickOnEditInBoardMenu();
+	roomBoards.enterRoomBoardTitle(new_board_title);
+	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+	roomBoards.seeUpdatedRoomBoardTitle(new_board_title);
+	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
+});
+
+Given("a single-column board named {string} exists in the room", (new_board_title) => {
+	rooms.clickOnAddContentButton();
+	rooms.seeFabButtonToAddBoard();
+	rooms.clickOnFabButtonToAddBoard();
+	roomBoards.seeColumnBoardDialogBox();
+	roomBoards.clickOnButtonToAddSingleColumnBoard();
+	roomBoards.seeNewRoomBoardCreatePage();
+	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+	roomBoards.clickOnEditInBoardMenu();
+	roomBoards.enterRoomBoardTitle(new_board_title);
+	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+	roomBoards.seeUpdatedRoomBoardTitle(new_board_title);
+	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
+});
+
+Given(
+	"a course with name {string} exists with {string} as teacher and {string} as student",
+	(courseName, teacherName, studentName) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		courses.selectTeacherInCourseCreatePage(teacherName);
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.selectStudentInCourseCreatePage(studentName);
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+	}
+);
 
 Given("a board exists in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();

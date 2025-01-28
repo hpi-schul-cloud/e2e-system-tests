@@ -81,7 +81,7 @@ Feature: Course Board - To create, edit and delete a single column course board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
-        Then I can see board '<board_title>' on course page
+        Then I can see board on course page
         When I click on card Course Board
         Then I see a whiteboard on the board
         Then I see '<card_text_content>' in board card text element

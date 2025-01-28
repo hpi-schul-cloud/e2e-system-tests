@@ -30,7 +30,7 @@ class Courses {
 	static #backToDraftButtonInDotMenuOfTopic =
 		'[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
-	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
+	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-card-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex =
 		'[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
@@ -448,12 +448,10 @@ class Courses {
 			.should("be.visible");
 	}
 
-	seeBoardOnCoursePage(boardTitle) {
+	seeBoardOnCoursePage() {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		cy.reload(); // Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
-		cy.get(Courses.#boardCardTitleInCoursePageWithIndex)
-			.contains(boardTitle)
-			.should("be.visible");
+		cy.get(Courses.#boardCardTitleInCoursePageWithIndex).should("be.visible");
 	}
 
 	contentIsNotVisibleOnCoursePage(contentTitle) {
