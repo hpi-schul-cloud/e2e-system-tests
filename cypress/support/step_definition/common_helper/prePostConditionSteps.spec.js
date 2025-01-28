@@ -2,12 +2,22 @@ import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 import Courses from "../../pages/course/pageCourses";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
-import Rooms from "../../pages/room/pageRooms";
+import Rooms from "../../pages/rooms/pageRooms";
+import Management from "../../pages/admin/pageAdministration";
 
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
+const management = new Management();
+
+Given("admin enables video conference for the school in the school settings page", () => {
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickGeneralSettingsPanel();
+	management.enableTeamsVideoConferenceByAdmin();
+	management.clickOnAdminSettingsSave();
+});
 
 Given("the room named {string} is deleted", (room_name) => {
 	rooms.openThreeDotMenuForRoom();
@@ -29,7 +39,7 @@ Given("a room named {string} exists", (room_name) => {
 	rooms.seeRoomDetailPage(room_name);
 });
 
-Given("a multi-column board named {string} exists in the room", (new_board_title) => {
+Given("a multi-column board named {string} exists in the room", (board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -38,13 +48,12 @@ Given("a multi-column board named {string} exists in the room", (new_board_title
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(new_board_title);
+	roomBoards.enterRoomBoardTitle(board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(new_board_title);
-	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
+	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
 
-Given("a single-column board named {string} exists in the room", (new_board_title) => {
+Given("a single-column board named {string} exists in the room", (board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -53,9 +62,12 @@ Given("a single-column board named {string} exists in the room", (new_board_titl
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(new_board_title);
+	roomBoards.enterRoomBoardTitle(board_title);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(new_board_title);
+	roomBoards.seeUpdatedRoomBoardTitle(board_title);
+});
+
+Given("I navigate to the room detail page from the board page", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
@@ -73,7 +85,7 @@ Given(
 	}
 );
 
-Given("a board exists in course {string}", (courseName) => {
+Given("a multi-column board exists in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickOnCreateContentFAB();
@@ -83,10 +95,11 @@ Given("a board exists in course {string}", (courseName) => {
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
 });
 
-Given("the board has a column with a card", (columnName) => {
+Given("the multi-column board has a column with a card", () => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();
 	board.clickPlusIconToAddCardInColumn();
+	board.clickOutsideTheCardToSaveTheCard();
 });
 
 Given("course with name {string} is deleted", (courseName) => {

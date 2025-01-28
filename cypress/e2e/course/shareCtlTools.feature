@@ -70,7 +70,7 @@ Feature: Teacher can share a course
         When I click on the button FAB New Column Board
         Then I see a dialog box for column board
         Then I see in dialog box option for multi-column board
-        Then I see in dialog box option for single column board
+        Then I see in dialog box option for single-column board
         When I choose multi-column board in the dialog box
         Then I see the page Course Board details
         Then I see the chip Draft in the course board
@@ -79,7 +79,7 @@ Feature: Teacher can share a course
         # Pre-condition: teacher adds a tool with required parameter
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Context Scope' from available tools
         When I enter 'test' in required custom parameter field 'searchparam'
@@ -89,7 +89,7 @@ Feature: Teacher can share a course
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Optional Protected Parameter' from available tools
         When I enter 'test' in required custom parameter field 'search'
@@ -100,7 +100,7 @@ Feature: Teacher can share a course
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on plus icon to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I click on the tool configuration selection
         When I select the tool 'CY Test Tool Protected Parameter' from available tools
         When I enter 'test' in required custom parameter field 'search'

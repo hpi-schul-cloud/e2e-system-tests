@@ -1,5 +1,5 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import Rooms from "../../pages/room/pageRooms";
+import Rooms from "../../pages/rooms/pageRooms";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const rooms = new Rooms();
@@ -138,8 +138,6 @@ Then("I see the button to add board", () => {
 	rooms.seeFabButtonToAddBoard();
 });
 
-When ("I click on the fab button to add a Board", () => {
+When("I click on the fab button to add a Board", () => {
 	rooms.clickOnFabButtonToAddBoard();
 });
-
-

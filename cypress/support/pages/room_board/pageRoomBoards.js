@@ -19,6 +19,106 @@ class RoomBoards {
 	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
 	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-2"]';
 	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-3"]';
+	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
+	static #closeDialogButton = '[data-testid="dialog-close"]';
+	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
+	static #saveButton = '[data-testid="save-video-conference-title-button"]';
+	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
+	static #videoConferenceModal = '[data-testid="video-conference-config-dialog"]';
+	static #createVideoConferenceButton = '[data-testid="dialog-create"]';
+	static #moderatorApprovalCheckbox =
+		'[data-testid="moderator-must-approve-join-requests"]';
+	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
+	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
+	static #deleteOptionOnVideoConferenceElementDialog =
+		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteConfirmationDialogForVideoConferenceElement =
+		'[data-testid="dialog-title"]';
+	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
+	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
+	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
+
+	clickOnThreeDotInCard() {
+		cy.get(RoomBoards.#threeDotButtonInCard)
+			//three dot has same data-testid and needs to be located inside the parent element
+			.find(RoomBoards.#globalCommonThreeDotButton)
+			.click();
+	}
+
+	clickEditOptionInCardThreeDot() {
+		cy.get(RoomBoards.#editOptionInCardThreeDot).click();
+	}
+
+	clickThreeDotMenuInVideoConferenceElement() {
+		cy.get(RoomBoards.#videoConferenceElement)
+			//three dot has same data-testid and needs to be located inside the parent element
+			.find(RoomBoards.#globalCommonThreeDotButton)
+			.click();
+	}
+
+	clickDeleteOptionInThreeDotMenu() {
+		cy.get(RoomBoards.#deleteOptionOnVideoConferenceElementDialog).click();
+	}
+
+	verifyDeleteConfirmationDialogVisible() {
+		cy.get(RoomBoards.#deleteConfirmationDialogForVideoConferenceElement).should(
+			"be.visible"
+		);
+	}
+
+	clickDeleteButtonInConfirmationDialog() {
+		cy.get(RoomBoards.#deleteButtonOnVideoConferenceElementDialog).click();
+	}
+
+	verifyVideoConferenceElementNotVisible() {
+		cy.get(RoomBoards.#videoConferenceElement).should("not.exist");
+	}
+
+	clickCancelButtonInVideoConferenceCreationModal() {
+		cy.get(RoomBoards.#cancelButtonInVideoConferenceModal).click();
+	}
+
+	verifyModeratorApprovalCheckboxCheckedInBBBModal() {
+		cy.get(RoomBoards.#moderatorApprovalCheckbox)
+			.find('input[type="checkbox"]') // Find the checkbox inside the parent options
+			.should("be.checked");
+	}
+
+	seeElementSelectionDialog() {
+		cy.get(RoomBoards.#elementSelectionDialog).should("be.visible");
+	}
+
+	clickCloseButtonOnElementSelectionDialog() {
+		cy.get(RoomBoards.#closeDialogButton).click();
+	}
+
+	doNotSeeElementSelectionDialog() {
+		cy.get(RoomBoards.#elementSelectionDialog).should("not.exist");
+	}
+
+	enterVideoConferenceTitle(videoConferenceTitle) {
+		cy.get(RoomBoards.#videoConferenceTitleInput).clear().type(videoConferenceTitle);
+	}
+
+	clickSaveButtonOrPressEnterToSaveVideoConferenceTitle() {
+		cy.get(RoomBoards.#saveButton).click();
+	}
+
+	verifyVideoConferenceElementAddedInCard() {
+		cy.get(RoomBoards.#videoConferenceElement).should("be.visible");
+	}
+
+	clickVideoConferenceElementInCard() {
+		cy.get(RoomBoards.#videoConferenceElement).click();
+	}
+
+	seeVideoConferenceStartDaialog() {
+		cy.get(RoomBoards.#videoConferenceModal).should("be.visible");
+	}
+
+	seeCreateButtonInVideoConferenceDialog() {
+		cy.get(RoomBoards.#createVideoConferenceButton).should("be.visible");
+	}
 
 	verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage() {
 		cy.get(RoomBoards.#multiColumnCopiedBoardSelector).should("be.visible");
@@ -84,8 +184,9 @@ class RoomBoards {
 	}
 	enterRoomBoardTitle(boardTitle) {
 		cy.get(RoomBoards.#roomBoardTitleOnPage).within(() => {
-			this.clearAndType("input", boardTitle); // Clear and type the new title
-			cy.get("input").type("{esc}"); // Press Esc after typing, it works this way to save the title in a stable way.
+			this.clearAndType("input", boardTitle);
+			// Press Esc after typing, it works this way to save the title in a stable way.
+			cy.get("input").type("{esc}");
 			cy.wait(1000);
 		});
 	}

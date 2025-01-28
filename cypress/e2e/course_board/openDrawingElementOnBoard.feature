@@ -35,7 +35,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on the button FAB New Column Board
         Then I see a dialog box for column board
         Then I see in dialog box option for multi-column board
-        Then I see in dialog box option for single column board
+        Then I see in dialog box option for single-column board
         When I choose multi-column board in the dialog box
         Then I see the page Course Board details
         When I click on the button three dot menu in course board
@@ -51,7 +51,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on the page outside of the column
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
-        Then I select whiteboard from the menu
+        Then I select 'drawing-element' from the element selection dialog box
 
         # teacher is able to open a drawing element to the course board
         Given I am logged in as a '<teacher>' at '<namespace>'
