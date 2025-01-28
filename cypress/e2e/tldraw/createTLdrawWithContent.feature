@@ -13,12 +13,14 @@ Feature: TLDraw - Test tldraw on board
 
         # pre-condition: teacher creates a board with column and a card
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given a board exists in course '<course_name>'
-        Given the board has a column with a card
+        Given a multi-column board exists in course '<course_name>'
+        Given the multi-column board has a column with a card
 
         # teacher creates a whiteboard element in the card and draws on it
+        When I click on the three dot on the card
+        When I click on the option edit in the three dot menu on the card
         When I click on plus icon to add content into card
-        When I select whiteboard from the menu
+        When I select 'drawing-element' from the element selection dialog box
         When I click on the whiteboard element
         When I click on the pencil tool
         When I draw a line on the canvas with startpoint '100', '100' and endpoint '300', '300'
@@ -42,10 +44,10 @@ Feature: TLDraw - Test tldraw on board
 
         @school_api_test
         Examples:
-		    | namespace | admin      | teacher      | teacher_fullname  | student      | student_fullname  | course_name              | board_name              | text_to_write |
-		    | dbc       | admin1_dbc | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
+            | namespace | admin      | teacher      | teacher_fullname  | student      | student_fullname  | course_name              | board_name              | text_to_write |
+            | dbc       | admin1_dbc | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
 
         @staging_test
         Examples:
-		    | namespace | admin      | teacher      | teacher_fullname  | student      | student_fullname  | course_name              | board_name              | text_to_write |
-		    | brb       | admin1_brb | teacher1_brb | Karl Herzog       | student1_brb | Herbert Kraft     | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
+            | namespace | admin      | teacher      | teacher_fullname | student      | student_fullname | course_name              | board_name              | text_to_write |
+            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |

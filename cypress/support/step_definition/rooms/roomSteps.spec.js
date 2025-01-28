@@ -1,5 +1,5 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import Rooms from "../../pages/room/pageRooms";
+import Rooms from "../../pages/rooms/pageRooms";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const rooms = new Rooms();

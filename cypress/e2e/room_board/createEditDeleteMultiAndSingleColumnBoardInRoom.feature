@@ -15,7 +15,7 @@ Feature: Room - Add, edit and delete board in room
         When I click on the button to save the room
         Then I see the detail page of room '<room_name>'
 
-        # teacher creates a new multi column board in the room
+        # teacher creates a new multi-column board in the room
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
@@ -23,32 +23,32 @@ Feature: Room - Add, edit and delete board in room
         Then I see the button to add board
         When I click on the fab button to add a Board
         Then I see the dialog box to select the Board type
-        When I click on button to add multi column board
+        When I click on button to add multi-column board
         Then I see the page board details
 
-        # teacher edits the default title of the new multi column board
+        # teacher edits the default title of the new multi-column board
         When I click on the three dot menu in room board
         When I select the three dot menu action 'rename'
-        Then I change the default room board title to '<new_board_title>'
+        Then I change the default room board title to '<board_title>'
         When I click on the page outside of the title of the board
-        Then I see my room board is named '<new_board_title>'
+        Then I see my room board is named '<board_title>'
 
-        # cancel delete-process of the new multi column board
+        # cancel delete-process of the new multi-column board
         When I click on the three dot menu in room board
         When I select the three dot menu action 'delete'
         Then I see the button to cancel the dialog
         When I click on the button to cancel the deletion
         Then I see the page board details
-        Then I see the board '<new_board_title>' on the room overview page
+        Then I see the board '<board_title>' on the room overview page
 
-        # confirm delete-process of the new multi column board
+        # confirm delete-process of the new multi-column board
         When I click on the three dot menu in room board
         When I select the three dot menu action 'delete'
         Then I see the button to confirm the dialog
         Then I click on the button to confirm the deletion
-        Then I do not see the board '<new_board_title>' in the room
+        Then I do not see the board '<board_title>' in the room
 
-        # teacher creates a new single column board in the room
+        # teacher creates a new single-column board in the room
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
@@ -56,17 +56,17 @@ Feature: Room - Add, edit and delete board in room
         Then I see the button to add board
         When I click on the fab button to add a Board
         Then I see the dialog box to select the Board type
-        When I click on button to add single column board
+        When I click on button to add single-column board
         Then I see the page board details
 
-        # teacher edits the default title of the new single column board
+        # teacher edits the default title of the new single-column board
         When I click on the three dot menu in room board
         When I select the three dot menu action 'rename'
-        Then I change the default room board title to '<new_board_title>'
+        Then I change the default room board title to '<board_title>'
         When I click on the page outside of the title of the board
-        Then I see my room board is named '<new_board_title>'
+        Then I see my room board is named '<board_title>'
 
-        # confirm delete-process of single column board
+        # confirm delete-process of single-column board
         When I click on the three dot menu in room board
         When I click on delete in board menu
         Then I see the button to confirm the dialog
@@ -83,10 +83,10 @@ Feature: Room - Add, edit and delete board in room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | new_board_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
+            | teacher      | namespace | room_name         | board_title    |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | new_board_title |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title  |
+            | teacher      | namespace | room_name         | board_title    |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |

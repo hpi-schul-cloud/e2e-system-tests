@@ -31,7 +31,7 @@ Feature: Course Board - To change the board layout
         When I click on the button FAB New Column Board
         Then I see a dialog box for column board
         Then I see in dialog box option for multi-column board
-        Then I see in dialog box option for single column board
+        Then I see in dialog box option for single-column board
         When I choose multi-column board in the dialog box
         Then I see the page Course Board details
         When I click on the button Add column in the course board
@@ -47,16 +47,16 @@ Feature: Course Board - To change the board layout
         When I click on the option Change layout in three dot menu in course board
         Then I see a dialog box for column board
         Then I see in dialog box option for multi-column board
-        Then I see in dialog box option for single column board
+        Then I see in dialog box option for single-column board
         When I choose single-column board in the dialog box
         Then I see the single-column board
 
-        # teacher changes board layout to multi column
+        # teacher changes board layout to multi-column
         When I click on three dot menu in the board header
         When I click on the option Change layout in three dot menu in course board
         Then I see a dialog box for column board
         Then I see in dialog box option for multi-column board
-        Then I see in dialog box option for single column board
+        Then I see in dialog box option for single-column board
         When I choose multi-column board in the dialog box
         Then I see the multi-column board
 

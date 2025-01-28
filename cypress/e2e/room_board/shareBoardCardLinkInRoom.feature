@@ -36,7 +36,7 @@ Feature: Room Board - To share a board card link
         Then I see the button to add board
         When I click on the fab button to add a Board
         Then I see the dialog box to select the Board type
-        When I click on button to add multi column board
+        When I click on button to add multi-column board
         Then I see the page board details
         Then I see the chip Draft in the course board
         When I click on three dot menu in the board header
@@ -71,13 +71,13 @@ Feature: Room Board - To share a board card link
 
         @school_api_test
         Examples:
-            | teacher_1     | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name   | school_name             |
-            | teacher1_nbc  | teacher2_nbc | nbc       | teacher_1      | teacher_2      | Cypress Test Room | Lehrkraft   | cypress-automated-tests |
+            | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name | school_name             |
+            | teacher1_nbc | teacher2_nbc | nbc       | teacher_1      | teacher_2      | Cypress Test Room | Lehrkraft | cypress-automated-tests |
 
         @staging_test
         Examples:
-            | teacher_1     | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name   | school_name                 |
-            | teacher1_nbc  | teacher2_nbc | nbc       | Herzog         | Hande          | Cypress Test Room | Lehrkraft   | Felix Mendelssohn-Gymnasium |
+            | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name | school_name                 |
+            | teacher1_nbc | teacher2_nbc | nbc       | Herzog         | Hande          | Cypress Test Room | Lehrkraft | Felix Mendelssohn-Gymnasium |
 
 
 

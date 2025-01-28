@@ -27,13 +27,13 @@ class Board {
 	static #draftChipInCourseBoardName = '[data-testid="board-draft-chip"]';
 	static #addCardInColumnButton = '[data-testid="column-0-add-card-btn"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
-	static #selectWhiteboardFromMenu = '[data-testid="create-element-drawing-element"]';
 	static #selectExternalToolsFromMenu =
 		'[data-testid="create-element-external-tool-container"]';
 	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout =
+		'[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
@@ -44,7 +44,7 @@ class Board {
 		'[data-testid="board-external-tool-element-alert"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
-	static #firstBoardColumn = '[data-testid="board-column-0"]'
+	static #firstBoardColumn = '[data-testid="board-column-0"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -54,8 +54,8 @@ class Board {
 		cy.get(Board.#addContentIntoCardButton).click();
 	}
 
-	selectWhiteboardFromMenu() {
-		cy.get(Board.#selectWhiteboardFromMenu).click();
+	selectCardElementFromMenu(cardElementName) {
+		cy.get(`[data-testid="create-element-${cardElementName}"]`).click();
 	}
 
 	seeWhiteboardOnPage() {
@@ -400,21 +400,23 @@ class Board {
 		cy.get(Board.#boardCard).should("be.visible");
 	}
 
-	selectCopyLinkToCardInThreeDotMenu(){
+	selectCopyLinkToCardInThreeDotMenu() {
 		cy.get(Board.#copyBoardCardLinkButton).click();
 
-		cy.window().then((win) => {
-			return win.navigator.clipboard.readText();
-		}).then((link) => {
-			cy.wrap(link).as("boardCardLink");
+		cy.window()
+			.then((win) => {
+				return win.navigator.clipboard.readText();
+			})
+			.then((link) => {
+				cy.wrap(link).as("boardCardLink");
 
-			cy.url().then((currentUrl) => {
-				expect(link).to.include(currentUrl);
+				cy.url().then((currentUrl) => {
+					expect(link).to.include(currentUrl);
+				});
 			});
-		});
 	}
 
-	openBoardCardLink(){
+	openBoardCardLink() {
 		cy.get("@boardCardLink").then((link) => {
 			cy.visit(link);
 		});
@@ -428,13 +430,13 @@ class Board {
 		cy.get(Board.#boardCard).should("be.focused");
 	}
 
-	seeSingleColumnBoard(){
+	seeSingleColumnBoard() {
 		cy.get(Board.#firstBoardColumn)
 			.should("have.class", "d-flex flex-column align-stretch my-0")
 			.should("not.have.attr", "style", "min-width: 400px; max-width: 400px;");
 	}
 
-	seeMultiColumnBoard(){
+	seeMultiColumnBoard() {
 		cy.get(Board.#firstBoardColumn)
 			.should("have.class", "px-4")
 			.should("have.attr", "style", "min-width: 400px; max-width: 400px;");
