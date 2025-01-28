@@ -45,7 +45,6 @@ class Board {
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
-	static #outsideClickAreaforCardInColumn = "body";
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -228,10 +227,6 @@ class Board {
 	clickOutsideTheColumnToSaveTheColumn() {
 		cy.wait(1000);
 		cy.get(Board.#mainPageArea).click("bottom");
-	}
-
-	clickOutsideTheCardToSaveTheCardInColumn() {
-		cy.get(Board.#outsideClickAreaforCardInColumn).click(0, 0);
 	}
 
 	seeNewlyCreatedColumn(newColumnName) {

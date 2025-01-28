@@ -83,7 +83,7 @@ Then("I see in dialog box option for multi-column board", () => {
 	board.seeMultiColumnBoardOptionInDialogBox();
 });
 
-Then("I see in dialog box option for single column board", () => {
+Then("I see in dialog box option for single-column board", () => {
 	board.seeSingleColumnBoardOptionInDialogBox();
 });
 

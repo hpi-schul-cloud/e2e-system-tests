@@ -58,7 +58,6 @@ When("I enter the video conference title {string}", (videoConferenceTitle) => {
 	roomBoards.enterVideoConferenceTitle(videoConferenceTitle);
 });
 
-//***** id needed in UI
 When("I click on the save button or press the button enter key", () => {
 	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
 });
@@ -121,11 +120,11 @@ Then("I see the dialog box to select the Board type", () => {
 	roomBoards.seeColumnBoardDialogBox();
 });
 
-When("I click on button to add multi column board", () => {
+When("I click on button to add multi-column board", () => {
 	roomBoards.clickOnButtonToAddMultiColumnBoard();
 });
 
-When("I click on button to add single column board", () => {
+When("I click on button to add single-column board", () => {
 	roomBoards.clickOnButtonToAddSingleColumnBoard();
 });
 

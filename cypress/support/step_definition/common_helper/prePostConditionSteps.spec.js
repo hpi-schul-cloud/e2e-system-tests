@@ -53,7 +53,7 @@ Given("a multi-column board named {string} exists in the room", (board_title) =>
 	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
 
-Given("a single column board named {string} exists in the room", (board_title) => {
+Given("a single-column board named {string} exists in the room", (board_title) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -99,7 +99,7 @@ Given("the multi-column board has a column with a card", () => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();
 	board.clickPlusIconToAddCardInColumn();
-	board.clickOutsideTheCardToSaveTheCardInColumn();
+	board.clickOutsideTheCardToSaveTheCard();
 });
 
 Given("course with name {string} is deleted", (courseName) => {

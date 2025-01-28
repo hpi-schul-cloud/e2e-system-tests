@@ -35,11 +35,11 @@ class RoomBoards {
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
-	static #ThreeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
+	static ##threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 
 	clickOnThreeDotInCard() {
-		cy.get(RoomBoards.#ThreeDotButtonInCard)
+		cy.get(RoomBoards.##threeDotButtonInCard)
 			//three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
