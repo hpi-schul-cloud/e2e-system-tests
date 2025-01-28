@@ -36,7 +36,7 @@ Feature: Room Board - To share a board card link
         Then I see the button to add board
         When I click on the fab button to add a Board
         Then I see the dialog box to select the Board type
-        When I click on button to add multi column board
+        When I click on button to add multi-column board
         Then I see the page board details
         Then I see the chip Draft in the course board
         When I click on three dot menu in the board header

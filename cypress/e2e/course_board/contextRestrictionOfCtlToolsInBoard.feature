@@ -70,7 +70,7 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
         When I click on the button FAB New Column Board
         Then I see a dialog box for column board
         Then I see in dialog box option for multi-column board
-        Then I see in dialog box option for single column board
+        Then I see in dialog box option for single-column board
         When I choose multi-column board in the dialog box
         Then I see the page Course Board details
         Then I see the chip Draft in the course board
