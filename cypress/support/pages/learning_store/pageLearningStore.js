@@ -40,7 +40,23 @@ class Learning_Store {
 	}
 
 	openLearningStoreContent() {
+		cy.get(Learning_Store.#learningStoreContentDetailToContentLink)
+			.should("exist")
+			.then(($el) => {
+				const clickSpy = cy.spy().as("clickSpy");
+
+				$el.on("click", (event) => {
+					event.preventDefault();
+					clickSpy();
+				});
+			});
+		cy.log("Learning store content was clicked.");
+
 		cy.get(Learning_Store.#learningStoreContentDetailToContentLink).click();
+
+		cy.get("@clickSpy").should("have.been.called");
+
+		cy.get("@clickSpy").should("have.been.calledOnce");
 	}
 }
 export default Learning_Store;
