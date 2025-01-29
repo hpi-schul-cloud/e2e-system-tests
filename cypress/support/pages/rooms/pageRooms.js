@@ -4,9 +4,7 @@ class Rooms {
 	static #pageTitle = '[data-testid="page-title"]';
 	static #roomTitle = '[data-testid="room-title"]';
 	static #roomNameInput = '[data-testid="room-name-input"]';
-	// Can these following 2 lines be removed?
-	// for getting to the room overview from new client:
-	// static #goToRoomOverviewButton = '[data-testid="Rooms"]';
+	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
 	static #roomDetailFABParticipants = '[data-testid="room-action-manage-members"]';
@@ -24,7 +22,6 @@ class Rooms {
 	static #createRoom = '[data-testid="fab-add-room"]';
 	static #addParticipants = '[data-testid="fab-add-members"]';
 	static #participantTable = '[data-testid="participants-table"]';
-	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndDateForRoom = '[data-testid="room-end-date-input"]';
