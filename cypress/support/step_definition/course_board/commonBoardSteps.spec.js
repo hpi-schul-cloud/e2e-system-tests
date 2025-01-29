@@ -98,3 +98,11 @@ When("I click on the page outside of the card", () => {
 Then("I see the focused board card", () => {
 	board.seeFocusedBoardCard();
 });
+
+When("I select external tools from the menu", () => {
+	board.selectExternalToolsFromMenu();
+});
+
+When("I select preferred tool {string} from the menu", (toolName) => {
+	board.selectPreferredExternalToolFromMenu(toolName);
+});

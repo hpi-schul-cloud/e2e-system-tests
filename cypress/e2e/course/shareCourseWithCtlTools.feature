@@ -184,5 +184,7 @@ Feature: Teacher can share a course with ctl tools
             | admin      | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share         | course_name_import         | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value |
             | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | Cypress Test Course Share | Cypress Test Course Import | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             |
 
-        # @school_api_test
-        # This feature is not executable with the school_api
+        @school_api_test
+        Examples:
+            | admin      | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share         | course_name_import         | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value |
+            | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | Cypress Test Course Share | Cypress Test Course Import | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             |

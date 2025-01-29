@@ -101,5 +101,7 @@ Feature: Admin adds, edits and deletes CTL tools in school
             | admin      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_required_param          | param_name  | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             |
             | admin1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool Required Parameters | schoolParam | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 |
 
-        # @school_api_test
-        # This feature is not executable with the school_api
+        @school_api_test
+        Examples:
+            | admin      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_required_param          | param_name  | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             |
+            | admin1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool Required Parameters | schoolParam | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 |

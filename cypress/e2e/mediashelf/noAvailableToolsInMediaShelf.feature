@@ -64,5 +64,7 @@ Feature: No available tools in media shelf
             | admin      | teacher      |  namespace | ctl_tool_1     |
             | admin1_nbc | teacher1_nbc |  nbc       | CY Test Tool 1 |
 
-        # @school_api_test
-        # This feature is not executable with the school_api
+        @school_api_test
+        Examples:
+            | admin      | teacher      |  namespace | ctl_tool_1     |
+            | admin1_nbc | teacher1_nbc |  nbc       | CY Test Tool 1 |
