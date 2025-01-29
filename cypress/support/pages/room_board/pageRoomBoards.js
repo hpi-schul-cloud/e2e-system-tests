@@ -43,6 +43,7 @@ class RoomBoards {
 			//three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
+		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
 	}
 
 	clickEditOptionInCardThreeDot() {
