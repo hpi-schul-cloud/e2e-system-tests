@@ -1,7 +1,7 @@
 "use strict";
 
 class Calendar {
-	static #calendarOverviewNavigationButton = '[data-testid="Termine"]';
+	static #calendarOverviewNavigationButton = '[data-testid="sidebar-calendar"]';
 	static #calendarOverviewPageTitle = '[data-testid="Kalender"]';
 	static #calendarElement = '[data-testid="calendar"]';
 	static #nextCalendarPage = '[data-testid="right-next-button"]';

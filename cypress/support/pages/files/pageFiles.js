@@ -20,10 +20,10 @@ class Files {
 	static #cardTitle = '[data-testid="file-title"]';
 	static #pageTitle = '[data-testid="LibreOffice Online"]';
 	static #deleteDialogBoxPopupContainer = '[data-testid="modal_content"]';
-	static #filesOverviewNavigationButton = '[data-testid="Dateien"]';
+	static #filesOverviewNavigationButton = '[data-testid="sidebar-files"]';
 	static #personalFilesOverviewNavigationButton = '[data-testid="persönliche Dateien"]';
 	static #coursesFilesOverviewNavigationButton = '[data-testid="Kurse"]';
-	static #teamsFilesOverviewNavigationButton = '[data-testid="Teams"]';
+	static #teamsFilesOverviewNavigationButton = '[data-testid="sidebar-teams"]';
 	static #sharedFilesOverviewNavigationButton = '[data-testid="geteilte Dateien"]';
 	static #editFilePopupBoxTitle = '[data-testid="popup-title"]';
 	static #editFilePopupBoxTextField = '[data-testid="folder-rename-text-field"]';

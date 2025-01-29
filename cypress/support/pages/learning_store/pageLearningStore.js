@@ -1,7 +1,7 @@
 "use strict";
 
 class Learning_Store {
-	static #learningStoreMenuLink = '[data-testid="Lern-Store"]';
+	static #learningStoreMenuLink = '[data-testid="sidebar-learningstore"]';
 	static #learningStoreSearchInput = '[data-testid="learningstore-search-input"]';
 	static #searchResultCard = '[data-testid="learningstore-searchresult-item"]';
 	static #learningStoreContentDetailToContentLink =

@@ -24,14 +24,14 @@ class Management {
 	static #tableContents = '[data-testid="table-data-body"]';
 	static #schoolAdministrationNavigationSubMenu = '[data-testid="Schule"]';
 	static #saveGeneralAdminSetting = '[data-testid="save-general-setting"]';
-	static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]';
-	static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]';
-	static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]';
+	static #administrationOverviewNavigationButton = '[data-testid="sidebar-management"]';
+	static #studentAdministrationNavigationButton = '[data-testid="sidebar-management-students"]';
+	static #teacherAdministrationNavigationButton = '[data-testid="sidebar-management-teachers"]';
 	static #courseAdministrationNavigationButton = '[data-testid="Kurse"]';
-	static #classAdministrationNavigationButton = '[data-testid="Klassen"]';
+	static #classAdministrationNavigationButton = '[data-testid="sidebar-management-classes"]';
 	static #newClassAdministrationNavigationButton =
 		'[data-testid="administrate_classes"]';
-	static #teamAdministrationNavigationButton = '[data-testid="Teams"]';
+	static #teamAdministrationNavigationButton = '[data-testid="sidebar-teams"]';
 	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =

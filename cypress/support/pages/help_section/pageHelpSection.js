@@ -1,7 +1,7 @@
 "use strict";
 
 class Help {
-	static #helpSectionInSidebar = '[data-testid="Hilfeartikel"]';
+	static #helpSectionInSidebar = '[data-testid="sidebar-helpsection-helparticles"]';
 	static #helpPageTitle = '[id="page-title"]';
 	static #helpFirstSteps = "#erste_schritte > .icon-card__content > .icon-card__title";
 	static #helpLessons = '[id="Unterricht"]';
@@ -15,8 +15,8 @@ class Help {
 	static #requestFormTitle = '[id="wishTitle"]';
 	static #bugFormSubmitButton = '[data-testid="bug_submit"]';
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
-	static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]';
-	static #helpContactNavigationButton = '[data-testid="Kontakt"]';
+	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
+	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection--contact"]';
 	static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";

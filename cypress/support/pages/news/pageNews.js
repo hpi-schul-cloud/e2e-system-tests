@@ -7,7 +7,7 @@ class News {
 	static #enDateFormat = "en-CA";
 	static #deDateFormat = "de-DE";
 	static #newsText = '[data-testid="body_of_element"]';
-	static #newsOverviewNavigationButton = '[data-testid="Neuigkeiten"]';
+	static #newsOverviewNavigationButton = '[data-testid="sidebar-news"]';
 	static #createNewNews = '[data-testid="create-news-btn"]';
 	static #newsTitleInput = '[data-testid="news_title"]';
 	static #newsDescription = '[contenteditable="true"]';
