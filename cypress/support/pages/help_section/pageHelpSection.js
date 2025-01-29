@@ -16,8 +16,9 @@ class Help {
 	static #bugFormSubmitButton = '[data-testid="bug_submit"]';
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
 	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
-	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection--contact"]';
-	static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]';
+	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection-contact"]';
+	//static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]';
+	static #advancedTrainingsNavigationButton = '[data-testid="sidebar-helpsection-trainings"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
 	static #selectDropdownOptions = ".chosen-drop .chosen-results";
