@@ -21,10 +21,10 @@ class Files {
 	static #pageTitle = '[data-testid="LibreOffice Online"]';
 	static #deleteDialogBoxPopupContainer = '[data-testid="modal_content"]';
 	static #filesOverviewNavigationButton = '[data-testid="sidebar-files"]';
-	static #personalFilesOverviewNavigationButton = '[data-testid="persönliche Dateien"]';
-	static #coursesFilesOverviewNavigationButton = '[data-testid="Kurse"]';
-	static #teamsFilesOverviewNavigationButton = '[data-testid="sidebar-teams"]';
-	static #sharedFilesOverviewNavigationButton = '[data-testid="geteilte Dateien"]';
+	static #personalFilesOverviewNavigationButton = '[data-testid="sidebar-files-personalfiles"]';
+	static #coursesFilesOverviewNavigationButton = '[data-testid="sidebar-files-coursefiles"]';
+	static #teamsFilesOverviewNavigationButton = '[data-testid="sidebar-files-teamfiles"]';
+	static #sharedFilesOverviewNavigationButton = '[data-testid="sidebar-files-sharedfiles"]';
 	static #editFilePopupBoxTitle = '[data-testid="popup-title"]';
 	static #editFilePopupBoxTextField = '[data-testid="folder-rename-text-field"]';
 
