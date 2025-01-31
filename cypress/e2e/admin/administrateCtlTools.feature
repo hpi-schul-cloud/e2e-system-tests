@@ -1,101 +1,107 @@
-@unstable_test
-Feature: Admin CTL Tools - To add, edit and delete CTL tools by the admin
+@regression_test
+@stable_test
+Feature: Admin adds, edits and deletes CTL tools in school
 
     As an admin I want to administrate the CTL tools used in the school
 
-    @unstable_test
-    Scenario: Admin  adds, edits and deletes external tools
-        Given I am logged in as a 'admin1_nbc' at 'nbc'
+    @stable_test
+    Scenario Outline: Admin adds, edits and deletes external tools
+        Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
         Then I see the external tools table is empty
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
-        #    Admin tries to find a hidden external tool
-        Then I do not see external tool 'CY Test Tool Hidden' in the tool selection
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
+        # admin tries to find a hidden external tool
+        Then I do not see tool '<ctl_tool_hidden>' in the tool selection
 
-        #    Admin adds a tool
-        When I select the tool 'CY Test Tool 1' from available tools
-        Then I see tool 'CY Test Tool 1' is selected
+        # admin adds a tool
+        When I select the tool '<ctl_tool_1>' from available tools
+        Then I see tool '<ctl_tool_1>' is selected
         When I click on save external tool button
-        Then I see the tool 'CY Test Tool 1' in external tools table
+        Then I see the tool '<ctl_tool_1>' in external tools table
 
-        #    Admin adds a tool with required custom parameter
+        # admin adds a tool with required custom parameter
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
-        When I select the tool 'CY Test Tool Required Parameters' from available tools
-        Then I see tool 'CY Test Tool Required Parameters' is selected
-        When I enter 'test' in required custom parameter input field 'schoolParam'
-        Then I see custom parameter input field 'schoolParam' contains 'test'
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
+        When I select the tool '<ctl_tool_required_param>' from available tools
+        Then I see tool '<ctl_tool_required_param>' is selected
+        When I enter '<param_value>' in required custom parameter field '<param_name>'
+        Then I see custom parameter input field '<param_name>' contains '<param_value>'
         When I click on save external tool button
-        Then I see the tool 'CY Test Tool Required Parameters' in external tools table
+        Then I see the tool '<ctl_tool_required_param>' in external tools table
 
-        #    Admin adds a tool via tool link with parameter
+        # admin adds a tool via tool link with parameter
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
-        When I insert the external tool link 'https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823'
-        Then I see tool 'OpenStreetMap' is selected
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
+        When I insert the external tool link '<ctl_tool_link>'
+        Then I see tool '<ctl_tool_openstreetmap>' is selected
         When I click on save external tool button
-        Then I see the tool 'OpenStreetMap' in external tools table
+        Then I see the tool '<ctl_tool_openstreetmap>' in external tools table
 
-        #    Admin adds a tool with optional custom parameter
+        # admin adds a tool with optional custom parameter
         When I click the add external tool button
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
-        When I select the tool 'CY Test Tool Optional Parameters' from available tools
-        Then I see tool 'CY Test Tool Optional Parameters' is selected
-        When I enter 'test' in optional custom parameter input field 'schoolParam'
-        Then I see custom parameter input field 'schoolParam' contains 'test'
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
+        When I select the tool '<ctl_tool_optional_param>' from available tools
+        Then I see tool '<ctl_tool_optional_param>' is selected
+        When I enter '<param_value>' in optional custom parameter field '<param_name>'
+        Then I see custom parameter input field '<param_name>' contains '<param_value>'
         When I click on save external tool button
-        Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
+        Then I see the tool '<ctl_tool_optional_param>' in external tools table
 
-        #    Admin edits a tool
-        When I click on edit button of tool 'CY Test Tool Optional Parameters'
-        Then I see the external tools configuration page
-        Then I see the external tool configuration page title
-        Then I see the tool configuration infotext
-        Then I see tool 'CY Test Tool Optional Parameters' is selected
-        When I enter 'updated test' in optional custom parameter input field 'schoolParam'
-        Then I see custom parameter input field 'schoolParam' contains 'updated test'
+        # admin edits a tool
+        When I click on edit button of tool '<ctl_tool_optional_param>'
+        Then I see the school external tool configuration page
+        Then I see the school external tool configuration infotext
+        Then I see tool '<ctl_tool_optional_param>' is selected
+        When I enter '<param_value_updated>' in optional custom parameter field '<param_name>'
         When I click on save external tool button
-        Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
-        When I click on edit button of tool 'CY Test Tool Optional Parameters'
-        Then I see the external tools configuration page
-        Then I see custom parameter input field 'schoolParam' contains 'updated test'
+        When I click on edit button of tool '<ctl_tool_optional_param>'
+        Then I see the school external tool configuration page
+        Then I see custom parameter input field '<param_name>' contains '<param_value_updated>'
 
-        #    Admin deletes tools
+        # admin deletes tools
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel
         Then I see the external tools table
-        Then I see the tool 'CY Test Tool 1' in external tools table
-        Then I see the tool 'CY Test Tool Required Parameters' in external tools table
-        Then I see the tool 'CY Test Tool Optional Parameters' in external tools table
-        When I click on delete button of tool 'CY Test Tool 1'
+        Then I see the tool '<ctl_tool_1>' in external tools table
+        Then I see the tool '<ctl_tool_required_param>' in external tools table
+        Then I see the tool '<ctl_tool_optional_param>' in external tools table
+        Then I see the tool '<ctl_tool_openstreetmap>' in external tools table
+        When I click on delete button of tool '<ctl_tool_1>'
         Then I see the external tool deletion dialog title
         Then I see the external tool deletion dialog information text
         When I confirm deletion on deletion dialog
-        Then I do not see the tool 'CY Test Tool 1' in external tools table
-        When I click on delete button of tool 'CY Test Tool Required Parameters'
+        Then I do not see the tool '<ctl_tool_1>' in external tools table
+        When I click on delete button of tool '<ctl_tool_required_param>'
         Then I see the external tool deletion dialog title
         Then I see the external tool deletion dialog information text
         When I confirm deletion on deletion dialog
-        Then I do not see the tool 'CY Test Tool Required Parameters' in external tools table
-        When I click on delete button of tool 'CY Test Tool Optional Parameters'
+        Then I do not see the tool '<ctl_tool_required_param>' in external tools table
+        When I click on delete button of tool '<ctl_tool_optional_param>'
         Then I see the external tool deletion dialog title
         Then I see the external tool deletion dialog information text
         When I confirm deletion on deletion dialog
-        When I click on delete button of tool 'OpenStreetMap'
+        Then I do not see the tool '<ctl_tool_optional_param>' in external tools table
+        When I click on delete button of tool '<ctl_tool_openstreetmap>'
         Then I see the external tool deletion dialog title
         Then I see the external tool deletion dialog information text
         When I confirm deletion on deletion dialog
-        Then I do not see the tool 'OpenStreetMap' in external tools table
+        Then I do not see the tool '<ctl_tool_openstreetmap>' in external tools table
         Then I see the external tools table is empty
+
+        @staging_test
+        Examples:
+            | admin      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_required_param          | param_name  | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             |
+            | admin1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool Required Parameters | schoolParam | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 |
+
+        @school_api_test
+        Examples:
+            | admin      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_required_param          | param_name  | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             |
+            | admin1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool Required Parameters | schoolParam | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 |

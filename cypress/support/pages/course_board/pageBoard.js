@@ -262,9 +262,8 @@ class Board {
 	}
 
 	seePreferredExternalToolInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
-			"be.visible"
-		);
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.should("be.visible");
 	}
 
 	selectPreferredExternalToolFromMenu(toolName) {
@@ -272,14 +271,13 @@ class Board {
 	}
 
 	preferredExternalToolIsNotVisibleInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
-			"not.exist"
-		);
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
+			.should("not.exist");
 	}
 
 	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
-			.find('[data-testid="board-menu-button"]')
+			.find('[data-testid*="element-menu-button"]')
 			.click();
 	}
 
@@ -394,6 +392,10 @@ class Board {
 
 	seeDeletedElement(name) {
 		cy.get(Board.#deletedElement).contains(name).should("be.visible");
+	}
+
+	selectEditInThreeDotMenu() {
+		cy.get(Board.#editOptionThreeDot).click();
 	}
 
 	seeBoardCard() {

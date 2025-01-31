@@ -62,12 +62,6 @@ class Management {
 	static #migrationFinishedTimestamp = '[data-testid="migration-finished-timestamp"]';
 	static #generalSettingsPanel = '[data-testid="general-settings-panel"]';
 	static #externalToolsPanel = '[data-testid="tools-panel"]';
-	static #externalToolConfigInfotext = '[data-testid="tool-configuration-infotext"]';
-	static #externalToolConfigPageTitle =
-		'[data-testid="school-external-tool-configurator-title"]';
-	static #toolConfigurationSelectedItem = '[data-testid="configuration-selected-item"]';
-	static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]';
-	static #toolErrorAlert = '[data-testId="tool-error-alert"]';
 	static #accountMigrationPanel = '[data-testid="migration-panel"]';
 	static #externalToolsTable = '[data-testid="external-tool-section-table"]';
 	static #editExternalToolButton = '[data-testId="editAction"]';
@@ -89,13 +83,9 @@ class Management {
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 	static #addExternalToolButton = '[data-testid="add-external-tool-button"]';
-	static #toolSelection = '[data-testid="configuration-select"]';
-	static #addExternalToolSaveButton = '[data-testid="save-button"]';
-	static #isDeactivatedCheckBox = '[data-testid="configuration-deactivate-checkbox"]';
 	static #dataTable = '[data-testid="table_container"]';
 	static #studentVisiblityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
-	static #toolConfiguration = '[data-testid="configuration-field"]';
 	static #buttonNewAdminPage = '[data-testid="button_new_admin_page"]';
 	static #birthDateFieldCreateStudent =
 		'[data-testid="input_create-student_birthdate"]';
@@ -159,6 +149,10 @@ class Management {
 	static #buttonSaveChangePasswordModalUserSetting =
 		'[data-testid="submit-btn-change-password-modal"]';
 	static #successNotificationChangePassword = '[data-testid="notification"]';
+	static #externalToolStatus = '[data-testid="external-tool-status"]';
+	static #externalToolContextRestriction = '[data-testid="external-tool-context-restriction"]';
+	static #externalToolActions = '[data-testid="external-tool-actions"]';
+	static #externalToolName = '[data-testid="external-tool-name"]';
 
 	seeSuccessMessageAfterChangingPasswordByAdmin() {
 		cy.get(Management.#successNotificationChangePassword).should("be.visible");
@@ -954,18 +948,14 @@ class Management {
 	}
 
 	clickDeleteButtonOnTool(toolName) {
-		cy.get(Management.#externalToolsTable).contains(toolName);
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
-
-		toolData
-			.parent("td")
-			.siblings("td")
-			.find(Management.#deleteExternalToolButton)
-			.should("exist")
-			.click();
+		cy.get(Management.#externalToolName)
+			.contains(toolName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#deleteExternalToolButton)
+					.should("be.visible")
+					.click();
+			});
 	}
 
 	clickOnConfirmInToolUsageDialog() {
@@ -989,118 +979,31 @@ class Management {
 		});
 	}
 
-	seeExternalToolConfigurationPage() {
-		cy.url().should("include", "/administration/school-settings/tool-configuration");
-	}
-
-	seeToolConfigurationInfoText() {
-		cy.get(Management.#externalToolConfigInfotext).should("be.visible");
-	}
-
-	seeExternalToolConfiguratorPageTitle() {
-		cy.get(Management.#externalToolConfigPageTitle).should("exist");
-	}
-
-	seeSelectedExternalTool(toolName) {
-		cy.get(Management.#toolConfigurationSelectedItem).should(
-			"contain.text",
-			toolName
-		);
-	}
-
-	seeCustomParameterFormContains(paramName, value) {
-		cy.get(`[data-testid="${paramName}"]`).find("input").should("have.value", value);
-	}
-
-	fillInCustomParameter(paramName, value) {
-		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
-	}
-
-	insertToolLink(toolLink) {
-		cy.get(Management.#toolSelection).click().type(toolLink);
-		cy.get(Management.#toolConfigurationSelectItem).contains("OpenStreetMap").click();
-	}
-
-	checkConfiguration(key, value) {
-		cy.get(Management.#toolConfiguration)
-			.get(`[data-testid="${key}"] input`)
-			.should("have.value", value);
-	}
-
-	externalToolIsNotVisibleInToolSelection(toolName) {
-		cy.get(Management.#toolSelection).click();
-		cy.get(Management.#toolConfigurationSelectItem)
-			.contains(toolName)
-			.should("not.exist");
-	}
-
-	seeToolErrorAlert() {
-		cy.get(Management.#toolErrorAlert).should("be.visible");
-	}
-
-	seeDeactivatedCheckBox(value) {
-		cy.get(Management.#isDeactivatedCheckBox).should("be.visible");
-	}
-
-	seeDeactivatedCheckBoxIsChecked(value) {
-		cy.get(Management.#isDeactivatedCheckBox)
-			.find('input[type="checkbox"]')
-			.should("be.checked");
-	}
-
-	seeDeactivatedCheckBoxIsNotChecked() {
-		cy.get(Management.#isDeactivatedCheckBox)
-			.find('input[type="checkbox"]')
-			.should("not.be.checked");
-	}
-
 	clickAddExternalTool() {
 		cy.get(Management.#addExternalToolButton).scrollIntoView().should("be.visible");
 		cy.get(Management.#addExternalToolButton).click();
 	}
 
-	addExternalTool(toolName) {
-		cy.get(Management.#toolSelection).click();
-		cy.get(Management.#toolConfigurationSelectItem).contains(toolName).click();
-	}
-
-	deactivateTool() {
-		cy.get(Management.#isDeactivatedCheckBox)
-			.find('input[type="checkbox"]')
-			.check({ force: true });
-	}
-
-	activateTool() {
-		cy.get(Management.#isDeactivatedCheckBox)
-			.find('input[type="checkbox"]')
-			.uncheck({ force: true });
-	}
-
 	checkActivatedTool(toolName) {
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
-
-		toolData.parent("td").siblings("td").eq(0).contains("Aktuell").should("exist");
+		cy.get(Management.#externalToolName)
+			.contains(toolName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#externalToolStatus)
+					.should("be.visible")
+					.contains("Aktuell");
+			});
 	}
 
 	checkDeactivatedTool(toolName) {
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
-
-		toolData
-			.parent("td")
-			.siblings("td")
-			.eq(0)
-			.contains("Deaktiviert")
-			.should("exist");
-	}
-
-	saveExternalTool() {
-		cy.get(Management.#addExternalToolSaveButton).click();
+		cy.get(Management.#externalToolName)
+			.contains(toolName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#externalToolStatus)
+					.should("be.visible")
+					.contains("Deaktiviert");
+			});
 	}
 
 	seeExternalToolDeletionDialogTitle() {
@@ -1120,40 +1023,34 @@ class Management {
 	}
 
 	clickOnEditButton(toolName) {
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
-
-		toolData
-			.parent("td")
-			.siblings("td")
-			.eq(2)
-			.find(Management.#editExternalToolButton)
-			.should("exist")
-			.click();
+		cy.get(Management.#externalToolName)
+			.contains(toolName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#editExternalToolButton)
+				.should("be.visible")
+				.click();
+			});
 	}
 
 	seeToolHasNoContextRestriction(toolName) {
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
-
-		toolData.parent("td").siblings("td").eq(1).should("have.text", "");
+		cy.get(Management.#externalToolName)
+			.contains(toolName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#externalToolContextRestriction)
+					.should("have.text", "");
+			});
 	}
 
 	seeToolHasContextRestriction(toolName, contextRestriction) {
-		const toolData = cy
-			.get(Management.#externalToolsTable)
-			.find("td")
-			.contains(toolName);
-
-		toolData
-			.parent("td")
-			.siblings("td")
-			.eq(1)
-			.should("have.text", contextRestriction);
+		cy.get(Management.#externalToolName)
+			.contains(toolName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#externalToolContextRestriction)
+					.should("have.text", contextRestriction);
+			});
 	}
 
 	clickOnAuthenticationPanel() {
