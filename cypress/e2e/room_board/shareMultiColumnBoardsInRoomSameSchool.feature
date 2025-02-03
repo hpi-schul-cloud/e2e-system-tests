@@ -50,11 +50,11 @@ Feature: Rooms - Share Multi-Column Boards in the Rooms
 
         @school_api_test
         Examples:
-            | teacher1     | teacher2     | namespace | room_name_source  | room_name_target    | board_title    | import_board_title    |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
+            | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
 
         @staging_test
         Examples:
-            | teacher1     | teacher2     | namespace | room_name         | room_name_target | board_title    | import_board_title    |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name |                  | Board Cy Title | Board Cy Import Title |
+            | teacher1     | teacher2     | namespace | room_name           | room_name_target    | board_title    | import_board_title    |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
 
