@@ -38,6 +38,120 @@ class RoomBoards {
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 
+	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
+	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
+	static #continueButton = '[data-testid="dialog-next"]';
+	static #shareEmailOption = '[data-testid="shareMailAction"]';
+	static #copyLinkOption = '[data-testid="copyAction"]';
+	static #urlInputBoxCOpyBoard = '[data-testid="share-course-result-url"]';
+	static #scanQRCodeOption = '[data-testid="qrCodeAction"]';
+
+	static #importModal = '[data-testid="dialog-content"]';
+	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
+	static #boardNameInput = '[data-testid="import-modal-name-input"]';
+	static #importButton = '[data-testid="dialog-confirm"]';
+	static #sharedBoardDraftTile = '[data-testid="board-tile-subtitle-0"]';
+
+	verifyImportSharedBoardModal() {
+		cy.get(RoomBoards.#importModal).should("be.visible");
+	}
+
+	selectRoomForImport(roomNameTarget) {
+		cy.get(RoomBoards.#importModal)
+			// Move to the parent container
+			.parent()
+			// Find the combobox dropdown
+			.find('div[role="combobox"]')
+			// Open the dropdown
+			.click()
+			// Get the listbox containing the options
+			.get('div[role="combobox"]')
+			.contains(roomNameTarget)
+			// Click to select the room
+			.click();
+	}
+
+	clickContinueOnImportModal() {
+		cy.get(RoomBoards.#continueButtonInImportModal).click();
+	}
+
+	enterNewBoardNameForImport(roomNameTarget) {
+		cy.get(RoomBoards.#boardNameInput).clear().type(roomNameTarget);
+	}
+
+	clickImportOnModal() {
+		cy.get(RoomBoards.#importButton).click();
+	}
+
+	verifySharedBoardAppearsAsDraftOnRoomDetailPage() {
+		cy.get(RoomBoards.#sharedBoardDraftTile)
+			.should("be.visible")
+			.should("contain.text", "- Draft");
+	}
+
+	seeShareSettingsDialog() {
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	verifySameSchoolLinkCheckboxChecked() {
+		cy.get(RoomBoards.#sameSchoolCheckbox)
+			.parent() // Move to the parent container holding the checkbox
+			.find('input[type="checkbox"]')
+			.should("be.checked");
+	}
+
+	verify21DaysLinkCheckboxChecked() {
+		cy.get(RoomBoards.#days21Checkbox)
+			.parent() // Move to the parent container holding the checkbox
+			.find('input[type="checkbox"]')
+			.should("be.checked");
+	}
+
+	clickContinueButtonInShareSettingsDialog() {
+		cy.get(RoomBoards.#continueButton).click();
+	}
+
+	verifyShareViaModal() {
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	verifyShareViaEmailOption() {
+		cy.get(RoomBoards.#shareEmailOption).should("be.visible");
+	}
+
+	verifyCopyLinkOption() {
+		cy.get(RoomBoards.#copyLinkOption).should("be.visible");
+	}
+
+	verifyScanQRCodeOption() {
+		cy.get(RoomBoards.#scanQRCodeOption).should("be.visible");
+	}
+
+	copyBoardURLInModal() {
+		cy.get(RoomBoards.#urlInputBoxCOpyBoard)
+			// Move to the parent container holding the text box
+			.parent()
+			.find('input[type="text"]')
+			// Ensure text box is visible
+			.should("be.visible")
+			// Get the value from the text box, which the copy board URL
+			.invoke("val")
+			.then((url) => {
+				// Validate URL
+				expect(url).to.be.a("string").and.not.be.empty;
+				cy.wrap(url).as("copiedURL"); // Store the URL
+			});
+	}
+
+	openSharedBoardURL() {
+		cy.get("@copiedURL").then((url) => {
+			cy.visit(url);
+			// Wait for 500 msec for any JavaScript actions to complete
+			cy.wait(500);
+		});
+	}
+
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
 			//three dot has same data-testid and needs to be located inside the parent element
@@ -121,7 +235,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#createVideoConferenceButton).should("be.visible");
 	}
 
-	verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage() {
+	verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage() {
 		cy.get(RoomBoards.#multiColumnCopiedBoardSelector).should("be.visible");
 	}
 

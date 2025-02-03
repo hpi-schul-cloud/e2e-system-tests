@@ -3,6 +3,73 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+When("I open the shared URL", () => {
+	roomBoards.openSharedBoardURL();
+});
+
+Then("I see the modal to import the shared board into the room", () => {
+	roomBoards.verifyImportSharedBoardModal();
+});
+
+When("I select the room {string} from the room list in the modal", (roomNameTarget) => {
+	roomBoards.selectRoomForImport(roomNameTarget);
+});
+
+When("I click on the Continue button in the modal", () => {
+	roomBoards.clickContinueOnImportModal();
+});
+
+When(
+	"I enter a new name for the imported board {string} in the modal",
+	(importBoardName) => {
+		roomBoards.enterNewBoardNameForImport(importBoardName);
+	}
+);
+
+When("I click on the button Import in the modal", () => {
+	roomBoards.clickImportOnModal();
+});
+
+Then("I see the shared board tile as a draft on the room details page", () => {
+	roomBoards.verifySharedBoardAppearsAsDraftOnRoomDetailPage();
+});
+
+Then("I see the Share settings dialog", () => {
+	roomBoards.seeShareSettingsDialog();
+});
+
+Then("I see the checkbox Link valid for the same school is checked", () => {
+	roomBoards.verifySameSchoolLinkCheckboxChecked();
+});
+
+Then("I see the checkbox Link valid for 21 days is checked", () => {
+	roomBoards.verify21DaysLinkCheckboxChecked();
+});
+
+When("I click on the button Continue", () => {
+	roomBoards.clickContinueButtonInShareSettingsDialog();
+});
+
+Then("I see the Share via modal", () => {
+	roomBoards.verifyShareViaModal();
+});
+
+Then("I see the option Share via Email", () => {
+	roomBoards.verifyShareViaEmailOption();
+});
+
+Then("I see the option Copy link", () => {
+	roomBoards.verifyCopyLinkOption();
+});
+
+Then("I see the option Scan QR Code", () => {
+	roomBoards.verifyScanQRCodeOption();
+});
+
+Then("I copy the board URL", () => {
+	roomBoards.copyBoardURLInModal();
+});
+
 When("I click on the option edit in the three dot menu on the card", () => {
 	roomBoards.clickEditOptionInCardThreeDot();
 });
@@ -89,7 +156,7 @@ Then(
 );
 
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
