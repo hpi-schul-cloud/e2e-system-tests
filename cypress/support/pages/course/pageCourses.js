@@ -18,7 +18,7 @@ class Courses {
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
-	static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]';
+	static #courseOverviewNavigationButton = '[data-testid="sidebar-courses"]';
 	static #newTaskFAB = '[data-testid="fab_button_add_task"]';
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';

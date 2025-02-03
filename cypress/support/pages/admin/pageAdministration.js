@@ -22,16 +22,16 @@ class Management {
 	static #videoconferenceToggleSwitch = ".videoconference-switch";
 	static #saveGeneralSettingsButton = ".my-5";
 	static #tableContents = '[data-testid="table-data-body"]';
-	static #schoolAdministrationNavigationSubMenu = '[data-testid="Schule"]';
+	static #schoolAdministrationNavigationSubMenu = '[data-testid="sidebar-management-school"]';
 	static #saveGeneralAdminSetting = '[data-testid="save-general-setting"]';
-	static #administrationOverviewNavigationButton = '[data-testid="Verwaltung"]';
-	static #studentAdministrationNavigationButton = '[data-testid="Schüler:innen"]';
-	static #teacherAdministrationNavigationButton = '[data-testid="Lehrkräfte"]';
-	static #courseAdministrationNavigationButton = '[data-testid="Kurse"]';
-	static #classAdministrationNavigationButton = '[data-testid="Klassen"]';
+	static #administrationOverviewNavigationButton = '[data-testid="sidebar-management"]';
+	static #studentAdministrationNavigationButton = '[data-testid="sidebar-management-students"]';
+	static #teacherAdministrationNavigationButton = '[data-testid="sidebar-management-teachers"]';
+	static #courseAdministrationNavigationButton = '[data-testid="sidebar-management-courses"]';
+	static #classAdministrationNavigationButton = '[data-testid="sidebar-management-classes"]';
 	static #newClassAdministrationNavigationButton =
 		'[data-testid="administrate_classes"]';
-	static #teamAdministrationNavigationButton = '[data-testid="Teams"]';
+	static #teamAdministrationNavigationButton = '[data-testid="sidebar-management-teams"]';
 	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =
@@ -634,7 +634,7 @@ class Management {
 	}
 
 	navigateToTeamAdministration() {
-		cy.get(Management.#teamAdministrationNavigationButton).eq(1).click();
+		cy.get(Management.#teamAdministrationNavigationButton).click();
 		cy.url().should("include", "/administration/teams");
 	}
 

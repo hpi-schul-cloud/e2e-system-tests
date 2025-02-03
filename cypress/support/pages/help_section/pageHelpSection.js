@@ -1,7 +1,7 @@
 "use strict";
 
 class Help {
-	static #helpSectionInSidebar = '[data-testid="Hilfeartikel"]';
+	static #helpSectionInSidebar = '[data-testid="sidebar-helpsection-helparticles"]';
 	static #helpPageTitle = '[id="page-title"]';
 	static #helpFirstSteps = "#erste_schritte > .icon-card__content > .icon-card__title";
 	static #helpLessons = '[id="Unterricht"]';
@@ -15,9 +15,10 @@ class Help {
 	static #requestFormTitle = '[id="wishTitle"]';
 	static #bugFormSubmitButton = '[data-testid="bug_submit"]';
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
-	static #helpOverviewNavigationButton = '[data-testid="Hilfebereich"]';
-	static #helpContactNavigationButton = '[data-testid="Kontakt"]';
-	static #advancedTrainingsNavigationButton = 'a[title="Fortbildungen"]';
+	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
+	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection-contact"]';
+	static #advancedTrainingsNavigationButtonLink = 'a[title="Fortbildungen"]';
+	static #advancedTrainingsNavigationButton = '[data-testid="sidebar-helpsection-trainings"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
 	static #selectDropdownOptions = ".chosen-drop .chosen-results";
@@ -45,7 +46,7 @@ class Help {
 	}
 
 	checkLinkToAdvancedTrainings(linkUrl) {
-		cy.get(Help.#advancedTrainingsNavigationButton).should(($a) => {
+		cy.get(Help.#advancedTrainingsNavigationButtonLink).should(($a) => {
 			expect($a.attr("href"), "href").to.equal(linkUrl);
 			expect($a.attr("target"), "target").to.equal("_blank");
 		});
