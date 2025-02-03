@@ -16,7 +16,7 @@ Feature: Room Board - To share a board card link
         When I enter the room name '<room_name>'
         When I click on the button to save the room
         When I click on three dot menu in room page
-        When I select the three dot menu action 'edit-members'
+        When I click on participants option in room menu
         When I click on FAB to add participants
         Then I see add participants modal
         Then I see school '<school_name>' in school dropdown
@@ -61,7 +61,7 @@ Feature: Room Board - To share a board card link
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
+        When I click on delete option in room menu
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page

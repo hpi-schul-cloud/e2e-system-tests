@@ -25,7 +25,7 @@ Feature: Room - To create, edit and delete room
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
-        When I select the three dot menu action 'edit'
+        When I click on edit option in room menu
         Then I see edit page of room '<room_name>'
         When I enter the room name '<room_name_new>'
         When I click on the button to save the room
@@ -37,7 +37,7 @@ Feature: Room - To create, edit and delete room
         When I go to room '<room_name_new>'
         Then I see the detail page of room '<room_name_new>'
         When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
+        When I click on delete option in room menu
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
         Then I do not see '<room_name_new>' on room overview page

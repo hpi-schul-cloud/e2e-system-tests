@@ -75,7 +75,7 @@ Feature: Room - Add, edit and delete board in room
 
         # post-condition: teacher deletes room
         When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
+        When I click on delete option in room menu
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
