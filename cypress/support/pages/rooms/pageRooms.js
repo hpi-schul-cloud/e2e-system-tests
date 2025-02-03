@@ -5,11 +5,7 @@ class Rooms {
 	static #roomTitle = '[data-testid="room-title"]';
 	static #roomNameInput = '[data-testid="room-name-input"]';
 	// for getting to the room overview from new client:
-	// static #goToRoomOverviewButton = '[data-testid="Rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
-	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
-	static #roomDetailFABParticipants = '[data-testid="room-action-manage-members"]';
-	static #roomDetailFABDelete = '[data-testid="room-action-delete"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
 	static #confirmDeletionModalTitle = '[data-testid="delete-dialog-item"]';
@@ -104,18 +100,6 @@ class Rooms {
 		cy.get(Rooms.#roomDetailFAB).click();
 	}
 
-	openEditInThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFABEdit).click();
-	}
-
-	openParticipantsInThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFABParticipants).click();
-	}
-
-	openDeleteInThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFABDelete).click();
-	}
-
 	seeConfirmationModalForRoomDeletion() {
 		cy.get(Rooms.#confirmDeletionModalTitle).should("exist");
 	}
@@ -184,7 +168,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {

@@ -21,6 +21,7 @@ Given("admin enables video conference for the school in the school settings page
 
 Given("the room named {string} is deleted", (room_name) => {
 	rooms.openThreeDotMenuForRoom();
+	rooms.clickOnKebabMenuAction("delete");
 	rooms.openDeleteInThreeDotMenuForRoom();
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
