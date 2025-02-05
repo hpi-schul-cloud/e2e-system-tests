@@ -296,3 +296,11 @@ When("I click on the save course changes button", () => {
 When("I edit the title of the course to {string}", (newCourseName) => {
 	courses.editCourseTitle(newCourseName);
 });
+
+When("I open column board {string}", (boardName) => {
+	courses.openColumnBoardWithName(boardName);
+});
+
+Then("I see breardcrumb contains course name {string}", (courseName) => {
+	courses.seeBreadcrumbWithCourseName(courseName);
+});
