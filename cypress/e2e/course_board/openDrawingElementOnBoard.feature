@@ -40,7 +40,7 @@ Feature: Course Board - Opening a drawing element on a course page
         Then I see the page Course Board details
         When I click on the button three dot menu in course board
         When I select the three dot menu action 'rename'
-        Then I enter the course board title '<board_title>'
+        When I enter the course board title '<board_title>'
         When I click on the page outside of the column
         Then I see the chip Draft in the course board
         When I click on the button three dot menu in course board
@@ -51,7 +51,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on the page outside of the column
         When I click on plus icon to add card in column
         When I click on plus icon to add content into card
-        Then I select 'drawing-element' from the element selection dialog box
+        When I select 'drawing-element' from the element selection dialog box
 
         # teacher is able to open a drawing element to the course board
         Given I am logged in as a '<teacher>' at '<namespace>'

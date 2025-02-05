@@ -46,7 +46,7 @@ Feature: Course Board - To create, edit and delete column in the course board
         Then I see the page Course Board details
         When I click on the button three dot menu in course board
         When I select the three dot menu action 'rename'
-        Then I enter the course board title '<board_title>'
+        When I enter the course board title '<board_title>'
         When I click on the page outside of the column
         #Then I see the course Board name 'Board Cy Title'
         Then I see the chip Draft in the course board
