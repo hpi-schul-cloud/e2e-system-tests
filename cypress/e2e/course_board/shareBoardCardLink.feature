@@ -1,13 +1,10 @@
-# @regression_test
-# @stable_test
-# Note: the test can be set to stable when the feature is on staging
-@unstable
+@regression_test
+@stable_test
 Feature: Course Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
 
-    # @stable_test
-    @unstable
+    @stable_test
     Scenario: Teacher shares a link to a board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -64,20 +61,12 @@ Feature: Course Board - To share a board card link
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the course overview page
 
-        @school_api_test
-        Examples:
-            | teacher_1     | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
-            | teacher1_nbc  | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | Cypress Test Course |
-
         @staging_test
         Examples:
             | teacher_1     | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
             | teacher1_nbc  | teacher2_nbc | nbc       | Karl Herzog        | Lara Hande         | Cypress Test Course |
 
-
-
-
-
-
-
-
+        @school_api_test
+        Examples:
+            | teacher_1     | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
+            | teacher1_nbc  | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | Cypress Test Course |

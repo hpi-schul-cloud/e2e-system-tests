@@ -1,13 +1,10 @@
-# @regression_test
-# @stable_test
-# Note: the test can be set to stable when the feature is on staging
-@unstable
+@regression_test
+@stable_test
 Feature: Room Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
 
-    # @stable_test
-    @unstable
+    @stable_test
     Scenario: Teacher shares a link to a board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -69,20 +66,12 @@ Feature: Room Board - To share a board card link
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-        @school_api_test
-        Examples:
-            | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name | school_name             |
-            | teacher1_nbc | teacher2_nbc | nbc       | teacher_1      | teacher_2      | Cypress Test Room | Lehrkraft | cypress-automated-tests |
-
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name | school_name                 |
-            | teacher1_nbc | teacher2_nbc | nbc       | Herzog         | Hande          | Cypress Test Room | Lehrkraft | Felix Mendelssohn-Gymnasium |
+            | teacher_1     | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name   | school_name                 |
+            | teacher1_nbc  | teacher2_nbc | nbc       | Herzog         | Hande          | Cypress Test Room | Lehrkraft   | Felix Mendelssohn-Gymnasium |
 
-
-
-
-
-
-
-
+        @school_api_test
+        Examples:
+            | teacher_1     | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name   | school_name             |
+            | teacher1_nbc  | teacher2_nbc | nbc       | teacher_1      | teacher_2      | Cypress Test Room | Lehrkraft   | cypress-automated-tests |

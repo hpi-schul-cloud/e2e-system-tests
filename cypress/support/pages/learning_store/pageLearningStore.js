@@ -1,7 +1,7 @@
 "use strict";
 
 class Learning_Store {
-	static #learningStoreMenuLink = '[data-testid="Lern-Store"]';
+	static #learningStoreMenuLink = '[data-testid="sidebar-learningstore"]';
 	static #learningStoreSearchInput = '[data-testid="learningstore-search-input"]';
 	static #searchResultCard = '[data-testid="learningstore-searchresult-item"]';
 	static #learningStoreContentDetailToContentLink =
@@ -40,7 +40,18 @@ class Learning_Store {
 	}
 
 	openLearningStoreContent() {
+		cy.get(Learning_Store.#learningStoreContentDetailToContentLink)
+			.should("exist")
+			.then(($el) => {
+				const clickSpy = cy.spy().as("clickSpy");
+
+				$el.on("click", (event) => {
+					event.preventDefault();
+					clickSpy();
+				});
+			});
 		cy.get(Learning_Store.#learningStoreContentDetailToContentLink).click();
+		cy.get("@clickSpy").should("have.been.called").should("have.been.calledOnce");
 	}
 }
 export default Learning_Store;

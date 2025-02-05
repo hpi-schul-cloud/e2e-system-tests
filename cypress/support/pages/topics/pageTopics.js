@@ -28,7 +28,7 @@ class Topics {
 	static #submitChangesInTopicBtn = '[data-testid="topic-submitchanges-btn"]';
 	static #elementTextDescriptionTextarea = '[class="ck ck-editor__main"]';
 	static #inputClassFormControl = '[class="form-control"]';
-	static #navCourseOverviewLink = '[data-testid="Course-Overview"]';
+	static #navCourseOverviewLink = '[data-testid="sidebar-courses"]';
 	static #titlebar = '[id="titlebar"]';
 	static #sectionCourse = '[data-testid="section-topic"]';
 	static #topNavbar = '[id="top-navbar"]';

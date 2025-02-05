@@ -1,13 +1,10 @@
-# @regression_test
-# @stable_test
-# Note: the test can be set to stable when the feature is on staging
-@unstable
+@regression_test
+@stable_test
 Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout
 
-    # @stable_test
-    @unstable
+    @stable_test
     Scenario: Teacher changes board layout
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -51,7 +48,7 @@ Feature: Course Board - To change the board layout
         When I choose single-column board in the dialog box
         Then I see the single-column board
 
-        # teacher changes board layout to multi-column
+        # teacher changes board layout to multi column
         When I click on three dot menu in the board header
         When I click on the option Change layout in three dot menu in course board
         Then I see a dialog box for column board
@@ -78,5 +75,3 @@ Feature: Course Board - To change the board layout
         Examples:
             | teacher      | namespace | course_name         | fullname_teacher  |
             | teacher1_nbc | nbc       | Cypress Test Course | cypress teacher_1 |
-
-

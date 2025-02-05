@@ -50,8 +50,8 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         Then I see detail page for task '<task_name>'
         When  I click on submission tab
         When I enter text submission '<submission_text>'
-        When I upload file 'testboard_jpg' for submission
-        Then I see file 'testboard_jpg' is visible in uploaded files section of submission
+        When I upload file 'testboard_jpg.jpg' for submission
+        Then I see file 'testboard_jpg.jpg' is visible in uploaded files section of submission
         When I click on button Send Submission
         Then I see hint that submission has been sent successfully
         When I go to tasks overview
@@ -72,7 +72,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I click on submission of '<student_last_name>'
         Then I see submission text '<submission_text>'
         When I click on download file in submission
-        Then file 'testboard_jpg' is saved in folder downloads
+        Then file 'testboard_jpg.jpg' is saved in folder downloads
         When I click on grading tab
         When I upload file 'gradingfile-pdf.pdf'
         Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section

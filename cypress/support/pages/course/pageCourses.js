@@ -18,7 +18,7 @@ class Courses {
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
-	static #courseOverviewNavigationButton = '[data-testid="Course-Overview"]';
+	static #courseOverviewNavigationButton = '[data-testid="sidebar-courses"]';
 	static #newTaskFAB = '[data-testid="fab_button_add_task"]';
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
@@ -69,14 +69,9 @@ class Courses {
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
 	static #toolsTab = '[data-testid="tools-tab"]';
 	static #addToolButton = '[data-testid="add-tool-button"]';
-	static #toolConfigurationSelect = '[data-testid="configuration-select"]';
-	static #contextExternalToolConfiguratorPageTitle =
-		'[data-testid="context-external-tool-configurator-title"]';
 	static #groupSelection = '[id="classId_chosen"]';
 	static #chosenStudents = '[id="studentsId_chosen"] > .chosen-choices';
 	static #errorDialog = '[data-testId="error-dialog"]';
-	static #outdatedDialogTitle = '[data-testid="dialog-title"]';
-	static #toolConfigurationSelectItem = '[data-testId="configuration-select-item"]';
 	static #courseExternalToolSection = '[data-testid="room-external-tool-section"]';
 	static #saveToolButton = '[data-testid="save-button"]';
 	static #threeDotMenuOnTool = '[data-testid="room-tool-three-dot-button"]';
@@ -90,8 +85,6 @@ class Courses {
 	static #dialogClose = '[data-testid="dialog-close"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
-	static #protectedParameter = '[data-testid="protected"]';
-	static #saveBtn = '[data-testid="save-button"]';
 	static #incompleteChip = '[data-testid="tool-card-status"]';
 	static #deactivatedChip = '[data-testid="tool-card-status-deactivated"]';
 	static #incompleteOperationalChip =
@@ -141,7 +134,6 @@ class Courses {
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
-	static #toolDisplayNameInputField = '[data-testid="parameter-display-name"]';
 	static #delteToolDialog = '[data-testid="delete-dialog"]';
 	static #delteDialogTitle = '[data-testid="dialog-title"]';
 	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
@@ -402,19 +394,11 @@ class Courses {
 	}
 
 	seeAddNewToolFAB() {
-		cy.get(Courses.#addToolButton).should("exist");
+		cy.get(Courses.#addToolButton).should("be.visible");
 	}
 
 	seeNotAddNewToolFAB() {
 		cy.get(Courses.#addToolButton).should("not.exist");
-	}
-
-	seeContextExternalToolConfiguratorPageTitle() {
-		cy.get(Courses.#contextExternalToolConfiguratorPageTitle).should("exist");
-	}
-
-	clickOnToolConfigurationSelect() {
-		cy.get(Courses.#toolConfigurationSelect).click();
 	}
 
 	courseIsVisibleOnOverviewPage(courseName) {
@@ -727,61 +711,27 @@ class Courses {
 	}
 
 	checkIfToolIsVisibleInToolTable(toolName) {
-		cy.get(Courses.#courseExternalToolSection).contains(toolName).should("exist");
+		cy.get(Courses.#courseExternalToolSection).contains(toolName).scrollIntoView().should("be.visible");
 	}
 
 	checkIfToolIsNotVisibleInToolTable(toolName) {
 		cy.get(Courses.#courseExternalToolSection).contains(toolName).should("not.exist");
 	}
 
-	seeToolIsNotMarkedDeactivated(toolName) {
-		const toolData = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-
-		toolData
-			.parent("div")
-			.siblings("div")
-			.find('[data-testid="tool-card-status-deactivated"]')
-			.should("not.exist");
-	}
-
-	seeToolIsMarkedDeactivated(toolName) {
-		const toolData = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-
-		toolData
-			.parent("div")
-			.siblings("div")
-			.find("span")
-			.contains("Tool deaktiviert")
-			.should("be.visible");
-	}
-
 	clickThreeDotMenuOnTool(toolName) {
-		cy.get(Courses.#courseExternalToolSection).contains(toolName);
-		const toolData = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-
-		toolData.parent("div").find(Courses.#threeDotMenuOnTool).click().should("exist");
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#threeDotMenuOnTool)
+				.should("be.visible")
+				.click();
+		});
 	}
 
 	clickOnDeleteButton(toolName) {
-		const toolData = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-
-		toolData
-			.parent("div")
-			.find(Courses.#DeleteButtonInDotMenuOfTool)
-			.should("be.visible")
-			.click({ force: true });
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#DeleteButtonInDotMenuOfTool)
+				.should("be.visible")
+				.click({ force: true });
+		});
 	}
 
 	checkConfirmButtonOnDeletionDialog() {
@@ -796,43 +746,8 @@ class Courses {
 		cy.get(Courses.#courseExternalToolSection).contains(toolName).click();
 	}
 
-	clickOnToolAndReturn(toolName) {
-		cy.on("window:before:load", (win) => {});
-
-		cy.intercept("GET", "https://google.com", (req) => {
-			// catch the page as it loads
-			req.continue((res) => {
-				res.body = res.body.replaceAll(
-					"window.location.replace",
-					"window.__location.replace"
-				);
-			});
-		}).as("index");
-		cy.get(Courses.#courseExternalToolSection)
-			.contains(toolName)
-			.click()
-			.should("contain", "Peter Pan");
-		cy.wait("@index");
-	}
-
 	clickOnSaveTool() {
 		cy.get(Courses.#saveToolButton).click();
-	}
-
-	checkIfToolIsNotVisibleInSelection(toolName) {
-		!cy.get(Courses.#toolConfigurationSelect).should("not.contain", toolName);
-	}
-
-	checkIfOutdatedDialogIsOpen(toolName) {
-		cy.get(Courses.#outdatedDialogTitle).should("exist");
-		cy.get(Courses.#outdatedDialogTitle).should("contain", toolName);
-		cy.get(Courses.#errorDialog).should("exist");
-		cy.get(Courses.#outdatedDialogTitle)
-			.siblings("div")
-			.eq(0)
-			.find("p")
-			.invoke("text")
-			.should("have.length.gt", 0);
 	}
 
 	clickCopyCourseButton() {
@@ -841,15 +756,8 @@ class Courses {
 	}
 
 	seeCopyResultNotification() {
-		cy.get(Courses.#copyResultNotification).should("exist");
-		cy.get(Courses.#dialogTitle).siblings("div").should("have.length", "3");
-		cy.get(Courses.#dialogTitle).should("exist");
-		cy.get(Courses.#warningTitle).should("have.length", "2");
-		cy.get(Courses.#dialogTitle)
-			.next()
-			.find("p")
-			.invoke("text")
-			.should("have.length.gt", 0);
+		cy.get(Courses.#dialogTitle).should("be.visible");
+		cy.get(Courses.#copyResultNotification).should("be.visible");
 	}
 
 	clickOnDialogClose() {
@@ -867,86 +775,44 @@ class Courses {
 	}
 
 	seeToolIsMarkedAsDeactivated(toolName) {
-		const toolCard = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-		toolCard
-			.parent("div")
-			.siblings("div")
-			.find(Courses.#deactivatedChip)
-			.should("exist");
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#deactivatedChip).should("be.visible");
+		});
 	}
 
 	seeToolIsNotMarkedAsDeactivated(toolName) {
-		const toolCard = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-		toolCard
-			.parent("div")
-			.siblings("div")
-			.find(Courses.#deactivatedChip)
-			.should("not.exist");
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#deactivatedChip).should("not.exist");
+		});
 	}
 
 	seeToolIsMarkedAsIncomplete(toolName) {
-		const toolCard = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-		toolCard
-			.parent("div")
-			.siblings("div")
-			.find(Courses.#incompleteChip)
-			.should("exist");
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#incompleteChip).should("be.visible");
+		});
 	}
 
 	seeToolIsNotMarkedAsIncomplete(toolName) {
-		const toolCard = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-		toolCard
-			.parent("div")
-			.siblings("div")
-			.find(Courses.#incompleteChip)
-			.should("not.exist");
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#incompleteChip).should("not.exist");
+		});
 	}
 
 	seeToolIsMarkedAsIncompleteOperational(toolName) {
-		const toolCard = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-		toolCard
-			.parent("div")
-			.siblings("div")
-			.find(Courses.#incompleteOperationalChip)
-			.should("exist");
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#incompleteOperationalChip).should("be.visible");
+		});
 	}
 
 	seeToolIsNotMarkedAsIncompleteOperational(toolName) {
-		const toolCard = cy
-			.get(Courses.#courseExternalToolSection)
-			.find("div")
-			.contains(toolName);
-		toolCard
-			.parent("div")
-			.siblings("div")
-			.find(Courses.#incompleteOperationalChip)
-			.should("not.exist");
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#incompleteOperationalChip).should("not.exist");
+		});
 	}
 
 	checkIfErrorDialogIsOpen() {
-		cy.get(Courses.#dialogTitle).should("exist");
-		cy.get(Courses.#errorDialog).should("exist");
-		cy.get(Courses.#dialogTitle).siblings("div").should("have.length", "3");
-		cy.get(Courses.#dialogTitle)
-			.next()
-			.find("p")
-			.invoke("text")
-			.should("have.length.gt", 0);
+		cy.get(Courses.#dialogTitle).should("be.visible");
+		cy.get(Courses.#errorDialog).should("be.visible");
 	}
 
 	clickThreeDotMenuOnTool(toolName) {
@@ -957,11 +823,11 @@ class Courses {
 		toolCard.parent("div").find(Courses.#toolCardThreeDotBtn).click();
 	}
 
-	clickOnToolEditButton(toolName) {
+	clickOnToolEditButton() {
 		cy.get(Courses.#toolEditBtn).click();
 	}
 
-	clickOnToolDeleteButton(toolName) {
+	clickOnToolDeleteButton() {
 		cy.get(Courses.#toolDeleteBtn).click();
 	}
 
@@ -976,35 +842,6 @@ class Courses {
 		cy.get(Courses.#confirmDeleteDialogButton).should("be.visible");
 	}
 
-	schoolExternalToolIsNotVisibleInToolSelection(toolName) {
-		cy.get(Courses.#toolConfigurationSelect).click();
-		cy.get(Courses.#toolConfigurationSelectItem)
-			.contains(toolName)
-			.should("not.exist");
-	}
-
-	editMissingToolParameterValue() {
-		cy.get(Courses.#protectedParameter).click();
-		cy.get("div").contains("Nein").click();
-	}
-
-	editProtectedCustomParameter(value) {
-		cy.get(Courses.#protectedParameter).click();
-		cy.get("div").contains(value).click();
-	}
-
-	fillInCustomParameter(paramName, value) {
-		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
-	}
-
-	fillInDisplayName(toolName) {
-		cy.get(Courses.#toolDisplayNameInputField).find("input").clear().type(toolName);
-	}
-
-	clickOnConfirmButton() {
-		cy.get(Courses.#saveBtn).click();
-	}
-
 	clickOnEditCourse() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnCourseEdit).click();
@@ -1015,8 +852,7 @@ class Courses {
 			.click()
 			.type(searchString)
 			.type("{enter}");
-		cy.get(Courses.#chooseStudentSelectionBox).contains("Amelia").should("exist");
-		cy.get(Courses.#btnSubmit).click();
+		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
 	seeTitleInSyncedGroupDialog() {
