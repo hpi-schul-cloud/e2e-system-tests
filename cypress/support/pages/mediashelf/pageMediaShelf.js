@@ -1,7 +1,7 @@
 "use strict";
 
 class MediaShelf {
-	static #mediaShelfNavigationButton = '[data-testid="Media-shelf"]';
+	static #mediaShelfNavigationButton = '[data-testid="sidebar-mediashelf"]';
 	static #mediaShelfPageTitle = '[data-testid="page-title"]';
 	static #gridLayoutButton = '[data-testid="media-board-layout-grid"]';
 	static #listLayoutButton = '[data-testid="media-board-layout-list"]';

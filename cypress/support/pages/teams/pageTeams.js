@@ -50,7 +50,7 @@ class Teams {
 	static #teamOptions = '[data-testid="team_options"]';
 	static #activateRCCheckbox = '[data-testid="rocketchat_checkbox"]';
 	static #activateConfCheckbox = '[data-testid="videoconf_checkbox"]';
-	static #teamsOverviewNavigationButton = '[data-testid="Teams"]';
+	static #teamsOverviewNavigationButton = '[data-testid="sidebar-teams"]';
 	static #newsTabOnTeamDetail = '[data-tab="js-news"]';
 	static #createNewsButtonOnTeamDetail = '[data-testid="create_a_team"]';
 	static #threeDotManageTeam = '[id="page-title"]';

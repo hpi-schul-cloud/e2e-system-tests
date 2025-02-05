@@ -22,12 +22,12 @@ class Classes {
 	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
 	static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
-	static #adminClassNavigationSidebarCard = '[data-testid="Klassen"]';
+	static #adminClassNavigationSidebarCard = '[data-testid="sidebar-management-classes"]';
 	static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
 	static #legacyClassTable = '[data-testid="table_container"]';
 	static #buttonAddClassOldPage = '[data-testid="createClass"]';
 	static #dropDownSchoolYearCreateClass = '[data-testid="class-school-year-selection"]';
-	static #subMenuClassInAdministration = '[data-testid="Klassen"]';
+	static #subMenuClassInAdministration = '[data-testid="sidebar-management-classes"]';
 	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
 	static #moreOptionButtonInClassPage = '[data-testid="classCreationExtraOptions"]';
 	static #textBoxCustomClassName = '[data-testid="Klassenbezeichnung"]';

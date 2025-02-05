@@ -17,7 +17,7 @@ class Dashboard {
 	static #elementTitle = '[data-testid="title_of_an_element"]';
 	static #newsText = '[data-testid="body_of_element"]';
 	static #newsSection = '[data-testid="news-section"]';
-	static #dashboardLink = 'a[data-testid="Übersicht"]';
+	static #dashboardLink = 'a[data-testid="sidebar-dashboard"]';
 
 	static #testAssertionData = {
 		german: "Deutsch",
