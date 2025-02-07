@@ -6,9 +6,6 @@ class Rooms {
 	static #roomNameInput = '[data-testid="room-name-input"]';
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
-	static #roomDetailFABEdit = '[data-testid="room-action-edit"]';
-	static #roomDetailFABParticipants = '[data-testid="room-action-manage-members"]';
-	static #roomDetailFABDelete = '[data-testid="room-action-delete"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
 	static #confirmDeletionModalTitle = '[data-testid="delete-dialog-item"]';
@@ -102,16 +99,10 @@ class Rooms {
 		cy.get(Rooms.#roomDetailFAB).click();
 	}
 
-	openEditInThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFABEdit).click();
-	}
-
-	openParticipantsInThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFABParticipants).click();
-	}
-
-	openDeleteInThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFABDelete).click();
+	clickOnKebabMenuAction(kebabMenuAction) {
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -182,7 +173,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {

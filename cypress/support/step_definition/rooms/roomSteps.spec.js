@@ -3,7 +3,6 @@ import Rooms from "../../pages/rooms/pageRooms";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const rooms = new Rooms();
-const roomBoards = new RoomBoards();
 
 When("I select the colour for the room", () => {
 	rooms.selectRoomColour();
@@ -58,18 +57,6 @@ When("I go to room {string}", (roomName) => {
 
 When("I click on three dot menu in room page", () => {
 	rooms.openThreeDotMenuForRoom();
-});
-
-When("I click on edit option in room menu", () => {
-	rooms.openEditInThreeDotMenuForRoom();
-});
-
-When("I click on participants option in room menu", () => {
-	rooms.openParticipantsInThreeDotMenuForRoom();
-});
-
-When("I click on delete option in room menu", () => {
-	rooms.openDeleteInThreeDotMenuForRoom();
 });
 
 Then("I see confirmation modal for deleting the room", () => {
