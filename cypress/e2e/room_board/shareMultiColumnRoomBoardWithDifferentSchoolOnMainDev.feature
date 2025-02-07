@@ -53,7 +53,6 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the page board details
         Then I see the chip Draft
 
-
         # first teacher shared the board only within the same school and secomd teacher from different school should see the not allowed alert
         Given I am logged in as a '<teacher1>' at '<namespace>'
         When I go to room overview
