@@ -3,6 +3,30 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I click to uncheck Link valid for the same school", () => {
+	roomBoards.uncheckLinkValidForSameSchool();
+});
+
+Then("I see the altert to import board is not allowed", () => {
+	roomBoards.verifyImportBoardNotAllowedAlert();
+});
+
+Then("I see the result url text box in the modal", () => {
+	roomBoards.verifySharedBoardResultUrlTextBox();
+});
+
+Then("I see the title in the share modal", () => {
+	roomBoards.verifyShareModalTitle();
+});
+
+Then("I see the information box in share modal", () => {
+	roomBoards.verifyShareInformationBox();
+});
+
+Then("I see the button Cancel in the share modal", () => {
+	roomBoards.verifyCancelButtonInShareModal();
+});
+
 When("I open the shared URL", () => {
 	roomBoards.openSharedBoardURL();
 });
@@ -11,8 +35,8 @@ Then("I see the modal to import the shared board into the room", () => {
 	roomBoards.verifyImportSharedBoardModal();
 });
 
-When("I select the room {string} from the room list in the modal", (roomNameTarget) => {
-	roomBoards.selectRoomForImport(roomNameTarget);
+When("I select the target room from the room list in the modal", () => {
+	roomBoards.selectRoomForImport();
 });
 
 When("I click on the Continue button in the modal", () => {
@@ -30,15 +54,11 @@ When("I click on the button Import in the modal", () => {
 	roomBoards.clickImportOnModal();
 });
 
-Then("I see the shared board tile as a draft on the room details page", () => {
-	roomBoards.verifySharedBoardAppearsAsDraftOnRoomDetailPage();
-});
-
 Then("I see the Share settings dialog", () => {
 	roomBoards.seeShareSettingsDialog();
 });
 
-Then("I see the checkbox Link valid for the same school is checked", () => {
+Then("I see the checkbox Link valid for the same school is by default checked", () => {
 	roomBoards.verifySameSchoolLinkCheckboxChecked();
 });
 

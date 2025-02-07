@@ -57,7 +57,6 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_LDAP_DBC", "TEACHER_LDAP_DBC_PASSWORD"];
 		case "admin_ldap_dbc":
 			return ["ADMIN_LDAP_DBC", "ADMIN_LDAP_DBC_PASSWORD"];
-
 		case "admin1_nbc":
 			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
 		case "teacher1_nbc":
@@ -74,6 +73,36 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_LDAP_NBC", "TEACHER_LDAP_NBC_PASSWORD"];
 		case "admin_ldap_nbc":
 			return ["ADMIN_LDAP_NBC", "ADMIN_LDAP_NBC_PASSWORD"];
+		case "teacherExt1_brb":
+			return ["TEACHER_EXT_1_BRB_EMAIL", "TEACHER_EXT_1_BRB_PASSWORD"];
+		case "adminExt1_brb":
+			return ["ADMIN_EXT_1_BRB_EMAIL", "ADMIN_EXT_1_BRB_PASSWORD"];
+		case "studentExt1_brb":
+			return ["STUDENT_EXT_1_BRB_EMAIL", "STUDENT_EXT_1_BRB_PASSWORD"];
+		case "teacherExt2_brb":
+			return ["TEACHER_EXT_2_BRB_EMAIL", "TEACHER_EXT_2_BRB_PASSWORD"];
+		case "studentExt2_brb":
+			return ["STUDENT_EXT_2_BRB_EMAIL", "STUDENT_EXT_2_BRB_PASSWORD"];
+		case "teacherExt1_nbc":
+			return ["TEACHER_EXT_1_NBC_EMAIL", "TEACHER_EXT_1_NBC_PASSWORD"];
+		case "adminExt1_nbc":
+			return ["ADMIN_EXT_1_NBC_EMAIL", "ADMIN_EXT_1_NBC_PASSWORD"];
+		case "studentExt1_nbc":
+			return ["STUDENT_EXT_1_NBC_EMAIL", "STUDENT_EXT_1_NBC_PASSWORD"];
+		case "teacherExt2_nbc":
+			return ["TEACHER_EXT_2_NBC_EMAIL", "TEACHER_EXT_2_NBC_PASSWORD"];
+		case "studentExt2_nbc":
+			return ["STUDENT_EXT_2_NBC_EMAIL", "STUDENT_EXT_2_NBC_PASSWORD"];
+		case "teacherExt1_dbc":
+			return ["TEACHER_EXT_1_DBC_EMAIL", "TEACHER_EXT_1_DBC_PASSWORD"];
+		case "adminExt1_dbc":
+			return ["ADMIN_EXT_1_DBC_EMAIL", "ADMIN_EXT_1_DBC_PASSWORD"];
+		case "studentExt1_nbc":
+			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
+		case "teacherExt2_dbc":
+			return ["TEACHER_EXT_2_DBC_EMAIL", "TEACHER_EXT_2_DBC_PASSWORD"];
+		case "studentExt2_nbc":
+			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
 
 		default:
 			return [null, null];

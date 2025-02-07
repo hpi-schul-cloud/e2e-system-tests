@@ -182,7 +182,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {

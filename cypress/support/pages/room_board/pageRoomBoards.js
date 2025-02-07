@@ -37,7 +37,6 @@ class RoomBoards {
 	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
-
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
@@ -46,30 +45,54 @@ class RoomBoards {
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCOpyBoard = '[data-testid="share-course-result-url"]';
 	static #scanQRCodeOption = '[data-testid="qrCodeAction"]';
-
-	static #importModal = '[data-testid="dialog-content"]';
+	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
 	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
 	static #importButton = '[data-testid="dialog-confirm"]';
-	static #sharedBoardDraftTile = '[data-testid="board-tile-subtitle-0"]';
+	static #shareModalTitle = '[data-testid="dialog-title"]';
+	static #shareInformationBox = '[data-testid="share-options-info-text"]';
+	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
+	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
+	static #shareImportAlert = '[data-testid="alert-text"]';
 
-	verifyImportSharedBoardModal() {
-		cy.get(RoomBoards.#importModal).should("be.visible");
+	uncheckLinkValidForSameSchool() {
+		cy.get(RoomBoards.#sameSchoolCheckbox).click();
+		cy.get(RoomBoards.#sameSchoolCheckbox)
+			.find('input[type="checkbox"]')
+			.should("not.be.checked");
 	}
 
-	selectRoomForImport(roomNameTarget) {
-		cy.get(RoomBoards.#importModal)
-			// Move to the parent container
-			.parent()
-			// Find the combobox dropdown
-			.find('div[role="combobox"]')
-			// Open the dropdown
-			.click()
-			// Get the listbox containing the options
-			.get('div[role="combobox"]')
-			.contains(roomNameTarget)
-			// Click to select the room
-			.click();
+	verifyImportBoardNotAllowedAlert() {
+		cy.get(RoomBoards.#shareImportAlert).should("be.visible");
+	}
+
+	verifySharedBoardResultUrlTextBox() {
+		cy.get(RoomBoards.#sharedBoardResultUrlTextBox).should("be.visible");
+	}
+
+	verifyShareModalTitle() {
+		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
+	}
+
+	verifyShareInformationBox() {
+		cy.get(RoomBoards.#shareInformationBox).should("be.visible");
+	}
+
+	verifyCancelButtonInShareModal() {
+		cy.get(RoomBoards.#cancelButtonInShareModal).should("be.visible");
+	}
+
+	verifyImportSharedBoardModal() {
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	selectRoomForImport() {
+		// Go to paraent element
+		cy.get(RoomBoards.#shareSettingsDialog)
+			// Locate the selection input of the room name
+			.find(RoomBoards.#roomSelectionBoxModal)
+			// Navigate to the room name as a first option and press enter
+			.type("{downarrow}{enter}");
 	}
 
 	clickContinueOnImportModal() {
@@ -84,26 +107,22 @@ class RoomBoards {
 		cy.get(RoomBoards.#importButton).click();
 	}
 
-	verifySharedBoardAppearsAsDraftOnRoomDetailPage() {
-		cy.get(RoomBoards.#sharedBoardDraftTile)
-			.should("be.visible")
-			.should("contain.text", "- Draft");
-	}
-
 	seeShareSettingsDialog() {
 		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
 	}
 
 	verifySameSchoolLinkCheckboxChecked() {
 		cy.get(RoomBoards.#sameSchoolCheckbox)
-			.parent() // Move to the parent container holding the checkbox
+			// Move to the parent container holding the checkbox
+			.parent()
 			.find('input[type="checkbox"]')
 			.should("be.checked");
 	}
 
 	verify21DaysLinkCheckboxChecked() {
 		cy.get(RoomBoards.#days21Checkbox)
-			.parent() // Move to the parent container holding the checkbox
+			// Move to the parent container holding the checkbox
+			.parent()
 			.find('input[type="checkbox"]')
 			.should("be.checked");
 	}
@@ -154,7 +173,7 @@ class RoomBoards {
 
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
-			//three dot has same data-testid and needs to be located inside the parent element
+			//Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
@@ -166,7 +185,7 @@ class RoomBoards {
 
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
-			//three dot has same data-testid and needs to be located inside the parent element
+			//Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 	}
@@ -195,7 +214,8 @@ class RoomBoards {
 
 	verifyModeratorApprovalCheckboxCheckedInBBBModal() {
 		cy.get(RoomBoards.#moderatorApprovalCheckbox)
-			.find('input[type="checkbox"]') // Find the checkbox inside the parent options
+			// Find the checkbox inside the parent options
+			.find('input[type="checkbox"]')
 			.should("be.checked");
 	}
 
