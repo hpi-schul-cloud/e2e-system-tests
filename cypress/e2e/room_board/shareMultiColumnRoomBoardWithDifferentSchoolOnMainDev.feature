@@ -74,7 +74,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         When I open the shared URL
         Then I see an alert that importing the board is not allowed
 
-        # post-condition: rooms created by both teachers are deleted.
+        # post-condition: rooms created by both teachers are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
         Given the room named '<room_name_source>' is deleted
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
