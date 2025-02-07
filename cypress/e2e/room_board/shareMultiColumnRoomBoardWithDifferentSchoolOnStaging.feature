@@ -1,19 +1,20 @@
 @regression_test
 @stable_test
-# Note: this feature is to execute only on the staging environment due to the school api limitation on creating two separate schools in the same scenario and using the copied URL with different school
+
+# Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same scenario and using the copied URL from Scenario One in Scenario Two due to new sessions.
 
 Feature: Rooms - Share multi-column boards in the rooms with the teacher from different school
 
-    As a teacher, I want to share multi-column boards with teachers from different schools so that I can collaborate effectively.
+    As a teacher, I want to share a multi-column board with another teacher from a different school so that I can collaborate effectively.
 
     Scenario: Share a multi-column board with a teacher from different School
 
-        # pre-condition: Room and multi-column board exist
+        # pre-condition: room and multi-column board exist
         Given I am logged in as a '<teacher1>' at '<namespace>'
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title>' exists in the room
 
-        # first teacher shares the multi-column board with another teacher from different school
+        # first teacher from the first school allows sharing the multi-column board with another teacher from a different school
         Then I see the page board details
         When I click on the three dot menu in room board
         When I select the three dot menu action 'share'
@@ -31,13 +32,14 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the board URL
-        #Then I see the alrert success message -> there is always time delay to handle this step
+        #there is always a time delay in handling the alert visibility
+        #Then I see the alrert success message
 
-        # pre-condition: Second teacher is logged into the application and a room exists
+        # pre-condition: second teacher is logged into the application, and a room is available
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         Given a room named '<room_name_target>' exists
 
-        # second teacher from different school imports the shared multi-column board
+        # second teacher from the second school can access the shared URL and import the multi-column board
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
@@ -49,7 +51,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the page board details
         Then I see the chip Draft
 
-        # first teacher shared the board only within the same school and secomd teacher from different school should see the not allowed alert
+        # first teacher from the first school does not allow sharing the multi-column board with another teacher from a different school
         Given I am logged in as a '<teacher1>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name_source>'
@@ -65,12 +67,12 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the option Copy link
         Then I copy the board URL
 
-        # second teacher from different school can not import the shared board and sees the alert
+        # second teacher from the second school can not access the shared board URL and sees the 'Not Allowed' alert
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         When I open the shared URL
         Then I see an alert that importing the board is not allowed
 
-        # post-condition: Rooms created by both teachers are deleted
+        # post-condition: rooms created by both teachers are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
         Given the room named '<room_name_source>' is deleted
         Given I am logged in as a '<teacherExt1>' at '<namespace>'

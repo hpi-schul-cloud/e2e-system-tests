@@ -1,23 +1,22 @@
 @unstable_test
 
-# Note: This feature is currently not executable using school api, as two new schools can not be created in a same scenarion in the feature file, and creating in a two different scenrios creates two different session that does not allow to use the copy board url from the first scenrio to the second scenrio
+# Note: This feature cannot currently be executed using the school API, as two new schools cannot be created within the same scenario in the feature file. Creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in the second scenario.
 
 Feature: Rooms - Share multi-column boards in the rooms with the teacher from different school
 
-    As a teacher, I want to share multi-column boards with teachers from different schools so that I can collaborate effectively.
+    As a teacher, I want to share a multi-column board with another teacher from a different school so that I can collaborate effectively.
 
     Scenario: Share a multi-column board with a teacher from different School
 
-        # school api would create a second teacher also in the same school in this step
+        # pre-condition: creating teacher accounts for two different schools
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
-        # pre-condition: Creating teacher accounts
         Given I am logged in as a '<teacher1>' at '<namespace>'
 
-        # pre-condition: Room and multi-column board exist
+        # pre-condition: room and multi-column board are available in the first school
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title>' exists in the room
 
-        # first teacher shares the multi-column board with another teacher from different school
+        # first teacher from the first school allows sharing the multi-column board with another teacher from a different school
         Then I see the page board details
         When I click on the three dot menu in room board
         When I select the three dot menu action 'share'
@@ -35,13 +34,14 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the board URL
-        #Then I see the alrert success message  -> there is always time delay to handle this step
+        #there is always a time delay in handling the alert visibility
+        #Then I see the alrert success message
 
-        # pre-condition: Second teacher is logged into the application and a room exists
+        # pre-condition: second teacher is logged into the application, and a room is available
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         Given a room named '<room_name_target>' exists
 
-        # second teacher from different school imports the shared multi-column board
+        # second teacher from the second school can access the shared URL and import the multi-column board
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
@@ -53,7 +53,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the page board details
         Then I see the chip Draft
 
-        # first teacher shared the board only within the same school and secomd teacher from different school should see the not allowed alert
+        # first teacher from the first school does not allow sharing the multi-column board with another teacher from a different school
         Given I am logged in as a '<teacher1>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name_source>'
@@ -69,12 +69,12 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the option Copy link
         Then I copy the board URL
 
-        # second teacher from different school can not import the shared board sees the alert not allowed
+        # second teacher from the second school cannot access the shared board URL and sees the 'Not Allowed' alert
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         When I open the shared URL
         Then I see an alert that importing the board is not allowed
 
-        # post-condition: Rooms created by both teachers are deleted
+        # post-condition: rooms created by both teachers are deleted.
         Given I am logged in as a '<teacher1>' at '<namespace>'
         Given the room named '<room_name_source>' is deleted
         Given I am logged in as a '<teacherExt1>' at '<namespace>'

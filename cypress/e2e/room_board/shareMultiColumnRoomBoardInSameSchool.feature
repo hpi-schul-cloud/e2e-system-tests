@@ -2,7 +2,7 @@
 @stable_test
 Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the same school
 
-    As a teacher, I want to share multi-column boards with teachers within the same school so that they can collaborate effectively.
+    As a teacher, I want to share a multi-column board with another teacher within the same school so that I can collaborate effectively.
 
     Scenario: Share a Multi-Column Board with a Teacher within the Same School
 
@@ -14,7 +14,7 @@ Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the sa
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title>' exists in the room
 
-        # first teacher shares the multi-column board with another teacher in the same school via copied URL
+        # the first teacher shares the multi-column board with another teacher in the same school using the copied URL
         Then I see the page board details
         When I click on the three dot menu in room board
         When I select the three dot menu action 'share'
@@ -31,13 +31,14 @@ Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the sa
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the board URL
+        #there is always a time delay in handling the alert visibility
         #Then I see the alrert success message
 
-        # pre-condition: Second teacher is logged into the application and a room exists
+        # pre-condition: the second teacher is logged into the application, and a room exists
         Given I am logged in as a '<teacher2>' at '<namespace>'
         Given a room named '<room_name_target>' exists
 
-        # second teacher within the same school imports the multi-column board
+        # the second teacher within the same school imports the multi-column board
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
