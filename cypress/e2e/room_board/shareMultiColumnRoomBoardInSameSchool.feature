@@ -22,7 +22,7 @@ Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the sa
         Then I see the title in the share modal
         Then I see the information box in share modal
         Then I see the button Cancel in the share modal
-        Then I see the checkbox Link valid for the same school is checked
+        Then I see the checkbox Link valid for the same school is by default checked
         Then I see the checkbox Link valid for 21 days is checked
         When I click on the button Continue
         Then I see the Share via modal
