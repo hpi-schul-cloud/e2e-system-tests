@@ -69,7 +69,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the option Copy link
         Then I copy the board URL
 
-        # second teacher from the second school cannot access the shared board URL and sees the 'Not Allowed' alert
+        # second teacher from the second school can not access the shared board URL and sees the 'Not Allowed' alert
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         When I open the shared URL
         Then I see an alert that importing the board is not allowed
