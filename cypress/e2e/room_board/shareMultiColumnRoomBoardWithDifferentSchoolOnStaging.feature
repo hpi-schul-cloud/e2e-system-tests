@@ -68,7 +68,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         # second teacher from different school can not import the shared board and sees the alert
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         When I open the shared URL
-        Then I see the altert to import board is not allowed
+        Then I see an alert that importing the board is not allowed
 
         # post-condition: Rooms created by both teachers are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'

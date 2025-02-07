@@ -7,7 +7,7 @@ Then("I click to uncheck Link valid for the same school", () => {
 	roomBoards.uncheckLinkValidForSameSchool();
 });
 
-Then("I see the altert to import board is not allowed", () => {
+Then("I see an alert that importing the board is not allowed", () => {
 	roomBoards.verifyImportBoardNotAllowedAlert();
 });
 
