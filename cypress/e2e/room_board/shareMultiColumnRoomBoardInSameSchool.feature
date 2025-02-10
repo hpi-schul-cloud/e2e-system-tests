@@ -31,8 +31,7 @@ Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the sa
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the board URL
-        #there is always a time delay in handling the alert visibility
-        #Then I see the alrert success message
+        Then I see the alert success message
 
         # pre-condition: the second teacher is logged into the application, and a room exists
         Given I am logged in as a '<teacher2>' at '<namespace>'

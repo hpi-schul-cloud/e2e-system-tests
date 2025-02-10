@@ -62,7 +62,8 @@ class RoomBoards {
 			.should("not.be.checked");
 	}
 
-	verifyImportBoardNotAllowedAlert() {
+	verifyShareImportBoardAlert() {
+		cy.wait(500);
 		cy.get(RoomBoards.#shareImportAlert).should("be.visible");
 	}
 
@@ -160,6 +161,7 @@ class RoomBoards {
 				// Validate URL
 				expect(url).to.be.a("string").and.not.be.empty;
 				cy.wrap(url).as("copiedURL"); // Store the URL
+				cy.get(RoomBoards.#copyLinkOption).click();
 			});
 	}
 

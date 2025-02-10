@@ -3,12 +3,16 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I see the alert success message", () => {
+	roomBoards.verifyShareImportBoardAlert();
+});
+
 Then("I click to uncheck Link valid for the same school", () => {
 	roomBoards.uncheckLinkValidForSameSchool();
 });
 
 Then("I see an alert that importing the board is not allowed", () => {
-	roomBoards.verifyImportBoardNotAllowedAlert();
+	roomBoards.verifyShareImportBoardAlert();
 });
 
 Then("I see the result url text box in the modal", () => {
@@ -192,7 +196,8 @@ When("I click on the multi-column board in the room detail page", () => {
 });
 
 Then("I do not see the chip Draft", () => {
-	roomBoards.verifyDraftChipNotVisible(); // Method to verify the Draft chip is not visible
+	// Method to verify the Draft chip is not visible
+	roomBoards.verifyDraftChipNotVisible();
 });
 
 Then("I see the chip Draft", () => {
