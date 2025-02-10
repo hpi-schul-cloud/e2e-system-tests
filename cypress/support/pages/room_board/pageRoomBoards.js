@@ -155,7 +155,7 @@ class RoomBoards {
 			.find('input[type="text"]')
 			// Ensure text box is visible
 			.should("be.visible")
-			// Get the value from the text box, which the copy board URL
+			// Get the value from the text box, which is the url to the copy board
 			.invoke("val")
 			.then((url) => {
 				// Validate URL
