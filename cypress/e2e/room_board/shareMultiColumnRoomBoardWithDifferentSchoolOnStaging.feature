@@ -3,11 +3,11 @@
 
 # Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same scenario and using the copied URL from Scenario One in Scenario Two due to new sessions.
 
-Feature: Rooms - Share multi-column boards in the rooms with the teacher from different school
+Feature: Rooms - Share multi-column board in the rooms with the teacher from different school
 
     As a teacher, I want to share a multi-column board with another teacher from a different school so that I can collaborate effectively.
 
-    Scenario: Share a multi-column board with a teacher from different School
+    Scenario: Share a multi-column board with a teacher from different school
 
         # pre-condition: room and multi-column board exist
         Given I am logged in as a '<teacher1>' at '<namespace>'
@@ -24,7 +24,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I click to uncheck Link valid for the same school
-        Then I see the checkbox Link valid for 21 days is checked
+        Then I see the checkbox Link valid for 21 days is by default checked
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the result url text box in the modal
@@ -34,7 +34,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I copy the board URL
         Then I see the alert success message
 
-        # pre-condition: second teacher is logged into the application, and a room is available
+        # pre-condition: second teacher logged into the application, and a room exists
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         Given a room named '<room_name_target>' exists
 
@@ -42,7 +42,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
-        When I select the target room from the room list in the modal
+        When I select the room from the room list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
         When I click on the button Import in the modal

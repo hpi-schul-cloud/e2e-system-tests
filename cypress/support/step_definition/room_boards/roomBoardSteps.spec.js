@@ -39,7 +39,7 @@ Then("I see the modal to import the shared board into the room", () => {
 	roomBoards.verifyImportSharedBoardModal();
 });
 
-When("I select the target room from the room list in the modal", () => {
+When("I select the room from the room list in the modal", () => {
 	roomBoards.selectRoomForImport();
 });
 
@@ -66,7 +66,7 @@ Then("I see the checkbox Link valid for the same school is by default checked", 
 	roomBoards.verifySameSchoolLinkCheckboxChecked();
 });
 
-Then("I see the checkbox Link valid for 21 days is checked", () => {
+Then("I see the checkbox Link valid for 21 days is by default checked", () => {
 	roomBoards.verify21DaysLinkCheckboxChecked();
 });
 

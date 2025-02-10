@@ -43,7 +43,7 @@ class RoomBoards {
 	static #continueButton = '[data-testid="dialog-next"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
-	static #urlInputBoxCOpyBoard = '[data-testid="share-course-result-url"]';
+	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
 	static #scanQRCodeOption = '[data-testid="qrCodeAction"]';
 	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
 	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
@@ -54,11 +54,12 @@ class RoomBoards {
 	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
+	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
 
 	uncheckLinkValidForSameSchool() {
 		cy.get(RoomBoards.#sameSchoolCheckbox).click();
 		cy.get(RoomBoards.#sameSchoolCheckbox)
-			.find('input[type="checkbox"]')
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
 			.should("not.be.checked");
 	}
 
@@ -88,7 +89,7 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		// Go to paraent element
+		// Go to parent element
 		cy.get(RoomBoards.#shareSettingsDialog)
 			// Locate the selection input of the room name
 			.find(RoomBoards.#roomSelectionBoxModal)
@@ -116,7 +117,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#sameSchoolCheckbox)
 			// Move to the parent container holding the checkbox
 			.parent()
-			.find('input[type="checkbox"]')
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
 			.should("be.checked");
 	}
 
@@ -124,7 +125,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#days21Checkbox)
 			// Move to the parent container holding the checkbox
 			.parent()
-			.find('input[type="checkbox"]')
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
 			.should("be.checked");
 	}
 
@@ -149,7 +150,7 @@ class RoomBoards {
 	}
 
 	copyBoardURLInModal() {
-		cy.get(RoomBoards.#urlInputBoxCOpyBoard)
+		cy.get(RoomBoards.#urlInputBoxCopyBoard)
 			// Move to the parent container holding the text box
 			.parent()
 			.find('input[type="text"]')
@@ -157,17 +158,18 @@ class RoomBoards {
 			.should("be.visible")
 			// Get the value from the text box, which is the url to the copy board
 			.invoke("val")
-			.then((url) => {
+			.then((boardUrl) => {
 				// Validate URL
-				expect(url).to.be.a("string").and.not.be.empty;
-				cy.wrap(url).as("copiedURL"); // Store the URL
+				expect(boardUrl).to.be.a("string").and.not.be.empty;
+				cy.wrap(boardUrl).as("copiedURL");
+				// copy button in clicked on the modal to check the success message
 				cy.get(RoomBoards.#copyLinkOption).click();
 			});
 	}
 
 	openSharedBoardURL() {
-		cy.get("@copiedURL").then((url) => {
-			cy.visit(url);
+		cy.get("@copiedURL").then((boardUrl) => {
+			cy.visit(boardUrl);
 			// Wait for 500 msec for any JavaScript actions to complete
 			cy.wait(500);
 		});
@@ -217,7 +219,7 @@ class RoomBoards {
 	verifyModeratorApprovalCheckboxCheckedInBBBModal() {
 		cy.get(RoomBoards.#moderatorApprovalCheckbox)
 			// Find the checkbox inside the parent options
-			.find('input[type="checkbox"]')
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
 			.should("be.checked");
 	}
 

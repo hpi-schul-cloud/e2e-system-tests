@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the same school
+Feature: Rooms - Share multi-column room board in the Rooms with teacher from the same school
 
     As a teacher, I want to share a multi-column board with another teacher within the same school so that I can collaborate effectively.
 
-    Scenario: Share a Multi-Column Board with a Teacher within the Same School
+    Scenario: Share a multi-column board with a Teacher within the Sameschool
 
         # pre-condition: Creating teacher accounts
         Given I am logged in as a '<teacher2>' at '<namespace>'
@@ -23,7 +23,7 @@ Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the sa
         Then I see the information box in share modal
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
-        Then I see the checkbox Link valid for 21 days is checked
+        Then I see the checkbox Link valid for 21 days is by default checked
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the result url text box in the modal
@@ -41,7 +41,7 @@ Feature: Rooms - Share Multi-Column Boards in the Rooms with teacher from the sa
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
-        When I select the target room from the room list in the modal
+        When I select the room from the room list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
         When I click on the button Import in the modal

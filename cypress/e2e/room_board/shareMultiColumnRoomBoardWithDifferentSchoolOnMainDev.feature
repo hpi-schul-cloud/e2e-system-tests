@@ -1,12 +1,12 @@
 @unstable_test
 
-# Note: This feature can not currently be executed using the school API, as two new schools cannot be created within the same scenario in the feature file. Creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in the second scenario.
+# Note: This feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in the second scenario.
 
-Feature: Rooms - Share multi-column boards in the rooms with the teacher from different school
+Feature: Rooms - Share multi-column board in the rooms with the teacher from different school
 
     As a teacher, I want to share a multi-column board with another teacher from a different school so that I can collaborate effectively.
 
-    Scenario: Share a multi-column board with a teacher from different School
+    Scenario: Share a multi-column board with a teacher from differentschool
 
         # pre-condition: creating teacher accounts for two different schools
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
@@ -26,7 +26,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I click to uncheck Link valid for the same school
-        Then I see the checkbox Link valid for 21 days is checked
+        Then I see the checkbox Link valid for 21 days is by default checked
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the result url text box in the modal
@@ -36,7 +36,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         Then I copy the board URL
         Then I see the alert success message
 
-        # pre-condition: second teacher is logged into the application, and a room is available
+        # pre-condition: second teacher logged into the application, and a room exists
         Given I am logged in as a '<teacherExt1>' at '<namespace>'
         Given a room named '<room_name_target>' exists
 
@@ -44,7 +44,7 @@ Feature: Rooms - Share multi-column boards in the rooms with the teacher from di
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
-        When I select the target room from the room list in the modal
+        When I select the room from the room list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
         When I click on the button Import in the modal
