@@ -159,7 +159,9 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
