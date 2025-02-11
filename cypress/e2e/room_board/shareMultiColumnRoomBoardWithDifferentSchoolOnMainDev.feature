@@ -34,7 +34,7 @@ Feature: Rooms - Share multi-column board in the rooms with the teacher from dif
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the board URL
-        Then I see the alert success message
+        Then I see the alert message
 
         # pre-condition: second teacher logged into the application, and a room exists
         Given I am logged in as a '<teacherExt1>' at '<namespace>'

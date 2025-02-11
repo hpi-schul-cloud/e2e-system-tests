@@ -3,7 +3,7 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-Then("I see the alert success message", () => {
+Then("I see the alert message", () => {
 	roomBoards.verifyShareImportBoardAlert();
 });
 
