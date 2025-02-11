@@ -155,15 +155,15 @@ class RoomBoards {
 			.find('input[type="text"]')
 			.should("be.visible")
 			.invoke("val")
-			.then((url) => {
-				expect(url).to.be.a("string").and.not.be.empty;
-				cy.wrap(url).as("copiedURL");
+			.then((boardUrl) => {
+				expect(boardUrl).to.be.a("string").and.not.be.empty;
+				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
 					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
-				cy.get("@writeTextStub").should("be.calledWith", url);
+				cy.get("@writeTextStub").should("be.calledWith", boardUrl);
 			});
 	}
 
