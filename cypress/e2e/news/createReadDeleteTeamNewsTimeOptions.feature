@@ -1,4 +1,4 @@
-@stable_test
+stable_test
 @regression_test
 Feature:  News - To read a news on the respective dashboards
 
@@ -60,4 +60,4 @@ Feature:  News - To read a news on the respective dashboards
 			| news_author  | news_reader  | namespace | news_day_from_today | news_time   | news_time_info_overviewpage | news_time_info_detailpage | team_name              | team_news_title                  | team_news_description      |
 			| teacher1_brb | student1_brb | brb       | 0                   | currentTime | vor ein                     | vor ein                   | CypressAut - News Team | CypressAut - this is a team news | test team news description |
 #| admin1_brb   | student1_brb | brb       | notselected         | none        | vor ein                     | vor ein                   | CypressAut - News Team | CypressAut - this is a team news | test team news description |
-#| admin1_brb   | teacher1_brb | brbs       | -7                  | currentTime | vor 7 Tage                  | -7                        | CypressAut - News Team | CypressAut - this is a team news | test team news description |
+#| admin1_brb   | teacher1_brb | brb       | -7                  | currentTime | vor 7 Tage                  | -7                        | CypressAut - News Team | CypressAut - this is a team news | test team news description |
