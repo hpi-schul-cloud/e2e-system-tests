@@ -35,7 +35,7 @@ class Courses {
 		'[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
 	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]';
-	static #dropDownCourse = '[data-testid="room-menu"]';
+	static #dropDownCourse = '[data-testid="sidebar-rooms"]';
 	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChipWithIndex =
@@ -711,7 +711,10 @@ class Courses {
 	}
 
 	checkIfToolIsVisibleInToolTable(toolName) {
-		cy.get(Courses.#courseExternalToolSection).contains(toolName).scrollIntoView().should("be.visible");
+		cy.get(Courses.#courseExternalToolSection)
+			.contains(toolName)
+			.scrollIntoView()
+			.should("be.visible");
 	}
 
 	checkIfToolIsNotVisibleInToolTable(toolName) {
@@ -720,9 +723,7 @@ class Courses {
 
 	clickThreeDotMenuOnTool(toolName) {
 		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
-			cy.get(Courses.#threeDotMenuOnTool)
-				.should("be.visible")
-				.click();
+			cy.get(Courses.#threeDotMenuOnTool).should("be.visible").click();
 		});
 	}
 
