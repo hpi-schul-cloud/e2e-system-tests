@@ -151,19 +151,19 @@ class RoomBoards {
 
 	copyBoardURLInModal() {
 		cy.get(RoomBoards.#urlInputBoxCopyBoard)
-			// Move to the parent container holding the text box
 			.parent()
 			.find('input[type="text"]')
-			// Ensure text box is visible
 			.should("be.visible")
-			// Get the value from the text box, which is the url to the copy board
 			.invoke("val")
-			.then((boardUrl) => {
-				// Validate URL
-				expect(boardUrl).to.be.a("string").and.not.be.empty;
-				cy.wrap(boardUrl).as("copiedURL");
-				// copy button is clicked on the modal to check the success message
+			.then((url) => {
+				expect(url).to.be.a("string").and.not.be.empty;
+				cy.wrap(url).as("copiedURL");
+				cy.window().then((win) => {
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
+				});
 				cy.get(RoomBoards.#copyLinkOption).click();
+				cy.get("@writeTextStub").should("be.calledOnce");
+				cy.get("@writeTextStub").should("be.calledWith", url);
 			});
 	}
 
