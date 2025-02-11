@@ -162,7 +162,7 @@ class RoomBoards {
 				// Validate URL
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
-				// copy button in clicked on the modal to check the success message
+				// copy button is clicked on the modal to check the success message
 				cy.get(RoomBoards.#copyLinkOption).click();
 			});
 	}
