@@ -1,5 +1,5 @@
 @regression_test
-@stable_test
+@unstable_test
 Feature: Course Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
@@ -63,10 +63,10 @@ Feature: Course Board - To share a board card link
 
         @staging_test
         Examples:
-            | teacher_1     | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
-            | teacher1_nbc  | teacher2_nbc | nbc       | Karl Herzog        | Lara Hande         | Cypress Test Course |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
+            | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | Lara Hande         | Cypress Test Course |
 
         @school_api_test
         Examples:
-            | teacher_1     | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
-            | teacher1_nbc  | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | Cypress Test Course |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
+            | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | Cypress Test Course |

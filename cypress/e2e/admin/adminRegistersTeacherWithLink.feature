@@ -68,4 +68,4 @@ Feature: Admin - Teacher registration with registration link send by admin
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | dbc       | admin1_dbc | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de |
+            | brb       | admin1_brb | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de |

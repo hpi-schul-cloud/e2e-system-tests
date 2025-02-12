@@ -37,10 +37,149 @@ class RoomBoards {
 	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
+	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
+	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
+	static #continueButton = '[data-testid="dialog-next"]';
+	static #shareEmailOption = '[data-testid="shareMailAction"]';
+	static #copyLinkOption = '[data-testid="copyAction"]';
+	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
+	static #scanQRCodeOption = '[data-testid="qrCodeAction"]';
+	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
+	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
+	static #boardNameInput = '[data-testid="import-modal-name-input"]';
+	static #importButton = '[data-testid="dialog-confirm"]';
+	static #shareModalTitle = '[data-testid="dialog-title"]';
+	static #shareInformationBox = '[data-testid="share-options-info-text"]';
+	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
+	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
+	static #shareImportAlert = '[data-testid="alert-text"]';
+	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
+
+	uncheckLinkValidForSameSchool() {
+		cy.get(RoomBoards.#sameSchoolCheckbox).click();
+		cy.get(RoomBoards.#sameSchoolCheckbox)
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
+			.should("not.be.checked");
+	}
+
+	verifyShareImportBoardAlert() {
+		cy.wait(500);
+		cy.get(RoomBoards.#shareImportAlert).should("be.visible");
+	}
+
+	verifySharedBoardResultUrlTextBox() {
+		cy.get(RoomBoards.#sharedBoardResultUrlTextBox).should("be.visible");
+	}
+
+	verifyShareModalTitle() {
+		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
+	}
+
+	verifyShareInformationBox() {
+		cy.get(RoomBoards.#shareInformationBox).should("be.visible");
+	}
+
+	verifyCancelButtonInShareModal() {
+		cy.get(RoomBoards.#cancelButtonInShareModal).should("be.visible");
+	}
+
+	verifyImportSharedBoardModal() {
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	selectRoomForImport() {
+		// Go to parent element
+		cy.get(RoomBoards.#shareSettingsDialog)
+			// Locate the selection input of the room name
+			.find(RoomBoards.#roomSelectionBoxModal)
+			// Navigate to the room name as a first option and press enter
+			.type("{downarrow}{enter}");
+	}
+
+	clickContinueOnImportModal() {
+		cy.get(RoomBoards.#continueButtonInImportModal).click();
+	}
+
+	enterNewBoardNameForImport(roomNameTarget) {
+		cy.get(RoomBoards.#boardNameInput).clear().type(roomNameTarget);
+	}
+
+	clickImportOnModal() {
+		cy.get(RoomBoards.#importButton).click();
+	}
+
+	seeShareSettingsDialog() {
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	verifySameSchoolLinkCheckboxChecked() {
+		cy.get(RoomBoards.#sameSchoolCheckbox)
+			// Move to the parent container holding the checkbox
+			.parent()
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
+			.should("be.checked");
+	}
+
+	verify21DaysLinkCheckboxChecked() {
+		cy.get(RoomBoards.#days21Checkbox)
+			// Move to the parent container holding the checkbox
+			.parent()
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
+			.should("be.checked");
+	}
+
+	clickContinueButtonInShareSettingsDialog() {
+		cy.get(RoomBoards.#continueButton).click();
+	}
+
+	verifyShareViaModal() {
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	verifyShareViaEmailOption() {
+		cy.get(RoomBoards.#shareEmailOption).should("be.visible");
+	}
+
+	verifyCopyLinkOption() {
+		cy.get(RoomBoards.#copyLinkOption).should("be.visible");
+	}
+
+	verifyScanQRCodeOption() {
+		cy.get(RoomBoards.#scanQRCodeOption).should("be.visible");
+	}
+
+	copyBoardURLInModal() {
+		cy.get(RoomBoards.#urlInputBoxCopyBoard)
+			.parent()
+			.find('input[type="text"]')
+			.should("be.visible")
+			.invoke("val")
+			.then((boardUrl) => {
+				expect(boardUrl).to.be.a("string").and.not.be.empty;
+				cy.wrap(boardUrl).as("copiedURL");
+				cy.window().then((win) => {
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
+				});
+				cy.get(RoomBoards.#copyLinkOption).click();
+				cy.get("@writeTextStub").should("be.calledOnce");
+				cy.get("@writeTextStub").should("be.calledWith", boardUrl);
+			});
+	}
+
+	openSharedBoardURL() {
+		cy.get("@copiedURL").then((boardUrl) => {
+			cy.visit(boardUrl);
+			// Wait for 500 msec for any JavaScript actions to complete
+			cy.wait(500);
+		});
+	}
 
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
-			//three dot has same data-testid and needs to be located inside the parent element
+			//Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
@@ -52,7 +191,7 @@ class RoomBoards {
 
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
-			//three dot has same data-testid and needs to be located inside the parent element
+			//Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 	}
@@ -81,7 +220,8 @@ class RoomBoards {
 
 	verifyModeratorApprovalCheckboxCheckedInBBBModal() {
 		cy.get(RoomBoards.#moderatorApprovalCheckbox)
-			.find('input[type="checkbox"]') // Find the checkbox inside the parent options
+			// Find the checkbox inside the parent options
+			.find(RoomBoards.#checkBoxCopyShareBoardModal)
 			.should("be.checked");
 	}
 
@@ -121,7 +261,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#createVideoConferenceButton).should("be.visible");
 	}
 
-	verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage() {
+	verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage() {
 		cy.get(RoomBoards.#multiColumnCopiedBoardSelector).should("be.visible");
 	}
 

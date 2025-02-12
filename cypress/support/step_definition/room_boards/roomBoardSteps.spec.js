@@ -3,6 +3,97 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I see the alert message", () => {
+	roomBoards.verifyShareImportBoardAlert();
+});
+
+Then("I click to uncheck Link valid for the same school", () => {
+	roomBoards.uncheckLinkValidForSameSchool();
+});
+
+Then("I see an alert that importing the board is not allowed", () => {
+	roomBoards.verifyShareImportBoardAlert();
+});
+
+Then("I see the result url text box in the modal", () => {
+	roomBoards.verifySharedBoardResultUrlTextBox();
+});
+
+Then("I see the title in the share modal", () => {
+	roomBoards.verifyShareModalTitle();
+});
+
+Then("I see the information box in share modal", () => {
+	roomBoards.verifyShareInformationBox();
+});
+
+Then("I see the button Cancel in the share modal", () => {
+	roomBoards.verifyCancelButtonInShareModal();
+});
+
+When("I open the shared URL", () => {
+	roomBoards.openSharedBoardURL();
+});
+
+Then("I see the modal to import the shared board into the room", () => {
+	roomBoards.verifyImportSharedBoardModal();
+});
+
+When("I select the room from the room list in the modal", () => {
+	roomBoards.selectRoomForImport();
+});
+
+When("I click on the Continue button in the modal", () => {
+	roomBoards.clickContinueOnImportModal();
+});
+
+When(
+	"I enter a new name for the imported board {string} in the modal",
+	(importBoardName) => {
+		roomBoards.enterNewBoardNameForImport(importBoardName);
+	}
+);
+
+When("I click on the button Import in the modal", () => {
+	roomBoards.clickImportOnModal();
+});
+
+Then("I see the Share settings dialog", () => {
+	roomBoards.seeShareSettingsDialog();
+});
+
+Then("I see the checkbox Link valid for the same school is by default checked", () => {
+	roomBoards.verifySameSchoolLinkCheckboxChecked();
+});
+
+Then("I see the checkbox Link valid for 21 days is by default checked", () => {
+	roomBoards.verify21DaysLinkCheckboxChecked();
+});
+
+When("I click on the button Continue", () => {
+	roomBoards.clickContinueButtonInShareSettingsDialog();
+});
+
+Then("I see the Share via modal", () => {
+	roomBoards.verifyShareViaModal();
+});
+
+Then("I see the option Share via Email", () => {
+	roomBoards.verifyShareViaEmailOption();
+});
+
+Then("I see the option Copy link", () => {
+	roomBoards.verifyCopyLinkOption();
+});
+
+Then("I see the option Scan QR Code", () => {
+	roomBoards.verifyScanQRCodeOption();
+});
+
+Then("I copy the board URL", () => {
+	roomBoards.copyBoardURLInModal();
+});
+
 When("I click on the option edit in the three dot menu on the card", () => {
 	roomBoards.clickEditOptionInCardThreeDot();
 });
@@ -89,7 +180,7 @@ Then(
 );
 
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
@@ -105,7 +196,8 @@ When("I click on the multi-column board in the room detail page", () => {
 });
 
 Then("I do not see the chip Draft", () => {
-	roomBoards.verifyDraftChipNotVisible(); // Method to verify the Draft chip is not visible
+	// Method to verify the Draft chip is not visible
+	roomBoards.verifyDraftChipNotVisible();
 });
 
 Then("I see the chip Draft", () => {
