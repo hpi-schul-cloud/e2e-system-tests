@@ -37,6 +37,9 @@ class Login_Management {
 	static #userNameForLdapSchool = '[data-testid="username-ldap"]';
 	static #passwordForLdapSchool = '[data-testid="password-ldap"]';
 	static #loginButtonForLdapSchool = '[data-testid="submit-login-ldap"';
+	static #buttonLoginViaEmailNbc = '[data-testid="submit-cloud-site"]';
+	static #titleForgotPasswordDialog = '[data-testid="popup-title"]';
+	static #forgotPasswordDialog = '[data-testid="modal_content" ]';
 
 	// info about checkValidity: https://www.w3schools.com/js/js_validation_api.asp
 	// info about inputFieldInvalidPseudoSelector: https://glebbahmutov.com/blog/form-validation-in-cypress/
@@ -183,15 +186,52 @@ class Login_Management {
 	}
 
 	clickOnForgotPassword() {
-		cy.get(Login_Management.#passwordRecoveryButton).click();
+		cy.get("body").then((body) => {
+			if (body.find(Login_Management.#buttonLoginViaEmailNbc).length > 0) {
+				// If it exists in case of NBC login page, click on it and then the second element
+				cy.get(Login_Management.#buttonLoginViaEmailNbc)
+					.first()
+					.click()
+					.then(() => {
+						// locate the button in the specific class as they are used in multiple places
+						const pwdRecoveryButtonSelector =
+							".email-login-section " +
+							Login_Management.#passwordRecoveryButton;
+						cy.get(pwdRecoveryButtonSelector).click();
+					});
+			} else {
+				// If it doesn't exist, directly click on the second element
+				cy.get(Login_Management.#passwordRecoveryButton).click();
+			}
+		});
 	}
 
 	showUpElementsOnDialog() {
+		cy.get(Login_Management.#forgotPasswordDialog).should("be.visible");
+	}
+
+	checkUsernameLabel() {
 		cy.get(Login_Management.#usernameLabel).should("be.visible");
+	}
+
+	checkEmailInput() {
 		cy.get(Login_Management.#emailInput).should("be.visible");
+	}
+
+	checkInfoMessage() {
 		cy.get(Login_Management.#infoMessage).should("be.visible");
+	}
+
+	checkSubmitButton() {
 		cy.get(Login_Management.#submitButton).should("be.visible");
+	}
+
+	checkCancelButton() {
 		cy.get(Login_Management.#cancelButton).should("be.visible");
+	}
+
+	checkTitleOfDialog() {
+		cy.get(Login_Management.#titleForgotPasswordDialog).should("be.visible");
 	}
 
 	submitRequestWithoutEmail() {
