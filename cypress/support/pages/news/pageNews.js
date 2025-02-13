@@ -95,7 +95,7 @@ class News {
 	}
 
 	enterNewsTitle(newsTitle) {
-		cy.get(News.#newsTitleInput, { timeout: 20000 }).eq(1).type(newsTitle);
+		cy.get(News.#newsTitleInput, { timeout: 20000 }).type(newsTitle);
 	}
 
 	seeNewsCreationPage() {
