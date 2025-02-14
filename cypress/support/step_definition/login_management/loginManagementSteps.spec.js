@@ -3,31 +3,31 @@ import Login_Management from "../../pages/login_management/pageLoginManagement";
 
 const loginManagement = new Login_Management();
 
-Then("I see the forgot password dialog is visible", () => {
+Then("I see the dialog Password Reset", () => {
 	loginManagement.showUpElementsOnDialog();
 });
 
-Then("I see the username label is visible", () => {
+Then("I see the label Username on the dialog", () => {
 	loginManagement.checkUsernameLabel();
 });
 
-Then("I see the email input field is visible", () => {
+Then("I see the input field to enter an Email", () => {
 	loginManagement.checkEmailInput();
 });
 
-Then("I see the info message is visible", () => {
+Then("I see the Information on the dialog", () => {
 	loginManagement.checkInfoMessage();
 });
 
-Then("I see the submit button is visible", () => {
+Then("I see the button Submit on the dialog", () => {
 	loginManagement.checkSubmitButton();
 });
 
-Then("I see the cancel button is visible", () => {
+Then("I see the button Cancel on the dialog", () => {
 	loginManagement.checkCancelButton();
 });
 
-Then("I see the title of the dialog is visible", () => {
+Then("I see the Title on the dialog", () => {
 	loginManagement.checkTitleOfDialog();
 });
 
@@ -35,11 +35,11 @@ Then("I see the Reset Password dialog", () => {
 	loginManagement.showUpElementsOnDialog();
 });
 
-When("I clear email section and submit the request", () => {
+When("I submit the request without the Email", () => {
 	loginManagement.submitRequestWithoutEmail();
 });
 
-Then("I still see the email input box that request is not submitted", () => {
+Then("I still see the input field Email that request is not submitted", () => {
 	loginManagement.seeEmailInputOnSubmittingRequestWithoutEnteringEmail();
 });
 

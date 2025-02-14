@@ -5,18 +5,18 @@ Feature: Login Management - Forgot Password Dialog Visibility Checks
     As a user (teacher or student or admin), I want to see password recovery dialog box visible to me so that I can recover my password in case needed.
 
 
-    Scenario: All elements in I see the forgot password dialog is visible
+    Scenario: All elements of the Passwort Reset dialog are available
         Given I am on the '<namespace>' login page
         When I click on Forgot Password
-        Then I see the forgot password dialog is visible
-        Then I see the title of the dialog is visible
-        Then I see the username label is visible
-        Then I see the email input field is visible
-        Then I see the info message is visible
-        Then I see the submit button is visible
-        Then I see the cancel button is visible
-        When I clear email section and submit the request
-        Then I still see the email input box that request is not submitted
+        Then I see the dialog Password Reset
+        Then I see the Title on the dialog
+        Then I see the label Username on the dialog
+        Then I see the input field to enter an Email
+        Then I see the Information on the dialog
+        Then I see the button Submit on the dialog
+        Then I see the button Cancel on the dialog
+        When I submit the request without the Email
+        Then I still see the input field Email that request is not submitted
 
         @school_api_test
         Examples:
