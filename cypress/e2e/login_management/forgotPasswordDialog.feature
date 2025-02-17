@@ -16,7 +16,7 @@ Feature: Login Management - Forgot Password Dialog Visibility Checks
         Then I see the button Submit on the dialog
         Then I see the button Cancel on the dialog
         When I submit the request without the Email
-        Then I still see the input field Email that request is not submitted
+        Then I still see the input field Email so request is not submitted
 
         @school_api_test
         Examples:

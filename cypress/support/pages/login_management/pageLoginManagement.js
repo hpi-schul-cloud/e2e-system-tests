@@ -188,19 +188,10 @@ class Login_Management {
 
 	clickOnForgotPassword() {
 		cy.get("body").then((body) => {
-			// on NBC login page
-			if (body.find(Login_Management.#buttonLoginViaEmailNbc).length > 0) {
-				cy.get(Login_Management.#buttonLoginViaEmailNbc)
-					.first()
-					.click()
-					.then(() => {
-						cy.get(Login_Management.#classEmailLoginSection)
-							.find(Login_Management.#passwordRecoveryButton)
-							.click();
-					});
-			} else {
-				cy.get(Login_Management.#passwordRecoveryButton).click();
+			if (body.find(Login_Management.#buttonLoginViaEmailNbc).length) {
+				cy.get(Login_Management.#buttonLoginViaEmailNbc).first().click();
 			}
+			cy.get(Login_Management.#passwordRecoveryButton).first().click();
 		});
 	}
 

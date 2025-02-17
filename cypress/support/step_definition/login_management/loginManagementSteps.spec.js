@@ -39,7 +39,7 @@ When("I submit the request without the Email", () => {
 	loginManagement.submitRequestWithoutEmail();
 });
 
-Then("I still see the input field Email that request is not submitted", () => {
+Then("I still see the input field Email so request is not submitted", () => {
 	loginManagement.seeEmailInputOnSubmittingRequestWithoutEnteringEmail();
 });
 
