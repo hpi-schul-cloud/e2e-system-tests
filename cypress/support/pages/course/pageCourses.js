@@ -317,6 +317,11 @@ class Courses {
 			});
 	}
 
+	// this method is used for cleaning up courses on staging before testrun. So timeout is set to 100ms
+	seeCourseOnCourseOverviewPage(courseName) {
+		cy.contains(Courses.#courseTitleInCourseoverview, courseName, { timeout: 2500 });
+	}
+
 	navigateToLtiTools() {
 		cy.get(Courses.#ltiToolsTab).click();
 	}

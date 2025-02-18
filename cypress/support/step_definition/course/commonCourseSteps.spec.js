@@ -41,6 +41,10 @@ When("I go to course {string}", (courseName) => {
 	courses.navigateToCoursePage(courseName);
 });
 
+Then("I see course {string} on page Course overview", (courseName) => {
+	courses.seeCourseOnCourseOverviewPage(courseName);
+});
+
 Then("I see the course {string} on the course overview page", (courseName) => {
 	courses.courseIsVisiblOnOverviewPage(courseName);
 });
