@@ -317,9 +317,79 @@ class Courses {
 			});
 	}
 
-	// this method is used for cleaning up courses on staging before testrun. So timeout is set to 100ms
+	deleteElementsWithText(textSelector, courseName, clickSelector) {
+		cy.get("body").then(($body) => {
+			if ($body.find('[data-testid="emptyTaskMessage"]').length) {
+				cy.log("No courses available to delete. Test will exit.");
+				return;
+			} else {
+				this.findAndDeleteCourses(textSelector, courseName, clickSelector);
+			}
+		});
+	}
+
+	findAndDeleteCourses(textSelector, courseName, clickSelector) {
+		const courseRegex = new RegExp(`^${courseName}.*$`, "i");
+
+		cy.get(textSelector).then(($elements) => {
+			const matchingElements = Cypress.$($elements).filter((_, el) =>
+				courseRegex.test(Cypress.$(el).text().trim())
+			);
+
+			if (matchingElements.length > 0) {
+				cy.log(`Found ${matchingElements.length} courses matching "${courseName}"`);
+				this.deleteCourse(textSelector, courseName, clickSelector);
+			} else {
+				cy.log(`No more courses found with course name "${courseName}".`);
+			}
+		});
+	}
+
+	deleteCourse(textSelector, courseName, clickSelector) {
+		cy.get(textSelector)
+			.contains(new RegExp(`^${courseName}.*$`, "i"))
+			.scrollIntoView()
+			.parent("div")
+			.within(() => {
+				cy.get(clickSelector).should("be.visible").click();
+			});
+
+		cy.get('[data-testid="room-menu"]').should("be.visible").click();
+		cy.get('[data-testid="room-menu-edit-delete"]').should("be.visible").click();
+		cy.get(Courses.#deleteButton).should("be.visible").click();
+		cy.get(Courses.#courseDeleteConfirmationModal).should("exist");
+		cy.get(Courses.#confirmDeletionPopup).should("be.visible").click();
+
+		cy.wait(2000);
+
+		cy.get("body").then(($body) => {
+			if ($body.text().includes(courseName)) {
+				this.deleteElementsWithText(textSelector, courseName, clickSelector);
+			} else {
+				cy.log(`All courses with name "${courseName}" deleted successfully.`);
+			}
+		});
+	}
+
+	verifyCourseDeletion(courseName) {
+		cy.get("body").then(($body) => {
+			if (!$body.text().includes(courseName)) {
+				cy.log(`All courses with name "${courseName}" deleted successfully.`);
+			} else {
+				cy.get('[data-testid="course-title"]').should("not.contain.text", courseName);
+			}
+		});
+	}
+
 	seeCourseOnCourseOverviewPage(courseName) {
-		cy.contains(Courses.#courseTitleInCourseoverview, courseName, { timeout: 2500 });
+		cy.wait(2000);
+		this.deleteElementsWithText(
+			'[data-testid="course-title"]',
+			courseName,
+			'[data-testid="course-icon"]'
+		);
+
+		this.verifyCourseDeletion(courseName);
 	}
 
 	navigateToLtiTools() {
