@@ -10,13 +10,7 @@ Feature: Deletion of test data that are left from previous failed test runs on s
 
         # Deleting test data courses
         When I go to courses overview
-        Then I see course '<search_query>' on page Course overview
-        # When I go to course '<search_query>'
-        # When I open page Edit course
-        # When I click on the button delete course
-        # Then I see the modal to confirm the deletion
-        # When I click on the button delete on the modal to confirm the course deletion
-        # Then I do not see the course '<search_query>' on the course overview page
+        Then I delete all courses which names contain '<search_query>'
 
         @staging_test
         Examples:

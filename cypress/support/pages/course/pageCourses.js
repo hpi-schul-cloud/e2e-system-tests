@@ -381,7 +381,7 @@ class Courses {
 		});
 	}
 
-	seeCourseOnCourseOverviewPage(courseName) {
+	deleteAllCoursesWithName(courseName) {
 		cy.wait(2000);
 		this.deleteElementsWithText(
 			'[data-testid="course-title"]',
