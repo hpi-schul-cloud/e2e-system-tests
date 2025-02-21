@@ -1,0 +1,8 @@
+Following features from course folder are not executable at the moment:
+createEditAndDeleteCourseWithClasses
+createEditStopPartialSyncedCourse
+createEditStopSyncedCourse
+
+Following features from course-board folder are not executable at the moment:
+shareBoardCardLink
+deleteDeletedElementOnBoard

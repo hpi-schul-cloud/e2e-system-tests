@@ -4,7 +4,6 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
 
     As a teacher I want to add ctl tools with context restriction board-element
 
-    @stable_test
     Scenario: Teacher adds tools with context restriction board-element in a board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
