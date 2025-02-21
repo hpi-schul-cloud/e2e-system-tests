@@ -4,7 +4,6 @@ Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout
 
-    @stable_test
     Scenario: Teacher changes board layout
         Given I am logged in as a '<teacher>' at '<namespace>'
 

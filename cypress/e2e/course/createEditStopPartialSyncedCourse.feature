@@ -3,7 +3,6 @@ Feature: Teacher can create partially synchronized course
 
     As a Teacher I want to create a partially synchronized course and partially synchronize an existing course with a group
 
-    @unstable_test
     Scenario: Pre-Condition: activate student visibility
         Given I am logged in as a 'admin1_nbc' at 'nbc'
         When I click on administration in menu
@@ -23,7 +22,6 @@ Feature: Teacher can create partially synchronized course
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
 
-    @unstable_test
     Scenario: Create a partially synchronized course
         Given I am logged in as a 'teacher1_nbc' at 'nbc'
         When I go to courses overview
@@ -80,7 +78,6 @@ Feature: Teacher can create partially synchronized course
         Then I see the teacher 'Herzog, Karl' is selected
         Then I see the student 'Kraft, Herbert' is selected
 
-    @unstable_test
     Scenario: Post-Condition: Admin deletes courses
         Given I am logged in as a 'admin1_nbc' at 'nbc'
         When I click on administration in menu

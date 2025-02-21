@@ -4,8 +4,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
 
     As a teacher I want to add, edit and delete a ctl tool in my course board
 
-    @stable_test
-    Scenario Outline: Teacher adds, edits and deletes tools in a course board
+    Scenario: Teacher adds, edits and deletes tools in a course board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
@@ -176,10 +175,10 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | course_name         | fullname_teacher | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course | Karl Herzog      | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+            | admin      | teacher      | namespace | course_name         | fullname_teacher | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course | Karl Herzog      | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | course_name         | fullname_teacher  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course | cypress teacher_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+            | admin      | teacher      | namespace | course_name         | fullname_teacher  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course | cypress teacher_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |

@@ -4,7 +4,6 @@ Feature: Course Board  - To add a preferred tool in a board
 
     As a teacher I want to add a preferred tool in my course board
 
-    @stable_test
     Scenario Outline: Teacher adds, edits and deletes tools in a course board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

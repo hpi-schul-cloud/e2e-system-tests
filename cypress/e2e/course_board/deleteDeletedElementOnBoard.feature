@@ -1,7 +1,6 @@
 @unstable_test
 Feature: Course Board - Deleting a placeholder element for deleted content
 
-    @unstable_test
     Scenario: Student can see outdated dialog for outdated tool
         Given I am logged in as a 'student2_nbc' at 'nbc'
         When I go to courses overview
@@ -9,7 +8,6 @@ Feature: Course Board - Deleting a placeholder element for deleted content
         When I click on card Course Board
         Then I cannot see any deleted elements
 
-    @unstable_test
     Scenario: Teacher deletes a placeholder element for deleted content
         Given I am logged in as a 'teacher1_nbc' at 'nbc'
         When I go to courses overview
