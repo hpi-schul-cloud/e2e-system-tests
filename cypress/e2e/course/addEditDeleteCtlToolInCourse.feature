@@ -121,7 +121,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see the context external tool configuration page
         Then I see custom parameter input field '<context_param_name>' contains '<param_value_updated>'
 
-        # sudent sees course tools but does not see the button to add a tool
+        # student sees course tools but does not see the button to add a tool
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -178,11 +178,10 @@ Feature: Course - To add, edit and delete a ctl tool in a course
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name         | fullname_teacher | fullname_student | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | Karl Herzog      | Herbert Kraft    | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name         | fullname_teacher | fullname_student | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | Karl Herzog      | Herbert Kraft    | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
 
-        # Note: uncomment this once the bug with student login has been fixed
-        # @school_api_test
-        # Examples:
-        #     | admin      | teacher      | student      | namespace | course_name         | fullname_teacher  | fullname_student  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-        #     | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | cypress teacher_1 | cypress student_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+        @school_api_test
+        Examples:
+            | admin      | teacher      | student      | namespace | course_name         | fullname_teacher  | fullname_student  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | cypress teacher_1 | cypress student_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |

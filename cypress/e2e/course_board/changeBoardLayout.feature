@@ -4,7 +4,6 @@ Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout
 
-    @stable_test
     Scenario: Teacher changes board layout
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -39,7 +38,7 @@ Feature: Course Board - To change the board layout
         When I click on the page outside of the card
         Then I see a board card
 
-        # teacher changes board layout to signle column
+        # teacher changes board layout to single column
         When I click on three dot menu in the board header
         When I click on the option Change layout in three dot menu in course board
         Then I see a dialog box for column board
