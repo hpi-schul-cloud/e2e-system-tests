@@ -15,6 +15,7 @@ Feature: Teacher can create, update and stop a synchronized course
         Then I see the warning text of the modal to select a synced group
         Then I see continue button of the modal to select a synced group is disabled
         When I click cancel button on the modal to select a synced group
+
         Examples:
             | user       | namespace | group_title                                    |
             | admin1_nbc | nbc       | Cypress-Test-Group-Course-Sync-Without-Teacher |
@@ -50,6 +51,7 @@ Feature: Teacher can create, update and stop a synchronized course
         When I go to new class administration page
         Then I see the new class administration page
         Then I see the group '<group_title>' is synced with course '<group_title>'
+
         Examples:
             | user         | namespace | group_title                     | teacher_name | substitute_teacher_name | student_name  | start_date | end_date   |
             | teacher1_nbc | nbc       | Cypress-Test-Group-Course-Sync  | Karl Herzog  | Lara Hande              | Herbert Kraft | 01.08.2024 | 31.07.2025 |
@@ -89,6 +91,7 @@ Feature: Teacher can create, update and stop a synchronized course
         Then I see information text of the modal asking for confirmation of synchronization
         When I click the confirm button on the synchronization confirmation modal
         Then I see the synced chip next to the title on the course page
+
         Examples:
             | user         | namespace | course_title                 | group_title        | teacher_name | student_name  |
             | teacher1_nbc | nbc       | Cypress-Test-Existing-Course | Cypress-Test-Group | Karl Herzog  | Herbert Kraft |
@@ -114,6 +117,7 @@ Feature: Teacher can create, update and stop a synchronized course
         When I click on button Save changes in page Edit course
         Then I see the course '<course_title_new>' on the course overview page
         Then I do not see the course '<course_title>' on the course overview page
+
         Examples:
             | course_title                   | course_title_new         | teacher_name | substitute_teacher_name | student_name   | start_date | end_date   |
             | Cypress-Test-Group-Course-Sync | Cypress-Test-Course-Sync | Herzog, Karl | Hande, Lara             | Kraft, Herbert | 01.08.2024 | 31.07.2025 |
@@ -134,6 +138,7 @@ Feature: Teacher can create, update and stop a synchronized course
         When I go to new class administration page
         Then I see the new class administration page
         Then I see the group '<group_title>' has no synced course
+
         Examples:
             | course_title                 | group_title                    |
             | Cypress-Test-Course-Sync     | Cypress-Test-Group-Course-Sync |
@@ -150,6 +155,7 @@ Feature: Teacher can create, update and stop a synchronized course
         When I go to courses overview
         When I go to course '<group_title>'
         Then I see the course '<group_title>' is unsynchronized
+
         Examples:
             | group_title                     |
             | Cypress-Test-Group-Course-Sync2 |
@@ -162,6 +168,7 @@ Feature: Teacher can create, update and stop a synchronized course
         Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_title>' on the course overview page
+
         Examples:
             | course_title                    |
             | Cypress-Test-Course-Sync        |
