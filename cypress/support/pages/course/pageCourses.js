@@ -137,6 +137,7 @@ class Courses {
 	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
+	static #messageNoTasksAvailable = '[data-testid="emptyTaskMessage"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -319,7 +320,7 @@ class Courses {
 
 	deleteElementsWithText(textSelector, courseName, clickSelector) {
 		cy.get("body").then(($body) => {
-			if ($body.find('[data-testid="emptyTaskMessage"]').length) {
+			if ($body.find(Courses.#messageNoTasksAvailable).length) {
 				cy.log("No courses available to delete. Test will exit.");
 				return;
 			} else {

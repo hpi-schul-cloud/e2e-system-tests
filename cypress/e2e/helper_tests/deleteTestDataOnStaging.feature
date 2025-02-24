@@ -1,4 +1,4 @@
-@clean_up_test_data
+@clean_up_staging_test_data
 
 Feature: Deletion of test data that are left from previous failed test runs on staging
 
@@ -10,7 +10,7 @@ Feature: Deletion of test data that are left from previous failed test runs on s
 
         # Deleting test data courses
         When I go to courses overview
-        Then I delete all courses which names contain '<search_query>'
+        Then I delete all courses whose names start with '<search_query>'
 
         @staging_test
         Examples:

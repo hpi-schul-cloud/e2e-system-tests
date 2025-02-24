@@ -41,7 +41,7 @@ When("I go to course {string}", (courseName) => {
 	courses.navigateToCoursePage(courseName);
 });
 
-When("I delete all courses which names contain {string}", (courseName) => {
+When("I delete all courses whose names start with {string}", (courseName) => {
 	courses.deleteAllCoursesWithName(courseName);
 });
 
