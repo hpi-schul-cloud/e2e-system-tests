@@ -133,11 +133,12 @@ class Courses {
 	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
 	static #delteToolDialog = '[data-testid="delete-dialog"]';
-	static #delteDialogTitle = '[data-testid="dialog-title"]';
-	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
+	static #deleteDialogTitle = '[data-testid="dialog-title"]';
+	static #deleteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
 	static #messageNoTasksAvailable = '[data-testid="emptyTaskMessage"]';
+	static #iconCourse = '[data-testid="course-icon"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -355,8 +356,8 @@ class Courses {
 				cy.get(clickSelector).should("be.visible").click();
 			});
 
-		cy.get('[data-testid="room-menu"]').should("be.visible").click();
-		cy.get('[data-testid="room-menu-edit-delete"]').should("be.visible").click();
+		cy.get(Courses.#dropDownCourse).should("be.visible").click();
+		cy.get(Courses.#btnCourseEdit).should("be.visible").click();
 		cy.get(Courses.#deleteButton).should("be.visible").click();
 		cy.get(Courses.#courseDeleteConfirmationModal).should("exist");
 		cy.get(Courses.#confirmDeletionPopup).should("be.visible").click();
@@ -377,7 +378,7 @@ class Courses {
 			if (!$body.text().includes(courseName)) {
 				cy.log(`All courses with name "${courseName}" deleted successfully.`);
 			} else {
-				cy.get('[data-testid="course-title"]').should("not.contain.text", courseName);
+				cy.get(Courses.#courseTitleInCourseoverview).should("not.contain.text", courseName);
 			}
 		});
 	}
@@ -385,9 +386,9 @@ class Courses {
 	deleteAllCoursesWithName(courseName) {
 		cy.wait(2000);
 		this.deleteElementsWithText(
-			'[data-testid="course-title"]',
+			Courses.#courseTitleInCourseoverview,
 			courseName,
-			'[data-testid="course-icon"]'
+			Courses.#iconCourse
 		);
 
 		this.verifyCourseDeletion(courseName);
@@ -902,8 +903,8 @@ class Courses {
 
 	seeDeleteDialog() {
 		cy.get(Courses.#delteToolDialog).should("be.visible");
-		cy.get(Courses.#delteDialogTitle).should("be.visible");
-		cy.get(Courses.#delteDialogContent).should("be.visible");
+		cy.get(Courses.#deleteDialogTitle).should("be.visible");
+		cy.get(Courses.#deleteDialogContent).should("be.visible");
 		cy.get(Courses.#confirmDeleteDialogButton).should("be.visible");
 	}
 
