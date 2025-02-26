@@ -18,8 +18,6 @@ class Board {
 	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
-	static #textElement = '[data-testid="ckeditor"]';
-	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
 	static #renameOptionInThreeDotCourseBoardTitle =
@@ -29,7 +27,6 @@ class Board {
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
 	static #selectExternalToolsFromMenu =
 		'[data-testid="create-element-external-tool-container"]';
-	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
 	static #boardMenuActionChangeLayout =
@@ -262,8 +259,9 @@ class Board {
 	}
 
 	seePreferredExternalToolInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
-			.should("be.visible");
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
+			"be.visible"
+		);
 	}
 
 	selectPreferredExternalToolFromMenu(toolName) {
@@ -271,8 +269,9 @@ class Board {
 	}
 
 	preferredExternalToolIsNotVisibleInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
-			.should("not.exist");
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
+			"not.exist"
+		);
 	}
 
 	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {
@@ -404,14 +403,14 @@ class Board {
 
 	selectCopyLinkToCardInThreeDotMenu() {
 		cy.get(Board.#copyBoardCardLinkButton).click();
-
 		cy.window()
 			.then((win) => {
+				// ensure the document is focused
+				win.focus();
 				return win.navigator.clipboard.readText();
 			})
 			.then((link) => {
 				cy.wrap(link).as("boardCardLink");
-
 				cy.url().then((currentUrl) => {
 					expect(link).to.include(currentUrl);
 				});

@@ -88,6 +88,19 @@ Given(
 	}
 );
 
+Given(
+	"a course with name {string} exists with {string} as a second teacher",
+	(courseName, teacherName) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		courses.selectTeacherInCourseCreatePage(teacherName);
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+	}
+);
+
 Given("a multi-column board exists in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
