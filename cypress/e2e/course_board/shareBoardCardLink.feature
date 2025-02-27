@@ -9,7 +9,18 @@ Feature: Course Board - To share a board card link
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: first teacher creates a course with the two teachers assigned
-        Given a course with name '<course_name>' exists with '<teacher_2>' as a second teacher
+        When I go to courses overview
+        When I click on FAB to create a new course depending on sub menu
+        Then I see section one area on the course create page
+        When I enter the course title '<course_name>'
+        Then I see teacher '<fullname_teacher_1>' is selected by default
+        When I select '<fullname_teacher_2>' from field teacher
+        When I click on button Next Steps after entering the course detail in section one
+        Then I see section two area on the course create page
+        When I click on button Next Steps after selecting course participant details
+        Then I see the section three area as the finish page
+        When I click on button To Course Overview on the finish page
+        Then I see the course '<course_name>' on the course overview page
 
         # first teacher adds a board with a card to the course
         When I go to course '<course_name>'
