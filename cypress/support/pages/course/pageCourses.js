@@ -133,10 +133,12 @@ class Courses {
 	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
 	static #delteToolDialog = '[data-testid="delete-dialog"]';
-	static #delteDialogTitle = '[data-testid="dialog-title"]';
-	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
+	static #deleteDialogTitle = '[data-testid="dialog-title"]';
+	static #deleteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
+	static #messageNoTasksAvailable = '[data-testid="emptyTaskMessage"]';
+	static #iconCourse = '[data-testid="course-icon"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -315,6 +317,81 @@ class Courses {
 						});
 					});
 			});
+	}
+
+	deleteElementsWithText(textSelector, courseName, clickSelector) {
+		cy.get("body").then(($body) => {
+			if ($body.find(Courses.#messageNoTasksAvailable).length) {
+				cy.log("No courses available to delete. Test will exit.");
+				return;
+			} else {
+				this.findAndDeleteCourses(textSelector, courseName, clickSelector);
+			}
+		});
+	}
+
+	findAndDeleteCourses(textSelector, courseName, clickSelector) {
+		const courseRegex = new RegExp(`^${courseName}.*$`, "i");
+
+		cy.get(textSelector).then(($elements) => {
+			const matchingElements = Cypress.$($elements).filter((_, el) =>
+				courseRegex.test(Cypress.$(el).text().trim())
+			);
+
+			if (matchingElements.length > 0) {
+				cy.log(`Found ${matchingElements.length} courses matching "${courseName}"`);
+				this.deleteCourse(textSelector, courseName, clickSelector);
+			} else {
+				cy.log(`No more courses found with course name "${courseName}".`);
+			}
+		});
+	}
+
+	deleteCourse(textSelector, courseName, clickSelector) {
+		cy.get(textSelector)
+			.contains(new RegExp(`^${courseName}.*$`, "i"))
+			.scrollIntoView()
+			.parent("div")
+			.within(() => {
+				cy.get(clickSelector).should("be.visible").click();
+			});
+
+		cy.get(Courses.#dropDownCourse).should("be.visible").click();
+		cy.get(Courses.#btnCourseEdit).should("be.visible").click();
+		cy.get(Courses.#deleteButton).should("be.visible").click();
+		cy.get(Courses.#courseDeleteConfirmationModal).should("exist");
+		cy.get(Courses.#confirmDeletionPopup).should("be.visible").click();
+
+		cy.wait(2000);
+
+		cy.get("body").then(($body) => {
+			if ($body.text().includes(courseName)) {
+				this.deleteElementsWithText(textSelector, courseName, clickSelector);
+			} else {
+				cy.log(`All courses with name "${courseName}" deleted successfully.`);
+			}
+		});
+	}
+
+	verifyCourseDeletion(courseName) {
+		cy.get("body").then(($body) => {
+			if (!$body.text().includes(courseName)) {
+				cy.log(`All courses with name "${courseName}" deleted successfully.`);
+			} else {
+				cy.get(Courses.#courseTitleInCourseoverview).should("not.contain.text", courseName);
+			}
+		});
+	}
+
+	deleteAllCoursesWithName(courseName) {
+		cy.wait(2000);
+		this.deleteElementsWithText(
+			Courses.#courseTitleInCourseoverview,
+			courseName,
+			Courses.#iconCourse
+		);
+
+		this.verifyCourseDeletion(courseName);
 	}
 
 	navigateToLtiTools() {
@@ -826,8 +903,8 @@ class Courses {
 
 	seeDeleteDialog() {
 		cy.get(Courses.#delteToolDialog).should("be.visible");
-		cy.get(Courses.#delteDialogTitle).should("be.visible");
-		cy.get(Courses.#delteDialogContent).should("be.visible");
+		cy.get(Courses.#deleteDialogTitle).should("be.visible");
+		cy.get(Courses.#deleteDialogContent).should("be.visible");
 		cy.get(Courses.#confirmDeleteDialogButton).should("be.visible");
 	}
 
