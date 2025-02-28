@@ -23,7 +23,8 @@
 		"cy:headless:stable:groupA:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-A and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-A",
 		"cy:headless:stable:groupB:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-B and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-B",
 		"cy:headless:only:ci": "xvfb-run cypress run --browser edge -e tags=@only,environmentName=ci",
-		"cy:headless:unstable:ci": "xvfb-run cypress run --browser edge -e tags=@unstable_test,environmentName=ci"
+		"cy:headless:unstable:ci": "xvfb-run cypress run --browser edge -e tags=@unstable_test,environmentName=ci",
+		"cy:gui:stable:clean_up_staging:local": "cypress open --browser edge -e tags=\"@clean_up_staging_test_data\",environmentName=staging"
 	},
 	"repository": {
 		"type": "git",
