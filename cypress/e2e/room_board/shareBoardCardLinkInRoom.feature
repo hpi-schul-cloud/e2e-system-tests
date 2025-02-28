@@ -1,4 +1,5 @@
-@unstable_test
+@regression_test
+@stable_test
 Feature: Room Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
@@ -7,7 +8,7 @@ Feature: Room Board - To share a board card link
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
-        # pre-condition: first teacher creates a room
+        # pre-condition: first teacher creates a room with second teacher assigned
         When I go to room overview
         When I click on FAB to create new room
         Then I see room creation page
@@ -24,6 +25,7 @@ Feature: Room Board - To share a board card link
         When I click on the button to add the participant
         Then I see '<name_teacher_1>' in the room participants list
         Then I see '<name_teacher_2>' in the room participants list
+
         # first teacher adds a board with a card to the room
         When I go to room overview
         When I go to room '<room_name>'
@@ -55,14 +57,7 @@ Feature: Room Board - To share a board card link
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
-        When I go to room '<room_name>'
-        Then I see the detail page of room '<room_name>'
-        When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
-        Then I see confirmation modal for deleting the room
-        When I click on delete button in confirmation modal
-        Then I do not see '<room_name>' on room overview page
+        Given the room named '<room_name>' is deleted
 
         @staging_test
         Examples:
