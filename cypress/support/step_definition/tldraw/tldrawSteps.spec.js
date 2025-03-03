@@ -3,12 +3,20 @@ import { Tldraw } from "../../pages/tldraw/pageTldraw";
 
 const tldraw = new Tldraw();
 
-When("I click on the pencil tool", () => {
+When("I click on the icon Pencil tool", () => {
 	tldraw.selectPencilTool();
 });
 
-When("I click on the text tool", () => {
+When("I click on the icon Text tool", () => {
 	tldraw.selectTextTool();
+});
+
+When("I click on the icon Image tool", () => {
+	tldraw.selectImageTool();
+});
+
+When("I click on icon delete", () => {
+	tldraw.removeElement();
 });
 
 When("I draw a line on the canvas with startpoint {string}, {string} and endpoint {string}, {string}", (startX, startY, endX, endY) => {
@@ -23,6 +31,22 @@ Then("I should see the line drawn", () => {
 	tldraw.checkLine();
 });
 
+Then("I do not see the text {string}", (text) => {
+	tldraw.checkTextNotExisting();
+});
+
 Then("I should see the text {string} drawn", (text) => {
 	tldraw.checkText(text);
+});
+
+When("I upload image {string} in tldraw", (fileName) => {
+	tldraw.executeImageUpload(fileName);
+});
+
+Then("I should see the image {string}", (fileName) => {
+	tldraw.checkImage(fileName);
+});
+
+When("I click on the text {string}", (text) => {
+	tldraw.clickOnText(text);
 });

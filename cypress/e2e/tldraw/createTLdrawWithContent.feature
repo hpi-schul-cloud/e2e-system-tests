@@ -22,9 +22,9 @@ Feature: TLDraw - Test tldraw on board
         When I click on plus icon to add content into card
         When I select 'drawing-element' from the element selection dialog box
         When I click on the whiteboard element
-        When I click on the pencil tool
+        When I click on the icon Pencil tool
         When I draw a line on the canvas with startpoint '100', '100' and endpoint '300', '300'
-        When I click on the text tool
+        When I click on the icon Text tool
         When I type text '<text_to_write>' on the canvas on position '200', '500'
         Then I should see the line drawn
         Then I should see the text '<text_to_write>' drawn
@@ -37,6 +37,13 @@ Feature: TLDraw - Test tldraw on board
         When I click on the whiteboard element
         Then I should see the line drawn
         Then I should see the text '<text_to_write>' drawn
+        When I click on the text '<text_to_write>'
+        When I click on icon delete
+        Then I do not see the text '<text_to_write>'
+        #When I click on the icon Image tool
+        #When I upload image 'example_jpg.jpg' in tldraw
+        #Then I should see the image '<text_to_write>'
+
 
         # post-condition: clean up the created course
         Given I am logged in as a '<teacher>' at '<namespace>'
