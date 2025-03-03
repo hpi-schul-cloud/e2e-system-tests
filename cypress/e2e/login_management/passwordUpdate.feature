@@ -1,9 +1,9 @@
-@unstable_test
+@regression_test
+@stable_test
 Feature: Login Management - Verify login functionality via password change
 
     As a user, I want to see how app behaves when I'll change password.
 
-    @unstable_test
     Scenario Outline: User change password, login and change again to old passwords.
         Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
@@ -56,6 +56,10 @@ Feature: Login Management - Verify login functionality via password change
         When I click on the initials
         When I logout
 
+        @school_api_test
+        @staging_test
         Examples:
             | namespace |
             | dbc       |
+            | brb       |
+            | nbc       |

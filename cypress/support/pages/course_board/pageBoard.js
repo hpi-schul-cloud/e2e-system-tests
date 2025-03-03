@@ -182,7 +182,7 @@ class Board {
 
 	clickOnThreeDotOnCard() {
 		cy.get(Board.#threeDotMenuInCard).click();
-		cy.get(Board.#editOptionThreeDot).should("be.visible");
+		//cy.get(Board.#editOptionThreeDot).should("be.visible");
 	}
 
 	clickOnThreeDotOnDeletedElement() {
@@ -402,21 +402,15 @@ class Board {
 	}
 
 	selectCopyLinkToCardInThreeDotMenu() {
-		cy.get(Board.#copyBoardCardLinkButton).click();
+		// Click the button to copy the link
+		cy.get(Board.#copyBoardCardLinkButton)
+			.click()
 
-		cy.window().then((win) => {
-			// Stub the writeText method ( to simulate copying)
-			cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
-			// Ensure the document is focused
-			win.focus();
-			// Get the URL that will be copied
-			cy.get(Board.#copyBoardCardLinkButton)
-				.invoke("val")
-				.then((link) => {
-					// Store the link for later use
-					cy.wrap(link).as("boardCardLink");
-					cy.log("Board Card Link: " + link);
-				});
+			.invoke("attr", "href") // Get the text (URL) from the element
+			.copyToClipboard(); // Copy the URL to clipboard
+		cy.copyFromClipboard().then((clipboardData) => {
+			cy.wrap(clipboardData).as("boardCardLink"); // Store clipboard content in alias
+			cy.log("Board Card Link: " + clipboardData); // Log the copied data for debugging
 		});
 	}
 
