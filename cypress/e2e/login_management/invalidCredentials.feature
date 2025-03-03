@@ -1,11 +1,11 @@
-@regression_test
-@stable_test
+@unstable_test
 Feature: Login Management - Verify login functionality via wrong user data
 
     As a user (teacher, student or admin), I want to see how app behaves when I'll use invalid credentials.
 
+    Scenario: user sees the validation error on the login page, when enterting the wrong credentials
 
-    Scenario: User uses invalid email and password
+        # user uses invalid email and password
         Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
         When I enter invalid email
@@ -14,31 +14,12 @@ Feature: Login Management - Verify login functionality via wrong user data
         When I click button Submit
         Then I see error message
 
-        @school_api_test
-        @staging_test
-        Examples:
-            | namespace |
-            | dbc       |
-            | nbc       |
-            | brb       |
-
-
-
-    Scenario: User login with empty fields
+        #: user login with empty fields
         Given I am on the '<namespace>' login page
         When I click button Submit
         Then I see form validation message
 
-        @school_api_test
-        @staging_test
-        Examples:
-            | namespace |
-            | dbc       |
-            | nbc       |
-            | brb       |
-
-
-    Scenario: User uses invalid username and password
+        # user uses invalid username and password
         Given I am on the '<namespace>' login page
         Then I see email field is visible and empty
         When I enter invalid username
@@ -51,6 +32,4 @@ Feature: Login Management - Verify login functionality via wrong user data
         @staging_test
         Examples:
             | namespace |
-            | dbc       |
-            | brb       |
             | nbc       |

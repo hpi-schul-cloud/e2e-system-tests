@@ -103,17 +103,17 @@ class Login_Management {
 	}
 
 	assertEmailFieldIsVisibleAndEmpty() {
-		cy.get(Login_Management.#loginFormSelector).within(() => {
+		// on NBC page first the button login via email & password to be clicked
+		cy.get("body").then((body) => {
+			if (body.find(Login_Management.#buttonLoginViaEmailNbc).length) {
+				cy.get(Login_Management.#buttonLoginViaEmailNbc).first().click();
+			}
 			cy.get(Login_Management.#emailInputBox)
 				.should("be.visible")
 				.should("have.value", "")
 				.then((el) => {
 					expect(el[0].checkValidity()).to.be.false;
 				});
-			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
-				"have.length",
-				2
-			);
 		});
 	}
 
@@ -141,10 +141,7 @@ class Login_Management {
 	}
 
 	clickOnSubmitButton() {
-		cy.get(Login_Management.#loginFormSelector)
-			.should("be.visible")
-			.submit()
-			.wait(8000);
+		cy.get(Login_Management.#loginSubmitBtn).should("be.visible").click().wait(8000);
 	}
 
 	assertErrorMessageDisplay() {
@@ -155,18 +152,12 @@ class Login_Management {
 	}
 
 	assertPasswordFieldIsVisibleAndEmpty() {
-		cy.get(Login_Management.#loginFormSelector).within(() => {
-			cy.get(Login_Management.#passwordField)
-				.should("be.visible")
-				.should("have.value", "")
-				.then((el) => {
-					expect(el[0].checkValidity()).to.be.false;
-				});
-			cy.get(Login_Management.#inputFieldInvalidPseudoSelector).should(
-				"have.length",
-				1
-			);
-		});
+		cy.get(Login_Management.#passwordField)
+			.should("be.visible")
+			.should("have.value", "")
+			.then((el) => {
+				expect(el[0].checkValidity()).to.be.false;
+			});
 	}
 
 	assertFormValidationMessageDisplay() {

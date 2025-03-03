@@ -402,16 +402,19 @@ class Board {
 	}
 
 	selectCopyLinkToCardInThreeDotMenu() {
-		// Click the button to copy the link
-		cy.get(Board.#copyBoardCardLinkButton)
-			.click()
+		cy.get(Board.#copyBoardCardLinkButton).click();
 
-			.invoke("attr", "href") // Get the text (URL) from the element
-			.copyToClipboard(); // Copy the URL to clipboard
-		cy.copyFromClipboard().then((clipboardData) => {
-			cy.wrap(clipboardData).as("boardCardLink"); // Store clipboard content in alias
-			cy.log("Board Card Link: " + clipboardData); // Log the copied data for debugging
-		});
+		cy.window()
+			.then((win) => {
+				return win.navigator.clipboard.readText();
+			})
+			.then((link) => {
+				cy.wrap(link).as("boardCardLink");
+
+				cy.url().then((currentUrl) => {
+					expect(link).to.include(currentUrl);
+				});
+			});
 	}
 
 	openBoardCardLink() {
