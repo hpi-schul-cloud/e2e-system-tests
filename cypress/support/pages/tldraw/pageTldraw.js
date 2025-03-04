@@ -58,12 +58,12 @@ export class Tldraw {
 			.should("be.visible")
 			.parent()
 			.click();
-		// cy.get(Tldraw.#textShape).should("contain", text)
+		// cy.get(Tldraw.#textShape)
+		// 	.should("contain", text)
 		// 	.within(() => {
-		// 	  cy.get('.tl-inner-div')
-		// 	  .within(() => {
-		// 		cy.get('div').click()
-		// 	  });
+		// 		cy.get("div.tl-inner-div").within(() => {
+		// 			cy.get("div").first().click();
+		// 		});
 		// 	});
 	}
 
