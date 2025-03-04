@@ -23,9 +23,9 @@ Feature: TLDraw - Test tldraw on board
         When I select 'drawing-element' from the element selection dialog box
         When I click on the whiteboard element
         When I click on the icon Pencil tool
-        When I draw a line on the canvas with startpoint '100', '100' and endpoint '300', '300'
+        When I draw a line on the canvas with startpoint '300', '200' and endpoint '400', '300'
         When I click on the icon Text tool
-        When I type text '<text_to_write>' on the canvas on position '200', '500'
+        When I type text '<text_to_write>' on the canvas on position '350', '350'
         Then I should see the line drawn
         Then I should see the text '<text_to_write>' drawn
 
