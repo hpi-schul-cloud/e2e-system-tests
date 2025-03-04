@@ -3,7 +3,7 @@ Feature: Login Management - Verify login functionality via wrong user data
 
     As a user (teacher, student or admin), I want to see how app behaves when I'll use invalid credentials.
 
-    Scenario: user sees the validation error on the login page, when enterting the wrong credentials
+    Scenario Outline: Scenario Outline name: user sees the validation error on the login page, when enterting the wrong credentials
 
         # user uses invalid email and password
         Given I am on the '<namespace>' login page

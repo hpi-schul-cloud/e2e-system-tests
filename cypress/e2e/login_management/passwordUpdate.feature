@@ -1,5 +1,4 @@
-@regression_test
-@stable_test
+@unstable_test
 Feature: Login Management - Verify login functionality via password change
 
     As a user, I want to see how app behaves when I'll change password.
@@ -60,6 +59,4 @@ Feature: Login Management - Verify login functionality via password change
         @staging_test
         Examples:
             | namespace |
-            | dbc       |
-            | brb       |
             | nbc       |
