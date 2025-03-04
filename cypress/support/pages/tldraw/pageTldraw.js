@@ -41,7 +41,7 @@ export class Tldraw {
 	}
 
 	checkTextNotExisting() {
-		cy.get(Tldraw.#textShape).should('not.exist');
+		cy.get(Tldraw.#textShape).should("not.exist");
 	}
 
 	checkImage(fileName) {
@@ -53,13 +53,18 @@ export class Tldraw {
 	}
 
 	clickOnText(text) {
-		cy.get(Tldraw.#textShape).should("contain", text)
-			.within(() => {
-			  cy.get('.tl-inner-div')
-			  .within(() => {
-				cy.get('div').click()
-			  });
-			});
+		cy.get(Tldraw.#textShape)
+			.contains("div.c-hQszZo", text)
+			.should("be.visible")
+			.parent()
+			.click();
+		// cy.get(Tldraw.#textShape).should("contain", text)
+		// 	.within(() => {
+		// 	  cy.get('.tl-inner-div')
+		// 	  .within(() => {
+		// 		cy.get('div').click()
+		// 	  });
+		// 	});
 	}
 
 	executeImageUpload(fileName) {
