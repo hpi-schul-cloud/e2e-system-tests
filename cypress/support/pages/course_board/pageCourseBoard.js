@@ -182,7 +182,7 @@ class Board {
 
 	clickOnThreeDotOnCard() {
 		cy.get(Board.#threeDotMenuInCard).click();
-		//cy.get(Board.#editOptionThreeDot).should("be.visible");
+		cy.get(Board.#editOptionThreeDot).should("be.visible");
 	}
 
 	clickOnThreeDotOnDeletedElement() {
