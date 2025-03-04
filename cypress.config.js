@@ -80,8 +80,8 @@ async function setupNodeEvents(on, config) {
 	});
 
 	config.pageLoadTimeout = isCI ? 80000 : 30000;
-	config.defaultCommandTimeout = isCI ? 80000 : 15000;
-	config.requestTimeout = isCI ? 60000 : 20000;
+	config.defaultCommandTimeout = isCI ? 80000 : 10000;
+	config.requestTimeout = isCI ? 60000 : 8000;
 	config.responseTimeout = isCI ? 60000 : 20000;
 
 	// Make sure to return the config object as it might have been modified by the plugin.
