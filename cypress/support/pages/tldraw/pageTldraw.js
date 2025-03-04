@@ -8,6 +8,8 @@ export class Tldraw {
 	static #textShape = '[data-shape="text"]';
 	static #imageShape = '[data-shape="image"]';
 	static #imageUploadInput = "#TD-PrimaryTools-Image";
+	static #undoButton = "#TD-TopPanel-Undo";
+	static #redoButton = "#TD-TopPanel-Redo";
 
 	selectPencilTool() {
 		cy.get(Tldraw.#pencilButton).click();
@@ -24,6 +26,15 @@ export class Tldraw {
 	removeElement(text) {
 		cy.get(Tldraw.#deleteButton).click();
 	}
+
+	redoLastAction() {
+		cy.get(Tldraw.#redoButton).click();
+	}
+
+	undoLastAction() {
+		cy.get(Tldraw.#undoButton).click();
+	}
+
 
 	drawLine(startX, startY, endX, endY) {
 		cy.get(Tldraw.#canvas)
@@ -54,17 +65,17 @@ export class Tldraw {
 
 	clickOnText(text) {
 		cy.get(Tldraw.#textShape)
-			.contains("div.c-hQszZo", text)
-			.should("be.visible")
-			.parent()
-			.click();
-		// cy.get(Tldraw.#textShape)
-		// 	.should("contain", text)
-		// 	.within(() => {
-		// 		cy.get("div.tl-inner-div").within(() => {
-		// 			cy.get("div").first().click();
-		// 		});
-		// 	});
+			// .contains("div.c-hQszZo", text)
+			// .should("be.visible")
+			// .parent()
+			// .click();
+		cy.get(Tldraw.#textShape)
+			.should("contain", text)
+			.within(() => {
+				cy.get("div.tl-inner-div").within(() => {
+					cy.get("div").first().click();
+				});
+			});
 	}
 
 	executeImageUpload(fileName) {

@@ -40,9 +40,22 @@ Feature: TLDraw - Test tldraw on board
         When I click on the text '<text_to_write>'
         When I click on icon delete
         Then I do not see the text '<text_to_write>'
+        When I click the icon Undo
+        Then I should see the text '<text_to_write>' drawn
+        When I click the icon Redo
+        Then I do not see the text '<text_to_write>'
         #When I click on the icon Image tool
         #When I upload image 'example_jpg.jpg' in tldraw
         #Then I should see the image '<text_to_write>'
+
+        # teacher does not see the deleted element anymore
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to courses overview
+        When I go to course '<course_name>'
+        When I click on the board
+        When I click on the whiteboard element
+        Then I should see the line drawn
+        Then I do not see the text '<text_to_write>'
 
 
         # post-condition: clean up the created course

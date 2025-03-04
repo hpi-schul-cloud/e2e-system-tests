@@ -50,3 +50,11 @@ Then("I should see the image {string}", (fileName) => {
 When("I click on the text {string}", (text) => {
 	tldraw.clickOnText(text);
 });
+
+When("I click the icon Undo", () => {
+	tldraw.undoLastAction();
+});
+
+When("I click the icon Redo", () => {
+	tldraw.redoLastAction();
+});
