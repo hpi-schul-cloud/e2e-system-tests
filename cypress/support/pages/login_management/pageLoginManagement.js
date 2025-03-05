@@ -141,7 +141,10 @@ class Login_Management {
 	}
 
 	clickOnSubmitButton() {
-		cy.get(Login_Management.#loginSubmitBtn).should("be.visible").click().wait(8000);
+		cy.get(Login_Management.#loginFormSelector)
+			.should("be.visible")
+			.submit()
+			.wait(8000);
 	}
 
 	assertErrorMessageDisplay() {

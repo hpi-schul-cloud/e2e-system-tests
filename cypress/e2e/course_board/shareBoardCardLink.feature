@@ -9,7 +9,7 @@ Feature: Course Board - To share a board card link
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
-        # pre-condition: first teacher creates a course with the two teachers assigned
+        # pre-condition: first teacher creates a course
         When I go to courses overview
         When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page

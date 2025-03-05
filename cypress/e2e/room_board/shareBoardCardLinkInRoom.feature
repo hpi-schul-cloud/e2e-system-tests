@@ -9,7 +9,7 @@ Feature: Room Board - To share a board card link
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
-        # pre-condition: first teacher creates a room with second teacher assigned
+        # pre-condition: first teacher creates a room
         When I go to room overview
         When I click on FAB to create new room
         Then I see room creation page
