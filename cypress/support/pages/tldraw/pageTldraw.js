@@ -65,28 +65,11 @@ export class Tldraw {
 
 	clickOnText(text) {
 		cy.get(Tldraw.#textShape)
-			// .contains("div.c-hQszZo", text)
-			// .should("be.visible")
-			// .parent()
-			// .click();
-		cy.get(Tldraw.#textShape)
 			.should("contain", text)
 			.within(() => {
 				cy.get("div.tl-inner-div").within(() => {
 					cy.get("div").first().click();
 				});
 			});
-	}
-
-	executeImageUpload(fileName) {
-		// mark our window object to "know" when it gets reloaded
-		//cy.window().then((w) => (w.beforeReload = true));
-		// initially the new property is there
-		//cy.window().should("have.prop", "beforeReload", true);
-		// Upload a file includes a reload of the page
-		cy.get(Tldraw.#imageUploadInput).attachFile(fileName);
-		// after reload the property should be gone
-		//cy.window().should("not.have.prop", "beforeReload");
-		//cy.wait("@homework_api");
 	}
 }

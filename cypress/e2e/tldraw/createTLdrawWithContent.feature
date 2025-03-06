@@ -44,9 +44,6 @@ Feature: TLDraw - Test tldraw on board
         Then I should see the text '<text_to_write>' drawn
         When I click the icon Redo
         Then I do not see the text '<text_to_write>'
-        #When I click on the icon Image tool
-        #When I upload image 'example_jpg.jpg' in tldraw
-        #Then I should see the image '<text_to_write>'
 
         # teacher does not see the deleted element anymore
         Given I am logged in as a '<teacher>' at '<namespace>'

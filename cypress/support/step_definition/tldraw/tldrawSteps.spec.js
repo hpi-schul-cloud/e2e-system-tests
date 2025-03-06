@@ -39,14 +39,6 @@ Then("I should see the text {string} drawn", (text) => {
 	tldraw.checkText(text);
 });
 
-When("I upload image {string} in tldraw", (fileName) => {
-	tldraw.executeImageUpload(fileName);
-});
-
-Then("I should see the image {string}", (fileName) => {
-	tldraw.checkImage(fileName);
-});
-
 When("I click on the text {string}", (text) => {
 	tldraw.clickOnText(text);
 });
