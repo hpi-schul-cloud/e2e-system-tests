@@ -1,4 +1,6 @@
 @unstable_test
+# Due to brwowser security permission, there is an error while extracting copied linked card url from the clipboard.
+
 Feature: Course Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
@@ -20,6 +22,7 @@ Feature: Course Board - To share a board card link
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
         Then I see the course '<course_name>' on the course overview page
+
         # first teacher adds a board with a card to the course
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
@@ -51,13 +54,7 @@ Feature: Course Board - To share a board card link
         Then I see the focused board card
 
         # post-condition: second teacher deletes course
-        When I go to courses overview
-        When I go to course '<course_name>'
-        When I open page Edit course
-        When I click on the button delete course
-        Then I see the modal to confirm the deletion
-        When I click on the button delete on the modal to confirm the course deletion
-        Then I do not see the course '<course_name>' on the course overview page
+        Given course with name '<course_name>' is deleted
 
         @staging_test
         Examples:
