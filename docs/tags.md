@@ -35,6 +35,9 @@ In our Cypress and Cucumber setup, tags are used to categorize and selectively r
   <br>
 
 - **@schedule_run**: This tag is designated for running all tests during a scheduled run that are currently in a Pull Request (PR) and are considered strong candidates for inclusion in the PR's workflow, also known as the remote workflow. The primary objective is to evaluate the performance and stability of these tests within the Continuous Integration (CI) environment. If these tests perform well and demonstrate stability, they will be added to the PR's workflow, ensuring that future PRs benefit from these validated tests.
+  <br>
+
+- **@clean_up_staging_test_data:** This tag is used for a test run, which removes all courses that were created by cancelled or failed test runs before. This is only for staging / ref environment and not for dev environments (where it is not needed, since the test school is always created new for each test).
 
 ## Tag Hierarchy and Inheritance
 

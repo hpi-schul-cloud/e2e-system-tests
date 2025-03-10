@@ -1,29 +1,33 @@
-@unstable_test
-Feature: Login Management - Visibility of dBildungscloud Password Reset dialog
+@regression_test
+@stable_test
+Feature: Login Management - Forgot Password Dialog Visibility Checks
 
     As a user (teacher or student or admin), I want to see password recovery dialog box visible to me so that I can recover my password in case needed.
 
-    @unstable_test
-    Scenario Outline: User sees password recovery dialog
+
+    Scenario: All elements of the Passwort Reset dialog are available
         Given I am on the '<namespace>' login page
         When I click on Forgot Password
-        Then I see the Reset Password dialog
+        Then I see the dialog Password Reset
+        Then I see the Title on the dialog
+        Then I see the label Username on the dialog
+        Then I see the input field to enter an Email
+        Then I see the Information on the dialog
+        Then I see the button Submit on the dialog
+        Then I see the button Cancel on the dialog
+        When I submit the request without the Email
+        Then I still see the input field Email so request is not submitted
 
         @school_api_test
+        Examples:
+            | namespace |
+            | dbc       |
+            | nbc       |
+            | brb       |
+
         @staging_test
         Examples:
             | namespace |
             | dbc       |
-
-    @unstable_test
-    Scenario Outline: Entering email or user name is mandatory
-        Given I am on the '<namespace>' login page
-        When I click on Forgot Password
-        When I clear email section and submit the request
-        Then I still see the email input box that request is not submitted
-
-        @school_api_test
-        @staging_test
-        Examples:
-            | namespace |
-            | dbc       |
+            | nbc       |
+            | brb       |

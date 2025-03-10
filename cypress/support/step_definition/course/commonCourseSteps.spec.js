@@ -41,6 +41,10 @@ When("I go to course {string}", (courseName) => {
 	courses.navigateToCoursePage(courseName);
 });
 
+When("I delete all courses whose names start with {string}", (courseName) => {
+	courses.deleteAllCoursesWithName(courseName);
+});
+
 Then("I see the course {string} on the course overview page", (courseName) => {
 	courses.courseIsVisiblOnOverviewPage(courseName);
 });

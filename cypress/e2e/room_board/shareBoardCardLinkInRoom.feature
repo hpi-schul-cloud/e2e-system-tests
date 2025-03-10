@@ -1,10 +1,10 @@
-@regression_test
 @unstable_test
+# Due to brwowser security permission, there is an error while extracting copied linked card url from the clipboard.
+
 Feature: Room Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
 
-    @stable_test
     Scenario: Teacher shares a link to a board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -26,6 +26,7 @@ Feature: Room Board - To share a board card link
         When I click on the button to add the participant
         Then I see '<name_teacher_1>' in the room participants list
         Then I see '<name_teacher_2>' in the room participants list
+
         # first teacher adds a board with a card to the room
         When I go to room overview
         When I go to room '<room_name>'
@@ -57,14 +58,7 @@ Feature: Room Board - To share a board card link
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
-        When I go to room '<room_name>'
-        Then I see the detail page of room '<room_name>'
-        When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
-        Then I see confirmation modal for deleting the room
-        When I click on delete button in confirmation modal
-        Then I do not see '<room_name>' on room overview page
+        Given the room named '<room_name>' is deleted
 
         @staging_test
         Examples:
