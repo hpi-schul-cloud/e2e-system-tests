@@ -43,7 +43,7 @@
 		"@4tw/cypress-drag-drop": "^2.2.5",
 		"@badeball/cypress-cucumber-preprocessor": "^22.0.1",
 		"@cypress/webpack-preprocessor": "^5.17.0",
-		"axios": "^1.6.8",
+		"axios": "^1.8.2",
 		"cypress": "^13.2.0",
 		"cypress-file-upload": "^5.0.8",
 		"cypress-real-events": "^1.13.0",
