@@ -79,6 +79,11 @@ async function setupNodeEvents(on, config) {
 		},
 	});
 
+	config.pageLoadTimeout = isCI ? 80000 : 30000;
+	config.defaultCommandTimeout = isCI ? 80000 : 20000;
+	config.requestTimeout = isCI ? 60000 : 8000;
+	config.responseTimeout = isCI ? 60000 : 20000;
+
 	// Make sure to return the config object as it might have been modified by the plugin.
 	return config;
 }
@@ -89,10 +94,6 @@ module.exports = defineConfig({
 	videoCompression: 18,
 	video: true,
 	chromeWebSecurity: false,
-	pageLoadTimeout: 80000,
-	defaultCommandTimeout: 80000,
-	requestTimeout: 60000,
-	responseTimeout: 60000,
 	e2e: {
 		specPattern: "cypress/e2e/**/*.feature",
 		supportFile: "cypress/support/e2e.js",
