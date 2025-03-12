@@ -30,7 +30,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnVideoConferenceElementDialog =
+	static #deleteOptionOnCardElementThreeDot =
 		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
@@ -55,6 +55,101 @@ class RoomBoards {
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
+
+	static #inputAttachFile = 'input[type="file"]';
+	static #uploadedFileTiltleInCard = '[data-testid="content-element-title-slot"]';
+	static #thumbnailImage = '[data-test-id="thumbnail-image"]';
+	static #fullScreenImage = '[data-test-id="full-screen-image"]';
+	static #downloadFileIconSelector =
+		'[data-testid="board-file-element-edit-menu-download"]';
+	static #fileElementSelector = '[data-testid="board-file-element"]';
+	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
+	static #mainContentSelector = "#main-content";
+	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
+	static #parentContainerSelector = ".d-flex.flex-column";
+	static #fileAltTextInputSelector = '[data-testid="file-alttext-input"]';
+
+	enterImageAltTextIncard(altText) {
+		// select the parent element with the given classes
+		cy.get(RoomBoards.#parentContainerSelector)
+			// find the input field within that parent
+			.find(RoomBoards.#fileAltTextInputSelector)
+			.click();
+		// select the same parent again
+		cy.get(RoomBoards.#parentContainerSelector)
+			// find the input field again
+			.find(RoomBoards.#fileAltTextInputSelector)
+			// type the alt text
+			.type(altText);
+		//click outside the card to save the alt text
+		cy.get(RoomBoards.#mainContentSelector).click();
+	}
+
+	verifyImageFileUploaded() {
+		// data-testid to be defined in FE?
+		cy.get('div[role="button"].focusable-container').should("be.visible");
+	}
+
+	verifyDocxFileUploaded() {
+		cy.get(RoomBoards.#uploadedFileTiltleInCard).should("be.visible");
+	}
+
+	shouldNotSeeFileElement() {
+		cy.get(RoomBoards.#fileElementSelector).should("not.exist");
+	}
+
+	clickThreeDotMenuInFileElement() {
+		cy.get(RoomBoards.#threeDotMenuSelector).click();
+	}
+
+	downloadFileIcon() {
+		cy.get(RoomBoards.#downloadFileIconSelector).should("be.visible").click();
+	}
+
+	uploadFileInCard(fileName) {
+		// intercept the file upload API call to make sure file upload is completed before continuing to the next step
+		cy.intercept("POST", "/api/v3/file/upload/school/*/boardnodes/*").as(
+			"fileUploadRequest"
+		);
+		// attach the file from the fixtures folder
+		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
+		// wait for the API request to complete
+		cy.wait("@fileUploadRequest").then((interception) => {
+			// ensure the API request was successful
+			expect(interception.response.statusCode).to.eq(201);
+			// once the file upload is complete, continue with the next step, click outside the card to save element
+			cy.get(RoomBoards.#mainContentSelector).click();
+		});
+	}
+
+	enterCaption(captionText) {
+		// select the parent element with the given classes
+		cy.get(RoomBoards.#parentContainerSelector)
+			// find the input field within that parent
+			.find(RoomBoards.#fileCaptionInputSelector)
+			.click();
+		// select the same parent again
+		cy.get(RoomBoards.#parentContainerSelector)
+			// find the input field again
+			.find(RoomBoards.#fileCaptionInputSelector)
+			// type the caption text
+			.type(captionText);
+		//click outside the card to save the caption
+		cy.get(RoomBoards.#mainContentSelector).click();
+	}
+
+	verifyPdfUploaded() {
+		cy.get(RoomBoards.#uploadedFileTiltleInCard).should("be.visible");
+	}
+
+	clickOnImageThumbnailInCard() {
+		// data-testid to be defined in FE?
+		cy.get('div[role="button"].focusable-container').click();
+	}
+
+	verifyCardImageInFullScreen() {
+		//tbd
+	}
 
 	uncheckLinkValidForSameSchool() {
 		cy.get(RoomBoards.#sameSchoolCheckbox).click();
@@ -197,7 +292,7 @@ class RoomBoards {
 	}
 
 	clickDeleteOptionInThreeDotMenu() {
-		cy.get(RoomBoards.#deleteOptionOnVideoConferenceElementDialog).click();
+		cy.get(RoomBoards.#deleteOptionOnCardElementThreeDot).click();
 	}
 
 	verifyDeleteConfirmationDialogVisible() {

@@ -3,6 +3,50 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I see the image file is uploaded in the card", () => {
+	roomBoards.verifyImageFileUploaded();
+});
+
+Then("I enter alternative text {string}", (altText) => {
+	roomBoards.enterImageAltTextIncard(altText);
+});
+
+Then("I see the docx file is uploaded in the card", () => {
+	roomBoards.verifyDocxFileUploaded();
+});
+
+When("I do not see the element File", () => {
+	roomBoards.shouldNotSeeFileElement();
+});
+
+When("I click on the three-dot menu in the File element", () => {
+	roomBoards.clickThreeDotMenuInFileElement();
+});
+
+When("I click on the icon download file", () => {
+	roomBoards.downloadFileIcon();
+});
+
+When("I upload a file {string}", (fileName) => {
+	roomBoards.uploadFileInCard(fileName);
+});
+
+Then("I enter caption text {string}", (captionText) => {
+	roomBoards.enterCaption(captionText);
+});
+
+Then("I see the pdf file is uploaded in the card", () => {
+	roomBoards.verifyPdfUploaded();
+});
+
+When("I click on the thumbnail image in the card", () => {
+	roomBoards.clickOnImageThumbnailInCard();
+});
+
+Then("I see the image from the card in fullscreen", () => {
+	roomBoards.verifyCardImageInFullScreen();
+});
+
 Then("I see the alert message", () => {
 	roomBoards.verifyShareImportBoardAlert();
 });
@@ -106,15 +150,15 @@ When("I click on the three-dot menu in the video conference element", () => {
 	roomBoards.clickThreeDotMenuInVideoConferenceElement();
 });
 
-When("I click on the delete option in the three-dot menu", () => {
+When("I click on the option Delete in the three-dot menu", () => {
 	roomBoards.clickDeleteOptionInThreeDotMenu();
 });
 
-Then("I see the delete confirmation dialog", () => {
+Then("I see the dialog delete confirmation", () => {
 	roomBoards.verifyDeleteConfirmationDialogVisible();
 });
 
-When("I click on the delete button in the confirmation dialog", () => {
+When("I click on the button Delete in the confirmation dialog", () => {
 	roomBoards.clickDeleteButtonInConfirmationDialog();
 });
 

@@ -45,9 +45,9 @@ Feature: Room - Add BBB Tool in the Room Board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on the three-dot menu in the video conference element
-        When I click on the delete option in the three-dot menu
-        Then I see the delete confirmation dialog
-        When I click on the delete button in the confirmation dialog
+        When I click on the option Delete in the three-dot menu
+        Then I see the dialog delete confirmation
+        When I click on the button Delete in the confirmation dialog
         Then I do not see the video conference element
 
         # post-condition: delete the room
