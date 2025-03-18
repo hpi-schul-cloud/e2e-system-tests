@@ -19,7 +19,7 @@ Feature: Room - Add and delete participants
         # first teacher is able to add participants
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
-        When I select the three dot menu action 'edit-members'
+        When I select the three dot menu action 'room-members'
         Then I see the edit participants page of room '<room_name>'
         When I click on FAB to add participants
         Then I see add participants modal
@@ -41,7 +41,7 @@ Feature: Room - Add and delete participants
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
-        When I select the three dot menu action 'edit-members'
+        When I select the three dot menu action 'room-members'
         Then I see the edit participants page of room '<room_name>'
         Then I see '<participant_name>' in the room participants list
         When I click on 'remove-member' button in the participant list for participant '<participant_name>'
