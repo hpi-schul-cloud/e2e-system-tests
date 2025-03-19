@@ -25,27 +25,27 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on plus icon to add content into card
         Then I see the dialog box to select element for the card
         When I select 'file' from the element selection dialog box
-        When I upload a file 'example_jpg.jpg'
+        When I upload a file '<file_name>'
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         Then I enter caption text '<image_caption_text>'
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         Then I enter alternative text '<alternative_text>'
-        Then I see the image file is uploaded in the card
+        Then I see the image file is in the card
         When I click on the thumbnail image in the card
         Then I see the image from the card in fullscreen
 
         # student can see the file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
-        # teacher downloads file in the multi-column room board
-        When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        When I click on the icon download file
-        Then file 'example_jpg.jpg' is saved in folder downloads
+        # teacher downloads the image file and closes the fullscreen image window
+        When I click on the icon download file on the fullscreen image
+        Then file '<file_name>' is saved in folder downloads
+        When I click on the icon Close on the fullscreen image
+        Then I see the image file is in the card
 
-        # teacher deletes file in the multi-column room board
+        # teacher deletes image file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on the three-dot menu in the File element
@@ -63,9 +63,9 @@ Feature: Room - Upload and download different files types in the Room Board
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | image_caption_text | alternative_text  |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | CY image test file | CY image alt text |
+            | teacher      | namespace | room_name         | board_title    | image_caption_text | alternative_text  | file_name       |
+            | teacher1_nbc | nbc       | Cypress Room Name | Board Cy Title | CY image test file | CY image alt text | example_jpg.jpg |
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | image_caption_text | alternative_text  |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | CY image test file | CY image alt text |
+            | teacher      | namespace | room_name         | board_title    | image_caption_text | alternative_text  | file_name       |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | CY image test file | CY image alt text | example_jpg.jpg |

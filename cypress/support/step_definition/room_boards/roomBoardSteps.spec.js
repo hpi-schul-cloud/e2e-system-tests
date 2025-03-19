@@ -3,7 +3,15 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-Then("I see the image file is uploaded in the card", () => {
+When("I click on the icon Close on the fullscreen image", () => {
+	roomBoards.clickCloseButtonOnFullScreenImage();
+});
+
+When("I click on the icon download file on the fullscreen image", () => {
+	roomBoards.clickDownloadIconOnFullScreenImage();
+});
+
+Then("I see the image file is in the card", () => {
 	roomBoards.verifyImageFileUploaded();
 });
 

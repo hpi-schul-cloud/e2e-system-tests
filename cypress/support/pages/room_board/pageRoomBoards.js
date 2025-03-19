@@ -68,6 +68,8 @@ class RoomBoards {
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
 	static #parentContainerSelector = ".d-flex.flex-column";
 	static #fileAltTextInputSelector = '[data-testid="file-alttext-input"]';
+	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
+	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
 
 	enterImageAltTextIncard(altText) {
 		// select the parent element with the given classes
@@ -143,12 +145,33 @@ class RoomBoards {
 	}
 
 	clickOnImageThumbnailInCard() {
-		// data-testid to be defined in FE?
+		// data-testid needed for thumbnail image?
 		cy.get('div[role="button"].focusable-container').click();
+		cy.wait(500);
 	}
 
 	verifyCardImageInFullScreen() {
-		//tbd
+		// data-testid needed for the fullscreen image?
+		cy.get('div[aria-modal="true"] img', { timeout: 10000 })
+			.should("be.visible")
+			.and(($fullScreen) => {
+				// ensure the image has loaded properly in fullcreen
+				expect($fullScreen[0].naturalWidth).to.be.greaterThan(0);
+			});
+
+		// close button is visible on the fullscreen image
+		cy.get(RoomBoards.#downloadButtonOnFullImage).should("exist");
+
+		// download button is visible in the fullscreen image
+		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
+	}
+
+	clickDownloadIconOnFullScreenImage() {
+		cy.get(RoomBoards.#downloadButtonOnFullImage).click();
+	}
+
+	clickCloseButtonOnFullScreenImage() {
+		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).click();
 	}
 
 	uncheckLinkValidForSameSchool() {
