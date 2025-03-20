@@ -25,7 +25,8 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on plus icon to add content into card
         Then I see the dialog box to select element for the card
         When I select 'file' from the element selection dialog box
-        When I upload a file 'sample-docx.docx'
+        When I upload a file '<docx_file_name>'
+        Then I click outside of the card to save it
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         Then I enter caption text '<docx_caption_text>'
@@ -38,7 +39,7 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on the icon download file
-        Then file 'sample-docx.docx' is saved in folder downloads
+        Then file '<docx_file_name>' is saved in folder downloads
 
         # teacher deletes file in the multi-column room board
         When I click on the three dot on the card
@@ -58,10 +59,10 @@ Feature: Room - Upload and download different files types in the Room Board
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | docx_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | CY docx test file |
+            | teacher      | namespace | room_name         | board_title    | docx_file_name   | docx_caption_text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | docx_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | CY docx test file |
+            | teacher      | namespace | room_name         | board_title    | docx_file_name   | docx_caption_text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |

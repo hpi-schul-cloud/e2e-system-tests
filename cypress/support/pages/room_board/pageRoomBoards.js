@@ -58,8 +58,6 @@ class RoomBoards {
 
 	static #inputAttachFile = 'input[type="file"]';
 	static #uploadedFileTiltleInCard = '[data-testid="content-element-title-slot"]';
-	static #thumbnailImage = '[data-test-id="thumbnail-image"]';
-	static #fullScreenImage = '[data-test-id="full-screen-image"]';
 	static #downloadFileIconSelector =
 		'[data-testid="board-file-element-edit-menu-download"]';
 	static #fileElementSelector = '[data-testid="board-file-element"]';
@@ -70,6 +68,37 @@ class RoomBoards {
 	static #fileAltTextInputSelector = '[data-testid="file-alttext-input"]';
 	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
 	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
+	static #thumbnailImageOnCard = 'div[role="button"].focusable-container'; // data-testid to be defined in FE?
+	static #fullScreenImageElement = 'div[aria-modal="true"] img'; // data-testid to be defined in FE?
+	static #videoPreviewOnCard = "div.video-container video"; // data-testid to be defined in FE? <video />
+	static #audioPreviewOnCard = 'audio[loading="lazy"]'; // data-testid to be defined in FE? <audio />
+
+	verifyVideoFileInCard() {
+		cy.get(RoomBoards.#videoPreviewOnCard).should("be.visible");
+	}
+
+	verifyAudioFileInCard() {
+		cy.get(RoomBoards.#audioPreviewOnCard).should("be.visible");
+	}
+
+	verifyImageFileUploaded() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).should("be.visible");
+	}
+
+	verifyCardImageInFullScreen() {
+		cy.get(RoomBoards.#fullScreenImageElement, { timeout: 10000 })
+			.should("be.visible")
+			.and(($fullScreen) => {
+				// ensure the image has loaded properly in fullcreen
+				expect($fullScreen[0].naturalWidth).to.be.greaterThan(0);
+			});
+
+		// verify close button is also visible on the fullscreen image
+		cy.get(RoomBoards.#downloadButtonOnFullImage).should("exist");
+
+		// verify download button is also visible on the fullscreen image
+		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
+	}
 
 	enterImageAltTextIncard(altText) {
 		// select the parent element with the given classes
@@ -85,11 +114,6 @@ class RoomBoards {
 			.type(altText);
 		//click outside the card to save the alt text
 		cy.get(RoomBoards.#mainContentSelector).click();
-	}
-
-	verifyImageFileUploaded() {
-		// data-testid to be defined in FE?
-		cy.get('div[role="button"].focusable-container').should("be.visible");
 	}
 
 	verifyDocxFileUploaded() {
@@ -109,19 +133,18 @@ class RoomBoards {
 	}
 
 	uploadFileInCard(fileName) {
-		// intercept the file upload API call to make sure file upload is completed before continuing to the next step
-		cy.intercept("POST", "/api/v3/file/upload/school/*/boardnodes/*").as(
-			"fileUploadRequest"
-		);
 		// attach the file from the fixtures folder
 		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
-		// wait for the API request to complete
+		// intercept the file upload API call and wait for the API request to complete
 		cy.wait("@fileUploadRequest").then((interception) => {
 			// ensure the API request was successful
 			expect(interception.response.statusCode).to.eq(201);
-			// once the file upload is complete, continue with the next step, click outside the card to save element
-			cy.get(RoomBoards.#mainContentSelector).click();
 		});
+	}
+
+	clickOutsideToSaveCard() {
+		// click outside the card to save it
+		cy.get(RoomBoards.#mainContentSelector).click();
 	}
 
 	enterCaption(captionText) {
@@ -145,25 +168,8 @@ class RoomBoards {
 	}
 
 	clickOnImageThumbnailInCard() {
-		// data-testid needed for thumbnail image?
-		cy.get('div[role="button"].focusable-container').click();
+		cy.get(RoomBoards.#thumbnailImageOnCard).click();
 		cy.wait(500);
-	}
-
-	verifyCardImageInFullScreen() {
-		// data-testid needed for the fullscreen image?
-		cy.get('div[aria-modal="true"] img', { timeout: 10000 })
-			.should("be.visible")
-			.and(($fullScreen) => {
-				// ensure the image has loaded properly in fullcreen
-				expect($fullScreen[0].naturalWidth).to.be.greaterThan(0);
-			});
-
-		// close button is visible on the fullscreen image
-		cy.get(RoomBoards.#downloadButtonOnFullImage).should("exist");
-
-		// download button is visible in the fullscreen image
-		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
 	}
 
 	clickDownloadIconOnFullScreenImage() {

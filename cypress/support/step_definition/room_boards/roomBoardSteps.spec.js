@@ -3,6 +3,18 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I see the video file is in the card", () => {
+	roomBoards.verifyVideoFileInCard();
+});
+
+Then("I see the audio file is in the card", () => {
+	roomBoards.verifyAudioFileInCard();
+});
+
+Then("I click outside of the card to save it", () => {
+	roomBoards.clickOutsideToSaveCard();
+});
+
 When("I click on the icon Close on the fullscreen image", () => {
 	roomBoards.clickCloseButtonOnFullScreenImage();
 });
