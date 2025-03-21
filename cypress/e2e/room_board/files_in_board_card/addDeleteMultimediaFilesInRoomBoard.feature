@@ -82,7 +82,7 @@ Feature: Room - Upload, download and delete video & audio files type in the Room
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
-        # student can not see the audio file in the multi-column board
+        # student can not see the file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
         # post-condition: delete the room
@@ -91,10 +91,10 @@ Feature: Room - Upload, download and delete video & audio files type in the Room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | video_caption_text | video_file_name          | audio_file_name            | audio_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | CY video test file | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
+            | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | video_caption_text | video_file_name          | audio_file_name            | audio_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | CY video test file | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
+            | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
