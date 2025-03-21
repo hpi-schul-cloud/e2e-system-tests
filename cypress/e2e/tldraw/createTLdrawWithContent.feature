@@ -17,6 +17,7 @@ Feature: TLDraw - Test tldraw on board
         Given the multi-column board has a column with a card
 
         # teacher creates a whiteboard element in the card and draws on it
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on plus icon to add content into card
@@ -53,7 +54,6 @@ Feature: TLDraw - Test tldraw on board
         When I click on the whiteboard element
         Then I should see the line drawn
         Then I do not see the text '<text_to_write>'
-
 
         # post-condition: clean up the created course
         Given I am logged in as a '<teacher>' at '<namespace>'

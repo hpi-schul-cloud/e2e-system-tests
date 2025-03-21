@@ -5,7 +5,8 @@ class Dashboard {
 	static #languageMenu = "#language-menu";
 	static #selectedLanguage = "#selected-language";
 	static #listOfAllLanguages = "#available-languages";
-	static #germanLanguage = '[data-testid="available-language-de"]';
+	static #germanLanguageDevSel = '[data-testid="selected-language-de"]';
+	static #germanLanguageStageSel = '[data-testid="available-language-de"]';
 	static #spanishLanguage = '[data-testid="available-language-es"]';
 	static #ukrainianLanguage = '[data-testid="available-language-uk"]';
 	static #englishLanguage = '[data-testid="available-language-en"]';
@@ -65,10 +66,13 @@ class Dashboard {
 
 	changeLanguage(language) {
 		if (language === "german") {
-			return this.selectLanguage(
-				Dashboard.#germanLanguage,
-				Dashboard.#testAssertionData.german
-			);
+			const stagingRegex =
+				/^https:\/\/(staging\.[\w-]+\.(dbildungscloud\.org)|test\.schulportal-thueringen\.de|staging\.dbildungscloud\.org)\/?/;
+			let isStaging = stagingRegex.test(Cypress.config("baseUrl"));
+			let germanLanguageSel = !isStaging
+				? Dashboard.#germanLanguageDevSel
+				: Dashboard.#germanLanguageStageSel;
+			return this.selectLanguage(germanLanguageSel, Dashboard.#testAssertionData.german);
 		}
 
 		if (language === "spanish") {
@@ -152,18 +156,14 @@ class Dashboard {
 	seeAssignedTasks(taskName, courseName) {
 		cy.get(Dashboard.#dashboardTasksTitle).eq(0);
 		cy.contains("Gestellte Aufgaben");
-		cy.get(Dashboard.#dashboardTaskCourseName)
-			.eq(0)
-			.contains(courseName);
+		cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains(courseName);
 		cy.get(Dashboard.#dashboardTaskName).contains(taskName);
 	}
 
 	seeDraftTasks(draftName, courseName) {
 		cy.get(Dashboard.#dashboardTasksTitle).eq(1);
 		cy.contains("Entwürfe");
-		cy.get(Dashboard.#dashboardTaskCourseName)
-			.eq(0)
-			.contains(courseName);
+		cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains(courseName);
 		cy.get(Dashboard.#dashboardTaskName).contains(draftName);
 	}
 }
