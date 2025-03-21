@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Room - Upload and download different files types in the Room Board
+Feature: Room - Upload, download and delete pdf file type in the Room Board
 
-    As a teacher, I want to upload and download files on the room board so that I can easily share and access different file types (e.g., documents, images).
+    As a teacher, I want to upload, download and delete pdf file in the room board so that I can easily share and manage the board contents.
 
-    Scenario: Upload & download different file in the room board, including pre & post conditions
+    Scenario: Upload, download and delete pdf file in the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -15,7 +15,7 @@ Feature: Room - Upload and download different files types in the Room Board
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
 
-        # teacher uploads file in the multi-column room board
+        # teacher uploads a pdf file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on plus icon to add content into card
@@ -32,16 +32,16 @@ Feature: Room - Upload and download different files types in the Room Board
         Then I enter caption text '<pdf_caption_text>'
         Then I see the pdf file is uploaded in the card
 
-        # student can see the file in the multi-column board
+        # student can see the pdf file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
-        # teacher downloads file in the multi-column room board
+        # teacher downloads the pdf file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on the icon download file
         Then file '<pdf_file_name>' is saved in folder downloads
 
-        # teacher deletes file in the multi-column room board
+        # teacher deletes the pdf file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on the three-dot menu in the File element
@@ -50,7 +50,7 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
-        # student can not see the file in the multi-column board
+        # student can not see the pdf file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
         # post-condition: delete the room

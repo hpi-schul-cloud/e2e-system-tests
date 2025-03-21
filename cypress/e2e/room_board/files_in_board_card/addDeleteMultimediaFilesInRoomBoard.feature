@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Room - Upload and download different files types in the Room Board
+Feature: Room - Upload, download and delete video & audio files type in the Room Board
 
-    As a teacher, I want to upload and download files on the room board so that I can easily share and access different file types (e.g., documents, images).
+    As a teacher, I want to upload, download and delete video & audio files in the room board so that I can easily share and manage the board contents.
 
-    Scenario: Upload & download different file in the room board, including pre & post conditions
+    Scenario: Upload, download and delete video & audio files in the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -15,7 +15,7 @@ Feature: Room - Upload and download different files types in the Room Board
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
 
-        # ------------------------- VIDEO FILE ------------------------------
+        # ------------------------- VIDEO FILE ------------------------------------
 
         # teacher uploads a video file in the multi-column room board
         When I click on the three dot on the card
@@ -35,11 +35,11 @@ Feature: Room - Upload and download different files types in the Room Board
         # student can see the video file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
-        # teacher downloads a video file in the multi-column room board
+        # teacher downloads the video file in the multi-column room board
         When I click on the icon download file
         Then file '<video_file_name>' is saved in folder downloads
 
-        # teacher deletes video file in the multi-column room board
+        # teacher deletes the video file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on the three-dot menu in the File element
@@ -48,10 +48,10 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
-        # student can not see the file in the multi-column board
+        # student can not see the video file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
-        # ------------------------- AUDIO FILE -----------------------------------
+        # ------------------------- AUDIO FILE --------------------------------------
 
         # teacher uploads a audio file in the multi-column room board
         When I click on plus icon to add content into card
@@ -66,14 +66,14 @@ Feature: Room - Upload and download different files types in the Room Board
         Then I click outside of the card to save it
         Then I see the audio file is in the card
 
-        # student can see the video file in the multi-column board
+        # student can see the audio file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
-        # teacher downloads a audio file in the multi-column room board
+        # teacher downloads the audio file in the multi-column room board
         When I click on the icon download file
         Then file '<audio_file_name>' is saved in folder downloads
 
-        # teacher deletes audio file in the multi-column room board
+        # teacher deletes the audio file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on the three-dot menu in the File element
@@ -82,7 +82,7 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
-        # student can not see the file in the multi-column board
+        # student can not see the audio file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
         # post-condition: delete the room

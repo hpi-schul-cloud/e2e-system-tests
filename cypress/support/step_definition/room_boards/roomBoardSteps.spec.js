@@ -24,7 +24,7 @@ When("I click on the icon download file on the fullscreen image", () => {
 });
 
 Then("I see the image file is in the card", () => {
-	roomBoards.verifyImageFileUploaded();
+	roomBoards.verifyImageFileUploadedAsThumbnail();
 });
 
 Then("I enter alternative text {string}", (altText) => {

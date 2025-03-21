@@ -55,7 +55,6 @@ class RoomBoards {
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
-
 	static #inputAttachFile = 'input[type="file"]';
 	static #uploadedFileTiltleInCard = '[data-testid="content-element-title-slot"]';
 	static #downloadFileIconSelector =
@@ -68,25 +67,28 @@ class RoomBoards {
 	static #fileAltTextInputSelector = '[data-testid="file-alttext-input"]';
 	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
 	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
-	static #thumbnailImageOnCard = 'div[role="button"].focusable-container'; // data-testid to be defined in FE?
-	static #fullScreenImageElement = 'div[aria-modal="true"] img'; // data-testid to be defined in FE?
-	static #videoPreviewOnCard = "div.video-container video"; // data-testid to be defined in FE? <video />
-	static #audioPreviewOnCard = 'audio[loading="lazy"]'; // data-testid to be defined in FE? <audio />
+	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
+	// img tag is assigned as it's down in the DOM by vuetify
+	static #fullScreenImageElement = "img";
+	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
+	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
+	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 
 	verifyVideoFileInCard() {
-		cy.get(RoomBoards.#videoPreviewOnCard).should("be.visible");
+		cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
 	}
 
 	verifyAudioFileInCard() {
-		cy.get(RoomBoards.#audioPreviewOnCard).should("be.visible");
+		cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
 	}
 
-	verifyImageFileUploaded() {
-		cy.get(RoomBoards.#thumbnailImageOnCard).should("be.visible");
+	verifyImageFileUploadedAsThumbnail() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).should("exist");
 	}
 
 	verifyCardImageInFullScreen() {
-		cy.get(RoomBoards.#fullScreenImageElement, { timeout: 10000 })
+		cy.get(RoomBoards.#lightBoxParentElementImagePreview)
+			.find(RoomBoards.#fullScreenImageElement)
 			.should("be.visible")
 			.and(($fullScreen) => {
 				// ensure the image has loaded properly in fullcreen
@@ -112,8 +114,6 @@ class RoomBoards {
 			.find(RoomBoards.#fileAltTextInputSelector)
 			// type the alt text
 			.type(altText);
-		//click outside the card to save the alt text
-		cy.get(RoomBoards.#mainContentSelector).click();
 	}
 
 	verifyDocxFileUploaded() {
@@ -159,8 +159,6 @@ class RoomBoards {
 			.find(RoomBoards.#fileCaptionInputSelector)
 			// type the caption text
 			.type(captionText);
-		//click outside the card to save the caption
-		cy.get(RoomBoards.#mainContentSelector).click();
 	}
 
 	verifyPdfUploaded() {

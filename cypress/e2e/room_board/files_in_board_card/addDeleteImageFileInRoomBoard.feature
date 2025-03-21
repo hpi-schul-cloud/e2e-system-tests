@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Room - Upload and download different files types in the Room Board
+Feature: Room - Upload, download and delete image file type in the Room Board
 
-    As a teacher, I want to upload and download files on the room board so that I can easily share and access different file types (e.g., documents, images).
+    As a teacher, I want to upload, download and delete image file in the room board so that I can easily share and manage the board contents.
 
-    Scenario: Upload & download different file in the room board, including pre & post conditions
+    Scenario: Upload, download and delete image file in the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -15,7 +15,7 @@ Feature: Room - Upload and download different files types in the Room Board
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
 
-        # teacher uploads file in the multi-column room board
+        # teacher uploads image file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         When I click on plus icon to add content into card
@@ -30,14 +30,16 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         Then I enter caption text '<image_caption_text>'
+        Then I click outside of the card to save it
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         Then I enter alternative text '<alternative_text>'
+        Then I click outside of the card to save it
         Then I see the image file is in the card
         When I click on the thumbnail image in the card
         Then I see the image from the card in fullscreen
 
-        # student can see the file in the multi-column board
+        # student can see the image file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
         # teacher downloads the image file and closes the fullscreen image window
@@ -55,7 +57,7 @@ Feature: Room - Upload and download different files types in the Room Board
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
-        # student can not see the file in the multi-column board
+        # student can not see the image file in the multi-column board
         # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
 
         # post-condition: delete the room
@@ -65,7 +67,7 @@ Feature: Room - Upload and download different files types in the Room Board
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |
-            | teacher1_nbc | nbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
 
         @staging_test
         Examples:
