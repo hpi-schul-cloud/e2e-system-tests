@@ -68,7 +68,7 @@ class RoomBoards {
 	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
 	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
-	// img tag is assigned as it's down in the DOM by vuetify
+	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
@@ -91,21 +91,21 @@ class RoomBoards {
 			.find(RoomBoards.#fullScreenImageElement)
 			.should("be.visible")
 			.and(($fullScreen) => {
-				// ensure the image has loaded properly in fullcreen
+				// Ensure the image has loaded properly in fullcreen
 				expect($fullScreen[0].naturalWidth).to.be.greaterThan(0);
 			});
 
-		// verify close button is also visible on the fullscreen image
+		// Verify close button is also visible on the fullscreen image
 		cy.get(RoomBoards.#downloadButtonOnFullImage).should("exist");
 
-		// verify download button is also visible on the fullscreen image
+		// Verify download button is also visible on the fullscreen image
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
 	}
 
 	enterImageAltTextIncard(altText) {
-		// select the parent element with the given classes
+		// Select the parent class
 		cy.get(RoomBoards.#parentContainerSelector)
-			// find the input field within that parent
+			// Find the input field element within the parent class
 			.find(RoomBoards.#fileAltTextInputSelector)
 			.click()
 			.type(altText);
@@ -128,24 +128,22 @@ class RoomBoards {
 	}
 
 	uploadFileInCard(fileName) {
-		// attach the file from the fixtures folder
+		// Attach the file from the fixtures folder
 		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
-		// intercept the file upload API call and wait for the API request to complete
+		// Intercept the file upload API call and wait for the API request to be succesfully completed
 		cy.wait("@fileUploadRequest").then((interception) => {
-			// ensure the API request was successful
 			expect(interception.response.statusCode).to.eq(201);
 		});
 	}
 
 	clickOutsideToSaveCard() {
-		// click outside the card to save it
 		cy.get(RoomBoards.#mainContentSelector).click();
 	}
 
 	enterCaption(captionText) {
-		// select the parent element with the given classes
+		// Select the parent class
 		cy.get(RoomBoards.#parentContainerSelector)
-			// find the input field within that parent
+			// Find the input field element within the parent class
 			.find(RoomBoards.#fileCaptionInputSelector)
 			.click()
 			.type(captionText);
@@ -303,7 +301,7 @@ class RoomBoards {
 
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
-			//Three dot has same data-testid and needs to be located inside the parent element
+			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 	}
