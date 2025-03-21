@@ -107,12 +107,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// find the input field within that parent
 			.find(RoomBoards.#fileAltTextInputSelector)
-			.click();
-		// select the same parent again
-		cy.get(RoomBoards.#parentContainerSelector)
-			// find the input field again
-			.find(RoomBoards.#fileAltTextInputSelector)
-			// type the alt text
+			.click()
 			.type(altText);
 	}
 
@@ -152,12 +147,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// find the input field within that parent
 			.find(RoomBoards.#fileCaptionInputSelector)
-			.click();
-		// select the same parent again
-		cy.get(RoomBoards.#parentContainerSelector)
-			// find the input field again
-			.find(RoomBoards.#fileCaptionInputSelector)
-			// type the caption text
+			.click()
 			.type(captionText);
 	}
 

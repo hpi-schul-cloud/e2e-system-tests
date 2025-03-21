@@ -30,6 +30,7 @@ Feature: Room - Upload, download and delete pdf file type in the Room Board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         Then I enter caption text '<pdf_caption_text>'
+        Then I click outside of the card to save it
         Then I see the pdf file is uploaded in the card
 
         # student can see the pdf file in the multi-column board

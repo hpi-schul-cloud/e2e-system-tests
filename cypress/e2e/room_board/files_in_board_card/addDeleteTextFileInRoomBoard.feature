@@ -30,6 +30,7 @@ Feature: Room - Upload, download and delete docx file type in the Room Board
         When I click on the three dot on the card
         When I click on the option edit in the three dot menu on the card
         Then I enter caption text '<docx_caption_text>'
+        Then I click outside of the card to save it
         Then I see the docx file is uploaded in the card
 
         # student can see the docx file in the multi-column board
