@@ -5,8 +5,9 @@ class Dashboard {
 	static #languageMenu = "#language-menu";
 	static #selectedLanguage = "#selected-language";
 	static #listOfAllLanguages = "#available-languages";
-	static #germanLanguageDevSel = '[data-testid="selected-language-de"]';
-	static #germanLanguageStageSel = '[data-testid="available-language-de"]';
+	static #germanLanguageSelectorForDevInstance = '[data-testid="selected-language-de"]';
+	static #germanLanguageSelectorForStagingInstance =
+		'[data-testid="available-language-de"]';
 	static #spanishLanguage = '[data-testid="available-language-es"]';
 	static #ukrainianLanguage = '[data-testid="available-language-uk"]';
 	static #englishLanguage = '[data-testid="available-language-en"]';
@@ -69,10 +70,13 @@ class Dashboard {
 			const stagingRegex =
 				/^https:\/\/(staging\.[\w-]+\.(dbildungscloud\.org)|test\.schulportal-thueringen\.de|staging\.dbildungscloud\.org)\/?/;
 			let isStaging = stagingRegex.test(Cypress.config("baseUrl"));
-			let germanLanguageSel = !isStaging
-				? Dashboard.#germanLanguageDevSel
-				: Dashboard.#germanLanguageStageSel;
-			return this.selectLanguage(germanLanguageSel, Dashboard.#testAssertionData.german);
+			let germanLanguageSelector = !isStaging
+				? Dashboard.#germanLanguageSelectorForDevInstance
+				: Dashboard.#germanLanguageSelectorForStagingInstance;
+			return this.selectLanguage(
+				germanLanguageSelector,
+				Dashboard.#testAssertionData.german
+			);
 		}
 
 		if (language === "spanish") {
