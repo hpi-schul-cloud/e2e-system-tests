@@ -40,6 +40,7 @@ class Board {
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
+	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -362,7 +363,7 @@ class Board {
 			.should("be.visible")
 			.should("not.be.disabled")
 			.within(() => {
-				cy.contains(`[data-testid="content-element-title-slot"]`, toolName)
+				cy.contains(Board.#contentElementTitleSlot, toolName)
 					.click()
 					.then(() => {
 						cy.wait("@courses_api");
