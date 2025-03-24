@@ -48,14 +48,14 @@ Feature: Course Board  - To add a preferred tool in a board
         Then I see the chip Draft in the course board
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         Then I see preferred tool '<ctl_tool_preferred>' in the menu
         When I select preferred tool '<ctl_tool_preferred>' from the menu
         Then I see an external tool element with tool '<ctl_tool_preferred>'
 
         # teacher adds a preferred tool with a custom parameter
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         Then I see preferred tool '<ctl_tool_preferred_param>' in the menu
         When I select preferred tool '<ctl_tool_preferred_param>' from the menu
         Then I see tool '<ctl_tool_preferred_param>' is selected

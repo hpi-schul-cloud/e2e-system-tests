@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Room - Upload, download and delete image file type in the Room Board
+Feature: Room Board - Upload, download and delete image file type in the Room Board
 
     As a teacher, I want to upload, download and delete image file in the room board so that I can easily share and manage the board contents.
 
@@ -17,48 +17,48 @@ Feature: Room - Upload, download and delete image file type in the Room Board
 
         # teacher uploads image file in the multi-column room board
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        When I click on plus icon to add content into card
-        Then I see the dialog box to select element for the card
-        When I click on the button Close on the element selection dialogue box
-        Then I do not see the element selection dialogue box
-        When I click on plus icon to add content into card
-        Then I see the dialog box to select element for the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on icon Plus to add content into card
+        Then I see the dialog Add Element in the card
+        When I click on the button Close in the dialog Add Element
+        Then I do not see the dialog Add Element in the card
+        When I click on icon Plus to add content into card
+        Then I see the dialog Add Element in the card
         When I select 'file' from the element selection dialog box
         When I upload a file '<image_file_name>'
-        Then I click outside of the card to save it
+        When I click outside of the card to save it
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        Then I enter caption text '<image_caption_text>'
-        Then I click outside of the card to save it
+        When I click on the option Edit in the three dot menu on the card
+        When I enter text in the textbox Caption '<image_caption_text>'
+        When I click outside of the card to save it
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        Then I enter alternative text '<alternative_text>'
-        Then I click outside of the card to save it
-        Then I see the image file is in the card
-        When I click on the thumbnail image in the card
-        Then I see the image from the card in fullscreen
+        When I click on the option Edit in the three dot menu on the card
+        When I enter text in the textbox Alternative Text  '<alternative_text>'
+        When I click outside of the card to save it
+        Then I see the file type Image in the card
+        When I click on the thumbnail Image in the card
+        Then I see the fullscreen Image from the card
 
         # student can see the image file in the multi-column board
-        # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
+        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the image file and closes the fullscreen image window
-        When I click on the icon download file on the fullscreen image
+        When I click on icon Download in the fullscreen image
         Then file '<image_file_name>' is saved in folder downloads
         When I click on the icon Close on the fullscreen image
-        Then I see the image file is in the card
+        Then I see the file type Image in the card
 
-        # teacher deletes image file in the multi-column room board
+        # teacher deletes the element File with image in the multi-column room board
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        When I click on the three-dot menu in the File element
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three-dot in the element File
         When I click on the option Delete in the three-dot menu
-        Then I see the dialog delete confirmation
+        Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
         # student can not see the image file in the multi-column board
-        # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
+        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
         Given I navigate to the room detail page from the board page

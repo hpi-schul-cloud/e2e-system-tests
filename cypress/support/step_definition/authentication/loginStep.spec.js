@@ -1,7 +1,7 @@
 const { Before, Given } = require("@badeball/cypress-cucumber-preprocessor");
 
 Before(() => {
-	cy.intercept("POST", "/api/v3/file/upload/school/*/boardnodes/*").as(
+	cy.intercept({ method: "POST", pathname: "**/boardnodes/**" }).as(
 		"fileUploadRequest"
 	);
 	cy.intercept("**/public").as("public_api");

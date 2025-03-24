@@ -56,7 +56,7 @@ class RoomBoards {
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
 	static #inputAttachFile = 'input[type="file"]';
-	static #uploadedFileTiltleInCard = '[data-testid="content-element-title-slot"]';
+	static #uploadedFileTitleInCard = '[data-testid="content-element-title-slot"]';
 	static #downloadFileIconSelector =
 		'[data-testid="board-file-element-edit-menu-download"]';
 	static #fileElementSelector = '[data-testid="board-file-element"]';
@@ -91,7 +91,7 @@ class RoomBoards {
 			.find(RoomBoards.#fullScreenImageElement)
 			.should("be.visible")
 			.and(($fullScreen) => {
-				// Ensure the image has loaded properly in fullcreen
+				// Ensure the image has loaded properly in fullscreen
 				expect($fullScreen[0].naturalWidth).to.be.greaterThan(0);
 			});
 
@@ -102,7 +102,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
 	}
 
-	enterImageAltTextIncard(altText) {
+	enterImageAltTextInCard(altText) {
 		// Select the parent class
 		cy.get(RoomBoards.#parentContainerSelector)
 			// Find the input field element within the parent class
@@ -112,7 +112,7 @@ class RoomBoards {
 	}
 
 	verifyDocxFileUploaded() {
-		cy.get(RoomBoards.#uploadedFileTiltleInCard).should("be.visible");
+		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
 	}
 
 	shouldNotSeeFileElement() {
@@ -150,7 +150,7 @@ class RoomBoards {
 	}
 
 	verifyPdfUploaded() {
-		cy.get(RoomBoards.#uploadedFileTiltleInCard).should("be.visible");
+		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
 	}
 
 	clickOnImageThumbnailInCard() {

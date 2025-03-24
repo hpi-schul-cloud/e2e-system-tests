@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Room - Upload, download and delete video & audio files type in the Room Board
+Feature: Room Board - Upload, download and delete video & audio files type in the Room Board
 
     As a teacher, I want to upload, download and delete video & audio files in the room board so that I can easily share and manage the board contents.
 
@@ -19,71 +19,71 @@ Feature: Room - Upload, download and delete video & audio files type in the Room
 
         # teacher uploads a video file in the multi-column room board
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        When I click on plus icon to add content into card
-        Then I see the dialog box to select element for the card
-        When I click on the button Close on the element selection dialogue box
-        Then I do not see the element selection dialogue box
-        When I click on plus icon to add content into card
-        Then I see the dialog box to select element for the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on icon Plus to add content into card
+        Then I see the dialog Add Element in the card
+        When I click on the button Close in the dialog Add Element
+        Then I do not see the dialog Add Element in the card
+        When I click on icon Plus to add content into card
+        Then I see the dialog Add Element in the card
         When I select 'file' from the element selection dialog box
         When I upload a file '<video_file_name>'
-        Then I enter caption text '<video_caption_text>'
-        Then I click outside of the card to save it
-        Then I see the video file is in the card
+        When I enter text in the textbox Caption '<video_caption_text>'
+        When I click outside of the card to save it
+        Then I see the file type Video in the card
 
         # student can see the video file in the multi-column board
-        # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
+        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the video file in the multi-column room board
-        When I click on the icon download file
+        When I click on the icon Download file
         Then file '<video_file_name>' is saved in folder downloads
 
-        # teacher deletes the video file in the multi-column room board
+        # teacher deletes the element File with video in the multi-column room board
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        When I click on the three-dot menu in the File element
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three-dot in the element File
         When I click on the option Delete in the three-dot menu
-        Then I see the dialog delete confirmation
+        Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
         # student can not see the video file in the multi-column board
-        # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
+        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # ------------------------- AUDIO FILE --------------------------------------
 
         # teacher uploads a audio file in the multi-column room board
-        When I click on plus icon to add content into card
-        Then I see the dialog box to select element for the card
-        When I click on the button Close on the element selection dialogue box
-        Then I do not see the element selection dialogue box
-        When I click on plus icon to add content into card
-        Then I see the dialog box to select element for the card
+        When I click on icon Plus to add content into card
+        Then I see the dialog Add Element in the card
+        When I click on the button Close in the dialog Add Element
+        Then I do not see the dialog Add Element in the card
+        When I click on icon Plus to add content into card
+        Then I see the dialog Add Element in the card
         When I select 'file' from the element selection dialog box
         When I upload a file '<audio_file_name>'
-        Then I enter caption text '<audio_caption_text>'
-        Then I click outside of the card to save it
-        Then I see the audio file is in the card
+        When I enter text in the textbox Caption '<audio_caption_text>'
+        When I click outside of the card to save it
+        Then I see the file type Audio in the card
 
         # student can see the audio file in the multi-column board
-        # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
+        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the audio file in the multi-column room board
-        When I click on the icon download file
+        When I click on the icon Download file
         Then file '<audio_file_name>' is saved in folder downloads
 
         # teacher deletes the audio file in the multi-column room board
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        When I click on the three-dot menu in the File element
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three-dot in the element File
         When I click on the option Delete in the three-dot menu
-        Then I see the dialog delete confirmation
+        Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
 
         # student can not see the file in the multi-column board
-        # note: this scenario can not be defined as adding the student to the room feature is not yet implementred.
+        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
         Given I navigate to the room detail page from the board page

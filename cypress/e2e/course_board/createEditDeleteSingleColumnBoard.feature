@@ -65,7 +65,7 @@ Feature: Course Board - To create, edit and delete a single-column course board
         Then I see my column named '<column_board_title>'
         Then I click on the button with the Icon Plus to add a new card in the column
         When I enter '<card_text_content>' to board card text element
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select 'drawing-element' from the element selection dialog box
         Then I see a whiteboard on the board
         Then I see '<card_text_content>' in board card text element

@@ -3,15 +3,15 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-Then("I see the video file is in the card", () => {
+Then("I see the file type Video in the card", () => {
 	roomBoards.verifyVideoFileInCard();
 });
 
-Then("I see the audio file is in the card", () => {
+Then("I see the file type Audio in the card", () => {
 	roomBoards.verifyAudioFileInCard();
 });
 
-Then("I click outside of the card to save it", () => {
+When("I click outside of the card to save it", () => {
 	roomBoards.clickOutsideToSaveCard();
 });
 
@@ -19,19 +19,19 @@ When("I click on the icon Close on the fullscreen image", () => {
 	roomBoards.clickCloseButtonOnFullScreenImage();
 });
 
-When("I click on the icon download file on the fullscreen image", () => {
+When("I click on icon Download in the fullscreen image", () => {
 	roomBoards.clickDownloadIconOnFullScreenImage();
 });
 
-Then("I see the image file is in the card", () => {
+Then("I see the file type Image in the card", () => {
 	roomBoards.verifyImageFileUploadedAsThumbnail();
 });
 
-Then("I enter alternative text {string}", (altText) => {
-	roomBoards.enterImageAltTextIncard(altText);
+When("I enter text in the textbox Alternative Text  {string}", (altText) => {
+	roomBoards.enterImageAltTextInCard(altText);
 });
 
-Then("I see the docx file is uploaded in the card", () => {
+Then("I see the file type DOCX is uploaded in the card", () => {
 	roomBoards.verifyDocxFileUploaded();
 });
 
@@ -39,11 +39,11 @@ When("I do not see the element File", () => {
 	roomBoards.shouldNotSeeFileElement();
 });
 
-When("I click on the three-dot menu in the File element", () => {
+When("I click on the three-dot in the element File", () => {
 	roomBoards.clickThreeDotMenuInFileElement();
 });
 
-When("I click on the icon download file", () => {
+When("I click on the icon Download file", () => {
 	roomBoards.downloadFileIcon();
 });
 
@@ -51,19 +51,19 @@ When("I upload a file {string}", (fileName) => {
 	roomBoards.uploadFileInCard(fileName);
 });
 
-Then("I enter caption text {string}", (captionText) => {
+When("I enter text in the textbox Caption {string}", (captionText) => {
 	roomBoards.enterCaption(captionText);
 });
 
-Then("I see the pdf file is uploaded in the card", () => {
+Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
 });
 
-When("I click on the thumbnail image in the card", () => {
+When("I click on the thumbnail Image in the card", () => {
 	roomBoards.clickOnImageThumbnailInCard();
 });
 
-Then("I see the image from the card in fullscreen", () => {
+Then("I see the fullscreen Image from the card", () => {
 	roomBoards.verifyCardImageInFullScreen();
 });
 
@@ -158,7 +158,7 @@ Then("I copy the board URL", () => {
 	roomBoards.copyBoardURLInModal();
 });
 
-When("I click on the option edit in the three dot menu on the card", () => {
+When("I click on the option Edit in the three dot menu on the card", () => {
 	roomBoards.clickEditOptionInCardThreeDot();
 });
 
@@ -174,7 +174,7 @@ When("I click on the option Delete in the three-dot menu", () => {
 	roomBoards.clickDeleteOptionInThreeDotMenu();
 });
 
-Then("I see the dialog delete confirmation", () => {
+Then("I see the dialog Confirm deletion", () => {
 	roomBoards.verifyDeleteConfirmationDialogVisible();
 });
 
@@ -197,15 +197,15 @@ Then("I see the dialog box for element selection", () => {
 	roomBoards.seeElementSelectionDialog();
 });
 
-When("I click on the button Close on the element selection dialogue box", () => {
+When("I click on the button Close in the dialog Add Element", () => {
 	roomBoards.clickCloseButtonOnElementSelectionDialog();
 });
 
-Then("I do not see the element selection dialogue box", () => {
+Then("I do not see the dialog Add Element in the card", () => {
 	roomBoards.doNotSeeElementSelectionDialog();
 });
 
-Then("I see the dialog box to select element for the card", () => {
+Then("I see the dialog Add Element in the card", () => {
 	roomBoards.seeElementSelectionDialog();
 });
 
