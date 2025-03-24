@@ -785,7 +785,6 @@ class Courses {
 			.contains(toolName)
 			.scrollIntoView()
 			.should("be.visible");
-		cy.wait("@toolLaunch", { requestTimeout: 10_000 });
 	}
 
 	checkIfToolIsNotVisibleInToolTable(toolName) {
@@ -1093,12 +1092,13 @@ class Courses {
 				});
 		});
 		cy.wrap(launchedTool).as("launchedTool");
+		cy.wait(500);
 		cy.get(Courses.#courseExternalToolSection)
 			.contains(toolName)
 			.click({ force: true })
 			.then(() => {
 				cy.wait("@courses_api");
-				cy.wait("@toolLaunch");
+				cy.wait("@toolLaunch_api");
 			});
 		cy.get("@openStub").should("have.been.called");
 		cy.wrap(launchedTool).its("isLaunched").should("be.true");

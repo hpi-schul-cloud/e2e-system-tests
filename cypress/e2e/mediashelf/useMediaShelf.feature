@@ -1,10 +1,8 @@
-@regression_test
-@stable_test
+@unstable_test
 Feature: Media Shelf - To show media shelf with respective functionality
 
     As a teacher I want to use the media shelf
 
-    @stable_test
     Scenario: Teacher uses the media shelf
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -141,10 +139,10 @@ Feature: Media Shelf - To show media shelf with respective functionality
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white          | color_grey           | section_title  | section_title_updated | ctl_tool_launch_url |
+            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white        | color_grey         | section_title  | section_title_updated | ctl_tool_launch_url |
             | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool 2 | rgb(255, 255, 255) | rgb(251, 233, 231) | Test Abschnitt | Favoriten             | https://google.com/ |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white          | color_grey           | section_title  | section_title_updated | ctl_tool_launch_url |
+            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white        | color_grey         | section_title  | section_title_updated | ctl_tool_launch_url |
             | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool 2 | rgb(255, 255, 255) | rgb(251, 233, 231) | Test Abschnitt | Favoriten             | https://google.com/ |

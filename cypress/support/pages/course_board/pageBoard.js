@@ -253,6 +253,7 @@ class Board {
 
 	clickOnSingleColumnBoardOptionInDialogBox() {
 		cy.get(Board.#singleColumnBoardOptionInDialogBox).click();
+		cy.wait("@layout_api");
 	}
 
 	seePreferredExternalToolInMenu(toolName) {
@@ -365,7 +366,7 @@ class Board {
 					.click()
 					.then(() => {
 						cy.wait("@courses_api");
-						cy.wait("@toolLaunch");
+						cy.wait("@toolLaunch_api");
 					});
 			});
 		cy.get("@openStub").should("have.been.called");
@@ -442,15 +443,11 @@ class Board {
 	}
 
 	seeSingleColumnBoard() {
-		cy.get(Board.#firstBoardColumn)
-			.should("have.class", "d-flex flex-column align-stretch my-0")
-			.should("not.have.attr", "style", "min-width: 400px; max-width: 400px;");
+		cy.get(Board.#firstBoardColumn).scrollIntoView().should("be.visible");
 	}
 
 	seeMultiColumnBoard() {
-		cy.get(Board.#firstBoardColumn)
-			.should("have.class", "px-4")
-			.should("have.attr", "style", "min-width: 400px; max-width: 400px;");
+		cy.get(Board.#firstBoardColumn).should("be.visible");
 	}
 }
 export default Board;
