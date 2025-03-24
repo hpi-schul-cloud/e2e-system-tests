@@ -41,7 +41,7 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         When I click on the icon Download file
         Then file '<pdf_file_name>' is saved in folder downloads
 
-        # teacher deletes the pdf file in the multi-column room board
+        # teacher deletes the element File with PDF in the multi-column room board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot in the element File

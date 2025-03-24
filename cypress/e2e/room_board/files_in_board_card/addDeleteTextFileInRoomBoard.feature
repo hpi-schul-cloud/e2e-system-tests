@@ -41,7 +41,7 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         When I click on the icon Download file
         Then file '<docx_file_name>' is saved in folder downloads
 
-        # teacher deletes the docx file in the multi-column room board
+        # teacher deletes the element File with DOCX in the multi-column room board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot in the element File
