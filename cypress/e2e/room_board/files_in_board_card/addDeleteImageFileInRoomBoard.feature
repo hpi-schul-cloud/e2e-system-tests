@@ -10,7 +10,6 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: room, board and card are existing
-        Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card

@@ -130,7 +130,7 @@ class RoomBoards {
 	uploadFileInCard(fileName) {
 		// Attach the file from the fixtures folder
 		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
-		// Intercept the file upload API call and wait for the API request to be succesfully completed
+		// Intercept the file upload API call and wait for the API request to be successfully completed
 		cy.wait("@fileUploadRequest").then((interception) => {
 			expect(interception.response.statusCode).to.eq(201);
 		});
