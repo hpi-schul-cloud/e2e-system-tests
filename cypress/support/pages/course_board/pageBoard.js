@@ -254,7 +254,6 @@ class Board {
 
 	clickOnSingleColumnBoardOptionInDialogBox() {
 		cy.get(Board.#singleColumnBoardOptionInDialogBox).click();
-		cy.wait("@layout_api");
 	}
 
 	seePreferredExternalToolInMenu(toolName) {

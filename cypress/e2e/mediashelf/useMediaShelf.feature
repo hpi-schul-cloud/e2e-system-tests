@@ -1,3 +1,8 @@
+# this feature marked unstable, when dragging the element was detached
+# from DOM and cypress is failing the test. In GUI mode, you have to manually
+# show the path to the element and then it works but in headless mode thats
+# not the case and it fails every time.
+
 @unstable_test
 Feature: Media Shelf - To show media shelf with respective functionality
 
