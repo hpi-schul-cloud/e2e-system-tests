@@ -1162,17 +1162,6 @@ class Management {
 		cy.get(Management.#othersOptionCheckbox).should("not.be.checked");
 	}
 
-	editSpecificCourse(courseName) {
-		const courseEntry = cy.get(Management.#dataTable).find("td").contains(courseName);
-		const actionButtons = courseEntry.siblings("td").eq(2);
-		actionButtons.children().first().click();
-		cy.wait("@courses_api");
-	}
-
-	seeCourseAdministrationPage() {
-		cy.url().should("include", "/administration/courses");
-	}
-
 	clickAccountMigrationPanel() {
 		cy.get(Management.#accountMigrationPanel).click();
 	}
