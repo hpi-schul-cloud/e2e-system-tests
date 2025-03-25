@@ -49,8 +49,8 @@ Feature: Course Board - Opening a drawing element on a course page
         # pre-condition: teacher adds a new column
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         Then I select 'drawing-element' from the element selection dialog box
 
         # teacher is able to open a drawing element to the course board

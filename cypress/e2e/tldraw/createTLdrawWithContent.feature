@@ -18,8 +18,8 @@ Feature: TLDraw - Test tldraw on board
 
         # teacher creates a whiteboard element in the card and draws on it
         When I click on the three dot on the card
-        When I click on the option edit in the three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on icon Plus to add content into card
         When I select 'drawing-element' from the element selection dialog box
         When I click on the whiteboard element
         When I click on the icon Pencil tool
