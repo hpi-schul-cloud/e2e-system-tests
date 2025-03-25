@@ -17,6 +17,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         # ------------------------- VIDEO FILE ------------------------------------
 
         # teacher uploads a video file in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -39,6 +40,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         Then file '<video_file_name>' is saved in folder downloads
 
         # teacher deletes the element File with video in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot in the element File
@@ -73,6 +75,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         Then file '<audio_file_name>' is saved in folder downloads
 
         # teacher deletes the audio file in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot in the element File

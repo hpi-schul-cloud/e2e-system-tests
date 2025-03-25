@@ -15,6 +15,7 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         Given the multi-column board has a column with a card
 
         # teacher uploads a docx file in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -36,12 +37,14 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the docx file in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the icon Download file
         Then file '<docx_file_name>' is saved in folder downloads
 
         # teacher deletes the element File with DOCX in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot in the element File
