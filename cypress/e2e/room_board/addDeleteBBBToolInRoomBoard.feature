@@ -39,7 +39,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I see the button create in the video conference creation modal to start the call
         Then I click on the button cancel in the video conference creation modal to go back to the card
 
-        # student can see the video confernce in the multi-column board
+        # student can see the video conference in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher deletes the BBB Tool from the multi-column board card
