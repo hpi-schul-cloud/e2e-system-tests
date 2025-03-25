@@ -2,6 +2,9 @@ const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Tasks from "../../pages/tasks/pageTasks";
 
 const tasks = new Tasks();
+Then("file {string} is saved in folder downloads", (fileName) => {
+	tasks.seeFileIsSavedInDownloads(fileName);
+});
 
 When("I go to tasks overview", () => {
 	tasks.navigateToTasksOverview();

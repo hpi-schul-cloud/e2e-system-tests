@@ -35,7 +35,7 @@ When("I click on the button Remove on the Modal", () => {
 	board.clickOnConfirmInModal();
 });
 
-When("I click on plus icon to add card in column", () => {
+When("I click on icon Plus to add card in column", () => {
 	board.clickPlusIconToAddCardInColumn();
 });
 
@@ -43,7 +43,7 @@ When("I click on the button three dot menu in course board", () => {
 	board.clickOnThreeDotMenuInCourseBoardTitle();
 });
 
-When("I click on plus icon to add content into card", () => {
+When("I click on icon Plus to add content into card", () => {
 	board.clickPlusIconToAddContentIntoCard();
 });
 

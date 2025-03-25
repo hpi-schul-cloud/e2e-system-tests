@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Room - Add, edit and delete board in room
+Feature: Room Board - Add, edit and delete board in room
 
     As a teacher I want to add, edit and delete board in the room.
 

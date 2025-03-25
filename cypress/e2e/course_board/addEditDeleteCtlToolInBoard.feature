@@ -60,8 +60,8 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see the chip Draft in the course board
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
@@ -74,7 +74,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         # teacher adds a tool twice but with a different name
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
@@ -85,7 +85,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         # teacher adds tool via tool link
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I insert the external tool link '<ctl_tool_link>'
         Then I see tool '<ctl_tool_openstreetmap>' is selected
@@ -98,7 +98,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         # teacher adds tool with a required custom parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_required_param>' from available tools
         Then I see tool '<ctl_tool_required_param>' is selected
@@ -113,7 +113,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         # teacher adds a tool with an optional custom parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_optional_param>' from available tools
         Then I see tool '<ctl_tool_optional_param>' is selected

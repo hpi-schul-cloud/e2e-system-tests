@@ -30,7 +30,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnVideoConferenceElementDialog =
+	static #deleteOptionOnCardElementThreeDot =
 		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
@@ -55,6 +55,116 @@ class RoomBoards {
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
+	static #inputAttachFile = 'input[type="file"]';
+	static #uploadedFileTitleInCard = '[data-testid="content-element-title-slot"]';
+	static #downloadFileIconSelector =
+		'[data-testid="board-file-element-edit-menu-download"]';
+	static #fileElementSelector = '[data-testid="board-file-element"]';
+	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
+	static #mainContentSelector = "#main-content";
+	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
+	static #parentContainerSelector = ".d-flex.flex-column";
+	static #fileAltTextInputSelector = '[data-testid="file-alttext-input"]';
+	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
+	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
+	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
+	// Img tag is assigned as it's down in the DOM by vuetify
+	static #fullScreenImageElement = "img";
+	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
+	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
+	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
+
+	verifyVideoFileInCard() {
+		cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
+	}
+
+	verifyAudioFileInCard() {
+		cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
+	}
+
+	verifyImageFileUploadedAsThumbnail() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).should("exist");
+	}
+
+	verifyCardImageInFullScreen() {
+		cy.get(RoomBoards.#lightBoxParentElementImagePreview)
+			.find(RoomBoards.#fullScreenImageElement)
+			.should("be.visible")
+			.and(($fullScreen) => {
+				// Ensure the image has loaded properly in fullscreen
+				expect($fullScreen[0].naturalWidth).to.be.greaterThan(0);
+			});
+
+		// Verify close button is also visible on the fullscreen image
+		cy.get(RoomBoards.#downloadButtonOnFullImage).should("exist");
+
+		// Verify download button is also visible on the fullscreen image
+		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
+	}
+
+	enterImageAltTextInCard(altText) {
+		// Select the parent class
+		cy.get(RoomBoards.#parentContainerSelector)
+			// Find the input field element within the parent class
+			.find(RoomBoards.#fileAltTextInputSelector)
+			.click()
+			.type(altText);
+	}
+
+	verifyDocxFileUploaded() {
+		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
+	}
+
+	shouldNotSeeFileElement() {
+		cy.get(RoomBoards.#fileElementSelector).should("not.exist");
+	}
+
+	clickThreeDotMenuInFileElement() {
+		cy.get(RoomBoards.#threeDotMenuSelector).click();
+	}
+
+	downloadFileIcon() {
+		cy.get(RoomBoards.#downloadFileIconSelector).should("be.visible").click();
+	}
+
+	uploadFileInCard(fileName) {
+		// Attach the file from the fixtures folder
+		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
+		// Intercept the file upload API call and wait for the API request to be successfully completed
+		cy.wait("@fileUploadRequest_api").then((interception) => {
+			expect(interception.response.statusCode).to.eq(201);
+		});
+	}
+
+	clickOutsideToSaveCard() {
+		cy.get(RoomBoards.#mainContentSelector).click();
+	}
+
+	enterCaption(captionText) {
+		// Select the parent class
+		cy.get(RoomBoards.#parentContainerSelector)
+			// Find the input field element within the parent class
+			.find(RoomBoards.#fileCaptionInputSelector)
+			.click()
+			.type(captionText);
+	}
+
+	verifyPdfUploaded() {
+		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
+	}
+
+	clickOnImageThumbnailInCard() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).click();
+		cy.wait(500);
+	}
+
+	clickDownloadIconOnFullScreenImage() {
+		cy.get(RoomBoards.#downloadButtonOnFullImage).click();
+	}
+
+	clickCloseButtonOnFullScreenImage() {
+		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).click();
+	}
 
 	uncheckLinkValidForSameSchool() {
 		cy.get(RoomBoards.#sameSchoolCheckbox).click();
@@ -191,13 +301,13 @@ class RoomBoards {
 
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
-			//Three dot has same data-testid and needs to be located inside the parent element
+			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 	}
 
 	clickDeleteOptionInThreeDotMenu() {
-		cy.get(RoomBoards.#deleteOptionOnVideoConferenceElementDialog).click();
+		cy.get(RoomBoards.#deleteOptionOnCardElementThreeDot).click();
 	}
 
 	verifyDeleteConfirmationDialogVisible() {

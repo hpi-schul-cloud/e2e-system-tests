@@ -146,10 +146,6 @@ When("I click on download file in grading", () => {
 	tasks.clickDownloadFileInGrading();
 });
 
-Then("file {string} is saved in folder downloads", (fileName) => {
-	tasks.seeFileIsSavedInDownloads(fileName);
-});
-
 When("I click on delete file", () => {
 	tasks.clickOnDeleteFile();
 });
