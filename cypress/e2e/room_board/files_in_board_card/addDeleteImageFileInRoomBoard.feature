@@ -15,6 +15,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Given the multi-column board has a column with a card
 
         # teacher uploads image file in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -48,6 +49,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Then I see the file type Image in the card
 
         # teacher deletes the element File with image in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot in the element File

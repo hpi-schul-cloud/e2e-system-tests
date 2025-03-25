@@ -15,6 +15,7 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         Given the multi-column board has a column with a card
 
         # teacher uploads a pdf file in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -36,12 +37,14 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the pdf file in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the icon Download file
         Then file '<pdf_file_name>' is saved in folder downloads
 
         # teacher deletes the element File with PDF in the multi-column room board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot in the element File

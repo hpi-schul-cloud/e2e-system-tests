@@ -21,7 +21,7 @@ class News {
 	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
 	static #newsContent = '[id="main-content"]';
-	static #newsOverviewTabUnpublished = '[data-tab="b"]'
+	static #newsOverviewTabUnpublished = '[data-tab="b"]';
 
 	doNotSeeNewsWhenNewsNotYetPublished(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
@@ -125,7 +125,7 @@ class News {
 	}
 
 	setNewsStartDate(newsStartDateDifference, newsStartTime) {
-		if (newsStartDateDifference != 'notselected'){
+		if (newsStartDateDifference != "notselected") {
 			const today = new Date();
 			let startDate = new Date(today);
 			let startTime;
@@ -136,46 +136,41 @@ class News {
 			let startDateText = startDate.toLocaleString(News.#enDateFormat, {
 				year: "numeric",
 				day: "2-digit",
-				month: "2-digit"
+				month: "2-digit",
 			});
-			cy.get(News.#newsDateInput).eq(1).type(
-				`${startDateText}`
-			);
+			cy.get(News.#newsDateInput).eq(1).type(`${startDateText}`);
 
 			if (newsStartTime === "currentTime") {
 				startTime = new Date(today);
 				startTimeText = startTime.toLocaleString(News.#deDateFormat, {
 					hour: "2-digit",
-					minute: "2-digit"
+					minute: "2-digit",
 				});
 			} else if (newsStartTime === "+2minutes") {
 				startTime = new Date(today);
 				startTime.setMinutes(startTime.getMinutes() + 2);
 				startTimeText = startTime.toLocaleString(News.#deDateFormat, {
 					hour: "2-digit",
-					minute: "2-digit"
+					minute: "2-digit",
 				});
 			} else {
 				startTimeText = newsStartTime;
 			}
-			cy.get(News.#newsTimeInput).eq(1).type(
-				`${startTimeText}`
-			);
-
+			cy.get(News.#newsTimeInput).eq(1).type(`${startTimeText}`);
 		}
 	}
 
 	seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo) {
-		if (newsTimeInfo === 'vor ein'){
+		if (newsTimeInfo === "vor ein") {
 			cy.get(News.#newsContent).contains(newsTimeInfo).should("exist");
-		}else {
+		} else {
 			let daysFromNow = parseInt(newsTimeInfo);
 			let startDate = new Date();
 			startDate.setDate(startDate.getDate() + daysFromNow);
 			let newsDateInfo = startDate.toLocaleString(News.#deDateFormat, {
 				year: "numeric",
 				day: "2-digit",
-				month: "2-digit"
+				month: "2-digit",
 			});
 			cy.get(News.#newsContent).contains(newsDateInfo).should("exist");
 		}
@@ -187,8 +182,7 @@ class News {
 
 	waitBeforeReload(timeInSeconds) {
 		timeInSeconds = parseInt(timeInSeconds);
-		cy.wait(timeInSeconds*1000).reload();
+		cy.wait(timeInSeconds * 1000).reload();
 	}
-
 }
 export default News;

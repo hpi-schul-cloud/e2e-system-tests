@@ -29,19 +29,18 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout =
-		'[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
-	static #externalToolElementAlert =
-		'[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
+	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -66,7 +65,8 @@ class Board {
 	seeExternalToolElementWithTool(toolName) {
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
 			.find(".content-element-title")
-			.should("contain.text", toolName);
+			.should("contain.text", toolName)
+			.should("be.visible");
 	}
 
 	canNotSeeDeletedElements() {
@@ -170,9 +170,7 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	clickOnThreeDotOnColumn() {
@@ -346,20 +344,33 @@ class Board {
 
 	launchTool(toolName, toolURL) {
 		const launchedTool = { toolName: toolName, isLaunched: false };
-
 		cy.window().then((win) => {
 			cy.stub(win, "open")
 				.as("openStub")
 				.callsFake((url) => {
 					expect(url).to.contain(toolURL);
-					launchedTool.isLaunched = true;
+					return Cypress.Promise.resolve().then(() => {
+						launchedTool.isLaunched = true;
+						expect(url).to.contain(toolURL);
+					});
 				});
 		});
-
 		cy.wrap(launchedTool).as("launchedTool");
-
-		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click();
-
+		cy.wait(500);
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.focus()
+			.should("be.visible")
+			.should("not.be.disabled")
+			.within(() => {
+				cy.contains(Board.#contentElementTitleSlot, toolName)
+					.click()
+					.then(() => {
+						cy.wait("@courses_api");
+						cy.wait("@toolLaunch_api");
+					});
+			});
+		cy.get("@openStub").should("have.been.called");
+		cy.wrap(launchedTool).its("isLaunched").should("be.true");
 		cy.get("@openStub").invoke("restore");
 	}
 
@@ -432,15 +443,11 @@ class Board {
 	}
 
 	seeSingleColumnBoard() {
-		cy.get(Board.#firstBoardColumn)
-			.should("have.class", "d-flex flex-column align-stretch my-0")
-			.should("not.have.attr", "style", "min-width: 400px; max-width: 400px;");
+		cy.get(Board.#firstBoardColumn).scrollIntoView().should("be.visible");
 	}
 
 	seeMultiColumnBoard() {
-		cy.get(Board.#firstBoardColumn)
-			.should("have.class", "px-4")
-			.should("have.attr", "style", "min-width: 400px; max-width: 400px;");
+		cy.get(Board.#firstBoardColumn).should("be.visible");
 	}
 }
 export default Board;

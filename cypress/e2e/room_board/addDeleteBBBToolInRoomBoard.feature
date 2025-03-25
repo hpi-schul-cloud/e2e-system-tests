@@ -20,6 +20,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Given the multi-column board has a column with a card
 
         # teacher adds BBB Tool to the multi-column board
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -38,10 +39,11 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I see the button create in the video conference creation modal to start the call
         Then I click on the button cancel in the video conference creation modal to go back to the card
 
-        # student can see the video confernce in the multi-column board
+        # student can see the video conference in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher deletes the BBB Tool from the multi-column board card
+        When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three-dot menu in the video conference element
