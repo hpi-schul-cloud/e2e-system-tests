@@ -174,7 +174,7 @@ Feature: Deactivation of ctl tools in board
 		Given I am logged in as a '<admin>' at '<namespace>'
 		When I click on administration in menu
 		When I go to course administration page
-		When I click the delete button for course '<course_name>' in course table
+		When I click on the delete button of course '<course_name>'
 		Then I see the delete modal
 		When I click the confirmation button on the delete modal
 		Then I do not see course '<course_name>' in course table
