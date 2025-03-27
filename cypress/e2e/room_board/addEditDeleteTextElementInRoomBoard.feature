@@ -45,10 +45,10 @@ Feature: Room Board - Add, edit and delete text element in the room the room boa
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
+            | teacher      | namespace | room_name         | board_title    | example_text         |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
+            | teacher      | namespace | room_name         | board_title    | example_text         |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text |
