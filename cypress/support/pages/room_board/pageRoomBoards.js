@@ -74,6 +74,37 @@ class RoomBoards {
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 
+	static #inputTextFieldCard = '[data-testid="ckeditor"]';
+	static #cardContentText = '[data-testid="ck-content-text"]';
+
+	removeTextFromTextElement() {
+		cy.get(RoomBoards.#inputTextFieldCard).clear();
+	}
+
+	verifyTextNotInCard(text) {
+		cy.get(RoomBoards.#cardContentText).should("not.contain.text", text);
+	}
+
+	enterTextInTextElement(text) {
+		cy.get(RoomBoards.#inputTextFieldCard).should("exist"); // Wait for CKEditor to be available
+		cy.wait(1000); // Small delay to ensure full initialization (adjust if needed)´
+		cy.get(RoomBoards.#inputTextFieldCard).then((body) => {
+			cy.wrap(body).click().type(text, { force: true });
+		});
+	}
+
+	verifyTextInCard(text) {
+		cy.get(RoomBoards.#cardContentText).should("contain.text", text);
+	}
+
+	reEnterTextInTextElement(text) {
+		cy.get(RoomBoards.#inputTextFieldCard).clear().type(text);
+	}
+
+	verifyTextNotInCard(text) {
+		cy.get(RoomBoards.#cardContentText).should("not.contain.text", text);
+	}
+
 	verifyVideoFileInCard() {
 		cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
 	}

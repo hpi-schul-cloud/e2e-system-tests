@@ -25,15 +25,24 @@ Feature: Room Board - Add, edit and delete text element in the room the room boa
         When I click on icon Plus to add content into card
         Then I see the dialog Add Element in the card
         When I select 'text' from the element selection dialog box
-
+        Then I enter the text '<example_text>'
+        When I click outside of the card to save it
+        Then I see the element Text '<example_text>' in the card
 
         # student can see the element Text in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher edits the element Text in the multi-column board
-
+        When I click on the three dot on the card
+        Then I re enter the text '<edit_example_text>'
+        When I click outside of the card to save it
+        Then I see the element Text '<edit_example_text>' in the card
 
         # teacher deletes the element Text in the multi-column board
+        When I click on the three dot on the card
+        When I remove the text '<edit_example_text>' in the element Text
+        When I click outside of the card to save it
+        Then I do not see the element Text '<edit_example_text>' in the card
 
 
         # student can not see the element Text in the multi-column board
@@ -45,10 +54,10 @@ Feature: Room Board - Add, edit and delete text element in the room the room boa
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | example_text         |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text |
+            | teacher      | namespace | room_name         | board_title    | example_text         | edit_example_text         |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | example_text         |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text |
+            | teacher      | namespace | room_name         | board_title    | example_text         | edit_example_text         |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |
