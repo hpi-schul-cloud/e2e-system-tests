@@ -3,7 +3,7 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-Then("I enter the text {string}", (text) => {
+Then("I enter the text {string} in the element Text", (text) => {
 	roomBoards.enterTextInTextElement(text);
 });
 
@@ -20,7 +20,7 @@ When("I remove the text {string} in the element Text", (editedText) => {
 });
 
 Then("I do not see the element Text in the card", (editedText) => {
-	roomBoards.verifyTextNotInCard(editedText);
+	roomBoards.verifyTextElementNotInCard(editedText);
 });
 
 Then("I see the file type Video in the card", () => {

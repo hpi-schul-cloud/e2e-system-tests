@@ -73,19 +73,18 @@ class RoomBoards {
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
-
 	static #inputTextFieldCard = '[data-testid="ckeditor"]';
 	static #cardContentText = '[data-testid="ck-content-text"]';
 
 	removeTextFromTextElement() {
-		// Ensure CKEditor is available before proceeding
+		// Ensure CKEditor is available before proceeding the test
 		cy.wait(500);
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
 			const editorInstance = $editor[0].ckeditorInstance;
 			if (editorInstance) {
-				// Clear existing content by setting data to an empty string
+				// Clear existing text by setting data to an empty string
 				editorInstance.setData("", {
 					callback: () => {
 						cy.log("CKEditor content has been cleared.");
@@ -97,13 +96,13 @@ class RoomBoards {
 		});
 	}
 
-	verifyTextNotInCard() {
+	verifyTextElementNotInCard() {
 		cy.wait(500);
 		cy.get(RoomBoards.#cardContentText).should("not.exist");
 	}
 
 	enterTextInTextElement(text) {
-		// CKEditor to be available before further proceeding
+		// CKEditor to be available before proceeding the test
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
@@ -121,7 +120,7 @@ class RoomBoards {
 	}
 
 	reEnterTextInTextElement(text) {
-		// CKEditor to be available before further proceeding
+		// CKEditor to be available before further proceeding the test
 		cy.wait(500);
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
@@ -133,10 +132,6 @@ class RoomBoards {
 				throw new Error("CKEditor instance not found.");
 			}
 		});
-	}
-
-	verifyTextNotInCard(text) {
-		cy.get(RoomBoards.#cardContentText).should("not.contain.text", text);
 	}
 
 	verifyVideoFileInCard() {
