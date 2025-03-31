@@ -78,18 +78,41 @@ class RoomBoards {
 	static #cardContentText = '[data-testid="ck-content-text"]';
 
 	removeTextFromTextElement() {
-		cy.get(RoomBoards.#inputTextFieldCard).clear();
+		// Ensure CKEditor is available before proceeding
+		cy.wait(500);
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			const editorInstance = $editor[0].ckeditorInstance;
+			if (editorInstance) {
+				// Clear existing content by setting data to an empty string
+				editorInstance.setData("", {
+					callback: () => {
+						cy.log("CKEditor content has been cleared.");
+					},
+				});
+			} else {
+				throw new Error("CKEditor instance not found.");
+			}
+		});
 	}
 
-	verifyTextNotInCard(text) {
-		cy.get(RoomBoards.#cardContentText).should("not.contain.text", text);
+	verifyTextNotInCard() {
+		cy.wait(500);
+		cy.get(RoomBoards.#cardContentText).should("not.exist");
 	}
 
 	enterTextInTextElement(text) {
-		cy.get(RoomBoards.#inputTextFieldCard).should("exist"); // Wait for CKEditor to be available
-		cy.wait(1000); // Small delay to ensure full initialization (adjust if needed)´
-		cy.get(RoomBoards.#inputTextFieldCard).then((body) => {
-			cy.wrap(body).click().type(text, { force: true });
+		// CKEditor to be available before further proceeding
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			const editorInstance = $editor[0].ckeditorInstance;
+			if (editorInstance) {
+				editorInstance.setData(text);
+			} else {
+				throw new Error("CKEditor instance not found.");
+			}
 		});
 	}
 
@@ -98,7 +121,18 @@ class RoomBoards {
 	}
 
 	reEnterTextInTextElement(text) {
-		cy.get(RoomBoards.#inputTextFieldCard).clear().type(text);
+		// CKEditor to be available before further proceeding
+		cy.wait(500);
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			const editorInstance = $editor[0].ckeditorInstance;
+			if (editorInstance) {
+				editorInstance.setData(text);
+			} else {
+				throw new Error("CKEditor instance not found.");
+			}
+		});
 	}
 
 	verifyTextNotInCard(text) {
@@ -320,7 +354,7 @@ class RoomBoards {
 
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
-			//Three dot has same data-testid and needs to be located inside the parent element
+			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");

@@ -11,7 +11,7 @@ Then("I see the element Text {string} in the card", (text) => {
 	roomBoards.verifyTextInCard(text);
 });
 
-Then("I re enter the text {string}", (editedText) => {
+Then("I re enter the text {string} in the element Text", (editedText) => {
 	roomBoards.reEnterTextInTextElement(editedText);
 });
 
@@ -19,7 +19,7 @@ When("I remove the text {string} in the element Text", (editedText) => {
 	roomBoards.removeTextFromTextElement(editedText);
 });
 
-Then("I do not see the element Text {string} in the card", (editedText) => {
+Then("I do not see the element Text in the card", (editedText) => {
 	roomBoards.verifyTextNotInCard(editedText);
 });
 
