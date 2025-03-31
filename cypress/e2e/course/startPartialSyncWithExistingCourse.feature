@@ -20,7 +20,7 @@ Feature: Course Sync - To partially synchronize an existing course
         When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
         When I enter the course title '<course_title>'
-        When I select '<full_teachername>' from field teacher
+        When I select '<fullname_teacher>' from field teacher
         When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
         When I click on button Next Steps after selecting course participant details

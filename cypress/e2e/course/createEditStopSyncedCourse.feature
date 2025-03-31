@@ -6,11 +6,19 @@ Feature: Course Sync - To create, update and stop a synchronized course
 
     Scenario: Teacher creates, updates and stops a synchronized course
         Given I am logged in as a '<student>' at '<namespace>'
-        Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<substitute_teacher>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
+
+        # pre-condition: admin activates student visibility
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on general settings panel
+        When I click the toggle switch to enable student visibility for teachers
+        When I click on button Save admin settings
 
         # teacher tries to create a synchronized course with a group that doesn't have a teacher
+        Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I click on FAB to add or import courses
         Then I see the button to create a new synced course
@@ -94,10 +102,10 @@ Feature: Course Sync - To create, update and stop a synchronized course
         @staging_test
         Examples:
             | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                    | group_without_teacher_title                    | fullname_teacher | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |
-            | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync | Cypress-Test-Group-Course-Sync-Without-Teacher | Karl Herzog      | Lara Hande                  | Herzog           | Hande                       | 01.08.2025 | 31.07.2026 |
+            | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync | Cypress-Test-Group-Course-Sync-Without-Teacher | Karl Herzog      | Lara Hande                  | Herzog           | Hande                       | 01.08.2024 | 31.07.2025 |
 
         # @school_api_test
         # Examples:
             # | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                    | group_without_teacher_title                    | fullname_teacher  | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |
-            # | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync | Cypress-Test-Group-Course-Sync-Without-Teacher | cypress teacher_1 | cypress teacher_2           | teacher_1        | teacher_2                   | 01.08.2025 | 31.07.2026 |
+            # | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync | Cypress-Test-Group-Course-Sync-Without-Teacher | cypress teacher_1 | cypress teacher_2           | teacher_1        | teacher_2                   | 01.08.2024 | 31.07.2025 |
 

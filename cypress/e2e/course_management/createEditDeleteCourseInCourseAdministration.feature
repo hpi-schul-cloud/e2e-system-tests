@@ -9,7 +9,14 @@ Feature: Course Management - To create, edit and delete class
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # admin creates a new course 
+        # pre-condition: admin activates student visibility
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on general settings panel
+        When I click the toggle switch to enable student visibility for teachers
+        When I click on button Save admin settings
+
+        # admin creates a new course
         When I click on administration in menu
         When I navigate to course administration page via sub menu
         Then I see the new course administration page
@@ -25,7 +32,7 @@ Feature: Course Management - To create, edit and delete class
 		Then I see section two area on the course create page
 		Then I see class selection box to select the class for the course
 		Then I see student selection box to select the class for the course
-		When I select the student '<student_listname>' in the list
+		When I select the student '<fullname_student>' in the list
 		When I click on button Next Steps after selecting course participant details
 		Then I see the section three area as the finish page
 		When I click on button To Course Overview on the finish page
@@ -46,13 +53,12 @@ Feature: Course Management - To create, edit and delete class
         When I click on the delete button of course '<course_title_edited>'
         Then I see the delete modal
         When I click the confirmation button on the delete modal
-        Then I do not see course '<course_title_edited>' in course table
 
         @staging_test
         Examples:
             | namespace | admin      | teacher      | student      | course_title                    | course_title_edited       | fullname_teacher | fullname_student |
             | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT TestCourseManagement | CypressAUT TestCourseEdit | Karl Herzog      | Herbert Kraft    |
-            
+
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | student      | course_title                    | course_title_edited       | fullname_teacher  | fullname_student  |

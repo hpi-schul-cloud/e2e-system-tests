@@ -6,15 +6,23 @@ Feature: Course Sync - To start and stop a synchronization with an existing cour
 
     Scenario: Teacher synchronizes a course with an existing course
         Given I am logged in as a '<student>' at '<namespace>'
-        Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
+
+        # pre-condition: admin activates student visibility
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on general settings panel
+        When I click the toggle switch to enable student visibility for teachers
+        When I click on button Save admin settings
 
         # pre-condition: teacher creates a course
+        Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
         When I enter the course title '<course_title>'
-        Then I see teacher '<teacher_name>' is selected by default
+        Then I see teacher '<fullname_teacher>' is selected by default
         When I click on button Next Steps after entering the course detail in section one
         Then I see section two area on the course create page
         When I click on button Next Steps after selecting course participant details
@@ -38,7 +46,7 @@ Feature: Course Sync - To start and stop a synchronization with an existing cour
         Then I see information text of the modal asking for confirmation of synchronization
         When I click the confirm button on the synchronization confirmation modal
         Then I see the synced chip next to the title on the course page
-        
+
         # post-condition: teacher deletes course
 		When I open page Edit course
 		When I click on the button delete course

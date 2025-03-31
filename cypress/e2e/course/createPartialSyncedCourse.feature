@@ -58,9 +58,9 @@ Feature: Course Sync - To partially synchronize a course
         @staging_test
         Examples:
             | namespace | admin      | teacher      | student      | group_title                            | fullname_teacher | fullname_student | lastname_teacher | lastname_student | start_date | end_date   |
-            | nbc       | admin1_nbc | teacher2_nbc | student1_nbc | Cypress-Test-Group-Partial-Course-Sync | Lara Hande       | Herbert Kraft    | Hande            | Kraft            | 01.08.2025 | 31.07.2026 |
+            | nbc       | admin1_nbc | teacher2_nbc | student1_nbc | Cypress-Test-Group-Partial-Course-Sync | Lara Hande       | Herbert Kraft    | Hande            | Kraft            | 01.08.2024 | 31.07.2025 |
 
         # @school_api_test
         # Examples:
         #     | namespace | admin      | teacher      | student      | group_title                            | fullname_teacher  | fullname_student  | lastname_teacher | lastname_student | start_date | end_date   |
-        #     | nbc       | admin1_nbc | teacher2_nbc | student1_nbc | Cypress-Test-Group-Partial-Course-Sync | cypress teacher_2 | cypress student_1 | teacher_2        | student_1        | 01.08.2025 | 31.07.2026 |
+        #     | nbc       | admin1_nbc | teacher2_nbc | student1_nbc | Cypress-Test-Group-Partial-Course-Sync | cypress teacher_2 | cypress student_1 | teacher_2        | student_1        | 01.08.2024 | 31.07.2025 |

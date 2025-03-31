@@ -9,7 +9,13 @@ Feature: Course Management - To start and stop a synchronized course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # pre-condition: admin creates a new course 
+        # pre-condition: admin activates student visibility
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on general settings panel
+        When I click the toggle switch to enable student visibility for teachers
+        When I click on button Save admin settings
+        # pre-condition: admin creates a new course
         When I click on administration in menu
         When I navigate to course administration page via sub menu
         Then I see the new course administration page

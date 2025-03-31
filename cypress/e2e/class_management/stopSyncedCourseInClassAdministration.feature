@@ -5,10 +5,15 @@ Feature: Class Management - To stop a synchronized course
     As an administrator I want to stop a synchronized course
 
     Scenario: Admin synchronizes a course with a group
-        Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
+        # pre-condition: admin activates student visibility
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on general settings panel
+        When I click the toggle switch to enable student visibility for teachers
+        When I click on button Save admin settings
         # pre-condition: admin creates a new synced course
         When I click on administration in menu
         When I navigate to course administration page via sub menu
@@ -52,10 +57,10 @@ Feature: Class Management - To stop a synchronized course
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | student      | course_title              | group_title                    | fullname_teacher |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync | Karl Herzog      |
+            | namespace | admin      | teacher      | course_title              | group_title                    | fullname_teacher |
+            | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync | Karl Herzog      |
 
         # @school_api_test
         # Examples:
-        #     | namespace | admin      | teacher      | student      | course_title              | group_title                    | fullname_teacher  |
-        #     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync | cypress teacher_1 |
+        #     | namespace | admin      | teacher      | course_title              | group_title                    | fullname_teacher  |
+        #     | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync | cypress teacher_1 |
