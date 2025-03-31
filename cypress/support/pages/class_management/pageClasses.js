@@ -51,6 +51,7 @@ class Classes {
 	static #tableClassMemberLasteName = '[data-testid="class-members-table-lastname"]';
 	static #tableClassMemberRole = '[data-testid="class-members-table-role"]';
 	static #tableClassSyncedCourse = '[data-testid="class-table-synced-courses"]';
+	static #tableClassStudentCount = '[data-testid="class-table-student-count"]';
 	static #stopSyncButton = '[data-testid="class-table-end-course-sync-btn"]';
 
 	doNotSeeClassOnOldClassAdministrationPageAfterDeletion(customClassName) {
@@ -113,7 +114,8 @@ class Classes {
 	}
 
 	seeSelectedStudentOnManageClassPage(studentName) {
-		cy.get(Classes.#dropDownStudentSelectionOnClassManage).contains(studentName);
+		cy.get(Classes.#dropDownStudentSelectionOnClassManage)
+			.contains(studentName);
 	}
 
 	clickOnAddClassButtonOnClassOverviewPage() {
@@ -244,13 +246,13 @@ class Classes {
 		cy.url().should("include", "/administration/groups/classes/");
 	}
 
-	seeGroupMemberTableContainsMemberWithRole(role, name) {
+	seeGroupMemberTableContainsMemberWithRole(role, lastName, firstName) {
 		cy.get(Classes.#tableClassMemberLasteName)
-			.contains(name)
+			.contains(lastName)
 			.parents("tr")
 			.within(() => {
 				cy.get(Classes.#tableClassMemberRole).should("have.text", role)
-				cy.get(Classes.#tableClassMemberFirstName).should("contain", name);
+				cy.get(Classes.#tableClassMemberFirstName).should("contain", firstName);
 			});
 	}
 
@@ -283,7 +285,7 @@ class Classes {
 	}
 
 	doNotSeeClassInTable(className) {
-		cy.get(CourseManagement.#tableClassName).should("not.contain", className);
+		cy.get(Classes.#tableClassName).should("not.contain", className);
 	}
 
 	clickOnManageClassButton(className) {
@@ -368,7 +370,16 @@ class Classes {
 			.contains(groupName)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#stopSyncButton).should("not.be.visible")
+				cy.get(Classes.#stopSyncButton).should("not.exist")
+			});
+	}
+
+	seeNumberOfStudentsOfClass(className, numberOfStudents) {
+		cy.get(Classes.#tableClassName)
+			.contains(className)
+			.parents("tr")
+			.within(() => {
+				cy.get(Classes.#tableClassStudentCount).should("have.text", numberOfStudents)
 			});
 	}
 

@@ -110,3 +110,7 @@ When("I do not see stop synchronization button of group {string}", (groupName) =
 Then("I see the create class page", () => {
 	classes.isCreateClassPage();
 });
+
+Then("I see the class {string} has {string} students", (className, numberOfStudents) => {
+	classes.seeNumberOfStudentsOfClass(className, numberOfStudents);
+});

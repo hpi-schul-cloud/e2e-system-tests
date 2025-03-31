@@ -19,6 +19,10 @@ class CourseManagement {
 	static #courseTableClassNames = '[data-testid="admin-rooms-table-class-names"]';
 	static #courseTableTeacherNames = '[data-testid="admin-rooms-table-teacher-names"]';
 
+	clickOnClassInAdministrationSubMenu() {
+		cy.get(CourseManagement.#adminCourseNavigationSidebarCard).click();
+	}
+
 	isNewCourseAdministrationPage() {
 		cy.url().should("include", "/administration/rooms/new");
 	}
@@ -76,7 +80,7 @@ class CourseManagement {
 	clickConfirmSynchronizationButton() {
 		cy.get(CourseManagement.#confirmDialogButton).click();
 	}
-	
+
 	seeCourseWithTeacher(courseName, teacherName) {
 		cy.get(CourseManagement.#courseTableName)
 			.contains(courseName)
@@ -109,7 +113,7 @@ class CourseManagement {
 			.contains(courseName)
 			.parents("tr")
 			.within(() => {
-				cy.get(CourseManagement.#courseTableStartSynchronizeButton).should("not.be.visible"); // not.exist
+				cy.get(CourseManagement.#courseTableStartSynchronizeButton).should("not.exist");
 			});
 	}
 
@@ -118,7 +122,7 @@ class CourseManagement {
 			.contains(courseName)
 			.parents("tr")
 			.within(() => {
-				cy.get(CourseManagement.#courseTableEndSynchronizeButton).should("not.be.visible"); // not.exist
+				cy.get(CourseManagement.#courseTableEndSynchronizeButton).should("not.exist");
 			});
 	}
 

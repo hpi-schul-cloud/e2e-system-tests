@@ -41,6 +41,9 @@ class Management {
 	static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]';
 	static #startMigrationButton = '[data-testid="migration-start-button"]';
 	static #migrationInformationText = '[data-testid="text-description"]';
+	static #migrationSchoolNumberInformationText = '[data-testid="migration-info-text"]';
+	static #migrationWizardButton = '[data-testid="migration-wizard-button"]';
+	static #migrationShowOutdatedUsersSwitch = '[data-testid="show-outdated-users-switch"]';
 	static #agreeMigrationButton = '[data-testid="agree-btn"]';
 	static #migrationEndButton = '[data-testid="migration-end-button"]';
 	static #endMigrationConfirmationCheckbox =
@@ -76,6 +79,7 @@ class Management {
 	static #classOptionCheckbox = '[data-testid="checkbox-option-class"]';
 	static #courseOptionCheckbox = '[data-testid="checkbox-option-course"]';
 	static #othersOptionCheckbox = '[data-testid="checkbox-option-others"]';
+	static #externalToolsOptionCheckbox = '[data-testid="checkbox-option-school-external-tools"]';
 	static #saveProvisioningOptionsButton =
 		'[data-testid="provisioning-options-save-button"]';
 	static #cancelProvisioningOptionsButton =
@@ -153,6 +157,10 @@ class Management {
 	static #externalToolContextRestriction = '[data-testid="external-tool-context-restriction"]';
 	static #externalToolActions = '[data-testid="external-tool-actions"]';
 	static #externalToolName = '[data-testid="external-tool-name"]';
+	static #systemTableAlias = '[data-testid="system-table-alias"]';
+	static #systemTableSystemType = '[data-testid="system-table-type"]';
+	static #systemTableLoginLink = '[data-testid="system-table-login-link"]';
+	static #systemTableButtonEdit = '[data-testid="system-table-button-edit"]';
 
 	seeSuccessMessageAfterChangingPasswordByAdmin() {
 		cy.get(Management.#successNotificationChangePassword).should("be.visible");
@@ -834,14 +842,18 @@ class Management {
 		cy.get(Management.#startMigrationButton).click();
 	}
 
-	seeVisibleMigrationInformation() {
+	seeMigrationInformation() {
 		cy.get(Management.#migrationInformationText).should("be.visible");
+	}
+
+	seeMigrationSchoolNumberInformation() {
+		cy.get(Management.#migrationSchoolNumberInformationText).should("be.visible");
 	}
 
 	checkSupportLink() {
 		cy.get(Management.#migrationTextSupportLink)
 			.invoke("attr", "href")
-			.should("contain", "mailto:nbc-support@netz-21.de");
+			.should("contain", "mailto:ticketsystem@niedersachsen.support");
 	}
 
 	checkInfoLink() {
@@ -864,7 +876,9 @@ class Management {
 	}
 
 	seeEndMigrationButtonIsEnabled() {
-		cy.get(Management.#migrationEndButton).should("be.enabled");
+		cy.get(Management.#migrationEndButton)
+			.should("be.visible")
+			.should("be.enabled");
 	}
 
 	clickEndMigrationButton() {
@@ -887,7 +901,7 @@ class Management {
 		cy.get(Management.#endMigrationInformationText).should("be.visible");
 	}
 
-	checkEndMigrationInfoLink() {
+	seeEndMigrationInfoLink() {
 		cy.get(Management.#endMigrationTextBlogLink).should(
 			"have.attr",
 			"href",
@@ -904,11 +918,15 @@ class Management {
 	}
 
 	seeEndMigrationConfirmationButtonIsDisabled() {
-		cy.get(Management.#endMigrationConfirmationButton).should("be.disabled");
+		cy.get(Management.#endMigrationConfirmationButton)
+			.should("be.visible")
+			.should("be.disabled");
 	}
 
 	seeEndMigrationConfirmationButtonIsEnabled() {
-		cy.get(Management.#endMigrationConfirmationButton).should("be.enabled");
+		cy.get(Management.#endMigrationConfirmationButton)
+			.should("be.visible")
+			.should("be.enabled");
 	}
 
 	seeMigrationMandatorySwitch() {
@@ -927,16 +945,40 @@ class Management {
 		cy.get(Management.#enableSyncDuringMigrationSwitch).should("be.checked");
 	}
 
-	toggleMigrationMandatorySwitch() {
-		cy.get(Management.#migrationMandatorySwitch).click();
+	seeShowOutdatedUsersSwitchIsNotChecked() {
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).should("not.be.checked");
 	}
 
-	toggleSyncDuringMigrationSwitch() {
-		cy.get(Management.#enableSyncDuringMigrationSwitch).click();
+	seeShowOutdatedUsersSwitchIsChecked() {
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).should("be.checked");
+	}
+
+	checkShowOutdatedUsersSwitch() {
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).check({ force: true });
+	}
+
+	uncheckShowOutdatedUsersSwitch() {
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).uncheck({ force: true });
+	}
+
+	checkMigrationMandatorySwitch() {
+		cy.get(Management.#migrationMandatorySwitch).check({ force: true });
+	}
+
+	checkSyncDuringMigrationSwitch() {
+		cy.get(Management.#enableSyncDuringMigrationSwitch).check({ force: true });
+	}
+
+	uncheckSyncDuringMigrationSwitch() {
+		cy.get(Management.#enableSyncDuringMigrationSwitch).uncheck({ force: true });
 	}
 
 	seeMigrationFinishedTimestamp() {
 		cy.get(Management.#migrationFinishedTimestamp).and("be.visible");
+	}
+
+	seeMigrationWizardButton() {
+		cy.get(Management.#migrationWizardButton).and("be.visible");
 	}
 
 	clickExternalToolsPanel() {
@@ -1061,46 +1103,25 @@ class Management {
 		cy.get(Management.#systemtable).should("be.visible");
 	}
 
-	seeLdapSystem() {
-		const ldapSystemEntry = cy
-			.get(Management.#systemtable)
-			.find("td")
-			.contains("ldap");
-		ldapSystemEntry.should("be.visible");
-
-		ldapSystemEntry.siblings("td").eq(2).find("a").should("be.visible");
+	seeSystemInTable(systemName, systemType) {
+		cy.get(Management.#systemTableAlias)
+			.contains(systemName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#systemTableSystemType)
+					.should("have.text", systemType);
+			});
 	}
 
-	seeSpecificSystemWithEditButton(systemName) {
-		const systemEntry = cy
-			.get(Management.#systemtable)
-			.find("td")
-			.contains(systemName);
-		systemEntry.should("be.visible");
-
-		systemEntry.siblings("td").eq(2).find("a").should("be.visible");
-	}
-
-	clickOnLdapEditButton() {
-		const ldapSystemEntry = cy
-			.get(Management.#systemtable)
-			.find("td")
-			.contains("ldap");
-
-		ldapSystemEntry.siblings("td").eq(2).find("a").click();
-	}
-
-	seeLdapConfigurationPage() {
-		cy.url().should("include", "/administration/ldap/config?id=");
-	}
-
-	clickOnSpecificSystemEditButton(systemName) {
-		const systemEntry = cy
-			.get(Management.#systemtable)
-			.find("td")
-			.contains(systemName);
-
-		systemEntry.siblings("td").eq(2).find("a").click();
+	clickEditButtonOfSystem(systemName) {
+		cy.get(Management.#systemTableAlias)
+			.contains(systemName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Management.#systemTableButtonEdit)
+					.should("be.visible")
+					.click();
+			});
 	}
 
 	seeProvisioningOptionsPage() {
@@ -1111,15 +1132,17 @@ class Management {
 	}
 
 	seeCheckboxesWithDefaultValues() {
-		cy.get("[type=checkbox]").should("have.length", 3);
+		cy.get("[type=checkbox]").should("have.length", 4);
 		cy.get(Management.#classOptionCheckbox).should("be.checked");
 		cy.get(Management.#courseOptionCheckbox).should("not.be.checked");
 		cy.get(Management.#othersOptionCheckbox).should("not.be.checked");
+		cy.get(Management.#externalToolsOptionCheckbox).should("not.be.checked");
 	}
 
 	checkAllBoxes() {
 		cy.get(Management.#courseOptionCheckbox).check({ force: true });
 		cy.get(Management.#othersOptionCheckbox).check({ force: true });
+		cy.get(Management.#externalToolsOptionCheckbox).check({ force: true });
 	}
 
 	clickOnProvisioningOptionsCancelButton() {
@@ -1134,18 +1157,21 @@ class Management {
 		cy.get(Management.#classOptionCheckbox).should("be.checked");
 		cy.get(Management.#courseOptionCheckbox).should("be.checked");
 		cy.get(Management.#othersOptionCheckbox).should("be.checked");
+		cy.get(Management.#externalToolsOptionCheckbox).should("be.checked");
 	}
 
 	resetCheckboxValues() {
 		cy.get(Management.#classOptionCheckbox).check({ force: true });
 		cy.get(Management.#courseOptionCheckbox).uncheck({ force: true });
 		cy.get(Management.#othersOptionCheckbox).uncheck({ force: true });
+		cy.get(Management.#externalToolsOptionCheckbox).uncheck({ force: true });
 	}
 
 	uncheckAllBoxes() {
 		cy.get(Management.#classOptionCheckbox).uncheck({ force: true });
 		cy.get(Management.#courseOptionCheckbox).uncheck({ force: true });
 		cy.get(Management.#othersOptionCheckbox).uncheck({ force: true });
+		cy.get(Management.#externalToolsOptionCheckbox).uncheck({ force: true });
 	}
 
 	seeDialog() {
@@ -1160,6 +1186,7 @@ class Management {
 		cy.get(Management.#classOptionCheckbox).should("not.be.checked");
 		cy.get(Management.#courseOptionCheckbox).should("not.be.checked");
 		cy.get(Management.#othersOptionCheckbox).should("not.be.checked");
+		cy.get(Management.#externalToolsOptionCheckbox).should("not.be.checked");
 	}
 
 	clickAccountMigrationPanel() {

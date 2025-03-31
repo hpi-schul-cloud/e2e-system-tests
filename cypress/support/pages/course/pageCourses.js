@@ -68,7 +68,7 @@ class Courses {
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
 	static #toolsTab = '[data-testid="tools-tab"]';
 	static #addToolButton = '[data-testid="add-tool-button"]';
-	static #groupSelection = '[id="classId_chosen"]';
+	static #classSelection = '[id="classId_chosen"]';
 	static #chosenStudents = '[id="studentsId_chosen"] > .chosen-choices';
 	static #errorDialog = '[data-testId="error-dialog"]';
 	static #courseExternalToolSection = '[data-testid="room-external-tool-section"]';
@@ -119,7 +119,7 @@ class Courses {
 	static #syncedGroupDialogSelection = '[data-testid="group-selection"]';
 	static #syncedGroupDialogNextButton = '[data-testid="dialog-next"]';
 	static #syncedConfirmDialogConfirmButton = '[data-testid="dialog-confirm"]';
-	static #syncedGroupDialogCloseButton = '[data-testid="dialog-close"]';
+	static #syncedGroupDialogCloseButton = '[data-testid="dialog-cancel"]';
 	static #btnEndSync = '[data-testid="title-menu-end-sync"]';
 	static #btnStartSync = '[data-testid="title-menu-start-sync"]';
 	static #btnConfirmEndSync = '[data-testid="dialog-confirm"]';
@@ -131,6 +131,7 @@ class Courses {
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
+	static #classFieldContainer = '[data-testid="class_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
 	static #delteToolDialog = '[data-testid="delete-dialog"]';
 	static #deleteDialogTitle = '[data-testid="dialog-title"]';
@@ -151,10 +152,8 @@ class Courses {
 	}
 
 	selectTeacherInCourseCreatePage(teacherName) {
-		cy.get(Courses.#teacherSelectionBoxInCourseCreate).invoke("show");
-		cy.get(Courses.#teacherSelectionBoxInCourseCreate)
-			.should("be.visible")
-			.select(teacherName);
+		cy.get(Courses.#teacherFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(teacherName).click();
 	}
 
 	seeFinalStepPageOnCourseCreate() {
@@ -162,10 +161,18 @@ class Courses {
 	}
 
 	selectStudentInCourseCreatePage(studentName) {
-		cy.get(Courses.#studentSelectionBoxInCourseCreate).invoke("show");
-		cy.get(Courses.#studentSelectionBoxInCourseCreate)
-			.should("be.visible")
-			.select(studentName);
+		cy.get(Courses.#studentFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(studentName).click();
+	}
+
+	selectClassInCourseCreatePage(className) {
+		cy.get(Courses.#classFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(className).click();
+	}
+
+	selectClassInCourseEditPage(className) {
+		cy.get(Courses.#classSelection).click().type(className).type("{enter}");
+		cy.get(Courses.#classSelection).contains(className).should("exist");
 	}
 
 	seeStudentSelectionBoxInCourseCreatePage() {
@@ -739,40 +746,35 @@ class Courses {
 		});
 	}
 
-	checkIfGroupIsVisible(groupName) {
-		cy.get(Courses.#groupSelection)
+	seeClassInClassSelectionBox(className) {
+		cy.get(Courses.#classSelection)
 			.find(".chosen-choices")
-			.contains(groupName)
+			.contains(className)
 			.should("be.visible");
 	}
 
-	checkIfGroupIsNotVisible(groupName) {
-		cy.get(Courses.#groupSelection)
+	doNotSeeClassInClassSelectionBox(className) {
+		cy.get(Courses.#classSelection)
 			.find(".chosen-choices")
-			.contains(groupName)
+			.contains(className)
 			.should("not.exist");
 	}
 
-	checkIfStudentIsVisible(studentName) {
+	seeStudentInStudentSelectionBox(studentName) {
 		cy.get(Courses.#chosenStudents)
 			.find(".search-choice")
 			.children("span")
 			.should("contain", studentName);
 	}
 
-	checkIfStudentIsNotVisible(studentName) {
+	doNotSeeStudentInStudentSelectionBox(studentName) {
 		cy.get(Courses.#chosenStudents).should("not.contain", studentName);
 	}
 
-	addGroup(groupName) {
-		cy.get(Courses.#groupSelection).find(".chosen-choices").click();
-		cy.get(Courses.#groupSelection).find(".chosen-results").contains(groupName).click();
-	}
-
-	removeGroup(groupName) {
-		cy.get(Courses.#groupSelection)
+	removeClassFromCourse(className) {
+		cy.get(Courses.#classSelection)
 			.find(".chosen-choices")
-			.contains(groupName)
+			.contains(className)
 			.siblings("a")
 			.click();
 	}
@@ -983,6 +985,10 @@ class Courses {
 		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
 	}
 
+	seeSelectedClass(className) {
+		cy.get(Courses.#selectClass).contains("option", className).should("be.selected");
+	}
+
 	seeTeacherSelectionBoxIsDisabled() {
 		cy.get(Courses.#selectTeacher).should("be.disabled");
 	}
@@ -1063,6 +1069,7 @@ class Courses {
 	selectGroupInSyncedGroupSelection(groupName) {
 		cy.get(Courses.#syncedGroupDialogSelection)
 			.click()
+			.type('{selectall}{backspace}')
 			.type(groupName)
 			.type("{downArrow}{enter}");
 	}

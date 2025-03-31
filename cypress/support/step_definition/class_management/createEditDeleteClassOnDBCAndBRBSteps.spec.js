@@ -59,7 +59,7 @@ Then("I see the teacher name {string} in the teacher dropdown", (teacherName) =>
 });
 
 Then("I see the student name {string} in the student dropdown", (studentName) => {
-	classes.seeSelectedStudentOnManageClassPage(teacherName);
+	classes.seeSelectedStudentOnManageClassPage(studentName);
 });
 
 When("I click on the button Add class on the page class overview", () => {

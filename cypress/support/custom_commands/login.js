@@ -18,9 +18,10 @@ Cypress.Commands.add("login", (username, environment) => {
 
 			let isStaging = stagingRegex.test(link);
 
-			!isStaging
-				? await loginViaSchoolApi(username, environment)
-				: loginWithoutSchoolApi(username, environment);
+			// !isStaging
+			// 	? await loginViaSchoolApi(username, environment)
+			// 	:
+			loginWithoutSchoolApi(username, environment);
 
 			cy.url().should("contain", "/dashboard");
 			cy.get(initials).click();

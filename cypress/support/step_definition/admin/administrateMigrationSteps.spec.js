@@ -3,7 +3,7 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
-Then("I can see the school number", () => {
+Then("I see the school number", () => {
 	management.seeAddedSchoolNumber();
 });
 
@@ -14,30 +14,43 @@ Then("I see button Start migration is enabled", () => {
 When("I click on the start migration button", () => {
 	management.clickStartMigration();
 });
-Then("I can see the migration information text", () => {
-	management.seeVisibleMigrationInformation();
+
+Then("I see the migration information text", () => {
+	management.seeMigrationInformation();
 });
+
+Then("I see the migration school number information text", () => {
+	management.seeMigrationSchoolNumberInformation();
+});
+
 Then("I see the email form with correct recipient", () => {
 	management.checkSupportLink();
 });
+
 Then(/^I see the information link href is blog\.niedersachsen\.cloud\/umzug$/, () => {
 	management.checkInfoLink();
 });
+
 When("I click on agree migration button", () => {
 	management.clickAgreeMigrationButton();
 });
+
 Then("I see the migration is active field", () => {
 	management.seeMigrationActiveTextInformation();
 });
+
 Then("I see the end migration button", () => {
 	management.seeEndMigrationButtonIsEnabled();
 });
+
 When("I click on end migration button", () => {
 	management.clickEndMigrationButton();
 });
+
 When("I click on the end migration confirmation checkbox", () => {
 	management.clickEndMigrationConfirmationCheckbox();
 });
+
 When("I click on the end migration confirmation button", () => {
 	management.clickEndMigrationConfirmationButton();
 });
@@ -53,7 +66,7 @@ Then("I see the end of migration information text", () => {
 Then(
 	/^I see the end migration information link href is blog\.niedersachsen\.cloud\/umzug$/,
 	() => {
-		management.checkEndMigrationInfoLink();
+		management.seeEndMigrationInfoLink();
 	}
 );
 
@@ -65,7 +78,7 @@ Then("I see the abort button for end of migration conformation", () => {
 	management.seeEndMigrationAbortButton();
 });
 
-Then("I can see the end migration confirmation button is disabled", () => {
+Then("I see the end migration confirmation button is disabled", () => {
 	management.seeEndMigrationConfirmationButtonIsDisabled();
 });
 
@@ -89,14 +102,41 @@ Then("I see the migration mandatory switch is checked", () => {
 	management.seeMigrationMandatorySwitchIsChecked();
 });
 
-When("I toggle the migration mandatory switch", () => {
-	management.toggleMigrationMandatorySwitch();
+When("I check the migration mandatory switch", () => {
+	management.checkMigrationMandatorySwitch();
 });
 
-When("I toggle the sync during migration switch", () => {
-	management.toggleSyncDuringMigrationSwitch();
+When("I check the sync during migration switch", () => {
+	management.checkSyncDuringMigrationSwitch();
+});
+
+When("I uncheck the sync during migration switch", () => {
+	management.uncheckSyncDuringMigrationSwitch();
+});
+When("I check the sync during migration switch", () => {
+	management.checkSyncDuringMigrationSwitch();
 });
 
 Then("I see the timestamp when the migration is finished", () => {
 	management.seeMigrationFinishedTimestamp();
+});
+
+Then("I see the migration wizard button", () => {
+	management.seeMigrationWizardButton();
+});
+
+Then("I see the show outdated users switch is visible and not checked", () => {
+	management.seeShowOutdatedUsersSwitchIsNotChecked();
+});
+
+Then("I see the show outdated users switch is checked", () => {
+	management.seeShowOutdatedUsersSwitchIsChecked();
+});
+
+When("I check the show outdated users switch", () => {
+	management.checkShowOutdatedUsersSwitch();
+});
+
+When("I uncheck the show outdated users switch", () => {
+	management.uncheckShowOutdatedUsersSwitch();
 });
