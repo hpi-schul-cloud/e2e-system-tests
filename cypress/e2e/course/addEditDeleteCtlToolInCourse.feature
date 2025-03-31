@@ -4,7 +4,6 @@ Feature: Course - To add, edit and delete a ctl tool in a course
 
     As a teacher I want to add, edit and delete a ctl tool in my course.
 
-    @stable_test
     Scenario: Teacher adds, edits and deletes tools in a course, Student sees course tools but does not see the button to add a tool
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'

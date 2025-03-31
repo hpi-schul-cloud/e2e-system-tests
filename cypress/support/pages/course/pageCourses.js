@@ -385,7 +385,10 @@ class Courses {
 			if (!$body.text().includes(courseName)) {
 				cy.log(`All courses with name "${courseName}" deleted successfully.`);
 			} else {
-				cy.get(Courses.#courseTitleInCourseoverview).should("not.contain.text", courseName);
+				cy.get(Courses.#courseTitleInCourseoverview).should(
+					"not.contain.text",
+					courseName
+				);
 			}
 		});
 	}
@@ -1084,20 +1087,28 @@ class Courses {
 
 	launchTool(toolName, toolURL) {
 		const launchedTool = { toolName: toolName, isLaunched: false };
-
 		cy.window().then((win) => {
 			cy.stub(win, "open")
 				.as("openStub")
 				.callsFake((url) => {
 					expect(url).to.contain(toolURL);
-					launchedTool.isLaunched = true;
+					return Cypress.Promise.resolve().then(() => {
+						launchedTool.isLaunched = true;
+						expect(url).to.contain(toolURL);
+					});
 				});
 		});
-
 		cy.wrap(launchedTool).as("launchedTool");
-
-		cy.get(Courses.#courseExternalToolSection).contains(toolName).click();
-
+		cy.wait(500);
+		cy.get(Courses.#courseExternalToolSection)
+			.contains(toolName)
+			.click({ force: true })
+			.then(() => {
+				cy.wait("@courses_api");
+				cy.wait("@toolLaunch_api");
+			});
+		cy.get("@openStub").should("have.been.called");
+		cy.wrap(launchedTool).its("isLaunched").should("be.true");
 		cy.get("@openStub").invoke("restore");
 	}
 

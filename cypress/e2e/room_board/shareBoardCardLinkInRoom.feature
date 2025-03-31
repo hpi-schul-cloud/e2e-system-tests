@@ -16,7 +16,7 @@ Feature: Room Board - To share a board card link
         When I enter the room name '<room_name>'
         When I click on the button to save the room
         When I click on three dot menu in room page
-        When I select the three dot menu action 'edit-members'
+        When I select the three dot menu action 'room-members'
         When I click on FAB to add participants
         Then I see add participants modal
         Then I see school '<school_name>' in school dropdown
@@ -42,7 +42,7 @@ Feature: Room Board - To share a board card link
         Then I do not see the chip Draft in the course board
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I click on the page outside of the card
         Then I see a board card
 

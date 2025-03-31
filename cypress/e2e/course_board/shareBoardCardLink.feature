@@ -39,7 +39,7 @@ Feature: Course Board - To share a board card link
         Then I do not see the chip Draft in the course board
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I click on the page outside of the card
         Then I see a board card
 
