@@ -3,9 +3,12 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-Then("I enter the text {string} in the element Text", (text) => {
-	roomBoards.enterTextInTextElement(text);
-});
+Then(
+	"I enter the text {string} in the element Text with the visible inline CKEditor toolbar",
+	(text) => {
+		roomBoards.enterTextInTextElement(text);
+	}
+);
 
 Then("I see the element Text {string} in the card", (text) => {
 	roomBoards.verifyTextInCard(text);

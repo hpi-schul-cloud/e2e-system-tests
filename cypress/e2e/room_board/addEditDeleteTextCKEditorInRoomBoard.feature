@@ -25,7 +25,7 @@ Feature: Room Board - Add, edit and delete element Text in the room board
         When I click on icon Plus to add content into card
         Then I see the dialog Add Element in the card
         When I select 'text' from the element selection dialog box
-        Then I enter the text '<example_text>' in the element Text
+        Then I enter the text '<example_text>' in the element Text with the visible inline CKEditor toolbar
         When I click outside of the card to save it
         Then I see the element Text '<example_text>' in the card
 

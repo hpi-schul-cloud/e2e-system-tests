@@ -75,6 +75,7 @@ class RoomBoards {
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 	static #inputTextFieldCard = '[data-testid="ckeditor"]';
 	static #cardContentText = '[data-testid="ck-content-text"]';
+	static #inlineCkEditorTool = '[data-testid="ck-inline-toolbar"]';
 
 	removeTextFromTextElement() {
 		// Ensure CKEditor is available before proceeding the test
@@ -104,6 +105,11 @@ class RoomBoards {
 	enterTextInTextElement(text) {
 		// CKEditor to be available before proceeding the test
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		// Assert that the CKEditor toolbar becomes visible
+		cy.get(RoomBoards.#inlineCkEditorTool, { timeout: 5000 })
+			.should("exist")
+			.and("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
 			const editorInstance = $editor[0].ckeditorInstance;
