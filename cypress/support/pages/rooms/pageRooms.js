@@ -274,6 +274,7 @@ class Rooms {
 	doNotSeeLastColumnInRoomMembersTable() {
 		cy.contains("th", "Aktionen").should("not.exist");
 	}
+
 	doNotSeeFabCreateRoomBoard() {
 		cy.get(Rooms.#addContentButton).should("exist").should("be.visible");
 	}

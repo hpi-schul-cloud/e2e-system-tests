@@ -1,8 +1,8 @@
 @regression_test
 @stable_test
-Feature: Room - Change room permission
+Feature: Room - Change room permission (Viewer - Editor)
 
-    As a teacher, I want to change room permission (roomViewer to roomEditor) of other participant in the room, other user can access the room and leave the room.
+    As a teacher, I want to change a participant’s room permission from viewer to editor, so that other users can access the room and leave it as needed
 
     Scenario: Teacher change room permission of other participants, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
@@ -39,7 +39,7 @@ Feature: Room - Change room permission
         Then I see Role changed to 'editor' for second user
         Then I click on button 'Confirm' in the action menu
 
-        # second user logged in, access the room and left the room
+        # second user logs in, accesses the room, verifies that restricted functionalities are not visible to them, and then leaves the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to room overview
         Then I see '<room_name>' on room overview page
@@ -73,7 +73,6 @@ Feature: Room - Change room permission
         Then I see the edit participants page of room '<room_name>'
         Then I see teacher '<participant_name>' not visible in the table
 
-
         # post-condition: first teacher deletes the room
         When I go to room overview
         When I go to room '<room_name>'
@@ -84,7 +83,6 @@ Feature: Room - Change room permission
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-        @only
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name         | school_name             | role_name | participant_name |
