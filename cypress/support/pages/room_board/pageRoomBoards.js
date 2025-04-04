@@ -73,9 +73,9 @@ class RoomBoards {
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
-	static #inputTextFieldCard = '[data-testid="ckeditor"]';
-	static #cardContentText = '[data-testid="ck-content-text"]';
-	static #inlineCkEditorTool = '[data-testid="ck-inline-toolbar"]';
+	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
+	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
+	static #inlineCkToolbar = ".ck-balloon-panel";
 
 	removeTextFromTextElement() {
 		// Ensure CKEditor is available before proceeding the test
@@ -107,7 +107,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		// Assert that the CKEditor toolbar becomes visible
-		cy.get(RoomBoards.#inlineCkEditorTool, { timeout: 5000 })
+		cy.get(RoomBoards.#inlineCkToolbar, { timeout: 5000 })
 			.should("exist")
 			.and("be.visible");
 
