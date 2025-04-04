@@ -131,3 +131,70 @@ Then("I see the button to add board", () => {
 When("I click on the fab button to add a Board", () => {
 	rooms.clickOnFabButtonToAddBoard();
 });
+
+When(
+	"I click on button Three Dot Menu to add participant {string}",
+	(participantName) => {
+		rooms.clickOnThreeDotMenuToAddUser(participantName);
+	}
+);
+
+Then("I see Change Role Permission button is visible", () => {
+	rooms.isChangeRolePermissionButtonVisible();
+});
+
+When("I click on button {string} in the sub-menu", (buttonAction) => {
+	rooms.clickOnButtonActionMenuInSubMenu(buttonAction);
+});
+
+Then("I see Change Role Permission dialog box is visible", () => {
+	rooms.isChangeRolePermissionDialogVisible();
+});
+
+When("I change second user role to {string}", (role) => {
+	rooms.changeRoleOfTheUser(role);
+});
+
+Then("I see Role changed to {string} for second user", (role) => {
+	rooms.isChangedRoleVisible(role);
+});
+
+Then("I click on button {string} in the action menu", (buttonAction) => {
+	rooms.confirmChangeRoleModalActions(buttonAction);
+});
+
+Then("I see dialog box to leave the room", () => {
+	rooms.isRoomLeaveDialogBoxVisible();
+});
+
+Then("I click on button {string} to leave the room", (buttonAction) => {
+	rooms.clickOnActionButtonForRoomLeave(buttonAction);
+});
+
+Then("I see teacher {string} not visible in the table", (participantName) => {
+	rooms.isParticipantNotVisible(participantName);
+});
+
+Then("I don't see {string} options in the menu", (optionsString) => {
+	rooms.doNotSeeOptionsInMenu(optionsString);
+});
+
+Then("I don't see button Fab Add Member", () => {
+	rooms.doNotSeeFabAddMember();
+});
+
+Then("I don't see info text", () => {
+	rooms.doNotSeeInfoTextBanner();
+});
+
+Then("I don't see first checkbox column in the table", () => {
+	rooms.doNotSeeFirstColumnInRoomMembersTable();
+});
+
+Then("I don't see last actions column in the table", () => {
+	rooms.doNotSeeLastColumnInRoomMembersTable();
+});
+
+Then("I see button Fab Create Room Board", () => {
+	rooms.doNotSeeFabCreateRoomBoard();
+});
