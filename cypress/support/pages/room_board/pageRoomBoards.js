@@ -75,6 +75,7 @@ class RoomBoards {
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
+	// tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
 
 	removeTextFromTextElement() {
@@ -107,9 +108,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		// Assert that the CKEditor toolbar becomes visible
-		cy.get(RoomBoards.#inlineCkToolbar, { timeout: 5000 })
-			.should("exist")
-			.and("be.visible");
+		cy.get(RoomBoards.#inlineCkToolbar).should("exist").and("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
 			const editorInstance = $editor[0].ckeditorInstance;
