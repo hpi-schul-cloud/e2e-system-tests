@@ -53,6 +53,7 @@ Feature: Course Management - To create, edit and delete class
         When I click on the delete button of course '<course_title_edited>'
         Then I see the delete modal
         When I click the confirmation button on the delete modal
+        Then I do not see course '<course_title>' in course table
 
         @staging_test
         Examples:

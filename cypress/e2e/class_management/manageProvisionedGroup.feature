@@ -1,5 +1,5 @@
-@regression_test
-@stable_test
+# Note: To set this test to stable, the school needs groups from moin.schule
+@unstable_test
 Feature: Class Management - To manage a provisioned group on NBC
 
     As a teacher I want to manage a provisioned group
@@ -33,6 +33,7 @@ Feature: Class Management - To manage a provisioned group on NBC
         | namespace | admin      | teacher      | student      | group_name         | source_name | lastname_teacher | firstname_teacher | lastname_student | firstname_student | role_teacher | role_student |
         | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | Cypress-Test-Group | moin.schule | Herzog           | Karl              | Kraft            | Herbert           | Lehrkraft    | Schüler:in   |
 
+        # Note: This test runs with moin.schule groups from the seed data
         # @school_api_test
         # Examples:
         #   | namespace | admin      | teacher      | student      | group_name         | source_name | lastname_teacher | firstname_teacher | lastname_student | firstname_student | role_teacher | role_student |

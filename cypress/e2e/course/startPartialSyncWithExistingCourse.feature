@@ -1,5 +1,5 @@
-@regression_test
-@stable_test
+# Note: To set this test to stable, the school needs groups from moin.schule
+@unstable_test
 Feature: Course Sync - To partially synchronize an existing course
 
     As a teacher I want to partially synchronize with an existing course
@@ -60,6 +60,7 @@ Feature: Course Sync - To partially synchronize an existing course
             | namespace | admin      | teacher      | student      | course_title               | group_title                            | fullname_teacher | lastname_teacher | lastname_student |
             | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ExistingPartial | Cypress-Test-Group-Partial-Course-Sync | Karl Herzog      | Herzog           | Kraft            |
 
+        # Note: This test runs with moin.schule groups from the seed data
         # @school_api_test
         # Examples:
         #     | namespace | admin      | teacher      | student      | course_title               | group_title                            | fullname_teacher  | lastname_teacher | lastname_student |

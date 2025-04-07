@@ -1,5 +1,5 @@
-@regression_test
-@stable_test
+# Note: To set this test to stable, the school needs groups from moin.schule
+@unstable_test
 Feature: Course Sync - To create, update and stop a synchronized course
 
     As a teacher I want to synchronize a course with a group
@@ -98,6 +98,7 @@ Feature: Course Sync - To create, update and stop a synchronized course
             | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                     | group_without_teacher_title                    | fullname_teacher | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |
             | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync1 | Cypress-Test-Group-Course-Sync-Without-Teacher | Karl Herzog      | Lara Hande                  | Herzog           | Hande                       | 01.08.2023 | 31.07.2026 |
 
+        # Note: This test runs with moin.schule groups from the seed data
         # @school_api_test
         # Examples:
             # | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                     | group_without_teacher_title                    | fullname_teacher  | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |

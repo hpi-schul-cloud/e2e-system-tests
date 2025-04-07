@@ -1,10 +1,10 @@
-@regression_test
-@stable_test
+# Note: To set this test to stable, the school needs a official school number
+@unstable_test
 Feature: Admin - To administrate the Migration process
 
-    As an admin I want to re-/start, stop the migration and make it mandatory.
+    As an admin I want to (re-)starts, stop the migration and make it mandatory.
 
-    Scenario: Admin re-/starts, stops the migration
+    Scenario: Admin (re-)starts, stops the migration
         # admin starts migration
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
@@ -73,7 +73,7 @@ Feature: Admin - To administrate the Migration process
             | admin      | namespace |
             | admin1_nbc | nbc       |
 
-        # @school_api_test
-        # Examples:
-        #     | admin      | namespace |
-        #     | admin1_nbc | nbc       |
+        @school_api_test
+        Examples:
+            | admin      | namespace |
+            | admin1_nbc | nbc       |

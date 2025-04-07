@@ -1,11 +1,10 @@
-@regression_test
-@stable_test
+# Note: To set this test to stable, the school needs a moin.schule system
+@unstable
 Feature: Admin - To edit the moin.schule system configuration
 
     As an admin I want to be able to edit the moin.schule system configuration
 
     Scenario: Admin edits the options of the moin.schule system
-        # admin edits the options of the moin.schule system
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
