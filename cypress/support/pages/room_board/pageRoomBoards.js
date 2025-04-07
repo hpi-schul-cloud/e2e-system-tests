@@ -73,6 +73,7 @@ class RoomBoards {
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
+	static #folderElementSelector = '[data-testid="board-folder-element"]';
 
 	verifyVideoFileInCard() {
 		cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
@@ -476,6 +477,12 @@ class RoomBoards {
 	}
 	clickOnEditInBoardMenu() {
 		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
+	}
+
+	seeFolderElementWithTitle(title) {
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("exist")
+			.should("contain", title);
 	}
 }
 
