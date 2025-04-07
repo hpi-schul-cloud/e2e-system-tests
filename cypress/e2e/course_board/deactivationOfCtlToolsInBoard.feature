@@ -170,16 +170,12 @@ Feature: Deactivation of ctl tools in board
 		Then I see an external tool element with tool '<ctl_tool_2>'
 		Then I see an external tool element with tool '<ctl_tool_2>' is not marked as deactivated
 
-		# post-condition: admin deletes course
-		Given I am logged in as a '<admin>' at '<namespace>'
-		When I click on administration in menu
-		When I go to course administration page
-		When I click on the delete button of course '<course_name>'
-		Then I see the delete modal
-		When I click the confirmation button on the delete modal
-		Then I do not see course '<course_name>' in course table
+        # post-condition: teacher deletes course
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given course with name '<course_name>' is deleted
 
 		# post-condition: admin deletes external tools
+        Given I am logged in as a '<admin>' at '<namespace>'
 		When I click on administration in menu
 		When I navigate to new school admin page via sub menu
 		When I click on external tools panel

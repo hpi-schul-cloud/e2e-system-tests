@@ -91,21 +91,14 @@ Feature: Course Sync - To create, update and stop a synchronized course
         Then I see the course '<course_title_new>' is unsynchronized
 
         # post-condition: teacher deletes course
-		When I go to courses overview
-		When I go to course '<course_title_new>'
-		When I open page Edit course
-		When I click on the button delete course
-		Then I see the modal to confirm the deletion
-		When I click on the button delete on the modal to confirm the course deletion
-		Then I do not see the course '<course_title_new>' on the course overview page
+        Given course with name '<course_title_new>' is deleted
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                    | group_without_teacher_title                    | fullname_teacher | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |
-            | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync | Cypress-Test-Group-Course-Sync-Without-Teacher | Karl Herzog      | Lara Hande                  | Herzog           | Hande                       | 01.08.2023 | 31.07.2026 |
+            | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                     | group_without_teacher_title                    | fullname_teacher | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |
+            | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync1 | Cypress-Test-Group-Course-Sync-Without-Teacher | Karl Herzog      | Lara Hande                  | Herzog           | Hande                       | 01.08.2023 | 31.07.2026 |
 
         # @school_api_test
         # Examples:
-            # | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                    | group_without_teacher_title                    | fullname_teacher  | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |
-            # | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync | Cypress-Test-Group-Course-Sync-Without-Teacher | cypress teacher_1 | cypress teacher_2           | teacher_1        | teacher_2                   | 01.08.2023 | 31.07.2026 |
-
+            # | namespace | admin      | teacher      | substitute_teacher | student      | course_title_new   | group_title                     | group_without_teacher_title                    | fullname_teacher  | fullname_substitute_teacher | lastname_teacher | lastname_substitute_teacher | start_date | end_date   |
+            # | nbc       | admin1_nbc | teacher1_nbc | teacher2_nbc       | student1_nbc | CypressAUT NewSync | Cypress-Test-Group-Course-Sync1 | Cypress-Test-Group-Course-Sync-Without-Teacher | cypress teacher_1 | cypress teacher_2           | teacher_1        | teacher_2                   | 01.08.2023 | 31.07.2026 |

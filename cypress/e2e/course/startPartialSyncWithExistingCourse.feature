@@ -53,10 +53,7 @@ Feature: Course Sync - To partially synchronize an existing course
         Then I see the student '<lastname_student>' is selected
 
         # post-condition: teacher deletes course
-		When I click on the button delete course
-		Then I see the modal to confirm the deletion
-		When I click on the button delete on the modal to confirm the course deletion
-		Then I do not see the course '<course_title>' on the course overview page
+        Given course with name '<course_title>' is deleted
 
         @staging_test
         Examples:

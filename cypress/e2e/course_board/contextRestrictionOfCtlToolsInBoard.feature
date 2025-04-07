@@ -103,7 +103,7 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
         When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the menu
-        When I select the tool 'CY Test Tool 1' from available tools
+        When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
         When I click on save external tool button
         Then I see an external tool element with tool '<ctl_tool_1>'
@@ -119,16 +119,11 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
         When I select preferred tool '<ctl_tool_preferred_restriction_board_element>' from the menu
         Then I see an external tool element with tool '<ctl_tool_preferred_restriction_board_element>'
 
-        # post-condition: admin deletes course
-        Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I go to course administration page
-        When I click on the delete button of course '<course_name>'
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        Then I do not see course '<course_name>' in course table
+        # post-condition: teacher deletes course
+        Given course with name '<course_name>' is deleted
 
         # post-condition: admin deletes external tools
+        Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel

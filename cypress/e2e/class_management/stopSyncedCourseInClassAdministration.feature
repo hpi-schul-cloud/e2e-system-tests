@@ -57,10 +57,10 @@ Feature: Class Management - To stop a synchronized course
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | course_title              | group_title                    | fullname_teacher |
-            | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync | Karl Herzog      |
+            | namespace | admin      | teacher      | course_title              | group_title                     | fullname_teacher |
+            | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync1 | Karl Herzog      |
 
         # @school_api_test
         # Examples:
-        #     | namespace | admin      | teacher      | course_title              | group_title                    | fullname_teacher  |
-        #     | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync | cypress teacher_1 |
+        #     | namespace | admin      | teacher      | course_title              | group_title                     | fullname_teacher  |
+        #     | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |

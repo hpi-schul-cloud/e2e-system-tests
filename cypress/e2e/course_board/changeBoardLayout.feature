@@ -57,13 +57,7 @@ Feature: Course Board - To change the board layout
         Then I see the multi-column board
 
         # post-condition: teacher deletes course
-        When I go to courses overview
-        When I go to course '<course_name>'
-        When I open page Edit course
-        When I click on the button delete course
-        Then I see the modal to confirm the deletion
-        When I click on the button delete on the modal to confirm the course deletion
-        Then I do not see the course '<course_name>' on the course overview page
+        Given course with name '<course_name>' is deleted
 
         @staging_test
         Examples:

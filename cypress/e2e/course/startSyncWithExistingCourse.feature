@@ -48,18 +48,14 @@ Feature: Course Sync - To start and stop a synchronization with an existing cour
         Then I see the synced chip next to the title on the course page
 
         # post-condition: teacher deletes course
-		When I open page Edit course
-		When I click on the button delete course
-		Then I see the modal to confirm the deletion
-		When I click on the button delete on the modal to confirm the course deletion
-		Then I do not see the course '<course_title>' on the course overview page
+        Given course with name '<course_title>' is deleted
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | student      | course_title        | group_title                    | fullname_teacher |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT Existing | Cypress-Test-Group-Course-Sync | Karl Herzog      |
+            | namespace | admin      | teacher      | student      | course_title        | group_title                     | fullname_teacher |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT Existing | Cypress-Test-Group-Course-Sync1 | Karl Herzog      |
 
         # @school_api_test
         # Examples:
-        #     | namespace | admin      | teacher      | student      | course_title        | group_title                    | fullname_teacher  |
-        #     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT Existing | Cypress-Test-Group-Course-Sync | cypress teacher_1 |
+        #     | namespace | admin      | teacher      | student      | course_title        | group_title                     | fullname_teacher  |
+        #     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT Existing | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |

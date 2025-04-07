@@ -43,7 +43,7 @@ Feature: Admin - To edit the moin.schule system configuration
             | admin      | namespace | ctl_tool_hidden     | system | system_type |
             | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
 
-        @school_api_test
-        Examples:
-            | admin      | namespace | ctl_tool_hidden     | system | system_type |
-            | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
+        # @school_api_test
+        # Examples:
+        #     | admin      | namespace | ctl_tool_hidden     | system | system_type |
+        #     | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
