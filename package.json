@@ -45,7 +45,6 @@
 		"@cypress/webpack-preprocessor": "^5.17.0",
 		"axios": "^1.8.2",
 		"cypress": "^13.2.0",
-		"cypress-ckeditor-type": "^0.0.0",
 		"cypress-file-upload": "^5.0.8",
 		"cypress-real-events": "^1.13.0",
 		"multiple-cucumber-html-reporter": "^1.21.4",

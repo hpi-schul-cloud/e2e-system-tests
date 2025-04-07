@@ -110,14 +110,16 @@ class RoomBoards {
 		// Assert that the CKEditor toolbar becomes visible
 		cy.get(RoomBoards.#inlineCkToolbar).should("exist").and("be.visible");
 
-		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0].ckeditorInstance;
-			if (editorInstance) {
-				editorInstance.setData(text);
-			} else {
-				throw new Error("CKEditor instance not found.");
-			}
-		});
+		cy.get(RoomBoards.#inputTextFieldCard).realType(text, { delay: 150 });
+
+		//cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+		//const editorInstance = $editor[0].ckeditorInstance;
+		//if (editorInstance) {
+		//editorInstance.setData(text);
+		//} else {
+		//throw new Error("CKEditor instance not found.");
+		//}
+		//});
 	}
 
 	verifyTextInCard(text) {
