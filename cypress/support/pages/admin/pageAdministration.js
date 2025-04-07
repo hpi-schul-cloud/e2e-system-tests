@@ -831,7 +831,11 @@ class Management {
 	}
 
 	seeAddedSchoolNumber() {
-		cy.get(Management.#schoolNumberForm).should("be.disabled");
+		cy.get(Management.#schoolNumberForm)
+			.find("input")
+			.should("be.disabled")
+			.invoke('val')
+			.should('not.be.empty');
 	}
 
 	seeMigrationButtonIsEnabled() {
@@ -886,7 +890,7 @@ class Management {
 	}
 
 	clickEndMigrationConfirmationCheckbox() {
-		cy.get(Management.#endMigrationConfirmationCheckbox).check({ force: true });
+		cy.get(Management.#endMigrationConfirmationCheckbox).find("input").check({ force: true });
 	}
 
 	clickEndMigrationConfirmationButton() {
@@ -910,7 +914,7 @@ class Management {
 	}
 
 	seeEndMigrationConfirmationCheckboxIsUnchecked() {
-		cy.get(Management.#endMigrationConfirmationCheckbox).should("not.be.checked");
+		cy.get(Management.#endMigrationConfirmationCheckbox).find("input").should("not.be.checked");
 	}
 
 	seeEndMigrationAbortButton() {
@@ -930,47 +934,47 @@ class Management {
 	}
 
 	seeMigrationMandatorySwitch() {
-		cy.get(Management.#migrationMandatorySwitch).should("not.be.checked");
+		cy.get(Management.#migrationMandatorySwitch).find("input").should("not.be.checked");
 	}
 
 	seeMigrationMandatorySwitchIsChecked() {
-		cy.get(Management.#migrationMandatorySwitch).should("be.checked");
+		cy.get(Management.#migrationMandatorySwitch).find("input").should("be.checked");
 	}
 
 	seeSyncDuringMigrationSwitchIsNotChecked() {
-		cy.get(Management.#enableSyncDuringMigrationSwitch).should("not.be.checked");
+		cy.get(Management.#enableSyncDuringMigrationSwitch).find("input").should("not.be.checked");
 	}
 
 	seeSyncDuringMigrationSwitchIsChecked() {
-		cy.get(Management.#enableSyncDuringMigrationSwitch).should("be.checked");
+		cy.get(Management.#enableSyncDuringMigrationSwitch).find("input").should("be.checked");
 	}
 
 	seeShowOutdatedUsersSwitchIsNotChecked() {
-		cy.get(Management.#migrationShowOutdatedUsersSwitch).should("not.be.checked");
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).find("input").should("not.be.checked");
 	}
 
 	seeShowOutdatedUsersSwitchIsChecked() {
-		cy.get(Management.#migrationShowOutdatedUsersSwitch).should("be.checked");
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).find("input").should("be.checked");
 	}
 
 	checkShowOutdatedUsersSwitch() {
-		cy.get(Management.#migrationShowOutdatedUsersSwitch).check({ force: true });
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).find("input").check({ force: true });
 	}
 
 	uncheckShowOutdatedUsersSwitch() {
-		cy.get(Management.#migrationShowOutdatedUsersSwitch).uncheck({ force: true });
+		cy.get(Management.#migrationShowOutdatedUsersSwitch).find("input").uncheck({ force: true });
 	}
 
 	checkMigrationMandatorySwitch() {
-		cy.get(Management.#migrationMandatorySwitch).check({ force: true });
+		cy.get(Management.#migrationMandatorySwitch).find("input").check({ force: true });
 	}
 
 	checkSyncDuringMigrationSwitch() {
-		cy.get(Management.#enableSyncDuringMigrationSwitch).check({ force: true });
+		cy.get(Management.#enableSyncDuringMigrationSwitch).find("input").check({ force: true });
 	}
 
 	uncheckSyncDuringMigrationSwitch() {
-		cy.get(Management.#enableSyncDuringMigrationSwitch).uncheck({ force: true });
+		cy.get(Management.#enableSyncDuringMigrationSwitch).find("input").uncheck({ force: true });
 	}
 
 	seeMigrationFinishedTimestamp() {
@@ -1133,16 +1137,16 @@ class Management {
 
 	seeCheckboxesWithDefaultValues() {
 		cy.get("[type=checkbox]").should("have.length", 4);
-		cy.get(Management.#classOptionCheckbox).should("be.checked");
-		cy.get(Management.#courseOptionCheckbox).should("not.be.checked");
-		cy.get(Management.#othersOptionCheckbox).should("not.be.checked");
-		cy.get(Management.#externalToolsOptionCheckbox).should("not.be.checked");
+		cy.get(Management.#classOptionCheckbox).find("input").should("be.checked");
+		cy.get(Management.#courseOptionCheckbox).find("input").should("not.be.checked");
+		cy.get(Management.#othersOptionCheckbox).find("input").should("not.be.checked");
+		cy.get(Management.#externalToolsOptionCheckbox).find("input").should("not.be.checked");
 	}
 
 	checkAllBoxes() {
-		cy.get(Management.#courseOptionCheckbox).check({ force: true });
-		cy.get(Management.#othersOptionCheckbox).check({ force: true });
-		cy.get(Management.#externalToolsOptionCheckbox).check({ force: true });
+		cy.get(Management.#courseOptionCheckbox).find("input").check({ force: true });
+		cy.get(Management.#othersOptionCheckbox).find("input").check({ force: true });
+		cy.get(Management.#externalToolsOptionCheckbox).find("input").check({ force: true });
 	}
 
 	clickOnProvisioningOptionsCancelButton() {
@@ -1154,24 +1158,24 @@ class Management {
 	}
 
 	seeAllCheckboxesAreChecked() {
-		cy.get(Management.#classOptionCheckbox).should("be.checked");
-		cy.get(Management.#courseOptionCheckbox).should("be.checked");
-		cy.get(Management.#othersOptionCheckbox).should("be.checked");
-		cy.get(Management.#externalToolsOptionCheckbox).should("be.checked");
+		cy.get(Management.#classOptionCheckbox).find("input").should("be.checked");
+		cy.get(Management.#courseOptionCheckbox).find("input").should("be.checked");
+		cy.get(Management.#othersOptionCheckbox).find("input").should("be.checked");
+		cy.get(Management.#externalToolsOptionCheckbox).find("input").should("be.checked");
 	}
 
 	resetCheckboxValues() {
-		cy.get(Management.#classOptionCheckbox).check({ force: true });
-		cy.get(Management.#courseOptionCheckbox).uncheck({ force: true });
-		cy.get(Management.#othersOptionCheckbox).uncheck({ force: true });
-		cy.get(Management.#externalToolsOptionCheckbox).uncheck({ force: true });
+		cy.get(Management.#classOptionCheckbox).find("input").check({ force: true });
+		cy.get(Management.#courseOptionCheckbox).find("input").uncheck({ force: true });
+		cy.get(Management.#othersOptionCheckbox).find("input").uncheck({ force: true });
+		cy.get(Management.#externalToolsOptionCheckbox).find("input").uncheck({ force: true });
 	}
 
 	uncheckAllBoxes() {
-		cy.get(Management.#classOptionCheckbox).uncheck({ force: true });
-		cy.get(Management.#courseOptionCheckbox).uncheck({ force: true });
-		cy.get(Management.#othersOptionCheckbox).uncheck({ force: true });
-		cy.get(Management.#externalToolsOptionCheckbox).uncheck({ force: true });
+		cy.get(Management.#classOptionCheckbox).find("input").uncheck({ force: true });
+		cy.get(Management.#courseOptionCheckbox).find("input").uncheck({ force: true });
+		cy.get(Management.#othersOptionCheckbox).find("input").uncheck({ force: true });
+		cy.get(Management.#externalToolsOptionCheckbox).find("input").uncheck({ force: true });
 	}
 
 	seeDialog() {

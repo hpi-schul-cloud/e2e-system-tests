@@ -113,9 +113,6 @@ When("I check the sync during migration switch", () => {
 When("I uncheck the sync during migration switch", () => {
 	management.uncheckSyncDuringMigrationSwitch();
 });
-When("I check the sync during migration switch", () => {
-	management.checkSyncDuringMigrationSwitch();
-});
 
 Then("I see the timestamp when the migration is finished", () => {
 	management.seeMigrationFinishedTimestamp();

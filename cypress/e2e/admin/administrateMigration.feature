@@ -70,10 +70,10 @@ Feature: Admin - To administrate the Migration process
 
         @staging_test
         Examples:
-            | admin      | namespace | ctl_tool_hidden     | system | system_type |
-            | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
+            | admin      | namespace |
+            | admin1_nbc | nbc       |
 
-        @school_api_test
-        Examples:
-            | admin      | namespace | ctl_tool_hidden     | system | system_type |
-            | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
+        # @school_api_test
+        # Examples:
+        #     | admin      | namespace |
+        #     | admin1_nbc | nbc       |

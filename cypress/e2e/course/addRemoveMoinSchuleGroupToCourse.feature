@@ -62,5 +62,5 @@ Feature: Course - To add and remove a moin.schule group from a course on NBC
 
         # @school_api_test
         # Examples:
-        #     | namespace | teacher      | student1     | student2     | fullname_teacher  | listname_student   | course_title               | course_title_edit              | group_title         |
-        #     | nbc       | teacher1_nbc | student1_nbc | student2_nbc | cypress teacher_1 | teacher_1, cypress | CypressAUT CourseWithClass | CypressAUT EditCourseWithClass | Cypress-Test-Group1 |
+        #     | namespace | teacher      | student1     | student2     | fullname_teacher  | listname_student   | course_title               | course_title_edit              | group_title         | group_title2        |
+        #     | nbc       | teacher1_nbc | student1_nbc | student2_nbc | cypress teacher_1 | teacher_1, cypress | CypressAUT CourseWithClass | CypressAUT EditCourseWithClass | Cypress-Test-Group1 | Cypress-Test-Group2 |
