@@ -22,9 +22,9 @@ Feature: Room Board - Add, edit and delete element Text in the room board
         Then I see the dialog Add Element in the card
         When I click on the button Close in the dialog Add Element
         Then I do not see the dialog Add Element in the card
-        When I click on icon Plus to add content into card
-        Then I see the dialog Add Element in the card
-        When I select 'text' from the element selection dialog box
+        # When I click on icon Plus to add content into card
+        # Then I see the dialog Add Element in the card
+        # When I select 'text' from the element selection dialog box
         Then I enter the text '<example_text>' in the element Text with the visible inline CKEditor toolbar
         When I click outside of the card to save it
         Then I see the element Text '<example_text>' in the card

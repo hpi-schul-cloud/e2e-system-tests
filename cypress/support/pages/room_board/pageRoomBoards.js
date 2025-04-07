@@ -30,8 +30,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
@@ -84,17 +83,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0].ckeditorInstance;
-			if (editorInstance) {
-				// Clear existing text by setting data to an empty string
-				editorInstance.setData("", {
-					callback: () => {
-						cy.log("CKEditor content has been cleared.");
-					},
-				});
-			} else {
+			const editorInstance = $editor[0]?.ckeditorInstance;
+			if (!editorInstance) {
 				throw new Error("CKEditor instance not found.");
 			}
+			editorInstance.setData("");
 		});
 	}
 
@@ -105,18 +98,19 @@ class RoomBoards {
 
 	enterTextInTextElement(text) {
 		// CKEditor to be available before proceeding the test
-		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 })
+			.click("bottomRight")
+			.should("be.visible");
 
 		// Assert that the CKEditor toolbar becomes visible
 		cy.get(RoomBoards.#inlineCkToolbar).should("exist").and("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0].ckeditorInstance;
-			if (editorInstance) {
-				editorInstance.setData(text);
-			} else {
+			const editorInstance = $editor[0]?.ckeditorInstance;
+			if (!editorInstance) {
 				throw new Error("CKEditor instance not found.");
 			}
+			editorInstance.setData(text);
 		});
 	}
 
@@ -130,12 +124,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0].ckeditorInstance;
-			if (editorInstance) {
-				editorInstance.setData(text);
-			} else {
+			const editorInstance = $editor[0]?.ckeditorInstance;
+			if (!editorInstance) {
 				throw new Error("CKEditor instance not found.");
 			}
+			editorInstance.setData(text);
 		});
 	}
 
@@ -334,9 +327,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
