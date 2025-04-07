@@ -15,10 +15,10 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
 
         # Teacher creates a new class with custom name
         When I click on administration in menu
-        When I click on sub menu class
+        When I navigate to class administration page via sub menu
         Then I see old class administration page
         When I click on the button Add class on the page class overview
-        Then I can see the create class page
+        Then I see the create class page
         Then I see the current school year '<school_year>' is selected
         Then I see the teacher name '<fullname_teacher>' is selected
         When I click on the button More Options
@@ -26,8 +26,8 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
         When I click on the checkbox Maintain school year assignment
         When I click on the button Add class on the page create class
         Then I see the teacher name '<fullname_teacher>' in the teacher dropdown
-        Then I select the '<fullname_student>' from the student selection dropdown
-        When I click on the button Save changes
+        When I select the '<fullname_student>' from the student selection dropdown
+        When I click on the button Save changes on the page manage class
         Then I see old class administration page
         Then I see class '<custom_class_name>' on the overview
         Then I see number of students '<number_of_students>' on the overview

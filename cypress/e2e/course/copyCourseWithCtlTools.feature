@@ -146,20 +146,12 @@ Feature: Course - Copy course with CTL tools
         Then I see the tool '<ctl_tool_scope_context>' is not marked as incomplete
         Then I see the tool '<ctl_tool_optional_protected_param>' is not marked as incomplete operational
 
-        # post-condition: admin deletes course
-        Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I go to course administration page
-        When I click the delete button for course '<course_name>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        When I click the delete button for course '<course_name_copy>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        Then I do not see course '<course_name>' in course table
-        Then I do not see course '<course_name_copy>' in course table
+        # post-condition: teacher deletes courses
+        Given course with name '<course_name>' is deleted
+        Given course with name '<course_name_copy>' is deleted
 
         # post-condition: admin deletes tools
+        Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel

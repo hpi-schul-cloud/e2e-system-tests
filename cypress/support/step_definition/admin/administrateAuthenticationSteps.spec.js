@@ -11,31 +11,19 @@ Then("I see a systems table", () => {
 	management.seeSystemTable();
 });
 
-Then("I see an ldap system", () => {
-	management.seeLdapSystem();
+Then("I see system {string} of type {string} in the system table", (systemName, systemType) => {
+	management.seeSystemInTable(systemName, systemType);
 });
 
-Then("I see the {string} system with an edit button", (systemName) => {
-	management.seeSpecificSystemWithEditButton(systemName);
-});
-
-When("I click on the edit button of the ldap system", () => {
-	management.clickOnLdapEditButton();
-});
-
-Then("I see the ldap configuration page", () => {
-	management.seeLdapConfigurationPage();
-});
-
-When("I click on the edit button of the {string} system", (systemName) => {
-	management.clickOnSpecificSystemEditButton(systemName);
+When("I click on the edit button of system {string}", (systemName) => {
+	management.clickEditButtonOfSystem(systemName);
 });
 
 Then("I see the provisioning options page", () => {
 	management.seeProvisioningOptionsPage();
 });
 
-Then("I see 3 checkboxes with assigned default values", () => {
+Then("I see 4 checkboxes with assigned default values", () => {
 	management.seeCheckboxesWithDefaultValues();
 });
 
@@ -51,7 +39,7 @@ When("I click the save button on the provisioning options page", () => {
 	management.clickOnProvisioningOptionsSaveButton();
 });
 
-Then("I see all 3 checkboxes are checked", () => {
+Then("I see all 4 checkboxes are checked", () => {
 	management.seeAllCheckboxesAreChecked();
 });
 
@@ -71,6 +59,6 @@ When("I confirm the dialog", () => {
 	management.confirmDialog();
 });
 
-Then("I see all 3 checkboxes are unchecked", () => {
+Then("I see all 4 checkboxes are unchecked", () => {
 	management.seeAllCheckboxesAreUnchecked();
 });
