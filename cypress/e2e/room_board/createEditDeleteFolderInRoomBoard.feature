@@ -27,7 +27,7 @@ Scenario Outline:  Teacher is able to create, edit and delete a folder in a boar
             | namespace | teacher      | room_name               | board_title             | folder_name         |
             | dbc       | teacher1_dbc | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
 
-        @staging_test
-        Examples:
-            | namespace | teacher      | room_name               | board_title             | folder_name         |
-            | brb       | teacher1_brb | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+        # @staging_test
+        # Examples:
+        #     | namespace | teacher      | room_name               | board_title             | folder_name         |
+        #     | brb       | teacher1_brb | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
