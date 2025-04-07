@@ -29,14 +29,16 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout =
+		'[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
-	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementAlert =
+		'[data-testid="board-external-tool-element-alert"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
@@ -170,7 +172,9 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	clickOnThreeDotOnColumn() {
@@ -384,11 +388,11 @@ class Board {
 	}
 
 	enterTextToTextFieldInCard(textContent) {
-		cy.get('[data-testid="ckeditor"]').then((el) => {
+		cy.get('[data-testid="rich-text-edit-0-0"]').then((el) => {
 			const editor = el[0].ckeditorInstance;
 			editor.setData(textContent);
 		});
-		cy.get('[data-testid="ckeditor"]').then((el) => {
+		cy.get('[data-testid="rich-text-edit-0-0"]').then((el) => {
 			const editor = el[0].ckeditorInstance;
 			const editorContent = editor.getData();
 			const plainText = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
