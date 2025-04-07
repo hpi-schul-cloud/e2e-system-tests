@@ -75,7 +75,7 @@ class RoomBoards {
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
-	// tricky to be assigned data-testid here in the ckeditor inline toolbar
+	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
 
 	setAndCheckCKEditorContent($editor, text) {
