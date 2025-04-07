@@ -32,9 +32,9 @@ Feature: Room - Change room permission (Viewer - Editor)
 
         # first teacher changes role for other user
         When I click on button Three Dot Menu to add participant '<participant_name>'
-        Then I see Change Role Permission button is visible
+        Then I see button Change Role Permission is visible
         When I click on button 'Change-Permission' in the sub-menu
-        Then I see Change Role Permission dialog box is visible
+        Then I see dialog box Change Role Permission is visible
         When I change second user role to 'editor'
         Then I see Role changed to 'editor' for second user
         Then I click on button 'Confirm' in the action menu

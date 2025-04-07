@@ -139,7 +139,7 @@ When(
 	}
 );
 
-Then("I see Change Role Permission button is visible", () => {
+Then("I see button Change Role Permission is visible", () => {
 	rooms.isChangeRolePermissionButtonVisible();
 });
 
@@ -147,7 +147,7 @@ When("I click on button {string} in the sub-menu", (buttonAction) => {
 	rooms.clickOnButtonActionMenuInSubMenu(buttonAction);
 });
 
-Then("I see Change Role Permission dialog box is visible", () => {
+Then("I see dialog box Change Role Permission is visible", () => {
 	rooms.isChangeRolePermissionDialogVisible();
 });
 
