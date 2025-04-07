@@ -11,7 +11,7 @@ Scenario Outline:  Teacher is able to create, edit and delete a folder in a boar
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
 
-        # teacher creates a whiteboard element in the card and draws on it
+        # teacher creates a folder element in the card
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
