@@ -78,17 +78,21 @@ class RoomBoards {
 	// tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
 
+	setAndCheckCKEditorContent($editor, text) {
+		const editorInstance = $editor[0]?.ckeditorInstance;
+		if (!editorInstance) {
+			throw new Error("CKEditor instance not found.");
+		}
+		editorInstance.setData(text);
+	}
+
 	removeTextFromTextElement() {
 		// Ensure CKEditor is available before proceeding the test
 		cy.wait(500);
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0]?.ckeditorInstance;
-			if (!editorInstance) {
-				throw new Error("CKEditor instance not found.");
-			}
-			editorInstance.setData("");
+			this.setAndCheckCKEditorContent($editor, "");
 		});
 	}
 
@@ -107,11 +111,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#inlineCkToolbar).should("exist").and("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0]?.ckeditorInstance;
-			if (!editorInstance) {
-				throw new Error("CKEditor instance not found.");
-			}
-			editorInstance.setData(text);
+			this.setAndCheckCKEditorContent($editor, text);
 		});
 	}
 
@@ -125,11 +125,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0]?.ckeditorInstance;
-			if (!editorInstance) {
-				throw new Error("CKEditor instance not found.");
-			}
-			editorInstance.setData(text);
+			this.setAndCheckCKEditorContent($editor, text);
 		});
 	}
 
