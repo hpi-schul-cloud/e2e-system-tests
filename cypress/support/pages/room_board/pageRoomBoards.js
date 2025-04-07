@@ -84,17 +84,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0].ckeditorInstance;
-			if (editorInstance) {
-				// Clear existing text by setting data to an empty string
-				editorInstance.setData("", {
-					callback: () => {
-						cy.log("CKEditor content has been cleared.");
-					},
-				});
-			} else {
+			const editorInstance = $editor[0]?.ckeditorInstance;
+			if (!editorInstance) {
 				throw new Error("CKEditor instance not found.");
 			}
+			editorInstance.setData("");
 		});
 	}
 
@@ -105,21 +99,20 @@ class RoomBoards {
 
 	enterTextInTextElement(text) {
 		// CKEditor to be available before proceeding the test
-		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 })
+			.click("bottomRight")
+			.should("be.visible");
 
 		// Assert that the CKEditor toolbar becomes visible
 		cy.get(RoomBoards.#inlineCkToolbar).should("exist").and("be.visible");
 
-		cy.get(RoomBoards.#inputTextFieldCard).realType(text, { delay: 150 });
-
-		//cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-		//const editorInstance = $editor[0].ckeditorInstance;
-		//if (editorInstance) {
-		//editorInstance.setData(text);
-		//} else {
-		//throw new Error("CKEditor instance not found.");
-		//}
-		//});
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			const editorInstance = $editor[0]?.ckeditorInstance;
+			if (!editorInstance) {
+				throw new Error("CKEditor instance not found.");
+			}
+			editorInstance.setData(text);
+		});
 	}
 
 	verifyTextInCard(text) {
@@ -132,12 +125,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
 
 		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
-			const editorInstance = $editor[0].ckeditorInstance;
-			if (editorInstance) {
-				editorInstance.setData(text);
-			} else {
+			const editorInstance = $editor[0]?.ckeditorInstance;
+			if (!editorInstance) {
 				throw new Error("CKEditor instance not found.");
 			}
+			editorInstance.setData(text);
 		});
 	}
 
