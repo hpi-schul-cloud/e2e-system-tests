@@ -43,6 +43,7 @@ class Board {
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
 	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
+	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -388,11 +389,11 @@ class Board {
 	}
 
 	enterTextToTextFieldInCard(textContent) {
-		cy.get('[data-testid="rich-text-edit-0-0"]').then((el) => {
+		cy.get(Board.#ckEditorText).then((el) => {
 			const editor = el[0].ckeditorInstance;
 			editor.setData(textContent);
 		});
-		cy.get('[data-testid="rich-text-edit-0-0"]').then((el) => {
+		cy.get(Board.#ckEditorText).then((el) => {
 			const editor = el[0].ckeditorInstance;
 			const editorContent = editor.getData();
 			const plainText = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
