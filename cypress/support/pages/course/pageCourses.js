@@ -161,8 +161,10 @@ class Courses {
 	}
 
 	selectStudentInCourseCreatePage(studentName) {
-		cy.get(Courses.#studentFieldContainer).click();
-		cy.get(Courses.#chosenResults).contains(studentName).click();
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).invoke("show");
+		cy.get(Courses.#studentSelectionBoxInCourseCreate)
+			.should("be.visible")
+			.select(studentName);
 	}
 
 	selectClassInCourseCreatePage(className) {
@@ -1072,7 +1074,7 @@ class Courses {
 	selectGroupInSyncedGroupSelection(groupName) {
 		cy.get(Courses.#syncedGroupDialogSelection)
 			.click()
-			.type('{selectall}{backspace}')
+			.type("{selectall}{backspace}")
 			.type(groupName)
 			.type("{downArrow}{enter}");
 	}

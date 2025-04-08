@@ -60,6 +60,7 @@ class RoomBoards {
 	static #downloadFileIconSelector =
 		'[data-testid="board-file-element-edit-menu-download"]';
 	static #fileElementSelector = '[data-testid="board-file-element"]';
+	static #folderElementSelector = '[data-testid="board-folder-element"]';
 	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
 	static #mainContentSelector = "#main-content";
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';

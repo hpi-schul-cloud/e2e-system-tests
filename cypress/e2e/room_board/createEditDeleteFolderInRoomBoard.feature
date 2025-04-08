@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-Feature: Create, edit and delete folder in board, including file handling inside the folder (in progress)
+Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder (in progress)
 
 As a teacher I want to create a file folder in a room board
 
