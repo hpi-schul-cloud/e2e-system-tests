@@ -74,7 +74,6 @@ class RoomBoards {
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
-	static #folderElementSelector = '[data-testid="board-folder-element"]';
 	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
