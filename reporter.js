@@ -2,7 +2,6 @@ const report = require("multiple-cucumber-html-reporter");
 const fs = require("fs");
 const fs_extra = require("fs-extra");
 const path = require("path");
-const chalk = require("chalk");
 
 const cucumberJsonDir = path.resolve(process.cwd(), "logs");
 const cucumberReportFileMap = {};
