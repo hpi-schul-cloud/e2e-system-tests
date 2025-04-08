@@ -13,170 +13,58 @@ class CourseManagement {
 	static #courseTableNew = '[data-testid="admin-rooms-table"]'
 	static #currentYearTab = '[data-testid="admin-course-current-tab"]'
 	static #previousYearsTab = '[data-testid="admin-course-archive-tab"]'
+	static #adminCourseNavigationSidebarCard = '[data-testid="sidebar-management-courses"]';
+	static #courseTableName = '[data-testid="admin-rooms-table-name"]';
+	static #courseTableSyncedGroup = '[data-testid="admin-rooms-table-synced-group"]';
+	static #courseTableClassNames = '[data-testid="admin-rooms-table-class-names"]';
+	static #courseTableTeacherNames = '[data-testid="admin-rooms-table-teacher-names"]';
+
+	clickOnClassInAdministrationSubMenu() {
+		cy.get(CourseManagement.#adminCourseNavigationSidebarCard).click();
+	}
 
 	isNewCourseAdministrationPage() {
 		cy.url().should("include", "/administration/rooms/new");
-	}
-
-	isNotNewCourseAdministrationPage() {
-		cy.url().should("not.include", "/administration/rooms/new");
 	}
 
 	clickCreateCourseAdminButton() {
 		cy.get(CourseManagement.#createCourseAdminButton).click()
 	}
 
-	seeCourseTableContainsCourse(courseName) {
-		cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
+	seeCourseInCourseTable(courseName) {
+		cy.get(CourseManagement.#courseTableName).should("contain", courseName);
 	}
 
 	doNotSeeCourseInTable(courseName) {
-		cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("not.exist");
+		cy.get(CourseManagement.#courseTableName).should("not.contain", courseName);
 	}
 
-	clickDeleteButtonForCourse(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableDeleteButton)
-			.should("exist")
-			.click();
-	}
-
-	seeTableHas5Columns() {
-		const tableHeader = cy.get(CourseManagement.#courseTableNew).find("th");
-		tableHeader.should("have.length", 5);
+	clickDeleteButtonOfCourse(courseName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableDeleteButton)
+				.should("be.visible")
+				.click();
+			});
 	}
 
 	see2Tabs() {
-		cy.get(CourseManagement.#currentYearTab).should("exist");
-		cy.get(CourseManagement.#previousYearsTab).should("exist");
+		cy.get(CourseManagement.#currentYearTab).should("be.visible");
+		cy.get(CourseManagement.#previousYearsTab).should("be.visible");
 	}
 
-	seeNewCourseTableContainsCourseWithoutClass(courseName, teacherName) {
-		const courseNameData = cy.get(CourseManagement.#courseTableNew).find("td").contains(courseName);
-
-		courseNameData.should("be.visible");
-		courseNameData
-			.siblings("td")
-			.eq(1)
-			.should(($td) => {
-				expect($td.text().trim()).to.equal("");
+	clickEditButtonOfCourse(courseName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableEditButton)
+				.should("be.visible")
+				.click();
 			});
-		courseNameData
-			.siblings("td")
-			.eq(2)
-			.should(($td) => {
-				expect($td.text().trim()).to.equal(teacherName);
-			});
-	}
-
-	seeCourseHas3ActiveActionItems(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTableNew).find("td").contains(courseName);
-
-		const buttons = courseNameData.siblings("td").eq(3).find("a, button");
-
-		buttons.should("have.length", 3);
-		buttons.each(($btn) => {
-			cy.wrap($btn).should("not.be.disabled");
-		});
-	}
-
-	clickEditButtonForCourse(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableEditButton)
-			.should("exist")
-			.click();
-	}
-
-	clickStartSynchronizeButtonForCourse(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableStartSynchronizeButton)
-			.should("exist")
-			.click();
-	}
-
-	clickEndSynchronizeButtonForCourse(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableEndSynchronizeButton)
-			.should("exist")
-			.click();
-	}
-
-	seeCourseSynchronizedWithGroup(courseName, groupName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td").eq(0)
-			.should(($td) => {
-				expect($td.text().trim()).to.equal(groupName);
-			});
-	}
-
-	seeCourseNotSynchronized(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td").eq(0)
-			.should(($td) => {
-				expect($td.text().trim()).to.equal("");
-			});
-	}
-
-	seeStartSynchronizeButtonForCourse(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableStartSynchronizeButton)
-			.should("be.visible")
-	}
-
-	seeNoSynchronizeButtonForCourse(courseName) {
-
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableStartSynchronizeButton)
-			.should("not.exist")
-	}
-
-	seeEndSynchronizeButtonForCourse(courseName) {
-		const courseNameData = cy.get(CourseManagement.#courseTable).find("td").contains(courseName)
-			.should("be.visible");
-
-		courseNameData
-			.siblings("td")
-			.eq(3)
-			.find(CourseManagement.#courseTableEndSynchronizeButton)
-			.should("be.visible")
+		cy.wait("@courses_api");
 	}
 
 	seeSynchronizationConfirmationModalTitle() {
@@ -191,6 +79,73 @@ class CourseManagement {
 
 	clickConfirmSynchronizationButton() {
 		cy.get(CourseManagement.#confirmDialogButton).click();
+	}
+
+	seeCourseWithTeacher(courseName, teacherName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableTeacherNames).should("have.text", teacherName)
+			});
+	}
+
+	seeCourseWithClass(courseName, className) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableClassNames).should("have.text", className)
+			});
+	}
+
+	seeCourseWithSyncedGroup(courseName, groupName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableSyncedGroup).should("have.text", groupName)
+			});
+	}
+
+	doNotSeeStartSyncedButtonOfCourse(courseName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableStartSynchronizeButton).should("not.exist");
+			});
+	}
+
+	doNotSeeStopSyncedButtonOfCourse(courseName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableEndSynchronizeButton).should("not.exist");
+			});
+	}
+
+	clickStartSyncButtonOfCourse(courseName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableStartSynchronizeButton)
+					.should("be.visible")
+					.click();
+			});
+	}
+
+	clickStopSyncButtonOfCourse(courseName) {
+		cy.get(CourseManagement.#courseTableName)
+			.contains(courseName)
+			.parents("tr")
+			.within(() => {
+				cy.get(CourseManagement.#courseTableEndSynchronizeButton)
+					.should("be.visible")
+					.click();
+			});
 	}
 }
 

@@ -17,6 +17,82 @@ When("I select the student {string} in the list", (studentName) => {
 	courses.selectStudentInCourseCreatePage(studentName);
 });
 
+When("I select the class {string} in the class list", (className) => {
+	courses.selectClassInCourseCreatePage(className);
+});
+
+When("I select the class {string}", (className) => {
+	courses.selectClassInCourseEditPage(className);
+});
+
+Then("I see {string} in the class selection box", (className) => {
+	courses.seeClassInClassSelectionBox(className);
+});
+
+Then("I see {string} in the student selection box", (studentName) => {
+	courses.seeStudentInStudentSelectionBox(studentName);
+});
+
+When("I click on the remove icon of class {string}", (className) => {
+	courses.removeClassFromCourse(className);
+});
+
+Then("I do not see {string} in the class selection box", (className) => {
+	courses.doNotSeeClassInClassSelectionBox(className);
+});
+
+Then("I do not see {string} in the student selection box", (studentName) => {
+	courses.doNotSeeStudentInStudentSelectionBox(studentName);
+});
+
+When("I click on the button delete on the modal to confirm the course deletion", () => {
+	courses.confirmCourseDeletionOnModal();
+});
+
+Then("I see the modal to confirm the deletion", () => {
+	courses.seeModalToConfirmCourseDeletion();
+});
+
+When("I click on the button delete course", () => {
+	courses.clickOnDeleteButtonOnCourseEditPage();
+});
+
+When("I edit the course description to {string}", (editedCourseDescription) => {
+	courses.editCourseDescription(editedCourseDescription);
+});
+
+Then("I see student selection box to select the class for the course", () => {
+	courses.seeSelectionInBoxToSelectStudent();
+});
+
+Then("I see class selection box to select the class for the course", () => {
+	courses.seeSelectionBoxToSelectClass();
+});
+
+Then("I see the substitute teacher {string} is selected", (substituteTeacher) => {
+	courses.seeSelectedSubstituteTeacher(substituteTeacher);
+});
+
+Then("I see the teacher {string} is selected", (teacherName) => {
+	courses.seeSelectedTeacher(teacherName);
+});
+
+Then("I see the student {string} is selected", (studentName) => {
+	courses.seeSelectedStudent(studentName);
+});
+
+Then("I see the class {string} is selected", (className) => {
+	courses.seeSelectedClass(className);
+});
+
+Then("I see the course title form contains {string}", (name) => {
+	courses.seeCourseTitleFormContains(name);
+});
+
+When("I click on the three dot menu button next to the course title", () => {
+	courses.clickThreeDotMenuInCourse();
+});
+
 When("I see student selection box to select the student for the course", () => {
 	courses.seeStudentSelectionBoxInCourseCreatePage();
 });
