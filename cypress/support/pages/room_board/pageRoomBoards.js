@@ -60,6 +60,7 @@ class RoomBoards {
 	static #downloadFileIconSelector =
 		'[data-testid="board-file-element-edit-menu-download"]';
 	static #fileElementSelector = '[data-testid="board-file-element"]';
+	static #folderElementSelector = '[data-testid="board-folder-element"]';
 	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
 	static #mainContentSelector = "#main-content";
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
@@ -73,7 +74,61 @@ class RoomBoards {
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
-	static #folderElementSelector = '[data-testid="board-folder-element"]';
+	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
+	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
+	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
+	static #inlineCkToolbar = ".ck-balloon-panel";
+
+	setAndCheckCKEditorContent($editor, text) {
+		const editorInstance = $editor[0]?.ckeditorInstance;
+		if (!editorInstance) {
+			throw new Error("CKEditor instance not found.");
+		}
+		editorInstance.setData(text);
+	}
+
+	removeTextFromTextElement() {
+		// Ensure CKEditor is available before proceeding the test
+		cy.wait(500);
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			this.setAndCheckCKEditorContent($editor, "");
+		});
+	}
+
+	verifyTextElementNotInCard() {
+		cy.wait(500);
+		cy.get(RoomBoards.#cardContentText).should("not.exist");
+	}
+
+	enterTextInTextElement(text) {
+		// CKEditor to be available before proceeding the test
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 })
+			.click("bottomRight")
+			.should("be.visible");
+
+		// Assert that the CKEditor toolbar becomes visible
+		cy.get(RoomBoards.#inlineCkToolbar).should("exist").and("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			this.setAndCheckCKEditorContent($editor, text);
+		});
+	}
+
+	verifyTextInCard(text) {
+		cy.get(RoomBoards.#cardContentText).should("contain.text", text);
+	}
+
+	reEnterTextInTextElement(text) {
+		// CKEditor to be available before further proceeding the test
+		cy.wait(500);
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			this.setAndCheckCKEditorContent($editor, text);
+		});
+	}
 
 	verifyVideoFileInCard() {
 		cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
@@ -290,7 +345,7 @@ class RoomBoards {
 
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
-			//Three dot has same data-testid and needs to be located inside the parent element
+			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");

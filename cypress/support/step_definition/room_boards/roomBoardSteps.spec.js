@@ -3,6 +3,29 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then(
+	"I enter the text {string} in the element Text with the visible inline CKEditor toolbar",
+	(text) => {
+		roomBoards.enterTextInTextElement(text);
+	}
+);
+
+Then("I see the element Text {string} in the card", (text) => {
+	roomBoards.verifyTextInCard(text);
+});
+
+Then("I re enter the text {string} in the element Text", (editedText) => {
+	roomBoards.reEnterTextInTextElement(editedText);
+});
+
+When("I remove the text {string} in the element Text", (editedText) => {
+	roomBoards.removeTextFromTextElement(editedText);
+});
+
+Then("I do not see the element Text in the card", (editedText) => {
+	roomBoards.verifyTextElementNotInCard(editedText);
+});
+
 Then("I see the file type Video in the card", () => {
 	roomBoards.verifyVideoFileInCard();
 });
