@@ -350,6 +350,6 @@ When("I click on the button to confirm the deletion", () => {
 Then("I do not see the board {string} in the room", (boardTitle) => {
 	roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
 });
-Then("I should see a folder with name {string} in the card", (folderTitle) => {
+Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
