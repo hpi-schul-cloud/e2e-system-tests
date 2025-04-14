@@ -13,7 +13,7 @@ class CommonSteps {
 			.split(", ")
 			.map((opt) => opt.trim());
 			contents.forEach((content) => {
-			cy.get(CommonMethods.#firstElementOfBreadcrumb).parent().contains('li', content);
+			cy.get(CommonSteps.#firstElementOfBreadcrumb).parent().contains('li', content);
 		});
 	}
 }
