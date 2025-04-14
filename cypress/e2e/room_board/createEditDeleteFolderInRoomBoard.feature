@@ -20,11 +20,12 @@ Scenario Outline:  Editor is able to create, edit and delete a folder in a board
         Then I see a folder with name '<folder_name>' in the card
 
         # editor opens folder
-        #When I click on the folder '<folder_name>' in the card
-        #Then I see page Folder content for '<folder_name>'
-        #Then I see page Folder content does not contain files
-        #Then I see breadcrumb with '<room_name>' and '<board_title>'
-        #Then I see button Add file
+        When I click on the folder '<folder_name>' in the card
+        Then I see page Folder content for '<folder_name>'
+        Then I see message Empty folder
+        #Then I see page Folder content does not contain files #will be implemented when files can be displayed in folders
+        Then I see breadcrumb with '<room_name>, <board_title>'
+        Then I see button Add file
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
@@ -32,7 +33,7 @@ Scenario Outline:  Editor is able to create, edit and delete a folder in a board
         @school_api_test
         Examples:
             | namespace | editor      | room_name               | board_title             | folder_name         |
-            | dbc       | teacher1_dbc | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+            | dbc       | teacher1_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner  |
 
         # @staging_test
         # Examples:
