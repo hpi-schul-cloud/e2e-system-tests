@@ -61,10 +61,10 @@ Feature: Course Board - To change the board layout
 
         @staging_test
         Examples:
-            | teacher      | namespace | course_name         | fullname_teacher |
-            | teacher1_nbc | nbc       | Cypress Test Course | Karl Herzog      |
+            | teacher      | namespace | course_name             | fullname_teacher |
+            | teacher1_nbc | nbc       | CypressAUT Board Layout | Karl Herzog      |
 
         @school_api_test
         Examples:
-            | teacher      | namespace | course_name         | fullname_teacher  |
-            | teacher1_nbc | nbc       | Cypress Test Course | cypress teacher_1 |
+            | teacher      | namespace | course_name             | fullname_teacher  |
+            | teacher1_nbc | nbc       | CypressAUT Board Layout | cypress teacher_1 |
