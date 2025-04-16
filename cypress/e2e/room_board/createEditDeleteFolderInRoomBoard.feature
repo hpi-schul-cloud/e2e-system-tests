@@ -6,7 +6,7 @@ As a editor I want to create a file folder in a room board
 
 Scenario Outline:  Editor is able to create, edit and delete a folder in a board
         # pre-condition: creating accounts and room with board
-        Given I am logged in as a '<editor>' at '<namespace>'
+        Given I am logged in as a '<contenteditor>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
@@ -23,7 +23,7 @@ Scenario Outline:  Editor is able to create, edit and delete a folder in a board
         When I click on the folder '<folder_name>' in the card
         Then I see page Folder content for '<folder_name>'
         Then I see message Empty folder
-        #Then I see page Folder content does not contain files #will be implemented when files can be displayed in folders
+        #Then I see page Folder content does not contain files - will be implemented when files can be displayed in folders
         Then I see breadcrumb with '<room_name>, <board_title>'
         Then I see button Add file
 
@@ -32,8 +32,8 @@ Scenario Outline:  Editor is able to create, edit and delete a folder in a board
 
         @school_api_test
         Examples:
-            | namespace | editor      | room_name               | board_title             | folder_name         |
-            | dbc       | teacher1_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner  |
+            | namespace | contenteditor | room_name              | board_title             | folder_name         |
+            | dbc       | teacher1_dbc  | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner  |
 
         # @staging_test
         # Examples:

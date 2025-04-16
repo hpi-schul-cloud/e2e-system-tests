@@ -79,7 +79,7 @@ class RoomBoards {
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
-	static #folderPageMessageEmptyFolder = '[data-testid="emptyFolderMessage"]';
+	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
 
 	setAndCheckCKEditorContent($editor, text) {
