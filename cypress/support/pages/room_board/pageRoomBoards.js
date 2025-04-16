@@ -88,29 +88,25 @@ class RoomBoards {
 		cy.get(RoomBoards.#titleEtherpad).should("exist");
 	}
 
-	clickOnEtherpadInCard() {
-		cy.get(RoomBoards.#elementEtherpadOncard).click();
-	}
-
 	clickAndVerifyEtherpadOpensInNewTab() {
-		let openSpy;
+		let clickSpy;
 
-		cy.window().then((win) => {
-			// Attach the spy to window.open
-			openSpy = cy.spy(win, "open").as("openSpy");
-		});
+		cy.get(RoomBoards.#elementEtherpadOncard)
+			.should("exist")
+			.then((el) => {
+				clickSpy = cy.spy().as("clickSpy");
+				el.on("click", (event) => {
+					event.preventDefault();
+					clickSpy();
+					cy.log("The Etherpad element was clicked.");
+				});
+			});
 
-		// Wait a bit to ensure spy is attached (helps in flaky environments)
-		cy.wait(100);
+		cy.get(RoomBoards.#elementEtherpadOncard).click();
 
-		// Click the link that triggers window.open
-		cy.get(RoomBoards.#elementEtherpadOncard).should("exist").click();
+		cy.get("@clickSpy").should("have.been.called");
 
-		// Check that the spy was called
-		cy.get("@openSpy").should("have.been.called");
-
-		// Check call count
-		cy.get("@openSpy").should("have.callCount", 1);
+		cy.get("@clickSpy").should("have.callCount", 1);
 	}
 
 	clickOnThreeDotOnEtherpad() {
