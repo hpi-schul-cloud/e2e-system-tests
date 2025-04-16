@@ -52,11 +52,11 @@ Feature: Course Sync - To start and stop a synchronization with an existing cour
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | student      | course_title        | group_title                     | fullname_teacher |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT Existing | Cypress-Test-Group-Course-Sync1 | Karl Herzog      |
+            | namespace | admin      | teacher      | student      | course_title                | group_title                     | fullname_teacher |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ExistingFullSync | Cypress-Test-Group-Course-Sync1 | Karl Herzog      |
 
         # Note: This test runs with moin.schule groups from the seed data
         # @school_api_test
         # Examples:
-        #     | namespace | admin      | teacher      | student      | course_title        | group_title                     | fullname_teacher  |
-        #     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT Existing | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |
+        #     | namespace | admin      | teacher      | student      | course_title                | group_title                     | fullname_teacher  |
+        #     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ExistingFullSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |

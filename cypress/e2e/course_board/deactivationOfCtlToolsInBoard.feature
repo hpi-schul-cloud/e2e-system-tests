@@ -190,10 +190,10 @@ Feature: Deactivation of ctl tools in board
 
 		@staging_test
 		Examples:
-			| admin      | teacher      | student      | namespace | fullname_teacher | fullname_student | course_name         | ctl_tool_1     | ctl_tool_2     |
-			| admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    | Cypress Test Course | CY Test Tool 1 | CY Test Tool 2 |
+			| admin      | teacher      | student      | namespace | fullname_teacher | fullname_student | course_name                      | ctl_tool_1     | ctl_tool_2     |
+			| admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    | CypressAut ToolDeactivationBoard | CY Test Tool 1 | CY Test Tool 2 |
 
 		@school_api_test
 		Examples:
-			| admin      | teacher      | student      | namespace | fullname_teacher  | fullname_student  | course_name         | ctl_tool_1     | ctl_tool_2     |
-			| admin1_nbc | teacher1_nbc | student1_nbc | nbc       | cypress teacher_1 | cypress student_1 | Cypress Test Course | CY Test Tool 1 | CY Test Tool 2 |
+			| admin      | teacher      | student      | namespace | fullname_teacher  | fullname_student  | course_name                      | ctl_tool_1     | ctl_tool_2     |
+			| admin1_nbc | teacher1_nbc | student1_nbc | nbc       | cypress teacher_1 | cypress student_1 | CypressAut ToolDeactivationBoard | CY Test Tool 1 | CY Test Tool 2 |
