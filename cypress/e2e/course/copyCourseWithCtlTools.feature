@@ -8,6 +8,7 @@ Feature: Course - Copy course with CTL tools
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
+        Given the school has external tool '<ctl_tool_scope_context>,<ctl_tool_optional_protected_param>,<ctl_tool_protected_param>'
 
         # pre-condition: admin creates a course, assign it to teacher and student
         When I go to courses overview
@@ -20,26 +21,6 @@ Feature: Course - Copy course with CTL tools
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
-
-        # pre-condition: admin adds tools via selection
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on general settings panel
-        When I click the toggle switch to enable student visibility for teachers
-        When I click on button Save admin settings
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_scope_context>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_optional_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_protected_param>' in external tools table
 
         # pre-condition: teacher adds a tool with required parameter
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -152,20 +133,7 @@ Feature: Course - Copy course with CTL tools
 
         # post-condition: admin deletes tools
         Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        Then I see the external tools table
-        When I click on delete button of tool '<ctl_tool_scope_context>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click on delete button of tool '<ctl_tool_optional_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click on delete button of tool '<ctl_tool_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_protected_param>' in external tools table
-        Then I see the external tools table is empty
+        Given all external tools at the school are deleted
 
         @staging_test
         Examples:
