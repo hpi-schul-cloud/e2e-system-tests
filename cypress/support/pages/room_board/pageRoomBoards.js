@@ -78,6 +78,47 @@ class RoomBoards {
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
+	static #elementEtherpadOncard = '[data-testid="collaborative-text-editor-element"]';
+	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
+	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
+	static #parentClassEtherpadThreeDot = ".three-dot-menu";
+
+	verifyEtherpadIsVisibleOnCard() {
+		cy.get(RoomBoards.#elementEtherpadOncard).should("exist");
+		cy.get(RoomBoards.#titleEtherpad).should("exist");
+	}
+
+	clickAndVerifyEtherpadOpensInNewTab() {
+		let clickSpy;
+
+		cy.get(RoomBoards.#elementEtherpadOncard)
+			.should("exist")
+			.then((el) => {
+				clickSpy = cy.spy().as("clickSpy");
+				el.on("click", (event) => {
+					event.preventDefault();
+					clickSpy();
+					cy.log("The Etherpad element was clicked.");
+				});
+			});
+
+		cy.get(RoomBoards.#elementEtherpadOncard).click();
+
+		cy.get("@clickSpy").should("have.been.called");
+
+		cy.get("@clickSpy").should("have.callCount", 1);
+	}
+
+	clickOnThreeDotOnEtherpad() {
+		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
+			.find(RoomBoards.#threeDotOnEtherpad)
+			.click();
+	}
+
+	verifyEtherpadIsNotVisibleOnCard() {
+		cy.get(RoomBoards.#elementEtherpadOncard).should("not.exist");
+		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
+	}
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -373,7 +414,9 @@ class RoomBoards {
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#deleteButtonOnVideoConferenceElementDialog).click();
+		cy.get(RoomBoards.#deleteButtonOnVideoConferenceElementDialog).realClick();
+		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
+		cy.reload();
 	}
 
 	verifyVideoConferenceElementNotVisible() {
