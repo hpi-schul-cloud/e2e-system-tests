@@ -83,10 +83,10 @@ Feature: Course Board  - To add a preferred tool in a board
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | course_name         | fullname_teacher | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
-            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course | Karl Herzog      | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
+            | admin      | teacher      | namespace | course_name                        | fullname_teacher | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAUT BoardWithPreferredTools | Karl Herzog      | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | course_name         | fullname_teacher  | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
-            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course | cypress teacher_1 | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
+            | admin      | teacher      | namespace | course_name                        | fullname_teacher  | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAUT BoardWithPreferredTools | cypress teacher_1 | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
