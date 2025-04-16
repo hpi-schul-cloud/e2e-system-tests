@@ -88,7 +88,6 @@ Feature: Room - Change room permission (Viewer - Admin)
         When I click on delete button in confirmation modal
         Then I do not see '<room_name_edited>' on room overview page
 
-        @only
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name         | room_name_edited         | school_name             | role_name | participant_name |
