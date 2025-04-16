@@ -103,7 +103,7 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).click();
+		cy.get(Rooms.#roomDetailFAB).first().click();
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
@@ -275,8 +275,24 @@ class Rooms {
 		cy.contains("th", "Aktionen").should("not.exist");
 	}
 
-	doNotSeeFabCreateRoomBoard() {
+	seeFabCreateRoomBoard() {
 		cy.get(Rooms.#addContentButton).should("exist").should("be.visible");
+	}
+
+	seeFabAddMember() {
+		cy.get(Rooms.#addParticipants).should("exist");
+	}
+
+	seeInfoTextBanner() {
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
+	}
+
+	seeFirstColumnInRoomMembersTable() {
+		cy.get(Rooms.#firstColumnInRoomMembersTable).should("exist");
+	}
+
+	seeLastColumnInRoomMembersTable() {
+		cy.contains("th", "Aktionen").should("exist");
 	}
 }
 export default Rooms;
