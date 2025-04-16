@@ -3,6 +3,22 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
+Then("I see the element Etherpad on the card", () => {
+	roomBoards.verifyEtherpadIsVisibleOnCard();
+});
+
+When("I click on the element Etherpad to verify it opens in a new tab", () => {
+	roomBoards.clickAndVerifyEtherpadOpensInNewTab();
+});
+
+When("I click on the three-dot in the element Etherpad", () => {
+	roomBoards.clickOnThreeDotOnEtherpad();
+});
+
+Then("I do not see the element Etherpad", () => {
+	roomBoards.verifyEtherpadIsNotVisibleOnCard();
+});
+
 Then(
 	"I enter the text {string} in the element Text with the visible inline CKEditor toolbar",
 	(text) => {
