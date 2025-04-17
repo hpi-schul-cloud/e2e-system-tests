@@ -61,6 +61,7 @@ class RoomBoards {
 		'[data-testid="board-file-element-edit-menu-download"]';
 	static #fileElementSelector = '[data-testid="board-file-element"]';
 	static #folderElementSelector = '[data-testid="board-folder-element"]';
+	static #folderPageTitle = '[data-testid="folder-title"]';
 	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
 	static #mainContentSelector = "#main-content";
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
@@ -78,6 +79,8 @@ class RoomBoards {
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
+	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
+	static #addFileButton = '[data-testid="fab-add-files"]';
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -538,6 +541,27 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderElementSelector)
 			.should("exist")
 			.should("contain", title);
+	}
+
+	clickFolderElementWithTitle(title) {
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("contain", title)
+			.click();
+	}
+
+	seeFolderPageWithTitle(title) {
+		cy.get(RoomBoards.#folderPageTitle)
+			.should("contain", title)
+	}
+
+	seeMessageEmptyFolder() {
+		cy.get(RoomBoards.#folderPageMessageEmptyFolder)
+			.should("exist")
+	}
+
+	seeBtnAddFile() {
+		cy.get(RoomBoards.#addFileButton)
+			.should("exist")
 	}
 }
 
