@@ -29,7 +29,8 @@ class Rooms {
 		'[data-testid="dialog-change-role-participants"]';
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
-	s;
+	static #roomLeaveDialogBox = '[data-testid="dialog-title"]';
+	static #infoTextForAdmin = '[class="alert-text"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -96,6 +97,7 @@ class Rooms {
 
 	seeRoomEditParticipantsPage() {
 		cy.get(Rooms.#roomTitle).should("be.visible");
+		cy.wait("@members_api");
 	}
 
 	navigateToRoom(roomName) {
@@ -103,7 +105,7 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).click();
+		cy.get(Rooms.#roomDetailFAB).first().click();
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
@@ -227,14 +229,14 @@ class Rooms {
 			.should("be.checked");
 	}
 
-	confirmChangeRoleModalActions(buttonAction) {
-		cy.get(`[data-testid="change-role-${buttonAction.toLowerCase()}-btn"]`).click();
+	confirmChangeRoleModalActions(buttonAction, roleType) {
+		cy.get(
+			`[data-testid="change-${roleType.toLowerCase()}-${buttonAction.toLowerCase()}-btn"]`
+		).click();
 	}
 
 	isRoomLeaveDialogBoxVisible() {
-		cy.get(Rooms.#confirmDeletionModalTitle)
-			.should("be.visible")
-			.should("have.attr", "aria-modal", "true");
+		cy.get(Rooms.#roomLeaveDialogBox).should("be.visible");
 	}
 
 	clickOnActionButtonForRoomLeave(buttonAction) {
@@ -243,6 +245,10 @@ class Rooms {
 
 	isParticipantNotVisible(participantName) {
 		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+	}
+
+	isParticipantVisible(participantName) {
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("exist");
 	}
 
 	doNotSeeOptionsInMenu(optionsString) {
@@ -275,8 +281,28 @@ class Rooms {
 		cy.contains("th", "Aktionen").should("not.exist");
 	}
 
-	doNotSeeFabCreateRoomBoard() {
+	seeFabCreateRoomBoard() {
 		cy.get(Rooms.#addContentButton).should("exist").should("be.visible");
+	}
+
+	seeFabAddMember() {
+		cy.get(Rooms.#addParticipants).should("exist");
+	}
+
+	seeInfoTextBanner() {
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
+	}
+
+	seeFirstColumnInRoomMembersTable() {
+		cy.get(Rooms.#firstColumnInRoomMembersTable).should("exist");
+	}
+
+	seeLastColumnInRoomMembersTable() {
+		cy.contains("th", "Aktionen").should("exist");
+	}
+
+	seeInfoTextForAdmin() {
+		cy.get(Rooms.#infoTextForAdmin).should("be.visible");
 	}
 }
 export default Rooms;
