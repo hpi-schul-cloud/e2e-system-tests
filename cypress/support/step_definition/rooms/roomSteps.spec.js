@@ -159,9 +159,12 @@ Then("I see Role changed to {string} for second user", (role) => {
 	rooms.isChangedRoleVisible(role);
 });
 
-Then("I click on button {string} in the action menu", (buttonAction) => {
-	rooms.confirmChangeRoleModalActions(buttonAction);
-});
+Then(
+	"I click on button {string} in the {string} action menu",
+	(buttonAction, roleType) => {
+		rooms.confirmChangeRoleModalActions(buttonAction, roleType);
+	}
+);
 
 Then("I see dialog box to leave the room", () => {
 	rooms.isRoomLeaveDialogBoxVisible();
@@ -213,4 +216,12 @@ Then("I see first checkbox column in the table", () => {
 
 Then("I see last actions column in the table", () => {
 	rooms.seeLastColumnInRoomMembersTable();
+});
+
+Then("I see info text for admin before leaving the room", () => {
+	rooms.seeInfoTextForAdmin();
+});
+
+Then("I see teacher {string} is visible in the table", (participantName) => {
+	rooms.isParticipantVisible(participantName);
 });

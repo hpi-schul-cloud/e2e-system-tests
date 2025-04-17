@@ -29,7 +29,8 @@ class Rooms {
 		'[data-testid="dialog-change-role-participants"]';
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
-	s;
+	static #roomLeaveDialogBox = '[data-testid="dialog-title"]';
+	static #infoTextForAdmin = '[class="alert-text"]';
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -228,14 +229,14 @@ class Rooms {
 			.should("be.checked");
 	}
 
-	confirmChangeRoleModalActions(buttonAction) {
-		cy.get(`[data-testid="change-role-${buttonAction.toLowerCase()}-btn"]`).click();
+	confirmChangeRoleModalActions(buttonAction, roleType) {
+		cy.get(
+			`[data-testid="change-${roleType.toLowerCase()}-${buttonAction.toLowerCase()}-btn"]`
+		).click();
 	}
 
 	isRoomLeaveDialogBoxVisible() {
-		cy.get(Rooms.#confirmDeletionModalTitle)
-			.should("be.visible")
-			.should("have.attr", "aria-modal", "true");
+		cy.get(Rooms.#roomLeaveDialogBox).should("be.visible");
 	}
 
 	clickOnActionButtonForRoomLeave(buttonAction) {
@@ -244,6 +245,10 @@ class Rooms {
 
 	isParticipantNotVisible(participantName) {
 		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+	}
+
+	isParticipantVisible(participantName) {
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("exist");
 	}
 
 	doNotSeeOptionsInMenu(optionsString) {
@@ -294,6 +299,10 @@ class Rooms {
 
 	seeLastColumnInRoomMembersTable() {
 		cy.contains("th", "Aktionen").should("exist");
+	}
+
+	seeInfoTextForAdmin() {
+		cy.get(Rooms.#infoTextForAdmin).should("be.visible");
 	}
 }
 export default Rooms;

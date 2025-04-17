@@ -37,7 +37,7 @@ Feature: Room - Change room permission (Viewer - Admin)
         Then I see dialog box Change Role Permission is visible
         When I change second user role to 'admin'
         Then I see Role changed to 'admin' for second user
-        Then I click on button 'Confirm' in the action menu
+        Then I click on button 'Confirm' in the 'Role' action menu
 
         # second user logs in, accesses the room, verifies that restricted functionalities are not visible to them, and then leaves the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
