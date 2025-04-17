@@ -21,6 +21,12 @@ Feature: Course Board - Copy course with a board which has CTL tools
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
+        # pre-condition: admin activates student visibility
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on general settings panel
+        When I click the toggle switch to enable student visibility for teachers
+        When I click on button Save admin settings
 
         # pre-condition: teacher creates a board
         Given I am logged in as a '<teacher>' at '<namespace>'

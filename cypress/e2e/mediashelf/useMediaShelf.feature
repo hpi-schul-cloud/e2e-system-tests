@@ -7,19 +7,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
     Scenario: Teacher uses the media shelf
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
-
-        # pre-condition: admin adds external tools to school
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_1>' from available tools
-        When I click on save external tool button
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_2>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_1>' in external tools table
-        Then I see the tool '<ctl_tool_2>' in external tools table
+        Given the school has external tool '<ctl_tool_1>,<ctl_tool_2>'
 
         # teacher opens media shelf
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -133,10 +121,10 @@ Feature: Media Shelf - To show media shelf with respective functionality
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white        | color_grey         | section_title  | section_title_updated | ctl_tool_launch_url |
+            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white          | color_grey           | section_title  | section_title_updated | ctl_tool_launch_url |
             | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool 2 | rgb(255, 255, 255) | rgb(251, 233, 231) | Test Abschnitt | Favoriten             | https://google.com/ |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white        | color_grey         | section_title  | section_title_updated | ctl_tool_launch_url |
+            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white          | color_grey           | section_title  | section_title_updated | ctl_tool_launch_url |
             | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool 2 | rgb(255, 255, 255) | rgb(251, 233, 231) | Test Abschnitt | Favoriten             | https://google.com/ |

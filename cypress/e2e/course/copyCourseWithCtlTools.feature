@@ -10,7 +10,7 @@ Feature: Course - Copy course with CTL tools
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_scope_context>,<ctl_tool_optional_protected_param>,<ctl_tool_protected_param>'
 
-        # pre-condition: admin creates a course, assign it to teacher and student
+        # pre-condition: admin creates a course, assign it to teacher
         When I go to courses overview
         When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
@@ -21,6 +21,12 @@ Feature: Course - Copy course with CTL tools
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
+        # pre-condition: admin activates student visibility
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on general settings panel
+        When I click the toggle switch to enable student visibility for teachers
+        When I click on button Save admin settings
 
         # pre-condition: teacher adds a tool with required parameter
         Given I am logged in as a '<teacher>' at '<namespace>'
