@@ -6,28 +6,34 @@ const management = new Management();
 const toolConfiguration = new ToolConfiguration();
 
 Given("the school has external tool {string}", (toolList) => {
+	// list of special tools
 	const toolsWithCustomParameter = ["CY Test Tool Required Parameters", "CY Test Tool Optional Parameters"];
 	const linkTools = ["CY Test Tool OpenStreetMap"];
 
 	const tools = toolList.split(/\s*,\s*/);
 
+	// navigation to external tools table on admin page
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();
 	management.clickExternalToolsPanel();
 
 	tools.forEach((toolName) => {
 		cy.wrap(null).then(() => {
+			// check if tools already exists
 			return  management.schoolHasExternalTool(toolName).then((exists) => {
 				// if the tool already exists
 				if (exists){
 					management.clickOnEditButton(toolName);
 
+					// if tool has a custom parameter
 					if (toolsWithCustomParameter.includes(toolName)) {
 						toolConfiguration.fillInCustomParameter("schoolParam", "test");
 					}
 
+					// activates the tool if it is deactivated
 					toolConfiguration.activateTool()
 					toolConfiguration.saveExternalToolButton();
+					cy.log(`Tool ${toolname} already exists.`)
 					return;
 				}
 
@@ -45,6 +51,7 @@ Given("the school has external tool {string}", (toolList) => {
 
 				toolConfiguration.saveExternalToolButton();
 				management.seeExternalTool(toolName);
+				cy.log(`Tool${toolname} was added.`)
 			})
 		});
 	});
