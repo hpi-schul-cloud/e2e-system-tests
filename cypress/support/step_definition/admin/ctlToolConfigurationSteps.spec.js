@@ -74,3 +74,7 @@ When("I enter {string} in optional custom parameter field {string}", (value, par
 Then("I see custom parameter input field {string} contains {string}", (paramName, value) => {
 	toolConfiguration.seeCustomParameterFormContains(paramName, value);
 });
+
+When("I click the cancel button on the tool configuration page", (paramName, value) => {
+	toolConfiguration.clickCancelButton();
+});
