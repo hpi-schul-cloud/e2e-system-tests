@@ -33,7 +33,7 @@ Given("the school has external tool {string}", (toolList) => {
 					// activates the tool if it is deactivated
 					toolConfiguration.activateTool()
 					toolConfiguration.saveExternalToolButton();
-					cy.log(`Tool ${toolname} already exists.`)
+					cy.log(`Tool ${toolName} already exists.`)
 					return;
 				}
 
@@ -51,7 +51,7 @@ Given("the school has external tool {string}", (toolList) => {
 
 				toolConfiguration.saveExternalToolButton();
 				management.seeExternalTool(toolName);
-				cy.log(`Tool${toolname} was added.`)
+				cy.log(`Tool ${toolName} was added.`)
 			})
 		});
 	});
