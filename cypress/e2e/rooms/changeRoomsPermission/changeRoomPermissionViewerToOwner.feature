@@ -48,7 +48,6 @@ Feature: Room - Change room permission (Viewer - Owner)
         Then I see the detail page of room '<room_name>'
         Then I see button Fab Create Room Board
         When I click on three dot menu in room page
-        # Then I don't see 'delete' options in the menu
         When I select the three dot menu action 'edit'
         When I enter the room name '<room_name_edited>'
         When I click on the button to save the room
@@ -67,7 +66,6 @@ Feature: Room - Change room permission (Viewer - Owner)
         When I select the three dot menu action 'leave-room'
         Then I see dialog box to leave the room
         Then I see info text for admin before leaving the room
-        # Then I click on button 'Confirm' to leave the room
 
         # first teacher logged in and assert second user is in the table
         Given I am logged in as a '<teacher_1>' at '<namespace>'
