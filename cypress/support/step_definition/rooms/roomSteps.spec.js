@@ -196,5 +196,21 @@ Then("I don't see last actions column in the table", () => {
 });
 
 Then("I see button Fab Create Room Board", () => {
-	rooms.doNotSeeFabCreateRoomBoard();
+	rooms.seeFabCreateRoomBoard();
+});
+
+Then("I see button Fab Add Member", () => {
+	rooms.seeFabAddMember();
+});
+
+Then("I see info text", () => {
+	rooms.seeInfoTextBanner();
+});
+
+Then("I see first checkbox column in the table", () => {
+	rooms.seeFirstColumnInRoomMembersTable();
+});
+
+Then("I see last actions column in the table", () => {
+	rooms.seeLastColumnInRoomMembersTable();
 });
