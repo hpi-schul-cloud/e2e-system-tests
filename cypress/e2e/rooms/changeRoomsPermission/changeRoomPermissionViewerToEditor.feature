@@ -13,21 +13,21 @@ Feature: Room - Change room permission (Viewer - Editor)
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
-        When I click on the button to save the room
+        When I click on the button Save Room
         Then I see the detail page of room '<room_name>'
 
         # first teacher is able to add participants
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
-        Then I see the edit participants page of room '<room_name>'
+        Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
-        Then I see add participants modal
-        Then I see school '<school_name>' in school dropdown
-        Then I see role '<role_name>' in role dropdown
-        When I enter '<participant_name>' in name dropdown
+        Then I see modal Add participants
+        Then I see school '<school_name>' in dropdown school
+        Then I see role '<role_name>' in dropdown Role
+        When I enter '<participant_name>' in dropdown Name
         When I select the first name from the dropdown
-        When I click on the button to add the participant
+        When I click on the button Add participant
         Then I see '<participant_name>' in the room participants list
 
         # first teacher changes role for other user
@@ -49,7 +49,7 @@ Feature: Room - Change room permission (Viewer - Editor)
         When I click on three dot menu in room page
         Then I don't see 'edit, delete' options in the menu
         When I select the three dot menu action 'room-members'
-        Then I see the edit participants page of room '<room_name>'
+        Then I see the page Edit participants of room '<room_name>'
         Then I don't see button Fab Add Member
         Then I don't see info text
         Then I don't see first checkbox column in the table
@@ -70,7 +70,7 @@ Feature: Room - Change room permission (Viewer - Editor)
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
-        Then I see the edit participants page of room '<room_name>'
+        Then I see the page Edit participants of room '<room_name>'
         Then I see teacher '<participant_name>' not visible in the table
 
         # post-condition: first teacher deletes the room

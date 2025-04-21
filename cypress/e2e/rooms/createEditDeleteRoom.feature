@@ -16,7 +16,7 @@ Feature: Room - To create, edit and delete room
         When I select the colour for the room
         When I select the start date for the room
         When I select the end date for the room
-        When I click on the button to save the room
+        When I click on the button Save Room
         Then I see the detail page of room '<room_name>'
 
         # teacher is able to edit the room
@@ -28,7 +28,7 @@ Feature: Room - To create, edit and delete room
         When I select the three dot menu action 'edit'
         Then I see edit page of room '<room_name>'
         When I enter the room name '<room_name_new>'
-        When I click on the button to save the room
+        When I click on the button Save Room
         Then I see the detail page of room '<room_name_new>'
 
         # teacher is able to delete the room
