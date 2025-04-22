@@ -109,7 +109,6 @@ Given("a multi-column board named {string} exists in the course {string}", (boar
 	board.clickOnMultiColumnBoardOptionInDialogBox();
 	board.clickOnThreeDotMenuInCourseBoardTitle();
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
-
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
 	roomBoards.enterRoomBoardTitle(boardTitle);
