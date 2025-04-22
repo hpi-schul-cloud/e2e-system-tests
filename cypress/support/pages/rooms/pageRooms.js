@@ -233,6 +233,7 @@ class Rooms {
 		cy.get(
 			`[data-testid="change-${roleType.toLowerCase()}-${buttonAction.toLowerCase()}-btn"]`
 		).click();
+		cy.wait(500);
 	}
 
 	isRoomLeaveDialogBoxVisible() {
@@ -291,6 +292,10 @@ class Rooms {
 
 	seeInfoTextBanner() {
 		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should(
+			"contain.text",
+			"Füge Mitglieder zum Raum hinzu. Lehrkräfte anderer Schulen können hinzugefügt werden"
+		);
 	}
 
 	seeFirstColumnInRoomMembersTable() {
@@ -302,7 +307,10 @@ class Rooms {
 	}
 
 	seeInfoTextForAdmin() {
-		cy.get(Rooms.#infoTextForAdmin).should("be.visible");
+		cy.get(Rooms.#infoTextForAdmin)
+			.should("be.visible")
+			.should("contain.text", "Besitzen")
+			.and("contain.text", "übertragen");
 	}
 }
 export default Rooms;

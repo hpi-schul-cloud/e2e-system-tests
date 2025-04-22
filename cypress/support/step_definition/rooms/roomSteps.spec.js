@@ -139,7 +139,7 @@ When(
 	}
 );
 
-Then("I see button Change Role Permission is visible", () => {
+Then("I see button Change role permission is visible", () => {
 	rooms.isChangeRolePermissionButtonVisible();
 });
 
