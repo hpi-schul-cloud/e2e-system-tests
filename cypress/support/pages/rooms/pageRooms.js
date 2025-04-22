@@ -98,7 +98,6 @@ class Rooms {
 	seeRoomEditParticipantsPage() {
 		cy.get(Rooms.#roomTitle).should("be.visible");
 		cy.wait("@members_api");
-		cy.wait("@members_api");
 	}
 
 	navigateToRoom(roomName) {
@@ -106,7 +105,6 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).first().click();
 		cy.get(Rooms.#roomDetailFAB).first().click();
 	}
 
