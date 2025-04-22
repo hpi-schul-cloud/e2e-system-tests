@@ -14,16 +14,16 @@ Feature: Room Board - To share a board card link
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
-        When I click on the button to save the room
+        When I click on the button Save room
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
         When I click on FAB to add participants
-        Then I see add participants modal
-        Then I see school '<school_name>' in school dropdown
-        Then I see role '<role_name>' in role dropdown
-        When I enter '<name_teacher_2>' in name dropdown
+        Then I see modal Add participants
+        Then I see school '<school_name>' in dropdown School
+        Then I see role '<role_name>' in dropdown Role
+        When I enter '<name_teacher_2>' in dropdown Name
         When I select the first name from the dropdown
-        When I click on the button to add the participant
+        When I click on the button Add participant
         Then I see '<name_teacher_1>' in the room participants list
         Then I see '<name_teacher_2>' in the room participants list
 
