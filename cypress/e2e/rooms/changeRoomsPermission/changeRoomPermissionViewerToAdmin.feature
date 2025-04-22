@@ -45,7 +45,7 @@ Feature: Room - Change room permission (Viewer - Admin)
         Then I don't see 'delete' options in the menu
         When I select the three dot menu action 'edit'
         When I enter the room name '<room_name_edited>'
-        When I click on the button Save Room
+        When I click on the button Save room
         Then I see the detail page of room '<room_name_edited>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'

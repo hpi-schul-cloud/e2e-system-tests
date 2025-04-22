@@ -14,7 +14,7 @@ Feature: Room Board - To share a board card link
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
-        When I click on the button Save Room
+        When I click on the button Save room
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
         When I click on FAB to add participants

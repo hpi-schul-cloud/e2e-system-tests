@@ -39,7 +39,7 @@ When("I enter the room name {string}", (newRoomName) => {
 	rooms.fillRoomFormName(newRoomName);
 });
 
-When("I click on the button Save Room", () => {
+When("I click on the button Save room", () => {
 	rooms.submitRoom();
 });
 

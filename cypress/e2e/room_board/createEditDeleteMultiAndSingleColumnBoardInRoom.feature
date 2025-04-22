@@ -12,7 +12,7 @@ Feature: Room Board - Add, edit and delete board in room
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
-        When I click on the button Save Room
+        When I click on the button Save room
         Then I see the detail page of room '<room_name>'
 
         # teacher creates a new multi-column board in the room
