@@ -1196,6 +1196,46 @@ class Management {
 	clickAccountMigrationPanel() {
 		cy.get(Management.#accountMigrationPanel).click();
 	}
+
+	schoolHasExternalTool(toolName) {
+		return cy.get(Management.#externalToolsTable).then(($table) => {
+			if ($table.text().includes("Keine Daten vorhanden")) {
+				return false;
+			}
+
+			return cy.get(Management.#externalToolName).then(($names) => {
+				const found = [...$names].some(el => el.textContent.trim() === toolName);
+				return found;
+			});
+		});
+	}
+
+	deleteAllExternalTools() {
+		cy.get(Management.#externalToolsTable).then(($table) => {
+			if ($table.text().includes("Keine Daten vorhanden")) {
+				return;
+			}
+
+			cy.get(Management.#externalToolName).each(($element) => {
+				cy.wrap($element)
+					.parents("tr")
+					.within(() => {
+						cy.get(Management.#deleteExternalToolButton)
+						.should("be.visible")
+						.click();
+					});
+
+				cy.get(Management.#confirmExternalToolDeletionButton).click();
+			});
+
+			cy.get(Management.#externalToolsTable).within(() => {
+				cy.get(Management.#tableExternalTool).should(
+					"have.text",
+					"Keine Daten vorhanden"
+				);
+			});
+		});
+	}
 }
 
 export default Management;

@@ -8,24 +8,8 @@ Feature: Teacher can share a course with ctl tools
     Scenario: Teacher shares course with ctl tools
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-
-        # pre-condition: admin adds tools via selection
         Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_scope_context>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_optional_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_protected_param>' in external tools table
+        Given the school has external tool '<ctl_tool_scope_context>,<ctl_tool_optional_protected_param>,<ctl_tool_protected_param>'
 
         # pre-condition: teacher creates a course and adds tools to the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -165,20 +149,7 @@ Feature: Teacher can share a course with ctl tools
         # Then I do not see course '<course_name_import>' in course table
 
         # post-condition: admin deletes external tools
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        Then I see the external tools table
-        When I click on delete button of tool '<ctl_tool_scope_context>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click on delete button of tool '<ctl_tool_optional_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click on delete button of tool '<ctl_tool_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_protected_param>' in external tools table
-        Then I see the external tools table is empty
+        Given all external tools at the school are deleted
 
         @staging_test
         Examples:
