@@ -79,7 +79,7 @@ Then("I do not see {string} on room overview page", (roomName) => {
 	rooms.roomIsNotVisibleOnOverviewPage(roomName);
 });
 
-Then("I see school {string} in dropdown school", (participantSchool) => {
+Then("I see school {string} in dropdown School", (participantSchool) => {
 	rooms.seeSchoolOfParticipant(participantSchool);
 });
 

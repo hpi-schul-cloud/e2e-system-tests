@@ -23,7 +23,7 @@ Feature: Room - Change room permission (Viewer - Editor)
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
         Then I see modal Add participants
-        Then I see school '<school_name>' in dropdown school
+        Then I see school '<school_name>' in dropdown School
         Then I see role '<role_name>' in dropdown Role
         When I enter '<participant_name>' in dropdown Name
         When I select the first name from the dropdown

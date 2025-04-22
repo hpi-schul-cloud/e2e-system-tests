@@ -19,7 +19,7 @@ Feature: Room Board - To share a board card link
         When I select the three dot menu action 'room-members'
         When I click on FAB to add participants
         Then I see modal Add participants
-        Then I see school '<school_name>' in dropdown school
+        Then I see school '<school_name>' in dropdown School
         Then I see role '<role_name>' in dropdown Role
         When I enter '<name_teacher_2>' in dropdown Name
         When I select the first name from the dropdown

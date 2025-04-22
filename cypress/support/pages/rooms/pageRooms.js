@@ -265,7 +265,7 @@ class Rooms {
 	}
 
 	doNotSeeInfoTextBanner() {
-		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("not.be.visible");
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("not.exist");
 	}
 
 	doNotSeeFirstColumnInRoomMembersTable() {
