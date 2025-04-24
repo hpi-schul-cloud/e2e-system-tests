@@ -326,54 +326,70 @@ Then("I change the default room board title to {string}", (boardTitle) => {
 When("I click on the page outside of the title of the board", () => {
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 });
+
 Then("I see my room board is named {string}", (boardTitle) => {
 	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
+
 When("I click on delete in board menu", () => {
 	roomBoards.clickOnDeleteInBoardMenu();
 });
+
 Then("I see the button to cancel the dialog", () => {
 	roomBoards.seeBtnDialogCancel();
 });
+
 When("I click on the button to cancel the deletion", () => {
 	roomBoards.clickOnBtnDialogCancel();
 });
+
 Then("I see the board {string} on the room overview page", (boardTitle) => {
 	roomBoards.seeBoardOnRoomDetailPage(boardTitle);
 });
+
 Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
+
 When("I click on the button to confirm the deletion", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
+
 Then("I do not see the board {string} in the room", (boardTitle) => {
 	roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
 });
+
 Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
 });
+
 Then("I see page Folder content for {string}", (folderTitle) => {
 	roomBoards.seeFolderPageWithTitle(folderTitle);
 });
+
 Then("I see message Empty folder", () => {
 	roomBoards.seeMessageEmptyFolder();
 });
+
 Then("I see button Add file", () => {
 	roomBoards.seeBtnAddFile();
 });
+
 When("I upload a file {string} to file folder", (fileName) => {
 	roomBoards.uploadFileInFolder(fileName);
 });
+
 Then("I see file {string} with file size {string} in file list", (fileName, fileSize) => {
 	roomBoards.seeFileInFolderList(fileName, fileSize);
 });
+
 Then("I see today as creation date of file {string}", (fileName) => {
 	roomBoards.seeFileCreationDateToday(fileName);
 });
+
 Then("I see message Upload progress", () => {
 	roomBoards.seeFileProgressMessage();
 });
