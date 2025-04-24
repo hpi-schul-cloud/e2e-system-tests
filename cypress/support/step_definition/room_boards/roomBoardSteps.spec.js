@@ -365,3 +365,15 @@ Then("I see message Empty folder", () => {
 Then("I see button Add file", () => {
 	roomBoards.seeBtnAddFile();
 });
+When("I upload a file {string} to file folder", (fileName) => {
+	roomBoards.uploadFileInFolder(fileName);
+});
+Then("I see file {string} with file size {string} in file list", (fileName, fileSize) => {
+	roomBoards.seeFileInFolderList(fileName, fileSize);
+});
+Then("I see today as creation date of file {string}", (fileName) => {
+	roomBoards.seeFileCreationDateToday(fileName);
+});
+Then("I see message Upload progress", () => {
+	roomBoards.seeFileProgressMessage();
+});

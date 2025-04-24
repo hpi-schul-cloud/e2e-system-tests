@@ -81,6 +81,7 @@ class RoomBoards {
 	static #inlineCkToolbar = ".ck-balloon-panel";
 	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
+	static #uploadProgressMessage = '[data-testid="upload-progress"]';
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -187,6 +188,16 @@ class RoomBoards {
 	}
 
 	uploadFileInCard(fileName) {
+		// Attach the file from the fixtures folder
+		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
+		// Intercept the file upload API call and wait for the API request to be successfully completed
+		cy.wait("@fileUploadRequest_api").then((interception) => {
+			expect(interception.response.statusCode).to.eq(201);
+		});
+	}
+
+	uploadFileInFolder(fileName) {
+		cy.get(RoomBoards.#addFileButton).click();
 		// Attach the file from the fixtures folder
 		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
 		// Intercept the file upload API call and wait for the API request to be successfully completed
@@ -562,6 +573,22 @@ class RoomBoards {
 	seeBtnAddFile() {
 		cy.get(RoomBoards.#addFileButton)
 			.should("exist")
+	}
+	seeFileInFolderList(fileName, fileSize) {
+		//cy.get(`[data-testid="filename-${fileName}"]`).should("contain", fileSize); data-testid not yet implemented
+		cy.get(`[data-testid="size-${fileName}"]`).should("contain", fileSize);
+	}
+	seeFileCreationDateToday(fileName) {
+		const today = new Date();
+		let displayedDate = today.toLocaleString("de-DE", {
+			year: "numeric",
+			day: "numeric",
+			month: "numeric",
+		});
+		cy.get(`[data-testid="created-at-${fileName}"]`).should("contain", displayedDate);
+	}
+	seeFileProgressMessage() {
+		cy.get(RoomBoards.#uploadProgressMessage).should("exist");
 	}
 }
 

@@ -27,13 +27,20 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
         Then I see breadcrumb with 'Räume, <room_name>, <board_title>'
         Then I see button Add file
 
+        # editor uploads file
+        When I upload a file '<file_name>' to file folder
+        Then I see message Upload progress
+        Then I see file '<file_name>' with file size '<file_size>' in file list
+        Then I see today as creation date of file '<file_name>'
+
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name         |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner  |
+            | namespace | content_editor | room_name              | board_title             | folder_name         | file_name                | file_size | file_name_2                | file_size_2 |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner  | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 0,34 MB     |
+
 
         # @staging_test
         # Examples:
