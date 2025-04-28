@@ -573,7 +573,7 @@ class RoomBoards {
 
 	seeFileCreationDateToday(fileName) {
 		const today = new Date();
-		let displayedDate = today.toLocaleString("en-GB", {
+		let displayedDate = today.toLocaleString("de-DE", {
 			year: "numeric",
 			day: "numeric",
 			month: "numeric",
@@ -595,7 +595,9 @@ class RoomBoards {
 			.split(", ")
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
-			cy.get(RoomBoards.#dataTable).get("thead").find("span").should("contain", label);
+			cy.get(RoomBoards.#dataTable).within((element) => {
+				cy.get(element).find("th").contains("span", label).should("contain", label);
+			});
 		});
 	}
 
@@ -609,12 +611,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#dataTable)
 			.get("tbody tr")
 			.eq(0)
-			// .contains("tr td", firstElement)
 			.should("contain", firstElement);
 		cy.get(RoomBoards.#dataTable)
 			.get("tbody tr")
 			.eq(1)
-			// .contains("tr td", secondElement)
 			.should("contain", secondElement);
 	}
 }
