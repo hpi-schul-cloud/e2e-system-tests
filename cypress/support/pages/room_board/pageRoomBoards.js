@@ -78,18 +78,18 @@ class RoomBoards {
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
-	static #elementEtherpadOncard = '[data-testid="collaborative-text-editor-element"]';
+	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
 	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
 	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
 
 	verifyEtherpadIsVisibleOnCard() {
-		cy.get(RoomBoards.#elementEtherpadOncard).should("exist");
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
 		cy.get(RoomBoards.#titleEtherpad).should("exist");
 	}
 
 	verifyEtherpadIsClickableInBoard() {
-		cy.get(RoomBoards.#elementEtherpadOncard)
+		cy.get(RoomBoards.#elementEtherpadInBoard)
 			.should("exist")
 			.then(($el) => {
 				// Access the raw DOM element
@@ -110,7 +110,7 @@ class RoomBoards {
 	}
 
 	verifyEtherpadIsNotVisibleOnCard() {
-		cy.get(RoomBoards.#elementEtherpadOncard).should("not.exist");
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
 		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
 	}
 
