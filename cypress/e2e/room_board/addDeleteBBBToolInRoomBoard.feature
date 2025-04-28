@@ -53,7 +53,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I do not see the video conference element
 
         # post-condition: delete the room
-        Given I navigate to the room detail page from the board page
+        Given I navigate to the room detail page via Breadcrumb from the board page
         Given the room named '<room_name>' is deleted
 
         @school_api_test
