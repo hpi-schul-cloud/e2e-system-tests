@@ -636,13 +636,11 @@ class RoomBoards {
 
 	checkOrderOfFirstTwoElements(firstElement, secondElement) {
 		cy.get(RoomBoards.#dataTable)
-			.get("tbody tr")
-			.eq(0)
-			.should("contain", firstElement);
-		cy.get(RoomBoards.#dataTable)
-			.get("tbody tr")
-			.eq(1)
-			.should("contain", secondElement);
+			.find("tbody tr")
+			.then((rows) => {
+				cy.wrap(rows[0]).should("contain", firstElement);
+				cy.wrap(rows[1]).should("contain", secondElement);
+			});
 	}
 }
 
