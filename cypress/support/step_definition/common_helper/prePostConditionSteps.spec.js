@@ -70,7 +70,7 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
 
-Given("I navigate to the room detail page from the board page", () => {
+Given("I navigate to the room detail page via Breadcrumb from the board page ", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
