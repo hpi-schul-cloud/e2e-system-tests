@@ -30,8 +30,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
@@ -340,9 +339,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -550,30 +547,23 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("exist")
-			.should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
 	clickFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("contain", title)
-			.click();
+		cy.get(RoomBoards.#folderElementSelector).should("contain", title).click();
 	}
 
 	seeFolderPageWithTitle(title) {
-		cy.get(RoomBoards.#folderPageTitle)
-			.should("contain", title)
+		cy.get(RoomBoards.#folderPageTitle).should("contain", title);
 	}
 
 	seeMessageEmptyFolder() {
-		cy.get(RoomBoards.#folderPageMessageEmptyFolder)
-			.should("exist")
+		cy.get(RoomBoards.#folderPageMessageEmptyFolder).should("exist");
 	}
 
 	seeBtnAddFile() {
-		cy.get(RoomBoards.#addFileButton)
-			.should("exist")
+		cy.get(RoomBoards.#addFileButton).should("exist");
 	}
 
 	seeFileInFolderList(fileName, fileSize) {
@@ -583,7 +573,7 @@ class RoomBoards {
 
 	seeFileCreationDateToday(fileName) {
 		const today = new Date();
-		let displayedDate = today.toLocaleString("de-DE", {
+		let displayedDate = today.toLocaleString("en-GB", {
 			year: "numeric",
 			day: "numeric",
 			month: "numeric",
@@ -604,32 +594,28 @@ class RoomBoards {
 			.replace(/[\[\]"]/g, "")
 			.split(", ")
 			.map((opt) => opt.trim());
-			headerlabels.forEach((label) => {
-				cy.get(RoomBoards.#dataTable)
-					.get("thead")
-					.find("span")
-					.should("contain", label);
+		headerlabels.forEach((label) => {
+			cy.get(RoomBoards.#dataTable).get("thead").find("span").should("contain", label);
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
-		cy.get(RoomBoards.#dataTable).within(() => {
-			cy.get("th").should("contain", label).click();
+		cy.get(RoomBoards.#dataTable).within((element) => {
+			cy.get(element).find("th").contains("span", label).should("contain", label).click();
 		});
 	}
 
 	checkOrderOfFirstTwoElements(firstElement, secondElement) {
 		cy.get(RoomBoards.#dataTable)
-			.get("tbody")
-			.get("tr")
-			.eq(1)
+			.get("tbody tr")
+			.eq(0)
+			// .contains("tr td", firstElement)
 			.should("contain", firstElement);
 		cy.get(RoomBoards.#dataTable)
-			.get("tbody")
-			.get("tr")
-			.eq(2)
+			.get("tbody tr")
+			.eq(1)
+			// .contains("tr td", secondElement)
 			.should("contain", secondElement);
-
 	}
 }
 

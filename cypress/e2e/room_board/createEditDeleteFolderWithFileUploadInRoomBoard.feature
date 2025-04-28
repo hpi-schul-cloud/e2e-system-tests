@@ -2,9 +2,9 @@
 @stable_test
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder (in progress)
 
-As a content editor I want to create a file folder in a room board
+    As a content editor I want to create a file folder in a room board
 
-Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
+    Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
         # pre-condition: creating accounts and room with board
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' exists
@@ -39,7 +39,7 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
         Then I see file '<file_name_2>' with file size '<file_size_2>' in file list
         Then I see links to change order for 'Name, Erstellt, Größe'
         When I click on table header link 'Name'
-        Then I see '<file_name_2>' and '<file_name_1>' on the first two positions
+        Then I see '<file_name_2>' and '<file_name>' on the first two positions
         When I click on table header link 'Größe'
         # Then I see '<file_name_1>, <file_name_2>' on the first two positions
         When I click on table header link 'Erstellt'
@@ -56,11 +56,11 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name         | file_name                | file_size | file_name_2                | file_size_2   |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner  | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB     |
+            | namespace | content_editor | room_name              | board_title             | folder_name        | file_name                | file_size | file_name_2                | file_size_2 |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
 
 
-        # @staging_test
-        # Examples:
-        #     | namespace | content_editor      | room_name               | board_title             | folder_name         |
-        #     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+# @staging_test
+# Examples:
+#     | namespace | content_editor      | room_name               | board_title             | folder_name         |
+#     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
