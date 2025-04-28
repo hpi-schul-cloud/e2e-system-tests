@@ -61,6 +61,7 @@ class RoomBoards {
 		'[data-testid="board-file-element-edit-menu-download"]';
 	static #fileElementSelector = '[data-testid="board-file-element"]';
 	static #folderElementSelector = '[data-testid="board-folder-element"]';
+	static #folderPageTitle = '[data-testid="folder-title"]';
 	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
 	static #mainContentSelector = "#main-content";
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
@@ -82,6 +83,8 @@ class RoomBoards {
 	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
 	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
+  static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
+	static #addFileButton = '[data-testid="fab-add-files"]';
 
 	verifyEtherpadIsVisibleOnCard() {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
@@ -113,6 +116,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
 		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
 	}
+
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -575,6 +579,27 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderElementSelector)
 			.should("exist")
 			.should("contain", title);
+	}
+
+	clickFolderElementWithTitle(title) {
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("contain", title)
+			.click();
+	}
+
+	seeFolderPageWithTitle(title) {
+		cy.get(RoomBoards.#folderPageTitle)
+			.should("contain", title)
+	}
+
+	seeMessageEmptyFolder() {
+		cy.get(RoomBoards.#folderPageMessageEmptyFolder)
+			.should("exist")
+	}
+
+	seeBtnAddFile() {
+		cy.get(RoomBoards.#addFileButton)
+			.should("exist")
 	}
 }
 

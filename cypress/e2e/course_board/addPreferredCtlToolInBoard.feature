@@ -7,6 +7,7 @@ Feature: Course Board  - To add a preferred tool in a board
     Scenario Outline: Teacher adds, edits and deletes tools in a course board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
+        Given the school has external tool '<ctl_tool_preferred>,<ctl_tool_preferred_param>'
 
         # pre-condition: admin creates a course
         When I go to courses overview
@@ -19,19 +20,6 @@ Feature: Course Board  - To add a preferred tool in a board
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
-
-        # pre-condition: admin adds preferred tools
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_preferred>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_preferred>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_preferred_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_preferred_param>' in external tools table
 
         # teacher adds a preferred tool without a custom parameter
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -69,17 +57,7 @@ Feature: Course Board  - To add a preferred tool in a board
 
         # post-condition: admin deletes tools
         Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        Then I see the external tools table
-        When I click on delete button of tool '<ctl_tool_preferred_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_preferred_param>' in external tools table
-        When I click on delete button of tool '<ctl_tool_preferred>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_preferred>' in external tools table
-        Then I see the external tools table is empty
+        Given all external tools at the school are deleted
 
         @staging_test
         Examples:

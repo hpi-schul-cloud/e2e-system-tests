@@ -7,6 +7,7 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
     Scenario: Teacher adds tools with context restriction board-element in a board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
+        Given the school has external tool '<ctl_tool_1>,<ctl_tool_restriction_course>,<ctl_tool_restriction_board_element>,<ctl_tool_restriction_media_board>,<ctl_tool_restriction_all>,<ctl_tool_preferred_restriction_course>,<ctl_tool_preferred_restriction_board_element>'
 
         # pre-condition: admin creates a course
         When I go to courses overview
@@ -19,46 +20,6 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
-
-        # pre-condition: admin adds external tools to school
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_1>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_1>' in external tools table
-        Then I see the tool '<ctl_tool_1>' in external tools table has no context restriction
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_restriction_course>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_restriction_course>' in external tools table
-        Then I see the tool '<ctl_tool_restriction_course>' in external tools table has context restriction '<context_course>'
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_restriction_board_element>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_restriction_board_element>' in external tools table
-        Then I see the tool '<ctl_tool_restriction_board_element>' in external tools table has context restriction '<context_board_element>'
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_restriction_media_board>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_restriction_media_board>' in external tools table
-        Then I see the tool '<ctl_tool_restriction_media_board>' in external tools table has context restriction '<context_media_board>'
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_restriction_all>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_restriction_all>' in external tools table
-        Then I see the tool '<ctl_tool_restriction_all>' in external tools table has context restriction '<context_all>'
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_preferred_restriction_course>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_preferred_restriction_course>' in external tools table
-        Then I see the tool '<ctl_tool_preferred_restriction_course>' in external tools table has context restriction '<context_course>'
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_preferred_restriction_board_element>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_preferred_restriction_board_element>' in external tools table
-        Then I see the tool '<ctl_tool_preferred_restriction_board_element>' in external tools table has context restriction '<context_board_element>'
 
         # teacher tries to add a tool with context restriction course
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -124,32 +85,7 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
 
         # post-condition: admin deletes external tools
         Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        Then I see the external tools table
-        When I click on delete button of tool '<ctl_tool_1>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_1>' in external tools table
-        When I click on delete button of tool '<ctl_tool_restriction_course>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_restriction_course>' in external tools table
-        When I click on delete button of tool '<ctl_tool_restriction_board_element>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_restriction_board_element>' in external tools table
-        When I click on delete button of tool '<ctl_tool_restriction_media_board>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_restriction_media_board>' in external tools table
-        When I click on delete button of tool '<ctl_tool_restriction_all>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_restriction_all>' in external tools table
-        When I click on delete button of tool '<ctl_tool_preferred_restriction_course>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_preferred_restriction_course>' in external tools table
-        When I click on delete button of tool '<ctl_tool_preferred_restriction_board_element>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_preferred_restriction_board_element>' in external tools table
-        Then I see the external tools table is empty
+        Given all external tools at the school are deleted
 
         @staging_test
         Examples:

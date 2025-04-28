@@ -39,7 +39,7 @@ When("I enter the room name {string}", (newRoomName) => {
 	rooms.fillRoomFormName(newRoomName);
 });
 
-When("I click on the button to save the room", () => {
+When("I click on the button Save room", () => {
 	rooms.submitRoom();
 });
 
@@ -47,7 +47,7 @@ Then("I see the detail page of room {string}", (newRoomName) => {
 	rooms.seeRoomDetailPage(newRoomName);
 });
 
-Then("I see the edit participants page of room {string}", () => {
+Then("I see the page Edit participants of room {string}", () => {
 	rooms.seeRoomEditParticipantsPage();
 });
 
@@ -63,7 +63,7 @@ Then("I see confirmation modal for deleting the room", () => {
 	rooms.seeConfirmationModalForRoomDeletion();
 });
 
-Then("I see add participants modal", () => {
+Then("I see modal Add participants", () => {
 	rooms.seeModalForAddParticipants();
 });
 
@@ -79,15 +79,15 @@ Then("I do not see {string} on room overview page", (roomName) => {
 	rooms.roomIsNotVisibleOnOverviewPage(roomName);
 });
 
-Then("I see school {string} in school dropdown", (participantSchool) => {
+Then("I see school {string} in dropdown School", (participantSchool) => {
 	rooms.seeSchoolOfParticipant(participantSchool);
 });
 
-Then("I see role {string} in role dropdown", (participantRole) => {
+Then("I see role {string} in dropdown Role", (participantRole) => {
 	rooms.seeRoleOfParticipant(participantRole);
 });
 
-When("I enter {string} in name dropdown", (participantName) => {
+When("I enter {string} in dropdown Name", (participantName) => {
 	rooms.fillParticipantFormName(participantName);
 });
 
@@ -95,7 +95,7 @@ When("I select the first name from the dropdown", () => {
 	rooms.selectParticipantName();
 });
 
-When("I click on the button to add the participant", () => {
+When("I click on the button Add participant", () => {
 	rooms.addParticipant();
 });
 
@@ -196,5 +196,21 @@ Then("I don't see last actions column in the table", () => {
 });
 
 Then("I see button Fab Create Room Board", () => {
-	rooms.doNotSeeFabCreateRoomBoard();
+	rooms.seeFabCreateRoomBoard();
+});
+
+Then("I see button Fab Add Member", () => {
+	rooms.seeFabAddMember();
+});
+
+Then("I see info text", () => {
+	rooms.seeInfoTextBanner();
+});
+
+Then("I see first checkbox column in the table", () => {
+	rooms.seeFirstColumnInRoomMembersTable();
+});
+
+Then("I see last actions column in the table", () => {
+	rooms.seeLastColumnInRoomMembersTable();
 });
