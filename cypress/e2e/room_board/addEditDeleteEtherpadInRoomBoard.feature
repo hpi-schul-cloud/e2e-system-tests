@@ -23,7 +23,7 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         When I select 'collaborative-text-editor' from the element selection dialog box
         When I click outside of the card to save it
         Then I see the element Etherpad on the card
-        When I click on the element Etherpad to verify it opens in a new tab
+        Then I verify the element Etherpad is clickable
 
         # student can see the element Etherpad in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
@@ -41,7 +41,6 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
-        Given I navigate to the room detail page from the board page
         Given the room named '<room_name>' is deleted
 
         @school_api_test

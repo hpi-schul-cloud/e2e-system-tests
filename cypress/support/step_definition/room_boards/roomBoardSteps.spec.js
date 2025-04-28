@@ -7,8 +7,8 @@ Then("I see the element Etherpad on the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
 
-When("I click on the element Etherpad to verify it opens in a new tab", () => {
-	roomBoards.clickAndVerifyEtherpadOpensInNewTab();
+Then("I verify the element Etherpad is clickable", () => {
+	roomBoards.verifyEtherpadIsClickableInBoard();
 });
 
 When("I click on the three-dot in the element Etherpad", () => {

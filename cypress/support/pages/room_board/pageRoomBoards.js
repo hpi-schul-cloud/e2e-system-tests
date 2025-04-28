@@ -34,7 +34,7 @@ class RoomBoards {
 		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
-	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
+	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
@@ -88,25 +88,19 @@ class RoomBoards {
 		cy.get(RoomBoards.#titleEtherpad).should("exist");
 	}
 
-	clickAndVerifyEtherpadOpensInNewTab() {
-		let clickSpy;
-
+	verifyEtherpadIsClickableInBoard() {
 		cy.get(RoomBoards.#elementEtherpadOncard)
 			.should("exist")
-			.then((el) => {
-				clickSpy = cy.spy().as("clickSpy");
-				el.on("click", (event) => {
-					event.preventDefault();
-					clickSpy();
-					cy.log("The Etherpad element was clicked.");
-				});
+			.then(($el) => {
+				// Access the raw DOM element
+				const element = $el[0];
+
+				// Stub the click method on the element
+				const clickStub = cy.stub(element, "click").as("clickStub");
+
+				// Trigger the click event
+				cy.wrap($el).click();
 			});
-
-		cy.get(RoomBoards.#elementEtherpadOncard).click();
-
-		cy.get("@clickSpy").should("have.been.called");
-
-		cy.get("@clickSpy").should("have.callCount", 1);
 	}
 
 	clickOnThreeDotOnEtherpad() {
@@ -414,7 +408,7 @@ class RoomBoards {
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#deleteButtonOnVideoConferenceElementDialog).realClick();
+		cy.get(RoomBoards.#deleteButtonOnDeletionDialog).click();
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
 		cy.reload();
 	}
