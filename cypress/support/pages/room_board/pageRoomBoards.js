@@ -89,18 +89,15 @@ class RoomBoards {
 	}
 
 	verifyEtherpadIsClickableInBoard() {
-		cy.get(RoomBoards.#elementEtherpadInBoard)
-			.should("exist")
-			.then(($el) => {
-				// Access the raw DOM element
-				const element = $el[0];
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
 
-				// Stub the click method on the element
-				const clickStub = cy.stub(element, "click").as("clickStub");
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("clickStub");
+		});
 
-				// Trigger the click event
-				cy.wrap($el).click();
-			});
+		cy.get(RoomBoards.#elementEtherpadInBoard).click();
+
+		cy.get("@clickStub").should("have.been.calledOnce");
 	}
 
 	clickOnThreeDotOnEtherpad() {
