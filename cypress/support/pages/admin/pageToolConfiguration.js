@@ -14,6 +14,7 @@ class ToolConfiguration {
 	static #toolErrorAlert = '[data-testId="tool-error-alert"]';
 	static #toolDisplayNameInputField = '[data-testid="parameter-display-name"]';
 	static #protectedParameter = '[data-testid="protected"]';
+	static #cancelButton = '[data-testid="cancel-button"]';
 
 	seeExternalToolConfiguratorPage() {
 		cy.get(ToolConfiguration.#schoolExternalToolConfigPageTitle).should("be.visible");
@@ -101,6 +102,10 @@ class ToolConfiguration {
 
 	seeCustomParameterFormContains(paramName, value) {
 		cy.get(`[data-testid="${paramName}"]`).find("input").should("have.value", value);
+	}
+
+	clickCancelButton() {
+		cy.get(ToolConfiguration.#cancelButton).click({force: true});
 	}
 
 }

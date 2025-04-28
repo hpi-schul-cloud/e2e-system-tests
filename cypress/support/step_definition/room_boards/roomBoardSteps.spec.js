@@ -366,6 +366,18 @@ When("I click on the button to confirm the deletion", () => {
 Then("I do not see the board {string} in the room", (boardTitle) => {
 	roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
 });
-Then("I should see a folder with name {string} in the card", (folderTitle) => {
+Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
+});
+When("I click on the folder {string} in the card", (folderTitle) => {
+	roomBoards.clickFolderElementWithTitle(folderTitle);
+});
+Then("I see page Folder content for {string}", (folderTitle) => {
+	roomBoards.seeFolderPageWithTitle(folderTitle);
+});
+Then("I see message Empty folder", () => {
+	roomBoards.seeMessageEmptyFolder();
+});
+Then("I see button Add file", () => {
+	roomBoards.seeBtnAddFile();
 });

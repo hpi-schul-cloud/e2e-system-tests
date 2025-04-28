@@ -96,6 +96,7 @@ class Rooms {
 
 	seeRoomEditParticipantsPage() {
 		cy.get(Rooms.#roomTitle).should("be.visible");
+		cy.wait("@members_api");
 	}
 
 	navigateToRoom(roomName) {
@@ -103,7 +104,7 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).click();
+		cy.get(Rooms.#roomDetailFAB).first().click();
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
@@ -264,7 +265,7 @@ class Rooms {
 	}
 
 	doNotSeeInfoTextBanner() {
-		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("not.be.visible");
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("not.exist");
 	}
 
 	doNotSeeFirstColumnInRoomMembersTable() {
@@ -275,8 +276,24 @@ class Rooms {
 		cy.contains("th", "Aktionen").should("not.exist");
 	}
 
-	doNotSeeFabCreateRoomBoard() {
+	seeFabCreateRoomBoard() {
 		cy.get(Rooms.#addContentButton).should("exist").should("be.visible");
+	}
+
+	seeFabAddMember() {
+		cy.get(Rooms.#addParticipants).should("exist");
+	}
+
+	seeInfoTextBanner() {
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
+	}
+
+	seeFirstColumnInRoomMembersTable() {
+		cy.get(Rooms.#firstColumnInRoomMembersTable).should("exist");
+	}
+
+	seeLastColumnInRoomMembersTable() {
+		cy.contains("th", "Aktionen").should("exist");
 	}
 }
 export default Rooms;
