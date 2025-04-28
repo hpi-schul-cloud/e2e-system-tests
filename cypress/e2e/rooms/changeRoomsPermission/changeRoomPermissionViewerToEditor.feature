@@ -9,12 +9,7 @@ Feature: Room - Change room permission (Viewer - Editor)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: first teacher creating a new room
-        When I go to room overview
-        When I click on FAB to create new room
-        Then I see room creation page
-        When I enter the room name '<room_name>'
-        When I click on the button Save room
-        Then I see the detail page of room '<room_name>'
+        Given a room named '<room_name>' exists
 
         # first teacher is able to add participants
         Then I see the detail page of room '<room_name>'
@@ -74,14 +69,7 @@ Feature: Room - Change room permission (Viewer - Editor)
         Then I see teacher '<participant_name>' not visible in the table
 
         # post-condition: first teacher deletes the room
-        When I go to room overview
-        When I go to room '<room_name>'
-        Then I see the detail page of room '<room_name>'
-        When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
-        Then I see confirmation modal for deleting the room
-        When I click on delete button in confirmation modal
-        Then I do not see '<room_name>' on room overview page
+        Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:
