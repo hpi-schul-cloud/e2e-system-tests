@@ -9,7 +9,7 @@ This document provides comprehensive instructions for setting up the project env
 1. **Prerequisites**
    <br>
 
-   - Install [Node v18](https://nodejs.org/dist/)
+   - Install [Node v20](https://nodejs.org/dist/)
    - Install [Git](https://git-scm.com/downloads)
    - Install browsers (recommended Microsoft Edge) [Edge Browser](https://www.microsoft.com/de-de/edge/download?form=MA13FJ)
    - Install IDE of your choice e.g. [VS code](https://code.visualstudio.com/download)

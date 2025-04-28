@@ -1,11 +1,11 @@
-## BDD Testing for "_Schulcloud-Verbund-Software_" using Cypress & Cucumber
+# BDD Testing for "_Schulcloud-Verbund-Software_" using Cypress & Cucumber
 
 This project utilizes Cypress and Cucumber for Behavior-Driven Development (BDD) testing. For detailed information on setting up, running tests, and understanding the project structure, please refer to the following documentation:
 
-### Documentation
+## Documentation
 
 - **[Setup Guide](./docs/setup.md)**: Instructions for configuring your development environment, including prerequisites, setup, and installation.
-- **[Running Tests Guide](./docs/running_tests_guide.md)**: How to execute tests, including script naming conventions and details for running tests in different environments.
+- **[Running Tests Guide](./docs/executing_tests_guide.md)**: How to execute tests, including script naming conventions and details for running tests in different environments.
 - **[Tags Description](./docs/tags.md)**: Explanation of the tagging system used in our tests, including tag usage, hierarchy, and examples.
 - **[Folder Structure](./docs/folder_structure.md)**: Overview of the project directory layout and the purpose of each folder and file.
 - **[Branch Activation Process](./docs/branch_activation.md)**: Details on the branch activation process and how to extend activation time using labels.
