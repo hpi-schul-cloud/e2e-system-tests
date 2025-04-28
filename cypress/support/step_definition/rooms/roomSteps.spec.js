@@ -207,7 +207,7 @@ Then("I see button Fab Add Member", () => {
 });
 
 Then("I see the banner explaining member addition, including other schools", () => {
-	rooms.seeInfoTextBanner();
+	rooms.seeInfoTextBannerForAddingMembersIncludingExternalTeachers();
 });
 
 Then("I see first checkbox column in the table", () => {

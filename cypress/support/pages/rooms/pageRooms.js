@@ -290,7 +290,7 @@ class Rooms {
 		cy.get(Rooms.#addParticipants).should("exist");
 	}
 
-	seeInfoTextBanner() {
+	seeInfoTextBannerForAddingMembersIncludingExternalTeachers() {
 		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
 		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should(
 			"contain.text",
