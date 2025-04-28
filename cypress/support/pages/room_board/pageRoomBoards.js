@@ -82,6 +82,7 @@ class RoomBoards {
 	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
 	static #uploadProgressMessage = '[data-testid="upload-progress"]';
+	static #dataTable = '[data-testid="data-table"]';
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -574,10 +575,12 @@ class RoomBoards {
 		cy.get(RoomBoards.#addFileButton)
 			.should("exist")
 	}
+
 	seeFileInFolderList(fileName, fileSize) {
 		//cy.get(`[data-testid="filename-${fileName}"]`).should("contain", fileSize); data-testid not yet implemented
 		cy.get(`[data-testid="size-${fileName}"]`).should("contain", fileSize);
 	}
+
 	seeFileCreationDateToday(fileName) {
 		const today = new Date();
 		let displayedDate = today.toLocaleString("de-DE", {
@@ -587,8 +590,46 @@ class RoomBoards {
 		});
 		cy.get(`[data-testid="created-at-${fileName}"]`).should("contain", displayedDate);
 	}
+
 	seeFileProgressMessage() {
 		cy.get(RoomBoards.#uploadProgressMessage).should("exist");
+	}
+
+	seeHeaderLinksToChangeOrder(headerOrderlabels) {
+		// this line done following things:
+		// - first remove brackets and quotes if passed
+		// - second split into an array based on ", "
+		// - and in the last trim spaces
+		const headerlabels = headerOrderlabels
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+			headerlabels.forEach((label) => {
+				cy.get(RoomBoards.#dataTable)
+					.get("thead")
+					.find("span")
+					.should("contain", label);
+		});
+	}
+
+	clickOnTableHeaderLink(label) {
+		cy.get(RoomBoards.#dataTable).within(() => {
+			cy.get("th").should("contain", label).click();
+		});
+	}
+
+	checkOrderOfFirstTwoElements(firstElement, secondElement) {
+		cy.get(RoomBoards.#dataTable)
+			.get("tbody")
+			.get("tr")
+			.eq(1)
+			.should("contain", firstElement);
+		cy.get(RoomBoards.#dataTable)
+			.get("tbody")
+			.get("tr")
+			.eq(2)
+			.should("contain", secondElement);
+
 	}
 }
 

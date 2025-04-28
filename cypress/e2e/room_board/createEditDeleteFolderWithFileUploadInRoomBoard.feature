@@ -37,18 +37,18 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
         When I upload a file '<file_name_2>' to file folder
         Then I see message Upload progress
         Then I see file '<file_name_2>' with file size '<file_size_2>' in file list
-        # Then I see links to change order for 'filename, creation_date, file_size'
-        # When I click on order link for 'file_size'
-        # Then I see '<file_name_2>, <file_name_1>' on the first two positions
-        # When I click on order link for 'file_size'
+        Then I see links to change order for 'Name, Erstellt, Größe'
+        When I click on table header link 'Name'
+        Then I see '<file_name_2>' and '<file_name_1>' on the first two positions
+        When I click on table header link 'Größe'
         # Then I see '<file_name_1>, <file_name_2>' on the first two positions
-        # When I click on order link for 'creation_date'
+        When I click on table header link 'Erstellt'
         # Then I see '<file_name_1>, <file_name_2>' on the first two positions
-        # When I click on order link for 'creation_date'
+        When I click on table header link 'Erstellt'
         # Then I see '<file_name_2>, <file_name_1>' on the first two positions
-        # When I click on order link for 'file_name'
+        When I click on table header link 'Name'
         # Then I see '<file_name_2>, <file_name_1>' on the first two positions
-        # When I click on order link for 'file_name'
+        When I click on table header link 'Name'
         # Then I see '<file_name_1>, <file_name_2>' on the first two positions
 
         # post-condition: delete the room

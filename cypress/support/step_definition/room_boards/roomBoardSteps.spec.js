@@ -393,3 +393,16 @@ Then("I see today as creation date of file {string}", (fileName) => {
 Then("I see message Upload progress", () => {
 	roomBoards.seeFileProgressMessage();
 });
+
+Then("I see links to change order for {string}", (headerLabels) => {
+	roomBoards.seeHeaderLinksToChangeOrder(headerLabels);
+});
+
+When("I click on table header link {string}", (label) => {
+	roomBoards.clickOnTableHeaderLink(label);
+});
+
+Then("I see {string} and {string} on the first two positions", (firstElement, secondElement) => {
+	roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
+});
+
