@@ -206,7 +206,7 @@ Then("I see button Fab Add Member", () => {
 	rooms.seeFabAddMember();
 });
 
-Then("I see info text", () => {
+Then("I see the banner explaining member addition, including other schools", () => {
 	rooms.seeInfoTextBanner();
 });
 
@@ -218,9 +218,12 @@ Then("I see last actions column in the table", () => {
 	rooms.seeLastColumnInRoomMembersTable();
 });
 
-Then("I see info text for admin before leaving the room", () => {
-	rooms.seeInfoTextForAdmin();
-});
+Then(
+	"I see the banner explaining member addition, including other schools for admin before leaving the room",
+	() => {
+		rooms.seeInfoTextForAdmin();
+	}
+);
 
 Then("I see teacher {string} is visible in the table", (participantName) => {
 	rooms.isParticipantVisible(participantName);

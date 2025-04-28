@@ -51,7 +51,7 @@ Feature: Room - Change room permission (Viewer - Owner)
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name_edited>'
         Then I see button Fab Add Member
-        Then I see info text
+        Then I see the banner explaining member addition, including other schools
         Then I see first checkbox column in the table
         Then I see last actions column in the table
         When I go to room overview
@@ -60,7 +60,7 @@ Feature: Room - Change room permission (Viewer - Owner)
         When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
         Then I see dialog box to leave the room
-        Then I see info text for admin before leaving the room
+        Then I see the banner explaining member addition, including other schools for admin before leaving the room
 
         # first teacher logged in and assert second user is in the table
         Given I am logged in as a '<teacher_1>' at '<namespace>'

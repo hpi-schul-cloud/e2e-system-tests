@@ -51,7 +51,7 @@ Feature: Room - Change room permission (Viewer - Admin)
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name_edited>'
         Then I see button Fab Add Member
-        Then I see info text
+        Then I see the banner explaining member addition, including other schools
         Then I see first checkbox column in the table
         Then I see last actions column in the table
         When I go to room overview
