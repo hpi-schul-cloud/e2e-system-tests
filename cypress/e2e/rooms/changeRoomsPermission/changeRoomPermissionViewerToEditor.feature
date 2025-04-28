@@ -4,7 +4,7 @@ Feature: Room - Change room permission (Viewer - Editor)
 
     As a teacher, I want to change a participant’s room permission from viewer to editor, so that other users can access the room and leave it as needed
 
-    Scenario: Teacher change room permission of other participants, including pre-conditions
+    Scenario Outline: Teacher change room permission of other participants, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
