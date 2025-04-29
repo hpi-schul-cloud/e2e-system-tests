@@ -129,6 +129,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Given I am logged in as a '<admin>' at '<namespace>'
         Given all external tools at the school are deleted
 
+
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name                   | fullname_teacher | fullname_student | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
