@@ -630,7 +630,16 @@ class RoomBoards {
 		files.forEach((file) => {
 			cy.get(`[data-testid="size-${file}"]`).should("exist");
 		});
+	}
 
+	doNotSeeMultipleFilesInFolderList(filesToCheck) {
+		const files = filesToCheck
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		files.forEach((file) => {
+			cy.get(`[data-testid="size-${file}"]`).should("not.exist");
+		});
 	}
 
 	seeFileCreationDateToday(fileName) {

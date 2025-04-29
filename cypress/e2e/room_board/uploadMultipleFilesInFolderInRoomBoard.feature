@@ -47,19 +47,18 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         When I uncheck the checkbox in the table header for all elements
         Then I see checkboxes of files '<file_name>, <file_name_2>, <file_name_3>' are unchecked
 
-        # # editor search for files and uses check all checkbox
-        # When I enter '<search_request_2>' to the searchfield
-        # Then I see files '<file_name_2>' in file list
-        # Then I do not see files '<file_name>, <file_name_1>' in file list
-        # When I check the checkbox in the table header for all elements
-        # When I enter '' to the searchfield
+        # # editor searches for files and uses check all checkbox
+        When I enter '<search_request_2>' to the table search field
+        Then I see files '<file_name_2>' in file list
+        Then I do not see files '<file_name>, <file_name_1>' in file list
+        When I check the checkbox in the table header for all elements
+        When I clear table search field
         # Then I see number of checked files is 1
-        # When I see the checkbox of file '<file_name_2>' is checked
-        # When I see the checkbox of file '<file_name>' is not checked
-        # When I see the checkbox of file '<file_name_3>' is not checked
+        Then I see checkboxes of files '<file_name_2>' are checked
+        Then I see checkboxes of files '<file_name>, <file_name_3>' are unchecked
 
         # post-condition: delete the room
-        #Given the room named '<room_name>' is deleted
+        Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:
