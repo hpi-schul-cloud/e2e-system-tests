@@ -47,15 +47,15 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         Then I see the course Board name '<board_title_1>'
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I enter the board card title '<card_title_1>'
         When I click on the page outside of the card
         Then I see a board card with title '<card_title_1>'
         # teacher copies board card link and adds it to a link element
         When I click on three dot menu in the card
         When I select the option Copy link to card in three dot menu on the card
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
         When I enter the copied board card link in the link element
         Then I see link element with title '<card_title_1>'
@@ -76,7 +76,7 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         Then I see the course Board name '<board_title_2>'
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I enter the board card title '<card_title_2>'
         When I click on the page outside of the card
         Then I see a board card with title '<card_title_2>'
@@ -89,8 +89,8 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         When I open column board '<board_title_1>'
         Then I see the page Course Board details
         Then I see the course Board name '<board_title_1>'
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
         When I enter the copied board card link in the link element
         Then I see link element with title '<card_title_2>'
@@ -111,7 +111,7 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         Then I see the course Board name '<board_title_3>'
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I enter the board card title '<card_title_3>'
         When I click on the page outside of the card
         Then I see a board card with title '<card_title_3>'
@@ -124,8 +124,8 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         When I open column board '<board_title_1>'
         Then I see the page Course Board details
         Then I see the course Board name '<board_title_1>'
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
         When I enter the copied board card link in the link element
         Then I see link element with title '<card_title_3>'
