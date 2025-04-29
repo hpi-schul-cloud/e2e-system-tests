@@ -18,6 +18,7 @@ Feature:  News - To read a news on the respective dashboards
         When I set news-visibility-start-date to '<news_day_from_today>' days at '<news_time>'
         Then I see time input field
         When I click on save button
+        Then I can read the news '<news_title>' with description '<news_description>' on news detail page
         When I go to news overview
         Then I do not see the unpublished news '<news_title>'
         When I click on tab for unpublished news

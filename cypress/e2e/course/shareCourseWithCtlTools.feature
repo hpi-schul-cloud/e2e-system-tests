@@ -8,24 +8,8 @@ Feature: Teacher can share a course with ctl tools
     Scenario: Teacher shares course with ctl tools
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-
-        # pre-condition: admin adds tools via selection
         Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_scope_context>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_optional_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_protected_param>' in external tools table
+        Given the school has external tool '<ctl_tool_scope_context>,<ctl_tool_optional_protected_param>,<ctl_tool_protected_param>'
 
         # pre-condition: teacher creates a course and adds tools to the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -79,8 +63,8 @@ Feature: Teacher can share a course with ctl tools
         When I click on the button Add column in the course board
         When I click on the page outside of the column
         # pre-condition: teacher adds a tool with required parameter
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
@@ -89,7 +73,7 @@ Feature: Teacher can share a course with ctl tools
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
@@ -99,7 +83,7 @@ Feature: Teacher can share a course with ctl tools
         # pre-condition: teacher adds a tool with required parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
@@ -154,37 +138,25 @@ Feature: Teacher can share a course with ctl tools
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to course administration page
-        When I click the delete button for course '<course_name_share>' in course table
+        When I click on the delete button of course '<course_name_share>'
         Then I see the delete modal
         When I click the confirmation button on the delete modal
-        When I click the delete button for course '<course_name_import>' in course table
+        When I click on the delete button of course '<course_name_import>'
         Then I see the delete modal
         When I click the confirmation button on the delete modal
-        Then I do not see course '<course_name_share>' in course table
-        Then I do not see course '<course_name_import>' in course table
+        # Note: does not work if table is empty
+        # Then I do not see course '<course_name_share>' in course table
+        # Then I do not see course '<course_name_import>' in course table
 
         # post-condition: admin deletes external tools
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        Then I see the external tools table
-        When I click on delete button of tool '<ctl_tool_scope_context>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click on delete button of tool '<ctl_tool_optional_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click on delete button of tool '<ctl_tool_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_protected_param>' in external tools table
-        Then I see the external tools table is empty
+        Given all external tools at the school are deleted
 
         @staging_test
         Examples:
-            | admin      | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share         | course_name_import         | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value |
-            | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | Cypress Test Course Share | Cypress Test Course Import | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             |
+            | admin      | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share       | course_name_import       | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value |
+            | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | CypressAut Course Share | CypressAut Course Import | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             |
 
         @school_api_test
         Examples:
-            | admin      | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share         | course_name_import         | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value |
-            | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | Cypress Test Course Share | Cypress Test Course Import | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             |
+            | admin      | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share       | course_name_import     | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value |
+            | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | CypressAut Course Share | CypressAut Test Import | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             |

@@ -23,6 +23,13 @@ class Rooms {
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndDateForRoom = '[data-testid="room-end-date-input"]';
 	static #memberRowInRoomMembershipTable = '[data-testid^="kebab-menu-"]';
+	static #changeRolePermissionButton =
+		'[data-testid="kebab-menu-action-change-permission"]';
+	static #dialogChangeRoleParticipants =
+		'[data-testid="dialog-change-role-participants"]';
+	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
+	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
+	s;
 
 	selectEndDateForRoom() {
 		const currentDate = new Date();
@@ -89,6 +96,7 @@ class Rooms {
 
 	seeRoomEditParticipantsPage() {
 		cy.get(Rooms.#roomTitle).should("be.visible");
+		cy.wait("@members_api");
 	}
 
 	navigateToRoom(roomName) {
@@ -96,13 +104,11 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).click();
+		cy.get(Rooms.#roomDetailFAB).first().click();
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -173,9 +179,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -193,6 +197,103 @@ class Rooms {
 	}
 	clickOnFabButtonToAddBoard() {
 		cy.get(Rooms.#fabButtonAddBoard).click();
+	}
+
+	clickOnThreeDotMenuToAddUser(participantName) {
+		cy.contains("td", participantName)
+			.parent()
+			.within(() => {
+				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
+			});
+	}
+
+	isChangeRolePermissionButtonVisible() {
+		cy.get(Rooms.#changeRolePermissionButton).should("be.visible");
+	}
+
+	clickOnButtonActionMenuInSubMenu(buttonAction) {
+		cy.get(`[data-testid="kebab-menu-action-${buttonAction.toLowerCase()}"]`).click();
+	}
+
+	isChangeRolePermissionDialogVisible() {
+		cy.get(Rooms.#dialogChangeRoleParticipants).should("be.visible");
+	}
+
+	changeRoleOfTheUser(role) {
+		cy.get(`[data-testid="change-role-option-${role}"]`).click();
+	}
+	isChangedRoleVisible(role) {
+		cy.get(`[data-testid="change-role-option-${role}"]`)
+			.find("input[type='radio']")
+			.should("be.checked");
+	}
+
+	confirmChangeRoleModalActions(buttonAction) {
+		cy.get(`[data-testid="change-role-${buttonAction.toLowerCase()}-btn"]`).click();
+	}
+
+	isRoomLeaveDialogBoxVisible() {
+		cy.get(Rooms.#confirmDeletionModalTitle)
+			.should("be.visible")
+			.should("have.attr", "aria-modal", "true");
+	}
+
+	clickOnActionButtonForRoomLeave(buttonAction) {
+		cy.get(`[data-testid="dialog-${buttonAction.toLowerCase()}"]`).click();
+	}
+
+	isParticipantNotVisible(participantName) {
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+	}
+
+	doNotSeeOptionsInMenu(optionsString) {
+		// this line done following things:
+		// - first remove brackets and quotes if passed
+		// - second split into an array based on ", "
+		// - and in the last trim spaces
+		const options = optionsString
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		options.forEach((option) => {
+			cy.get(`[data-testid="kebab-menu-action-${option}"]`).should("not.exist");
+		});
+	}
+
+	doNotSeeFabAddMember() {
+		cy.get(Rooms.#addParticipants).should("not.exist");
+	}
+
+	doNotSeeInfoTextBanner() {
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("not.exist");
+	}
+
+	doNotSeeFirstColumnInRoomMembersTable() {
+		cy.get(Rooms.#firstColumnInRoomMembersTable).should("not.exist");
+	}
+
+	doNotSeeLastColumnInRoomMembersTable() {
+		cy.contains("th", "Aktionen").should("not.exist");
+	}
+
+	seeFabCreateRoomBoard() {
+		cy.get(Rooms.#addContentButton).should("exist").should("be.visible");
+	}
+
+	seeFabAddMember() {
+		cy.get(Rooms.#addParticipants).should("exist");
+	}
+
+	seeInfoTextBanner() {
+		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
+	}
+
+	seeFirstColumnInRoomMembersTable() {
+		cy.get(Rooms.#firstColumnInRoomMembersTable).should("exist");
+	}
+
+	seeLastColumnInRoomMembersTable() {
+		cy.contains("th", "Aktionen").should("exist");
 	}
 }
 export default Rooms;

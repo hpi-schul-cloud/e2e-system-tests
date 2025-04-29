@@ -1,4 +1,4 @@
-stable_test
+@stable_test
 @regression_test
 Feature:  News - To read a news on the respective dashboards
 

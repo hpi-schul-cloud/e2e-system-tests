@@ -1,10 +1,10 @@
-@regression_test
 @unstable_test
+# Due to brwowser security permission, there is an error while extracting copied linked card url from the clipboard.
+
 Feature: Course Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
 
-    @stable_test
     Scenario: Teacher shares a link to a board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -22,6 +22,7 @@ Feature: Course Board - To share a board card link
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
         Then I see the course '<course_name>' on the course overview page
+
         # first teacher adds a board with a card to the course
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
@@ -38,7 +39,7 @@ Feature: Course Board - To share a board card link
         Then I do not see the chip Draft in the course board
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I click on the page outside of the card
         Then I see a board card
 
@@ -53,20 +54,14 @@ Feature: Course Board - To share a board card link
         Then I see the focused board card
 
         # post-condition: second teacher deletes course
-        When I go to courses overview
-        When I go to course '<course_name>'
-        When I open page Edit course
-        When I click on the button delete course
-        Then I see the modal to confirm the deletion
-        When I click on the button delete on the modal to confirm the course deletion
-        Then I do not see the course '<course_name>' on the course overview page
+        Given course with name '<course_name>' is deleted
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
-            | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | Lara Hande         | Cypress Test Course |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name                   |
+            | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | Lara Hande         | CypressAut ShareBoardCardLink |
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name         |
-            | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | Cypress Test Course |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name                   |
+            | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | CypressAut ShareBoardCardLink |

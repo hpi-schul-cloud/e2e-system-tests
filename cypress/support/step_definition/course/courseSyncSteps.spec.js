@@ -46,24 +46,6 @@ Then("I see the group {string} is selected", (groupName) => {
 	courses.seeSelectedGroup(groupName);
 });
 
-// zu commonSteps
-Then("I see the course title form contains {string}", (name) => {
-	courses.seeCourseTitleFormContains(name);
-});
-
-Then("I see the teacher {string} is selected", (teacherName) => {
-	courses.seeSelectedTeacher(teacherName);
-});
-
-Then("I see the substitute teacher {string} is selected", (substituteTeacher) => {
-	courses.seeSelectedSubstituteTeacher(substituteTeacher);
-});
-
-
-Then("I see the student {string} is selected", (studentName) => {
-	courses.seeSelectedStudent(studentName);
-});
-
 Then("I see the teacher selection box is disabled", () => {
 	courses.seeTeacherSelectionBoxIsDisabled();
 });
@@ -163,11 +145,3 @@ When("I click the confirmation button of the modal to end the sync", () => {
 When("I click the end sync button of group {string}", (groupName) => {
 	classes.clickEndSyncWithCourseButton(groupName);
 });
-
-When("I click on the three dot menu button next to the course title", () => {
-	courses.clickThreeDotMenuInCourse();
-});
-
-
-
-

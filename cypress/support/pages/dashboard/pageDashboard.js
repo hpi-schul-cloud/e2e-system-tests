@@ -5,7 +5,7 @@ class Dashboard {
 	static #languageMenu = "#language-menu";
 	static #selectedLanguage = "#selected-language";
 	static #listOfAllLanguages = "#available-languages";
-	static #germanLanguage = '[data-testid="available-language-de"]';
+	static #germanLanguage = '[data-testid="selected-language-de"]';
 	static #spanishLanguage = '[data-testid="available-language-es"]';
 	static #ukrainianLanguage = '[data-testid="available-language-uk"]';
 	static #englishLanguage = '[data-testid="available-language-en"]';
@@ -152,18 +152,14 @@ class Dashboard {
 	seeAssignedTasks(taskName, courseName) {
 		cy.get(Dashboard.#dashboardTasksTitle).eq(0);
 		cy.contains("Gestellte Aufgaben");
-		cy.get(Dashboard.#dashboardTaskCourseName)
-			.eq(0)
-			.contains(courseName);
+		cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains(courseName);
 		cy.get(Dashboard.#dashboardTaskName).contains(taskName);
 	}
 
 	seeDraftTasks(draftName, courseName) {
 		cy.get(Dashboard.#dashboardTasksTitle).eq(1);
 		cy.contains("Entwürfe");
-		cy.get(Dashboard.#dashboardTaskCourseName)
-			.eq(0)
-			.contains(courseName);
+		cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains(courseName);
 		cy.get(Dashboard.#dashboardTaskName).contains(draftName);
 	}
 }

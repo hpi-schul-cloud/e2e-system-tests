@@ -30,11 +30,11 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnVideoConferenceElementDialog =
+	static #deleteOptionOnCardElementThreeDot =
 		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
-	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
+	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
@@ -55,6 +55,208 @@ class RoomBoards {
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
+	static #inputAttachFile = 'input[type="file"]';
+	static #uploadedFileTitleInCard = '[data-testid="content-element-title-slot"]';
+	static #downloadFileIconSelector =
+		'[data-testid="board-file-element-edit-menu-download"]';
+	static #fileElementSelector = '[data-testid="board-file-element"]';
+	static #folderElementSelector = '[data-testid="board-folder-element"]';
+	static #folderPageTitle = '[data-testid="folder-title"]';
+	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
+	static #mainContentSelector = "#main-content";
+	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
+	static #parentContainerSelector = ".d-flex.flex-column";
+	static #fileAltTextInputSelector = '[data-testid="file-alttext-input"]';
+	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
+	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
+	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
+	// Img tag is assigned as it's down in the DOM by vuetify
+	static #fullScreenImageElement = "img";
+	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
+	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
+	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
+	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
+	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
+	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
+	static #inlineCkToolbar = ".ck-balloon-panel";
+	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
+	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
+	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
+	static #parentClassEtherpadThreeDot = ".three-dot-menu";
+  static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
+	static #addFileButton = '[data-testid="fab-add-files"]';
+
+	verifyEtherpadIsVisibleOnCard() {
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
+		cy.get(RoomBoards.#titleEtherpad).should("exist");
+	}
+
+	verifyEtherpadIsClickableInBoard() {
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
+
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("clickStub");
+		});
+
+		cy.get(RoomBoards.#elementEtherpadInBoard).click();
+
+		cy.get("@clickStub").should("have.been.calledOnce");
+	}
+
+	clickOnThreeDotOnEtherpad() {
+		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
+			.find(RoomBoards.#threeDotOnEtherpad)
+			.click();
+	}
+
+	verifyEtherpadIsNotVisibleOnCard() {
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
+		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
+	}
+
+
+	setAndCheckCKEditorContent($editor, text) {
+		const editorInstance = $editor[0]?.ckeditorInstance;
+		if (!editorInstance) {
+			throw new Error("CKEditor instance not found.");
+		}
+		editorInstance.setData(text);
+	}
+
+	removeTextFromTextElement() {
+		// Ensure CKEditor is available before proceeding the test
+		cy.wait(500);
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			this.setAndCheckCKEditorContent($editor, "");
+		});
+	}
+
+	verifyTextElementNotInCard() {
+		cy.wait(500);
+		cy.get(RoomBoards.#cardContentText).should("not.exist");
+	}
+
+	enterTextInTextElement(text) {
+		// CKEditor to be available before proceeding the test
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 })
+			.click("bottomRight")
+			.should("be.visible");
+
+		// Assert that the CKEditor toolbar becomes visible
+		cy.get(RoomBoards.#inlineCkToolbar).should("exist").and("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			this.setAndCheckCKEditorContent($editor, text);
+		});
+	}
+
+	verifyTextInCard(text) {
+		cy.get(RoomBoards.#cardContentText).should("contain.text", text);
+	}
+
+	reEnterTextInTextElement(text) {
+		// CKEditor to be available before further proceeding the test
+		cy.wait(500);
+		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 }).should("be.visible");
+
+		cy.get(RoomBoards.#inputTextFieldCard).then(($editor) => {
+			this.setAndCheckCKEditorContent($editor, text);
+		});
+	}
+
+	verifyVideoFileInCard() {
+		cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
+	}
+
+	verifyAudioFileInCard() {
+		cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
+	}
+
+	verifyImageFileUploadedAsThumbnail() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).should("exist");
+	}
+
+	verifyCardImageInFullScreen() {
+		cy.get(RoomBoards.#lightBoxParentElementImagePreview)
+			.find(RoomBoards.#fullScreenImageElement)
+			.should("be.visible")
+			.and(($fullScreen) => {
+				// Ensure the image has loaded properly in fullscreen
+				expect($fullScreen[0].naturalWidth).to.be.greaterThan(0);
+			});
+
+		// Verify close button is also visible on the fullscreen image
+		cy.get(RoomBoards.#downloadButtonOnFullImage).should("exist");
+
+		// Verify download button is also visible on the fullscreen image
+		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
+	}
+
+	enterImageAltTextInCard(altText) {
+		// Select the parent class
+		cy.get(RoomBoards.#parentContainerSelector)
+			// Find the input field element within the parent class
+			.find(RoomBoards.#fileAltTextInputSelector)
+			.click()
+			.type(altText);
+	}
+
+	verifyDocxFileUploaded() {
+		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
+	}
+
+	shouldNotSeeFileElement() {
+		cy.get(RoomBoards.#fileElementSelector).should("not.exist");
+	}
+
+	clickThreeDotMenuInFileElement() {
+		cy.get(RoomBoards.#threeDotMenuSelector).click();
+	}
+
+	downloadFileIcon() {
+		cy.get(RoomBoards.#downloadFileIconSelector).should("be.visible").click();
+	}
+
+	uploadFileInCard(fileName) {
+		// Attach the file from the fixtures folder
+		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
+		// Intercept the file upload API call and wait for the API request to be successfully completed
+		cy.wait("@fileUploadRequest_api").then((interception) => {
+			expect(interception.response.statusCode).to.eq(201);
+		});
+	}
+
+	clickOutsideToSaveCard() {
+		cy.get(RoomBoards.#mainContentSelector).click();
+	}
+
+	enterCaption(captionText) {
+		// Select the parent class
+		cy.get(RoomBoards.#parentContainerSelector)
+			// Find the input field element within the parent class
+			.find(RoomBoards.#fileCaptionInputSelector)
+			.click()
+			.type(captionText);
+	}
+
+	verifyPdfUploaded() {
+		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
+	}
+
+	clickOnImageThumbnailInCard() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).click();
+		cy.wait(500);
+	}
+
+	clickDownloadIconOnFullScreenImage() {
+		cy.get(RoomBoards.#downloadButtonOnFullImage).click();
+	}
+
+	clickCloseButtonOnFullScreenImage() {
+		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).click();
+	}
 
 	uncheckLinkValidForSameSchool() {
 		cy.get(RoomBoards.#sameSchoolCheckbox).click();
@@ -179,7 +381,7 @@ class RoomBoards {
 
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
-			//Three dot has same data-testid and needs to be located inside the parent element
+			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
@@ -191,13 +393,13 @@ class RoomBoards {
 
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
-			//Three dot has same data-testid and needs to be located inside the parent element
+			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotButton)
 			.click();
 	}
 
 	clickDeleteOptionInThreeDotMenu() {
-		cy.get(RoomBoards.#deleteOptionOnVideoConferenceElementDialog).click();
+		cy.get(RoomBoards.#deleteOptionOnCardElementThreeDot).click();
 	}
 
 	verifyDeleteConfirmationDialogVisible() {
@@ -207,7 +409,9 @@ class RoomBoards {
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#deleteButtonOnVideoConferenceElementDialog).click();
+		cy.get(RoomBoards.#deleteButtonOnDeletionDialog).click();
+		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
+		cy.reload();
 	}
 
 	verifyVideoConferenceElementNotVisible() {
@@ -366,6 +570,33 @@ class RoomBoards {
 	}
 	clickOnEditInBoardMenu() {
 		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
+	}
+
+	seeFolderElementWithTitle(title) {
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("exist")
+			.should("contain", title);
+	}
+
+	clickFolderElementWithTitle(title) {
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("contain", title)
+			.click();
+	}
+
+	seeFolderPageWithTitle(title) {
+		cy.get(RoomBoards.#folderPageTitle)
+			.should("contain", title)
+	}
+
+	seeMessageEmptyFolder() {
+		cy.get(RoomBoards.#folderPageMessageEmptyFolder)
+			.should("exist")
+	}
+
+	seeBtnAddFile() {
+		cy.get(RoomBoards.#addFileButton)
+			.should("exist")
 	}
 }
 

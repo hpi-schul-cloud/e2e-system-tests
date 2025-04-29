@@ -4,11 +4,11 @@ Feature: Course - To add, edit and delete a ctl tool in a course
 
     As a teacher I want to add, edit and delete a ctl tool in my course.
 
-    @stable_test
     Scenario: Teacher adds, edits and deletes tools in a course, Student sees course tools but does not see the button to add a tool
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
+        Given the school has external tool '<ctl_tool_1>,<ctl_tool_required_param>,<ctl_tool_optional_param>,<ctl_tool_openstreetmap>'
 
         # pre-condition: admin creates a course, assign it to teacher and student
         When I go to courses overview
@@ -22,32 +22,6 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
-
-        # pre-condition: admin adds tools via selection
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_1>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_1>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_required_param>' from available tools
-        When I enter '<param_value>' in required custom parameter field '<school_param_name>'
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_required_param>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_optional_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_optional_param>' in external tools table
-        # pre-condition: admin adds tools via tool link
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        When I click the add external tool button
-        When I insert the external tool link '<ctl_tool_link>'
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_openstreetmap>' in external tools table
 
         # teacher adds a tool without a custom parameter
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -121,7 +95,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see the context external tool configuration page
         Then I see custom parameter input field '<context_param_name>' contains '<param_value_updated>'
 
-        # sudent sees course tools but does not see the button to add a tool
+        # student sees course tools but does not see the button to add a tool
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -148,41 +122,19 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I do not see tool '<ctl_tool_optional_param>' in the tool overview
         Then I see 4 tools
 
-        # post-condition: admin deletes course
-        Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I go to course administration page
-        When I click the delete button for course '<course_name>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        Then I do not see course '<course_name>' in course table
+        # post-condition: teacher deletes course
+        Given course with name '<course_name>' is deleted
 
         # post-condition: admin deletes tools
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        Then I see the external tools table
-        When I click on delete button of tool '<ctl_tool_1>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_1>' in external tools table
-        When I click on delete button of tool '<ctl_tool_required_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_required_param>' in external tools table
-        When I click on delete button of tool '<ctl_tool_optional_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_optional_param>' in external tools table
-        When I click on delete button of tool '<ctl_tool_openstreetmap>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_openstreetmap>' in external tools table
-        Then I see the external tools table is empty
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given all external tools at the school are deleted
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name         | fullname_teacher | fullname_student | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | Karl Herzog      | Herbert Kraft    | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name                   | fullname_teacher | fullname_student | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CourseWithCtlTools | Karl Herzog      | Herbert Kraft    | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
 
-        # Note: uncomment this once the bug with student login has been fixed
-        # @school_api_test
-        # Examples:
-        #     | admin      | teacher      | student      | namespace | course_name         | fullname_teacher  | fullname_student  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value  | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-        #     | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | cypress teacher_1 | cypress student_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test         | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+        @school_api_test
+        Examples:
+            | admin      | teacher      | student      | namespace | course_name                   | fullname_teacher  | fullname_student  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CourseWithCtlTools | cypress teacher_1 | cypress student_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |

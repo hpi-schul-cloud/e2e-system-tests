@@ -1,14 +1,14 @@
 @regression_test
 @stable_test
-Feature: Course Board - Copy course with a board wich has CTL tools
+Feature: Course Board - Copy course with a board which has CTL tools
 
     As a Teacher I want to be able to copy ctl tools, when I copy a course with ctl tools within a board
 
-    @stable_test
     Scenario: Teacher copies a course with a board that has ctl tools
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
+        Given the school has external tool '<ctl_tool_scope_context>,<ctl_tool_optional_protected_param>,<ctl_tool_protected_param>'
 
         # pre-condition: admin creates a course, assign it to teacher and student
         When I go to courses overview
@@ -21,26 +21,12 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
-
-        # pre-condition: admin adds tools via selection
+        # pre-condition: admin activates student visibility
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on general settings panel
         When I click the toggle switch to enable student visibility for teachers
         When I click on button Save admin settings
-        When I click on external tools panel
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_scope_context>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_optional_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click the add external tool button
-        When I select the tool '<ctl_tool_protected_param>' from available tools
-        When I click on save external tool button
-        Then I see the tool '<ctl_tool_protected_param>' in external tools table
 
         # pre-condition: teacher creates a board
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -58,8 +44,8 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         When I click on the button Add column in the course board
         When I click on the page outside of the column
         # pre-condition: teacher adds a tool with required parameter
-        When I click on plus icon to add card in column
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add card in column
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
@@ -68,7 +54,7 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
@@ -78,7 +64,7 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         # pre-condition: teacher adds a tool with required parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
-        When I click on plus icon to add content into card
+        When I click on icon Plus to add content into card
         When I select external tools from the menu
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
@@ -169,42 +155,20 @@ Feature: Course Board - Copy course with a board wich has CTL tools
         When I click on save external tool button
         Then I see external tool element with tool '<ctl_tool_optional_protected_param>' is not marked as incomplete operational
 
-        # post-condition: admin deletes course
-        Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I go to course administration page
-        When I click the delete button for course '<course_name>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        When I click the delete button for course '<course_name_copy>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        Then I do not see course '<course_name>' in course table
-        Then I do not see course '<course_name_copy>' in course table
+        # post-condition: teacher deletes courses
+        Given course with name '<course_name>' is deleted
+        Given course with name '<course_name_copy>' is deleted
 
         # post-condition: admin deletes tools
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on external tools panel
-        Then I see the external tools table
-        When I click on delete button of tool '<ctl_tool_scope_context>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_scope_context>' in external tools table
-        When I click on delete button of tool '<ctl_tool_optional_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_optional_protected_param>' in external tools table
-        When I click on delete button of tool '<ctl_tool_protected_param>'
-        When I confirm deletion on deletion dialog
-        Then I do not see the tool '<ctl_tool_protected_param>' in external tools table
-        Then I see the external tools table is empty
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given all external tools at the school are deleted
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name         | course_name_copy        | fullname_teacher | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | Cypress Test Course (1) | Karl Herzog      | Kraft        | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name                         | course_name_copy                        | fullname_teacher | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAUT CopyCourseWithCtlInBoard | CypressAUT CopyCourseWithCtlInBoard (1) | Karl Herzog      | Kraft        | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
 
-        # Note: uncomment this once the bug with student login has been fixed
-        # @school_api_test
-        # Examples:
-        #     | admin      | teacher      | student      | namespace | course_name         | course_name_copy        | fullname_teacher  | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
-        #     | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Cypress Test Course | Cypress Test Course (1) | cypress teacher_1 | student_1    | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
+        @school_api_test
+        Examples:
+            | admin      | teacher      | student      | namespace | course_name                         | course_name_copy                        | fullname_teacher  | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAUT CopyCourseWithCtlInBoard | CypressAUT CopyCourseWithCtlInBoard (1) | cypress teacher_1 | student_1    | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |

@@ -50,16 +50,16 @@ Then("I see old class administration page", () => {
 	classes.seeOldClassAdministrationPage();
 });
 
-When("I click on the button Save changes", () => {
-	classes.clickOnSaveChangesClass();
-});
-
-Then("I select the {string} from the student selection dropdown", (fullNameStudent) => {
+When("I select the {string} from the student selection dropdown", (fullNameStudent) => {
 	classes.selectStudentInManageClassPage(fullNameStudent);
 });
 
 Then("I see the teacher name {string} in the teacher dropdown", (teacherName) => {
 	classes.seeSelectedTeacherOnManageClassPage(teacherName);
+});
+
+Then("I see the student name {string} in the student dropdown", (studentName) => {
+	classes.seeSelectedStudentOnManageClassPage(studentName);
 });
 
 When("I click on the button Add class on the page class overview", () => {
@@ -84,8 +84,4 @@ Then("I see the teacher name {string} is selected", (teacherName) => {
 
 Then("I see the current school year {string} is selected", (schoolYear) => {
 	classes.seeSelectedSchoolYearInClass(schoolYear);
-});
-
-When("When I click on sub menu class", () => {
-	classes.clickOnClassesSubMenuInAdministration();
 });

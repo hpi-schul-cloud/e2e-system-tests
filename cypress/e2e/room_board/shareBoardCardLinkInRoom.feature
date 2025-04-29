@@ -1,10 +1,10 @@
-@regression_test
 @unstable_test
+# Due to brwowser security permission, there is an error while extracting copied linked card url from the clipboard.
+
 Feature: Room Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
 
-    @stable_test
     Scenario: Teacher shares a link to a board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -14,18 +14,19 @@ Feature: Room Board - To share a board card link
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
-        When I click on the button to save the room
+        When I click on the button Save room
         When I click on three dot menu in room page
-        When I select the three dot menu action 'edit-members'
+        When I select the three dot menu action 'room-members'
         When I click on FAB to add participants
-        Then I see add participants modal
-        Then I see school '<school_name>' in school dropdown
-        Then I see role '<role_name>' in role dropdown
-        When I enter '<name_teacher_2>' in name dropdown
+        Then I see modal Add participants
+        Then I see school '<school_name>' in dropdown School
+        Then I see role '<role_name>' in dropdown Role
+        When I enter '<name_teacher_2>' in dropdown Name
         When I select the first name from the dropdown
-        When I click on the button to add the participant
+        When I click on the button Add participant
         Then I see '<name_teacher_1>' in the room participants list
         Then I see '<name_teacher_2>' in the room participants list
+
         # first teacher adds a board with a card to the room
         When I go to room overview
         When I go to room '<room_name>'
@@ -41,7 +42,7 @@ Feature: Room Board - To share a board card link
         Then I do not see the chip Draft in the course board
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I click on the page outside of the card
         Then I see a board card
 
@@ -57,14 +58,7 @@ Feature: Room Board - To share a board card link
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
-        When I go to room '<room_name>'
-        Then I see the detail page of room '<room_name>'
-        When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
-        Then I see confirmation modal for deleting the room
-        When I click on delete button in confirmation modal
-        Then I do not see '<room_name>' on room overview page
+        Given the room named '<room_name>' is deleted
 
         @staging_test
         Examples:

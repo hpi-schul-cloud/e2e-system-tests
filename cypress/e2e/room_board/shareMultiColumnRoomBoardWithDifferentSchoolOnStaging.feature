@@ -3,7 +3,7 @@
 
 # Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same scenario and using the copied URL from Scenario One in Scenario Two due to new sessions.
 
-Feature: Rooms - Share multi-column board in the rooms with the teacher from different school
+Feature: Room Board - Share multi-column board in the rooms with the teacher from different school
 
     As a teacher, I want to share a multi-column board with another teacher from a different school so that I can collaborate effectively.
 

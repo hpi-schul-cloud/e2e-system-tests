@@ -1,6 +1,9 @@
 const { Before, Given } = require("@badeball/cypress-cucumber-preprocessor");
 
 Before(() => {
+	cy.intercept({ method: "POST", pathname: "**/boardnodes/**" }).as(
+		"fileUploadRequest_api"
+	);
 	cy.intercept("**/public").as("public_api");
 	cy.intercept("**/me").as("me_api");
 	cy.intercept("**/user/**").as("roles_api");
@@ -17,6 +20,7 @@ Before(() => {
 	cy.intercept("**/tasks/**/restore").as("task_restore_api");
 	cy.intercept("**/runtime.config.json").as("runtime_config_api");
 	cy.intercept("**/board").as("board_api");
+	cy.intercept("**/members").as("members_api");
 	cy.intercept("**/courses?**").as("courses_api");
 	cy.intercept("**/homework/**").as("homework_api");
 	cy.intercept("**/rooms/**").as("rooms_api");
@@ -28,6 +32,7 @@ Before(() => {
 	cy.intercept("**/news/new").as("news_new_api");
 	cy.intercept("**/courses/**").as("courses_api");
 	cy.intercept("**/administration/**").as("administration_api");
+	cy.intercept("GET", "**/launch").as("toolLaunch_api");
 	cy.intercept({
 		method: "GET",
 		pathname: "/tldraw",

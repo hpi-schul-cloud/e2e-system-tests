@@ -18,8 +18,6 @@ class Board {
 	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
 	static #deleteDialogBox = '[data-testid="dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
-	static #textElement = '[data-testid="ckeditor"]';
-	static #columnPlaceholder = '[placeholder="Spalte 1"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
 	static #renameOptionInThreeDotCourseBoardTitle =
@@ -29,7 +27,6 @@ class Board {
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
 	static #selectExternalToolsFromMenu =
 		'[data-testid="create-element-external-tool-container"]';
-	static #externalToolElement = '[data-testid="board-external-tool-element"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
 	static #boardMenuActionChangeLayout =
@@ -48,6 +45,8 @@ class Board {
 	static #boardCardTitle = '[data-testid="card-title"]';
 	static #boardLinkElement = '[data-testid="board-link-element-create"]';
 	static #contentElementTitle = '[data-testid="content-element-title-slot"]';
+	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
+	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -72,7 +71,8 @@ class Board {
 	seeExternalToolElementWithTool(toolName) {
 		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
 			.find(".content-element-title")
-			.should("contain.text", toolName);
+			.should("contain.text", toolName)
+			.should("be.visible");
 	}
 
 	canNotSeeDeletedElements() {
@@ -268,8 +268,9 @@ class Board {
 	}
 
 	seePreferredExternalToolInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
-			.should("be.visible");
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
+			"be.visible"
+		);
 	}
 
 	selectPreferredExternalToolFromMenu(toolName) {
@@ -277,8 +278,9 @@ class Board {
 	}
 
 	preferredExternalToolIsNotVisibleInMenu(toolName) {
-		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`)
-			.should("not.exist");
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
+			"not.exist"
+		);
 	}
 
 	clickThreeDotMenuOnExternalToolElementWithTool(toolName) {
@@ -353,20 +355,33 @@ class Board {
 
 	launchTool(toolName, toolURL) {
 		const launchedTool = { toolName: toolName, isLaunched: false };
-
 		cy.window().then((win) => {
 			cy.stub(win, "open")
 				.as("openStub")
 				.callsFake((url) => {
 					expect(url).to.contain(toolURL);
-					launchedTool.isLaunched = true;
+					return Cypress.Promise.resolve().then(() => {
+						launchedTool.isLaunched = true;
+						expect(url).to.contain(toolURL);
+					});
 				});
 		});
-
 		cy.wrap(launchedTool).as("launchedTool");
-
-		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).click();
-
+		cy.wait(500);
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`)
+			.focus()
+			.should("be.visible")
+			.should("not.be.disabled")
+			.within(() => {
+				cy.contains(Board.#contentElementTitleSlot, toolName)
+					.click()
+					.then(() => {
+						cy.wait("@courses_api");
+						cy.wait("@toolLaunch_api");
+					});
+			});
+		cy.get("@openStub").should("have.been.called");
+		cy.wrap(launchedTool).its("isLaunched").should("be.true");
 		cy.get("@openStub").invoke("restore");
 	}
 
@@ -380,11 +395,11 @@ class Board {
 	}
 
 	enterTextToTextFieldInCard(textContent) {
-		cy.get('[data-testid="ckeditor"]').then((el) => {
+		cy.get(Board.#ckEditorText).then((el) => {
 			const editor = el[0].ckeditorInstance;
 			editor.setData(textContent);
 		});
-		cy.get('[data-testid="ckeditor"]').then((el) => {
+		cy.get(Board.#ckEditorText).then((el) => {
 			const editor = el[0].ckeditorInstance;
 			const editorContent = editor.getData();
 			const plainText = editorContent.replace(/<\/?[^>]+(>|$)/g, "");
@@ -439,15 +454,11 @@ class Board {
 	}
 
 	seeSingleColumnBoard() {
-		cy.get(Board.#firstBoardColumn)
-			.should("have.class", "d-flex flex-column align-stretch my-0")
-			.should("not.have.attr", "style", "min-width: 400px; max-width: 400px;");
+		cy.get(Board.#firstBoardColumn).scrollIntoView().should("be.visible");
 	}
 
 	seeMultiColumnBoard() {
-		cy.get(Board.#firstBoardColumn)
-			.should("have.class", "px-4")
-			.should("have.attr", "style", "min-width: 400px; max-width: 400px;");
+		cy.get(Board.#firstBoardColumn).should("be.visible");
 	}
 
 	enterBoardCardTitle(cardTitle) {

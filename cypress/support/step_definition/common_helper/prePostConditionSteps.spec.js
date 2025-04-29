@@ -70,7 +70,7 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
 
-Given("I navigate to the room detail page from the board page", () => {
+Given("I navigate to the room detail page via Breadcrumb from the board page ", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
@@ -88,7 +88,20 @@ Given(
 	}
 );
 
-Given("a multi-column board exists in course {string}", (courseName) => {
+Given(
+	"a course named {string} exists",
+	(courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+		courses.navigateToCoursesOverview();
+	}
+);
+
+Given("a multi-column board named {string} exists in the course {string}", (boardTitle, courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickOnCreateContentFAB();
@@ -96,6 +109,11 @@ Given("a multi-column board exists in course {string}", (courseName) => {
 	board.clickOnMultiColumnBoardOptionInDialogBox();
 	board.clickOnThreeDotMenuInCourseBoardTitle();
 	board.clickPublishOptionInThreeDotMenuInCourseBoard();
+	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+	roomBoards.clickOnEditInBoardMenu();
+	roomBoards.enterRoomBoardTitle(boardTitle);
+	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
 Given("the multi-column board has a column with a card", () => {

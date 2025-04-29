@@ -4,7 +4,6 @@ Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout
 
-    @stable_test
     Scenario: Teacher changes board layout
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -35,11 +34,11 @@ Feature: Course Board - To change the board layout
         When I click on the page outside of the column
         When I click on the button Add column in the course board
         When I click on the page outside of the column
-        When I click on plus icon to add card in column
+        When I click on icon Plus to add card in column
         When I click on the page outside of the card
         Then I see a board card
 
-        # teacher changes board layout to signle column
+        # teacher changes board layout to single column
         When I click on three dot menu in the board header
         When I click on the option Change layout in three dot menu in course board
         Then I see a dialog box for column board
@@ -58,20 +57,14 @@ Feature: Course Board - To change the board layout
         Then I see the multi-column board
 
         # post-condition: teacher deletes course
-        When I go to courses overview
-        When I go to course '<course_name>'
-        When I open page Edit course
-        When I click on the button delete course
-        Then I see the modal to confirm the deletion
-        When I click on the button delete on the modal to confirm the course deletion
-        Then I do not see the course '<course_name>' on the course overview page
+        Given course with name '<course_name>' is deleted
 
         @staging_test
         Examples:
-            | teacher      | namespace | course_name         | fullname_teacher |
-            | teacher1_nbc | nbc       | Cypress Test Course | Karl Herzog      |
+            | teacher      | namespace | course_name             | fullname_teacher |
+            | teacher1_nbc | nbc       | CypressAUT Board Layout | Karl Herzog      |
 
         @school_api_test
         Examples:
-            | teacher      | namespace | course_name         | fullname_teacher  |
-            | teacher1_nbc | nbc       | Cypress Test Course | cypress teacher_1 |
+            | teacher      | namespace | course_name             | fullname_teacher  |
+            | teacher1_nbc | nbc       | CypressAUT Board Layout | cypress teacher_1 |

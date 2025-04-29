@@ -68,7 +68,7 @@ class Courses {
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
 	static #toolsTab = '[data-testid="tools-tab"]';
 	static #addToolButton = '[data-testid="add-tool-button"]';
-	static #groupSelection = '[id="classId_chosen"]';
+	static #classSelection = '[id="classId_chosen"]';
 	static #chosenStudents = '[id="studentsId_chosen"] > .chosen-choices';
 	static #errorDialog = '[data-testId="error-dialog"]';
 	static #courseExternalToolSection = '[data-testid="room-external-tool-section"]';
@@ -119,7 +119,7 @@ class Courses {
 	static #syncedGroupDialogSelection = '[data-testid="group-selection"]';
 	static #syncedGroupDialogNextButton = '[data-testid="dialog-next"]';
 	static #syncedConfirmDialogConfirmButton = '[data-testid="dialog-confirm"]';
-	static #syncedGroupDialogCloseButton = '[data-testid="dialog-close"]';
+	static #syncedGroupDialogCloseButton = '[data-testid="dialog-cancel"]';
 	static #btnEndSync = '[data-testid="title-menu-end-sync"]';
 	static #btnStartSync = '[data-testid="title-menu-start-sync"]';
 	static #btnConfirmEndSync = '[data-testid="dialog-confirm"]';
@@ -131,12 +131,15 @@ class Courses {
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
+	static #classFieldContainer = '[data-testid="class_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
 	static #delteToolDialog = '[data-testid="delete-dialog"]';
-	static #delteDialogTitle = '[data-testid="dialog-title"]';
-	static #delteDialogContent = '[data-testid="delete-dialog-content"]';
+	static #deleteDialogTitle = '[data-testid="dialog-title"]';
+	static #deleteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
+	static #messageNoTasksAvailable = '[data-testid="emptyTaskMessage"]';
+	static #iconCourse = '[data-testid="course-icon"]';
 	static #breadcrumb1 = '[data-testid="breadcrumb-1"]';
 
 	selectTeacherFromTeacherField(userName) {
@@ -150,10 +153,8 @@ class Courses {
 	}
 
 	selectTeacherInCourseCreatePage(teacherName) {
-		cy.get(Courses.#teacherSelectionBoxInCourseCreate).invoke("show");
-		cy.get(Courses.#teacherSelectionBoxInCourseCreate)
-			.should("be.visible")
-			.select(teacherName);
+		cy.get(Courses.#teacherFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(teacherName).click();
 	}
 
 	seeFinalStepPageOnCourseCreate() {
@@ -165,6 +166,16 @@ class Courses {
 		cy.get(Courses.#studentSelectionBoxInCourseCreate)
 			.should("be.visible")
 			.select(studentName);
+	}
+
+	selectClassInCourseCreatePage(className) {
+		cy.get(Courses.#classFieldContainer).click();
+		cy.get(Courses.#chosenResults).contains(className).click();
+	}
+
+	selectClassInCourseEditPage(className) {
+		cy.get(Courses.#classSelection).click().type(className).type("{enter}");
+		cy.get(Courses.#classSelection).contains(className).should("exist");
 	}
 
 	seeStudentSelectionBoxInCourseCreatePage() {
@@ -316,6 +327,84 @@ class Courses {
 						});
 					});
 			});
+	}
+
+	deleteElementsWithText(textSelector, courseName, clickSelector) {
+		cy.get("body").then(($body) => {
+			if ($body.find(Courses.#messageNoTasksAvailable).length) {
+				cy.log("No courses available to delete. Test will exit.");
+				return;
+			} else {
+				this.findAndDeleteCourses(textSelector, courseName, clickSelector);
+			}
+		});
+	}
+
+	findAndDeleteCourses(textSelector, courseName, clickSelector) {
+		const courseRegex = new RegExp(`^${courseName}.*$`, "i");
+
+		cy.get(textSelector).then(($elements) => {
+			const matchingElements = Cypress.$($elements).filter((_, el) =>
+				courseRegex.test(Cypress.$(el).text().trim())
+			);
+
+			if (matchingElements.length > 0) {
+				cy.log(`Found ${matchingElements.length} courses matching "${courseName}"`);
+				this.deleteCourse(textSelector, courseName, clickSelector);
+			} else {
+				cy.log(`No more courses found with course name "${courseName}".`);
+			}
+		});
+	}
+
+	deleteCourse(textSelector, courseName, clickSelector) {
+		cy.get(textSelector)
+			.contains(new RegExp(`^${courseName}.*$`, "i"))
+			.scrollIntoView()
+			.parent("div")
+			.within(() => {
+				cy.get(clickSelector).should("be.visible").click();
+			});
+
+		cy.get(Courses.#dropDownCourse).should("be.visible").click();
+		cy.get(Courses.#btnCourseEdit).should("be.visible").click();
+		cy.get(Courses.#deleteButton).should("be.visible").click();
+		cy.get(Courses.#courseDeleteConfirmationModal).should("exist");
+		cy.get(Courses.#confirmDeletionPopup).should("be.visible").click();
+
+		cy.wait(2000);
+
+		cy.get("body").then(($body) => {
+			if ($body.text().includes(courseName)) {
+				this.deleteElementsWithText(textSelector, courseName, clickSelector);
+			} else {
+				cy.log(`All courses with name "${courseName}" deleted successfully.`);
+			}
+		});
+	}
+
+	verifyCourseDeletion(courseName) {
+		cy.get("body").then(($body) => {
+			if (!$body.text().includes(courseName)) {
+				cy.log(`All courses with name "${courseName}" deleted successfully.`);
+			} else {
+				cy.get(Courses.#courseTitleInCourseoverview).should(
+					"not.contain.text",
+					courseName
+				);
+			}
+		});
+	}
+
+	deleteAllCoursesWithName(courseName) {
+		cy.wait(2000);
+		this.deleteElementsWithText(
+			Courses.#courseTitleInCourseoverview,
+			courseName,
+			Courses.#iconCourse
+		);
+
+		this.verifyCourseDeletion(courseName);
 	}
 
 	navigateToLtiTools() {
@@ -663,40 +752,35 @@ class Courses {
 		});
 	}
 
-	checkIfGroupIsVisible(groupName) {
-		cy.get(Courses.#groupSelection)
+	seeClassInClassSelectionBox(className) {
+		cy.get(Courses.#classSelection)
 			.find(".chosen-choices")
-			.contains(groupName)
+			.contains(className)
 			.should("be.visible");
 	}
 
-	checkIfGroupIsNotVisible(groupName) {
-		cy.get(Courses.#groupSelection)
+	doNotSeeClassInClassSelectionBox(className) {
+		cy.get(Courses.#classSelection)
 			.find(".chosen-choices")
-			.contains(groupName)
+			.contains(className)
 			.should("not.exist");
 	}
 
-	checkIfStudentIsVisible(studentName) {
+	seeStudentInStudentSelectionBox(studentName) {
 		cy.get(Courses.#chosenStudents)
 			.find(".search-choice")
 			.children("span")
 			.should("contain", studentName);
 	}
 
-	checkIfStudentIsNotVisible(studentName) {
+	doNotSeeStudentInStudentSelectionBox(studentName) {
 		cy.get(Courses.#chosenStudents).should("not.contain", studentName);
 	}
 
-	addGroup(groupName) {
-		cy.get(Courses.#groupSelection).find(".chosen-choices").click();
-		cy.get(Courses.#groupSelection).find(".chosen-results").contains(groupName).click();
-	}
-
-	removeGroup(groupName) {
-		cy.get(Courses.#groupSelection)
+	removeClassFromCourse(className) {
+		cy.get(Courses.#classSelection)
 			.find(".chosen-choices")
-			.contains(groupName)
+			.contains(className)
 			.siblings("a")
 			.click();
 	}
@@ -827,8 +911,8 @@ class Courses {
 
 	seeDeleteDialog() {
 		cy.get(Courses.#delteToolDialog).should("be.visible");
-		cy.get(Courses.#delteDialogTitle).should("be.visible");
-		cy.get(Courses.#delteDialogContent).should("be.visible");
+		cy.get(Courses.#deleteDialogTitle).should("be.visible");
+		cy.get(Courses.#deleteDialogContent).should("be.visible");
 		cy.get(Courses.#confirmDeleteDialogButton).should("be.visible");
 	}
 
@@ -905,6 +989,10 @@ class Courses {
 
 	seeSelectedStudent(studentName) {
 		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
+	}
+
+	seeSelectedClass(className) {
+		cy.get(Courses.#selectClass).contains("option", className).should("be.selected");
 	}
 
 	seeTeacherSelectionBoxIsDisabled() {
@@ -987,6 +1075,7 @@ class Courses {
 	selectGroupInSyncedGroupSelection(groupName) {
 		cy.get(Courses.#syncedGroupDialogSelection)
 			.click()
+			.type("{selectall}{backspace}")
 			.type(groupName)
 			.type("{downArrow}{enter}");
 	}
@@ -1001,20 +1090,28 @@ class Courses {
 
 	launchTool(toolName, toolURL) {
 		const launchedTool = { toolName: toolName, isLaunched: false };
-
 		cy.window().then((win) => {
 			cy.stub(win, "open")
 				.as("openStub")
 				.callsFake((url) => {
 					expect(url).to.contain(toolURL);
-					launchedTool.isLaunched = true;
+					return Cypress.Promise.resolve().then(() => {
+						launchedTool.isLaunched = true;
+						expect(url).to.contain(toolURL);
+					});
 				});
 		});
-
 		cy.wrap(launchedTool).as("launchedTool");
-
-		cy.get(Courses.#courseExternalToolSection).contains(toolName).click();
-
+		cy.wait(500);
+		cy.get(Courses.#courseExternalToolSection)
+			.contains(toolName)
+			.click({ force: true })
+			.then(() => {
+				cy.wait("@courses_api");
+				cy.wait("@toolLaunch_api");
+			});
+		cy.get("@openStub").should("have.been.called");
+		cy.wrap(launchedTool).its("isLaunched").should("be.true");
 		cy.get("@openStub").invoke("restore");
 	}
 
