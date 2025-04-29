@@ -1,32 +1,32 @@
 "use strict";
 
-class GlobalActionSteps {
+class GlobalActions {
 	static #headerCheckboxAllElements = '[data-testid="select-all-checkbox"]';
 	static #tableSearchInput = '[data-testid="table-search"]';
 
 	checkHeaderCheckboxForAllElements() {
-		cy.get(GlobalActionSteps.#headerCheckboxAllElements)
+		cy.get(GlobalActions.#headerCheckboxAllElements)
 		.find('div div input')
 		.check();
 	}
 
 	uncheckHeaderCheckboxForAllElements() {
-		cy.get(GlobalActionSteps.#headerCheckboxAllElements)
+		cy.get(GlobalActions.#headerCheckboxAllElements)
 		.find('div div input')
 		.uncheck();
 	}
 
 	clearTableSearch() {
-		cy.get(GlobalActionSteps.#tableSearchInput)
+		cy.get(GlobalActions.#tableSearchInput)
 		.find('div div div input')
 		.clear();
 	}
 
 	enterStringToTableSearch(searchString) {
-		cy.get(GlobalActionSteps.#tableSearchInput)
+		cy.get(GlobalActions.#tableSearchInput)
 		.find('div div div input')
 		.type(searchString);
 	}
 }
 
-export default GlobalActionSteps;
+export default GlobalActions;
