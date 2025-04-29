@@ -122,6 +122,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I do not see tool '<ctl_tool_optional_param>' in the tool overview
         Then I see 4 tools
 
+
         # post-condition: teacher deletes course
         Given course with name '<course_name>' is deleted
 
