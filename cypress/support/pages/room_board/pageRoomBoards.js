@@ -574,9 +574,9 @@ class RoomBoards {
 	seeFileCreationDateToday(fileName) {
 		const today = new Date();
 		let displayedDate = today.toLocaleString("de-DE", {
-			year: "numeric",
-			day: "numeric",
-			month: "numeric",
+			year: "2-digit",
+			day: "2-digit",
+			month: "2-digit",
 		});
 		cy.get(`[data-testid="created-at-${fileName}"]`).should("contain", displayedDate);
 	}
