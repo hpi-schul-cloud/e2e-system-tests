@@ -406,3 +406,13 @@ Then("I see {string} and {string} on the first two positions", (firstElement, se
 	roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
 });
 
+When("I upload multiple files {string} to file folder", (uploadFiles) => {
+	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
+});
+
+Then("I see files {string} in file list", (uploadedFiles) => {
+	roomBoards.seeMultipleFilesInFolderList(uploadedFiles);
+});
+
+
+

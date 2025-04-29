@@ -206,6 +206,22 @@ class RoomBoards {
 		});
 	}
 
+	uploadMultipleFilesInFolder(uploadFiles) {
+		cy.get(RoomBoards.#addFileButton).click();
+		const files = uploadFiles
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+			files.forEach((file) => {
+				// Attach the file from the fixtures folder
+				cy.get(RoomBoards.#inputAttachFile).attachFile(file);
+		});
+		// Intercept the file upload API call and wait for the API request to be successfully completed
+		cy.wait("@fileUploadRequest_api").then((interception) => {
+			expect(interception.response.statusCode).to.eq(201);
+		});
+	}
+
 	clickOutsideToSaveCard() {
 		cy.get(RoomBoards.#mainContentSelector).click();
 	}
@@ -571,6 +587,17 @@ class RoomBoards {
 		cy.get(`[data-testid="size-${fileName}"]`).should("contain", fileSize);
 	}
 
+	seeMultipleFilesInFolderList(uploadedFiles) {
+		const files = uploadedFiles
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		files.forEach((file) => {
+			cy.get(`[data-testid="size-${file}"]`).should("exist");
+		});
+
+	}
+
 	seeFileCreationDateToday(fileName) {
 		const today = new Date();
 		let displayedDate = today.toLocaleString("de-DE", {
@@ -595,7 +622,9 @@ class RoomBoards {
 			.split(", ")
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
-			cy.get(RoomBoards.#dataTable).get("thead").find("span").should("contain", label);
+			cy.get(RoomBoards.#dataTable).within((element) => {
+				cy.get(element).find("th").contains("span", label).should("contain", label);
+			});
 		});
 	}
 

@@ -40,16 +40,18 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Then I see links to change order for 'Name, Erstellt, Größe'
         When I click on table header link 'Name'
         Then I see '<file_name_2>' and '<file_name>' on the first two positions
+        When I click on table header link 'Name'
+        Then I see '<file_name>' and '<file_name_2>' on the first two positions
         When I click on table header link 'Größe'
-        # Then I see '<file_name_1>, <file_name_2>' on the first two positions
+        Then I see '<file_name_2>' and '<file_name>' on the first two positions
         When I click on table header link 'Erstellt'
-        # Then I see '<file_name_1>, <file_name_2>' on the first two positions
+        Then I see '<file_name>' and '<file_name_2>' on the first two positions
         When I click on table header link 'Erstellt'
-        # Then I see '<file_name_2>, <file_name_1>' on the first two positions
+        Then I see '<file_name_2>' and '<file_name>' on the first two positions
         When I click on table header link 'Name'
-        # Then I see '<file_name_2>, <file_name_1>' on the first two positions
+        Then I see '<file_name_2>' and '<file_name>' on the first two positions
         When I click on table header link 'Name'
-        # Then I see '<file_name_1>, <file_name_2>' on the first two positions
+        Then I see '<file_name>' and '<file_name_2>' on the first two positions
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
