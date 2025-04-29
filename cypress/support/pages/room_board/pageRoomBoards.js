@@ -677,6 +677,19 @@ class RoomBoards {
 				cy.wrap(rows[1]).should("contain", secondElement);
 			});
 	}
+
+	checkCheckboxOfFile(fileName) {
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find('div div input')
+			.as("checkbox")
+			.invoke("is", ":checked")
+			.then((checked) => {
+				if (checked) {
+				} else {
+					cy.get("@checkbox").check();
+				}
+			});
+	}
 }
 
 export default RoomBoards;

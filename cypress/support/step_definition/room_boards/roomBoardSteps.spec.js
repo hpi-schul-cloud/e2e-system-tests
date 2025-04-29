@@ -430,5 +430,9 @@ Then("I see files {string} in file list", (uploadedFiles) => {
 	roomBoards.seeMultipleFilesInFolderList(uploadedFiles);
 });
 
+When("I check the checkbox of file {string}", (fileName) => {
+	roomBoards.checkCheckboxOfFile(fileName);
+});
+
 
 

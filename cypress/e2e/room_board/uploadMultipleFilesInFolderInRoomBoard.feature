@@ -27,8 +27,8 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         When I upload multiple files '<file_name>, <file_name_2>' to file folder
         Then I see files '<file_name>, <file_name_2>' in file list
 
-        # # editor checks file / multiple files
-        # When I check the checkbox of files '<file_name_2>'
+        # editor checks file / multiple files
+         When I check the checkbox of file '<file_name_2>'
         # Then I see number of checked files is 1
         # Then I see fab button Action at the top of the list
         # When I uncheck the checkbox of files '<file_name_2>'
@@ -59,7 +59,7 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         # When I see the checkbox of file '<file_name_3>' is not checked
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        #Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:
