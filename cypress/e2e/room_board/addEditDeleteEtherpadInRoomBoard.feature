@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Room Board - Add, edit and delete element Text in the room board
+Feature: Room Board - Add, edit and delete element Etherpad in the room board
 
-    As a teacher, I want to add, edit, and delete an element Text on the room board, so that I can manage and update important notes efficiently.
+    As a teacher, I want to add, edit, and delete an element Etherpad on the room board, so that I can manage and update important notes efficiently.
 
-    Scenario: Add, edit and delete element Text in the room the room board, including pre & post conditions
+    Scenario Outline: Add, edit and delete element Etherpad in the room the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -14,40 +14,33 @@ Feature: Room Board - Add, edit and delete element Text in the room board
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
 
-        # teacher adds element Text in the multi-column room board
+        # teacher adds element Etherpad in the multi-column room board
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         Then I see the dialog Add Element in the card
-        When I click on the button Close in the dialog Add Element
-        Then I do not see the dialog Add Element in the card
-        Then I enter the text '<example_text>' in the element Text with the visible inline CKEditor toolbar
+        When I select 'collaborative-text-editor' from the element selection dialog box
         When I click outside of the card to save it
-        Then I see the element Text '<example_text>' in the card
+        Then I see the element Etherpad on the card
+        Then I verify the element Etherpad is clickable
 
-        # student can see the element Text in the multi-column board
+        # student can see the element Etherpad in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
-        # teacher edits the element Text in the multi-column board
+        # teacher deletes the element Etherpad in the multi-column board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        Then I re enter the text '<edit_example_text>' in the element Text
-        When I click outside of the card to save it
-        Then I see the element Text '<edit_example_text>' in the card
+        When I click on the three-dot in the element Etherpad
+        When I click on the option Delete in the three-dot menu
+        Then I see the dialog Confirm deletion
+        When I click on the button Delete in the confirmation dialog
+        Then I do not see the element Etherpad
 
-        # teacher deletes the element Text in the multi-column board
-        When I click on the three dot on the card
-        When I click on the option Edit in the three dot menu on the card
-        When I remove the text '<edit_example_text>' in the element Text
-        When I click outside of the card to save it
-        Then I do not see the element Text in the card
-
-        # student can not see the element Text in the multi-column board
+        # student can not see the element Etherpad in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
-        Given I navigate to the room detail page via Breadcrumb from the board page
         Given the room named '<room_name>' is deleted
 
         @school_api_test
