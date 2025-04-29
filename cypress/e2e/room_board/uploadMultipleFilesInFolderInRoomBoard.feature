@@ -24,14 +24,14 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         Then I see page Folder content for '<folder_name>'
 
         # editor uploads files
-        When I upload multiple files '<file_name>, <file_name_2>' to file folder
-        Then I see files '<file_name>, <file_name_2>' in file list
+        When I upload multiple files '<file_name>, <file_name_2>, <file_name_3>' to file folder
+        Then I see files '<file_name>, <file_name_2>, <file_name_3>' in file list
 
         # editor checks file / multiple files
          When I check the checkbox of file '<file_name_2>'
         # Then I see number of checked files is 1
         # Then I see fab button Action at the top of the list
-        # When I uncheck the checkbox of files '<file_name_2>'
+        When I uncheck the checkbox of file '<file_name_2>'
         # Then I do not see fab button Action at the top of the list
         # When I check the checkbox of file '<file_name>'
         # When I check the checkbox of file '<file_name_2>'
@@ -42,16 +42,16 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         # Then I see fab button Action at the top of the list
 
         # # editor checks / unchecks all files
-        # When I check the checkbox in the header for all files
-        # Then I see all files are checked
-        # When I uncheck the checkbox in the header for all files
-        # Then I see all files are unchecked
+        When I check the checkbox in the table header for all elements
+        Then I see checkboxes of files '<file_name>, <file_name_2>, <file_name_3>' are checked
+        When I uncheck the checkbox in the table header for all elements
+        Then I see checkboxes of files '<file_name>, <file_name_2>, <file_name_3>' are unchecked
 
         # # editor search for files and uses check all checkbox
         # When I enter '<search_request_2>' to the searchfield
         # Then I see files '<file_name_2>' in file list
         # Then I do not see files '<file_name>, <file_name_1>' in file list
-        # When I check the checkbox in the header for all files
+        # When I check the checkbox in the table header for all elements
         # When I enter '' to the searchfield
         # Then I see number of checked files is 1
         # When I see the checkbox of file '<file_name_2>' is checked

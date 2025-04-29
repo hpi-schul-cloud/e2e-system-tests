@@ -434,5 +434,19 @@ When("I check the checkbox of file {string}", (fileName) => {
 	roomBoards.checkCheckboxOfFile(fileName);
 });
 
+When("I uncheck the checkbox of file {string}", (fileName) => {
+	roomBoards.uncheckCheckboxOfFile(fileName);
+});
+
+Then("I see checkboxes of files {string} are checked", (files) => {
+	roomBoards.seeFileCheckboxesAreChecked(files);
+});
+
+Then("I see checkboxes of files {string} are unchecked", (files) => {
+	roomBoards.seeFileCheckboxesAreUnchecked(files);
+});
+
+
+
 
 

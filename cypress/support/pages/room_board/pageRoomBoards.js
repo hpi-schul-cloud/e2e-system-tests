@@ -681,14 +681,37 @@ class RoomBoards {
 	checkCheckboxOfFile(fileName) {
 		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
 			.find('div div input')
-			.as("checkbox")
-			.invoke("is", ":checked")
-			.then((checked) => {
-				if (checked) {
-				} else {
-					cy.get("@checkbox").check();
-				}
-			});
+			.check();
+	}
+
+	uncheckCheckboxOfFile(fileName) {
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find('div div input')
+			.uncheck();
+	}
+
+	seeFileCheckboxesAreChecked(files) {
+		const fileNames = files
+		.replace(/[\[\]"]/g, "")
+		.split(", ")
+		.map((opt) => opt.trim());
+		fileNames.forEach((fileName) => {
+			cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find('div div input')
+			.should('be.checked');
+		});
+	}
+
+	seeFileCheckboxesAreUnchecked(files) {
+		const fileNames = files
+		.replace(/[\[\]"]/g, "")
+		.split(", ")
+		.map((opt) => opt.trim());
+		fileNames.forEach((fileName) => {
+			cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find('div div input')
+			.should('not.be.checked');
+		});
 	}
 }
 
