@@ -23,6 +23,6 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:only:ci
+      tag: cy:headless:stable:regression_test:school_api_test:ci
       environment: dev
       groups: automatic
