@@ -1,8 +1,8 @@
 @regression_test
 @stable_test
-Feature: Room - Change room permission (Viewer - Editor)
+Feature: Room - Change room permission (Viewer - Owner)
 
-    As a teacher, I want to change a participant’s room permission from viewer to editor, so that other users can access the room and leave it as needed
+    As a teacher, I want to change a participant’s room permission from viewer to owner, so that other users can access the room and leave it as needed
 
     Scenario Outline: Teacher change room permission of other participants, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
@@ -30,9 +30,10 @@ Feature: Room - Change room permission (Viewer - Editor)
         Then I see button Change role permission is visible
         When I click on button 'Change-Permission' in the sub-menu
         Then I see dialog box Change Role Permission is visible
-        When I change second user role to 'editor'
-        Then I see Role changed to 'editor' for second user
+        When I change second user role to 'owner'
+        Then I see Role changed to 'owner' for second user
         Then I click on button 'Confirm' in the 'Role' action menu
+        Then I click on button 'Confirm' in the 'Owner' action menu
 
         # second user logs in, accesses the room, verifies that restricted functionalities are not visible to them, and then leaves the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
@@ -42,41 +43,46 @@ Feature: Room - Change room permission (Viewer - Editor)
         Then I see the detail page of room '<room_name>'
         Then I see button Fab Create Room Board
         When I click on three dot menu in room page
-        Then I don't see 'edit, delete' options in the menu
+        When I select the three dot menu action 'edit'
+        When I enter the room name '<room_name_edited>'
+        When I click on the button Save room
+        Then I see the detail page of room '<room_name_edited>'
+        When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
-        Then I see the page Edit participants of room '<room_name>'
-        Then I don't see button Fab Add Member
-        Then I don't see info text
-        Then I don't see first checkbox column in the table
-        Then I don't see last actions column in the table
+        Then I see the page Edit participants of room '<room_name_edited>'
+        Then I see button Fab Add Member
+        Then I see the banner explaining member addition, including other schools
+        Then I see first checkbox column in the table
+        Then I see last actions column in the table
         When I go to room overview
-        Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        Then I see '<room_name_edited>' on room overview page
+        When I go to room '<room_name_edited>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
         Then I see dialog box to leave the room
-        Then I click on button 'Confirm' to leave the room
+        Then I see the banner explaining member addition, including other schools for admin before leaving the room
 
-        # first teacher logged in and assert second user is not in the table
+        # first teacher logged in and assert second user is in the table
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to room overview
-        Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
-        Then I see the detail page of room '<room_name>'
+        Then I see '<room_name_edited>' on room overview page
+        When I go to room '<room_name_edited>'
+        Then I see the detail page of room '<room_name_edited>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
-        Then I see the page Edit participants of room '<room_name>'
-        Then I see teacher '<participant_name>' not visible in the table
+        Then I see the page Edit participants of room '<room_name_edited>'
+        Then I see teacher '<participant_name>' is visible in the table
 
-        # post-condition: first teacher deletes the room
-        Given the room named '<room_name>' is deleted
+        # post-condition: second teacher deletes the room
+        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        Given the room named '<room_name_edited>' is deleted
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | school_name             | role_name | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | cypress-automated-tests | Lehrkraft | teacher_2        |
+            | teacher_1    | teacher_2    | namespace | room_name         | room_name_edited         | school_name             | role_name | participant_name |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Cypress Edited Room Name | cypress-automated-tests | Lehrkraft | teacher_2        |
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lehrkraft | Hande            |
+            | teacher_1    | teacher_2    | namespace | room_name         | room_name_edited         | school_name                 | role_name | participant_name |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Cypress Edited Room Name | Felix Mendelssohn-Gymnasium | Lehrkraft | Hande            |

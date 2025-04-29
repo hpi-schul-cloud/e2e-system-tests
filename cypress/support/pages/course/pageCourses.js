@@ -312,6 +312,7 @@ class Courses {
 						return new Cypress.Promise((resolve, reject) => {
 							try {
 								setTimeout(() => {
+									cy.wait("@userPermissions_api");
 									cy.get(Courses.#learningContentTab).should(
 										"have.attr",
 										"aria-selected",
