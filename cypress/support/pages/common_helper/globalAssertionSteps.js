@@ -16,6 +16,10 @@ class GlobalAssertionSteps {
 			cy.get(GlobalAssertionSteps.#firstElementOfBreadcrumb).parent().contains('li', content);
 		});
 	}
+
+	checkSidebar(activePage) {
+		cy.get(`[data-testid="sidebar-${activePage}"]`).should('have.class', 'v-list-item--active');
+	}
 }
 
 export default GlobalAssertionSteps;

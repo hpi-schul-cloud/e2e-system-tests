@@ -7,4 +7,8 @@ Then("I see breadcrumb with {string}", (contentString) => {
 	globalAssertionSteps.seeBreadcrumbContainsStrings(contentString);
 });
 
+Then("I see sidebar item {string} is highlighted", (itemName) => {
+	globalAssertionSteps.checkSidebar(itemName);
+});
+
 
