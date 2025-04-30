@@ -1,7 +1,9 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import GlobalActions from "../../pages/common_helper/globalActions";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
+const globalActions = new GlobalActions();
 
 Then("I see the element Etherpad on the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
@@ -342,42 +344,119 @@ Then("I change the default room board title to {string}", (boardTitle) => {
 When("I click on the page outside of the title of the board", () => {
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 });
+
 Then("I see my room board is named {string}", (boardTitle) => {
 	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
+
 When("I click on delete in board menu", () => {
 	roomBoards.clickOnDeleteInBoardMenu();
 });
+
 Then("I see the button to cancel the dialog", () => {
 	roomBoards.seeBtnDialogCancel();
 });
+
 When("I click on the button to cancel the deletion", () => {
 	roomBoards.clickOnBtnDialogCancel();
 });
+
 Then("I see the board {string} on the room overview page", (boardTitle) => {
 	roomBoards.seeBoardOnRoomDetailPage(boardTitle);
 });
+
 Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
+
 When("I click on the button to confirm the deletion", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
+
 Then("I do not see the board {string} in the room", (boardTitle) => {
 	roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
 });
+
 Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
 });
+
 Then("I see page Folder content for {string}", (folderTitle) => {
 	roomBoards.seeFolderPageWithTitle(folderTitle);
 });
+
 Then("I see message Empty folder", () => {
 	roomBoards.seeMessageEmptyFolder();
 });
+
 Then("I see button Add file", () => {
 	roomBoards.seeBtnAddFile();
 });
+
+When("I click on button Add file", () => {
+	globalActions.clickElement('fab-add-files');
+});
+
+When("I upload a file {string} to file folder", (fileName) => {
+	roomBoards.uploadFileInFolder(fileName);
+});
+
+Then("I see file {string} with file size {string} in file list", (fileName, fileSize) => {
+	roomBoards.seeFileInFolderList(fileName, fileSize);
+});
+
+Then("I see today as creation date of file {string}", (fileName) => {
+	roomBoards.seeFileCreationDateToday(fileName);
+});
+
+Then("I see message Upload progress", () => {
+	roomBoards.seeFileProgressMessage();
+});
+
+Then("I see links to change order for {string}", (headerLabels) => {
+	roomBoards.seeHeaderLinksToChangeOrder(headerLabels);
+});
+
+When("I click on table header link {string}", (label) => {
+	roomBoards.clickOnTableHeaderLink(label);
+});
+
+Then("I see {string} and {string} on the first two positions", (firstElement, secondElement) => {
+	roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
+});
+
+When("I upload multiple files {string} to file folder", (uploadFiles) => {
+	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
+});
+
+Then("I see files {string} in file list", (uploadedFiles) => {
+	roomBoards.seeMultipleFilesInFolderList(uploadedFiles);
+});
+
+Then("I do not see files {string} in file list", (uploadedFiles) => {
+	roomBoards.doNotSeeMultipleFilesInFolderList(uploadedFiles);
+});
+
+When("I check the checkbox of file {string}", (fileName) => {
+	roomBoards.checkCheckboxOfFile(fileName);
+});
+
+When("I uncheck the checkbox of file {string}", (fileName) => {
+	roomBoards.uncheckCheckboxOfFile(fileName);
+});
+
+Then("I see checkboxes of files {string} are checked", (files) => {
+	roomBoards.seeFileCheckboxesAreChecked(files);
+});
+
+Then("I see checkboxes of files {string} are unchecked", (files) => {
+	roomBoards.seeFileCheckboxesAreUnchecked(files);
+});
+
+
+
+
+

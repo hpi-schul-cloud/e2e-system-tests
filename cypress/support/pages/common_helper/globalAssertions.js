@@ -1,6 +1,6 @@
 "use strict";
 
-class GlobalAssertionSteps {
+class GlobalAssertions {
 	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
 
 	seeBreadcrumbContainsStrings(contentString) {
@@ -13,9 +13,9 @@ class GlobalAssertionSteps {
 			.split(", ")
 			.map((opt) => opt.trim());
 			contents.forEach((content) => {
-			cy.get(GlobalAssertionSteps.#firstElementOfBreadcrumb).parent().contains('li', content);
+			cy.get(GlobalAssertions.#firstElementOfBreadcrumb).parent().contains('li', content);
 		});
 	}
 }
 
-export default GlobalAssertionSteps;
+export default GlobalAssertions;
