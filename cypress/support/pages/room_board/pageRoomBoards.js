@@ -34,7 +34,7 @@ class RoomBoards {
 		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
-	static #deleteButtonOnVideoConferenceElementDialog = '[data-testid="dialog-confirm"]';
+	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
@@ -79,8 +79,41 @@ class RoomBoards {
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
-	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
+	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
+	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
+	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
+	static #parentClassEtherpadThreeDot = ".three-dot-menu";
+  static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
+
+	verifyEtherpadIsVisibleOnCard() {
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
+		cy.get(RoomBoards.#titleEtherpad).should("exist");
+	}
+
+	verifyEtherpadIsClickableInBoard() {
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
+
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("clickStub");
+		});
+
+		cy.get(RoomBoards.#elementEtherpadInBoard).click();
+
+		cy.get("@clickStub").should("have.been.calledOnce");
+	}
+
+	clickOnThreeDotOnEtherpad() {
+		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
+			.find(RoomBoards.#threeDotOnEtherpad)
+			.click();
+	}
+
+	verifyEtherpadIsNotVisibleOnCard() {
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
+		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
+	}
+
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -376,7 +409,9 @@ class RoomBoards {
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#deleteButtonOnVideoConferenceElementDialog).click();
+		cy.get(RoomBoards.#deleteButtonOnDeletionDialog).click();
+		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
+		cy.reload();
 	}
 
 	verifyVideoConferenceElementNotVisible() {

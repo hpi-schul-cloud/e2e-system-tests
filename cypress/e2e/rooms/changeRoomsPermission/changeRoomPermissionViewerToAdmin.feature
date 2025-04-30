@@ -4,7 +4,7 @@ Feature: Room - Change room permission (Viewer - Admin)
 
     As a teacher, I want to change a participant’s room permission from viewer to admin, so that other users can access the room and leave it as needed
 
-    Scenario: Teacher change room permission of other participants, including pre-conditions
+    Scenario Outline: Teacher change room permission of other participants, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -27,12 +27,12 @@ Feature: Room - Change room permission (Viewer - Admin)
 
         # first teacher changes role for other user
         When I click on button Three Dot Menu to add participant '<participant_name>'
-        Then I see button Change Role Permission is visible
+        Then I see button Change role permission is visible
         When I click on button 'Change-Permission' in the sub-menu
         Then I see dialog box Change Role Permission is visible
         When I change second user role to 'admin'
         Then I see Role changed to 'admin' for second user
-        Then I click on button 'Confirm' in the action menu
+        Then I click on button 'Confirm' in the 'Role' action menu
 
         # second user logs in, accesses the room, verifies that restricted functionalities are not visible to them, and then leaves the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
@@ -51,7 +51,7 @@ Feature: Room - Change room permission (Viewer - Admin)
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name_edited>'
         Then I see button Fab Add Member
-        Then I see info text
+        Then I see the banner explaining member addition, including other schools
         Then I see first checkbox column in the table
         Then I see last actions column in the table
         When I go to room overview
