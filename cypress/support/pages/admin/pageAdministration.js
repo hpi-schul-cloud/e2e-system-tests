@@ -1197,7 +1197,7 @@ class Management {
 
 	schoolHasExternalTool(toolName) {
 		return cy.get(Management.#externalToolsTable).then(($table) => {
-			cy.wait(500);
+			cy.wait(1000);
 			if ($table.text().includes("Keine Daten vorhanden")) {
 				return false;
 			}
