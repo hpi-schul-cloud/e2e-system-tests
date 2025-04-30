@@ -102,6 +102,7 @@ Feature: Deactivation of ctl tools in media shelf
             | admin      | teacher      | student      | namespace | ctl_tool_1     | ctl_tool_2     |
             | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CY Test Tool 1 | CY Test Tool 2 |
 
+        @only
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | ctl_tool_1     | ctl_tool_2     |

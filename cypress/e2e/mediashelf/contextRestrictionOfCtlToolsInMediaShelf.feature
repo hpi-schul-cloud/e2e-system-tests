@@ -31,6 +31,7 @@ Feature: Media Shelf - Restrict CTL tools to context media-board
             | admin      | teacher      | namespace | ctl_tool_1     | ctl_tool_restriction_course     | ctl_tool_restriction_board_element     | ctl_tool_restriction_media_board     | ctl_tool_restriction_all      | context_course | context_board_element | context_media_board | context_all                       |
             | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool 1 | CY Test Tool Course Restriction | CY Test Tool Board-Element Restriction | CY Test Tool Media-Board Restriction | CY Test Tool All Restrictions | Kurs-Tools     | Bereiche              | Medienregal         | Kurs-Tools, Bereiche, Medienregal |
 
+        @only
         @school_api_test
         Examples:
             | admin      | teacher      | namespace | ctl_tool_1     | ctl_tool_restriction_course     | ctl_tool_restriction_board_element     | ctl_tool_restriction_media_board     | ctl_tool_restriction_all      | context_course | context_board_element | context_media_board | context_all                       |

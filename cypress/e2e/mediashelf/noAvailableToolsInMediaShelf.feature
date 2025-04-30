@@ -42,10 +42,11 @@ Feature: No available tools in media shelf
 
         @staging_test
         Examples:
-            | admin      | teacher      |  namespace | ctl_tool_1     |
-            | admin1_nbc | teacher1_nbc |  nbc       | CY Test Tool 1 |
+            | admin      | teacher      | namespace | ctl_tool_1     |
+            | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool 1 |
 
+        @only
         @school_api_test
         Examples:
-            | admin      | teacher      |  namespace | ctl_tool_1     |
-            | admin1_nbc | teacher1_nbc |  nbc       | CY Test Tool 1 |
+            | admin      | teacher      | namespace | ctl_tool_1     |
+            | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool 1 |
