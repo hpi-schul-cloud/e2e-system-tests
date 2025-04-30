@@ -1,7 +1,9 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import GlobalActions from "../../pages/common_helper/globalActions";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
+const globalActions = new GlobalActions();
 
 Then("I see the element Etherpad on the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
@@ -392,6 +394,10 @@ Then("I see message Empty folder", () => {
 
 Then("I see button Add file", () => {
 	roomBoards.seeBtnAddFile();
+});
+
+When("I click on button Add file", () => {
+	globalActions.clickElement('fab-add-files');
 });
 
 When("I upload a file {string} to file folder", (fileName) => {

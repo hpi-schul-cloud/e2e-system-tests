@@ -5,6 +5,7 @@ Feature: Room Board - Upload multiple files in folder in board
 As a content editor I want to upload multiple files to a folder in a room board
 
 Scenario Outline:  Content editor is able to upload multiple files to folder in a board
+
         # pre-condition: creating accounts and room with board
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' exists
@@ -24,11 +25,12 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         Then I see page Folder content for '<folder_name>'
 
         # editor uploads files
+        When I click on button Add file
         When I upload multiple files '<file_name>, <file_name_2>, <file_name_3>' to file folder
         Then I see files '<file_name>, <file_name_2>, <file_name_3>' in file list
 
         # editor checks file / multiple files
-         When I check the checkbox of file '<file_name_2>'
+        When I check the checkbox of file '<file_name_2>'
         # Then I see number of checked files is 1
         # Then I see fab button Action at the top of the list
         When I uncheck the checkbox of file '<file_name_2>'

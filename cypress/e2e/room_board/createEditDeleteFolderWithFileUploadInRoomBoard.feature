@@ -1,10 +1,11 @@
 @regression_test
 @stable_test
-Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder (in progress)
+Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 
-    As a content editor I want to create a file folder in a room board
+    As a content editor I want to create a file folder in a room board so that I can manage the files in the room.
 
     Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
+
         # pre-condition: creating accounts and room with board
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' exists
@@ -23,17 +24,18 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on the folder '<folder_name>' in the card
         Then I see page Folder content for '<folder_name>'
         Then I see message Empty folder
-        #Then I see page Folder content does not contain files - will be implemented when files can be displayed in folders
         Then I see breadcrumb with 'Räume, <room_name>, <board_title>'
         Then I see button Add file
 
         # editor uploads file
+        When I click on button Add file
         When I upload a file '<file_name>' to file folder
         Then I see message Upload progress
         Then I see file '<file_name>' with file size '<file_size>' in file list
         Then I see today as creation date of file '<file_name>'
 
         # editor uploads second file
+        When I click on button Add file
         When I upload a file '<file_name_2>' to file folder
         Then I see message Upload progress
         Then I see file '<file_name_2>' with file size '<file_size_2>' in file list

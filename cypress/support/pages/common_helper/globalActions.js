@@ -27,6 +27,10 @@ class GlobalActions {
 		.find('div div div input')
 		.type(searchString);
 	}
+
+	clickElement(elementId) {
+		cy.get(`[data-testid="${elementId}"]`).click();
+	}
 }
 
 export default GlobalActions;

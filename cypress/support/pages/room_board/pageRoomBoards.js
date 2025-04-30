@@ -230,7 +230,6 @@ class RoomBoards {
 	}
 
 	uploadFileInFolder(fileName) {
-		cy.get(RoomBoards.#addFileButton).click();
 		// Attach the file from the fixtures folder
 		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
 		// Intercept the file upload API call and wait for the API request to be successfully completed
@@ -240,7 +239,6 @@ class RoomBoards {
 	}
 
 	uploadMultipleFilesInFolder(uploadFiles) {
-		cy.get(RoomBoards.#addFileButton).click();
 		const files = uploadFiles
 			.replace(/[\[\]"]/g, "")
 			.split(", ")
