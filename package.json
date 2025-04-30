@@ -6,6 +6,7 @@
 	"scripts": {
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node reporter.js",
+		"cy:gui:stable:regression_test:school_api_test:dev": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=dev",
 		"cy:gui:stable:regression_test:school_api_test:local": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=local",
 		"cy:gui:stable:regression_test:staging:local": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @staging_test\",environmentName=staging",
 		"cy:gui:stable:pr:school_api_test:local": "cypress open --browser edge -e tags=\"@stable_test and @pr and @school_api_test\",environmentName=local",
@@ -22,7 +23,7 @@
 		"cy:headless:stable:pr:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@pr and @stable_test and @school_api_test\",environmentName=ci",
 		"cy:headless:stable:groupA:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-A and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-A",
 		"cy:headless:stable:groupB:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-B and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-B",
-		"cy:headless:only:ci": "xvfb-run cypress run --browser edge -e \"@only\",environmentName=ci, parallelGroup=only",
+		"cy:headless:only:ci": "xvfb-run cypress run --browser edge -e \"@only\",environmentName=ci,parallelGroup=only",
 		"cy:headless:unstable:ci": "xvfb-run cypress run --browser edge -e tags=@unstable_test,environmentName=ci",
 		"cy:gui:stable:clean_up_staging:local": "cypress open --browser edge -e tags=\"@clean_up_staging_test_data\",environmentName=staging"
 	},
