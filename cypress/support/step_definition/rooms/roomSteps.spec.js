@@ -1,8 +1,39 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Rooms from "../../pages/rooms/pageRooms";
-import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const rooms = new Rooms();
+
+//Then('I should be redirected to the duplicated room with name containing {string}', (suffix) => {
+//verifyDuplicatedRoomNameContains(suffix);
+//})
+
+//Then('the duplicated room with name suffix {string} should not be visible on the overview', (suffix) => {
+//verifyDuplicatedRoomIsDeleted(suffix);
+//});
+
+Then("I see the success message Alert", () => {
+	rooms.seeDuplicateRoomSuccessAlert();
+});
+
+Then("I see the Modal to confirm the duplication", () => {
+	rooms.seeDuplicationModal();
+});
+
+Then("I see the Title in the modal", () => {
+	rooms.seeDuplicationModalModalTitle();
+});
+
+When("I click on the button Cancel", () => {
+	rooms.clickCancelButtonOnDuplicationModal();
+});
+
+Then("I do not see the Modal to confirm the duplication", () => {
+	rooms.duplicationModalShouldNotBeVisible();
+});
+
+When("I click on the button Duplicate in the modal", () => {
+	rooms.clickDuplicateButtonInModal();
+});
 
 When("I select the colour for the room", () => {
 	rooms.selectRoomColour();

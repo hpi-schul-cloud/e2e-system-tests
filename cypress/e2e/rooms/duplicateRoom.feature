@@ -29,17 +29,27 @@ Feature: Room - To duplicate the existing room
         When I select the three dot menu action 'duplicate'
         When I click on the button Duplicate in the modal
         Then I see the success message Alert
-        #Then I see the draft version of the duplicated room
+        # Note: Remaining feature is not yet implemented
+        #Then I should be redirected to the duplicated room with name containing '(1)'
 
-        # teacher is able to delete the room
+
+        # teacher is able to delete the duplicated room
+        # Note: Remaining feature is not yet implemented
+        #When I click on three dot menu in room page
+        #When I select the three dot menu action 'delete'
+        #Then I see confirmation modal for deleting the room
+        #When I click on delete button in confirmation modal
+        #Then the duplicated room with name suffix "(1)" should not be visible on the room overview
+
+        # teacher is able to delete the first original room
         When I go to room overview
-        When I go to room '<room_name_new>'
-        Then I see the detail page of room '<room_name_new>'
+        When I go to room '<room_name>'
+        Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
-        Then I do not see '<room_name_new>' on room overview page
+        Then I do not see '<room_name>' on room overview page
 
         @school_api_test
         Examples:
