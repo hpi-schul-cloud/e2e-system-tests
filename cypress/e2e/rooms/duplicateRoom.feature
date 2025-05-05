@@ -4,10 +4,10 @@ Feature: Room - To duplicate the existing room
 
     As a teacher I want to duplicate an existing room, so that I can have a copy of it.
 
-    Scenario: Teacher duplicates and deletes the room, including pre-conditions where applicable
+    Scenario: Teacher duplicates and deletes the room, including pre & post conditions where applicable
         Given I am logged in as a '<teacher>' at '<namespace>'
 
-        # teacher creates a new room
+        # pre-condition: teacher creates a new room
         When I go to room overview
         When I click on FAB to create new room
         Then I see room creation page
@@ -41,7 +41,7 @@ Feature: Room - To duplicate the existing room
         #When I click on delete button in confirmation modal
         #Then the duplicated room with name suffix "(1)" should not be visible on the room overview
 
-        # teacher is able to delete the first original room
+        # post-condition: teacher is able to delete the first original room
         When I go to room overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
