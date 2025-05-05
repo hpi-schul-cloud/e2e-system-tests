@@ -31,7 +31,7 @@ Then("I do not see the Modal to confirm the duplication", () => {
 	rooms.duplicationModalShouldNotBeVisible();
 });
 
-When("I click on the button Duplicate in the modal", () => {
+When("I click on the button Duplicate in the modal to confirm", () => {
 	rooms.clickDuplicateButtonInModal();
 });
 
