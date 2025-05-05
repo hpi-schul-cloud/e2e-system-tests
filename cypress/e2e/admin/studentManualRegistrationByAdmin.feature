@@ -49,6 +49,7 @@ Feature: Admin - Admin creates, manually register and deletes students
         Then I re enter the new password
         When I click on the button Next to proceed
         Then I click on the button Get started now in section 4
+        When I arrive on the dashboard
         Then I see the dashboard
 
         # admin deletes a student
