@@ -82,7 +82,7 @@ class RoomBoards {
 	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
 	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
-  static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
+	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
 	static #uploadProgressMessage = '[data-testid="upload-progress"]';
 	static #dataTable = '[data-testid="data-table"]';
@@ -114,7 +114,6 @@ class RoomBoards {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
 		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
 	}
-
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -243,9 +242,9 @@ class RoomBoards {
 			.replace(/[\[\]"]/g, "")
 			.split(", ")
 			.map((opt) => opt.trim());
-			files.forEach((file) => {
-				// Attach the file from the fixtures folder
-				cy.get(RoomBoards.#inputAttachFile).attachFile(file);
+		files.forEach((file) => {
+			// Attach the file from the fixtures folder
+			cy.get(RoomBoards.#inputAttachFile).attachFile(file);
 		});
 		// Intercept the file upload API call and wait for the API request to be successfully completed
 		cy.wait("@fileUploadRequest_api").then((interception) => {
@@ -552,17 +551,13 @@ class RoomBoards {
 	}
 	enterRoomBoardTitle(boardTitle) {
 		cy.get(RoomBoards.#roomBoardTitleOnPage).within(() => {
-			this.clearAndType("input", boardTitle);
-			// Press Esc after typing, it works this way to save the title in a stable way.
-			cy.get("input").type("{esc}");
+			this.clearAndType("textarea", boardTitle);
 			cy.wait(1000);
 		});
 	}
 
 	seeUpdatedRoomBoardTitle(boardTitle) {
-		cy.get(RoomBoards.#roomBoardTitleOnPage)
-			.find("input")
-			.should("have.value", boardTitle);
+		cy.get(RoomBoards.#roomBoardTitleOnPage).should("include.text", boardTitle);
 	}
 	clickOutsideTheTitleToSaveTheModifiedTitle() {
 		cy.get(RoomBoards.#mainPageArea).click("bottom");
@@ -686,38 +681,34 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find('div div input')
-			.check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find('div div input')
-			.uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
 		const fileNames = files
-		.replace(/[\[\]"]/g, "")
-		.split(", ")
-		.map((opt) => opt.trim());
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
 		fileNames.forEach((fileName) => {
 			cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find('div div input')
-			.should('be.checked');
+				.find("div div input")
+				.should("be.checked");
 		});
 	}
 
 	seeFileCheckboxesAreUnchecked(files) {
 		const fileNames = files
-		.replace(/[\[\]"]/g, "")
-		.split(", ")
-		.map((opt) => opt.trim());
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
 		fileNames.forEach((fileName) => {
 			cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find('div div input')
-			.should('not.be.checked');
+				.find("div div input")
+				.should("not.be.checked");
 		});
 	}
 }
