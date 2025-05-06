@@ -30,8 +30,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -83,8 +82,10 @@ class RoomBoards {
 	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
 	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
-  static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
+	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
+	static #uploadProgressMessage = '[data-testid="upload-progress"]';
+	static #dataTable = '[data-testid="data-table"]';
 
 	verifyEtherpadIsVisibleOnCard() {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
@@ -113,7 +114,6 @@ class RoomBoards {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
 		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
 	}
-
 
 	setAndCheckCKEditorContent($editor, text) {
 		const editorInstance = $editor[0]?.ckeditorInstance;
@@ -222,6 +222,30 @@ class RoomBoards {
 	uploadFileInCard(fileName) {
 		// Attach the file from the fixtures folder
 		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
+		// Intercept the file upload API call and wait for the API request to be successfully completed
+		cy.wait("@fileUploadRequest_api").then((interception) => {
+			expect(interception.response.statusCode).to.eq(201);
+		});
+	}
+
+	uploadFileInFolder(fileName) {
+		// Attach the file from the fixtures folder
+		cy.get(RoomBoards.#inputAttachFile).attachFile(fileName);
+		// Intercept the file upload API call and wait for the API request to be successfully completed
+		cy.wait("@fileUploadRequest_api").then((interception) => {
+			expect(interception.response.statusCode).to.eq(201);
+		});
+	}
+
+	uploadMultipleFilesInFolder(uploadFiles) {
+		const files = uploadFiles
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		files.forEach((file) => {
+			// Attach the file from the fixtures folder
+			cy.get(RoomBoards.#inputAttachFile).attachFile(file);
+		});
 		// Intercept the file upload API call and wait for the API request to be successfully completed
 		cy.wait("@fileUploadRequest_api").then((interception) => {
 			expect(interception.response.statusCode).to.eq(201);
@@ -361,9 +385,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -529,17 +551,13 @@ class RoomBoards {
 	}
 	enterRoomBoardTitle(boardTitle) {
 		cy.get(RoomBoards.#roomBoardTitleOnPage).within(() => {
-			this.clearAndType("input", boardTitle);
-			// Press Esc after typing, it works this way to save the title in a stable way.
-			cy.get("input").type("{esc}");
+			this.clearAndType("textarea", boardTitle);
 			cy.wait(1000);
 		});
 	}
 
 	seeUpdatedRoomBoardTitle(boardTitle) {
-		cy.get(RoomBoards.#roomBoardTitleOnPage)
-			.find("input")
-			.should("have.value", boardTitle);
+		cy.get(RoomBoards.#roomBoardTitleOnPage).should("include.text", boardTitle);
 	}
 	clickOutsideTheTitleToSaveTheModifiedTitle() {
 		cy.get(RoomBoards.#mainPageArea).click("bottom");
@@ -573,30 +591,125 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("exist")
-			.should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
 	clickFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("contain", title)
-			.click();
+		cy.get(RoomBoards.#folderElementSelector).should("contain", title).click();
 	}
 
 	seeFolderPageWithTitle(title) {
-		cy.get(RoomBoards.#folderPageTitle)
-			.should("contain", title)
+		cy.get(RoomBoards.#folderPageTitle).should("contain", title);
 	}
 
 	seeMessageEmptyFolder() {
-		cy.get(RoomBoards.#folderPageMessageEmptyFolder)
-			.should("exist")
+		cy.get(RoomBoards.#folderPageMessageEmptyFolder).should("exist");
 	}
 
 	seeBtnAddFile() {
-		cy.get(RoomBoards.#addFileButton)
-			.should("exist")
+		cy.get(RoomBoards.#addFileButton).should("exist");
+	}
+
+	seeFileInFolderList(fileName, fileSize) {
+		//cy.get(`[data-testid="filename-${fileName}"]`).should("contain", fileSize); data-testid not yet implemented
+		cy.get(`[data-testid="size-${fileName}"]`).should("contain", fileSize);
+	}
+
+	seeMultipleFilesInFolderList(uploadedFiles) {
+		const files = uploadedFiles
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		files.forEach((file) => {
+			cy.get(`[data-testid="size-${file}"]`).should("exist");
+		});
+	}
+
+	doNotSeeMultipleFilesInFolderList(filesToCheck) {
+		const files = filesToCheck
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		files.forEach((file) => {
+			cy.get(`[data-testid="size-${file}"]`).should("not.exist");
+		});
+	}
+
+	seeFileCreationDateToday(fileName) {
+		const today = new Date();
+		let displayedDate = today.toLocaleString("de-DE", {
+			year: "2-digit",
+			day: "2-digit",
+			month: "2-digit",
+		});
+		cy.get(`[data-testid="created-at-${fileName}"]`).should("contain", displayedDate);
+	}
+
+	seeFileProgressMessage() {
+		cy.get(RoomBoards.#uploadProgressMessage).should("exist");
+	}
+
+	seeHeaderLinksToChangeOrder(headerOrderlabels) {
+		// this line done following things:
+		// - first remove brackets and quotes if passed
+		// - second split into an array based on ", "
+		// - and in the last trim spaces
+		const headerlabels = headerOrderlabels
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		headerlabels.forEach((label) => {
+			cy.get(RoomBoards.#dataTable).within((element) => {
+				cy.get(element).find("th").contains("span", label).should("contain", label);
+			});
+		});
+	}
+
+	clickOnTableHeaderLink(label) {
+		cy.get(RoomBoards.#dataTable).within((element) => {
+			cy.get(element).find("th").contains("span", label).should("contain", label).click();
+		});
+	}
+
+	checkOrderOfFirstTwoElements(firstElement, secondElement) {
+		cy.get(RoomBoards.#dataTable)
+			.find("tbody tr")
+			.then((rows) => {
+				cy.wrap(rows[0]).should("contain", firstElement);
+				cy.wrap(rows[1]).should("contain", secondElement);
+			});
+	}
+
+	checkCheckboxOfFile(fileName) {
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
+	}
+
+	uncheckCheckboxOfFile(fileName) {
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
+	}
+
+	seeFileCheckboxesAreChecked(files) {
+		const fileNames = files
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		fileNames.forEach((fileName) => {
+			cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+				.find("div div input")
+				.should("be.checked");
+		});
+	}
+
+	seeFileCheckboxesAreUnchecked(files) {
+		const fileNames = files
+			.replace(/[\[\]"]/g, "")
+			.split(", ")
+			.map((opt) => opt.trim());
+		fileNames.forEach((fileName) => {
+			cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+				.find("div div input")
+				.should("not.be.checked");
+		});
 	}
 }
 

@@ -1077,7 +1077,8 @@ class Courses {
 			.click()
 			.type("{selectall}{backspace}")
 			.type(groupName)
-			.type("{downArrow}{enter}");
+
+		cy.get(".v-overlay__content.v-autocomplete__content").contains(groupName).click();
 	}
 
 	clickCancelButton() {

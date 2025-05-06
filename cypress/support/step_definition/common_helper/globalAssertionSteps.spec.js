@@ -1,14 +1,14 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import GlobalAssertionSteps from "../../pages/common_helper/globalAssertionSteps";
+import GlobalAssertions from "../../pages/common_helper/globalAssertions";
 
-const globalAssertionSteps = new GlobalAssertionSteps();
+const globalAssertions = new GlobalAssertions();
 
 Then("I see breadcrumb with {string}", (contentString) => {
-	globalAssertionSteps.seeBreadcrumbContainsStrings(contentString);
+	globalAssertions.seeBreadcrumbContainsStrings(contentString);
 });
 
 Then("I see sidebar item {string} is highlighted", (itemName) => {
-	globalAssertionSteps.checkSidebar(itemName);
+	globalAssertions.checkSidebar(itemName);
 });
 
 
