@@ -140,6 +140,7 @@ class Courses {
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
 	static #messageNoTasksAvailable = '[data-testid="emptyTaskMessage"]';
 	static #iconCourse = '[data-testid="course-icon"]';
+	static #breadcrumb1 = '[data-testid="breadcrumb-1"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -1128,6 +1129,19 @@ class Courses {
 	clickShareCourseButton() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnShareCourse).click();
+	}
+
+	openColumnBoardWithName(boardName) {
+		cy.get('[data-testid^="board-title-"]')
+			.contains(boardName)
+			.parents('[data-testid^="room-board-card-"]')
+			.click()
+	}
+
+	seeBreadcrumbWithCourseName(courseName) {
+		cy.get(Courses.#breadcrumb1).within(() => {
+			cy.get("a").should("have.text", courseName);
+		});
 	}
 }
 export default Courses;
