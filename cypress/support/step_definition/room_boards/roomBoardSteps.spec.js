@@ -5,6 +5,30 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 const roomBoards = new RoomBoards();
 const globalActions = new GlobalActions();
 
+Then("I enter link URL {string}", (linkName) => {
+	roomBoards.enterLinkInLinkElement(linkName);
+});
+
+When("I hit the button Enter in the keyboard", () => {
+	roomBoards.pressEnterButtonToSaveLinkInCard();
+});
+
+When("I click on the three-dot in the element Link", () => {
+	roomBoards.clickOnThreeDotOnLinkElement();
+});
+
+Then("I do not see the element Link", () => {
+	roomBoards.verifyLinkElementIsNotVisible();
+});
+
+Then("I see the element Link on the card", () => {
+	roomBoards.seeLinkElementInRoomBoard();
+});
+
+Then("I verify the element Link is clickable", () => {
+	roomBoards.verifyLinkElmentClickableInRoomBoard();
+});
+
 Then("I see the element Etherpad on the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
@@ -397,7 +421,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElement('fab-add-files');
+	globalActions.clickElement("fab-add-files");
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
@@ -424,9 +448,12 @@ When("I click on table header link {string}", (label) => {
 	roomBoards.clickOnTableHeaderLink(label);
 });
 
-Then("I see {string} and {string} on the first two positions", (firstElement, secondElement) => {
-	roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
-});
+Then(
+	"I see {string} and {string} on the first two positions",
+	(firstElement, secondElement) => {
+		roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
+	}
+);
 
 When("I upload multiple files {string} to file folder", (uploadFiles) => {
 	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
@@ -455,8 +482,3 @@ Then("I see checkboxes of files {string} are checked", (files) => {
 Then("I see checkboxes of files {string} are unchecked", (files) => {
 	roomBoards.seeFileCheckboxesAreUnchecked(files);
 });
-
-
-
-
-

@@ -30,7 +30,8 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot =
+		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -86,6 +87,36 @@ class RoomBoards {
 	static #addFileButton = '[data-testid="fab-add-files"]';
 	static #uploadProgressMessage = '[data-testid="upload-progress"]';
 	static #dataTable = '[data-testid="data-table"]';
+	static #linkElementTtitleOnCard = '[data-testid="content-element-title-slot"]';
+	static #threeDotOnLinkElement = '[data-testid="board-menu-icon"]';
+	static #linkInputField = "[type='text']";
+	static #linkElementOnCard = '[data-testid="board-link-element"]';
+
+	enterLinkInLinkElement(linkName) {
+		cy.get(RoomBoards.#linkInputField).type(linkName);
+	}
+
+	pressEnterButtonToSaveLinkInCard() {
+		cy.focused().type("{enter}");
+	}
+
+	verifyLinkElmentClickableInRoomBoard() {
+		cy.get(RoomBoards.#linkElementOnCard).should("be.visible");
+	}
+
+	clickOnThreeDotOnLinkElement() {
+		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
+			.find(RoomBoards.#threeDotOnLinkElement)
+			.click();
+	}
+
+	verifyLinkElementIsNotVisible() {
+		cy.get(RoomBoards.#linkElementOnCard).should("not.exist");
+	}
+
+	seeLinkElementInRoomBoard() {
+		cy.get(RoomBoards.#linkElementTtitleOnCard).should("be.visible");
+	}
 
 	verifyEtherpadIsVisibleOnCard() {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
@@ -385,7 +416,9 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -463,7 +496,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#elementSelectionDialog).should("not.exist");
 	}
 
-	enterVideoConferenceTitle(videoConferenceTitle) {
+	VideoConferenceTitle(videoConferenceTitle) {
 		cy.get(RoomBoards.#videoConferenceTitleInput).clear().type(videoConferenceTitle);
 	}
 
@@ -591,7 +624,9 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("exist")
+			.should("contain", title);
 	}
 
 	clickFolderElementWithTitle(title) {
@@ -660,14 +695,21 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element).find("th").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("th")
+					.contains("span", label)
+					.should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element).find("th").contains("span", label).should("contain", label).click();
+			cy.get(element)
+				.find("th")
+				.contains("span", label)
+				.should("contain", label)
+				.click();
 		});
 	}
 
@@ -681,11 +723,15 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
