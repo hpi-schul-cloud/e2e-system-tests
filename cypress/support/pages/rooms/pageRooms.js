@@ -86,7 +86,7 @@ class Rooms {
 
 		//Format the date as DD.MM.YYYY
 		const formattedDate = `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
-		cy.get(Rooms.#inputEndDateForRoom).clear().type(formattedDate);
+		cy.get(Rooms.#inputEndDateForRoom).type("{esc}").type(formattedDate);
 	}
 
 	selectTodayStartDateForRoom() {
@@ -96,7 +96,7 @@ class Rooms {
 		const month = String(today.getMonth() + 1).padStart(2, "0");
 		const year = today.getFullYear();
 		const formattedDate = `${day}.${month}.${year}`;
-		cy.get(Rooms.#inputStartDateForRoom).clear().type(formattedDate);
+		cy.get(Rooms.#inputStartDateForRoom).type("{esc}").type(formattedDate);
 	}
 
 	selectRoomColour() {
