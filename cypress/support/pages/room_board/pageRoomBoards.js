@@ -87,7 +87,7 @@ class RoomBoards {
 	static #addFileButton = '[data-testid="fab-add-files"]';
 	static #uploadProgressMessage = '[data-testid="upload-progress"]';
 	static #dataTable = '[data-testid="data-table"]';
-	static #linkElementTtitleOnCard = '[data-testid="content-element-title-slot"]';
+	static #linkElementTitleOnCard = '[data-testid="content-element-title-slot"]';
 	static #threeDotOnLinkElement = '[data-testid="board-menu-icon"]';
 	static #linkInputField = "[type='text']";
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
@@ -115,7 +115,7 @@ class RoomBoards {
 	}
 
 	seeLinkElementInRoomBoard() {
-		cy.get(RoomBoards.#linkElementTtitleOnCard).should("be.visible");
+		cy.get(RoomBoards.#linkElementTitleOnCard).should("be.visible");
 	}
 
 	verifyEtherpadIsVisibleOnCard() {
@@ -496,7 +496,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#elementSelectionDialog).should("not.exist");
 	}
 
-	VideoConferenceTitle(videoConferenceTitle) {
+	enterVideoConferenceTitle(videoConferenceTitle) {
 		cy.get(RoomBoards.#videoConferenceTitleInput).clear().type(videoConferenceTitle);
 	}
 
