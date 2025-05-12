@@ -56,6 +56,14 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on table header link 'Name'
         Then I see '<file_name>' and '<file_name_2>' on the first two positions
 
+        # editor deletes first file using action menu in row
+        When I click on three dot menu in row of file '<file_name_1>'
+        # Then I see option 'kebab-menu-action-delete' in the menu
+        # When I select the three dot menu action 'kebab-menu-action-delete'
+        # Then I see confirmation modal for deleting the room
+        # When I click on delete button in confirmation modal
+        # Then I do not see '<file_name_2>' in the file list
+
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
