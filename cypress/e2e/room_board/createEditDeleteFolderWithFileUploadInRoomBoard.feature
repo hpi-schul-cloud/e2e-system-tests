@@ -25,6 +25,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Then I see page Folder content for '<folder_name>'
         Then I see message Empty folder
         Then I see breadcrumb with 'Räume, <room_name>, <board_title>'
+        Then I see sidebar item 'rooms' is highlighted
         Then I see button Add file
 
         # editor uploads file

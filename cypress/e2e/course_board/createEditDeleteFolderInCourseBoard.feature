@@ -25,6 +25,7 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
         Then I see message Empty folder
         #Then I see page Folder content does not contain files - will be implemented when files can be displayed in folders
         Then I see breadcrumb with 'Kurse, <course_name>, <board_title>'
+        Then I see sidebar item 'courses' is highlighted
         Then I see button Add file
 
         # post-condition: delete the course
