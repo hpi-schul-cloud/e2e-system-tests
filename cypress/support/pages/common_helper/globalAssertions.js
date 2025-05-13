@@ -16,6 +16,10 @@ class GlobalAssertions {
 			cy.get(GlobalAssertions.#firstElementOfBreadcrumb).parent().contains('li', content);
 		});
 	}
+
+	checkSidebar(activePage) {
+		cy.get(`[data-testid="sidebar-${activePage}"]`).should('have.class', 'v-list-item--active');
+	}
 }
 
 export default GlobalAssertions;
