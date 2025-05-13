@@ -28,9 +28,14 @@ class GlobalActions {
 		.type(searchString);
 	}
 
-	clickElement(elementId) {
+	clickElementWithDataTestId(elementId) {
 		cy.get(`[data-testid="${elementId}"]`).click();
 	}
+
+	seeElementWithDataTestIdExits(elementId) {
+		cy.get(`[data-testid="${elementId}"]`).should('exist');
+	}
+
 }
 
 export default GlobalActions;

@@ -57,12 +57,22 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Then I see '<file_name>' and '<file_name_2>' on the first two positions
 
         # editor deletes first file using action menu in row
-        When I click on three dot menu in row of file '<file_name_1>'
+        When I click on three dot menu in row of file '<file_name_2>'
         # Then I see option 'kebab-menu-action-delete' in the menu
-        # When I select the three dot menu action 'kebab-menu-action-delete'
-        # Then I see confirmation modal for deleting the room
-        # When I click on delete button in confirmation modal
-        # Then I do not see '<file_name_2>' in the file list
+        When I select the three dot menu action 'delete'
+        Then I see confirmation modal for deleting the file
+        When I click on delete button in confirmation modal
+        Then I do not see files '<file_name_2>' in file list
+
+        # editor deletes second file using header action menu, so no file is in the list anymore
+        When I check the checkbox of file '<file_name>'
+        Then I see fab button Action at the top of the list
+        When I click on button Action in the header of the list
+        When I select the three dot menu action 'delete'
+        Then I see confirmation modal for deleting the room
+        When I click on delete button in confirmation modal
+        Then I see page Folder content for '<folder_name>'
+        Then I see message Empty folder
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

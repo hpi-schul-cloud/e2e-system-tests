@@ -711,6 +711,10 @@ class RoomBoards {
 				.should("not.be.checked");
 		});
 	}
+
+	openThreeDotMenuForFileInFolder(fileName) {
+		cy.get(`[data-testid="kebab-menu-${fileName}"]`).click();
+	}
 }
 
 export default RoomBoards;

@@ -1,8 +1,10 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import GlobalActions from "../../pages/common_helper/globalActions";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
+import Rooms from "../../pages/rooms/pageRooms";
 
 const roomBoards = new RoomBoards();
+const rooms = new Rooms();
 const globalActions = new GlobalActions();
 
 Then("I see the element Etherpad on the card", () => {
@@ -397,7 +399,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElement('fab-add-files');
+	globalActions.clickElementWithDataTestId('fab-add-files');
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
@@ -455,6 +457,24 @@ Then("I see checkboxes of files {string} are checked", (files) => {
 Then("I see checkboxes of files {string} are unchecked", (files) => {
 	roomBoards.seeFileCheckboxesAreUnchecked(files);
 });
+
+When("I click on three dot menu in row of file {string}", (fileName) => {
+	roomBoards.openThreeDotMenuForFileInFolder(fileName);
+});
+
+Then("I see confirmation modal for deleting the file", () => {
+	rooms.seeConfirmationModalForRoomDeletion();
+});
+
+When("I click on button Action in the header of the list", () => {
+	globalActions.clickElementWithDataTestId('action-menu-button');
+});
+
+Then("I see fab button Action at the top of the list", () => {
+	globalActions.seeElementWithDataTestIdExits('action-menu-button');
+});
+
+
 
 
 
