@@ -9,8 +9,8 @@ Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);
 });
 
-When("I hit the button Enter in the keyboard", () => {
-	roomBoards.pressEnterButtonToSaveLinkInCard();
+When("I click on the button Save link", () => {
+	roomBoards.clickSaveButtonToSaveLinkInCard();
 });
 
 When("I click on the three-dot in the element Link", () => {
@@ -26,7 +26,7 @@ Then("I see the element Link on the card", () => {
 });
 
 Then("I verify the element Link is clickable", () => {
-	roomBoards.verifyLinkElmentClickableInRoomBoard();
+	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
 Then("I see the element Etherpad on the card", () => {
