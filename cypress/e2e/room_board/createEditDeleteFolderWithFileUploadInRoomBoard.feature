@@ -69,10 +69,17 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
         Then I see page Folder content for '<folder_name>'
         Then I see message Empty folder
+
+        # editor deletes folder on folder page
+        When I click on the three dot menu button next to the folder title
+        When I select the three dot menu action 'delete'
+        Then I see confirmation modal for deleting the file folder
+        When I click on delete button in confirmation modal
+        Then I see my room board is named '<board_title>'
+        Then I do not see a folder element on board
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

@@ -32,7 +32,7 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         # editor checks file / multiple files
         When I check the checkbox of file '<file_name_2>'
         # Then I see number of checked files is 1
-        # Then I see fab button Action at the top of the list
+        Then I see fab button Action at the top of the list
         When I uncheck the checkbox of file '<file_name_2>'
         # Then I do not see fab button Action at the top of the list
         # When I check the checkbox of file '<file_name>'
@@ -58,6 +58,19 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         # Then I see number of checked files is 1
         Then I see checkboxes of files '<file_name_2>' are checked
         Then I see checkboxes of files '<file_name>, <file_name_3>' are unchecked
+
+        # editor deletes multiple files using action button in header of list
+        When I check the checkbox in the table header for all elements
+        When I uncheck the checkbox of file '<file_name_2>'
+        Then I see fab button Action at the top of the list
+        When I click on button Action in the header of the list
+        When I select the three dot menu action 'delete'
+        Then I see confirmation modal for deleting the file folder
+        When I click on delete button in confirmation modal
+        Then I do not see files '<file_name>, <file_name_3>' in file list
+        Then I see files '<file_name_2>' in file list
+        Then I see checkboxes of files '<file_name_2>' are unchecked
+        #Then I see state of header checkbox is 'unchecked'
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

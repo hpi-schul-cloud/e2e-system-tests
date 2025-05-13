@@ -594,6 +594,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
+	doNotSeeFolderElementOnBoard() {
+		cy.get(RoomBoards.#folderElementSelector).should('not.exist');
+	}
+
 	clickFolderElementWithTitle(title) {
 		cy.get(RoomBoards.#folderElementSelector).should("contain", title).click();
 	}

@@ -466,6 +466,10 @@ Then("I see confirmation modal for deleting the file", () => {
 	rooms.seeConfirmationModalForRoomDeletion();
 });
 
+Then("I see confirmation modal for deleting the file folder", () => {
+	rooms.seeConfirmationModalForRoomDeletion();
+});
+
 When("I click on button Action in the header of the list", () => {
 	globalActions.clickElementWithDataTestId('action-menu-button');
 });
@@ -474,7 +478,13 @@ Then("I see fab button Action at the top of the list", () => {
 	globalActions.seeElementWithDataTestIdExits('action-menu-button');
 });
 
+When("I click on the three dot menu button next to the folder title", () => {
+	globalActions.clickElementWithDataTestId('folder-menu');
+});
 
+Then("I do not see a folder element on board", () => {
+	roomBoards.doNotSeeFolderElementOnBoard();
+});
 
 
 
