@@ -41,7 +41,7 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         # Then I see number of checked files is 3
         # When I uncheck the checkbox of files '<file_name_2>'
         # Then I see number of checked files is 2
-        # Then I see fab button Action at the top of the list
+        Then I see fab button Action at the top of the list
 
         # # editor checks / unchecks all files
         When I check the checkbox in the table header for all elements
