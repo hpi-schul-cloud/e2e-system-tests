@@ -6,7 +6,6 @@ class RoomBoards {
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #mainPageArea = '[id="main-content"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
-	static #boardMenuIcon = '[data-testid="board-menu-icon"]';
 	static #btnBoardMenuActionRename = '[data-testid="kebab-menu-action-rename"]';
 	static #dialogAddMultiColumnBoard = '[data-testid="dialog-add-multi-column-board"]';
 	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
@@ -29,8 +28,9 @@ class RoomBoards {
 	static #moderatorApprovalCheckbox =
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
-	static #globalCommonThreeDotButton = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
+	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
+	static #deleteOptionOnCardElementThreeDot =
+		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -55,7 +55,6 @@ class RoomBoards {
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
 	static #inputAttachFile = 'input[type="file"]';
-	static #uploadedFileTitleInCard = '[data-testid="content-element-title-slot"]';
 	static #downloadFileIconSelector =
 		'[data-testid="board-file-element-edit-menu-download"]';
 	static #fileElementSelector = '[data-testid="board-file-element"]';
@@ -79,17 +78,46 @@ class RoomBoards {
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
 	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
-	static #titleEtherpad = '[data-testid="content-element-title-slot"]';
 	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
 	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
 	static #uploadProgressMessage = '[data-testid="upload-progress"]';
 	static #dataTable = '[data-testid="data-table"]';
+	static #titleOnCardElement = '[data-testid="content-element-title-slot"]';
+	static #linkInputField = '[data-testid="input-link"]';
+	static #linkElementOnCard = '[data-testid="board-link-element"]';
+	static #linkSaveButton = '[data-testid="save-link-in-card"]';
+
+	enterLinkInLinkElement(linkName) {
+		cy.get(RoomBoards.#linkInputField).type(linkName);
+	}
+
+	clickSaveButtonToSaveLinkInCard() {
+		cy.get(RoomBoards.#linkSaveButton).click();
+	}
+
+	verifyLinkElementClickableInRoomBoard() {
+		cy.get(RoomBoards.#linkElementOnCard).should("be.visible");
+	}
+
+	clickOnThreeDotOnLinkElement() {
+		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
+			.find(RoomBoards.#globalCommonThreeDotInCardElement)
+			.click();
+	}
+
+	verifyLinkElementIsNotVisible() {
+		cy.get(RoomBoards.#linkElementOnCard).should("not.exist");
+	}
+
+	seeLinkElementInRoomBoard() {
+		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
 
 	verifyEtherpadIsVisibleOnCard() {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
-		cy.get(RoomBoards.#titleEtherpad).should("exist");
+		cy.get(RoomBoards.#titleOnCardElement).should("exist");
 	}
 
 	verifyEtherpadIsClickableInBoard() {
@@ -112,7 +140,7 @@ class RoomBoards {
 
 	verifyEtherpadIsNotVisibleOnCard() {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
-		cy.get(RoomBoards.#titleEtherpad).should("not.exist");
+		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
 	}
 
 	setAndCheckCKEditorContent($editor, text) {
@@ -204,7 +232,7 @@ class RoomBoards {
 	}
 
 	verifyDocxFileUploaded() {
-		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
+		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
 
 	shouldNotSeeFileElement() {
@@ -266,7 +294,7 @@ class RoomBoards {
 	}
 
 	verifyPdfUploaded() {
-		cy.get(RoomBoards.#uploadedFileTitleInCard).should("be.visible");
+		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
 
 	clickOnImageThumbnailInCard() {
@@ -385,7 +413,9 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -404,7 +434,7 @@ class RoomBoards {
 	clickOnThreeDotInCard() {
 		cy.get(RoomBoards.#threeDotButtonInCard)
 			// Three dot has same data-testid and needs to be located inside the parent element
-			.find(RoomBoards.#globalCommonThreeDotButton)
+			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
 		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
 	}
@@ -416,7 +446,7 @@ class RoomBoards {
 	clickThreeDotMenuInVideoConferenceElement() {
 		cy.get(RoomBoards.#videoConferenceElement)
 			// Three dot has same data-testid and needs to be located inside the parent element
-			.find(RoomBoards.#globalCommonThreeDotButton)
+			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
 	}
 
@@ -584,14 +614,16 @@ class RoomBoards {
 		cy.get(RoomBoards.#btnDialogConfirm).click();
 	}
 	clickOnThreeDotMenuInRoomBoardTitle() {
-		cy.get(RoomBoards.#boardMenuIcon).click();
+		cy.get(RoomBoards.#globalCommonThreeDotInCardElement).click();
 	}
 	clickOnEditInBoardMenu() {
 		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("exist")
+			.should("contain", title);
 	}
 
 	clickFolderElementWithTitle(title) {
@@ -660,14 +692,21 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element).find("th").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("th")
+					.contains("span", label)
+					.should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element).find("th").contains("span", label).should("contain", label).click();
+			cy.get(element)
+				.find("th")
+				.contains("span", label)
+				.should("contain", label)
+				.click();
 		});
 	}
 
@@ -681,11 +720,15 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
