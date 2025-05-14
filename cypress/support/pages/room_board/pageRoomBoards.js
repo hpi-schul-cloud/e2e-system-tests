@@ -88,6 +88,8 @@ class RoomBoards {
 	static #linkInputField = '[data-testid="input-link"]';
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
 	static #linkSaveButton = '[data-testid="save-link-in-card"]';
+	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
+
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -765,6 +767,10 @@ class RoomBoards {
 
 	openThreeDotMenuForFolderInCard() {
 		cy.get(RoomBoards.#folderElementSelector).find('button').click();
+	}
+
+	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
+		cy.get(RoomBoards.#multiActionMenuInHeader).should('contain', expectedNumber);
 	}
 }
 

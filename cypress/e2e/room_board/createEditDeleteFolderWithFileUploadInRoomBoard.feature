@@ -58,7 +58,6 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
 
         # editor deletes first file using action menu in row
         When I click on three dot menu in row of file '<file_name_2>'
-        # Then I see option 'kebab-menu-action-delete' in the menu
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the file
         When I click on delete button in confirmation modal

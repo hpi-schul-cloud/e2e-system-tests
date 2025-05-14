@@ -2,6 +2,7 @@
 
 class GlobalAssertions {
 	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
+	static #selectAllCheckboxInTableHeader = '[data-testid="select-all-checkbox"]';
 
 	seeBreadcrumbContainsStrings(contentString) {
 		// this line done following things:
@@ -27,6 +28,17 @@ class GlobalAssertions {
 
 	checkElementWithDataTestIdNotExists(elementId) {
 		cy.get(`[data-testid="${elementId}"]`).should('not.exist');
+	}
+
+	checkStateOfHeaderCheckbox(checkboxState) {
+		if (checkboxState == 'mixed') {
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('have.attr', 'aria-checked', 'mixed')
+		} else if (checkboxState == 'checked'){
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('have.attr', 'checked')
+		} else {
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('not.have.attr', 'checked')
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('not.have.attr', 'aria-checked')
+		}
 	}
 }
 

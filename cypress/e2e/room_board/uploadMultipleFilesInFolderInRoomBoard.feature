@@ -28,22 +28,22 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         When I click on button Add file
         When I upload multiple files '<file_name>, <file_name_2>, <file_name_3>' to file folder
         Then I see files '<file_name>, <file_name_2>, <file_name_3>' in file list
-        # Then I see state of header checkbox is 'unchecked'
+        Then I see state of table header checkbox is 'unchecked'
 
         # editor checks file / multiple files
         When I check the checkbox of file '<file_name_2>'
-        # Then I see number of checked files is 1
+        Then I see displayed number of checked files is '1'
         Then I see fab button Action at the top of the list
         When I uncheck the checkbox of file '<file_name_2>'
         Then I do not see fab button Action at the top of the list
         When I check the checkbox of file '<file_name>'
         When I check the checkbox of file '<file_name_2>'
         When I check the checkbox of file '<file_name_3>'
-        # Then I see number of checked files is 3
-        # Then I see state of header checkbox is 'checked'
+        Then I see displayed number of checked files is '3'
+        Then I see state of table header checkbox is 'checked'
         When I uncheck the checkbox of file '<file_name_2>'
-        # Then I see state of header checkbox is 'mixed'
-        # Then I see number of checked files is 2
+        Then I see state of table header checkbox is 'mixed'
+        Then I see displayed number of checked files is '2'
         Then I see fab button Action at the top of the list
 
         # # editor checks / unchecks all files
@@ -58,7 +58,7 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         Then I do not see files '<file_name>, <file_name_1>' in file list
         When I check the checkbox in the table header for all elements
         When I clear table search field
-        # Then I see number of checked files is 1
+        Then I see displayed number of checked files is '1'
         Then I see checkboxes of files '<file_name_2>' are checked
         Then I see checkboxes of files '<file_name>, <file_name_3>' are unchecked
 
@@ -72,7 +72,7 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         Then I do not see files '<file_name>, <file_name_3>' in file list
         Then I see files '<file_name_2>' in file list
         Then I see checkboxes of files '<file_name_2>' are unchecked
-        #Then I see state of header checkbox is 'unchecked'
+        Then I see state of table header checkbox is 'unchecked'
 
         # editor deletes folder on board page
         When I click on breadcrumb element '<board_title>'

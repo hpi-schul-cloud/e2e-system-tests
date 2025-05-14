@@ -523,6 +523,13 @@ Then("I see confirmation modal for deleting the file folder", () => {
 	rooms.seeConfirmationModalForRoomDeletion();
 });
 
+Then("I see displayed number of checked files is {string}", (numberOfCheckedFiles) => {
+	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
+});
+
+
+
+
 
 
 
