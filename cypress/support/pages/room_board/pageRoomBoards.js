@@ -762,6 +762,10 @@ class RoomBoards {
 	openThreeDotMenuForFileInFolder(fileName) {
 		cy.get(`[data-testid="kebab-menu-${fileName}"]`).click();
 	}
+
+	openThreeDotMenuForFolderInCard() {
+		cy.get(RoomBoards.#folderElementSelector).find('button').click();
+	}
 }
 
 export default RoomBoards;

@@ -3,6 +3,7 @@
 class GlobalActions {
 	static #headerCheckboxAllElements = '[data-testid="select-all-checkbox"]';
 	static #tableSearchInput = '[data-testid="table-search"]';
+	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
 
 	checkHeaderCheckboxForAllElements() {
 		cy.get(GlobalActions.#headerCheckboxAllElements)
@@ -32,8 +33,9 @@ class GlobalActions {
 		cy.get(`[data-testid="${elementId}"]`).click();
 	}
 
-	seeElementWithDataTestIdExits(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).should('exist');
+	clickBreadcrumbElement(breadcrumbElement) {
+		//cy.get(GlobalActions.#firstElementOfBreadcrumb).parent().find('li').should('contain', breadcrumbElement).click();
+		cy.get('li').contains(breadcrumbElement).click();
 	}
 
 }

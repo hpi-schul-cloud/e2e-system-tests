@@ -20,6 +20,14 @@ class GlobalAssertions {
 	checkSidebar(activePage) {
 		cy.get(`[data-testid="sidebar-${activePage}"]`).should('have.class', 'v-list-item--active');
 	}
+
+	checkElementWithDataTestIdExists(elementId) {
+		cy.get(`[data-testid="${elementId}"]`).should('exist');
+	}
+
+	checkElementWithDataTestIdNotExists(elementId) {
+		cy.get(`[data-testid="${elementId}"]`).should('not.exist');
+	}
 }
 
 export default GlobalAssertions;
