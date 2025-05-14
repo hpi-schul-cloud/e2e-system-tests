@@ -28,6 +28,7 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         When I click on button Add file
         When I upload multiple files '<file_name>, <file_name_2>, <file_name_3>' to file folder
         Then I see files '<file_name>, <file_name_2>, <file_name_3>' in file list
+        # Then I see state of header checkbox is 'unchecked'
 
         # editor checks file / multiple files
         When I check the checkbox of file '<file_name_2>'
@@ -39,7 +40,9 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         # When I check the checkbox of file '<file_name_2>'
         # When I check the checkbox of file '<file_name_3>'
         # Then I see number of checked files is 3
+        # Then I see state of header checkbox is 'checked'
         # When I uncheck the checkbox of files '<file_name_2>'
+        Then I see state of header checkbox is 'mixed'
         # Then I see number of checked files is 2
         Then I see fab button Action at the top of the list
 
@@ -71,6 +74,17 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         Then I see files '<file_name_2>' in file list
         Then I see checkboxes of files '<file_name_2>' are unchecked
         #Then I see state of header checkbox is 'unchecked'
+
+        # editor deletes folder on board page
+        # When I click on breadcrumb element '<board_title>'
+        # Then I see a folder with name '<folder_name>' in the card
+        # When I click on three dot menu in the card
+        # When I select the option Edit in three dot menu on the card
+        # When I click on the three dot menu of the folder
+        # When I select the option Delete in three dot menu of the folder
+        # Then I see a modal Confirm deletion
+        # When I click on button Confirm deletion
+        # Then I do not see a folder with name '<folder_name>' in the card
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
