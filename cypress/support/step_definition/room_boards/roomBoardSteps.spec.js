@@ -7,6 +7,30 @@ const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const globalActions = new GlobalActions();
 
+Then("I enter link URL {string}", (linkName) => {
+	roomBoards.enterLinkInLinkElement(linkName);
+});
+
+When("I click on the button Save link", () => {
+	roomBoards.clickSaveButtonToSaveLinkInCard();
+});
+
+When("I click on the three-dot in the element Link", () => {
+	roomBoards.clickOnThreeDotOnLinkElement();
+});
+
+Then("I do not see the element Link", () => {
+	roomBoards.verifyLinkElementIsNotVisible();
+});
+
+Then("I see the element Link on the card", () => {
+	roomBoards.seeLinkElementInRoomBoard();
+});
+
+Then("I verify the element Link is clickable", () => {
+	roomBoards.verifyLinkElementClickableInRoomBoard();
+});
+
 Then("I see the element Etherpad on the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
@@ -426,9 +450,12 @@ When("I click on table header link {string}", (label) => {
 	roomBoards.clickOnTableHeaderLink(label);
 });
 
-Then("I see {string} and {string} on the first two positions", (firstElement, secondElement) => {
-	roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
-});
+Then(
+	"I see {string} and {string} on the first two positions",
+	(firstElement, secondElement) => {
+		roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
+	}
+);
 
 When("I upload multiple files {string} to file folder", (uploadFiles) => {
 	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
@@ -456,6 +483,34 @@ Then("I see checkboxes of files {string} are checked", (files) => {
 
 Then("I see checkboxes of files {string} are unchecked", (files) => {
 	roomBoards.seeFileCheckboxesAreUnchecked(files);
+});
+
+When("I click on three dot menu in row of file {string}", (fileName) => {
+	roomBoards.openThreeDotMenuForFileInFolder(fileName);
+});
+
+Then("I see confirmation modal for deleting the file", () => {
+	rooms.seeConfirmationModalForRoomDeletion();
+});
+
+Then("I see confirmation modal for deleting the file folder", () => {
+	rooms.seeConfirmationModalForRoomDeletion();
+});
+
+When("I click on button Action in the header of the list", () => {
+	globalActions.clickElementWithDataTestId('action-menu-button');
+});
+
+Then("I see fab button Action at the top of the list", () => {
+	globalActions.seeElementWithDataTestIdExits('action-menu-button');
+});
+
+When("I click on the three dot menu button next to the folder title", () => {
+	globalActions.clickElementWithDataTestId('folder-menu');
+});
+
+Then("I do not see a folder element on board", () => {
+	roomBoards.doNotSeeFolderElementOnBoard();
 });
 
 When("I click on three dot menu in row of file {string}", (fileName) => {
