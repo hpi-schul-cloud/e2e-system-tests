@@ -512,7 +512,7 @@ When("I click on the three dot menu button next to the folder title", () => {
 });
 
 Then("I do not see a folder element on board", () => {
-	roomBoards.doNotSeeFolderElementOnBoard();
+	globalAssertions.checkElementWithDataTestIdNotExists('board-folder-element');
 });
 
 When("I click on the three dot menu of the folder in card", () => {

@@ -34,7 +34,6 @@ class GlobalActions {
 	}
 
 	clickBreadcrumbElement(breadcrumbElement) {
-		//cy.get(GlobalActions.#firstElementOfBreadcrumb).parent().find('li').should('contain', breadcrumbElement).click();
 		cy.get('li').contains(breadcrumbElement).click();
 	}
 

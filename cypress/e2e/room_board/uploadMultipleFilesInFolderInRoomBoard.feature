@@ -46,13 +46,13 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
         Then I see displayed number of checked files is '2'
         Then I see fab button Action at the top of the list
 
-        # # editor checks / unchecks all files
+        # editor checks / unchecks all files
         When I check the checkbox in the table header for all elements
         Then I see checkboxes of files '<file_name>, <file_name_2>, <file_name_3>' are checked
         When I uncheck the checkbox in the table header for all elements
         Then I see checkboxes of files '<file_name>, <file_name_2>, <file_name_3>' are unchecked
 
-        # # editor searches for files and uses check all checkbox
+        # editor searches for files and uses check all checkbox
         When I enter '<search_request_2>' to the table search field
         Then I see files '<file_name_2>' in file list
         Then I do not see files '<file_name>, <file_name_1>' in file list
