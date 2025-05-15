@@ -1,9 +1,13 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import GlobalActions from "../../pages/common_helper/globalActions";
+import GlobalAssertions from "../../pages/common_helper/globalAssertions";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
+import Rooms from "../../pages/rooms/pageRooms";
 
 const roomBoards = new RoomBoards();
+const rooms = new Rooms();
 const globalActions = new GlobalActions();
+const globalAssertions = new GlobalAssertions();
 
 Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);
@@ -421,7 +425,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElement("fab-add-files");
+	globalActions.clickElementWithDataTestId('fab-add-files');
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
@@ -482,3 +486,50 @@ Then("I see checkboxes of files {string} are checked", (files) => {
 Then("I see checkboxes of files {string} are unchecked", (files) => {
 	roomBoards.seeFileCheckboxesAreUnchecked(files);
 });
+
+When("I click on button Action in the header of the list", () => {
+	globalActions.clickElementWithDataTestId('action-menu-button');
+});
+
+When("I click on three dot menu in row of file {string}", (fileName) => {
+	roomBoards.openThreeDotMenuForFileInFolder(fileName);
+});
+
+Then("I see confirmation modal for deleting the file", () => {
+	rooms.seeConfirmationModalForRoomDeletion();
+});
+
+Then("I see fab button Action at the top of the list", () => {
+	globalAssertions.checkElementWithDataTestIdExists('action-menu-button');
+});
+
+Then("I do not see fab button Action at the top of the list", () => {
+	globalAssertions.checkElementWithDataTestIdNotExists('action-menu-button');
+});
+
+When("I click on the three dot menu button next to the folder title", () => {
+	globalActions.clickElementWithDataTestId('folder-menu');
+});
+
+Then("I do not see a folder element on board", () => {
+	globalAssertions.checkElementWithDataTestIdNotExists('board-folder-element');
+});
+
+When("I click on the three dot menu of the folder in card", () => {
+	roomBoards.openThreeDotMenuForFolderInCard();
+});
+
+Then("I see confirmation modal for deleting the file folder", () => {
+	rooms.seeConfirmationModalForRoomDeletion();
+});
+
+Then("I see displayed number of checked files is {string}", (numberOfCheckedFiles) => {
+	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
+});
+
+
+
+
+
+
+

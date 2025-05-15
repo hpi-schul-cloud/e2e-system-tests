@@ -2,6 +2,7 @@
 
 class GlobalAssertions {
 	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
+	static #selectAllCheckboxInTableHeader = '[data-testid="select-all-checkbox"]';
 
 	seeBreadcrumbContainsStrings(contentString) {
 		// this line done following things:
@@ -19,6 +20,25 @@ class GlobalAssertions {
 
 	checkSidebar(activePage) {
 		cy.get(`[data-testid="sidebar-${activePage}"]`).should('have.class', 'v-list-item--active');
+	}
+
+	checkElementWithDataTestIdExists(elementId) {
+		cy.get(`[data-testid="${elementId}"]`).should('exist');
+	}
+
+	checkElementWithDataTestIdNotExists(elementId) {
+		cy.get(`[data-testid="${elementId}"]`).should('not.exist');
+	}
+
+	checkStateOfHeaderCheckbox(checkboxState) {
+		if (checkboxState == 'mixed') {
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('have.attr', 'aria-checked', 'mixed')
+		} else if (checkboxState == 'checked'){
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('have.attr', 'checked')
+		} else {
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('not.have.attr', 'checked')
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('not.have.attr', 'aria-checked')
+		}
 	}
 }
 
