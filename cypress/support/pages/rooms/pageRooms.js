@@ -86,7 +86,26 @@ class Rooms {
 
 		//Format the date as DD.MM.YYYY
 		const formattedDate = `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
-		cy.get(Rooms.#inputEndDateForRoom).type("{esc}").type(formattedDate);
+
+		// here comes issue with date picker
+		// it gets shovels first digit of the date
+		// if we use this solution
+
+		// cy.get(Rooms.#inputEndDateForRoom)
+		// 	.type("{esc}")
+		// 	.type(formattedDate);
+
+		// so if you type 13.03.2025
+		// it will be typed as 30.32.025
+
+		cy.get(Rooms.#inputEndDateForRoom)
+			.find("input")
+			.should("exist")
+			.invoke("val", formattedDate)
+			.trigger("input")
+			.trigger("change")
+			.trigger("blur")
+			.should("have.value", formattedDate);
 	}
 
 	selectTodayStartDateForRoom() {
@@ -96,7 +115,26 @@ class Rooms {
 		const month = String(today.getMonth() + 1).padStart(2, "0");
 		const year = today.getFullYear();
 		const formattedDate = `${day}.${month}.${year}`;
-		cy.get(Rooms.#inputStartDateForRoom).type("{esc}").type(formattedDate);
+
+		// here comes issue with date picker
+		// it gets shovels first digit of the date
+		// if we use this solution
+
+		// cy.get(Rooms.#inputStartDateForRoom)
+		// 	.type("{esc}")
+		// 	.type(formattedDate);
+
+		// so if you type 13.03.2025
+		// it will be typed as 30.32.025
+
+		cy.get(Rooms.#inputStartDateForRoom)
+			.find("input")
+			.should("exist")
+			.invoke("val", formattedDate)
+			.trigger("input")
+			.trigger("change")
+			.trigger("blur")
+			.should("have.value", formattedDate);
 	}
 
 	selectRoomColour() {
@@ -150,9 +188,7 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -223,9 +259,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -290,9 +324,7 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
