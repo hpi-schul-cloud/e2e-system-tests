@@ -24,6 +24,7 @@ Feature: Room - Add and delete participants
         When I click on FAB to add participants
         Then I see modal Add participants
         Then I see school '<school_name>' in dropdown School
+        When I select '<role_name>' in dropdown Role
         Then I see role '<role_name>' in dropdown Role
         When I enter '<participant_name>' in dropdown Name
         When I select the first name from the dropdown
