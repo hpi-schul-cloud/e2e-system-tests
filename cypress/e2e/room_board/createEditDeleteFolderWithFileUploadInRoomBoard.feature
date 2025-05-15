@@ -88,7 +88,6 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
             | namespace | content_editor | room_name              | board_title             | folder_name        | file_name                | file_size | file_name_2                | file_size_2 |
             | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
 
-
 # @staging_test
 # Examples:
 #     | namespace | content_editor      | room_name               | board_title             | folder_name         |

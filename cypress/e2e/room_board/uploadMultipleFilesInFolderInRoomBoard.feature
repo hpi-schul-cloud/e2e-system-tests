@@ -2,9 +2,9 @@
 @stable_test
 Feature: Room Board - Upload multiple files in folder in board
 
-As a content editor I want to upload multiple files to a folder in a room board
+    As a content editor I want to upload multiple files to a folder in a room board
 
-Scenario Outline:  Content editor is able to upload multiple files to folder in a board
+    Scenario Outline:  Content editor is able to upload multiple files to folder in a board
 
         # pre-condition: creating accounts and room with board
         Given I am logged in as a '<content_editor>' at '<namespace>'
@@ -92,12 +92,10 @@ Scenario Outline:  Content editor is able to upload multiple files to folder in 
 
         @school_api_test
         Examples:
-            | namespace | content_editor | reader       | room_name              | board_title             | folder_name         | file_name                | file_name_2                | file_name_3     | search_request_2 |
-            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner  | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio     |
+            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | file_name                | file_name_2                | file_name_3     | search_request_2 |
+            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio     |
 
-
-
-        # @staging_test
-        # Examples:
-        #     | namespace | content_editor      | room_name               | board_title             | folder_name         |
-        #     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+# @staging_test
+# Examples:
+#     | namespace | content_editor      | room_name               | board_title             | folder_name         |
+#     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
