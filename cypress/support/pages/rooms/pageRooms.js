@@ -36,6 +36,7 @@ class Rooms {
 	static #cancelButtonDuplicateRoom = '[data-testid="duplication-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="duplication-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
+	static #roomRoleDropdownOverlay = ".v-list-item-title";
 
 	//verifyDuplicatedRoomNameContains(suffix) {
 	//cy.get(Rooms.#roomTitle)
@@ -150,9 +151,7 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -223,9 +222,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -290,9 +287,7 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
@@ -358,6 +353,15 @@ class Rooms {
 			.should("be.visible")
 			.should("contain.text", "Besitzen")
 			.and("contain.text", "übertragen");
+	}
+
+	selectRoomRoleFromDropdownMenu(participantRole) {
+		cy.get(Rooms.#addParticipantRole).type("downArrow");
+		cy.get(Rooms.#addParticipantRole).should("be.visible");
+		cy.get(Rooms.#roomRoleDropdownOverlay)
+			.contains(participantRole)
+			.should("be.visible")
+			.click();
 	}
 }
 export default Rooms;
