@@ -31,23 +31,19 @@ class Rooms {
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
 	static #roomLeaveDialogBox = '[data-testid="dialog-title"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
-	static #modalDuplicateRoom = '[data-testid="duplication-info-dialog"]';
-	static #modalTitleDuplicateRoom = '[data-testid="duplication-info-dialog-title"]';
-	static #cancelButtonDuplicateRoom = '[data-testid="duplication-info-dialog-cancel"]';
-	static #duplicateButton = '[data-testid="duplication-info-dialog-confirm"]';
+	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
+	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
+	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
+	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
 
-	//verifyDuplicatedRoomNameContains(suffix) {
-	//cy.get(Rooms.#roomTitle)
-	//.should("be.visible")
-	//.and("contain.text", suffix);
-	//}
+	verifyDuplicatedRoomNameContains(suffix) {
+		cy.get(Rooms.#roomTitle).should("be.visible").and("contain.text", suffix);
+	}
 
-	//verifyDuplicatedRoomIsDeleted(suffix) {
-	//cy.get(Rooms.#roomTitle).each(($el) => {
-	//expect($el.text()).not.to.include(suffix);
-	//});
-	//}
+	verifyDuplicatedRoomIsDeleted(suffix) {
+		cy.get(Rooms.#roomTitle).should("not.contain", suffix);
+	}
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
