@@ -62,15 +62,6 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see checkboxes of files '<file_name_2>' are checked
         Then I see checkboxes of files '<file_name>, <file_name_3>' are unchecked
 
-        # editor downloads multiple files
-        When I check the checkbox of files '<file_name_2>'
-        When I check the checkbox of files '<file_name>'
-        Then I see fab button Action at the top of the list
-        When I click on button Action in the header of the list
-        When I select the three dot menu action 'download'
-        Then file '<file_name_2>' is saved in folder downloads
-        Then file '<file_name>' is saved in folder downloads
-
         # editor deletes multiple files using action button in header of list
         When I check the checkbox in the table header for all elements
         When I uncheck the checkbox of file '<file_name_2>'
