@@ -33,6 +33,7 @@ class MediaShelf {
 	static #createLineButton = '[data-testid="create-line-button"]';
 	static #emptyStateSign = '[data-testid="empty-state"]';
 	static #emptyStateInfoText = '[data-testid="empty-state-title"]';
+	static #expansionPanelText = ".v-expansion-panel-text.no-inner-padding";
 
 	navigateToMediaShelf() {
 		cy.get(MediaShelf.#mediaShelfNavigationButton).click();
@@ -85,41 +86,25 @@ class MediaShelf {
 
 	isAvailableMediaLineCollapsed() {
 		cy.get(MediaShelf.#availableLine).within(() => {
-			cy.get(".v-expansion-panel-text.no-inner-padding").should(
-				"have.css",
-				"display",
-				"none"
-			);
+			cy.get(MediaShelf.#expansionPanelText).should("have.css", "display", "none");
 		});
 	}
 
 	isAvailableMediaLineNotCollapsed() {
 		cy.get(MediaShelf.#availableLine).within(() => {
-			cy.get(".v-expansion-panel-text.no-inner-padding").should(
-				"not.have.css",
-				"display",
-				"none"
-			);
+			cy.get(MediaShelf.#expansionPanelText).should("not.have.css", "display", "none");
 		});
 	}
 
 	isFirstMediaLineCollapsed() {
 		cy.get(MediaShelf.#mediaLine1).within(() => {
-			cy.get(".v-expansion-panel-text.no-inner-padding").should(
-				"have.css",
-				"display",
-				"none"
-			);
+			cy.get(MediaShelf.#expansionPanelText).should("have.css", "display", "none");
 		});
 	}
 
 	isFirstMediaLineNotCollapsed() {
 		cy.get(MediaShelf.#mediaLine1).within(() => {
-			cy.get(".v-expansion-panel-text.no-inner-padding").should(
-				"not.have.css",
-				"display",
-				"none"
-			);
+			cy.get(MediaShelf.#expansionPanelText).should("not.have.css", "display", "none");
 		});
 	}
 
