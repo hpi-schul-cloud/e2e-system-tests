@@ -56,6 +56,35 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on table header link 'Name'
         Then I see '<file_name>' and '<file_name_2>' on the first two positions
 
+        # editor downloads second file
+        When I click on three dot menu in row of file '<file_name>'
+        When I select the three dot menu action 'download'
+        Then file '<file_name>' is saved in folder downloads
+
+        # editor deletes first file using action menu in row
+        When I click on three dot menu in row of file '<file_name_2>'
+        When I select the three dot menu action 'delete'
+        Then I see confirmation modal for deleting the file
+        When I click on delete button in confirmation modal
+        Then I do not see files '<file_name_2>' in file list
+
+        # editor deletes second file using header action menu, so no file is in the list anymore
+        When I check the checkbox of file '<file_name>'
+        Then I see fab button Action at the top of the list
+        When I click on button Action in the header of the list
+        When I select the three dot menu action 'delete'
+        When I click on delete button in confirmation modal
+        Then I see page Folder content for '<folder_name>'
+        Then I see message Empty folder
+
+        # editor deletes folder on folder page
+        When I click on the three dot menu button next to the folder title
+        When I select the three dot menu action 'delete'
+        Then I see confirmation modal for deleting the file folder
+        When I click on delete button in confirmation modal
+        Then I see my room board is named '<board_title>'
+        Then I do not see a folder element on board
+
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
@@ -63,7 +92,6 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Examples:
             | namespace | content_editor | room_name              | board_title             | folder_name        | file_name                | file_size | file_name_2                | file_size_2 |
             | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
-
 
 # @staging_test
 # Examples:

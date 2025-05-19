@@ -18,5 +18,9 @@ When("I enter {string} to the table search field", (searchString) => {
 When("I clear table search field", () => {
 	globalActions.clearTableSearch();
 });
+When("I click on breadcrumb element {string}", (breadcrumbElement) => {
+	globalActions.clickBreadcrumbElement(breadcrumbElement);
+});
+
 
 
