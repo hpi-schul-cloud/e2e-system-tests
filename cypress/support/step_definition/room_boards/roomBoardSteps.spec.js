@@ -33,7 +33,7 @@ Then("I verify the element Link is clickable", () => {
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
-Then("I see the element Etherpad on the card", () => {
+Then("I see the element Etherpad in the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
 
@@ -425,7 +425,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElementWithDataTestId('fab-add-files');
+	globalActions.clickElementWithDataTestId("fab-add-files");
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
@@ -488,7 +488,7 @@ Then("I see checkboxes of files {string} are unchecked", (files) => {
 });
 
 When("I click on button Action in the header of the list", () => {
-	globalActions.clickElementWithDataTestId('action-menu-button');
+	globalActions.clickElementWithDataTestId("action-menu-button");
 });
 
 When("I click on three dot menu in row of file {string}", (fileName) => {
@@ -500,19 +500,19 @@ Then("I see confirmation modal for deleting the file", () => {
 });
 
 Then("I see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdExists('action-menu-button');
+	globalAssertions.checkElementWithDataTestIdExists("action-menu-button");
 });
 
 Then("I do not see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists('action-menu-button');
+	globalAssertions.checkElementWithDataTestIdNotExists("action-menu-button");
 });
 
 When("I click on the three dot menu button next to the folder title", () => {
-	globalActions.clickElementWithDataTestId('folder-menu');
+	globalActions.clickElementWithDataTestId("folder-menu");
 });
 
 Then("I do not see a folder element on board", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists('board-folder-element');
+	globalAssertions.checkElementWithDataTestIdNotExists("board-folder-element");
 });
 
 When("I click on the three dot menu of the folder in card", () => {
@@ -526,10 +526,3 @@ Then("I see confirmation modal for deleting the file folder", () => {
 Then("I see displayed number of checked files is {string}", (numberOfCheckedFiles) => {
 	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
 });
-
-
-
-
-
-
-

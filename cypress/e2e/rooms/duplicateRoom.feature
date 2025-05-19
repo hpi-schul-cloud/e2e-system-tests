@@ -37,6 +37,8 @@ Feature: Room - To duplicate the existing room
         Then I see copied multi-column board tile in the rooms details page
         When I click on the multi-column board in the room detail page
         Then I see the chip Draft
+        #Then I see the video conference element added in the card  //currently BBB is not copied after duplicating a room
+        Then I see the element Etherpad in the card
 
         # teacher is able to delete the duplicated room
         Given I navigate to the room detail page via Breadcrumb from the board page
