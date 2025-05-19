@@ -36,6 +36,7 @@ class Rooms {
 	static #cancelButtonDuplicateRoom = '[data-testid="duplication-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="duplication-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
+	static #roomRoleDropdownOverlay = ".v-list-item-title";
 
 	//verifyDuplicatedRoomNameContains(suffix) {
 	//cy.get(Rooms.#roomTitle)
@@ -374,6 +375,15 @@ class Rooms {
 			.should("be.visible")
 			.should("contain.text", "Besitzen")
 			.and("contain.text", "übertragen");
+	}
+
+	selectRoomRoleFromDropdownMenu(participantRole) {
+		cy.get(Rooms.#addParticipantRole).type("downArrow");
+		cy.get(Rooms.#addParticipantRole).should("be.visible");
+		cy.get(Rooms.#roomRoleDropdownOverlay)
+			.contains(participantRole)
+			.should("be.visible")
+			.click();
 	}
 }
 export default Rooms;
