@@ -527,6 +527,24 @@ Then("I see displayed number of checked files is {string}", (numberOfCheckedFile
 	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
 });
 
+Then("I see modal Rename file", () => {
+	roomBoards.seeModalRenameFile();
+});
+
+When("I enter {string} in input field New name", (newFileName) => {
+	roomBoards.enterNewFileNameInDialog(newFileName);
+});
+
+When("I click on button Approve in modal Rename file", () => {
+	globalActions.clickElementWithDataTestId('dialog-confirm');
+});
+
+
+
+
+
+
+
 
 
 

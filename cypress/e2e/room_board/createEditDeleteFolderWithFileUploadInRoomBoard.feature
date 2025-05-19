@@ -61,15 +61,28 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I select the three dot menu action 'download'
         Then file '<file_name>' is saved in folder downloads
 
-        # editor deletes first file using action menu in row
+        # editor renames first file
+        When I click on three dot menu in row of file '<file_name>'
+        When I select the three dot menu action 'rename'
+        Then I see modal Rename file
+        When I enter '<file_name_renamed_withoutsuffix>' in input field New name
+        When I click on button Approve in modal Rename file
+        Then I see file '<file_name_renamed>' with file size '<file_size>' in file list
+
+        # editor downloads renamed first file
+        When I click on three dot menu in row of file '<file_name_renamed>'
+        When I select the three dot menu action 'download'
+        Then file '<file_name_renamed>' is saved in folder downloads
+
+        # editor deletes second file using action menu in row
         When I click on three dot menu in row of file '<file_name_2>'
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the file
         When I click on delete button in confirmation modal
         Then I do not see files '<file_name_2>' in file list
 
-        # editor deletes second file using header action menu, so no file is in the list anymore
-        When I check the checkbox of file '<file_name>'
+        # editor deletes first file using header action menu, so no file is in the list anymore
+        When I check the checkbox of file '<file_name_renamed>'
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
@@ -90,8 +103,8 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name        | file_name                | file_size | file_name_2                | file_size_2 |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
+            | namespace | content_editor | room_name              | board_title             | folder_name        | file_name                | file_name_renamed        | file_name_renamed_withoutsuffix | file_size | file_name_2                | file_size_2 |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_video_renamed.mp4 | sample_video_renamed            | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
 
 # @staging_test
 # Examples:
