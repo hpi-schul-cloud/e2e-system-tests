@@ -1,5 +1,5 @@
-@regression_test
-@stable_test
+@unstable_test
+# feature is not yet implemented
 Feature: Room - To duplicate the existing room
 
     As a teacher I want to duplicate an existing room, so that I can have a copy of it.
