@@ -33,6 +33,19 @@ Given("etherpad is added in the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
 
+Given("link element is added in the card", () => {
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	roomBoards.seeElementSelectionDialog();
+	board.selectCardElementFromMenu("link");
+	roomBoards.enterLinkInLinkElement("https://main.dbc.dbildungscloud.dev");
+	roomBoards.clickSaveButtonToSaveLinkInCard();
+	roomBoards.seeLinkElementInRoomBoard();
+	roomBoards.clickOutsideToSaveCard();
+	roomBoards.verifyLinkElementClickableInRoomBoard();
+});
+
 Given("multi column board is published to not to be in a draft mode", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	board.clickOnKebabMenuAction("publish");

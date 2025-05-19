@@ -3,20 +3,6 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
-Then(
-	"I should be redirected to the duplicated room with name containing {string}",
-	(suffix) => {
-		rooms.verifyDuplicatedRoomNameContains(suffix);
-	}
-);
-
-Then(
-	"the duplicated room with name suffix {string} should not be visible on the overview",
-	(suffix) => {
-		rooms.verifyDuplicatedRoomIsDeleted(suffix);
-	}
-);
-
 Then("I see the success message Alert", () => {
 	rooms.seeDuplicateRoomSuccessAlert();
 });
