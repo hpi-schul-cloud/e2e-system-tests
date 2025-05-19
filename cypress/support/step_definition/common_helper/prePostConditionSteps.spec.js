@@ -11,6 +11,34 @@ const courses = new Courses();
 const board = new Board();
 const management = new Management();
 
+Given("video conference is added in the card", () => {
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	roomBoards.seeElementSelectionDialog();
+	board.selectCardElementFromMenu("video-conference");
+	roomBoards.enterVideoConferenceTitle("video_conference_title");
+	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
+	roomBoards.clickOutsideToSaveCard();
+	roomBoards.verifyVideoConferenceElementAddedInCard();
+});
+
+Given("etherpad is added in the card", () => {
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	roomBoards.seeElementSelectionDialog();
+	board.selectCardElementFromMenu("collaborative-text-editor");
+	roomBoards.clickOutsideToSaveCard();
+	roomBoards.verifyEtherpadIsVisibleOnCard();
+});
+
+Given("multi column board is published to not to be in a draft mode", () => {
+	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+	board.clickOnKebabMenuAction("publish");
+	roomBoards.verifyDraftChipNotVisible();
+});
+
 Given("admin enables video conference for the school in the school settings page", () => {
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();

@@ -1,16 +1,25 @@
-@unstable_test
-# feature is not yet implemented
+@stable_test
+@regression_test
 Feature: Room - To duplicate the existing room
 
     As a teacher I want to duplicate an existing room, so that I can have a copy of it.
 
     Scenario: Teacher duplicates and deletes the room, including pre & post conditions where applicable
         Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
 
         # pre-condition: teacher creates a new room with multi and single coulmn board in it
+        Given admin enables video conference for the school in the school settings page
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
+        Given multi column board is published to not to be in a draft mode
+        Given the multi-column board has a column with a card
+        Given video conference is added in the card
+        Given etherpad is added in the card
+        Given I navigate to the room detail page via Breadcrumb from the board page
         Given a single-column board named '<board_title>' exists in the room
+        Given I navigate to the room detail page via Breadcrumb from the board page
 
         # teacher is able duplicate room with multi and single coulmn board in it
         When I click on three dot menu in room page
@@ -24,10 +33,13 @@ Feature: Room - To duplicate the existing room
         When I click on the button Duplicate in the modal to confirm
         Then I see the success message Alert
         Then I see the detail page of room '<copied_room_name>'
-        Then I see copied multi-column board tile in the rooms details page
         Then I see copied single-column board tile in the room details page
+        Then I see copied multi-column board tile in the rooms details page
+        When I click on the multi-column board in the room detail page
+        Then I see the chip Draft
 
         # teacher is able to delete the duplicated room
+        Given I navigate to the room detail page via Breadcrumb from the board page
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the room
@@ -39,10 +51,10 @@ Feature: Room - To duplicate the existing room
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name         | copied_room_name      | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
+            | teacher      | admin      | namespace | room_name         | copied_room_name      | board_title    |
+            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
 
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | copied_room_name      | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
+            | teacher      | admin      | namespace | room_name         | copied_room_name      | board_title    |
+            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |

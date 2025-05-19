@@ -16,8 +16,8 @@ class RoomBoards {
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
 	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
-	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-2"]';
-	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-3"]';
+	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-0"]';
+	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
@@ -89,7 +89,6 @@ class RoomBoards {
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
 	static #linkSaveButton = '[data-testid="save-link-in-card"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
-
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -762,11 +761,11 @@ class RoomBoards {
 	}
 
 	openThreeDotMenuForFolderInCard() {
-		cy.get(RoomBoards.#folderElementSelector).find('button').click();
+		cy.get(RoomBoards.#folderElementSelector).find("button").click();
 	}
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
-		cy.get(RoomBoards.#multiActionMenuInHeader).should('contain', expectedNumber);
+		cy.get(RoomBoards.#multiActionMenuInHeader).should("contain", expectedNumber);
 	}
 }
 
