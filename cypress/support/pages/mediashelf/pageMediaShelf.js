@@ -34,7 +34,7 @@ class MediaShelf {
 	static #emptyStateSign = '[data-testid="empty-state"]';
 	static #emptyStateInfoText = '[data-testid="empty-state-title"]';
 	static #expansionPanelText = ".v-expansion-panel-text.no-inner-padding";
-	static #textAreaInputField = "textarea.v-field__input";
+	static #mediaLineTitle = '[data-testid="media-line-title"]';
 
 	navigateToMediaShelf() {
 		cy.get(MediaShelf.#mediaShelfNavigationButton).click();
@@ -58,9 +58,7 @@ class MediaShelf {
 	}
 
 	seeFirstMediaLineWithTitle(title) {
-		cy.get(MediaShelf.#mediaLineHeader1).within(() => {
-			cy.get(MediaShelf.#textAreaInputField).should("have.value", title);
-		});
+		cy.get(MediaShelf.#mediaLineTitle).should("contain", title);
 	}
 
 	seeMediaLineMenu() {
