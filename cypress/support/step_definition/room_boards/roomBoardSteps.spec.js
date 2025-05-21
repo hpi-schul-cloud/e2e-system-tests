@@ -496,7 +496,7 @@ When("I click on three dot menu in row of file {string}", (fileName) => {
 });
 
 Then("I see confirmation modal for deleting the file", () => {
-	rooms.seeConfirmationModalForRoomDeletion();
+	rooms.seeConfirmationModalForFileDeletion();
 });
 
 Then("I see fab button Action at the top of the list", () => {
@@ -535,9 +535,11 @@ When("I enter {string} in input field New name", (newFileName) => {
 	roomBoards.enterNewFileNameInDialog(newFileName);
 });
 
-When("I click on button Approve in modal Rename file", () => {
+When("I click on button Approve in modal", () => {
 	globalActions.clickElementWithDataTestId('dialog-confirm');
 });
+
+
 
 
 

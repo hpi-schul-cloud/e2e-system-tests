@@ -66,7 +66,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I select the three dot menu action 'rename'
         Then I see modal Rename file
         When I enter '<file_name_renamed_withoutsuffix>' in input field New name
-        When I click on button Approve in modal Rename file
+        When I click on button Approve in modal
         Then I see file '<file_name_renamed>' with file size '<file_size>' in file list
 
         # editor downloads renamed first file
@@ -78,7 +78,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on three dot menu in row of file '<file_name_2>'
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the file
-        When I click on delete button in confirmation modal
+        When I click on button Approve in modal
         Then I do not see files '<file_name_2>' in file list
 
         # editor deletes first file using header action menu, so no file is in the list anymore
@@ -86,7 +86,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on delete button in confirmation modal
+        When I click on button Approve in modal
         Then I see page Folder content for '<folder_name>'
         Then I see message Empty folder
 
