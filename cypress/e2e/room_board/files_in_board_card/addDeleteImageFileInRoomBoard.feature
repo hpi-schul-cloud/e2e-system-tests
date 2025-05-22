@@ -37,7 +37,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         When I click outside of the card to save it
         Then I see the file type Image in the card
         When I click on the thumbnail Image in the card
-        Then I see the fullscreen Image from the card
+        Then I see the image in a lightbox
 
         # student can see the image file in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.

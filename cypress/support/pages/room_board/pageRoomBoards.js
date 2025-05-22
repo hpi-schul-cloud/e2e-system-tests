@@ -208,7 +208,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#thumbnailImageOnCard).should("exist");
 	}
 
-	verifyCardImageInFullScreen() {
+	verifyImageInLightbox() {
 		cy.get(RoomBoards.#lightBoxParentElementImagePreview)
 			.find(RoomBoards.#fullScreenImageElement)
 			.should("be.visible")
@@ -762,19 +762,23 @@ class RoomBoards {
 	}
 
 	openThreeDotMenuForFolderInCard() {
-		cy.get(RoomBoards.#folderElementSelector).find('button').click();
+		cy.get(RoomBoards.#folderElementSelector).find("button").click();
 	}
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
-		cy.get(RoomBoards.#multiActionMenuInHeader).should('contain', expectedNumber);
+		cy.get(RoomBoards.#multiActionMenuInHeader).should("contain", expectedNumber);
 	}
 
-	seeModalRenameFile(){
-		cy.get(RoomBoards.#renameInputInDialog).should('be.visible');
+	seeModalRenameFile() {
+		cy.get(RoomBoards.#renameInputInDialog).should("be.visible");
 	}
 
-	enterNewFileNameInDialog(newFileName){
+	enterNewFileNameInDialog(newFileName) {
 		cy.get(RoomBoards.#renameInputInDialog).clear().type(newFileName);
+	}
+
+	clickOnFileNameInFolder(fileName) {
+		cy.get(`[data-testid="name-${fileName}"]`).click();
 	}
 }
 
