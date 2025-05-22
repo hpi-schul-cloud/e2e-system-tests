@@ -496,7 +496,7 @@ When("I click on three dot menu in row of file {string}", (fileName) => {
 });
 
 Then("I see confirmation modal for deleting the file", () => {
-	rooms.seeConfirmationModalForRoomDeletion();
+	rooms.seeConfirmationModalForFileDeletion();
 });
 
 Then("I see fab button Action at the top of the list", () => {
@@ -526,6 +526,26 @@ Then("I see confirmation modal for deleting the file folder", () => {
 Then("I see displayed number of checked files is {string}", (numberOfCheckedFiles) => {
 	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
 });
+
+Then("I see modal Rename file", () => {
+	roomBoards.seeModalRenameFile();
+});
+
+When("I enter {string} in input field New name", (newFileName) => {
+	roomBoards.enterNewFileNameInDialog(newFileName);
+});
+
+When("I click on button Approve in modal", () => {
+	globalActions.clickElementWithDataTestId('dialog-confirm');
+});
+
+
+
+
+
+
+
+
 
 
 
