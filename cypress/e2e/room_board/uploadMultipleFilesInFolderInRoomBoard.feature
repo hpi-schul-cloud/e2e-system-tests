@@ -32,7 +32,7 @@ Feature: Room Board - Upload multiple files in folder in board
 
         #editor opens image in lightbox
         When I click on the name of file '<image_file_name>' in file list
-        Then I see the fullscreen Image from the card
+        Then I see the image in a lightbox
         When I click on icon Download in the fullscreen image
         Then file '<image_file_name>' is saved in folder downloads
         When I click on the icon Close on the fullscreen image

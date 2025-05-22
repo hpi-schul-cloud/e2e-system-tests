@@ -208,7 +208,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#thumbnailImageOnCard).should("exist");
 	}
 
-	verifyCardImageInFullScreen() {
+	verifyImageInLightbox() {
 		cy.get(RoomBoards.#lightBoxParentElementImagePreview)
 			.find(RoomBoards.#fullScreenImageElement)
 			.should("be.visible")

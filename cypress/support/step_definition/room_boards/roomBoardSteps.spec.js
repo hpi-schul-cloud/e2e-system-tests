@@ -132,8 +132,8 @@ When("I click on the thumbnail Image in the card", () => {
 	roomBoards.clickOnImageThumbnailInCard();
 });
 
-Then("I see the fullscreen Image from the card", () => {
-	roomBoards.verifyCardImageInFullScreen();
+Then("I see the image in a lightbox", () => {
+	roomBoards.verifyImageInLightbox();
 });
 
 Then("I see the alert message", () => {
