@@ -1,8 +1,8 @@
-@group-A
+
 @regression_test
-@pr
 @stable_test
-@schedule_run
+@group-A
+@pr
 Feature: Dashboard - To check contents on the dashboard
 
     As a student and a teacher I want to see important information on the dashboard so that I can be updated start working

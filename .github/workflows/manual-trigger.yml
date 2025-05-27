@@ -67,6 +67,58 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-B
 
+  run-tests-groupC:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupC:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-C
+
+  run-tests-groupD:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupD:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-D
+
+  run-tests-groupE:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupE:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-E
+
+  run-tests-groupF:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupF:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-F
+
   notify_RC:
     runs-on: ubuntu-latest
     needs:

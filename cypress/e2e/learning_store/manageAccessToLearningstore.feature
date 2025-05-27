@@ -1,8 +1,8 @@
-@group-B
+
 @regression_test
-@pr
 @stable_test
-@schedule_run
+@group-B
+@pr
 Feature: Learning store - Activating and deactivating access for students
 
     As an admin I want to activate and deactivate students access to learning store
