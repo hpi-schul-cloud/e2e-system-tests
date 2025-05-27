@@ -71,6 +71,7 @@ class RoomBoards {
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
+	static #audioPlayer = '[data-testid="audio-thumbnail-in-card"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
@@ -222,6 +223,10 @@ class RoomBoards {
 
 		// Verify download button is also visible on the fullscreen image
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
+	}
+
+	verifyAudioPlayer() {
+		cy.get(RoomBoards.#audioPlayer).should("exist");
 	}
 
 	enterImageAltTextInCard(altText) {
