@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 @group-E
 @pr
 Feature: Files Overview - To use LibreOffice for text, calc and presentation document

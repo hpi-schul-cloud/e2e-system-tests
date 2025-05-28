@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 @group-E
 @pr
 Feature: Help Section - To use the help areas in dBildungscloud

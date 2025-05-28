@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 @group-C
 @pr
 Feature: Course - Teacher can add and remove BBB tool in the course with admin permission

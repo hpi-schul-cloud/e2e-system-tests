@@ -1,6 +1,7 @@
 
 @regression_test
 @stable_test
+@schedule_run
 @group-B
 @pr
 Feature: Learning store - Activating and deactivating access for students

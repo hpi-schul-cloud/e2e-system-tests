@@ -1,5 +1,6 @@
 @stable_test
 @regression_test
+@schedule_run
 @group-C
 @pr
 Feature:  News - To read a news on the respective dashboards
