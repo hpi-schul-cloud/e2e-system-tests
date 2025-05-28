@@ -136,6 +136,10 @@ Then("I see the image in a lightbox", () => {
 	roomBoards.verifyImageInLightbox();
 });
 
+Then("I see audio player", () => {
+	roomBoards.verifyAudioPlayer();
+});
+
 Then("I see the alert message", () => {
 	roomBoards.verifyShareImportBoardAlert();
 });
