@@ -28,7 +28,7 @@ In our Cypress and Cucumber setup, tags are used to categorize and selectively r
 - **@unstable_test:** These are tests that have been identified as unstable. They may fail intermittently due to issues in either the staging or development environments. This tag helps in identifying flaky tests that require attention.
   <br>
 
-- **@group:** Used to group test files for parallel execution in CI. This helps divide tests across multiple runners for faster test execution.
+- **@group-X:** Used to group test files for parallel execution in CI. This helps divide tests across multiple runners for faster test execution.
 Examples: @group-A, @group-B, @group-C ...etc.
 
   <br>

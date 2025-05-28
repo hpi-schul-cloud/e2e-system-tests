@@ -133,11 +133,11 @@ jobs:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+      service-account-token: ${{ secrets.service-account-token }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       tag: cy:headless:stable:groupC:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-C
@@ -146,11 +146,11 @@ jobs:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+      service-account-token: ${{ secrets.service-account-token }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       tag: cy:headless:stable:groupD:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-D
@@ -159,11 +159,11 @@ jobs:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+      service-account-token: ${{ secrets.service-account-token }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       tag: cy:headless:stable:groupE:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-E
@@ -172,11 +172,11 @@ jobs:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+      service-account-token: ${{ secrets.service-account-token }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       tag: cy:headless:stable:groupF:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-F
