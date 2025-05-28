@@ -1,6 +1,8 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-D
+@pr
 Feature: Course - Teacher can create, edit and delete a group in the course
 
     Scenario Outline: user creation, course creation, and creating,editing and deleting a group
