@@ -125,6 +125,10 @@ jobs:
       - e2e-system-tests
       - run-tests-groupA
       - run-tests-groupB
+      - run-tests-groupC
+      - run-tests-groupD
+      - run-tests-groupE
+      - run-tests-groupF
     if: |
       always()
 
