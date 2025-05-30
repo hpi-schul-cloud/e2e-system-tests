@@ -69,7 +69,7 @@ jobs:
     uses: ./.github/workflows/main.yml
     strategy:
       matrix:
-        group: [groupA, groupB]
+        group: [group-A, group-B]
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
