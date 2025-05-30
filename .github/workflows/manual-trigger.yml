@@ -2,6 +2,14 @@ name: e2e-manual-trigger-tests
 on:
   workflow_dispatch:
     inputs:
+      test_mode:
+        description: "Select test mode"
+        required: true
+        type: choice
+        options:
+          - all
+          - selective
+        default: "selective"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
@@ -14,14 +22,6 @@ on:
         description: "Please enter a valid DBC instance URL to run the tests on"
         default: "https://main.dbc.dbildungscloud.dev"
         required: true
-      test_mode:
-        description: "Select test mode"
-        required: true
-        type: choice
-        options:
-          - all
-          - selective
-        default: "selective"
 
 jobs:
   e2e-system-tests:
@@ -60,7 +60,7 @@ jobs:
       tag: cy:headless:stable:regression_test:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: all
-      tags: "tags=@stable_test and @regression_test and @school_api_test,environmentName=ci,parallelGroup=automatic"
+      tags: "tags=@stable_test and @regression_test and @school_api_test,environmentName=ci,parallelGroup=manual-run-all-tests"
 
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
