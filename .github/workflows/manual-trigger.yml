@@ -14,6 +14,14 @@ on:
         description: "Please enter a valid DBC instance URL to run the tests on"
         default: "https://main.dbc.dbildungscloud.dev"
         required: true
+      test_mode:
+        description: "Select test mode"
+        required: true
+        type: choice
+        options:
+          - all
+          - selective
+        default: "selective"
 
 jobs:
   e2e-system-tests:
@@ -41,7 +49,22 @@ jobs:
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
+  run-all-tests:
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'all' }}
+    uses: ./.github/workflows/main.yml
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:regression_test:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: all
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+
   run-tests-groupA:
+    if: ${{ inputs.test_mode == 'selective' }}
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -55,6 +78,7 @@ jobs:
       groups: group-A
 
   run-tests-groupB:
+    if: ${{ inputs.test_mode == 'selective' }}
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -71,6 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - e2e-system-tests
+      - run-all-tests
       - run-tests-groupA
       - run-tests-groupB
     if: |
