@@ -60,6 +60,7 @@ jobs:
       tag: cy:headless:stable:regression_test:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: all
+      tags: "@stable_test and @regression_test and @school_api_test,environmentName=ci,parallelGroup=manual-run-all-tests"
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
@@ -77,6 +78,7 @@ jobs:
       tag: cy:headless:stable:${{ matrix.group }}:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
+      tags: tags="${{ matrix.group }} and @stable_test and @school_api_test,environmentName=ci,parallelGroup=${{ matrix.group }}"
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 

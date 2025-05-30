@@ -23,6 +23,9 @@ on:
       groups:
         description: "identifier to store test results, reports, and artifacts separately, preventing overwrites in parallel runs."
         type: string
+      tags:
+        description: "env variables give in package.json script"
+        type: string
 
 jobs:
   configure-load-secrets-and-run_tests:
@@ -84,8 +87,9 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: e2e-system-tests
-          command: npm run ${{ inputs.tag }}
+          # command: npm run ${{ inputs.tag }}
           browser: edge
+          env: ${{ inputs.tags }}
 
       - name: Clean Up Edge Process
         if: always()
