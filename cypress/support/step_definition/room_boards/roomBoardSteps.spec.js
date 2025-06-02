@@ -33,7 +33,7 @@ Then("I verify the element Link is clickable", () => {
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
-Then("I see the element Etherpad on the card", () => {
+Then("I see the element Etherpad in the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
 
