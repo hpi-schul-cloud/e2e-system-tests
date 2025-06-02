@@ -22,7 +22,7 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         Then I see the dialog Add Element in the card
         When I select 'collaborative-text-editor' from the element selection dialog box
         When I click outside of the card to save it
-        Then I see the element Etherpad on the card
+        Then I see the element Etherpad in the card
         Then I verify the element Etherpad is clickable
 
         # student can see the element Etherpad in the multi-column board

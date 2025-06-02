@@ -138,7 +138,7 @@ class Courses {
 	static #deleteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
-	static #messageNoTasksAvailable = '[data-testid="emptyTaskMessage"]';
+	static #messageNoTasksAvailable = '[data-testid="empty-state-title"]';
 	static #iconCourse = '[data-testid="course-icon"]';
 
 	selectTeacherFromTeacherField(userName) {
@@ -1076,7 +1076,7 @@ class Courses {
 		cy.get(Courses.#syncedGroupDialogSelection)
 			.click()
 			.type("{selectall}{backspace}")
-			.type(groupName)
+			.type(groupName);
 
 		cy.get(".v-overlay__content.v-autocomplete__content").contains(groupName).click();
 	}

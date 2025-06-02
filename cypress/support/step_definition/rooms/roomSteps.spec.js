@@ -3,14 +3,6 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
-//Then('I should be redirected to the duplicated room with name containing {string}', (suffix) => {
-//verifyDuplicatedRoomNameContains(suffix);
-//})
-
-//Then('the duplicated room with name suffix {string} should not be visible on the overview', (suffix) => {
-//verifyDuplicatedRoomIsDeleted(suffix);
-//});
-
 Then("I see the success message Alert", () => {
 	rooms.seeDuplicateRoomSuccessAlert();
 });
@@ -258,4 +250,8 @@ Then(
 
 Then("I see teacher {string} is visible in the table", (participantName) => {
 	rooms.isParticipantVisible(participantName);
+});
+
+When("I select {string} in dropdown Role", (participantRole) => {
+	rooms.selectRoomRoleFromDropdownMenu(participantRole);
 });

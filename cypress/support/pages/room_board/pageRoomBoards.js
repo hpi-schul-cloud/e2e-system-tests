@@ -16,8 +16,8 @@ class RoomBoards {
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
 	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
-	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-2"]';
-	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-3"]';
+	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-0"]';
+	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
@@ -29,8 +29,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -72,6 +71,7 @@ class RoomBoards {
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
+	static #videoPlayer = '[data-testid="video-player"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
@@ -89,7 +89,7 @@ class RoomBoards {
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
 	static #linkSaveButton = '[data-testid="save-link-in-card"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
-
+	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -208,7 +208,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#thumbnailImageOnCard).should("exist");
 	}
 
-	verifyCardImageInFullScreen() {
+	verifyImageInLightbox() {
 		cy.get(RoomBoards.#lightBoxParentElementImagePreview)
 			.find(RoomBoards.#fullScreenImageElement)
 			.should("be.visible")
@@ -222,6 +222,14 @@ class RoomBoards {
 
 		// Verify download button is also visible on the fullscreen image
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
+	}
+
+	verifyAudioPlayer() {
+		cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
+	}
+
+	verifyVideoPlayer() {
+		cy.get(RoomBoards.#videoPlayer).should("exist");
 	}
 
 	enterImageAltTextInCard(altText) {
@@ -415,9 +423,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -623,9 +629,7 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("exist")
-			.should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
 	clickFolderElementWithTitle(title) {
@@ -694,21 +698,14 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element)
-					.find("th")
-					.contains("span", label)
-					.should("contain", label);
+				cy.get(element).find("th").contains("span", label).should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element)
-				.find("th")
-				.contains("span", label)
-				.should("contain", label)
-				.click();
+			cy.get(element).find("th").contains("span", label).should("contain", label).click();
 		});
 	}
 
@@ -722,15 +719,11 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -762,11 +755,23 @@ class RoomBoards {
 	}
 
 	openThreeDotMenuForFolderInCard() {
-		cy.get(RoomBoards.#folderElementSelector).find('button').click();
+		cy.get(RoomBoards.#folderElementSelector).find("button").click();
 	}
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
-		cy.get(RoomBoards.#multiActionMenuInHeader).should('contain', expectedNumber);
+		cy.get(RoomBoards.#multiActionMenuInHeader).should("contain", expectedNumber);
+	}
+
+	seeModalRenameFile() {
+		cy.get(RoomBoards.#renameInputInDialog).should("be.visible");
+	}
+
+	enterNewFileNameInDialog(newFileName) {
+		cy.get(RoomBoards.#renameInputInDialog).clear().type(newFileName);
+	}
+
+	clickOnFileNameInFolder(fileName) {
+		cy.get(`[data-testid="name-${fileName}"]`).click();
 	}
 }
 

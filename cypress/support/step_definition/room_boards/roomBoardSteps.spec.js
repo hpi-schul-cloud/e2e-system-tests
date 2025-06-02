@@ -33,7 +33,7 @@ Then("I verify the element Link is clickable", () => {
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
-Then("I see the element Etherpad on the card", () => {
+Then("I see the element Etherpad in the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
 
@@ -132,8 +132,16 @@ When("I click on the thumbnail Image in the card", () => {
 	roomBoards.clickOnImageThumbnailInCard();
 });
 
-Then("I see the fullscreen Image from the card", () => {
-	roomBoards.verifyCardImageInFullScreen();
+Then("I see the image in a lightbox", () => {
+	roomBoards.verifyImageInLightbox();
+});
+
+Then("I see audio player", () => {
+	roomBoards.verifyAudioPlayer();
+});
+
+Then("I see video player", () => {
+	roomBoards.verifyVideoPlayer();
 });
 
 Then("I see the alert message", () => {
@@ -425,7 +433,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElementWithDataTestId('fab-add-files');
+	globalActions.clickElementWithDataTestId("fab-add-files");
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
@@ -488,7 +496,7 @@ Then("I see checkboxes of files {string} are unchecked", (files) => {
 });
 
 When("I click on button Action in the header of the list", () => {
-	globalActions.clickElementWithDataTestId('action-menu-button');
+	globalActions.clickElementWithDataTestId("action-menu-button");
 });
 
 When("I click on three dot menu in row of file {string}", (fileName) => {
@@ -496,23 +504,23 @@ When("I click on three dot menu in row of file {string}", (fileName) => {
 });
 
 Then("I see confirmation modal for deleting the file", () => {
-	rooms.seeConfirmationModalForRoomDeletion();
+	rooms.seeConfirmationModalForFileDeletion();
 });
 
 Then("I see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdExists('action-menu-button');
+	globalAssertions.checkElementWithDataTestIdExists("action-menu-button");
 });
 
 Then("I do not see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists('action-menu-button');
+	globalAssertions.checkElementWithDataTestIdNotExists("action-menu-button");
 });
 
 When("I click on the three dot menu button next to the folder title", () => {
-	globalActions.clickElementWithDataTestId('folder-menu');
+	globalActions.clickElementWithDataTestId("folder-menu");
 });
 
 Then("I do not see a folder element on board", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists('board-folder-element');
+	globalAssertions.checkElementWithDataTestIdNotExists("board-folder-element");
 });
 
 When("I click on the three dot menu of the folder in card", () => {
@@ -527,9 +535,18 @@ Then("I see displayed number of checked files is {string}", (numberOfCheckedFile
 	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
 });
 
+Then("I see modal Rename file", () => {
+	roomBoards.seeModalRenameFile();
+});
 
+When("I enter {string} in input field New name", (newFileName) => {
+	roomBoards.enterNewFileNameInDialog(newFileName);
+});
 
+When("I click on button Approve in modal", () => {
+	globalActions.clickElementWithDataTestId("dialog-confirm");
+});
 
-
-
-
+When("I click on the name of file {string} in file list", (fileName) => {
+	roomBoards.clickOnFileNameInFolder(fileName);
+});
