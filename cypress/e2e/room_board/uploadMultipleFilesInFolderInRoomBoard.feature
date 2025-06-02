@@ -47,12 +47,12 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see page Folder content for '<folder_name>'
 
         #editor opens video in video player
-        # When I click on the name of file '<video_file_name>' in file list
-        # Then I see video player
-        # When I click on icon Download in the fullscreen image
-        # Then file '<video_file_name>' is saved in folder downloads
-        # When I click on the icon Close on the fullscreen image
-        # Then I see page Folder content for '<folder_name>'
+        When I click on the name of file '<video_file_name>' in file list
+        Then I see video player
+        When I click on icon Download in the fullscreen image
+        Then file '<video_file_name>' is saved in folder downloads
+        When I click on the icon Close on the fullscreen image
+        Then I see page Folder content for '<folder_name>'
 
         # editor checks file / multiple files
         When I check the checkbox of file '<audio_file_name>'

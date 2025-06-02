@@ -140,6 +140,10 @@ Then("I see audio player", () => {
 	roomBoards.verifyAudioPlayer();
 });
 
+Then("I see video player", () => {
+	roomBoards.verifyVideoPlayer();
+});
+
 Then("I see the alert message", () => {
 	roomBoards.verifyShareImportBoardAlert();
 });
