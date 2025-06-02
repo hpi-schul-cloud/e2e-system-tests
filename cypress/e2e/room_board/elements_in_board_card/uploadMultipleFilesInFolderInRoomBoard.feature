@@ -26,9 +26,17 @@ Feature: Room Board - Upload multiple files in folder in board
 
         # editor uploads files
         When I click on button Add file
-        When I upload multiple files '<file_name>, <file_name_2>, <file_name_3>' to file folder
-        Then I see files '<file_name>, <file_name_2>, <file_name_3>' in file list
+        When I upload multiple files '<file_name>, <file_name_2>, <image_file_name>' to file folder
+        Then I see files '<file_name>, <file_name_2>, <image_file_name>' in file list
         Then I see state of table header checkbox is 'unchecked'
+
+        #editor opens image in lightbox
+        When I click on the name of file '<image_file_name>' in file list
+        Then I see the image in a lightbox
+        When I click on icon Download in the fullscreen image
+        Then file '<image_file_name>' is saved in folder downloads
+        When I click on the icon Close on the fullscreen image
+        Then I see page Folder content for '<folder_name>'
 
         # editor checks file / multiple files
         When I check the checkbox of file '<file_name_2>'
@@ -38,7 +46,7 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I do not see fab button Action at the top of the list
         When I check the checkbox of file '<file_name>'
         When I check the checkbox of file '<file_name_2>'
-        When I check the checkbox of file '<file_name_3>'
+        When I check the checkbox of file '<image_file_name>'
         Then I see displayed number of checked files is '3'
         Then I see state of table header checkbox is 'checked'
         When I uncheck the checkbox of file '<file_name_2>'
@@ -48,9 +56,9 @@ Feature: Room Board - Upload multiple files in folder in board
 
         # editor checks / unchecks all files
         When I check the checkbox in the table header for all elements
-        Then I see checkboxes of files '<file_name>, <file_name_2>, <file_name_3>' are checked
+        Then I see checkboxes of files '<file_name>, <file_name_2>, <image_file_name>' are checked
         When I uncheck the checkbox in the table header for all elements
-        Then I see checkboxes of files '<file_name>, <file_name_2>, <file_name_3>' are unchecked
+        Then I see checkboxes of files '<file_name>, <file_name_2>, <image_file_name>' are unchecked
 
         # editor searches for files and uses check all checkbox
         When I enter '<search_request_2>' to the table search field
@@ -60,7 +68,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I clear table search field
         Then I see displayed number of checked files is '1'
         Then I see checkboxes of files '<file_name_2>' are checked
-        Then I see checkboxes of files '<file_name>, <file_name_3>' are unchecked
+        Then I see checkboxes of files '<file_name>, <image_file_name>' are unchecked
 
         # editor deletes multiple files using action button in header of list
         When I check the checkbox in the table header for all elements
@@ -68,8 +76,8 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on delete button in confirmation modal
-        Then I do not see files '<file_name>, <file_name_3>' in file list
+        When I click on button Approve in modal
+        Then I do not see files '<file_name>, <image_file_name>' in file list
         Then I see files '<file_name_2>' in file list
         Then I see checkboxes of files '<file_name_2>' are unchecked
         Then I see state of table header checkbox is 'unchecked'
@@ -83,7 +91,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the three dot menu of the folder in card
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the file folder
-        When I click on delete button in confirmation modal
+        When I click on button Approve in modal
         Then I see my room board is named '<board_title>'
         Then I do not see a folder element on board
 
@@ -92,7 +100,7 @@ Feature: Room Board - Upload multiple files in folder in board
 
         @school_api_test
         Examples:
-            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | file_name                | file_name_2                | file_name_3     | search_request_2 |
+            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | file_name                | file_name_2                | image_file_name     | search_request_2 |
             | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio     |
 
 # @staging_test

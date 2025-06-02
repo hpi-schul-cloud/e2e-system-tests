@@ -89,6 +89,7 @@ class RoomBoards {
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
 	static #linkSaveButton = '[data-testid="save-link-in-card"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
+	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -207,7 +208,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#thumbnailImageOnCard).should("exist");
 	}
 
-	verifyCardImageInFullScreen() {
+	verifyImageInLightbox() {
 		cy.get(RoomBoards.#lightBoxParentElementImagePreview)
 			.find(RoomBoards.#fullScreenImageElement)
 			.should("be.visible")
@@ -766,6 +767,18 @@ class RoomBoards {
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
 		cy.get(RoomBoards.#multiActionMenuInHeader).should("contain", expectedNumber);
+	}
+
+	seeModalRenameFile() {
+		cy.get(RoomBoards.#renameInputInDialog).should("be.visible");
+	}
+
+	enterNewFileNameInDialog(newFileName) {
+		cy.get(RoomBoards.#renameInputInDialog).clear().type(newFileName);
+	}
+
+	clickOnFileNameInFolder(fileName) {
+		cy.get(`[data-testid="name-${fileName}"]`).click();
 	}
 }
 

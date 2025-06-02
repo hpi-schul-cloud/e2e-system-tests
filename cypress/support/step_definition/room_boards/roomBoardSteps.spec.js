@@ -132,8 +132,8 @@ When("I click on the thumbnail Image in the card", () => {
 	roomBoards.clickOnImageThumbnailInCard();
 });
 
-Then("I see the fullscreen Image from the card", () => {
-	roomBoards.verifyCardImageInFullScreen();
+Then("I see the image in a lightbox", () => {
+	roomBoards.verifyImageInLightbox();
 });
 
 Then("I see the alert message", () => {
@@ -496,7 +496,7 @@ When("I click on three dot menu in row of file {string}", (fileName) => {
 });
 
 Then("I see confirmation modal for deleting the file", () => {
-	rooms.seeConfirmationModalForRoomDeletion();
+	rooms.seeConfirmationModalForFileDeletion();
 });
 
 Then("I see fab button Action at the top of the list", () => {
@@ -525,4 +525,20 @@ Then("I see confirmation modal for deleting the file folder", () => {
 
 Then("I see displayed number of checked files is {string}", (numberOfCheckedFiles) => {
 	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
+});
+
+Then("I see modal Rename file", () => {
+	roomBoards.seeModalRenameFile();
+});
+
+When("I enter {string} in input field New name", (newFileName) => {
+	roomBoards.enterNewFileNameInDialog(newFileName);
+});
+
+When("I click on button Approve in modal", () => {
+	globalActions.clickElementWithDataTestId("dialog-confirm");
+});
+
+When("I click on the name of file {string} in file list", (fileName) => {
+	roomBoards.clickOnFileNameInFolder(fileName);
 });

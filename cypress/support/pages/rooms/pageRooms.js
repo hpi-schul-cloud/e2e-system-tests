@@ -8,7 +8,8 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
-	static #confirmDeletionModalTitle = '[data-testid="delete-dialog-item"]';
+	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
+	static #modal = '[data-testid="dialog"]';
 	static #confirmDeletionModalDelete = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
@@ -36,6 +37,7 @@ class Rooms {
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
+	static #roomRoleDropdownOverlay = ".v-list-item-title";
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -166,7 +168,11 @@ class Rooms {
 	}
 
 	seeConfirmationModalForRoomDeletion() {
-		cy.get(Rooms.#confirmDeletionModalTitle).should("exist");
+		cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+	}
+
+	seeConfirmationModalForFileDeletion() {
+		cy.get(Rooms.#modal).should("exist");
 	}
 
 	seeModalForAddParticipants() {
@@ -179,7 +185,7 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#confirmDeletionModalTitle).then((dialogs) => {
+		cy.get(Rooms.#deletionConfirmationModalTitle).then((dialogs) => {
 			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
 				return (
 					parseInt(Cypress.$(dialogB).css("z-index")) -
@@ -368,6 +374,15 @@ class Rooms {
 			.should("be.visible")
 			.should("contain.text", "Besitzen")
 			.and("contain.text", "übertragen");
+	}
+
+	selectRoomRoleFromDropdownMenu(participantRole) {
+		cy.get(Rooms.#addParticipantRole).type("downArrow");
+		cy.get(Rooms.#addParticipantRole).should("be.visible");
+		cy.get(Rooms.#roomRoleDropdownOverlay)
+			.contains(participantRole)
+			.should("be.visible")
+			.click();
 	}
 }
 export default Rooms;

@@ -251,3 +251,7 @@ Then(
 Then("I see teacher {string} is visible in the table", (participantName) => {
 	rooms.isParticipantVisible(participantName);
 });
+
+When("I select {string} in dropdown Role", (participantRole) => {
+	rooms.selectRoomRoleFromDropdownMenu(participantRole);
+});
