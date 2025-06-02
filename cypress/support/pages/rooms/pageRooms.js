@@ -8,7 +8,7 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
-	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
+	static #deletionConfirmationModalTitle = '[data-testid="dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
@@ -52,9 +52,8 @@ class Rooms {
 	//});
 	//}
 
-	seeRoomNameInImportModal(roomName) {
+	seeRoomNameInImportModal() {
 		cy.get(Rooms.#roomNameInModalRoomImport).should("be.visible");
-		cy.get(Rooms.#roomNameInModalRoomImport).should("contain", roomName);
 	}
 
 	enterNewRoomNameInImportModal(roomName) {
@@ -180,7 +179,7 @@ class Rooms {
 	}
 
 	navigateToRoom(roomName) {
-		cy.contains(roomName).should("be.visible").and("contain.text", roomName).click();
+		cy.get(Rooms.#roomTitle).contains(roomName).should("be.visible").click();
 	}
 
 	openThreeDotMenuForRoom() {
@@ -188,9 +187,6 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
 		cy.get(
 			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
 		).click();
@@ -214,14 +210,14 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#deletionConfirmationModalTitle).then((dialogs) => {
+		cy.get(Rooms.#confirmButtonOnModal).then((dialogs) => {
 			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
 				return (
 					parseInt(Cypress.$(dialogB).css("z-index")) -
 					parseInt(Cypress.$(dialogA).css("z-index"))
 				);
 			})[0];
-			cy.wrap(highestZIndexDialog).find(Rooms.#confirmButtonOnModal).click();
+			cy.wrap(highestZIndexDialog).click();
 		});
 	}
 

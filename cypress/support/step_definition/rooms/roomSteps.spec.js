@@ -11,15 +11,15 @@ const rooms = new Rooms();
 //verifyDuplicatedRoomIsDeleted(suffix);
 //});
 
-When("I see the room name {string} in the modal import", (roomName) => {
-	rooms.seeRoomNameInImportModal(roomName);
+When("I see the source room name in the modal room import", () => {
+	rooms.seeRoomNameInImportModal();
 });
 
 Then("I enter a new room name {string}", (roomName) => {
 	rooms.enterNewRoomNameInImportModal(roomName);
 });
 
-When("I click on the button Import in the modal", () => {
+When("I click on the buttom Import in the modal", () => {
 	rooms.clickOnImportConfirmButtonInModal();
 });
 

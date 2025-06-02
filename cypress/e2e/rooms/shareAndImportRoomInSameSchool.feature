@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Rooms - Share room with a teacher from the same school
+Feature: Rooms - Share and import room with a teacher from the same school
 
-    As a teacher, I want to share a rooms board with another teacher within the same school so that I can collaborate effectively.
+    As a teacher, I want to Share and import a rooms board with another teacher within the same school so that I can collaborate effectively.
 
-    Scenario: Share a room with a Teacher within the same school
+    Scenario: Share and import a room with a teacher within the same school
 
         # pre-condition: Creating teacher accounts
         Given I am logged in as a '<teacher2>' at '<namespace>'
@@ -16,6 +16,7 @@ Feature: Rooms - Share room with a teacher from the same school
         Given multi column board is published to not to be in a draft mode
         Given the multi-column board has a column with a card
         Given link element is added in the card
+        Given I navigate to the room detail page via Breadcrumb from the board page
 
         # the first teacher shares the room with another teacher in the same school using the copied URL
         When I click on three dot menu in room page
@@ -42,7 +43,7 @@ Feature: Rooms - Share room with a teacher from the same school
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
-        When I see the room name '<room_name_source>' in the modal import
+        When I see the source room name in the modal room import
         Then I enter a new room name '<room_name_target>'
         When I click on the buttom Import in the modal
         Then I see the success message Alert
@@ -54,18 +55,18 @@ Feature: Rooms - Share room with a teacher from the same school
         Then I see the chip Draft
         Then I see the element Link on the card
 
-        # post-condition: rooms created by both teachers are deleted
-        Given I am logged in as a '<teacher2>' at '<namespace>'
-        Given the room named '<room_name_source>' is deleted
+        # post-condition: rooms are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
+        Given the room named '<room_name_source>' is deleted
+        Given I am logged in as a '<teacher2>' at '<namespace>'
         Given the room named '<room_name_target>' is deleted
 
         @school_api_test
         Examples:
-            | teacher1     | teacher2     | namespace | room_name_source    | room_name_source    | board_title    |
+            | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    |
             | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
 
         @staging_test
         Examples:
-            | teacher1     | teacher2     | namespace | room_name           | room_name_source    | board_title    |
+            | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    |
             | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
