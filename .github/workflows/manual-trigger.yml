@@ -51,6 +51,7 @@ jobs:
           fi
 
   run-all-tests:
+    name: Run All Tests (Stable + Regression)
     needs: e2e-system-tests
     if: ${{ inputs.test_mode == 'all (stable, regression tests)' }}
     uses: ./.github/workflows/main.yml
@@ -66,10 +67,12 @@ jobs:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-selective:
+    name: Run Tests Run in PR
     needs: e2e-system-tests
     if: ${{ inputs.test_mode == 'selective (runs on PR)' }}
     uses: ./.github/workflows/main.yml
     strategy:
+      fail-fast: false
       matrix:
         group: [group-A, group-B, group-C, group-D, group-E, group-F]
     with:
@@ -83,6 +86,7 @@ jobs:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-pre-check-tests:
+    name: Run All Pre-Check Tests
     needs: e2e-system-tests
     if: ${{ inputs.test_mode == 'pre-check (used for pre-check release)' }}
     uses: ./.github/workflows/main.yml
