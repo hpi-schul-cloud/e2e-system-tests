@@ -77,9 +77,9 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see checkboxes of files '<video_file_name>, <audio_file_name>, <image_file_name>' are unchecked
 
         # editor searches for files and uses check all checkbox
-        When I enter '<search_request_2>' to the table search field
+        When I enter '<search_request>' to the table search field
         Then I see files '<audio_file_name>' in file list
-        Then I do not see files '<video_file_name>, <file_name_1>' in file list
+        Then I do not see files '<video_file_name>, <image_file_name>' in file list
         When I check the checkbox in the table header for all elements
         When I clear table search field
         Then I see displayed number of checked files is '1'
@@ -116,8 +116,8 @@ Feature: Room Board - Upload multiple files in folder in board
 
         @school_api_test
         Examples:
-            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | video_file_name          | audio_file_name            | image_file_name | search_request_2 |
-            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio     |
+            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | video_file_name          | audio_file_name            | image_file_name | search_request |
+            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio   |
 
 # @staging_test
 # Examples:

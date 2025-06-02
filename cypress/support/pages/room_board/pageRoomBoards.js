@@ -71,7 +71,6 @@ class RoomBoards {
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
-	static #audioPlayer = '[data-testid="audio-thumbnail-in-card"]';
 	static #videoPreviewOnCard = '[data-testid="video-thumbnail-in-card"]';
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
@@ -226,7 +225,7 @@ class RoomBoards {
 	}
 
 	verifyAudioPlayer() {
-		cy.get(RoomBoards.#audioPlayer).should("exist");
+		cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
 	}
 
 	enterImageAltTextInCard(altText) {
