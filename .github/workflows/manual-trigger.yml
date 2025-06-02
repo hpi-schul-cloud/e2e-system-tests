@@ -10,7 +10,7 @@ on:
           - all (stable, regression tests)
           - selective (runs on PR)
           - pre-check (used for pre-check release)
-        default: "selective"
+        default: "selective (runs on PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
