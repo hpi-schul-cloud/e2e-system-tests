@@ -207,7 +207,6 @@ export const loginWithoutSchoolApi = (username, environment) => {
 	username.includes("extern") ? (doExternalLogin = true) : (doExternalLogin = false);
 
 	const [userEmail, userPassword] = getUserCredentials(username);
-	cy.log(env[userEmail]);
 
 	doExternalLogin
 		? performExternalLogin(env[userEmail], env[userPassword])
