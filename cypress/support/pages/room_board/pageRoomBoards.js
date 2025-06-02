@@ -16,8 +16,8 @@ class RoomBoards {
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
 	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
-	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-2"]';
-	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-3"]';
+	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-0"]';
+	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
@@ -222,6 +222,10 @@ class RoomBoards {
 
 		// Verify download button is also visible on the fullscreen image
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
+	}
+
+	verifyAudioPlayer() {
+		cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
 	}
 
 	enterImageAltTextInCard(altText) {

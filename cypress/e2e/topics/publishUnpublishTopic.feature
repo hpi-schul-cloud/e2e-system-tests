@@ -1,6 +1,8 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-F
+@pr
 Feature: Topics - To publish and unpublish topic by teacher.
 
     As a teacher I want to publish and unpublish as draft version

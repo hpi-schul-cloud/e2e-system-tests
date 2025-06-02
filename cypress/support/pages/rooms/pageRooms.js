@@ -32,10 +32,10 @@ class Rooms {
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
 	static #roomLeaveDialogBox = '[data-testid="dialog-title"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
-	static #modalDuplicateRoom = '[data-testid="duplication-info-dialog"]';
-	static #modalTitleDuplicateRoom = '[data-testid="duplication-info-dialog-title"]';
-	static #cancelButtonDuplicateRoom = '[data-testid="duplication-info-dialog-cancel"]';
-	static #duplicateButton = '[data-testid="duplication-info-dialog-confirm"]';
+	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
+	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
+	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
+	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
 	static #roomRoleDropdownOverlay = ".v-list-item-title";
 	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
@@ -191,6 +191,9 @@ class Rooms {
 		cy.get(
 			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
 		).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -268,6 +271,9 @@ class Rooms {
 		cy.get(
 			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
 		).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -332,6 +338,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 		cy.get(Rooms.#participantTable)
 			.contains("td", participantName)
 			.should("not.exist");

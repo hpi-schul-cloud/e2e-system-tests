@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_test
 @group-A
 @pr
 Feature: Login Management - Login of users managed by SVS
