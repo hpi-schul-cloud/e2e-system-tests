@@ -25,10 +25,15 @@ These tag:
 There are two categories of example tables:
 
 1. Dev/Staging Examples
-   Tags: `@school_api_test, @staging_test` - Target deployed test environments (e.g., brb, staging) - Use real test data and environments - Common in CI pipelines
+   Tags: `@school_api_test, @staging_test`
+
+   - Target deployed test environments (e.g., brb, staging)
+   - Use real test data and environments - Common in CI pipelines
 
 2. Local Test Example
-   Tag: `@localhost_test` - Intended only for local development/debugging - Must use `namespace = localhost`
+   Tag: `@localhost_test`
+   - Intended only for local development/debugging
+   - Must use `namespace = localhost`
 
 > ⚠️ _Avoid adding `@localhost_test` example tables to every feature file.
 > Most test runs target dev or staging environments. Adding local test data everywhere would make the test suite harder to maintain. Instead, use local examples only in a designated feature file for debugging purpose._
