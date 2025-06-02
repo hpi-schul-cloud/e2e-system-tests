@@ -2,6 +2,15 @@ name: e2e-manual-trigger-tests
 on:
   workflow_dispatch:
     inputs:
+      test_mode:
+        description: "Select test mode"
+        required: true
+        type: choice
+        options:
+          - all (stable, regression tests)
+          - selective (runs on PR)
+          - pre-check (used for pre-check release)
+        default: "selective"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
@@ -41,94 +50,44 @@ jobs:
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
-  run-tests-groupA:
+  run-all-tests:
     needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'all' }}
     uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupA:school_api_test:ci
+      tag: cy:headless:stable:regression_test:school_api_test:manual_trigger:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-A
+      groups: manual-trigger
 
-  run-tests-groupB:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupB:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-B
 
-  run-tests-groupC:
+  run-tests-selective:
     needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'selective' }}
     uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      matrix:
+        group: [group-A, group-B, group-C, group-D, group-E, group-F]
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupC:school_api_test:ci
+      tag: cy:headless:stable:${{ matrix.group }}:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-C
-
-  run-tests-groupD:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
+      groups: ${{ matrix.group }}
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupD:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-D
-
-  run-tests-groupE:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupE:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-E
-
-  run-tests-groupF:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupF:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-F
 
   notify_RC:
     runs-on: ubuntu-latest
     needs:
       - e2e-system-tests
-      - run-tests-groupA
-      - run-tests-groupB
-      - run-tests-groupC
-      - run-tests-groupD
-      - run-tests-groupE
-      - run-tests-groupF
+      - run-all-tests
+      - run-tests-selective
     if: |
       always()
 
