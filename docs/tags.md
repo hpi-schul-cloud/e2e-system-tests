@@ -29,8 +29,7 @@ In our Cypress and Cucumber setup, tags are used to categorize and selectively r
   <br>
 
 - **@group-X:** Used to group test files for parallel execution in CI. This helps divide tests across multiple runners for faster test execution.
-Examples: @group-A, @group-B, @group-C ...etc.
-
+  Examples: @group-A, @group-B, @group-C ...etc.
   <br>
 
 - **@schedule_run**: This tag is designated for running all tests during a scheduled run that are currently in a Pull Request (PR) and are considered strong candidates for inclusion in the PR's workflow, also known as the remote workflow. The primary objective is to evaluate the performance and stability of these tests within the Continuous Integration (CI) environment. If these tests perform well and demonstrate stability, they will be added to the PR's workflow, ensuring that future PRs benefit from these validated tests.
