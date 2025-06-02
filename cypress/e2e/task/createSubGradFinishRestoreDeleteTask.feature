@@ -143,6 +143,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the course overview page
 
+        @pre_check_test
         @school_api_test
         Examples:
             | namespace | student      | teacher      | admin      | fullname_student  | fullname_teacher  | student_last_name | course_name                           | task_name                                   | submission_text       |

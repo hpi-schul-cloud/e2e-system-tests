@@ -81,6 +81,7 @@ Feature: Course Board - To create, edit and delete column in the course board
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the course overview page
 
+        @pre_check_test
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | fullname_teacher  | course_name                    | board_title    | column_board_title     | edited_column_board_title |

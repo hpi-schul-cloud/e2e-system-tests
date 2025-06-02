@@ -52,7 +52,7 @@ jobs:
 
   run-all-tests:
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'all' }}
+    if: ${{ inputs.test_mode == 'all (stable, regression tests)' }}
     uses: ./.github/workflows/main.yml
     with:
       cypress_brb: ${{ inputs.instance1 }}
@@ -67,7 +67,7 @@ jobs:
 
   run-tests-selective:
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'selective' }}
+    if: ${{ inputs.test_mode == 'selective (runs on PR)' }}
     uses: ./.github/workflows/main.yml
     strategy:
       matrix:
@@ -82,12 +82,28 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
+  run-pre-check-tests:
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'pre-check (used for pre-check release)' }}
+    uses: ./.github/workflows/main.yml
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:regression_test:school_api_test:manual_trigger:pre_check:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: pre-check
+
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+
   notify_RC:
     runs-on: ubuntu-latest
     needs:
       - e2e-system-tests
       - run-all-tests
       - run-tests-selective
+      - run-pre-check-tests
     if: |
       always()
 
