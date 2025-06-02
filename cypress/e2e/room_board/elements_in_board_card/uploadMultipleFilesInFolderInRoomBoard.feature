@@ -26,8 +26,8 @@ Feature: Room Board - Upload multiple files in folder in board
 
         # editor uploads files
         When I click on button Add file
-        When I upload multiple files '<file_name>, <file_name_2>, <image_file_name>' to file folder
-        Then I see files '<file_name>, <file_name_2>, <image_file_name>' in file list
+        When I upload multiple files '<video_file_name>, <audio_file_name>, <image_file_name>' to file folder
+        Then I see files '<video_file_name>, <audio_file_name>, <image_file_name>' in file list
         Then I see state of table header checkbox is 'unchecked'
 
         #editor opens image in lightbox
@@ -38,48 +38,64 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the icon Close on the fullscreen image
         Then I see page Folder content for '<folder_name>'
 
+        #editor opens audio in audio player
+        When I click on the name of file '<audio_file_name>' in file list
+        Then I see audio player
+        When I click on icon Download in the fullscreen image
+        Then file '<audio_file_name>' is saved in folder downloads
+        When I click on the icon Close on the fullscreen image
+        Then I see page Folder content for '<folder_name>'
+
+        #editor opens video in video player
+        # When I click on the name of file '<video_file_name>' in file list
+        # Then I see video player
+        # When I click on icon Download in the fullscreen image
+        # Then file '<video_file_name>' is saved in folder downloads
+        # When I click on the icon Close on the fullscreen image
+        # Then I see page Folder content for '<folder_name>'
+
         # editor checks file / multiple files
-        When I check the checkbox of file '<file_name_2>'
+        When I check the checkbox of file '<audio_file_name>'
         Then I see displayed number of checked files is '1'
         Then I see fab button Action at the top of the list
-        When I uncheck the checkbox of file '<file_name_2>'
+        When I uncheck the checkbox of file '<audio_file_name>'
         Then I do not see fab button Action at the top of the list
-        When I check the checkbox of file '<file_name>'
-        When I check the checkbox of file '<file_name_2>'
+        When I check the checkbox of file '<video_file_name>'
+        When I check the checkbox of file '<audio_file_name>'
         When I check the checkbox of file '<image_file_name>'
         Then I see displayed number of checked files is '3'
         Then I see state of table header checkbox is 'checked'
-        When I uncheck the checkbox of file '<file_name_2>'
+        When I uncheck the checkbox of file '<audio_file_name>'
         Then I see state of table header checkbox is 'mixed'
         Then I see displayed number of checked files is '2'
         Then I see fab button Action at the top of the list
 
         # editor checks / unchecks all files
         When I check the checkbox in the table header for all elements
-        Then I see checkboxes of files '<file_name>, <file_name_2>, <image_file_name>' are checked
+        Then I see checkboxes of files '<video_file_name>, <audio_file_name>, <image_file_name>' are checked
         When I uncheck the checkbox in the table header for all elements
-        Then I see checkboxes of files '<file_name>, <file_name_2>, <image_file_name>' are unchecked
+        Then I see checkboxes of files '<video_file_name>, <audio_file_name>, <image_file_name>' are unchecked
 
         # editor searches for files and uses check all checkbox
-        When I enter '<search_request_2>' to the table search field
-        Then I see files '<file_name_2>' in file list
-        Then I do not see files '<file_name>, <file_name_1>' in file list
+        When I enter '<search_request>' to the table search field
+        Then I see files '<audio_file_name>' in file list
+        Then I do not see files '<video_file_name>, <image_file_name>' in file list
         When I check the checkbox in the table header for all elements
         When I clear table search field
         Then I see displayed number of checked files is '1'
-        Then I see checkboxes of files '<file_name_2>' are checked
-        Then I see checkboxes of files '<file_name>, <image_file_name>' are unchecked
+        Then I see checkboxes of files '<audio_file_name>' are checked
+        Then I see checkboxes of files '<video_file_name>, <image_file_name>' are unchecked
 
         # editor deletes multiple files using action button in header of list
         When I check the checkbox in the table header for all elements
-        When I uncheck the checkbox of file '<file_name_2>'
+        When I uncheck the checkbox of file '<audio_file_name>'
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
         When I click on button Approve in modal
-        Then I do not see files '<file_name>, <image_file_name>' in file list
-        Then I see files '<file_name_2>' in file list
-        Then I see checkboxes of files '<file_name_2>' are unchecked
+        Then I do not see files '<video_file_name>, <image_file_name>' in file list
+        Then I see files '<audio_file_name>' in file list
+        Then I see checkboxes of files '<audio_file_name>' are unchecked
         Then I see state of table header checkbox is 'unchecked'
 
         # editor deletes folder on board page
@@ -100,8 +116,8 @@ Feature: Room Board - Upload multiple files in folder in board
 
         @school_api_test
         Examples:
-            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | file_name                | file_name_2                | image_file_name     | search_request_2 |
-            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio     |
+            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | video_file_name          | audio_file_name            | image_file_name | search_request |
+            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio   |
 
 # @staging_test
 # Examples:

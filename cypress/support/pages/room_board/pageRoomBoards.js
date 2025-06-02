@@ -224,6 +224,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).should("exist");
 	}
 
+	verifyAudioPlayer() {
+		cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
+	}
+
 	enterImageAltTextInCard(altText) {
 		// Select the parent class
 		cy.get(RoomBoards.#parentContainerSelector)
