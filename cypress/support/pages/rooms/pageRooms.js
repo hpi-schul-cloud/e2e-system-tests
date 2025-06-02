@@ -10,7 +10,7 @@ class Rooms {
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
 	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
 	static #modal = '[data-testid="dialog"]';
-	static #confirmDeletionModalDelete = '[data-testid="dialog-confirm"]';
+	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
@@ -38,6 +38,7 @@ class Rooms {
 	static #duplicateButton = '[data-testid="duplication-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
 	static #roomRoleDropdownOverlay = ".v-list-item-title";
+	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
 
 	//verifyDuplicatedRoomNameContains(suffix) {
 	//cy.get(Rooms.#roomTitle)
@@ -50,6 +51,19 @@ class Rooms {
 	//expect($el.text()).not.to.include(suffix);
 	//});
 	//}
+
+	seeRoomNameInImportModal(roomName) {
+		cy.get(Rooms.#roomNameInModalRoomImport).should("be.visible");
+		cy.get(Rooms.#roomNameInModalRoomImport).should("contain", roomName);
+	}
+
+	enterNewRoomNameInImportModal(roomName) {
+		cy.get(Rooms.#roomNameInModalRoomImport).clear().type(roomName);
+	}
+
+	clickOnImportConfirmButtonInModal() {
+		cy.get(Rooms.#confirmButtonOnModal).click();
+	}
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -174,7 +188,9 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -202,7 +218,7 @@ class Rooms {
 					parseInt(Cypress.$(dialogA).css("z-index"))
 				);
 			})[0];
-			cy.wrap(highestZIndexDialog).find(Rooms.#confirmDeletionModalDelete).click();
+			cy.wrap(highestZIndexDialog).find(Rooms.#confirmButtonOnModal).click();
 		});
 	}
 
@@ -249,7 +265,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -314,7 +332,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
