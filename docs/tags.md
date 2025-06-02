@@ -37,6 +37,9 @@ Examples: @group-A, @group-B, @group-C ...etc.
   <br>
 
 - **@clean_up_staging_test_data:** This tag is used for a test run, which removes all courses that were created by cancelled or failed test runs before. This is only for staging / ref environment and not for dev environments (where it is not needed, since the test school is always created new for each test).
+  <br>
+
+- **@localhost_test:** For running tests locally, this tag must be used.
 
 ## Tag Hierarchy and Inheritance
 
