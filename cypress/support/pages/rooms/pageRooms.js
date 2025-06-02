@@ -40,18 +40,6 @@ class Rooms {
 	static #roomRoleDropdownOverlay = ".v-list-item-title";
 	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
 
-	//verifyDuplicatedRoomNameContains(suffix) {
-	//cy.get(Rooms.#roomTitle)
-	//.should("be.visible")
-	//.and("contain.text", suffix);
-	//}
-
-	//verifyDuplicatedRoomIsDeleted(suffix) {
-	//cy.get(Rooms.#roomTitle).each(($el) => {
-	//expect($el.text()).not.to.include(suffix);
-	//});
-	//}
-
 	seeRoomNameInImportModal() {
 		cy.get(Rooms.#roomNameInModalRoomImport).should("be.visible");
 	}
