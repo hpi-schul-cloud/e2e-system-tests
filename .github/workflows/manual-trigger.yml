@@ -7,10 +7,10 @@ on:
         required: true
         type: choice
         options:
-          - all (stable, regression tests)
-          - selective (runs on PR)
-          - pre-check (used for pre-check release)
-        default: "selective (runs on PR)"
+          - all (tests runs all stable, regression tests)
+          - selective (tests runs on PR)
+          - pre-check (tests runs for pre-release check)
+        default: "selective (tests runs on PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
@@ -53,7 +53,7 @@ jobs:
   run-all-tests:
     name: Run All Tests (Stable + Regression)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'all (stable, regression tests)' }}
+    if: ${{ inputs.test_mode == 'all (tests runs all stable, regression tests)' }}
     uses: ./.github/workflows/main.yml
     with:
       cypress_brb: ${{ inputs.instance1 }}
@@ -69,7 +69,7 @@ jobs:
   run-tests-selective:
     name: Run Tests Run in PR
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'selective (runs on PR)' }}
+    if: ${{ inputs.test_mode == 'selective (tests runs on PR)' }}
     uses: ./.github/workflows/main.yml
     strategy:
       fail-fast: false
@@ -88,7 +88,7 @@ jobs:
   run-pre-check-tests:
     name: Run All Pre-Check Tests
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'pre-check (used for pre-check release)' }}
+    if: ${{ inputs.test_mode == 'pre-check (tests runs for pre-release check)' }}
     uses: ./.github/workflows/main.yml
     with:
       cypress_brb: ${{ inputs.instance1 }}
