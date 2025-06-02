@@ -1,5 +1,6 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Management from "../../pages/admin/pageAdministration";
+
 import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 
 const management = new Management();
