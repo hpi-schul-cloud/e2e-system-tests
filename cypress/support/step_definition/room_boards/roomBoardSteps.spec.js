@@ -536,11 +536,19 @@ Then("I see displayed number of checked files is {string}", (numberOfCheckedFile
 });
 
 Then("I see modal Rename file", () => {
-	roomBoards.seeModalRenameFile();
+	roomBoards.seeModalRenameElement();
 });
 
-When("I enter {string} in input field New name", (newFileName) => {
-	roomBoards.enterNewFileNameInDialog(newFileName);
+Then("I see modal Rename folder", () => {
+	roomBoards.seeModalRenameElement();
+});
+
+When("I enter {string} in input field New name", (newName) => {
+	roomBoards.enterNewElementNameInDialog(newName);
+});
+
+When("I clear input field New name", () => {
+	roomBoards.clearNewElementNameInDialog();
 });
 
 When("I click on button Approve in modal", () => {

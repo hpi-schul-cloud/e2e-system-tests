@@ -762,12 +762,16 @@ class RoomBoards {
 		cy.get(RoomBoards.#multiActionMenuInHeader).should("contain", expectedNumber);
 	}
 
-	seeModalRenameFile() {
+	seeModalRenameElement() {
 		cy.get(RoomBoards.#renameInputInDialog).should("be.visible");
 	}
 
-	enterNewFileNameInDialog(newFileName) {
-		cy.get(RoomBoards.#renameInputInDialog).clear().type(newFileName);
+	enterNewElementNameInDialog(newName) {
+		cy.get(RoomBoards.#renameInputInDialog).clear().type(newName);
+	}
+
+	clearNewElementNameInDialog() {
+		cy.get(RoomBoards.#renameInputInDialog).clear();
 	}
 
 	clickOnFileNameInFolder(fileName) {
