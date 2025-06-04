@@ -29,21 +29,16 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on the option Edit in the three dot menu on the card
         When I clear folder name in card
         When I approve new folder name in card
-        # Then I see alert message 'Dies ist ein Pflichtfeld.'
         When I click on the page outside of the column
-        Then I see a folder with name '<folder_name_edited>' in the card
-
-        # Then I see a folder with name '<folder_name_edited>' in the card
-        # Then I see a folder with name '<standard_folder_name>' in the card
+        Then I see a folder with name '<standard_folder_name>' in the card
 
         # editor renames folder on room page
-        # When I click on the three dot on the card
-        # When I click on the option Edit in the three dot menu on the card
-        # When I click on the three dot menu button of the folder element in card
-        # Then I see modal Rename folder
-        # When I enter '<folder_name_edited>' in input field New name
-        # When I click on button Approve in modal
-        # Then I see a folder with name '<folder_name_edited>' in the card
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I enter name '<folder_name_edited>' for file folder in card
+        When I approve new folder name in card
+        When I click on the page outside of the column
+        Then I see a folder with name '<folder_name_edited>' in the card
 
         # content editor opens folder
         When I click on the folder '<folder_name_edited>' in the card
