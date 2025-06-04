@@ -18,6 +18,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         When I select 'file-folder' from the element selection dialog box
+        When I click on the page outside of the column
         Then I see a folder with name '<standard_folder_name>' in the card
 
         # pre-condition: content editor opens folder

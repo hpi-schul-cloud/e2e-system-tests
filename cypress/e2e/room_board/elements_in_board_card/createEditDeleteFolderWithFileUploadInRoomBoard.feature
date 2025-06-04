@@ -32,6 +32,13 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on the page outside of the column
         Then I see a folder with name '<standard_folder_name>' in the card
 
+        # editor changes folder name without saving on room page
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I enter name '<folder_name_edited>' for file folder in card
+        When I click on the page outside of the column
+        Then I see a folder with name '<standard_folder_name>' in the card
+
         # editor renames folder on room page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card

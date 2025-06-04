@@ -758,7 +758,7 @@ class RoomBoards {
 	}
 
 	openThreeDotMenuForFolderInCard() {
-		cy.get(RoomBoards.#folderElementSelector).find("button").click();
+		cy.get(RoomBoards.#folderElementSelector).find(`[data-testid="board-menu-icon"]`).click();
 	}
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
