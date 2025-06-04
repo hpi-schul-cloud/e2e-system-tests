@@ -90,6 +90,9 @@ class RoomBoards {
 	static #linkSaveButton = '[data-testid="save-link-in-card"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
+	static #folderTitleInCardInput = '[data-testid="folder-title-textarea-in-card"]'
+	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]'
+
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -776,6 +779,18 @@ class RoomBoards {
 
 	clickOnFileNameInFolder(fileName) {
 		cy.get(`[data-testid="name-${fileName}"]`).click();
+	}
+
+	enterFolderNameInBoardCard(newName) {
+		cy.get(RoomBoards.#folderTitleInCardInput).find('textarea').eq(0).clear().type(newName);
+	}
+
+	approveFolderNameInCard() {
+		cy.get(RoomBoards.#approveFolderNameBtnInCard).click();
+	}
+
+	clearFolderNameInCard() {
+		cy.get(RoomBoards.#folderTitleInCardInput).find('textarea').eq(0).clear();
 	}
 }
 

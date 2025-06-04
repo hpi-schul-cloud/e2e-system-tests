@@ -558,3 +558,15 @@ When("I click on button Approve in modal", () => {
 When("I click on the name of file {string} in file list", (fileName) => {
 	roomBoards.clickOnFileNameInFolder(fileName);
 });
+
+When("I enter name {string} for file folder in card", (newName) => {
+	roomBoards.enterFolderNameInBoardCard(newName);
+});
+
+When("I approve new folder name in card", () => {
+	roomBoards.approveFolderNameInCard();
+});
+
+When("I clear folder name in card", () => {
+	roomBoards.clearFolderNameInCard();
+});
