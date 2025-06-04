@@ -17,6 +17,7 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         When I select 'file-folder' from the element selection dialog box
+        When I click on the page outside of the column
         Then I see a folder with name '<folder_name>' in the card
 
         # content editor opens folder
