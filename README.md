@@ -7,6 +7,7 @@ This project utilizes Cypress and Cucumber for Behavior-Driven Development (BDD)
 - **[Setup Guide](./docs/setup.md)**: Instructions for configuring your development environment, including prerequisites, setup, and installation.
 - **[Running Tests Guide](./docs/executing_tests_guide.md)**: How to execute tests, including script naming conventions and details for running tests in different environments.
 - **[Tags Description](./docs/tags.md)**: Explanation of the tagging system used in our tests, including tag usage, hierarchy, and examples.
+- **[Local Test Execution Guideline](./docs/local_test_execution_guideline.md)**: This guide explains how to run Cypress-Cucumber tests locally using predefined environment variables and test tags.
 - **[Folder Structure](./docs/folder_structure.md)**: Overview of the project directory layout and the purpose of each folder and file.
 - **[Branch Activation Process](./docs/branch_activation.md)**: Details on the branch activation process and how to extend activation time using labels.
 
