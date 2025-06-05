@@ -44,7 +44,7 @@ For running tests locally, credentials for local users are already defined in `s
 
 Steps:
 
-1. Use the `_lh` naming convention for local users:
+1. Use the `_LH` naming convention for local users:
 
    ```json
    "TEACHER_1_LH_EMAIL": "xxxxx",

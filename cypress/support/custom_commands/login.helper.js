@@ -21,7 +21,6 @@ const env = Cypress.env();
 let environmentUpperCased;
 
 export const getUserCredentials = (username) => {
-	console.log(username);
 	switch (username) {
 		case "admin1_brb":
 			return ["ADMIN_1_BRB_EMAIL", "ADMIN_1_BRB_PASSWORD"];
