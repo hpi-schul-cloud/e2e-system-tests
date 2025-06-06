@@ -255,3 +255,39 @@ Then("I see teacher {string} is visible in the table", (participantName) => {
 When("I select {string} in dropdown Role", (participantRole) => {
 	rooms.selectRoomRoleFromDropdownMenu(participantRole);
 });
+
+When('I click on tab Invitations', () => {
+	rooms.clickOnTabRoomInvitations();
+})
+
+When("I click on the fab button to create an invitationlink", () => {
+	rooms.clickOnInviteParticipantsFAB();
+});
+
+Then("I see the modal Create Invitation Link", () => {
+	rooms.seeCreateInvitationLinkModal();
+});
+
+When("I enter {string} into the Invitation Link Description field", (invitationDescription) => {
+	rooms.fillInvitationFormDescription(invitationDescription);
+})
+
+When("I uncheck the Checkbox to require confirmation", () => {
+	rooms.uncheckInvitationFormRequireConfirmation();
+})
+
+When("I save the invitation link", () => {
+	rooms.clickInvitationFormSave();
+})
+
+Then("I see the Link URL in the Modal", () => {
+	rooms.seeLinkUrlInInvitationForm();
+})
+
+When("I remember the invitation link URL in the Modal", () => {
+	rooms.saveTheLinkUrlInInvitationForm();
+})
+
+When("I close the invitation modal", () => {
+	rooms.clickInvitationFormClose();
+})

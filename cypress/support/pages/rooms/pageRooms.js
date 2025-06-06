@@ -38,6 +38,14 @@ class Rooms {
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
 	static #roomRoleDropdownOverlay = ".v-list-item-title";
+	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
+	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
+	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
+	static #inputInviteMembersDescription = '[data-testid="input_invite-participants_description"]';
+	static #inputInviteMembersRequireConfirmation = '[data-testid="input_invite-participants_requires-confirmation"]';
+	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
+	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
+	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -383,6 +391,47 @@ class Rooms {
 			.contains(participantRole)
 			.should("be.visible")
 			.click();
+	}
+
+	clickOnTabRoomInvitations() {
+		cy.get(Rooms.#tabRoomInvitations).should("be.visible").click();
+	}
+
+	clickOnInviteParticipantsFAB() {
+		cy.get(Rooms.#fabButtonInviteMembers).click();
+	}
+
+	seeCreateInvitationLinkModal() {
+		cy.get(Rooms.#modalCreateInvitationLink).should("be.visible");
+	}
+
+	fillInvitationFormDescription(newDesciption) {
+		cy.get(Rooms.#inputInviteMembersDescription).clear().type(newDesciption);
+	}
+
+	uncheckInvitationFormRequireConfirmation() {
+		cy.get(Rooms.#inputInviteMembersRequireConfirmation).find('[type="checkbox"]').uncheck();
+	}
+
+	clickInvitationFormSave() {
+		cy.get(Rooms.#modalCreateInvitationLinkSave).click();
+	}
+
+	seeLinkUrlInInvitationForm() {
+		cy.get(Rooms.#CreateInvitationLinkResult).should("be.visible");
+	}
+
+	saveTheLinkUrlInInvitationForm() {
+		cy.get(Rooms.#CreateInvitationLinkResult)
+			.find("input")
+			.invoke("attr", "value")
+			.then((value) => {
+				cy.wrap(value).as("importShareCourseUrl");
+			});
+	}
+
+	clickInvitationFormClose() {
+		cy.get(Rooms.#modalCreateInvitationLinkClose).click();
 	}
 }
 export default Rooms;
