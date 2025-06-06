@@ -8,9 +8,9 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
-	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
+	static #deletionConfirmationModalTitle = '[data-testid="dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
-	static #confirmDeletionModalDelete = '[data-testid="dialog-confirm"]';
+	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
@@ -38,6 +38,19 @@ class Rooms {
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
 	static #roomRoleDropdownOverlay = ".v-list-item-title";
+	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
+
+	seeRoomNameInImportModal() {
+		cy.get(Rooms.#roomNameInModalRoomImport).should("be.visible");
+	}
+
+	enterNewRoomNameInImportModal(roomName) {
+		cy.get(Rooms.#roomNameInModalRoomImport).clear().type(roomName);
+	}
+
+	clickOnImportConfirmButtonInModal() {
+		cy.get(Rooms.#confirmButtonOnModal).click();
+	}
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -154,7 +167,7 @@ class Rooms {
 	}
 
 	navigateToRoom(roomName) {
-		cy.contains(roomName).should("be.visible").and("contain.text", roomName).click();
+		cy.get(Rooms.#roomTitle).contains(roomName).should("be.visible").click();
 	}
 
 	openThreeDotMenuForRoom() {
@@ -185,14 +198,14 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#deletionConfirmationModalTitle).then((dialogs) => {
+		cy.get(Rooms.#confirmButtonOnModal).then((dialogs) => {
 			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
 				return (
 					parseInt(Cypress.$(dialogB).css("z-index")) -
 					parseInt(Cypress.$(dialogA).css("z-index"))
 				);
 			})[0];
-			cy.wrap(highestZIndexDialog).find(Rooms.#confirmDeletionModalDelete).click();
+			cy.wrap(highestZIndexDialog).click();
 		});
 	}
 
@@ -239,6 +252,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 		cy.get(
 			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
 		).click();
@@ -306,6 +322,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 		cy.get(Rooms.#participantTable)
 			.contains("td", participantName)
 			.should("not.exist");
