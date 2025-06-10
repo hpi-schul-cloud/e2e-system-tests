@@ -46,6 +46,7 @@ class Rooms {
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
 	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
+	static #roomInvitationsTable = '[data-testid="data-table"]';
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -426,12 +427,23 @@ class Rooms {
 			.find("input")
 			.invoke("attr", "value")
 			.then((value) => {
-				cy.wrap(value).as("importShareCourseUrl");
+				cy.wrap(value).as("roomInvitationLinkUrl");
 			});
 	}
 
 	clickInvitationFormClose() {
 		cy.get(Rooms.#modalCreateInvitationLinkClose).click();
+	}
+
+	seeInvitationLinkInList(linkDescription) {
+		cy.get(Rooms.#roomInvitationsTable)
+			.contains(linkDescription)
+	}
+
+	useSavedLinkUrl() {
+		cy.get("@roomInvitationLinkUrl").then((roomInvitationLinkUrl) => {
+			cy.visit(roomInvitationLinkUrl);
+		});
 	}
 }
 export default Rooms;

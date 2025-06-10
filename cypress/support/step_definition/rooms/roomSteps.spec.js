@@ -291,3 +291,11 @@ When("I remember the invitation link URL in the Modal", () => {
 When("I close the invitation modal", () => {
 	rooms.clickInvitationFormClose();
 })
+
+Then("I see {string} in the list of invitation links", (invitationDescription) => {
+	rooms.seeInvitationLinkInList(invitationDescription);
+})
+
+When("I use the remembered invitation link URL", () => {
+	rooms.useSavedLinkUrl()
+})

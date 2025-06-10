@@ -26,6 +26,12 @@ Scenario Outline: Room Owner creates an invitation link, another teacher uses it
         Then I see the Link URL in the Modal
         When I remember the invitation link URL in the Modal
         When I close the invitation modal
+        Then I see '<invitation_description>' in the list of invitation links
+
+        # second user uses the invitation link to join the room
+        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        When I use the remembered invitation link URL
+        Then I see the detail page of room '<room_name>'
 
 
         @school_api_test
