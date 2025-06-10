@@ -43,8 +43,8 @@ class Rooms {
 	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
 	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
 	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
-	static #inputInviteMembersDescription = '[data-testid="input_invite-participants_description"]';
-	static #inputInviteMembersRequireConfirmation = '[data-testid="input_invite-participants_requires-confirmation"]';
+	static #inputInviteMembersDescription = '[data-testid="invite-participant-description-input"]';
+	static #inputInviteMembersRequireConfirmation = '[data-testid="input-invite-participants-requires-confirmation"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
 	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
@@ -419,8 +419,8 @@ class Rooms {
 		cy.get(Rooms.#modalCreateInvitationLink).should("be.visible");
 	}
 
-	fillInvitationFormDescription(newDesciption) {
-		cy.get(Rooms.#inputInviteMembersDescription).clear().type(newDesciption);
+	fillInvitationFormDescription(newDescription) {
+		cy.get(Rooms.#inputInviteMembersDescription).clear().type(newDescription);
 	}
 
 	uncheckInvitationFormRequireConfirmation() {

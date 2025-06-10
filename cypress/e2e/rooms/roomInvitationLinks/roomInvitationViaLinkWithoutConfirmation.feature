@@ -33,13 +33,13 @@ Scenario Outline: Room Owner creates an invitation link, another teacher uses it
         When I use the remembered invitation link URL
         Then I see the detail page of room '<room_name>'
 
+        # post-condition: first teacher deletes the room
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
+        Given the room named '<room_name>' is deleted
+
 
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name         | invitation_description |
             | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | testinvitationlink   |
 
-        @staging_test
-        Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | invitation_description |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | testinvitationlink   |
