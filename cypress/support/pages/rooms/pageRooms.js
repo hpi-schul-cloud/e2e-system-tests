@@ -39,6 +39,8 @@ class Rooms {
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
 	static #roomRoleDropdownOverlay = ".v-list-item-title";
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
+	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
+	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
 	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
 	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
 	static #inputInviteMembersDescription = '[data-testid="input_invite-participants_description"]';
@@ -47,6 +49,9 @@ class Rooms {
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
 	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
+	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
+	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
+	static #threeDotMenuConfirm = '[data-testid^="kebab-menu-confirm"]';
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -398,6 +403,14 @@ class Rooms {
 		cy.get(Rooms.#tabRoomInvitations).should("be.visible").click();
 	}
 
+	clickOnTabRoomConfirmations() {
+		cy.get(Rooms.#tabRoomConfirmations).should("be.visible").click();
+	}
+
+	clickOnTabRoomMembers() {
+		cy.get(Rooms.#tabRoomMembers).should("be.visible").click();
+	}
+
 	clickOnInviteParticipantsFAB() {
 		cy.get(Rooms.#fabButtonInviteMembers).click();
 	}
@@ -412,6 +425,10 @@ class Rooms {
 
 	uncheckInvitationFormRequireConfirmation() {
 		cy.get(Rooms.#inputInviteMembersRequireConfirmation).find('[type="checkbox"]').uncheck();
+	}
+
+	checkInvitationFormRequireConfirmation() {
+		cy.get(Rooms.#inputInviteMembersRequireConfirmation).find('[type="checkbox"]').check();
 	}
 
 	clickInvitationFormSave() {
@@ -444,6 +461,32 @@ class Rooms {
 		cy.get("@roomInvitationLinkUrl").then((roomInvitationLinkUrl) => {
 			cy.visit(roomInvitationLinkUrl);
 		});
+	}
+
+	seeLinkInvitationStatusMessage() {
+		cy.get(Rooms.#roomInvitationStatusMessage).should("be.visible");
+	}
+
+	seeUserInConfirmationsTable(userName) {
+		cy.get(Rooms.#roomInvitationsTable)
+			.contains(userName)
+	}
+
+	notSeeUserInConfirmationsTable(userName) {
+		cy.get(Rooms.#roomInvitationsTable).should("not.contain", userName);
+	}
+
+	clickOnThreeDotMenuForUserInConfirmationsTable(userName) {
+		cy.contains("td", userName)
+			.parent()
+			.within(() => {
+				cy.get(Rooms.#threeDotMenuOfRowInRoomConfirmationsTable).click();
+			});
+	}
+
+	clickConfirmButtonInThreeDotMenu() {
+		cy.get(Rooms.#threeDotMenuConfirm).should("be.visible");
+		cy.get(Rooms.#threeDotMenuConfirm).click();
 	}
 }
 export default Rooms;
