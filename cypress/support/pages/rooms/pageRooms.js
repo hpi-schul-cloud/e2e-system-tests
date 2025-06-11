@@ -8,7 +8,7 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
-	static #deletionConfirmationModalTitle = '[data-testid="dialog-title"]';
+	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
@@ -198,14 +198,14 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#confirmButtonOnModal).then((dialogs) => {
+		cy.get(Rooms.#deletionConfirmationModalTitle).then((dialogs) => {
 			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
 				return (
 					parseInt(Cypress.$(dialogB).css("z-index")) -
 					parseInt(Cypress.$(dialogA).css("z-index"))
 				);
 			})[0];
-			cy.wrap(highestZIndexDialog).click();
+			cy.wrap(highestZIndexDialog).find(Rooms.#confirmButtonOnModal).click();
 		});
 	}
 
