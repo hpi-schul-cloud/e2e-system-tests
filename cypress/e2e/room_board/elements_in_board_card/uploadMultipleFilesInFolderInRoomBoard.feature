@@ -18,11 +18,12 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         When I select 'file-folder' from the element selection dialog box
-        Then I see a folder with name '<folder_name>' in the card
+        When I click on the page outside of the column
+        Then I see a folder with name '<standard_folder_name>' in the card
 
         # pre-condition: content editor opens folder
-        When I click on the folder '<folder_name>' in the card
-        Then I see page Folder content for '<folder_name>'
+        When I click on the folder '<standard_folder_name>' in the card
+        Then I see page Folder content for '<standard_folder_name>'
 
         # editor uploads files
         When I click on button Add file
@@ -36,7 +37,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on icon Download in the fullscreen image
         Then file '<image_file_name>' is saved in folder downloads
         When I click on the icon Close on the fullscreen image
-        Then I see page Folder content for '<folder_name>'
+        Then I see page Folder content for '<standard_folder_name>'
 
         #editor opens audio in audio player
         When I click on the name of file '<audio_file_name>' in file list
@@ -44,15 +45,15 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on icon Download in the fullscreen image
         Then file '<audio_file_name>' is saved in folder downloads
         When I click on the icon Close on the fullscreen image
-        Then I see page Folder content for '<folder_name>'
+        Then I see page Folder content for '<standard_folder_name>'
 
         #editor opens video in video player
-        # When I click on the name of file '<video_file_name>' in file list
-        # Then I see video player
-        # When I click on icon Download in the fullscreen image
-        # Then file '<video_file_name>' is saved in folder downloads
-        # When I click on the icon Close on the fullscreen image
-        # Then I see page Folder content for '<folder_name>'
+        When I click on the name of file '<video_file_name>' in file list
+        Then I see video player
+        When I click on icon Download in the fullscreen image
+        Then file '<video_file_name>' is saved in folder downloads
+        When I click on the icon Close on the fullscreen image
+        Then I see page Folder content for '<standard_folder_name>'
 
         # editor checks file / multiple files
         When I check the checkbox of file '<audio_file_name>'
@@ -98,9 +99,24 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see checkboxes of files '<audio_file_name>' are unchecked
         Then I see state of table header checkbox is 'unchecked'
 
+        # editor renames folder on folder page
+        When I click on the three dot menu button next to the folder title
+        When I select the three dot menu action 'rename'
+        Then I see modal Rename folder
+        When I enter '<folder_name_edited>' in input field New name
+        When I click on button Approve in modal
+        Then I see page Folder content for '<folder_name_edited>'
+
+        # editor removes folder name and name is resetted to standard folder name
+        When I click on the three dot menu button next to the folder title
+        When I select the three dot menu action 'rename'
+        When I clear input field New name
+        When I click on button Approve in modal
+        Then I see page Folder content for '<standard_folder_name>'
+
         # editor deletes folder on board page
         When I click on breadcrumb element '<board_title>'
-        Then I see a folder with name '<folder_name>' in the card
+        Then I see a folder with name '<standard_folder_name>' in the card
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
@@ -116,8 +132,8 @@ Feature: Room Board - Upload multiple files in folder in board
 
         @school_api_test
         Examples:
-            | namespace | content_editor | reader       | room_name              | board_title             | folder_name        | video_file_name          | audio_file_name            | image_file_name | search_request |
-            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio   |
+            | namespace | content_editor | reader       | room_name              | board_title             | standard_folder_name | folder_name_edited | video_file_name          | audio_file_name            | image_file_name | search_request |
+            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner   | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample_audio   |
 
 # @staging_test
 # Examples:

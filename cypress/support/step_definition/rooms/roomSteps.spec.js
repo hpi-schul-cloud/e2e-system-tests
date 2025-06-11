@@ -267,3 +267,82 @@ Then("I see teacher {string} is visible in the table", (participantName) => {
 When("I select {string} in dropdown Role", (participantRole) => {
 	rooms.selectRoomRoleFromDropdownMenu(participantRole);
 });
+
+When('I click on tab Invitations', () => {
+	rooms.clickOnTabRoomInvitations();
+})
+
+When("I click on the fab button to create an invitationlink", () => {
+	rooms.clickOnInviteParticipantsFAB();
+});
+
+Then("I see the modal Create Invitation Link", () => {
+	rooms.seeCreateInvitationLinkModal();
+});
+
+When("I enter {string} into the Invitation Link Description field", (invitationDescription) => {
+	rooms.fillInvitationFormDescription(invitationDescription);
+})
+
+When("I uncheck the Checkbox to require confirmation", () => {
+	rooms.uncheckInvitationFormRequireConfirmation();
+})
+
+When("I check the Checkbox to require confirmation", () => {
+	rooms.checkInvitationFormRequireConfirmation();
+})
+
+When("I save the invitation link", () => {
+	rooms.clickInvitationFormSave();
+})
+
+Then("I see the Link URL in the Modal", () => {
+	rooms.seeLinkUrlInInvitationForm();
+})
+
+When("I remember the invitation link URL in the Modal", () => {
+	rooms.saveTheLinkUrlInInvitationForm();
+})
+
+When("I close the invitation modal", () => {
+	rooms.clickInvitationFormClose();
+})
+
+Then("I see {string} in the list of invitation links", (invitationDescription) => {
+	rooms.seeInvitationLinkInList(invitationDescription);
+})
+
+When("I use the remembered invitation link URL", () => {
+	rooms.useSavedLinkUrl()
+})
+
+Then("I see a link invitation status message", () => {
+	rooms.seeLinkInvitationStatusMessage();
+})
+
+When('I click on tab Confirmations', () => {
+	rooms.clickOnTabRoomConfirmations();
+})
+
+When('I click on tab Members', () => {
+	rooms.clickOnTabRoomMembers();
+})
+
+Then("I see user {string} in the confirmations table", (userName) => {
+	rooms.seeUserInConfirmationsTable(userName);
+});
+
+Then("I do not see user {string} in the confirmations table", (userName) => {
+	rooms.notSeeUserInConfirmationsTable(userName);
+});
+
+When(
+	"I click on button Three Dot Menu in Confirmations table for user {string}",
+	(userName) => {
+		rooms.clickOnThreeDotMenuToAddUser(userName);
+	}
+);
+
+When("I click on confirm button in the three dot menu", () => {
+	rooms.clickConfirmButtonInThreeDotMenu();
+});
