@@ -37,7 +37,6 @@ class Rooms {
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
-	static #roomRoleDropdownOverlay = ".v-list-item-title";
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
 	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
 	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
