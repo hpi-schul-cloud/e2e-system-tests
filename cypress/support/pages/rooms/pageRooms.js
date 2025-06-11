@@ -56,6 +56,11 @@ class Rooms {
 	static #threeDotMenuConfirm = '[data-testid^="kebab-menu-confirm"]';
 	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
 	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
+	static #infoBoxContentRestriction = '[data-testid="share-options-table-header"]';
+
+	seeContentRestrictionInfoBoxInModal() {
+		cy.get(Rooms.#infoBoxContentRestriction).should("be.visible");
+	}
 
 	seeRoomNameInImportModal() {
 		cy.get(Rooms.#roomNameInModalRoomImport).should("be.visible");
