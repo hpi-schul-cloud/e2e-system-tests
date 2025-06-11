@@ -37,7 +37,7 @@ class Rooms {
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
-	static #roomRoleDropdownOverlay = ".v-list-item-title";
+	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -162,9 +162,7 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -239,9 +237,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -306,9 +302,7 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
@@ -357,7 +351,7 @@ class Rooms {
 		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
 		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should(
 			"contain.text",
-			"Füge Mitglieder zum Raum hinzu. Lehrkräfte anderer Schulen können hinzugefügt werden"
+			"Füge Mitglieder zum Raum hinzu. Lernbegleitende anderer Schulen können hinzugefügt werden"
 		);
 	}
 
@@ -378,11 +372,8 @@ class Rooms {
 
 	selectRoomRoleFromDropdownMenu(participantRole) {
 		cy.get(Rooms.#addParticipantRole).type("downArrow");
-		cy.get(Rooms.#addParticipantRole).should("be.visible");
-		cy.get(Rooms.#roomRoleDropdownOverlay)
-			.contains(participantRole)
-			.should("be.visible")
-			.click();
+		cy.get(Rooms.#roomRoleDropdownOverlay).contains(participantRole).click();
+		cy.get(Rooms.#addParticipantRole).should("contain", participantRole);
 	}
 }
 export default Rooms;
