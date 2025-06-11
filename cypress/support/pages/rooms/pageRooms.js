@@ -255,9 +255,6 @@ class Rooms {
 		cy.get(
 			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
 		).click();
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -322,9 +319,6 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
 		cy.get(Rooms.#participantTable)
 			.contains("td", participantName)
 			.should("not.exist");
