@@ -20,10 +20,10 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'publish'
         Then I do not see the chip Draft
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'copy'
         Then I see the chip Draft
         When I click on the breadcrumb to navigate to the room detail page
@@ -34,10 +34,10 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         When I click on the single-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'publish'
         Then I do not see the chip Draft
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'copy'
         Then I see the chip Draft
         When I click on the breadcrumb to navigate to the room detail page
