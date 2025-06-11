@@ -5,30 +5,13 @@ Feature: Create, edit and delete folder in board, including file handling inside
 As a teacher I want to copy a room board with files in file folder
 
 Scenario Outline:  Teacher is able to create, edit and delete a folder in a board
-        # pre-condition: creating accounts and room with board and card
+        # pre-condition: creating accounts and room with board and a folder in a card
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
-
-        # pre-condition: content editor creates a folder element in the card
-        When I click on the page outside of the column
-        When I click on the three dot on the card
-        When I click on the option Edit in the three dot menu on the card
-        When I click on icon Plus to add content into card
-        When I select 'file-folder' from the element selection dialog box
-        When I enter name '<folder_name>' for file folder in card
-        When I approve new folder name in card
-        Then I see a folder with name '<folder_name>' in the card
-
-        # pre-condition: content editor opens folder and uploads files
-        When I click on the page outside of the column
-        When I click on the folder '<folder_name>' in the card
-        Then I see page Folder content for '<folder_name>'
-        Then I see button Add file
-        When I click on button Add file
-        When I upload multiple files '<video_file_name>, <audio_file_name>, <image_file_name>' to file folder
-        Then I see files '<video_file_name>, <audio_file_name>, <image_file_name>' in file list
+        Given the card has a folder named '<folder_name>'
+        Given the folder '<folder_name>' contains files '<video_file_name>, <audio_file_name>, <image_file_name>'
 
         # editor copies room board on board page
         When I click on breadcrumb element '<board_title>'

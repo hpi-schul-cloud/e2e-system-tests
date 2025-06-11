@@ -4,12 +4,14 @@ import Courses from "../../pages/course/pageCourses";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Management from "../../pages/admin/pageAdministration";
+import GlobalActions from "../../pages/common_helper/globalActions";
 
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
 const management = new Management();
+const globalActions = new GlobalActions();
 
 Given("video conference is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
@@ -164,6 +166,25 @@ Given("the multi-column board has a column with a card", () => {
 	board.clickOutsideTheCardToSaveTheCard();
 });
 
+Given("the card has a folder named {string}", (folderTitle) => {
+	board.clickOutsideTheColumnToSaveTheColumn();
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	board.selectCardElementFromMenu('file-folder');
+	roomBoards.enterFolderNameInBoardCard(folderTitle);
+	roomBoards.approveFolderNameInCard();
+	roomBoards.seeFolderElementWithTitle(folderTitle);
+});
+
+Given("the folder {string} contains files {string}", (folderTitle, uploadFiles) => {
+	board.clickOutsideTheColumnToSaveTheColumn();
+	roomBoards.clickFolderElementWithTitle(folderTitle);
+	globalActions.clickElementWithDataTestId("fab-add-files");
+	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
+	roomBoards.seeMultipleFilesInFolderList(uploadFiles);
+});
+
 Given("course with name {string} is deleted", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
@@ -173,3 +194,5 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
+
+
