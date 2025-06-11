@@ -37,6 +37,20 @@ class Rooms {
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
+	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
+	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
+	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
+	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
+	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
+	static #inputInviteMembersDescription = '[data-testid="invite-participant-description-input"]';
+	static #inputInviteMembersRequireConfirmation = '[data-testid="input-invite-participants-requires-confirmation"]';
+	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
+	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
+	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
+	static #roomInvitationsTable = '[data-testid="data-table"]';
+	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
+	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
+	static #threeDotMenuConfirm = '[data-testid^="kebab-menu-confirm"]';
 	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
 
 	seeDuplicateRoomSuccessAlert() {
@@ -374,6 +388,96 @@ class Rooms {
 		cy.get(Rooms.#addParticipantRole).type("downArrow");
 		cy.get(Rooms.#roomRoleDropdownOverlay).contains(participantRole).click();
 		cy.get(Rooms.#addParticipantRole).should("contain", participantRole);
+	}
+
+	clickOnTabRoomInvitations() {
+		cy.get(Rooms.#tabRoomInvitations).should("be.visible").click();
+	}
+
+	clickOnTabRoomConfirmations() {
+		cy.get(Rooms.#tabRoomConfirmations).should("be.visible").click();
+	}
+
+	clickOnTabRoomMembers() {
+		cy.get(Rooms.#tabRoomMembers).should("be.visible").click();
+	}
+
+	clickOnInviteParticipantsFAB() {
+		cy.get(Rooms.#fabButtonInviteMembers).click();
+	}
+
+	seeCreateInvitationLinkModal() {
+		cy.get(Rooms.#modalCreateInvitationLink).should("be.visible");
+	}
+
+	fillInvitationFormDescription(newDescription) {
+		cy.get(Rooms.#inputInviteMembersDescription).clear().type(newDescription);
+	}
+
+	uncheckInvitationFormRequireConfirmation() {
+		cy.get(Rooms.#inputInviteMembersRequireConfirmation).find('[type="checkbox"]').uncheck();
+	}
+
+	checkInvitationFormRequireConfirmation() {
+		cy.get(Rooms.#inputInviteMembersRequireConfirmation).find('[type="checkbox"]').check();
+	}
+
+	clickInvitationFormSave() {
+		cy.get(Rooms.#modalCreateInvitationLinkSave).click();
+	}
+
+	seeLinkUrlInInvitationForm() {
+		cy.get(Rooms.#CreateInvitationLinkResult).should("be.visible");
+	}
+
+	saveTheLinkUrlInInvitationForm() {
+		cy.get(Rooms.#CreateInvitationLinkResult)
+			.find("input")
+			.invoke("attr", "value")
+			.then((value) => {
+				cy.wrap(value).as("roomInvitationLinkUrl");
+			});
+	}
+
+	clickInvitationFormClose() {
+		cy.get(Rooms.#modalCreateInvitationLinkClose).click();
+	}
+
+	seeInvitationLinkInList(linkDescription) {
+		cy.get(Rooms.#roomInvitationsTable)
+			.contains(linkDescription)
+	}
+
+	useSavedLinkUrl() {
+		cy.get("@roomInvitationLinkUrl").then((roomInvitationLinkUrl) => {
+			cy.visit(roomInvitationLinkUrl);
+		});
+	}
+
+	seeLinkInvitationStatusMessage() {
+		cy.get(Rooms.#roomInvitationStatusMessage).should("be.visible");
+	}
+
+	seeUserInConfirmationsTable(userName) {
+		cy.get(Rooms.#roomInvitationsTable)
+			.contains(userName)
+	}
+
+	notSeeUserInConfirmationsTable(userName) {
+		cy.get(Rooms.#roomInvitationsTable).should("not.contain", userName);
+	}
+
+	clickOnThreeDotMenuForUserInConfirmationsTable(userName) {
+		cy.contains("td", userName)
+			.parent()
+			.within(() => {
+				cy.get(Rooms.#threeDotMenuOfRowInRoomConfirmationsTable).click();
+			});
+	}
+
+	clickConfirmButtonInThreeDotMenu() {
+		cy.get(Rooms.#threeDotMenuConfirm).should("be.visible");
+		cy.get(Rooms.#threeDotMenuConfirm).click();
 	}
 }
 export default Rooms;
