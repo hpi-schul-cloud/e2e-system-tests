@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Create, edit and delete folder in board, including file handling inside the folder (in progress)
+Feature: Share room board copy with files in file folder
 
-As a teacher I want to copy a room board with files in file folder
+As a content editor I want to copy a room board with files in file folder, so that the file folder and also the files inside are available in the new room board
 
-Scenario Outline:  Teacher is able to create, edit and delete a folder in a board
+Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
         # pre-condition: creating accounts and 2 rooms, one with board and folder in a card (name of second room has to be after first room in room list)
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<second_room_name>' exists

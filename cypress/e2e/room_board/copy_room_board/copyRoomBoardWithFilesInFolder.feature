@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-Feature: Create, edit and delete folder in board, including file handling inside the folder (in progress)
+Feature: Copying room board with files in a file folder
 
-As a teacher I want to copy a room board with files in file folder
+As a teacher I want to copy a room board with files in file folder, so that in the new room board there are the files of the original board available.
 
-Scenario Outline:  Teacher is able to create, edit and delete a folder in a board
+Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
         # pre-condition: creating accounts and room with board and a folder in a card
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' exists
@@ -13,7 +13,7 @@ Scenario Outline:  Teacher is able to create, edit and delete a folder in a boar
         Given the card has a folder named '<folder_name>'
         Given the folder '<folder_name>' contains files '<video_file_name>, <audio_file_name>, <image_file_name>'
 
-        # editor copies room board on board page
+        # content editor copies room board on board page
         When I click on breadcrumb element '<board_title>'
         Then I see a folder with name '<folder_name>' in the card
         When I click on the three dot menu in room board title
