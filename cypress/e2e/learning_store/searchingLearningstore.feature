@@ -44,7 +44,6 @@ Feature: Learning store - Search Learning Material in Learning Store
         When I click the toggle switch to disable students access to learning store
         When I click on button Save admin settings
 
-        @pre_check_test
         @school_api_test
         @staging_test
         Examples:

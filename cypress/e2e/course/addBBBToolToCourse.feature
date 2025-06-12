@@ -95,7 +95,6 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
             | namespace | admin      | teacher      | fullname_teacher | course_name                           |
             | nbc       | admin1_nbc | teacher1_nbc | Karl Herzog      | CypressAut Test Creation and Deletion |
 
-        @pre_check_test
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher  | course_name                           |

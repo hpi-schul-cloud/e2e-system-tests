@@ -1,3 +1,4 @@
+
 @regression_test
 @stable_test
 @schedule_run
@@ -38,7 +39,6 @@ Feature: Learning store - Activating and deactivating access for students
         Given I am logged in as a '<student>' at '<namespace>'
         Then I do not see Learning Store in side bar
 
-        @pre_check_test
         @school_api_test
         @staging_test
         Examples:
