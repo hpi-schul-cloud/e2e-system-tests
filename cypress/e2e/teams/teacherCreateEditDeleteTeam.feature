@@ -1,4 +1,3 @@
-
 @regression_test
 @stable_test
 @schedule_test
@@ -42,6 +41,7 @@ Feature: Team - Create, delete and edit operations on Teams
         Then I see dialog box and click on delete button to confirm the deletion
         Then I do not see the team '<team_edited_title>'
 
+        @pre_check_test
         @school_api_test
         @staging_test
         Examples:

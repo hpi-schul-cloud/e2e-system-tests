@@ -49,6 +49,7 @@ Feature: Team - Student managed teams
         Then I see dialog box and click on delete button to confirm the deletion
         Then I do not see the team '<team_title_edited>'
 
+        @pre_check_test
         @school_api_test
         @staging_test
         Examples:
