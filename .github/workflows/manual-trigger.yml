@@ -7,9 +7,9 @@ on:
         required: true
         type: choice
         options:
-          - all (tests runs all stable, regression tests)
-          - selective (tests runs on PR)
-          - pre-check (tests runs for pre-release check)
+          - all (tests run for regression testing)
+          - selective (tests run for PR)
+          - pre-check (tests run for pre-release check)
         default: "selective (tests runs on PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
