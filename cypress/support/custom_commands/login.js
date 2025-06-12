@@ -18,7 +18,7 @@ Cypress.Commands.add("login", (username, environment) => {
 
 			let isStaging = stagingRegex.test(link);
 
-			!isStaging
+			!(isStaging || environment === "localhost")
 				? await loginViaSchoolApi(username, environment)
 				: loginWithoutSchoolApi(username, environment);
 
