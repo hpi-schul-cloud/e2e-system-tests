@@ -29,6 +29,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
+	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
@@ -90,6 +91,9 @@ class RoomBoards {
 	static #linkSaveButton = '[data-testid="save-link-in-card"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
+	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]'
+	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]'
+
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -622,7 +626,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#btnDialogConfirm).click();
 	}
 	clickOnThreeDotMenuInRoomBoardTitle() {
-		cy.get(RoomBoards.#globalCommonThreeDotInCardElement).click();
+		cy.get(RoomBoards.#threeDotInBoardTitle).click();
 	}
 	clickOnEditInBoardMenu() {
 		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
@@ -755,23 +759,39 @@ class RoomBoards {
 	}
 
 	openThreeDotMenuForFolderInCard() {
-		cy.get(RoomBoards.#folderElementSelector).find("button").click();
+		cy.get(RoomBoards.#folderElementSelector).find(`[data-testid="board-menu-icon"]`).click();
 	}
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
 		cy.get(RoomBoards.#multiActionMenuInHeader).should("contain", expectedNumber);
 	}
 
-	seeModalRenameFile() {
+	seeModalRenameElement() {
 		cy.get(RoomBoards.#renameInputInDialog).should("be.visible");
 	}
 
-	enterNewFileNameInDialog(newFileName) {
-		cy.get(RoomBoards.#renameInputInDialog).clear().type(newFileName);
+	enterNewElementNameInDialog(newName) {
+		cy.get(RoomBoards.#renameInputInDialog).clear().type(newName);
+	}
+
+	clearNewElementNameInDialog() {
+		cy.get(RoomBoards.#renameInputInDialog).clear();
 	}
 
 	clickOnFileNameInFolder(fileName) {
 		cy.get(`[data-testid="name-${fileName}"]`).click();
+	}
+
+	enterFolderNameInBoardCard(newName) {
+		cy.get(RoomBoards.#folderTitleInCardInput).find('input').eq(0).clear().type(newName);
+	}
+
+	approveFolderNameInCard() {
+		cy.get(RoomBoards.#approveFolderNameBtnInCard).click();
+	}
+
+	clearFolderNameInCard() {
+		cy.get(RoomBoards.#folderTitleInCardInput).find('input').eq(0).clear();
 	}
 }
 
