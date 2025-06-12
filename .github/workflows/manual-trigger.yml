@@ -2,15 +2,6 @@ name: e2e-manual-trigger-tests
 on:
   workflow_dispatch:
     inputs:
-      test_mode:
-        description: "Select test mode"
-        required: true
-        type: choice
-        options:
-          - all (tests run for regression testing)
-          - selective (tests run for PR)
-          - pre-check (tests run for pre-release check)
-        default: "selective (tests runs on PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
@@ -50,64 +41,94 @@ jobs:
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
-  run-all-tests:
-    name: Run All Tests (Stable + Regression)
+  run-tests-groupA:
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'all (tests runs all stable, regression tests)' }}
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:regression_test:school_api_test:manual_trigger:ci
+      tag: cy:headless:stable:groupA:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: manual-trigger
+      groups: group-A
 
+  run-tests-groupB:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-
-  run-tests-selective:
-    name: Run Tests Run in PR
-    needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'selective (tests runs on PR)' }}
-    uses: ./.github/workflows/main.yml
-    strategy:
-      fail-fast: false
-      matrix:
-        group: [group-A, group-B, group-C, group-D, group-E, group-F]
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:${{ matrix.group }}:school_api_test:ci
+      tag: cy:headless:stable:groupB:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
+      groups: group-B
+
+  run-tests-groupC:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-
-  run-pre-check-tests:
-    name: Run All Pre-Check Tests
-    needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'pre-check (tests runs for pre-release check)' }}
-    uses: ./.github/workflows/main.yml
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:regression_test:school_api_test:manual_trigger:pre_check:ci
+      tag: cy:headless:stable:groupC:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: pre-check
+      groups: group-C
 
+  run-tests-groupD:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupD:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-D
+
+  run-tests-groupE:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupE:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-E
+
+  run-tests-groupF:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:stable:groupF:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-F
 
   notify_RC:
     runs-on: ubuntu-latest
     needs:
       - e2e-system-tests
-      - run-all-tests
-      - run-tests-selective
-      - run-pre-check-tests
+      - run-tests-groupA
+      - run-tests-groupB
+      - run-tests-groupC
+      - run-tests-groupD
+      - run-tests-groupE
+      - run-tests-groupF
     if: |
       always()
 
