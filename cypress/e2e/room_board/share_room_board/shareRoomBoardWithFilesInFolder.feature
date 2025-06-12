@@ -14,7 +14,7 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
         Given the card has a folder named '<folder_name>'
         Given the folder '<folder_name>' contains files '<video_file_name>, <audio_file_name>, <image_file_name>'
 
-        # editor copies share room board copy link
+        # content editor copies share room board copy link
         When I click on breadcrumb element '<board_title>'
         Then I see a folder with name '<folder_name>' in the card
         When I click on the three dot menu in room board title
@@ -26,12 +26,11 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
         Then I see the option Copy link
         Then I copy the board URL
 
-        # editor copies room board to second room
+        # content editor copies room board to second room
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
         When I select the room from the room list in the modal
-
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
         When I click on the button Import in the modal
