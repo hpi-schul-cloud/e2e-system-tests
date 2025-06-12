@@ -16,7 +16,7 @@ Feature: Room Board - Share multi-column room board in the Rooms with teacher fr
 
         # the first teacher shares the multi-column board with another teacher in the same school using the copied URL
         Then I see the page board details
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
         Then I see the title in the share modal

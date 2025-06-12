@@ -29,6 +29,7 @@ class RoomBoards {
 		'[data-testid="moderator-must-approve-join-requests"]';
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
+	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
@@ -625,7 +626,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#btnDialogConfirm).click();
 	}
 	clickOnThreeDotMenuInRoomBoardTitle() {
-		cy.get(RoomBoards.#globalCommonThreeDotInCardElement).click();
+		cy.get(RoomBoards.#threeDotInBoardTitle).click();
 	}
 	clickOnEditInBoardMenu() {
 		cy.get(RoomBoards.#btnBoardMenuActionRename).click();

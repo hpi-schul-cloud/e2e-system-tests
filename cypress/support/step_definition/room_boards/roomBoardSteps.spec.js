@@ -369,7 +369,7 @@ Then("I do not see the page board details", () => {
 	roomBoards.doNotSeeNewRoomBoardCreatePage();
 });
 
-When("I click on the three dot menu in room board", () => {
+When("I click on the three dot menu in room board title", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
