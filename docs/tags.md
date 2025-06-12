@@ -37,6 +37,9 @@ Examples: @group-A, @group-B, @group-C ...etc.
   <br>
 
 - **@clean_up_staging_test_data:** This tag is used for a test run, which removes all courses that were created by cancelled or failed test runs before. This is only for staging / ref environment and not for dev environments (where it is not needed, since the test school is always created new for each test).
+  <br>
+
+- **@pre_check_test:** This tag is designated for running all tests during a release pre-check. It serves as a lightweight sanity tests for pre-release validation.
 
 ## Tag Hierarchy and Inheritance
 
