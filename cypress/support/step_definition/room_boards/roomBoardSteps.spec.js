@@ -570,3 +570,7 @@ When("I approve new folder name in card", () => {
 When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
 });
+
+Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
+	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+});
