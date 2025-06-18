@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 Feature: Course Management - To create, edit and delete class
 
     As an administrator I want create, edit and delete a class
@@ -22,20 +23,20 @@ Feature: Course Management - To create, edit and delete class
         Then I see the new course administration page
         Then I see 2 tabs
         When I click on the Add course button
-		Then I see section one area on the course create page
-		When I enter the course title '<course_title>'
+        Then I see section one area on the course create page
+        When I enter the course title '<course_title>'
         When I select '<fullname_teacher>' from field teacher
-		Then I see substitute teacher selection box
-		Then I see date pickers to start and end the course as per school year
-		Then I see button to create a course time table container
-		When I click on button Next Steps after entering the course detail in section one
-		Then I see section two area on the course create page
-		Then I see class selection box to select the class for the course
-		Then I see student selection box to select the class for the course
-		When I select the student '<fullname_student>' in the list
-		When I click on button Next Steps after selecting course participant details
-		Then I see the section three area as the finish page
-		When I click on button To Course Overview on the finish page
+        Then I see substitute teacher selection box
+        Then I see date pickers to start and end the course as per school year
+        Then I see button to create a course time table container
+        When I click on button Next Steps after entering the course detail in section one
+        Then I see section two area on the course create page
+        Then I see class selection box to select the class for the course
+        Then I see student selection box to select the class for the course
+        When I select the student '<fullname_student>' in the list
+        When I click on button Next Steps after selecting course participant details
+        Then I see the section three area as the finish page
+        When I click on button To Course Overview on the finish page
         When I click on administration in menu
         When I navigate to course administration page via sub menu
         Then I see the course '<course_title>' on the new course administration page
@@ -45,8 +46,8 @@ Feature: Course Management - To create, edit and delete class
         # admin edits course
         When I click on the edit button of course '<course_title>'
         Then I see page Edit course
-		When I edit the title of the course to '<course_title_edited>'
-		When I click on button Save changes in page Edit course
+        When I edit the title of the course to '<course_title_edited>'
+        When I click on button Save changes in page Edit course
         Then I see the course '<course_title_edited>' on the new course administration page
 
         # admin deletes course

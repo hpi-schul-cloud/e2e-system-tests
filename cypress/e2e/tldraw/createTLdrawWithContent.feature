@@ -1,4 +1,5 @@
 @regression_test
+@schedule_run
 @stable_test
 Feature: TLDraw - Test tldraw on board
 

@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 Feature: Admin - Student registration with registration link send by admin
 
     As a student, I want to register in the SVS

@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@schedule_test
+@schedule_run
 Feature: Room - To create, edit and delete room
 
     As a teacher I want to create, edit and delete rooms.

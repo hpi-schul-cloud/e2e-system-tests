@@ -1,10 +1,11 @@
 @regression_test
 @stable_test
+@schedule_run
 Feature: Room - Invite User to room via Invitationlink
 
-As a room owner, when I invite a user through an invitation link, I want to confirm his application before he can join the room.
+    As a room owner, when I invite a user through an invitation link, I want to confirm his application before he can join the room.
 
-Scenario Outline: Room Owner creates an invitation link with confirmation, another teacher uses it, the first user confirms, including pre-conditions
+    Scenario Outline: Room Owner creates an invitation link with confirmation, another teacher uses it, the first user confirms, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 

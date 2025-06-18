@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@schedule_run
 Feature: Learning store - Search Learning Material in Learning Store
 
     As an admin I want to activate and deactivate students access to learning store
