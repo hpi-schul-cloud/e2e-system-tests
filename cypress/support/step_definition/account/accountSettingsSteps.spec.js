@@ -28,5 +28,5 @@ Then("I see the message successful", () => {
 });
 
 When("I click on the checkbox Activate visibility in the central directory", () => {
-	account.clickOnCheckboxDirectoryVisibility;
+	account.clickOnCheckboxDirectoryVisibility();
 });
