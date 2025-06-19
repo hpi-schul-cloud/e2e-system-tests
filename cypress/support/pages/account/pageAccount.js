@@ -13,6 +13,7 @@ class Account {
 	static #buttonLoginViaEmailNbc = '[data-testid="submit-cloud-site"]';
 	static #inputBoxUserEmailOnLoginPage = '[data-testid="username-email"]';
 	static #userPasswordLoginPage = '[data-testid="password-email"]';
+	static #checkboxDirectoryVisibility = '[data-testid="checkbox-show-in-directory"]';
 
 	enterCurrentPasswordOnLoginAfterChangingEmailInAccountSettings() {
 		const currentPassword = Cypress.env("password");
@@ -74,6 +75,18 @@ class Account {
 			cy.get(Account.#emailReadOnly).should("be.visible");
 			cy.get(Account.#emailReadOnly).should("have.attr", "readonly");
 		}
+	}
+
+	verifyCheckboxDirectoryVisibility(isChecked) {
+		if (isChecked) {
+			cy.get(Account.#checkboxDirectoryVisibility).should("be.checked");
+		} else {
+			cy.get(Account.#checkboxDirectoryVisibility).should("not.be.checked");
+		}
+	}
+
+	clickOnCheckboxDirectoryVisibility() {
+		cy.get(Account.#checkboxDirectoryVisibility).check();
 	}
 }
 export default Account;
