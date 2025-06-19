@@ -55,7 +55,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the icon Close on the fullscreen image
         Then I see page Folder content for '<standard_folder_name>'
 
-        #editor opens PDF in a separate tab
+        #editor downloads PDF file
         When I click on three dot menu in row of file '<pdf_file_name>'
         When I select the three dot menu action 'download'
         Then file '<pdf_file_name>' is saved in folder downloads
