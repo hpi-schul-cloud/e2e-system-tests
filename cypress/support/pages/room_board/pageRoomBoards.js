@@ -16,8 +16,8 @@ class RoomBoards {
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
 	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
-	static #multiColumnCopiedBoardSelector = '[data-testid="board-tile-title-0"]';
-	static #singleColumnCopiedBoardSelector = '[data-testid="board-tile-title-1"]';
+	static #multiColumnBoardTileSelector = '[data-testid="board-tile-title-0"]';
+	static #singleColumnBoardTileSelector = '[data-testid="board-tile-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
@@ -545,15 +545,15 @@ class RoomBoards {
 	}
 
 	verifyMultiColumnBoardTileVisibleOnRoomDetailsPage() {
-		cy.get(RoomBoards.#multiColumnBoardSelector).should("be.visible");
+		cy.get(RoomBoards.#multiColumnBoardTileSelector).should("be.visible");
 	}
 
 	verifySingleColumnBoardTileVisibleOnRoomDetailsPage() {
-		cy.get(RoomBoards.#singleColumnBoardSelector).should("be.visible");
+		cy.get(RoomBoards.#singleColumnBoardTileSelector).should("be.visible");
 	}
 
 	verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage() {
-		cy.get(RoomBoards.#singleColumnBoardSelector).should("not.exist");
+		cy.get(RoomBoards.#singleColumnBoardTileSelector).should("not.exist");
 	}
 
 	clickSingleColumnBoardInRoomDetailPage() {
