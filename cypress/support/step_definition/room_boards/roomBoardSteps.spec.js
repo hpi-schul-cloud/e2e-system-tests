@@ -320,12 +320,20 @@ Then(
 	}
 );
 
+Then("I see multi-column board tile in the rooms details page", () => {
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
-	roomBoards.verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifySingleColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
+Then("I do not see single-column board tile in the room details page", () => {
+	roomBoards.verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage();
 });
 
 When("I click on the single-column board in the room detail page", () => {
@@ -571,6 +579,9 @@ When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
 });
 
-Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
-	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
-});
+Then(
+	"zip file for folder {string} with date of today is saved in folder downloads",
+	(folderName) => {
+		roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+	}
+);
