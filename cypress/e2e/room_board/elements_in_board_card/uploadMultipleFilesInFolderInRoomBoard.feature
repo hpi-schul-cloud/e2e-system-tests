@@ -25,13 +25,13 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the folder '<standard_folder_name>' in the card
         Then I see page Folder content for '<standard_folder_name>'
 
-        # editor uploads files
+        # content editor uploads files
         When I click on button Add file
         When I upload multiple files '<video_file_name>, <audio_file_name>, <image_file_name>, <pdf_file_name>' to file folder
         Then I see files '<video_file_name>, <audio_file_name>, <image_file_name>, <pdf_file_name>' in file list
         Then I see state of table header checkbox is 'unchecked'
 
-        #editor opens image in lightbox
+        # content editor opens image in lightbox
         When I click on the name of file '<image_file_name>' in file list
         Then I see the image in a lightbox
         When I click on icon Download in the fullscreen image
@@ -39,7 +39,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the icon Close on the fullscreen image
         Then I see page Folder content for '<standard_folder_name>'
 
-        #editor opens audio in audio player
+        # content editor opens audio in audio player
         When I click on the name of file '<audio_file_name>' in file list
         Then I see audio player
         When I click on icon Download in the fullscreen image
@@ -47,7 +47,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the icon Close on the fullscreen image
         Then I see page Folder content for '<standard_folder_name>'
 
-        #editor opens video in video player
+        # content editor opens video in video player
         When I click on the name of file '<video_file_name>' in file list
         Then I see video player
         When I click on icon Download in the fullscreen image
@@ -55,12 +55,12 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the icon Close on the fullscreen image
         Then I see page Folder content for '<standard_folder_name>'
 
-        #editor downloads PDF file
+        # content editor downloads PDF file
         When I click on three dot menu in row of file '<pdf_file_name>'
         When I select the three dot menu action 'download'
         Then file '<pdf_file_name>' is saved in folder downloads
 
-        # editor checks file / multiple files
+        # content editor checks file / multiple files
         When I check the checkbox of file '<audio_file_name>'
         Then I see displayed number of checked files is '1'
         Then I see fab button Action at the top of the list
@@ -79,13 +79,18 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see displayed number of checked files is '3'
         Then I see fab button Action at the top of the list
 
-        # editor checks / unchecks all files
+        # content editor downloads multiple files
+        When I click on button Action in the header of the list
+        When I select the three dot menu action 'download'
+        Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
+
+        # content editor checks / unchecks all files
         When I check the checkbox in the table header for all elements
         Then I see checkboxes of files '<video_file_name>, <audio_file_name>, <image_file_name>, <pdf_file_name>' are checked
         When I uncheck the checkbox in the table header for all elements
         Then I see checkboxes of files '<video_file_name>, <audio_file_name>, <image_file_name>, <pdf_file_name>' are unchecked
 
-        # editor searches for files and uses check all checkbox
+        # content editor searches for files and uses check all checkbox
         When I enter '<search_request>' to the table search field
         Then I see files '<audio_file_name>' in file list
         Then I do not see files '<video_file_name>, <image_file_name>, <pdf_file_name>' in file list
@@ -95,7 +100,7 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see checkboxes of files '<audio_file_name>' are checked
         Then I see checkboxes of files '<video_file_name>, <image_file_name>, <pdf_file_name>' are unchecked
 
-        # editor deletes multiple files using action button in header of list
+        # content editor deletes multiple files using action button in header of list
         When I check the checkbox in the table header for all elements
         When I uncheck the checkbox of file '<audio_file_name>'
         Then I see fab button Action at the top of the list
@@ -107,7 +112,7 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see checkboxes of files '<audio_file_name>' are unchecked
         Then I see state of table header checkbox is 'unchecked'
 
-        # editor renames folder on folder page
+        # content editor renames folder on folder page
         When I click on the three dot menu button next to the folder title
         When I select the three dot menu action 'rename'
         Then I see modal Rename folder
@@ -115,14 +120,14 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on button Approve in modal
         Then I see page Folder content for '<folder_name_edited>'
 
-        # editor removes folder name and name is resetted to standard folder name
+        # content editor removes folder name and name is resetted to standard folder name
         When I click on the three dot menu button next to the folder title
         When I select the three dot menu action 'rename'
         When I clear input field New name
         When I click on button Approve in modal
         Then I see page Folder content for '<standard_folder_name>'
 
-        # editor deletes folder on board page
+        # content editor deletes folder on board page
         When I click on breadcrumb element '<board_title>'
         Then I see a folder with name '<standard_folder_name>' in the card
         When I click on the page outside of the column

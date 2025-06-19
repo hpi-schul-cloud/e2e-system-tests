@@ -369,7 +369,7 @@ Then("I do not see the page board details", () => {
 	roomBoards.doNotSeeNewRoomBoardCreatePage();
 });
 
-When("I click on the three dot menu in room board", () => {
+When("I click on the three dot menu in room board title", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
@@ -569,4 +569,8 @@ When("I approve new folder name in card", () => {
 
 When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
+});
+
+Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
+	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
 });

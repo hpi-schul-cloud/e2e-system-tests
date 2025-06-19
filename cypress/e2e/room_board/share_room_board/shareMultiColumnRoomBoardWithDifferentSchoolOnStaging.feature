@@ -16,7 +16,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
         # first teacher from the first school allows sharing the multi-column board with another teacher from a different school
         Then I see the page board details
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
         Then I see the title in the share modal
@@ -57,7 +57,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the detail page of room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
         Then I see the checkbox Link valid for the same school is by default checked
