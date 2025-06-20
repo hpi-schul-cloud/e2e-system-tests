@@ -1,16 +1,15 @@
 @regression_test
 @stable_test
-@only
 Feature: Room - Student can access room content after being invited
 
-As a student being invited to a room, I should be able to access the content of the room.
+    As a student being invited to a room, I should be able to access the content of the room.
 
-Scenario Outline: Student can access room content after being invited, including pre-conditions
-        Given I am logged in as a '<student>' at '<namespace>'
-        Given I am logged in as a '<teacher>' at '<namespace>'
+    Scenario Outline: Student can access room content after being invited, including pre-conditions
+        Given I am logged in as a '<student_1>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
+        Given I am logged in as a '<admin_1>' at '<namespace>'
 
         # pre-condition: admin activates student visibility
-        Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on general settings panel
@@ -18,7 +17,7 @@ Scenario Outline: Student can access room content after being invited, including
         When I click on button Save admin settings
 
         # pre-condition: teacher creates a new room with multi and draft single column board in it
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given multi column board is published to not to be in a draft mode
@@ -44,7 +43,7 @@ Scenario Outline: Student can access room content after being invited, including
         Then I see '<participant_name>' in the room participants list
 
         # newly added student can see the room
-        Given I am logged in as a '<student>' at '<namespace>'
+        Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to room overview
         Then I see '<room_name>' on room overview page
 
@@ -56,7 +55,7 @@ Scenario Outline: Student can access room content after being invited, including
         Then I see the element Link on the card
 
         # post-condition: teacher deletes the room
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -69,10 +68,10 @@ Scenario Outline: Student can access room content after being invited, including
 
         @school_api_test
         Examples:
-            | teacher      | student      | admin      | namespace | room_name         | school_name             | role_name      | participant_name | board_title    |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | cypress-automated-tests | Lernend        | student_1        | Board Cy Title |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name           | role_name | participant_name | board_title    |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernend   | student_1        | Board Cy Title |
 
         @staging_test
         Examples:
-            | teacher      | student      | admin      | namespace | room_name         | school_name                 | role_name      | participant_name | board_title    |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend        | herbert          | Board Cy Title |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name                 | role_name | participant_name | board_title    |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | herbert          | Board Cy Title |

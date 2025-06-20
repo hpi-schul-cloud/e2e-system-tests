@@ -23,7 +23,11 @@ class Account {
 	}
 
 	enterCurrentPasswordOnUserSettingsPage() {
-		const currentPassword = Cypress.env("password");
+		const currentPassword =
+			Cypress.env("password") ||
+			Cypress.env("TEACHER_EXT_1_BRB_PASSWORD") ||
+			Cypress.env("TEACHER_EXT_1_DBC_PASSWORD") ||
+			Cypress.env("TEACHER_EXT_1_NBC_PASSWORD");
 		cy.get(Account.#inputBoxCurrentPasswordOnUserSettings).type(currentPassword, {
 			log: false,
 		});

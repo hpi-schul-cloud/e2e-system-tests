@@ -2,14 +2,14 @@
 @stable_test
 Feature: Room - Invite Student to room via Add Members Dialog
 
-As a room owner, when I invite a student through the Add Members Dialog, the user should see the room in the room overview.
+    As a room owner, when I invite a student through the Add Members Dialog, the user should see the room in the room overview.
 
-Scenario Outline: Room Owner invites a student to the room, the student can access the room, including pre-conditions
-        Given I am logged in as a '<student>' at '<namespace>'
-        Given I am logged in as a '<teacher>' at '<namespace>'
+    Scenario Outline: Room Owner invites a student to the room, the student can access the room, including pre-conditions
+        Given I am logged in as a '<student_1>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
+        Given I am logged in as a '<admin_1>' at '<namespace>'
 
         # pre-condition: admin activates student visibility
-        Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on general settings panel
@@ -17,7 +17,7 @@ Scenario Outline: Room Owner invites a student to the room, the student can acce
         When I click on button Save admin settings
 
         # pre-condition: teacher creating a new room, becoming the owner
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a room named '<room_name>' exists
 
         # the owner can invite a student to the room
@@ -36,12 +36,12 @@ Scenario Outline: Room Owner invites a student to the room, the student can acce
         Then I see '<participant_name>' in the room participants list
 
         # newly added student can see the room
-        Given I am logged in as a '<student>' at '<namespace>'
+        Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to room overview
         Then I see '<room_name>' on room overview page
 
         # teacher is able to delete participants
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -54,12 +54,12 @@ Scenario Outline: Room Owner invites a student to the room, the student can acce
         Then I see the participant '<participant_name>' is removed from the room participants list
 
         # student does not see the room
-        Given I am logged in as a '<student>' at '<namespace>'
+        Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to room overview
         Then I do not see '<room_name>' on room overview page
 
         # post-condition: teacher deletes the room
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -72,10 +72,10 @@ Scenario Outline: Room Owner invites a student to the room, the student can acce
 
         @school_api_test
         Examples:
-            | teacher      | student      | admin      | namespace | room_name         | school_name             | role_name      | participant_name |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | cypress-automated-tests | Lernend        | student_1        |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name           | role_name | participant_name |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernend   | student_1        |
 
         @staging_test
         Examples:
-            | teacher      | student      | admin      | namespace | room_name         | school_name                 | role_name      | participant_name |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend        | herbert          |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name                 | role_name | participant_name |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | herbert          |
