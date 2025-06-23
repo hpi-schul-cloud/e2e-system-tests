@@ -27,12 +27,10 @@ Feature: Room - Invite Student from another school via teacher from another scho
         # pre-condition: external teacher activates visibility in central directory in different school (Goethe-Gymnasium)
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         When I go to my account settings
-        When I enter my current password
         Then I see the checkbox Activate visibility in the central directory is unchecked
         When I click on the checkbox Activate visibility in the central directory
-        When I click on the button Save Account Settings
+        When I click on the button Save Visibility Settings
         Then I see the checkbox Activate visibility in the central directory is checked
-        Then I see the message successful
 
         # pre-condition: teacher creating a new room in the origin school (Felix Mendelssohn-Gymnasium), becoming the owner
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -54,6 +52,15 @@ Feature: Room - Invite Student from another school via teacher from another scho
         When I select the first name from the dropdown
         When I click on the button Add participant
         Then I see '<participant_external_name_teacher>' in the room participants list
+
+        # owner changes role for external teacher
+        When I click on button Three Dot Menu to add participant '<participant_external_name_teacher>'
+        Then I see button Change role permission is visible
+        When I click on button 'Change-Permission' in the sub-menu
+        Then I see dialog box Change Role Permission is visible
+        When I change second user role to 'admin'
+        Then I see Role changed to 'admin' for second user
+        Then I click on button 'Confirm' in the 'Role' action menu
 
         # the newly added external teacher can invite a student to the room in the different school (Goethe-Gymnasium)
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
@@ -110,5 +117,5 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
-            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lehrkraft         | Carlo                             | Lernend           | herbert                           |
+            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
+            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium   | Lernbegleitend    | Carlo                             | Lernend           | Alex                              |

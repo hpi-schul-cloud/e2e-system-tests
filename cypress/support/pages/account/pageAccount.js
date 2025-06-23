@@ -9,6 +9,8 @@ class Account {
 		'[data-testid="settings_password_current"]';
 	static #inputBoxEmailOnUserSettings = "[id='email']";
 	static #submitButtonOnAccountSettings = '[data-testid="submit_new_password_btn"]';
+	static #submitButtonOnAccountVisibilitySettings =
+		'[data-testid="submit_visibility_settings_btn"]';
 	static #successMessageOnAccountSettings = '[data-testid="notification"]';
 	static #buttonLoginViaEmailNbc = '[data-testid="submit-cloud-site"]';
 	static #inputBoxUserEmailOnLoginPage = '[data-testid="username-email"]';
@@ -59,6 +61,10 @@ class Account {
 
 	clickOnSaveAccountSettingsButton() {
 		cy.get(Account.#submitButtonOnAccountSettings).click();
+	}
+
+	clickOnSaveVisibilitySettingsButton() {
+		cy.get(Account.#submitButtonOnAccountVisibilitySettings).click();
 	}
 
 	seeSuccessMessageOnAccountSettingsPage() {

@@ -244,7 +244,9 @@ class Rooms {
 	}
 
 	fillParticipantFormSchool(participantSchool) {
-		cy.get(Rooms.#addParticipantSchool).type(participantSchool);
+		cy.get(Rooms.#addParticipantSchool)
+			.type("{selectall}{backspace}")
+			.type(participantSchool);
 	}
 
 	selectParticipantSchool() {
