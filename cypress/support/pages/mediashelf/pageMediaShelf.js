@@ -22,6 +22,7 @@ class MediaShelf {
 	static #mediaElementDefaultThumbnail =
 		'[data-testid="media-element-default-thumbnail"]';
 	static #mediaElementTitle = '[data-testid="media-element-title"]';
+	static #mediaElementDomain = '[data-testid="media-element-domain"]';
 	static #mediaElementDescription = '[data-testid="media-element-description"]';
 	static #mediaElementDeactivatedChip = '[data-testid="warning-chip-deactivated"]';
 	static #mediaElementNotLicensedChip = '[data-testid="warning-chip-not-licensed"]';
@@ -91,7 +92,11 @@ class MediaShelf {
 
 	isAvailableMediaLineNotCollapsed() {
 		cy.get(MediaShelf.#availableLine).within(() => {
-			cy.get(MediaShelf.#expansionPanelText).should("not.have.css", "display", "none");
+			cy.get(MediaShelf.#expansionPanelText).should(
+				"not.have.css",
+				"display",
+				"none"
+			);
 		});
 	}
 
@@ -103,7 +108,11 @@ class MediaShelf {
 
 	isFirstMediaLineNotCollapsed() {
 		cy.get(MediaShelf.#mediaLine1).within(() => {
-			cy.get(MediaShelf.#expansionPanelText).should("not.have.css", "display", "none");
+			cy.get(MediaShelf.#expansionPanelText).should(
+				"not.have.css",
+				"display",
+				"none"
+			);
 		});
 	}
 
@@ -123,8 +132,7 @@ class MediaShelf {
 
 	seeNumberOfMediaInFirstMediaLine(count) {
 		const line = cy.get(MediaShelf.#mediaLine1);
-		line
-			.find(MediaShelf.#mediaLineSpace1)
+		line.find(MediaShelf.#mediaLineSpace1)
 			.children(".bg-white")
 			.should("have.length", count);
 	}
@@ -140,6 +148,12 @@ class MediaShelf {
 			cy.get(MediaShelf.#mediaElementTitle)
 				.should("be.visible")
 				.should("contain.text", toolName);
+		});
+	}
+
+	seeMediaElementDomain(toolName) {
+		cy.get(`[data-testid="media-element-${toolName}"]`).within(() => {
+			cy.get(MediaShelf.#mediaElementDomain).should("be.visible");
 		});
 	}
 
@@ -206,7 +220,9 @@ class MediaShelf {
 	}
 
 	clickThreeDotMenuButtonOnAvailableMediaLine() {
-		cy.get(MediaShelf.#availableLine).find(MediaShelf.#threeDotMenuInMediaLine).click();
+		cy.get(MediaShelf.#availableLine)
+			.find(MediaShelf.#threeDotMenuInMediaLine)
+			.click();
 	}
 
 	clickThreeDotMenuButtonOnFirstMediaLine() {
@@ -267,11 +283,15 @@ class MediaShelf {
 	}
 
 	moveToolInGhostMediaLine(toolName) {
-		cy.get(`[data-testid="media-element-${toolName}"]`).drag(MediaShelf.#ghostLineSpace);
+		cy.get(`[data-testid="media-element-${toolName}"]`).drag(
+			MediaShelf.#ghostLineSpace
+		);
 	}
 
 	moveToolInEmptyFirstMediaLine(toolName) {
-		cy.get(`[data-testid="media-element-${toolName}"]`).drag(MediaShelf.#mediaLineSpace1);
+		cy.get(`[data-testid="media-element-${toolName}"]`).drag(
+			MediaShelf.#mediaLineSpace1
+		);
 	}
 
 	moveToolInFirstMediaLine(toolName) {
