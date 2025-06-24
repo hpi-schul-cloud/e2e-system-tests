@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-L
 Feature: Room Board - Add, edit and delete element Etherpad in the room board
 
     As a teacher, I want to add, edit, and delete an element Etherpad on the room board, so that I can manage and update important notes efficiently.

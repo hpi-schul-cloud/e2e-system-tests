@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@group-F
 @pr
 Feature: Help Section - To use the help areas in dBildungscloud
 

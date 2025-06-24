@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
-@group-C
+@group-O
+@schedule_run
 Feature: Course - Copy course with CTL tools
 
     As a Teacher I want to be able to copy ctl tools, when I copy a course

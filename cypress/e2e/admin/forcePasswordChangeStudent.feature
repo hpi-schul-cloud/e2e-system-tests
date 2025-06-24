@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-A
+@group-O
 Feature: Admin - user must set a new password during login
 
     As a user, I have to set a new password during login

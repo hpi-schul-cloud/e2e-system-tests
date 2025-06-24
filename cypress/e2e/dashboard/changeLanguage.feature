@@ -1,7 +1,6 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-A
 @group-F
 @pr
 Feature: Account - Change language of the user from user setting

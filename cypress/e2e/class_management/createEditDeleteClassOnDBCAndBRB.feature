@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-D
-@group-B
 @pr
 Feature:  Class Management - To create, edit and delete class on dBC or on BRB
 

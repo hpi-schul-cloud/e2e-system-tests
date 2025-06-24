@@ -2,7 +2,6 @@
 @stable_test
 @schedule_test
 @group-A
-@group-G
 @pr
 Feature: Login Management - Login of users managed by SVS
 

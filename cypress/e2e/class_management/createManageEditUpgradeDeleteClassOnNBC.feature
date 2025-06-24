@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-B
+@group-T
 Feature: Class Management - To create, manage, edit, upgrade and delete class on NBC
 
     As a teacher I want create, manage, edit, upgrade and delete a class

@@ -2,7 +2,6 @@
 @regression_test
 @schedule_run
 @group-E
-@group-J
 @pr
 Feature: Team - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 

@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
-@group-A
+@group-O
+@schedule_run
 Feature: Admin adds, edits and deletes CTL tools in school
 
     As an admin I want to administrate the CTL tools used in the school

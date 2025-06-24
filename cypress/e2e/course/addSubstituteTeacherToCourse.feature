@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-C
+@group-Q
 Feature: Course - Add substitute teacher to course
 
     As a teacher I want to add substitute teacher to the course.

@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-E
+@group-Q
 Feature: Course Board - To create, edit and delete column in the course board
 
     As a teacher I want to create, edit and delete the column in the course board so that I can manage the column in the board.

@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-N
 Feature: Room - Invite User to room via Invitationlink
 
     As a room owner, when I invite a user through an invitation link, I want to confirm his application before he can join the room.

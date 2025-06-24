@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-D
-@group-D
 @pr
 Feature: Course - Teacher can create, edit and delete a group in the course
 
