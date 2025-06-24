@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-D
 Feature: Course Board  - To add, edit and delete a ctl tool in a board
 
     As a teacher I want to add, edit and delete a ctl tool in my course board

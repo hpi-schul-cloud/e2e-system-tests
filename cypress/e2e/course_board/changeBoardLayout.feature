@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-D
 Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout

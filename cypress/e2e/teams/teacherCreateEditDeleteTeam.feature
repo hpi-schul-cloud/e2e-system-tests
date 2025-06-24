@@ -3,6 +3,7 @@
 @stable_test
 @schedule_run
 @group-A
+@group-J
 @pr
 Feature: Team - Create, delete and edit operations on Teams
 

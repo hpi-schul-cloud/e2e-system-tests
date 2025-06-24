@@ -3,6 +3,7 @@
 @stable_test
 @schedule_test
 @group-A
+@group-F
 @pr
 Feature: Dashboard - To check contents on the dashboard
 

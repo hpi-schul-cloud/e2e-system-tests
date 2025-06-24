@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-D
 Feature: Teacher can share a course with ctl tools
 
     As a teacher I want to share a course with ctl tools to other teachers from the same school

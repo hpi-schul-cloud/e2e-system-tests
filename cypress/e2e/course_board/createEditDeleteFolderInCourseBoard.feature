@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-E
 Feature: Course Board - Create folder in board, check breadcrumb
 
     As a content editor I want to create a file folder in a course board

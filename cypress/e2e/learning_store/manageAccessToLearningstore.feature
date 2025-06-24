@@ -3,6 +3,7 @@
 @stable_test
 @schedule_run
 @group-B
+@group-G
 @pr
 Feature: Learning store - Activating and deactivating access for students
 

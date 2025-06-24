@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
+@group-A
 @pr
 Feature: Admin - To add, edit and delete new users by the admin.
 

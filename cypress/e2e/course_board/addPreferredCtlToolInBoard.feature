@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-D
 Feature: Course Board  - To add a preferred tool in a board
 
     As a teacher I want to add a preferred tool in my course board

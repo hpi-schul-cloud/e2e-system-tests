@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-E
 Feature: Course Board - Copy course with a board which has CTL tools
 
     As a Teacher I want to be able to copy ctl tools, when I copy a course with ctl tools within a board

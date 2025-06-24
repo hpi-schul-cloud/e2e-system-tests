@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-A
 Feature: Admin - Teacher registration with registration link send by admin
 
     As a teacher, I want to register in the SVS

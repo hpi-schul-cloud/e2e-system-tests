@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-F
+@group-K
 @pr
 Feature: Topics - To publish and unpublish topic by teacher.
 

@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
+@group-K
 @pr
 Feature: Topics - To create, edit and delete topics by the teacher.
 

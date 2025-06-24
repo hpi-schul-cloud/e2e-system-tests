@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-C
 Feature: Media Shelf - Restrict CTL tools to context course
 
     As a teacher I want to add ctl tools with context restriction course
