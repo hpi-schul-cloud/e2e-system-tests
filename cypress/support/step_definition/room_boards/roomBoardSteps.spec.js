@@ -416,6 +416,11 @@ Then("I do not see the board {string} in the room", (boardTitle) => {
 Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
+
+Then("I see folder size and number of files in the card {string}", (folderDetails) =>  {
+	roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
+});
+
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
 });
