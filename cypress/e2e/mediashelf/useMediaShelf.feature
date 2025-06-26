@@ -17,7 +17,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
         Then I see 2 tools in the available media line
         Then I see tool '<ctl_tool_1>' in the available media line
         Then I see tool '<ctl_tool_2>' in the available media line
-        Then I see the thumbnail, title and description of media element '<ctl_tool_1>'
+        Then I see the thumbnail, title, domain and description of media element '<ctl_tool_1>'
         When I click on grid layout button
         Then I see the grid layout
         When I click on list layout button
