@@ -417,7 +417,7 @@ Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 
-Then("I see folder size and number of files in the card {string}", (folderDetails) =>  {
+Then("I see folder size and number of files {string} in the folder element in the card", (folderDetails) =>  {
 	roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
 });
 
