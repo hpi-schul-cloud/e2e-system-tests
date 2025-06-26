@@ -43,6 +43,7 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see tool '<ctl_tool_1>' is selected
         When I click on save external tool button
         Then I see an external tool element with tool '<ctl_tool_1>'
+        Then I see the domain of external tool '<ctl_tool_1>'
         # teacher launches tool
         When I launch tool '<ctl_tool_1>' on external tool element with given url '<ctl_tool_launch_url>'
         Then I see tool '<ctl_tool_1>' on external tool element was launched
