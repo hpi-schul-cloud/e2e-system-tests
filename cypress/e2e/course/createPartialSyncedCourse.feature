@@ -1,5 +1,6 @@
-# Note: To set this test to stable, the school needs groups from moin.schule
-@unstable_test
+@regression_test
+@stable_test
+
 Feature: Course Sync - To partially synchronize a course
 
     As a teacher I want to partially synchronize a course
@@ -57,7 +58,7 @@ Feature: Course Sync - To partially synchronize a course
             | nbc       | admin1_nbc | teacher2_nbc | student1_nbc | Cypress-Test-Group-Partial-Course-Sync | Lara Hande       | Herbert Kraft    | Hande            | Kraft            | 01.08.2023 | 31.07.2026 |
 
         # Note: This test runs with moin.schule groups from the seed data
-        # @school_api_test
-        # Examples:
-        #     | namespace | admin      | teacher      | student      | group_title                            | fullname_teacher  | fullname_student  | lastname_teacher | lastname_student | start_date | end_date   |
-        #     | nbc       | admin1_nbc | teacher2_nbc | student1_nbc | Cypress-Test-Group-Partial-Course-Sync | cypress teacher_2 | cypress student_1 | teacher_2        | student_1        | 01.08.2023 | 31.07.2026 |
+        @school_api_test
+        Examples:
+            | namespace | admin      | teacher      | student      | group_title                            | fullname_teacher  | fullname_student  | lastname_teacher | lastname_student | start_date | end_date   |
+            | nbc       | admin1_nbc | teacher2_nbc | student1_nbc | Cypress-Test-Group-Partial-Course-Sync | cypress teacher_2 | cypress student_1 | teacher_2        | student_1        | 01.08.2023 | 31.07.2026 |

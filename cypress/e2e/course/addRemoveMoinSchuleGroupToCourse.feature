@@ -1,5 +1,6 @@
-# Note: To set this test to stable, the school needs groups from moin.schule
-@unstable_test
+@regression_test
+@stable_test
+
 Feature: Course - To add and remove a moin.schule group from a course on NBC
 
 	As a Teacher I want to add and remove a moin.schule group from a course
@@ -58,7 +59,7 @@ Feature: Course - To add and remove a moin.schule group from a course on NBC
             | nbc       | teacher1_nbc | student1_nbc | student2_nbc | Karl Herzog      | Herzog, Karl     | Kraft, Herbert    | Strobl, Amelia    | CypressAUT CourseWithClass | Cypress-Test-Group1 | Cypress-Test-Group2 |
 
         # Note: This test runs with moin.schule groups from the seed data
-        # @school_api_test
-        # Examples:
-        #     | namespace | teacher      | student1     | student2     | fullname_teacher  | listname_student   | course_title               | course_title_edit              | group_title         | group_title2        |
-        #     | nbc       | teacher1_nbc | student1_nbc | student2_nbc | cypress teacher_1 | teacher_1, cypress | CypressAUT CourseWithClass | CypressAUT EditCourseWithClass | Cypress-Test-Group1 | Cypress-Test-Group2 |
+        @school_api_test
+        Examples:
+            | namespace | teacher      | student1     | student2     | fullname_teacher  | listname_student   | course_title               | course_title_edit              | group_title         | group_title2        |
+            | nbc       | teacher1_nbc | student1_nbc | student2_nbc | cypress teacher_1 | teacher_1, cypress | CypressAUT CourseWithClass | CypressAUT EditCourseWithClass | Cypress-Test-Group1 | Cypress-Test-Group2 |
