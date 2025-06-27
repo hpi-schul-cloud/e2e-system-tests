@@ -1,10 +1,11 @@
 @regression_test
 @stable_test
-Feature: Room - Invite Student to room via Add Members Dialog
 
-    As a room owner, when I invite a student through the Add Members Dialog, the user should see the room in the room overview.
+Feature: Room - Student can access room content after being added to room via Add Members Dialog
 
-    Scenario Outline: Room Owner invites a student to the room, the student can access the room, including pre-conditions
+    As a room owner, when I add a student through the Add Members Dialog, the user should see the room in the room overview and access its content.
+
+    Scenario Outline: Room Owner adds a student to the room, the student can access the room and its content, including pre-conditions
         Given I am logged in as a '<student_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<admin_1>' at '<namespace>'
@@ -16,9 +17,16 @@ Feature: Room - Invite Student to room via Add Members Dialog
         When I click the toggle switch to enable student visibility for teachers
         When I click on button Save admin settings
 
-        # pre-condition: teacher creating a new room, becoming the owner
+        # pre-condition: teacher creates a new room with multi and draft single column board in it
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a room named '<room_name>' exists
+        Given a multi-column board named '<board_title>' exists in the room
+        Given multi column board is published to not to be in a draft mode
+        Given the multi-column board has a column with a card
+        Given link element is added in the card
+        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given a single-column board named '<board_title>' exists in the room
+        Given I navigate to the room detail page via Breadcrumb from the board page
 
         # the owner can invite a student to the room
         Then I see the detail page of room '<room_name>'
@@ -39,6 +47,13 @@ Feature: Room - Invite Student to room via Add Members Dialog
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to room overview
         Then I see '<room_name>' on room overview page
+
+        # student is able to access the room content according to visiblity
+        When I go to room '<room_name>'
+        Then I see multi-column board tile in the rooms details page
+        Then I do not see single-column board tile in the room details page
+        When I click on the multi-column board in the room detail page
+        Then I see the element Link on the card
 
         # teacher is able to delete participants
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -72,10 +87,10 @@ Feature: Room - Invite Student to room via Add Members Dialog
 
         @school_api_test
         Examples:
-            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name           | role_name | participant_name |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernend   | student_1        |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name           | role_name | participant_name | board_title    |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernend   | student_1        | Board Cy Title |
 
         @staging_test
         Examples:
-            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name                 | role_name | participant_name |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | herbert          |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name                 | role_name | participant_name | board_title    |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Herbert          | Board Cy Title |
