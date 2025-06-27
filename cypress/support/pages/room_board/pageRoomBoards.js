@@ -662,6 +662,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderDetails).should("contain.text", folderDetails);
 	}
 
+	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
+		cy.get(RoomBoards.#folderDetails).should("contain.text", folderDetails);
+	}
+
 	clickFolderElementWithTitle(title) {
 		cy.get(RoomBoards.#folderElementSelector).should("contain", title).click();
 	}
