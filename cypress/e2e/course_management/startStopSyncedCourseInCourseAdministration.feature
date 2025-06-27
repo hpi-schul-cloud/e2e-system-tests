@@ -1,5 +1,6 @@
-# Note: To set this test to stable, the school needs groups from moin.schule
-@unstable_test
+@regression_test
+@stable_test
+
 Feature: Course Management - To start and stop a synchronized course
 
     As an administrator I want synchronize a course with a group
@@ -67,7 +68,7 @@ Feature: Course Management - To start and stop a synchronized course
             | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT CourseAdminSync | Cypress-Test-Group-Course-Sync1 | Karl Herzog      |
 
         # Note: This test runs with moin.schule groups from the seed data
-        # @school_api_test
-        # Examples:
-        #     | namespace | admin      | teacher      | student      | course_title               | group_title                     | fullname_teacher  |
-        #     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT CourseAdminSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |
+        @school_api_test
+        Examples:
+            | namespace | admin      | teacher      | student      | course_title               | group_title                     | fullname_teacher  |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT CourseAdminSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |
