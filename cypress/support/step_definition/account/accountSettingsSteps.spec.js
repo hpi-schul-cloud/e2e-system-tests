@@ -26,3 +26,11 @@ When("I click on the button Save Account Settings", () => {
 Then("I see the message successful", () => {
 	account.seeSuccessMessageOnAccountSettingsPage();
 });
+
+When("I click on the checkbox Activate visibility in the central directory", () => {
+	account.clickOnCheckboxDirectoryVisibility();
+});
+
+When("I click on the button Save Visibility Settings", () => {
+	account.clickOnSaveVisibilitySettingsButton();
+});

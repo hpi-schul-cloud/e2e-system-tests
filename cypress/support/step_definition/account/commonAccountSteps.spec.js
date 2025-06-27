@@ -14,3 +14,14 @@ Then("I see my email is editable", () => {
 Then("I see my email is not editable", () => {
 	account.verifyEmailEditable(false);
 });
+
+Then(
+	"I see the checkbox Activate visibility in the central directory is unchecked",
+	() => {
+		account.verifyCheckboxDirectoryVisibility(false);
+	}
+);
+
+Then("I see the checkbox Activate visibility in the central directory is checked", () => {
+	account.verifyCheckboxDirectoryVisibility(true);
+});

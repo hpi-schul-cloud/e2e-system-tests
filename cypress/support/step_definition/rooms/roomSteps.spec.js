@@ -46,6 +46,7 @@ When("I click on the button Duplicate in the modal to confirm", () => {
 When("I select the colour for the room", () => {
 	rooms.selectRoomColour();
 });
+
 When("I select the start date for the room", () => {
 	rooms.selectTodayStartDateForRoom();
 });
@@ -120,6 +121,14 @@ Then("I do not see {string} on room overview page", (roomName) => {
 
 Then("I see school {string} in dropdown School", (participantSchool) => {
 	rooms.seeSchoolOfParticipant(participantSchool);
+});
+
+When("I enter {string} in dropdown School", (participantSchool) => {
+	rooms.fillParticipantFormSchool(participantSchool);
+});
+
+When("I select the first school from the dropdown", () => {
+	rooms.selectParticipantSchool();
 });
 
 Then("I see role {string} in dropdown Role", (participantRole) => {
