@@ -2,6 +2,7 @@ name: e2e-scheduled-trigger-tests
 on:
   schedule:
     - cron: "0 1 * * *"
+
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
@@ -15,18 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-  configuring-loading-secrets-running-tests:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_dbc: https://main.dbc.dbildungscloud.dev
-      cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:schedule_run:school_api_test:ci
-      environment: dev
-      groups: scheduled
+      - name: Set all parameters for next job
+        id: set_variables
+        shell: bash
+        run: |
+
+          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
+              echo "environment=dev" >> $GITHUB_OUTPUT
+          else
+              echo "environment=ref" >> $GITHUB_OUTPUT
+          fi
 
   run-tests-groupA:
     needs: e2e-system-tests
@@ -292,7 +291,26 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - e2e-system-tests
-      - configuring-loading-secrets-running-tests
+      - run-tests-groupA
+      - run-tests-groupB
+      - run-tests-groupC
+      - run-tests-groupD
+      - run-tests-groupE
+      - run-tests-groupF
+      - run-tests-groupG
+      - run-tests-groupH
+      - run-tests-groupI
+      - run-tests-groupJ
+      - run-tests-groupK
+      - run-tests-groupL
+      - run-tests-groupM
+      - run-tests-groupN
+      - run-tests-groupO
+      - run-tests-groupP
+      - run-tests-groupQ
+      - run-tests-groupR
+      - run-tests-groupS
+      - run-tests-groupT
     if: |
       always()
 
