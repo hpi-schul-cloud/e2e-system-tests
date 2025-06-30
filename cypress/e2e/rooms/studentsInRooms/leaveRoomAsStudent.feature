@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+
 Feature: Room - Leave room as a Student
 
     As a student, I should be able to leave a room that I have been invited to, and after leaving, I should not see the room in my room overview.
@@ -72,4 +73,4 @@ Feature: Room - Leave room as a Student
         @staging_test
         Examples:
             | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name                 | role_name | participant_name |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | herbert          |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Herbert          |
