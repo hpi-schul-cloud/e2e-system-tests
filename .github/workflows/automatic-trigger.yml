@@ -31,6 +31,8 @@ jobs:
   run-tests-groupA:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -38,12 +40,12 @@ jobs:
       tag: cy:headless:stable:groupA:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-A
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupB:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -51,12 +53,12 @@ jobs:
       tag: cy:headless:stable:groupB:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-B
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupC:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -64,12 +66,12 @@ jobs:
       tag: cy:headless:stable:groupC:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-C
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupD:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -77,12 +79,12 @@ jobs:
       tag: cy:headless:stable:groupD:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-D
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupE:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -90,12 +92,12 @@ jobs:
       tag: cy:headless:stable:groupE:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-E
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupF:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -103,12 +105,12 @@ jobs:
       tag: cy:headless:stable:groupF:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-F
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupG:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -116,12 +118,12 @@ jobs:
       tag: cy:headless:stable:groupG:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-G
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupH:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -129,12 +131,12 @@ jobs:
       tag: cy:headless:stable:groupH:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-H
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupI:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -142,12 +144,12 @@ jobs:
       tag: cy:headless:stable:groupI:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-I
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupJ:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -155,12 +157,12 @@ jobs:
       tag: cy:headless:stable:groupJ:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-J
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupK:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -168,12 +170,12 @@ jobs:
       tag: cy:headless:stable:groupK:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-K
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupL:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -181,12 +183,12 @@ jobs:
       tag: cy:headless:stable:groupL:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-L
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupM:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -194,12 +196,12 @@ jobs:
       tag: cy:headless:stable:groupM:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-M
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupN:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -207,12 +209,12 @@ jobs:
       tag: cy:headless:stable:groupN:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-N
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupO:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -220,12 +222,12 @@ jobs:
       tag: cy:headless:stable:groupO:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-O
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupP:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -233,12 +235,12 @@ jobs:
       tag: cy:headless:stable:groupP:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-P
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupQ:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -246,12 +248,12 @@ jobs:
       tag: cy:headless:stable:groupQ:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-Q
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupR:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -259,12 +261,12 @@ jobs:
       tag: cy:headless:stable:groupR:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-R
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupS:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -272,12 +274,12 @@ jobs:
       tag: cy:headless:stable:groupS:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-S
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
 
   run-tests-groupT:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
@@ -285,5 +287,3 @@ jobs:
       tag: cy:headless:stable:groupT:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-T
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
