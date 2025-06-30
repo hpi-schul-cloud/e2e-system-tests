@@ -40,6 +40,12 @@
 		"cy:headless:stable:groupR:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-R and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-R",
 		"cy:headless:stable:groupS:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-S and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-S",
 		"cy:headless:stable:groupT:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-T and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-T",
+		"cy:headless:stable:groupU:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-U and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-U",
+		"cy:headless:stable:groupV:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-V and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-V",
+		"cy:headless:stable:groupW:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-W and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-W",
+		"cy:headless:stable:groupX:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-X and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-X",
+		"cy:headless:stable:groupY:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-Y and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-Y",
+		"cy:headless:stable:groupZ:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-Z and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-Z",
 		"cy:headless:only:ci": "xvfb-run cypress run --browser edge -e tags=@only,environmentName=ci",
 		"cy:headless:unstable:ci": "xvfb-run cypress run --browser edge -e tags=@unstable_test,environmentName=ci",
 		"cy:gui:stable:clean_up_staging:local": "cypress open --browser edge -e tags=\"@clean_up_staging_test_data\",environmentName=staging"
