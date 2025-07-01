@@ -6,7 +6,12 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-
+    outputs:
+      environment: ${{ steps.set_variables.outputs.environment }}
+    env:
+      instance1: https://main.brb.dbildungscloud.dev
+      instance2: https://main.nbc.dbildungscloud.dev
+      instance3: https://main.dbc.dbildungscloud.dev
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -16,15 +21,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set all parameters for next job
+      - name: Set environment output
         id: set_variables
-        shell: bash
         run: |
-
-          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
-              echo "environment=dev" >> $GITHUB_OUTPUT
+          if [[ ! "$instance1" =~ (staging|schulportal) && ! "$instance2" =~ (staging|schulportal) && ! "$instance3" =~ (staging|schulportal) ]]; then
+            echo "environment=dev" >> $GITHUB_OUTPUT
           else
-              echo "environment=ref" >> $GITHUB_OUTPUT
+            echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
   run-tests-groupA:
@@ -33,9 +36,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupA:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-A
@@ -46,9 +49,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupB:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-B
@@ -59,9 +62,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupC:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-C
@@ -72,9 +75,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupD:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-D
@@ -85,9 +88,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupE:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-E
@@ -98,9 +101,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupF:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-F
@@ -111,9 +114,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupG:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-G
@@ -124,9 +127,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupH:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-H
@@ -137,9 +140,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupI:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-I
@@ -150,9 +153,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupJ:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-J
@@ -163,9 +166,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupK:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-K
@@ -176,9 +179,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupL:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-L
@@ -189,9 +192,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupM:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-M
@@ -202,9 +205,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupN:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-N
@@ -215,9 +218,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupO:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-O
@@ -228,9 +231,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupP:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-P
@@ -241,9 +244,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupQ:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-Q
@@ -254,9 +257,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupR:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-R
@@ -267,9 +270,9 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupS:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-S
@@ -280,12 +283,92 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
       tag: cy:headless:stable:groupT:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-T
+  # The following jobs (groupU to groupV) are currently commented out.
+  # Reason: Will be used when new feature will be added.
+
+  # run-tests-groupU:
+  #   needs: e2e-system-tests
+  #   uses: ./.github/workflows/main.yml
+  #   secrets:
+  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+  #   with:
+  #     cypress_brb: https://main.brb.dbildungscloud.dev
+  #     cypress_dbc: https://main.dbc.dbildungscloud.dev
+  #     cypress_nbc: https://main.nbc.dbildungscloud.dev
+  #     tag: cy:headless:stable:groupU:school_api_test:ci
+  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
+  #     groups: group-U
+
+  # run-tests-groupV:
+  #   needs: e2e-system-tests
+  #   uses: ./.github/workflows/main.yml
+  #   secrets:
+  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+  #   with:
+  #     cypress_brb: https://main.brb.dbildungscloud.dev
+  #     cypress_dbc: https://main.dbc.dbildungscloud.dev
+  #     cypress_nbc: https://main.nbc.dbildungscloud.dev
+  #     tag: cy:headless:stable:groupV:school_api_test:ci
+  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
+  #     groups: group-V
+
+  # run-tests-groupW:
+  #   needs: e2e-system-tests
+  #   uses: ./.github/workflows/main.yml
+  #   secrets:
+  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+  #   with:
+  #     cypress_brb: https://main.brb.dbildungscloud.dev
+  #     cypress_dbc: https://main.dbc.dbildungscloud.dev
+  #     cypress_nbc: https://main.nbc.dbildungscloud.dev
+  #     tag: cy:headless:stable:groupW:school_api_test:ci
+  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
+  #     groups: group-W
+
+  # run-tests-groupX:
+  #   needs: e2e-system-tests
+  #   uses: ./.github/workflows/main.yml
+  #   secrets:
+  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+  #   with:
+  #     cypress_brb: https://main.brb.dbildungscloud.dev
+  #     cypress_dbc: https://main.dbc.dbildungscloud.dev
+  #     cypress_nbc: https://main.nbc.dbildungscloud.dev
+  #     tag: cy:headless:stable:groupX:school_api_test:ci
+  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
+  #     groups: group-X
+
+  # run-tests-groupY:
+  #   needs: e2e-system-tests
+  #   uses: ./.github/workflows/main.yml
+  #   secrets:
+  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+  #   with:
+  #     cypress_brb: https://main.brb.dbildungscloud.dev
+  #     cypress_dbc: https://main.dbc.dbildungscloud.dev
+  #     cypress_nbc: https://main.nbc.dbildungscloud.dev
+  #     tag: cy:headless:stable:groupY:school_api_test:ci
+  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
+  #     groups: group-Y
+
+  # run-tests-groupZ:
+  #   needs: e2e-system-tests
+  #   uses: ./.github/workflows/main.yml
+  #   secrets:
+  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+  #   with:
+  #     cypress_brb: https://main.brb.dbildungscloud.dev
+  #     cypress_dbc: https://main.dbc.dbildungscloud.dev
+  #     cypress_nbc: https://main.nbc.dbildungscloud.dev
+  #     tag: cy:headless:stable:groupZ:school_api_test:ci
+  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
+  #     groups: group-Z
 
   notify_RC:
     runs-on: ubuntu-latest
@@ -311,6 +394,12 @@ jobs:
       - run-tests-groupR
       - run-tests-groupS
       - run-tests-groupT
+      #- run-tests-groupU
+      #- run-tests-groupV
+      #- run-tests-groupW
+      #- run-tests-groupX
+      #- run-tests-groupY
+      #- run-tests-groupZ
     if: |
       always()
 
