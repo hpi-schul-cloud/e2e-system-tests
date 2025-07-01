@@ -140,11 +140,11 @@ class RoomBoards {
 	}
 
 	seeH5PElementInRoomBoard(title) {
-		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+		cy.get(RoomBoards.#H5PElementSelector).should("exist").should("contain", title);
 	}
 
 	verifyH5PElementIsNotVisible() {
-		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
+		cy.get(RoomBoards.#H5PElementSelector).should("not.exist");
 	}
 
 	clickOnThreeDotOnEtherpad() {
