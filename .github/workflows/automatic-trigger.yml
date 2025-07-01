@@ -4,6 +4,12 @@ on: [push]
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
+    outputs:
+      environment: ${{ steps.set_variables.outputs.environment }}
+    env:
+      instance1: https://main.brb.dbildungscloud.dev
+      instance2: https://main.nbc.dbildungscloud.dev
+      instance3: https://main.dbc.dbildungscloud.dev
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
