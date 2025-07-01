@@ -68,6 +68,7 @@ class RoomBoards {
 	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
 	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
+	static #H5PElementSelector = '[data-testid="board-hp5-element"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -136,6 +137,14 @@ class RoomBoards {
 		cy.get(RoomBoards.#elementEtherpadInBoard).click();
 
 		cy.get("@clickStub").should("have.been.calledOnce");
+	}
+
+	seeH5PElementInRoomBoard(title) {
+		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyH5PElementIsNotVisible() {
+		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
 	}
 
 	clickOnThreeDotOnEtherpad() {
@@ -773,6 +782,10 @@ class RoomBoards {
 
 	openThreeDotMenuForFolderInCard() {
 		cy.get(RoomBoards.#folderElementSelector).find(`[data-testid="board-menu-icon"]`).click();
+	}
+
+	openThreeDotMenuForH5PInCard() {
+		cy.get(RoomBoards.#H5PElementSelector).find(`[data-testid="board-menu-icon"]`).click();
 	}
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
