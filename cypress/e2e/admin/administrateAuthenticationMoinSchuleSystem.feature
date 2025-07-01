@@ -1,5 +1,5 @@
 # Note: To set this test to stable, the school needs a moin.schule system
-@unstable
+@unstable_test
 Feature: Admin - To edit the moin.schule system configuration
 
     As an admin I want to be able to edit the moin.schule system configuration
@@ -42,7 +42,7 @@ Feature: Admin - To edit the moin.schule system configuration
             | admin      | namespace | ctl_tool_hidden     | system | system_type |
             | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
 
-        # @school_api_test
-        # Examples:
-        #     | admin      | namespace | ctl_tool_hidden     | system | system_type |
-        #     | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
+# @school_api_test
+# Examples:
+#     | admin      | namespace | ctl_tool_hidden     | system | system_type |
+#     | admin1_nbc | nbc       | CY Test Tool Hidden | SANIS  | oauth       |
