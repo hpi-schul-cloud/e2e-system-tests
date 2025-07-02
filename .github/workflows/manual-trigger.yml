@@ -3,14 +3,14 @@ on:
   workflow_dispatch:
     inputs:
       test_mode:
-        description: "Select testing scope"
+        description: "Select testing mode"
         required: true
         type: choice
         options:
           - all regression tests
           - tests for pull requests (PR)
           - pre-check release tests
-        default: "selective (tests run for PR)"
+        default: "tests for pull requests (PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
@@ -52,9 +52,9 @@ jobs:
           fi
 
   run-all-tests:
-    name: Run All Tests (Stable + Regression)
+    name: Run all regression tests
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'all (tests run for regression testing)' }}
+    if: ${{ inputs.test_mode == 'all regression tests' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
@@ -93,9 +93,9 @@ jobs:
       groups: ${{ matrix.group }}
 
   run-tests-selective:
-    name: Run Tests Run in PR
+    name: Run tests for pull requests (PR)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'selective (tests run for PR)' }}
+    if: ${{ inputs.test_mode == 'tests for pull requests (PR)' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
@@ -112,9 +112,9 @@ jobs:
       groups: ${{ matrix.group }}
 
   run-pre-check-tests:
-    name: Run All Pre-Check Tests
+    name: Run pre-check release tests
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'pre-check (tests run for pre-release check)' }}
+    if: ${{ inputs.test_mode == 'pre-check release tests' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
