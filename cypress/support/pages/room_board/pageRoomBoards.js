@@ -68,11 +68,8 @@ class RoomBoards {
 	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
 	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
-<<<<<<< HEAD
 	static #H5PElementSelector = '[data-testid="board-hp5-element"]';
-=======
 	static #folderDetails = '[data-testid="file-statistic"]';
->>>>>>> origin
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -827,6 +824,7 @@ class RoomBoards {
 	clearFolderNameInCard() {
 		cy.get(RoomBoards.#folderTitleInCardInput).find('input').eq(0).clear();
 	}
+
 }
 
 export default RoomBoards;
