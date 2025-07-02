@@ -584,7 +584,6 @@ Then("zip file for folder {string} with date of today is saved in folder downloa
 	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
 });
 
-
 When("I click on the three dot menu in the H5P element", () => {
 	roomBoards.openThreeDotMenuForH5PInCard();
 });
