@@ -68,6 +68,7 @@ class RoomBoards {
 	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
 	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
+	static #folderDetails = '[data-testid="file-statistic"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -365,6 +366,19 @@ class RoomBoards {
 			.type("{downarrow}{enter}");
 	}
 
+	seeZipFileWithDatePrefixIsSavedInDownloads(fileName) {
+		const today = new Date();
+		const yyyy = today.getFullYear();
+		let mm = today.getMonth() + 1;
+		let dd = today.getDate();
+		if (dd < 10) dd = '0' + dd;
+		if (mm < 10) mm = '0' + mm;
+		let zipFileName = yyyy + mm + dd + "_" + fileName + ".zip";
+		cy.readFile(`cypress/downloads/${zipFileName}`, "binary", {
+			timeout: 15000,
+		}).should((buffer) => expect(buffer.length).to.be.gt(100));
+	}
+
 	clickContinueOnImportModal() {
 		cy.get(RoomBoards.#continueButtonInImportModal).click();
 	}
@@ -634,6 +648,10 @@ class RoomBoards {
 
 	seeFolderElementWithTitle(title) {
 		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
+	}
+
+	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
+		cy.get(RoomBoards.#folderDetails).should("contain.text", folderDetails);
 	}
 
 	clickFolderElementWithTitle(title) {

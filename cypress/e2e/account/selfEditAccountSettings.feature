@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-O
 Feature: Account - Edit E-mail in the account setting page
 
     As a user I want to navigation to my account's settings page so that I can see and edit my account details (e. g. email).

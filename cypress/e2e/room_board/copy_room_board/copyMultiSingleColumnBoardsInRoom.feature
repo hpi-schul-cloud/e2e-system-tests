@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-K
 Feature: Room Board - Copy multi-column and single-column boards in the room
 
     As a teacher, I want to copy both multi-column and single-column boards in the room so that I can effectively manage its contents.

@@ -416,6 +416,11 @@ Then("I do not see the board {string} in the room", (boardTitle) => {
 Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
+
+Then("I see folder size and number of files {string} in the folder element in the card", (folderDetails) =>  {
+	roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
+});
+
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
 });
@@ -569,4 +574,8 @@ When("I approve new folder name in card", () => {
 
 When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
+});
+
+Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
+	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
 });

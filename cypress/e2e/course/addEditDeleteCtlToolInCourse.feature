@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@group-R
+@schedule_run
 Feature: Course - To add, edit and delete a ctl tool in a course
 
     As a teacher I want to add, edit and delete a ctl tool in my course.
@@ -36,6 +38,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see tool '<ctl_tool_1>' is selected
         When I click on save external tool button
         Then I see the tool '<ctl_tool_1>' in the tool overview
+        Then I see the domain of '<ctl_tool_1>' in the tool overview
 
         # teacher launches tool
         When I lauch tool '<ctl_tool_1>' with given url '<ctl_tool_launch_url>'
