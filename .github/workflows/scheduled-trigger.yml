@@ -24,7 +24,9 @@ jobs:
       - name: Set environment output
         id: set_variables
         run: |
-          if [[ ! "$instance1" =~ (staging|schulportal) && ! "$instance2" =~ (staging|schulportal) && ! "$instance3" =~ (staging|schulportal) ]]; then
+          if [[ ! "$instance1" =~ (staging|schulportal) && \
+                ! "$instance2" =~ (staging|schulportal) && \
+                ! "$instance3" =~ (staging|schulportal) ]]; then
             echo "environment=dev" >> $GITHUB_OUTPUT
           else
             echo "environment=ref" >> $GITHUB_OUTPUT
