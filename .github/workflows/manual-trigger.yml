@@ -43,10 +43,12 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
-              echo "environment=dev" >> $GITHUB_OUTPUT
+          if [[ ! "$instance1" =~ (staging|schulportal) && \
+                ! "$instance2" =~ (staging|schulportal) && \
+                ! "$instance3" =~ (staging|schulportal) ]]; then
+            echo "environment=dev" >> $GITHUB_OUTPUT
           else
-              echo "environment=ref" >> $GITHUB_OUTPUT
+            echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
   run-all-tests:
