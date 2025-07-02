@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-H
 Feature: Media Shelf - To show media shelf with respective functionality
 
     As a teacher I want to use the media shelf
@@ -121,10 +123,10 @@ Feature: Media Shelf - To show media shelf with respective functionality
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white          | color_grey           | section_title  | section_title_updated | ctl_tool_launch_url |
+            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white        | color_grey         | section_title  | section_title_updated | ctl_tool_launch_url |
             | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool 2 | rgb(255, 255, 255) | rgb(251, 233, 231) | Test Abschnitt | Favoriten             | https://google.com/ |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white          | color_grey           | section_title  | section_title_updated | ctl_tool_launch_url |
+            | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white        | color_grey         | section_title  | section_title_updated | ctl_tool_launch_url |
             | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool Hidden | CY Test Tool 1 | CY Test Tool 2 | rgb(255, 255, 255) | rgb(251, 233, 231) | Test Abschnitt | Favoriten             | https://google.com/ |
