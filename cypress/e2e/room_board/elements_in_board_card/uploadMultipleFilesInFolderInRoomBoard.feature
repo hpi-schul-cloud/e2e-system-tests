@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-L
 Feature: Room Board - Upload multiple files in folder in board
 
     As a content editor I want to upload multiple files to a folder in a room board
@@ -31,7 +33,21 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see files '<video_file_name>, <audio_file_name>, <image_file_name>, <pdf_file_name>' in file list
         Then I see state of table header checkbox is 'unchecked'
 
+        # content editor reads each of the file size in the folder
+        When I click on the page outside of the column
+        Then I see file '<video_file_name>' with file size '<video_file_size>' in file list
+        Then I see file '<audio_file_name>' with file size '<audio_file_size>' in file list
+        Then I see file '<image_file_name>' with file size '<image_file_size>' in file list
+        Then I see file '<pdf_file_name>' with file size '<pdf_file_size>' in file list
+
+        # content editor changes to room and reads the total file size and number of files of the folder
+        When I click on breadcrumb element '<board_title>'
+        Then I see a folder with name '<standard_folder_name>' in the card
+        Then I see folder size and number of files '<total_folder_details>' in the folder element in the card
+
         # content editor opens image in lightbox
+        When I click on the folder '<standard_folder_name>' in the card
+        Then I see page Folder content for '<standard_folder_name>'
         When I click on the name of file '<image_file_name>' in file list
         Then I see the image in a lightbox
         When I click on icon Download in the fullscreen image
@@ -145,8 +161,8 @@ Feature: Room Board - Upload multiple files in folder in board
 
         @school_api_test
         Examples:
-            | namespace | content_editor | reader       | room_name              | board_title             | standard_folder_name | folder_name_edited | video_file_name          | audio_file_name            | image_file_name | pdf_file_name  | search_request |
-            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner   | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample-pdf.pdf | sample_audio   |
+            | namespace | content_editor | reader       | room_name              | board_title             | standard_folder_name | folder_name_edited | video_file_name          | audio_file_name            | image_file_name | pdf_file_name  | search_request | video_file_size | audio_file_size | image_file_size | pdf_file_size | total_folder_details |
+            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner   | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample-pdf.pdf | sample_audio   | 1,83 MB         | 433,52 KB       | 564,48 KB       | 6,96 MB       | 4 Dateien ⋅ 9,76 MB  |
 
 # @staging_test
 # Examples:

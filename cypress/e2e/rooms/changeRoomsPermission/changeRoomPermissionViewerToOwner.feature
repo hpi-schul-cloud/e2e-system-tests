@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-N
 Feature: Room - Change room permission (Viewer - Owner)
 
     As a teacher, I want to change a participant’s room permission from viewer to owner, so that other users can access the room and leave it as needed

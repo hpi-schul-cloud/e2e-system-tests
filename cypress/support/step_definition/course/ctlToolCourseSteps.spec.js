@@ -27,6 +27,10 @@ Then("I do not see tool {string} in the tool overview", (toolName) => {
 	courses.checkIfToolIsNotVisibleInToolTable(toolName);
 });
 
+Then("I see the domain of {string} in the tool overview", (toolName) => {
+	courses.seeToolDomain(toolName);
+});
+
 When("I click on the tool {string}", (toolName) => {
 	courses.clickOnTool(toolName);
 });

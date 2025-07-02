@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-G
 Feature: Deactivation of ctl tools in media shelf
 
     As an User I want to see a deactivated tool in media shelf
