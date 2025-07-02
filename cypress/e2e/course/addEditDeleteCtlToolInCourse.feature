@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@group-R
+@schedule_run
 Feature: Course - To add, edit and delete a ctl tool in a course
 
     As a teacher I want to add, edit and delete a ctl tool in my course.

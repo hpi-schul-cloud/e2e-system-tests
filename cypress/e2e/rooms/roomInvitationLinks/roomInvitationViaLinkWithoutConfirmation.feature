@@ -1,10 +1,12 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-N
 Feature: Room - Invite User to room via Invitationlink
 
-As a room owner, I want to invite a user to the room through an invitation link, so that I dont have to add every user manually.
+    As a room owner, I want to invite a user to the room through an invitation link, so that I dont have to add every user manually.
 
-Scenario Outline: Room Owner creates an invitation link, another teacher uses it, including pre-conditions
+    Scenario Outline: Room Owner creates an invitation link, another teacher uses it, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -41,5 +43,5 @@ Scenario Outline: Room Owner creates an invitation link, another teacher uses it
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name         | invitation_description |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | testinvitationlink   |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | testinvitationlink     |
 

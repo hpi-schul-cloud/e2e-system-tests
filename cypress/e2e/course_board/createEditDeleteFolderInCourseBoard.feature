@@ -1,10 +1,12 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-Q
 Feature: Course Board - Create folder in board, check breadcrumb
 
-As a content editor I want to create a file folder in a course board
+    As a content editor I want to create a file folder in a course board
 
-Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
+    Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
         # pre-condition: creating accounts and course with board
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a course named '<course_name>' exists
@@ -34,10 +36,10 @@ Scenario Outline:  Content editor is able to create, edit and delete a folder in
 
         @school_api_test
         Examples:
-            | namespace | content_editor | course_name              | board_title             | folder_name         |
-            | dbc       | teacher1_dbc   | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner  |
+            | namespace | content_editor | course_name              | board_title             | folder_name        |
+            | dbc       | teacher1_dbc   | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner |
 
-        # @staging_test
-        # Examples:
-        #     | namespace | content_editor      | course_name              | board_title             | folder_name         |
-        #     | brb       | teacher1_brb        | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner  |
+# @staging_test
+# Examples:
+#     | namespace | content_editor      | course_name              | board_title             | folder_name         |
+#     | brb       | teacher1_brb        | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner  |
