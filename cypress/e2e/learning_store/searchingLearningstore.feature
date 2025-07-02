@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-G
+@pre_check_test
 Feature: Learning store - Search Learning Material in Learning Store
 
     As an admin I want to activate and deactivate students access to learning store
@@ -46,7 +47,6 @@ Feature: Learning store - Search Learning Material in Learning Store
         When I click the toggle switch to disable students access to learning store
         When I click on button Save admin settings
 
-        @pre_check_test
         @school_api_test
         @staging_test
         Examples:

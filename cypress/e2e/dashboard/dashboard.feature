@@ -3,6 +3,7 @@
 @schedule_test
 @group-A
 @pr
+@pre_check_test
 Feature: Dashboard - To check contents on the dashboard
 
     As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
@@ -155,7 +156,6 @@ Feature: Dashboard - To check contents on the dashboard
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the course overview page
 
-        @pre_check_test
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher  | student      | fullname_student  | listname_student   | course_name                      |

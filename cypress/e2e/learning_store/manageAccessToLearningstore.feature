@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @pr
+@pre_check_test
 Feature: Learning store - Activating and deactivating access for students
 
     As an admin I want to activate and deactivate students access to learning store
@@ -38,7 +39,6 @@ Feature: Learning store - Activating and deactivating access for students
         Given I am logged in as a '<student>' at '<namespace>'
         Then I do not see Learning Store in side bar
 
-        @pre_check_test
         @school_api_test
         @staging_test
         Examples:

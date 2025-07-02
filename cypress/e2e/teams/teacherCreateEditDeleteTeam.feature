@@ -3,6 +3,7 @@
 @schedule_run
 @group-A
 @pr
+@pre_check_test
 Feature: Team - Create, delete and edit operations on Teams
 
     As a teacher I want to create/edit/delete the team so that I can manage the team.
@@ -41,7 +42,6 @@ Feature: Team - Create, delete and edit operations on Teams
         Then I see dialog box and click on delete button to confirm the deletion
         Then I do not see the team '<team_edited_title>'
 
-        @pre_check_test
         @school_api_test
         @staging_test
         Examples:
