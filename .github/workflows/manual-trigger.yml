@@ -29,7 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
-
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -43,7 +42,9 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
+          if [[ ! "${{ inputs.instance1 }}" =~ (staging|schulportal) && \
+                ! "${{ inputs.instance2 }}" =~ (staging|schulportal) && \
+                ! "${{ inputs.instance3 }}" =~ (staging|schulportal) ]]; then
               echo "environment=dev" >> $GITHUB_OUTPUT
           else
               echo "environment=ref" >> $GITHUB_OUTPUT
@@ -86,7 +87,12 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:${{ matrix.group }}:school_api_test:ci
+      tag: >-
+        ${{ format(
+          'cy:headless:stable:{0}:{1}:ci',
+          matrix.group,
+          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
+        ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
