@@ -68,6 +68,7 @@ class RoomBoards {
 	static #downloadButtonOnFullImage = '[data-testid="light-box-download-btn"]';
 	static #closeButtonSelectorOnFullImage = '[data-testid="light-box-close-btn"]';
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
+	static #H5PElementSelector = '[data-testid="board-hp5-element"]';
 	static #folderDetails = '[data-testid="file-statistic"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
@@ -137,6 +138,14 @@ class RoomBoards {
 		cy.get(RoomBoards.#elementEtherpadInBoard).click();
 
 		cy.get("@clickStub").should("have.been.calledOnce");
+	}
+
+	seeH5PElementInRoomBoard(title) {
+		cy.get(RoomBoards.#H5PElementSelector).should("exist").should("contain", title);
+	}
+
+	verifyH5PElementIsNotVisible() {
+		cy.get(RoomBoards.#H5PElementSelector).should("not.exist");
 	}
 
 	clickOnThreeDotOnEtherpad() {
@@ -780,6 +789,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderElementSelector).find(`[data-testid="board-menu-icon"]`).click();
 	}
 
+	openThreeDotMenuForH5PInCard() {
+		cy.get(RoomBoards.#H5PElementSelector).find(`[data-testid="board-menu-icon"]`).click();
+	}
+
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
 		cy.get(RoomBoards.#multiActionMenuInHeader).should("contain", expectedNumber);
 	}
@@ -811,6 +824,7 @@ class RoomBoards {
 	clearFolderNameInCard() {
 		cy.get(RoomBoards.#folderTitleInCardInput).find('input').eq(0).clear();
 	}
+
 }
 
 export default RoomBoards;

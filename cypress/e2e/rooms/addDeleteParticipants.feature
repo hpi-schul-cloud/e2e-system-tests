@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-I
 Feature: Room - Add and delete participants
 
     As a teacher I want to add and delete participants in the room.
