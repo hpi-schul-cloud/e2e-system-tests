@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-U
 
 # Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same faeture and scenario.
 

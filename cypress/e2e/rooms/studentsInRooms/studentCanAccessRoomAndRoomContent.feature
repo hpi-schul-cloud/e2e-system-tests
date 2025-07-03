@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-U
 
 Feature: Room - Student can access room content after being added to room via Add Members Dialog
 

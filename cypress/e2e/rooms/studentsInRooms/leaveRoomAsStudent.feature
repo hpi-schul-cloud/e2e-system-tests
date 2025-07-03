@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-U
 
 Feature: Room - Leave room as a Student
 
