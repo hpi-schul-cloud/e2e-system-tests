@@ -289,8 +289,8 @@ jobs:
       tag: cy:headless:stable:group-T:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-T
-      
-  run-tests-groupU:
+
+  run-tests-group-U:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -302,7 +302,7 @@ jobs:
       tag: cy:headless:stable:groupU:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-U
-# The following jobs (groupV) are currently commented out.
+# The following jobs are currently commented out.
 # Reason: Will be used when new feature will be added.
 
 # run-tests-group-V:
