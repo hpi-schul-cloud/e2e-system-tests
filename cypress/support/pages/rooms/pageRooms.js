@@ -243,6 +243,18 @@ class Rooms {
 		cy.get(Rooms.#addParticipantSchool).contains(participantSchool);
 	}
 
+	fillParticipantFormSchool(participantSchool) {
+		cy.get(Rooms.#addParticipantSchool)
+			.type("{selectall}{backspace}")
+			.type(participantSchool);
+	}
+
+	selectParticipantSchool() {
+		cy.get(Rooms.#addParticipantSchool)
+			.should("be.visible")
+			.type("{downArrow}{enter}");
+	}
+
 	seeRoleOfParticipant(participantRole) {
 		cy.get(Rooms.#addParticipantRole).contains(participantRole);
 	}
