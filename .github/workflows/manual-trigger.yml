@@ -27,31 +27,28 @@ on:
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
-  outputs:
-    environment: ${{ steps.set_variables.outputs.environment }}
-  env:
-    INSTANCE1: ${{ inputs.instance1 }}
-    INSTANCE2: ${{ inputs.instance2 }}
-    INSTANCE3: ${{ inputs.instance3 }}
-  steps:
-    - name: Setup Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
+    outputs:
+      environment: ${{ steps.set_variables.outputs.environment }}
 
-    - name: Checkout
-      uses: actions/checkout@v4
+    steps:
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-    - name: Set environment output
-      id: set_variables
-      run: |
-        if [[ "$INSTANCE1" =~ schulportal || "$INSTANCE1" =~ staging || \
-              "$INSTANCE2" =~ schulportal || "$INSTANCE2" =~ staging || \
-              "$INSTANCE3" =~ schulportal || "$INSTANCE3" =~ staging ]]; then
-          echo "environment=ref" >> $GITHUB_OUTPUT
-        else
-          echo "environment=dev" >> $GITHUB_OUTPUT
-        fi
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set all parameters for next job
+        id: set_variables
+        shell: bash
+        run: |
+
+          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
+              echo "environment=dev" >> $GITHUB_OUTPUT
+          else
+              echo "environment=ref" >> $GITHUB_OUTPUT
+          fi
 
   run-all-tests:
     name: Run all regression tests
