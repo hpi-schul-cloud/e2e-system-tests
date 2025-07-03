@@ -112,7 +112,12 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:${{ matrix.group }}:school_api_test:ci
+      tag: >-
+        ${{ format(
+          'cy:headless:stable:{0}:{1}:ci',
+          matrix.group,
+          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
+        ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -127,7 +132,11 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:regression_test:school_api_test:manual_trigger:pre_check:ci
+      tag: >-
+        ${{ format(
+          'cy:headless:stable:regression_test:{0}:manual_trigger:pre_check:ci',
+          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
+        ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: pre-check
 
