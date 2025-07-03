@@ -396,7 +396,7 @@ jobs:
       - run-tests-group-R
       - run-tests-group-S
       - run-tests-group-T
-      #- run-tests-group-U
+      - run-tests-group-U
       #- run-tests-group-V
       #- run-tests-group-W
       #- run-tests-group-X
