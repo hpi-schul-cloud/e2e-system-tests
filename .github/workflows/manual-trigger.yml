@@ -43,7 +43,6 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-
           if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
               echo "environment=dev" >> $GITHUB_OUTPUT
           else
