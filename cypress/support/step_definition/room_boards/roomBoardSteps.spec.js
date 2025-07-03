@@ -41,6 +41,10 @@ Then("I verify the element Etherpad is clickable", () => {
 	roomBoards.verifyEtherpadIsClickableInBoard();
 });
 
+Then("I see the element H5P {string} in the card", (title) => {
+	roomBoards.seeH5PElementInRoomBoard(title)
+});
+
 When("I click on the three-dot in the element Etherpad", () => {
 	roomBoards.clickOnThreeDotOnEtherpad();
 });
@@ -320,12 +324,20 @@ Then(
 	}
 );
 
+Then("I see multi-column board tile in the rooms details page", () => {
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
-	roomBoards.verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifySingleColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
+Then("I do not see single-column board tile in the room details page", () => {
+	roomBoards.verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage();
 });
 
 When("I click on the single-column board in the room detail page", () => {
@@ -578,4 +590,12 @@ When("I clear folder name in card", () => {
 
 Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
 	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+});
+
+When("I click on the three dot menu in the H5P element", () => {
+	roomBoards.openThreeDotMenuForH5PInCard();
+});
+
+Then("I do not see the element H5P", () => {
+	roomBoards.verifyH5PElementIsNotVisible();
 });
