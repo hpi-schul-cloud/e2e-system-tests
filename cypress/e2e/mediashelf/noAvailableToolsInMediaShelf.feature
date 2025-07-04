@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-H
 Feature: No available tools in media shelf
 
     As a user I want to see the no longer available chip on media element in media shelf
@@ -42,10 +44,10 @@ Feature: No available tools in media shelf
 
         @staging_test
         Examples:
-            | admin      | teacher      |  namespace | ctl_tool_1     |
-            | admin1_nbc | teacher1_nbc |  nbc       | CY Test Tool 1 |
+            | admin      | teacher      | namespace | ctl_tool_1     |
+            | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool 1 |
 
         @school_api_test
         Examples:
-            | admin      | teacher      |  namespace | ctl_tool_1     |
-            | admin1_nbc | teacher1_nbc |  nbc       | CY Test Tool 1 |
+            | admin      | teacher      | namespace | ctl_tool_1     |
+            | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool 1 |

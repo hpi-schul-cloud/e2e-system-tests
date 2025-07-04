@@ -41,6 +41,10 @@ Then("I verify the element Etherpad is clickable", () => {
 	roomBoards.verifyEtherpadIsClickableInBoard();
 });
 
+Then("I see the element H5P {string} in the card", (title) => {
+	roomBoards.seeH5PElementInRoomBoard(title)
+});
+
 When("I click on the three-dot in the element Etherpad", () => {
 	roomBoards.clickOnThreeDotOnEtherpad();
 });
@@ -320,12 +324,20 @@ Then(
 	}
 );
 
+Then("I see multi-column board tile in the rooms details page", () => {
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
-	roomBoards.verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifySingleColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
+Then("I do not see single-column board tile in the room details page", () => {
+	roomBoards.verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage();
 });
 
 When("I click on the single-column board in the room detail page", () => {
@@ -369,7 +381,7 @@ Then("I do not see the page board details", () => {
 	roomBoards.doNotSeeNewRoomBoardCreatePage();
 });
 
-When("I click on the three dot menu in room board", () => {
+When("I click on the three dot menu in room board title", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
@@ -416,6 +428,11 @@ Then("I do not see the board {string} in the room", (boardTitle) => {
 Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
+
+Then("I see folder size and number of files {string} in the folder element in the card", (folderDetails) =>  {
+	roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
+});
+
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
 });
@@ -536,11 +553,19 @@ Then("I see displayed number of checked files is {string}", (numberOfCheckedFile
 });
 
 Then("I see modal Rename file", () => {
-	roomBoards.seeModalRenameFile();
+	roomBoards.seeModalRenameElement();
 });
 
-When("I enter {string} in input field New name", (newFileName) => {
-	roomBoards.enterNewFileNameInDialog(newFileName);
+Then("I see modal Rename folder", () => {
+	roomBoards.seeModalRenameElement();
+});
+
+When("I enter {string} in input field New name", (newName) => {
+	roomBoards.enterNewElementNameInDialog(newName);
+});
+
+When("I clear input field New name", () => {
+	roomBoards.clearNewElementNameInDialog();
 });
 
 When("I click on button Approve in modal", () => {
@@ -549,4 +574,28 @@ When("I click on button Approve in modal", () => {
 
 When("I click on the name of file {string} in file list", (fileName) => {
 	roomBoards.clickOnFileNameInFolder(fileName);
+});
+
+When("I enter name {string} for file folder in card", (newName) => {
+	roomBoards.enterFolderNameInBoardCard(newName);
+});
+
+When("I approve new folder name in card", () => {
+	roomBoards.approveFolderNameInCard();
+});
+
+When("I clear folder name in card", () => {
+	roomBoards.clearFolderNameInCard();
+});
+
+Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
+	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+});
+
+When("I click on the three dot menu in the H5P element", () => {
+	roomBoards.openThreeDotMenuForH5PInCard();
+});
+
+Then("I do not see the element H5P", () => {
+	roomBoards.verifyH5PElementIsNotVisible();
 });

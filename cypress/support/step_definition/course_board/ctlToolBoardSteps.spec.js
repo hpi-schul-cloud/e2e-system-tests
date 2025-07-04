@@ -7,6 +7,10 @@ Then("I see an external tool element with tool {string}", (toolName) => {
 	board.seeExternalToolElementWithTool(toolName);
 });
 
+Then("I see the domain of external tool {string}", (toolName) => {
+	board.seeExternalToolElementDomain(toolName);
+});
+
 When("I click on three dot menu of external tool element {string}", (toolName) => {
 	board.clickThreeDotMenuOnExternalToolElementWithTool(toolName);
 });

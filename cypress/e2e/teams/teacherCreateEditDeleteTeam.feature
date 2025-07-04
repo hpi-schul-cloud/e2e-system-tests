@@ -1,9 +1,9 @@
-
 @regression_test
 @stable_test
-@schedule_test
+@schedule_run
 @group-A
 @pr
+@pre_check_test
 Feature: Team - Create, delete and edit operations on Teams
 
     As a teacher I want to create/edit/delete the team so that I can manage the team.

@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-M
 Feature: Room - Change room permission (Viewer - Admin)
 
     As a teacher, I want to change a participant’s room permission from viewer to admin, so that other users can access the room and leave it as needed
@@ -79,10 +81,10 @@ Feature: Room - Change room permission (Viewer - Admin)
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | room_name_edited         | school_name             | role_name | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Cypress Edited Room Name | cypress-automated-tests | Lehrkraft | teacher_2        |
+            | teacher_1    | teacher_2    | namespace | room_name         | room_name_edited         | school_name           | role_name      | participant_name |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Cypress Edited Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        |
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | room_name_edited         | school_name                 | role_name | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Cypress Edited Room Name | Felix Mendelssohn-Gymnasium | Lehrkraft | Hande            |
+            | teacher_1    | teacher_2    | namespace | room_name         | room_name_edited         | school_name                 | role_name      | participant_name |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Cypress Edited Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            |
