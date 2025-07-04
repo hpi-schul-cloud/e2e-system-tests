@@ -62,7 +62,7 @@ Feature: Course Board - To export a course as common cartridge
         Then the 'skt2' organization has a webcontent resource with pattern '\.html'
         Then the 'sk1' organization has child with title 'Wikipedia – Die freie Enzyklopädie' as 'skt3'
         Then the 'skt3' organization has a weblink resource with url 'https://de.wikipedia.org/wiki/Wikipedia:Hauptseite' and title 'Wikipedia – Die freie Enzyklopädie'
-        Then the 'sk1' organization has child with title 'Google ' as 'skt3'
+        Then the 'sk1' organization has child with title 'Google' as 'skt3'
         Then the 'skt3' organization has a weblink resource with url 'https://www.google.com/' and title 'Google'
         Then the 'sk1' organization has child with title 'text 3 dann noch ein' as 'skt4'
         Then the 'skt4' organization has a webcontent resource with pattern '\.html'
@@ -75,7 +75,7 @@ Feature: Course Board - To export a course as common cartridge
         Then the 's2' organization has child with title 'Spalte 2 Karte 1' as 'sk21'
         Then the 'sk21' organization has child with title 'Link 3 Mal und White' as 'skt21'
         Then the 'skt21' organization has a webcontent resource with pattern '\.html'
-        Then the 'sk21' organization has child with title 'Google ' as 'skt22'
+        Then the 'sk21' organization has child with title 'Google' as 'skt22'
         Then the 'skt22' organization has a weblink resource with url 'https://www.google.com/' and title 'Google'
         Then the 's2' organization has child with title 'Spalte 2 Karte 3 ohne Inhalt ' as 'sk22'
 
