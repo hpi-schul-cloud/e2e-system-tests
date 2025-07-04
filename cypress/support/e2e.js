@@ -18,6 +18,7 @@ import "./commands";
 import "./custom_commands/input.utils";
 import "./custom_commands/login";
 import "./custom_commands/logout";
+import "./custom_commands/verifyFile";
 import "cypress-real-events";
 
 // prevents blocking test by uncaught exception. This should be commented out when BC-2711 is resolved
