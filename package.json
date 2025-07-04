@@ -6,6 +6,8 @@
 	"scripts": {
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
 		"generate:report": "node reporter.js",
+		"cy:gui:stable:regression_test:school_api_test:localhost": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
+		"cy:headless:stable:regression_test:school_api_test:localhost": "cypress run --browser edge -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
 		"cy:gui:stable:regression_test:school_api_test:local": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=local",
 		"cy:gui:stable:regression_test:staging:local": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @staging_test\",environmentName=staging",
 		"cy:gui:stable:regression_test:school_api_test:pre_check:local": "cypress open --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=local",
