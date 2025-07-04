@@ -9,7 +9,7 @@ Feature: Rooms - Share and import room with a teacher from different school
     Scenario: Share and import a room with a teacher from different school
 
         # pre-condition: Creating teacher accounts
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given I am logged in as a '<teacher1>' at '<namespace>'
 
         # pre-condition: Room and room exist
@@ -40,7 +40,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Then I see the alert message
 
         # pre-condition: the second teacher is logged into the application, and a room exists
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
 
         # the second teacher from different school imports the room
         When I open the shared URL
@@ -61,10 +61,10 @@ Feature: Rooms - Share and import room with a teacher from different school
         # post-condition: rooms are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
         Given the room named '<room_name_source>' is deleted
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given the room named '<room_name_target>' is deleted
 
         @school_api_test
         Examples:
-            | teacher1     | teacherExt1  | namespace | room_name_source    | room_name_target    | board_title    |
+            | teacher1     | teacherExt_1 | namespace | room_name_source    | room_name_target    | board_title    |
             | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
