@@ -22,7 +22,7 @@ Cypress.Commands.add("login", (username, environment, schoolId, courseId) => {
 				throw new Error('Predefined school or course not supported for staging');
 			}
 
-			!isStaging
+			!(isStaging || environment === "localhost")
 				? await loginViaSchoolApi(username, environment, schoolId, courseId)
 				: loginWithoutSchoolApi(username, environment);
 

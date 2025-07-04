@@ -59,7 +59,7 @@ const extractSubdomain = (url) => {
 const createSchool = async (schoolUrl, headers) => {
 	try {
 		const payload = {
-			name: `cypress-automated-tests`,
+			name: `cypress-test-school-1`,
 			federalStateName: federalStateNames[extractSubdomain(schoolUrl)],
 		};
 		const response = await axios.post(schoolUrl, payload, { headers });

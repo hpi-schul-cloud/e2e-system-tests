@@ -2,6 +2,15 @@ name: e2e-manual-trigger-tests
 on:
   workflow_dispatch:
     inputs:
+      test_mode:
+        description: "Select testing mode"
+        required: true
+        type: choice
+        options:
+          - all regression tests
+          - tests for pull requests (PR)
+          - pre-check release tests
+        default: "tests for pull requests (PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
@@ -20,7 +29,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
-
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -34,41 +42,89 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-
-          if [[ ! ${{ inputs.instance1 }} =~ (staging|schulportal) && ! ${{ inputs.instance2 }} =~ (staging|schulportal) && ! ${{ inputs.instance3 }} =~ (staging|schulportal) ]]; then
+          if [[ ! "${{ inputs.instance1 }}" =~ (staging|schulportal) && \
+                ! "${{ inputs.instance2 }}" =~ (staging|schulportal) && \
+                ! "${{ inputs.instance3 }}" =~ (staging|schulportal) ]]; then
               echo "environment=dev" >> $GITHUB_OUTPUT
           else
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
-  run-tests-groupA:
+  run-all-tests:
+    name: Run all regression tests
     needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'all regression tests' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group:
+          [
+            group-A,
+            group-B,
+            group-C,
+            group-D,
+            group-E,
+            group-F,
+            group-G,
+            group-H,
+            group-I,
+            group-J,
+            group-K,
+            group-L,
+            group-M,
+            group-N,
+            group-O,
+            group-P,
+            group-Q,
+            group-R,
+            group-S,
+            group-T,
+            group-U,
+          ]
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupA:school_api_test:ci
+      tag: >-
+        ${{ format(
+          'cy:headless:stable:{0}:{1}:ci',
+          matrix.group,
+          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
+        ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-A
+      groups: ${{ matrix.group }}
 
-  run-tests-groupB:
+  run-tests-selective:
+    name: Run tests for pull requests (PR)
     needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'tests for pull requests (PR)' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [group-A, group-B, group-C, group-D, group-E, group-F]
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupB:school_api_test:ci
+      tag: >-
+        ${{ format(
+          'cy:headless:stable:{0}:{1}:ci',
+          matrix.group,
+          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
+        ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-B
+      groups: ${{ matrix.group }}
 
-  run-tests-groupC:
+  run-pre-check-tests:
+    name: Run pre-check release tests
     needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'pre-check release tests' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
@@ -76,62 +132,22 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupC:school_api_test:ci
+      tag: >-
+        ${{ format(
+          'cy:headless:stable:regression_test:{0}:manual_trigger:pre_check:ci',
+          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
+        ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-C
-
-  run-tests-groupD:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupD:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-D
-
-  run-tests-groupE:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupE:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-E
-
-  run-tests-groupF:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:stable:groupF:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-F
+      groups: pre-check
 
   notify_RC:
     runs-on: ubuntu-latest
     needs:
       - e2e-system-tests
-      - run-tests-groupA
-      - run-tests-groupB
-      - run-tests-groupC
-      - run-tests-groupD
-      - run-tests-groupE
-      - run-tests-groupF
-    if: |
-      always()
-
+      - run-all-tests
+      - run-tests-selective
+      - run-pre-check-tests
+    if: always()
     steps:
       - uses: technote-space/workflow-conclusion-action@v3
 

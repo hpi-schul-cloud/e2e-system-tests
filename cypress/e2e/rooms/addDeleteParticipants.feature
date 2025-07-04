@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-I
 Feature: Room - Add and delete participants
 
     As a teacher I want to add and delete participants in the room.
@@ -68,8 +70,8 @@ Feature: Room - Add and delete participants
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | school_name             | role_name      | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | cypress-automated-tests | Lernbegleitend | teacher_2        |
+            | teacher_1    | teacher_2    | namespace | room_name         | school_name           | role_name      | participant_name |
+            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        |
 
         @staging_test
         Examples:

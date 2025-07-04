@@ -1,5 +1,8 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-L
+@pre_check_test
 Feature: Room Board - Upload multiple files in folder in board
 
     As a content editor I want to upload multiple files to a folder in a room board

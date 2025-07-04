@@ -3,6 +3,7 @@
 @schedule_run
 @group-C
 @pr
+@pre_check_test
 Feature: Course - Teacher can add and remove BBB tool in the course with admin permission
 
     As a teacher I want to activate and deactivate BBB tool in the course, so that I can manage the video lectures.
