@@ -2,6 +2,16 @@ const { defineConfig } = require("cypress");
 const webpack = require("@cypress/webpack-preprocessor");
 const preprocessor = require("@badeball/cypress-cucumber-preprocessor");
 const { createUser } = require("./scripts/runSchoolApi");
+const { waitForFile } = require("./scripts/verifyFile");
+const {
+	ccFileIsArchive,
+	ccCleanUp,
+	ccFileHasManifest,
+	ccManifestHasOrganization,
+	ccOrganizationHasChild,
+	ccOrganizationHasWebcontent,
+	ccOrganizationHasWeblink,
+} = require("./scripts/commonCartridgeValidation");
 const path = require("path");
 
 async function setupNodeEvents(on, config) {
@@ -70,12 +80,45 @@ async function setupNodeEvents(on, config) {
 					obj.url,
 					obj.apiKey,
 					obj.schoolId,
-					obj.userType
+					obj.userType,
+					obj.courseId
 				));
 			} catch (error) {
 				console.error("Error in calling createUser method:", error);
 				throw error;
 			}
+		},
+
+		async fileExists({ directory, pattern, renameTo, timeout }) {
+			return await waitForFile(directory, pattern, renameTo, timeout);
+		},
+
+		async commonCartridgeFileIsArchive({ directory, file }) {
+			return await ccFileIsArchive(directory, file);
+		},
+
+		async commonCartridgeCleanUp({ directory, file }) {
+			return await ccCleanUp(directory, file);
+		},
+
+		async commonCartridgeHasManifest({ directory, version, title }) {
+			return await ccFileHasManifest(directory, version, title);
+		},
+
+		async commonCartridgeHasOrganization({ directory, depth, title }) {
+			return await ccManifestHasOrganization(directory, depth, title);
+		},
+
+		async commonCartridgeHasChild({ directory, orgId, title }) {
+			return await ccOrganizationHasChild(directory, orgId, title);
+		},
+
+		async commonCartridgeHasWebcontent({ directory, orgId, pattern }) {
+			return await ccOrganizationHasWebcontent(directory, orgId, pattern);
+		},
+
+		async commonCartridgeHasWeblink({ directory, orgId, url, title }) {
+			return await ccOrganizationHasWeblink(directory, orgId, url, title);
 		},
 	});
 
