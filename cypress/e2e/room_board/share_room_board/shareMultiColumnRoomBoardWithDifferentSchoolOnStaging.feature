@@ -52,7 +52,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the chip Draft
 
         # first teacher from the first school does not allow sharing the multi-column board with another teacher from a different school
-        Given I am logged in as a '<teacher1>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to room overview
         When I go to room '<room_name_source>'
         Then I see the detail page of room '<room_name_source>'
@@ -73,9 +73,9 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see an alert that importing the board is not allowed
 
         # post-condition: rooms created by both teachers are deleted
-        Given I am logged in as a '<teacher1>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given the room named '<room_name_source>' is deleted
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given the room named '<room_name_target>' is deleted
 
         @staging_test
