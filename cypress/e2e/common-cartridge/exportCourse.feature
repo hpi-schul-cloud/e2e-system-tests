@@ -1,4 +1,3 @@
-@pr
 @stable_test
 Feature: Course Board - To export a course as common cartridge
 
