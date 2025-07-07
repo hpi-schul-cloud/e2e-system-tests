@@ -189,6 +189,6 @@ jobs:
       - run-tests-group-D
       - run-tests-group-E
       - run-tests-group-F
-  runs-on: ubuntu-latest
-  steps:
-    - run: echo "cypress tests were successful"
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "cypress tests were successful"
