@@ -183,12 +183,12 @@ jobs:
 
   cypress-tests-successful:
     needs:
-      - group-A
-      - group-B
-      - group-C
-      - group-D
-      - group-E
-      - group-F
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "cypress tests were successful"
+      - run-tests-group-A
+      - run-tests-group-B
+      - run-tests-group-C
+      - run-tests-group-D
+      - run-tests-group-E
+      - run-tests-group-F
+  runs-on: ubuntu-latest
+  steps:
+    - run: echo "cypress tests were successful"
