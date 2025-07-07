@@ -180,3 +180,15 @@ jobs:
       tag: cy:headless:stable:group-F:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-F
+
+  cypress-tests-successful:
+    needs:
+      - run-tests-group-A
+      - run-tests-group-B
+      - run-tests-group-C
+      - run-tests-group-D
+      - run-tests-group-E
+      - run-tests-group-F
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "cypress tests were successful"
