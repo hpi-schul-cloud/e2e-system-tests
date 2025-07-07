@@ -5,20 +5,20 @@ Feature: Course Board - To export a course as common cartridge
     As a teacher I want to export a course as a common cartridge file
 
     Scenario: Teacher exports course
-        Given I am logged in as a '<teacher>' at '<namespace>' in school '<school_id>' and have course '<course_id>'
+        Given I am logged in as a '<teacher>' at '<namespace>' in school '5f2987e020834114b8efd6f8' and have course '681e018089002b0ee99aa0af'
 
         # export the course
         When I go to courses overview
-        When I go to course '<course_name>'
-        Then I see course page '<course_name>'
+        When I go to course 'CC_Test_Kurs'
+        Then I see course page 'CC_Test_Kurs'
         When I click on export course button
         When I click on dialog next button
         When I click on dialog export button
-        Then I have a file exported with pattern '<pattern>' and rename it
+        Then I have a file exported with pattern 'CC_Test_Kurs-.+\.imscc' and rename it
 
         # Further validation on file
         Given the exported file is an archive and extracted
-        Then a manifest exists in the common cartridge file with version '1.1.0' and title '<course_name>'
+        Then a manifest exists in the common cartridge file with version '1.1.0' and title 'CC_Test_Kurs'
 
         # Topic without task
         Then an organization exists on level 0 with title 'Thema Ohne Aufgabe' as 't1'
@@ -87,5 +87,5 @@ Feature: Course Board - To export a course as common cartridge
 
         @school_api_test
         Examples:
-            | teacher      | namespace | school_id                | course_id                | course_name  | pattern                |
-            | teacher1_dbc | dbc       | 5f2987e020834114b8efd6f8 | 681e018089002b0ee99aa0af | CC_Test_Kurs | CC_Test_Kurs-.+\.imscc |
+            | teacher      | namespace |
+            | teacher1_dbc | dbc       |
