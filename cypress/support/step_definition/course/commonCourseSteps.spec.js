@@ -14,7 +14,7 @@ Then("I see the section three as the finish page", () => {
 });
 
 When("I select the student {string} in the list", (studentName) => {
-	courses.selectStudentInCourseCreatePage(studentName);
+	courses.selectStudentsInCourseCreatePage(studentName);
 });
 
 When("I select the class {string} in the class list", (className) => {
