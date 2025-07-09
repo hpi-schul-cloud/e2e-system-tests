@@ -42,7 +42,15 @@ Feature: Course - Teacher can create, edit and delete a group in the course
         When I click on tab Groups
         Then I see group name changed to '<group_rename>'
 
+        # student2 checks the group after editing
+        Given I am logged in as a '<student2>' at '<namespace>'
+        When I go to courses overview
+        When I go to course '<course_name>'
+        When I click on tab Groups
+        Then I see group name changed to '<group_rename>'
+
         # deleting a group in course
+        Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
         When I click on tab Groups
