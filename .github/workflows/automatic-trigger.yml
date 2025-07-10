@@ -30,7 +30,7 @@ jobs:
             echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
-  run-tests-groupA:
+  run-tests-group-A:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -39,11 +39,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupA:school_api_test:ci
+      tag: cy:headless:stable:group-A:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-A
 
-  run-tests-groupB:
+  run-tests-group-B:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -52,11 +52,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupB:school_api_test:ci
+      tag: cy:headless:stable:group-B:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-B
 
-  run-tests-groupC:
+  run-tests-group-C:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -65,11 +65,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupC:school_api_test:ci
+      tag: cy:headless:stable:group-C:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-C
 
-  run-tests-groupD:
+  run-tests-group-D:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -78,11 +78,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupD:school_api_test:ci
+      tag: cy:headless:stable:group-D:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-D
 
-  run-tests-groupE:
+  run-tests-group-E:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -91,11 +91,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupE:school_api_test:ci
+      tag: cy:headless:stable:group-E:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-E
 
-  run-tests-groupF:
+  run-tests-group-F:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -104,11 +104,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupF:school_api_test:ci
+      tag: cy:headless:stable:group-F:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-F
 
-  run-tests-groupG:
+  run-tests-group-G:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -117,11 +117,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupG:school_api_test:ci
+      tag: cy:headless:stable:group-G:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-G
 
-  run-tests-groupH:
+  run-tests-group-H:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -130,11 +130,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupH:school_api_test:ci
+      tag: cy:headless:stable:group-H:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-H
 
-  run-tests-groupI:
+  run-tests-group-I:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -143,11 +143,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupI:school_api_test:ci
+      tag: cy:headless:stable:group-I:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-I
 
-  run-tests-groupJ:
+  run-tests-group-J:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -156,11 +156,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupJ:school_api_test:ci
+      tag: cy:headless:stable:group-J:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-J
 
-  run-tests-groupK:
+  run-tests-group-K:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -169,11 +169,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupK:school_api_test:ci
+      tag: cy:headless:stable:group-K:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-K
 
-  run-tests-groupL:
+  run-tests-group-L:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -182,11 +182,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupL:school_api_test:ci
+      tag: cy:headless:stable:group-L:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-L
 
-  run-tests-groupM:
+  run-tests-group-M:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -195,11 +195,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupM:school_api_test:ci
+      tag: cy:headless:stable:group-M:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-M
 
-  run-tests-groupN:
+  run-tests-group-N:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -208,11 +208,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupN:school_api_test:ci
+      tag: cy:headless:stable:group-N:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-N
 
-  run-tests-groupO:
+  run-tests-group-O:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -221,11 +221,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupO:school_api_test:ci
+      tag: cy:headless:stable:group-O:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-O
 
-  run-tests-groupP:
+  run-tests-group-P:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -234,11 +234,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupP:school_api_test:ci
+      tag: cy:headless:stable:group-P:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-P
 
-  run-tests-groupQ:
+  run-tests-group-Q:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -247,11 +247,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupQ:school_api_test:ci
+      tag: cy:headless:stable:group-Q:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-Q
 
-  run-tests-groupR:
+  run-tests-group-R:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -260,11 +260,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupR:school_api_test:ci
+      tag: cy:headless:stable:group-R:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-R
 
-  run-tests-groupS:
+  run-tests-group-S:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -273,11 +273,11 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupS:school_api_test:ci
+      tag: cy:headless:stable:group-S:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-S
 
-  run-tests-groupT:
+  run-tests-group-T:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -286,13 +286,26 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:groupT:school_api_test:ci
+      tag: cy:headless:stable:group-T:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-T
-# The following jobs (groupU to groupV) are currently commented out.
+
+  run-tests-group-U:
+    needs: e2e-system-tests
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: https://main.brb.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
+      cypress_nbc: https://main.nbc.dbildungscloud.dev
+      tag: cy:headless:stable:group-U:school_api_test:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: group-U
+# The following jobs are currently commented out.
 # Reason: Will be used when new feature will be added.
 
-# run-tests-groupU:
+# run-tests-group-V:
 #   needs: e2e-system-tests
 #   uses: ./.github/workflows/main.yml
 #   secrets:
@@ -301,24 +314,11 @@ jobs:
 #     cypress_brb: https://main.brb.dbildungscloud.dev
 #     cypress_dbc: https://main.dbc.dbildungscloud.dev
 #     cypress_nbc: https://main.nbc.dbildungscloud.dev
-#     tag: cy:headless:stable:groupU:school_api_test:ci
-#     environment: ${{ needs.e2e-system-tests.outputs.environment }}
-#     groups: group-U
-
-# run-tests-groupV:
-#   needs: e2e-system-tests
-#   uses: ./.github/workflows/main.yml
-#   secrets:
-#     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-#   with:
-#     cypress_brb: https://main.brb.dbildungscloud.dev
-#     cypress_dbc: https://main.dbc.dbildungscloud.dev
-#     cypress_nbc: https://main.nbc.dbildungscloud.dev
-#     tag: cy:headless:stable:groupV:school_api_test:ci
+#     tag: cy:headless:stable:group-V:school_api_test:ci
 #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
 #     groups: group-V
 
-# run-tests-groupW:
+# run-tests-group-W:
 #   needs: e2e-system-tests
 #   uses: ./.github/workflows/main.yml
 #   secrets:
@@ -327,11 +327,11 @@ jobs:
 #     cypress_brb: https://main.brb.dbildungscloud.dev
 #     cypress_dbc: https://main.dbc.dbildungscloud.dev
 #     cypress_nbc: https://main.nbc.dbildungscloud.dev
-#     tag: cy:headless:stable:groupW:school_api_test:ci
+#     tag: cy:headless:stable:group-W:school_api_test:ci
 #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
 #     groups: group-W
 
-# run-tests-groupX:
+# run-tests-group-X:
 #   needs: e2e-system-tests
 #   uses: ./.github/workflows/main.yml
 #   secrets:
@@ -340,11 +340,11 @@ jobs:
 #     cypress_brb: https://main.brb.dbildungscloud.dev
 #     cypress_dbc: https://main.dbc.dbildungscloud.dev
 #     cypress_nbc: https://main.nbc.dbildungscloud.dev
-#     tag: cy:headless:stable:groupX:school_api_test:ci
+#     tag: cy:headless:stable:group-X:school_api_test:ci
 #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
 #     groups: group-X
 
-# run-tests-groupY:
+# run-tests-group-Y:
 #   needs: e2e-system-tests
 #   uses: ./.github/workflows/main.yml
 #   secrets:
@@ -353,11 +353,11 @@ jobs:
 #     cypress_brb: https://main.brb.dbildungscloud.dev
 #     cypress_dbc: https://main.dbc.dbildungscloud.dev
 #     cypress_nbc: https://main.nbc.dbildungscloud.dev
-#     tag: cy:headless:stable:groupY:school_api_test:ci
+#     tag: cy:headless:stable:group-Y:school_api_test:ci
 #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
 #     groups: group-Y
 
-# run-tests-groupZ:
+# run-tests-group-Z:
 #   needs: e2e-system-tests
 #   uses: ./.github/workflows/main.yml
 #   secrets:
@@ -366,6 +366,6 @@ jobs:
 #     cypress_brb: https://main.brb.dbildungscloud.dev
 #     cypress_dbc: https://main.dbc.dbildungscloud.dev
 #     cypress_nbc: https://main.nbc.dbildungscloud.dev
-#     tag: cy:headless:stable:groupZ:school_api_test:ci
+#     tag: cy:headless:stable:group-Z:school_api_test:ci
 #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
 #     groups: group-Z

@@ -163,11 +163,20 @@ class Courses {
 		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("be.visible");
 	}
 
-	selectStudentInCourseCreatePage(studentName) {
+	selectStudentsInCourseCreatePage(studentNames) {
+		// Accepts a single student name, a comma-separated string, or an array
+		let students = [];
+		if (Array.isArray(studentNames)) {
+			students = studentNames;
+		} else if (typeof studentNames === 'string') {
+			students = studentNames.split(',');
+		} else if (studentNames) {
+			students = [studentNames];
+		}
 		cy.get(Courses.#studentSelectionBoxInCourseCreate).invoke("show");
-		cy.get(Courses.#studentSelectionBoxInCourseCreate)
-			.should("be.visible")
-			.select(studentName);
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
+		// Select all students at once
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).select(students.map(s => s.trim()));
 	}
 
 	selectClassInCourseCreatePage(className) {

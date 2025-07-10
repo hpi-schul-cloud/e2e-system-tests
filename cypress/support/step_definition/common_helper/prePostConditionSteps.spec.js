@@ -126,7 +126,7 @@ Given(
 		courses.selectCourseColour();
 		courses.selectTeacherInCourseCreatePage(teacherName);
 		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-		courses.selectStudentInCourseCreatePage(studentName);
+		courses.selectStudentsInCourseCreatePage(studentName);
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
 	}
 );

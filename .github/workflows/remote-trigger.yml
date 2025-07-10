@@ -103,7 +103,7 @@ jobs:
           check_availability ${{ steps.set_target.outputs.cypress_nbc }}/version
           check_availability ${{ steps.set_target.outputs.cypress_dbc }}/version
 
-  run-tests-groupA:
+  run-tests-group-A:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -112,11 +112,11 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:groupA:school_api_test:ci
+      tag: cy:headless:stable:group-A:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-A
 
-  run-tests-groupB:
+  run-tests-group-B:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -125,11 +125,11 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:groupB:school_api_test:ci
+      tag: cy:headless:stable:group-B:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-B
 
-  run-tests-groupC:
+  run-tests-group-C:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -138,11 +138,11 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:groupC:school_api_test:ci
+      tag: cy:headless:stable:group-C:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-C
 
-  run-tests-groupD:
+  run-tests-group-D:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -151,11 +151,11 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:groupD:school_api_test:ci
+      tag: cy:headless:stable:group-D:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-D
 
-  run-tests-groupE:
+  run-tests-group-E:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -164,11 +164,11 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:groupE:school_api_test:ci
+      tag: cy:headless:stable:group-E:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-E
 
-  run-tests-groupF:
+  run-tests-group-F:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
@@ -177,6 +177,18 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:groupF:school_api_test:ci
+      tag: cy:headless:stable:group-F:school_api_test:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-F
+
+  cypress-tests-successful:
+    needs:
+      - run-tests-group-A
+      - run-tests-group-B
+      - run-tests-group-C
+      - run-tests-group-D
+      - run-tests-group-E
+      - run-tests-group-F
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "cypress tests were successful"

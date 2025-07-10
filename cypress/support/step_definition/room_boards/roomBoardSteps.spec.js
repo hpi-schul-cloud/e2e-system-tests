@@ -324,12 +324,20 @@ Then(
 	}
 );
 
+Then("I see multi-column board tile in the rooms details page", () => {
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
-	roomBoards.verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifySingleColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
+Then("I do not see single-column board tile in the room details page", () => {
+	roomBoards.verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage();
 });
 
 When("I click on the single-column board in the room detail page", () => {
