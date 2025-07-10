@@ -11,7 +11,7 @@ Feature: Course - Copy course
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # pre-condition: admin creates a course and assign teacher and student to the course
+        # pre-condition: admin creates a course and assign teacher and student to the course, then teacher creates a board with content in the course
         Given a course with name '<course_name>' exists with '<fullname_teacher>' as teacher and '<fullname_student>' as student
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a multi-column board named '<board_title>' exists in the course '<course_name>'
@@ -33,15 +33,12 @@ Feature: Course - Copy course
         When I click on three dot menu in the board header
         When I click on the option Publish in three dot menu in course board
 
-        # teacher adds a student to newly copied course
+        # admin adds student to newly copied course
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to course administration page via sub menu
         Then I see the new course administration page
         When I click on the edit button of course '<course_name_copy>'
-
-        # When I open page Edit course
-        # Then I see page Edit course
         When I add the first student with search string '<searchstring_student>' to the course
         When I click on button Save changes in page Edit course
 
