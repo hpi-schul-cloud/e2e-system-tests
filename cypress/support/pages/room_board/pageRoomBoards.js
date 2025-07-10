@@ -70,6 +70,8 @@ class RoomBoards {
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
 	static #H5PElementSelector = '[data-testid="board-hp5-element"]';
 	static #folderDetails = '[data-testid="file-statistic"]';
+	static #ThreeDotButtonH5P = '[data-testid="kebab-menu-action"]';
+	static #H5PPage = '[data-testid="skip-link"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -825,6 +827,38 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderTitleInCardInput).find('input').eq(0).clear();
 	}
 
+	clickOnH5PElement() {
+
+		cy.window().then((win) => {
+  		cy.stub(win, 'open').callsFake((url) => {
+   		 cy.visit(url);
+ 		 }).as('windowOpen');
+		});
+		cy.get(RoomBoards.#H5PElementSelector).click();
+		//cy.get(RoomBoards.#H5PElementSelector).invoke("removeAttr", "target").click(); It still opens a new tab
+
+	}
+
+	clickOnEditOptionInH5PThreeDotMenu() {
+		cy.window().then((win) => {
+  		cy.stub(win, 'open').callsFake((url) => {
+   		 cy.visit(url);
+ 		 }).as('windowOpen');
+		});
+		cy.get(RoomBoards.#ThreeDotButtonH5P).click();
+	}
+
+	seeH5PPage() {
+		cy.get(RoomBoards.#H5PPage, { timeout: 2000000 }).should('be.visible');
+		cy.get('iframe[class*="h5p-editor-iframe"]')
+  .should('exist')
+  .and('be.visible');
+
+	}
+
+	goBackToBoardPage() {
+		cy.go('back');
+	}
 }
 
 export default RoomBoards;

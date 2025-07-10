@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@only
 Feature: Room Board - Add H5P learning element in the board
 
     As a content editor I want to add H5P learning elements in a room board
@@ -19,6 +20,12 @@ Feature: Room Board - Add H5P learning element in the board
         When I click on icon Plus to add content into card
         Then I select 'h5p' from the element selection dialog box
         Then I see the element H5P '<h5p_title>' in the card
+
+       # content editor edits H5P element in the card
+       When I click on the three dot menu in the H5P element
+       When I click on the option Edit in the three dot menu on the H5P element
+       Then I see the H5P page
+
 
         # content editor deletes H5P element on board page
         When I click on the three dot menu in the H5P element
