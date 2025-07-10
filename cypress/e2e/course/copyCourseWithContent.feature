@@ -4,9 +4,11 @@
 @schedule_run
 Feature: Course - Copy course
 
-    As a Teacher I want to be able to copy a course
+    As a Teacher I want to be able to copy a course so that I can reuse the course content
+    # there will be added more content elements (tasks, topics) to this feature file in the future
 
     Scenario: Teacher copies a course
+        # pre-condition: creating all users
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -47,6 +49,7 @@ Feature: Course - Copy course
         When I go to courses overview
         When I go to course '<course_name_copy>'
         Then I see course page '<course_name_copy>'
+
         # student sees the course board, the file folder, and the files inside
         When I click on card Course Board
         Then I see a folder with name '<folder_name>' in the card
