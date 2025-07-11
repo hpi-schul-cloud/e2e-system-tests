@@ -89,10 +89,10 @@ Feature: Course- Teacher shares a course to other teacher from the same school
 
 @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share  | course_name_import |
-            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe Course Share | Mathe Course Import  |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share  | course_name_import  |
+            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe Course Share | Mathe Course Import |
 
 @staging_test
         Examples:
-             | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share  | course_name_import |
-             | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe Course Share | Mathe Course Import  |
+             | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share  | course_name_import  |
+             | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe Course Share | Mathe Course Import |
