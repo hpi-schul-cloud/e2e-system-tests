@@ -78,3 +78,15 @@ When("I enter {string} in the course name field", (importCourseName) => {
 When("I click on the import course button", () => {
 	importCourseModal.clickOnConfirmButtonInImportShareCourseDialog();
 });
+
+When("I click on button qr code in the share course result dialog", () => {
+	shareCourseModal.clickQrCodeButtonInShareCourseResultDialog();
+});
+
+Then("I see the qr code in the share course result dialog", () => {
+	shareCourseModal.seeQrCodeScannerInShareCourseResultDialog();
+});
+
+Then("I click on the close button in the share course result dialog", () => {
+	shareCourseModal.clickCloseButtonInShareCourseResultDialog();
+});
