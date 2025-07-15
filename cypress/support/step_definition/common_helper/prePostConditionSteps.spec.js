@@ -224,7 +224,7 @@ Given ("text topic with name {string} is created in course board {string}", (top
 	topics.clickOnSubmitChangesInTopicBtn();
 });
 
-Given("the text topic is published in course board {string}", (courseName) => {
+Given("the topic is published in course board {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickPublishLinkForFirstTopic();
