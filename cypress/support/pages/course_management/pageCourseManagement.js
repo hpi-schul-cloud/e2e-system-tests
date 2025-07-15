@@ -1,23 +1,53 @@
 "use strict";
 
 class CourseManagement {
-	static #createCourseAdminButton = '[data-testid="admin-courses-add-button"]'
-	static #confirmDialogButton = '[data-testid="dialog-confirm"]'
-	static #confirmDialogTitle = '[data-testid="dialog-title"]'
-	static #confirmSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]'
-	static #courseTable = '[data-testid="admin-rooms-table"]'
-	static #courseTableDeleteButton = '[data-testid="course-table-delete-btn"]'
-	static #courseTableEditButton = '[data-testid="course-table-edit-btn"]'
-	static #courseTableStartSynchronizeButton = '[data-testid="course-table-start-course-sync-btn"]'
-	static #courseTableEndSynchronizeButton = '[data-testid="course-table-end-course-sync-btn"]'
-	static #courseTableNew = '[data-testid="admin-rooms-table"]'
-	static #currentYearTab = '[data-testid="admin-course-current-tab"]'
-	static #previousYearsTab = '[data-testid="admin-course-archive-tab"]'
-	static #adminCourseNavigationSidebarCard = '[data-testid="sidebar-management-courses"]';
+	static #createCourseAdminButton = '[data-testid="admin-courses-add-button"]';
+	static #confirmDialogButton = '[data-testid="dialog-confirm"]';
+	static #confirmDialogTitle = '[data-testid="dialog-title"]';
+	static #confirmSyncDialogInfoText =
+		'[data-testid="end-course-sync-dialog-info-text"]';
+	static #courseTable = '[data-testid="admin-rooms-table"]';
+	static #courseTableDeleteButton = '[data-testid="course-table-delete-btn"]';
+	static #courseTableEditButton = '[data-testid="course-table-edit-btn"]';
+	static #courseTableStartSynchronizeButton =
+		'[data-testid="course-table-start-course-sync-btn"]';
+	static #courseTableEndSynchronizeButton =
+		'[data-testid="course-table-end-course-sync-btn"]';
+	static #courseTableNew = '[data-testid="admin-rooms-table"]';
+	static #currentYearTab = '[data-testid="admin-course-current-tab"]';
+	static #previousYearsTab = '[data-testid="admin-course-archive-tab"]';
+	static #adminCourseNavigationSidebarCard =
+		'[data-testid="sidebar-management-courses"]';
 	static #courseTableName = '[data-testid="admin-rooms-table-name"]';
 	static #courseTableSyncedGroup = '[data-testid="admin-rooms-table-synced-group"]';
 	static #courseTableClassNames = '[data-testid="admin-rooms-table-class-names"]';
 	static #courseTableTeacherNames = '[data-testid="admin-rooms-table-teacher-names"]';
+	static #courseTableAlertIcon =
+		'[data-testid="admin-rooms-table-teacher-names-empty"]';
+
+	seeCurrentAndArchiveTabs() {
+		cy.get(CourseManagement.#currentYearTab).should("be.visible");
+		cy.get(CourseManagement.#previousYearsTab).should("be.visible");
+	}
+
+	clickCurrentTab() {
+		cy.get(CourseManagement.#currentYearTab).click();
+	}
+
+	seeAlertIconWithTextInTeacherColumn(infoText) {
+		cy.get(CourseManagement.#courseTableAlertIcon)
+			.should("be.visible")
+			.and("contain", infoText);
+	}
+
+	clickToggle(toggleText) {
+		cy.contains('button, [role="switch"]', toggleText).click();
+	}
+
+	seeOnlyCourseInCourseTable(courseName) {
+		cy.get(CourseManagement.#courseTableName).should("have.length", 1);
+		cy.get(CourseManagement.#courseTableName).should("contain", courseName);
+	}
 
 	clickOnClassInAdministrationSubMenu() {
 		cy.get(CourseManagement.#adminCourseNavigationSidebarCard).click();
@@ -28,7 +58,7 @@ class CourseManagement {
 	}
 
 	clickCreateCourseAdminButton() {
-		cy.get(CourseManagement.#createCourseAdminButton).click()
+		cy.get(CourseManagement.#createCourseAdminButton).click();
 	}
 
 	seeCourseInCourseTable(courseName) {
@@ -45,14 +75,9 @@ class CourseManagement {
 			.parents("tr")
 			.within(() => {
 				cy.get(CourseManagement.#courseTableDeleteButton)
-				.should("be.visible")
-				.click();
+					.should("be.visible")
+					.click();
 			});
-	}
-
-	see2Tabs() {
-		cy.get(CourseManagement.#currentYearTab).should("be.visible");
-		cy.get(CourseManagement.#previousYearsTab).should("be.visible");
 	}
 
 	clickEditButtonOfCourse(courseName) {
@@ -61,8 +86,8 @@ class CourseManagement {
 			.parents("tr")
 			.within(() => {
 				cy.get(CourseManagement.#courseTableEditButton)
-				.should("be.visible")
-				.click();
+					.should("be.visible")
+					.click();
 			});
 		cy.wait("@courses_api");
 	}
@@ -74,7 +99,7 @@ class CourseManagement {
 	seeSynchronizationInfoTextForCourseAndGroup(courseName, groupName) {
 		cy.get(CourseManagement.#confirmSyncDialogInfoText)
 			.should("contain.text", courseName)
-			.should("contain.text", groupName)
+			.should("contain.text", groupName);
 	}
 
 	clickConfirmSynchronizationButton() {
@@ -86,7 +111,10 @@ class CourseManagement {
 			.contains(courseName)
 			.parents("tr")
 			.within(() => {
-				cy.get(CourseManagement.#courseTableTeacherNames).should("have.text", teacherName)
+				cy.get(CourseManagement.#courseTableTeacherNames).should(
+					"have.text",
+					teacherName
+				);
 			});
 	}
 
@@ -95,7 +123,10 @@ class CourseManagement {
 			.contains(courseName)
 			.parents("tr")
 			.within(() => {
-				cy.get(CourseManagement.#courseTableClassNames).should("have.text", className)
+				cy.get(CourseManagement.#courseTableClassNames).should(
+					"have.text",
+					className
+				);
 			});
 	}
 
@@ -104,7 +135,10 @@ class CourseManagement {
 			.contains(courseName)
 			.parents("tr")
 			.within(() => {
-				cy.get(CourseManagement.#courseTableSyncedGroup).should("have.text", groupName)
+				cy.get(CourseManagement.#courseTableSyncedGroup).should(
+					"have.text",
+					groupName
+				);
 			});
 	}
 
@@ -113,7 +147,9 @@ class CourseManagement {
 			.contains(courseName)
 			.parents("tr")
 			.within(() => {
-				cy.get(CourseManagement.#courseTableStartSynchronizeButton).should("not.exist");
+				cy.get(CourseManagement.#courseTableStartSynchronizeButton).should(
+					"not.exist"
+				);
 			});
 	}
 
@@ -122,7 +158,9 @@ class CourseManagement {
 			.contains(courseName)
 			.parents("tr")
 			.within(() => {
-				cy.get(CourseManagement.#courseTableEndSynchronizeButton).should("not.exist");
+				cy.get(CourseManagement.#courseTableEndSynchronizeButton).should(
+					"not.exist"
+				);
 			});
 	}
 
@@ -149,4 +187,4 @@ class CourseManagement {
 	}
 }
 
-export default CourseManagement
+export default CourseManagement;

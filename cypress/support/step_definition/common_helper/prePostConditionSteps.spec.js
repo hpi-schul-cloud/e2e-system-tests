@@ -171,7 +171,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();
 	board.clickPlusIconToAddContentIntoCard();
-	board.selectCardElementFromMenu('file-folder');
+	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
 	roomBoards.approveFolderNameInCard();
 	roomBoards.seeFolderElementWithTitle(folderTitle);
@@ -195,4 +195,11 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
 
-
+Given(
+	"course without a teacher {string} exist in course management page",
+	(courseName) => {
+		management.openAdministrationInMenu();
+		management.navigateToCourseAdministration();
+		courseManagement.seeCourseInCourseTable(courseName);
+	}
+);

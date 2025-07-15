@@ -32,7 +32,7 @@ Then("I do not see course {string} in course table", (courseName) => {
 })
 
 Then("I see 2 tabs", () => {
-	courseManagement.see2Tabs();
+courseManagement.seeCurrentAndArchiveTabs();
 });
 
 Then("I see the course {string} with teacher {string}", (courseName, teacherName) => {
