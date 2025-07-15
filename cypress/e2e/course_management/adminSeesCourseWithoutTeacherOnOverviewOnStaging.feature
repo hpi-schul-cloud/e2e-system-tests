@@ -12,7 +12,7 @@ Feature: Admin sees courses without assigned teachers
         # Pre-condition: creating user and login
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
-        Given course without a teacher <course_without_teacher> exist in course management page
+        Given course without a teacher <course_without_teacher> exist in course management page on staging
 
         # Pre-condition: admin creates a course and assigns a teacher
         When I go to courses overview

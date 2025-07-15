@@ -196,7 +196,7 @@ Given("course with name {string} is deleted", (courseName) => {
 });
 
 Given(
-	"course without a teacher {string} exist in course management page",
+	"course without a teacher {string} exist in course management page on staging",
 	(courseName) => {
 		management.openAdministrationInMenu();
 		management.navigateToCourseAdministration();
