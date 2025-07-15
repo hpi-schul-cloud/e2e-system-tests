@@ -24,6 +24,8 @@ class CourseManagement {
 	static #courseTableTeacherNames = '[data-testid="admin-rooms-table-teacher-names"]';
 	static #courseTableAlertIcon =
 		'[data-testid="admin-rooms-table-teacher-names-empty"]';
+	static #courseWithoutTeacherToggle =
+		'[data-testid="admin-course-without-teacher-checkbox"]';
 
 	seeCurrentAndArchiveTabs() {
 		cy.get(CourseManagement.#currentYearTab).should("be.visible");
@@ -40,8 +42,11 @@ class CourseManagement {
 			.and("contain", infoText);
 	}
 
-	clickToggle(toggleText) {
-		cy.contains('button, [role="switch"]', toggleText).click();
+	clickToggleCourseWithoutTeacher(toggleText) {
+		cy.get(CourseManagement.#courseWithoutTeacherToggle)
+			.should("contain.text", toggleText)
+			.should("not.be.checked") // Ensures the toggle is unchecked
+			.click();
 	}
 
 	seeOnlyCourseInCourseTable(courseName) {

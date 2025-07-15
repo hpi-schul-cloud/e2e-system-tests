@@ -46,8 +46,10 @@ Feature: Admin sees courses without assigned teachers
         Then I see the course '<course_with_teacher>'
         Then I see the Alert icon with the text '<info_text>' in the column Teacher
         When I click on the toggle '<toggle_text>'
-        Then I see only the course '<course_name_without_teacher>'
-
+        Then I see the course '<course_without_teacher>'
+        When I click on the toggle '<toggle_text>'
+        Then I see the course '<course_with_teacher>'
+        Then I see the course '<course_without_teacher>'
 
         @staging_test
         Examples:

@@ -20,7 +20,7 @@ Then("I see the Alert icon with the text {string} in the column Teacher", (infoT
 });
 
 When("I click on the toggle {string}", (toggleText) => {
-	courseManagement.clickToggle(toggleText);
+	courseManagement.clickToggleCourseWithoutTeacher(toggleText);
 });
 
 Then("I see only the course {string}", (courseName) => {
