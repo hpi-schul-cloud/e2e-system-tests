@@ -96,6 +96,7 @@ class RoomBoards {
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
 	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
+	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -854,6 +855,19 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear();
 	}
 
+	copyFilePathOfImageFile(imageFileName) {
+		cy.get(RoomBoards.#lightBoxImagePreview)
+			.find('img')
+			.invoke("attr", "src")
+			.then((fileUrl) => {
+				cy.wrap(fileUrl).as("copiedFileURL");
+			});
+		cy.get("@copiedFileURL").then((imageUrl) => {
+			cy.visit(imageUrl);
+			// Wait for 500 msec for any JavaScript actions to complete
+			cy.wait(500);
+		});
+	}
 }
 
 export default RoomBoards;

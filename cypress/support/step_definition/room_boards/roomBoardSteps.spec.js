@@ -599,3 +599,7 @@ When("I click on the three dot menu in the H5P element", () => {
 Then("I do not see the element H5P", () => {
 	roomBoards.verifyH5PElementIsNotVisible();
 });
+
+When("I copy the file path of the image file {string}", (imageFileName) => {
+    roomBoards.copyFilePathOfImageFile(imageFileName);
+});

@@ -47,6 +47,13 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         # teacher downloads the image file and closes the fullscreen image window
         When I click on icon Download in the fullscreen image
         Then file '<image_file_name>' is saved in folder downloads
+
+        When I copy the file path of the image file '<image_file_name>'
+        # When I open the file path in a new tab
+        # Then I see the image file is downloaded successfully
+        # When I close the tab with the image file
+        # Then I see the image in a lightbox
+
         When I click on the icon Close on the fullscreen image
         Then I see the file type Image in the card
 
