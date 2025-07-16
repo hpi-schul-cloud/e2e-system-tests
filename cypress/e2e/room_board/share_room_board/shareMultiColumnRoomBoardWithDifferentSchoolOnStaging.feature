@@ -25,7 +25,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the checkbox Link valid for the same school is by default checked
         Then I click to uncheck Link valid for the same school
         Then I see the checkbox Link valid for 21 days is by default checked
-        When I uncheck the school internal checkbox
+        When I uncheck the checkbox school internal
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the result url text box in the modal
