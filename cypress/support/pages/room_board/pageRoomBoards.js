@@ -889,6 +889,30 @@ class RoomBoards {
 			});
 		});
 	}
+
+	verifyImageFileAvailableInFilestorage() {
+		cy.get("@copiedFileURL").then((imageUrl) => {
+			cy.request({
+				url: imageUrl,
+				encoding: "binary",
+			}).then((response) => {
+				expect(response.status).to.eq(200);
+				expect(response.headers["content-type"]).to.match(/image|webp/i);
+			});
+		});
+	}
+
+	verifyImageFileIsNotAvailableInFilestorage() {
+		cy.get("@copiedFileURL").then((imageUrl) => {
+			cy.request({
+				url: imageUrl,
+				encoding: "binary",
+			}).then((response) => {
+				expect(response.status).to.eq(404);
+				//expect(response.headers["content-type"]).to.match(/image|webp/i);
+			});
+		});
+	}
 }
 
 export default RoomBoards;

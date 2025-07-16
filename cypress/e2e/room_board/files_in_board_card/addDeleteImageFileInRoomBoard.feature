@@ -44,16 +44,11 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         # student can see the image file in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
-        # teacher downloads the image file and closes the fullscreen image window
+        # teacher downloads the image file and copies the image file path and closes the fullscreen image window
         When I click on icon Download in the fullscreen image
         Then file '<image_file_name>' is saved in folder downloads
-
         When I copy the file path of the image file '<image_file_name>'
-        # When I open the file path in a new tab
-        # Then I see the image file is downloaded successfully
-        # When I close the tab with the image file
-        # Then I see the image in a lightbox
-
+        Then I see that image is available in filestorage
         When I click on the icon Close on the fullscreen image
         Then I see the file type Image in the card
 
@@ -66,6 +61,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
+        Then I see that image is not available in filestorage
 
         # student can not see the image file in the multi-column board
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.

@@ -619,3 +619,11 @@ When("I go back to the board page", () => {
 When("I copy the file path of the image file {string}", (imageFileName) => {
     roomBoards.copyFilePathOfImageFile(imageFileName);
 });
+
+Then("I see that image is available in filestorage", () => {
+	roomBoards.verifyImageFileAvailableInFilestorage();
+});
+
+Then("I see that image is not available in filestorage", () => {
+	roomBoards.verifyImageFileIsNotAvailableInFilestorage();
+});
