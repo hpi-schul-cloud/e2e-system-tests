@@ -112,13 +112,13 @@ class Tasks {
 	}
 
 	seeEditTaskVisibleDateIsSet(){
-		cy.get(Tasks.#taskForm).get(Tasks.#visibilityStartDateInput).
+		cy.get(Tasks.#visibilityStartDateInput).
 		should("be.visible")
 		should("not.be.empty");
 	}
 
 	seeEditTaskEndDateIsnotSet(){
-		cy.get(Tasks.#taskForm).get(Tasks.#visibilityDueDateInput).
+		cy.get(Tasks.#visibilityDueDateInput).
 		should("be.visible")
 		should("be.empty");
 	}

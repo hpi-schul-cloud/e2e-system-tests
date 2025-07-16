@@ -40,11 +40,11 @@ Then("I see description of the edit task page", () => {
 });
 
 Then("I see visible date is set",() => {
-	tasks.seeVisibleDateIsSet();
+	tasks.seeEditTaskVisibleDateIsSet();
 });
 
 Then("I see end date is not set",() => {
-	tasks.seeEndDateIsNotSet();
+	tasks.seeEditTaskEndDateIsnotSet();
 });
 
 Then("I see the draft check box is enabled by default", () => {
