@@ -60,6 +60,7 @@ Feature: Course- Teacher shares a course to other teacher from different school
         Then I see the info text in the dialog box share course
         Then I see the checkbox school internal as checked
         Then I see the checkbox expiry date as checked
+        When I uncheck the checkbox school internal
         When I click on the button continue in the dialog box share course
         Then I see the import share course url in the dialog box share course result
         When I click on button qr code in the dialog box share course result

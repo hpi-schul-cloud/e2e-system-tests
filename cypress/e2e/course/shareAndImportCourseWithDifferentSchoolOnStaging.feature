@@ -11,7 +11,7 @@ Feature: Course- Teacher shares a course to other teacher from different school
 
         # pre-condition: Creating two teacher accounts
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given I am logged in as a '<teacherExt_2>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
 
         # pre-condition: first teacher creates the course board with a card, task and topic and publishes them in the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -40,7 +40,7 @@ Feature: Course- Teacher shares a course to other teacher from different school
         When I save the import share course url
 
         # second teacher from different school imports the course
-        Given I am logged in as a '<teacherExt_2>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         When I go to courses overview
         When I visit the saved import url of the shared course
         Then I see the dialog box import share course
@@ -61,6 +61,7 @@ Feature: Course- Teacher shares a course to other teacher from different school
         Then I see the info text in the dialog box share course
         Then I see the checkbox school internal as checked
         Then I see the checkbox expiry date as checked
+        When I uncheck the checkbox school internal
         When I click on the button continue in the dialog box share course
         Then I see the import share course url in the dialog box share course result
         When I click on button qr code in the dialog box share course result
@@ -70,10 +71,10 @@ Feature: Course- Teacher shares a course to other teacher from different school
         # Post-condition: Teacher deletes the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given course with name '<course_name_share>' is deleted
-        Given I am logged in as a '<teacherExt_2>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given course with name '<course_name_import>' is deleted
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_2 | namespace | fullname_teacher_1 | course_name_share     | task_name  | board_title | task_title           | topic_text_title | course_name_import    |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress teacher_1  | Mathe course to share | Mathe Task | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
+            | teacher_1    | teacherExt_1    | namespace | fullname_teacher_1 | course_name_share     | task_name  | board_title | task_title           | topic_text_title | course_name_import    |
+            | teacher1_dbc | teacherExt1_dbc | dbc       | cypress teacher_1  | Mathe course to share | Mathe Task | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
