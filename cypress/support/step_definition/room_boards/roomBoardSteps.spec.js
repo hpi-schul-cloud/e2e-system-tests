@@ -600,6 +600,22 @@ Then("I do not see the element H5P", () => {
 	roomBoards.verifyH5PElementIsNotVisible();
 });
 
+When("I click on the H5P element", () => {
+	roomBoards.clickOnH5PElement();
+});
+
+ When("I click on the option Edit in the three dot menu on the H5P element", () => {
+	roomBoards.clickOnEditOptionInH5PThreeDotMenu();
+});
+
+Then("I see the H5P page", () => {
+	roomBoards.seeH5PPage();
+});
+
+When("I go back to the board page", () => {
+	roomBoards.goBackToBoardPage();
+});
+
 When("I copy the file path of the image file {string}", (imageFileName) => {
     roomBoards.copyFilePathOfImageFile(imageFileName);
 });
