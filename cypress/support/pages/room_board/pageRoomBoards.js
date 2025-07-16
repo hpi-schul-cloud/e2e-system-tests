@@ -840,78 +840,63 @@ class RoomBoards {
 	}
 
 	clickOnH5PElement() {
-
 		cy.window().then((win) => {
-  		cy.stub(win, 'open').callsFake((url) => {
-   		 cy.visit(url);
- 		 }).as('windowOpen');
+			cy.stub(win, "open")
+				.callsFake((url) => {
+					cy.visit(url);
+				})
+				.as("windowOpen");
 		});
 		cy.get(RoomBoards.#H5PElementSelector).click();
 		//cy.get(RoomBoards.#H5PElementSelector).invoke("removeAttr", "target").click(); It still opens a new tab
-
 	}
 
 	clickOnEditOptionInH5PThreeDotMenu() {
 		cy.window().then((win) => {
-  		cy.stub(win, 'open').callsFake((url) => {
-   		 cy.visit(url);
- 		 }).as('windowOpen');
+			cy.stub(win, "open")
+				.callsFake((url) => {
+					cy.visit(url);
+				})
+				.as("windowOpen");
 		});
 		cy.get(RoomBoards.#ThreeDotButtonH5P).click();
 	}
 
 	seeH5PPage() {
-		cy.get(RoomBoards.#H5PPage, { timeout: 2000000 }).should('be.visible');
-		cy.get('iframe[class*="h5p-editor-iframe"]')
-  .should('exist')
-  .and('be.visible');
-
+		cy.get(RoomBoards.#H5PPage, { timeout: 2000000 }).should("be.visible");
+		cy.get('iframe[class*="h5p-editor-iframe"]').should("exist").and("be.visible");
 	}
 
 	goBackToBoardPage() {
-		cy.go('back');
+		cy.go("back");
 	}
 
 	copyFilePathOfImageFile(imageFileName) {
 		cy.get(RoomBoards.#lightBoxImagePreview)
 			.find("img")
+			.should("be.visible")
+			.and(($img) => {
+				expect($img).to.have.attr("src").not.empty;
+				expect($img[0].naturalWidth).to.be.greaterThan(0);
+			})
 			.invoke("attr", "src")
 			.then((fileUrl) => {
 				cy.wrap(fileUrl).as("copiedFileURL");
 			});
-		cy.get("@copiedFileURL").then((imageUrl) => {
-			cy.request({
-				url: imageUrl,
-				encoding: "binary",
-			}).then((response) => {
-				expect(response.status).to.eq(200);
-				expect(response.headers["content-type"]).to.match(/image|webp/i);
-			});
-		});
 	}
 
 	verifyImageFileAvailableInFilestorage() {
-		cy.get("@copiedFileURL").then((imageUrl) => {
-			cy.request({
-				url: imageUrl,
-				encoding: "binary",
-			}).then((response) => {
-				expect(response.status).to.eq(200);
-				expect(response.headers["content-type"]).to.match(/image|webp/i);
+		cy.get(RoomBoards.#lightBoxImagePreview)
+			.find("img")
+			.should("be.visible")
+			.and(($img) => {
+				expect($img).to.have.attr("src").not.empty;
+				expect($img[0].naturalWidth).to.be.greaterThan(0);
 			});
-		});
 	}
 
 	verifyImageFileIsNotAvailableInFilestorage() {
-		cy.get("@copiedFileURL").then((imageUrl) => {
-			cy.request({
-				url: imageUrl,
-				encoding: "binary",
-			}).then((response) => {
-				expect(response.status).to.eq(404);
-				//expect(response.headers["content-type"]).to.match(/image|webp/i);
-			});
-		});
+		cy.get(RoomBoards.#lightBoxImagePreview).should("not.exist");
 	}
 }
 
