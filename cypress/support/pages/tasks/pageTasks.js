@@ -68,6 +68,7 @@ class Tasks {
 	static #submissionText = '[data-testid="submission-text"]';
 	static #draftTasksTab = '[data-testid="draftTasks"]';
 	static #taskCardTitle = '[data-testid="taskTitle"]';
+	static #taskEditPage = '[data-testid="Aufgabe bearbeiten"]';
 	static #taskMenuDelete = '[data-testid="task-delete"]';
 	static #deleteTaskButton = '[data-testid="task-details-btn-delete"]';
 	static #downloadFileGradingSection = '[data-testid="gradings-section-files"]';
@@ -96,6 +97,30 @@ class Tasks {
 		} else {
 			cy.get(Tasks.#taskForm).get(Tasks.#taskNameInput).should("have.value", taskTitle);
 		}
+	}
+
+	seeTaskEditPage(taskTitle) {
+		cy.get(Tasks.#taskEditPage).should("be.visible");
+		cy.get(Tasks.#taskNameInput).should("have.value", taskTitle);
+	}
+
+
+	seeEditTaskDescription(){
+		cy.get(Tasks.#homeworkDescription).
+		should("be.visible")
+		should("not.be.empty");
+	}
+
+	seeEditTaskVisibleDateIsSet(){
+		cy.get(Tasks.#taskForm).get(Tasks.#visibilityStartDateInput).
+		should("be.visible")
+		should("not.be.empty");
+	}
+
+	seeEditTaskEndDateIsnotSet(){
+		cy.get(Tasks.#taskForm).get(Tasks.#visibilityDueDateInput).
+		should("be.visible")
+		should("be.empty");
 	}
 
 	enterTaskTitle(taskTitle) {
@@ -322,6 +347,10 @@ class Tasks {
 		});
 	}
 
+	seeDraftCheckboxIsEnabledByDefault() {
+		cy.get(Tasks.#draftCheckbox).should("be.checked");
+	}
+
 	seeFileInSubmissionSectionUploadedFiles(fileName) {
 		cy.get(Tasks.#uploadedFilesSectionInSubmission)
 			.contains(fileName, { includeShadowDom: true })
@@ -430,6 +459,7 @@ class Tasks {
 	seeDetailPageForTask(taskTitle) {
 		cy.get(Tasks.#pageTitle).should("contain", taskTitle);
 	}
+
 
 	clickSubmissionTab() {
 		cy.get(Tasks.#submissionTab).click({ multiple: true }).wait("@alerts_api");

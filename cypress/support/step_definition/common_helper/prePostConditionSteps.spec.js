@@ -1,6 +1,7 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 import Courses from "../../pages/course/pageCourses";
+import Tasks from "../../pages/tasks/pageTasks";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Management from "../../pages/admin/pageAdministration";
@@ -12,6 +13,7 @@ const courses = new Courses();
 const board = new Board();
 const management = new Management();
 const globalActions = new GlobalActions();
+const course_tasks = new Tasks();
 
 Given("video conference is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
@@ -129,6 +131,54 @@ Given(
 		courses.selectStudentsInCourseCreatePage(studentName);
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
 	}
+);
+
+
+Given(
+	"published task with name {string} in the course with name {string}",
+	(taskname,courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		courses.clickOnNewTaskFAB();
+		course_tasks.enterTaskTitle(taskname);
+		course_tasks.clickOnGroupSubmissionCheckbox();
+		course_tasks.setTaskText("Dies ist deine erste Aufgabe");
+		course_tasks.executeFileUpload("example_jpg.jpg");
+		course_tasks.setVisibilityStartDate('today', '0000');
+		course_tasks.setVisibilityDueDate('tomorrow', '1000');
+		course_tasks.clickOnDraftCheckbox();
+		course_tasks.clickOnSubmit();
+		}
+);
+
+Given("Task {string} in course {string} is NOT submitted by the student", (taskName,courseName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCoursePage(courseName);
+	courses.seeTaskOnCoursePage(taskName);
+	courses.compareNotSubmittedTasksInformation(taskName);
+}
+);
+
+Given("Task {string} in course {string} is submitted by the student", (taskName,courseName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCoursePage(courseName);
+	courses.seeTaskOnCoursePage(taskName);
+	courses.openTask(taskName);
+	course_tasks.clickSubmissionTab();
+	course_tasks.clickSubmissionTab();
+	course_tasks.setSubmissionText("Meine erste aufgabe erledigt");
+	course_tasks.executeFileUploadForSubmission('testboard_jpg.jpg');
+	course_tasks.seeFileInSubmissionSectionUploadedFiles('testboard_jpg.jpg');
+	course_tasks.clickSendSubmissionBtn();
+	course_tasks.seeSubmissionReceivedHint();
+	course_tasks.navigateToTasksOverview();
+	course_tasks.seeTaskNotInListAsStudent(taskName);
+	course_tasks.clickOnTabDoneTasks();
+	course_tasks.openNotGradedTasks();
+	course_tasks.seeTaskInListAsStudent(taskName);
+
+}
 );
 
 Given("a course named {string} exists", (courseName) => {

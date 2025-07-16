@@ -95,6 +95,10 @@ Then("I see file {string} is visible in uploaded files section", (fileName) => {
 	tasks.seeFileInSectionUploadedFiles(fileName);
 });
 
+Then("I see the draft check box is enabled by default", () => {
+	tasks.seeDraftCheckboxIsEnabledByDefault();
+});
+
 Then(
 	"I see file {string} is visible in uploaded files section of submission",
 	(fileName) => {

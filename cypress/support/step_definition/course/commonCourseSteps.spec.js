@@ -201,6 +201,26 @@ When("I click on Delete in dot menu", () => {
 	courses.clickDeleteInDotMenu();
 });
 
+When("I click on Copy in dot menu", () => {
+	courses.clickCopyInDotMenu();
+});
+
+Then("I see the copy option on the list", () => {
+	courses.seeCopyInDotMenu();
+});
+
+When ("I go to the learning content tab", () => {
+	courses.clickOnLearningContentTab();
+});
+
+Then("I see success message {string}", (successMessage) => {
+	courses.seeDuplicateTaskSuccessAlert(successMessage);
+});
+
+Then("I see publish button on the copied task", () => {
+	courses.seeTaskOnCoursePagePublish();
+});
+
 When("I click on Delete in dot menu of topic", () => {
 	courses.clickDeleteInDotMenuOfTopic();
 });
@@ -237,6 +257,14 @@ Then(
 	"I see task card info submitted contains {string} for task {string}",
 	(submittedTasks, taskTitle) => {
 		courses.compareSubmittedTasksInformation(submittedTasks, taskTitle);
+	}
+);
+
+
+Then(
+	"I see task card info not submitted for task {string}",
+	(taskTitle) => {
+		courses.compareNotSubmittedTasksInformation(taskTitle);
 	}
 );
 
@@ -340,6 +368,14 @@ Then("I see date pickers to start and end the course as per school year", () => 
 
 Then("I see button to create a course time table container", () => {
 	courses.seeCreateCourseTimeTableContainer();
+});
+
+Then("I see the progress bar", () => {
+	courses.seeProgressBar();
+});
+
+Then("I see the success message {string}", (successMessage) => {
+	courses.seeDuplicateTaskSuccessAlert(successMessage);
 });
 
 When(
