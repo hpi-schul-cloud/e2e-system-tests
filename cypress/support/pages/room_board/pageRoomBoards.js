@@ -886,17 +886,27 @@ class RoomBoards {
 	}
 
 	verifyImageFileAvailableInFilestorage() {
-		cy.get(RoomBoards.#lightBoxImagePreview)
-			.find("img")
-			.should("be.visible")
-			.and(($img) => {
-				expect($img).to.have.attr("src").not.empty;
-				expect($img[0].naturalWidth).to.be.greaterThan(0);
+		cy.get("@copiedFileURL").then((imageUrl) => {
+			cy.request({
+				url: imageUrl,
+				encoding: "binary",
+			}).then((response) => {
+				expect(response.status).to.eq(200);
+				expect(response.headers["content-type"]).to.match(/image|webp/i);
 			});
+		});
 	}
 
 	verifyImageFileIsNotAvailableInFilestorage() {
-		cy.get(RoomBoards.#lightBoxImagePreview).should("not.exist");
+		cy.get("@copiedFileURL").then((imageUrl) => {
+			cy.request({
+				url: imageUrl,
+				encoding: "binary",
+			}).then((response) => {
+				expect(response.status).to.eq(404);
+				//expect(response.headers["content-type"]).to.match(/image|webp/i);
+			});
+		});
 	}
 }
 
