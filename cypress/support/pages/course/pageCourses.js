@@ -24,9 +24,11 @@ class Courses {
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
 	static #successAlertDuplicateTask = '[data-testid="alert-text"]';
 	static #copyButtonInDotMenu = '[data-testid="room-task-card-menu-copy-0"]';
+	static #taskCardTitle = '[data-testid="task-card-title-0"]';
 	static #deleteButtonInDotMenu = '[data-testid="room-task-card-menu-remove-0"]';
 	static #deleteButtonInDotMenuOfTopic =
 		'[data-testid="lesson-card-menu-action-remove-0"]';
+	static #modal = '[data-testid="dialog-content"]';
 	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
 	static #backToDraftButtonInDotMenuOfTopic =
@@ -606,6 +608,21 @@ class Courses {
 
 	seeCopyInDotMenu() {
 		cy.get(Courses.#copyButtonInDotMenu).should("be.visible");
+
+	}
+
+	seeDeleteInDotMenu() {
+		cy.get(Courses.#deleteButtonInDotMenu).should("be.visible");
+
+	}
+
+	seeConfirmationModalForTaskDeletion() {
+		cy.get(Courses.#modal).should("exist");
+	}
+
+	seeDraftTaskTitle() {
+		cy.get(Courses.#taskCardTitle)
+			.contains(" Aufgabe – Entwurf");
 
 	}
 

@@ -209,6 +209,18 @@ Then("I see the copy option on the list", () => {
 	courses.seeCopyInDotMenu();
 });
 
+Then("I see the delete option on the list", () => {
+	courses.seeDeleteInDotMenu();
+});
+
+Then("I click on delete in dot menu", () => {
+	courses.clickDeleteInDotMenu();
+});
+
+Then("I see confirmation modal for deleting the task", () => {
+	courses.seeConfirmationModalForTaskDeletion();
+});
+
 When ("I go to the learning content tab", () => {
 	courses.clickOnLearningContentTab();
 });
@@ -372,6 +384,10 @@ Then("I see button to create a course time table container", () => {
 
 Then("I see the progress bar", () => {
 	courses.seeProgressBar();
+});
+
+Then ("I see the title 'Aufgabe - Entwurf' in the task", () => {
+	courses.seeDraftTaskTitle();
 });
 
 Then("I see the success message {string}", (successMessage) => {

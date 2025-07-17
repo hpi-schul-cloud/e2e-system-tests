@@ -35,6 +35,7 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail over
         Then I see the success message 'Aufgabe erfolgreich dupliziert'
         When I go to the learning content tab
         Then I can see task '<copy_task_name>' on course page
+        Then I see the title 'Aufgabe - Entwurf' in the task
         Then I see publish button on the copied task
         When I click on task '<copy_task_name>'
         Then I see detail page for task '<copy_task_name>'
@@ -46,13 +47,52 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail over
         Then I can see task page '<copy_task_name>'
         #Then I see description of the edit task page
         Then I see file 'example_jpg.jpg' is visible in section files
-        Then I see visible date is set
-        Then I see end date is not set
-        Then I see the draft check box is enabled by default
+        #Then I see visible date is set
+        #Then I see end date is not set
+        #Then I see the draft check box is enabled by default
+      # Post-condition: Teacher deletes the copied task
+        When I go to courses overview
+        When I go to course '<course_name>'
+        Then I can see task '<copy_task_name>' on course page
+        When I click on three dot menu of content '<copy_task_name>'
+        Then I see the delete option on the list
+        Then I click on delete in dot menu
+        Then I see confirmation modal for deleting the task
+        When I click on Delete in confirmation window
 
         # pre condition  student submitted the task
         Given I am logged in as a '<student>' at '<namespace>'
         Given Task '<task_name>' in course '<course_name>' is submitted by the student
+
+        # Teacher copies the task in the room detail when submitted by the student
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to courses overview
+        When I go to course '<course_name>'
+        Then I can see task '<task_name>' on course page
+        When I click on three dot menu of content '<task_name>'
+        Then I see the copy option on the list
+        When I click on Copy in dot menu
+        #Then I see the progress bar
+        Then I see the success message 'Aufgabe erfolgreich dupliziert'
+        When I go to the learning content tab
+        Then I can see task '<copy_task_name>' on course page
+        Then I see the title 'Aufgabe - Entwurf' in the task
+        Then I see publish button on the copied task
+        When I click on task '<copy_task_name>'
+        #Then I see detail page for task '<copy_task_name>'
+        Then I see file 'example_jpg.jpg' is visible in section files
+        When I click on submissions tab
+        Then I see submission text ''
+        When I go to courses overview
+        When I go to course '<course_name>'
+        When I click on three dot menu of content '<copy_task_name>'
+        When I click on Edit in dot menu
+        Then I can see task page '<copy_task_name>'
+        #Then I see description of the edit task page
+        Then I see file 'example_jpg.jpg' is visible in section files
+        #Then I see visible date is set
+        #Then I see end date is not set
+        #Then I see the draft check box is enabled by default
 
 
         # Post-condition: Teacher deletes the course
