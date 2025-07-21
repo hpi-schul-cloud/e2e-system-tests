@@ -29,7 +29,7 @@ Feature: Room Board - Delete image file in room board and check filestorage
         Then I see the image in a lightbox
 
         # teacher copies the image file path and closes the fullscreen image window
-        When I copy the file path of the image file '<image_file_name>'
+        When I copy the file path of the image file
         Then I see that image is available in filestorage
         When I click on the icon Close on the fullscreen image
         Then I see the file type Image in the card
@@ -46,10 +46,10 @@ Feature: Room Board - Delete image file in room board and check filestorage
         Then I see that image is not available in filestorage
 
         # post-condition: delete the room
-        Given I navigate to the room detail page via Breadcrumb from the board page
         Given the room named '<room_name>' is deleted
 
         @school_api_test
+        @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | image_file_name |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg |
+            | teacher      | namespace | room_name                 | board_title             | image_file_name |
+            | teacher1_dbc | dbc       | Cypress File Storage Room | File Storage Test Board | example_jpg.jpg |
