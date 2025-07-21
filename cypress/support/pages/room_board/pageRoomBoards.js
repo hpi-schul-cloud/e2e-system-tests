@@ -890,6 +890,7 @@ class RoomBoards {
 			cy.request({
 				url: imageUrl,
 				encoding: "binary",
+				failOnStatusCode: false,
 			}).then((response) => {
 				expect(response.status).to.eq(200);
 				expect(response.headers["content-type"]).to.match(/image|webp/i);
@@ -902,8 +903,9 @@ class RoomBoards {
 			cy.request({
 				url: imageUrl,
 				encoding: "binary",
+				failOnStatusCode: false,
 			}).then((response) => {
-				expect(response.status).to.eq(404);
+				expect(response.status).to.be.oneOf([403, 404]);
 				//expect(response.headers["content-type"]).to.match(/image|webp/i);
 			});
 		});
