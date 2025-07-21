@@ -27,7 +27,7 @@ Then("I see the checkbox expiry date as checked", () => {
 	shareCourseModal.seeExpiryDateCheckBoxAsChecked();
 });
 
-When("I uncheck the school internal checkbox", () => {
+When("I uncheck the checkbox school internal", () => {
 	shareCourseModal.uncheckSchoolInternalCheckBoxInShareCourseDialog();
 });
 

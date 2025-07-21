@@ -30,7 +30,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I see the checkbox Link valid for 21 days is by default checked
-        When I uncheck the school internal checkbox
+        When I uncheck the checkbox school internal
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the result url text box in the modal
