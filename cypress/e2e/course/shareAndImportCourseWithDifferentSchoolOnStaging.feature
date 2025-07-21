@@ -3,24 +3,23 @@
 
 # Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same scenario and using the copied URL from Scenario One in Scenario Two due to new sessions.
 
-Feature: Course- Teacher shares a course to other teacher from different school
+Feature: Course - Teacher shares a course to other teacher from different school
 
     As a teacher I want to share a course to other teachers from different school
 
-    Scenario: Teacher shares a course to other teacher from different school
+    Scenario Outline: Teacher shares a course to other teacher from different school
 
         # pre-condition: Creating two teacher accounts
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: first teacher creates the course board with a card, task and topic and publishes them in the course
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a course named '<course_name_share>' exists
         Given a multi-column board named '<board_title>' exists in the course '<course_name_share>'
         Given the multi-column board has a column with a card
-        Given task with task name '<task_name>' is created in course board '<course_name_share>'
-        Given text topic with name '<topic_text_title>' is created in course board '<course_name_share>'
-        Given the topic is published in course board '<course_name_share>'
+        Given task with task name '<task_name>' is created in course '<course_name_share>'
+        Given text topic with name '<topic_text_title>' is created in course '<course_name_share>'
+        Given the topic is published in course '<course_name_share>'
 
         # first teacher shares the course with another teacher from different school using copy link
         When I go to courses overview

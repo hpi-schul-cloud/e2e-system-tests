@@ -2,24 +2,23 @@
 
 # Note: This feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in another scenario.
 
-Feature: Course- Teacher shares a course to other teacher from different school
+Feature: Course - Teacher shares a course to other teacher from different school
 
     As a teacher I want to share a course to other teachers from different school
 
-    Scenario: Teacher shares a course to other teacher from different school
+    Scenario Outline: Teacher shares a course to other teacher from different school
 
         # pre-condition: Creating two teacher accounts
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<teacherExt_2>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: first teacher creates the course board with a card, task and topic and publishes them in the course
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a course named '<course_name_share>' exists
         Given a multi-column board named '<board_title>' exists in the course '<course_name_share>'
         Given the multi-column board has a column with a card
-        Given task with task name '<task_name>' is created in course board '<course_name_share>'
-        Given text topic with name '<topic_text_title>' is created in course board '<course_name_share>'
-        Given the topic is published in course board '<course_name_share>'
+        Given task with task name '<task_name>' is created in course '<course_name_share>'
+        Given text topic with name '<topic_text_title>' is created in course '<course_name_share>'
+        Given the topic is published in course '<course_name_share>'
 
         # first teacher shares the course with another teacher from different school using copy link
         When I go to courses overview
@@ -73,7 +72,7 @@ Feature: Course- Teacher shares a course to other teacher from different school
         Given I am logged in as a '<teacherExt_2>' at '<namespace>'
         Given course with name '<course_name_import>' is deleted
 
-@school_api_test
+        @school_api_test
         Examples:
             | teacher_1    | teacherExt_2 | namespace | fullname_teacher_1 | course_name_share     | task_name  | board_title | task_title           | topic_text_title | course_name_import    |
             | teacher1_dbc | teacher2_dbc | dbc       | cypress teacher_1  | Mathe course to share | Mathe Task | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |

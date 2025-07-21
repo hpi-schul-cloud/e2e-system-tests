@@ -1,23 +1,22 @@
 @regression_test
 @stable_test
-Feature: Course- Teacher shares a course to other teacher from the same school
+Feature: Course - Teacher shares a course to other teacher from the same school
 
     As a teacher I want to share a course to other teachers from the same school
 
-    Scenario: Teacher shares a course to other teacher from the same school
+    Scenario Outline: Teacher shares a course to other teacher from the same school
 
         # pre-condition: Creating two teacher accounts
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: teacher creates the course board with a card, task and topic and publishes them in the course
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a course named '<course_name_share>' exists
         Given a multi-column board named '<board_title>' exists in the course '<course_name_share>'
         Given the multi-column board has a column with a card
-        Given task with task name '<task_name>' is created in course board '<course_name_share>'
-        Given text topic with name '<topic_text_title>' is created in course board '<course_name_share>'
-        Given the topic is published in course board '<course_name_share>'
+        Given task with task name '<task_name>' is created in course '<course_name_share>'
+        Given text topic with name '<topic_text_title>' is created in course '<course_name_share>'
+        Given the topic is published in course '<course_name_share>'
 
         # first teacher shares the course with another teacher in the same school using copy link
         When I go to courses overview
@@ -69,12 +68,12 @@ Feature: Course- Teacher shares a course to other teacher from the same school
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given course with name '<course_name_import>' is deleted
 
-@school_api_test
+        @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share  | task_name      | board_title | task_title           | topic_text_title | course_name_import  |
             | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe course to share | Mathe Task  | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
 
-@staging_test
+        @staging_test
         Examples:
             | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share     | task_name   | board_title | task_title           | topic_text_title | course_name_import  |
             | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe course to share | Mathe Task  | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
