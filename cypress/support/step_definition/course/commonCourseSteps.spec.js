@@ -205,16 +205,12 @@ When("I click on Copy in dot menu", () => {
 	courses.clickCopyInDotMenu();
 });
 
-Then("I see the copy option on the list", () => {
+Then("I see the option Copy on the list", () => {
 	courses.seeCopyInDotMenu();
 });
 
 Then("I see the delete option on the list", () => {
 	courses.seeDeleteInDotMenu();
-});
-
-Then("I click on delete in dot menu", () => {
-	courses.clickDeleteInDotMenu();
 });
 
 Then("I see confirmation modal for deleting the task", () => {
@@ -229,7 +225,7 @@ Then("I see success message {string}", (successMessage) => {
 	courses.seeDuplicateTaskSuccessAlert(successMessage);
 });
 
-Then("I see publish button on the copied task", () => {
+Then("I see button Publish on the copied task", () => {
 	courses.seeTaskOnCoursePagePublish();
 });
 

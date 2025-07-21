@@ -152,7 +152,7 @@ Given(
 		}
 );
 
-Given("Task {string} in course {string} is NOT submitted by the student", (taskName,courseName) => {
+Given("task {string} in course {string} is NOT submitted by the student", (taskName,courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.seeTaskOnCoursePage(taskName);
@@ -245,4 +245,11 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
 
+Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCoursePage(courseName);
+	courses.openThreeDotMenuForContent(taskName);
+	courses.clickDeleteInDotMenu();
+	courses.clickDeleteInConfirmationWindow();
+});
 
