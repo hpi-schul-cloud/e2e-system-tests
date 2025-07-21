@@ -59,6 +59,7 @@ Feature: Delete multiple files in folder and check file storage on dev environme
         Given the room named '<room_name>' is deleted
 
         @school_api_test
+        @staging_test
         Examples:
             | namespace | content_editor | room_name              | board_title             | folder_name        | image1_file_name | image2_file_name  |
             | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | example_jpg.jpg  | testboard_jpg.jpg |
