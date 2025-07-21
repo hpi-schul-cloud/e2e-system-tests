@@ -210,10 +210,6 @@ When("I click on submissions tab", () => {
 	tasks.clickSubmissionsTab();
 });
 
-Then("I click on submissions tab", () => {
-	tasks.clickSubmissionsTab();
-});
-
 Then("there is a tick in column delivered for {string}", (studentLastname) => {
 	tasks.seeTickInStudentsSubmissionLine(studentLastname);
 });
