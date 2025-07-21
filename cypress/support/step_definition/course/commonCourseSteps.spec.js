@@ -202,23 +202,15 @@ When("I click on Delete in dot menu", () => {
 });
 
 When("I click on Copy in dot menu", () => {
-	courses.clickCopyInDotMenu();
+	courses.clickCopyInThreeDotMenuofTopic();
 });
 
 Then("I see the option Copy on the list", () => {
-	courses.seeCopyInDotMenu();
-});
-
-Then("I see the delete option on the list", () => {
-	courses.seeDeleteInDotMenu();
+	courses.seeCopyInThreeDotMenuofTopic();
 });
 
 Then("I see confirmation modal for deleting the task", () => {
 	courses.seeConfirmationModalForTaskDeletion();
-});
-
-When ("I go to the learning content tab", () => {
-	courses.clickOnLearningContentTab();
 });
 
 Then("I see success message {string}", (successMessage) => {

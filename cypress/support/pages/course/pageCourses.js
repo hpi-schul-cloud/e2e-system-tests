@@ -606,13 +606,8 @@ class Courses {
 		.contains(successMessage);
 	}
 
-	seeCopyInDotMenu() {
+	seeCopyInThreeDotMenuofTopic() {
 		cy.get(Courses.#copyButtonInDotMenu).should("be.visible");
-
-	}
-
-	seeDeleteInDotMenu() {
-		cy.get(Courses.#deleteButtonInDotMenu).should("be.visible");
 
 	}
 
@@ -630,12 +625,8 @@ class Courses {
 		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndex).should("be.visible");
 	}
 
-	clickCopyInDotMenu() {
+	clickCopyInThreeDotMenuofTopic() {
 		cy.get(Courses.#copyButtonInDotMenu).click();
-	}
-
-	clickOnLearningContentTab(){
-		cy.get(Courses.#learningContentTab).click();
 	}
 
 	clickDeleteInDotMenu() {
