@@ -36,14 +36,14 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         Then I see button Publish on the copied task
         When I click on task '<copy_task_name>'
         Then I see detail page for task '<copy_task_name>'
-        Then I see file 'example_jpg.jpg' is visible in section files
+        Then I see file '<Image file>' is visible in section files
         When I go to courses overview
         When I go to course '<course_name>'
         When I click on three dot menu of content '<copy_task_name>'
         When I click on Edit in dot menu
         Then I can see task page '<copy_task_name>'
         Then I see description of the edit task page
-        Then I see file '<image file>' is visible in section files
+        Then I see file '<Image file>' is visible in section files
         Then I see visible date is set
         Then I see end date is not set
         Then I see the draft check box is enabled by default

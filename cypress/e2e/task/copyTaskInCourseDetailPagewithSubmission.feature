@@ -36,7 +36,7 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         Then I see button Publish on the copied task
         When I click on task '<copy_task_name>'
         Then I see detail page for task '<copy_task_name>'
-        Then I see file 'example_jpg.jpg' is visible in section files
+        Then I see file '<Image file>' is visible in section files
         When I click on submission tab
         Then I see submission text ''
         When I go to courses overview
