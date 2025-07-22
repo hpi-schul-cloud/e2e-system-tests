@@ -202,11 +202,11 @@ When("I click on Delete in dot menu", () => {
 });
 
 When("I click on Copy in dot menu", () => {
-	courses.clickCopyInThreeDotMenuofTopic();
+	courses.clickCopyOptionInThreeDotMenuofTopic();
 });
 
 Then("I see the option Copy on the list", () => {
-	courses.seeCopyInThreeDotMenuofTopic();
+	courses.seeCopyOptionInThreeDotMenuofTopic();
 });
 
 Then("I see confirmation modal for deleting the task", () => {
@@ -260,13 +260,9 @@ Then(
 	}
 );
 
-
-Then(
-	"I see task card info not submitted for task {string}",
-	(taskTitle) => {
-		courses.compareNotSubmittedTasksInformation(taskTitle);
-	}
-);
+Then("I see task card info not submitted for task {string}", (taskTitle) => {
+	courses.compareNotSubmittedTasksInformation(taskTitle);
+});
 
 When(
 	"Task card info graded contains {string} for task {string}",
@@ -374,7 +370,7 @@ Then("I see the progress bar", () => {
 	courses.seeProgressBar();
 });
 
-Then ("I see the title 'Aufgabe - Entwurf' in the task", () => {
+Then("I see the title 'Aufgabe - Entwurf' in the task", () => {
 	courses.seeDraftTaskTitle();
 });
 

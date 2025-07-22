@@ -44,8 +44,7 @@ class Courses {
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChipWithIndex =
 		'[data-testid="room-task-card-chip-submitted-0"]';
-	static #contentCardTaskInfoDueDate=
-		'[data-testid="dueDateHintLabel"]';
+	static #contentCardTaskInfoDueDate = '[data-testid="dueDateHintLabel"]';
 	static #contentCardTaskInfoGradingsChipWithIndex =
 		'[data-testid="room-task-card-chip-graded-0"]';
 	static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]';
@@ -177,15 +176,17 @@ class Courses {
 		let students = [];
 		if (Array.isArray(studentNames)) {
 			students = studentNames;
-		} else if (typeof studentNames === 'string') {
-			students = studentNames.split(',');
+		} else if (typeof studentNames === "string") {
+			students = studentNames.split(",");
 		} else if (studentNames) {
 			students = [studentNames];
 		}
 		cy.get(Courses.#studentSelectionBoxInCourseCreate).invoke("show");
 		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
 		// Select all students at once
-		cy.get(Courses.#studentSelectionBoxInCourseCreate).select(students.map(s => s.trim()));
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).select(
+			students.map((s) => s.trim())
+		);
 	}
 
 	selectClassInCourseCreatePage(className) {
@@ -602,13 +603,12 @@ class Courses {
 
 	seeDuplicateTaskSuccessAlert(successMessage) {
 		cy.get(Courses.#successAlertDuplicateTask)
-		.should("be.visible")
-		.contains(successMessage);
+			.should("be.visible")
+			.contains(successMessage);
 	}
 
-	seeCopyInThreeDotMenuofTopic() {
+	seeCopyOptionInThreeDotMenuofTopic() {
 		cy.get(Courses.#copyButtonInDotMenu).should("be.visible");
-
 	}
 
 	seeConfirmationModalForTaskDeletion() {
@@ -616,16 +616,14 @@ class Courses {
 	}
 
 	seeDraftTaskTitle() {
-		cy.get(Courses.#taskCardTitle)
-			.contains(" Aufgabe – Entwurf");
-
+		cy.get(Courses.#taskCardTitle).contains(" Aufgabe – Entwurf");
 	}
 
-	seeTaskOnCoursePagePublish(){
+	seeTaskOnCoursePagePublish() {
 		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndex).should("be.visible");
 	}
 
-	clickCopyInThreeDotMenuofTopic() {
+	clickCopyOptionInThreeDotMenuofTopic() {
 		cy.get(Courses.#copyButtonInDotMenu).click();
 	}
 
@@ -676,17 +674,15 @@ class Courses {
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
-		if (cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should(
+		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should(
 			"contain",
 			submittedTasks
-		));
+		);
 	}
 
 	compareNotSubmittedTasksInformation(contentTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
-		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should(
-			"not.exist"
-		);
+		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should("not.exist");
 	}
 
 	compareGradedTasksInformation(gradedTasks, contentTitle) {

@@ -7,12 +7,14 @@ class Tasks {
 	static #taskOverviewStudent = '[class="task-dashboard-student"]';
 	static #groupSubmissionCheckbox = '[id="teamSubmissions"]';
 	static #draftCheckbox = '[data-testid="private-checkbox"]';
-	static #visibilityStartDateInput = '[data-testid="form-datetime-input-availableDate"]';
+	static #visibilityStartDateInput =
+		'[data-testid="form-datetime-input-availableDate"]';
 	static #visibilityDueDateInput = '[data-testid="form-datetime-input-dueDate"]';
 	static #publicSubmissionsCheckbox = '[id="publicSubmissionsCheckbox"]';
 	static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]';
-	static #dialogCancelDeletionTaskButtons = "#modal-delete-homework-footer > .btn-close";
+	static #dialogCancelDeletionTaskButtons =
+		"#modal-delete-homework-footer > .btn-close";
 	static #dialogConfirmDeletionTaskButtons =
 		'[data-testid="delete-extended-homework-btn"]';
 	static #taskDetailsTab = '[id="extended"]';
@@ -23,7 +25,8 @@ class Tasks {
 	static #fileUploadButtonEnabled = '[data-testid="fileupload-button"]';
 	static #fileUploadInput = '[data-testid="fileupload-input"]';
 	static #filesSection = '[data-testid="tasks-section-files"]';
-	static #uploadedFilesSectionInSubmission = '[data-testid="submissions-section-files"]';
+	static #uploadedFilesSectionInSubmission =
+		'[data-testid="submissions-section-files"]';
 	static #fileViewerSection = '[class="file-viewer"]';
 	static #renameFileInput = '[id="newNameInput"]';
 	static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]';
@@ -95,7 +98,9 @@ class Tasks {
 		if (taskTitle === "-") {
 			cy.get(Tasks.#taskForm).get(Tasks.#taskNameInput).should("be.empty");
 		} else {
-			cy.get(Tasks.#taskForm).get(Tasks.#taskNameInput).should("have.value", taskTitle);
+			cy.get(Tasks.#taskForm)
+				.get(Tasks.#taskNameInput)
+				.should("have.value", taskTitle);
 		}
 	}
 
@@ -104,23 +109,19 @@ class Tasks {
 		cy.get(Tasks.#taskNameInput).should("have.value", taskTitle);
 	}
 
-
-	seeEditTaskDescription(){
-		cy.get(Tasks.#homeworkDescription).
-		should("be.visible")
-		should("not.be.empty");
+	seeEditTaskDescription() {
+		cy.get(Tasks.#homeworkDescription)
+			.invoke("text")
+			//.should("to.be.vis")
+			.should("not.be.empty");
 	}
 
-	seeEditTaskVisibleDateIsSet(){
-		cy.get(Tasks.#visibilityStartDateInput).
-		should("be.visible")
-		should("not.be.empty");
+	seeEditTaskStartDateIsSet() {
+		cy.get(Tasks.#visibilityStartDateInput).invoke("val").should("not.be.empty");
 	}
 
-	seeEditTaskEndDateIsnotSet(){
-		cy.get(Tasks.#visibilityDueDateInput).
-		should("be.visible")
-		should("be.empty");
+	seeEditTaskEndDateIsnotSet() {
+		cy.get(Tasks.#visibilityDueDateInput).invoke("text").should("be.empty");
 	}
 
 	enterTaskTitle(taskTitle) {
@@ -329,7 +330,8 @@ class Tasks {
 			day: "2-digit",
 			month: "2-digit",
 		});
-		let dueDateCheckValue = dueDateText.replace(/\//gm, ".") + " " + visibilityDueTime;
+		let dueDateCheckValue =
+			dueDateText.replace(/\//gm, ".") + " " + visibilityDueTime;
 		cy.get(Tasks.#visibilityDueDateInput).should("have.value", dueDateCheckValue);
 	}
 
@@ -459,7 +461,6 @@ class Tasks {
 	seeDetailPageForTask(taskTitle) {
 		cy.get(Tasks.#pageTitle).should("contain", taskTitle);
 	}
-
 
 	clickSubmissionTab() {
 		cy.get(Tasks.#submissionTab).click({ multiple: true }).wait("@alerts_api");

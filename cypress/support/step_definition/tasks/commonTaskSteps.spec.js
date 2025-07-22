@@ -39,11 +39,11 @@ Then("I see description of the edit task page", () => {
 	tasks.seeEditTaskDescription();
 });
 
-Then("I see visible date is set",() => {
-	tasks.seeEditTaskVisibleDateIsSet();
+Then("I see visible date is set", () => {
+	tasks.seeEditTaskStartDateIsSet();
 });
 
-Then("I see end date is not set",() => {
+Then("I see end date is not set", () => {
 	tasks.seeEditTaskEndDateIsnotSet();
 });
 
