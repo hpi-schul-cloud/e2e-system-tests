@@ -132,10 +132,6 @@ Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
 });
 
-When("I click on the thumbnail Image in the card", () => {
-	roomBoards.clickOnImageThumbnailInCard();
-});
-
 Then("I see the image in a lightbox", () => {
 	roomBoards.verifyImageInLightbox();
 });
@@ -616,14 +612,20 @@ When("I go back to the board page", () => {
 	roomBoards.goBackToBoardPage();
 });
 
-When("I copy the file path of the image file {string}", (fileName) => {
-    roomBoards.copyFilePathOfImageFile(fileName);
+When("I copy the file path of the image file {string} from folder", (fileName) => {
+    roomBoards.copyFilePathOfImageFileFromFolder(fileName);
 });
 
-Then("I see that image is available in filestorage {string}", (fileName) => {
-    roomBoards.verifyImageFileAvailableInFilestorage(fileName);
+When("I copy the file path of the image file {string} from the card", (fileName) => {
+    roomBoards.copyFilePathOfImageFileFromCard(fileName);
 });
 
-Then("I see that image is not available in filestorage {string}", (fileName) => {
-    roomBoards.verifyImageFileIsNotAvailableInFilestorage(fileName);
+
+
+Then("I see that image is available in database {string}", (fileName) => {
+    roomBoards.verifyImageFileAvailableInDatabase(fileName);
+});
+
+Then("I see that image is not available in database {string}", (fileName) => {
+    roomBoards.verifyImageFileIsNotAvailableInDatabase(fileName);
 });

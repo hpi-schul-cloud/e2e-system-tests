@@ -323,11 +323,6 @@ class RoomBoards {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
 
-	clickOnImageThumbnailInCard() {
-		cy.get(RoomBoards.#thumbnailImageOnCard).click();
-		cy.wait(500);
-	}
-
 	clickDownloadIconOnFullScreenImage() {
 		cy.get(RoomBoards.#downloadButtonOnFullImage).click();
 	}
@@ -871,8 +866,8 @@ class RoomBoards {
 		cy.go("back");
 	}
 
-	copyFilePathOfImageFile(fileName) {
-		cy.get(RoomBoards.#lightBoxImagePreview)
+	copyFilePathOfImageFileFromFolder(fileName) {
+		cy.get(`[data-testid="file-preview-${fileName}"]`)
 			.find("img")
 			.should("be.visible")
 			.and(($img) => {
@@ -885,7 +880,21 @@ class RoomBoards {
 			});
 	}
 
-	verifyImageFileAvailableInFilestorage(fileName) {
+	copyFilePathOfImageFileFromCard(fileName) {
+		cy.get(RoomBoards.#thumbnailImageOnCard)
+			.find("img")
+			.should("be.visible")
+			.and(($img) => {
+				expect($img).to.have.attr("src").not.empty;
+				expect($img[0].naturalWidth).to.be.greaterThan(0);
+			})
+			.invoke("attr", "src")
+			.then((fileUrl) => {
+				cy.wrap(fileUrl).as(`copiedFileURL_${fileName}`);
+			});
+	}
+
+	verifyImageFileAvailableInDatabase(fileName) {
 		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
 			cy.request({
 				url: imageUrl,
@@ -898,7 +907,7 @@ class RoomBoards {
 		});
 	}
 
-	verifyImageFileIsNotAvailableInFilestorage(fileName) {
+	verifyImageFileIsNotAvailableInDatabase(fileName) {
 		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
 			cy.request({
 				url: imageUrl,
