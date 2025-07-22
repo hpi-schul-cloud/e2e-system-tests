@@ -28,9 +28,9 @@ Feature: Room Board - Delete image file in room board and check filestorage
         When I click on the thumbnail Image in the card
         Then I see the image in a lightbox
 
-        # teacher copies the image file path and closes the fullscreen image window
-        When I copy the file path of the image file
-        Then I see that image is available in filestorage
+        # teacher copies the image file path and closes the fullscreen window
+        When I copy the file path of the image file '<image_file_name>'
+        Then I see that image is available in filestorage '<image_file_name>'
         When I click on the icon Close on the fullscreen image
         Then I see the file type Image in the card
 
@@ -43,7 +43,7 @@ Feature: Room Board - Delete image file in room board and check filestorage
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
-        Then I see that image is not available in filestorage
+        Then I see that image is not available in filestorage '<image_file_name>'
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

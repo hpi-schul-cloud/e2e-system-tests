@@ -871,7 +871,7 @@ class RoomBoards {
 		cy.go("back");
 	}
 
-	copyFilePathOfImageFile() {
+	copyFilePathOfImageFile(fileName) {
 		cy.get(RoomBoards.#lightBoxImagePreview)
 			.find("img")
 			.should("be.visible")
@@ -881,26 +881,12 @@ class RoomBoards {
 			})
 			.invoke("attr", "src")
 			.then((fileUrl) => {
-				cy.wrap(fileUrl).as("copiedFileURL");
+				cy.wrap(fileUrl).as(`copiedFileURL_${fileName}`);
 			});
 	}
 
-	copyFilePathOfSecondImageFile() {
-		cy.get(RoomBoards.#lightBoxImagePreview)
-			.find("img")
-			.should("be.visible")
-			.and(($img) => {
-				expect($img).to.have.attr("src").not.empty;
-				expect($img[0].naturalWidth).to.be.greaterThan(0);
-			})
-			.invoke("attr", "src")
-			.then((fileUrl) => {
-				cy.wrap(fileUrl).as("copiedSecondFileURL");
-			});
-	}
-
-	verifyImageFileAvailableInFilestorage() {
-		cy.get("@copiedFileURL").then((imageUrl) => {
+	verifyImageFileAvailableInFilestorage(fileName) {
+		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
 			cy.request({
 				url: imageUrl,
 				encoding: "binary",
@@ -912,34 +898,8 @@ class RoomBoards {
 		});
 	}
 
-	verifySecondImageFileAvailableInFilestorage() {
-		cy.get("@copiedSecondFileURL").then((imageUrl) => {
-			cy.request({
-				url: imageUrl,
-				encoding: "binary",
-				failOnStatusCode: false,
-			}).then((response) => {
-				expect(response.status).to.eq(200);
-				expect(response.headers["content-type"]).to.match(/image|webp/i);
-			});
-		});
-	}
-
-	verifyImageFileIsNotAvailableInFilestorage() {
-		cy.get("@copiedFileURL").then((imageUrl) => {
-			cy.request({
-				url: imageUrl,
-				encoding: "binary",
-				failOnStatusCode: false,
-			}).then((response) => {
-				expect(response.status).to.be.oneOf([403, 404]);
-				//expect(response.headers["content-type"]).to.match(/image|webp/i);
-			});
-		});
-	}
-
-	verifySecondImageFileIsNotAvailableInFilestorage() {
-		cy.get("@copiedSecondFileURL").then((imageUrl) => {
+	verifyImageFileIsNotAvailableInFilestorage(fileName) {
+		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
 			cy.request({
 				url: imageUrl,
 				encoding: "binary",

@@ -35,15 +35,15 @@ Feature: Delete multiple files in folder and check file storage on dev environme
         # content editor opens first file in lightbox and copies its path
         When I click on the name of file '<image1_file_name>' in file list
         Then I see the image in a lightbox
-        When I copy the file path of the image file
-        Then I see that image is available in filestorage
+        When I copy the file path of the image file '<image1_file_name>'
+        Then I see that image is available in filestorage '<image1_file_name>'
         When I click on the icon Close on the fullscreen image
 
         # content editor opens second file in lightbox and copies its path
         When I click on the name of file '<image2_file_name>' in file list
         Then I see the image in a lightbox
-        When I copy the file path of the second image file
-        Then I see that second image is available in filestorage
+        When I copy the file path of the image file '<image2_file_name>'
+        Then I see that image is available in filestorage '<image2_file_name>'
         When I click on the icon Close on the fullscreen image
 
         # content editor deletes multiple files using action button in header of list
@@ -52,8 +52,8 @@ Feature: Delete multiple files in folder and check file storage on dev environme
         When I select the three dot menu action 'delete'
         When I click on button Approve in modal
         Then I do not see files '<image1_file_name>, <image2_file_name>' in file list
-        Then I see that image is not available in filestorage
-        Then I see that second image is not available in filestorage
+        Then I see that image is not available in filestorage '<image1_file_name>'
+        Then I see that image is not available in filestorage '<image2_file_name>'
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

@@ -616,26 +616,14 @@ When("I go back to the board page", () => {
 	roomBoards.goBackToBoardPage();
 });
 
-When("I copy the file path of the image file", () => {
-    roomBoards.copyFilePathOfImageFile();
+When("I copy the file path of the image file {string}", (fileName) => {
+    roomBoards.copyFilePathOfImageFile(fileName);
 });
 
-When("I copy the file path of the second image file", () => {
-    roomBoards.copyFilePathOfSecondImageFile();
+Then("I see that image is available in filestorage {string}", (fileName) => {
+    roomBoards.verifyImageFileAvailableInFilestorage(fileName);
 });
 
-Then("I see that image is available in filestorage", () => {
-	roomBoards.verifyImageFileAvailableInFilestorage();
-});
-
-Then("I see that second image is available in filestorage", () => {
-	roomBoards.verifySecondImageFileAvailableInFilestorage();
-});
-
-Then("I see that image is not available in filestorage", () => {
-	roomBoards.verifyImageFileIsNotAvailableInFilestorage();
-});
-
-Then("I see that second image is not available in filestorage", () => {
-	roomBoards.verifySecondImageFileIsNotAvailableInFilestorage();
+Then("I see that image is not available in filestorage {string}", (fileName) => {
+    roomBoards.verifyImageFileIsNotAvailableInFilestorage(fileName);
 });
