@@ -199,7 +199,7 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
 
-Given("task with task name {string} is created in course board {string}", (taskName, courseName) => {
+Given("task with task name {string} is created in course {string}", (taskName, courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickOnCreateContentFAB();
@@ -211,7 +211,7 @@ Given("task with task name {string} is created in course board {string}", (taskN
 	courses.navigateToCoursePage(courseName);
 });
 
-Given ("text topic with name {string} is created in course board {string}", (topicTitle, courseName) => {
+Given ("text topic with name {string} is created in course {string}", (topicTitle, courseName) => {
     courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickOnCreateContentFAB();
@@ -224,7 +224,7 @@ Given ("text topic with name {string} is created in course board {string}", (top
 	topics.clickOnSubmitChangesInTopicBtn();
 });
 
-Given("the topic is published in course board {string}", (courseName) => {
+Given("the topic is published in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickPublishLinkForFirstTopic();
