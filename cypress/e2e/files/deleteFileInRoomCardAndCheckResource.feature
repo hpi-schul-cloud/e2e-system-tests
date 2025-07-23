@@ -2,11 +2,11 @@
 @stable_test
 @schedule_run
 @group-G
-Feature: Room Board - Delete image file in room board and check database
+Feature: Room Board - Delete image file in room board and check file resource
 
-    As a teacher delete an image file in the room board and check if it is deleted in the database so that I can manage files in the board.
+    As a teacher delete an image file in the room board and check if it is deleted in the file resource so that I can manage files in the board.
 
-    Scenario: Upload and delete image file in the room board and check database
+    Scenario: Upload and delete image file in the room board and check file resource
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -28,7 +28,7 @@ Feature: Room Board - Delete image file in room board and check database
 
         # teacher copies the image file path and closes the fullscreen window
         When I copy the file path of the image file '<image_file_name>' from the card
-        Then I see that image is available in database '<image_file_name>'
+        Then I see that image resource is available '<image_file_name>'
 
         # teacher deletes the element File with image in the multi-column room board and verifies deletion
         When I click on the page outside of the column
@@ -39,7 +39,7 @@ Feature: Room Board - Delete image file in room board and check database
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
-        Then I see that image is not available in database '<image_file_name>'
+        Then I see that image resource is not available '<image_file_name>'
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

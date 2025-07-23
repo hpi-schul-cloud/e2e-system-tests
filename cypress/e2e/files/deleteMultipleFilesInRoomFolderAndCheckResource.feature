@@ -34,9 +34,9 @@ Feature: Delete multiple files in folder and check database
 
         # content editor copies path of images
         When I copy the file path of the image file '<image1_file_name>' from folder
-        Then I see that image is available in database '<image1_file_name>'
+        Then I see that image resource is available '<image1_file_name>'
         When I copy the file path of the image file '<image2_file_name>' from folder
-        Then I see that image is available in database '<image2_file_name>'
+        Then I see that image resource is available '<image2_file_name>'
 
         # content editor deletes multiple files using action button in header of list
         When I check the checkbox in the table header for all elements
@@ -44,8 +44,8 @@ Feature: Delete multiple files in folder and check database
         When I select the three dot menu action 'delete'
         When I click on button Approve in modal
         Then I do not see files '<image1_file_name>, <image2_file_name>' in file list
-        Then I see that image is not available in database '<image1_file_name>'
-        Then I see that image is not available in database '<image2_file_name>'
+        Then I see that image resource is not available '<image1_file_name>'
+        Then I see that image resource is not available '<image2_file_name>'
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted

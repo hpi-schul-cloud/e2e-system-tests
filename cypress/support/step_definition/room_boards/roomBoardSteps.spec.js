@@ -42,7 +42,7 @@ Then("I verify the element Etherpad is clickable", () => {
 });
 
 Then("I see the element H5P {string} in the card", (title) => {
-	roomBoards.seeH5PElementInRoomBoard(title)
+	roomBoards.seeH5PElementInRoomBoard(title);
 });
 
 When("I click on the three-dot in the element Etherpad", () => {
@@ -425,9 +425,12 @@ Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 
-Then("I see folder size and number of files {string} in the folder element in the card", (folderDetails) =>  {
-	roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
-});
+Then(
+	"I see folder size and number of files {string} in the folder element in the card",
+	(folderDetails) => {
+		roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
+	}
+);
 
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
@@ -584,9 +587,12 @@ When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
 });
 
-Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
-	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
-});
+Then(
+	"zip file for folder {string} with date of today is saved in folder downloads",
+	(folderName) => {
+		roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+	}
+);
 
 When("I click on the three dot menu in the H5P element", () => {
 	roomBoards.openThreeDotMenuForH5PInCard();
@@ -600,7 +606,7 @@ When("I click on the H5P element", () => {
 	roomBoards.clickOnH5PElement();
 });
 
- When("I click on the option Edit in the three dot menu on the H5P element", () => {
+When("I click on the option Edit in the three dot menu on the H5P element", () => {
 	roomBoards.clickOnEditOptionInH5PThreeDotMenu();
 });
 
@@ -613,19 +619,17 @@ When("I go back to the board page", () => {
 });
 
 When("I copy the file path of the image file {string} from folder", (fileName) => {
-    roomBoards.copyFilePathOfImageFileFromFolder(fileName);
+	roomBoards.copyFilePathOfImageFileFromFolder(fileName);
 });
 
 When("I copy the file path of the image file {string} from the card", (fileName) => {
-    roomBoards.copyFilePathOfImageFileFromCard(fileName);
+	roomBoards.copyFilePathOfImageFileFromCard(fileName);
 });
 
-
-
-Then("I see that image is available in database {string}", (fileName) => {
-    roomBoards.verifyImageFileAvailableInDatabase(fileName);
+Then("I see that image resource is available {string}", (fileName) => {
+	roomBoards.verifyImageFileAvailableInDatabase(fileName);
 });
 
-Then("I see that image is not available in database {string}", (fileName) => {
-    roomBoards.verifyImageFileIsNotAvailableInDatabase(fileName);
+Then("I see that image resource is not available {string}", (fileName) => {
+	roomBoards.verifyImageFileIsNotAvailableInDatabase(fileName);
 });
