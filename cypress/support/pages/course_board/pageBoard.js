@@ -443,7 +443,7 @@ class Board {
 	}
 
 	clickOutsideTheCardToSaveTheCard() {
-		cy.reload();
+		cy.get(Board.#courseBoardTitleOnPage).click();
 		// cy.get(Board.#mainPageArea).click("bottom");
 	}
 

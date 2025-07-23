@@ -163,6 +163,7 @@ jobs:
       - run-all-tests
       - run-tests-selective
       - run-pre-check-tests
+      - run-specific-tests
     if: always()
     steps:
       - uses: technote-space/workflow-conclusion-action@v3
