@@ -4,7 +4,7 @@
 @group-G
 Feature: Room Board - Delete image file in room board and check file resource
 
-    As a teacher delete an image file in the room board and check if it is deleted in the file resource so that I can manage files in the board.
+    As a teacher delete an image file in the room board and check if the file resource is not available anymore so that I can manage files in the board.
 
     Scenario: Upload and delete image file in the room board and check file resource
 

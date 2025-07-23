@@ -627,9 +627,9 @@ When("I copy the file path of the image file {string} from the card", (fileName)
 });
 
 Then("I see that image resource is available {string}", (fileName) => {
-	roomBoards.verifyImageFileAvailableInDatabase(fileName);
+	roomBoards.verifyImageFileRecourseAvailable(fileName);
 });
 
 Then("I see that image resource is not available {string}", (fileName) => {
-	roomBoards.verifyImageFileIsNotAvailableInDatabase(fileName);
+	roomBoards.verifyImageFileRecourseNotAvailable(fileName);
 });

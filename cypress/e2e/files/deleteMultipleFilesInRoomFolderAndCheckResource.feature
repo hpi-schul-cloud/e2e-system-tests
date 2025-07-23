@@ -2,9 +2,9 @@
 @stable_test
 @schedule_run
 @group-L
-Feature: Delete multiple files in folder and check database
+Feature: Delete multiple files in folder and check file resource
 
-    As a content editor I want to delete multiple files from a folder in a room board and check if they are deleted in the database so that I can manage files in the board.
+    As a content editor I want to delete multiple files from a folder in a room board and check if the file resource is not available anymore so that I can manage files in the board.
 
     Scenario Outline:  Content editor is able to delete multiple files from folder in a board
 
