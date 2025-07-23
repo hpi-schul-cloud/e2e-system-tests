@@ -50,7 +50,6 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         Then I see end date is not set
         Then I see the draft check box is enabled by default
 
-
         # post-condition: Teacher deletes the course and copied task
         Given task with name '<copy_task_name>' in course '<course_name>' is deleted
         Given task with name '<task_name>' in course '<course_name>' is deleted
