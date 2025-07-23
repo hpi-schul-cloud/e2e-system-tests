@@ -31,10 +31,6 @@ Then("I can see edit task page {string}", (taskTitle) => {
 	tasks.seeEditTaskPage(taskTitle);
 });
 
-Then("I can see task page {string}", (taskTitle) => {
-	tasks.seeTaskEditPage(taskTitle);
-});
-
 Then("I see description of the edit task page", () => {
 	tasks.seeEditTaskDescription();
 });
