@@ -10,6 +10,7 @@ on:
           - all regression tests
           - tests for pull requests (PR)
           - pre-check release tests
+          - only
         default: "tests for pull requests (PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
@@ -96,6 +97,21 @@ jobs:
         ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
+
+  run-specific-tests:
+    name: Run specific regression tests
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'only' }}
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:only:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: specific-tests
 
   run-tests-selective:
     name: Run tests for pull requests (PR)
