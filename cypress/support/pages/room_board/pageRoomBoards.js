@@ -914,7 +914,7 @@ class RoomBoards {
 			});
 	}
 
-	verifyImageFileRecourseAvailable(fileName) {
+	verifyImageFileRessourceAvailable(fileName) {
 		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
 			cy.request({
 				url: imageUrl,
@@ -927,7 +927,7 @@ class RoomBoards {
 		});
 	}
 
-	verifyImageFileRecourseNotAvailable(fileName) {
+	verifyImageFileRessourceNotAvailable(fileName) {
 		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
 			cy.request({
 				url: imageUrl,
