@@ -110,17 +110,14 @@ class Tasks {
 	}
 
 	seeEditTaskDescription() {
-		cy.get(Tasks.#homeworkDescription)
-			.invoke("text")
-			//.should("to.be.vis")
-			.should("not.be.empty");
+		cy.get(Tasks.#homeworkDescription).invoke("text").should("not.be.empty");
 	}
 
 	seeEditTaskStartDateIsSet() {
 		cy.get(Tasks.#visibilityStartDateInput).invoke("val").should("not.be.empty");
 	}
 
-	seeEditTaskEndDateIsnotSet() {
+	seeEditTaskEndDateIsNotSet() {
 		cy.get(Tasks.#visibilityDueDateInput).invoke("text").should("be.empty");
 	}
 

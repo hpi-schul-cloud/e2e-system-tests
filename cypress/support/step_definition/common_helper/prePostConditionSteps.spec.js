@@ -13,7 +13,7 @@ const courses = new Courses();
 const board = new Board();
 const management = new Management();
 const globalActions = new GlobalActions();
-const course_tasks = new Tasks();
+const tasks = new Tasks();
 
 Given("video conference is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
@@ -133,52 +133,53 @@ Given(
 	}
 );
 
-
 Given(
 	"published task with name {string} in the course with name {string}",
-	(taskname,courseName) => {
+	(taskname, courseName) => {
 		courses.navigateToCoursesOverview();
 		courses.navigateToCoursePage(courseName);
 		courses.clickOnCreateContentFAB();
 		courses.clickOnNewTaskFAB();
-		course_tasks.enterTaskTitle(taskname);
-		course_tasks.clickOnGroupSubmissionCheckbox();
-		course_tasks.setTaskText("Dies ist deine erste Aufgabe");
-		course_tasks.executeFileUpload("example_jpg.jpg");
-		course_tasks.setVisibilityStartDate('today', '0000');
-		course_tasks.setVisibilityDueDate('tomorrow', '1000');
-		course_tasks.clickOnDraftCheckbox();
-		course_tasks.clickOnSubmit();
-		}
+		tasks.enterTaskTitle(taskname);
+		tasks.clickOnGroupSubmissionCheckbox();
+		tasks.setTaskText("Dies ist deine erste Aufgabe");
+		tasks.executeFileUpload("example_jpg.jpg");
+		tasks.setVisibilityStartDate("today", "0000");
+		tasks.setVisibilityDueDate("tomorrow", "1000");
+		tasks.clickOnDraftCheckbox();
+		tasks.clickOnSubmit();
+	}
 );
 
-Given("task {string} in course {string} is NOT submitted by the student", (taskName,courseName) => {
-	courses.navigateToCoursesOverview();
-	courses.navigateToCoursePage(courseName);
-	courses.seeTaskOnCoursePage(taskName);
-	courses.compareNotSubmittedTasksInformation(taskName);
-}
+Given(
+	"task {string} in course {string} is not submitted by the student",
+	(taskName, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.seeTaskOnCoursePage(taskName);
+		courses.compareNotSubmittedTasksInformation(taskName);
+	}
 );
 
-Given("Task {string} in course {string} is submitted by the student", (taskName,courseName) => {
-	courses.navigateToCoursesOverview();
-	courses.navigateToCoursePage(courseName);
-	courses.seeTaskOnCoursePage(taskName);
-	courses.openTask(taskName);
-	course_tasks.clickSubmissionTab();
-	course_tasks.clickSubmissionTab();
-	course_tasks.setSubmissionText("Meine erste aufgabe erledigt");
-	course_tasks.executeFileUploadForSubmission('testboard_jpg.jpg');
-	course_tasks.seeFileInSubmissionSectionUploadedFiles('testboard_jpg.jpg');
-	course_tasks.clickSendSubmissionBtn();
-	course_tasks.seeSubmissionReceivedHint();
-	course_tasks.navigateToTasksOverview();
-	course_tasks.seeTaskNotInListAsStudent(taskName);
-	course_tasks.clickOnTabDoneTasks();
-	course_tasks.openNotGradedTasks();
-	course_tasks.seeTaskInListAsStudent(taskName);
-
-}
+Given(
+	"task {string} in course {string} is submitted by the student",
+	(taskName, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.seeTaskOnCoursePage(taskName);
+		courses.openTask(taskName);
+		tasks.clickSubmissionTab();
+		tasks.setSubmissionText("Meine erste aufgabe erledigt");
+		tasks.executeFileUploadForSubmission("testboard_jpg.jpg");
+		tasks.seeFileInSubmissionSectionUploadedFiles("testboard_jpg.jpg");
+		tasks.clickSendSubmissionBtn();
+		tasks.seeSubmissionReceivedHint();
+		tasks.navigateToTasksOverview();
+		tasks.seeTaskNotInListAsStudent(taskName);
+		tasks.clickOnTabDoneTasks();
+		tasks.openNotGradedTasks();
+		tasks.seeTaskInListAsStudent(taskName);
+	}
 );
 
 Given("a course named {string} exists", (courseName) => {
@@ -221,7 +222,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();
 	board.clickPlusIconToAddContentIntoCard();
-	board.selectCardElementFromMenu('file-folder');
+	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
 	roomBoards.approveFolderNameInCard();
 	roomBoards.seeFolderElementWithTitle(folderTitle);
@@ -252,4 +253,3 @@ Given("task with name {string} in course {string} is deleted", (taskName, course
 	courses.clickDeleteInDotMenu();
 	courses.clickDeleteInConfirmationWindow();
 });
-
