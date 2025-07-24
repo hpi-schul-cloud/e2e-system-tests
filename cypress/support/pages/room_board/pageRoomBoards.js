@@ -98,6 +98,7 @@ class RoomBoards {
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
 	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
+	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -321,11 +322,6 @@ class RoomBoards {
 
 	verifyPdfUploaded() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
-	}
-
-	clickOnImageThumbnailInCard() {
-		cy.get(RoomBoards.#thumbnailImageOnCard).click();
-		cy.wait(500);
 	}
 
 	clickDownloadIconOnFullScreenImage() {
@@ -817,7 +813,9 @@ class RoomBoards {
 	}
 
 	openThreeDotMenuForH5PInCard() {
-		cy.get(RoomBoards.#H5PElementSelector).find(`[data-testid="board-menu-icon"]`).click();
+		cy.get(RoomBoards.#H5PElementSelector)
+			.find(`[data-testid="board-menu-icon"]`)
+			.click();
 	}
 
 	checkNumberOfCheckedFilesInFileFolder(expectedNumber) {
@@ -857,36 +855,89 @@ class RoomBoards {
 	}
 
 	clickOnH5PElement() {
-
 		cy.window().then((win) => {
-  		cy.stub(win, 'open').callsFake((url) => {
-   		 cy.visit(url);
- 		 }).as('windowOpen');
+			cy.stub(win, "open")
+				.callsFake((url) => {
+					cy.visit(url);
+				})
+				.as("windowOpen");
 		});
 		cy.get(RoomBoards.#H5PElementSelector).click();
 		//cy.get(RoomBoards.#H5PElementSelector).invoke("removeAttr", "target").click(); It still opens a new tab
-
 	}
 
 	clickOnEditOptionInH5PThreeDotMenu() {
 		cy.window().then((win) => {
-  		cy.stub(win, 'open').callsFake((url) => {
-   		 cy.visit(url);
- 		 }).as('windowOpen');
+			cy.stub(win, "open")
+				.callsFake((url) => {
+					cy.visit(url);
+				})
+				.as("windowOpen");
 		});
 		cy.get(RoomBoards.#ThreeDotButtonH5P).click();
 	}
 
 	seeH5PPage() {
-		cy.get(RoomBoards.#H5PPage, { timeout: 2000000 }).should('be.visible');
-		cy.get('iframe[class*="h5p-editor-iframe"]')
-  .should('exist')
-  .and('be.visible');
-
+		cy.get(RoomBoards.#H5PPage, { timeout: 2000000 }).should("be.visible");
+		cy.get('iframe[class*="h5p-editor-iframe"]').should("exist").and("be.visible");
 	}
 
 	goBackToBoardPage() {
-		cy.go('back');
+		cy.go("back");
+	}
+
+	copyFilePathOfImageFileFromFolder(fileName) {
+		cy.get(`[data-testid="file-preview-${fileName}"]`)
+			.find("img")
+			.should("be.visible")
+			.and(($img) => {
+				expect($img).to.have.attr("src").not.empty;
+				expect($img[0].naturalWidth).to.be.greaterThan(0);
+			})
+			.invoke("attr", "src")
+			.then((fileUrl) => {
+				cy.wrap(fileUrl).as(`copiedFileURL_${fileName}`);
+			});
+	}
+
+	copyFilePathOfImageFileFromCard(fileName) {
+		cy.get(RoomBoards.#thumbnailImageOnCard)
+			.find("img")
+			.should("be.visible")
+			.and(($img) => {
+				expect($img).to.have.attr("src").not.empty;
+				expect($img[0].naturalWidth).to.be.greaterThan(0);
+			})
+			.invoke("attr", "src")
+			.then((fileUrl) => {
+				cy.wrap(fileUrl).as(`copiedFileURL_${fileName}`);
+			});
+	}
+
+	verifyImageFileRessourceAvailable(fileName) {
+		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
+			cy.request({
+				url: imageUrl,
+				encoding: "binary",
+				failOnStatusCode: false,
+			}).then((response) => {
+				expect(response.status).to.eq(200);
+				expect(response.headers["content-type"]).to.match(/image|webp/i);
+			});
+		});
+	}
+
+	verifyImageFileRessourceNotAvailable(fileName) {
+		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
+			cy.request({
+				url: imageUrl,
+				encoding: "binary",
+				failOnStatusCode: false,
+			}).then((response) => {
+				expect(response.status).to.be.oneOf([403, 404]);
+				//expect(response.headers["content-type"]).to.match(/image|webp/i);
+			});
+		});
 	}
 }
 

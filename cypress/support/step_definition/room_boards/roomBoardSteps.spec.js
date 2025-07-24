@@ -42,7 +42,7 @@ Then("I verify the element Etherpad is clickable", () => {
 });
 
 Then("I see the element H5P {string} in the card", (title) => {
-	roomBoards.seeH5PElementInRoomBoard(title)
+	roomBoards.seeH5PElementInRoomBoard(title);
 });
 
 When("I click on the three-dot in the element Etherpad", () => {
@@ -130,10 +130,6 @@ When("I enter text in the textbox Caption {string}", (captionText) => {
 
 Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
-});
-
-When("I click on the thumbnail Image in the card", () => {
-	roomBoards.clickOnImageThumbnailInCard();
 });
 
 Then("I see the image in a lightbox", () => {
@@ -429,9 +425,12 @@ Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 
-Then("I see folder size and number of files {string} in the folder element in the card", (folderDetails) =>  {
-	roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
-});
+Then(
+	"I see folder size and number of files {string} in the folder element in the card",
+	(folderDetails) => {
+		roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
+	}
+);
 
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
@@ -588,9 +587,12 @@ When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
 });
 
-Then("zip file for folder {string} with date of today is saved in folder downloads", (folderName) => {
-	roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
-});
+Then(
+	"zip file for folder {string} with date of today is saved in folder downloads",
+	(folderName) => {
+		roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+	}
+);
 
 When("I click on the three dot menu in the H5P element", () => {
 	roomBoards.openThreeDotMenuForH5PInCard();
@@ -604,7 +606,7 @@ When("I click on the H5P element", () => {
 	roomBoards.clickOnH5PElement();
 });
 
- When("I click on the option Edit in the three dot menu on the H5P element", () => {
+When("I click on the option Edit in the three dot menu on the H5P element", () => {
 	roomBoards.clickOnEditOptionInH5PThreeDotMenu();
 });
 
@@ -614,4 +616,20 @@ Then("I see the H5P page", () => {
 
 When("I go back to the board page", () => {
 	roomBoards.goBackToBoardPage();
+});
+
+When("I copy the file path of the image file {string} from folder", (fileName) => {
+	roomBoards.copyFilePathOfImageFileFromFolder(fileName);
+});
+
+When("I copy the file path of the image file {string} from the card", (fileName) => {
+	roomBoards.copyFilePathOfImageFileFromCard(fileName);
+});
+
+Then("I see that image resource is available {string}", (fileName) => {
+	roomBoards.verifyImageFileRessourceAvailable(fileName);
+});
+
+Then("I see that image resource is not available {string}", (fileName) => {
+	roomBoards.verifyImageFileRessourceNotAvailable(fileName);
 });
