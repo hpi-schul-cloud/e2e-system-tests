@@ -295,6 +295,10 @@ When("I click on dialog export button", () => {
 	courses.clickDialogExportButton();
 });
 
+When("I click on the import course button", () => {
+	courses.clickImportCourseButton();
+});
+
 Then("I see the copy result notification", () => {
 	courses.seeCopyResultNotification();
 });
