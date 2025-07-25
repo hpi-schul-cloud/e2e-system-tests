@@ -6,7 +6,6 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Management from "../../pages/admin/pageAdministration";
 import GlobalActions from "../../pages/common_helper/globalActions";
-import Tasks from "../../pages/tasks/pageTasks";
 import Topics from "../../pages/topics/pageTopics";
 
 const roomBoards = new RoomBoards();
