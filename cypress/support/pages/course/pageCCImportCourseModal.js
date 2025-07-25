@@ -21,6 +21,13 @@ class CCImportCourseModal {
 
     startImport() {
         cy.get(CCImportCourseModal.#confirmButton).click();
+    }
+
+    seeLoadingBar() {
+        cy.get(CCImportCourseModal.#loadingDialog).should('be.visible');
+    }
+
+    waitForImportFinish() {
         cy.get(CCImportCourseModal.#loadingDialog).should('not.exist');
     }
 

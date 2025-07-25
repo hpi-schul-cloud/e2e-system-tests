@@ -11,3 +11,11 @@ When("I select the fixture file {string}", (fixture) => {
 When("I start the import", () => {
     ccImportModal.startImport();
 })
+
+Then("I see the loading bar", () => {
+    ccImportModal.seeLoadingBar();
+})
+
+When("I wait for the loading bar to close", () => {
+    ccImportModal.waitForImportFinish();
+})
