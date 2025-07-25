@@ -307,6 +307,18 @@ When("I click on copy course button", () => {
 	courses.clickCopyCourseButton();
 });
 
+When("I click on export course button", () => {
+	courses.clickExportCourseButton();
+});
+
+When("I click on dialog next button", () => {
+	courses.clickDialogNextButton();
+});
+
+When("I click on dialog export button", () => {
+	courses.clickDialogExportButton();
+});
+
 Then("I see the copy result notification", () => {
 	courses.seeCopyResultNotification();
 });

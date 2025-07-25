@@ -6,6 +6,8 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Management from "../../pages/admin/pageAdministration";
 import GlobalActions from "../../pages/common_helper/globalActions";
+import Tasks from "../../pages/tasks/pageTasks";
+import Topics from "../../pages/topics/pageTopics";
 
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
@@ -14,6 +16,7 @@ const board = new Board();
 const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
+const topics = new Topics();
 
 Given("video conference is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
@@ -252,4 +255,40 @@ Given("task with name {string} in course {string} is deleted", (taskName, course
 	courses.openThreeDotMenuForContent(taskName);
 	courses.clickDeleteInDotMenu();
 	courses.clickDeleteInConfirmationWindow();
+});
+Given(
+	"task with task name {string} is created in course {string}",
+	(taskName, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		courses.clickOnNewTaskFAB();
+		tasks.enterTaskTitle(taskName);
+		tasks.setTaskText("task text for Mathe course");
+		tasks.clickOnSubmit();
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+	}
+);
+
+Given(
+	"text topic with name {string} is created in course {string}",
+	(topicTitle, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		courses.clickOnNewTopicFAB();
+		topics.enterTopicTitle(topicTitle);
+		topics.clickOnAddTextToTopic();
+		topics.enterTitleforElementText("element Text", "0");
+		topics.enterDescriptionforElementText("element text description", "0");
+		topics.clickOnSubmitChangesInTopicBtn();
+		topics.clickOnSubmitChangesInTopicBtn();
+	}
+);
+
+Given("the topic is published in course {string}", (courseName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCoursePage(courseName);
+	courses.clickPublishLinkForFirstTopic();
 });

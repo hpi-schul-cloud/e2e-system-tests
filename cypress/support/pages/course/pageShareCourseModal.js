@@ -15,6 +15,8 @@ class ShareCourseModal {
 	static #shareCourseDialogMailButton = '[data-testid="shareMailAction"]';
 	static #shareCourseDialogCopyLinkButton = '[data-testid="copyAction"]';
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
+	static #shareCourseDialogCloseButton = '[data-testid="dialog-close"]';
+	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
 
 	seeShareCourseDialogBox() {
 		cy.get(ShareCourseModal.#shareCourseDialog).should("be.visible");
@@ -76,6 +78,18 @@ class ShareCourseModal {
 
 	seeQrCodeButtonInShareCourseResultDialog() {
 		cy.get(ShareCourseModal.#shareCourseDialogQrCodeButton).should("be.visible");
+	}
+
+	clickQrCodeButtonInShareCourseResultDialog() {
+		cy.get(ShareCourseModal.#shareCourseDialogQrCodeButton).click();
+	}
+
+	clickCloseButtonInShareCourseResultDialog() {
+		cy.get(ShareCourseModal.#shareCourseDialogCloseButton).click();
+	}
+
+	seeQrCodeScannerInShareCourseResultDialog() {
+		cy.get(ShareCourseModal.#shareCourseQRCodeScanner).should("be.visible");
 	}
 }
 
