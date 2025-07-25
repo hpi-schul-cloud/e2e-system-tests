@@ -51,9 +51,9 @@ Feature: Room - To duplicate the existing room
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | room_name         | copied_room_name      | board_title    |
-            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
+            | teacher1_nbc | admin1_nbc | nbc       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
 
         @staging_test
         Examples:
             | teacher      | admin      | namespace | room_name         | copied_room_name      | board_title    |
-            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
+            | teacher1_nbc | admin1_nbc | nbc       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |

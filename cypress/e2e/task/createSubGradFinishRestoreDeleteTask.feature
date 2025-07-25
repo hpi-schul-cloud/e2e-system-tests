@@ -149,9 +149,9 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         @school_api_test
         Examples:
             | namespace | student      | teacher      | admin      | fullname_student  | fullname_teacher  | student_last_name | course_name                           | task_name                                   | submission_text       |
-            | brb       | student1_brb | teacher1_brb | admin1_brb | cypress student_1 | cypress teacher_1 | student_1         | CypressAut Test Creation and Deletion | CypressAut Task Submission and Grading Test | Hier ist die Antwort. |
+            | nbc       | student1_nbc | teacher1_nbc | admin1_nbc | cypress student_1 | cypress teacher_1 | student_1         | CypressAut Test Creation and Deletion | CypressAut Task Submission and Grading Test | Hier ist die Antwort. |
 
         @staging_test
         Examples:
             | namespace | student      | teacher      | admin      | fullname_student | fullname_teacher | student_last_name | course_name                           | task_name                                   | submission_text       |
-            | brb       | student1_brb | teacher1_brb | admin1_brb | Herbert Kraft    | Karl Herzog      | Kraft             | CypressAut Test Creation and Deletion | CypressAut Task Submission and Grading Test | Hier ist die Antwort. |
+            | nbc       | student1_nbc | teacher1_nbc | admin1_nbc | Herbert Kraft    | Karl Herzog      | Kraft             | CypressAut Test Creation and Deletion | CypressAut Task Submission and Grading Test | Hier ist die Antwort. |

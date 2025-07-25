@@ -116,5 +116,5 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
         @school_api_test
         Examples:
-            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
-            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | cypress-test-school-2       | cypress-test-school-1       | Lernbegleitend    | cypressExt                        | Lernend           | cypress                           |
+            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
+            | teacher1_nbc | teacherExt1_nbc | studentExt1_nbc | adminExt1_nbc | nbc       | Cypress Room Name | cypress-test-school-2       | cypress-test-school-1   | Lernbegleitend    | cypressExt                        | Lernend           | cypress                           |

@@ -66,9 +66,9 @@ Feature: Task - To create and delete tasks starting from task overview page by t
         @school_api_test
         Examples:
             | namespace | teacher      | fullname_teacher  |
-            | brb       | teacher1_brb | cypress teacher_1 |
+            | nbc       | teacher1_nbc | cypress teacher_1 |
 
         @staging_test
         Examples:
             | namespace | teacher      | fullname_teacher |
-            | brb       | teacher1_brb | Karl Herzog      |
+            | nbc       | teacher1_nbc | Karl Herzog      |

@@ -43,4 +43,4 @@ Feature: Learning store - Activating and deactivating access for students
         @staging_test
         Examples:
             | admin      | student      | namespace |
-            | admin1_brb | student1_brb | brb       |
+            | admin1_nbc | student1_nbc | nbc       |

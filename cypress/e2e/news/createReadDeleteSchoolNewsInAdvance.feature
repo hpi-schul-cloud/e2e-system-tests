@@ -49,4 +49,4 @@ Feature:  News - To read a news on the respective dashboards
         @staging_test
         Examples:
             | news_author  | news_reader  | namespace | news_title                          | news_description          | news_day_from_today | news_time | news_waiting_time |
-            | teacher1_brb | student1_brb | brb       | CypressAut - school news in advance | Remember Examination date | 0                   | +2minutes | 120               |
+            | teacher1_nbc | student1_nbc | nbc       | CypressAut - school news in advance | Remember Examination date | 0                   | +2minutes | 120               |

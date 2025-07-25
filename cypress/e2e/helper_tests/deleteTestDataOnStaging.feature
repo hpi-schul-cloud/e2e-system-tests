@@ -17,6 +17,6 @@ Feature: Deletion of test data that are left from previous failed test runs on s
             | namespace | teacher      | search_query |
             | nbc       | teacher1_nbc | CypressAut   |
             | dbc       | teacher1_dbc | CypressAut   |
-            | brb       | teacher1_brb | CypressAut   |
-            | brb       | teacher1_brb | Cypress      |
-            | brb       | teacher1_brb | CY           |
+            | nbc       | teacher1_nbc | CypressAut   |
+            | nbc       | teacher1_nbc | Cypress      |
+            | nbc       | teacher1_nbc | CY           |

@@ -52,10 +52,10 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
+            | teacher1_nbc | nbc       | Cypress Room Name | Board Cy Title |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
+            | teacher1_nbc | nbc       | Cypress Room Name | Board Cy Title |
 

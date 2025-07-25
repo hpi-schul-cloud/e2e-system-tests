@@ -37,6 +37,6 @@ Feature: Room Board - Add H5P learning element in the board
 # @staging_test
 # Examples:
 #     | namespace | content_editor      | room_name               | board_title             | h5p_title                 |
-#     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Lernelement erstellen...  |
+#     | nbc       | teacher1_nbc        | CypressAut Folder Board | CypressAut Folder Board | Lernelement erstellen...  |
 
 

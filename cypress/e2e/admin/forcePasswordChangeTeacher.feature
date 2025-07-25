@@ -92,5 +92,5 @@ Feature: Admin - user must set a new password during login
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | brb       | admin1_brb | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de |
+            | nbc       | admin1_nbc | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de |
 

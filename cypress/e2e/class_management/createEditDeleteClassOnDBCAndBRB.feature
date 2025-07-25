@@ -3,7 +3,7 @@
 @schedule_run
 @group-D
 @pr
-Feature:  Class Management - To create, edit and delete class on dBC or on BRB
+Feature:  Class Management - To create, edit and delete class on dBC or on nbc
 
     As a teacher, I want to create, edit and delete class, so that I can manage the class
 
@@ -56,7 +56,7 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
         @staging_test
         Examples:
             | namespace | teacher      | student      | school_year | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher | fullname_student |
-            | brb       | teacher1_brb | student1_brb | 2023/24     | cyTestClassName   | cyEditClassName        | 1                  | Karl Herzog      | Herbert Kraft    |
+            | nbc       | teacher1_nbc | student1_nbc | 2023/24     | cyTestClassName   | cyEditClassName        | 1                  | Karl Herzog      | Herbert Kraft    |
 
         @school_api_test
         Examples:

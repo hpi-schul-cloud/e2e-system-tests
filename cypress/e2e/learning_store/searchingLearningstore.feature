@@ -51,4 +51,4 @@ Feature: Learning store - Search Learning Material in Learning Store
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | search_text |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | dino        |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | dino        |

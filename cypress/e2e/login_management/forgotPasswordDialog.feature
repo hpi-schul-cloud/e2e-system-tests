@@ -25,11 +25,11 @@ Feature: Login Management - Forgot Password Dialog Visibility Checks
             | namespace |
             | dbc       |
             | nbc       |
-            | brb       |
+            | nbc       |
 
         @staging_test
         Examples:
             | namespace |
             | dbc       |
             | nbc       |
-            | brb       |
+            | nbc       |

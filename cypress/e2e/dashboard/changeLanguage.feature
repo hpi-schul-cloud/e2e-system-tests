@@ -41,7 +41,7 @@ Feature: Account - Change language of the user from user setting
         @staging_test
         Examples:
             | teacher      | namespace | language  | student      | admin      |
-            | teacher1_brb | brb       | english   | student1_brb | admin1_brb |
-            | teacher1_brb | brb       | spanish   | student1_brb | admin1_brb |
-            | teacher1_brb | brb       | ukrainian | student1_brb | admin1_brb |
-            | teacher1_brb | brb       | german    | student1_brb | admin1_brb |
+            | teacher1_nbc | nbc       | english   | student1_nbc | admin1_nbc |
+            | teacher1_nbc | nbc       | spanish   | student1_nbc | admin1_nbc |
+            | teacher1_nbc | nbc       | ukrainian | student1_nbc | admin1_nbc |
+            | teacher1_nbc | nbc       | german    | student1_nbc | admin1_nbc |

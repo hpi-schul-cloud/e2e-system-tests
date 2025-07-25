@@ -21,11 +21,11 @@ Feature: Login Management - Login of users managed by SVS
             | namespace | teacher      | admin      | student      |
             | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |
             | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
-            | brb       | teacher1_brb | admin1_brb | student1_brb |
+            | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
 
         @school_api_test
         Examples:
             | namespace | teacher      | admin      | student      |
             | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |
             | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
-            | brb       | teacher1_brb | admin1_brb | student1_brb |
+            | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |

@@ -156,9 +156,9 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         @school_api_test
         Examples:
             | namespace | student      | teacher      | admin      | fullname_student  | fullname_teacher  | student_last_name | course_name                           |
-            | brb       | student1_brb | teacher1_brb | admin1_brb | cypress student_1 | cypress teacher_1 | student_1         | CypressAut Test Creation and Deletion |
+            | nbc       | student1_nbc | teacher1_nbc | admin1_nbc | cypress student_1 | cypress teacher_1 | student_1         | CypressAut Test Creation and Deletion |
 
         @staging_test
         Examples:
             | namespace | student      | teacher      | admin      | fullname_student | fullname_teacher | student_last_name | course_name                           |
-            | brb       | student1_brb | teacher1_brb | admin1_brb | Herbert Kraft    | Karl Herzog      | Kraft             | CypressAut Test Creation and Deletion |
+            | nbc       | student1_nbc | teacher1_nbc | admin1_nbc | Herbert Kraft    | Karl Herzog      | Kraft             | CypressAut Test Creation and Deletion |

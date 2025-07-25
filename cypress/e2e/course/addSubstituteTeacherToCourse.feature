@@ -54,10 +54,10 @@ Feature: Course - Add substitute teacher to course
         @school_api_test
         Examples:
             | admin      | teacher1     | teacher2     | namespace | course_name                   | fullname_teacher  | substitute_teacher |
-            | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Sub-Teacher Course | cypress teacher_1 | teacher_2, cypress |
+            | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | CypressAut Sub-Teacher Course | cypress teacher_1 | teacher_2, cypress |
 
         @staging_test
         Examples:
             | admin      | teacher1     | teacher2     | namespace | course_name                   | fullname_teacher | substitute_teacher |
-            | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Sub-Teacher Course | Karl Herzog      | Hande, Lara        |
+            | admin1_nbc | teacher1_nbc | teacher2_nbc | nbc       | CypressAut Sub-Teacher Course | Karl Herzog      | Hande, Lara        |
 

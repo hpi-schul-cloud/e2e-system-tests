@@ -46,4 +46,4 @@ Feature: Team - Create, delete and edit operations on Teams
         @staging_test
         Examples:
             | teacher      | namespace | team_title                          | team_description              | team_edited_title                          | team_edited_description              |
-            | teacher1_brb | brb       | CypressAut: Create,Edit,Delete Team | This is CRUD team description | CypressAut: Edited Create,Edit,Delete team | This is edited CRUD team description |
+            | teacher1_nbc | nbc       | CypressAut: Create,Edit,Delete Team | This is CRUD team description | CypressAut: Edited Create,Edit,Delete team | This is edited CRUD team description |

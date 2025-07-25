@@ -168,4 +168,4 @@ Feature: Room Board - Upload multiple files in folder in board
 # @staging_test
 # Examples:
 #     | namespace | content_editor      | room_name               | board_title             | folder_name         |
-#     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+#     | nbc       | teacher1_nbc        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |

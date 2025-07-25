@@ -134,9 +134,9 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher  | course_name                           |
-            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | CypressAut Test Creation and Deletion |
+            | nbc       | admin1_nbc | teacher1_nbc | cypress teacher_1 | CypressAut Test Creation and Deletion |
 
         @staging_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher | course_name                           |
-            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | CypressAut Test Creation and Deletion |
+            | nbc       | admin1_nbc | teacher1_nbc | Karl Herzog      | CypressAut Test Creation and Deletion |

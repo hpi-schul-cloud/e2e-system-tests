@@ -60,6 +60,6 @@ Feature:  News - To read a news on the respective dashboards
         @staging_test
         Examples:
             | news_author  | news_reader  | namespace | news_day_from_today | news_time   | news_time_info_overviewpage | news_time_info_detailpage | team_name              | team_news_title                  | team_news_description      |
-            | teacher1_brb | student1_brb | brb       | 0                   | currentTime | vor ein                     | vor ein                   | CypressAut - News Team | CypressAut - this is a team news | test team news description |
-#| admin1_brb   | student1_brb | brb       | notselected         | none        | vor ein                     | vor ein                   | CypressAut - News Team | CypressAut - this is a team news | test team news description |
-#| admin1_brb   | teacher1_brb | brb       | -7                  | currentTime | vor 7 Tage                  | -7                        | CypressAut - News Team | CypressAut - this is a team news | test team news description |
+            | teacher1_nbc | student1_nbc | nbc       | 0                   | currentTime | vor ein                     | vor ein                   | CypressAut - News Team | CypressAut - this is a team news | test team news description |
+#| admin1_nbc   | student1_nbc | nbc       | notselected         | none        | vor ein                     | vor ein                   | CypressAut - News Team | CypressAut - this is a team news | test team news description |
+#| admin1_nbc   | teacher1_nbc | nbc       | -7                  | currentTime | vor 7 Tage                  | -7                        | CypressAut - News Team | CypressAut - this is a team news | test team news description |

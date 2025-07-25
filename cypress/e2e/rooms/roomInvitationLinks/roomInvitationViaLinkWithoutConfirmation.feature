@@ -43,5 +43,5 @@ Feature: Room - Invite User to room via Invitationlink
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name         | invitation_description |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | testinvitationlink     |
+            | teacher1_nbc | teacher2_nbc | nbc       | Cypress Room Name | testinvitationlink     |
 

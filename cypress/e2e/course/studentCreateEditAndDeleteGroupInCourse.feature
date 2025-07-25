@@ -66,9 +66,9 @@ Feature: Course - Teacher can create, edit and delete a group in the course
         @school_api_test
         Examples:
             | admin      | teacher      | student      | student2     | namespace | course_name             | fullname_teacher  | fullname_student  | group_name | group_member      | group_rename  |
-            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | CypressAut Group Course | cypress teacher_1 | cypress student_1 | Group-Work | cypress student_2 | Gruppe-Arbeit |
+            | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | CypressAut Group Course | cypress teacher_1 | cypress student_1 | Group-Work | cypress student_2 | Gruppe-Arbeit |
 
         @staging_test
         Examples:
             | admin      | teacher      | student      | student2     | namespace | course_name             | fullname_teacher | fullname_student | group_name | group_member  | group_rename  |
-            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | CypressAut Group Course | Karl Herzog      | Herbert Kraft    | Group-Work | Amelia Strobl | Gruppe-Arbeit |
+            | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | CypressAut Group Course | Karl Herzog      | Herbert Kraft    | Group-Work | Amelia Strobl | Gruppe-Arbeit |

@@ -69,4 +69,4 @@ Feature: TLDraw - Test tldraw on board
         @staging_test
         Examples:
             | namespace | admin      | teacher      | teacher_fullname | student      | student_fullname | course_name              | board_name              | text_to_write |
-            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
+            | nbc       | admin1_nbc | teacher1_nbc | Karl Herzog      | student1_nbc | Herbert Kraft    | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |

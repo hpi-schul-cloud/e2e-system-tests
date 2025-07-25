@@ -91,9 +91,9 @@ Feature: Topics - To publish and unpublish topic by teacher.
         @school_api_test
         Examples:
             | namespace | admin      | student      | teacher      | fullname_teacher  | fullname_student  | course_title                  | topic_title      | topic_textelement_title                    |
-            | brb       | admin1_brb | student1_brb | teacher1_brb | cypress teacher_1 | cypress student_1 | CypressAut Test Publish Topic | CypressAut Topic | CypressAut Title for Text Element in Topic |
+            | nbc       | admin1_nbc | student1_nbc | teacher1_nbc | cypress teacher_1 | cypress student_1 | CypressAut Test Publish Topic | CypressAut Topic | CypressAut Title for Text Element in Topic |
 
         @staging_test
         Examples:
             | namespace | admin      | student      | teacher      | fullname_teacher | fullname_student | course_title                  | topic_title      | topic_textelement_title                    |
-            | brb       | admin1_brb | student1_brb | teacher1_brb | Karl Herzog      | Herbert Kraft    | CypressAut Test Publish Topic | CypressAut Topic | CypressAut Title for Text Element in Topic |
+            | nbc       | admin1_nbc | student1_nbc | teacher1_nbc | Karl Herzog      | Herbert Kraft    | CypressAut Test Publish Topic | CypressAut Topic | CypressAut Title for Text Element in Topic |
