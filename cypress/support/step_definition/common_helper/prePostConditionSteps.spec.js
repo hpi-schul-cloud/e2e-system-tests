@@ -1,11 +1,11 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
-import Board from "../../pages/course_board/pageBoard";
-import Courses from "../../pages/course/pageCourses";
-import Tasks from "../../pages/tasks/pageTasks";
-import RoomBoards from "../../pages/room_board/pageRoomBoards";
-import Rooms from "../../pages/rooms/pageRooms";
 import Management from "../../pages/admin/pageAdministration";
 import GlobalActions from "../../pages/common_helper/globalActions";
+import Courses from "../../pages/course/pageCourses";
+import Board from "../../pages/course_board/pageBoard";
+import RoomBoards from "../../pages/room_board/pageRoomBoards";
+import Rooms from "../../pages/rooms/pageRooms";
+import Tasks from "../../pages/tasks/pageTasks";
 import Topics from "../../pages/topics/pageTopics";
 
 const roomBoards = new RoomBoards();
@@ -285,37 +285,6 @@ Given(
 		topics.clickOnSubmitChangesInTopicBtn();
 	}
 );
-
-Given("task with task name {string} is created in course {string}", (taskName, courseName) => {
-	courses.navigateToCoursesOverview();
-	courses.navigateToCoursePage(courseName);
-	courses.clickOnCreateContentFAB();
-	courses.clickOnNewTaskFAB();
-	tasks.enterTaskTitle(taskName);
-	tasks.setTaskText('task text for Mathe course');
-	tasks.clickOnSubmit();
-	courses.navigateToCoursesOverview();
-	courses.navigateToCoursePage(courseName);
-});
-
-Given ("text topic with name {string} is created in course {string}", (topicTitle, courseName) => {
-    courses.navigateToCoursesOverview();
-	courses.navigateToCoursePage(courseName);
-	courses.clickOnCreateContentFAB();
-	courses.clickOnNewTopicFAB();
-	topics.enterTopicTitle(topicTitle);
-	topics.clickOnAddTextToTopic();
-	topics.enterTitleforElementText('element Text', '0');
-	topics.enterDescriptionforElementText('element text description', '0');
-	topics.clickOnSubmitChangesInTopicBtn();
-	topics.clickOnSubmitChangesInTopicBtn();
-});
-
-Given("the topic is published in course {string}", (courseName) => {
-	courses.navigateToCoursesOverview();
-	courses.navigateToCoursePage(courseName);
-	courses.clickPublishLinkForFirstTopic();
-});
 
 Given("the topic is published in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
