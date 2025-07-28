@@ -22,6 +22,22 @@ Feature: Course Board - To import a course from common cartridge
         When I go to course 'CC-Import-Test'
         Then I see the board 'Topic 1' on the room overview page
         When I click on the board 'Topic 1' on the room overview page
+        Then I see that I am on a column board
+        Then I see a column with title 'Text 1'
+        Then I see a rich text element with pattern 'Lorem ipsum'
+        Then I see a column with title 'Geogebra 1'
+        Then I see a web link with title 'Geogebra 1'
+        Then I see a column with title 'Etherpad 1'
+        Then I see a web link with title 'Etherpad 1'
+        Then I see a column with title 'LernMat 1'
+        Then I see a web link with title 'Pottwal'
+        Then I see a column with title 'Topic Task 1'
+        
+        # I see a column with title {string}
+        # I see a card with title {string}
+        # I see a rich text element with pattern {string}
+        # I see a web link with title {string}
+        # I see a file element with title {string}
 
         # Aufgaben
         When I go to courses overview
