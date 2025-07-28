@@ -606,6 +606,7 @@ When("I click on the H5P element", () => {
 	roomBoards.clickOnH5PElement();
 });
 
+
 When("I click on the option Edit in the three dot menu on the H5P element", () => {
 	roomBoards.clickOnEditOptionInH5PThreeDotMenu();
 });
