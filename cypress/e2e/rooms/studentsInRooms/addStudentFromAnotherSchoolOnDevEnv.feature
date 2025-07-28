@@ -53,7 +53,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
         Then I see '<participant_external_name_teacher>' in the room participants list
 
         # owner changes role for external teacher
-        When I click on button Three Dot Menu to add participant '<participant_external_name_teacher>'
+        When I click on button Three Dot Menu to edit participant '<participant_external_name_teacher>'
         Then I see button Change role permission is visible
         When I click on button 'Change-Permission' in the sub-menu
         Then I see dialog box Change Role Permission is visible

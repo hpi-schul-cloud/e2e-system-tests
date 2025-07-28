@@ -15,7 +15,19 @@ Then("I enter a new room name {string}", (roomName) => {
 	rooms.enterNewRoomNameInImportModal(roomName);
 });
 
-When("I click on the buttom Import in the modal", () => {
+When("I click on the video conference checkbox", () => {
+	rooms.clickOnVideoConferenceCheckbox();
+});
+
+Then("I see the video conference checkbox is checked", () => {
+	rooms.seeVideoConferenceCheckboxIsChecked();
+});
+
+Then("I see the video conference checkbox is unchecked", () => {
+	rooms.seeVideoConferenceCheckboxIsUnchecked();
+});
+
+When("I click on the button Import in the modal", () => {
 	rooms.clickOnImportConfirmButtonInModal();
 });
 
@@ -181,9 +193,9 @@ When("I click on the fab button to add a Board", () => {
 });
 
 When(
-	"I click on button Three Dot Menu to add participant {string}",
+	"I click on button Three Dot Menu to edit participant {string}",
 	(participantName) => {
-		rooms.clickOnThreeDotMenuToAddUser(participantName);
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
 	}
 );
 
