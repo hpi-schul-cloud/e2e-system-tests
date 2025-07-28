@@ -167,6 +167,10 @@ Then("I see {string} in the room participants list", (participantName) => {
 	rooms.seeParticipantInList(participantName);
 });
 
+Then("I do not see {string} in the room participants list", (participantName) => {
+	rooms.notSeeParticipantInList(participantName);
+});
+
 When(
 	"I click on {string} button in the participant list for participant {string}",
 	(kebabMenuOption, participantName) => {

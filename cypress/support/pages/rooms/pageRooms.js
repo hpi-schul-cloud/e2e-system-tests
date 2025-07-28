@@ -285,7 +285,10 @@ class Rooms {
 	}
 
 	selectParticipantName() {
-		cy.get(Rooms.#addParticipantName).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantName)
+			.should("be.visible")
+			.type("{downArrow}{enter}")
+			.type("{esc}");
 	}
 
 	addParticipant() {
