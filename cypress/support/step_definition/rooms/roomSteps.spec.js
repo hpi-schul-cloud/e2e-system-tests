@@ -15,8 +15,12 @@ Then("I enter a new room name {string}", (roomName) => {
 	rooms.enterNewRoomNameInImportModal(roomName);
 });
 
-When("I click on the video conference checkbox", () => {
-	rooms.clickOnVideoConferenceCheckbox();
+When("I check the video conference checkbox", () => {
+	rooms.checkVideoConferenceCheckbox();
+});
+
+When("I uncheck the video conference checkbox", () => {
+	rooms.uncheckVideoConferenceCheckbox();
 });
 
 Then("I see the video conference checkbox is checked", () => {

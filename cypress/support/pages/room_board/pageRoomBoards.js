@@ -548,6 +548,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#videoConferenceModal).should("be.visible");
 	}
 
+	doNotSeeVideoConferenceStartDaialog() {
+		cy.get(RoomBoards.#videoConferenceModal).should("not.exist");
+	}
+
 	seeCreateButtonInVideoConferenceDialog() {
 		cy.get(RoomBoards.#createVideoConferenceButton).should("be.visible");
 	}

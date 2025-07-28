@@ -306,6 +306,10 @@ Then("I see the modal to start the video conference", () => {
 	roomBoards.seeVideoConferenceStartDaialog();
 });
 
+Then("I do not see the modal to start the video conference", () => {
+	roomBoards.doNotSeeVideoConferenceStartDaialog();
+});
+
 Then(
 	"I see the button create in the video conference creation modal to start the call",
 	() => {
