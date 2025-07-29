@@ -1,5 +1,6 @@
-@pr
-@stable_test
+# @pr
+# @regression_test
+# @stable_test
 Feature: Course Board - To import a course from common cartridge 1.3
 
     As a teacher I want to import a course from a common cartridge file which was exported from SVS
@@ -80,8 +81,10 @@ Feature: Course Board - To import a course from common cartridge 1.3
         Then I see a file element with title 'Description of ppt'
         Then I see a file element with title 'Description of jpg'
 
-        # @staging_test 
-        # TODO this feature is not executable on staging as we do not access the API calls on staging.
+        @staging_test 
+        Examples:
+            | teacher      | namespace |
+            | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:

@@ -1,5 +1,6 @@
-@pr
-@stable_test
+# @pr
+# @regression_test
+# @stable_test
 Feature: Course Board - To import a course from common cartridge 1.1
 
     As a teacher I want to import a course from a common cartridge file which was exported from Moodle
@@ -110,8 +111,10 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see a column with title 'Urheber'
         Then I see a rich text element with pattern 'Schulcloud-Verbund mit den Verbundparteien Brandenburg, Niedersachen, Thüringen'
 
-        # @staging_test 
-        # TODO this feature is not executable on staging as we do not access the API calls on staging.
+        @staging_test 
+        Examples:
+            | teacher      | namespace |
+            | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:
