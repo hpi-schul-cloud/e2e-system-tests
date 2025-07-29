@@ -44,18 +44,47 @@ Feature: Course Board - To import a course from common cartridge
         When I go to course 'CC-Import-Test'
         Then I see the board 'Aufgaben' on the room overview page
         When I click on the board 'Aufgaben' on the room overview page
+        Then I see that I am on a column board
+        Then I see a column with title 'Task 1'
+        Then I see a rich text element with pattern 'How much wood could a woodchuck chuck if a woodchuck could chuck wood?'
 
         # Board 1
         When I go to courses overview
         When I go to course 'CC-Import-Test'
         Then I see the board 'Board 1' on the room overview page
         When I click on the board 'Board 1' on the room overview page
+        Then I see that I am on a column board
+        Then I see a column with title 'Column 1'
+        Then I see a card with title 'Card 1.1'
+        Then I see a rich text element with pattern 'Text Card 1.1'
+        Then I see a card with title 'Card 1.2'
+        Then I see a web link with title 'Google'
+        Then I see a card with title 'Card 1.3'
+        Then I see a file element with title 'file.txt'
+        Then I see a column with title 'Column 2'
+        Then I see a card with title 'Card 2.1'
+        Then I see a web link with title 'Example Domain'
+        Then I see a card with title 'Card 2.2'
+        Then I see a rich text element with pattern 'Text Card 2.2'
+        Then I see a column with title 'Column 3'
+        Then I see a card with title 'Card 3.1'
+        Then I see a rich text element with pattern 'Text Card 3.1'
 
         # Board Files
         When I go to courses overview
         When I go to course 'CC-Import-Test'
         Then I see the board 'Board Files' on the room overview page
         When I click on the board 'Board Files' on the room overview page
+        Then I see that I am on a column board
+        Then I see a card with title 'Files'
+        Then I see a file element with title 'Description of pdf'
+        Then I see a file element with title 'Description of mp3'
+        Then I see a file element with title 'Description of mp4'
+        Then I see a file element with title 'Description of xml'
+        Then I see a file element with title 'Description of png'
+        Then I see a file element with title 'Description of gif'
+        Then I see a file element with title 'Description of ppt'
+        Then I see a file element with title 'Description of jpg'
 
         # @staging_test 
         # TODO this feature is not executable on staging as we do not access the API calls on staging.

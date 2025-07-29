@@ -492,7 +492,7 @@ class Board {
 
 	seeRichTextWithPattern(pattern) {
 		cy.get(Board.#richTextDisplayPattern).each((element) => {
-			if (element.text().match(pattern).length >= 0) {
+			if (element.text().match(pattern)?.length >= 0) {
 				cy.wrap(element).as("richTextWithPattern")
 			}
 		})		
