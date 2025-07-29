@@ -132,6 +132,10 @@ Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
 });
 
+When("I click on the thumbnail Image in the card", () => {
+	roomBoards.clickOnImageThumbnailInCard();
+});
+
 Then("I see the image in a lightbox", () => {
 	roomBoards.verifyImageInLightbox();
 });
@@ -304,6 +308,10 @@ When("I click on the video conference element in the card", () => {
 
 Then("I see the modal to start the video conference", () => {
 	roomBoards.seeVideoConferenceStartDaialog();
+});
+
+Then("I do not see the modal to start the video conference", () => {
+	roomBoards.doNotSeeVideoConferenceStartDaialog();
 });
 
 Then(

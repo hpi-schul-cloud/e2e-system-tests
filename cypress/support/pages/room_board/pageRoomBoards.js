@@ -325,6 +325,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
 
+	clickOnImageThumbnailInCard() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).click();
+		cy.wait(500);
+	}
+
 	clickDownloadIconOnFullScreenImage() {
 		cy.get(RoomBoards.#downloadButtonOnFullImage).click();
 	}
@@ -547,6 +552,10 @@ class RoomBoards {
 
 	seeVideoConferenceStartDaialog() {
 		cy.get(RoomBoards.#videoConferenceModal).should("be.visible");
+	}
+
+	doNotSeeVideoConferenceStartDaialog() {
+		cy.get(RoomBoards.#videoConferenceModal).should("not.exist");
 	}
 
 	seeCreateButtonInVideoConferenceDialog() {

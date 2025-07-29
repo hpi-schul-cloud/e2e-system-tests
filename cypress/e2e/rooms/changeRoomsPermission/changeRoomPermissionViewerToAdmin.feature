@@ -29,7 +29,7 @@ Feature: Room - Change room permission (Viewer - Admin)
         Then I see '<participant_name>' in the room participants list
 
         # first teacher changes role for other user
-        When I click on button Three Dot Menu to add participant '<participant_name>'
+        When I click on button Three Dot Menu to edit participant '<participant_name>'
         Then I see button Change role permission is visible
         When I click on button 'Change-Permission' in the sub-menu
         Then I see dialog box Change Role Permission is visible
