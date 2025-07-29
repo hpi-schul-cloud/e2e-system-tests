@@ -1,11 +1,12 @@
 @regression_test
 @stable_test
+@group-U
 
 Feature: Room - Students can only add students from their own classes to a room on NBC
 
     As a student I can only add students from my own class to a room.
 
-    Scenario: Teacher adds participants and deletes participants, including pre-conditions
+    Scenario Outline: Teacher adds participants and deletes participants, including pre-conditions
         Given I am logged in as a '<student_1>' at '<namespace>'
         Given I am logged in as a '<student_2>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'

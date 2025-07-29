@@ -1,11 +1,12 @@
 @regression_test
 @stable_test
+@group-U
 
 Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
     As a teacher, I want to verify the impact of enabling the feature checkbox in the room edit page on the ability to add the BBB Tool to room boards.
 
-    Scenario: Enable feature checkbox in room edit page and check BBB Tool availability in room board
+    Scenario Outline: Enable feature checkbox in room edit page and check BBB Tool availability in room board
 
         # pre-condition: teacher and admin accounts exist
         Given I am logged in as a '<teacher_1>' at '<namespace>'
