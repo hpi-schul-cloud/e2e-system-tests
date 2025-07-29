@@ -1,10 +1,10 @@
 @pr
 @stable_test
-Feature: Course Board - To import a course from common cartridge
+Feature: Course Board - To import a course from common cartridge 1.3
 
-    As a teacher I want to import a course from a common cartridge file
+    As a teacher I want to import a course from a common cartridge file which was exported from SVS
 
-    Scenario: Teacher imports course
+    Scenario: Teacher imports course from SVS
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # import the course
@@ -32,12 +32,6 @@ Feature: Course Board - To import a course from common cartridge
         Then I see a column with title 'LernMat 1'
         Then I see a web link with title 'Pottwal'
         Then I see a column with title 'Topic Task 1'
-        
-        # I see a column with title {string}
-        # I see a card with title {string}
-        # I see a rich text element with pattern {string}
-        # I see a web link with title {string}
-        # I see a file element with title {string}
 
         # Aufgaben
         When I go to courses overview
