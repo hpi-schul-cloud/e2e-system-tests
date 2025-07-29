@@ -324,6 +324,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
 
+	clickOnImageThumbnailInCard() {
+		cy.get(RoomBoards.#thumbnailImageOnCard).click();
+		cy.wait(500);
+	}
+
 	clickDownloadIconOnFullScreenImage() {
 		cy.get(RoomBoards.#downloadButtonOnFullImage).click();
 	}

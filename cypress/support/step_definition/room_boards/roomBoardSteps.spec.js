@@ -132,6 +132,10 @@ Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
 });
 
+When("I click on the thumbnail Image in the card", () => {
+	roomBoards.clickOnImageThumbnailInCard();
+});
+
 Then("I see the image in a lightbox", () => {
 	roomBoards.verifyImageInLightbox();
 });
@@ -609,7 +613,6 @@ Then("I do not see the element H5P", () => {
 When("I click on the H5P element", () => {
 	roomBoards.clickOnH5PElement();
 });
-
 
 When("I click on the option Edit in the three dot menu on the H5P element", () => {
 	roomBoards.clickOnEditOptionInH5PThreeDotMenu();
