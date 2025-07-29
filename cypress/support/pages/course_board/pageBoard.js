@@ -59,6 +59,10 @@ class Board {
 		cy.get(`[data-testid="create-element-${cardElementName}"]`).click();
 	}
 
+	doNotSeeCardElementFromMenu(cardElementName) {
+		cy.get(`[data-testid="create-element-${cardElementName}"]`).should("not.exist");
+	}
+
 	seeWhiteboardOnPage() {
 		cy.get(Board.#drawingElement).should("exist");
 	}

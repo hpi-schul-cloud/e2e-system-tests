@@ -83,6 +83,10 @@ Then("I select {string} from the element selection dialog box", (cardElementName
 	board.selectCardElementFromMenu(cardElementName);
 });
 
+Then("I do not see {string} in the element selection dialog box", (cardElementName) => {
+	board.doNotSeeCardElementFromMenu(cardElementName);
+});
+
 Then("I see a board card", () => {
 	board.seeBoardCard();
 });
