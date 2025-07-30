@@ -1,6 +1,8 @@
-@unstable_test
-# Due to brwowser security permission, there is an error while extracting copied linked card url from the clipboard.
-
+@regression_test
+@stable_test
+@group-K
+# @unstable_test
+# Due to browser security permission, there is an error while extracting copied linked card url from the clipboard.
 Feature: Course Board - To share a board card link
 
     As a teacher I want to share a link to a board card.

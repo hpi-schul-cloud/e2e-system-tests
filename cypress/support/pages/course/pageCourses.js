@@ -153,6 +153,8 @@ class Courses {
 	static #btnExportCourse = '[data-testid="room-menu-common-cartridge-download"]';
 	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
+	static #adminCourseTableName = '[data-testid="admin-rooms-table-name"]';
+	static #btnCourseTableDelete = '[data-testid="course-table-delete-btn"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -1219,6 +1221,15 @@ class Courses {
 		cy.get(Courses.#breadcrumb1).within(() => {
 			cy.get("a").should("have.text", courseName);
 		});
+	}
+
+	deleteCourseFromCourseTable(courseName) {
+		cy.contains(Courses.#adminCourseTableName, courseName)
+			.should("be.visible")
+			.should("exist")
+			.parents("tr")
+			.find(Courses.#btnCourseTableDelete)
+			.click();
 	}
 }
 export default Courses;

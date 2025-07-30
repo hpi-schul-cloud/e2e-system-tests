@@ -202,6 +202,7 @@ class Board {
 
 	clickOnThreeDotOnCard() {
 		cy.get(Board.#threeDotMenuInCard).click();
+		cy.wait(1000);
 		cy.get(Board.#editOptionThreeDot).should("be.visible");
 	}
 
@@ -433,6 +434,32 @@ class Board {
 		cy.get(Board.#boardCard).should("be.visible");
 	}
 
+	// selectCopyLinkToCardInThreeDotMenu() {
+	// 	Cypress.automation("remote:debugger:protocol", {
+	// 		command: "Browser.grantPermissions",
+	// 		params: {
+	// 			permissions: ["clipboardReadWrite", "clipboardSanitizedWrite"],
+	// 			origin: window.location.origin,
+	// 		},
+	// 	});
+	// 	cy.window().then((win) => {
+	// 		win.focus();
+	// 	});
+	// 	cy.get(Board.#copyBoardCardLinkButton).click();
+	// 	cy.wait(200);
+	// 	cy.window()
+	// 		.then((win) => {
+	// 			return win.navigator.clipboard.readText();
+	// 		})
+	// 		.then((link) => {
+	// 			cy.wrap(link).as("boardCardLink");
+
+	// 			cy.url().then((currentUrl) => {
+	// 				expect(link).to.include(currentUrl);
+	// 			});
+	// 		});
+	// }
+
 	selectCopyLinkToCardInThreeDotMenu() {
 		Cypress.automation("remote:debugger:protocol", {
 			command: "Browser.grantPermissions",
@@ -441,19 +468,36 @@ class Board {
 				origin: window.location.origin,
 			},
 		});
-		cy.get(Board.#copyBoardCardLinkButton).click();
-		// cy.wait(500);
-		// cy.window()
-		// 	.then((win) => {
-		// 		return win.navigator.clipboard.readText();
-		// 	})
-		// 	.then((link) => {
-		// 		cy.wrap(link).as("boardCardLink");
 
-		// 		cy.url().then((currentUrl) => {
-		// 			expect(link).to.include(currentUrl);
-		// 		});
-		// 	});
+		cy.get(Board.#copyBoardCardLinkButton).click();
+		cy.wrap(null, { timeout: 20000 })
+			.then(function attemptClipboard() {
+				return cy.window().then((win) => {
+					win.focus();
+					win.document.body.click();
+					return win.navigator.clipboard
+						.readText()
+						.then((text) => {
+							let previous = null;
+							if (cy.state("aliases")["lastClipboard"]) {
+								previous = cy.state("aliases")["lastClipboard"].subject;
+							}
+							if (text && text !== previous) {
+								cy.wrap(text).as("lastClipboard");
+								return text;
+							}
+							return cy.wait(300).then(attemptClipboard);
+						})
+						.catch(() => {
+							return cy.wait(300).then(attemptClipboard);
+						});
+				});
+			})
+			.then((link) => {
+				cy.url().then((currentUrl) => {
+					expect(link).to.include(currentUrl);
+				});
+			});
 	}
 
 	openBoardCardLink() {
@@ -495,7 +539,7 @@ class Board {
 	}
 
 	enterBoardCardLinkInLinkElement() {
-		cy.get("@boardCardLink").then((link) => {
+		cy.get("@lastClipboard").then((link) => {
 			cy.get(Board.#boardLinkElement)
 				.find("textarea")
 				.first()

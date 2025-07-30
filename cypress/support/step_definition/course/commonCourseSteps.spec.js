@@ -432,3 +432,7 @@ When("I open column board {string}", (boardName) => {
 Then("I see breardcrumb contains course name {string}", (courseName) => {
 	courses.seeBreadcrumbWithCourseName(courseName);
 });
+
+When("I click the delete button for course {string} in course table", (courseName) => {
+	courses.deleteCourseFromCourseTable(courseName);
+});

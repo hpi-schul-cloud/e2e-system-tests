@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group-K
 Feature: Course Board - Copy course with a board wich contains link elements with board card links
 
     As a Teacher I want to be able to copy course with links elements in a board, when the link elements contain board card links

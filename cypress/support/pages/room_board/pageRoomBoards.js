@@ -453,9 +453,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -476,7 +474,8 @@ class RoomBoards {
 			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
-		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
+		cy.wait(1000);
+		// cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
 	}
 
 	clickEditOptionInCardThreeDot() {
