@@ -143,6 +143,9 @@ class Courses {
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
 	static #messageNoTasksAvailable = '[data-testid="empty-state-title"]';
 	static #iconCourse = '[data-testid="course-icon"]';
+	static #btnExportCourse = '[data-testid="room-menu-common-cartridge-download"]';
+	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
+	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -854,6 +857,19 @@ class Courses {
 	clickCopyCourseButton() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnCopyCourse).click();
+	}
+
+	clickExportCourseButton() {
+		cy.get(Courses.#dropDownCourse).parent().click();
+		cy.get(Courses.#btnExportCourse).click();
+	}
+
+	clickDialogNextButton() {
+		cy.get(Courses.#btnDialogNext).click();
+	}
+
+	clickDialogExportButton() {
+		cy.get(Courses.#btnDialogExport).click();
 	}
 
 	seeCopyResultNotification() {
