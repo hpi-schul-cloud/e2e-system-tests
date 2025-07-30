@@ -44,6 +44,9 @@ class Board {
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
+	static #boardCardTitle = '[data-testid="card-title"]';
+	static #boardLinkElement = '[data-testid="board-link-element-create"]';
+	static #contentElementTitle = '[data-testid="content-element-title-slot"]';
 	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 
@@ -132,7 +135,10 @@ class Board {
 	}
 
 	seeCourseBoardName(boardName) {
-		cy.get(Board.#courseBoardTitleOnPage).contains(boardName);
+		cy.get(Board.#courseBoardTitleOnPage)
+			.find("input")
+			.should("be.visible")
+			.should("have.value", boardName);
 	}
 
 	seeDraftChipOnCourseBoard() {
@@ -430,7 +436,7 @@ class Board {
 
 	selectCopyLinkToCardInThreeDotMenu() {
 		cy.get(Board.#copyBoardCardLinkButton).click();
-
+		cy.wait(500);
 		cy.window()
 			.then((win) => {
 				return win.navigator.clipboard.readText();
@@ -465,5 +471,51 @@ class Board {
 	seeMultiColumnBoard() {
 		cy.get(Board.#firstBoardColumn).should("be.visible");
 	}
+
+	enterBoardCardTitle(cardTitle) {
+		cy.get(Board.#boardCard).within(() => {
+			cy.get(Board.#boardCardTitle)
+				.find("textarea")
+				.first()
+				.clear()
+				.type(cardTitle);
+		});
+	}
+
+	seeBoardCardTitle(cardTitle) {
+		cy.get(Board.#boardCard).within(() => {
+			cy.get(Board.#boardCardTitle)
+				.find("textarea")
+				.first()
+				.should("be.visible")
+				.should("have.value", cardTitle);
+		});
+	}
+
+	enterBoardCardLinkInLinkElement() {
+		cy.get("@boardCardLink").then((link) => {
+			cy.get(Board.#boardLinkElement)
+				.find("textarea")
+				.first()
+				.clear()
+				.type(link)
+				.type('{enter}');
+		});
+	}
+
+	seeLinkElementTitle(linkElementTitle) {
+		cy.get(Board.#contentElementTitle)
+			.contains(linkElementTitle)
+			.should("be.visible");
+	}
+
+	clickOnLinkElement(linkElementTitle) {
+		cy.get(Board.#contentElementTitle)
+			.contains(linkElementTitle)
+			.parents("a")
+			.invoke("removeAttr", "target")
+			.click();
+	}
+
 }
 export default Board;
