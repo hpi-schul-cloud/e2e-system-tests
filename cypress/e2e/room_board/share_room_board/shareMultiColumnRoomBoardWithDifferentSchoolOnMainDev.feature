@@ -9,7 +9,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
     Scenario: Share a multi-column board with a teacher from differentschool
 
         # pre-condition: creating teacher accounts for two different schools
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given I am logged in as a '<teacher1>' at '<namespace>'
 
         # pre-condition: room and multi-column board are available in the first school
@@ -18,7 +18,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
         # first teacher from the first school allows sharing the multi-column board with another teacher from a different school
         Then I see the page board details
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
         Then I see the title in the share modal
@@ -37,7 +37,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the alert message
 
         # pre-condition: second teacher logged into the application, and a room exists
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given a room named '<room_name_target>' exists
 
         # second teacher from the second school can access the shared URL and import the multi-column board
@@ -59,7 +59,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the detail page of room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
-        When I click on the three dot menu in room board
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
         Then I see the checkbox Link valid for the same school is by default checked
@@ -69,18 +69,18 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I copy the board URL
 
         # second teacher from the second school can not access the shared board URL and sees the 'Not Allowed' alert
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         When I open the shared URL
         Then I see an alert that importing the board is not allowed
 
         # post-condition: rooms created by both teachers are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
         Given the room named '<room_name_source>' is deleted
-        Given I am logged in as a '<teacherExt1>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given the room named '<room_name_target>' is deleted
 
         @school_api_test
         Examples:
-            | teacher1     | teacherExt1     | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
+            | teacher1     | teacherExt_1    | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
             | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
 

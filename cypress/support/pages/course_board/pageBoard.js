@@ -39,6 +39,8 @@ class Board {
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
 	static #externalToolElementAlert =
 		'[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementDomain =
+		'[data-testid="board-external-tool-element-domain"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
@@ -60,6 +62,10 @@ class Board {
 		cy.get(`[data-testid="create-element-${cardElementName}"]`).click();
 	}
 
+	doNotSeeCardElementFromMenu(cardElementName) {
+		cy.get(`[data-testid="create-element-${cardElementName}"]`).should("not.exist");
+	}
+
 	seeWhiteboardOnPage() {
 		cy.get(Board.#drawingElement).should("exist");
 	}
@@ -73,6 +79,12 @@ class Board {
 			.find(".content-element-title")
 			.should("contain.text", toolName)
 			.should("be.visible");
+	}
+
+	seeExternalToolElementDomain(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).within(() => {
+			cy.get(Board.#externalToolElementDomain).should("be.visible");
+		});
 	}
 
 	canNotSeeDeletedElements() {
@@ -118,7 +130,7 @@ class Board {
 
 	enterCourseBoardTitle(boardTitle) {
 		cy.get(Board.#courseBoardTitleOnPage).within(() => {
-			this.clearAndType("input", boardTitle);
+			this.clearAndType("textarea", boardTitle);
 		});
 	}
 
@@ -238,9 +250,8 @@ class Board {
 	seeNewlyCreatedColumn(newColumnName) {
 		cy.wait(1000);
 		cy.get(Board.#addColumnTitleInput)
-			.find("textarea")
 			.should("be.visible")
-			.should("have.attr", "value", newColumnName);
+			.should("include.text", newColumnName);
 	}
 
 	clickOnAddNewCardButton() {

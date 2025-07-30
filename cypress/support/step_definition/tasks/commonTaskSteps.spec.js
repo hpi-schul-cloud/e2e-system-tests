@@ -2,6 +2,7 @@ const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Tasks from "../../pages/tasks/pageTasks";
 
 const tasks = new Tasks();
+
 Then("file {string} is saved in folder downloads", (fileName) => {
 	tasks.seeFileIsSavedInDownloads(fileName);
 });
@@ -28,6 +29,22 @@ Then("I can see create task page", () => {
 
 Then("I can see edit task page {string}", (taskTitle) => {
 	tasks.seeEditTaskPage(taskTitle);
+});
+
+Then("I see description of the edit task page", () => {
+	tasks.seeEditTaskDescription();
+});
+
+Then("I see start date is set and visible", () => {
+	tasks.seeEditTaskStartDateIsSet();
+});
+
+Then("I see end date is not set and not visible", () => {
+	tasks.seeEditTaskEndDateIsNotSet();
+});
+
+Then("I see the draft check box is enabled by default", () => {
+	tasks.seeDraftCheckboxIsEnabledByDefault();
 });
 
 When("I enter title {string}", (taskTitle) => {

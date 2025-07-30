@@ -38,6 +38,16 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_LDAP_BRB", "TEACHER_LDAP_BRB_PASSWORD"];
 		case "admin_ldap_brb":
 			return ["ADMIN_LDAP_BRB", "ADMIN_LDAP_BRB_PASSWORD"];
+		case "teacherExt1_brb":
+			return ["TEACHER_EXT_1_BRB_EMAIL", "TEACHER_EXT_1_BRB_PASSWORD"];
+		case "adminExt1_brb":
+			return ["ADMIN_EXT_1_BRB_EMAIL", "ADMIN_EXT_1_BRB_PASSWORD"];
+		case "studentExt1_brb":
+			return ["STUDENT_EXT_1_BRB_EMAIL", "STUDENT_EXT_1_BRB_PASSWORD"];
+		case "teacherExt2_brb":
+			return ["TEACHER_EXT_2_BRB_EMAIL", "TEACHER_EXT_2_BRB_PASSWORD"];
+		case "studentExt2_brb":
+			return ["STUDENT_EXT_2_BRB_EMAIL", "STUDENT_EXT_2_BRB_PASSWORD"];
 
 		case "admin1_dbc":
 			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
@@ -57,6 +67,13 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_LDAP_DBC", "TEACHER_LDAP_DBC_PASSWORD"];
 		case "admin_ldap_dbc":
 			return ["ADMIN_LDAP_DBC", "ADMIN_LDAP_DBC_PASSWORD"];
+		case "teacherExt1_dbc":
+			return ["TEACHER_EXT_1_DBC_EMAIL", "TEACHER_EXT_1_DBC_PASSWORD"];
+		case "adminExt1_dbc":
+			return ["ADMIN_EXT_1_DBC_EMAIL", "ADMIN_EXT_1_DBC_PASSWORD"];
+		case "teacherExt2_dbc":
+			return ["TEACHER_EXT_2_DBC_EMAIL", "TEACHER_EXT_2_DBC_PASSWORD"];
+
 		case "admin1_nbc":
 			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
 		case "teacher1_nbc":
@@ -73,16 +90,6 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_LDAP_NBC", "TEACHER_LDAP_NBC_PASSWORD"];
 		case "admin_ldap_nbc":
 			return ["ADMIN_LDAP_NBC", "ADMIN_LDAP_NBC_PASSWORD"];
-		case "teacherExt1_brb":
-			return ["TEACHER_EXT_1_BRB_EMAIL", "TEACHER_EXT_1_BRB_PASSWORD"];
-		case "adminExt1_brb":
-			return ["ADMIN_EXT_1_BRB_EMAIL", "ADMIN_EXT_1_BRB_PASSWORD"];
-		case "studentExt1_brb":
-			return ["STUDENT_EXT_1_BRB_EMAIL", "STUDENT_EXT_1_BRB_PASSWORD"];
-		case "teacherExt2_brb":
-			return ["TEACHER_EXT_2_BRB_EMAIL", "TEACHER_EXT_2_BRB_PASSWORD"];
-		case "studentExt2_brb":
-			return ["STUDENT_EXT_2_BRB_EMAIL", "STUDENT_EXT_2_BRB_PASSWORD"];
 		case "teacherExt1_nbc":
 			return ["TEACHER_EXT_1_NBC_EMAIL", "TEACHER_EXT_1_NBC_PASSWORD"];
 		case "adminExt1_nbc":
@@ -93,16 +100,21 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_EXT_2_NBC_EMAIL", "TEACHER_EXT_2_NBC_PASSWORD"];
 		case "studentExt2_nbc":
 			return ["STUDENT_EXT_2_NBC_EMAIL", "STUDENT_EXT_2_NBC_PASSWORD"];
-		case "teacherExt1_dbc":
-			return ["TEACHER_EXT_1_DBC_EMAIL", "TEACHER_EXT_1_DBC_PASSWORD"];
-		case "adminExt1_dbc":
-			return ["ADMIN_EXT_1_DBC_EMAIL", "ADMIN_EXT_1_DBC_PASSWORD"];
 		case "studentExt1_nbc":
 			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
-		case "teacherExt2_dbc":
-			return ["TEACHER_EXT_2_DBC_EMAIL", "TEACHER_EXT_2_DBC_PASSWORD"];
 		case "studentExt2_nbc":
 			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
+
+		case "teacher1_lh":
+			return ["TEACHER_1_LH_EMAIL", "TEACHER_1_LH_PASSWORD"];
+		case "teacher2_lh":
+			return ["TEACHER_2_LH_EMAIL", "TEACHER_2_LH_PASSWORD"];
+		case "student1_lh":
+			return ["STUDENT_1_LH_EMAIL", "STUDENT_1_LH_PASSWORD"];
+		case "student2_lh":
+			return ["STUDENT_2_LH_EMAIL", "STUDENT_2_LH_PASSWORD"];
+		case "admin1_lh":
+			return ["ADMIN_1_LH_EMAIL", "ADMIN_1_LH_PASSWORD"];
 
 		default:
 			return [null, null];
@@ -200,7 +212,7 @@ export const loginWithoutSchoolApi = (username, environment) => {
 		: fillLoginForm(env[userEmail], env[userPassword]);
 };
 
-export const loginViaSchoolApi = async (username, environment) => {
+export const loginViaSchoolApi = async (username, environment, schoolId, courseId) => {
 	try {
 		visitLoginPage(environment);
 		const link = Cypress.config("baseUrl");
@@ -211,8 +223,9 @@ export const loginViaSchoolApi = async (username, environment) => {
 				{
 					url: link,
 					apiKey: Cypress.env(`apiKey-${environment}`),
-					schoolId: Cypress.env(`schoolId-${environment}`),
+					schoolId: schoolId ?? Cypress.env(`schoolId-${environment}`),
 					userType: username,
+					courseId: courseId,
 				},
 				{ log: false }
 			)

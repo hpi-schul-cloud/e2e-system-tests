@@ -7,7 +7,10 @@ const toolConfiguration = new ToolConfiguration();
 
 Given("the school has external tool {string}", (toolList) => {
 	// list of special tools
-	const toolsWithCustomParameter = ["CY Test Tool Required Parameters", "CY Test Tool Optional Parameters"];
+	const toolsWithCustomParameter = [
+		"CY Test Tool Required Parameters",
+		"CY Test Tool Optional Parameters",
+	];
 	const linkTools = ["CY Test Tool OpenStreetMap"];
 
 	const tools = toolList.split(/\s*,\s*/);
@@ -20,9 +23,9 @@ Given("the school has external tool {string}", (toolList) => {
 	tools.forEach((toolName) => {
 		cy.wrap(null).then(() => {
 			// check if tools already exists
-			return  management.schoolHasExternalTool(toolName).then((exists) => {
+			return management.schoolHasExternalTool(toolName).then((exists) => {
 				// if the tool already exists
-				if (exists){
+				if (exists) {
 					management.clickOnEditButton(toolName);
 
 					// if tool has a custom parameter
@@ -31,9 +34,9 @@ Given("the school has external tool {string}", (toolList) => {
 					}
 
 					// activates the tool if it is deactivated
-					toolConfiguration.activateTool()
+					toolConfiguration.activateTool();
 					toolConfiguration.saveExternalToolButton();
-					cy.log(`Tool ${toolName} already exists.`)
+					cy.log(`Tool ${toolName} already exists.`);
 					return;
 				}
 
@@ -41,7 +44,9 @@ Given("the school has external tool {string}", (toolList) => {
 				management.clickAddExternalTool();
 
 				if (linkTools.includes(toolName)) {
-					toolConfiguration.insertToolLink("https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823");
+					toolConfiguration.insertToolLink(
+						"https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823"
+					);
 				} else if (toolsWithCustomParameter.includes(toolName)) {
 					toolConfiguration.addExternalTool(toolName);
 					toolConfiguration.fillInCustomParameter("schoolParam", "test");
@@ -51,8 +56,8 @@ Given("the school has external tool {string}", (toolList) => {
 
 				toolConfiguration.saveExternalToolButton();
 				management.seeExternalTool(toolName);
-				cy.log(`Tool ${toolName} was added.`)
-			})
+				cy.log(`Tool ${toolName} was added.`);
+			});
 		});
 	});
 });

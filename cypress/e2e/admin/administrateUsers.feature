@@ -1,6 +1,9 @@
 @regression_test
 @stable_test
 @schedule_run
+@group-D
+@pr
+@pre_check_test
 Feature: Admin - To add, edit and delete new users by the admin.
 
     As an admin I want to create a new user so that I can administrate it

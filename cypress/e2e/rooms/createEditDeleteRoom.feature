@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
-@schedule_test
+@schedule_run
+@group-I
 Feature: Room - To create, edit and delete room
 
     As a teacher I want to create, edit and delete rooms.
@@ -20,10 +21,6 @@ Feature: Room - To create, edit and delete room
         Then I see the detail page of room '<room_name>'
 
         # teacher is able to edit the room
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to room overview
-        When I go to room '<room_name>'
-        Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'edit'
         Then I see edit page of room '<room_name>'
@@ -32,10 +29,6 @@ Feature: Room - To create, edit and delete room
         Then I see the detail page of room '<room_name_new>'
 
         # teacher is able to delete the room
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to room overview
-        When I go to room '<room_name_new>'
-        Then I see the detail page of room '<room_name_new>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the room

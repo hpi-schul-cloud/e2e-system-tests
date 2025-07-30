@@ -1198,14 +1198,14 @@ class Management {
 	}
 
 	schoolHasExternalTool(toolName) {
-		return cy.get(Management.#externalToolsTable).then(($table) => {
+		return cy.get(Management.#externalToolsTable).should("be.visible").then(($table) => {
 			if ($table.text().includes("Keine Daten vorhanden")) {
-				return false;
+				return cy.wrap(false);
 			}
 
 			return cy.get(Management.#externalToolName).then(($names) => {
 				const found = [...$names].some(el => el.textContent.trim() === toolName);
-				return found;
+				return cy.wrap(found);
 			});
 		});
 	}

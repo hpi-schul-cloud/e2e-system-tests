@@ -136,10 +136,11 @@ Then("I see {int} tools in the first media line", (count) => {
 });
 
 Then(
-	"I see the thumbnail, title and description of media element {string}",
+	"I see the thumbnail, title, domain and description of media element {string}",
 	(toolName) => {
 		mediaShelf.seeMediaElementDefaultThumbnail(toolName);
 		mediaShelf.seeMediaElementTitle(toolName);
+		mediaShelf.seeMediaElementDomain(toolName);
 		mediaShelf.seeMediaElementDescription(toolName);
 	}
 );

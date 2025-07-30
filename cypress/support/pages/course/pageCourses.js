@@ -22,9 +22,13 @@ class Courses {
 	static #newTaskFAB = '[data-testid="fab_button_add_task"]';
 	static #dialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
+	static #successAlertDuplicateTask = '[data-testid="alert-text"]';
+	static #copyButtonInDotMenu = '[data-testid="room-task-card-menu-copy-0"]';
+	static #taskCardTitle = '[data-testid="task-card-title-0"]';
 	static #deleteButtonInDotMenu = '[data-testid="room-task-card-menu-remove-0"]';
 	static #deleteButtonInDotMenuOfTopic =
 		'[data-testid="lesson-card-menu-action-remove-0"]';
+	static #copyProgressBar = '[data-testid="dialog-content"]';
 	static #editButtonInDotMenu = '[data-testid="room-task-card-menu-edit-0"]';
 	static #editButtonInDotMenuOfTopic = '[data-testid="lesson-card-menu-action-edit-0"]';
 	static #backToDraftButtonInDotMenuOfTopic =
@@ -39,6 +43,7 @@ class Courses {
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChipWithIndex =
 		'[data-testid="room-task-card-chip-submitted-0"]';
+	static #contentCardTaskInfoDueDate = '[data-testid="dueDateHintLabel"]';
 	static #contentCardTaskInfoGradingsChipWithIndex =
 		'[data-testid="room-task-card-chip-graded-0"]';
 	static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]';
@@ -78,12 +83,14 @@ class Courses {
 	static #btnCopyCourse = '[data-testid="room-menu-copy"]';
 	static #courseGroupTab = '[data-testid="groups-tab"]';
 	static #addNewCourseGroupButton = '[data-testid="add-course-group"]';
+	static #copyResultDialog = '[data-testid="dialog-text"]';
 	static #copyResultNotification = '[data-testid="copy-result-notifications"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="dialog-close"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
+	static #toolDomain = '[data-testid="tool-card-domain"]';
 	static #incompleteChip = '[data-testid="tool-card-status"]';
 	static #deactivatedChip = '[data-testid="tool-card-status-deactivated"]';
 	static #incompleteOperationalChip =
@@ -107,6 +114,8 @@ class Courses {
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
 	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
+	static #taskCardPublishButtonInCoursePageWithIndex =
+		'[data-testid="task-card-action-publish-0"]';
 	static #taskCardFinishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
@@ -138,9 +147,12 @@ class Courses {
 	static #deleteDialogContent = '[data-testid="delete-dialog-content"]';
 	static #confirmDeleteDialogButton = '[data-testid="dialog-confirm"]';
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
-	static #messageNoTasksAvailable = '[data-testid="emptyTaskMessage"]';
+	static #messageNoTasksAvailable = '[data-testid="empty-state-title"]';
 	static #iconCourse = '[data-testid="course-icon"]';
 	static #breadcrumb1 = '[data-testid="breadcrumb-1"]';
+	static #btnExportCourse = '[data-testid="room-menu-common-cartridge-download"]';
+	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
+	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -161,11 +173,22 @@ class Courses {
 		cy.get(Courses.#sectionThreeAreaOnCourseCreationPage).should("be.visible");
 	}
 
-	selectStudentInCourseCreatePage(studentName) {
+	selectStudentsInCourseCreatePage(studentNames) {
+		// Accepts a single student name, a comma-separated string, or an array
+		let students = [];
+		if (Array.isArray(studentNames)) {
+			students = studentNames;
+		} else if (typeof studentNames === "string") {
+			students = studentNames.split(",");
+		} else if (studentNames) {
+			students = [studentNames];
+		}
 		cy.get(Courses.#studentSelectionBoxInCourseCreate).invoke("show");
-		cy.get(Courses.#studentSelectionBoxInCourseCreate)
-			.should("be.visible")
-			.select(studentName);
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).should("be.visible");
+		// Select all students at once
+		cy.get(Courses.#studentSelectionBoxInCourseCreate).select(
+			students.map((s) => s.trim())
+		);
 	}
 
 	selectClassInCourseCreatePage(className) {
@@ -265,6 +288,10 @@ class Courses {
 		cy.get(Courses.#courseTimeTableContainer).should("exist");
 	}
 
+	seeProgressBar() {
+		cy.get(Courses.#copyResultDialog).should("be.visible");
+	}
+
 	seeSelectionBoxToSelectClass() {
 		cy.get(Courses.#addClassToCourseSelectionBox).should("exist");
 	}
@@ -313,6 +340,7 @@ class Courses {
 						return new Cypress.Promise((resolve, reject) => {
 							try {
 								setTimeout(() => {
+									cy.wait("@userPermissions_api");
 									cy.get(Courses.#learningContentTab).should(
 										"have.attr",
 										"aria-selected",
@@ -573,6 +601,32 @@ class Courses {
 		cy.get(Courses.#topicCardInCoursePageWithIndex).click();
 	}
 
+	seeDuplicateTaskSuccessAlert(successMessage) {
+		cy.get(Courses.#successAlertDuplicateTask)
+			.should("be.visible")
+			.contains(successMessage);
+	}
+
+	seeCopyOptionInThreeDotMenuOfTopic() {
+		cy.get(Courses.#copyButtonInDotMenu).should("be.visible");
+	}
+
+	seeConfirmationModalForTaskDeletion() {
+		cy.get(Courses.#copyProgressBar).should("exist");
+	}
+
+	seeDraftTaskTitle() {
+		cy.get(Courses.#taskCardTitle).contains(" Aufgabe – Entwurf");
+	}
+
+	seeTaskOnCoursePagePublish() {
+		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndex).should("be.visible");
+	}
+
+	clickCopyOptionInThreeDotMenuOfTopic() {
+		cy.get(Courses.#copyButtonInDotMenu).click();
+	}
+
 	clickDeleteInDotMenu() {
 		cy.get(Courses.#deleteButtonInDotMenu).click();
 	}
@@ -624,6 +678,11 @@ class Courses {
 			"contain",
 			submittedTasks
 		);
+	}
+
+	compareNotSubmittedTasksInformation(contentTitle) {
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
+		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should("not.exist");
 	}
 
 	compareGradedTasksInformation(gradedTasks, contentTitle) {
@@ -796,6 +855,12 @@ class Courses {
 		cy.get(Courses.#courseExternalToolSection).contains(toolName).should("not.exist");
 	}
 
+	seeToolDomain(toolName) {
+		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
+			cy.get(Courses.#toolDomain).should("be.visible");
+		});
+	}
+
 	clickThreeDotMenuOnTool(toolName) {
 		cy.get(`[data-testid="external-tool-card-${toolName}"]`).within(() => {
 			cy.get(Courses.#threeDotMenuOnTool).should("be.visible").click();
@@ -829,6 +894,19 @@ class Courses {
 	clickCopyCourseButton() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnCopyCourse).click();
+	}
+
+	clickExportCourseButton() {
+		cy.get(Courses.#dropDownCourse).parent().click();
+		cy.get(Courses.#btnExportCourse).click();
+	}
+
+	clickDialogNextButton() {
+		cy.get(Courses.#btnDialogNext).click();
+	}
+
+	clickDialogExportButton() {
+		cy.get(Courses.#btnDialogExport).click();
 	}
 
 	seeCopyResultNotification() {
@@ -1076,8 +1154,9 @@ class Courses {
 		cy.get(Courses.#syncedGroupDialogSelection)
 			.click()
 			.type("{selectall}{backspace}")
-			.type(groupName)
-			.type("{downArrow}{enter}");
+			.type(groupName);
+
+		cy.get(".v-overlay__content.v-autocomplete__content").contains(groupName).click();
 	}
 
 	clickCancelButton() {
@@ -1133,7 +1212,7 @@ class Courses {
 		cy.get('[data-testid^="board-title-"]')
 			.contains(boardName)
 			.parents('[data-testid^="room-board-card-"]')
-			.click()
+			.click();
 	}
 
 	seeBreadcrumbWithCourseName(courseName) {

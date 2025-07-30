@@ -59,7 +59,7 @@ const extractSubdomain = (url) => {
 const createSchool = async (schoolUrl, headers) => {
 	try {
 		const payload = {
-			name: `cypress-automated-tests`,
+			name: `cypress-test-school-1`,
 			federalStateName: federalStateNames[extractSubdomain(schoolUrl)],
 		};
 		const response = await axios.post(schoolUrl, payload, { headers });
@@ -96,7 +96,7 @@ const getUserRole = (userType) => {
 	return matchedRole ? users[matchedRole] : "unknown";
 };
 
-const generatePayload = (schoolId, userType, role) => {
+const generatePayload = (schoolId, userType, role, courseId) => {
 	let userRole = userType.split("_")[0];
 
 	if (userData.hasOwnProperty(userRole)) {
@@ -106,6 +106,7 @@ const generatePayload = (schoolId, userType, role) => {
 			lastName: userData[userRole].lastName,
 			email: generateRandomUserEmail(),
 			roleNames: [role],
+			courseId,
 		};
 	} else {
 		console.warn(`User type "${userType}" not found in userData.`);
@@ -113,7 +114,7 @@ const generatePayload = (schoolId, userType, role) => {
 	}
 };
 
-const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
+const createUser = async (baseUrl, apiKeys, schoolId, userType, courseId) => {
 	try {
 		const { schoolUrl, userUrl } = getUrl(baseUrl);
 
@@ -134,7 +135,7 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 			throw new Error("Invalid user type");
 		}
 
-		const payload = generatePayload(schoolId, userType, role);
+		const payload = generatePayload(schoolId, userType, role, courseId);
 
 		const response = await axios.post(userUrl, payload, {
 			headers: finalHeaders,
