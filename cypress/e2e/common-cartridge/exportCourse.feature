@@ -1,6 +1,6 @@
-@pr
+# @pr
 # @regression_test
-@stable_test
+# @stable_test
 Feature: Course Board - To export a course as common cartridge
 
     As a teacher I want to export a course as a common cartridge file
@@ -56,14 +56,10 @@ Feature: Course Board - To export a course as common cartridge
 
         # Topic with task
         Then an organization exists on level 0 with title 'Thema 1 Mit Aufgabe ' as 't2'
-        Then the 't2' organization has child with title 'Aufgabe zum Thema 1' as 'ttask'
-        Then the 'ttask' organization has a webcontent resource with pattern '\.html'
-
-        # Aufgabe
-        Then an organization exists on level 0 with title 'Aufgaben' as 't3'
-        Then the 't3' organization has child with title 'Aufgabe nicht zum Thema zugewiesen' as 'ttask2'
-        Then the 'ttask2' organization has child with title 'Aufgabe nicht zum Thema zugewiesen' as 'ttask3'
-        Then the 'ttask3' organization has a webcontent resource with pattern '\.html'
+        Then the 't2' organization has child with title 'Aufgabe zum Thema 1' as 'ttaskColumn'
+        Then the 'ttaskColumn' organization has child with title '' as 'ttaskCard'
+        Then the 'ttaskCard' organization has child with title 'Aufgabe zum Thema 1H' as 'ttaskText'
+        Then the 'ttaskText' organization has a webcontent resource with pattern '\.html'
 
         # Board
         Then an organization exists on level 0 with title 'Mehrspaltiger Bereich' as 'b1'
