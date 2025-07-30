@@ -501,7 +501,7 @@ class Board {
 	}
 
 	openBoardCardLink() {
-		cy.get("@boardCardLink").then((link) => {
+		cy.get("@lastClipboard").then((link) => {
 			cy.visit(link);
 		});
 	}
