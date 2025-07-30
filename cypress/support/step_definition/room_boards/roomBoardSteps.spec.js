@@ -418,7 +418,7 @@ Then("I see the board {string} on the room overview page", (boardTitle) => {
 });
 
 When("I click on the board {string} on the room overview page", (boardTitle) => {
-	roomBoards.clikcOnBoard(boardTitle);
+	roomBoards.clickOnBoard(boardTitle);
 });
 
 Then("I see the button to confirm the dialog", () => {

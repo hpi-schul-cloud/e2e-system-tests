@@ -648,10 +648,10 @@ class RoomBoards {
 		cy.contains(boardName).should("exist");
 	}
 
-	clikcOnBoard(boardName) {
+	clickOnBoard(boardName) {
 		cy.get(RoomBoards.#boardTitlePattern).each((element) => {
 			if(element.text() === boardName) {
-				element.click();
+				cy.wrap(element).click();
 			}
 		})
 	}
