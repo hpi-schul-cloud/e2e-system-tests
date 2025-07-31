@@ -1,16 +1,17 @@
 @regression_test
 @stable_test
 @group-K
-Feature: Course Board - Copy course with a board wich contains link elements with board card links
+@schedule_run
+Feature: Course Board - Copy course with a board which contains link elements with board card links
 
     As a Teacher I want to be able to copy course with links elements in a board, when the link elements contain board card links
 
     @stable_test
     Scenario: Teacher copies a course with a board that has links elements
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        Given I am logged in as a '<admin>' at '<namespace>'
 
         # pre-condition: admin creates two courses, assigns them to a teacher
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
         When I go to courses overview
         When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
@@ -81,6 +82,7 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         When I enter the board card title '<card_title_2>'
         When I click on the page outside of the card
         Then I see a board card with title '<card_title_2>'
+
         # teacher copies board card link and adds it to a link element in the first board
         When I click on three dot menu in the card
         When I select the option Copy link to card in three dot menu on the card
@@ -116,6 +118,7 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         When I enter the board card title '<card_title_3>'
         When I click on the page outside of the card
         Then I see a board card with title '<card_title_3>'
+
         # teacher copies board card link and adds it to a link element in the first board
         When I click on three dot menu in the card
         When I select the option Copy link to card in three dot menu on the card
@@ -147,17 +150,20 @@ Feature: Course Board - Copy course with a board wich contains link elements wit
         Then I see link element with title '<card_title_1>'
         Then I see link element with title '<card_title_2>'
         Then I see link element with title '<card_title_3>'
+
         # teacher opens link to first board
         When I click on link element with title '<card_title_1>'
         Then I see breardcrumb contains course name '<course_name_1_copy>'
         Then I see the course Board name '<board_title_1>'
         Then I see the page Course Board details
+
         # teacher opens link to second board
         When I click on link element with title '<card_title_2>'
         Then I see breardcrumb contains course name '<course_name_1_copy>'
         Then I see the course Board name '<board_title_2>'
         Then I see the page Course Board details
         Then I see the focused board card
+
         # teacher opens link to third board
         When I go to courses overview
         When I go to course '<course_name_1_copy>'

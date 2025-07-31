@@ -31,9 +31,9 @@ Then("I see the video conference checkbox is unchecked", () => {
 	rooms.seeVideoConferenceCheckboxIsUnchecked();
 });
 
-When("I click on the button Import in the modal", () => {
-	rooms.clickOnImportConfirmButtonInModal();
-});
+// When("I click on the button Import in the modal", () => {
+// 	rooms.clickOnImportConfirmButtonInModal();
+// });
 
 Then("I see the success message Alert", () => {
 	rooms.seeDuplicateRoomSuccessAlert();
@@ -375,7 +375,7 @@ Then("I do not see user {string} in the confirmations table", (userName) => {
 When(
 	"I click on button Three Dot Menu in Confirmations table for user {string}",
 	(userName) => {
-		rooms.clickOnThreeDotMenuToAddUser(userName);
+		rooms.clickOnThreeDotMenuToEditUser(userName);
 	}
 );
 
