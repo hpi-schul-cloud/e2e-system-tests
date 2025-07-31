@@ -31,7 +31,7 @@ Then("I see the video conference checkbox is unchecked", () => {
 	rooms.seeVideoConferenceCheckboxIsUnchecked();
 });
 
-When("I click on the button Import in the modal", () => {
+When("I click on the button Import Confirm in the modal", () => {
 	rooms.clickOnImportConfirmButtonInModal();
 });
 
