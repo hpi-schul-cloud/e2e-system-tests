@@ -67,6 +67,10 @@ When("I click on draft tasks tab", () => {
 	tasks.clickOnTabDraftTasks();
 });
 
+Then("I am redirected to the draft tasks tab", () => {
+	tasks.seeDraftTaskButtonSelected();
+});
+
 Then("I can see task {string} on tasks overview page", (taskTitle) => {
 	tasks.taskIsVisibleOnTasksOverviewPage(taskTitle);
 });

@@ -69,6 +69,8 @@ class Tasks {
 	static #homeworkDescription = '[data-testid="homework-description"]';
 	static #submissionComment = '[data-testid="submission-comment"]';
 	static #submissionText = '[data-testid="submission-text"]';
+	static #draftTasksTabButton =
+		'[class="v-btn v-tab-item--selected v-tab--selected v-theme--light text-primary v-btn--density-default v-btn--size-default v-btn--variant-text v-tab"]';
 	static #draftTasksTab = '[data-testid="draftTasks"]';
 	static #taskCardTitle = '[data-testid="taskTitle"]';
 	static #taskEditPage = '[data-testid="Aufgabe bearbeiten"]';
@@ -107,6 +109,11 @@ class Tasks {
 	seeTaskEditPage(taskTitle) {
 		cy.get(Tasks.#taskEditPage).should("be.visible");
 		cy.get(Tasks.#taskNameInput).should("have.value", taskTitle);
+	}
+
+	seeDraftTaskButtonSelected() {
+		cy.wait(5000); // Wait for the copy task to be finished
+		cy.get(Tasks.#draftTasksTabButton).should("have.attr", "aria-selected", "true");
 	}
 
 	seeEditTaskDescription() {
@@ -490,6 +497,10 @@ class Tasks {
 
 	seeTaskInListAsTeacher(taskTitle) {
 		cy.contains(Tasks.#taskTitleInList, taskTitle).should("be.visible");
+	}
+
+	clickOnTaskAsTeacher(taskTitle) {
+		cy.contains(Tasks.#taskTitleInList, taskTitle).click();
 	}
 
 	seeTaskNotInListAsTeacher(taskTitle) {

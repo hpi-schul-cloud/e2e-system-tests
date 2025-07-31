@@ -190,6 +190,10 @@ Then("I see task {string} in the list as teacher", (taskTitle) => {
 	tasks.seeTaskInListAsTeacher(taskTitle);
 });
 
+When("I click on task {string} as teacher", (taskTitle) => {
+	tasks.clickOnTaskAsTeacher(taskTitle);
+});
+
 Then("I do not see task {string} in the list as teacher", (taskTitle) => {
 	tasks.seeTaskNotInListAsTeacher(taskTitle);
 });

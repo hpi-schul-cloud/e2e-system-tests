@@ -24,6 +24,7 @@ class Courses {
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
 	static #successAlertDuplicateTask = '[data-testid="alert-text"]';
 	static #copyButtonInDotMenu = '[data-testid="room-task-card-menu-copy-0"]';
+	static #copyButtonInDotTaskMenu = '[data-testid="task-copy"]';
 	static #taskCardTitle = '[data-testid="task-card-title-0"]';
 	static #deleteButtonInDotMenu = '[data-testid="room-task-card-menu-remove-0"]';
 	static #deleteButtonInDotMenuOfTopic =
@@ -614,6 +615,10 @@ class Courses {
 		cy.get(Courses.#copyButtonInDotMenu).should("be.visible");
 	}
 
+	seeCopyOptionInThreeDotMenuOfTaskMenu() {
+		cy.get(Courses.#copyButtonInDotTaskMenu).should("be.visible");
+	}
+
 	seeConfirmationModalForTaskDeletion() {
 		cy.get(Courses.#copyProgressBar).should("exist");
 	}
@@ -628,6 +633,10 @@ class Courses {
 
 	clickCopyOptionInThreeDotMenuOfTopic() {
 		cy.get(Courses.#copyButtonInDotMenu).click();
+	}
+
+	clickCopyOptionInThreeDotMenuOfTaskMenu() {
+		cy.get(Courses.#copyButtonInDotTaskMenu).click();
 	}
 
 	clickDeleteInDotMenu() {
