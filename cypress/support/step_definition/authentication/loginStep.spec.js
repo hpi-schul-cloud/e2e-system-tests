@@ -45,7 +45,3 @@ Before(() => {
 Given("I am logged in as a {string} at {string}", (username, environment) => {
 	cy.login(username, environment);
 });
-
-Given("I am logged in as a {string} at {string} in school {string} and have course {string}", (username, environment, schoolId, courseId) => {
-	cy.login(username, environment, schoolId, courseId);
-});

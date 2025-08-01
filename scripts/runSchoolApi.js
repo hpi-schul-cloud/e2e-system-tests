@@ -96,7 +96,7 @@ const getUserRole = (userType) => {
 	return matchedRole ? users[matchedRole] : "unknown";
 };
 
-const generatePayload = (schoolId, userType, role, courseId) => {
+const generatePayload = (schoolId, userType, role) => {
 	let userRole = userType.split("_")[0];
 
 	if (userData.hasOwnProperty(userRole)) {
@@ -106,7 +106,6 @@ const generatePayload = (schoolId, userType, role, courseId) => {
 			lastName: userData[userRole].lastName,
 			email: generateRandomUserEmail(),
 			roleNames: [role],
-			courseId,
 		};
 	} else {
 		console.warn(`User type "${userType}" not found in userData.`);
@@ -114,7 +113,7 @@ const generatePayload = (schoolId, userType, role, courseId) => {
 	}
 };
 
-const createUser = async (baseUrl, apiKeys, schoolId, userType, courseId) => {
+const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 	try {
 		const { schoolUrl, userUrl } = getUrl(baseUrl);
 
@@ -135,7 +134,7 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType, courseId) => {
 			throw new Error("Invalid user type");
 		}
 
-		const payload = generatePayload(schoolId, userType, role, courseId);
+		const payload = generatePayload(schoolId, userType, role);
 
 		const response = await axios.post(userUrl, payload, {
 			headers: finalHeaders,

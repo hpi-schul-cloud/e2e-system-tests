@@ -5,7 +5,7 @@ const initials = '[data-testid="initials"]';
 const languageSelection = '[id="selected-language"]';
 const languageDe = '[data-language="de"]';
 
-Cypress.Commands.add("login", (username, environment, schoolId, courseId) => {
+Cypress.Commands.add("login", (username, environment) => {
 	cy.session(
 		[username, environment],
 		async () => {
@@ -18,12 +18,8 @@ Cypress.Commands.add("login", (username, environment, schoolId, courseId) => {
 
 			let isStaging = stagingRegex.test(link);
 
-			if(isStaging && (!!schoolId || !!courseId)) {
-				throw new Error('Predefined school or course not supported for staging');
-			}
-
 			!(isStaging || environment === "localhost")
-				? await loginViaSchoolApi(username, environment, schoolId, courseId)
+				? await loginViaSchoolApi(username, environment)
 				: loginWithoutSchoolApi(username, environment);
 
 			cy.url().should("contain", "/dashboard");
