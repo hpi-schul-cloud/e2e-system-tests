@@ -128,9 +128,9 @@ Feature: Room - Students can only add students from their own classes to a room 
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | student_1      | student_2      | room_name         | school_name           | role_name      | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher  | fullname_student_1  | fullname_student_2  |
-            | brb       | admin1_brb | teacher1_brb | student1_brb   | student2_brb   | Cypress Room Name | cypress-test-school-1 | Lernend        | student_1          | student_2          | 2024/25     | 2025/26               | cyClassNameManage | 2                  | cypress teacher_1 | cypress student_1   | cypress student_2   |
+            | brb       | admin1_brb | teacher1_brb | student1_brb   | student2_brb   | Cypress Room Name | cypress-test-school-1 | Lernend        | student_1          | student_2          | 2025/26     | 2026/27               | cyClassNameManage | 2                  | cypress teacher_1 | cypress student_1   | cypress student_2   |
 
         @staging_test
         Examples:
             | namespace | admin      | teacher      | student_1      | student_2      | room_name         | school_name                 | role_name      | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher  | fullname_student_1  | fullname_student_2  |
-            | dbc       | admin1_dbc | teacher1_dbc | student1_dbc   | student2_dbc   | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend        | Kraft              | Strobl             | 2024/25     | 2025/26          | cyClassNameManage | 2                  | Karl Herzog       | Herbert Kraft       | Amelia Strobl       |
+            | dbc       | admin1_dbc | teacher1_dbc | student1_dbc   | student2_dbc   | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend        | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog       | Herbert Kraft       | Amelia Strobl       |
