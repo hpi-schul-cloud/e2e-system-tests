@@ -54,7 +54,7 @@ class CourseManagement {
 		cy.get(CourseManagement.#courseTableName).should("contain", courseName);
 	}
 
-	clickOnClassInAdministrationSubMenu() {
+	clickOnCourseInAdministrationSubMenu() {
 		cy.get(CourseManagement.#adminCourseNavigationSidebarCard).click();
 	}
 

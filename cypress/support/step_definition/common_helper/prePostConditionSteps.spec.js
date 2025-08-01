@@ -217,6 +217,8 @@ Given(
 	"course without a teacher {string} exist in course management page on staging",
 	(courseName) => {
 		management.openAdministrationInMenu();
+		courseManagement.clickOnCourseInAdministrationSubMenu();
+		courseManagement.isNewCourseAdministrationPage();
 		management.navigateToCourseAdministration();
 		courseManagement.seeCourseInCourseTable(courseName);
 	}
