@@ -139,10 +139,6 @@ class Board {
 	}
 
 	seeCourseBoardName(boardName) {
-		// cy.get(Board.#courseBoardTitleOnPage)
-		// 	.find("input")
-		// 	.should("be.visible")
-		// 	.should("have.value", boardName);
 		cy.contains(Board.#courseBoardTitleOnPage, boardName)
 			.should("be.visible")
 			.should("have.text", boardName);
@@ -440,72 +436,28 @@ class Board {
 		cy.get(Board.#boardCard).should("be.visible");
 	}
 
-	// selectCopyLinkToCardInThreeDotMenu() {
-	// 	Cypress.automation("remote:debugger:protocol", {
-	// 		command: "Browser.grantPermissions",
-	// 		params: {
-	// 			permissions: ["clipboardReadWrite", "clipboardSanitizedWrite"],
-	// 			origin: window.location.origin,
-	// 		},
-	// 	});
-	// 	cy.window().then((win) => {
-	// 		win.focus();
-	// 	});
-	// 	cy.get(Board.#copyBoardCardLinkButton).click();
-	// 	cy.wait(200);
-	// 	cy.window()
-	// 		.then((win) => {
-	// 			return win.navigator.clipboard.readText();
-	// 		})
-	// 		.then((link) => {
-	// 			cy.wrap(link).as("boardCardLink");
-
-	// 			cy.url().then((currentUrl) => {
-	// 				expect(link).to.include(currentUrl);
-	// 			});
-	// 		});
-	// }
-
 	enableFakeClipboard() {
 		cy.log("**Enable fake clipboard**");
 		cy.window().then((win) => {
-			// If already stubbed, restore first
 			if (win.navigator.clipboard.writeText.restore) {
 				win.navigator.clipboard.writeText.restore();
 			}
 			if (win.navigator.clipboard.readText.restore) {
 				win.navigator.clipboard.readText.restore();
 			}
-
 			let clipboardStore = "";
-
 			cy.stub(win.navigator.clipboard, "writeText")
 				.callsFake((text) => {
 					clipboardStore = text;
 					return Promise.resolve();
 				})
 				.as("clipboardWrite");
-
 			cy.stub(win.navigator.clipboard, "readText")
 				.callsFake(() => {
 					return Promise.resolve(clipboardStore);
 				})
 				.as("clipboardRead");
 		});
-		// cy.window().then((win) => {
-		// 	let clipboardStore = ""; // shared state
-
-		// 	cy.stub(win.navigator.clipboard, "writeText")
-		// 		.callsFake((text) => {
-		// 			clipboardStore = text;
-		// 			return Promise.resolve();
-		// 		})
-		// 		.as("clipboardWrite");
-
-		// 	cy.stub(win.navigator.clipboard, "readText")
-		// 		.callsFake(() => Promise.resolve(clipboardStore))
-		// 		.as("clipboardRead");
-		// });
 	}
 
 	disableFakeClipboard() {
@@ -518,66 +470,18 @@ class Board {
 
 	selectCopyLinkToCardInThreeDotMenu() {
 		this.enableFakeClipboard();
-
 		cy.get(Board.#copyBoardCardLinkButton).click();
-
 		cy.get("@clipboardWrite").should("have.been.called");
-
-		// invoke the stub and wait for the resolved value
 		cy.get("@clipboardRead")
-			.then((readStub) => readStub()) // call the stub, returns a Promise<string>
-			.should("not.be.empty") // now Cypress retries on the resolved value
+			.then((readStub) => readStub())
+			.should("not.be.empty")
 			.then((link) => {
 				cy.wrap(link).as("lastClipboard");
-
 				cy.url().then((currentUrl) => {
 					expect(link).to.include(currentUrl);
 				});
 			});
 	}
-	// Cypress.automation("remote:debugger:protocol", {
-	// 	command: "Browser.grantPermissions",
-	// 	params: {
-	// 		permissions: ["clipboardReadWrite", "clipboardSanitizedWrite"],
-	// 		origin: window.location.origin,
-	// 	},
-	// }).catch((err) => {
-	// 	Cypress.log({
-	// 		name: "Clipboard Permission",
-	// 		message: `Grant failed: ${err.message}`,
-	// 	});
-	// });
-
-	// cy.get(Board.#copyBoardCardLinkButton).click();
-	// cy.wrap(null, { timeout: 20000 })
-	// 	.then(function attemptClipboard() {
-	// 		return cy.window().then((win) => {
-	// 			win.focus();
-	// 			win.document.body.click();
-	// 			return win.navigator.clipboard
-	// 				.readText()
-	// 				.then((text) => {
-	// 					let previous = null;
-	// 					if (cy.state("aliases")["lastClipboard"]) {
-	// 						previous = cy.state("aliases")["lastClipboard"].subject;
-	// 					}
-	// 					if (text && text !== previous) {
-	// 						cy.wrap(text).as("lastClipboard");
-	// 						return text;
-	// 					}
-	// 					return cy.wait(300).then(attemptClipboard);
-	// 				})
-	// 				.catch(() => {
-	// 					return cy.wait(300).then(attemptClipboard);
-	// 				});
-	// 		});
-	// 	})
-	// 	.then((link) => {
-	// 		cy.url().then((currentUrl) => {
-	// 			expect(link).to.include(currentUrl);
-	// 		});
-	// 	});
-	// }
 
 	openBoardCardLink() {
 		cy.get("@lastClipboard").then((link) => {
@@ -609,11 +513,7 @@ class Board {
 
 	seeBoardCardTitle(cardTitle) {
 		cy.get(Board.#boardCard).within(() => {
-			cy.get(Board.#boardCardTitle)
-				// .find("h3")
-				// .first()
-				.should("be.visible")
-				.should("have.text", cardTitle);
+			cy.get(Board.#boardCardTitle).should("be.visible").should("have.text", cardTitle);
 		});
 	}
 

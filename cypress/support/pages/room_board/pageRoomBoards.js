@@ -30,8 +30,7 @@ class RoomBoards {
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -476,7 +475,6 @@ class RoomBoards {
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
 		cy.wait(1000);
-		// cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
 	}
 
 	clickEditOptionInCardThreeDot() {
@@ -649,10 +647,10 @@ class RoomBoards {
 
 	clickOnBoard(boardName) {
 		cy.get(RoomBoards.#boardTitlePattern).each((element) => {
-			if(element.text() === boardName) {
+			if (element.text() === boardName) {
 				cy.wrap(element).click();
 			}
-		})
+		});
 	}
 
 	doNotSeeBoardOnRoomDetailPage(boardName) {
@@ -678,9 +676,7 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("exist")
-			.should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
 	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
@@ -757,21 +753,14 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element)
-					.find("th")
-					.contains("span", label)
-					.should("contain", label);
+				cy.get(element).find("th").contains("span", label).should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element)
-				.find("th")
-				.contains("span", label)
-				.should("contain", label)
-				.click();
+			cy.get(element).find("th").contains("span", label).should("contain", label).click();
 		});
 	}
 
@@ -785,15 +774,11 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -857,11 +842,7 @@ class RoomBoards {
 	}
 
 	enterFolderNameInBoardCard(newName) {
-		cy.get(RoomBoards.#folderTitleInCardInput)
-			.find("input")
-			.eq(0)
-			.clear()
-			.type(newName);
+		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear().type(newName);
 	}
 
 	approveFolderNameInCard() {

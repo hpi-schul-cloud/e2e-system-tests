@@ -1,11 +1,12 @@
 @regression_test
 @stable_test
-@group-K
+@group-V
 @schedule_run
 Feature: Course Board - Copy course with a board which contains link elements with board card links
 
-    As a Teacher I want to be able to copy course with links elements in a board, when the link elements contain board card links
-    Scenario: Teacher copies a course with a board that has links elements
+    As a teacher, I want to be able to copy course with links elements in a board, when the link elements contain board card links
+
+    Scenario Outline: Teacher copies a course with a board that has links elements
 
         # pre-condition: teacher create courses
         Given I am logged in as a '<teacher>' at '<namespace>'
