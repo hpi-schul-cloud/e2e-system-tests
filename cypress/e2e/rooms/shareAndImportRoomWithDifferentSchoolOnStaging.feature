@@ -49,7 +49,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Then I see the title in the share modal
         When I see the source room name in the modal room import
         Then I enter a new room name '<room_name_target>'
-        When I click on the buttom Import in the modal
+        When I click on the button Import Confirm in the modal
         Then I see the success message Alert
         Then I see '<room_name_target>' on room overview page
         When I go to room '<room_name_target>'
