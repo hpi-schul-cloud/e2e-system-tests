@@ -433,7 +433,7 @@ When("I open column board {string}", (boardName) => {
 	courses.openColumnBoardWithName(boardName);
 });
 
-Then("I see breardcrumb contains course name {string}", (courseName) => {
+Then("I see breadcrumb contains course name {string}", (courseName) => {
 	courses.seeBreadcrumbWithCourseName(courseName);
 });
 

@@ -5,35 +5,14 @@
 Feature: Course Board - Copy course with a board which contains link elements with board card links
 
     As a Teacher I want to be able to copy course with links elements in a board, when the link elements contain board card links
-
-    @stable_test
     Scenario: Teacher copies a course with a board that has links elements
 
-        # pre-condition: admin creates two courses, assigns them to a teacher
+        # pre-condition: teacher create courses
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given I am logged in as a '<admin>' at '<namespace>'
-        When I go to courses overview
-        When I click on FAB to create a new course depending on sub menu
-        Then I see section one area on the course create page
-        When I enter the course title '<course_name_1>'
-        When I select '<fullname_teacher>' from field teacher
-        When I click on button Next Steps after entering the course detail in section one
-        Then I see section two area on the course create page
-        When I click on button Next Steps after selecting course participant details
-        Then I see the section three area as the finish page
-        When I click on button To Course Overview on the finish page
-        When I click on FAB to create a new course depending on sub menu
-        Then I see section one area on the course create page
-        When I enter the course title '<course_name_2>'
-        When I select '<fullname_teacher>' from field teacher
-        When I click on button Next Steps after entering the course detail in section one
-        Then I see section two area on the course create page
-        When I click on button Next Steps after selecting course participant details
-        Then I see the section three area as the finish page
-        When I click on button To Course Overview on the finish page
+        Given a course named '<course_name_1>' exists
+        Given a course named '<course_name_2>' exists
 
         # teacher creates a board and adds a card
-        Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name_1>'
         Then I see course page '<course_name_1>'
@@ -53,6 +32,7 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         When I enter the board card title '<card_title_1>'
         When I click on the page outside of the card
         Then I see a board card with title '<card_title_1>'
+
         # teacher copies board card link and adds it to a link element
         When I click on three dot menu in the card
         When I select the option Copy link to card in three dot menu on the card
@@ -153,13 +133,13 @@ Feature: Course Board - Copy course with a board which contains link elements wi
 
         # teacher opens link to first board
         When I click on link element with title '<card_title_1>'
-        Then I see breardcrumb contains course name '<course_name_1_copy>'
+        Then I see breadcrumb contains course name '<course_name_1_copy>'
         Then I see the course Board name '<board_title_1>'
         Then I see the page Course Board details
 
         # teacher opens link to second board
         When I click on link element with title '<card_title_2>'
-        Then I see breardcrumb contains course name '<course_name_1_copy>'
+        Then I see breadcrumb contains course name '<course_name_1_copy>'
         Then I see the course Board name '<board_title_2>'
         Then I see the page Course Board details
         Then I see the focused board card
@@ -172,27 +152,15 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         Then I see the page Course Board details
         Then I see the course Board name '<board_title_1>'
         When I click on link element with title '<card_title_3>'
-        Then I see breardcrumb contains course name '<course_name_2>'
+        Then I see breadcrumb contains course name '<course_name_2>'
         Then I see the course Board name '<board_title_3>'
         Then I see the page Course Board details
         Then I see the focused board card
 
-        # post-condition: admin deletes courses
-        Given I am logged in as a '<admin>' at '<namespace>'
-        When I click on administration in menu
-        When I go to course administration page
-        When I click the delete button for course '<course_name_1>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        When I click the delete button for course '<course_name_2>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        When I click the delete button for course '<course_name_1_copy>' in course table
-        Then I see the delete modal
-        When I click the confirmation button on the delete modal
-        Then I do not see course '<course_name_1>' in course table
-        Then I do not see course '<course_name_2>' in course table
-        Then I do not see course '<course_name_1_copy>' in course table
+        # post-condition: teacher deletes courses
+        Given course with name '<course_name_1>' is deleted
+        Given course with name '<course_name_2>' is deleted
+        Given course with name '<course_name_1_copy>' is deleted
 
         @staging_test
         Examples:

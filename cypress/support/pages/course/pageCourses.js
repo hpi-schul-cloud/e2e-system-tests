@@ -149,7 +149,7 @@ class Courses {
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
 	static #messageNoTasksAvailable = '[data-testid="empty-state-title"]';
 	static #iconCourse = '[data-testid="course-icon"]';
-	static #breadcrumb1 = '[data-testid="breadcrumb-1"]';
+	static #breadcrumbToCourseNavigationFromBoard = '[data-testid="breadcrumb-1"]';
 	static #btnExportCourse = '[data-testid="room-menu-common-cartridge-download"]';
 	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
@@ -1223,7 +1223,7 @@ class Courses {
 	}
 
 	seeBreadcrumbWithCourseName(courseName) {
-		cy.get(Courses.#breadcrumb1).within(() => {
+		cy.get(Courses.#breadcrumbToCourseNavigationFromBoard).within(() => {
 			cy.get("a").should("have.text", courseName);
 		});
 	}
