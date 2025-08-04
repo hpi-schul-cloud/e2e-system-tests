@@ -155,6 +155,7 @@ class Courses {
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 	static #adminCourseTableName = '[data-testid="admin-rooms-table-name"]';
 	static #btnCourseTableDelete = '[data-testid="course-table-delete-btn"]';
+	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -909,6 +910,10 @@ class Courses {
 
 	clickDialogExportButton() {
 		cy.get(Courses.#btnDialogExport).click();
+	}
+
+	clickImportCourseButton() {
+		cy.get(Courses.#btnImportCourse).click();
 	}
 
 	seeCopyResultNotification() {

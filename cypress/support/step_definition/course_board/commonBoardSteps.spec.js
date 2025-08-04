@@ -1,4 +1,4 @@
-import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 
 const board = new Board();
@@ -105,20 +105,44 @@ Then("I see the focused board card", () => {
 
 When("I enter the board card title {string}", (cardTitle) => {
 	board.enterBoardCardTitle(cardTitle);
-})
+});
 
 Then("I see a board card with title {string}", (cardTitle) => {
 	board.seeBoardCardTitle(cardTitle);
-})
+});
 
 Then("I enter the copied board card link in the link element", () => {
 	board.enterBoardCardLinkInLinkElement();
-})
+});
 
 Then("I see link element with title {string}", (linkElementTitle) => {
 	board.seeLinkElementTitle(linkElementTitle);
-})
+});
 
 When("I click on link element with title {string}", (linkElementTitle) => {
 	board.clickOnLinkElement(linkElementTitle);
-})
+});
+
+Then("I see that I am on a column board", () => {
+	board.seeMultiColumnBoard();
+});
+
+Then("I see a column with title {string}", (title) => {
+	board.seeColumnWithTitle(title);
+});
+
+Then("I see a card with title {string}", (title) => {
+	board.seeCardWithTitle(title);
+});
+
+Then("I see a rich text element with pattern {string}", (pattern) => {
+	board.seeRichTextWithPattern(pattern);
+});
+
+Then("I see a web link with title {string}", (title) => {
+	board.seeWeblinkWithTitle(title);
+});
+
+Then("I see a file element with title {string}", (title) => {
+	board.seeFileElementWithTitle(title);
+});
