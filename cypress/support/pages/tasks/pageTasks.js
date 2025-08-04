@@ -500,7 +500,7 @@ class Tasks {
 		cy.contains(Tasks.#taskTitleInList, taskTitle).should("be.visible");
 	}
 
-	clickOnTaskAsTeacher(taskTitle) {
+	clickOnTask(taskTitle) {
 		cy.contains(Tasks.#taskTitleInList, taskTitle).click();
 	}
 

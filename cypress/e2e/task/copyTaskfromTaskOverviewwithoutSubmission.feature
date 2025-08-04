@@ -2,11 +2,11 @@
 @stable_test
 @schedule_run
 @group-J
-Feature: Task - To create, copy tasks by the teacher from the Course Detail.
+Feature: Task - To create, copy tasks by the teacher from the Task overview where the task is not submitted by the student.
 
-    As a teacher I want to create, copy, edit and delete a new task on course page
+    As a teacher I want to create, copy, edit and delete a task from task overview and the task is not submitted by the student.
 
-    Scenario Outline: Teacher creates, copy, edits, and deletes a task
+    Scenario Outline: Teacher creates, copy, edits, and deletes a task which is not submitted by the student in the task overview
 
         # pre-condition: teacher and student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'
@@ -18,31 +18,29 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given published task with name '<task_name>' in the course with name '<course_name>'
 
-        # pre condition  student submitted the task
+        # pre condition: student not submitted the task
         Given I am logged in as a '<student>' at '<namespace>'
-        Given task '<task_name>' in course '<course_name>' is submitted by the student
+        Given task '<task_name>' in course '<course_name>' is not submitted by the student
 
-        # teacher copies the task in the room detail when submitted by the student
+        # teacher copies the task in the tasks overview when not submitted by the student
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to courses overview
-        When I go to course '<course_name>'
-        Then I can see task '<task_name>' on course page
-        When I click on three dot menu of content '<task_name>'
-        Then I see the option Copy on the list
-        When I click on Copy in dot menu
+        When I go to tasks overview
+        Then I see task '<task_name>' in the list as teacher
+        When I click on three dot menu of task '<task_name>'
+        Then I see the option Copy on the task menu list
+        When I click on Copy in dot menu of task
         Then I see the progress bar
         Then I see the success message '<success_message>'
-        Then I see the title '<draft_indicator>' in the task
-        Then I see button Publish on the copied task
-        When I click on task '<copy_task_name>'
+        Then I see the draft tasks tab was activated
+        Then I see task '<copy_task_name>' in the list as teacher
+        When I click on task '<copy_task_name>' in tasks overview
         Then I see detail page for task '<copy_task_name>'
         Then I see file '<image_file>' is visible in section files
         When I click on submission tab
         Then I see submission text ''
-        When I go to courses overview
-        When I go to course '<course_name>'
-        When I click on three dot menu of content '<copy_task_name>'
-        When I click on Edit in dot menu
+        When I click on details tab
+        Then I see detail page for task '<copy_task_name>'
+        When I click on button Edit
         Then I can see edit task page '<copy_task_name>'
         Then I see description of the edit task page
         Then I see file '<image_file>' is visible in section files
@@ -50,7 +48,7 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         Then I see end date is not set and not visible
         Then I see the draft check box is enabled by default
 
-        # post-condition: teacher deletes the course and copied task
+        # post-condition: teacher deletes the task, copied task and the course
         Given task with name '<copy_task_name>' in course '<course_name>' is deleted
         Given task with name '<task_name>' in course '<course_name>' is deleted
         Given course with name '<course_name>' is deleted
@@ -58,9 +56,9 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         @school_api_test
         Examples:
             | admin      | teacher      | student      |  namespace | course_name             | fullname_teacher  | fullname_student  | task_name       | copy_task_name          | success_message                | draft_indicator   | image_file      |
-            | admin1_brb | teacher1_brb | student1_brb |  brb       | CypressAut Course       | cypress teacher_1 | cypress student_1 | CypressAut Task | CypressAut Task (1)     | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
+            | admin1_dbc | teacher1_dbc | student1_dbc |  dbc       | CypressAut Course       | cypress teacher_1 | cypress student_1 | CypressAut Task | CypressAut Task (1)     | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
 
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name               | fullname_teacher  | fullname_student  | task_name               | copy_task_name              | success_message                | draft_indicator        | image_file      |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course Staging | Karl Herzog       | Herbert Kraft     | CypressAut Task Staging | CypressAut Task Staging (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf      | example_jpg.jpg |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Staging | Karl Herzog       | Herbert Kraft     | CypressAut Task Staging | CypressAut Task Staging (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf      | example_jpg.jpg |

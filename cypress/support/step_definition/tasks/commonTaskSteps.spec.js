@@ -67,7 +67,7 @@ When("I click on draft tasks tab", () => {
 	tasks.clickOnTabDraftTasks();
 });
 
-Then("I am redirected to the draft tasks tab", () => {
+Then("I see the draft tasks tab was activated", () => {
 	tasks.seeDraftTaskButtonSelected();
 });
 
