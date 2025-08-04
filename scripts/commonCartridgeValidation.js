@@ -68,12 +68,14 @@ function ccOrganizationHasChild(directory, orgId, title) {
 
 		const doc = await getManifestDocument(manifestPath);
 		const children = getChildren(doc, orgId);
+
 		const itemsWithTitle = children
 			.filter((_, el) => getItemTitle(doc, el.attribs["identifier"]) === title)
+			.map((_, el) => el.attribs["identifier"])
 			.toArray();
 
 		if (itemsWithTitle.length > 0) {
-			resolve(itemsWithTitle[0].attribs["identifier"]);
+			resolve(itemsWithTitle[0]);
 		} else {
 			reject(new Error(`No child with title ${title} found for parent`));
 		}
@@ -174,7 +176,7 @@ function getChildren(doc, identifier) {
 }
 
 function getItemTitle(doc, identifier) {
-	const title = doc(`item[identifier="${identifier}"] > title`).text();
+	const title = doc(`item[identifier="${identifier}"] > title`).text() ?? '';
 
 	return title;
 }

@@ -212,7 +212,7 @@ export const loginWithoutSchoolApi = (username, environment) => {
 		: fillLoginForm(env[userEmail], env[userPassword]);
 };
 
-export const loginViaSchoolApi = async (username, environment, schoolId, courseId) => {
+export const loginViaSchoolApi = async (username, environment) => {
 	try {
 		visitLoginPage(environment);
 		const link = Cypress.config("baseUrl");
@@ -223,9 +223,8 @@ export const loginViaSchoolApi = async (username, environment, schoolId, courseI
 				{
 					url: link,
 					apiKey: Cypress.env(`apiKey-${environment}`),
-					schoolId: schoolId ?? Cypress.env(`schoolId-${environment}`),
+					schoolId: Cypress.env(`schoolId-${environment}`),
 					userType: username,
-					courseId: courseId,
 				},
 				{ log: false }
 			)
