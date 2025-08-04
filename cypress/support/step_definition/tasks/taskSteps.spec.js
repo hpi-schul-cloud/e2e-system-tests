@@ -230,6 +230,10 @@ When("I click on submission tab", () => {
 	tasks.clickSubmissionTab();
 });
 
+When("I click on details tab", () => {
+	tasks.clickOnDetailsTab();
+});
+
 When("I enter grade {string}", (gradingPercent) => {
 	tasks.enterGradingPercent(gradingPercent);
 });

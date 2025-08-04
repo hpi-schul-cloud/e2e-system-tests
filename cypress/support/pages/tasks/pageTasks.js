@@ -18,6 +18,7 @@ class Tasks {
 	static #dialogConfirmDeletionTaskButtons =
 		'[data-testid="delete-extended-homework-btn"]';
 	static #taskDetailsTab = '[id="extended"]';
+	static #detailsTab = '[id="extended-tab-link"]';
 	static #submissionTab = '[id="submission-tab-link"]';
 	static #submissionsTab = '[id="submissions-tab-link"]';
 	static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]';
@@ -570,6 +571,10 @@ class Tasks {
 
 	clickOnSubmissionTab() {
 		cy.get(Tasks.#taskSubmissionsGradingTabLink).click();
+	}
+
+	clickOnDetailsTab() {
+		cy.get(Tasks.#detailsTab).click();
 	}
 
 	clickOnFeedbackTab() {
