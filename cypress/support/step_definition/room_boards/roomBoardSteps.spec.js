@@ -132,6 +132,10 @@ Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
 });
 
+When("I click on the thumbnail Image in the card", () => {
+	roomBoards.clickOnImageThumbnailInCard();
+});
+
 Then("I see the image in a lightbox", () => {
 	roomBoards.verifyImageInLightbox();
 });
@@ -306,6 +310,10 @@ Then("I see the modal to start the video conference", () => {
 	roomBoards.seeVideoConferenceStartDaialog();
 });
 
+Then("I do not see the modal to start the video conference", () => {
+	roomBoards.doNotSeeVideoConferenceStartDaialog();
+});
+
 Then(
 	"I see the button create in the video conference creation modal to start the call",
 	() => {
@@ -407,6 +415,10 @@ When("I click on the button to cancel the deletion", () => {
 
 Then("I see the board {string} on the room overview page", (boardTitle) => {
 	roomBoards.seeBoardOnRoomDetailPage(boardTitle);
+});
+
+When("I click on the board {string} on the room overview page", (boardTitle) => {
+	roomBoards.clickOnBoard(boardTitle);
 });
 
 Then("I see the button to confirm the dialog", () => {

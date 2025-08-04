@@ -7,12 +7,14 @@ class Tasks {
 	static #taskOverviewStudent = '[class="task-dashboard-student"]';
 	static #groupSubmissionCheckbox = '[id="teamSubmissions"]';
 	static #draftCheckbox = '[data-testid="private-checkbox"]';
-	static #visibilityStartDateInput = '[data-testid="form-datetime-input-availableDate"]';
+	static #visibilityStartDateInput =
+		'[data-testid="form-datetime-input-availableDate"]';
 	static #visibilityDueDateInput = '[data-testid="form-datetime-input-dueDate"]';
 	static #publicSubmissionsCheckbox = '[id="publicSubmissionsCheckbox"]';
 	static #dialogConfirmButton = '[data-testid="task-publicSubmissions-dialog-confirm"]';
 	static #dialogCancelButton = '[data-testid="task-publicSubmissions-dialog-cancel"]';
-	static #dialogCancelDeletionTaskButtons = "#modal-delete-homework-footer > .btn-close";
+	static #dialogCancelDeletionTaskButtons =
+		"#modal-delete-homework-footer > .btn-close";
 	static #dialogConfirmDeletionTaskButtons =
 		'[data-testid="delete-extended-homework-btn"]';
 	static #taskDetailsTab = '[id="extended"]';
@@ -23,7 +25,8 @@ class Tasks {
 	static #fileUploadButtonEnabled = '[data-testid="fileupload-button"]';
 	static #fileUploadInput = '[data-testid="fileupload-input"]';
 	static #filesSection = '[data-testid="tasks-section-files"]';
-	static #uploadedFilesSectionInSubmission = '[data-testid="submissions-section-files"]';
+	static #uploadedFilesSectionInSubmission =
+		'[data-testid="submissions-section-files"]';
 	static #fileViewerSection = '[class="file-viewer"]';
 	static #renameFileInput = '[id="newNameInput"]';
 	static #renameFileCancelButton = '[data-testid="rename-file-dialog-cancel-btn"]';
@@ -68,6 +71,7 @@ class Tasks {
 	static #submissionText = '[data-testid="submission-text"]';
 	static #draftTasksTab = '[data-testid="draftTasks"]';
 	static #taskCardTitle = '[data-testid="taskTitle"]';
+	static #taskEditPage = '[data-testid="Aufgabe bearbeiten"]';
 	static #taskMenuDelete = '[data-testid="task-delete"]';
 	static #deleteTaskButton = '[data-testid="task-details-btn-delete"]';
 	static #downloadFileGradingSection = '[data-testid="gradings-section-files"]';
@@ -94,8 +98,27 @@ class Tasks {
 		if (taskTitle === "-") {
 			cy.get(Tasks.#taskForm).get(Tasks.#taskNameInput).should("be.empty");
 		} else {
-			cy.get(Tasks.#taskForm).get(Tasks.#taskNameInput).should("have.value", taskTitle);
+			cy.get(Tasks.#taskForm)
+				.get(Tasks.#taskNameInput)
+				.should("have.value", taskTitle);
 		}
+	}
+
+	seeTaskEditPage(taskTitle) {
+		cy.get(Tasks.#taskEditPage).should("be.visible");
+		cy.get(Tasks.#taskNameInput).should("have.value", taskTitle);
+	}
+
+	seeEditTaskDescription() {
+		cy.get(Tasks.#homeworkDescription).invoke("text").should("not.be.empty");
+	}
+
+	seeEditTaskStartDateIsSet() {
+		cy.get(Tasks.#visibilityStartDateInput).invoke("val").should("not.be.empty");
+	}
+
+	seeEditTaskEndDateIsNotSet() {
+		cy.get(Tasks.#visibilityDueDateInput).invoke("text").should("be.empty");
 	}
 
 	enterTaskTitle(taskTitle) {
@@ -304,7 +327,8 @@ class Tasks {
 			day: "2-digit",
 			month: "2-digit",
 		});
-		let dueDateCheckValue = dueDateText.replace(/\//gm, ".") + " " + visibilityDueTime;
+		let dueDateCheckValue =
+			dueDateText.replace(/\//gm, ".") + " " + visibilityDueTime;
 		cy.get(Tasks.#visibilityDueDateInput).should("have.value", dueDateCheckValue);
 	}
 
@@ -320,6 +344,10 @@ class Tasks {
 		cy.contains(fileName, {
 			includeShadowDom: true,
 		});
+	}
+
+	seeDraftCheckboxIsEnabledByDefault() {
+		cy.get(Tasks.#draftCheckbox).should("be.checked");
 	}
 
 	seeFileInSubmissionSectionUploadedFiles(fileName) {

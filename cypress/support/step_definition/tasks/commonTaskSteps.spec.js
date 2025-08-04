@@ -31,6 +31,22 @@ Then("I can see edit task page {string}", (taskTitle) => {
 	tasks.seeEditTaskPage(taskTitle);
 });
 
+Then("I see description of the edit task page", () => {
+	tasks.seeEditTaskDescription();
+});
+
+Then("I see start date is set and visible", () => {
+	tasks.seeEditTaskStartDateIsSet();
+});
+
+Then("I see end date is not set and not visible", () => {
+	tasks.seeEditTaskEndDateIsNotSet();
+});
+
+Then("I see the draft check box is enabled by default", () => {
+	tasks.seeDraftCheckboxIsEnabledByDefault();
+});
+
 When("I enter title {string}", (taskTitle) => {
 	tasks.enterTaskTitle(taskTitle);
 });

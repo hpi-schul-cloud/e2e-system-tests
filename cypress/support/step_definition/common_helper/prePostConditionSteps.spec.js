@@ -135,6 +135,55 @@ Given(
 	}
 );
 
+Given(
+	"published task with name {string} in the course with name {string}",
+	(taskname, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		courses.clickOnNewTaskFAB();
+		tasks.enterTaskTitle(taskname);
+		tasks.clickOnGroupSubmissionCheckbox();
+		tasks.setTaskText("Dies ist deine erste Aufgabe");
+		tasks.executeFileUpload("example_jpg.jpg");
+		tasks.setVisibilityStartDate("today", "0000");
+		tasks.setVisibilityDueDate("tomorrow", "1000");
+		tasks.clickOnDraftCheckbox();
+		tasks.clickOnSubmit();
+	}
+);
+
+Given(
+	"task {string} in course {string} is not submitted by the student",
+	(taskName, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.seeTaskOnCoursePage(taskName);
+		courses.compareNotSubmittedTasksInformation(taskName);
+	}
+);
+
+Given(
+	"task {string} in course {string} is submitted by the student",
+	(taskName, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.seeTaskOnCoursePage(taskName);
+		courses.openTask(taskName);
+		tasks.clickSubmissionTab();
+		tasks.setSubmissionText("Meine erste aufgabe erledigt");
+		tasks.executeFileUploadForSubmission("testboard_jpg.jpg");
+		tasks.seeFileInSubmissionSectionUploadedFiles("testboard_jpg.jpg");
+		tasks.clickSendSubmissionBtn();
+		tasks.seeSubmissionReceivedHint();
+		tasks.navigateToTasksOverview();
+		tasks.seeTaskNotInListAsStudent(taskName);
+		tasks.clickOnTabDoneTasks();
+		tasks.openNotGradedTasks();
+		tasks.seeTaskInListAsStudent(taskName);
+	}
+);
+
 Given("a course named {string} exists", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.clickOnCreateCourseFAB();
@@ -176,6 +225,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	roomBoards.clickEditOptionInCardThreeDot();
 	board.clickPlusIconToAddContentIntoCard();
 	board.selectCardElementFromMenu("file-folder");
+	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
 	roomBoards.approveFolderNameInCard();
 	roomBoards.seeFolderElementWithTitle(folderTitle);
@@ -197,6 +247,14 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.confirmCourseDeletionOnModal();
 	courses.navigateToCoursesOverview();
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
+});
+
+Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
+	courses.navigateToCoursesOverview();
+	courses.navigateToCoursePage(courseName);
+	courses.openThreeDotMenuForContent(taskName);
+	courses.clickDeleteInDotMenu();
+	courses.clickDeleteInConfirmationWindow();
 });
 
 Given(

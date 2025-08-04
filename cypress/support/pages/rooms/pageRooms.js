@@ -23,6 +23,7 @@ class Rooms {
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndDateForRoom = '[data-testid="room-end-date-input"]';
+	static #videoConferenceCheckbox = '[data-testid="room-video-conference-checkbox"]';
 	static #memberRowInRoomMembershipTable = '[data-testid^="kebab-menu-"]';
 	static #changeRolePermissionButton =
 		'[data-testid="kebab-menu-action-change-permission"]';
@@ -188,6 +189,26 @@ class Rooms {
 		cy.wait("@members_api");
 	}
 
+	checkVideoConferenceCheckbox() {
+		cy.get(Rooms.#videoConferenceCheckbox).find("div div input").check();
+	}
+
+	uncheckVideoConferenceCheckbox() {
+		cy.get(Rooms.#videoConferenceCheckbox).find("div div input").uncheck();
+	}
+
+	seeVideoConferenceCheckboxIsChecked() {
+		cy.get(Rooms.#videoConferenceCheckbox)
+			.find("input[type='checkbox']")
+			.should("be.checked");
+	}
+
+	seeVideoConferenceCheckboxIsUnchecked() {
+		cy.get(Rooms.#videoConferenceCheckbox)
+			.find("input[type='checkbox']")
+			.should("not.be.checked");
+	}
+
 	navigateToRoom(roomName) {
 		cy.get(Rooms.#roomTitle).contains(roomName).should("be.visible").click();
 	}
@@ -264,7 +285,10 @@ class Rooms {
 	}
 
 	selectParticipantName() {
-		cy.get(Rooms.#addParticipantName).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantName)
+			.should("be.visible")
+			.type("{downArrow}{enter}")
+			.type("{esc}");
 	}
 
 	addParticipant() {
@@ -308,7 +332,7 @@ class Rooms {
 		cy.get(Rooms.#fabButtonAddBoard).click();
 	}
 
-	clickOnThreeDotMenuToAddUser(participantName) {
+	clickOnThreeDotMenuToEditUser(participantName) {
 		cy.contains("td", participantName)
 			.parent()
 			.within(() => {
