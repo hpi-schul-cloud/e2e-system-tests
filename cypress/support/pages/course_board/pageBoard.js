@@ -43,16 +43,16 @@ class Board {
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
 	static #boardCardTitle = '[data-testid="card-title"]';
-	static #boardLinkElement = '[data-testid="board-link-element-create"]';
+	static #createBoardLinkElement = '[data-testid="board-link-element-create"]';
 	static #contentElementTitle = '[data-testid="content-element-title-slot"]';
 	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 
-	static #columnTitlePattern = '[data-testid^="column-title-"]'
-	static #cardTitle = '[data-testid="card-title"]'
-	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]'
-	static #boardLinkElement = '[data-testid="board-link-element"]'
-	static #boardFileElement = '[data-testid="board-file-element"]'
+	static #columnTitlePattern = '[data-testid^="column-title-"]';
+	static #cardTitle = '[data-testid="card-title"]';
+	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]';
+	static #boardLinkElement = '[data-testid="board-link-element"]';
+	static #boardFileElement = '[data-testid="board-file-element"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -546,7 +546,7 @@ class Board {
 
 	enterBoardCardLinkInLinkElement() {
 		cy.get("@lastClipboard").then((link) => {
-			cy.get(Board.#boardLinkElement)
+			cy.get(Board.#createBoardLinkElement)
 				.find("textarea")
 				.first()
 				.clear()
@@ -574,36 +574,36 @@ class Board {
 	seeColumnWithTitle(columnName) {
 		cy.get(Board.#columnTitlePattern).each((element) => {
 			if (element.text() === columnName) {
-				cy.wrap(element).as("columnWithTitle")
+				cy.wrap(element).as("columnWithTitle");
 			}
-		})
-		cy.get("@columnWithTitle").should("be.visible")
+		});
+		cy.get("@columnWithTitle").should("be.visible");
 	}
 
 	seeCardWithTitle(cardName) {
 		cy.get(Board.#cardTitle).each((element) => {
 			if (element.text() === cardName) {
-				cy.wrap(element).as("cardWithTitle")
+				cy.wrap(element).as("cardWithTitle");
 			}
-		})
-		cy.get("@cardWithTitle").should("be.visible")
+		});
+		cy.get("@cardWithTitle").should("be.visible");
 	}
 
 	seeRichTextWithPattern(pattern) {
 		cy.get(Board.#richTextDisplayPattern).each((element) => {
 			if (element.text().match(pattern)?.length >= 0) {
-				cy.wrap(element).as("richTextWithPattern")
+				cy.wrap(element).as("richTextWithPattern");
 			}
-		})
-		cy.get("@richTextWithPattern").should("be.visible")
+		});
+		cy.get("@richTextWithPattern").should("be.visible");
 	}
 
 	seeWeblinkWithTitle(linkTitle) {
-		cy.get(Board.#boardLinkElement).contains(linkTitle)
+		cy.get(Board.#boardLinkElement).contains(linkTitle);
 	}
 
 	seeFileElementWithTitle(fileTitle) {
-		cy.get(Board.#boardFileElement).contains(fileTitle)
+		cy.get(Board.#boardFileElement).contains(fileTitle);
 	}
 }
 export default Board;
