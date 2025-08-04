@@ -25,7 +25,29 @@ class CourseManagement {
 	static #courseTableAlertIcon =
 		'[data-testid="admin-rooms-table-teacher-names-empty"]';
 	static #courseWithoutTeacherToggle =
-		'[data-testid="admin-course-without-teacher-checkbox"]';
+		'[data-testid="admin-course-without-teacher-checkbox"] input[type="checkbox"]';
+	static #courseTitle = '[data-testid="course-title"]';
+	static #courseBadgeLock = '[data-testid="course-badge-lock"]';
+	static #courseLockedMessage = '[data-testid="img-permission"]';
+
+	clickLockedCourse(courseName) {
+		cy.contains(CourseManagement.#courseTitle, courseName)
+			.should("be.visible")
+			.then((title) => {
+				cy.wrap(title).prev().click();
+			});
+	}
+
+	seeLockIconInCourse(courseName) {
+		cy.get(CourseManagement.#courseTitle)
+			.contains(courseName)
+			.siblings(CourseManagement.#courseBadgeLock)
+			.should("be.visible");
+	}
+
+	seeCourseNotAccessibleMessage() {
+		cy.get(CourseManagement.#courseLockedMessage).should("be.visible");
+	}
 
 	seeCurrentAndArchiveTabs() {
 		cy.get(CourseManagement.#currentYearTab).should("be.visible");
@@ -36,17 +58,22 @@ class CourseManagement {
 		cy.get(CourseManagement.#currentYearTab).click();
 	}
 
-	seeAlertIconWithTextInTeacherColumn(infoText) {
-		cy.get(CourseManagement.#courseTableAlertIcon)
-			.should("be.visible")
-			.and("contain", infoText);
+	seeAlertIconInTeacherColumn() {
+		cy.get(CourseManagement.#courseTableAlertIcon).should("be.visible");
 	}
 
-	clickToggleCourseWithoutTeacher(toggleText) {
+	clickToggleCourseWithoutTeacher() {
 		cy.get(CourseManagement.#courseWithoutTeacherToggle)
-			.should("contain.text", toggleText)
-			.should("not.be.checked") // Ensures the toggle is unchecked
-			.click();
+			.should("exist")
+			.then(($checkbox) => {
+				const id = $checkbox.attr("id");
+				// Go up to the container div
+				cy.wrap($checkbox)
+					// container div wrapping input and label
+					.closest("div.v-selection-control")
+					.find(`label[for="${id}"]`)
+					.click({ force: true });
+			});
 	}
 
 	seeOnlyCourseInCourseTable(courseName) {

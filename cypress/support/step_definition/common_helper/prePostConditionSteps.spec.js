@@ -214,16 +214,6 @@ Given(
 	}
 );
 Given(
-	"course without a teacher {string} exist in course management page on staging",
-	(courseName) => {
-		management.openAdministrationInMenu();
-		courseManagement.clickOnCourseInAdministrationSubMenu();
-		courseManagement.isNewCourseAdministrationPage();
-		management.navigateToCourseAdministration();
-		courseManagement.seeCourseInCourseTable(courseName);
-	}
-);
-Given(
 	"task with task name {string} is created in course board {string}",
 	(taskName, courseName) => {
 		courses.navigateToCoursesOverview();

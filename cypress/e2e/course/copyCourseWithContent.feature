@@ -38,7 +38,7 @@ Feature: Course - Copy course
         # admin adds student to newly copied course
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
-        When I navigate to course administration page via sub menu
+        When I navigate to course administration page via  the submenu
         Then I see the new course administration page
         When I click on the edit button of course '<course_name_copy>'
         When I add the first student with search string '<searchstring_student>' to the course

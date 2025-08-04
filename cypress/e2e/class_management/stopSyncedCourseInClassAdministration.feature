@@ -16,16 +16,16 @@ Feature: Class Management - To stop a synchronized course
         When I click on button Save admin settings
         # pre-condition: admin creates a new synced course
         When I click on administration in menu
-        When I navigate to course administration page via sub menu
+        When I navigate to course administration page via  the submenu
         Then I see the new course administration page
         When I click on the Add course button
-		When I enter the course title '<course_title>'
+        When I enter the course title '<course_title>'
         When I select '<fullname_teacher>' from field teacher
-		When I click on button Next Steps after entering the course detail in section one
-		When I click on button Next Steps after selecting course participant details
-		When I click on button To Course Overview on the finish page
+        When I click on button Next Steps after entering the course detail in section one
+        When I click on button Next Steps after selecting course participant details
+        When I click on button To Course Overview on the finish page
         When I click on administration in menu
-        When I navigate to course administration page via sub menu
+        When I navigate to course administration page via  the submenu
         Then I see the course '<course_title>' on the new course administration page
         Then I see the course '<course_title>' without a synchronized group
         When I click the start synchronization button on course '<course_title>'
@@ -48,7 +48,7 @@ Feature: Class Management - To stop a synchronized course
 
         # post-condition: Admin deletes course
         When I click on administration in menu
-        When I navigate to course administration page via sub menu
+        When I navigate to course administration page via  the submenu
         Then I see the new course administration page
         When I click on the delete button of course '<course_title>'
         Then I see the delete modal
@@ -61,8 +61,8 @@ Feature: Class Management - To stop a synchronized course
             | namespace | admin      | teacher      | course_title              | group_title                     | fullname_teacher |
             | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync1 | Karl Herzog      |
 
-        # Note: This test runs with moin.schule groups from the seed data
-        # @school_api_test
-        # Examples:
-        #     | namespace | admin      | teacher      | course_title              | group_title                     | fullname_teacher  |
-        #     | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |
+# Note: This test runs with moin.schule groups from the seed data
+# @school_api_test
+# Examples:
+#     | namespace | admin      | teacher      | course_title              | group_title                     | fullname_teacher  |
+#     | nbc       | admin1_nbc | teacher1_nbc | CypressAUT ClassAdminSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |
