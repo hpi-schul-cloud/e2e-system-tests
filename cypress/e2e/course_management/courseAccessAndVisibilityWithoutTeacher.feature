@@ -1,5 +1,6 @@
 @stable_test
 @regression_test
+@group-V
 
 # NOTE: This feature is only for staging due to a limitation in the admin API: it cannot create a new course without a teacher.
 # NOTE: The course without a teacher but with student should pre-exist in the staging environment.
@@ -38,7 +39,7 @@ Feature: Admin sees course without assigned teachers in course management page a
         When I click on the locked course '<course_without_teacher>'
         Then I see a message that the course is not accessible
 
-        @staging_test
+        @school_api_test
         Examples:
             | admin      | student      | namespace | course_without_teacher         |
             | admin1_nbc | student1_nbc | nbc       | cypress-course-without-teacher |
