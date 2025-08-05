@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-J
+@group-C
 Feature: Task - Teacher copies a task from Course overview without student submission
 
     As a teacher I want to create, copy, edit and delete a task from course overview
