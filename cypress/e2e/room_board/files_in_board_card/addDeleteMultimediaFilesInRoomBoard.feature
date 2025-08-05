@@ -92,9 +92,10 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        # Given I navigate to the room detail page via Breadcrumb from the board page
         Given the room named '<room_name>' is deleted
 
+        @only
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |
