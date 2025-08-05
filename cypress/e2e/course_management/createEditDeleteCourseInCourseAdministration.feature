@@ -20,7 +20,7 @@ Feature: Course Management - To create, edit and delete class
 
         # admin creates a new course
         When I click on administration in menu
-        When I navigate to course administration page via  the submenu
+        When I navigate to course administration page via the submenu
         Then I see the new course administration page
         Then I see 2 tabs
         When I click on the Add course button
@@ -39,7 +39,7 @@ Feature: Course Management - To create, edit and delete class
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
         When I click on administration in menu
-        When I navigate to course administration page via  the submenu
+        When I navigate to course administration page via the submenu
         Then I see the course '<course_title>' on the new course administration page
         Then I see the course '<course_title>' with teacher '<fullname_teacher>'
         Then I see the course '<course_title>' without a class

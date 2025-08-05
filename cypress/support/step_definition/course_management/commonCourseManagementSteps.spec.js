@@ -3,7 +3,7 @@ import CourseManagement from "../../pages/course_management/pageCourseManagement
 
 const courseManagement = new CourseManagement();
 
-When("I navigate to course administration page via  the submenu", () => {
+When("I navigate to course administration page via the submenu", () => {
 	courseManagement.clickOnCourseInAdministrationSubMenu();
 });
 

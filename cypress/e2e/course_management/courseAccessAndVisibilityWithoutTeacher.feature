@@ -22,7 +22,7 @@ Feature: Admin sees course without assigned teachers in course management page a
 
         # Admin sees the course without a teacher assigned
         When I click on administration in menu
-        When I navigate to course administration page via  the submenu
+        When I navigate to course administration page via the submenu
         Then I see the new course administration page
         Then I see two tabs Current and Archive
         When I click on the tab Current

@@ -17,7 +17,7 @@ Feature: Course Management - To start and stop a synchronized course
         When I click on button Save admin settings
         # pre-condition: admin creates a new course
         When I click on administration in menu
-        When I navigate to course administration page via  the submenu
+        When I navigate to course administration page via the submenu
         Then I see the new course administration page
         When I click on the Add course button
         Then I see section one area on the course create page
@@ -27,7 +27,7 @@ Feature: Course Management - To start and stop a synchronized course
         When I click on button Next Steps after selecting course participant details
         When I click on button To Course Overview on the finish page
         When I click on administration in menu
-        When I navigate to course administration page via  the submenu
+        When I navigate to course administration page via the submenu
         Then I see the course '<course_title>' on the new course administration page
         Then I see the course '<course_title>' with teacher '<fullname_teacher>'
         Then I see the course '<course_title>' without a synchronized group
