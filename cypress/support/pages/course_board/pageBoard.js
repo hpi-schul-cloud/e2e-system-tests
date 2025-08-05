@@ -29,29 +29,30 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout =
-		'[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
-	static #externalToolElementAlert =
-		'[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
 	static #externalToolElementDomain =
 		'[data-testid="board-external-tool-element-domain"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
+	static #boardCardTitle = '[data-testid="card-title"]';
+	static #createBoardLinkElement = '[data-testid="board-link-element-create"]';
+	static #contentElementTitle = '[data-testid="content-element-title-slot"]';
 	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 
-	static #columnTitlePattern = '[data-testid^="column-title-"]'
-	static #cardTitle = '[data-testid="card-title"]'
-	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]'
-	static #boardLinkElement = '[data-testid="board-link-element"]'
-	static #boardFileElement = '[data-testid="board-file-element"]'
+	static #columnTitlePattern = '[data-testid^="column-title-"]';
+	static #cardTitle = '[data-testid="card-title"]';
+	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]';
+	static #boardLinkElement = '[data-testid="board-link-element"]';
+	static #boardFileElement = '[data-testid="board-file-element"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -138,7 +139,9 @@ class Board {
 	}
 
 	seeCourseBoardName(boardName) {
-		cy.get(Board.#courseBoardTitleOnPage).contains(boardName);
+		cy.contains(Board.#courseBoardTitleOnPage, boardName)
+			.should("be.visible")
+			.should("have.text", boardName);
 	}
 
 	seeDraftChipOnCourseBoard() {
@@ -191,9 +194,7 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	clickOnThreeDotOnColumn() {
@@ -203,6 +204,7 @@ class Board {
 
 	clickOnThreeDotOnCard() {
 		cy.get(Board.#threeDotMenuInCard).click();
+		cy.wait(1000);
 		cy.get(Board.#editOptionThreeDot).should("be.visible");
 	}
 
@@ -434,16 +436,47 @@ class Board {
 		cy.get(Board.#boardCard).should("be.visible");
 	}
 
+	enableFakeClipboard() {
+		cy.log("**Enable fake clipboard**");
+		cy.window().then((win) => {
+			if (win.navigator.clipboard.writeText.restore) {
+				win.navigator.clipboard.writeText.restore();
+			}
+			if (win.navigator.clipboard.readText.restore) {
+				win.navigator.clipboard.readText.restore();
+			}
+			let clipboardStore = "";
+			cy.stub(win.navigator.clipboard, "writeText")
+				.callsFake((text) => {
+					clipboardStore = text;
+					return Promise.resolve();
+				})
+				.as("clipboardWrite");
+			cy.stub(win.navigator.clipboard, "readText")
+				.callsFake(() => {
+					return Promise.resolve(clipboardStore);
+				})
+				.as("clipboardRead");
+		});
+	}
+
+	disableFakeClipboard() {
+		cy.log("**Disable fake clipboard**");
+		cy.window().then((win) => {
+			delete win.navigator.clipboard.writeText;
+			delete win.navigator.clipboard.readText;
+		});
+	}
+
 	selectCopyLinkToCardInThreeDotMenu() {
+		this.enableFakeClipboard();
 		cy.get(Board.#copyBoardCardLinkButton).click();
-
-		cy.window()
-			.then((win) => {
-				return win.navigator.clipboard.readText();
-			})
+		cy.get("@clipboardWrite").should("have.been.called");
+		cy.get("@clipboardRead")
+			.then((readStub) => readStub())
+			.should("not.be.empty")
 			.then((link) => {
-				cy.wrap(link).as("boardCardLink");
-
+				cy.wrap(link).as("lastClipboard");
 				cy.url().then((currentUrl) => {
 					expect(link).to.include(currentUrl);
 				});
@@ -451,7 +484,7 @@ class Board {
 	}
 
 	openBoardCardLink() {
-		cy.get("@boardCardLink").then((link) => {
+		cy.get("@lastClipboard").then((link) => {
 			cy.visit(link);
 		});
 	}
@@ -472,6 +505,41 @@ class Board {
 		cy.get(Board.#firstBoardColumn).should("be.visible");
 	}
 
+	enterBoardCardTitle(cardTitle) {
+		cy.get(Board.#boardCard).within(() => {
+			cy.get(Board.#boardCardTitle).find("textarea").first().clear().type(cardTitle);
+		});
+	}
+
+	seeBoardCardTitle(cardTitle) {
+		cy.get(Board.#boardCard).within(() => {
+			cy.get(Board.#boardCardTitle).should("be.visible").should("have.text", cardTitle);
+		});
+	}
+
+	enterBoardCardLinkInLinkElement() {
+		cy.get("@lastClipboard").then((link) => {
+			cy.get(Board.#createBoardLinkElement)
+				.find("textarea")
+				.first()
+				.clear()
+				.type(link)
+				.type("{enter}");
+		});
+	}
+
+	seeLinkElementTitle(linkElementTitle) {
+		cy.get(Board.#contentElementTitle).contains(linkElementTitle).should("be.visible");
+	}
+
+	clickOnLinkElement(linkElementTitle) {
+		cy.get(Board.#contentElementTitle)
+			.contains(linkElementTitle)
+			.parents("a")
+			.invoke("removeAttr", "target")
+			.click();
+	}
+
 	seeMultiColumnBoard() {
 		cy.url().should("include", "/boards");
 	}
@@ -479,36 +547,36 @@ class Board {
 	seeColumnWithTitle(columnName) {
 		cy.get(Board.#columnTitlePattern).each((element) => {
 			if (element.text() === columnName) {
-				cy.wrap(element).as("columnWithTitle")
+				cy.wrap(element).as("columnWithTitle");
 			}
-		})
-		cy.get("@columnWithTitle").should("be.visible")
+		});
+		cy.get("@columnWithTitle").should("be.visible");
 	}
 
 	seeCardWithTitle(cardName) {
 		cy.get(Board.#cardTitle).each((element) => {
 			if (element.text() === cardName) {
-				cy.wrap(element).as("cardWithTitle")
+				cy.wrap(element).as("cardWithTitle");
 			}
-		})
-		cy.get("@cardWithTitle").should("be.visible")
+		});
+		cy.get("@cardWithTitle").should("be.visible");
 	}
 
 	seeRichTextWithPattern(pattern) {
 		cy.get(Board.#richTextDisplayPattern).each((element) => {
 			if (element.text().match(pattern)?.length >= 0) {
-				cy.wrap(element).as("richTextWithPattern")
+				cy.wrap(element).as("richTextWithPattern");
 			}
-		})		
-		cy.get("@richTextWithPattern").should("be.visible")
+		});
+		cy.get("@richTextWithPattern").should("be.visible");
 	}
 
 	seeWeblinkWithTitle(linkTitle) {
-		cy.get(Board.#boardLinkElement).contains(linkTitle)
+		cy.get(Board.#boardLinkElement).contains(linkTitle);
 	}
-	
+
 	seeFileElementWithTitle(fileTitle) {
-		cy.get(Board.#boardFileElement).contains(fileTitle)
+		cy.get(Board.#boardFileElement).contains(fileTitle);
 	}
 }
 export default Board;

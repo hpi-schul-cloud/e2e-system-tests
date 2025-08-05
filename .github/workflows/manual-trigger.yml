@@ -83,6 +83,7 @@ jobs:
             group-S,
             group-T,
             group-U,
+            group-V,
           ]
     with:
       cypress_brb: ${{ inputs.instance1 }}
