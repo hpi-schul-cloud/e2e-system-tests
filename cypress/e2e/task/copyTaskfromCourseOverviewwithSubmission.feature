@@ -2,11 +2,11 @@
 @stable_test
 @schedule_run
 @group-J
-Feature: Task - To create, copy tasks by the teacher from the Course overview where the task is submitted by the student.
+Feature: Task - Teacher copies task from Course overview with student submission.
 
     As a teacher I want to create, copy, edit and delete a task from course overview and the task is submitted by the student.
 
-    Scenario Outline: Teacher creates, copy, edits, and deletes a task which is submitted by the student in the course overview
+    Scenario Outline: Teacher copies a task submitted by the student in course overview
 
         # pre-condition: teacher and student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'
@@ -22,7 +22,7 @@ Feature: Task - To create, copy tasks by the teacher from the Course overview wh
         Given I am logged in as a '<student>' at '<namespace>'
         Given task '<task_name>' in course '<course_name>' is submitted by the student
 
-        # teacher copies the task in the learning content when submitted by the student
+        # teacher copies the task from the room detail when submitted by the student
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'

@@ -2,11 +2,11 @@
 @stable_test
 @schedule_run
 @group-J
-Feature: Task - To create, copy tasks by the teacher from the Course overview where the task is not submitted by the student.
+Feature: Task - Teacher copies a task from Course overview without student submission
 
     As a teacher I want to create, copy, edit and delete a task from course overview
 
-    Scenario Outline: Teacher creates, copy, edits, and deletes a task which is not submitted by the student in the course overview
+    Scenario Outline: Teacher copies a task not submitted by the student in course overview
 
         # pre-condition: teacher and student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'

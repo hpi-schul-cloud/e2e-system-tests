@@ -70,8 +70,6 @@ class Tasks {
 	static #homeworkDescription = '[data-testid="homework-description"]';
 	static #submissionComment = '[data-testid="submission-comment"]';
 	static #submissionText = '[data-testid="submission-text"]';
-	static #draftTasksTabButton =
-		'[class="v-btn v-tab-item--selected v-tab--selected v-theme--light text-primary v-btn--density-default v-btn--size-default v-btn--variant-text v-tab"]';
 	static #draftTasksTab = '[data-testid="draftTasks"]';
 	static #taskCardTitle = '[data-testid="taskTitle"]';
 	static #taskEditPage = '[data-testid="Aufgabe bearbeiten"]';
@@ -113,8 +111,11 @@ class Tasks {
 	}
 
 	seeDraftTaskButtonSelected() {
-		cy.wait(5000); // Wait for the copy task to be finished
-		cy.get(Tasks.#draftTasksTabButton).should("have.attr", "aria-selected", "true");
+		cy.wait(500); // Wait for the copy task to be finished
+		cy.get(Tasks.#draftTasksTab).invoke("text").should("equal", "Entwürfe");
+		cy.get(Tasks.#draftTasksTab)
+			.parents("button")
+			.should("have.attr", "aria-selected", "true");
 	}
 
 	seeEditTaskDescription() {
