@@ -156,6 +156,8 @@ class Courses {
 	static #adminCourseTableName = '[data-testid="admin-rooms-table-name"]';
 	static #btnCourseTableDelete = '[data-testid="course-table-delete-btn"]';
 	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
+	static #boardTitlePattern = '[data-testid^="board-title-"]';
+	static #roomBoardCardPattern = '[data-testid^="room-board-card-"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -1216,9 +1218,9 @@ class Courses {
 	}
 
 	openColumnBoardWithName(boardName) {
-		cy.get('[data-testid^="board-title-"]')
+		cy.get(Courses.#boardTitlePattern)
 			.contains(boardName)
-			.parents('[data-testid^="room-board-card-"]')
+			.parents(Courses.#roomBoardCardPattern)
 			.click();
 	}
 
