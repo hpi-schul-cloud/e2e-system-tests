@@ -83,6 +83,10 @@ Then("I select {string} from the element selection dialog box", (cardElementName
 	board.selectCardElementFromMenu(cardElementName);
 });
 
+Then("I do not see {string} in the element selection dialog box", (cardElementName) => {
+	board.doNotSeeCardElementFromMenu(cardElementName);
+});
+
 Then("I see a board card", () => {
 	board.seeBoardCard();
 });
@@ -98,3 +102,27 @@ When("I click on the page outside of the card", () => {
 Then("I see the focused board card", () => {
 	board.seeFocusedBoardCard();
 });
+
+Then("I see that I am on a column board", () => {
+	board.seeMultiColumnBoard();
+})
+
+Then("I see a column with title {string}", (title) => {
+	board.seeColumnWithTitle(title);
+})
+
+Then("I see a card with title {string}", (title) => {
+	board.seeCardWithTitle(title);
+})
+
+Then("I see a rich text element with pattern {string}", (pattern) => {
+	board.seeRichTextWithPattern(pattern);
+})
+
+Then("I see a web link with title {string}", (title) => {
+	board.seeWeblinkWithTitle(title);
+})
+
+Then("I see a file element with title {string}", (title) => {
+	board.seeFileElementWithTitle(title);
+})

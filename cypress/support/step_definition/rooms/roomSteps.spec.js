@@ -15,7 +15,23 @@ Then("I enter a new room name {string}", (roomName) => {
 	rooms.enterNewRoomNameInImportModal(roomName);
 });
 
-When("I click on the buttom Import in the modal", () => {
+When("I check the video conference checkbox", () => {
+	rooms.checkVideoConferenceCheckbox();
+});
+
+When("I uncheck the video conference checkbox", () => {
+	rooms.uncheckVideoConferenceCheckbox();
+});
+
+Then("I see the video conference checkbox is checked", () => {
+	rooms.seeVideoConferenceCheckboxIsChecked();
+});
+
+Then("I see the video conference checkbox is unchecked", () => {
+	rooms.seeVideoConferenceCheckboxIsUnchecked();
+});
+
+When("I click on the button Import Confirm in the modal", () => {
 	rooms.clickOnImportConfirmButtonInModal();
 });
 
@@ -151,6 +167,10 @@ Then("I see {string} in the room participants list", (participantName) => {
 	rooms.seeParticipantInList(participantName);
 });
 
+Then("I do not see {string} in the room participants list", (participantName) => {
+	rooms.notSeeParticipantInList(participantName);
+});
+
 When(
 	"I click on {string} button in the participant list for participant {string}",
 	(kebabMenuOption, participantName) => {
@@ -181,9 +201,9 @@ When("I click on the fab button to add a Board", () => {
 });
 
 When(
-	"I click on button Three Dot Menu to add participant {string}",
+	"I click on button Three Dot Menu to edit participant {string}",
 	(participantName) => {
-		rooms.clickOnThreeDotMenuToAddUser(participantName);
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
 	}
 );
 
@@ -355,7 +375,7 @@ Then("I do not see user {string} in the confirmations table", (userName) => {
 When(
 	"I click on button Three Dot Menu in Confirmations table for user {string}",
 	(userName) => {
-		rooms.clickOnThreeDotMenuToAddUser(userName);
+		rooms.clickOnThreeDotMenuToEditUser(userName);
 	}
 );
 
