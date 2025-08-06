@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@group-R
+@schedule_run
 Feature: Teacher can share a course with ctl tools
 
     As a teacher I want to share a course with ctl tools to other teachers from the same school
@@ -26,6 +28,7 @@ Feature: Teacher can share a course with ctl tools
         Then I see course page '<course_name_share>'
         When I click on the tools tab
         Then I see the button to add a tool
+
         # pre-condition: teacher adds a tool with required parameter
         When I click on the button to add a tool
         Then I see the context external tool configuration page
@@ -33,6 +36,7 @@ Feature: Teacher can share a course with ctl tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
         When I click on save external tool button
         Then I see the tool '<ctl_tool_scope_context>' in the tool overview
+
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on the button to add a tool
         Then I see the context external tool configuration page
@@ -41,6 +45,7 @@ Feature: Teacher can share a course with ctl tools
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
         When I click on save external tool button
         Then I see the tool '<ctl_tool_optional_protected_param>' in the tool overview
+
         # pre-condition: teacher adds a tool with required protected parameter
         When I click on the button to add a tool
         Then I see the context external tool configuration page
@@ -62,6 +67,7 @@ Feature: Teacher can share a course with ctl tools
         Then I see the chip Draft in the course board
         When I click on the button Add column in the course board
         When I click on the page outside of the column
+
         # pre-condition: teacher adds a tool with required parameter
         When I click on icon Plus to add card in column
         When I click on icon Plus to add content into card
@@ -70,6 +76,7 @@ Feature: Teacher can share a course with ctl tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
         When I click on save external tool button
         Then I see an external tool element with tool '<ctl_tool_scope_context>'
+
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
@@ -80,6 +87,7 @@ Feature: Teacher can share a course with ctl tools
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
         When I click on save external tool button
         Then I see an external tool element with tool '<ctl_tool_optional_protected_param>'
+
         # pre-condition: teacher adds a tool with required parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
@@ -96,28 +104,30 @@ Feature: Teacher can share a course with ctl tools
         When I go to courses overview
         When I go to course '<course_name_share>'
         Then I see course page '<course_name_share>'
-        When I click on share course button
-        Then I see the share course dialog box
-        Then I see the info text in the share course dialog
-        Then I see the school internal checkbox as checked
-        Then I see the expiry date checkbox as checked
-        When I click on the continue button in the share course dialog
-        Then I see the import share course url in the share course result dialog
-        Then I see the mail button in the share course result dialog
-        Then I see the copy link button in the share course result dialog
-        Then I see the mail QR-Code button in the share course result dialog
+        When I click on button share course
+        Then I see the dialog box share course
+        Then I see the info text in the dialog box share course
+        Then I see the checkbox school internal as checked
+        Then I see the checkbox expiry date as checked
+        When I click on the button continue in the dialog box share course
+        Then I see the import share course url in the dialog box share course result
+        Then I see the button mail in the dialog box share course result
+        Then I see the button copy link in the dialog box share course result
+        Then I see the button mail QR-Code in the dialog box share course result
         When I save the import share course url
+
         # switch teacher to import shared course
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to courses overview
         When I visit the saved import url of the shared course
-        Then I see the import share course dialog
+        Then I see the dialog box import share course
         Then I see the import share course tools info
         Then I see '<course_name_share>' in the course name field
         When I enter '<course_name_import>' in the course name field
-        When I click on the import course button
+        When I click on the button import course
         When I go to course '<course_name_import>'
         Then I see course page '<course_name_import>'
+
         # teacher sees marked tools in tools tab
         When I click on the tools tab
         Then I see the tool '<ctl_tool_scope_context>' in the tool overview
@@ -125,6 +135,7 @@ Feature: Teacher can share a course with ctl tools
         Then I see the tool '<ctl_tool_optional_protected_param>' is marked as incomplete operational
         Then I see the tool '<ctl_tool_protected_param>' in the tool overview
         Then I see the tool '<ctl_tool_protected_param>' is marked as incomplete
+
         # teacher sees marked tools in board
         When I go to the tab contents in course detail page
         When I click on card Course Board

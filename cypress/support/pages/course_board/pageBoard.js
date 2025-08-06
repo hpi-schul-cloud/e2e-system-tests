@@ -29,19 +29,29 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout =
+		'[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
-	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementAlert =
+		'[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementDomain =
+		'[data-testid="board-external-tool-element-domain"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
 	static #copyBoardCardLinkButton = '[data-testid="board-menu-action-share-link"]';
 	static #firstBoardColumn = '[data-testid="board-column-0"]';
 	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
+
+	static #columnTitlePattern = '[data-testid^="column-title-"]'
+	static #cardTitle = '[data-testid="card-title"]'
+	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]'
+	static #boardLinkElement = '[data-testid="board-link-element"]'
+	static #boardFileElement = '[data-testid="board-file-element"]'
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -53,6 +63,10 @@ class Board {
 
 	selectCardElementFromMenu(cardElementName) {
 		cy.get(`[data-testid="create-element-${cardElementName}"]`).click();
+	}
+
+	doNotSeeCardElementFromMenu(cardElementName) {
+		cy.get(`[data-testid="create-element-${cardElementName}"]`).should("not.exist");
 	}
 
 	seeWhiteboardOnPage() {
@@ -68,6 +82,12 @@ class Board {
 			.find(".content-element-title")
 			.should("contain.text", toolName)
 			.should("be.visible");
+	}
+
+	seeExternalToolElementDomain(toolName) {
+		cy.get(`[data-testid="board-external-tool-element-${toolName}"]`).within(() => {
+			cy.get(Board.#externalToolElementDomain).should("be.visible");
+		});
 	}
 
 	canNotSeeDeletedElements() {
@@ -171,7 +191,9 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	clickOnThreeDotOnColumn() {
@@ -448,6 +470,45 @@ class Board {
 
 	seeMultiColumnBoard() {
 		cy.get(Board.#firstBoardColumn).should("be.visible");
+	}
+
+	seeMultiColumnBoard() {
+		cy.url().should("include", "/boards");
+	}
+
+	seeColumnWithTitle(columnName) {
+		cy.get(Board.#columnTitlePattern).each((element) => {
+			if (element.text() === columnName) {
+				cy.wrap(element).as("columnWithTitle")
+			}
+		})
+		cy.get("@columnWithTitle").should("be.visible")
+	}
+
+	seeCardWithTitle(cardName) {
+		cy.get(Board.#cardTitle).each((element) => {
+			if (element.text() === cardName) {
+				cy.wrap(element).as("cardWithTitle")
+			}
+		})
+		cy.get("@cardWithTitle").should("be.visible")
+	}
+
+	seeRichTextWithPattern(pattern) {
+		cy.get(Board.#richTextDisplayPattern).each((element) => {
+			if (element.text().match(pattern)?.length >= 0) {
+				cy.wrap(element).as("richTextWithPattern")
+			}
+		})		
+		cy.get("@richTextWithPattern").should("be.visible")
+	}
+
+	seeWeblinkWithTitle(linkTitle) {
+		cy.get(Board.#boardLinkElement).contains(linkTitle)
+	}
+	
+	seeFileElementWithTitle(fileTitle) {
+		cy.get(Board.#boardFileElement).contains(fileTitle)
 	}
 }
 export default Board;

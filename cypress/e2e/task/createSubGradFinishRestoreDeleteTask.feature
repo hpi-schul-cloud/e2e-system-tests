@@ -1,5 +1,8 @@
 @regression_test
 @stable_test
+@schedule_run
+@group-J
+@pre_check_test
 Feature: Task - To create, submit, grade, archive, restore and delete task.
 
     As a teacher I want to create, grade, finish, restore and delete a new task so that the student can submit it

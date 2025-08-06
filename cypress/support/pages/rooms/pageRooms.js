@@ -8,8 +8,9 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
 	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
-	static #confirmDeletionModalTitle = '[data-testid="delete-dialog-item"]';
-	static #confirmDeletionModalDelete = '[data-testid="dialog-confirm"]';
+	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
+	static #modal = '[data-testid="dialog"]';
+	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
@@ -22,6 +23,7 @@ class Rooms {
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
 	static #inputEndDateForRoom = '[data-testid="room-end-date-input"]';
+	static #videoConferenceCheckbox = '[data-testid="room-video-conference-checkbox"]';
 	static #memberRowInRoomMembershipTable = '[data-testid^="kebab-menu-"]';
 	static #changeRolePermissionButton =
 		'[data-testid="kebab-menu-action-change-permission"]';
@@ -31,23 +33,47 @@ class Rooms {
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
 	static #roomLeaveDialogBox = '[data-testid="dialog-title"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
-	static #modalDuplicateRoom = '[data-testid="duplication-info-dialog"]';
-	static #modalTitleDuplicateRoom = '[data-testid="duplication-info-dialog-title"]';
-	static #cancelButtonDuplicateRoom = '[data-testid="duplication-info-dialog-cancel"]';
-	static #duplicateButton = '[data-testid="duplication-info-dialog-confirm"]';
+	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
+	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
+	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
+	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
+	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
+	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
+	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
+	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
+	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
+	static #inputInviteMembersDescription =
+		'[data-testid="invite-participant-description-input"]';
+	static #inputInviteMembersRequireConfirmation =
+		'[data-testid="input-invite-participants-requires-confirmation"]';
+	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
+	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
+	static #modalCreateInvitationLinkClose =
+		'[data-testid="invite-participant-close-btn"]';
+	static #roomInvitationsTable = '[data-testid="data-table"]';
+	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
+	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
+	static #threeDotMenuConfirm = '[data-testid^="kebab-menu-confirm"]';
+	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
+	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
+	static #infoBoxContentRestriction = '[data-testid="share-options-table-header"]';
 
-	//verifyDuplicatedRoomNameContains(suffix) {
-	//cy.get(Rooms.#roomTitle)
-	//.should("be.visible")
-	//.and("contain.text", suffix);
-	//}
+	seeContentRestrictionInfoBoxInModal() {
+		cy.get(Rooms.#infoBoxContentRestriction).should("be.visible");
+	}
 
-	//verifyDuplicatedRoomIsDeleted(suffix) {
-	//cy.get(Rooms.#roomTitle).each(($el) => {
-	//expect($el.text()).not.to.include(suffix);
-	//});
-	//}
+	seeRoomNameInImportModal() {
+		cy.get(Rooms.#roomNameInModalRoomImport).should("be.visible");
+	}
+
+	enterNewRoomNameInImportModal(roomName) {
+		cy.get(Rooms.#roomNameInModalRoomImport).clear().type(roomName);
+	}
+
+	clickOnImportConfirmButtonInModal() {
+		cy.get(Rooms.#confirmButtonOnModal).click();
+	}
 
 	seeDuplicateRoomSuccessAlert() {
 		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
@@ -73,6 +99,28 @@ class Rooms {
 		cy.get(Rooms.#duplicateButton).click();
 	}
 
+	inputDateForRoom(selector, formattedDate) {
+		// here comes issue with date picker
+		// it gets shovels first digit of the date
+		// if we use this solution
+
+		// cy.get(Rooms.#inputEndDateForRoom)
+		// 	.type("{esc}")
+		// 	.type(formattedDate);
+
+		// so if you type 13.03.2025
+		// it will be typed as 30.32.025
+
+		cy.get(selector)
+			.find("input")
+			.should("exist")
+			.invoke("val", formattedDate)
+			.trigger("input")
+			.trigger("change")
+			.trigger("blur")
+			.should("have.value", formattedDate);
+	}
+
 	selectEndDateForRoom() {
 		const currentDate = new Date();
 		//set the date which is two days later than the current day
@@ -86,7 +134,7 @@ class Rooms {
 
 		//Format the date as DD.MM.YYYY
 		const formattedDate = `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
-		cy.get(Rooms.#inputEndDateForRoom).type("{esc}").type(formattedDate);
+		this.inputDateForRoom(Rooms.#inputEndDateForRoom, formattedDate);
 	}
 
 	selectTodayStartDateForRoom() {
@@ -96,7 +144,7 @@ class Rooms {
 		const month = String(today.getMonth() + 1).padStart(2, "0");
 		const year = today.getFullYear();
 		const formattedDate = `${day}.${month}.${year}`;
-		cy.get(Rooms.#inputStartDateForRoom).type("{esc}").type(formattedDate);
+		this.inputDateForRoom(Rooms.#inputStartDateForRoom, formattedDate);
 	}
 
 	selectRoomColour() {
@@ -141,8 +189,28 @@ class Rooms {
 		cy.wait("@members_api");
 	}
 
+	checkVideoConferenceCheckbox() {
+		cy.get(Rooms.#videoConferenceCheckbox).find("div div input").check();
+	}
+
+	uncheckVideoConferenceCheckbox() {
+		cy.get(Rooms.#videoConferenceCheckbox).find("div div input").uncheck();
+	}
+
+	seeVideoConferenceCheckboxIsChecked() {
+		cy.get(Rooms.#videoConferenceCheckbox)
+			.find("input[type='checkbox']")
+			.should("be.checked");
+	}
+
+	seeVideoConferenceCheckboxIsUnchecked() {
+		cy.get(Rooms.#videoConferenceCheckbox)
+			.find("input[type='checkbox']")
+			.should("not.be.checked");
+	}
+
 	navigateToRoom(roomName) {
-		cy.contains(roomName).should("be.visible").and("contain.text", roomName).click();
+		cy.get(Rooms.#roomTitle).contains(roomName).should("be.visible").click();
 	}
 
 	openThreeDotMenuForRoom() {
@@ -156,7 +224,11 @@ class Rooms {
 	}
 
 	seeConfirmationModalForRoomDeletion() {
-		cy.get(Rooms.#confirmDeletionModalTitle).should("exist");
+		cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+	}
+
+	seeConfirmationModalForFileDeletion() {
+		cy.get(Rooms.#modal).should("exist");
 	}
 
 	seeModalForAddParticipants() {
@@ -169,14 +241,14 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#confirmDeletionModalTitle).then((dialogs) => {
+		cy.get(Rooms.#deletionConfirmationModalTitle).then((dialogs) => {
 			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
 				return (
 					parseInt(Cypress.$(dialogB).css("z-index")) -
 					parseInt(Cypress.$(dialogA).css("z-index"))
 				);
 			})[0];
-			cy.wrap(highestZIndexDialog).find(Rooms.#confirmDeletionModalDelete).click();
+			cy.wrap(highestZIndexDialog).find(Rooms.#confirmButtonOnModal).click();
 		});
 	}
 
@@ -192,6 +264,18 @@ class Rooms {
 		cy.get(Rooms.#addParticipantSchool).contains(participantSchool);
 	}
 
+	fillParticipantFormSchool(participantSchool) {
+		cy.get(Rooms.#addParticipantSchool)
+			.type("{selectall}{backspace}")
+			.type(participantSchool);
+	}
+
+	selectParticipantSchool() {
+		cy.get(Rooms.#addParticipantSchool)
+			.should("be.visible")
+			.type("{downArrow}{enter}");
+	}
+
 	seeRoleOfParticipant(participantRole) {
 		cy.get(Rooms.#addParticipantRole).contains(participantRole);
 	}
@@ -201,7 +285,10 @@ class Rooms {
 	}
 
 	selectParticipantName() {
-		cy.get(Rooms.#addParticipantName).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantName)
+			.should("be.visible")
+			.type("{downArrow}{enter}")
+			.type("{esc}");
 	}
 
 	addParticipant() {
@@ -245,7 +332,7 @@ class Rooms {
 		cy.get(Rooms.#fabButtonAddBoard).click();
 	}
 
-	clickOnThreeDotMenuToAddUser(participantName) {
+	clickOnThreeDotMenuToEditUser(participantName) {
 		cy.contains("td", participantName)
 			.parent()
 			.within(() => {
@@ -341,7 +428,7 @@ class Rooms {
 		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should("be.visible");
 		cy.get(Rooms.#infoTextBannerInRoomMembersTable).should(
 			"contain.text",
-			"Füge Mitglieder zum Raum hinzu. Lehrkräfte anderer Schulen können hinzugefügt werden"
+			"Füge Mitglieder zum Raum hinzu. Lernbegleitende anderer Schulen können hinzugefügt werden"
 		);
 	}
 
@@ -358,6 +445,104 @@ class Rooms {
 			.should("be.visible")
 			.should("contain.text", "Besitzen")
 			.and("contain.text", "übertragen");
+	}
+
+	selectRoomRoleFromDropdownMenu(participantRole) {
+		cy.get(Rooms.#addParticipantRole).type("downArrow");
+		cy.get(Rooms.#roomRoleDropdownOverlay).contains(participantRole).click();
+		cy.get(Rooms.#addParticipantRole).should("contain", participantRole);
+	}
+
+	clickOnTabRoomInvitations() {
+		cy.get(Rooms.#tabRoomInvitations).should("be.visible").click();
+	}
+
+	clickOnTabRoomConfirmations() {
+		cy.get(Rooms.#tabRoomConfirmations).should("be.visible").click();
+	}
+
+	clickOnTabRoomMembers() {
+		cy.get(Rooms.#tabRoomMembers).should("be.visible").click();
+	}
+
+	clickOnInviteParticipantsFAB() {
+		cy.get(Rooms.#fabButtonInviteMembers).click();
+	}
+
+	seeCreateInvitationLinkModal() {
+		cy.get(Rooms.#modalCreateInvitationLink).should("be.visible");
+	}
+
+	fillInvitationFormDescription(newDescription) {
+		cy.get(Rooms.#inputInviteMembersDescription).clear().type(newDescription);
+	}
+
+	uncheckInvitationFormRequireConfirmation() {
+		cy.get(Rooms.#inputInviteMembersRequireConfirmation)
+			.find('[type="checkbox"]')
+			.uncheck();
+	}
+
+	checkInvitationFormRequireConfirmation() {
+		cy.get(Rooms.#inputInviteMembersRequireConfirmation)
+			.find('[type="checkbox"]')
+			.check();
+	}
+
+	clickInvitationFormSave() {
+		cy.get(Rooms.#modalCreateInvitationLinkSave).click();
+	}
+
+	seeLinkUrlInInvitationForm() {
+		cy.get(Rooms.#CreateInvitationLinkResult).should("be.visible");
+	}
+
+	saveTheLinkUrlInInvitationForm() {
+		cy.get(Rooms.#CreateInvitationLinkResult)
+			.find("input")
+			.invoke("attr", "value")
+			.then((value) => {
+				cy.wrap(value).as("roomInvitationLinkUrl");
+			});
+	}
+
+	clickInvitationFormClose() {
+		cy.get(Rooms.#modalCreateInvitationLinkClose).click();
+	}
+
+	seeInvitationLinkInList(linkDescription) {
+		cy.get(Rooms.#roomInvitationsTable).contains(linkDescription);
+	}
+
+	useSavedLinkUrl() {
+		cy.get("@roomInvitationLinkUrl").then((roomInvitationLinkUrl) => {
+			cy.visit(roomInvitationLinkUrl);
+		});
+	}
+
+	seeLinkInvitationStatusMessage() {
+		cy.get(Rooms.#roomInvitationStatusMessage).should("be.visible");
+	}
+
+	seeUserInConfirmationsTable(userName) {
+		cy.get(Rooms.#roomInvitationsTable).contains(userName);
+	}
+
+	notSeeUserInConfirmationsTable(userName) {
+		cy.get(Rooms.#roomInvitationsTable).should("not.contain", userName);
+	}
+
+	clickOnThreeDotMenuForUserInConfirmationsTable(userName) {
+		cy.contains("td", userName)
+			.parent()
+			.within(() => {
+				cy.get(Rooms.#threeDotMenuOfRowInRoomConfirmationsTable).click();
+			});
+	}
+
+	clickConfirmButtonInThreeDotMenu() {
+		cy.get(Rooms.#threeDotMenuConfirm).should("be.visible");
+		cy.get(Rooms.#threeDotMenuConfirm).click();
 	}
 }
 export default Rooms;

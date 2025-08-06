@@ -33,12 +33,16 @@ Then("I verify the element Link is clickable", () => {
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
-Then("I see the element Etherpad on the card", () => {
+Then("I see the element Etherpad in the card", () => {
 	roomBoards.verifyEtherpadIsVisibleOnCard();
 });
 
 Then("I verify the element Etherpad is clickable", () => {
 	roomBoards.verifyEtherpadIsClickableInBoard();
+});
+
+Then("I see the element H5P {string} in the card", (title) => {
+	roomBoards.seeH5PElementInRoomBoard(title);
 });
 
 When("I click on the three-dot in the element Etherpad", () => {
@@ -132,8 +136,16 @@ When("I click on the thumbnail Image in the card", () => {
 	roomBoards.clickOnImageThumbnailInCard();
 });
 
-Then("I see the fullscreen Image from the card", () => {
-	roomBoards.verifyCardImageInFullScreen();
+Then("I see the image in a lightbox", () => {
+	roomBoards.verifyImageInLightbox();
+});
+
+Then("I see audio player", () => {
+	roomBoards.verifyAudioPlayer();
+});
+
+Then("I see video player", () => {
+	roomBoards.verifyVideoPlayer();
 });
 
 Then("I see the alert message", () => {
@@ -298,6 +310,10 @@ Then("I see the modal to start the video conference", () => {
 	roomBoards.seeVideoConferenceStartDaialog();
 });
 
+Then("I do not see the modal to start the video conference", () => {
+	roomBoards.doNotSeeVideoConferenceStartDaialog();
+});
+
 Then(
 	"I see the button create in the video conference creation modal to start the call",
 	() => {
@@ -312,12 +328,20 @@ Then(
 	}
 );
 
+Then("I see multi-column board tile in the rooms details page", () => {
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnCopiedOrSharedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
-	roomBoards.verifySingleColumnCopiedBoardTileVisibleOnRoomDetailsPage();
+	roomBoards.verifySingleColumnBoardTileVisibleOnRoomDetailsPage();
+});
+
+Then("I do not see single-column board tile in the room details page", () => {
+	roomBoards.verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage();
 });
 
 When("I click on the single-column board in the room detail page", () => {
@@ -361,7 +385,7 @@ Then("I do not see the page board details", () => {
 	roomBoards.doNotSeeNewRoomBoardCreatePage();
 });
 
-When("I click on the three dot menu in room board", () => {
+When("I click on the three dot menu in room board title", () => {
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
@@ -393,6 +417,10 @@ Then("I see the board {string} on the room overview page", (boardTitle) => {
 	roomBoards.seeBoardOnRoomDetailPage(boardTitle);
 });
 
+When("I click on the board {string} on the room overview page", (boardTitle) => {
+	roomBoards.clickOnBoard(boardTitle);
+});
+
 Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
@@ -408,6 +436,14 @@ Then("I do not see the board {string} in the room", (boardTitle) => {
 Then("I see a folder with name {string} in the card", (folderTitle) => {
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
+
+Then(
+	"I see folder size and number of files {string} in the folder element in the card",
+	(folderDetails) => {
+		roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
+	}
+);
+
 When("I click on the folder {string} in the card", (folderTitle) => {
 	roomBoards.clickFolderElementWithTitle(folderTitle);
 });
@@ -425,7 +461,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElementWithDataTestId('fab-add-files');
+	globalActions.clickElementWithDataTestId("fab-add-files");
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
@@ -488,7 +524,7 @@ Then("I see checkboxes of files {string} are unchecked", (files) => {
 });
 
 When("I click on button Action in the header of the list", () => {
-	globalActions.clickElementWithDataTestId('action-menu-button');
+	globalActions.clickElementWithDataTestId("action-menu-button");
 });
 
 When("I click on three dot menu in row of file {string}", (fileName) => {
@@ -496,23 +532,23 @@ When("I click on three dot menu in row of file {string}", (fileName) => {
 });
 
 Then("I see confirmation modal for deleting the file", () => {
-	rooms.seeConfirmationModalForRoomDeletion();
+	rooms.seeConfirmationModalForFileDeletion();
 });
 
 Then("I see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdExists('action-menu-button');
+	globalAssertions.checkElementWithDataTestIdExists("action-menu-button");
 });
 
 Then("I do not see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists('action-menu-button');
+	globalAssertions.checkElementWithDataTestIdNotExists("action-menu-button");
 });
 
 When("I click on the three dot menu button next to the folder title", () => {
-	globalActions.clickElementWithDataTestId('folder-menu');
+	globalActions.clickElementWithDataTestId("folder-menu");
 });
 
 Then("I do not see a folder element on board", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists('board-folder-element');
+	globalAssertions.checkElementWithDataTestIdNotExists("board-folder-element");
 });
 
 When("I click on the three dot menu of the folder in card", () => {
@@ -527,9 +563,85 @@ Then("I see displayed number of checked files is {string}", (numberOfCheckedFile
 	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
 });
 
+Then("I see modal Rename file", () => {
+	roomBoards.seeModalRenameElement();
+});
 
+Then("I see modal Rename folder", () => {
+	roomBoards.seeModalRenameElement();
+});
 
+When("I enter {string} in input field New name", (newName) => {
+	roomBoards.enterNewElementNameInDialog(newName);
+});
 
+When("I clear input field New name", () => {
+	roomBoards.clearNewElementNameInDialog();
+});
 
+When("I click on button Approve in modal", () => {
+	globalActions.clickElementWithDataTestId("dialog-confirm");
+});
 
+When("I click on the name of file {string} in file list", (fileName) => {
+	roomBoards.clickOnFileNameInFolder(fileName);
+});
 
+When("I enter name {string} for file folder in card", (newName) => {
+	roomBoards.enterFolderNameInBoardCard(newName);
+});
+
+When("I approve new folder name in card", () => {
+	roomBoards.approveFolderNameInCard();
+});
+
+When("I clear folder name in card", () => {
+	roomBoards.clearFolderNameInCard();
+});
+
+Then(
+	"zip file for folder {string} with date of today is saved in folder downloads",
+	(folderName) => {
+		roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+	}
+);
+
+When("I click on the three dot menu in the H5P element", () => {
+	roomBoards.openThreeDotMenuForH5PInCard();
+});
+
+Then("I do not see the element H5P", () => {
+	roomBoards.verifyH5PElementIsNotVisible();
+});
+
+When("I click on the H5P element", () => {
+	roomBoards.clickOnH5PElement();
+});
+
+When("I click on the option Edit in the three dot menu on the H5P element", () => {
+	roomBoards.clickOnEditOptionInH5PThreeDotMenu();
+});
+
+Then("I see the H5P page", () => {
+	roomBoards.seeH5PPage();
+});
+
+When("I go back to the board page", () => {
+	roomBoards.goBackToBoardPage();
+});
+
+When("I copy the file path of the image file {string} from folder", (fileName) => {
+	roomBoards.copyFilePathOfImageFileFromFolder(fileName);
+});
+
+When("I copy the file path of the image file {string} from the card", (fileName) => {
+	roomBoards.copyFilePathOfImageFileFromCard(fileName);
+});
+
+Then("I see that image resource is available {string}", (fileName) => {
+	roomBoards.verifyImageFileRessourceAvailable(fileName);
+});
+
+Then("I see that image resource is not available {string}", (fileName) => {
+	roomBoards.verifyImageFileRessourceNotAvailable(fileName);
+});

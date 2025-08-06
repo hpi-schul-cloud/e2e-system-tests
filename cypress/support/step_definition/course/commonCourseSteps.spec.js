@@ -14,7 +14,7 @@ Then("I see the section three as the finish page", () => {
 });
 
 When("I select the student {string} in the list", (studentName) => {
-	courses.selectStudentInCourseCreatePage(studentName);
+	courses.selectStudentsInCourseCreatePage(studentName);
 });
 
 When("I select the class {string} in the class list", (className) => {
@@ -201,6 +201,26 @@ When("I click on Delete in dot menu", () => {
 	courses.clickDeleteInDotMenu();
 });
 
+When("I click on Copy in dot menu", () => {
+	courses.clickCopyOptionInThreeDotMenuOfTopic();
+});
+
+Then("I see the option Copy on the list", () => {
+	courses.seeCopyOptionInThreeDotMenuOfTopic();
+});
+
+Then("I see confirmation modal for deleting the task", () => {
+	courses.seeConfirmationModalForTaskDeletion();
+});
+
+Then("I see success message {string}", (successMessage) => {
+	courses.seeDuplicateTaskSuccessAlert(successMessage);
+});
+
+Then("I see button Publish on the copied task", () => {
+	courses.seeTaskOnCoursePagePublish();
+});
+
 When("I click on Delete in dot menu of topic", () => {
 	courses.clickDeleteInDotMenuOfTopic();
 });
@@ -239,6 +259,10 @@ Then(
 		courses.compareSubmittedTasksInformation(submittedTasks, taskTitle);
 	}
 );
+
+Then("I see task card info not submitted for task {string}", (taskTitle) => {
+	courses.compareNotSubmittedTasksInformation(taskTitle);
+});
 
 When(
 	"Task card info graded contains {string} for task {string}",
@@ -281,6 +305,22 @@ Then("I delete all courses named {string}", (courseName) => {
 
 When("I click on copy course button", () => {
 	courses.clickCopyCourseButton();
+});
+
+When("I click on export course button", () => {
+	courses.clickExportCourseButton();
+});
+
+When("I click on dialog next button", () => {
+	courses.clickDialogNextButton();
+});
+
+When("I click on dialog export button", () => {
+	courses.clickDialogExportButton();
+});
+
+When("I click on the import course button", () => {
+	courses.clickImportCourseButton();
 });
 
 Then("I see the copy result notification", () => {
@@ -340,6 +380,18 @@ Then("I see date pickers to start and end the course as per school year", () => 
 
 Then("I see button to create a course time table container", () => {
 	courses.seeCreateCourseTimeTableContainer();
+});
+
+Then("I see the progress bar", () => {
+	courses.seeProgressBar();
+});
+
+Then("I see the title 'Aufgabe - Entwurf' in the task", () => {
+	courses.seeDraftTaskTitle();
+});
+
+Then("I see the success message {string}", (successMessage) => {
+	courses.seeDuplicateTaskSuccessAlert(successMessage);
 });
 
 When(
