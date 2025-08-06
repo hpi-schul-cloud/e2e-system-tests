@@ -1,10 +1,10 @@
 import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import CourseManagement from '../../pages/course_management/pageCourseManagement';
+import CourseManagement from "../../pages/course_management/pageCourseManagement";
 
-const courseManagement = new CourseManagement()
+const courseManagement = new CourseManagement();
 
-When("I navigate to course administration page via sub menu", () => {
-	courseManagement.clickOnClassInAdministrationSubMenu();
+When("I navigate to course administration page via the submenu", () => {
+	courseManagement.clickOnCourseInAdministrationSubMenu();
 });
 
 When("I click on the Add course button", () => {
@@ -16,7 +16,7 @@ When("I click on the edit button of course {string}", (courseName) => {
 });
 
 When("I click on the delete button of course {string}", (courseName) => {
-	courseManagement.clickDeleteButtonOfCourse(courseName)
+	courseManagement.clickDeleteButtonOfCourse(courseName);
 });
 
 Then("I see the new course administration page", () => {
@@ -24,15 +24,15 @@ Then("I see the new course administration page", () => {
 });
 
 Then("I see the course {string} on the new course administration page", (courseName) => {
-	courseManagement.seeCourseInCourseTable(courseName)
+	courseManagement.seeCourseInCourseTable(courseName);
 });
 
 Then("I do not see course {string} in course table", (courseName) => {
 	courseManagement.doNotSeeCourseInTable(courseName);
-})
+});
 
 Then("I see 2 tabs", () => {
-	courseManagement.see2Tabs();
+	courseManagement.seeCurrentAndArchiveTabs();
 });
 
 Then("I see the course {string} with teacher {string}", (courseName, teacherName) => {
