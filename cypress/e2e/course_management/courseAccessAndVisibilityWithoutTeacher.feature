@@ -39,7 +39,7 @@ Feature: Admin sees course without assigned teachers in course management page a
         When I click on the locked course '<course_without_teacher>'
         Then I see a message that the course is not accessible
 
-        @school_api_test
+        @staging_test
         Examples:
             | admin      | student      | namespace | course_without_teacher         |
             | admin1_nbc | student1_nbc | nbc       | cypress-course-without-teacher |
