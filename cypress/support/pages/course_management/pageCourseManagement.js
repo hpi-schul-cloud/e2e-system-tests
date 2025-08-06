@@ -58,27 +58,21 @@ class CourseManagement {
 		cy.get(CourseManagement.#currentYearTab).click();
 	}
 
-	seeAlertIconInTeacherColumn() {
+	seeAlertIconInTeachersColumn() {
 		cy.get(CourseManagement.#courseTableAlertIcon).should("be.visible");
 	}
 
-	clickToggleCourseWithoutTeacher() {
+	clickToggleCourseWithoutTeachers() {
 		cy.get(CourseManagement.#courseWithoutTeacherToggle)
 			.should("exist")
-			.then(($checkbox) => {
-				const id = $checkbox.attr("id");
-				// Go up to the container div
-				cy.wrap($checkbox)
-					// container div wrapping input and label
-					.closest("div.v-selection-control")
-					.find(`label[for="${id}"]`)
-					.click({ force: true });
+			.then(($toggle) => {
+				if ($toggle.is(":checked")) {
+					throw new Error(
+						"Expected 'Only show courses without teachers' toggle to be OFF by default, but it was ON."
+					);
+				}
+				cy.wrap($toggle).check({ force: true });
 			});
-	}
-
-	seeOnlyCourseInCourseTable(courseName) {
-		cy.get(CourseManagement.#courseTableName).should("have.length", 1);
-		cy.get(CourseManagement.#courseTableName).should("contain", courseName);
 	}
 
 	clickOnCourseInAdministrationSubMenu() {

@@ -17,22 +17,22 @@ Feature: Admin sees course without assigned teachers in course management page a
 
     Scenario Outline: Course without teacher is visible to admin but inaccessible to student
 
-        # Pre-condition: creating a user and logging in
+        # pre-condition: creating a user and logging in
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # Admin sees the course without a teacher assigned
+        # admin sees the course without a teacher assigned
         When I click on administration in menu
         When I navigate to course administration page via the submenu
         Then I see the new course administration page
-        Then I see two tabs Current and Archive
+        Then I see 2 tabs
         When I click on the tab Current
-        Then I see the course '<course_without_teacher>'
+        Then I see the course '<course_without_teacher>' on the new course administration page
         Then I see the icon Alert in the column Teacher
         When I click on the toggle Only show courses without teachers
-        Then I see the course '<course_without_teacher>'
+        Then I see the course '<course_without_teacher>' on the new course administration page
 
-        # Student can not access the course without a teacher assigned
+        # student can not access the course without a teacher assigned
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         Then I see the icon Lock in the course '<course_without_teacher>'

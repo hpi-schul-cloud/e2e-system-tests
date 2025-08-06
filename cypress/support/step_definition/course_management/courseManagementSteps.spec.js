@@ -15,26 +15,14 @@ When("I click on the locked course {string}", (courseName) => {
 	courseManagement.clickLockedCourse(courseName);
 });
 
-Then("I see two tabs Current and Archive", () => {
-	courseManagement.seeCurrentAndArchiveTabs();
-});
-
 When("I click on the tab Current", () => {
 	courseManagement.clickCurrentTab();
 });
 
-Then("I see the course {string}", (courseName) => {
-	courseManagement.seeCourseInCourseTable(courseName);
-});
-
 Then("I see the icon Alert in the column Teacher", () => {
-	courseManagement.seeAlertIconInTeacherColumn();
+	courseManagement.seeAlertIconInTeachersColumn();
 });
 
 When("I click on the toggle Only show courses without teachers", () => {
-	courseManagement.clickToggleCourseWithoutTeacher();
-});
-
-Then("I see only the course {string}", (courseName) => {
-	courseManagement.seeOnlyCourseInCourseTable(courseName);
+	courseManagement.clickToggleCourseWithoutTeachers();
 });
