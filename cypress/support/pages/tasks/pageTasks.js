@@ -18,6 +18,7 @@ class Tasks {
 	static #dialogConfirmDeletionTaskButtons =
 		'[data-testid="delete-extended-homework-btn"]';
 	static #taskDetailsTab = '[id="extended"]';
+	static #detailsTab = '[id="extended-tab-link"]';
 	static #submissionTab = '[id="submission-tab-link"]';
 	static #submissionsTab = '[id="submissions-tab-link"]';
 	static #taskDetailsEditButton = '[data-testid="task-details-btn-edit"]';
@@ -107,6 +108,14 @@ class Tasks {
 	seeTaskEditPage(taskTitle) {
 		cy.get(Tasks.#taskEditPage).should("be.visible");
 		cy.get(Tasks.#taskNameInput).should("have.value", taskTitle);
+	}
+
+	seeDraftTaskButtonSelected() {
+		cy.wait(500); // Wait for the copy task to be finished
+		cy.get(Tasks.#draftTasksTab).invoke("text").should("equal", "Entwürfe");
+		cy.get(Tasks.#draftTasksTab)
+			.parents("button")
+			.should("have.attr", "aria-selected", "true");
 	}
 
 	seeEditTaskDescription() {
@@ -492,6 +501,10 @@ class Tasks {
 		cy.contains(Tasks.#taskTitleInList, taskTitle).should("be.visible");
 	}
 
+	clickOnTask(taskTitle) {
+		cy.contains(Tasks.#taskTitleInList, taskTitle).click();
+	}
+
 	seeTaskNotInListAsTeacher(taskTitle) {
 		cy.wait("@tasks_api");
 		cy.get(Tasks.#taskOverviewTeacher).contains(taskTitle).should("not.exist");
@@ -559,6 +572,10 @@ class Tasks {
 
 	clickOnSubmissionTab() {
 		cy.get(Tasks.#taskSubmissionsGradingTabLink).click();
+	}
+
+	clickOnDetailsTab() {
+		cy.get(Tasks.#detailsTab).click();
 	}
 
 	clickOnFeedbackTab() {

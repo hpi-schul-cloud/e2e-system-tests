@@ -205,8 +205,16 @@ When("I click on Copy in dot menu", () => {
 	courses.clickCopyOptionInThreeDotMenuOfTopic();
 });
 
+When("I click on Copy in dot menu of task", () => {
+	courses.clickCopyOptionInThreeDotMenuOfTaskMenu();
+});
+
 Then("I see the option Copy on the list", () => {
 	courses.seeCopyOptionInThreeDotMenuOfTopic();
+});
+
+Then("I see the option Copy on the task menu list", () => {
+	courses.seeCopyOptionInThreeDotMenuOfTaskMenu();
 });
 
 Then("I see confirmation modal for deleting the task", () => {
