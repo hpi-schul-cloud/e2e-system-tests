@@ -82,9 +82,9 @@ Feature: Class Management - To create, manage, edit, upgrade and delete class on
         @staging_test
         Examples:
             | namespace | admin      | teacher      | student      | school_year | school_year_next | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher | fullname_student |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2024/25     | 2025/26          | cyClassNameManage | cyEditClassNameManage  | 1                  | Karl Herzog      | Herbert Kraft    |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2025/26     | 2026/27          | cyClassNameManage | cyEditClassNameManage  | 1                  | Karl Herzog      | Herbert Kraft    |
 
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | student      | school_year | school_year_next | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher  | fullname_student  |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2024/25     | 2025/26          | cyClassNameManage | cyEditClassNameManage  | 1                  | cypress teacher_1 | cypress student_1 |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2025/26     | 2026/27          | cyClassNameManage | cyEditClassNameManage  | 1                  | cypress teacher_1 | cypress student_1 |

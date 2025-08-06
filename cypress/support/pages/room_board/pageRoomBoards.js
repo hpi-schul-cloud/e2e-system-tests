@@ -99,6 +99,7 @@ class RoomBoards {
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
 	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
+	static #boardTitlePattern = '[data-testid^="board-title-"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -646,6 +647,15 @@ class RoomBoards {
 	seeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("exist");
 	}
+
+	clickOnBoard(boardName) {
+		cy.get(RoomBoards.#boardTitlePattern).each((element) => {
+			if(element.text() === boardName) {
+				cy.wrap(element).click();
+			}
+		})
+	}
+
 	doNotSeeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("not.exist");
 	}
