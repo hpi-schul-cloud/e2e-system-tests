@@ -35,6 +35,7 @@ class Courses {
 	static #backToDraftButtonInDotMenuOfTopic =
 		'[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
+	static #taskCardTitleInCoursePageWithIndexNumberOne = '[data-testid="task-title-1"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex =
 		'[data-testid="task-card-menu-0"]';
@@ -119,6 +120,8 @@ class Courses {
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardPublishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-publish-0"]';
+	static #taskCardPublishButtonInCoursePageWithIndexNumberOne =
+		'[data-testid="task-card-action-publish-1"]';
 	static #taskCardFinishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
@@ -566,6 +569,15 @@ class Courses {
 		// Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 		cy.reload();
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
+			.contains(taskTitle)
+			.should("be.visible");
+	}
+
+	seeTaskOnCoursePageWithIndexOne(taskTitle) {
+		// no cy.wait('@rooms_api') here as the reload takes care of this
+		// Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+		cy.reload();
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndexNumberOne)
 			.contains(taskTitle)
 			.should("be.visible");
 	}
@@ -1237,6 +1249,10 @@ class Courses {
 	clickShareCourseButton() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnShareCourse).click();
+	}
+
+	clickPublishLinkForTaskWithIndexOne() {
+		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndexNumberOne).click();
 	}
 }
 export default Courses;

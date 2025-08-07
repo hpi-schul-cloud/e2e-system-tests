@@ -169,6 +169,10 @@ When("I can see task {string} on course page", (taskTitle) => {
 	courses.seeTaskOnCoursePage(taskTitle);
 });
 
+When("I can see task in second index {string} on course page", (taskTitle) => {
+	courses.seeTaskOnCoursePageWithIndexOne(taskTitle);
+});
+
 Then("I can see board {string} on course page", (boardTitle) => {
 	courses.seeBoardOnCoursePage(boardTitle);
 });
@@ -311,7 +315,7 @@ Then("I delete all courses named {string}", (courseName) => {
 	courses.deleteAllCoursesMatchingName(courseName);
 });
 
-When("I click on copy course button", () => {
+When("I click on button copy course", () => {
 	courses.clickCopyCourseButton();
 });
 
@@ -435,4 +439,12 @@ When("I click on the save course changes button", () => {
 
 When("I edit the title of the course to {string}", (newCourseName) => {
 	courses.editCourseTitle(newCourseName);
+});
+
+Then("I publish the topic in course {string}", (courseName) => {
+	courses.clickPublishLinkForFirstTopic();
+});
+
+Then("I publish the task in course {string}", (courseName) => {
+	courses.clickPublishLinkForTaskWithIndexOne();
 });
