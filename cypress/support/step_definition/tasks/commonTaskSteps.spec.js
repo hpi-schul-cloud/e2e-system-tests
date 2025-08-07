@@ -67,6 +67,10 @@ When("I click on draft tasks tab", () => {
 	tasks.clickOnTabDraftTasks();
 });
 
+Then("I see the draft tasks tab was activated", () => {
+	tasks.seeDraftTaskButtonSelected();
+});
+
 Then("I can see task {string} on tasks overview page", (taskTitle) => {
 	tasks.taskIsVisibleOnTasksOverviewPage(taskTitle);
 });

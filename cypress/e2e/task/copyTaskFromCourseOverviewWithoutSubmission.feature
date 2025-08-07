@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-J
-Feature: Task - To create, copy tasks by the teacher from the Course Detail.
+@group-C
+Feature: Task - Teacher copies a task from Course overview without student submission
 
-    As a teacher I want to create, copy, edit and delete a new task on course page
+    As a teacher I want to create, copy, edit and delete a task from course overview
 
-    Scenario Outline: Teacher creates, copy, edits, and deletes a task
+    Scenario Outline: Teacher copies a task not submitted by the student in course overview
 
         # pre-condition: teacher and student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'
@@ -18,7 +18,7 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given published task with name '<task_name>' in the course with name '<course_name>'
 
-        # pre condition  student not  submitted the task
+        # pre condition: student not submitted the task
         Given I am logged in as a '<student>' at '<namespace>'
         Given task '<task_name>' in course '<course_name>' is not submitted by the student
 
@@ -48,7 +48,7 @@ Feature: Task - To create, copy tasks by the teacher from the Course Detail.
         Then I see end date is not set and not visible
         Then I see the draft check box is enabled by default
 
-        # post-condition: teacher deletes the copied task and the course
+        # post-condition: teacher deletes the task, copied task and the course
         Given task with name '<copy_task_name>' in course '<course_name>' is deleted
         Given task with name '<task_name>' in course '<course_name>' is deleted
         Given course with name '<course_name>' is deleted
