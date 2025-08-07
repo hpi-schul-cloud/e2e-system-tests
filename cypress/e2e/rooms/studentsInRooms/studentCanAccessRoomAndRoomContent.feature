@@ -1,7 +1,6 @@
 @regression_test
 @stable_test
 @group-U
-
 Feature: Room - Student can access room content after being added to room via Add Members Dialog
 
     As a room owner, when I add a student through the Add Members Dialog, the user should see the room in the room overview and access its content.
@@ -85,7 +84,7 @@ Feature: Room - Student can access room content after being added to room via Ad
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-
+        @only
         @school_api_test
         Examples:
             | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name           | role_name | participant_name | board_title    |

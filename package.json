@@ -78,7 +78,7 @@
 		"cy:headless:stable:group-X:staging_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-X and @stable_test and @staging_test\",environmentName=ci,parallelGroup=group-X",
 		"cy:headless:stable:group-Y:staging_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-Y and @stable_test and @staging_test\",environmentName=ci,parallelGroup=group-Y",
 		"cy:headless:stable:group-Z:staging_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-Z and @stable_test and @staging_test\",environmentName=ci,parallelGroup=group-Z",
-		"cy:headless:only:ci": "xvfb-run cypress run --browser edge -e tags=@only,environmentName=ci",
+		"cy:headless:only:ci": "xvfb-run cypress run --browser edge -e tags=@only,environmentName=ci,parallelGroup=only-tagged",
 		"cy:headless:unstable:ci": "xvfb-run cypress run --browser edge -e tags=@unstable_test,environmentName=ci",
 		"cy:gui:stable:clean_up_staging:local": "cypress open --browser edge -e tags=\"@clean_up_staging_test_data\",environmentName=staging"
 	},
