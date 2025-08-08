@@ -632,8 +632,10 @@ class Courses {
 		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndex).should("be.visible");
 	}
 
-	clickCopyOptionInThreeDotMenuOfTopic() {
-		cy.get(Courses.#copyButtonInDotMenu).click();
+	clickCopyOptionInThreeDotMenuOfTask(taskMenuAction) {
+		cy.get(
+			`[data-testid="room-task-card-menu-${taskMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	clickCopyOptionInThreeDotMenuOfTaskMenu() {

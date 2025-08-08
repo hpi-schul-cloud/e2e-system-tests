@@ -71,7 +71,7 @@ class Tasks {
 	static #submissionComment = '[data-testid="submission-comment"]';
 	static #submissionText = '[data-testid="submission-text"]';
 	static #draftTasksTab = '[data-testid="draftTasks"]';
-	static #taskCardTitle = '[data-testid="taskTitle"]';
+	static #taskCardTitle = '[data-testid="task-title-0"]';
 	static #taskEditPage = '[data-testid="Aufgabe bearbeiten"]';
 	static #taskMenuDelete = '[data-testid="task-delete"]';
 	static #deleteTaskButton = '[data-testid="task-details-btn-delete"]';
@@ -80,6 +80,51 @@ class Tasks {
 	static #downloadFileButton = '[data-testid="file-download-btn-0"]';
 	static #fileRenameButton = '[data-testid="file-rename-btn-0"]';
 	static #fileDeleteButton = '[data-testid="file-delete-btn-0"]';
+	static #importModalTaskNameInput = '[data-testid="import-modal-name-input"]';
+	static #taskCardTitleCourseDetail = '[data-testid="task-card-title-0"]';
+	static #taskPublishButtonOnTaskCardCourseDetail =
+		'[data-testid="task-card-action-publish-0"]';
+	static #submissionTabOnTaskDetail = '[id="submission-tab-link"]';
+	static #fileTitleInTaskDetail = '[data-testid="file-title-card-0"]';
+
+	verifyAttachedFilesInTaskDetail() {
+		cy.get(Tasks.#filesSection).should("be.visible");
+		cy.get(Tasks.#fileTitleInTaskDetail).should("be.visible");
+	}
+
+	verifyTaskDetailPage() {
+		cy.get(Tasks.#detailsTab).should("be.visible");
+		cy.get(Tasks.#submissionTabOnTaskDetail).should("be.visible");
+	}
+
+	clickDraftTaskCardInCourseDetail() {
+		cy.get(Tasks.#taskCardTitleCourseDetail).click();
+	}
+
+	checkTaskPublishButtonVisibleOnCourseDetail() {
+		cy.get(Tasks.#taskPublishButtonOnTaskCardCourseDetail).should("be.visible");
+	}
+
+	checkTaskIsDraftInCourseDetail() {
+		const draftWords = ["Draft", "Entwurf", "Borrador", "Чернетка"];
+
+		cy.get(Tasks.#taskCardTitleCourseDetail)
+			.should("be.visible")
+			.invoke("text")
+			.then((text) => {
+				// Normalize en-dash with spaces to hyphen
+				const cleanText = text.trim().replace(/\s*–\s*/g, " - ");
+				const containsDraftWord = draftWords.some((word) =>
+					cleanText.includes(word)
+				);
+				expect(containsDraftWord).to.be.true;
+			});
+	}
+
+	enterNewTaskNameForImport(importTaskName) {
+		cy.get(Tasks.#importModalTaskNameInput).clear();
+		cy.get(Tasks.#importModalTaskNameInput).type(importTaskName);
+	}
 
 	navigateToTasksOverview() {
 		cy.visit("/tasks");

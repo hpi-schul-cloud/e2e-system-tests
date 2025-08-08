@@ -17,6 +17,25 @@ const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
 
+Given(
+	"task {string} with submission date exists in course {string}",
+	(taskTitle, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		courses.clickOnNewTaskFAB();
+		tasks.seeEditTaskPage("-");
+		tasks.enterTaskTitle(taskTitle);
+		tasks.setVisibilityStartDate("today", "0000");
+		tasks.setVisibilityDueDate("tomorrow", "1000");
+		tasks.setTaskText("Dies ist Deine Aufgabe.");
+		tasks.executeFileUpload("test_pdf.pdf");
+		tasks.clickOnSubmit();
+		tasks.seeDetailPageForTask(taskTitle);
+		tasks.clickOnButtonToParentCourse();
+	}
+);
+
 Given("video conference is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();

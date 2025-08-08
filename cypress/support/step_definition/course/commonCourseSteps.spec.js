@@ -201,9 +201,12 @@ When("I click on Delete in dot menu", () => {
 	courses.clickDeleteInDotMenu();
 });
 
-When("I click on Copy in dot menu", () => {
-	courses.clickCopyOptionInThreeDotMenuOfTopic();
-});
+When(
+	"I select the three dot menu action for task on course detail {string}",
+	(taskMenuAction) => {
+		courses.clickCopyOptionInThreeDotMenuOfTask(taskMenuAction);
+	}
+);
 
 When("I click on Copy in dot menu of task", () => {
 	courses.clickCopyOptionInThreeDotMenuOfTaskMenu();
