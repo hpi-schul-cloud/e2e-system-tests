@@ -106,6 +106,7 @@ Then("I see course search box on the course overview page", () => {
 });
 
 When("I go to course administration page", () => {
+	// check for the error course list to be checked here.
 	management.navigateToCourseAdministration();
 });
 
