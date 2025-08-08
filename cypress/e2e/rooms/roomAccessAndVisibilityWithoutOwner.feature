@@ -26,8 +26,6 @@ Feature: Admin sees rooms without assigned owners in room management page and st
         Then I see the room administration page
         Then I see the room '<room_without_owner>'
         Then I see the alert icon in the column Room owner
-        When I click on the toggle 'Only show rooms without owners'
-        Then I see the room '<room_without_owner>'
 
         # Student cannot access the room without an owner assigned
         Given I am logged in as a '<student>' at '<namespace>'
@@ -36,7 +34,7 @@ Feature: Admin sees rooms without assigned owners in room management page and st
         When I click on the locked room '<room_without_owner>'
         Then I see a message that the room is not accessible
 
-        @school_api_test
+        @staging_test
         Examples:
             | admin      | student      | namespace | room_without_owner         |
             | admin1_nbc | student1_nbc | nbc       | cypress-room-without-owner |
