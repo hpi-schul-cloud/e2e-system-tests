@@ -54,6 +54,5 @@ Feature: Course - Copy Course with Topic and Task
 
         @staging_test
         Examples:
-        Examples:
             | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name  | task_name  | board_title | task_title           | topic_text_title | course_name_copy |
             | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course (1) |
