@@ -169,7 +169,7 @@ When("I can see task {string} on course page", (taskTitle) => {
 	courses.seeTaskOnCoursePage(taskTitle);
 });
 
-When("I can see task in second index {string} on course page", (taskTitle) => {
+When("I can see task {string} in index {int} on course page", (taskName, taskIndex, taskTitle) => {
 	courses.seeTaskOnCoursePageWithIndexOne(taskTitle);
 });
 
