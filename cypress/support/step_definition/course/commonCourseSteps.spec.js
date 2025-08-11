@@ -436,3 +436,7 @@ When("I click on the save course changes button", () => {
 When("I edit the title of the course to {string}", (newCourseName) => {
 	courses.editCourseTitle(newCourseName);
 });
+
+When("I click on the share a copy of Topic from three dot menu {string}", (topicName) => {
+	courses.clickOnShareCopyOfTopic(topicName);
+});

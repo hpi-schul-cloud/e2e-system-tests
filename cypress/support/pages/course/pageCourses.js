@@ -156,6 +156,7 @@ class Courses {
 	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
+	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -1237,6 +1238,10 @@ class Courses {
 	clickShareCourseButton() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnShareCourse).click();
+	}
+
+	clickOnShareCopyOfTopic() {
+		cy.get(Courses.#copyButtonInDotTopicMenu).click();
 	}
 }
 export default Courses;

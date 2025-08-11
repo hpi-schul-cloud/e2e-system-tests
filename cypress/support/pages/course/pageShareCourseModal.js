@@ -1,12 +1,16 @@
-"use strict"
+"use strict";
 
 class ShareCourseModal {
-	static #shareCourseDialog = '[data-testid="share-dialog"]'
+	static #shareCourseDialog = '[data-testid="share-dialog"]';
 	static #shareCourseDialogInfoTextTitle = '[data-testid="share-options-info-text"]';
-	static #shareCourseDialogInfoTextContainer = '[data-testid="share-options-table-header"]';
-	static #shareCourseDialogPersonalDataInfo = '[data-testid="share-options-personal-data-text"]';
-	static #shareCourseDialogExternalToolsInfo = '[data-testid="share-modal-external-tools-info"]';
-	static #shareCourseDialogToolProtectedParamsInfo = '[data-testid="share-modal-external-tools-protected-parameter-info"]';
+	static #shareCourseDialogInfoTextContainer =
+		'[data-testid="share-options-table-header"]';
+	static #shareCourseDialogPersonalDataInfo =
+		'[data-testid="share-options-personal-data-text"]';
+	static #shareCourseDialogExternalToolsInfo =
+		'[data-testid="share-modal-external-tools-info"]';
+	static #shareCourseDialogToolProtectedParamsInfo =
+		'[data-testid="share-modal-external-tools-protected-parameter-info"]';
 	static #shareCourseDialogFilesInfo = '[data-testid="share-modal-coursefiles-info"]';
 	static #shareCourseDialogSchoolInternalCheckBox = '[data-testid="isSchoolInternal"]';
 	static #shareCourseDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
@@ -17,6 +21,12 @@ class ShareCourseModal {
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
 	static #shareCourseDialogCloseButton = '[data-testid="dialog-close"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
+	static #shareTopicCourseDialog = '[data-testid="dialog-content"]';
+	static #DescriptionTextTopicCourseDialog = '[data-testid="share-options-info-text"]';
+	static #shareInfoTextTopicCourseDialog = '[data-testid="share-options-table-header"]';
+	static #shareTopicDialogSchoolInternalCheckBox = '[data-testid="isSchoolInternal"]';
+	static #shareTopicDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
+	static #dialogContinueTopicButton = '[data-testid="dialog-next"]';
 
 	seeShareCourseDialogBox() {
 		cy.get(ShareCourseModal.#shareCourseDialog).should("be.visible");
@@ -27,19 +37,25 @@ class ShareCourseModal {
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogPersonalDataInfo).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogExternalToolsInfo).should("be.visible");
-		cy.get(ShareCourseModal.#shareCourseDialogToolProtectedParamsInfo).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogToolProtectedParamsInfo).should(
+			"be.visible"
+		);
 		cy.get(ShareCourseModal.#shareCourseDialogFilesInfo).should("be.visible");
 	}
 
 	seeSchoolInternalCheckBoxAsChecked() {
-		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox).should(
+			"be.visible"
+		);
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
 			.find('input[type="checkbox"]')
 			.should("be.checked");
 	}
 
 	seeExpiryDateCheckBoxAsChecked() {
-		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should(
+			"be.visible"
+		);
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
 			.find('input[type="checkbox"]')
 			.should("be.checked");
@@ -90,6 +106,41 @@ class ShareCourseModal {
 
 	seeQrCodeScannerInShareCourseResultDialog() {
 		cy.get(ShareCourseModal.#shareCourseQRCodeScanner).should("be.visible");
+	}
+
+	seeTopicShareCourseDialogBox() {
+		cy.get(ShareCourseModal.#shareTopicCourseDialog).should("be.visible");
+	}
+
+	seeTopicDescriptionInShareDialog() {
+		cy.get(ShareCourseModal.#DescriptionTextTopicCourseDialog).should("be.visible");
+		cy.get(ShareCourseModal.#shareInfoTextTopicCourseDialog).should("be.visible");
+	}
+
+	seeTopicSchoolInternalCheckBoxAsCheckedInShareDialog() {
+		cy.get(ShareCourseModal.#shareTopicDialogSchoolInternalCheckBox).should(
+			"be.visible"
+		);
+		cy.get(ShareCourseModal.#shareTopicDialogSchoolInternalCheckBox)
+			.find('input[type="checkbox"]')
+			.should("be.checked");
+	}
+
+	seeTopicExpiryDateCheckBoxAsCheckedInShareDialog() {
+		cy.get(ShareCourseModal.#dialogContinueTopicButton).should("be.visible");
+		cy.get(ShareCourseModal.#shareTopicDialogExpiryDateCheckBox)
+			.find('input[type="checkbox"]')
+			.should("be.checked");
+	}
+
+	uncheckSchoolInternalCheckBoxInShareTopicDialog() {
+		cy.get(ShareCourseModal.#shareTopicDialogSchoolInternalCheckBox)
+			.find('input[type="checkbox"]')
+			.uncheck();
+	}
+
+	clickContinueButtonInShareTopicDialog() {
+		cy.get(ShareCourseModal.#dialogContinueTopicButton).click();
 	}
 }
 
