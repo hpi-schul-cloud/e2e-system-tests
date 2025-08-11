@@ -11,8 +11,8 @@ const tasks = new Tasks();
 // -->\step_definition\course\commonCourseSteps.spec.js
 // -->\step_definition\tasks\commonTaskSteps.spec.js
 
-When("I click on the draft task card in course detail page", () => {
-	tasks.clickDraftTaskCardInCourseDetail();
+When("I open the draft task card in course detail page", () => {
+	tasks.openDraftTaskCardInCourseDetail();
 });
 
 Then("I see the task detail page", () => {

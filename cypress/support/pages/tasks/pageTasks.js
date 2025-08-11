@@ -84,8 +84,37 @@ class Tasks {
 	static #taskCardTitleCourseDetail = '[data-testid="task-card-title-0"]';
 	static #taskPublishButtonOnTaskCardCourseDetail =
 		'[data-testid="task-card-action-publish-0"]';
-	static #submissionTabOnTaskDetail = '[id="submission-tab-link"]';
 	static #fileTitleInTaskDetail = '[data-testid="file-title-card-0"]';
+	static #urlInputBoxCopyTask = '[data-testid="share-course-result-url"]';
+	static #copyLinkOption = '[data-testid="copyAction"]';
+
+	copyTaskURLInModal() {
+		cy.get(Tasks.#urlInputBoxCopyTask)
+			.parent()
+			.find('input[type="text"]')
+			.should("be.visible")
+			.invoke("val")
+			.then((taskUrl) => {
+				expect(taskUrl).to.be.a("string").and.not.be.empty;
+				cy.wrap(taskUrl).as("copiedURL");
+				cy.window().then((win) => {
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
+				});
+				cy.get(Tasks.#copyLinkOption).click();
+				cy.get("@writeTextStub").should("be.calledOnce");
+				cy.get("@writeTextStub").should("be.calledWith", taskUrl);
+			});
+	}
+
+	openSharedTaskURL() {
+		cy.get("@copiedURL").then((taskUrl) => {
+			cy.visit(taskUrl);
+			// Wait for 500 msec for any JavaScript actions to complete
+			cy.wait(500);
+		});
+	}
 
 	verifyAttachedFilesInTaskDetail() {
 		cy.get(Tasks.#filesSection).should("be.visible");
@@ -94,11 +123,14 @@ class Tasks {
 
 	verifyTaskDetailPage() {
 		cy.get(Tasks.#detailsTab).should("be.visible");
-		cy.get(Tasks.#submissionTabOnTaskDetail).should("be.visible");
+		cy.get(Tasks.#submissionTab).should("be.visible");
 	}
 
-	clickDraftTaskCardInCourseDetail() {
-		cy.get(Tasks.#taskCardTitleCourseDetail).click();
+	openDraftTaskCardInCourseDetail() {
+		cy.get(Tasks.#taskCardTitleCourseDetail)
+			// case-insensitive match for "Entwurf"
+			.contains(/Entwurf/i)
+			.click();
 	}
 
 	checkTaskPublishButtonVisibleOnCourseDetail() {
@@ -106,19 +138,11 @@ class Tasks {
 	}
 
 	checkTaskIsDraftInCourseDetail() {
-		const draftWords = ["Draft", "Entwurf", "Borrador", "Чернетка"];
-
+		const draftWord = "Entwurf";
 		cy.get(Tasks.#taskCardTitleCourseDetail)
 			.should("be.visible")
 			.invoke("text")
-			.then((text) => {
-				// Normalize en-dash with spaces to hyphen
-				const cleanText = text.trim().replace(/\s*–\s*/g, " - ");
-				const containsDraftWord = draftWords.some((word) =>
-					cleanText.includes(word)
-				);
-				expect(containsDraftWord).to.be.true;
-			});
+			.should("include", draftWord);
 	}
 
 	enterNewTaskNameForImport(importTaskName) {

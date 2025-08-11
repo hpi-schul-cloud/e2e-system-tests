@@ -185,6 +185,14 @@ When("I can not see content {string}", (contentTitle) => {
 //   courses.taskIsNotVisibleOnCoursePage(taskTitle)
 // })
 
+Then("I see the modal to import the shared task into the course", () => {
+	courses.verifyImportSharedModal();
+});
+
+When("I select the course from the course list in the modal", () => {
+	courses.selectCourseForTaskImport();
+});
+
 When("I click on topic {string} on course page", (contentTitle) => {
 	courses.openTopic(contentTitle);
 });
@@ -202,9 +210,9 @@ When("I click on Delete in dot menu", () => {
 });
 
 When(
-	"I select the three dot menu action for task on course detail {string}",
-	(taskMenuAction) => {
-		courses.clickCopyOptionInThreeDotMenuOfTask(taskMenuAction);
+	"I select the three dot menu action {string} at task index {string} in course detail page",
+	(action, index) => {
+		courses.clickThreeDotMenuActionAtTaskIndex(action, index);
 	}
 );
 
