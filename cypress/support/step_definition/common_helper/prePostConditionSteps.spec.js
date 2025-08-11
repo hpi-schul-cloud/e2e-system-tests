@@ -297,8 +297,9 @@ Given("the topic is published in course {string}", (courseName) => {
 });
 
 Given("student is added to the course {string}", (courseName) => {
+	cy.wait(100);
 	management.openAdministrationInMenu();
-	courseManagement.clickOnClassInAdministrationSubMenu();
+	courseManagement.clickOnCourseInAdministrationSubMenu();
 	courseManagement.clickEditButtonOfCourse(courseName);
 	courses.addStudentWithSearchStringToCourse("student_1");
 	courses.submitChangesAfterEditingCourse();
