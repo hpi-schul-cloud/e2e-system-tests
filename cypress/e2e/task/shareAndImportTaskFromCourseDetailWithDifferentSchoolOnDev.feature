@@ -1,6 +1,6 @@
-@regression_test
-@stable_test
-@group-V
+@unstable_test
+
+# Note: This feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in another scenario.
 
 Feature: Task - Teacher shares a task with another teacher from the same school
 
@@ -71,7 +71,3 @@ Feature: Task - Teacher shares a task with another teacher from the same school
             | teacher_1    | teacher_2    | namespace | course_source         | course_target         | task_title                | import_task_title           |
             | teacher1_dbc | teacher2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
 
-        @staging_test
-        Examples:
-            | teacher_1    | teacher_2    | namespace | course_source         | course_target         | task_title                | import_task_title           |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |

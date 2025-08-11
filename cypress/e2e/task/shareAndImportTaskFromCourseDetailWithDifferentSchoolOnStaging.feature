@@ -11,7 +11,7 @@ Feature: Task - Teacher shares a task with another teacher from the same school
     Scenario Outline: Teacher shares a task and another teacher imports it into their course
 
         # Step 1: # pre-condition: users creation and login in same school
-        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # Step 2: Teacher 1 creates course_source and task
@@ -30,6 +30,7 @@ Feature: Task - Teacher shares a task with another teacher from the same school
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I see the checkbox Link valid for 21 days is by default checked
+        When I uncheck the checkbox school internal
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the result url text box in the modal
@@ -40,7 +41,7 @@ Feature: Task - Teacher shares a task with another teacher from the same school
         Then I see the alert message
 
         # Step 4: Teacher 2 logs in and creates course_target
-        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_2>' at '<namespace>'
         Given a course named '<course_target>' exists
 
         # Step 5: Teacher 2 imports the task by visiting the shared URL and choosing course_target
@@ -63,15 +64,10 @@ Feature: Task - Teacher shares a task with another teacher from the same school
         Given course with name '<course_source>' is deleted
 
         # Step 7: # post-condition: Teacher 2 deletes course_target
-        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        Given I am logged in as a '<teacherExt_2>' at '<namespace>'
         Given course with name '<course_target>' is deleted
-
-        @school_api_test
-        Examples:
-            | teacher_1    | teacher_2    | namespace | course_source         | course_target         | task_title                | import_task_title           |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | course_source         | course_target         | task_title                | import_task_title           |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
+            | teacher_1    | teacherExt_2    | namespace | course_source         | course_target         | task_title                | import_task_title           |
+            | teacher1_dbc | teacherExt2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
