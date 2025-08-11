@@ -135,6 +135,21 @@ Given(
 	}
 );
 
+Given("a class with grade {string} and name {string} exists", (grade, className) => {
+	classes.clickOnClassInAdministrationSubMenu();
+	classes.clickCreateClassButtonOnNewClassPage();
+	classes.clickOnMoreOptionsInClassCreatePage();
+	classes.enterCustomClassName(className);
+	classes.clickOnCheckBoxMaintainSchoolYearAssignment();
+	classes.clickConfirmCreateClass();
+});
+
+Given("a class with grade {string} and name {string} deleted", (grade, className) => {
+	classes.clickOnClassInAdministrationSubMenu();
+	classes.clickOnDeleteClassButton(className);
+	classes.clickConfirmDeleteDialogButton();
+});
+
 Given(
 	"published task with name {string} in the course with name {string}",
 	(taskname, courseName) => {
