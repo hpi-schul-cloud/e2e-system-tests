@@ -2,7 +2,8 @@
 @regression_test
 
 # NOTE: This feature is only for staging due to a limitation in the admin API: it cannot create a new room without an owner.
-# NOTE: The room without an owner but with a student should preexist in the staging environment.
+# NOTE: Room without an owner and with assigned student should preexist in the staging environment.
+# NOTE: Room admin page is currently not active on staging.
 
 Feature: Admin sees rooms without assigned owners in room management page and student cannot access these rooms
 
