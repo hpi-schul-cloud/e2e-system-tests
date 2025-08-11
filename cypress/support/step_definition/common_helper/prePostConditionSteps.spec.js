@@ -227,6 +227,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	roomBoards.clickEditOptionInCardThreeDot();
 	board.clickPlusIconToAddContentIntoCard();
 	board.selectCardElementFromMenu("file-folder");
+	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
 	roomBoards.approveFolderNameInCard();
 	roomBoards.seeFolderElementWithTitle(folderTitle);
