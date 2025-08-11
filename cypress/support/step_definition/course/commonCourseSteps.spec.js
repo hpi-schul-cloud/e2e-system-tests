@@ -110,6 +110,10 @@ When("I go to course administration page", () => {
 	management.navigateToCourseAdministration();
 });
 
+Then("I see no error alert", () => {
+	management.seeNoErrorAlertInCourseAdministration();
+});
+
 When("I go to courses overview", () => {
 	courses.navigateToCoursesOverview();
 });
@@ -352,6 +356,13 @@ When(
 	"I add the first student with search string {string} to the course",
 	(searchString) => {
 		courses.addStudentWithSearchStringToCourse(searchString);
+	}
+);
+
+When(
+	"I add the first class with search string {string} to the course",
+	(searchString) => {
+		courses.addClassWithSearchStringToCourse(searchString);
 	}
 );
 

@@ -1,8 +1,10 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Management from "../../pages/admin/pageAdministration";
+import Classes from "../../pages/class_management/pageClasses";
 import GlobalActions from "../../pages/common_helper/globalActions";
 import Courses from "../../pages/course/pageCourses";
 import Board from "../../pages/course_board/pageBoard";
+import CourseManagement from "../../pages/course_management/pageCourseManagement";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Tasks from "../../pages/tasks/pageTasks";
@@ -12,6 +14,8 @@ const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
+const classManagement = new Classes();
+const courseManagement = new CourseManagement();
 const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
@@ -135,20 +139,34 @@ Given(
 	}
 );
 
-Given("a class with grade {string} and name {string} exists", (grade, className) => {
-	classes.clickOnClassInAdministrationSubMenu();
-	classes.clickCreateClassButtonOnNewClassPage();
-	classes.clickOnMoreOptionsInClassCreatePage();
-	classes.enterCustomClassName(className);
-	classes.clickOnCheckBoxMaintainSchoolYearAssignment();
-	classes.clickConfirmCreateClass();
-});
+Given(
+	"a class with grade {string} and class name {string} exists and added to course {string}",
+	(grade, className, courseName) => {
+		management.openAdministrationInMenu();
+		classManagement.clickOnClassInAdministrationSubMenu();
+		classManagement.clickCreateClassButtonOnNewClassPage();
+		classManagement.clickOnMoreOptionsInClassCreatePage();
+		classManagement.enterCustomClassName(className);
+		classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
+		classManagement.clickConfirmCreateClass();
+		management.openAdministrationInMenu();
+		management.navigateToCourseAdministration();
+		courseManagement.clickOnCourseInAdministrationSubMenu();
+		courseManagement.clickEditButtonOfCourse(courseName);
+		courses.addClassWithSearchStringToCourse(className);
+		courses.submitChangesAfterEditingCourse();
+	}
+);
 
-Given("a class with grade {string} and name {string} deleted", (grade, className) => {
-	classes.clickOnClassInAdministrationSubMenu();
-	classes.clickOnDeleteClassButton(className);
-	classes.clickConfirmDeleteDialogButton();
-});
+Given(
+	"a class with grade {string} and class name {string} deleted",
+	(grade, className) => {
+		management.openAdministrationInMenu();
+		classManagement.clickOnClassInAdministrationSubMenu();
+		classManagement.clickOnDeleteClassButton(className);
+		classManagement.clickConfirmDeleteDialogButton();
+	}
+);
 
 Given(
 	"published task with name {string} in the course with name {string}",
