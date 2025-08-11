@@ -169,10 +169,6 @@ When("I can see task {string} on course page", (taskTitle) => {
 	courses.seeTaskOnCoursePage(taskTitle);
 });
 
-When("I can see task {string} in index {int} on course page", (taskName, taskIndex, taskTitle) => {
-	courses.seeTaskOnCoursePageWithIndexOne(taskTitle);
-});
-
 Then("I can see board {string} on course page", (boardTitle) => {
 	courses.seeBoardOnCoursePage(boardTitle);
 });
@@ -445,6 +441,13 @@ Then("I publish the topic in course {string}", (courseName) => {
 	courses.clickPublishLinkForFirstTopic();
 });
 
-Then("I publish the task in course {string}", (courseName) => {
-	courses.clickPublishLinkForTaskWithIndexOne();
+Then("I publish the task in index {string} in course page", (taskIndex) => {
+	courses.clickPublishLinkForTaskWithDynamicIndex(taskIndex);
 });
+
+Then(
+	"I can see task {string} in index {string} on course page",
+	(taskTitle, taskIndex) => {
+		courses.seeTaskOnCoursePageWithDynamicIndex(taskTitle, taskIndex);
+	}
+);

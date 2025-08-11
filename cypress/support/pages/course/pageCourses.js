@@ -35,7 +35,8 @@ class Courses {
 	static #backToDraftButtonInDotMenuOfTopic =
 		'[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
-	static #taskCardTitleInCoursePageWithIndexNumberOne = '[data-testid="task-title-1"]';
+	static #taskCardTitleInCoursePageWithDynamicIndex =
+		'[data-testid="task-title-{index}"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex =
 		'[data-testid="task-card-menu-0"]';
@@ -120,8 +121,8 @@ class Courses {
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardPublishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-publish-0"]';
-	static #taskCardPublishButtonInCoursePageWithIndexNumberOne =
-		'[data-testid="task-card-action-publish-1"]';
+	static #taskCardPublishButtonInCoursePageWithDynamicIndex =
+		'[data-testid="task-card-action-publish-{index}"]';
 	static #taskCardFinishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
@@ -573,13 +574,15 @@ class Courses {
 			.should("be.visible");
 	}
 
-	seeTaskOnCoursePageWithIndexOne(taskTitle) {
+	seeTaskOnCoursePageWithDynamicIndex(taskTitle, index) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		// Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
 		cy.reload();
-		cy.get(Courses.#taskCardTitleInCoursePageWithIndexNumberOne)
-			.contains(taskTitle)
-			.should("be.visible");
+		const selector = Courses.#taskCardTitleInCoursePageWithDynamicIndex.replace(
+			"{index}",
+			index
+		);
+		cy.get(selector).should("exist").and("contain.text", taskTitle);
 	}
 
 	seeBoardOnCoursePage(boardTitle) {
@@ -1251,8 +1254,13 @@ class Courses {
 		cy.get(Courses.#btnShareCourse).click();
 	}
 
-	clickPublishLinkForTaskWithIndexOne() {
-		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndexNumberOne).click();
+	clickPublishLinkForTaskWithDynamicIndex(index) {
+		const selector =
+			Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
+				"{index}",
+				index
+			);
+		cy.get(selector).click();
 	}
 }
 export default Courses;
