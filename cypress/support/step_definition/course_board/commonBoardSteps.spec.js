@@ -1,4 +1,4 @@
-import { Given, Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
 import Board from "../../pages/course_board/pageBoard";
 
 const board = new Board();
@@ -105,24 +105,24 @@ Then("I see the focused board card", () => {
 
 Then("I see that I am on a column board", () => {
 	board.seeMultiColumnBoard();
-})
+});
 
 Then("I see a column with title {string}", (title) => {
 	board.seeColumnWithTitle(title);
-})
+});
 
 Then("I see a card with title {string}", (title) => {
 	board.seeCardWithTitle(title);
-})
+});
 
 Then("I see a rich text element with pattern {string}", (pattern) => {
 	board.seeRichTextWithPattern(pattern);
-})
+});
 
 Then("I see a web link with title {string}", (title) => {
 	board.seeWeblinkWithTitle(title);
-})
+});
 
 Then("I see a file element with title {string}", (title) => {
 	board.seeFileElementWithTitle(title);
-})
+});

@@ -71,7 +71,7 @@ class Tasks {
 	static #submissionComment = '[data-testid="submission-comment"]';
 	static #submissionText = '[data-testid="submission-text"]';
 	static #draftTasksTab = '[data-testid="draftTasks"]';
-	static #taskCardTitle = '[data-testid="taskTitle"]';
+	static #taskCardTitle = '[data-testid="task-title-0"]';
 	static #taskEditPage = '[data-testid="Aufgabe bearbeiten"]';
 	static #taskMenuDelete = '[data-testid="task-delete"]';
 	static #deleteTaskButton = '[data-testid="task-details-btn-delete"]';
@@ -80,6 +80,75 @@ class Tasks {
 	static #downloadFileButton = '[data-testid="file-download-btn-0"]';
 	static #fileRenameButton = '[data-testid="file-rename-btn-0"]';
 	static #fileDeleteButton = '[data-testid="file-delete-btn-0"]';
+	static #importModalTaskNameInput = '[data-testid="import-modal-name-input"]';
+	static #taskCardTitleCourseDetail = '[data-testid="task-card-title-0"]';
+	static #taskPublishButtonOnTaskCardCourseDetail =
+		'[data-testid="task-card-action-publish-0"]';
+	static #fileTitleInTaskDetail = '[data-testid="file-title-card-0"]';
+	static #urlInputBoxCopyTask = '[data-testid="share-course-result-url"]';
+	static #copyLinkOption = '[data-testid="copyAction"]';
+
+	copyTaskURLInModal() {
+		cy.get(Tasks.#urlInputBoxCopyTask)
+			.parent()
+			.find('input[type="text"]')
+			.should("be.visible")
+			.invoke("val")
+			.then((taskUrl) => {
+				expect(taskUrl).to.be.a("string").and.not.be.empty;
+				cy.wrap(taskUrl).as("copiedURL");
+				cy.window().then((win) => {
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
+				});
+				cy.get(Tasks.#copyLinkOption).click();
+				cy.get("@writeTextStub").should("be.calledOnce");
+				cy.get("@writeTextStub").should("be.calledWith", taskUrl);
+			});
+	}
+
+	openSharedTaskURL() {
+		cy.get("@copiedURL").then((taskUrl) => {
+			cy.visit(taskUrl);
+			// Wait for 500 msec for any JavaScript actions to complete
+			cy.wait(500);
+		});
+	}
+
+	verifyAttachedFilesInTaskDetail() {
+		cy.get(Tasks.#filesSection).should("be.visible");
+		cy.get(Tasks.#fileTitleInTaskDetail).should("be.visible");
+	}
+
+	verifyTaskDetailPage() {
+		cy.get(Tasks.#detailsTab).should("be.visible");
+		cy.get(Tasks.#submissionTab).should("be.visible");
+	}
+
+	openDraftTaskCardInCourseDetail() {
+		cy.get(Tasks.#taskCardTitleCourseDetail)
+			// case-insensitive match for "Entwurf"
+			.contains(/Entwurf/i)
+			.click();
+	}
+
+	checkTaskPublishButtonVisibleOnCourseDetail() {
+		cy.get(Tasks.#taskPublishButtonOnTaskCardCourseDetail).should("be.visible");
+	}
+
+	checkTaskIsDraftInCourseDetail() {
+		const draftWord = "Entwurf";
+		cy.get(Tasks.#taskCardTitleCourseDetail)
+			.should("be.visible")
+			.invoke("text")
+			.should("include", draftWord);
+	}
+
+	enterNewTaskNameForImport(importTaskName) {
+		cy.get(Tasks.#importModalTaskNameInput).clear();
+		cy.get(Tasks.#importModalTaskNameInput).type(importTaskName);
+	}
 
 	navigateToTasksOverview() {
 		cy.visit("/tasks");
