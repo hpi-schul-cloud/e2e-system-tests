@@ -14,7 +14,6 @@ class Classes {
 	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
 	static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
 	static #deleteDialog = '[data-testid="dialog-title"]';
-	static #deleteDialogCancel = '[data-testid="dialog-cancel"]';
 	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
 	static #adminGroupTitle = '[data-testid="admin-class-title"]';
 	static #groupMemberTable = '[data-testid="class-members-table"]';
@@ -23,7 +22,6 @@ class Classes {
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 	static #adminClassNavigationSidebarCard = '[data-testid="sidebar-management-classes"]';
 	static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
-	static #legacyClassTable = '[data-testid="table_container"]';
 	static #buttonAddClassOldPage = '[data-testid="createClass"]';
 	static #dropDownSchoolYearCreateClass = '[data-testid="class-school-year-selection"]';
 	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
@@ -38,59 +36,32 @@ class Classes {
 	static #buttonSaveChangedClassManage = '[data-testid="manage-confirm"]';
 	static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
 	static #tableOldClassOverview = '[data-testid="table_container"]';
-	static #buttonEditClassOnOldOverview = '[data-testid="edit-class"]';
 	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
-	static #buttonDeleteClassOnOldOverview = '[data-testid="delete-class"]';
-	static #modalDeleteOnOldClassPage = '[data-testid="popup-title"]';
 	static #buttonCancelOnDeleteModalClassAdminPage = '[data-testid="dialog-cancel"]';
-	static #buttonDeleteOnDeleteModalOldClassPage =
-		'[data-testid="submit-btn-delete-systems-modal"]';
 	static #tableClassName = '[data-testid="class-table-name"]';
 	static #tableClassSource = '[data-testid="class-table-source"]';
 	static #tableClassMemberFirstName = '[data-testid="class-members-table-firstname"]';
-	static #tableClassMemberLasteName = '[data-testid="class-members-table-lastname"]';
+	static #tableClassMemberLastName = '[data-testid="class-members-table-lastname"]';
 	static #tableClassMemberRole = '[data-testid="class-members-table-role"]';
 	static #tableClassSyncedCourse = '[data-testid="class-table-synced-courses"]';
 	static #tableClassStudentCount = '[data-testid="class-table-student-count"]';
 	static #stopSyncButton = '[data-testid="class-table-end-course-sync-btn"]';
 
-	doNotSeeClassOnOldClassAdministrationPageAfterDeletion(customClassName) {
-		cy.get(Classes.#tableOldClassOverview).find(customClassName).should("not.exist");
-	}
-
-	clickOnConfirmDeleteOnModalOldClassPage() {
-		cy.get(Classes.#buttonDeleteOnDeleteModalOldClassPage).click();
-	}
-
 	clickOnCancelDeleteModalOnClassAdminPage() {
 		cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
-	}
-
-	seeDeleteModalOnOldClassAdministrationPage() {
-		cy.get(Classes.#modalDeleteOnOldClassPage).should("exist");
-	}
-
-	clickOnDeleteClassOnOldClassOverview() {
-		cy.get(Classes.#tableOldClassOverview)
-			.find(Classes.#buttonDeleteClassOnOldOverview)
-			.click();
 	}
 
 	clickOnSaveChangesOnEditClassPage() {
 		cy.get(Classes.#buttonSaveChangeOnEditClass).click();
 	}
 
-	clickOnEditClassOnOldClassOverview(className) {
-		cy.get('[data-testid="class-table-name"]')
+	clickOnEditClassOnClassOverview(className) {
+		cy.get(Classes.#tableClassName)
 			.contains(className)
-			.parents("tr") // go to the table row
+			.parents("tr")
 			.within(() => {
-				// Click the edit button in that row
-				cy.get('[data-testid="class-table-edit-btn"]').click();
+				cy.get(Classes.#editClassButton).click();
 			});
-		// cy.get(Classes.#tableOldClassOverview)
-		// 	.find(Classes.#buttonEditClassOnOldOverview)
-		// 	.click();
 	}
 
 	seeCustomClassNameOnClassOverviewTable(customClassName) {
@@ -99,10 +70,6 @@ class Classes {
 
 	seeNumberOfStudentOnClassOverviewTable(numberOfStudent) {
 		cy.get(Classes.#tableOldClassOverview).contains(numberOfStudent);
-	}
-
-	seeOldClassAdministrationPage() {
-		cy.url().should("include", "/classes");
 	}
 
 	clickOnSaveChangesOnManageClassPage() {
@@ -252,7 +219,7 @@ class Classes {
 	}
 
 	seeGroupMemberTableContainsMemberWithRole(role, lastName, firstName) {
-		cy.get(Classes.#tableClassMemberLasteName)
+		cy.get(Classes.#tableClassMemberLastName)
 			.contains(lastName)
 			.parents("tr")
 			.within(() => {

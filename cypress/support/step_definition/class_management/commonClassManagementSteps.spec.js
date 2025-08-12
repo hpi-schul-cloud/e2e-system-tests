@@ -7,7 +7,7 @@ When("I navigate to class administration page via sub menu", () => {
 	classes.clickOnClassInAdministrationSubMenu();
 });
 
-When("I click on the Add class button", () => {
+When("I click on the button Add class", () => {
 	classes.clickCreateClassButtonOnNewClassPage();
 });
 

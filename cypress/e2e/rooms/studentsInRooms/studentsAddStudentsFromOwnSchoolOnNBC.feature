@@ -1,7 +1,6 @@
 @regression_test
 @stable_test
 @group-U
-
 Feature: Room - Students can only add students from their own classes to a room on NBC
 
     As a student I can only add students from my own class to a room.
@@ -80,7 +79,7 @@ Feature: Room - Students can only add students from their own classes to a room 
         When I navigate to class administration page via sub menu
         Then I see the new class administration page
         Then I see 3 tabs
-        When I click on the Add class button
+        When I click on the button Add class
         Then I see the create class page
         Then I see the current school year '<school_year>' is selected
         Then I see the teacher name '<fullname_teacher>' is selected

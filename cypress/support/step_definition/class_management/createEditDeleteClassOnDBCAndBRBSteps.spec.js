@@ -7,32 +7,16 @@ When("I click on the button Add class on the page create class", () => {
 	classes.clickConfirmCreateClass();
 });
 
-When("I do not see the class {string}", (customClassName) => {
-	classes.doNotSeeClassOnOldClassAdministrationPageAfterDeletion(customClassName);
-});
-
-When("I click on delete confirmation button on the delete modal", () => {
-	classes.clickOnConfirmDeleteOnModalOldClassPage();
-});
-
 When("I click button Cancel on the delete modal of class administration page", () => {
 	classes.clickOnCancelDeleteModalOnClassAdminPage();
 });
 
-Then("I can see the delete modal on old class administration page", () => {
-	classes.seeDeleteModalOnOldClassAdministrationPage();
-});
-
-When("I click the button delete to delete the class", () => {
-	classes.clickOnDeleteClassOnOldClassOverview();
-});
-
-When("I click on the button save change on the page edit class", () => {
+When("I click on the button Save on the page edit class", () => {
 	classes.clickOnSaveChangesOnEditClassPage();
 });
 
-When("I click on the button edit to edit the class {string}", (className) => {
-	classes.clickOnEditClassOnOldClassOverview(className);
+When("I click on the button Edit to edit the class {string}", (className) => {
+	classes.clickOnEditClassOnClassOverview(className);
 });
 
 Then("I see class {string} on the overview", (customClassName) => {
@@ -41,10 +25,6 @@ Then("I see class {string} on the overview", (customClassName) => {
 
 Then("I see number of students {string} on the overview", (numberOfStudent) => {
 	classes.seeNumberOfStudentOnClassOverviewTable(numberOfStudent);
-});
-
-Then("I see old class administration page", () => {
-	classes.seeOldClassAdministrationPage();
 });
 
 When("I select the {string} from the student selection dropdown", (fullNameStudent) => {
