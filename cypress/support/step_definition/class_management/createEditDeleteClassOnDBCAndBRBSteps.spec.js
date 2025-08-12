@@ -19,14 +19,6 @@ When("I click on the button Edit to edit the class {string}", (className) => {
 	classes.clickOnEditClassOnClassOverview(className);
 });
 
-Then("I see class {string} on the overview", (customClassName) => {
-	classes.seeCustomClassNameOnClassOverviewTable(customClassName);
-});
-
-Then("I see number of students {string} on the overview", (numberOfStudent) => {
-	classes.seeNumberOfStudentOnClassOverviewTable(numberOfStudent);
-});
-
 When("I select the {string} from the student selection dropdown", (fullNameStudent) => {
 	classes.selectStudentInManageClassPage(fullNameStudent);
 });
@@ -37,10 +29,6 @@ Then("I see the teacher name {string} in the teacher dropdown", (teacherName) =>
 
 Then("I see the student name {string} in the student dropdown", (studentName) => {
 	classes.seeSelectedStudentOnManageClassPage(studentName);
-});
-
-When("I click on the button Add class on the page class overview", () => {
-	classes.clickOnAddClassButtonOnClassOverviewPage();
 });
 
 When("I click on the checkbox Maintain school year assignment", () => {

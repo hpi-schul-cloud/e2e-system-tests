@@ -78,7 +78,7 @@ Feature: Room - Students can only add students from their own classes to a room 
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I click on administration in menu
         When I navigate to class administration page via sub menu
-        When I click on the button Add class on the page class overview
+        When I click on the button Add class
         Then I see the create class page
         Then I see the current school year '<school_year>' is selected
         Then I see the teacher name '<fullname_teacher>' is selected
@@ -90,8 +90,7 @@ Feature: Room - Students can only add students from their own classes to a room 
         When I select the '<fullname_student_1>' from the student selection dropdown
         When I select the '<fullname_student_2>' from the student selection dropdown
         When I click on the button Save changes on the page manage class
-        Then I see class '<custom_class_name>' on the overview
-        Then I see number of students '<number_of_students>' on the overview
+        Then I see the class '<custom_class_name>' has '<number_of_students>' students
 
         # student can add second student to room
         Given I am logged in as a '<student_1>' at '<namespace>'

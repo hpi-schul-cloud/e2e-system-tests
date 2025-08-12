@@ -22,7 +22,6 @@ class Classes {
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 	static #adminClassNavigationSidebarCard = '[data-testid="sidebar-management-classes"]';
 	static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
-	static #buttonAddClassOldPage = '[data-testid="createClass"]';
 	static #dropDownSchoolYearCreateClass = '[data-testid="class-school-year-selection"]';
 	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
 	static #moreOptionButtonInClassPage = '[data-testid="classCreationExtraOptions"]';
@@ -64,14 +63,6 @@ class Classes {
 			});
 	}
 
-	seeCustomClassNameOnClassOverviewTable(customClassName) {
-		cy.get(Classes.#tableOldClassOverview).contains(customClassName);
-	}
-
-	seeNumberOfStudentOnClassOverviewTable(numberOfStudent) {
-		cy.get(Classes.#tableOldClassOverview).contains(numberOfStudent);
-	}
-
 	clickOnSaveChangesOnManageClassPage() {
 		cy.get(Classes.#buttonSaveChangedClassManage).click();
 	}
@@ -87,10 +78,6 @@ class Classes {
 
 	seeSelectedStudentOnManageClassPage(studentName) {
 		cy.get(Classes.#dropDownStudentSelectionOnClassManage).contains(studentName);
-	}
-
-	clickOnAddClassButtonOnClassOverviewPage() {
-		cy.get(Classes.#buttonAddClassOldPage).click();
 	}
 
 	clickOnCheckBoxMaintainSchoolYearAssignment() {
