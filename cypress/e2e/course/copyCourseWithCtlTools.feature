@@ -65,7 +65,7 @@ Feature: Course - Copy course with CTL tools
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        When I click on copy course button
+        When I click on button copy course
         Then I see the copy result notification
         When I close the dialog
         When I go to courses overview

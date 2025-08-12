@@ -311,7 +311,7 @@ Then("I delete all courses named {string}", (courseName) => {
 	courses.deleteAllCoursesMatchingName(courseName);
 });
 
-When("I click on copy course button", () => {
+When("I click on button copy course", () => {
 	courses.clickCopyCourseButton();
 });
 
@@ -440,3 +440,18 @@ When("I edit the title of the course to {string}", (newCourseName) => {
 When("I click on the share a copy of Topic from three dot menu {string}", (topicName) => {
 	courses.clickOnShareCopyOfTopic(topicName);
 });
+
+Then("I publish the topic in course {string}", (courseName) => {
+	courses.clickPublishLinkForFirstTopic();
+});
+
+Then("I publish the task in index {string} in course page", (taskIndex) => {
+	courses.clickPublishLinkForTaskWithDynamicIndex(taskIndex);
+});
+
+Then(
+	"I can see task {string} in index {string} on course page",
+	(taskTitle, taskIndex) => {
+		courses.seeTaskOnCoursePageWithDynamicIndex(taskTitle, taskIndex);
+	}
+);
