@@ -49,6 +49,8 @@ Feature: Topic - Teacher shares a topic to other teacher from different school a
         When I click on the button import topic
         When I go to course '<course_name2>'
         Then I see course page '<course_name2>'
+        When I click on button Publish for first topic in content list
+        Then I can see topic '<topic_text_title_import>' on course page
 
         # Post-condition: Teacher deletes the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'

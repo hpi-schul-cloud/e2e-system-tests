@@ -245,7 +245,7 @@ When("I click on option Back to draft in dot menu of first topic", () => {
 	courses.clickBackToDraftInDotMenuOfTopic();
 });
 
-When("I click on link Publish for first topic in content list", () => {
+When("I click on button Publish for first topic in content list", () => {
 	courses.clickPublishLinkForFirstTopic();
 });
 
