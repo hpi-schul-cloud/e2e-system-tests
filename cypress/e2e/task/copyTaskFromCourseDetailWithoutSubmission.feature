@@ -29,7 +29,7 @@ Feature: Task - Teacher copies a task from Course overview without student submi
         Then I can see task '<task_name>' on course page
         When I click on three dot menu of content '<task_name>'
         Then I see the option Copy on the list
-        When I click on Copy in dot menu
+        When I select the three dot menu action 'copy' at task index '0' in course detail page
         Then I see the progress bar
         Then I see the success message '<success_message>'
         Then I see the title '<draft_indicator>' in the task
@@ -55,10 +55,10 @@ Feature: Task - Teacher copies a task from Course overview without student submi
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      |  namespace | course_name             | fullname_teacher  | fullname_student  | task_name       | copy_task_name          | success_message                | draft_indicator   | image_file      |
-            | admin1_dbc | teacher1_dbc | student1_dbc |  dbc       | CypressAut Course       | cypress teacher_1 | cypress student_1 | CypressAut Task | CypressAut Task (1)     | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name       | fullname_teacher  | fullname_student  | task_name       | copy_task_name      | success_message                | draft_indicator   | image_file      |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course | cypress teacher_1 | cypress student_1 | CypressAut Task | CypressAut Task (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name               | fullname_teacher  | fullname_student  | task_name               | copy_task_name              | success_message                | draft_indicator        | image_file      |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Staging | Karl Herzog       | Herbert Kraft     | CypressAut Task Staging | CypressAut Task Staging (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf      | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name               | fullname_teacher | fullname_student | task_name               | copy_task_name              | success_message                | draft_indicator   | image_file      |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Staging | Karl Herzog      | Herbert Kraft    | CypressAut Task Staging | CypressAut Task Staging (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |

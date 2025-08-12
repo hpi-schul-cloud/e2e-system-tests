@@ -160,6 +160,21 @@ class Courses {
 	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
+	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
+
+	verifyImportSharedModal() {
+		cy.get(Courses.#shareSettingsDialog).should("be.visible");
+	}
+
+	selectCourseForTaskImport() {
+		// Go to parent element
+		cy.get(Courses.#shareSettingsDialog)
+			// Locate the selection input of the course name
+			.find(Courses.#courseSelectionBoxModal)
+			// Navigate to the course name as a first option and press enter
+			.type("{downarrow}{enter}");
+	}
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -647,8 +662,9 @@ class Courses {
 		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndex).should("be.visible");
 	}
 
-	clickCopyOptionInThreeDotMenuOfTopic() {
-		cy.get(Courses.#copyButtonInDotMenu).click();
+	clickThreeDotMenuActionAtTaskIndex(action, index) {
+		const testId = `room-task-card-menu-${action.toLowerCase()}-${index}`;
+		cy.get(`[data-testid="${testId}"]`).click();
 	}
 
 	clickCopyOptionInThreeDotMenuOfTaskMenu() {
