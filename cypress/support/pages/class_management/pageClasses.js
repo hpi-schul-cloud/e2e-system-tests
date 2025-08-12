@@ -42,7 +42,7 @@ class Classes {
 	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
 	static #buttonDeleteClassOnOldOverview = '[data-testid="delete-class"]';
 	static #modalDeleteOnOldClassPage = '[data-testid="popup-title"]';
-	static #buttonCancelOnDeleteModalOldClassPage = '[data-testid="btn-cancel"]';
+	static #buttonCancelOnDeleteModalClassAdminPage = '[data-testid="dialog-cancel"]';
 	static #buttonDeleteOnDeleteModalOldClassPage =
 		'[data-testid="submit-btn-delete-systems-modal"]';
 	static #tableClassName = '[data-testid="class-table-name"]';
@@ -62,8 +62,8 @@ class Classes {
 		cy.get(Classes.#buttonDeleteOnDeleteModalOldClassPage).click();
 	}
 
-	clickOnCancelDeleteModalOnOldClassPage() {
-		cy.get(Classes.#buttonCancelOnDeleteModalOldClassPage).click();
+	clickOnCancelDeleteModalOnClassAdminPage() {
+		cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
 	}
 
 	seeDeleteModalOnOldClassAdministrationPage() {
@@ -80,10 +80,17 @@ class Classes {
 		cy.get(Classes.#buttonSaveChangeOnEditClass).click();
 	}
 
-	clickOnEditClassOnOldClassOverview() {
-		cy.get(Classes.#tableOldClassOverview)
-			.find(Classes.#buttonEditClassOnOldOverview)
-			.click();
+	clickOnEditClassOnOldClassOverview(className) {
+		cy.get('[data-testid="class-table-name"]')
+			.contains(className)
+			.parents("tr") // go to the table row
+			.within(() => {
+				// Click the edit button in that row
+				cy.get('[data-testid="class-table-edit-btn"]').click();
+			});
+		// cy.get(Classes.#tableOldClassOverview)
+		// 	.find(Classes.#buttonEditClassOnOldOverview)
+		// 	.click();
 	}
 
 	seeCustomClassNameOnClassOverviewTable(customClassName) {
@@ -104,9 +111,7 @@ class Classes {
 
 	selectStudentInManageClassPage(fullNameStudent) {
 		cy.get(Classes.#dropDownStudentSelectionOnClassManage).click();
-		cy.get(Classes.#selectionBoxStudentInManageClass)
-			.contains(fullNameStudent)
-			.click();
+		cy.get(Classes.#selectionBoxStudentInManageClass).contains(fullNameStudent).click();
 	}
 
 	seeSelectedTeacherOnManageClassPage(teacherName) {
@@ -114,8 +119,7 @@ class Classes {
 	}
 
 	seeSelectedStudentOnManageClassPage(studentName) {
-		cy.get(Classes.#dropDownStudentSelectionOnClassManage)
-			.contains(studentName);
+		cy.get(Classes.#dropDownStudentSelectionOnClassManage).contains(studentName);
 	}
 
 	clickOnAddClassButtonOnClassOverviewPage() {
@@ -208,7 +212,10 @@ class Classes {
 			.contains(className)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#createSuccessorButton).should("not.have.class", "v-btn--disabled");
+				cy.get(Classes.#createSuccessorButton).should(
+					"not.have.class",
+					"v-btn--disabled"
+				);
 			});
 	}
 
@@ -221,8 +228,7 @@ class Classes {
 			.contains(className)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#tableClassSource)
-					.should("have.text", sourceName);
+				cy.get(Classes.#tableClassSource).should("have.text", sourceName);
 			});
 	}
 
@@ -231,8 +237,7 @@ class Classes {
 			.contains(className)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#tableClassSource)
-					.should("have.text", "");
+				cy.get(Classes.#tableClassSource).should("have.text", "");
 			});
 	}
 
@@ -251,7 +256,7 @@ class Classes {
 			.contains(lastName)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#tableClassMemberRole).should("have.text", role)
+				cy.get(Classes.#tableClassMemberRole).should("have.text", role);
 				cy.get(Classes.#tableClassMemberFirstName).should("contain", firstName);
 			});
 	}
@@ -275,13 +280,11 @@ class Classes {
 
 	clickEndSyncWithCourseButton(groupName) {
 		cy.get(Classes.#tableClassName)
-		.contains(groupName)
-		.parents("tr")
-		.within(() => {
-			cy.get(Classes.#stopSyncButton)
-			.should("be.visible")
-			.click();
-		});
+			.contains(groupName)
+			.parents("tr")
+			.within(() => {
+				cy.get(Classes.#stopSyncButton).should("be.visible").click();
+			});
 	}
 
 	doNotSeeClassInTable(className) {
@@ -290,57 +293,47 @@ class Classes {
 
 	clickOnManageClassButton(className) {
 		cy.get(Classes.#tableClassName)
-		.contains(className)
-		.parents("tr")
-		.within(() => {
-			cy.get(Classes.#manageClassButton)
-			.should("be.visible")
-			.click();
-		});
+			.contains(className)
+			.parents("tr")
+			.within(() => {
+				cy.get(Classes.#manageClassButton).should("be.visible").click();
+			});
 	}
 
 	clickOnManageGroupButton(className) {
 		cy.get(Classes.#tableClassName)
-		.contains(className)
-		.parents("tr")
-		.within(() => {
-			cy.get(Classes.#manageGroupButton)
-			.should("be.visible")
-			.click();
-		});
+			.contains(className)
+			.parents("tr")
+			.within(() => {
+				cy.get(Classes.#manageGroupButton).should("be.visible").click();
+			});
 	}
 
 	clickOnEditClassButton(className) {
 		cy.get(Classes.#tableClassName)
-		.contains(className)
-		.parents("tr")
-		.within(() => {
-			cy.get(Classes.#editClassButton)
-			.should("be.visible")
-			.click();
-		});
+			.contains(className)
+			.parents("tr")
+			.within(() => {
+				cy.get(Classes.#editClassButton).should("be.visible").click();
+			});
 	}
 
 	clickOnCreateSuccessorButton(className) {
 		cy.get(Classes.#tableClassName)
-		.contains(className)
-		.parents("tr")
-		.within(() => {
-			cy.get(Classes.#createSuccessorButton)
-			.should("be.visible")
-			.click();
-		});
+			.contains(className)
+			.parents("tr")
+			.within(() => {
+				cy.get(Classes.#createSuccessorButton).should("be.visible").click();
+			});
 	}
 
 	clickOnDeleteClassButton(className) {
 		cy.get(Classes.#tableClassName)
-		.contains(className)
-		.parents("tr")
-		.within(() => {
-			cy.get(Classes.#deleteClassButton)
-			.should("be.visible")
-			.click();
-		});
+			.contains(className)
+			.parents("tr")
+			.within(() => {
+				cy.get(Classes.#deleteClassButton).should("be.visible").click();
+			});
 		cy.wait(500);
 		cy.get(Classes.#deleteDialog).should("be.visible");
 	}
@@ -350,7 +343,7 @@ class Classes {
 			.contains(groupName)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#tableClassSyncedCourse).should("have.text", courseName)
+				cy.get(Classes.#tableClassSyncedCourse).should("have.text", courseName);
 			});
 	}
 
@@ -359,9 +352,7 @@ class Classes {
 			.contains(groupName)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#stopSyncButton)
-					.should("be.visible")
-					.click();
+				cy.get(Classes.#stopSyncButton).should("be.visible").click();
 			});
 	}
 
@@ -370,7 +361,7 @@ class Classes {
 			.contains(groupName)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#stopSyncButton).should("not.exist")
+				cy.get(Classes.#stopSyncButton).should("not.exist");
 			});
 	}
 
@@ -379,7 +370,7 @@ class Classes {
 			.contains(className)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#tableClassStudentCount).should("have.text", numberOfStudents)
+				cy.get(Classes.#tableClassStudentCount).should("have.text", numberOfStudents);
 			});
 	}
 

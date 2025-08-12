@@ -67,13 +67,19 @@ When("I click on the button confirm on the page create successor", () => {
 	classes.clickConfirmSuccessor();
 });
 
-Then("I see the disabled create successor button of the original class {string}", (className) => {
-	classes.seeSuccessorButtonIsDisabled(className);
-});
+Then(
+	"I see the disabled create successor button of the original class {string}",
+	(className) => {
+		classes.seeSuccessorButtonIsDisabled(className);
+	}
+);
 
-Then("I see the enabled create successor button of the original class {string}", (className) => {
-	classes.seeSuccessorButtonIsEnabled(className);
-});
+Then(
+	"I see the enabled create successor button of the original class {string}",
+	(className) => {
+		classes.seeSuccessorButtonIsEnabled(className);
+	}
+);
 
 Then("I see the delete modal", () => {
 	classes.isDeleteDialog();
@@ -91,9 +97,12 @@ Then("I do not see class {string} in the table", (className) => {
 	classes.doNotSeeClassInTable(className);
 });
 
-Then("I see group {string} is synchronized with course {string}", (groupName, courseName) => {
-	classes.seeGroupIsSyncedWithCourse(groupName, courseName);
-});
+Then(
+	"I see group {string} is synchronized with course {string}",
+	(groupName, courseName) => {
+		classes.seeGroupIsSyncedWithCourse(groupName, courseName);
+	}
+);
 
 Then("I see group {string} without a synchronized course", (groupName) => {
 	classes.seeGroupIsSyncedWithCourse(groupName, "");

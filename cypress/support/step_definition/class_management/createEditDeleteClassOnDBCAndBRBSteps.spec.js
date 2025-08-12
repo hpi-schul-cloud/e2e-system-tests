@@ -15,12 +15,9 @@ When("I click on delete confirmation button on the delete modal", () => {
 	classes.clickOnConfirmDeleteOnModalOldClassPage();
 });
 
-When(
-	"I click the cancel button on the delete modal on old class administration page",
-	() => {
-		classes.clickOnCancelDeleteModalOnOldClassPage();
-	}
-);
+When("I click button Cancel on the delete modal of class administration page", () => {
+	classes.clickOnCancelDeleteModalOnClassAdminPage();
+});
 
 Then("I can see the delete modal on old class administration page", () => {
 	classes.seeDeleteModalOnOldClassAdministrationPage();
@@ -34,8 +31,8 @@ When("I click on the button save change on the page edit class", () => {
 	classes.clickOnSaveChangesOnEditClassPage();
 });
 
-When("I click on the button edit to edit the class", () => {
-	classes.clickOnEditClassOnOldClassOverview();
+When("I click on the button edit to edit the class {string}", (className) => {
+	classes.clickOnEditClassOnOldClassOverview(className);
 });
 
 Then("I see class {string} on the overview", (customClassName) => {

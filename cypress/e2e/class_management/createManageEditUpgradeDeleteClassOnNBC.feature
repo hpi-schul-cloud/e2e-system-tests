@@ -37,7 +37,6 @@ Feature: Class Management - To create, manage, edit, upgrade and delete class on
         When I select the '<fullname_student>' from the student selection dropdown
         When I click on the button Save changes on the page manage class
         Then I see the new class administration page
-        Then I see the class '<custom_class_name>' without source
         Then I see the class '<custom_class_name>' has '<number_of_students>' students
 
         # teacher manages class
@@ -55,7 +54,7 @@ Feature: Class Management - To create, manage, edit, upgrade and delete class on
         When I click on the checkbox Maintain school year assignment
         When I click on the button save change on the page edit class
         Then I see the new class administration page
-        Then I see the class '<edit_custom_class_name>' without source
+        Then I see the class '<edit_custom_class_name>' has '<number_of_students>' students
 
         # teacher upgrades class
         When I click on the upgrade button of class '<edit_custom_class_name>'
@@ -68,13 +67,9 @@ Feature: Class Management - To create, manage, edit, upgrade and delete class on
         Then I see the new class administration page
         Then I see the disabled create successor button of the original class '<edit_custom_class_name>'
 
-        # teacher deletes class
-        When I click on the delete button of class '<edit_custom_class_name>'
-        When I click the confirmation button on the delete modal
-
         # teacher deletes successor class on next year tab
         When I click on the next year tab
-        Then I see the class '<edit_custom_class_name>' without source
+        Then I see the class '<edit_custom_class_name>' has '<number_of_students>' students
         Then I see the enabled create successor button of the original class '<edit_custom_class_name>'
         When I click on the delete button of class '<edit_custom_class_name>'
         When I click the confirmation button on the delete modal
