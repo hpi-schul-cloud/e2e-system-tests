@@ -1,7 +1,7 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Courses from "../../pages/course/pageCourses";
-import ShareCourseModal from "../../pages/course/pageShareCourseModal";
 import ImportCourseModal from "../../pages/course/pageImportCourseModal";
+import ShareCourseModal from "../../pages/course/pageShareCourseModal";
 
 const courses = new Courses();
 const shareCourseModal = new ShareCourseModal();
@@ -89,4 +89,72 @@ Then("I see the qr code in the dialog box share course result", () => {
 
 Then("I click on the button close in the dialog box share course result", () => {
 	shareCourseModal.clickCloseButtonInShareCourseResultDialog();
+});
+
+Then("I see the dialog box share topic in course", () => {
+	shareCourseModal.seeTopicShareCourseDialogBox();
+});
+
+Then("I see the text description in the dialog box share topic", () => {
+	shareCourseModal.seeTopicDescriptionInShareDialog();
+});
+
+Then("I see the checkbox is checked for link valid within same school", () => {
+	shareCourseModal.seeTopicSchoolInternalCheckBoxAsCheckedInShareDialog();
+});
+
+Then("I see the checkbox is checked for link expiry after 21 days", () => {
+	shareCourseModal.seeTopicExpiryDateCheckBoxAsCheckedInShareDialog();
+});
+
+When("I click on the button continue in dialog box share topic", () => {
+	shareCourseModal.clickContinueButtonInShareTopicDialog();
+});
+
+Then("I see the import share topic url in the dialog box share topic result", () => {
+	shareCourseModal.seeCopyUrlInShareCourseResultDialog();
+});
+
+Then("I see the button mail in the dialog box share topic result", () => {
+	shareCourseModal.seeMailButtonInShareCourseResultDialog();
+});
+
+Then("I see the button copy link in the dialog box share topic result", () => {
+	shareCourseModal.seeCopyLinkButtonInShareCourseResultDialog();
+});
+
+Then("I see the button mail QR-Code in the dialog box share topic result", () => {
+	shareCourseModal.seeQrCodeButtonInShareCourseResultDialog();
+});
+
+When("I save the import share topic url", () => {
+	shareCourseModal.saveTheUrlInShareCourseResultDialog();
+});
+
+When("I visit the saved import url of the shared topic", () => {
+	importCourseModal.visitSavedShareCourseUrl();
+});
+
+Then("I see the dialog box import share topic", () => {
+	importCourseModal.seeImportShareTopicDialogBox();
+});
+
+When("I click on the dropdown options in the dialog box import share topic", () => {
+	importCourseModal.seeImportDropDownTopicDialogBox();
+});
+
+When("I select the course name {string} in the course name field", (courseName) => {
+	importCourseModal.selectCourseFromDropdown(courseName);
+});
+
+When("I enter {string} in the topic name field", (importTopicName) => {
+	importCourseModal.enterCourseNameForImportCourse(importTopicName);
+});
+
+When("I click on the button import topic", () => {
+	importCourseModal.clickOnConfirmButtonInImportShareCourseDialog();
+});
+
+When("I uncheck the checkbox school internal in dialog box topic", () => {
+	shareCourseModal.uncheckSchoolInternalCheckBoxInShareTopicDialog();
 });

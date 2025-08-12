@@ -55,7 +55,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title>'
-        When I click on link Publish for first topic in content list
+        When I click on button Publish for first topic in content list
 
         # student sees topic in a course
         Given I am logged in as a '<student>' at '<namespace>'
