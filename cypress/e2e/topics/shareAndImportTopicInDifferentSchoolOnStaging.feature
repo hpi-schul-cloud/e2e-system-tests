@@ -1,5 +1,6 @@
 @regression_test
 @stable_test
+@group_V
 
 # Note: This feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in another scenario.
 
