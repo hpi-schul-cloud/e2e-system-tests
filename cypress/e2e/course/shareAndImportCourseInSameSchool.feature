@@ -1,5 +1,7 @@
 @regression_test
 @stable_test
+@group_V
+
 Feature: Course - Teacher shares a course to other teacher from the same school
 
     As a teacher I want to share a course to other teachers from the same school
@@ -70,10 +72,10 @@ Feature: Course - Teacher shares a course to other teacher from the same school
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share  | task_name      | board_title | task_title           | topic_text_title | course_name_import  |
-            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe course to share | Mathe Task  | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share     | task_name  | board_title | task_title           | topic_text_title | course_name_import    |
+            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe course to share | Mathe Task | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share     | task_name   | board_title | task_title           | topic_text_title | course_name_import  |
-            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe course to share | Mathe Task  | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share     | task_name  | board_title | task_title           | topic_text_title | course_name_import    |
+            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | Mathe course to share | Mathe Task | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
