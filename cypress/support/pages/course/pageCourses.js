@@ -99,7 +99,6 @@ class Courses {
 		'[data-testid="tool-card-status-incompleteOperational"]';
 	static #toolCardThreeDotBtn = '[data-testid="room-tool-three-dot-button"]';
 	static #chooseStudentSelectionBox = '[id="studentsId_chosen"]';
-	static #chooseClassSelectionBox = '[id="classId_chosen"]';
 	static #groupNameField = '[data-testid="group-name-field"]';
 	static #groupMemberField = '[data-testid="group-member-field"]';
 	static #createStudentGroupButton = '[data-testid="create-course-group"]';
@@ -1032,12 +1031,14 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
-	addClassWithSearchStringToCourse(searchString) {
-		cy.get(Courses.#chooseClassSelectionBox)
+	addClassWithSearchStringToCourseInCourse(searchString) {
+		cy.get(Courses.#addClassToCourseSelectionBox)
 			.click()
 			.type(searchString)
 			.type("{enter}");
-		cy.get(Courses.#chooseClassSelectionBox).contains(searchString).should("exist");
+		cy.get(Courses.#addClassToCourseSelectionBox)
+			.contains(searchString)
+			.should("exist");
 	}
 
 	seeTitleInSyncedGroupDialog() {

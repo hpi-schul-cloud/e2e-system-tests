@@ -140,33 +140,36 @@ Given(
 );
 
 Given(
-	"a class with grade {string} and class name {string} exists and added to course {string}",
-	(grade, className, courseName) => {
-		management.openAdministrationInMenu();
-		classManagement.clickOnClassInAdministrationSubMenu();
-		classManagement.clickCreateClassButtonOnNewClassPage();
-		classManagement.clickOnMoreOptionsInClassCreatePage();
-		classManagement.enterCustomClassName(className);
-		classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
-		classManagement.clickConfirmCreateClass();
-		management.openAdministrationInMenu();
-		management.navigateToCourseAdministration();
-		courseManagement.clickOnCourseInAdministrationSubMenu();
-		courseManagement.clickEditButtonOfCourse(courseName);
-		courses.addClassWithSearchStringToCourse(className);
-		courses.submitChangesAfterEditingCourse();
+	"a course with name {string} exists with {string} as teacher, {string} as student and {string} as class",
+	(courseName, teacherName, studentName, className) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		courses.selectTeacherInCourseCreatePage(teacherName);
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.addClassWithSearchStringToCourseInCourse(className);
+		courses.selectStudentsInCourseCreatePage(studentName);
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
 	}
 );
 
-Given(
-	"a class with grade {string} and class name {string} deleted",
-	(grade, className) => {
-		management.openAdministrationInMenu();
-		classManagement.clickOnClassInAdministrationSubMenu();
-		classManagement.clickOnDeleteClassButton(className);
-		classManagement.clickConfirmDeleteDialogButton();
-	}
-);
+Given("a class name {string} exists", (className) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	classManagement.clickCreateClassButtonOnNewClassPage();
+	classManagement.clickOnMoreOptionsInClassCreatePage();
+	classManagement.enterCustomClassName(className);
+	classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
+	classManagement.clickConfirmCreateClass();
+});
+
+Given("a class name {string} deleted", (className) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	classManagement.clickOnDeleteClassButton(className);
+	classManagement.clickConfirmDeleteDialogButton();
+});
 
 Given(
 	"published task with name {string} in the course with name {string}",
