@@ -3,7 +3,7 @@
 
 # NOTE: This feature is only for staging due to a limitation in the admin API: it cannot create a new room without an owner.
 # NOTE: Room without an owner and with assigned student should preexist in the staging environment.
-# NOTE: Room admin page is currently not active on staging.
+# NOTE: Room admin page is currently not active on staging
 
 Feature: Admin sees rooms without assigned owners in room management page and student cannot access these rooms
 
@@ -25,17 +25,17 @@ Feature: Admin sees rooms without assigned owners in room management page and st
         When I click on administration in menu
         When I navigate to room administration page via the submenu
         Then I see the room administration page
-        Then I see the room '<room_without_owner>'
-        Then I see the alert icon in the column Room owner
+        Then I see the room '<room_without_owner>' on the new room administration page
+        Then I see the icon Alert in the column Room owner for the room '<room_without_owner>'
 
         # Student cannot access the room without an owner assigned
         Given I am logged in as a '<student>' at '<namespace>'
-        When I go to rooms overview
+        When I go to room overview
         Then I see the icon Lock in the room '<room_without_owner>'
         When I click on the locked room '<room_without_owner>'
         Then I see a message that the room is not accessible
 
-        @staging_test
+        @school_api_test
         Examples:
-            | admin      | student      | namespace | room_without_owner         |
-            | admin1_nbc | student1_nbc | nbc       | cypress-room-without-owner |
+            | admin      | student      | namespace | room_without_owner                                   |
+            | admin1_nbc | student1_nbc | nbc       | cypreee-room-withoout-teacher (please do not delete) |

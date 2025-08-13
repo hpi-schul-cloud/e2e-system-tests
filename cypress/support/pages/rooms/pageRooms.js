@@ -58,6 +58,27 @@ class Rooms {
 	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
 	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
 	static #infoBoxContentRestriction = '[data-testid="share-options-table-header"]';
+	static #roomBadgeLock = '[data-testid="room-badge-lock"]';
+	static #roomLockedMessage = '[data-testid="img-permission"]';
+
+	seeLockIconInRoom(roomName) {
+		cy.get(Rooms.#roomTitle)
+			.contains(roomName)
+			.siblings(Rooms.#roomBadgeLock)
+			.should("be.visible");
+	}
+
+	clickLockedRoom(roomName) {
+		cy.contains(Rooms.#roomTitle, roomName)
+			.should("be.visible")
+			.then((title) => {
+				cy.wrap(title).prev().click();
+			});
+	}
+
+	seeRoomNotAccessibleMessage() {
+		cy.get(Rooms.#roomLockedMessage).should("be.visible");
+	}
 
 	seeContentRestrictionInfoBoxInModal() {
 		cy.get(Rooms.#infoBoxContentRestriction).should("be.visible");
