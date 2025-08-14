@@ -15,11 +15,10 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
-        # Teacher creates a new class with custom name
+        # teacher creates a new class with custom name
         When I click on administration in menu
         When I navigate to class administration page via sub menu
-        Then I see old class administration page
-        When I click on the button Add class on the page class overview
+        When I click on the button Add class
         Then I see the create class page
         Then I see the current school year '<school_year>' is selected
         Then I see the teacher name '<fullname_teacher>' is selected
@@ -30,28 +29,21 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
         Then I see the teacher name '<fullname_teacher>' in the teacher dropdown
         When I select the '<fullname_student>' from the student selection dropdown
         When I click on the button Save changes on the page manage class
-        Then I see old class administration page
-        Then I see class '<custom_class_name>' on the overview
-        Then I see number of students '<number_of_students>' on the overview
+        Then I see the class '<custom_class_name>' has '<number_of_students>' students
 
-        # Teacher edits the class
-        When I click on the button edit to edit the class
+        # teacher edits the class
+        When I click on the button Edit to edit the class '<custom_class_name>'
+        Then I see the edit classes page
         When I enter a custom Class name '<edit_custom_class_name>'
         When I click on the checkbox Maintain school year assignment
-        When I click on the button save change on the page edit class
-        Then I see old class administration page
-        Then I see class '<edit_custom_class_name>' on the overview
+        When I click on the button Save on the page edit class
+        Then I see the class '<edit_custom_class_name>' has '<number_of_students>' students
 
-        # Teacher deletes the class
-        When I click the button delete to delete the class
-        Then I can see the delete modal on old class administration page
-        When I click the cancel button on the delete modal on old class administration page
-        Then I see old class administration page
-        When I click the button delete to delete the class
-        Then I can see the delete modal on old class administration page
-        When I click on delete confirmation button on the delete modal
-        Then I see old class administration page
-        When I do not see the class '<edit_custom_class_name>'
+        # teacher deletes the class
+        When I click on the delete button of class '<edit_custom_class_name>'
+        When I click button Cancel on the delete modal of class administration page
+        When I click on the delete button of class '<edit_custom_class_name>'
+        Then I click the confirmation button on the delete modal
 
         @staging_test
         Examples:

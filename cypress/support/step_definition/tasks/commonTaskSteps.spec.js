@@ -3,6 +3,14 @@ import Tasks from "../../pages/tasks/pageTasks";
 
 const tasks = new Tasks();
 
+Then("I copy the task URL", () => {
+	tasks.copyTaskURLInModal();
+});
+
+When("I open the shared task URL", () => {
+	tasks.openSharedTaskURL();
+});
+
 Then("file {string} is saved in folder downloads", (fileName) => {
 	tasks.seeFileIsSavedInDownloads(fileName);
 });
