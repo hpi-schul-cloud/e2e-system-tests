@@ -78,8 +78,7 @@ Feature: Room - Students can only add students from their own classes to a room 
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I click on administration in menu
         When I navigate to class administration page via sub menu
-        Then I see old class administration page
-        When I click on the button Add class on the page class overview
+        When I click on the button Add class
         Then I see the create class page
         Then I see the current school year '<school_year>' is selected
         Then I see the teacher name '<fullname_teacher>' is selected
@@ -91,9 +90,7 @@ Feature: Room - Students can only add students from their own classes to a room 
         When I select the '<fullname_student_1>' from the student selection dropdown
         When I select the '<fullname_student_2>' from the student selection dropdown
         When I click on the button Save changes on the page manage class
-        Then I see old class administration page
-        Then I see class '<custom_class_name>' on the overview
-        Then I see number of students '<number_of_students>' on the overview
+        Then I see the class '<custom_class_name>' has '<number_of_students>' students
 
         # student can add second student to room
         Given I am logged in as a '<student_1>' at '<namespace>'
@@ -127,10 +124,10 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         @school_api_test
         Examples:
-            | namespace | admin      | teacher      | student_1      | student_2      | room_name         | school_name           | role_name      | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher  | fullname_student_1  | fullname_student_2  |
-            | brb       | admin1_brb | teacher1_brb | student1_brb   | student2_brb   | Cypress Room Name | cypress-test-school-1 | Lernend        | student_1          | student_2          | 2025/26     | 2026/27               | cyClassNameManage | 2                  | cypress teacher_1 | cypress student_1   | cypress student_2   |
+            | namespace | admin      | teacher      | student_1    | student_2    | room_name         | school_name           | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher  | fullname_student_1 | fullname_student_2 |
+            | brb       | admin1_brb | teacher1_brb | student1_brb | student2_brb | Cypress Room Name | cypress-test-school-1 | Lernend   | student_1          | student_2          | 2025/26     | 2026/27          | cyClassNameManage | 2                  | cypress teacher_1 | cypress student_1  | cypress student_2  |
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | student_1      | student_2      | room_name         | school_name                 | role_name      | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher  | fullname_student_1  | fullname_student_2  |
-            | dbc       | admin1_dbc | teacher1_dbc | student1_dbc   | student2_dbc   | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend        | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog       | Herbert Kraft       | Amelia Strobl       |
+            | namespace | admin      | teacher      | student_1    | student_2    | room_name         | school_name                 | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher | fullname_student_1 | fullname_student_2 |
+            | dbc       | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog      | Herbert Kraft      | Amelia Strobl      |

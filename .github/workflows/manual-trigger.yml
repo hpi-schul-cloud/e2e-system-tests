@@ -10,6 +10,7 @@ on:
           - all regression tests
           - tests for pull requests (PR)
           - pre-check release tests
+          - run selective tests (@only)
         default: "tests for pull requests (PR)"
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
@@ -141,6 +142,21 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: pre-check
 
+  run-only-tagged-tests:
+    name: Run only tagged tests
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'run selective tests (@only)' }}
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: cy:headless:only:ci
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: only-tagged
+
   notify_RC:
     runs-on: ubuntu-latest
     needs:
@@ -148,6 +164,7 @@ jobs:
       - run-all-tests
       - run-tests-selective
       - run-pre-check-tests
+      - run-only-tagged-tests
     if: always()
     steps:
       - uses: technote-space/workflow-conclusion-action@v3

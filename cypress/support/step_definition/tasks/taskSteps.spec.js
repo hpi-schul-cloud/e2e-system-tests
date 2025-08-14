@@ -11,6 +11,33 @@ const tasks = new Tasks();
 // -->\step_definition\course\commonCourseSteps.spec.js
 // -->\step_definition\tasks\commonTaskSteps.spec.js
 
+When("I open the draft task card in course detail page", () => {
+	tasks.openDraftTaskCardInCourseDetail();
+});
+
+Then("I see the task detail page", () => {
+	tasks.verifyTaskDetailPage();
+});
+
+Then("I see the attached files in the task detail page", () => {
+	tasks.verifyAttachedFilesInTaskDetail();
+});
+
+Then("I see the button Publish in the task card in course detail page", () => {
+	tasks.checkTaskPublishButtonVisibleOnCourseDetail();
+});
+
+Then("I see the task in draft mode in course detail page", () => {
+	tasks.checkTaskIsDraftInCourseDetail();
+});
+
+When(
+	"I enter a new name for the imported task {string} in the modal",
+	(importTaskName) => {
+		tasks.enterNewTaskNameForImport(importTaskName);
+	}
+);
+
 When("file upload button is disabled", () => {
 	tasks.seeUploadFileButtonIsDisabled();
 });
