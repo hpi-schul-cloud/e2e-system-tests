@@ -64,7 +64,6 @@ Feature: Rooms - Share and import room with a teacher from the same school
         Given I am logged in as a '<teacher2>' at '<namespace>'
         Given the room named '<room_name_target>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    |

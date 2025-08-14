@@ -61,7 +61,6 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | docx_file_name   | docx_caption_text |

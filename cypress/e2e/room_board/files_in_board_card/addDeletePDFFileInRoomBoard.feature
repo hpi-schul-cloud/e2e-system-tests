@@ -61,7 +61,6 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | pdf_file_name  | pdf_caption_text |

@@ -48,7 +48,6 @@ Feature: Room - To duplicate the existing room
         # post-condition: teacher is able to delete the first original room
         Given the room named '<room_name>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | room_name         | copied_room_name      | board_title    |

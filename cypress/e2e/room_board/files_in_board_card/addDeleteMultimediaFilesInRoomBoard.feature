@@ -94,7 +94,6 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |

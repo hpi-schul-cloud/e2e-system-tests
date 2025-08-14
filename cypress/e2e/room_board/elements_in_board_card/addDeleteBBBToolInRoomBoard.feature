@@ -57,7 +57,6 @@ Feature: Room Board - Add BBB Tool in the Room Board
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | room_name         | board_title    | video_conference_title |

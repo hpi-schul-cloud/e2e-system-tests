@@ -66,7 +66,6 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |

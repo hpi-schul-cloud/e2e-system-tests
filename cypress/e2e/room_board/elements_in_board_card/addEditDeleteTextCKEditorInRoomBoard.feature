@@ -51,7 +51,6 @@ Feature: Room Board - Add, edit and delete element Text in the room board
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
-        @only
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | example_text         | edit_example_text         |

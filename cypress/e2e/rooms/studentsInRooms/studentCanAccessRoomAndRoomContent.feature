@@ -84,7 +84,6 @@ Feature: Room - Student can access room content after being added to room via Ad
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-        @only
         @school_api_test
         Examples:
             | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name           | role_name | participant_name | board_title    |
