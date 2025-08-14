@@ -7,22 +7,21 @@
 
 Feature: Admin sees rooms without assigned owners in room management page and student cannot access these rooms
 
-    As an admin
+    As a school admin
     I want to see which rooms do not have an owner assigned
     So that I can easily manage and update room assignments
 
-    As a user with the role read in the room
+    As a user with the role “Read” in a room
     I want to see a lock icon on rooms without assigned owners
     So that I know which rooms I cannot access
 
-    As a user with the role edit in the room
+    As a user with the role “Edit” in a room
     I want to see a lock icon on rooms without assigned owners
     So that I know which rooms I cannot access
 
-    As a user with the role administrator in the room
+    As a user with the role “Administrator” in a room
     I want to see a lock icon on rooms without assigned owners
     So that I know which rooms I cannot access
-
 
     Scenario Outline: Room without owner is visible to admin but inaccessible to student
 
