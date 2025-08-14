@@ -106,7 +106,12 @@ Then("I see course search box on the course overview page", () => {
 });
 
 When("I go to course administration page", () => {
+	// check for the error course list to be checked here.
 	management.navigateToCourseAdministration();
+});
+
+Then("I see no error alert", () => {
+	management.seeNoErrorAlertInCourseAdministration();
 });
 
 When("I go to courses overview", () => {
@@ -362,6 +367,13 @@ When(
 	"I add the first student with search string {string} to the course",
 	(searchString) => {
 		courses.addStudentWithSearchStringToCourse(searchString);
+	}
+);
+
+When(
+	"I add the first class with search string {string} to the course",
+	(searchString) => {
+		courses.addClassWithSearchStringToCourse(searchString);
 	}
 );
 

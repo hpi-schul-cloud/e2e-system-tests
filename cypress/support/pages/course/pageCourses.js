@@ -1062,6 +1062,16 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
+	addClassWithSearchStringToCourseInCourse(searchString) {
+		cy.get(Courses.#addClassToCourseSelectionBox)
+			.click()
+			.type(searchString)
+			.type("{enter}");
+		cy.get(Courses.#addClassToCourseSelectionBox)
+			.contains(searchString)
+			.should("exist");
+	}
+
 	seeTitleInSyncedGroupDialog() {
 		cy.get(Courses.#endSyncDialogTitle).should("be.visible");
 	}
