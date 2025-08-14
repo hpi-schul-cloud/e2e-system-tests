@@ -1,8 +1,7 @@
 class RoomAdmin {
 	static #submenuRoomAdminLink = '[data-testid="sidebar-management-rooms"]';
 	static #roomTable = '[data-testid="room-admin-table"]';
-	//data-testid is to be defined?
-	static #roomOwnerAlertIcon = "td span";
+	static #roomOwnerAlertIcon = '[data-testid="room-admin-table-owner-not-existing"]';
 	static #roomTableName = '[data-testid="room-admin-table"]';
 
 	navigateToRoomAdministrationPageViaSubmenu() {
