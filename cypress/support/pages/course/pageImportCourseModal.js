@@ -75,10 +75,11 @@ class ImportCourseModal {
 
 	selectCourseFromDropdown(courseName) {
 		cy.get(ImportCourseModal.#importShareTopicDialogDropdown).click();
-		cy.get(".v-overlay-container .v-list-item-title")
-			.contains(courseName)
-			.click({ force: true });
-		cy.get(".v-select__selection-text").should("contain.text", courseName);
+		cy.get('[role="option"]').contains(courseName).click({ force: true });
+		cy.get(ImportCourseModal.#importShareTopicDialogDropdown).should(
+			"contain.text",
+			courseName
+		);
 	}
 }
 
