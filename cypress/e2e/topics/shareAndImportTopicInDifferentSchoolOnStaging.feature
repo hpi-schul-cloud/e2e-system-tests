@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group_V
+@group-V
 
 # Note: This feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in another scenario.
 
-Feature: Topic - Teacher shares a topic to other teacher from different school and the other teacher from different school can import it into their course
+Feature: Topics - Teacher shares a topic to other teacher from different school to import it
 
-    As a teacher I want to share a topic to other teachers from different school and the other teacher from different school can import it into their course
+    As a teacher I want to share a topic to other teachers from different school to import it
 
     Scenario Outline: Teacher shares a topic to other teacher from different school
 
@@ -53,7 +53,7 @@ Feature: Topic - Teacher shares a topic to other teacher from different school a
         When I click on button Publish for first topic in content list
         Then I can see topic '<topic_text_title_import>' on course page
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: Teacher deletes the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given course with name '<course_name1>' is deleted
         Given I am logged in as a '<teacherExt_2>' at '<namespace>'

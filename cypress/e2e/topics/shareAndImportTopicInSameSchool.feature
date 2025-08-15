@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
-@group-v
+@group-V
 
-Feature: Topic - Teacher shares a topic to other teacher from the same school the other teacher from same school can import it into their course
+Feature: Topics - Teacher shares a topic to other teacher from the same school to import it
 
-    As a teacher I want to share a topic to other teachers from the same school and the other teacher from same school can import it into their course
+    As a teacher I want to share a topic to other teachers from the same school to import it
 
     Scenario Outline: Teacher shares a topic to other teacher from the same school
 
@@ -50,7 +50,7 @@ Feature: Topic - Teacher shares a topic to other teacher from the same school th
         When I click on button Publish for first topic in content list
         Then I can see topic '<topic_text_title_import>' on course page
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: Teacher deletes the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given course with name '<course_name1>' is deleted
         Given I am logged in as a '<teacher_2>' at '<namespace>'

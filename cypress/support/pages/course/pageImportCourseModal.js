@@ -74,7 +74,7 @@ class ImportCourseModal {
 	}
 
 	selectCourseFromDropdown(courseName) {
-		cy.get('[data-testid="import-destination-select"]').click();
+		cy.get(ImportCourseModal.#importShareTopicDialogDropdown).click();
 		cy.get(".v-overlay-container .v-list-item-title")
 			.contains(courseName)
 			.click({ force: true });
