@@ -39,7 +39,7 @@ Feature: Room - Change room permission (Viewer - Editor)
 
         # second user logs in, accesses the room, verifies that restricted functionalities are not visible to them, and then leaves the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -52,7 +52,7 @@ Feature: Room - Change room permission (Viewer - Editor)
         Then I don't see info text
         Then I don't see first checkbox column in the table
         Then I don't see last actions column in the table
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         When I click on three dot menu in room page
@@ -62,7 +62,7 @@ Feature: Room - Change room permission (Viewer - Editor)
 
         # first teacher logged in and assert second user is not in the table
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'

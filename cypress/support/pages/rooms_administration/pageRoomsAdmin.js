@@ -1,32 +1,32 @@
-class RoomAdmin {
+class RoomsAdmin {
 	static #submenuRoomAdminLink = '[data-testid="sidebar-management-rooms"]';
 	static #roomTable = '[data-testid="room-admin-table"]';
 	static #roomOwnerAlertIcon = '[data-testid="room-admin-table-owner-not-existing"]';
-	static #roomTableName = '[data-testid="room-admin-table"]';
+	static #roomsTableName = '[data-testid="room-admin-table"]';
 
-	navigateToRoomAdministrationPageViaSubmenu() {
-		cy.get(RoomAdmin.#submenuRoomAdminLink).should("be.visible").click();
+	navigateToRoomsAdministrationPageViaSubmenu() {
+		cy.get(RoomsAdmin.#submenuRoomAdminLink).should("be.visible").click();
 	}
 
-	isRoomAdministrationPage() {
+	isRoomsAdministrationPage() {
 		cy.url().should("include", "/administration/rooms/manage");
 	}
 
 	seeAlertIconInRoomOwnerColumn(roomName) {
-		cy.get(RoomAdmin.#roomTable)
+		cy.get(RoomsAdmin.#roomTable)
 			// find the row containing the room
 			.contains("tr", roomName)
 			.within(() => {
 				// find the row containing the alert icon
-				cy.get(RoomAdmin.#roomOwnerAlertIcon)
+				cy.get(RoomsAdmin.#roomOwnerAlertIcon)
 					// second column (Room Owner)
 					.should("be.visible");
 			});
 	}
 
-	seeRoomInRoomTable(roomName) {
-		cy.get(RoomAdmin.#roomTableName).should("contain", roomName);
+	seeRoomInRoomsTable(roomName) {
+		cy.get(RoomsAdmin.#roomsTableName).should("contain", roomName);
 	}
 }
 
-export default RoomAdmin;
+export default RoomsAdmin;

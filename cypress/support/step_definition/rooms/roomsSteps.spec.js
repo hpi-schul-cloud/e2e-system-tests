@@ -83,7 +83,7 @@ When("I select the end date for the room", () => {
 	rooms.selectEndDateForRoom();
 });
 
-When("I go to room overview", () => {
+When("I go to rooms overview", () => {
 	rooms.navigateToRoomsOverview();
 });
 

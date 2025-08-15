@@ -46,7 +46,7 @@ Feature: Room - Student can access room content after being added to room via Ad
 
         # newly added student can see the room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
         # student is able to access the room content according to visiblity
@@ -58,7 +58,7 @@ Feature: Room - Student can access room content after being added to room via Ad
 
         # teacher is able to delete participants
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
@@ -71,12 +71,12 @@ Feature: Room - Student can access room content after being added to room via Ad
 
         # student does not see the room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
         # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
