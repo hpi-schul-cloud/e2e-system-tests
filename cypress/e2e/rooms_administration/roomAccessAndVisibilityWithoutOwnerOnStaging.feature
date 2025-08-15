@@ -63,7 +63,7 @@ Feature: Admin sees rooms without assigned owners in room management page and no
         When I click on the locked room '<room_without_owner>'
         Then I see a message that the room is not accessible
 
-        @school_api_test
+        @staging_test
         Examples:
             | admin      | student_1    | student_2    | teacher_2    | namespace | room_without_owner                                  |
             | admin1_nbc | student1_nbc | student2_nbc | teacher2_nbc | nbc       | cypress-room-without-teacher (please do not delete) |
