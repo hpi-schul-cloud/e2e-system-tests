@@ -5,7 +5,7 @@
 # NOTE: Room named 'cypress-room-without-teacher (please do not delete)' has no owner (teacher_1), but has three users with different roles (student_1 (role -Read), student_2 (role-Edit), teacher_2 (role-Administrator)) assigned to it on the staging environment.
 # NOTE: Room admin page for school administrator is currently not active on staging.
 
-Feature: Admin sees rooms without assigned owners in room management page and no user can access these rooms
+Feature: Visibility of rooms without an owner assigned
 
     As a school admin
     I want to see which rooms do not have an owner assigned
@@ -25,7 +25,7 @@ Feature: Admin sees rooms without assigned owners in room management page and no
 
     Scenario Outline: Room without an assigned owner is visible to the school admin but inaccessible to other users in the room
 
-        # pre-condition: creating users and logging in
+        # pre-condition: users logins
         # student_1 with role 'Read' in room
         Given I am logged in as a '<student_1>' at '<namespace>'
         # student_2 with role 'Edit' in room
