@@ -11,7 +11,7 @@ Feature: Room - Add and delete participants
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: first teacher creating a new room
-        When I go to room overview
+        When I go to rooms overview
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
@@ -35,12 +35,12 @@ Feature: Room - Add and delete participants
 
         # Newly added second teacher can see the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
         # first teacher is able to delete participants
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
@@ -53,12 +53,12 @@ Feature: Room - Add and delete participants
 
         # second teacher do not see the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page

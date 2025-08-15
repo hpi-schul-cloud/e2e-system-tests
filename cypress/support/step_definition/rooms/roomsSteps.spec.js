@@ -3,6 +3,18 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
+Then("I see the icon Lock in the room {string}", (roomName) => {
+	rooms.seeLockIconInRoom(roomName);
+});
+
+When("I click on the locked room {string}", (roomName) => {
+	rooms.clickLockedRoom(roomName);
+});
+
+Then("I see a message that the room is not accessible", () => {
+	rooms.seeRoomNotAccessibleMessage();
+});
+
 Then("I see the info box indicating that the content cannot be copied or shared", () => {
 	rooms.seeContentRestrictionInfoBoxInModal();
 });
@@ -71,7 +83,7 @@ When("I select the end date for the room", () => {
 	rooms.selectEndDateForRoom();
 });
 
-When("I go to room overview", () => {
+When("I go to rooms overview", () => {
 	rooms.navigateToRoomsOverview();
 });
 

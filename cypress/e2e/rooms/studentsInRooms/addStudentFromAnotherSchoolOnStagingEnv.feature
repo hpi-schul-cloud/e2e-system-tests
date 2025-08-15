@@ -65,7 +65,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
         # the newly added external teacher can invite a student to the room in the different school (Goethe-Gymnasium)
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -84,12 +84,12 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
         # newly added external student can see the room (Goethe-Gymnasium)
         Given I am logged in as a '<studentExt_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
         # teacher is able to delete external student in the origin school (Felix Mendelssohn-Gymnasium)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
@@ -102,12 +102,12 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
         # external student does not see the room (Goethe-Gymnasium)
         Given I am logged in as a '<studentExt_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
         # post-condition: teacher deletes the room in the origin school (Felix Mendelssohn-Gymnasium)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
@@ -118,5 +118,5 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
-            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium   | Lernbegleitend    | Carlo                             | Lernend           | Alex                              |
+            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
+            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              |

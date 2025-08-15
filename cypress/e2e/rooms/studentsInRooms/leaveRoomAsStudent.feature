@@ -39,7 +39,7 @@ Feature: Room - Leave room as a Student
 
         # newly added student can see the room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
         # student can leave the room
@@ -51,12 +51,12 @@ Feature: Room - Leave room as a Student
         Then I click on button 'Confirm' to leave the room
 
         # student does not see the room
-        When I go to room overview
+        When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
         # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page

@@ -37,7 +37,7 @@ Feature: Room - Invite User to room via Invitationlink
 
         # first user confirms the invitation
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -56,7 +56,7 @@ Feature: Room - Invite User to room via Invitationlink
 
         # second user can now access the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'

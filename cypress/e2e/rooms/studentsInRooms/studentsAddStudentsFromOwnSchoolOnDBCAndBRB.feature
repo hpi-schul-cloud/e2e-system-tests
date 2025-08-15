@@ -21,7 +21,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # pre-condition: teacher creating a new room
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
@@ -54,7 +54,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # pre-condition: student can see the room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
         # student can not add any student because there is no class present
@@ -94,7 +94,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # student can add second student to room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -113,7 +113,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
