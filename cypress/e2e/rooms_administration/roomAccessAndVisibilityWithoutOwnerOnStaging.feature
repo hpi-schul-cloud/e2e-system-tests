@@ -35,7 +35,7 @@ Feature: Visibility of rooms without an owner assigned
         # school admin user
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # admin sees the room without an owner assigned in room administrator page
+        # admin sees the room without an owner assigned in room administration page
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
         Then I see the rooms administration page
