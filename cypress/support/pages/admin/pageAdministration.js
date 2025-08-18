@@ -1189,19 +1189,48 @@ class Management {
 	}
 
 	schoolHasExternalTool(toolName) {
-		return cy
-			.get(Management.#externalToolsTable)
-			.should("be.visible")
-			.then(($table) => {
-				if ($table.text().includes("Keine Daten vorhanden")) {
-					return cy.wrap(false);
-				}
+		return (
+			cy
+				.get(Management.#externalToolsTable)
+				.scrollIntoView()
+				.should("be.visible")
+				.find("tbody tr")
+				// wait until the loading row is gone
+				.should(($rows) => {
+					const loadingRow = [...$rows].some((r) =>
+						r.textContent.includes("Daten werden geladen")
+					);
+					expect(loadingRow).to.be.false;
+				})
+				.then(($rows) => {
+					// check empty state
+					if ($rows.length === 1 && $rows.text().includes("Keine Daten vorhanden")) {
+						return cy.wrap(false);
+					}
 
-				return cy.get(Management.#externalToolName).then(($names) => {
-					const found = [...$names].some((el) => el.textContent.trim() === toolName);
-					return cy.wrap(found);
-				});
-			});
+					// otherwise check for tool
+					return cy.get(Management.#externalToolName).then(($names) => {
+						const found = [...$names].some((el) => el.textContent.trim() === toolName);
+						return cy.wrap(found);
+					});
+				})
+		);
+		// return cy
+		// 	.get(Management.#externalToolsTable)
+		// 	.scrollIntoView()
+		// 	.should("be.visible")
+		// 	.then(($table) => {
+		// 		cy.log($table);
+		// 		console.log(`Table object:`, $table);
+		// 		if ($table.text().includes("Keine Daten vorhanden")) {
+		// 			return cy.wrap(false);
+		// 		}
+
+		// 		return cy.get(Management.#externalToolName).then(($names) => {
+		// 			const found = [...$names].some((el) => el.textContent.trim() === toolName);
+		// 			return cy.wrap(found);
+		// 		});
+		// 	});
 	}
 
 	deleteAllExternalTools() {
