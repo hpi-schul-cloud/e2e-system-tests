@@ -22,11 +22,7 @@ class ShareCourseModal {
 	static #shareCourseDialogCloseButton = '[data-testid="dialog-close"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
 	static #shareTopicCourseDialog = '[data-testid="dialog-content"]';
-	static #DescriptionTextTopicCourseDialog = '[data-testid="share-options-info-text"]';
-	static #shareInfoTextTopicCourseDialog = '[data-testid="share-options-table-header"]';
-	static #shareTopicDialogSchoolInternalCheckBox = '[data-testid="isSchoolInternal"]';
-	static #shareTopicDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
-	static #dialogContinueTopicButton = '[data-testid="dialog-next"]';
+	static #checkboxInput = 'input[type="checkbox"]';
 
 	seeShareCourseDialogBox() {
 		cy.get(ShareCourseModal.#shareCourseDialog).should("be.visible");
@@ -48,7 +44,7 @@ class ShareCourseModal {
 			"be.visible"
 		);
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
-			.find('input[type="checkbox"]')
+			.find(ShareCourseModal.#checkboxInput)
 			.should("be.checked");
 	}
 
@@ -57,13 +53,13 @@ class ShareCourseModal {
 			"be.visible"
 		);
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
-			.find('input[type="checkbox"]')
+			.find(ShareCourseModal.#checkboxInput)
 			.should("be.checked");
 	}
 
 	uncheckSchoolInternalCheckBoxInShareCourseDialog() {
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
-			.find('input[type="checkbox"]')
+			.find(ShareCourseModal.#checkboxInput)
 			.uncheck();
 	}
 
@@ -112,35 +108,54 @@ class ShareCourseModal {
 		cy.get(ShareCourseModal.#shareTopicCourseDialog).should("be.visible");
 	}
 
-	seeTopicDescriptionInShareDialog() {
-		cy.get(ShareCourseModal.#DescriptionTextTopicCourseDialog).should("be.visible");
-		cy.get(ShareCourseModal.#shareInfoTextTopicCourseDialog).should("be.visible");
+	seeDescriptionInShareDialog() {
+		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
 	}
 
-	seeTopicSchoolInternalCheckBoxAsCheckedInShareDialog() {
-		cy.get(ShareCourseModal.#shareTopicDialogSchoolInternalCheckBox).should(
-			"be.visible"
-		);
-		cy.get(ShareCourseModal.#shareTopicDialogSchoolInternalCheckBox)
-			.find('input[type="checkbox"]')
-			.should("be.checked");
+	checkSchoolInternalCheckBoxState(expectedState) {
+		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
+			.should("be.visible")
+			.find(ShareCourseModal.#checkboxInput)
+			.then(($checkbox) => {
+				if (expectedState === "checked") {
+					cy.wrap($checkbox).should("be.checked");
+				}
+				if (expectedState === "unchecked") {
+					cy.wrap($checkbox).should("not.be.checked");
+				}
+			});
 	}
 
-	seeTopicExpiryDateCheckBoxAsCheckedInShareDialog() {
-		cy.get(ShareCourseModal.#dialogContinueTopicButton).should("be.visible");
-		cy.get(ShareCourseModal.#shareTopicDialogExpiryDateCheckBox)
-			.find('input[type="checkbox"]')
-			.should("be.checked");
+	toggleSchoolInternalCheckBoxInShareDialog(action) {
+		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
+			.find(ShareCourseModal.#checkboxInput)
+			.then(($checkbox) => {
+				if (action === "check") {
+					cy.wrap($checkbox).check({ force: true });
+				}
+				if (action === "uncheck") {
+					cy.wrap($checkbox).uncheck({ force: true });
+				}
+			});
 	}
 
-	uncheckSchoolInternalCheckBoxInShareTopicDialog() {
-		cy.get(ShareCourseModal.#shareTopicDialogSchoolInternalCheckBox)
-			.find('input[type="checkbox"]')
-			.uncheck();
+	clickContinueButtonInShareDialog() {
+		cy.get(ShareCourseModal.#dialogNextButton).click();
 	}
 
-	clickContinueButtonInShareTopicDialog() {
-		cy.get(ShareCourseModal.#dialogContinueTopicButton).click();
+	checkExpiryDateCheckBoxState(expectedState) {
+		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox)
+			.should("be.visible")
+			.find(ShareCourseModal.#checkboxInput)
+			.then(($checkbox) => {
+				if (expectedState === "checked") {
+					cy.wrap($checkbox).should("be.checked");
+				}
+				if (expectedState === "unchecked") {
+					cy.wrap($checkbox).should("not.be.checked");
+				}
+			});
 	}
 }
 

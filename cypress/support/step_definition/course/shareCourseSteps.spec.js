@@ -96,19 +96,22 @@ Then("I see the dialog box share topic in course", () => {
 });
 
 Then("I see the text description in the dialog box share topic", () => {
-	shareCourseModal.seeTopicDescriptionInShareDialog();
+	shareCourseModal.seeDescriptionInShareDialog();
 });
 
-Then("I see the checkbox is checked for link valid within same school", () => {
-	shareCourseModal.seeTopicSchoolInternalCheckBoxAsCheckedInShareDialog();
-});
+Then(
+	"I see the checkbox for topic link valid within same school is {string}",
+	(state) => {
+		shareCourseModal.checkSchoolInternalCheckBoxState(state);
+	}
+);
 
-Then("I see the checkbox is checked for link expiry after 21 days", () => {
-	shareCourseModal.seeTopicExpiryDateCheckBoxAsCheckedInShareDialog();
+Then("I see the expiry date checkbox is {string}", (state) => {
+	shareCourseModal.checkExpiryDateCheckBoxState(state);
 });
 
 When("I click on the button continue in dialog box share topic", () => {
-	shareCourseModal.clickContinueButtonInShareTopicDialog();
+	shareCourseModal.clickContinueButtonInShareDialog();
 });
 
 Then("I see the import share topic url in the dialog box share topic result", () => {
@@ -136,11 +139,11 @@ When("I visit the saved import url of the shared topic", () => {
 });
 
 Then("I see the dialog box import share topic", () => {
-	importCourseModal.seeImportShareTopicDialogBox();
+	importCourseModal.seeImportShareDialogBox();
 });
 
 When("I click on the dropdown options in the dialog box import share topic", () => {
-	importCourseModal.seeImportDropDownTopicDialogBox();
+	importCourseModal.seeImportDropDownDialogBox();
 });
 
 When("I select the course name {string} in the course name field", (courseName) => {
@@ -155,6 +158,6 @@ When("I click on the button import topic", () => {
 	importCourseModal.clickOnConfirmButtonInImportShareCourseDialog();
 });
 
-When("I uncheck the checkbox school internal in dialog box topic", () => {
-	shareCourseModal.uncheckSchoolInternalCheckBoxInShareTopicDialog();
+When("I {string} the checkbox school internal in dialog box topic", (action) => {
+	shareCourseModal.toggleSchoolInternalCheckBoxInShareDialog(action);
 });

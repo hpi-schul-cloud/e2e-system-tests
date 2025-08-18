@@ -19,6 +19,7 @@ class ImportCourseModal {
 		'[data-testid="import-modal-external-tools-protected-parameter-info"]';
 	static #importShareTopicDialog = '[data-testid="dialog-content"]';
 	static #importShareTopicDialogDropdown = '[data-testid="import-destination-select"]';
+	static #importShareTopicDialogDropdownOption = '[role="option"]';
 
 	seeImportShareCourseDialogBox() {
 		cy.get(ImportCourseModal.#importShareCourseDialog).should("be.visible");
@@ -65,17 +66,19 @@ class ImportCourseModal {
 			});
 	}
 
-	seeImportShareTopicDialogBox() {
+	seeImportShareDialogBox() {
 		cy.get(ImportCourseModal.#importShareTopicDialog).should("be.visible");
 	}
 
-	seeImportDropDownTopicDialogBox() {
+	seeImportDropDownDialogBox() {
 		cy.get(ImportCourseModal.#importShareTopicDialogDropdown).click();
 	}
 
 	selectCourseFromDropdown(courseName) {
 		cy.get(ImportCourseModal.#importShareTopicDialogDropdown).click();
-		cy.get('[role="option"]').contains(courseName).click({ force: true });
+		cy.get(ImportCourseModal.#importShareTopicDialogDropdownOption)
+			.contains(courseName)
+			.click({ force: true });
 		cy.get(ImportCourseModal.#importShareTopicDialogDropdown).should(
 			"contain.text",
 			courseName
