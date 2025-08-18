@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-V
+@group-A
 Feature: Course Management - To create, edit and delete class and check for errors
 
     As an administrator I want create, edit and delete a class
