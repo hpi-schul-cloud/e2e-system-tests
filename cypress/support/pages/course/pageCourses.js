@@ -1051,7 +1051,8 @@ class Courses {
 	addClassWithSearchStringToCourseInCourse(searchString) {
 		cy.get(Courses.#addClassToCourseSelectionBox)
 			.click()
-			.invoke("val", searchString + "{enter}");
+			.invoke("val", searchString)
+			.type("{enter}");
 		cy.get(Courses.#addClassToCourseSelectionBox).contains(searchString).should("exist");
 	}
 
