@@ -1048,12 +1048,13 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
-	addClassWithSearchStringToCourseInCourse(searchString) {
+	addClassToCourse(className) {
 		cy.get(Courses.#addClassToCourseSelectionBox)
 			.click()
-			.invoke("val", searchString)
-			.type("{enter}");
-		cy.get(Courses.#addClassToCourseSelectionBox).contains(searchString).should("exist");
+			.invoke("val", className)
+			.type("{enter}")
+			.contains(className)
+			.should("exist");
 	}
 
 	seeTitleInSyncedGroupDialog() {

@@ -167,7 +167,7 @@ Given(
 		courses.selectCourseColour();
 		courses.selectTeacherInCourseCreatePage(teacherName);
 		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-		courses.addClassWithSearchStringToCourseInCourse(className);
+		courses.addClassToCourse(className);
 		courses.selectStudentsInCourseCreatePage(studentName);
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
 	}

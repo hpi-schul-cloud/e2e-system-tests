@@ -122,7 +122,7 @@ class Management {
 	static #pinInputField = "div[id='pinverification'] input[class='digit']";
 	static #requestPinButton = "button[id='resend-pin']";
 	static #pinSuccessMessage = "div[class*='alert-success']";
-	static #courseAdminErrorAlert = '[data-testid="alert-text"]';
+	static #courseAdminNotification = '[data-testid="alert-text"]';
 	static #nextButtonOnRegistration = "button[id='nextSection']";
 	static #checkBoxPrivacyConsentRegistration = "input[name='privacyConsent']";
 	static #checkBoxTermsOfUseConsentRegistration = "input[name='termsOfUseConsent']";
@@ -437,8 +437,8 @@ class Management {
 		cy.get(Management.#breadcrumbManualRegistration).should("be.visible");
 	}
 
-	seeNoErrorAlertInCourseAdministration() {
-		cy.get(Management.#courseAdminErrorAlert).should("not.exist");
+	seeNoErrorInfoInCourseAdministration() {
+		cy.get(Management.#courseAdminNotification).should("not.exist");
 	}
 
 	clearDefaultPasswordInManualRegistration() {
