@@ -5,7 +5,7 @@
 # NOTE: This feature is only for staging due to a limitation in the admin API: it cannot create a new course without a teacher.
 # NOTE: The course without a teacher but with student should pre-exist in the staging environment.
 
-Feature: Admin sees course without assigned teachers in course management page and student cannot access this course
+Feature: Course Management - Visibility of courses without a teacher assigned
 
     As an admin
     I want to see which courses do not have a teacher assigned

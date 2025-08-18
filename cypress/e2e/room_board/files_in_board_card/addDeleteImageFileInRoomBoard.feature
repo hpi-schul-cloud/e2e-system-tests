@@ -64,7 +64,6 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
-        Given I navigate to the room detail page via Breadcrumb from the board page
         Given the room named '<room_name>' is deleted
 
         @school_api_test
