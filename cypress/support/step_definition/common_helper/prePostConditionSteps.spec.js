@@ -20,7 +20,6 @@ const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
-const courseManagement = new CourseManagement();
 
 Given(
 	"task {string} with submission date exists in course {string}",
@@ -280,7 +279,6 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();
 	board.clickPlusIconToAddContentIntoCard();
-	board.selectCardElementFromMenu("file-folder");
 	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
 	roomBoards.approveFolderNameInCard();
