@@ -51,7 +51,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         Then I click on button 'Confirm' in the 'Role' action menu
 
         # pre-condition: first teacher adds board to the room
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -60,7 +60,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         # second user tries to add BBB Tool to the board card but does not see the option BBB Tool in Add Element Dialog
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
@@ -74,7 +74,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         # first teacher enables the feature checkbox in the room edit page
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'edit'
@@ -87,7 +87,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         # second user adds BBB tool to the board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
@@ -109,7 +109,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         # first teacher deactivates the feature checkbox in the room edit page
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'edit'
@@ -122,7 +122,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         # second user tries to access the BBB tool again in the board card but can not start the video conference anymore
         Given I am logged in as a '<teacher_2>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
@@ -138,9 +138,9 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | admin      | namespace | room_name         | school_name           | role_name      | participant_name | board_title | video_conference_title |
-            | teacher1_brb | teacher2_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | Board Title | Cy BBB Tool |
+            | teacher1_brb | teacher2_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | Board Title | Cy BBB Tool            |
 
         @staging_test
         Examples:
             | teacher_1    | teacher_2    | admin      | namespace | room_name         | school_name                 | role_name      | participant_name | board_title | video_conference_title |
-            | teacher1_brb | teacher2_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | Board Title | Cy BBB Tool |
+            | teacher1_brb | teacher2_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | Board Title | Cy BBB Tool            |

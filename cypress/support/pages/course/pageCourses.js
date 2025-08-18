@@ -35,6 +35,8 @@ class Courses {
 	static #backToDraftButtonInDotMenuOfTopic =
 		'[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
+	static #taskCardTitleInCoursePageWithDynamicIndex =
+		'[data-testid="task-title-{index}"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex =
 		'[data-testid="task-card-menu-0"]';
@@ -119,6 +121,8 @@ class Courses {
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardPublishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-publish-0"]';
+	static #taskCardPublishButtonInCoursePageWithDynamicIndex =
+		'[data-testid="task-card-action-publish-{index}"]';
 	static #taskCardFinishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
@@ -156,6 +160,21 @@ class Courses {
 	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
+	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
+
+	verifyImportSharedModal() {
+		cy.get(Courses.#shareSettingsDialog).should("be.visible");
+	}
+
+	selectCourseForTaskImport() {
+		// Go to parent element
+		cy.get(Courses.#shareSettingsDialog)
+			// Locate the selection input of the course name
+			.find(Courses.#courseSelectionBoxModal)
+			// Navigate to the course name as a first option and press enter
+			.type("{downarrow}{enter}");
+	}
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -570,6 +589,17 @@ class Courses {
 			.should("be.visible");
 	}
 
+	seeTaskOnCoursePageWithDynamicIndex(taskTitle, index) {
+		// no cy.wait('@rooms_api') here as the reload takes care of this
+		// Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+		cy.reload();
+		const selector = Courses.#taskCardTitleInCoursePageWithDynamicIndex.replace(
+			"{index}",
+			index
+		);
+		cy.get(selector).should("exist").and("contain.text", taskTitle);
+	}
+
 	seeBoardOnCoursePage(boardTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		// Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
@@ -632,8 +662,9 @@ class Courses {
 		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndex).should("be.visible");
 	}
 
-	clickCopyOptionInThreeDotMenuOfTopic() {
-		cy.get(Courses.#copyButtonInDotMenu).click();
+	clickThreeDotMenuActionAtTaskIndex(action, index) {
+		const testId = `room-task-card-menu-${action.toLowerCase()}-${index}`;
+		cy.get(`[data-testid="${testId}"]`).click();
 	}
 
 	clickCopyOptionInThreeDotMenuOfTaskMenu() {
@@ -1247,6 +1278,15 @@ class Courses {
 	clickShareCourseButton() {
 		cy.get(Courses.#dropDownCourse).parent().click();
 		cy.get(Courses.#btnShareCourse).click();
+	}
+
+	clickPublishLinkForTaskWithDynamicIndex(index) {
+		const selector =
+			Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
+				"{index}",
+				index
+			);
+		cy.get(selector).click();
 	}
 }
 export default Courses;

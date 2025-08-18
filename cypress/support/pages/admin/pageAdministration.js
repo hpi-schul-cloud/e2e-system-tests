@@ -536,13 +536,6 @@ class Management {
 
 	clickOnSchoolAdministrationInSideMenu() {
 		cy.get(Management.#schoolAdministrationNavigationSubMenu).first().click();
-		cy.get("body").then((body) => {
-			if (body.find(Management.#buttonNewAdminPage).length) {
-				cy.get(Management.#buttonNewAdminPage).click();
-			} else {
-				cy.log("It is the new admin page");
-			}
-		});
 	}
 
 	clickAllowStudentsTeamCheckbox() {
