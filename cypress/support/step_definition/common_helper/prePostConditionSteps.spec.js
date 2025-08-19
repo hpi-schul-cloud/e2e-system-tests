@@ -180,7 +180,8 @@ Given("a class name {string} exists", (className) => {
 	classManagement.clickOnMoreOptionsInClassCreatePage();
 	classManagement.enterCustomClassName(className);
 	classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
-	classManagement.clickConfirmCreateClass();
+	classManagement.clickAddClassButton();
+	classManagement.checkClassInTable(className);
 });
 
 Given("a class name {string} deleted", (className) => {
@@ -188,6 +189,7 @@ Given("a class name {string} deleted", (className) => {
 	classManagement.clickOnClassInAdministrationSubMenu();
 	classManagement.clickOnDeleteClassButton(className);
 	classManagement.clickConfirmDeleteDialogButton();
+	classManagement.checkClassNotInTable(className);
 });
 
 Given(

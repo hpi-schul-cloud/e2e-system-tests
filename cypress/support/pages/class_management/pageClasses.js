@@ -36,6 +36,7 @@ class Classes {
 	static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
 	static #tableOldClassOverview = '[data-testid="table_container"]';
 	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
+	static #emptyAdminClassTable = '[class="v-data-table-rows-no-data"]';
 	static #buttonCancelOnDeleteModalClassAdminPage = '[data-testid="dialog-cancel"]';
 	static #tableClassName = '[data-testid="class-table-name"]';
 	static #tableClassSource = '[data-testid="class-table-source"]';
@@ -108,7 +109,7 @@ class Classes {
 		cy.get(Classes.#createClass).click();
 	}
 
-	clickConfirmCreateClass() {
+	clickAddClassButton() {
 		cy.get(Classes.#confirmClassCreate).click();
 	}
 
@@ -243,6 +244,18 @@ class Classes {
 
 	doNotSeeClassInTable(className) {
 		cy.get(Classes.#tableClassName).should("not.contain", className);
+	}
+
+	checkClassInTable(className) {
+		cy.get(Classes.#tableClassName).should("contain", className);
+	}
+
+	checkClassNotInTable(className) {
+		if (cy.get(Classes.#tableClassName).length >= 0) {
+			cy.get(Classes.#tableClassName).should("not.contain", className);
+		} else {
+			cy.get(Classes.#emptyAdminClassTable).should("have.text", "Keine Daten vorhanden");
+		}
 	}
 
 	clickOnManageClassButton(className) {
