@@ -38,8 +38,7 @@ class Courses {
 	static #taskCardTitleInCoursePageWithDynamicIndex =
 		'[data-testid="task-title-{index}"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
-	static #taskCardThreeDotMenuInCoursePageWithIndex =
-		'[data-testid="task-card-menu-0"]';
+	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
 	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]';
 	static #dropDownCourse = '[data-testid="room-menu"]';
@@ -107,8 +106,7 @@ class Courses {
 	static #studentGroupNameOnStudentGroupPage = '[data-testid="group-name-entry"]';
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
-	static #deleteCourseGroupConfirmationButton =
-		'[data-testid="delete-course-group-btn"]';
+	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
 	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
@@ -399,9 +397,7 @@ class Courses {
 			);
 
 			if (matchingElements.length > 0) {
-				cy.log(
-					`Found ${matchingElements.length} courses matching "${courseName}"`
-				);
+				cy.log(`Found ${matchingElements.length} courses matching "${courseName}"`);
 				this.deleteCourse(textSelector, courseName, clickSelector);
 			} else {
 				cy.log(`No more courses found with course name "${courseName}".`);
@@ -749,9 +745,7 @@ class Courses {
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
-		cy.get(Courses.#taskCardInCoursePageWithIndex)
-			.find("button")
-			.should("be.visible");
+		cy.get(Courses.#taskCardInCoursePageWithIndex).find("button").should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
@@ -837,10 +831,7 @@ class Courses {
 
 	deleteCoursesByName(courseLabel, courseName) {
 		cy.get(`[class="rooms-container"]`).then(($coursesContainer) => {
-			if (
-				$coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`)
-					.length
-			) {
+			if ($coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`).length) {
 				cy.get(`[aria-label="${courseLabel} ${courseName}"]`).then(($courses) => {
 					if ($courses) {
 						cy.wrap($courses).first().click();
@@ -976,9 +967,7 @@ class Courses {
 	}
 
 	seeNumberOfTools(count) {
-		cy.get(Courses.#courseExternalToolSection)
-			.children()
-			.should("have.length", count);
+		cy.get(Courses.#courseExternalToolSection).children().should("have.length", count);
 	}
 
 	seeToolIsMarkedAsDeactivated(toolName) {
@@ -1055,11 +1044,17 @@ class Courses {
 	}
 
 	addStudentWithSearchStringToCourse(searchString) {
-		cy.get(Courses.#chooseStudentSelectionBox)
-			.click()
-			.type(searchString)
-			.type("{enter}");
+		cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type("{enter}");
 		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
+	}
+
+	addClassToCourse(className) {
+		cy.get(Courses.#addClassToCourseSelectionBox)
+			.click()
+			.invoke("val", className)
+			.type("{enter}")
+			.contains(className)
+			.should("exist");
 	}
 
 	seeTitleInSyncedGroupDialog() {
@@ -1114,9 +1109,7 @@ class Courses {
 	}
 
 	seeSelectedTeacher(teacherName) {
-		cy.get(Courses.#selectTeacher)
-			.contains("option", teacherName)
-			.should("be.selected");
+		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected");
 	}
 
 	seeSelectedSubstituteTeacher(substituteTeacher) {
@@ -1126,9 +1119,7 @@ class Courses {
 	}
 
 	seeSelectedStudent(studentName) {
-		cy.get(Courses.#selectStudent)
-			.contains("option", studentName)
-			.should("be.selected");
+		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
 	}
 
 	seeSelectedClass(className) {
@@ -1271,11 +1262,10 @@ class Courses {
 	}
 
 	clickPublishLinkForTaskWithDynamicIndex(index) {
-		const selector =
-			Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
-				"{index}",
-				index
-			);
+		const selector = Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
+			"{index}",
+			index
+		);
 		cy.get(selector).click();
 	}
 }

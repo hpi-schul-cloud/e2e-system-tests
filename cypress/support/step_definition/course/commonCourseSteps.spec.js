@@ -106,7 +106,13 @@ Then("I see course search box on the course overview page", () => {
 });
 
 When("I go to course administration page", () => {
+	// default check for no error information in the course administration page
+	management.seeNoErrorInfoInCourseAdministration();
 	management.navigateToCourseAdministration();
+});
+
+Then("I see no error info", () => {
+	management.seeNoErrorInfoInCourseAdministration();
 });
 
 When("I go to courses overview", () => {
