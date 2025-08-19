@@ -91,10 +91,6 @@ Then("I click on the button close in the dialog box share course result", () => 
 	shareCourseModal.clickCloseButtonInShareCourseResultDialog();
 });
 
-Then("I see the dialog box share topic in course", () => {
-	shareCourseModal.seeTopicShareCourseDialogBox();
-});
-
 Then("I see the text description in the dialog box share topic", () => {
 	shareCourseModal.seeDescriptionInShareDialog();
 });
@@ -118,16 +114,8 @@ Then("I see the import share topic url in the dialog box share topic result", ()
 	shareCourseModal.seeCopyUrlInShareCourseResultDialog();
 });
 
-Then("I see the button mail in the dialog box share topic result", () => {
-	shareCourseModal.seeMailButtonInShareCourseResultDialog();
-});
-
-Then("I see the button copy link in the dialog box share topic result", () => {
-	shareCourseModal.seeCopyLinkButtonInShareCourseResultDialog();
-});
-
-Then("I see the button mail QR-Code in the dialog box share topic result", () => {
-	shareCourseModal.seeQrCodeButtonInShareCourseResultDialog();
+Then("I see the button {string} in the dialog box share topic result", (buttonName) => {
+	shareCourseModal.seeShareOptionButtonCourseDialog(buttonName);
 });
 
 When("I save the import share topic url", () => {
@@ -136,10 +124,6 @@ When("I save the import share topic url", () => {
 
 When("I visit the saved import url of the shared topic", () => {
 	importCourseModal.visitSavedShareCourseUrl();
-});
-
-Then("I see the dialog box import share topic", () => {
-	importCourseModal.seeImportShareDialogBox();
 });
 
 When("I click on the dropdown options in the dialog box import share topic", () => {

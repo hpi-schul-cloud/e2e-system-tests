@@ -466,3 +466,7 @@ Then(
 		courses.seeTaskOnCoursePageWithDynamicIndex(taskTitle, taskIndex);
 	}
 );
+
+Then("I see the dialog box topic in course", () => {
+	courses.seeTopicCourseDialogBox();
+});

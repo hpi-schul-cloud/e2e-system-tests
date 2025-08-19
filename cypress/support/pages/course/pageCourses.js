@@ -163,6 +163,7 @@ class Courses {
 	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
 	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
+	static #topicCourseDialog = '[data-testid="dialog-content"]';
 
 	verifyImportSharedModal() {
 		cy.get(Courses.#shareSettingsDialog).should("be.visible");
@@ -1282,6 +1283,10 @@ class Courses {
 				index
 			);
 		cy.get(selector).click();
+	}
+
+	seeTopicCourseDialogBox() {
+		cy.get(Courses.#topicCourseDialog).should("be.visible");
 	}
 }
 export default Courses;

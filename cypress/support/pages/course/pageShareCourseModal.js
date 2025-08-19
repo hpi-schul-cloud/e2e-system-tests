@@ -21,7 +21,6 @@ class ShareCourseModal {
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
 	static #shareCourseDialogCloseButton = '[data-testid="dialog-close"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
-	static #shareTopicCourseDialog = '[data-testid="dialog-content"]';
 	static #checkboxInput = 'input[type="checkbox"]';
 
 	seeShareCourseDialogBox() {
@@ -104,10 +103,6 @@ class ShareCourseModal {
 		cy.get(ShareCourseModal.#shareCourseQRCodeScanner).should("be.visible");
 	}
 
-	seeTopicShareCourseDialogBox() {
-		cy.get(ShareCourseModal.#shareTopicCourseDialog).should("be.visible");
-	}
-
 	seeDescriptionInShareDialog() {
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
@@ -156,6 +151,19 @@ class ShareCourseModal {
 					cy.wrap($checkbox).should("not.be.checked");
 				}
 			});
+	}
+
+	convertStringToCamelCase(string) {
+		return string
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, (match, index) =>
+				index === 0 ? match.toLowerCase() : match.toUpperCase()
+			)
+			.replace(/\s+/g, "");
+	}
+
+	seeShareOptionButtonCourseDialog(buttonName) {
+		const normalizeSelector = this.convertStringToCamelCase(buttonName);
+		cy.get(`[data-testid=${normalizeSelector}Action]`).should("be.visible");
 	}
 }
 

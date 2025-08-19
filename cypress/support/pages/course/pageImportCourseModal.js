@@ -17,7 +17,6 @@ class ImportCourseModal {
 		'[data-testid="import-modal-coursefiles-info"]';
 	static #importShareCourseDialogExternalToolsInfo =
 		'[data-testid="import-modal-external-tools-protected-parameter-info"]';
-	static #importShareTopicDialog = '[data-testid="dialog-content"]';
 	static #importShareTopicDialogDropdown = '[data-testid="import-destination-select"]';
 	static #importShareTopicDialogDropdownOption = '[role="option"]';
 
@@ -64,10 +63,6 @@ class ImportCourseModal {
 			.then((value) => {
 				expect(value).to.equal(defaultCourseName);
 			});
-	}
-
-	seeImportShareDialogBox() {
-		cy.get(ImportCourseModal.#importShareTopicDialog).should("be.visible");
 	}
 
 	seeImportDropDownDialogBox() {
