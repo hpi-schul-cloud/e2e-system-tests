@@ -80,6 +80,12 @@ jobs:
           nohup microsoft-edge-stable --headless --no-sandbox &
           echo $! > edge_pid
 
+      - name: Print system date
+        run: node -e "console.log(new Date())"
+
+      - name: Print system date (OS)
+        run: date
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:

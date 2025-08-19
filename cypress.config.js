@@ -78,9 +78,9 @@ async function setupNodeEvents(on, config) {
 			launchOptions.args.push("--disable-dev-shm-usage");
 			launchOptions.args.push("--no-sandbox");
 			launchOptions.args.push("--disable-gpu");
-			launchOptions.args.push("--disable-software-rasterizer");
-			launchOptions.args.push("--disable-site-isolation-trials");
-			launchOptions.args.push("--disable-accelerated-2d-canvas");
+			// launchOptions.args.push("--disable-software-rasterizer");
+			// launchOptions.args.push("--disable-site-isolation-trials");
+			// launchOptions.args.push("--disable-accelerated-2d-canvas");
 		}
 		return launchOptions;
 	});
@@ -150,7 +150,7 @@ module.exports = defineConfig({
 	video: true,
 	chromeWebSecurity: false,
 	numTestsKeptInMemory: 0,
-	experimentalMemoryManagement: true,
+	// experimentalMemoryManagement: true,
 	e2e: {
 		specPattern: "cypress/e2e/**/*.feature",
 		supportFile: "cypress/support/e2e.js",
