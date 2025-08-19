@@ -73,6 +73,18 @@ async function setupNodeEvents(on, config) {
 		})
 	);
 
+	on("before:browser:launch", (browser = {}, launchOptions) => {
+		if (browser.family === "chromium" && browser.name !== "electron") {
+			launchOptions.args.push("--disable-dev-shm-usage");
+			launchOptions.args.push("--no-sandbox");
+			launchOptions.args.push("--disable-gpu");
+			launchOptions.args.push("--disable-software-rasterizer");
+			launchOptions.args.push("--disable-site-isolation-trials");
+			launchOptions.args.push("--disable-accelerated-2d-canvas");
+		}
+		return launchOptions;
+	});
+
 	on("task", {
 		async loginViaSchoolApi(obj) {
 			try {
@@ -137,6 +149,8 @@ module.exports = defineConfig({
 	videoCompression: 18,
 	video: true,
 	chromeWebSecurity: false,
+	numTestsKeptInMemory: 0,
+	experimentalMemoryManagement: true,
 	e2e: {
 		specPattern: "cypress/e2e/**/*.feature",
 		supportFile: "cypress/support/e2e.js",
