@@ -246,16 +246,26 @@ class Classes {
 		cy.get(Classes.#tableClassName).should("not.contain", className);
 	}
 
-	checkClassInTable(className) {
-		cy.get(Classes.#tableClassName).should("contain", className);
-	}
-
-	checkClassNotInTable(className) {
-		if (cy.get(Classes.#tableClassName).length >= 0) {
-			cy.get(Classes.#tableClassName).should("not.contain", className);
-		} else {
-			cy.get(Classes.#emptyAdminClassTable).should("have.text", "Keine Daten vorhanden");
-		}
+	isClassInTheTable(
+		className,
+		expectedState = "exist",
+		classTableSelector = Classes.#classTableNew,
+		classRowInTableSelector = Classes.#tableClassName
+	) {
+		const isClassPresent = expectedState === "exist";
+		cy.get(classTableSelector).then(($table) => {
+			const isTableEmpty = $table.find("tbody td").length > 0;
+			if (!isTableEmpty) {
+				cy.get(classTableSelector)
+					.find("tbody td")
+					.should("have.text", "Keine Daten vorhanden");
+			} else {
+				cy.get(classRowInTableSelector).should(
+					isClassPresent ? "contain" : "not.exist",
+					className
+				);
+			}
+		});
 	}
 
 	clickOnManageClassButton(className) {

@@ -13,9 +13,9 @@ Feature: Course Management - To create, add class with course and after deletion
         Given I am logged in as a '<admin>' at '<namespace>'
 
         # pre-condition: admin creates a new course with new class and class deleted afterwards
-        Given a class name '<class_name>' exists
+        Given a class name '<class_name>' is 'exist'
         Given a course with name '<course_name>' exists with '<fullname_teacher>' as teacher, '<fullname_student>' as student and '<class_name>' as class
-        Given a class name '<class_name>' deleted
+        Given a class name '<class_name>' deleted and 'not exist'
 
         # admin deletes class and checks for error in administration page
         When I go to course administration page
