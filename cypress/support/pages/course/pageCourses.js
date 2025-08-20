@@ -158,8 +158,10 @@ class Courses {
 	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
+	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
 	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
+	static #topicCourseDialog = '[data-testid="dialog-content"]';
 
 	verifyImportSharedModal() {
 		cy.get(Courses.#shareSettingsDialog).should("be.visible");
@@ -1261,12 +1263,20 @@ class Courses {
 		cy.get(Courses.#btnShareCourse).click();
 	}
 
+	clickOnShareCopyOfTopic() {
+		cy.get(Courses.#copyButtonInDotTopicMenu).click();
+	}
+
 	clickPublishLinkForTaskWithDynamicIndex(index) {
 		const selector = Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
 			"{index}",
 			index
 		);
 		cy.get(selector).click();
+	}
+
+	seeTopicCourseDialogBox() {
+		cy.get(Courses.#topicCourseDialog).should("be.visible");
 	}
 }
 export default Courses;
