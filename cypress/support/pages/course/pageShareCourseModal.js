@@ -48,7 +48,9 @@ class ShareCourseModal {
 	}
 
 	seeExpiryDateCheckBoxAsChecked() {
-		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should("be.visible");
+		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should(
+			"be.visible"
+		);
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
 			.find(ShareCourseModal.#checkboxInput)
 			.should("be.checked");
@@ -127,6 +129,7 @@ class ShareCourseModal {
 				cy.wrap($checkbox).should(currentState);
 			});
 	}
+
 	toggleCheckboxShareDialogBox(
 		parentSelector,
 		childSelector = ShareCourseModal.#checkboxInput,
@@ -135,7 +138,9 @@ class ShareCourseModal {
 		cy.get(parentSelector)
 			.find(childSelector)
 			.then(($checkbox) => {
-				cy.wrap($checkbox)[action === "check" ? "check" : "uncheck"]({ force: true });
+				cy.wrap($checkbox)[action === "check" ? "check" : "uncheck"]({
+					force: true,
+				});
 			});
 	}
 
