@@ -5,7 +5,6 @@
 Feature: Course - Copy course
 
     As a Teacher I want to be able to copy a course so that I can reuse the course content
-    # there will be added more content elements (tasks, topics) to this feature file in the future
 
     Scenario: Teacher copies a course
         # pre-condition: creating all users
@@ -25,7 +24,7 @@ Feature: Course - Copy course
         When I go to courses overview
         When I go to course '<course_name>'
         Then I see course page '<course_name>'
-        When I click on copy course button
+        When I click on button copy course
         Then I see the copy result notification
         When I close the dialog
         When I go to courses overview
@@ -38,7 +37,7 @@ Feature: Course - Copy course
         # admin adds student to newly copied course
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
-        When I navigate to course administration page via sub menu
+        When I navigate to course administration page via the submenu
         Then I see the new course administration page
         When I click on the edit button of course '<course_name_copy>'
         When I add the first student with search string '<searchstring_student>' to the course

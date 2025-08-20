@@ -3,6 +3,14 @@ import Tasks from "../../pages/tasks/pageTasks";
 
 const tasks = new Tasks();
 
+Then("I copy the task URL", () => {
+	tasks.copyTaskURLInModal();
+});
+
+When("I open the shared task URL", () => {
+	tasks.openSharedTaskURL();
+});
+
 Then("file {string} is saved in folder downloads", (fileName) => {
 	tasks.seeFileIsSavedInDownloads(fileName);
 });
@@ -65,6 +73,10 @@ When("I enter comment {string}", (gradingText) => {
 
 When("I click on draft tasks tab", () => {
 	tasks.clickOnTabDraftTasks();
+});
+
+Then("I see the draft tasks tab was activated", () => {
+	tasks.seeDraftTaskButtonSelected();
 });
 
 Then("I can see task {string} on tasks overview page", (taskTitle) => {

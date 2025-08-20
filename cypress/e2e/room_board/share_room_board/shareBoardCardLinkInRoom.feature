@@ -11,7 +11,7 @@ Feature: Room Board - To share a board card link
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: first teacher creates a room
-        When I go to room overview
+        When I go to rooms overview
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
@@ -30,7 +30,7 @@ Feature: Room Board - To share a board card link
         Then I see '<name_teacher_2>' in the room participants list
 
         # first teacher adds a board with a card to the room
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the button add content
         Then I see the button to add board

@@ -24,6 +24,7 @@ class Courses {
 	static #dialogCancelButton = '[data-testid="dialog-cancel"]';
 	static #successAlertDuplicateTask = '[data-testid="alert-text"]';
 	static #copyButtonInDotMenu = '[data-testid="room-task-card-menu-copy-0"]';
+	static #copyButtonInDotTaskMenu = '[data-testid="task-copy"]';
 	static #taskCardTitle = '[data-testid="task-card-title-0"]';
 	static #deleteButtonInDotMenu = '[data-testid="room-task-card-menu-remove-0"]';
 	static #deleteButtonInDotMenuOfTopic =
@@ -34,6 +35,8 @@ class Courses {
 	static #backToDraftButtonInDotMenuOfTopic =
 		'[data-testid="lesson-card-menu-action-revert-0"]';
 	static #taskCardTitleInCoursePageWithIndex = '[data-testid="task-title-0"]';
+	static #taskCardTitleInCoursePageWithDynamicIndex =
+		'[data-testid="task-title-{index}"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
 	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
@@ -116,6 +119,8 @@ class Courses {
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardPublishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-publish-0"]';
+	static #taskCardPublishButtonInCoursePageWithDynamicIndex =
+		'[data-testid="task-card-action-publish-{index}"]';
 	static #taskCardFinishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-done-0"]';
 	static #topicCardThreeDotInCoursePageWithIndex = '[data-testid="lesson-card-menu-0"]';
@@ -158,6 +163,23 @@ class Courses {
 	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #roomBoardCardPattern = '[data-testid^="room-board-card-"]';
+	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
+	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
+	static #topicCourseDialog = '[data-testid="dialog-content"]';
+
+	verifyImportSharedModal() {
+		cy.get(Courses.#shareSettingsDialog).should("be.visible");
+	}
+
+	selectCourseForTaskImport() {
+		// Go to parent element
+		cy.get(Courses.#shareSettingsDialog)
+			// Locate the selection input of the course name
+			.find(Courses.#courseSelectionBoxModal)
+			// Navigate to the course name as a first option and press enter
+			.type("{downarrow}{enter}");
+	}
 
 	selectTeacherFromTeacherField(userName) {
 		cy.get(Courses.#teacherFieldContainer).click();
@@ -570,6 +592,17 @@ class Courses {
 			.should("be.visible");
 	}
 
+	seeTaskOnCoursePageWithDynamicIndex(taskTitle, index) {
+		// no cy.wait('@rooms_api') here as the reload takes care of this
+		// Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
+		cy.reload();
+		const selector = Courses.#taskCardTitleInCoursePageWithDynamicIndex.replace(
+			"{index}",
+			index
+		);
+		cy.get(selector).should("exist").and("contain.text", taskTitle);
+	}
+
 	seeBoardOnCoursePage(boardTitle) {
 		// no cy.wait('@rooms_api') here as the reload takes care of this
 		// Reload is necessary because after deletion of a content element a message window with its title stays hidden in the DOM
@@ -616,6 +649,10 @@ class Courses {
 		cy.get(Courses.#copyButtonInDotMenu).should("be.visible");
 	}
 
+	seeCopyOptionInThreeDotMenuOfTaskMenu() {
+		cy.get(Courses.#copyButtonInDotTaskMenu).should("be.visible");
+	}
+
 	seeConfirmationModalForTaskDeletion() {
 		cy.get(Courses.#copyProgressBar).should("exist");
 	}
@@ -628,8 +665,13 @@ class Courses {
 		cy.get(Courses.#taskCardPublishButtonInCoursePageWithIndex).should("be.visible");
 	}
 
-	clickCopyOptionInThreeDotMenuOfTopic() {
-		cy.get(Courses.#copyButtonInDotMenu).click();
+	clickThreeDotMenuActionAtTaskIndex(action, index) {
+		const testId = `room-task-card-menu-${action.toLowerCase()}-${index}`;
+		cy.get(`[data-testid="${testId}"]`).click();
+	}
+
+	clickCopyOptionInThreeDotMenuOfTaskMenu() {
+		cy.get(Courses.#copyButtonInDotTaskMenu).click();
 	}
 
 	clickDeleteInDotMenu() {
@@ -1013,6 +1055,15 @@ class Courses {
 		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
+	addClassToCourse(className) {
+		cy.get(Courses.#addClassToCourseSelectionBox)
+			.click()
+			.invoke("val", className)
+			.type("{enter}")
+			.contains(className)
+			.should("exist");
+	}
+
 	seeTitleInSyncedGroupDialog() {
 		cy.get(Courses.#endSyncDialogTitle).should("be.visible");
 	}
@@ -1237,6 +1288,22 @@ class Courses {
 			.parents("tr")
 			.find(Courses.#btnCourseTableDelete)
 			.click();
+	}
+
+	clickOnShareCopyOfTopic() {
+		cy.get(Courses.#copyButtonInDotTopicMenu).click();
+	}
+
+	clickPublishLinkForTaskWithDynamicIndex(index) {
+		const selector = Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
+			"{index}",
+			index
+		);
+		cy.get(selector).click();
+	}
+
+	seeTopicCourseDialogBox() {
+		cy.get(Courses.#topicCourseDialog).should("be.visible");
 	}
 }
 export default Courses;

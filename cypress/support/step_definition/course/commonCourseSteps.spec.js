@@ -106,7 +106,13 @@ Then("I see course search box on the course overview page", () => {
 });
 
 When("I go to course administration page", () => {
+	// default check for no error information in the course administration page
+	management.seeNoErrorInfoInCourseAdministration();
 	management.navigateToCourseAdministration();
+});
+
+Then("I see no error info", () => {
+	management.seeNoErrorInfoInCourseAdministration();
 });
 
 When("I go to courses overview", () => {
@@ -185,6 +191,14 @@ When("I can not see content {string}", (contentTitle) => {
 //   courses.taskIsNotVisibleOnCoursePage(taskTitle)
 // })
 
+Then("I see the modal to import the shared task into the course", () => {
+	courses.verifyImportSharedModal();
+});
+
+When("I select the course from the course list in the modal", () => {
+	courses.selectCourseForTaskImport();
+});
+
 When("I click on topic {string} on course page", (contentTitle) => {
 	courses.openTopic(contentTitle);
 });
@@ -201,12 +215,23 @@ When("I click on Delete in dot menu", () => {
 	courses.clickDeleteInDotMenu();
 });
 
-When("I click on Copy in dot menu", () => {
-	courses.clickCopyOptionInThreeDotMenuOfTopic();
+When(
+	"I select the three dot menu action {string} at task index {string} in course detail page",
+	(action, index) => {
+		courses.clickThreeDotMenuActionAtTaskIndex(action, index);
+	}
+);
+
+When("I click on Copy in dot menu of task", () => {
+	courses.clickCopyOptionInThreeDotMenuOfTaskMenu();
 });
 
 Then("I see the option Copy on the list", () => {
 	courses.seeCopyOptionInThreeDotMenuOfTopic();
+});
+
+Then("I see the option Copy on the task menu list", () => {
+	courses.seeCopyOptionInThreeDotMenuOfTaskMenu();
 });
 
 Then("I see confirmation modal for deleting the task", () => {
@@ -237,7 +262,7 @@ When("I click on option Back to draft in dot menu of first topic", () => {
 	courses.clickBackToDraftInDotMenuOfTopic();
 });
 
-When("I click on link Publish for first topic in content list", () => {
+When("I click on button Publish for first topic in content list", () => {
 	courses.clickPublishLinkForFirstTopic();
 });
 
@@ -303,7 +328,7 @@ Then("I delete all courses named {string}", (courseName) => {
 	courses.deleteAllCoursesMatchingName(courseName);
 });
 
-When("I click on copy course button", () => {
+When("I click on button copy course", () => {
 	courses.clickCopyCourseButton();
 });
 
@@ -439,4 +464,27 @@ Then("I see breadcrumb contains course name {string}", (courseName) => {
 
 When("I click the delete button for course {string} in course table", (courseName) => {
 	courses.deleteCourseFromCourseTable(courseName);
+});
+
+When("I click on the share a copy of Topic from three dot menu {string}", (topicName) => {
+	courses.clickOnShareCopyOfTopic(topicName);
+});
+
+Then("I publish the topic in course {string}", (courseName) => {
+	courses.clickPublishLinkForFirstTopic();
+});
+
+Then("I publish the task in index {string} in course page", (taskIndex) => {
+	courses.clickPublishLinkForTaskWithDynamicIndex(taskIndex);
+});
+
+Then(
+	"I can see task {string} in index {string} on course page",
+	(taskTitle, taskIndex) => {
+		courses.seeTaskOnCoursePageWithDynamicIndex(taskTitle, taskIndex);
+	}
+);
+
+Then("I see the dialog box topic in course", () => {
+	courses.seeTopicCourseDialogBox();
 });

@@ -56,6 +56,7 @@ class Board {
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
+		cy.get(Board.#boardCard).should("exist").should("be.visible");
 	}
 
 	clickPlusIconToAddContentIntoCard() {

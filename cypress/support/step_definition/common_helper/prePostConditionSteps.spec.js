@@ -1,8 +1,10 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Management from "../../pages/admin/pageAdministration";
+import Classes from "../../pages/class_management/pageClasses";
 import GlobalActions from "../../pages/common_helper/globalActions";
 import Courses from "../../pages/course/pageCourses";
 import Board from "../../pages/course_board/pageBoard";
+import CourseManagement from "../../pages/course_management/pageCourseManagement";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Tasks from "../../pages/tasks/pageTasks";
@@ -12,10 +14,31 @@ const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
+const classManagement = new Classes();
+const courseManagement = new CourseManagement();
 const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
+
+Given(
+	"task {string} with submission date exists in course {string}",
+	(taskTitle, courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		courses.clickOnNewTaskFAB();
+		tasks.seeEditTaskPage("-");
+		tasks.enterTaskTitle(taskTitle);
+		tasks.setVisibilityStartDate("today", "0000");
+		tasks.setVisibilityDueDate("tomorrow", "1000");
+		tasks.setTaskText("Dies ist Deine Aufgabe.");
+		tasks.executeFileUpload("test_pdf.pdf");
+		tasks.clickOnSubmit();
+		tasks.seeDetailPageForTask(taskTitle);
+		tasks.clickOnButtonToParentCourse();
+	}
+);
 
 Given("video conference is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
@@ -134,6 +157,40 @@ Given(
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
 	}
 );
+
+Given(
+	"a course with name {string} exists with {string} as teacher, {string} as student and {string} as class",
+	(courseName, teacherName, studentName, className) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		courses.selectTeacherInCourseCreatePage(teacherName);
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.addClassToCourse(className);
+		courses.selectStudentsInCourseCreatePage(studentName);
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+	}
+);
+
+Given("a class name {string} is {string}", (className, classState) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	classManagement.clickCreateClassButtonOnNewClassPage();
+	classManagement.clickOnMoreOptionsInClassCreatePage();
+	classManagement.enterCustomClassName(className);
+	classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
+	classManagement.clickAddClassButton();
+	classManagement.isClassInTheTable(className, classState);
+});
+
+Given("a class name {string} deleted and {string}", (className, classState) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	classManagement.clickOnDeleteClassButton(className);
+	classManagement.clickConfirmDeleteDialogButton();
+	classManagement.isClassInTheTable(className, classState);
+});
 
 Given(
 	"published task with name {string} in the course with name {string}",
@@ -290,4 +347,13 @@ Given("the topic is published in course {string}", (courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
 	courses.clickPublishLinkForFirstTopic();
+});
+
+Given("student is added to the course {string}", (courseName) => {
+	cy.wait(100);
+	management.openAdministrationInMenu();
+	courseManagement.clickOnCourseInAdministrationSubMenu();
+	courseManagement.clickEditButtonOfCourse(courseName);
+	courses.addStudentWithSearchStringToCourse("student_1");
+	courses.submitChangesAfterEditingCourse();
 });
