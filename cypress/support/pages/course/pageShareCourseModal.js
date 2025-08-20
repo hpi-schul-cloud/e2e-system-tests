@@ -48,9 +48,7 @@ class ShareCourseModal {
 	}
 
 	seeExpiryDateCheckBoxAsChecked() {
-		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should(
-			"be.visible"
-		);
+		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
 			.find(ShareCourseModal.#checkboxInput)
 			.should("be.checked");
@@ -107,32 +105,54 @@ class ShareCourseModal {
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
 	}
+	convertStringToCamelCase(string) {
+		return string
+			.replace(/(?:^\w|[A-Z]|\b\w)/g, (match, index) =>
+				index === 0 ? match.toLowerCase() : match.toUpperCase()
+			)
+			.replace(/\s+/g, "");
+	}
 
-	checkSchoolInternalCheckBoxState(expectedState) {
-		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
+	checkCheckboxStatus(
+		parentSelector,
+		childSelector = ShareCourseModal.#checkboxInput,
+		expectedState
+	) {
+		cy.get(parentSelector)
 			.should("be.visible")
-			.find(ShareCourseModal.#checkboxInput)
+			.find(childSelector)
 			.then(($checkbox) => {
-				if (expectedState === "checked") {
-					cy.wrap($checkbox).should("be.checked");
-				}
-				if (expectedState === "unchecked") {
-					cy.wrap($checkbox).should("not.be.checked");
-				}
+				const currentState =
+					expectedState === "checked" ? "be.checked" : "not.be.checked";
+				cy.wrap($checkbox).should(currentState);
+			});
+	}
+	toggleCheckboxShareDialogBox(
+		parentSelector,
+		childSelector = ShareCourseModal.#checkboxInput,
+		action
+	) {
+		cy.get(parentSelector)
+			.find(childSelector)
+			.then(($checkbox) => {
+				cy.wrap($checkbox)[action === "check" ? "check" : "uncheck"]({ force: true });
 			});
 	}
 
+	checkSchoolInternalCheckBoxState(expectedState) {
+		this.checkCheckboxStatus(
+			ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox,
+			ShareCourseModal.#checkboxInput,
+			expectedState
+		);
+	}
+
 	toggleSchoolInternalCheckBoxInShareDialog(action) {
-		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
-			.find(ShareCourseModal.#checkboxInput)
-			.then(($checkbox) => {
-				if (action === "check") {
-					cy.wrap($checkbox).check({ force: true });
-				}
-				if (action === "uncheck") {
-					cy.wrap($checkbox).uncheck({ force: true });
-				}
-			});
+		this.toggleCheckboxShareDialogBox(
+			ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox,
+			ShareCourseModal.#checkboxInput,
+			action
+		);
 	}
 
 	clickContinueButtonInShareDialog() {
@@ -140,25 +160,11 @@ class ShareCourseModal {
 	}
 
 	checkExpiryDateCheckBoxState(expectedState) {
-		cy.get(ShareCourseModal.#shareCourseDialogExpiryDateCheckBox)
-			.should("be.visible")
-			.find(ShareCourseModal.#checkboxInput)
-			.then(($checkbox) => {
-				if (expectedState === "checked") {
-					cy.wrap($checkbox).should("be.checked");
-				}
-				if (expectedState === "unchecked") {
-					cy.wrap($checkbox).should("not.be.checked");
-				}
-			});
-	}
-
-	convertStringToCamelCase(string) {
-		return string
-			.replace(/(?:^\w|[A-Z]|\b\w)/g, (match, index) =>
-				index === 0 ? match.toLowerCase() : match.toUpperCase()
-			)
-			.replace(/\s+/g, "");
+		this.checkCheckboxStatus(
+			ShareCourseModal.#shareCourseDialogExpiryDateCheckBox,
+			ShareCourseModal.#checkboxInput,
+			expectedState
+		);
 	}
 
 	seeShareOptionButtonCourseDialog(buttonName) {
