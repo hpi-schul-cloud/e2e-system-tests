@@ -16,23 +16,6 @@ class CourseManagement {
 	static #currentYearTab = '[data-testid="admin-course-current-tab"]';
 	static #previousYearsTab = '[data-testid="admin-course-archive-tab"]';
 	static #adminCourseNavigationSidebarCard = '[data-testid="sidebar-management-courses"]';
-	static #createCourseAdminButton = '[data-testid="admin-courses-add-button"]';
-	static #confirmDialogButton = '[data-testid="dialog-confirm"]';
-	static #confirmDialogTitle = '[data-testid="dialog-title"]';
-	static #confirmSyncDialogInfoText =
-		'[data-testid="end-course-sync-dialog-info-text"]';
-	static #courseTable = '[data-testid="admin-rooms-table"]';
-	static #courseTableDeleteButton = '[data-testid="course-table-delete-btn"]';
-	static #courseTableEditButton = '[data-testid="course-table-edit-btn"]';
-	static #courseTableStartSynchronizeButton =
-		'[data-testid="course-table-start-course-sync-btn"]';
-	static #courseTableEndSynchronizeButton =
-		'[data-testid="course-table-end-course-sync-btn"]';
-	static #courseTableNew = '[data-testid="admin-rooms-table"]';
-	static #currentYearTab = '[data-testid="admin-course-current-tab"]';
-	static #previousYearsTab = '[data-testid="admin-course-archive-tab"]';
-	static #adminCourseNavigationSidebarCard =
-		'[data-testid="sidebar-management-courses"]';
 	static #courseTableName = '[data-testid="admin-rooms-table-name"]';
 	static #courseTableSyncedGroup = '[data-testid="admin-rooms-table-synced-group"]';
 	static #courseTableClassNames = '[data-testid="admin-rooms-table-class-names"]';
