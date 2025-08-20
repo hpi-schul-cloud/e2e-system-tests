@@ -173,21 +173,23 @@ Given(
 	}
 );
 
-Given("a class name {string} exists", (className) => {
+Given("a class name {string} is {string}", (className, classState) => {
 	management.openAdministrationInMenu();
 	classManagement.clickOnClassInAdministrationSubMenu();
 	classManagement.clickCreateClassButtonOnNewClassPage();
 	classManagement.clickOnMoreOptionsInClassCreatePage();
 	classManagement.enterCustomClassName(className);
 	classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
-	classManagement.clickConfirmCreateClass();
+	classManagement.clickAddClassButton();
+	classManagement.isClassInTheTable(className, classState);
 });
 
-Given("a class name {string} deleted", (className) => {
+Given("a class name {string} deleted and {string}", (className, classState) => {
 	management.openAdministrationInMenu();
 	classManagement.clickOnClassInAdministrationSubMenu();
 	classManagement.clickOnDeleteClassButton(className);
 	classManagement.clickConfirmDeleteDialogButton();
+	classManagement.isClassInTheTable(className, classState);
 });
 
 Given(
