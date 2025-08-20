@@ -262,7 +262,7 @@ When("I click on option Back to draft in dot menu of first topic", () => {
 	courses.clickBackToDraftInDotMenuOfTopic();
 });
 
-When("I click on link Publish for first topic in content list", () => {
+When("I click on button Publish for first topic in content list", () => {
 	courses.clickPublishLinkForFirstTopic();
 });
 
@@ -454,6 +454,10 @@ When("I edit the title of the course to {string}", (newCourseName) => {
 	courses.editCourseTitle(newCourseName);
 });
 
+When("I click on the share a copy of Topic from three dot menu {string}", (topicName) => {
+	courses.clickOnShareCopyOfTopic(topicName);
+});
+
 Then("I publish the topic in course {string}", (courseName) => {
 	courses.clickPublishLinkForFirstTopic();
 });
@@ -468,3 +472,7 @@ Then(
 		courses.seeTaskOnCoursePageWithDynamicIndex(taskTitle, taskIndex);
 	}
 );
+
+Then("I see the dialog box topic in course", () => {
+	courses.seeTopicCourseDialogBox();
+});
