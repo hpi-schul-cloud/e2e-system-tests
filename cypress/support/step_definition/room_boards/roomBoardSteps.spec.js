@@ -645,3 +645,7 @@ Then("I see that image resource is available {string}", (fileName) => {
 Then("I see that image resource is not available {string}", (fileName) => {
 	roomBoards.verifyImageFileRessourceNotAvailable(fileName);
 });
+
+When("I click on the collabora file {string}", (fileName) => {
+	roomBoards.clickCollaboraFile(fileName);
+});

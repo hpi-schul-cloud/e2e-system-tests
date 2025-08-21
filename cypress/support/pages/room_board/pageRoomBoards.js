@@ -100,6 +100,9 @@ class RoomBoards {
 	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
+	static #fileTitle = '[data-testid="content-element-title-slot"]';
+	static #fileNameSpan = "span";
+	static #collaboraTextFileElement = 'iframe[title="Office-Dokument Editor"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -650,10 +653,10 @@ class RoomBoards {
 
 	clickOnBoard(boardName) {
 		cy.get(RoomBoards.#boardTitlePattern).each((element) => {
-			if(element.text() === boardName) {
+			if (element.text() === boardName) {
 				cy.wrap(element).click();
 			}
-		})
+		});
 	}
 
 	doNotSeeBoardOnRoomDetailPage(boardName) {
@@ -957,6 +960,26 @@ class RoomBoards {
 				//expect(response.headers["content-type"]).to.match(/image|webp/i);
 			});
 		});
+	}
+
+	clickCollaboraFile(fileName) {
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("windowOpen");
+		});
+		cy.get(RoomBoards.#fileTitle)
+			.find(RoomBoards.#fileNameSpan)
+			.contains(fileName)
+			.click();
+		cy.get("@windowOpen")
+			.should("have.been.called")
+			.then((stub) => {
+				const url = stub.getCall(0).args[0];
+				cy.visit(url); // force Cypress into same tab
+			});
+
+		cy.get(RoomBoards.#collaboraTextFileElement, { timeout: 700 }).should(
+			"be.visible"
+		);
 	}
 }
 
