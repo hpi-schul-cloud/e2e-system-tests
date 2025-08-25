@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-F
-@only
 Feature: Room Board - Add bettermarks Tool in the Room Board
 
     As a teacher, I want to integrate the bettermarks external CTL tool into the room board so that I can seamlessly assign and track learning tasks with students.
@@ -40,9 +39,8 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         When I enter the tool display name '<bettermarks_title>'
         When I click on button Add in the modal to add an external tool
         Then I see the tool bettermarks '<bettermarks_title>' in the card
-        When I click on the bettermarks element in the card
-        # this needs to be ignored for now as Cypress cannot handle new tabs
-        #Then I see the tool bettermarks opens in a new tab
+        Then I click on the bettermarks element in the card
+
 
         # teacher publishes the room board for student to access the bettermarks tool
         When I click on the three dot menu in room board title
