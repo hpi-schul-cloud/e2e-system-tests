@@ -41,7 +41,6 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Then I see the tool bettermarks '<bettermarks_title>' in the card
         Then I click on the bettermarks element in the card
 
-
         # teacher publishes the room board for student to access the bettermarks tool
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'publish'

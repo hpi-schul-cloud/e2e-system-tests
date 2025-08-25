@@ -32,7 +32,7 @@ Then("I see the tool bettermarks {string} in the card", (bettermarksTitle) => {
 	roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle);
 });
 
-When("I click on the bettermarks element in the card", () => {
+Then("I click on the bettermarks element in the card", () => {
 	roomBoards.clickOnBettermarksToolInCard();
 });
 
