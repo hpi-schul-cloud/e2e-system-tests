@@ -126,7 +126,13 @@ class RoomBoards {
 	}
 
 	clickOnBettermarksToolInCard() {
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("windowOpen");
+		});
+
 		cy.get(RoomBoards.#bettermarksToolTitle).click();
+
+		cy.get("@windowOpen").should("be.called");
 	}
 
 	enterLinkInLinkElement(linkName) {
