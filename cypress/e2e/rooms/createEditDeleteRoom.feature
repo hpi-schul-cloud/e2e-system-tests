@@ -15,8 +15,6 @@ Feature: Room - To create, edit and delete room
         Then I see room creation page
         When I enter the room name '<room_name>'
         When I select the colour for the room
-        When I select the start date for the room
-        When I select the end date for the room
         When I click on the button Save room
         Then I see the detail page of room '<room_name>'
 
