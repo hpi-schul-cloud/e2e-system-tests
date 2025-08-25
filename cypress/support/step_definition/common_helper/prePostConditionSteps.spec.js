@@ -239,14 +239,16 @@ Given(
 	}
 );
 
-Given("a course named {string} exists", (courseName) => {
-	courses.navigateToCoursesOverview();
-	courses.clickOnCreateCourseFAB();
-	courses.fillCourseCreationForm(courseName);
-	courses.selectCourseColour();
-	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-	courses.clickOnNextStepButtonOnCourseParticipationDetail();
-	courses.navigateToCoursesOverview();
+Given("a course named {string} exists", (courseNames) => {
+	const names = courseNames.split(",").map((n) => n.trim());
+	names.forEach((courseName) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+	});
 });
 
 Given(
