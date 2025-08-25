@@ -20,7 +20,6 @@ Feature: Collabora - Add collabora files in the room board
         When I type text '<text_1>' in Collabora editor
         Then I click on the button save in Collabora editor
         Then I go back to the page room board
-        Then
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
