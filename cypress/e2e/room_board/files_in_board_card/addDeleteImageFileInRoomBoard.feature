@@ -69,9 +69,9 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |

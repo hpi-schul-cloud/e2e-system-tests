@@ -50,9 +50,9 @@ Feature: Room Board - Add, delete element Link in the room board
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | example_link                        |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | https://main.brb.dbildungscloud.dev |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | https://main.dbc.dbildungscloud.dev |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | example_link                        |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | https://main.brb.dbildungscloud.dev |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | https://main.dbc.dbildungscloud.dev |

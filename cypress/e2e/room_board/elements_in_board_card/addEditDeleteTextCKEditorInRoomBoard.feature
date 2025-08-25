@@ -54,9 +54,9 @@ Feature: Room Board - Add, edit and delete element Text in the room board
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | example_text         | edit_example_text         |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | example_text         | edit_example_text         |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |

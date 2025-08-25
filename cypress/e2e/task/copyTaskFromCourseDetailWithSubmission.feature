@@ -58,9 +58,9 @@ Feature: Task - Teacher copies task from Course overview with student submission
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name       | fullname_teacher  | fullname_student  | task_name       | copy_task_name      | success_message                | draft_indicator   | image_file      |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Course | cypress teacher_1 | cypress student_1 | CypressAut Task | CypressAut Task (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course | cypress teacher_1 | cypress student_1 | CypressAut Task | CypressAut Task (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
 
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name               | fullname_teacher | fullname_student | task_name               | copy_task_name              | success_message                | draft_indicator   | image_file      |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Course Staging | Karl Herzog      | Herbert Kraft    | CypressAut Task Staging | CypressAut Task Staging (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course Staging | Karl Herzog      | Herbert Kraft    | CypressAut Task Staging | CypressAut Task Staging (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |

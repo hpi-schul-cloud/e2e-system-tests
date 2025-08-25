@@ -67,4 +67,4 @@ Feature: Rooms - Share and import room with a teacher from different school
         @school_api_test
         Examples:
             | teacher1     | teacherExt_1 | namespace | room_name_source    | room_name_target    | board_title    |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
+            | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
