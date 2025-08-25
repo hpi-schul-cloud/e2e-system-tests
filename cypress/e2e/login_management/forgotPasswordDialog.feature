@@ -23,13 +23,13 @@ Feature: Login Management - Forgot Password Dialog Visibility Checks
         @school_api_test
         Examples:
             | namespace |
-            | dbc       |
+            | brb       |
             | nbc       |
-            | dbc       |
+            | brb       |
 
         @staging_test
         Examples:
             | namespace |
-            | dbc       |
+            | brb       |
             | nbc       |
-            | dbc       |
+            | brb       |

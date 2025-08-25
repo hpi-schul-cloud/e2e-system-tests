@@ -64,9 +64,9 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | pdf_file_name  | pdf_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-pdf.pdf | CY pdf test file |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | sample-pdf.pdf | CY pdf test file |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | pdf_file_name  | pdf_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-pdf.pdf | CY pdf test file |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | sample-pdf.pdf | CY pdf test file |

@@ -119,4 +119,4 @@ Feature: Room - Invite Student from another school via teacher from another scho
         @staging_test
         Examples:
             | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
-            | teacher1_dbc | teacherExt1_dbc | studentExt1_dbc | adminExt1_dbc | dbc       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              |
+            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              |

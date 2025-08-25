@@ -64,9 +64,9 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | docx_file_name   | docx_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | docx_file_name   | docx_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |

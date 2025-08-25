@@ -159,9 +159,9 @@ Feature: Dashboard - To check contents on the dashboard
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher  | student      | fullname_student  | listname_student   | course_name                      |
-            | dbc       | admin1_dbc | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | student_1, cypress | CypressAut Test Dashboard Course |
+            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | student_1, cypress | CypressAut Test Dashboard Course |
 
         @staging_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher | student      | fullname_student | listname_student | course_name                      |
-            | dbc       | admin1_dbc | teacher1_dbc | Karl Herzog      | student1_dbc | Herbert Kraft    | Kraft, Herbert   | CypressAut Test Dashboard Course |
+            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | Kraft, Herbert   | CypressAut Test Dashboard Course |

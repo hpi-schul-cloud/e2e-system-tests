@@ -38,9 +38,9 @@ Feature: Room - To create, edit and delete room
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | room_name_new         |
-            | teacher1_dbc | dbc       | Cypress Room Name | Cypress Room Name New |
+            | teacher1_brb | brb       | Cypress Room Name | Cypress Room Name New |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | room_name_new         |
-            | teacher1_dbc | dbc       | Cypress Room Name | Cypress Room Name New |
+            | teacher1_brb | brb       | Cypress Room Name | Cypress Room Name New |

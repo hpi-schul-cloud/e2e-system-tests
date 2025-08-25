@@ -112,9 +112,9 @@ Feature: Course Board - To create, edit and delete a single-column course board
         @school_api_test
         Examples:
             | teacher      | admin      | student      | namespace | fullname_teacher  | fullname_student  | course_name                           | board_title                    | column_board_title     | edited_column_board_title | card_text_content |
-            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | cypress teacher_1 | cypress student_1 | CypressAut Single Column Board Course | CypressAut Single Column Board | My Cypress Test Column | Edit Cypress Test Column  | Lorem ipsum ...   |
+            | teacher1_brb | admin1_brb | student1_brb | brb       | cypress teacher_1 | cypress student_1 | CypressAut Single Column Board Course | CypressAut Single Column Board | My Cypress Test Column | Edit Cypress Test Column  | Lorem ipsum ...   |
 
         @staging_test
         Examples:
             | teacher      | admin      | student      | namespace | fullname_teacher | fullname_student | course_name                           | board_title      | column_board_title     | edited_column_board_title | card_text_content |
-            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | Karl Herzog      | Herbert Kraft    | CypressAut Single Column Board Course | CypressAut Board | My Cypress Test Column | Edit Cypress Test Column  | Lorem ipsum ...   |
+            | teacher1_brb | admin1_brb | student1_brb | brb       | Karl Herzog      | Herbert Kraft    | CypressAut Single Column Board Course | CypressAut Board | My Cypress Test Column | Edit Cypress Test Column  | Lorem ipsum ...   |

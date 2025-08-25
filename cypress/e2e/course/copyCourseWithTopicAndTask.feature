@@ -53,9 +53,9 @@ Feature: Course - Copy Course with Topic and Task
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name  | task_name  | topic_text_title | course_name_copy | task_index_number |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1                 |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1                 |
 
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name  | task_name  | topic_text_title | course_name_copy | index_number |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1            |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1            |

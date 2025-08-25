@@ -31,6 +31,6 @@ Feature: Copying room board with files in a file folder
         @school_api_test
         Examples:
             | namespace | content_editor | room_name              | board_title                      | folder_name        | video_file_name          | audio_file_name            | image_file_name |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board Original | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg |
+            | brb       | teacher1_brb   | CypressAut Folder Room | CypressAut Folder Board Original | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg |
 
 

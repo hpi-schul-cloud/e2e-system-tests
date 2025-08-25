@@ -82,5 +82,5 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         @school_api_test
         Examples:
             | teacher1     | teacherExt_1    | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
-            | teacher1_dbc | teacherExt1_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
+            | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
 

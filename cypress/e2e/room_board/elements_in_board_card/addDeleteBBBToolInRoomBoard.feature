@@ -60,9 +60,9 @@ Feature: Room Board - Add BBB Tool in the Room Board
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | room_name         | board_title    | video_conference_title |
-            | teacher1_dbc | admin1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |
+            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |
 
         @staging_test
         Examples:
             | teacher      | admin      | namespace | room_name         | board_title    | video_conference_title |
-            | teacher1_dbc | admin1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |
+            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |

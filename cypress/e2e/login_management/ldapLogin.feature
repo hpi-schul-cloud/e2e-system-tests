@@ -21,11 +21,11 @@ Feature: Login Management - Login of users not managed by SVS
         Examples:
             | namespace | user             | ldap_school_name |
             | brb       | student_ldap_brb | School One 0     |
-            | dbc       | student_ldap_dbc | School One 0     |
+            | brb       | student_ldap_brb | School One 0     |
             | nbc       | student_ldap_nbc | School One 0     |
             | brb       | teacher_ldap_brb | School One 0     |
-            | dbc       | teacher_ldap_dbc | School One 0     |
+            | brb       | teacher_ldap_brb | School One 0     |
             | nbc       | teacher_ldap_nbc | School One 0     |
             | brb       | admin_ldap_brb   | School One 0     |
-            | dbc       | admin_ldap_dbc   | School One 0     |
+            | brb       | admin_ldap_brb   | School One 0     |
             | nbc       | admin_ldap_nbc   | School One 0     |

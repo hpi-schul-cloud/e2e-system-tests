@@ -97,9 +97,9 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
