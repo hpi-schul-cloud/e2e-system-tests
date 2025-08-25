@@ -127,8 +127,6 @@ Given("a room named {string} exists", (room_name) => {
 	rooms.showRoomCreationPage();
 	rooms.fillRoomFormName(room_name);
 	rooms.selectRoomColour();
-	rooms.selectTodayStartDateForRoom();
-	rooms.selectEndDateForRoom();
 	rooms.submitRoom();
 	rooms.seeRoomDetailPage(room_name);
 });
