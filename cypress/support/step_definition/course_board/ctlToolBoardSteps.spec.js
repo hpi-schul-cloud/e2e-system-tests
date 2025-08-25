@@ -91,10 +91,6 @@ Then("I see tool {string} on external tool element was launched", (toolName) => 
 	board.toolWasLaunched(toolName);
 });
 
-When("I select external tools from the menu", () => {
-	board.selectExternalToolsFromMenu();
-});
-
 When("I select preferred tool {string} from the menu", (toolName) => {
 	board.selectPreferredExternalToolFromMenu(toolName);
 });

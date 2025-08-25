@@ -34,7 +34,7 @@ Feature: Teacher can share a course with ctl tools
         Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_scope_context>' in the tool overview
 
         # pre-condition: teacher adds a tool with optional protected parameter
@@ -43,7 +43,7 @@ Feature: Teacher can share a course with ctl tools
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_optional_protected_param>' in the tool overview
 
         # pre-condition: teacher adds a tool with required protected parameter
@@ -52,7 +52,7 @@ Feature: Teacher can share a course with ctl tools
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I select '<param_required_protected_value>' in required protected custom parameter selection
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_protected_param>' in the tool overview
 
         # pre-condition: teacher creates a board and adds tools
@@ -71,32 +71,32 @@ Feature: Teacher can share a course with ctl tools
         # pre-condition: teacher adds a tool with required parameter
         When I click on icon Plus to add card in column
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_scope_context>'
 
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_optional_protected_param>'
 
         # pre-condition: teacher adds a tool with required parameter
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I select '<param_required_protected_value>' in required protected custom parameter selection
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_protected_param>'
 
         # teacher shares the course with another teacher in the same school

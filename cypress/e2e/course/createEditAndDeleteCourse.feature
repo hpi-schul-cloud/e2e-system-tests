@@ -77,4 +77,4 @@ Feature: Course - To add and delete a course by the teacher
         @school_api_test
         Examples:
             | namespace | teacher      | fullname_teacher  | student      | student_listname  | course_title                          | course_title_edited      | course_description               |
-            | dbc       | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Testkurs Edit | cy edit this is test description |
+            | brb       | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Testkurs Edit | cy edit this is test description |

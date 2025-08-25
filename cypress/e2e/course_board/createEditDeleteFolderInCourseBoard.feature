@@ -42,4 +42,4 @@ Feature: Course Board - Create folder in board, check breadcrumb
 # @staging_test
 # Examples:
 #     | namespace | content_editor      | course_name              | board_title             | folder_name         |
-#     | brb       | teacher1_brb        | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner  |
+#     | dbc       | teacher1_dbc        | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner  |

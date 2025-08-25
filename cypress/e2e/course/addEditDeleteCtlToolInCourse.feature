@@ -36,7 +36,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in the tool overview
         Then I see the domain of '<ctl_tool_1>' in the tool overview
 
@@ -50,7 +50,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
         When I enter '<ctl_tool_1_new>' in display name field
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1_new>' in the tool overview
 
         # teacher adds tool via tool link
@@ -61,7 +61,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see custom parameter input field 'mlat' contains '52.40847'
         Then I see custom parameter input field 'mlon' contains '9.80823'
         Then I see custom parameter input field 'zoom' contains '19'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
 
         # teacher adds tool with a required custom parameter
         When I click on the button to add a tool
@@ -69,11 +69,11 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I select the tool '<ctl_tool_required_param>' from available tools
         Then I see tool '<ctl_tool_required_param>' is selected
         # when required field is empty
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an error alert
         When I enter '<param_value>' in required custom parameter field '<context_param_name>'
         Then I see custom parameter input field '<context_param_name>' contains '<param_value>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_required_param>' in the tool overview
 
         # teacher adds a tool with an optional custom parameter
@@ -83,7 +83,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see tool '<ctl_tool_optional_param>' is selected
         When I enter '<param_value>' in optional custom parameter field '<context_param_name>'
         Then I see custom parameter input field '<context_param_name>' contains '<param_value>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_optional_param>' in the tool overview
 
         # teacher edits a tool
@@ -91,7 +91,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         When I click on the tool edit button
         Then I see the context external tool configuration page
         When I enter '<param_value_updated>' in optional custom parameter field '<context_param_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see course page '<course_name>'
         When I click on three dot menu of the tool '<ctl_tool_optional_param>'
         When I click on the tool edit button
