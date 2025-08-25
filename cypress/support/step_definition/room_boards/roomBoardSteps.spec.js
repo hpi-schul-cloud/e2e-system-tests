@@ -9,6 +9,33 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I click on the three dot in the element external tool bettermarks", () => {
+	roomBoards.openThreeDotMenuForExternalTool();
+});
+
+When(
+	"I click on the option Settings in the three dot menu of the external tool bettermarks",
+	() => {
+		roomBoards.selectBettermarksSettingOption();
+	}
+);
+
+Then("I do not see the tool bettermarks in the card", () => {
+	roomBoards.verifyBettermarksToolNotInCards();
+});
+
+When("I enter the tool display name {string}", (bettermarksTitle) => {
+	roomBoards.enterToolDisplayName(bettermarksTitle);
+});
+
+Then("I see the tool bettermarks {string} in the card", (bettermarksTitle) => {
+	roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle);
+});
+
+When("I click on the bettermarks element in the card", () => {
+	roomBoards.clickOnBettermarksToolInCard();
+});
+
 Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);
 });
@@ -17,7 +44,7 @@ When("I click on the button Save link", () => {
 	roomBoards.clickSaveButtonToSaveLinkInCard();
 });
 
-When("I click on the three-dot in the element Link", () => {
+When("I click on the three dot in the element Link", () => {
 	roomBoards.clickOnThreeDotOnLinkElement();
 });
 
@@ -45,7 +72,7 @@ Then("I see the element H5P {string} in the card", (title) => {
 	roomBoards.seeH5PElementInRoomBoard(title);
 });
 
-When("I click on the three-dot in the element Etherpad", () => {
+When("I click on the three dot in the element Etherpad", () => {
 	roomBoards.clickOnThreeDotOnEtherpad();
 });
 
@@ -112,7 +139,7 @@ When("I do not see the element File", () => {
 	roomBoards.shouldNotSeeFileElement();
 });
 
-When("I click on the three-dot in the element File", () => {
+When("I click on the three dot in the element File", () => {
 	roomBoards.clickThreeDotMenuInFileElement();
 });
 
@@ -247,11 +274,11 @@ When("I click on the three dot on the card", () => {
 	roomBoards.clickOnThreeDotInCard();
 });
 
-When("I click on the three-dot menu in the video conference element", () => {
+When("I click on the three dot menu in the video conference element", () => {
 	roomBoards.clickThreeDotMenuInVideoConferenceElement();
 });
 
-When("I click on the option Delete in the three-dot menu", () => {
+When("I click on the option Delete in the three dot menu", () => {
 	roomBoards.clickDeleteOptionInThreeDotMenu();
 });
 

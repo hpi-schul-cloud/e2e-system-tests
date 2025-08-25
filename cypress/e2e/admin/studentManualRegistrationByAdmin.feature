@@ -68,9 +68,9 @@ Feature: Admin - Admin creates, manually register and deletes students
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
+            | dbc       | admin1_dbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
 
         @staging_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
+            | dbc       | admin1_dbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |

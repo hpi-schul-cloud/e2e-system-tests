@@ -31,9 +31,9 @@ Feature: Account - Edit E-mail in the account setting page
         @school_api_test
         Examples:
             | user         | namespace |
-            | student1_brb | brb       |
-            | teacher1_brb | brb       |
-            | admin1_brb   | brb       |
+            | student1_dbc | dbc       |
+            | teacher1_dbc | dbc       |
+            | admin1_dbc   | dbc       |
 
 # E-mail is not editable by an external student user
 # Note: this scenario is currently unstable

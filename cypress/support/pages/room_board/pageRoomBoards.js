@@ -84,7 +84,6 @@ class RoomBoards {
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
 	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
-	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
 	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
@@ -100,6 +99,35 @@ class RoomBoards {
 	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
+	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
+	static #bettermarksToolTitle = '[data-testid="content-element-title-slot"]';
+	static #threeDotMenuSettingOption = '[data-testid="kebab-menu-action"]';
+
+	verifyBettermarksToolNotInCards() {
+		cy.get(RoomBoards.#bettermarksToolTitle).should("not.exist");
+	}
+
+	openThreeDotMenuForExternalTool() {
+		cy.get(RoomBoards.#threeDotMenuSelector).click();
+	}
+
+	selectBettermarksSettingOption() {
+		cy.get(RoomBoards.#threeDotMenuSettingOption).click();
+	}
+
+	enterToolDisplayName(toolName) {
+		cy.get(RoomBoards.#parameterDisplayNameBettermarks).clear().type(toolName);
+	}
+
+	verifyBettermarksToolAddedInCard(bettermarksTitle) {
+		cy.get(RoomBoards.#bettermarksToolTitle)
+			.should("be.visible")
+			.and("contain.text", bettermarksTitle);
+	}
+
+	clickOnBettermarksToolInCard() {
+		cy.get(RoomBoards.#bettermarksToolTitle).click();
+	}
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -154,7 +182,7 @@ class RoomBoards {
 
 	clickOnThreeDotOnEtherpad() {
 		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
-			.find(RoomBoards.#threeDotOnEtherpad)
+			.find(RoomBoards.#threeDotMenuSelector)
 			.click();
 	}
 
@@ -650,10 +678,10 @@ class RoomBoards {
 
 	clickOnBoard(boardName) {
 		cy.get(RoomBoards.#boardTitlePattern).each((element) => {
-			if(element.text() === boardName) {
+			if (element.text() === boardName) {
 				cy.wrap(element).click();
 			}
-		})
+		});
 	}
 
 	doNotSeeBoardOnRoomDetailPage(boardName) {

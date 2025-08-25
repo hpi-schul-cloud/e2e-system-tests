@@ -86,4 +86,4 @@ Feature:  News - To read a news on the respective dashboards
         @staging_test
         Examples:
             | teacher      | student      | namespace | news_title                         | news_description        | team_name              | team_news_title                  | team_news_description      |
-            | teacher1_brb | student1_brb | brb       | CypressAut - this is a school news | school news description | CypressAut - News Team | CypressAut - this is a team news | test team news description |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut - this is a school news | school news description | CypressAut - News Team | CypressAut - this is a team news | test team news description |

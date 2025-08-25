@@ -51,6 +51,6 @@ Feature:  News - To read a news on the respective dashboards
         @staging_test
         Examples:
             | news_author  | news_reader  | namespace | news_title                               | news_description                 | news_day_from_today | news_time   | news_time_info_overviewpage | news_time_info_detailpage |
-            | teacher1_brb | student1_brb | brb       | CypressAut - school news at current time | Remember Examination date        | 0                   | currentTime | vor ein                     | vor ein                   |
-            | admin1_brb   | student1_brb | brb       | CypressAut - school news without time    | New member of the teaching staff | notselected         | none        | vor ein                     | vor ein                   |
-            | admin1_brb   | teacher1_brb | brb       | CypressAut - school news 7 days ago      | New member of the teaching staff | -7                  | currentTime | vor 7 Tage                  | -7                        |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut - school news at current time | Remember Examination date        | 0                   | currentTime | vor ein                     | vor ein                   |
+            | admin1_dbc   | student1_dbc | dbc       | CypressAut - school news without time    | New member of the teaching staff | notselected         | none        | vor ein                     | vor ein                   |
+            | admin1_dbc   | teacher1_dbc | dbc       | CypressAut - school news 7 days ago      | New member of the teaching staff | -7                  | currentTime | vor 7 Tage                  | -7                        |

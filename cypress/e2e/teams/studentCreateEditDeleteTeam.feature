@@ -56,4 +56,4 @@ Feature: Team - Student managed teams
         @staging_test
         Examples:
             | admin      | student      | namespace | team_title                 | team_description                    | team_title_edited             | team_description_edited                    |
-            | admin1_brb | student1_brb | brb       | CypressAut - students team | this is cy student team description | CypressAut - Edited News Team | edited this is cy student team description |
+            | admin1_dbc | student1_dbc | dbc       | CypressAut - students team | this is cy student team description | CypressAut - Edited News Team | edited this is cy student team description |

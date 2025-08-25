@@ -35,8 +35,8 @@ Feature: Room Board - Add, delete element Link in the room board
         # teacher deletes the element Link in the multi-column board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three-dot in the element Link
-        When I click on the option Delete in the three-dot menu
+        When I click on the three dot in the element Link
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element Link
@@ -50,9 +50,9 @@ Feature: Room Board - Add, delete element Link in the room board
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | example_link                        |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | https://main.dbc.dbildungscloud.dev |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | https://main.dbc.dbildungscloud.dev |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    | example_link                        |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | https://main.dbc.dbildungscloud.dev |
+            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | https://main.dbc.dbildungscloud.dev |

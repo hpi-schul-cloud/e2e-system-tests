@@ -51,11 +51,11 @@ Feature: Admin - To add, edit and delete new users by the admin.
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | user_firstname_edited | user_lastname_edited     | user_email_edited                         |
-            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |
-            | brb       | admin1_brb | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de | cypress               | edited_teacher_admintest | edited_teacher_adminusers@cypress-mail.de |
+            | dbc       | admin1_dbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |
+            | dbc       | admin1_dbc | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de | cypress               | edited_teacher_admintest | edited_teacher_adminusers@cypress-mail.de |
 
         @staging_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  | user_firstname_edited | user_lastname_edited     | user_email_edited                         |
-            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |
-            | brb       | admin1_brb | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de | cypress               | edited_teacher_admintest | edited_teacher_adminusers@cypress-mail.de |
+            | dbc       | admin1_dbc | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de | cypress               | edited_student_admintest | edited_student_adminusers@cypress-mail.de |
+            | dbc       | admin1_dbc | teacher        | cypress        | teacher_admintest | original_teacher_adminusers@cypress-mail.de | cypress               | edited_teacher_admintest | edited_teacher_adminusers@cypress-mail.de |

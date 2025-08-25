@@ -33,6 +33,6 @@ Feature: Calendar - create a simple event in the calendar
         @staging_test
         Examples:
             | user         | namespace | event_start_day | event_start_time | event_start_text | event_end_day | event_end_time | event_title               | event_description | event_location    |
-            | student1_brb | brb       | 18              | 15:00            | 15 Uhr           | 18            | 18:00          | CypressAut Videospiele-AG | Zocken!           | Bei euch zuhause. |
+            | student1_dbc | dbc       | 18              | 15:00            | 15 Uhr           | 18            | 18:00          | CypressAut Videospiele-AG | Zocken!           | Bei euch zuhause. |
 # | teacher1_nbc | nbc       | 13              | 08:00            | event_start_time | 23            | 20:00          | CypressAut Es sind Ferien  | Wir haben frei!   | Eure vier Wände?   |
 # | admin1_dbc   | dbc       | 12              | 09:00            | event_start_time | 12            | 19:00          | CypressAut Schulfrei       | Schule fällt aus! | Bei euch am PC!    |

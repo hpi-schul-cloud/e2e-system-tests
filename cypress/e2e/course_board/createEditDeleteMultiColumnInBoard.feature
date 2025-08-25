@@ -87,9 +87,9 @@ Feature: Course Board - To create, edit and delete column in the course board
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | fullname_teacher  | course_name                    | board_title    | column_board_title     | edited_column_board_title |
-            | teacher1_brb | admin1_brb | brb       | cypress teacher_1 | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |
+            | teacher1_dbc | admin1_dbc | dbc       | cypress teacher_1 | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |
 
         @staging_test
         Examples:
             | teacher      | admin      | namespace | fullname_teacher | course_name                    | board_title    | column_board_title     | edited_column_board_title |
-            | teacher1_brb | admin1_brb | brb       | Karl Herzog      | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |
+            | teacher1_dbc | admin1_dbc | dbc       | Karl Herzog      | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |
