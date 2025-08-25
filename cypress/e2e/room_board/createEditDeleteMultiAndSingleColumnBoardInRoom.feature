@@ -86,9 +86,9 @@ Feature: Room Board - Add, edit and delete board in room
         @school_api_test
         Examples:
             | teacher      | namespace | room_name         | board_title    |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
 
         @staging_test
         Examples:
             | teacher      | namespace | room_name         | board_title    |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title |
+            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
