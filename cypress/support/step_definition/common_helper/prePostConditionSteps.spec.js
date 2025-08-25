@@ -356,3 +356,12 @@ Given("student is added to the course {string}", (courseName) => {
 	courses.addStudentWithSearchStringToCourse("student_1");
 	courses.submitChangesAfterEditingCourse();
 });
+
+Given("the file {string} is added to the room board", (fileName) => {
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	board.selectCardElementFromMenu("file");
+	roomBoards.uploadFileInCard(fileName);
+	roomBoards.clickOutsideToSaveCard();
+});
