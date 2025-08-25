@@ -649,3 +649,7 @@ Then("I see that image resource is not available {string}", (fileName) => {
 When("I click on the collabora file {string}", (fileName) => {
 	roomBoards.clickCollaboraFile(fileName);
 });
+
+Then("I see the collabora Docx file type in the card", () => {
+	roomBoards.verifyDocxFileUploaded();
+});

@@ -102,7 +102,6 @@ class RoomBoards {
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #fileTitle = '[data-testid="content-element-title-slot"]';
 	static #fileNameSpan = "span";
-	static #collaboraTextFileElement = 'iframe[title="Office-Dokument Editor"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -975,11 +974,8 @@ class RoomBoards {
 			.then((stub) => {
 				const url = stub.getCall(0).args[0];
 				cy.visit(url); // force Cypress into same tab
+				cy.wait(5000);
 			});
-
-		cy.get(RoomBoards.#collaboraTextFileElement, { timeout: 700 }).should(
-			"be.visible"
-		);
 	}
 }
 

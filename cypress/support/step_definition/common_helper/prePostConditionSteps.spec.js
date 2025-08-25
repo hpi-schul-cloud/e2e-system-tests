@@ -357,7 +357,7 @@ Given("student is added to the course {string}", (courseName) => {
 	courses.submitChangesAfterEditingCourse();
 });
 
-Given("teacher adds the file {string} to the room board", (fileName) => {
+Given("the file {string} is added to the room board", (fileName) => {
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();
 	board.clickPlusIconToAddContentIntoCard();
