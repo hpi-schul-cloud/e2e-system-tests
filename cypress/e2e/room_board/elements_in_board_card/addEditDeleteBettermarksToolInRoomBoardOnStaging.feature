@@ -40,6 +40,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         When I click on button Add in the modal to add an external tool
         Then I see the tool bettermarks '<bettermarks_title>' in the card
         When I click on the bettermarks element in the card
+        # this needs to be ignored for now as Cypress cannot handle new tabs
         #Then I see the tool bettermarks opens in a new tab
 
         # teacher publishes the room board for student to access the bettermarks tool
