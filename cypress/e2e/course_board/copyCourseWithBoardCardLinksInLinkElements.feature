@@ -10,7 +10,8 @@ Feature: Course Board - Copy course with a board which contains link elements wi
 
         # pre-condition: teacher create courses
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given a course named '<course_name_1>, <course_name_2>' exists
+        Given a course named '<course_name_1>' exists
+        Given a course named '<course_name_2>' exists
 
         # teacher creates a board and adds a card
         When I go to courses overview
