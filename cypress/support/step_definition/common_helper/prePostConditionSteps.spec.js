@@ -246,7 +246,6 @@ Given("a course named {string} exists", (courseName) => {
 	courses.selectCourseColour();
 	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 	courses.clickOnNextStepButtonOnCourseParticipationDetail();
-	courses.navigateToCoursesOverview();
 });
 
 Given(

@@ -79,7 +79,7 @@ Then("I see a whiteboard on the board", () => {
 	board.seeWhiteboardOnPage();
 });
 
-Then("I select {string} from the element selection dialog box", (cardElementName) => {
+When("I select {string} from the element selection dialog box", (cardElementName) => {
 	board.selectCardElementFromMenu(cardElementName);
 });
 
@@ -101,6 +101,26 @@ When("I click on the page outside of the card", () => {
 
 Then("I see the focused board card", () => {
 	board.seeFocusedBoardCard();
+});
+
+When("I enter the board card title {string}", (cardTitle) => {
+	board.enterBoardCardTitle(cardTitle);
+});
+
+Then("I see a board card with title {string}", (cardTitle) => {
+	board.seeBoardCardTitle(cardTitle);
+});
+
+Then("I enter the copied board card link in the link element", () => {
+	board.enterBoardCardLinkInLinkElement();
+});
+
+Then("I see link element with title {string}", (linkElementTitle) => {
+	board.seeLinkElementTitle(linkElementTitle);
+});
+
+When("I click on link element with title {string}", (linkElementTitle) => {
+	board.clickOnLinkElement(linkElementTitle);
 });
 
 Then("I see that I am on a column board", () => {

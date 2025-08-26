@@ -11,7 +11,7 @@ Then("I see the page Course Board details", () => {
 	board.seeNewCourseBoardCreatePage();
 });
 
-Then("I enter the course board title {string}", (boardTitle) => {
+When("I enter the course board title {string}", (boardTitle) => {
 	board.enterCourseBoardTitle(boardTitle);
 });
 
