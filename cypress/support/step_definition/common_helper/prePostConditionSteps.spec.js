@@ -390,3 +390,13 @@ Given(
 		rooms.confirmChangeRoleModalActions("Confirm", "Role");
 	}
 );
+
+Given("the card file is deleted from room {string}", (roomName) => {
+	rooms.navigateToRoomsOverview();
+	rooms.navigateToRoom(roomName);
+	roomBoards.clickMultiColumnBoardInRoomDetailPage();
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickDeleteOptionInThreeDotMenu();
+	roomBoards.clickDeleteButtonInConfirmationDialog();
+	roomBoards.shouldNotSeeFileElement();
+});
