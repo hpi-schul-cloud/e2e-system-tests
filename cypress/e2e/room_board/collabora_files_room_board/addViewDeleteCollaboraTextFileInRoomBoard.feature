@@ -44,7 +44,7 @@ Feature: Collabora - Add, view and delete collabora text file in the room board
         When I click on the multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the collabora file '<docx_file_name>'
-        Then I cannot type text '<text_2>' in collabora editor on position '200', '400'
+        Then I cannot type text '<text_2>' in collabora editor on position '600', '500'
 
         #second teacher downloads the document as pdf from collabora editor
         When I click on the icon file in collabora editor top toolbar
