@@ -101,7 +101,6 @@ class RoomBoards {
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #fileTitle = '[data-testid="content-element-title-slot"]';
-	static #fileNameSpan = "span";
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
