@@ -9,7 +9,7 @@ export class Collabora {
 
 	getIframeBody(selector) {
 		return cy
-			.get(selector, { timeout: 100000 })
+			.get(selector, { timeout: 50 })
 			.should("exist")
 			.then(($iframe) => {
 				return cy.wrap($iframe.contents().find("body"));
@@ -30,10 +30,6 @@ export class Collabora {
 		this.getIframeBody(Collabora.#collaboraDocx)
 			.find(Collabora.#collaboraSaveButton)
 			.click({ force: true }); // need to force click otherwise does not click
-	}
-
-	goBackToRoomBoard() {
-		cy.go("back");
 	}
 
 	cannotTypeCollaboraText(text, x, y) {
@@ -69,7 +65,7 @@ export class Collabora {
 					cy.wrap(readLink).click();
 				}
 				// user with read access has id in the form of number and for edit permission has id in the text format.
-				// Therefore, using the text "Datei" to find the element.
+				// Therefore, using the text "Herunterladen als" to find the element.
 			}
 		});
 	}

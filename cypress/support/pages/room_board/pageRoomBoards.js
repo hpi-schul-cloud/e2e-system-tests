@@ -965,10 +965,7 @@ class RoomBoards {
 		cy.window().then((win) => {
 			cy.stub(win, "open").as("windowOpen");
 		});
-		cy.get(RoomBoards.#fileTitle)
-			.find(RoomBoards.#fileNameSpan)
-			.contains(fileName)
-			.click();
+		cy.get(RoomBoards.#fileTitle).contains(fileName).click();
 		cy.get("@windowOpen")
 			.should("have.been.called")
 			.then((stub) => {

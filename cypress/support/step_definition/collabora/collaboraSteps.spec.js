@@ -14,16 +14,8 @@ When(
 	}
 );
 
-Then("I click on the button save in Collabora editor", () => {
+When("I click on the button Save in Collabora editor", () => {
 	collabora.clickCollaboraSaveButton();
-});
-
-Then("I go back to the page room board", () => {
-	collabora.goBackToRoomBoard();
-});
-
-Then("I can download collabora docx file as pdf file from collabora editor", () => {
-	collabora.downloadCollaboraTextFileasPDF;
 });
 
 Then(
@@ -33,14 +25,14 @@ Then(
 	}
 );
 
-When("I click on the icon file in collabora editor top toolbar", () => {
+When("I click on the icon File in collabora editor top toolbar", () => {
 	collabora.clickCollaboraFileIcon();
 });
 
-When("I click on the download button in collabora editor", () => {
+When("I click on the button Download in collabora editor", () => {
 	collabora.clickCollaboraDownloadButton();
 });
 
-Then("I download by clicking on the option PDF download in collabora editor", () => {
+When("I download by clicking on the option PDF download in collabora editor", () => {
 	collabora.clickCollaboraPDFDownloadOption();
 });

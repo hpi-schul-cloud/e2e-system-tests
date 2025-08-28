@@ -626,10 +626,6 @@ Then("I see the H5P page", () => {
 	roomBoards.seeH5PPage();
 });
 
-When("I go back to the board page", () => {
-	roomBoards.goBackToBoardPage();
-});
-
 When("I copy the file path of the image file {string} from folder", (fileName) => {
 	roomBoards.copyFilePathOfImageFileFromFolder(fileName);
 });

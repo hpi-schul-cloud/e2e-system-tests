@@ -25,15 +25,15 @@ Feature: Collabora - Add, view and delete collabora text file in the room board
         When I click on the collabora file '<docx_file_name>'
         Then I see collabora text editor
         When I type text '<text_1>' in collabora editor on position '200', '400'
-        Then I click on the button save in Collabora editor
+        When I click on the button Save in Collabora editor
 
         # first teacher downloads the document as pdf from collabora editor
-        When I click on the icon file in collabora editor top toolbar
-        When I click on the download button in collabora editor
-        Then I download by clicking on the option PDF download in collabora editor
+        When I click on the icon File in collabora editor top toolbar
+        When I click on the button Download in collabora editor
+        When I download by clicking on the option PDF download in collabora editor
 
         #first teacher publishes the room board
-        Then I go back to the page room board
+        When I go back to the previous page
         Then I see the file type DOCX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
 
@@ -47,10 +47,10 @@ Feature: Collabora - Add, view and delete collabora text file in the room board
         Then I cannot type text '<text_2>' in collabora editor on position '600', '500'
 
         #second teacher downloads the document as pdf from collabora editor
-        When I click on the icon file in collabora editor top toolbar
-        When I click on the download button in collabora editor
-        Then I download by clicking on the option PDF download in collabora editor
-        Then I go back to the page room board
+        When I click on the icon File in collabora editor top toolbar
+        When I click on the button Download in collabora editor
+        When I download by clicking on the option PDF download in collabora editor
+        When I go back to the previous page
         Then I see the file type DOCX is uploaded in the card
 
         # first teacher can delete the collabora text document from room board
