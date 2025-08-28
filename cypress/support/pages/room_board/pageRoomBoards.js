@@ -902,10 +902,6 @@ class RoomBoards {
 		cy.get('iframe[class*="h5p-editor-iframe"]').should("exist").and("be.visible");
 	}
 
-	goBackToBoardPage() {
-		cy.go("back");
-	}
-
 	copyFilePathOfImageFileFromFolder(fileName) {
 		cy.get(`[data-testid="file-preview-${fileName}"]`)
 			.find("img")
