@@ -41,7 +41,7 @@ Feature: Course - Copy course with CTL tools
         Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_scope_context>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_scope_context>' in the tool overview
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on the button to add a tool
@@ -49,7 +49,7 @@ Feature: Course - Copy course with CTL tools
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_optional_protected_param>' in the tool overview
         # pre-condition: teacher adds a tool with required protected parameter
         When I click on the button to add a tool
@@ -57,7 +57,7 @@ Feature: Course - Copy course with CTL tools
         When I select the tool '<ctl_tool_protected_param>' from available tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_2_name>'
         When I select '<param_required_protected_value>' in required protected custom parameter selection
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_protected_param>' in the tool overview
 
         # teacher copies the course
@@ -125,12 +125,12 @@ Feature: Course - Copy course with CTL tools
         When I click on the tool edit button
         Then I see the context external tool configuration page
         When I select '<param_required_protected_value>' in required protected custom parameter selection
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         When I click on three dot menu of the tool '<ctl_tool_optional_protected_param>'
         When I click on the tool edit button
         Then I see the context external tool configuration page
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see course page '<course_name_copy>'
         Then I see the tool '<ctl_tool_scope_context>' is not marked as incomplete
         Then I see the tool '<ctl_tool_optional_protected_param>' is not marked as incomplete operational

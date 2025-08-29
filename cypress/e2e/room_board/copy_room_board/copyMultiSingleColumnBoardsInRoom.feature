@@ -13,10 +13,10 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         # this step is needed to navigate back to the room details page after creating multi-column board
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
         Given a single-column board named '<board_title>' exists in the room
         # this step is needed to navigate back to the room details page after creating single-column board
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
 
         # teacher copies the multi-column board
         When I click on the multi-column board in the room detail page

@@ -22,6 +22,27 @@ const tasks = new Tasks();
 const topics = new Topics();
 
 Given(
+	"student {string} with role {string} from school {string} added to the room {string}",
+	(studentName, studentRole, studentSchool, roomName) => {
+		const kebabMenuAction = "room-members";
+
+		rooms.seeRoomDetailPage(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction(kebabMenuAction);
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.seeSchoolOfParticipant(studentSchool);
+		rooms.selectRoomRoleFromDropdownMenu(studentRole);
+		rooms.seeRoleOfParticipant(studentRole);
+		rooms.fillParticipantFormName(studentName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(studentName);
+	}
+);
+
+Given(
 	"task {string} with submission date exists in course {string}",
 	(taskTitle, courseName) => {
 		courses.navigateToCoursesOverview();
@@ -138,7 +159,7 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
 
-Given("I navigate to the room detail page via Breadcrumb from the board page", () => {
+Given("I navigate to the room detail page via Breadcrumb", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 

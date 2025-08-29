@@ -22,7 +22,7 @@ Given("the school has external tool {string}", (toolList) => {
 
 	tools.forEach((toolName) => {
 		cy.wrap(null).then(() => {
-			// check if tools already exists
+			// check if tool already exists
 			return management.schoolHasExternalTool(toolName).then((exists) => {
 				// if the tool already exists
 				if (exists) {
