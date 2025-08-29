@@ -1,5 +1,5 @@
 class RoomsAdmin {
-	static #submenuRoomAdminLink = '[data-testid="sidebar-management-rooms"]';
+	static #submenuRoomAdminLink = '[data-testid="sidebar-room-management"]';
 	static #roomOwnerAlertIcon = '[data-testid="room-admin-table-owner-not-existing"]';
 	static #roomsTableName = '[data-testid="room-admin-table"]';
 
