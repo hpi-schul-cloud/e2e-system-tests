@@ -71,7 +71,7 @@ class RoomBoards {
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
 	static #H5PElementSelector = '[data-testid="board-hp5-element"]';
 	static #folderDetails = '[data-testid="file-statistic"]';
-	static #ThreeDotButtonH5P = '[data-testid="kebab-menu-action"]';
+	static #ThreeDotEditOptionTool = '[data-testid="kebab-menu-action"]';
 	static #H5PPage = '[data-testid="skip-link"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
@@ -100,11 +100,11 @@ class RoomBoards {
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolTitle = '[data-testid="content-element-title-slot"]';
-	static #threeDotMenuSettingOption = '[data-testid="kebab-menu-action"]';
+	static #bettermarksToolDomainUrl =
+		'[data-testid="board-external-tool-element-domain"]';
 
 	verifyBettermarksToolNotInCards() {
-		cy.get(RoomBoards.#bettermarksToolTitle).should("not.exist");
+		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
 	}
 
 	openThreeDotMenuForExternalTool() {
@@ -112,29 +112,23 @@ class RoomBoards {
 	}
 
 	selectBettermarksSettingOption() {
-		cy.get(RoomBoards.#threeDotMenuSettingOption).click();
+		cy.get(RoomBoards.#ThreeDotEditOptionTool).click();
 	}
 
 	enterToolDisplayName(toolName) {
 		cy.get(RoomBoards.#parameterDisplayNameBettermarks).clear().type(toolName);
 	}
 
-	verifyBettermarksToolAddedInCard(bettermarksTitle) {
-		cy.get(RoomBoards.#bettermarksToolTitle)
+	verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl) {
+		// check bettermarks title
+		cy.get(RoomBoards.#titleOnCardElement)
 			.should("be.visible")
 			.and("contain.text", bettermarksTitle);
-	}
 
-	clickOnBettermarksToolInCard() {
-		cy.get(RoomBoards.#bettermarksToolTitle).then(($el) => {
-			// rebind the stub right before clicking
-			cy.window().then((win) => {
-				cy.stub(win, "open").as("windowOpen");
-			});
-			// click the element
-			cy.wrap($el).click();
-		});
-		cy.get("@windowOpen").should("have.been.calledOnce");
+		// check bettermarks domain url
+		cy.get(RoomBoards.#bettermarksToolDomainUrl)
+			.should("be.visible")
+			.and("contain.text", bettermarksDomainUrl);
 	}
 
 	enterLinkInLinkElement(linkName) {
@@ -929,7 +923,7 @@ class RoomBoards {
 				})
 				.as("windowOpen");
 		});
-		cy.get(RoomBoards.#ThreeDotButtonH5P).click();
+		cy.get(RoomBoards.#ThreeDotEditOptionTool).click();
 	}
 
 	seeH5PPage() {

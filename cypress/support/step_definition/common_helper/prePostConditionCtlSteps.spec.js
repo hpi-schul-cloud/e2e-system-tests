@@ -12,7 +12,6 @@ Given("the school has external tool {string}", (toolList) => {
 		"CY Test Tool Optional Parameters",
 	];
 	const linkTools = ["CY Test Tool OpenStreetMap"];
-	const bettermarksTools = ["Bettermarks"]; // <-- added for Bettermarks
 
 	const tools = toolList.split(/\s*,\s*/);
 
@@ -51,9 +50,6 @@ Given("the school has external tool {string}", (toolList) => {
 				} else if (toolsWithCustomParameter.includes(toolName)) {
 					toolConfiguration.addExternalTool(toolName);
 					toolConfiguration.fillInCustomParameter("schoolParam", "test");
-				} else if (bettermarksTools.includes(toolName)) {
-					// Bettermarks-specific handling (extend here if needed)
-					toolConfiguration.addExternalTool(toolName);
 				} else {
 					toolConfiguration.addExternalTool(toolName);
 				}

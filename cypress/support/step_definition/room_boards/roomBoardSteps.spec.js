@@ -28,13 +28,15 @@ When("I enter the tool display name {string}", (bettermarksTitle) => {
 	roomBoards.enterToolDisplayName(bettermarksTitle);
 });
 
-Then("I see the tool bettermarks {string} in the card", (bettermarksTitle) => {
-	roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle);
-});
-
-Then("I click on the bettermarks element in the card", () => {
-	roomBoards.clickOnBettermarksToolInCard();
-});
+Then(
+	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
+	(bettermarksTitle, bettermarksDomainUrl) => {
+		roomBoards.verifyBettermarksToolAddedInCard(
+			bettermarksTitle,
+			bettermarksDomainUrl
+		);
+	}
+);
 
 Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);

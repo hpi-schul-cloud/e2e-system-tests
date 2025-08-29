@@ -37,7 +37,3 @@ Feature: Account - Edit E-mail in the account setting page
 
 # E-mail is not editable by an external student user
 # Note: this scenario is currently unstable
-#Given I am logged in as a 'student_extern_brb' at 'brb'
-#When I go to my account settings
-#Then I see my email is not editable
-

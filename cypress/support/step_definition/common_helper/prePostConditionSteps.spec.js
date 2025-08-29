@@ -23,22 +23,22 @@ const topics = new Topics();
 
 Given(
 	"student {string} with role {string} from school {string} added to the room {string}",
-	(student_name, student_role, student_school, room_name) => {
+	(studentName, studentRole, studentSchool, roomName) => {
 		const kebabMenuAction = "room-members";
 
-		rooms.seeRoomDetailPage(room_name);
+		rooms.seeRoomDetailPage(roomName);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction(kebabMenuAction);
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
 		rooms.seeModalForAddParticipants();
-		rooms.seeSchoolOfParticipant(student_school);
-		rooms.selectRoomRoleFromDropdownMenu(student_role);
-		rooms.seeRoleOfParticipant(student_role);
-		rooms.fillParticipantFormName(student_name);
+		rooms.seeSchoolOfParticipant(studentSchool);
+		rooms.selectRoomRoleFromDropdownMenu(studentRole);
+		rooms.seeRoleOfParticipant(studentRole);
+		rooms.fillParticipantFormName(studentName);
 		rooms.selectParticipantName();
 		rooms.addParticipant();
-		rooms.seeParticipantInList(student_name);
+		rooms.seeParticipantInList(studentName);
 	}
 );
 
