@@ -13,28 +13,16 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         Given a course named '<course_name_1>' exists
         Given a course named '<course_name_2>' exists
 
-        # teacher creates a board and adds a card
+        # teacher create multi-column boards with renamed titles and initial cards in both courses
+        Given a course '<course_name_1>' contains a 'multi-column' board and 'rename' board title to '<board_title_1>' with card '<card_title_1>'
+        Given a course '<course_name_1>' contains a 'multi-column' board and 'rename' board title to '<board_title_2>' with card '<card_title_2>'
+        Given a course '<course_name_2>' contains a 'multi-column' board and 'rename' board title to '<board_title_3>' with card '<card_title_3>'
+
+        # teacher copies board card link and adds it to a link element
         When I go to courses overview
         When I go to course '<course_name_1>'
         Then I see course page '<course_name_1>'
-        When I click on FAB to create new content
-        When I click on the button FAB New Column Board
-        Then I see a dialog box for column board
-        When I choose multi-column board in the dialog box
-        Then I see the page Course Board details
-        When I click on the button three dot menu in course board
-        When I select the three dot menu action 'rename'
-        When I enter the course board title '<board_title_1>'
-        When I click on the page outside of the column
-        Then I see the course Board name '<board_title_1>'
-        When I click on the button Add column in the course board
-        When I click on the page outside of the column
-        When I click on icon Plus to add card in column
-        When I enter the board card title '<card_title_1>'
-        When I click on the page outside of the card
-        Then I see a board card with title '<card_title_1>'
-
-        # teacher copies board card link and adds it to a link element
+        When I open column board '<board_title_1>'
         When I click on three dot menu in the card
         When I select the option Copy link to card in three dot menu on the card
         When I click on icon Plus to add card in column
@@ -43,28 +31,11 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         When I enter the copied board card link in the link element
         Then I see link element with title '<card_title_1>'
 
-        # teacher creates a second board with a card in the same course
+        # teacher copies board card link and adds it to a link element in the first board
         When I go to courses overview
         When I go to course '<course_name_1>'
         Then I see course page '<course_name_1>'
-        When I click on FAB to create new content
-        When I click on the button FAB New Column Board
-        Then I see a dialog box for column board
-        When I choose multi-column board in the dialog box
-        Then I see the page Course Board details
-        When I click on the button three dot menu in course board
-        When I select the three dot menu action 'rename'
-        When I enter the course board title '<board_title_2>'
-        When I click on the page outside of the column
-        Then I see the course Board name '<board_title_2>'
-        When I click on the button Add column in the course board
-        When I click on the page outside of the column
-        When I click on icon Plus to add card in column
-        When I enter the board card title '<card_title_2>'
-        When I click on the page outside of the card
-        Then I see a board card with title '<card_title_2>'
-
-        # teacher copies board card link and adds it to a link element in the first board
+        When I open column board '<board_title_2>'
         When I click on three dot menu in the card
         When I select the option Copy link to card in three dot menu on the card
         When I go to courses overview
@@ -73,34 +44,18 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         When I open column board '<board_title_1>'
         Then I see the page Course Board details
         Then I see the course Board name '<board_title_1>'
+        When I click on the page outside of the column
         When I click on icon Plus to add card in column
         When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
         When I enter the copied board card link in the link element
         Then I see link element with title '<card_title_2>'
 
-        # teacher creates a third board in the second course
+        # teacher copies board card link and adds it to a link element in the first board
         When I go to courses overview
         When I go to course '<course_name_2>'
         Then I see course page '<course_name_2>'
-        When I click on FAB to create new content
-        When I click on the button FAB New Column Board
-        Then I see a dialog box for column board
-        When I choose multi-column board in the dialog box
-        Then I see the page Course Board details
-        When I click on the button three dot menu in course board
-        When I select the three dot menu action 'rename'
-        When I enter the course board title '<board_title_3>'
-        When I click on the page outside of the column
-        Then I see the course Board name '<board_title_3>'
-        When I click on the button Add column in the course board
-        When I click on the page outside of the column
-        When I click on icon Plus to add card in column
-        When I enter the board card title '<card_title_3>'
-        When I click on the page outside of the card
-        Then I see a board card with title '<card_title_3>'
-
-        # teacher copies board card link and adds it to a link element in the first board
+        When I open column board '<board_title_3>'
         When I click on three dot menu in the card
         When I select the option Copy link to card in three dot menu on the card
         When I go to courses overview
@@ -109,6 +64,7 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         When I open column board '<board_title_1>'
         Then I see the page Course Board details
         Then I see the course Board name '<board_title_1>'
+        When I click on the page outside of the column
         When I click on icon Plus to add card in column
         When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
