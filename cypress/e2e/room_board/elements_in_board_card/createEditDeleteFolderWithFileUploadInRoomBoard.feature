@@ -137,4 +137,4 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
 # @staging_test
 # Examples:
 #     | namespace | content_editor      | room_name               | board_title             | folder_name         |
-#     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+#     | dbc       | teacher1_dbc        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |

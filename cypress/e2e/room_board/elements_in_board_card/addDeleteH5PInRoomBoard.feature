@@ -23,7 +23,7 @@ Feature: Room Board - Add H5P learning element in the board
 
         # content editor deletes H5P element on board page
         When I click on the three dot menu in the H5P element
-        When I click on the option Delete in the three-dot menu
+        When I click on the option Delete in the three dot menu
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element H5P
 
@@ -33,11 +33,11 @@ Feature: Room Board - Add H5P learning element in the board
         @school_api_test
         Examples:
             | namespace | content_editor | room_name              | board_title             | h5p_title                |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Lernelement erstellen... |
+            | nbc       | teacher1_nbc   | CypressAut Folder Room | CypressAut Folder Board | Lernelement erstellen... |
 
         @staging_test
         Examples:
             | namespace | content_editor | room_name              | board_title             | h5p_title                |
-            | brb       | teacher1_brb   | CypressAut Folder Room | CypressAut Folder Board | Lernelement erstellen... |
+            | nbc       | teacher1_nbc   | CypressAut Folder Room | CypressAut Folder Board | Lernelement erstellen... |
 
 

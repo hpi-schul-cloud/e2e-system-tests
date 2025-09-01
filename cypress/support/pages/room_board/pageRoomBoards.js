@@ -70,7 +70,7 @@ class RoomBoards {
 	static #thumbnailImageOnCard = '[data-testid="image-thumbnail-in-card"]';
 	static #H5PElementSelector = '[data-testid="board-hp5-element"]';
 	static #folderDetails = '[data-testid="file-statistic"]';
-	static #ThreeDotButtonH5P = '[data-testid="kebab-menu-action"]';
+	static #ThreeDotEditOptionTool = '[data-testid="kebab-menu-action"]';
 	static #H5PPage = '[data-testid="skip-link"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
@@ -83,7 +83,6 @@ class RoomBoards {
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
 	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
-	static #threeDotOnEtherpad = '[data-testid="element-menu-button-0-0-1"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
 	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
 	static #addFileButton = '[data-testid="fab-add-files"]';
@@ -99,6 +98,37 @@ class RoomBoards {
 	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
+	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
+	static #bettermarksToolDomainUrl =
+		'[data-testid="board-external-tool-element-domain"]';
+
+	verifyBettermarksToolNotInCards() {
+		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
+	}
+
+	openThreeDotMenuForExternalTool() {
+		cy.get(RoomBoards.#threeDotMenuSelector).click();
+	}
+
+	selectBettermarksSettingOption() {
+		cy.get(RoomBoards.#ThreeDotEditOptionTool).click();
+	}
+
+	enterToolDisplayName(toolName) {
+		cy.get(RoomBoards.#parameterDisplayNameBettermarks).clear().type(toolName);
+	}
+
+	verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl) {
+		// check bettermarks title
+		cy.get(RoomBoards.#titleOnCardElement)
+			.should("be.visible")
+			.and("contain.text", bettermarksTitle);
+
+		// check bettermarks domain url
+		cy.get(RoomBoards.#bettermarksToolDomainUrl)
+			.should("be.visible")
+			.and("contain.text", bettermarksDomainUrl);
+	}
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -153,7 +183,7 @@ class RoomBoards {
 
 	clickOnThreeDotOnEtherpad() {
 		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
-			.find(RoomBoards.#threeDotOnEtherpad)
+			.find(RoomBoards.#threeDotMenuSelector)
 			.click();
 	}
 
@@ -873,7 +903,7 @@ class RoomBoards {
 				})
 				.as("windowOpen");
 		});
-		cy.get(RoomBoards.#ThreeDotButtonH5P).click();
+		cy.get(RoomBoards.#ThreeDotEditOptionTool).click();
 	}
 
 	seeH5PPage() {

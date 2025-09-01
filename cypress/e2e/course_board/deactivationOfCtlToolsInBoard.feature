@@ -20,7 +20,7 @@ Feature: Deactivation of ctl tools in board
         Then I see tool '<ctl_tool_2>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_2>' is deactivated in external tools table
 
         # pre-condition: admin creates a course
@@ -54,12 +54,12 @@ Feature: Deactivation of ctl tools in board
         When I click on the page outside of the column
         When I click on icon Plus to add card in column
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         Then I do not see tool '<ctl_tool_2>' in the tool selection
         # teacher adds a activated tool
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_1>'
 
         # admin deactivates an existing tool
@@ -75,7 +75,7 @@ Feature: Deactivation of ctl tools in board
         Then I see tool '<ctl_tool_1>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in external tools table
         Then I see the tool '<ctl_tool_1>' is deactivated in external tools table
 
@@ -118,7 +118,7 @@ Feature: Deactivation of ctl tools in board
         Then I see tool '<ctl_tool_1>' is selected
         When I activate the tool
         Then I see the deactivate checkbox is not checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in external tools table
         Then I see the tool '<ctl_tool_1>' is active in tools table
         Then I see the tool '<ctl_tool_2>' in external tools table
@@ -127,7 +127,7 @@ Feature: Deactivation of ctl tools in board
         Then I see tool '<ctl_tool_2>' is selected
         When I activate the tool
         Then I see the deactivate checkbox is not checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_2>' in external tools table
         Then I see the tool '<ctl_tool_2>' is active in tools table
 
@@ -143,10 +143,10 @@ Feature: Deactivation of ctl tools in board
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_2>' from available tools
         Then I see tool '<ctl_tool_2>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_2>'
 
         # student sees activated tools in board
