@@ -55,10 +55,10 @@ When("I click on delete in the three dot menu", () => {
 	roomsAdmin.clickOnDeleteInThreeDotMenuForRoom();
 });
 
-Then("I see confirmation modal for deleting the room", () => {
+Then("I see confirmation modal for deleting the room in admin page", () => {
 	roomsAdmin.seeConfirmationModalForRoomDeletionInAdminPage();
 });
 
-When("I click on delete button in confirmation modal", () => {
+When("I click on delete button in confirmation modal in room admin page", () => {
 	roomsAdmin.clickDeleteInConfirmationModal();
 });

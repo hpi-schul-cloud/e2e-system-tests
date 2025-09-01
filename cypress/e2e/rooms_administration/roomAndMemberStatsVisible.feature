@@ -5,7 +5,8 @@ Feature: Room Administration - Add rooms and members with visibility on rooms ad
 
     Scenario: Teacher adds participants and deletes participants, including pre-conditions
         Given I am logged in as a '<admin>' at '<namespace>'
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
 
         # pre-condition: teacher creating a new room with internal members
         When I go to rooms overview
@@ -40,22 +41,22 @@ Feature: Room Administration - Add rooms and members with visibility on rooms ad
         # admin deletes the room and can not see it anymore
         When I click on three dot menu in the room admin page for room '<room_name>'
         When I click on delete in the three dot menu
-        Then I see confirmation modal for deleting the room
-        When I click on delete button in confirmation modal
+        Then I see confirmation modal for deleting the room in admin page
+        When I click on delete button in confirmation modal in room admin page
         Then I see the rooms administration page
         Then I do not see the room '<room_name>' on the rooms administration page
 
         # teacher can not see the room anymore
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | room_name         | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 1                      | 0                      | 1                   |
+            | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 2                      | 0                      | 2                   |
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 1                      | 0                      | 1                   |
+            | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 2                      | 0                      | 2                   |
