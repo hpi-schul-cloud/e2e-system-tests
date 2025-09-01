@@ -1,8 +1,8 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-K
-Feature: Copying room board with files in a file folder
+@group-V
+Feature: Room Board - Copying room board with files in a file folder
 
 	As a teacher I want to copy a room board with files in file folder, so that in the new room board there are the files of the original board available.
 
