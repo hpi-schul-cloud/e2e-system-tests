@@ -261,7 +261,7 @@ class Classes {
 					.should("have.text", "Keine Daten vorhanden");
 			} else {
 				cy.get(classRowInTableSelector).should(
-					isClassPresent ? "contain" : "not.exist",
+					isClassPresent ? "contain" : "not.contain",
 					className
 				);
 			}

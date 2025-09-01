@@ -1,14 +1,14 @@
 @regression_test
 @stable_test
-@group-U
+@group-E
 
 # Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same faeture and scenario.
 
-Feature: Room - Invite Student from another school via teacher from another school
+Feature: Room Administration - external members shown as 'anonymised' except for "own" role from another school
 
-    As a room owner, when I invite a teacher from another school to a room, the teacher should be able to invite a student from their school, and the student should see the room in their room overview.
+    As a room Adminstrator, I am able to see all the rooms and in the rooms the members from different school shown as 'anonymised' except member with 'own' role.
 
-    Scenario Outline: Room Owner invites a teacher from another school, the teacher invites a student from their school, the student can access the room, including pre-conditions
+    Scenario Outline: Room Administrator can visualize all the rooms and the rooms with different school members are shown as 'anonymised' except member with 'own' role
         # Goethe-Gymnasium
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         # Goethe-Gymnasium
@@ -39,7 +39,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a room named '<room_name>' exists
 
-        # the owner can invite a external teacher from the different school (Goethe-Gymnasium) to the room
+        # the owner adds student from same school and can invite a external teacher from the different school (Goethe-Gymnasium) to the room
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -51,10 +51,10 @@ Feature: Room - Invite Student from another school via teacher from another scho
         Then I see school '<participant_same_school>' in dropdown School
         When I select '<role_name_student>' in dropdown Role
         Then I see role '<role_name_student>' in dropdown Role
-        When I enter '<participant_same_school>' in dropdown Name
+        When I enter '<participant_same_school_student>' in dropdown Name
         When I select the first name from the dropdown
         When I click on the button Add participant
-        Then I see '<participant_same_school>' in the room participants list
+        Then I see '<participant_same_school_student>' in the room participants list
         When I click on FAB to add participants
         Then I see modal Add participants
         When I enter '<participant_external_school>' in dropdown School
@@ -105,15 +105,22 @@ Feature: Room - Invite Student from another school via teacher from another scho
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
         Then I see the rooms administration page
-        When I click on three dot menu of room '<room_name>'
+        When I click on button Three Dot Menu to edit room '<room_name>'
         When I select the three dot menu action 'manage room members'
-        Then I see title room members of room '<room_name>'
+        Then I see detail page for room '<room_name>'
         Then I see '<teacher_1>' in the room participants list
         Then I see '<participant_external_name_teacher>' in the room participants list
         Then I see '<participant_external_name_student>' in the room participants list
         Then I see '(anonymized)' in the room participants list
         Then I see '<participant_same_school>' in the room participants list
 
+        # post-condition: external teacher deactivates visibility in central directory in different school (Goethe-Gymnasium)
+        Given I am logged in as a '<teacherExt_1>' at '<namespace>'
+        When I go to my account settings
+        Then I see the checkbox Activate visibility in the central directory is checked
+        When I click on the checkbox Activate visibility in the central directory
+        When I click on the button Save Visibility Settings
+        Then I see the checkbox Activate visibility in the central directory is unchecked
 
         # post-condition: teacher deletes the room in the origin school (Felix Mendelssohn-Gymnasium)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -128,5 +135,12 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student | participant_same_school |
-            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              | Max                     |
+            | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student | participant_same_school_student |
+            | teacher1_nbc | student1_nbc | teacherExt1_nbc | studentExt1_nbc | adminExt1_nbc | nbc       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              | Kraft                           |
+
+# Note: This feature should only be executed in the staging environment due to the school API limitation
+# @school_api_test
+#Examples:
+#   | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student | participant_same_school_student |
+#  | teacher1_brb | student1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | cypress-test-school-2       | cypress-test-school-1   | Lernbegleitend    | cypressExt                        | Lernend           | cypress                           | student_1                       |
+
