@@ -15,7 +15,7 @@ Then("I see the school external tool configuration infotext", () => {
 	toolConfiguration.seeToolConfigurationInfoText();
 });
 
-When("I click on save external tool button", () => {
+When("I click on button Add in the modal to add an external tool", () => {
 	toolConfiguration.saveExternalToolButton();
 });
 
@@ -44,11 +44,11 @@ When("I activate the tool", () => {
 });
 
 Then("I see the deactivate checkbox is checked", () => {
-	toolConfiguration.seeDeactivatedCheckBoxIsChecked()
+	toolConfiguration.seeDeactivatedCheckBoxIsChecked();
 });
 
 Then("I see the deactivate checkbox is not checked", () => {
-	toolConfiguration.seeDeactivatedCheckBoxIsNotChecked()
+	toolConfiguration.seeDeactivatedCheckBoxIsNotChecked();
 });
 
 Then("I see an error alert", () => {
@@ -61,19 +61,28 @@ When("I enter {string} in display name field", (toolName) => {
 
 When("I select {string} in required protected custom parameter selection", (value) => {
 	toolConfiguration.selectProtectedCustomParameterOption(value);
-})
-
-When("I enter {string} in required custom parameter field {string}", (value, paramName) => {
-	toolConfiguration.fillInCustomParameter(paramName, value);
 });
 
-When("I enter {string} in optional custom parameter field {string}", (value, paramName) => {
-	toolConfiguration.fillInCustomParameter(paramName, value);
-});
+When(
+	"I enter {string} in required custom parameter field {string}",
+	(value, paramName) => {
+		toolConfiguration.fillInCustomParameter(paramName, value);
+	}
+);
 
-Then("I see custom parameter input field {string} contains {string}", (paramName, value) => {
-	toolConfiguration.seeCustomParameterFormContains(paramName, value);
-});
+When(
+	"I enter {string} in optional custom parameter field {string}",
+	(value, paramName) => {
+		toolConfiguration.fillInCustomParameter(paramName, value);
+	}
+);
+
+Then(
+	"I see custom parameter input field {string} contains {string}",
+	(paramName, value) => {
+		toolConfiguration.seeCustomParameterFormContains(paramName, value);
+	}
+);
 
 When("I click the cancel button on the tool configuration page", (paramName, value) => {
 	toolConfiguration.clickCancelButton();

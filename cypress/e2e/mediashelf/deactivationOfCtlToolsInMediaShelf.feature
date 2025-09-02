@@ -20,7 +20,7 @@ Feature: Deactivation of ctl tools in media shelf
         Then I see tool '<ctl_tool_2>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_2>' is deactivated in external tools table
 
         # teacher can not see a deactivated tool in media shelf
@@ -60,7 +60,7 @@ Feature: Deactivation of ctl tools in media shelf
         Then I see tool '<ctl_tool_1>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in external tools table
         Then I see the tool '<ctl_tool_1>' is deactivated in external tools table
 

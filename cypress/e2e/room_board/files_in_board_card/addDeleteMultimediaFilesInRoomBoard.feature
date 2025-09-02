@@ -45,8 +45,8 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three-dot in the element File
-        When I click on the option Delete in the three-dot menu
+        When I click on the three dot in the element File
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
@@ -82,8 +82,8 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three-dot in the element File
-        When I click on the option Delete in the three-dot menu
+        When I click on the three dot in the element File
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File
