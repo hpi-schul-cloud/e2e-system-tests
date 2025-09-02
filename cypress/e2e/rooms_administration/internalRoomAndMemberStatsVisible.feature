@@ -1,9 +1,12 @@
-@only
-Feature: Room Administration - Add rooms and members with visibility on rooms administration page
+@regression_test
+@stable_test
+# group???
+
+Feature: Room Administration - Add room and internal members with visibility on rooms administration page
 
     As a school admin I want to see the created rooms with correct information visible on rooms administration page.
 
-    Scenario: Teacher adds participants and deletes participants, including pre-conditions
+    Scenario: Admin sees room with internal members, including pre-conditions
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'

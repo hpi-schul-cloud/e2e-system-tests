@@ -4,6 +4,8 @@ class RoomsAdmin {
 	static #roomsTableName = '[data-testid="room-admin-table"]';
 	static #threeDotMenuForRoom = '[data-testid^="kebab-menu-room-"]';
 	static #threeDotMenuDelete = '[data-testid^="menu-delete-room-"]';
+	static #threeDotMenuManageRoomMembers = '[data-testid^="menu-manage-room-"]';
+	static #adminRoomTitle = '[data-testid="admin-room-detail-title"]';
 	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 
@@ -63,6 +65,12 @@ class RoomsAdmin {
 		cy.get(RoomsAdmin.#roomsTableName).should("contain", roomName);
 	}
 
+	seeAdminRoomEditParticipantsPage(roomName) {
+		cy.get(RoomsAdmin.#adminRoomTitle).should("be.visible");
+		cy.get(RoomsAdmin.#adminRoomTitle).should("contain", roomName);
+		cy.wait("@members_api");
+	}
+
 	doNotSeeRoomInRoomsTable(roomName) {
 		cy.get(RoomsAdmin.#roomsTableName).should("not.contain", roomName);
 	}
@@ -78,6 +86,11 @@ class RoomsAdmin {
 	clickOnDeleteInThreeDotMenuForRoom() {
 		cy.get(RoomsAdmin.#threeDotMenuDelete).should("be.visible");
 		cy.get(RoomsAdmin.#threeDotMenuDelete).click();
+	}
+
+	clickOnManageRoomMembersInThreeDotMenuForRoom() {
+		cy.get(RoomsAdmin.#threeDotMenuManageRoomMembers).should("be.visible");
+		cy.get(RoomsAdmin.#threeDotMenuManageRoomMembers).click();
 	}
 
 	seeConfirmationModalForRoomDeletionInAdminPage() {

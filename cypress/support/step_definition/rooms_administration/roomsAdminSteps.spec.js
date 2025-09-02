@@ -55,6 +55,14 @@ When("I click on delete in the three dot menu", () => {
 	roomsAdmin.clickOnDeleteInThreeDotMenuForRoom();
 });
 
+When("I click on manage room members in the three dot menu", () => {
+	roomsAdmin.clickOnManageRoomMembersInThreeDotMenuForRoom();
+});
+
+Then("I see the admin page Edit participants of room {string}", (roomName) => {
+	roomsAdmin.seeAdminRoomEditParticipantsPage(roomName);
+});
+
 Then("I see confirmation modal for deleting the room in admin page", () => {
 	roomsAdmin.seeConfirmationModalForRoomDeletionInAdminPage();
 });
