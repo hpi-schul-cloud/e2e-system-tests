@@ -1,4 +1,6 @@
-export class Collabora {
+"use strict";
+
+class Collabora {
 	static #collaboraDocx = 'iframe[title="Office-Dokument Editor"]';
 	static #collaboraSaveButton = "[id=save-button]";
 	static #fileButtonText = "Datei";
@@ -81,3 +83,5 @@ export class Collabora {
 		cy.wait(3000); // to wait for the file to be downloaded
 	}
 }
+
+export default Collabora;

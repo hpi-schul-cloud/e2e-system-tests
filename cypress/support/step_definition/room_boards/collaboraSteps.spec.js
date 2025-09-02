@@ -1,5 +1,5 @@
-import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import { Collabora } from "../../pages/collabora/pageCollabora";
+const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Collabora from "../../pages/room_board/pageCollabora";
 
 const collabora = new Collabora();
 
