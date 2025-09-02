@@ -1,11 +1,10 @@
 @regression_test
 @stable_test
-@only
 # group???
 
 Feature: Room Administration - Add room and manage its members via rooms administration page
 
-    As a school admin I want to see the created rooms edit its members via rooms administration page.
+    As a school admin I want to see the created rooms and edit its members via rooms administration page.
 
     Scenario: Admin sees room with owner, adding new members, including pre-conditions
         Given I am logged in as a '<admin>' at '<namespace>'
