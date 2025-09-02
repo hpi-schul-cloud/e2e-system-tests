@@ -49,12 +49,15 @@ export class Collabora {
 	clickCollaboraDownloadButton() {
 		this.getIframeBody(Collabora.#collaboraDocx).then(($body) => {
 			// start with write access
-			let $download = $body.find(Collabora.#writeDownloadButtonSelector);
+			let $download = $body.find(Collabora.#writeDownloadButtonSelector, {
+				timeout: 3000,
+			}); //adding timeout as sometimes the element takes time to appear and fails the test.
 
 			// fallback as read access
 			if (!$download.length) {
 				$download = $body
-					.find(Collabora.#readDownloadLinkSelector)
+					.find(Collabora.#readDownloadLinkSelector, { timeout: 3000 })
+					//adding timeout as sometimes the element takes time to appear and fails the test.
 					.filter((i, el) =>
 						el.textContent.trim().startsWith("Herunterladen als")
 					);
@@ -62,17 +65,19 @@ export class Collabora {
 
 			// generic click action
 			if ($download.length) {
-				cy.wrap($download).click();
+				cy.wrap($download).click({ force: true });
+				//download button is visible, but sometimes it’s covered by a tooltip. Therefore forcing the click action.
 			}
 		});
 	}
 	// user with read access has id in the form of number and for edit permission has id in the text format.
-	// Therefore, using the text "Herunterladen als" to find the element.
+	// Therefore, using the text "Herunterladen als" to find the element in read access.
 
 	clickCollaboraPDFDownloadOption() {
 		this.getIframeBody(Collabora.#collaboraDocx)
 			.contains(Collabora.#pdfDownloadText)
-			.click();
+			.click({ force: true });
+		// forcing the click action as the elements fails with the error as hidden in headless mode.
 		cy.wait(3000); // to wait for the file to be downloaded
 	}
 }
