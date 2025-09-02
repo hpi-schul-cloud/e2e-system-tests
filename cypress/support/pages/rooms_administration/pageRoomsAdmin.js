@@ -6,6 +6,7 @@ class RoomsAdmin {
 	static #threeDotMenuDelete = '[data-testid^="menu-delete-room-"]';
 	static #threeDotMenuManageRoomMembers = '[data-testid^="menu-manage-room-"]';
 	static #adminRoomTitle = '[data-testid="admin-room-detail-title"]';
+	static #adminParticipantTable = '[data-testid="room-admin-members-table"]';
 	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 
@@ -69,6 +70,10 @@ class RoomsAdmin {
 		cy.get(RoomsAdmin.#adminRoomTitle).should("be.visible");
 		cy.get(RoomsAdmin.#adminRoomTitle).should("contain", roomName);
 		cy.wait("@members_api");
+	}
+
+	seeParticipantInAdminList(participantName) {
+		cy.get(RoomsAdmin.#adminParticipantTable).contains(participantName);
 	}
 
 	doNotSeeRoomInRoomsTable(roomName) {

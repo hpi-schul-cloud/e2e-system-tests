@@ -1,3 +1,5 @@
+@regression_test
+@stable_test
 @only
 # group???
 

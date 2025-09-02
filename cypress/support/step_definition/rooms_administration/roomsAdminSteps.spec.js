@@ -63,6 +63,10 @@ Then("I see the admin page Edit participants of room {string}", (roomName) => {
 	roomsAdmin.seeAdminRoomEditParticipantsPage(roomName);
 });
 
+Then("I see {string} in the admin room participants list", (participantName) => {
+	roomsAdmin.seeParticipantInAdminList(participantName);
+});
+
 Then("I see confirmation modal for deleting the room in admin page", () => {
 	roomsAdmin.seeConfirmationModalForRoomDeletionInAdminPage();
 });

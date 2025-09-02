@@ -31,7 +31,7 @@ Feature: Room Administration - Add room and internal members with visibility on 
         When I click on the button Add participant
         Then I see '<participant_name>' in the room participants list
 
-        # Admin can see the room with correct stats in rooms administration page
+        # admin can see the room with correct stats in rooms administration page
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
@@ -41,7 +41,17 @@ Feature: Room Administration - Add room and internal members with visibility on 
         Then I see the room '<room_name>' has correct external members count '<external_members_count>'
         Then I see the room '<room_name>' has correct total members count '<total_members_count>'
 
+        # admin can access member management for room and see internal user
+        When I click on three dot menu in the room admin page for room '<room_name>'
+        When I click on manage room members in the three dot menu
+        Then I see the admin page Edit participants of room '<room_name>'
+        Then I see '<participant_name>' in the admin room participants list
+
         # admin deletes the room and can not see it anymore
+        Given I am logged in as a '<admin>' at '<namespace>'
+        When I click on administration in menu
+        When I navigate to rooms administration page via the submenu
+        Then I see the rooms administration page
         When I click on three dot menu in the room admin page for room '<room_name>'
         When I click on delete in the three dot menu
         Then I see confirmation modal for deleting the room in admin page
