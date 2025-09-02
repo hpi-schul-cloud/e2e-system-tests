@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-V
-Feature: Collabora - Add, view and delete collabora text file in the room board
+Feature: Room Board - Collabora read access (add, view, delete) with viewer permission
 
     As a teacher with view permission I want to open and view the existing collabora text file
 
@@ -62,12 +62,12 @@ Feature: Collabora - Add, view and delete collabora text file in the room board
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name      | board_title     | docx_file_name   | text_1             | text_2             |
-            | brb       | teacher1_brb | teacher2_brb | teacher_2      | Collabora Room | Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name              | board_title             | docx_file_name   | text_1             | text_2             |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | Cypress_Collabora Room | Cypress_Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
 
 #@staging_test
 #Examples:
-#| namespace | teacher_1    | teacher_2    | teacher_2_name | room_name      | board_title     | docx_file_name   | text_1    | text_2       |
-#| brb       | teacher1_brb | teacher2_brb | Hande          | Collabora Room | Collabora Board | sample-docx.docx | Collabora | Cypress Test |
+#| namespace | teacher_1    | teacher_2    | teacher_2_name | room_name               | board_title     | docx_file_name   | text_1    | text_2       |
+#| brb       | teacher1_brb | teacher2_brb | Hande          | Cypress_Collabora Room  | Cypress_Collabora Board | sample-docx.docx | Collabora | Cypress Test |
 
 

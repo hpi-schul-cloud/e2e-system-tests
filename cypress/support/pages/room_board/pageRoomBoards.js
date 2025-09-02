@@ -100,7 +100,6 @@ class RoomBoards {
 	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
-	static #fileTitle = '[data-testid="content-element-title-slot"]';
 
 	enterLinkInLinkElement(linkName) {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
@@ -960,7 +959,7 @@ class RoomBoards {
 		cy.window().then((win) => {
 			cy.stub(win, "open").as("windowOpen");
 		});
-		cy.get(RoomBoards.#fileTitle).contains(fileName).click();
+		cy.get(RoomBoards.#titleOnCardElement).contains(fileName).click();
 		cy.get("@windowOpen")
 			.should("have.been.called")
 			.then((stub) => {

@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-V
-Feature: Collabora - Add, edit and delete collabora text file in the room board
+Feature: Room Board - Collabora full file access (add, edit, delete) with editor permission
 
     As a teacher with edit permission I want to add collabora text file, add text content and delete the file in a room board
 
@@ -64,12 +64,12 @@ Feature: Collabora - Add, edit and delete collabora text file in the room board
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name      | board_title     | docx_file_name   | text_1             | text_2             |
-            | brb       | teacher1_brb | teacher2_brb | teacher_2      | editor         | Collabora Room | Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name              | board_title             | docx_file_name   | text_1             | text_2             |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | Cypress Collabora Room | Cypress Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
 
 #@staging_test
 #Examples:
-#| namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name      | board_title     | docx_file_name   | text_1    | text_2       |
-#| brb       | teacher1_brb | teacher2_brb | Hande          | editor         | Collabora Room | Collabora Board | sample-docx.docx | Collabora | Cypress Test |
+#| namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name              | board_title             | docx_file_name   | text_1    | text_2       |
+#| brb       | teacher1_brb | teacher2_brb | Hande          | editor         | Cypress Collabora Room | Cypress Collabora Board | sample-docx.docx | Collabora | Cypress Test |
 
 

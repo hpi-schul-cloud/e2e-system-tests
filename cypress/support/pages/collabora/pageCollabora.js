@@ -1,11 +1,10 @@
 export class Collabora {
 	static #collaboraDocx = 'iframe[title="Office-Dokument Editor"]';
 	static #collaboraSaveButton = "[id=save-button]";
-	static fileButtonSelector = "button, a";
-	static fileButtonText = "Datei";
-	static writeDownloadButtonSelector = "button#downloadas-button";
-	static readDownloadLinkSelector = "a";
-	static pdfDownloadText = "PDF-Dokument (.pdf)";
+	static #fileButtonText = "Datei";
+	static #writeDownloadButtonSelector = 'button[id="downloadas-button"]';
+	static #readDownloadLinkSelector = '[id="menu-downloadas"]';
+	static #pdfDownloadText = "PDF-Dokument (.pdf)";
 
 	getIframeBody(selector) {
 		return cy
@@ -17,7 +16,7 @@ export class Collabora {
 	}
 
 	seeCollaboraTextEditor() {
-		this.getIframeBody(Collabora.#collaboraDocx).should("exist");
+		this.getIframeBody(Collabora.#collaboraDocx).should("be.visible");
 	}
 
 	typeCollaboraText(text, x, y) {
@@ -41,8 +40,7 @@ export class Collabora {
 
 	clickCollaboraFileIcon() {
 		this.getIframeBody(Collabora.#collaboraDocx)
-			.find(Collabora.fileButtonSelector)
-			.contains(Collabora.fileButtonText)
+			.contains(Collabora.#fileButtonText)
 			.click();
 		// user with read access has id in the form of number and for edit permission has id in the text format.
 		// Therefore, using the text "Datei" to find the element.
@@ -50,30 +48,30 @@ export class Collabora {
 
 	clickCollaboraDownloadButton() {
 		this.getIframeBody(Collabora.#collaboraDocx).then(($body) => {
-			// user with edit permission
-			const writeButton = $body.find(Collabora.writeDownloadButtonSelector);
-			if (writeButton.length) {
-				cy.wrap(writeButton).click();
-			} else {
-				// user with read permission
-				const readLink = $body
-					.find(Collabora.readDownloadLinkSelector)
+			// start with write access
+			let $download = $body.find(Collabora.#writeDownloadButtonSelector);
+
+			// fallback as read access
+			if (!$download.length) {
+				$download = $body
+					.find(Collabora.#readDownloadLinkSelector)
 					.filter((i, el) =>
 						el.textContent.trim().startsWith("Herunterladen als")
 					);
-				if (readLink.length) {
-					cy.wrap(readLink).click();
-				}
-				// user with read access has id in the form of number and for edit permission has id in the text format.
-				// Therefore, using the text "Herunterladen als" to find the element.
+			}
+
+			// generic click action
+			if ($download.length) {
+				cy.wrap($download).click();
 			}
 		});
 	}
+	// user with read access has id in the form of number and for edit permission has id in the text format.
+	// Therefore, using the text "Herunterladen als" to find the element.
 
 	clickCollaboraPDFDownloadOption() {
 		this.getIframeBody(Collabora.#collaboraDocx)
-			.find("span, a")
-			.contains(Collabora.pdfDownloadText)
+			.contains(Collabora.#pdfDownloadText)
 			.click();
 		cy.wait(3000); // to wait for the file to be downloaded
 	}
