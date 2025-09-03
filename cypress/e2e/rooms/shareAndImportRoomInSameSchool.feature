@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-I
+@group-A
 Feature: Rooms - Share and import room with a teacher from the same school
 
     As a teacher, I want to Share and import a rooms board with another teacher within the same school so that I can collaborate effectively.

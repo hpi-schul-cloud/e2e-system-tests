@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-P
+@group-D
 @schedule_run
 Feature: Deactivation of ctl tools in course
 

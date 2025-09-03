@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-A
+@group-C
 @pr
 @pre_check_test
 Feature: Team - Create, delete and edit operations on Teams

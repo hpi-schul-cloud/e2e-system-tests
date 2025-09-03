@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-P
+@group-D
 @schedule_run
 Feature: Media Shelf - Restrict CTL tools to context board-element
 

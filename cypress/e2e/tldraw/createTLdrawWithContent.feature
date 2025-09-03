@@ -1,7 +1,7 @@
 @regression_test
 @schedule_run
 @stable_test
-@group-J
+@group-C
 Feature: TLDraw - Test tldraw on board
 
     Scenario: I can create a whiteboard element and draw on it

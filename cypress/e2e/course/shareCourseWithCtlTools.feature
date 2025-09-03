@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-R
+@group-D
 @schedule_run
 Feature: Teacher can share a course with ctl tools
 

@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-R
+@group-D
 @schedule_run
 Feature: Course - To add, edit and delete a ctl tool in a course
 

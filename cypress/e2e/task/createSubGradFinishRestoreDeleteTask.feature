@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-J
+@group-B
 @pre_check_test
 Feature: Task - To create, submit, grade, archive, restore and delete task.
 

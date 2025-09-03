@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-G
+@group-A
 Feature: Login Management - Forgot Password Dialog Visibility Checks
 
     As a user (teacher or student or admin), I want to see password recovery dialog box visible to me so that I can recover my password in case needed.

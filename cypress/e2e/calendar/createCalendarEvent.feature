@@ -1,7 +1,7 @@
 @stable_test
 @regression_test
 @schedule_run
-@group-O
+@group-C
 Feature: Calendar - create a simple event in the calendar
 
     As a user, I want to be able to create a simple event in the calendar without course/team and check if it's displayed properly.

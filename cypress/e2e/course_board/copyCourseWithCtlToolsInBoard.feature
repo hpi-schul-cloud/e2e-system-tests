@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-Q
+@group-D
 @schedule_run
 Feature: Course Board - Copy course with a board which has CTL tools
 

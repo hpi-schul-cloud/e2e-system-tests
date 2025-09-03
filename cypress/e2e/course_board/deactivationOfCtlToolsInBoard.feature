@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-S
+@group-E
 Feature: Deactivation of ctl tools in board
 
     As a user I want to see deactivated und activated tools in a board

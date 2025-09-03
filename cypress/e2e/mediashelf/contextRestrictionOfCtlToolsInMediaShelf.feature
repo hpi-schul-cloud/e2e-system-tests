@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-G
+@group-A
 Feature: Media Shelf - Restrict CTL tools to context media-board
 
     As a teacher I want to add ctl tools with context restriction media-board

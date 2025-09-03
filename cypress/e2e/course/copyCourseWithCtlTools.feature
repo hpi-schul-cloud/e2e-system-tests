@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-N
+@group-C
 @schedule_run
 Feature: Course - Copy course with CTL tools
 
