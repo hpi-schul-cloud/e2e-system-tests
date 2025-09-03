@@ -369,11 +369,14 @@ Given("the topic is published in course {string}", (courseName) => {
 	courses.clickPublishLinkForFirstTopic();
 });
 
-Given("student is added to the course {string}", (courseName) => {
-	cy.wait(100);
-	management.openAdministrationInMenu();
-	courseManagement.clickOnCourseInAdministrationSubMenu();
-	courseManagement.clickEditButtonOfCourse(courseName);
-	courses.addStudentWithSearchStringToCourse("student_1");
-	courses.submitChangesAfterEditingCourse();
-});
+Given(
+	"student {string} is added to the course {string}",
+	(studentLastname, courseName) => {
+		cy.wait(100);
+		management.openAdministrationInMenu();
+		courseManagement.clickOnCourseInAdministrationSubMenu();
+		courseManagement.clickEditButtonOfCourse(courseName);
+		courses.addStudentWithSearchStringToCourse(studentLastname);
+		courses.submitChangesAfterEditingCourse();
+	}
+);

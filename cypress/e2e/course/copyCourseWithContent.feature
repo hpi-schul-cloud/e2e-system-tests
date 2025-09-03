@@ -67,5 +67,5 @@ Feature: Course - Copy course
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name           | course_name_copy          | fullname_teacher  | fullname_student  | searchstring_student | board_title                   | folder_name         | image_file_name |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut CourseCopy | CypressAut CourseCopy (1) | cypress teacher_1 | cypress student_1 | student_1            | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name           | course_name_copy          | fullname_teacher | fullname_student | searchstring_student | board_title                   | folder_name         | image_file_name |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CourseCopy | CypressAut CourseCopy (1) | Karl Herzog      | Herbert Kraft    | Kraft                | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |

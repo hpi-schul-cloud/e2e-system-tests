@@ -78,6 +78,7 @@ Feature: Room - Change room permission (Viewer - Admin)
 
         # post-condition: first teacher deletes the room
         Given the room named '<room_name_edited>' is deleted
+        Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:
