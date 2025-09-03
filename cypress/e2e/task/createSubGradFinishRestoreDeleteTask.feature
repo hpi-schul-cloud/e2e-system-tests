@@ -7,7 +7,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
 
     As a teacher I want to create, grade, finish, restore and delete a new task so that the student can submit it
 
-    Scenario: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
+    Scenario Outline: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

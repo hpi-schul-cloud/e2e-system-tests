@@ -7,7 +7,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
 
     As a user I want to create and edit a LibreOffice text document so that I write into it
 
-    Scenario: Create a LibreOffice text document
+    Scenario Outline: Create a LibreOffice text document
         Given I am logged in as a '<user>' at '<namespace>'
         When I click on Files in menu
         Then I go to personal files overview

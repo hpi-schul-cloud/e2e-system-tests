@@ -6,7 +6,7 @@ Feature: Room - Add and delete participants
 
     As a teacher I want to add and delete participants in the room.
 
-    Scenario: Teacher adds participants and deletes participants, including pre-conditions
+    Scenario Outline: Teacher adds participants and deletes participants, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 

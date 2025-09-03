@@ -6,7 +6,7 @@ Feature:  News - To read a news on the respective dashboards
 
     As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
 
-    Scenario: User creates news with time options, reads them and deletes them
+    Scenario Outline: User creates news with time options, reads them and deletes them
         # as a pre-condition create users for author and reader
         Given I am logged in as a '<news_reader>' at '<namespace>'
         Given I am logged in as a '<news_author>' at '<namespace>'

@@ -6,7 +6,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
 
     As a teacher I want to create, edit and delete a new task on course page
 
-    Scenario: Teacher creates, edits, and deletes a task
+    Scenario Outline: Teacher creates, edits, and deletes a task
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'

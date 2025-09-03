@@ -4,7 +4,7 @@ Feature: Topics - To access the H5P editor as a teacher.
 
     As a teacher, I want to be able to access the H5P Editor for a topic in my course to create learning content
 
-    Scenario: Teacher sees and clicks on HP5 button in a topic, including pre-conditions
+    Scenario Outline: Teacher sees and clicks on HP5 button in a topic, including pre-conditions
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

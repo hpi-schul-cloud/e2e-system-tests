@@ -6,7 +6,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
 
     As a teacher, I want to add a BBB (BigBlueButton) Tool to the room board so that I can manage video conferencing effectively.
 
-    Scenario: Add BBB Tool to the Room Board, including pre & post conditions
+    Scenario Outline: Add BBB Tool to the Room Board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'

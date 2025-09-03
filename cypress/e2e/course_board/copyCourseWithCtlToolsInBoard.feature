@@ -6,7 +6,7 @@ Feature: Course Board - Copy course with a board which has CTL tools
 
     As a Teacher I want to be able to copy ctl tools, when I copy a course with ctl tools within a board
 
-    Scenario: Teacher copies a course with a board that has ctl tools
+    Scenario Outline: Teacher copies a course with a board that has ctl tools
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

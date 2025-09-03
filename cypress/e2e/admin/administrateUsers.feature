@@ -8,7 +8,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
 
     As an admin I want to create a new user so that I can administrate it
 
-    Scenario: Adding a new user, edit and delete this user
+    Scenario Outline: Adding a new user, edit and delete this user
         # admin adds a new student and a new teacher
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu

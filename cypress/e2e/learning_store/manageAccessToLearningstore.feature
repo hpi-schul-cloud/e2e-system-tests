@@ -8,7 +8,7 @@ Feature: Learning store - Activating and deactivating access for students
 
     As an admin I want to activate and deactivate students access to learning store
 
-    Scenario: Admin activates and deactivates the learnstore and student can access it, including pre-conditions
+    Scenario Outline: Admin activates and deactivates the learnstore and student can access it, including pre-conditions
 
         # pre-condition: admin, student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'

@@ -6,7 +6,7 @@ Feature: Deactivation of ctl tools in board
 
     As a user I want to see deactivated und activated tools in a board
 
-    Scenario: Users see deactivated tool in board
+    Scenario Outline: Users see deactivated tool in board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

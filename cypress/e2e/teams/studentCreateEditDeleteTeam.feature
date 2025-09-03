@@ -7,7 +7,7 @@ Feature: Team - Student managed teams
 
     As a student I want to create/edit/delete the team so that I can manage the team. This is not possible for NBC, because there students are generally not allowed to create teams.
 
-    Scenario: student creates, edits and deletes team
+    Scenario Outline: student creates, edits and deletes team
         # as a pre-condition create teacher and student
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'

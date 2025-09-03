@@ -7,7 +7,7 @@ Feature: Login Management - Forgot Password Dialog Visibility Checks
     As a user (teacher or student or admin), I want to see password recovery dialog box visible to me so that I can recover my password in case needed.
 
 
-    Scenario: All elements of the Passwort Reset dialog are available
+    Scenario Outline: All elements of the Passwort Reset dialog are available
         Given I am on the '<namespace>' login page
         When I click on Forgot Password
         Then I see the dialog Password Reset

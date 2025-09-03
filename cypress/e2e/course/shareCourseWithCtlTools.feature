@@ -7,7 +7,7 @@ Feature: Teacher can share a course with ctl tools
     As a teacher I want to share a course with ctl tools to other teachers from the same school
 
     @stable_test
-    Scenario: Teacher shares course with ctl tools
+    Scenario Outline: Teacher shares course with ctl tools
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

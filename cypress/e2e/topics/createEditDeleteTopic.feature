@@ -8,7 +8,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
     As a teacher I want to create, edit and delete a new topic so that the student can see it
 
-    Scenario: Teacher creates, edits and deletes a topic in the course, including pre-conditions
+    Scenario Outline: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

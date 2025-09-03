@@ -6,7 +6,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
 
     As a teacher, I want to upload, download and delete image file in the room board so that I can easily share and manage the board contents.
 
-    Scenario: Upload, download and delete image file in the room board, including pre & post conditions
+    Scenario Outline: Upload, download and delete image file in the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'

@@ -6,7 +6,7 @@ Feature: Course - Copy course
 
     As a Teacher I want to be able to copy a course so that I can reuse the course content
 
-    Scenario: Teacher copies a course
+    Scenario Outline: Teacher copies a course
         # pre-condition: creating all users
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'

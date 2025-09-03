@@ -6,7 +6,7 @@ Feature: Room - To create, edit and delete room
 
     As a teacher I want to create, edit and delete rooms.
 
-    Scenario: Teacher creates room, edits room and deletes room, including pre-conditions where applicable
+    Scenario Outline: Teacher creates room, edits room and deletes room, including pre-conditions where applicable
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # teacher creates a new room

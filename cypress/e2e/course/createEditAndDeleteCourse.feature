@@ -10,7 +10,7 @@ Feature: Course - To add and delete a course by the teacher
     As a teacher I want to create a new course and want to delete the newly created test course so that list of courses can be cleaned and not full with the newly created test courses.
 
 
-    Scenario: Create, edit and delete course
+    Scenario Outline: Create, edit and delete course
         # pre-conditions: creating users
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'

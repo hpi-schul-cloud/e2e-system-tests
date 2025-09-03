@@ -6,7 +6,7 @@ Feature: Room Board - Add, edit and delete board in room
 
     As a teacher I want to add, edit and delete board in the room.
 
-    Scenario: Teacher add, edit, and delete board in the room, including pre-conditions
+    Scenario Outline: Teacher add, edit, and delete board in the room, including pre-conditions
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creating a new room

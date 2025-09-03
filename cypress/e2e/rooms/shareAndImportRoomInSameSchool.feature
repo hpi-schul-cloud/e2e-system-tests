@@ -6,7 +6,7 @@ Feature: Rooms - Share and import room with a teacher from the same school
 
     As a teacher, I want to Share and import a rooms board with another teacher within the same school so that I can collaborate effectively.
 
-    Scenario: Share and import a room with a teacher within the same school
+    Scenario Outline: Share and import a room with a teacher within the same school
 
         # pre-condition: Creating teacher accounts
         Given I am logged in as a '<teacher2>' at '<namespace>'

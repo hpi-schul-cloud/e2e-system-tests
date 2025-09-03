@@ -6,7 +6,7 @@ Feature: Class Management - To create, manage, edit, upgrade and delete class on
 
     As a teacher I want create, manage, edit, upgrade and delete a class
 
-    Scenario: Teacher creates, manages, edits, upgrades and deletes a class
+    Scenario Outline: Teacher creates, manages, edits, upgrades and deletes a class
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

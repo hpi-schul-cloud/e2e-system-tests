@@ -6,7 +6,7 @@ Feature: Admin - Teacher registration with registration link send by admin
 
     As a teacher, I want to register in the SVS
 
-    Scenario: Admin add a new teacher and register it via registration link
+    Scenario Outline: Admin add a new teacher and register it via registration link
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
