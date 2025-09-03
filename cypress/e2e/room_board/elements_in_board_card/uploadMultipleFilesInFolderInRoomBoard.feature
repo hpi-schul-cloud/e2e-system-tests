@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-L
-@pre_check_test
 Feature: Room Board - Upload multiple files in folder in board
 
     As a content editor I want to upload multiple files to a folder in a room board
@@ -160,6 +159,7 @@ Feature: Room Board - Upload multiple files in folder in board
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
+        @pre_check_test
         @school_api_test
         Examples:
             | namespace | content_editor | reader       | room_name              | board_title             | standard_folder_name | folder_name_edited | video_file_name          | audio_file_name            | image_file_name | pdf_file_name  | search_request | video_file_size | audio_file_size | image_file_size | pdf_file_size | total_folder_details |

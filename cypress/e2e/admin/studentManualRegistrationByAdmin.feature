@@ -4,9 +4,9 @@
 @group-Q
 Feature: Admin - Admin creates, manually register and deletes students
 
-    As an admin, I want to perform the 4 CRUD operations and manual reegistration on students
+    As an admin, I want to perform the 4 CRUD operations and manual registration on students
 
-    Scenario: Admin creates a student and perform manual registration, including pre-conditions.
+    Scenario Outline: Admin creates a student and perform manual registration, including pre-conditions.
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -65,6 +65,7 @@ Feature: Admin - Admin creates, manually register and deletes students
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
+        @pre_check_test
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
