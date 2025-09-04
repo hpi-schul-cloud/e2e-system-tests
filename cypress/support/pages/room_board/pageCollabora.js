@@ -4,9 +4,11 @@ class Collabora {
 	static #collaboraDocx = 'iframe[title="Office-Dokument Editor"]';
 	static #collaboraSaveButton = "[id=save-button]";
 	static #fileButtonText = "Datei";
-	static #writeDownloadButtonSelector = 'button[id="downloadas-button"]';
-	static #readDownloadLinkSelector = '[id="menu-downloadas"]';
 	static #pdfDownloadText = "PDF-Dokument (.pdf)";
+	static #writeDownloadButton = '[id="downloadas-button"]';
+	static #readDownloadLink = 'li[id="menu-downloadas"] a';
+	static #pdfDownloadSpan = '[id="downloadas-entries"] span';
+	static #pdfDownloadLink = 'li[id="menu-downloadas"] ul a';
 
 	getIframeBody(selector) {
 		return cy
@@ -49,38 +51,29 @@ class Collabora {
 	}
 
 	clickCollaboraDownloadButton() {
-		this.getIframeBody(Collabora.#collaboraDocx).then(($body) => {
-			// start with write access
-			let $download = $body.find(Collabora.#writeDownloadButtonSelector, {
-				timeout: 3000,
-			}); //adding timeout as sometimes the element takes time to appear and fails the test.
+		this.getIframeBody(Collabora.#collaboraDocx).within(() => {
+			cy.contains(
+				`${Collabora.#writeDownloadButton}, ${Collabora.#readDownloadLink}`,
+				/Herunterladen( als)?/,
 
-			// fallback as read access
-			if (!$download.length) {
-				$download = $body
-					.find(Collabora.#readDownloadLinkSelector, { timeout: 3000 })
-					//adding timeout as sometimes the element takes time to appear and fails the test.
-					.filter((i, el) =>
-						el.textContent.trim().startsWith("Herunterladen als")
-					);
-			}
-
-			// generic click action
-			if ($download.length) {
-				cy.wrap($download).click({ force: true });
-				//download button is visible, but sometimes it’s covered by a tooltip. Therefore forcing the click action.
-			}
+				{
+					timeout: 5000,
+				}
+			).click();
 		});
 	}
-	// user with read access has id in the form of number and for edit permission has id in the text format.
-	// Therefore, using the text "Herunterladen als" to find the element in read access.
+	// user with read access has id in the form of number and for edit permission has id and text.
 
 	clickCollaboraPDFDownloadOption() {
-		this.getIframeBody(Collabora.#collaboraDocx)
-			.contains(Collabora.#pdfDownloadText)
-			.click({ force: true });
-		// forcing the click action as the elements fails with the error as hidden in headless mode.
-		cy.wait(3000); // to wait for the file to be downloaded
+		this.getIframeBody(Collabora.#collaboraDocx).within(() => {
+			cy.contains(
+				`${Collabora.#pdfDownloadSpan}, ${Collabora.#pdfDownloadLink}`,
+				Collabora.#pdfDownloadText,
+				{
+					timeout: 5000,
+				}
+			).click();
+		});
 	}
 }
 
