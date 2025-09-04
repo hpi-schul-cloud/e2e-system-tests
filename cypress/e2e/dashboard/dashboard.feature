@@ -147,15 +147,13 @@ Feature: Dashboard - To check contents on the dashboard
         When I select the student '<fullname_student>' and click on delete icon
         Then I see '<fullname_student>' is not visible on the table
 
-        # post-condition:  teacher deletes the team
+        # post-condition:  teacher deletes the team and course
         When I go to teams overview
         When I go to a team 'CypressAut - News Team'
         When I click on team settings
         When I click on delete option
         Then I see dialog box and click on delete button to confirm the deletion
         Then I do not see the team 'CypressAut - News Team'
-
-        # Post-condition: Teacher deletes the course
         When I go to courses overview
         When I go to course '<course_name>'
         When I open page Edit course
