@@ -11,19 +11,19 @@ Feature: Deletion of test data that are left from previous failed test runs on s
 
         # deleting test data courses
         When I go to courses overview
-        Then I delete all courses whose names start with '<course_name>'
+        Then I delete all courses whose names start with '<course_name_initials>'
 
         # deleting test data rooms
         When I go to rooms overview
-        Then I delete all rooms whose names start with '<room_name>'
+        Then I delete all rooms whose names start with '<room_name_initials>'
 
         @staging_test
         Examples:
-            | namespace | teacher      | course_name | room_name |
-            | nbc       | teacher1_nbc | CypressAut  | Cypress   |
-            | dbc       | teacher1_dbc | CypressAut  | Cypress   |
-            | brb       | teacher1_brb | CypressAut  | Cypress   |
-            | brb       | teacher1_brb | Cypress     | Cypress   |
-            | brb       | teacher1_brb | CY          | Cypress   |
+            | namespace | teacher      | course_name_initials | room_name_initials |
+            | nbc       | teacher1_nbc | CypressAut           | Cypress            |
+            | dbc       | teacher1_dbc | CypressAut           | Cypress            |
+            | brb       | teacher1_brb | CypressAut           | Cypress            |
+            | brb       | teacher1_brb | Cypress              | Cypress            |
+            | brb       | teacher1_brb | CY                   | Cypress            |
 
 
