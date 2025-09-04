@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-B
+@group-F
 Feature: Room Board - Collabora read access (add, view, delete) with viewer permission
 
     As a teacher with view permission I want to open and view the existing collabora text file
@@ -17,7 +17,6 @@ Feature: Room Board - Collabora read access (add, view, delete) with viewer perm
         Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>'
 
         # first teacher opens the collabora text file editor in the same tab, adds text content and saves it
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page

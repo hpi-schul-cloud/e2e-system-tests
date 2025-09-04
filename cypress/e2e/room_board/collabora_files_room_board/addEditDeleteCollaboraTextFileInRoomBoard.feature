@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-B
+@group-F
 Feature: Room Board - Collabora full file access (add, edit, delete) with editor permission
 
     As a teacher with edit permission I want to add collabora text file, add text content and delete the file in a room board
@@ -18,7 +18,6 @@ Feature: Room Board - Collabora full file access (add, edit, delete) with editor
         Given participant '<teacher_2_name>' is having room role permission '<teacher_2_role>'
 
         # first teacher opens the collabora text file editor in the same tab, adds text content and saves it
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page

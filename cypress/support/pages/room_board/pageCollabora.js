@@ -59,7 +59,7 @@ class Collabora {
 				{
 					timeout: 5000,
 				}
-			).click();
+			).click({ force: true }); //need to force click
 		});
 	}
 	// user with read access has id in the form of number and for edit permission has id and text.
