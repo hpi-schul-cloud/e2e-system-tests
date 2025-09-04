@@ -4,7 +4,7 @@ import Classes from "../../pages/class_management/pageClasses";
 const classes = new Classes();
 
 When("I click on the button Add class on the page create class", () => {
-	classes.clickConfirmCreateClass();
+	classes.clickAddClassButton();
 });
 
 When("I click button Cancel on the delete modal of class administration page", () => {

@@ -1,5 +1,6 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
 import Management from "../../pages/admin/pageAdministration";
+import Classes from "../../pages/class_management/pageClasses";
 import GlobalActions from "../../pages/common_helper/globalActions";
 import Courses from "../../pages/course/pageCourses";
 import Board from "../../pages/course_board/pageBoard";
@@ -13,11 +14,33 @@ const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
 const board = new Board();
+const classManagement = new Classes();
+const courseManagement = new CourseManagement();
 const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
-const courseManagement = new CourseManagement();
+
+Given(
+	"student {string} with role {string} from school {string} added to the room {string}",
+	(studentName, studentRole, studentSchool, roomName) => {
+		const kebabMenuAction = "room-members";
+
+		rooms.seeRoomDetailPage(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction(kebabMenuAction);
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.seeSchoolOfParticipant(studentSchool);
+		rooms.selectRoomRoleFromDropdownMenu(studentRole);
+		rooms.seeRoleOfParticipant(studentRole);
+		rooms.fillParticipantFormName(studentName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(studentName);
+	}
+);
 
 Given(
 	"task {string} with submission date exists in course {string}",
@@ -104,8 +127,6 @@ Given("a room named {string} exists", (room_name) => {
 	rooms.showRoomCreationPage();
 	rooms.fillRoomFormName(room_name);
 	rooms.selectRoomColour();
-	rooms.selectTodayStartDateForRoom();
-	rooms.selectEndDateForRoom();
 	rooms.submitRoom();
 	rooms.seeRoomDetailPage(room_name);
 });
@@ -138,7 +159,7 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
 
-Given("I navigate to the room detail page via Breadcrumb from the board page", () => {
+Given("I navigate to the room detail page via Breadcrumb", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
@@ -155,6 +176,40 @@ Given(
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
 	}
 );
+
+Given(
+	"a course with name {string} exists with {string} as teacher, {string} as student and {string} as class",
+	(courseName, teacherName, studentName, className) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		courses.selectTeacherInCourseCreatePage(teacherName);
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.addClassToCourse(className);
+		courses.selectStudentsInCourseCreatePage(studentName);
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+	}
+);
+
+Given("a class name {string} is {string}", (className, classState) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	classManagement.clickCreateClassButtonOnNewClassPage();
+	classManagement.clickOnMoreOptionsInClassCreatePage();
+	classManagement.enterCustomClassName(className);
+	classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
+	classManagement.clickAddClassButton();
+	classManagement.isClassInTheTable(className, classState);
+});
+
+Given("a class name {string} deleted and {string}", (className, classState) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	classManagement.clickOnDeleteClassButton(className);
+	classManagement.clickConfirmDeleteDialogButton();
+	classManagement.isClassInTheTable(className, classState);
+});
 
 Given(
 	"published task with name {string} in the course with name {string}",
@@ -245,7 +300,6 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();
 	board.clickPlusIconToAddContentIntoCard();
-	board.selectCardElementFromMenu("file-folder");
 	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
 	roomBoards.approveFolderNameInCard();

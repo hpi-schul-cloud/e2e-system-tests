@@ -18,7 +18,7 @@ Feature: Rooms - Share and import room with a teacher from the same school
         Given multi column board is published to not to be in a draft mode
         Given the multi-column board has a column with a card
         Given link element is added in the card
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
 
         # the first teacher shares the room with another teacher in the same school using the copied URL
         When I click on three dot menu in room page

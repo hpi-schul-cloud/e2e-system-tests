@@ -10,13 +10,11 @@ Feature: Room - To create, edit and delete room
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # teacher creates a new room
-        When I go to room overview
+        When I go to rooms overview
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
         When I select the colour for the room
-        When I select the start date for the room
-        When I select the end date for the room
         When I click on the button Save room
         Then I see the detail page of room '<room_name>'
 

@@ -21,7 +21,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # pre-condition: teacher creating a new room
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I click on FAB to create new room
         Then I see room creation page
         When I enter the room name '<room_name>'
@@ -54,7 +54,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # pre-condition: student can see the room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
         # student can not add any student because there is no class present
@@ -94,7 +94,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # student can add second student to room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
@@ -113,7 +113,7 @@ Feature: Room - Students can only add students from their own classes to a room 
 
         # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to room overview
+        When I go to rooms overview
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
@@ -130,4 +130,4 @@ Feature: Room - Students can only add students from their own classes to a room 
         @staging_test
         Examples:
             | namespace | admin      | teacher      | student_1    | student_2    | room_name         | school_name                 | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher | fullname_student_1 | fullname_student_2 |
-            | dbc       | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog      | Herbert Kraft      | Amelia Strobl      |
+            | brb       | admin1_brb | teacher1_brb | student1_brb | student2_brb | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog      | Herbert Kraft      | Amelia Strobl      |
