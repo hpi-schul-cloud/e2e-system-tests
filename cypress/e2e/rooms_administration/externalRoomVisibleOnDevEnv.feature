@@ -92,4 +92,4 @@ Feature: Room Administration - Add external room and members with visibility on 
         @school_api_test
         Examples:
             | admin      | teacher      | teacherExt      | namespace | room_name         | participant_origin_school | role_name      | participant_origin_name  | participant_external_name  | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | cypress-test-school-1     | Lernbegleitend | XYZ                      | cypressExt                 | 1                      | 1                      | 2                   |
+            | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | cypress-test-school-1     | Lernbegleitend | cypress                  | cypressExt                 | 1                      | 1                      | 2                   |

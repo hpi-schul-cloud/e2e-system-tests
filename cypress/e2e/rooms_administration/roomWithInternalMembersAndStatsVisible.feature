@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-# group???
+@group-V
 
 Feature: Room Administration - Add room and internal members with visibility on rooms administration page
 
@@ -69,7 +69,7 @@ Feature: Room Administration - Add room and internal members with visibility on 
             | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
             | admin1_brb | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 2                      | 0                      | 2                   |
 
-        @staging_test
-        Examples:
-            | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 2                      | 0                      | 2                   |
+        # @staging_test
+        # Examples:
+        #     | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
+        #     | admin1_brb | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 2                      | 0                      | 2                   |

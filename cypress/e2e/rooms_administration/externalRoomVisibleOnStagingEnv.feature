@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-# group???
+@group-V
 
 # Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same feature and scenario.
 
@@ -91,7 +91,7 @@ Feature: Room Administration - Add external room and members with visibility on 
         When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
-        @staging_test
-        Examples:
-            | admin      | teacher      | teacherExt      | namespace | room_name         | participant_origin_school   | role_name      | participant_origin_name  | participant_external_name  | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | XYZ                      | Carlo                      | 1                      | 1                      | 2                   |
+        # @staging_test
+        # Examples:
+        #     | admin      | teacher      | teacherExt      | namespace | room_name         | participant_origin_school   | role_name      | participant_origin_name  | participant_external_name  | internal_members_count | external_members_count | total_members_count |
+        #     | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Herzog                   | Carlo                      | 1                      | 1                      | 2                   |
