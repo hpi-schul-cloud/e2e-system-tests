@@ -254,17 +254,12 @@ class Classes {
 	) {
 		const isClassPresent = expectedState === "exist";
 		cy.get(classTableSelector).then(($table) => {
-			const isTableEmpty = $table.find("tbody td").length > 0;
-			if (!isTableEmpty) {
-				cy.get(classTableSelector)
-					.find("tbody td")
-					.should("have.text", "Keine Daten vorhanden");
-			} else {
-				cy.get(classRowInTableSelector).should(
-					isClassPresent ? "contain" : "not.contain",
-					className
-				);
-			}
+			const isRowEmpty = $table.find("tbody tr").length > 1;
+			cy.log("isClassPresent: " + isClassPresent);
+			cy.get(classRowInTableSelector).should(
+				isClassPresent ? "contain" : isRowEmpty ? "not.contain" : "not.exist",
+				className
+			);
 		});
 	}
 

@@ -79,7 +79,6 @@ Feature: Room - Change room permission (Viewer - Owner)
         # post-condition: second teacher deletes the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given the room named '<room_name_edited>' is deleted
-        Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:

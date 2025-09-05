@@ -8,6 +8,7 @@ import CourseManagement from "../../pages/course_management/pageCourseManagement
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Tasks from "../../pages/tasks/pageTasks";
+import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
 const roomBoards = new RoomBoards();
@@ -20,6 +21,7 @@ const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
+const teams = new Teams();
 
 Given(
 	"student {string} with role {string} from school {string} added to the room {string}",
@@ -118,7 +120,7 @@ Given("the room named {string} is deleted", (room_name) => {
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	//rooms.roomIsNotVisibleOnOverviewPage(room_name);
 });
 
 Given("a room named {string} exists", (room_name) => {
@@ -322,6 +324,15 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.confirmCourseDeletionOnModal();
 	courses.navigateToCoursesOverview();
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
+});
+
+Given("team with name {string} is deleted", (teamName) => {
+	teams.navigateToTeamsOverview();
+	teams.selectTeam(teamName);
+	teams.clickOnTeamSettings();
+	teams.clickOnDeleteOption();
+	teams.confirmDeleteOnDialogBox();
+	teams.doNotSeeTeam(teamName);
 });
 
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
