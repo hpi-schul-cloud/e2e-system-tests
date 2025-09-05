@@ -1,4 +1,4 @@
-class ExportCourses {
+class CommonCartridge {
     static fileName = "CC_Test_Kurs.imscc";
 
     verifyFile(fileNamePattern, renameTo, timeout) {
@@ -10,21 +10,21 @@ class ExportCourses {
         })
     }
 
-    commonCartridgeFileIsArchive() {
+    fileIsArchive() {
         return cy.task("commonCartridgeFileIsArchive", {
             directory: Cypress.config("downloadsFolder"),
-            file: ExportCourses.fileName,
+            file: CommonCartridge.fileName,
         });
     }
 
-    commonCartridgeCleanUp() {
+    cleanUp() {
         return cy.task("commonCartridgeCleanUp", {
             directory: Cypress.config("downloadsFolder"),
-            file: ExportCourses.fileName,
+            file: CommonCartridge.fileName,
         });
     }
 
-    commonCartridgeHasManifest(version, title) {
+    hasManifest(version, title) {
         return cy.task("commonCartridgeHasManifest", {
             directory: Cypress.config("downloadsFolder"),
             version,
@@ -32,7 +32,7 @@ class ExportCourses {
         });
     }
 
-    commonCartridgeHasOrganization(depth, title) {
+    hasOrganization(depth, title) {
         return cy.task("commonCartridgeHasOrganization", {
             directory: Cypress.config("downloadsFolder"),
             depth,
@@ -40,7 +40,7 @@ class ExportCourses {
         });
     }
 
-    commonCartridgeHasChild(orgId, title) {
+    hasChild(orgId, title) {
         return cy.task("commonCartridgeHasChild", {
             directory: Cypress.config("downloadsFolder"),
             orgId,
@@ -48,7 +48,7 @@ class ExportCourses {
         });
     }
 
-    commonCartridgeHasWebcontent(orgId, pattern) {
+    hasWebcontent(orgId, pattern) {
         return cy.task("commonCartridgeHasWebcontent", {
             directory: Cypress.config("downloadsFolder"),
             orgId,
@@ -56,7 +56,7 @@ class ExportCourses {
         });
     }
 
-    commonCartridgeHasWeblink(orgId, url, title) {
+    hasWeblink(orgId, url, title) {
         return cy.task("commonCartridgeHasWeblink", {
             directory: Cypress.config("downloadsFolder"),
             orgId,
@@ -66,4 +66,4 @@ class ExportCourses {
     }
 }
 
-export default ExportCourses;
+export default CommonCartridge;

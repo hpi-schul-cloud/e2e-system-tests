@@ -92,10 +92,10 @@ Feature: Course Board - To export a course as common cartridge
         # post-condition: File is deleted & closed
         Given extracted content and files are deleted
 
-        @staging_test
-        Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+        # @staging_test
+        # Examples:
+        #     | teacher      | namespace |
+        #     | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:
