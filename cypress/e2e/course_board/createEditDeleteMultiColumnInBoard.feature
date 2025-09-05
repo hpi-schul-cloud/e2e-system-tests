@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-Q
+@pre_check_test
 Feature: Course Board - To create, edit and delete column in the course board
 
     As a teacher I want to create, edit and delete the column in the course board so that I can manage the column in the board.
@@ -83,7 +84,6 @@ Feature: Course Board - To create, edit and delete column in the course board
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the course overview page
 
-        @pre_check_test
         @school_api_test
         Examples:
             | teacher      | admin      | namespace | fullname_teacher  | course_name                    | board_title    | column_board_title     | edited_column_board_title |

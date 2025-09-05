@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-I
+@pre_check_test
 Feature: Room - Add and delete participants
 
     As a teacher I want to add and delete participants in the room.
@@ -67,7 +68,6 @@ Feature: Room - Add and delete participants
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-        @pre_check_test
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name         | school_name           | role_name      | participant_name |

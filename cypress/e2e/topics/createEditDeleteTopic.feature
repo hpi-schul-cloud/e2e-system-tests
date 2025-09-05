@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @pr
+@pre_check_test
 Feature: Topics - To create, edit and delete topics by the teacher.
 
     As a teacher I want to create, edit and delete a new topic so that the student can see it
@@ -130,7 +131,6 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the course overview page
 
-        @pre_check_test
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher  | course_name                           |
