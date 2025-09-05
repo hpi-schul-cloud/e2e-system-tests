@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group-P
+@group-D
 @schedule_run
 Feature: Media Shelf - Restrict CTL tools to context board-element
 
     As a teacher I want to add ctl tools with context restriction board-element
 
-    Scenario: Teacher adds tools with context restriction board-element in a board
+    Scenario Outline: Teacher adds tools with context restriction board-element in a board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>,<ctl_tool_restriction_course>,<ctl_tool_restriction_board_element>,<ctl_tool_restriction_media_board>,<ctl_tool_restriction_all>,<ctl_tool_preferred_restriction_course>,<ctl_tool_preferred_restriction_board_element>'

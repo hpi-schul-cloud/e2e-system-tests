@@ -3,6 +3,10 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
+Then("I delete all rooms whose names start with {string}", (roomName) => {
+	rooms.deleteAllRoomsWithName(roomName);
+});
+
 Then("I see the icon Lock in the room {string}", (roomName) => {
 	rooms.seeLockIconInRoom(roomName);
 });

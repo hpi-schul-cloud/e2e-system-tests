@@ -7,7 +7,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
 
     As a teacher I want to publish and unpublish as draft version
 
-    Scenario: Teacher publishes a topic in the course, student can see this course, then teacher unpublishes topic, student cannot see it
+    Scenario Outline: Teacher publishes a topic in the course, student can see this course, then teacher unpublishes topic, student cannot see it
 
         # pre-condition: teacher and student log in to create their account in a same school
         Given I am logged in as a '<student>' at '<namespace>'

@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group-N
+@group-C
 @schedule_run
 Feature: Course - Copy course with CTL tools
 
     As a Teacher I want to be able to copy ctl tools, when I copy a course
 
-    Scenario: Teacher copies a course with ctl tools
+    Scenario Outline: Teacher copies a course with ctl tools
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-O
+@group-C
 Feature: Admin - user must set a new password during login
 
     As a user, I have to set a new password during login
 
-    Scenario: Admin updates the password for the users, they set a new password during login.
+    Scenario Outline: Admin updates the password for the users, they set a new password during login.
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'

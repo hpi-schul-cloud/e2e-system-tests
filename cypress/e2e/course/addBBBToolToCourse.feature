@@ -9,7 +9,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
     As a teacher I want to activate and deactivate BBB tool in the course, so that I can manage the video lectures.
 
     @stable_test
-    Scenario: Teacher creates, edits and deletes a topic in the course, including pre-conditions
+    Scenario Outline: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
         # Pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

@@ -61,31 +61,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group:
-          [
-            group-A,
-            group-B,
-            group-C,
-            group-D,
-            group-E,
-            group-F,
-            group-G,
-            group-H,
-            group-I,
-            group-J,
-            group-K,
-            group-L,
-            group-M,
-            group-N,
-            group-O,
-            group-P,
-            group-Q,
-            group-R,
-            group-S,
-            group-T,
-            group-U,
-            group-V,
-          ]
+        group: [group-A, group-B, group-C, group-D, group-E, group-F]
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}

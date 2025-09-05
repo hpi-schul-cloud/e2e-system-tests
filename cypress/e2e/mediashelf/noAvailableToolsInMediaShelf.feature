@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-H
+@group-A
 Feature: No available tools in media shelf
 
     As a user I want to see the no longer available chip on media element in media shelf

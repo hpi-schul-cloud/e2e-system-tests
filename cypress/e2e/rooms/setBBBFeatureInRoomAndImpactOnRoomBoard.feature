@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-U
+@group-E
 
 Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 

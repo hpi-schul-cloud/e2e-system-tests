@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-V
+@group-F
 Feature: Topics - Teacher shares a topic to other teacher from the same school to import it
 
     As a teacher I want to share a topic to other teachers from the same school to import it

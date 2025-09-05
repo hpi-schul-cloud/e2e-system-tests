@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-O
+@group-C
 @schedule_run
 Feature: Course Board  - To add a preferred tool in a board
 

@@ -4,7 +4,7 @@ Feature: Class Management - To manage a provisioned group on NBC
 
     As a teacher I want to manage a provisioned group
 
-    Scenario: Teacher manages a provisioned group
+    Scenario Outline: Teacher manages a provisioned group
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -30,11 +30,11 @@ Feature: Class Management - To manage a provisioned group on NBC
 
         @staging_test
         Examples:
-        | namespace | admin      | teacher      | student      | group_name         | source_name | lastname_teacher | firstname_teacher | lastname_student | firstname_student | role_teacher | role_student |
-        | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | Cypress-Test-Group | moin.schule | Herzog           | Karl              | Kraft            | Herbert           | Lehrkraft    | Schüler:in   |
+            | namespace | admin      | teacher      | student      | group_name         | source_name | lastname_teacher | firstname_teacher | lastname_student | firstname_student | role_teacher | role_student |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | Cypress-Test-Group | moin.schule | Herzog           | Karl              | Kraft            | Herbert           | Lehrkraft    | Schüler:in   |
 
-        # Note: This test runs with moin.schule groups from the seed data
-        # @school_api_test
-        # Examples:
-        #   | namespace | admin      | teacher      | student      | group_name         | source_name | lastname_teacher | firstname_teacher | lastname_student | firstname_student | role_teacher | role_student |
-        #   | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | Cypress-Test-Group | moin.schule | teacher_1        | cypress           | student_1        | cypress           | Lehrkraft    | Schüler:in   |
+# Note: This test runs with moin.schule groups from the seed data
+# @school_api_test
+# Examples:
+#   | namespace | admin      | teacher      | student      | group_name         | source_name | lastname_teacher | firstname_teacher | lastname_student | firstname_student | role_teacher | role_student |
+#   | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | Cypress-Test-Group | moin.schule | teacher_1        | cypress           | student_1        | cypress           | Lehrkraft    | Schüler:in   |

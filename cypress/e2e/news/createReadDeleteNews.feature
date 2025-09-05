@@ -7,7 +7,7 @@ Feature:  News - To read a news on the respective dashboards
 
     As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
 
-    Scenario: Teacher creates news, reads them and deletes them
+    Scenario Outline: Teacher creates news, reads them and deletes them
         # as a pre-condition create teacher and student
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'

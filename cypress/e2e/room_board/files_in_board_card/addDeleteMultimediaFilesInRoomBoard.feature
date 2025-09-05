@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-L
+@group-B
 Feature: Room Board - Upload, download and delete video & audio files type in the Room Board
 
     As a teacher, I want to upload, download and delete video & audio files in the room board so that I can easily share and manage the board contents.
 
-    Scenario: Upload, download and delete video & audio files in the room board, including pre & post conditions
+    Scenario Outline: Upload, download and delete video & audio files in the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'

@@ -4,7 +4,7 @@ Feature: Course Sync - To start and stop a synchronization with an existing cour
 
     As an teacher I want synchronize a course with an existing course
 
-    Scenario: Teacher synchronizes a course with an existing course
+    Scenario Outline: Teacher synchronizes a course with an existing course
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -55,8 +55,8 @@ Feature: Course Sync - To start and stop a synchronization with an existing cour
             | namespace | admin      | teacher      | student      | course_title                | group_title                     | fullname_teacher |
             | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ExistingFullSync | Cypress-Test-Group-Course-Sync1 | Karl Herzog      |
 
-        # Note: This test runs with moin.schule groups from the seed data
-        # @school_api_test
-        # Examples:
-        #     | namespace | admin      | teacher      | student      | course_title                | group_title                     | fullname_teacher  |
-        #     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ExistingFullSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |
+# Note: This test runs with moin.schule groups from the seed data
+# @school_api_test
+# Examples:
+#     | namespace | admin      | teacher      | student      | course_title                | group_title                     | fullname_teacher  |
+#     | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT ExistingFullSync | Cypress-Test-Group-Course-Sync1 | cypress teacher_1 |

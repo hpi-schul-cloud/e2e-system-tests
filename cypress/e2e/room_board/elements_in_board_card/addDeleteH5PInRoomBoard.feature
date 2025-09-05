@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-U
+@group-E
 Feature: Room Board - Add H5P learning element in the board
 
     As a content editor I want to add H5P learning elements in a room board

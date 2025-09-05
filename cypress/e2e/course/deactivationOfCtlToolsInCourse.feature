@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group-P
+@group-D
 @schedule_run
 Feature: Deactivation of ctl tools in course
 
     As a user I want to see deactivated und activated tools in a course
 
-    Scenario: Users see deactivated tool in course
+    Scenario Outline: Users see deactivated tool in course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

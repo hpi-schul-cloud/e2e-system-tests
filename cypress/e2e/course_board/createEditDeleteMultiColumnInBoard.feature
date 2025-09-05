@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-Q
+@group-D
 @pre_check_test
 Feature: Course Board - To create, edit and delete column in the course board
 

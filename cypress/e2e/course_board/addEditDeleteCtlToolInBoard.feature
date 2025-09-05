@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-S
+@group-E
 Feature: Course Board  - To add, edit and delete a ctl tool in a board
 
     As a teacher I want to add, edit and delete a ctl tool in my course board
 
-    Scenario: Teacher adds, edits and deletes tools in a course board
+    Scenario Outline: Teacher adds, edits and deletes tools in a course board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>,<ctl_tool_required_param>,<ctl_tool_optional_param>,<ctl_tool_openstreetmap>'

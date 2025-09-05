@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-L
+@group-B
 @pre_check_test
 Feature: Room Board - Upload multiple files in folder in board
 

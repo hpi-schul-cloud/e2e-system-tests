@@ -4,7 +4,7 @@ Feature: Course Management - To start and stop a synchronized course
 
     As an administrator I want synchronize a course with a group
 
-    Scenario: Admin synchronizes a course with a group
+    Scenario Outline: Admin synchronizes a course with a group
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

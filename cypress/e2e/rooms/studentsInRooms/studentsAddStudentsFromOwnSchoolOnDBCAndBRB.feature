@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-U
+@group-E
 
 Feature: Room - Students can only add students from their own classes to a room on dBC or on BRB
 

@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-T
+@group-E
 Feature: Course Board - Opening a drawing element on a course page
 
     As a teacher and student I want to open already created drawing element on a course page

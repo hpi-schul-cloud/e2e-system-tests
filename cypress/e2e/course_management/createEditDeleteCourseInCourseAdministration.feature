@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-T
+@group-E
 Feature: Course Management - To create, edit and delete class
 
     As an administrator I want create, edit and delete a class
 
-    Scenario: Admin creates, edits and deletes a class
+    Scenario Outline: Admin creates, edits and deletes a class
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

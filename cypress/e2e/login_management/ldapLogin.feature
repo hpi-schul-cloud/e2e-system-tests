@@ -3,7 +3,7 @@ Feature: Login Management - Login of users not managed by SVS
 
     As a user, I want to login with LDAP username and password into SVS
 
-    Scenario: User makes a direct login with ldap username and password
+    Scenario Outline: User makes a direct login with ldap username and password
         Given I am on the '<namespace>' login page
         When I click on the option button for the login via LDAP
         When I select the LDAP school '<ldap_school_name>'

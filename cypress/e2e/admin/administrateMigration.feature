@@ -4,7 +4,7 @@ Feature: Admin - To administrate the Migration process
 
     As an admin I want to (re-)starts, stop the migration and make it mandatory.
 
-    Scenario: Admin (re-)starts, stops the migration
+    Scenario Outline: Admin (re-)starts, stops the migration
         # admin starts migration
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu

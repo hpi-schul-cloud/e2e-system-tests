@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-V
+@group-F
 
 Feature: Task - share and import task between two teachers from different schools
 

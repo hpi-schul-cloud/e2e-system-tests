@@ -5,7 +5,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
 
     As a teacher I want to import a course from a common cartridge file which was exported from Moodle
 
-    Scenario: Teacher imports course from Moodle
+    Scenario Outline: Teacher imports course from Moodle
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # import the course
@@ -39,7 +39,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see a rich text element with pattern 'Es gibt verschiedene Möglichkeiten, eine KI zu entwickeln.'
         Then I see a column with title 'Grundlagen als PDF'
         Then I see a file element with title 'Grundlagen als PDF'
-        
+
         # Kapitel 2: Anwendungsfelder und ausgewählte Beispiele von KI im Schulkontext
         When I go to courses overview
         When I go to course 'Chancen und Risiken von KI im Schulkontext'
@@ -48,7 +48,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see that I am on a column board
         Then I see a column with title 'Links zur KI'
         Then I see a web link with title 'Links zur KI'
-        
+
         # Kapitel 3: Bedienungskompetenz - Voraussetzungen für die Nutzung von KI
         When I go to courses overview
         When I go to course 'Chancen und Risiken von KI im Schulkontext'
@@ -57,7 +57,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see that I am on a column board
         Then I see a column with title 'KI in der Schulpraxis mit Regina Schulz'
         Then I see a web link with title 'KI in der Schulpraxis mit Regina Schulz'
-        
+
         # Kapitel 4: Auswirkung von KI im Schulkontext
         When I go to courses overview
         When I go to course 'Chancen und Risiken von KI im Schulkontext'
@@ -66,7 +66,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see that I am on a column board
         Then I see a rich text element with pattern 'Über die Auswirkungen von KI in der Schule wurde zuletzt viel geschrieben und spekuliert.'
         Then I see a rich text element with pattern 'Der Traum wohl eines jeden Schülers bzw. einer jeden Schülerin ist es, Hausaufgaben in Sekundenschnelle erledigt zu bekommen oder in Prüfungen immer die richtige Antwort zu wissen.'
-        
+
         # Kapitel 5: KI und Desinformation am Beispiel
         When I go to courses overview
         When I go to course 'Chancen und Risiken von KI im Schulkontext'
@@ -76,7 +76,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see a rich text element with pattern 'Neben den genannten Potenzialen Künstlicher Intelligenz'
         Then I see a rich text element with pattern 'Digitale, kreative Inhalte können heute leicht und in großen Mengen erstellt werden.'
         Then I see a rich text element with pattern 'Eine ganze Menge!'
-        
+
         # Dateien zur künstliche Intelligenz
         When I go to courses overview
         When I go to course 'Chancen und Risiken von KI im Schulkontext'
@@ -101,7 +101,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see a file element with title 'PowerPoint'
         Then I see a column with title 'JPEG'
         Then I see a file element with title 'JPEG'
-        
+
         # Quellen Urheberrechte & Lizenzen
         When I go to courses overview
         When I go to course 'Chancen und Risiken von KI im Schulkontext'
@@ -111,7 +111,7 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see a column with title 'Urheber'
         Then I see a rich text element with pattern 'Schulcloud-Verbund mit den Verbundparteien Brandenburg, Niedersachen, Thüringen'
 
-        @staging_test 
+        @staging_test
         Examples:
             | teacher      | namespace |
             | teacher1_dbc | dbc       |

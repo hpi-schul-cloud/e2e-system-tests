@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-H
+@group-A
 Feature: Media Shelf - To show media shelf with respective functionality
 
     As a teacher I want to use the media shelf
 
-    Scenario: Teacher uses the media shelf
+    Scenario Outline: Teacher uses the media shelf
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>,<ctl_tool_2>'

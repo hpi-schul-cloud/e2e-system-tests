@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-L
+@group-B
 Feature: Room Board - Add, edit and delete element Text in the room board
 
     As a teacher, I want to add, edit, and delete an element Text on the room board, so that I can manage and update important notes efficiently.
 
-    Scenario: Add, edit and delete element Text in the room the room board, including pre & post conditions
+    Scenario Outline: Add, edit and delete element Text in the room the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'

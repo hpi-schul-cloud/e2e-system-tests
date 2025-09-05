@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-N
+@group-C
 Feature: Room - Invite User to room via Invitationlink
 
     As a room owner, I want to invite a user to the room through an invitation link, so that I dont have to add every user manually.
