@@ -34,7 +34,7 @@ Feature: Course - Copy Course with Topic and Task
 
         # admin adds student to newly copied course
         Given I am logged in as a '<admin>' at '<namespace>'
-        Given student is added to the course '<course_name_copy>'
+        Given student '<student_lastname>' is added to the course '<course_name_copy>'
 
         # student sees the copied course, task, and topic
         Given I am logged in as a '<student>' at '<namespace>'
@@ -52,10 +52,10 @@ Feature: Course - Copy Course with Topic and Task
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name  | task_name  | topic_text_title | course_name_copy | task_index_number |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1                 |
+            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name  | task_name  | topic_text_title | course_name_copy | task_index_number | student_lastname |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1                 | student_1        |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name  | task_name  | topic_text_title | course_name_copy | index_number |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1            |
+            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name         | task_name         | topic_text_title   | course_name_copy        | task_index_number | student_lastname |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Karl Herzog       | Cypress Copy course | Cypress Copy Task | Cypress Copy Topic | Cypress Copy course (1) | 1                 | Kraft            |
