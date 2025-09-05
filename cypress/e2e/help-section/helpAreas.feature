@@ -3,6 +3,7 @@
 @schedule_run
 @group-E
 @pr
+@pre_check_test
 Feature: Help Section - To use the help areas in dBildungscloud
 
     As a user I want to use the help areas in the sidebar so that I can find help when needed
