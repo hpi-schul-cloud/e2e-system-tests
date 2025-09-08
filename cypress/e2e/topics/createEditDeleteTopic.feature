@@ -8,7 +8,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
 
     As a teacher I want to create, edit and delete a new topic so that the student can see it
 
-    Scenario: Teacher creates, edits and deletes a topic in the course, including pre-conditions
+    Scenario Outline: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -122,7 +122,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I click on Delete in confirmation window
         Then I can not see topic 'CypressAut Topic Creating and Deleting Test - Edited topic' on course page
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         When I go to courses overview
         When I go to course '<course_name>'
         When I open page Edit course
