@@ -267,7 +267,6 @@ Given("a course named {string} exists", (courseName) => {
 	courses.selectCourseColour();
 	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 	courses.clickOnNextStepButtonOnCourseParticipationDetail();
-	courses.navigateToCoursesOverview();
 });
 
 Given(
@@ -377,6 +376,37 @@ Given("student is added to the course {string}", (courseName) => {
 	courses.addStudentWithSearchStringToCourse("student_1");
 	courses.submitChangesAfterEditingCourse();
 });
+
+Given(
+	"a course {string} contains a {string} board and {string} board title to {string} with card {string}",
+	(courseName, boardType, kebabMenuAction, boardTitle, cardTitle) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.seeCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		board.clickOnFABToCreateNewColumnBoard();
+		board.seeColumnBoardDialogBox();
+		if (boardType.toLowerCase() === "multi-column") {
+			board.clickOnMultiColumnBoardOptionInDialogBox();
+		} else if (boardType.toLowerCase() === "single-column") {
+			board.clickOnSingleColumnBoardOptionInDialogBox();
+		} else {
+			throw new Error(`Unknown board type: ${boardType}`);
+		}
+		board.seeNewCourseBoardCreatePage();
+		board.clickOnThreeDotMenuInCourseBoardTitle();
+		board.clickOnKebabMenuAction(kebabMenuAction);
+		board.enterCourseBoardTitle(boardTitle);
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.seeCourseBoardName(boardTitle);
+		board.clickOnAddNewColumnButton();
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.clickPlusIconToAddCardInColumn();
+		board.enterBoardCardTitle(cardTitle);
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.seeBoardCardTitle(cardTitle);
+	}
+);
 
 Given("the file {string} is added to the room board", (fileName) => {
 	roomBoards.clickOnThreeDotInCard();
