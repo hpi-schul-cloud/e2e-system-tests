@@ -931,10 +931,6 @@ class RoomBoards {
 		cy.get('iframe[class*="h5p-editor-iframe"]').should("exist").and("be.visible");
 	}
 
-	goBackToBoardPage() {
-		cy.go("back");
-	}
-
 	copyFilePathOfImageFileFromFolder(fileName) {
 		cy.get(`[data-testid="file-preview-${fileName}"]`)
 			.find("img")
@@ -987,6 +983,20 @@ class RoomBoards {
 				//expect(response.headers["content-type"]).to.match(/image|webp/i);
 			});
 		});
+	}
+
+	clickCollaboraFile(fileName) {
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("windowOpen");
+		});
+		cy.get(RoomBoards.#titleOnCardElement).contains(fileName).click();
+		cy.get("@windowOpen")
+			.should("have.been.called")
+			.then((stub) => {
+				const url = stub.getCall(0).args[0];
+				cy.visit(url); // force Cypress into same tab
+				cy.wait(5000);
+			});
 	}
 }
 
