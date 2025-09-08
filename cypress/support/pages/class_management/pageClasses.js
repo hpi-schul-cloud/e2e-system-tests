@@ -255,7 +255,6 @@ class Classes {
 		const isClassPresent = expectedState === "exist";
 		cy.get(classTableSelector).then(($table) => {
 			const isRowEmpty = $table.find("tbody tr").length > 1;
-			cy.log("isClassPresent: " + isClassPresent);
 			cy.get(classRowInTableSelector).should(
 				isClassPresent ? "contain" : isRowEmpty ? "not.contain" : "not.exist",
 				className
