@@ -167,6 +167,10 @@ class Courses {
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
 	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
 	static #topicCourseDialog = '[data-testid="dialog-content"]';
+	static #dialogFileInput = '[data-testid="dialog-file-input"]';
+    static #confirmButton = '[data-testid="dialog-confirm-btn"]';
+    static #loadingDialog = '[data-testid="dialog-text"]';
+    static #inputOfTypeFile = 'input[type="file"]';
 
 	verifyImportSharedModal() {
 		cy.get(Courses.#shareSettingsDialog).should("be.visible");
@@ -243,7 +247,9 @@ class Courses {
 	}
 
 	topicIsVisibleOnCoursePage(topicTitle) {
-		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(topicTitle);
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex)
+			.should("be.visible")
+			.contains(topicTitle);
 	}
 
 	clickOnFABToAddOrImportCourse() {
@@ -1305,5 +1311,31 @@ class Courses {
 	seeTopicCourseDialogBox() {
 		cy.get(Courses.#topicCourseDialog).should("be.visible");
 	}
+
+	selectFixtureForImport(fixturePath) {
+        cy.fixture(fixturePath, null)
+            .then(fileContent => {
+                cy.get(Courses.#dialogFileInput).within(() => {
+                    cy.get(Courses.#inputOfTypeFile).attachFile({
+                        fileContent,
+                        filePath: fixturePath,
+                        encoding: 'utf-8',
+                        lastModified: new Date().getTime()
+                    });
+                });
+            });
+    }
+
+    startImport() {
+        cy.get(Courses.#confirmButton).click();
+    }
+
+    seeLoadingBar() {
+        cy.get(Courses.#loadingDialog).should('be.visible');
+    }
+
+    waitForImportFinish() {
+        cy.get(Courses.#loadingDialog).should('not.exist');
+    }
 }
 export default Courses;

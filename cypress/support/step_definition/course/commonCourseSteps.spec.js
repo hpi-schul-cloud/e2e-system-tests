@@ -488,3 +488,19 @@ Then(
 Then("I see the dialog box topic in course", () => {
 	courses.seeTopicCourseDialogBox();
 });
+
+When("I select the fixture file {string}", (fixture) => {
+    courses.selectFixtureForImport(fixture);
+})
+
+When("I start the import", () => {
+    courses.startImport();
+})
+
+Then("I see the loading bar", () => {
+    courses.seeLoadingBar();
+})
+
+When("I wait for the loading bar to close", () => {
+    courses.waitForImportFinish();
+})
