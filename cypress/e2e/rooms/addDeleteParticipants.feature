@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-I
+@group-A
 @pre_check_test
 Feature: Room - Add and delete participants
 

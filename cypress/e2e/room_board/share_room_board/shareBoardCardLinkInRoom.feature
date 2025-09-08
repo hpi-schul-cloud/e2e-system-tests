@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-V
+@group-F
 @schedule_run
 Feature: Room Board - To share a board card link
 
