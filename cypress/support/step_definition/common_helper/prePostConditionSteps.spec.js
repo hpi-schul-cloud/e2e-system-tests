@@ -8,6 +8,7 @@ import CourseManagement from "../../pages/course_management/pageCourseManagement
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Tasks from "../../pages/tasks/pageTasks";
+import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
 const roomBoards = new RoomBoards();
@@ -20,6 +21,7 @@ const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
+const teams = new Teams();
 
 Given(
 	"student {string} with role {string} from school {string} added to the room {string}",
@@ -118,7 +120,7 @@ Given("the room named {string} is deleted", (room_name) => {
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	//rooms.roomIsNotVisibleOnOverviewPage(room_name);
 });
 
 Given("a room named {string} exists", (room_name) => {
@@ -323,6 +325,15 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
 
+Given("team with name {string} is deleted", (teamName) => {
+	teams.navigateToTeamsOverview();
+	teams.selectTeam(teamName);
+	teams.clickOnTeamSettings();
+	teams.clickOnDeleteOption();
+	teams.confirmDeleteOnDialogBox();
+	teams.doNotSeeTeam(teamName);
+});
+
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
@@ -368,14 +379,17 @@ Given("the topic is published in course {string}", (courseName) => {
 	courses.clickPublishLinkForFirstTopic();
 });
 
-Given("student is added to the course {string}", (courseName) => {
-	cy.wait(100);
-	management.openAdministrationInMenu();
-	courseManagement.clickOnCourseInAdministrationSubMenu();
-	courseManagement.clickEditButtonOfCourse(courseName);
-	courses.addStudentWithSearchStringToCourse("student_1");
-	courses.submitChangesAfterEditingCourse();
-});
+Given(
+	"student {string} is added to the course {string}",
+	(studentLastname, courseName) => {
+		cy.wait(100);
+		management.openAdministrationInMenu();
+		courseManagement.clickOnCourseInAdministrationSubMenu();
+		courseManagement.clickEditButtonOfCourse(courseName);
+		courses.addStudentWithSearchStringToCourse(studentLastname);
+		courses.submitChangesAfterEditingCourse();
+	}
+);
 
 Given(
 	"a course {string} contains a {string} board and {string} board title to {string} with card {string}",

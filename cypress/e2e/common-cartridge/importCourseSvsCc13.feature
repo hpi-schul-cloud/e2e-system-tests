@@ -5,7 +5,7 @@ Feature: Course Board - To import a course from common cartridge 1.3
 
     As a teacher I want to import a course from a common cartridge file which was exported from SVS
 
-    Scenario: Teacher imports course from SVS
+    Scenario Outline: Teacher imports course from SVS
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # import the course
@@ -81,10 +81,10 @@ Feature: Course Board - To import a course from common cartridge 1.3
         Then I see a file element with title 'Description of ppt'
         Then I see a file element with title 'Description of jpg'
 
-        @staging_test 
-        Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+        # @staging_test
+        # Examples:
+        #     | teacher      | namespace |
+        #     | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:

@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-K
+@group-B
 Feature: Room Board - Copy multi-column and single-column boards in the room
 
     As a teacher, I want to copy both multi-column and single-column boards in the room so that I can effectively manage its contents.
 
-    Scenario: Copy multi-column and single-column board in the room, including pre & post conditions
+    Scenario Outline: Copy multi-column and single-column board in the room, including pre & post conditions
 
         # pre-condition: room and boards are existing
         Given I am logged in as a '<teacher>' at '<namespace>'

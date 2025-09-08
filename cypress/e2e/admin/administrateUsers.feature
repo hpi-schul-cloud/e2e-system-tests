@@ -8,7 +8,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
 
     As an admin I want to create a new user so that I can administrate it
 
-    Scenario: Adding a new user, edit and delete this user
+    Scenario Outline: Adding a new user, edit and delete this user
         # admin adds a new student and a new teacher
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
@@ -32,7 +32,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
-        # Admin reverts teacher user information (Note: This scenario can be further implemented)
+        # admin reverts teacher user information (Note: This scenario can be further implemented)
         #When I am on the teachers management page
         #When I go to teacher edit page for '<user_firstname>' with email '<user_email>'
         #When I Change the name to '<user_firstname>' '<user_firstname_edited>'

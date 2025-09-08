@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-Q
+@group-D
 @pre_check_test
 Feature: Course Board - To create, edit and delete column in the course board
 
@@ -75,7 +75,7 @@ Feature: Course Board - To create, edit and delete column in the course board
         When I click on the button Remove on the Modal
         Then I do not see the column
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         When I go to courses overview
         When I go to course '<course_name>'
         When I open page Edit course

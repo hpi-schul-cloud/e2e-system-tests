@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-Q
+@group-D
 Feature: Admin - Admin creates, manually register and deletes students
 
-    As an admin, I want to perform the 4 CRUD operations and manual reegistration on students
+    As an admin, I want to perform the 4 CRUD operations and manual registration on students
 
-    Scenario: Admin creates a student and perform manual registration, including pre-conditions.
+    Scenario Outline: Admin creates a student and perform manual registration, including pre-conditions.
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
