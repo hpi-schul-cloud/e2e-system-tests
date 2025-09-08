@@ -247,7 +247,9 @@ class Courses {
 	}
 
 	topicIsVisibleOnCoursePage(topicTitle) {
-		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(topicTitle);
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex)
+			.should("be.visible")
+			.contains(topicTitle);
 	}
 
 	clickOnFABToAddOrImportCourse() {
