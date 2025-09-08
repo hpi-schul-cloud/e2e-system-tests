@@ -407,3 +407,47 @@ Given(
 		board.seeBoardCardTitle(cardTitle);
 	}
 );
+
+Given("the file {string} is added to the room board", (fileName) => {
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	board.selectCardElementFromMenu("file");
+	roomBoards.uploadFileInCard(fileName);
+	roomBoards.clickOutsideToSaveCard();
+});
+
+Given(
+	"participant with participant name {string} is added to the room {string}",
+	(participantName, roomName) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.clickOnAddParticipantsFAB();
+		rooms.selectRoomRoleFromDropdownMenu("Lernbegleitend");
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+	}
+);
+
+Given(
+	"participant {string} is having room role permission {string}",
+	(participantName, permission) => {
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
+		rooms.clickOnButtonActionMenuInSubMenu("Change-Permission");
+		rooms.changeRoleOfTheUser(permission);
+		rooms.confirmChangeRoleModalActions("Confirm", "Role");
+	}
+);
+
+Given("the card file is deleted from room {string}", (roomName) => {
+	rooms.navigateToRoomsOverview();
+	rooms.navigateToRoom(roomName);
+	roomBoards.clickMultiColumnBoardInRoomDetailPage();
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickDeleteOptionInThreeDotMenu();
+	roomBoards.clickDeleteButtonInConfirmationDialog();
+	roomBoards.shouldNotSeeFileElement();
+});

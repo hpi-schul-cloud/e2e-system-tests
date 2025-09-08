@@ -6,27 +6,21 @@ class GlobalActions {
 	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
 
 	checkHeaderCheckboxForAllElements() {
-		cy.get(GlobalActions.#headerCheckboxAllElements)
-		.find('div div input')
-		.check();
+		cy.get(GlobalActions.#headerCheckboxAllElements).find("div div input").check();
 	}
 
 	uncheckHeaderCheckboxForAllElements() {
-		cy.get(GlobalActions.#headerCheckboxAllElements)
-		.find('div div input')
-		.uncheck();
+		cy.get(GlobalActions.#headerCheckboxAllElements).find("div div input").uncheck();
 	}
 
 	clearTableSearch() {
-		cy.get(GlobalActions.#tableSearchInput)
-		.find('div div div input')
-		.clear();
+		cy.get(GlobalActions.#tableSearchInput).find("div div div input").clear();
 	}
 
 	enterStringToTableSearch(searchString) {
 		cy.get(GlobalActions.#tableSearchInput)
-		.find('div div div input')
-		.type(searchString);
+			.find("div div div input")
+			.type(searchString);
 	}
 
 	clickElementWithDataTestId(elementId) {
@@ -34,9 +28,12 @@ class GlobalActions {
 	}
 
 	clickBreadcrumbElement(breadcrumbElement) {
-		cy.get('li').contains(breadcrumbElement).click();
+		cy.get("li").contains(breadcrumbElement).click();
 	}
 
+	goBackToPreviousPage() {
+		cy.go("back");
+	}
 }
 
 export default GlobalActions;
