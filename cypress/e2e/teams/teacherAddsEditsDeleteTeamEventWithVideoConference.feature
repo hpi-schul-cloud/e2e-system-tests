@@ -7,7 +7,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
 
     As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.
 
-    Scenario: Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
+    Scenario Outline: Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
         # as a pre-condition create teacher and student
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'

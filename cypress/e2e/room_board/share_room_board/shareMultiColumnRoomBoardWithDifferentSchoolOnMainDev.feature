@@ -6,7 +6,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
     As a teacher, I want to share a multi-column board with another teacher from a different school so that I can collaborate effectively.
 
-    Scenario: Share a multi-column board with a teacher from differentschool
+    Scenario Outline: Share a multi-column board with a teacher from differentschool
 
         # pre-condition: creating teacher accounts for two different schools
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'

@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-L
+@group-B
 Feature: Delete multiple files in folder and check file resource
 
     As a content editor I want to delete multiple files from a folder in a room board and check if the file resource is not available anymore so that I can manage files in the board.

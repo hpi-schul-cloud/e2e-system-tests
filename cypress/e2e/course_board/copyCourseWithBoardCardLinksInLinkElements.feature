@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-V
+@group-F
 @schedule_run
 Feature: Course Board - Copy course with a board which contains link elements with board card links
 

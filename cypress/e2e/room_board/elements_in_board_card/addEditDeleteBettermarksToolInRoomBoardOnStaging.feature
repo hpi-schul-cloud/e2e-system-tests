@@ -6,7 +6,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
 
     As a teacher, I want to integrate the bettermarks external CTL tool into the room board so that I can seamlessly assign and track learning tasks with students.
 
-    Scenario: Add, edit, delete bettermarks Tool to the Room Board, including pre & post conditions
+    Scenario Outline: Add, edit, delete bettermarks Tool to the Room Board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'

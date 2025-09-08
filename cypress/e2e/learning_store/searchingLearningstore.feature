@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-G
+@group-A
 @pre_check_test
 Feature: Learning store - Search Learning Material in Learning Store
 
