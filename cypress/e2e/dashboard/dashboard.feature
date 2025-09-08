@@ -8,7 +8,7 @@ Feature: Dashboard - To check contents on the dashboard
 
     As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
 
-    Scenario: student and a teacher see important information on the dashboard, including pre-conditions
+    Scenario Outline: student and a teacher see important information on the dashboard, including pre-conditions
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

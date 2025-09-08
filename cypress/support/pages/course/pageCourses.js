@@ -154,14 +154,23 @@ class Courses {
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
 	static #messageNoTasksAvailable = '[data-testid="empty-state-title"]';
 	static #iconCourse = '[data-testid="course-icon"]';
+	static #breadcrumbToCourseNavigationFromBoard = '[data-testid="breadcrumb-1"]';
 	static #btnExportCourse = '[data-testid="room-menu-common-cartridge-download"]';
 	static #btnDialogNext = '[data-testid="dialog-next-btn"]';
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
+	static #adminCourseTableName = '[data-testid="admin-rooms-table-name"]';
+	static #btnCourseTableDelete = '[data-testid="course-table-delete-btn"]';
 	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
+	static #boardTitlePattern = '[data-testid^="board-title-"]';
+	static #roomBoardCardPattern = '[data-testid^="room-board-card-"]';
 	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
 	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
 	static #topicCourseDialog = '[data-testid="dialog-content"]';
+	static #dialogFileInput = '[data-testid="dialog-file-input"]';
+    static #confirmButton = '[data-testid="dialog-confirm-btn"]';
+    static #loadingDialog = '[data-testid="dialog-text"]';
+    static #inputOfTypeFile = 'input[type="file"]';
 
 	verifyImportSharedModal() {
 		cy.get(Courses.#shareSettingsDialog).should("be.visible");
@@ -1265,6 +1274,28 @@ class Courses {
 		cy.get(Courses.#btnShareCourse).click();
 	}
 
+	openColumnBoardWithName(boardName) {
+		cy.get(Courses.#boardTitlePattern)
+			.contains(boardName)
+			.parents(Courses.#roomBoardCardPattern)
+			.click();
+	}
+
+	seeBreadcrumbWithCourseName(courseName) {
+		cy.get(Courses.#breadcrumbToCourseNavigationFromBoard).within(() => {
+			cy.get("a").should("have.text", courseName);
+		});
+	}
+
+	deleteCourseFromCourseTable(courseName) {
+		cy.contains(Courses.#adminCourseTableName, courseName)
+			.should("be.visible")
+			.should("exist")
+			.parents("tr")
+			.find(Courses.#btnCourseTableDelete)
+			.click();
+	}
+
 	clickOnShareCopyOfTopic() {
 		cy.get(Courses.#copyButtonInDotTopicMenu).click();
 	}
@@ -1280,5 +1311,31 @@ class Courses {
 	seeTopicCourseDialogBox() {
 		cy.get(Courses.#topicCourseDialog).should("be.visible");
 	}
+
+	selectFixtureForImport(fixturePath) {
+        cy.fixture(fixturePath, null)
+            .then(fileContent => {
+                cy.get(Courses.#dialogFileInput).within(() => {
+                    cy.get(Courses.#inputOfTypeFile).attachFile({
+                        fileContent,
+                        filePath: fixturePath,
+                        encoding: 'utf-8',
+                        lastModified: new Date().getTime()
+                    });
+                });
+            });
+    }
+
+    startImport() {
+        cy.get(Courses.#confirmButton).click();
+    }
+
+    seeLoadingBar() {
+        cy.get(Courses.#loadingDialog).should('be.visible');
+    }
+
+    waitForImportFinish() {
+        cy.get(Courses.#loadingDialog).should('not.exist');
+    }
 }
 export default Courses;

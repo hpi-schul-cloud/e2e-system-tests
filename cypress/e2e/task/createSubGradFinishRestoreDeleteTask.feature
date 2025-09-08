@@ -7,7 +7,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
 
     As a teacher I want to create, grade, finish, restore and delete a new task so that the student can submit it
 
-    Scenario: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
+    Scenario Outline: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -110,7 +110,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
 
         # teacher restores the finished task from course
         When I go to tasks overview
-        # Note: below step is comented becasue icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
+        # Note: below step is commented because icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
         #When I open task list with due date
         Then I do not see task '<task_name>' in the list as teacher
         When I click on finished tab
@@ -139,7 +139,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         Then I see course page '<course_name>'
         Then I can not see content '<task_name>'
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         When I open page Edit course
         When I click on the button delete course
         Then I see the modal to confirm the deletion
