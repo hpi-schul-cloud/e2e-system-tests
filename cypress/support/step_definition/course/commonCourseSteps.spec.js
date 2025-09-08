@@ -454,6 +454,18 @@ When("I edit the title of the course to {string}", (newCourseName) => {
 	courses.editCourseTitle(newCourseName);
 });
 
+When("I open column board {string}", (boardName) => {
+	courses.openColumnBoardWithName(boardName);
+});
+
+Then("I see breadcrumb contains course name {string}", (courseName) => {
+	courses.seeBreadcrumbWithCourseName(courseName);
+});
+
+When("I click the delete button for course {string} in course table", (courseName) => {
+	courses.deleteCourseFromCourseTable(courseName);
+});
+
 When("I click on the share a copy of Topic from three dot menu {string}", (topicName) => {
 	courses.clickOnShareCopyOfTopic(topicName);
 });
