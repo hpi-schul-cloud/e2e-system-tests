@@ -4,7 +4,7 @@ Feature: Class Management - To stop a synchronized course
 
     As an administrator I want to stop a synchronized course
 
-    Scenario: Admin synchronizes a course with a group
+    Scenario Outline: Admin synchronizes a course with a group
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 

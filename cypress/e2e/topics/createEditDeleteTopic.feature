@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-B
+@group-C
 @pr
 @pre_check_test
 Feature: Topics - To create, edit and delete topics by the teacher.

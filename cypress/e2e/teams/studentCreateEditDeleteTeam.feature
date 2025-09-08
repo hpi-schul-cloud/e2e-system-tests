@@ -1,7 +1,7 @@
 @stable_test
 @regression_test
 @schedule_run
-@group-J
+@group-C
 @pre_check_test
 Feature: Team - Student managed teams
 

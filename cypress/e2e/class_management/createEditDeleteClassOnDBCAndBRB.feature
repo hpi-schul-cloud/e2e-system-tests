@@ -7,7 +7,7 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
 
     As a teacher, I want to create, edit and delete class, so that I can manage the class
 
-    Scenario: Teacher creates, edits and delete a class, including pre-conditions
+    Scenario Outline: Teacher creates, edits and delete a class, including pre-conditions
 
         # Note: Student list does not load sometimes on the class management page.
 

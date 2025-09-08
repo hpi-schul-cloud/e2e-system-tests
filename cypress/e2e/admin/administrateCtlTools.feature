@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-O
+@group-C
 @schedule_run
 @pre_check_test
 Feature: Admin - Admin adds, edits and deletes CTL tools in school
