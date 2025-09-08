@@ -267,7 +267,6 @@ Given("a course named {string} exists", (courseName) => {
 	courses.selectCourseColour();
 	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 	courses.clickOnNextStepButtonOnCourseParticipationDetail();
-	courses.navigateToCoursesOverview();
 });
 
 Given(
@@ -376,4 +375,79 @@ Given("student is added to the course {string}", (courseName) => {
 	courseManagement.clickEditButtonOfCourse(courseName);
 	courses.addStudentWithSearchStringToCourse("student_1");
 	courses.submitChangesAfterEditingCourse();
+});
+
+Given(
+	"a course {string} contains a {string} board and {string} board title to {string} with card {string}",
+	(courseName, boardType, kebabMenuAction, boardTitle, cardTitle) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.seeCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		board.clickOnFABToCreateNewColumnBoard();
+		board.seeColumnBoardDialogBox();
+		if (boardType.toLowerCase() === "multi-column") {
+			board.clickOnMultiColumnBoardOptionInDialogBox();
+		} else if (boardType.toLowerCase() === "single-column") {
+			board.clickOnSingleColumnBoardOptionInDialogBox();
+		} else {
+			throw new Error(`Unknown board type: ${boardType}`);
+		}
+		board.seeNewCourseBoardCreatePage();
+		board.clickOnThreeDotMenuInCourseBoardTitle();
+		board.clickOnKebabMenuAction(kebabMenuAction);
+		board.enterCourseBoardTitle(boardTitle);
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.seeCourseBoardName(boardTitle);
+		board.clickOnAddNewColumnButton();
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.clickPlusIconToAddCardInColumn();
+		board.enterBoardCardTitle(cardTitle);
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.seeBoardCardTitle(cardTitle);
+	}
+);
+
+Given("the file {string} is added to the room board", (fileName) => {
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	board.selectCardElementFromMenu("file");
+	roomBoards.uploadFileInCard(fileName);
+	roomBoards.clickOutsideToSaveCard();
+});
+
+Given(
+	"participant with participant name {string} is added to the room {string}",
+	(participantName, roomName) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.clickOnAddParticipantsFAB();
+		rooms.selectRoomRoleFromDropdownMenu("Lernbegleitend");
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+	}
+);
+
+Given(
+	"participant {string} is having room role permission {string}",
+	(participantName, permission) => {
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
+		rooms.clickOnButtonActionMenuInSubMenu("Change-Permission");
+		rooms.changeRoleOfTheUser(permission);
+		rooms.confirmChangeRoleModalActions("Confirm", "Role");
+	}
+);
+
+Given("the card file is deleted from room {string}", (roomName) => {
+	rooms.navigateToRoomsOverview();
+	rooms.navigateToRoom(roomName);
+	roomBoards.clickMultiColumnBoardInRoomDetailPage();
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickDeleteOptionInThreeDotMenu();
+	roomBoards.clickDeleteButtonInConfirmationDialog();
+	roomBoards.shouldNotSeeFileElement();
 });
