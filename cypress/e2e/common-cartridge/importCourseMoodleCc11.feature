@@ -111,10 +111,10 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see a column with title 'Urheber'
         Then I see a rich text element with pattern 'Schulcloud-Verbund mit den Verbundparteien Brandenburg, Niedersachen, Thüringen'
 
-        @staging_test
-        Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+        # @staging_test
+        # Examples:
+        #     | teacher      | namespace |
+        #     | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:

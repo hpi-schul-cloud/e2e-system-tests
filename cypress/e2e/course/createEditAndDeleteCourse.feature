@@ -52,7 +52,7 @@ Feature: Course - To add and delete a course by the teacher
         When I go to course '<course_title_edited>'
         Then I see course page '<course_title_edited>'
 
-        # Deleting the course created in this feature test
+        # deleting the course created in this feature test
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title_edited>'

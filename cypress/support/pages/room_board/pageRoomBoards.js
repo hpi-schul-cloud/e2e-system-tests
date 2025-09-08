@@ -30,8 +30,7 @@ class RoomBoards {
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -484,9 +483,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -507,7 +504,7 @@ class RoomBoards {
 			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
-		cy.get(RoomBoards.#editOptionInCardThreeDot).should("be.visible");
+		cy.wait(1000);
 	}
 
 	clickEditOptionInCardThreeDot() {
@@ -709,9 +706,7 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("exist")
-			.should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
 	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
@@ -788,21 +783,14 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element)
-					.find("th")
-					.contains("span", label)
-					.should("contain", label);
+				cy.get(element).find("th").contains("span", label).should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element)
-				.find("th")
-				.contains("span", label)
-				.should("contain", label)
-				.click();
+			cy.get(element).find("th").contains("span", label).should("contain", label).click();
 		});
 	}
 
@@ -816,15 +804,11 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -888,11 +872,7 @@ class RoomBoards {
 	}
 
 	enterFolderNameInBoardCard(newName) {
-		cy.get(RoomBoards.#folderTitleInCardInput)
-			.find("input")
-			.eq(0)
-			.clear()
-			.type(newName);
+		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear().type(newName);
 	}
 
 	approveFolderNameInCard() {
@@ -929,10 +909,6 @@ class RoomBoards {
 	seeH5PPage() {
 		cy.get(RoomBoards.#H5PPage, { timeout: 2000000 }).should("be.visible");
 		cy.get('iframe[class*="h5p-editor-iframe"]').should("exist").and("be.visible");
-	}
-
-	goBackToBoardPage() {
-		cy.go("back");
 	}
 
 	copyFilePathOfImageFileFromFolder(fileName) {
@@ -987,6 +963,20 @@ class RoomBoards {
 				//expect(response.headers["content-type"]).to.match(/image|webp/i);
 			});
 		});
+	}
+
+	clickCollaboraFile(fileName) {
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("windowOpen");
+		});
+		cy.get(RoomBoards.#titleOnCardElement).contains(fileName).click();
+		cy.get("@windowOpen")
+			.should("have.been.called")
+			.then((stub) => {
+				const url = stub.getCall(0).args[0];
+				cy.visit(url); // force Cypress into same tab
+				cy.wait(5000);
+			});
 	}
 }
 

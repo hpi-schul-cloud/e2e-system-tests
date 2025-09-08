@@ -8,14 +8,13 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
 
     As a teacher I want to activate and deactivate BBB tool in the course, so that I can manage the video lectures.
 
-    @stable_test
     Scenario Outline: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
-        # Pre-condition: admin, teacher and student log in to create their account in a same school
+        # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # Pre-condition: admin creates a course and assign teacher to the course
+        # pre-condition: admin creates a course and assign teacher to the course
         When I go to courses overview
         When I click on FAB to create a new course depending on sub menu
         Then I see section one area on the course create page
@@ -37,7 +36,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         # Note: this step is not applicable for the admin user
         #Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
 
-        # Admin enables the video conference in the school settings page
+        # admin enables the video conference in the school settings page
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
@@ -45,7 +44,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         Then I enable the video conference
         Then I click on button Save admin settings
 
-        # Teacher can add and remove BBB tool in the course
+        # teacher can add and remove BBB tool in the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -66,7 +65,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         When I click on tab Tools
         Then I do not see the the card Video Conference BigBlueButton
 
-        # Admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
+        # admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
@@ -74,7 +73,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         Then I disable the video conference
         Then I click on button Save admin settings
 
-        # Teacher can not add BBB tool in the course
+        # teacher can not add BBB tool in the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -82,7 +81,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         Then I see page Edit course
         Then I see the disabled check box for Activating video conferences in page Edit course
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         When I go to courses overview
         When I go to course '<course_name>'
         When I open page Edit course

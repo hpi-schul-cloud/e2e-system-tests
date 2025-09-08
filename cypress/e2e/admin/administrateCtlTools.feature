@@ -2,11 +2,11 @@
 @stable_test
 @group-C
 @schedule_run
-Feature: Admin adds, edits and deletes CTL tools in school
+@pre_check_test
+Feature: Admin - Admin adds, edits and deletes CTL tools in school
 
     As an admin I want to administrate the CTL tools used in the school
 
-    @stable_test
     Scenario Outline: Admin adds, edits and deletes external tools
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu

@@ -11,6 +11,7 @@ Feature: Team - Student managed teams
         # as a pre-condition create teacher and student
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
+
         # pre-condition: admin allows student to create a team
         # in nbc students generally are allowed to create a team - there is no checkbox for admin to manage this - has to be adapted
         Given I am logged in as a '<admin>' at '<namespace>'

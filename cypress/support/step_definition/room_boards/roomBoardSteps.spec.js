@@ -655,10 +655,6 @@ Then("I see the H5P page", () => {
 	roomBoards.seeH5PPage();
 });
 
-When("I go back to the board page", () => {
-	roomBoards.goBackToBoardPage();
-});
-
 When("I copy the file path of the image file {string} from folder", (fileName) => {
 	roomBoards.copyFilePathOfImageFileFromFolder(fileName);
 });
@@ -673,4 +669,12 @@ Then("I see that image resource is available {string}", (fileName) => {
 
 Then("I see that image resource is not available {string}", (fileName) => {
 	roomBoards.verifyImageFileRessourceNotAvailable(fileName);
+});
+
+When("I click on the collabora file {string}", (fileName) => {
+	roomBoards.clickCollaboraFile(fileName);
+});
+
+Then("I see the collabora Docx file type in the card", () => {
+	roomBoards.verifyDocxFileUploaded();
 });

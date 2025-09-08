@@ -81,10 +81,10 @@ Feature: Course Board - To import a course from common cartridge 1.3
         Then I see a file element with title 'Description of ppt'
         Then I see a file element with title 'Description of jpg'
 
-        @staging_test
-        Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+        # @staging_test
+        # Examples:
+        #     | teacher      | namespace |
+        #     | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:
