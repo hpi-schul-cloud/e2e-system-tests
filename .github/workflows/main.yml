@@ -32,7 +32,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/e2e-system-tests
-          ref: f3173803c0b271e2032bb433d24721f1aeafd1aa
           path: e2e-system-tests
 
       - name: Install 1Password CLI
