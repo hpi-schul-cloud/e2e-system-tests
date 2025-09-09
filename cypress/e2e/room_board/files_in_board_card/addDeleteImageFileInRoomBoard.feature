@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-G
+@group-A
 Feature: Room Board - Upload, download and delete image file type in the Room Board
 
     As a teacher, I want to upload, download and delete image file in the room board so that I can easily share and manage the board contents.
 
-    Scenario: Upload, download and delete image file in the room board, including pre & post conditions
+    Scenario Outline: Upload, download and delete image file in the room board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -54,8 +54,8 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three-dot in the element File
-        When I click on the option Delete in the three-dot menu
+        When I click on the three dot in the element File
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File

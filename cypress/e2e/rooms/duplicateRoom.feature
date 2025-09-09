@@ -1,7 +1,7 @@
 @stable_test
 @regression_test
 @schedule_run
-@group-I
+@group-A
 Feature: Room - To duplicate the existing room
 
     As a teacher I want to duplicate an existing room, so that I can have a copy of it.
@@ -15,9 +15,9 @@ Feature: Room - To duplicate the existing room
         Given multi column board is published to not to be in a draft mode
         Given the multi-column board has a column with a card
         Given link element is added in the card
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
         Given a single-column board named '<board_title>' exists in the room
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
 
         # teacher is able to duplicate the room with multi and single column board in it
         When I click on three dot menu in room page
@@ -38,7 +38,7 @@ Feature: Room - To duplicate the existing room
         Then I see the element Link on the card
 
         # teacher is able to delete the duplicated room
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the room

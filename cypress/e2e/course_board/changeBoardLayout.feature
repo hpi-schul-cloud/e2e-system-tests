@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-P
+@group-D
 Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout
 
-    Scenario: Teacher changes board layout
+    Scenario Outline: Teacher changes board layout
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creates a course

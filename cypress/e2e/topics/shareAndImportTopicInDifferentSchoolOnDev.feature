@@ -60,5 +60,5 @@ Feature: Topics - Teacher shares a topic to other teacher from different school 
 
         @school_api_test
         Examples:
-            | teacher_1    | teacherExt_2 | namespace | fullname_teacher_1 | course_name_1 | topic_text_title_share | topic_text_title_import | course_name_2         |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress teacher_1  | Mathe course  | Mathe Topic Share      | Mathe Topic Imported    | Mathe Course Imported |
+            | teacher_1    | teacherExt_2 | namespace | fullname_teacher_1 | course_name_1           | topic_text_title_share       | topic_text_title_import         | course_name_2                    |
+            | teacher1_dbc | teacher2_dbc | dbc       | cypress teacher_1  | CypressAut_Mathe course | CypressAut_Mathe Topic Share | CypressAut_Mathe Topic Imported | CypressAut_Mathe Course Imported |

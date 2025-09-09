@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-L
+@group-B
 @pre_check_test
 Feature: Room Board - Upload multiple files in folder in board
 
@@ -168,4 +168,4 @@ Feature: Room Board - Upload multiple files in folder in board
 # @staging_test
 # Examples:
 #     | namespace | content_editor      | room_name               | board_title             | folder_name         |
-#     | brb       | teacher1_brb        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+#     | dbc       | teacher1_dbc        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |

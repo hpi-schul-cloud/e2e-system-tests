@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
-@group-U
+@group-E
+
 Feature: Room - Student can access room content after being added to room via Add Members Dialog
 
     As a room owner, when I add a student through the Add Members Dialog, the user should see the room in the room overview and access its content.
@@ -24,9 +25,9 @@ Feature: Room - Student can access room content after being added to room via Ad
         Given multi column board is published to not to be in a draft mode
         Given the multi-column board has a column with a card
         Given link element is added in the card
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
         Given a single-column board named '<board_title>' exists in the room
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
 
         # the owner can invite a student to the room
         Then I see the detail page of room '<room_name>'

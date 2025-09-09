@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group-P
+@group-D
 @schedule_run
 Feature: Deactivation of ctl tools in course
 
     As a user I want to see deactivated und activated tools in a course
 
-    Scenario: Users see deactivated tool in course
+    Scenario Outline: Users see deactivated tool in course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -39,7 +39,7 @@ Feature: Deactivation of ctl tools in course
         Then I see tool '<ctl_tool_2>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_2>' is deactivated in external tools table
 
         # teacher tries to add a deactivated tool in course
@@ -55,7 +55,7 @@ Feature: Deactivation of ctl tools in course
         # teacher adds a activated tool
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in the tool overview
 
         # admin deactivates an existing tool
@@ -71,7 +71,7 @@ Feature: Deactivation of ctl tools in course
         Then I see tool '<ctl_tool_1>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in external tools table
         Then I see the tool '<ctl_tool_1>' is deactivated in external tools table
 
@@ -114,7 +114,7 @@ Feature: Deactivation of ctl tools in course
         Then I see tool '<ctl_tool_1>' is selected
         When I activate the tool
         Then I see the deactivate checkbox is not checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in external tools table
         Then I see the tool '<ctl_tool_1>' is active in tools table
         Then I see the tool '<ctl_tool_2>' in external tools table
@@ -123,7 +123,7 @@ Feature: Deactivation of ctl tools in course
         Then I see tool '<ctl_tool_2>' is selected
         When I activate the tool
         Then I see the deactivate checkbox is not checked
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_2>' in external tools table
         Then I see the tool '<ctl_tool_2>' is active in tools table
 
@@ -140,7 +140,7 @@ Feature: Deactivation of ctl tools in course
         Then I see the context external tool configuration page
         When I select the tool '<ctl_tool_2>' from available tools
         Then I see tool '<ctl_tool_2>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_2>' in the tool overview
 
         # student sees activated tools in course

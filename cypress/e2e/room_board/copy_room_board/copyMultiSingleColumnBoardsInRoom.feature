@@ -1,22 +1,22 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-K
+@group-B
 Feature: Room Board - Copy multi-column and single-column boards in the room
 
     As a teacher, I want to copy both multi-column and single-column boards in the room so that I can effectively manage its contents.
 
-    Scenario: Copy multi-column and single-column board in the room, including pre & post conditions
+    Scenario Outline: Copy multi-column and single-column board in the room, including pre & post conditions
 
         # pre-condition: room and boards are existing
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         # this step is needed to navigate back to the room details page after creating multi-column board
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
         Given a single-column board named '<board_title>' exists in the room
         # this step is needed to navigate back to the room details page after creating single-column board
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
 
         # teacher copies the multi-column board
         When I click on the multi-column board in the room detail page

@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group-O
+@group-C
 @schedule_run
-Feature: Admin adds, edits and deletes CTL tools in school
+@pre_check_test
+Feature: Admin - Admin adds, edits and deletes CTL tools in school
 
     As an admin I want to administrate the CTL tools used in the school
 
-    @stable_test
     Scenario Outline: Admin adds, edits and deletes external tools
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
@@ -22,7 +22,7 @@ Feature: Admin adds, edits and deletes CTL tools in school
         # admin adds a tool
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_1>' in external tools table
 
         # admin adds a tool with required custom parameter
@@ -33,7 +33,7 @@ Feature: Admin adds, edits and deletes CTL tools in school
         Then I see tool '<ctl_tool_required_param>' is selected
         When I enter '<param_value>' in required custom parameter field '<param_name>'
         Then I see custom parameter input field '<param_name>' contains '<param_value>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_required_param>' in external tools table
 
         # admin adds a tool via tool link with parameter
@@ -42,7 +42,7 @@ Feature: Admin adds, edits and deletes CTL tools in school
         Then I see the school external tool configuration infotext
         When I insert the external tool link '<ctl_tool_link>'
         Then I see tool '<ctl_tool_openstreetmap>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_openstreetmap>' in external tools table
 
         # admin adds a tool with optional custom parameter
@@ -53,7 +53,7 @@ Feature: Admin adds, edits and deletes CTL tools in school
         Then I see tool '<ctl_tool_optional_param>' is selected
         When I enter '<param_value>' in optional custom parameter field '<param_name>'
         Then I see custom parameter input field '<param_name>' contains '<param_value>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_optional_param>' in external tools table
 
         # admin edits a tool
@@ -62,7 +62,7 @@ Feature: Admin adds, edits and deletes CTL tools in school
         Then I see the school external tool configuration infotext
         Then I see tool '<ctl_tool_optional_param>' is selected
         When I enter '<param_value_updated>' in optional custom parameter field '<param_name>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         When I click on edit button of tool '<ctl_tool_optional_param>'
         Then I see the school external tool configuration page
         Then I see custom parameter input field '<param_name>' contains '<param_value_updated>'

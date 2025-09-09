@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-L
+@group-B
 Feature: Room Board - Add, edit and delete element Etherpad in the room board
 
     As a teacher, I want to add, edit, and delete an element Etherpad on the room board, so that I can manage and update important notes efficiently.
@@ -33,8 +33,8 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         # teacher deletes the element Etherpad in the multi-column board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three-dot in the element Etherpad
-        When I click on the option Delete in the three-dot menu
+        When I click on the three dot in the element Etherpad
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element Etherpad

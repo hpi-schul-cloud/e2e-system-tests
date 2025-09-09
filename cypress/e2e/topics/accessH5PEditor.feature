@@ -4,7 +4,7 @@ Feature: Topics - To access the H5P editor as a teacher.
 
     As a teacher, I want to be able to access the H5P Editor for a topic in my course to create learning content
 
-    Scenario: Teacher sees and clicks on HP5 button in a topic, including pre-conditions
+    Scenario Outline: Teacher sees and clicks on HP5 button in a topic, including pre-conditions
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -87,8 +87,8 @@ Feature: Topics - To access the H5P editor as a teacher.
             | admin      | teacher      | namespace | fullname_teacher  | course_name                           | topic_title                         | topic_text_element_title           | topic_text_element_position | topic_text_element_description                                                   | topic_geogebra_title                   | topic_geogebra_id | topic_learning_store_title                      | topic_etherpad_title                   | topic_etherpad_description  | topic_etherpad_position | topic_task_title                   | topic_task_id            |
             | admin1_brb | teacher1_brb | brb       | cypress teacher_1 | CypressAut Test Creation and Deletion | Cy Topic Creating and Deleting Test | Cy Title for Text Element in Topic | 0                           | Cy this is the description of the topic. It is used for automated Cypress tests. | Cy Title for GeoGebra Element in Topic | kEBfU7AR          | Cy Title for Learning Material Element in Topic | Cy Title for Etherpad Element in Topic | this is my epad description | 3                       | Cy Title for Task Element in Topic | 59cce3f6c6abf042248e888d |
 
-    # h5p editor is currently not activated on staging.
-        #@staging_test
-        #Examples:
-        #    | admin      | teacher      | namespace | fullname_teacher | course_name                           | topic_title                         | topic_text_element_title           | topic_text_element_position | topic_text_element_description                                                   | topic_geogebra_title                   | topic_geogebra_id | topic_learning_store_title                      | topic_etherpad_title                   | topic_etherpad_description  | topic_etherpad_position | topic_task_title                   | topic_task_id            |
-        #    | admin1_brb | teacher1_brb | brb       | Karl Herzog      | CypressAut Test Creation and Deletion | Cy Topic Creating and Deleting Test | Cy Title for Text Element in Topic | 0                           | Cy this is the description of the topic. It is used for automated Cypress tests. | Cy Title for GeoGebra Element in Topic | kEBfU7AR          | Cy Title for Learning Material Element in Topic | Cy Title for Etherpad Element in Topic | this is my epad description | 3                       | Cy Title for Task Element in Topic | 59cce3f6c6abf042248e888d |
+# h5p editor is currently not activated on staging.
+#@staging_test
+#Examples:
+#    | admin      | teacher      | namespace | fullname_teacher | course_name                           | topic_title                         | topic_text_element_title           | topic_text_element_position | topic_text_element_description                                                   | topic_geogebra_title                   | topic_geogebra_id | topic_learning_store_title                      | topic_etherpad_title                   | topic_etherpad_description  | topic_etherpad_position | topic_task_title                   | topic_task_id            |
+#    | admin1_brb | teacher1_brb | brb       | Karl Herzog      | CypressAut Test Creation and Deletion | Cy Topic Creating and Deleting Test | Cy Title for Text Element in Topic | 0                           | Cy this is the description of the topic. It is used for automated Cypress tests. | Cy Title for GeoGebra Element in Topic | kEBfU7AR          | Cy Title for Learning Material Element in Topic | Cy Title for Etherpad Element in Topic | this is my epad description | 3                       | Cy Title for Task Element in Topic | 59cce3f6c6abf042248e888d |

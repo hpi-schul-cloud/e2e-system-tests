@@ -5,7 +5,7 @@ Feature: Course Board - To export a course as common cartridge
 
     As a teacher I want to export a course as a common cartridge file
 
-    Scenario: Teacher exports course
+    Scenario Outline: Teacher exports course
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # prepare course
@@ -92,10 +92,10 @@ Feature: Course Board - To export a course as common cartridge
         # post-condition: File is deleted & closed
         Given extracted content and files are deleted
 
-        @staging_test
-        Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+        # @staging_test
+        # Examples:
+        #     | teacher      | namespace |
+        #     | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:

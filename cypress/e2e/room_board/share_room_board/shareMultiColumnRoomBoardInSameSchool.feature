@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-S
+@group-E
 Feature: Room Board - Share multi-column room board in the Rooms with teacher from the same school
 
     As a teacher, I want to share a multi-column board with another teacher within the same school so that I can collaborate effectively.
 
-    Scenario: Share a multi-column board with a Teacher within the Sameschool
+    Scenario Outline: Share a multi-column board with a Teacher within the Sameschool
 
         # pre-condition: Creating teacher accounts
         Given I am logged in as a '<teacher2>' at '<namespace>'

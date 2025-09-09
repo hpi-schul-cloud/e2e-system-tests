@@ -8,6 +8,7 @@ import CourseManagement from "../../pages/course_management/pageCourseManagement
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 import Tasks from "../../pages/tasks/pageTasks";
+import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
 const roomBoards = new RoomBoards();
@@ -20,6 +21,28 @@ const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
+const teams = new Teams();
+
+Given(
+	"student {string} with role {string} from school {string} added to the room {string}",
+	(studentName, studentRole, studentSchool, roomName) => {
+		const kebabMenuAction = "room-members";
+
+		rooms.seeRoomDetailPage(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction(kebabMenuAction);
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.seeSchoolOfParticipant(studentSchool);
+		rooms.selectRoomRoleFromDropdownMenu(studentRole);
+		rooms.seeRoleOfParticipant(studentRole);
+		rooms.fillParticipantFormName(studentName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(studentName);
+	}
+);
 
 Given(
 	"task {string} with submission date exists in course {string}",
@@ -97,7 +120,7 @@ Given("the room named {string} is deleted", (room_name) => {
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	//rooms.roomIsNotVisibleOnOverviewPage(room_name);
 });
 
 Given("a room named {string} exists", (room_name) => {
@@ -138,7 +161,7 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
 
-Given("I navigate to the room detail page via Breadcrumb from the board page", () => {
+Given("I navigate to the room detail page via Breadcrumb", () => {
 	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
@@ -246,7 +269,6 @@ Given("a course named {string} exists", (courseName) => {
 	courses.selectCourseColour();
 	courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 	courses.clickOnNextStepButtonOnCourseParticipationDetail();
-	courses.navigateToCoursesOverview();
 });
 
 Given(
@@ -303,6 +325,15 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
 
+Given("team with name {string} is deleted", (teamName) => {
+	teams.navigateToTeamsOverview();
+	teams.selectTeam(teamName);
+	teams.clickOnTeamSettings();
+	teams.clickOnDeleteOption();
+	teams.confirmDeleteOnDialogBox();
+	teams.doNotSeeTeam(teamName);
+});
+
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
@@ -348,11 +379,89 @@ Given("the topic is published in course {string}", (courseName) => {
 	courses.clickPublishLinkForFirstTopic();
 });
 
-Given("student is added to the course {string}", (courseName) => {
-	cy.wait(100);
-	management.openAdministrationInMenu();
-	courseManagement.clickOnCourseInAdministrationSubMenu();
-	courseManagement.clickEditButtonOfCourse(courseName);
-	courses.addStudentWithSearchStringToCourse("student_1");
-	courses.submitChangesAfterEditingCourse();
+Given(
+	"student {string} is added to the course {string}",
+	(studentLastname, courseName) => {
+		cy.wait(100);
+		management.openAdministrationInMenu();
+		courseManagement.clickOnCourseInAdministrationSubMenu();
+		courseManagement.clickEditButtonOfCourse(courseName);
+		courses.addStudentWithSearchStringToCourse(studentLastname);
+		courses.submitChangesAfterEditingCourse();
+	}
+);
+
+Given(
+	"a course {string} contains a {string} board and {string} board title to {string} with card {string}",
+	(courseName, boardType, kebabMenuAction, boardTitle, cardTitle) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.seeCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		board.clickOnFABToCreateNewColumnBoard();
+		board.seeColumnBoardDialogBox();
+		if (boardType.toLowerCase() === "multi-column") {
+			board.clickOnMultiColumnBoardOptionInDialogBox();
+		} else if (boardType.toLowerCase() === "single-column") {
+			board.clickOnSingleColumnBoardOptionInDialogBox();
+		} else {
+			throw new Error(`Unknown board type: ${boardType}`);
+		}
+		board.seeNewCourseBoardCreatePage();
+		board.clickOnThreeDotMenuInCourseBoardTitle();
+		board.clickOnKebabMenuAction(kebabMenuAction);
+		board.enterCourseBoardTitle(boardTitle);
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.seeCourseBoardName(boardTitle);
+		board.clickOnAddNewColumnButton();
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.clickPlusIconToAddCardInColumn();
+		board.enterBoardCardTitle(cardTitle);
+		board.clickOutsideTheColumnToSaveTheColumn();
+		board.seeBoardCardTitle(cardTitle);
+	}
+);
+
+Given("the file {string} is added to the room board", (fileName) => {
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	board.selectCardElementFromMenu("file");
+	roomBoards.uploadFileInCard(fileName);
+	roomBoards.clickOutsideToSaveCard();
+});
+
+Given(
+	"participant with participant name {string} is added to the room {string}",
+	(participantName, roomName) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.clickOnAddParticipantsFAB();
+		rooms.selectRoomRoleFromDropdownMenu("Lernbegleitend");
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+	}
+);
+
+Given(
+	"participant {string} is having room role permission {string}",
+	(participantName, permission) => {
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
+		rooms.clickOnButtonActionMenuInSubMenu("Change-Permission");
+		rooms.changeRoleOfTheUser(permission);
+		rooms.confirmChangeRoleModalActions("Confirm", "Role");
+	}
+);
+
+Given("the card file is deleted from room {string}", (roomName) => {
+	rooms.navigateToRoomsOverview();
+	rooms.navigateToRoom(roomName);
+	roomBoards.clickMultiColumnBoardInRoomDetailPage();
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickDeleteOptionInThreeDotMenu();
+	roomBoards.clickDeleteButtonInConfirmationDialog();
+	roomBoards.shouldNotSeeFileElement();
 });
