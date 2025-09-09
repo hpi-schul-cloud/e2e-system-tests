@@ -23,6 +23,7 @@ class Login_Management {
 	static #userSettingsNameInitials = '[data-testid="initials"]';
 	static #logoutBtn = '[data-testid="logout"]';
 	static #loginSubmitBtn = '[data-testid="submit-login-email"]';
+	static #openLoginButtonDBC = '[data-testid="login-btn"]';
 	static #testData = {
 		usernameText:
 			"Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.",
@@ -353,6 +354,19 @@ class Login_Management {
 				cy.log("Button exists and is enabled!");
 			}
 		});
+	}
+
+	assertLoginFormIsVisible(namespace) {
+		if (namespace === "nbc") {
+			cy.get(Login_Management.#buttonLoginViaEmailNbc).should("be.visible");
+		} else if (namespace === "dbc") {
+			cy.get(Login_Management.#openLoginButtonDBC).should("be.visible");
+			// ggf. weitere Checks für dbc
+		} else if (namespace === "brb") {
+			cy.get(Login_Management.#loginFormSelector).should("be.visible");
+		} else {
+			cy.get(Login_Management.#loginFormSelector).should("be.visible");
+		}
 	}
 }
 export default Login_Management;
