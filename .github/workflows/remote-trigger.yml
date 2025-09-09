@@ -112,7 +112,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-A:school_api_test:ci
+      tag: cy:headless:stable:group-A:school_api_test:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-A
 
@@ -125,7 +125,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-B:school_api_test:ci
+      tag: cy:headless:stable:group-B:school_api_test:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-B
 
@@ -138,7 +138,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-C:school_api_test:ci
+      tag: cy:headless:stable:group-C:school_api_test:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-C
 
@@ -151,7 +151,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-D:school_api_test:ci
+      tag: cy:headless:stable:group-D:school_api_test:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-D
 
@@ -164,7 +164,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-E:school_api_test:ci
+      tag: cy:headless:stable:group-E:school_api_test:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-E
 
@@ -177,7 +177,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-F:school_api_test:ci
+      tag: cy:headless:stable:group-F:school_api_test:pr:ci
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: group-F
 
