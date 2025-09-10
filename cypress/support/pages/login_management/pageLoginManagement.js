@@ -357,14 +357,14 @@ class Login_Management {
 	}
 
 	assertLoginFormIsVisible(namespace) {
-		if (namespace === "nbc") {
-			cy.get(Login_Management.#buttonLoginViaEmailNbc).should("be.visible");
-		} else if (namespace === "dbc") {
-			cy.get(Login_Management.#openLoginButtonDBC).should("be.visible");
-		} else {
-			//check for namespace brb
-			cy.get(Login_Management.#loginFormSelector).should("be.visible");
-		}
+		const loginFormSelectorMap = {
+			nbc: Login_Management.#buttonLoginViaEmailNbc,
+			dbc: Login_Management.#openLoginButtonDBC,
+			brb: Login_Management.#loginFormSelector,
+		};
+		const selectorForLoginForm =
+			loginFormSelectorMap[namespace] || Login_Management.#loginFormSelector;
+		cy.get(selectorForLoginForm).should("be.visible");
 	}
 }
 export default Login_Management;
