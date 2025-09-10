@@ -362,6 +362,7 @@ class Login_Management {
 		} else if (namespace === "dbc") {
 			cy.get(Login_Management.#openLoginButtonDBC).should("be.visible");
 		} else {
+			//check for namespace brb
 			cy.get(Login_Management.#loginFormSelector).should("be.visible");
 		}
 	}
