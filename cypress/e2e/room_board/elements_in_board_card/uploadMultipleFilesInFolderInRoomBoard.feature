@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @pre_check_test
+@prio0-dev
 Feature: Room Board - Upload multiple files in folder in board
 
     As a content editor I want to upload multiple files to a folder in a room board

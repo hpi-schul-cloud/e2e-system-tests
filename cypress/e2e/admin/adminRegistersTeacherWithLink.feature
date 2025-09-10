@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
+@prio0-dev
 Feature: Admin - Teacher registration with registration link send by admin
 
     As a teacher, I want to register in the SVS
