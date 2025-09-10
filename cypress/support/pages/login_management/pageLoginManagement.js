@@ -361,9 +361,6 @@ class Login_Management {
 			cy.get(Login_Management.#buttonLoginViaEmailNbc).should("be.visible");
 		} else if (namespace === "dbc") {
 			cy.get(Login_Management.#openLoginButtonDBC).should("be.visible");
-			// ggf. weitere Checks für dbc
-		} else if (namespace === "brb") {
-			cy.get(Login_Management.#loginFormSelector).should("be.visible");
 		} else {
 			cy.get(Login_Management.#loginFormSelector).should("be.visible");
 		}
