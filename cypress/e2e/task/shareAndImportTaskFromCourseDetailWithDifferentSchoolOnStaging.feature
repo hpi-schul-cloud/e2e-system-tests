@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-F
-
+@prio_0-staging
 Feature: Task - share and import task between two teachers from different schools
 
     As a teacher

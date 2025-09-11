@@ -2,10 +2,13 @@
 @stable_test
 @schedule_run
 @group-E
+@prio_0-staging
 Feature: Course Board - Opening a drawing element on a course page
 
     As a teacher and student I want to open already created drawing element on a course page
     Scenario Outline: Users (admin, teacher, student), create a course with board and open TLDraw, including pre-conditions
+
+        # pre-condition: creating all users accounts (admin, teacher, student)
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -26,7 +29,7 @@ Feature: Course Board - Opening a drawing element on a course page
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
         # Note: this step is not applicable for the admin user
-        #Then I see the course '<course_name>' on the course overview page
+        # Then I see the course '<course_name>' on the course overview page
 
         # pre-condition: teacher create course board, add whiteboard and publish the board
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -69,7 +72,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on card Course Board
         When I click on open Drawing Element
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -81,10 +84,10 @@ Feature: Course Board - Opening a drawing element on a course page
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name              | fullname_teacher  | fullname_student  | board_title    |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut TLDraw Course | cypress teacher_1 | cypress student_1 | Board Cy Title |
+            | admin      | teacher      | student      | namespace | course_name              | fullname_teacher  | fullname_student  | board_title            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut TLDraw Course | cypress teacher_1 | cypress student_1 | CypressAut Board Title |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name              | fullname_teacher | fullname_student | board_title    |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut TLDraw Course | Karl Herzog      | Herbert Kraft    | Board Cy Title |
+            | admin      | teacher      | student      | namespace | course_name              | fullname_teacher | fullname_student | board_title            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut TLDraw Course | Karl Herzog      | Herbert Kraft    | CypressAut Board Title |

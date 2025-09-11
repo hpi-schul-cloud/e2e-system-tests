@@ -4,7 +4,8 @@
 @group-E
 @pr
 @pre_check_test
-Feature: Files Overview - To use LibreOffice for text, calc and presentation document
+@prio_0-staging
+Feature: Files - To use LibreOffice for text, calc and presentation document
 
     As a user I want to create and edit a LibreOffice text document so that I write into it
 
@@ -39,5 +40,5 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
         @school_api_test
         @staging_test
         Examples:
-            | user         | namespace | document_title       | document_title_full       | document_title_edited     |
-            | student1_brb | brb       | Cy: LibraOffice Open | Cy: LibraOffice Open.docx | Cy: LibraOffice Edit.docx |
+            | user         | namespace | document_title              | document_title_full              | document_title_edited            |
+            | student1_brb | brb       | CypressAut LibraOffice Open | CypressAut LibraOffice Open.docx | CypressAut LibraOffice Edit.docx |

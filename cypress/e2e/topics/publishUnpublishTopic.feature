@@ -3,6 +3,7 @@
 @schedule_run
 @group-F
 @pr
+@prio_0-staging
 Feature: Topics - To publish and unpublish topic by teacher.
 
     As a teacher I want to publish and unpublish as draft version
@@ -51,7 +52,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I go to course '<course_title>'
         Then I can not see topic '<topic_title>' on course page
 
-        # teacher publishs topic
+        # teacher publishes topic
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title>'
@@ -65,7 +66,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I click on topic '<topic_title>' on course page
         Then I see topic detail page "<topic_title>"
 
-        # teacher unpublishs topic
+        # teacher unpublishes topic
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title>'
@@ -78,7 +79,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I go to course '<course_title>'
         Then I can not see topic '<topic_title>' on course page
 
-        # teacher deletes course
+        # post-condition: teacher deletes course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title>'

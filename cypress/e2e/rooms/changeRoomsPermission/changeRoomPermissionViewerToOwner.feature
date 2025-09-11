@@ -2,7 +2,8 @@
 @stable_test
 @schedule_run
 @group-C
-Feature: Room - Change room permission (Viewer - Owner)
+@prio_0-staging
+Feature: Rooms - Change room permission (Viewer - Owner)
 
     As a teacher, I want to change a participant’s room permission from viewer to owner, so that other users can access the room and leave it as needed
 

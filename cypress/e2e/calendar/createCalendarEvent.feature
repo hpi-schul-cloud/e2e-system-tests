@@ -2,6 +2,7 @@
 @regression_test
 @schedule_run
 @group-C
+@prio_0-staging
 Feature: Calendar - create a simple event in the calendar
 
     As a user, I want to be able to create a simple event in the calendar without course/team and check if it's displayed properly.

@@ -2,8 +2,8 @@
 @stable_test
 @schedule_run
 @group-C
-@prio0-dev
-Feature: Room - Invite User to room via Invitationlink
+@prio_0-dev
+Feature: Rooms - Invite User to room via Invitation link
 
     As a room owner, when I invite a user through an invitation link, I want to confirm his application before he can join the room.
 
@@ -65,8 +65,6 @@ Feature: Room - Invite User to room via Invitationlink
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given the room named '<room_name>' is deleted
-
-
 
         @school_api_test
         Examples:

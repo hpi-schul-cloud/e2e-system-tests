@@ -4,6 +4,7 @@
 @group-B
 @pr
 @pre_check_test
+@prio_0-staging
 Feature: Learning store - Activating and deactivating access for students
 
     As an admin I want to activate and deactivate students access to learning store
@@ -26,7 +27,7 @@ Feature: Learning store - Activating and deactivating access for students
         Then I see Learning Store in side bar
         When I go to Learning Store overview
 
-        # admin deactivates students access to Learning store - pre-condition to set the needed configuration
+        # admin deactivates students access to learning store - pre-condition to set the needed configuration
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu

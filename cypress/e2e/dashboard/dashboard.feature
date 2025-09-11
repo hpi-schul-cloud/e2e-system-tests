@@ -4,6 +4,7 @@
 @group-A
 @pr
 @pre_check_test
+@prio_0-staging
 Feature: Dashboard - To check contents on the dashboard
 
     As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
@@ -34,7 +35,7 @@ Feature: Dashboard - To check contents on the dashboard
         Then I see the section three as the finish page
         When I click on button To Course Overview on the finish page
         # Note: This step is not applicable for the admin user
-        #Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
+        # Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
 
         # pre-condition: pre-condition as teacher login
         Given I am logged in as a '<teacher>' at '<namespace>'

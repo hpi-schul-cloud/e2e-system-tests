@@ -2,10 +2,10 @@
 @stable_test
 @schedule_run
 @group-C
-@prio0-dev
-Feature: Room - Invite User to room via Invitationlink
+@prio_0-dev
+Feature: Rooms - Invite User to room via Invitation link
 
-    As a room owner, I want to invite a user to the room through an invitation link, so that I dont have to add every user manually.
+    As a room owner, I want to invite a user to the room through an invitation link, so that I don't have to add every user manually.
 
     Scenario Outline: Room Owner creates an invitation link, another teacher uses it, including pre-conditions
         Given I am logged in as a '<teacher_2>' at '<namespace>'
@@ -39,7 +39,6 @@ Feature: Room - Invite User to room via Invitationlink
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given the room named '<room_name>' is deleted
-
 
         @school_api_test
         Examples:

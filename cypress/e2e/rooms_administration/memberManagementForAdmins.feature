@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-F
-@prio0-dev
+@prio_0-dev
 Feature: Room Administration - Add room and manage its members via rooms administration page
 
     As a school admin I want to see the created rooms and edit its members via rooms administration page.

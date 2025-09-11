@@ -2,11 +2,14 @@
 @stable_test
 @group-C
 @schedule_run
+@prio_0-staging
 Feature: Course Board  - To add a preferred tool in a board
 
     As a teacher I want to add a preferred tool in my course board
 
     Scenario Outline: Teacher adds, edits and deletes tools in a course board
+
+        # pre-condition: creating users account and check ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_preferred>,<ctl_tool_preferred_param>'
@@ -63,10 +66,10 @@ Feature: Course Board  - To add a preferred tool in a board
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | course_name                        | fullname_teacher | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
-            | admin1_nbc | teacher1_nbc | nbc       | CypressAUT BoardWithPreferredTools | Karl Herzog      | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
+            | admin      | teacher      | namespace | course_name                           | fullname_teacher | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Board With Preferred Tools | Karl Herzog      | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | course_name                        | fullname_teacher  | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
-            | admin1_nbc | teacher1_nbc | nbc       | CypressAUT BoardWithPreferredTools | cypress teacher_1 | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
+            | admin      | teacher      | namespace | course_name                           | fullname_teacher  | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Board With Preferred Tools | cypress teacher_1 | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |

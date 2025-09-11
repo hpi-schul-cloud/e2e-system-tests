@@ -1,14 +1,14 @@
 @regression_test
 @stable_test
 @group_V
-
+@prio_0-staging
 Feature: Course - Copy Course with Topic and Task
 
     As a teacher I want to copy a course with a topic and task so that I can reuse the course content
 
     Scenario Outline: Teacher copies a course with topic and task
 
-        # pre-condition: Creating two teacher accounts
+        # pre-condition: creating users accounts
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -34,7 +34,7 @@ Feature: Course - Copy Course with Topic and Task
 
         # admin adds student to newly copied course
         Given I am logged in as a '<admin>' at '<namespace>'
-        Given student '<student_lastname>' is added to the course '<course_name_copy>'
+        Given student '<student_last_name>' is added to the course '<course_name_copy>'
 
         # student sees the copied course, task, and topic
         Given I am logged in as a '<student>' at '<namespace>'
@@ -52,10 +52,10 @@ Feature: Course - Copy Course with Topic and Task
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name  | task_name  | topic_text_title | course_name_copy | task_index_number | student_lastname |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | Mathe course | Mathe Task | Mathe Topic      | Mathe course (1) | 1                 | student_1        |
+            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name       | task_name       | topic_text_title | course_name_copy      | task_index_number | student_last_name |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | CypressAut Course | CypressAut Task | CypressAut Topic | CypressAut Course (1) | 1                 | student_1         |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name         | task_name         | topic_text_title   | course_name_copy        | task_index_number | student_lastname |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Karl Herzog       | Cypress Copy course | Cypress Copy Task | Cypress Copy Topic | Cypress Copy course (1) | 1                 | Kraft            |
+            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name         | task_name         | topic_text_title   | course_name_copy        | task_index_number | student_last_name |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Karl Herzog       | Cypress Copy course | Cypress Copy Task | Cypress Copy Topic | Cypress Copy course (1) | 1                 | Kraft             |

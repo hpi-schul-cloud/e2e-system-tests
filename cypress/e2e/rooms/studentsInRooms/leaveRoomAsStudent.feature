@@ -1,8 +1,8 @@
 @regression_test
 @stable_test
 @group-E
-
-Feature: Room - Leave room as a Student
+@prio_0-staging
+Feature: Rooms - Leave room as a Student
 
     As a student, I should be able to leave a room that I have been invited to, and after leaving, I should not see the room in my room overview.
 
@@ -64,7 +64,6 @@ Feature: Room - Leave room as a Student
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
-
 
         @school_api_test
         Examples:

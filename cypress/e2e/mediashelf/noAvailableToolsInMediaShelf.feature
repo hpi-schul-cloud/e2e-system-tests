@@ -2,7 +2,8 @@
 @stable_test
 @schedule_run
 @group-A
-Feature: No available tools in media shelf
+@prio_0-staging
+Feature: Media Shelf - No available tools in media shelf
 
     As a user I want to see the no longer available chip on media element in media shelf
 
@@ -40,7 +41,7 @@ Feature: No available tools in media shelf
         Then I see the media line menu
         When I click on delete media line button
         Then I see the first media line has been deleted
-        Then I see the no available media infotext
+        Then I see the no available media info text
 
         @staging_test
         Examples:

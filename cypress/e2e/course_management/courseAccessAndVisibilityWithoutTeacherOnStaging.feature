@@ -1,10 +1,10 @@
-@stable_test
-@regression_test
-@group-F
-
 # NOTE: This feature is only for staging due to a limitation in the admin API: it cannot create a new course without a teacher.
 # NOTE: The course without a teacher but with student should pre-exist in the staging environment.
 
+@stable_test
+@regression_test
+@group-F
+@prio_0-staging
 Feature: Course Management - Visibility of courses without a teacher assigned
 
     As an admin

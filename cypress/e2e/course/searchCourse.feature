@@ -1,13 +1,14 @@
 @stable_test
 @schedule_run
 @regression_test
+@prio_0-staging
 Feature: Course - To search for a course via search input box on the course overview page
 
     As a user (teacher & student) I want to search for dedicated course so that I can quickly find it.
 
     Scenario Outline: user creation, course creation, and search functionality
 
-        # pre-condition: creating all users and creating course
+        # pre-condition: creating all users
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -50,7 +51,7 @@ Feature: Course - To search for a course via search input box on the course over
         When I enter the course name '<nonexistent_course_name>' into the search field
         Then I do not see the course '<nonexistent_course_name>' on the course overview page
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<created_course_name>'
@@ -62,10 +63,10 @@ Feature: Course - To search for a course via search input box on the course over
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | created_course_name      | nonexistent_course_name         | fullname_teacher  | fullname_student  |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Search Course | Cy::NotExistingMathematikCourse | cypress teacher_1 | cypress student_1 |
+            | admin      | teacher      | student      | namespace | created_course_name      | nonexistent_course_name                    | fullname_teacher  | fullname_student  |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Search Course | CypressAut Not Existing Mathematics Course | cypress teacher_1 | cypress student_1 |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | created_course_name      | nonexistent_course_name         | fullname_teacher | fullname_student |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Search Course | Cy::NotExistingMathematikCourse | Karl Herzog      | Herbert Kraft    |
+            | admin      | teacher      | student      | namespace | created_course_name      | nonexistent_course_name                    | fullname_teacher | fullname_student |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Search Course | CypressAut Not Existing Mathematics Course | Karl Herzog      | Herbert Kraft    |

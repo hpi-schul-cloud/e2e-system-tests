@@ -1,9 +1,11 @@
 @regression_test
 @stable_test
 @group-F
-
-# note: this feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in another scenario.
-
+@prio_0-staging
+# NOTE: this feature can not be currently executed using the school API, as creating two different school
+#       within the same scenario is not possible. And creating them in two different scenarios results
+#       in separate sessions, which prevents the copied board URL from the first scenario
+#       from being used in another scenario.
 Feature: Topics - Teacher shares a topic to other teacher from different school to import it
 
     As a teacher I want to share a topic to other teachers from different school to import it
@@ -59,7 +61,6 @@ Feature: Topics - Teacher shares a topic to other teacher from different school 
         Given course with name '<course_name_1>' is deleted
         Given I am logged in as a '<teacherExt_2>' at '<namespace>'
         Given course with name '<course_name_2>' is deleted
-
 
         @staging_test
         Examples:

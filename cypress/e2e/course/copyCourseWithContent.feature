@@ -2,11 +2,13 @@
 @stable_test
 @group-C
 @schedule_run
+@prio_0-staging
 Feature: Course - Copy course
 
     As a Teacher I want to be able to copy a course so that I can reuse the course content
 
     Scenario Outline: Teacher copies a course
+
         # pre-condition: creating all users
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
@@ -40,7 +42,7 @@ Feature: Course - Copy course
         When I navigate to course administration page via the submenu
         Then I see the new course administration page
         When I click on the edit button of course '<course_name_copy>'
-        When I add the first student with search string '<searchstring_student>' to the course
+        When I add the first student with search string '<search_string_student>' to the course
         When I click on button Save changes in page Edit course
 
         # student sees the copied course
@@ -62,10 +64,10 @@ Feature: Course - Copy course
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name           | course_name_copy          | fullname_teacher  | fullname_student  | searchstring_student | board_title                   | folder_name         | image_file_name |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut CourseCopy | CypressAut CourseCopy (1) | cypress teacher_1 | cypress student_1 | student_1            | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher  | fullname_student  | search_string_student | board_title                   | folder_name         | image_file_name |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Course Copy | CypressAut Course Copy (1) | cypress teacher_1 | cypress student_1 | student_1             | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name           | course_name_copy          | fullname_teacher | fullname_student | searchstring_student | board_title                   | folder_name         | image_file_name |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut CourseCopy | CypressAut CourseCopy (1) | Karl Herzog      | Herbert Kraft    | Kraft                | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher | fullname_student | search_string_student | board_title                   | folder_name         | image_file_name |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Course Copy | CypressAut Course Copy (1) | Karl Herzog      | Herbert Kraft    | Kraft                 | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |

@@ -1,13 +1,14 @@
 @regression_test
 @stable_test
 @group-F
+@prio_0-staging
 Feature: Topics - Teacher shares a topic to other teacher from the same school to import it
 
     As a teacher I want to share a topic to other teachers from the same school to import it
 
     Scenario Outline: Teacher shares a topic to other teacher from the same school
 
-        # pre-condition: Creating two teacher accounts
+        # pre-condition: creating two teacher accounts
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 

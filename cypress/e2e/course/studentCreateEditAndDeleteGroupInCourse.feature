@@ -3,11 +3,12 @@
 @schedule_run
 @group-D
 @pr
+@prio_0-staging
 Feature: Course - Teacher can create, edit and delete a group in the course
 
     Scenario Outline: user creation, course creation, and creating,editing and deleting a group
 
-        # pre-condition: creating all users
+        # pre-condition: creating all users accounts (admin, teacher, students)
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<student2>' at '<namespace>'
@@ -42,7 +43,7 @@ Feature: Course - Teacher can create, edit and delete a group in the course
         When I click on tab Groups
         Then I see group name changed to '<group_rename>'
 
-        # student2 checks the group after editing
+        # student 2 checks the group after editing
         Given I am logged in as a '<student2>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -59,7 +60,7 @@ Feature: Course - Teacher can create, edit and delete a group in the course
         When I click on button Delete group confirmation
         Then I do not see group name '<group_rename>' in tab Course group
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given course with name '<course_name>' is deleted
 

@@ -3,6 +3,7 @@
 @schedule_test
 @group-A
 @pr
+@prio_0-staging
 Feature: Login Management - Login of users managed by SVS
 
     As a user, I want to login with username and password into SVS

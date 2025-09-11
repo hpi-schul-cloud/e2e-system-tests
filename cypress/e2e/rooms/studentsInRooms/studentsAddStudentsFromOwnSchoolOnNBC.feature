@@ -1,8 +1,8 @@
 @regression_test
 @stable_test
 @group-E
-
-Feature: Room - Students can only add students from their own classes to a room on NBC
+@prio_0-staging
+Feature: Rooms - Students can only add students from their own classes to a room on NBC
 
     As a student I can only add students from my own class to a room.
 

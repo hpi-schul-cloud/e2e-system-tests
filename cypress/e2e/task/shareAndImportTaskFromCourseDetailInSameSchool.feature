@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-F
-
+@prio_0-staging
 Feature: Task - Teacher shares a task with another teacher from the same school
 
     As a teacher
@@ -58,11 +58,11 @@ Feature: Task - Teacher shares a task with another teacher from the same school
         Then I see the task detail page
         Then I see the attached files in the task detail page
 
-        # post-condition: Teacher 1 deletes course
+        # post-condition: teacher 1 deletes course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given course with name '<course_name_source>' is deleted
 
-        # post-condition: Teacher 2 deletes course_name_target
+        # post-condition: teacher 2 deletes course
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given course with name '<course_name_target>' is deleted
 

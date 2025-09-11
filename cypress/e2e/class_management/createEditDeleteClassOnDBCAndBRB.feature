@@ -3,6 +3,7 @@
 @schedule_run
 @group-D
 @pr
+@prio_0-staging
 Feature:  Class Management - To create, edit and delete class on dBC or on BRB
 
     As a teacher, I want to create, edit and delete class, so that I can manage the class
@@ -39,7 +40,7 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
         When I click on the button Save on the page edit class
         Then I see the class '<edit_custom_class_name>' has '<number_of_students>' students
 
-        # teacher deletes the class
+        # post-condition: teacher deletes the class
         When I click on the delete button of class '<edit_custom_class_name>'
         When I click button Cancel on the delete modal of class administration page
         When I click on the delete button of class '<edit_custom_class_name>'

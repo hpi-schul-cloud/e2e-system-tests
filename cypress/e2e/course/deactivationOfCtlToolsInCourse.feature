@@ -2,11 +2,14 @@
 @stable_test
 @group-D
 @schedule_run
-Feature: Deactivation of ctl tools in course
+@prio_0-staging
+Feature: Course - Deactivation of ctl tools in course
 
     As a user I want to see deactivated und activated tools in a course
 
     Scenario Outline: Users see deactivated tool in course
+
+        # pre-condition: creating all users
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -67,7 +70,7 @@ Feature: Deactivation of ctl tools in course
         Then I see the tool '<ctl_tool_1>' in external tools table
         When I click on edit button of tool '<ctl_tool_1>'
         Then I see the school external tool configuration page
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         Then I see tool '<ctl_tool_1>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
@@ -119,7 +122,7 @@ Feature: Deactivation of ctl tools in course
         Then I see the tool '<ctl_tool_1>' is active in tools table
         Then I see the tool '<ctl_tool_2>' in external tools table
         When I click on edit button of tool '<ctl_tool_2>'
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         Then I see tool '<ctl_tool_2>' is selected
         When I activate the tool
         Then I see the deactivate checkbox is not checked
@@ -164,10 +167,10 @@ Feature: Deactivation of ctl tools in course
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher | fullname_student | course_name                       | ctl_tool_1     | ctl_tool_2     | ctl_tool_deactivated                   |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    | CypressAut ToolDeactivationCourse | CY Test Tool 1 | CY Test Tool 2 | CY Test Tool deactivated External Tool |
+            | admin      | teacher      | student      | namespace | fullname_teacher | fullname_student | course_name                         | ctl_tool_1     | ctl_tool_2     | ctl_tool_deactivated                   |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    | CypressAut Tool Deactivation Course | CY Test Tool 1 | CY Test Tool 2 | CY Test Tool deactivated External Tool |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher  | fullname_student  | course_name                       | ctl_tool_1     | ctl_tool_2     | ctl_tool_deactivated                   |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | cypress teacher_1 | cypress student_1 | CypressAut ToolDeactivationCourse | CY Test Tool 1 | CY Test Tool 2 | CY Test Tool deactivated External Tool |
+            | admin      | teacher      | student      | namespace | fullname_teacher  | fullname_student  | course_name                         | ctl_tool_1     | ctl_tool_2     | ctl_tool_deactivated                   |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | cypress teacher_1 | cypress student_1 | CypressAut Tool Deactivation Course | CY Test Tool 1 | CY Test Tool 2 | CY Test Tool deactivated External Tool |

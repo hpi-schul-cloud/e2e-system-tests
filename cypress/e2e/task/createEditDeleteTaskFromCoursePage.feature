@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
+@prio_0-staging
 Feature: Task - To create, edit and delete tasks by the teacher.
 
     As a teacher I want to create, edit and delete a new task on course page
@@ -146,7 +147,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         Then I see course page '<course_name>'
         Then I can not see content 'CypressAut Task Creating, Editing, Deleting Test'
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         When I open page Edit course
         When I click on the button delete course
         Then I see the modal to confirm the deletion

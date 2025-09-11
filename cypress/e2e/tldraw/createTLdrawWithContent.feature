@@ -2,6 +2,7 @@
 @schedule_run
 @stable_test
 @group-C
+@prio_0-staging
 Feature: TLDraw - Test tldraw on board
 
     Scenario Outline: I can create a whiteboard element and draw on it
@@ -10,7 +11,7 @@ Feature: TLDraw - Test tldraw on board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # pre-condition admin creates a course
+        # pre-condition: admin creates a course
         Given a course with name '<course_name>' exists with '<teacher_fullname>' as teacher and '<student_fullname>' as student
 
         # pre-condition: teacher creates a board with column and a card

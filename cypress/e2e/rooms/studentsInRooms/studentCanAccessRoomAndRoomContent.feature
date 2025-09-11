@@ -1,8 +1,8 @@
 @regression_test
 @stable_test
 @group-E
-
-Feature: Room - Student can access room content after being added to room via Add Members Dialog
+@prio_0-staging
+Feature: Rooms - Student can access room content after being added to room via Add Members Dialog
 
     As a room owner, when I add a student through the Add Members Dialog, the user should see the room in the room overview and access its content.
 
@@ -49,7 +49,7 @@ Feature: Room - Student can access room content after being added to room via Ad
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
-        # student is able to access the room content according to visiblity
+        # student is able to access the room content according to visibility
         When I go to room '<room_name>'
         Then I see multi-column board tile in the rooms details page
         Then I do not see single-column board tile in the room details page

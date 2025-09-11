@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-A
+@prio_0-staging
 Feature: Rooms - Share and import room with a teacher from the same school
 
     As a teacher, I want to Share and import a rooms board with another teacher within the same school so that I can collaborate effectively.

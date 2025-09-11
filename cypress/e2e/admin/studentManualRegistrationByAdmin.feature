@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
+@prio_0-staging
 Feature: Admin - Admin creates, manually register and deletes students
 
     As an admin, I want to perform the 4 CRUD operations and manual registration on students
@@ -16,14 +17,14 @@ Feature: Admin - Admin creates, manually register and deletes students
         When I go to '<role_to_manage>' administration
         When I click on FAB
         When I click on Add User in opened FAB for '<role_to_manage>'
-        When I fill out the user creation form for '<user_firstname>' '<user_lastname>' with email '<user_email>'
+        When I fill out the user creation form for '<user_first_name>' '<user_last_name>' with email '<user_email>'
         When I click on add button to add '<role_to_manage>'
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
 
         # admin manually registers the student
         When I am on the students management page
-        When I select student '<user_firstname>' with email '<user_email>'
+        When I select student '<user_first_name>' with email '<user_email>'
         When I click on the button Actions
         When I click on the option Manual Registration
         Then I see the page Manual Registration
@@ -54,23 +55,23 @@ Feature: Admin - Admin creates, manually register and deletes students
         When I arrive on the dashboard
         Then I see the dashboard
 
-        # admin deletes a student
+        # post-condition: admin deletes a student
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
-        When I click delete user button to delete user with lastname '<user_lastname>'
+        When I click delete user button to delete user with last name '<user_last_name>'
         When I click on delete button in pop up
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
         @school_api_test
         Examples:
-            | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
+            | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   |
+            | brb       | admin1_brb | student        | cypress         | student_admin_test | original_student_admin_users@cypress-mail.de |
 
         @staging_test
         Examples:
-            | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
+            | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   |
+            | brb       | admin1_brb | student        | cypress         | student_admin_test | original_student_admin_users@cypress-mail.de |

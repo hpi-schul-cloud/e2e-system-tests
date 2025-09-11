@@ -2,12 +2,15 @@
 @stable_test
 @group-D
 @schedule_run
+@prio_0-staging
 Feature: Teacher can share a course with ctl tools
 
     As a teacher I want to share a course with ctl tools to other teachers from the same school
 
     @stable_test
     Scenario Outline: Teacher shares course with ctl tools
+
+        # pre-condition: creating all users accounts and check ctl tools are available
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

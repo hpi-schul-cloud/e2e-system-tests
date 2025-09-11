@@ -2,8 +2,8 @@
 @stable_test
 @schedule_run
 @group-B
-@prio0-dev
-Feature: Share room board copy with files in file folder
+@prio_0-dev
+Feature: Room Board - Share room board copy with files in file folder
 
     As a content editor I want to copy a room board with files in file folder, so that the file folder and also the files inside are available in the new room board
 

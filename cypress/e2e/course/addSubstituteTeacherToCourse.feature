@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
+@prio_0-staging
 Feature: Course - Add substitute teacher to course
 
     As a teacher I want to add substitute teacher to the course.
@@ -41,7 +42,7 @@ Feature: Course - Add substitute teacher to course
         When I go to courses overview
         When I go to course '<course_name>'
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         Given I am logged in as a '<teacher1>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'

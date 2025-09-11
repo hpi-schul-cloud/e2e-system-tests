@@ -1,9 +1,11 @@
 @stable_test
 @regression_test
 @group-F
-
+@prio_0-staging
 # NOTE: This feature is only for staging due to a limitation in the admin API: it cannot create a new room without an owner.
-# NOTE: Room named 'cypress-room-without-teacher (please do not delete)' has no owner (teacher_1), but has three users with different roles (student_1 (role -Read), student_2 (role-Edit), teacher_2 (role-Administrator)) assigned to it on the staging environment.
+# NOTE: Room named 'cypress-room-without-teacher (please do not delete)' has no owner (teacher_1),
+#       but has three users with different roles (student_1 (role -Read), student_2 (role-Edit), teacher_2 (role-Administrator))
+#       assigned to it on the staging environment.
 # NOTE: Room admin page for school administrator is currently not active on staging.
 
 Feature: Room Administration - Visibility of rooms without an owner assigned

@@ -1,13 +1,14 @@
 @regression_test
 @stable_test
 @group_V
+@prio_0-staging
 Feature: Course - Teacher shares a course to other teacher from the same school
 
     As a teacher I want to share a course to other teachers from the same school
 
     Scenario Outline: Teacher shares a course to other teacher from the same school
 
-        # pre-condition: Creating two teacher accounts
+        # pre-condition: creating two teachers accounts
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -63,7 +64,7 @@ Feature: Course - Teacher shares a course to other teacher from the same school
         Then I see the qr code in the dialog box share course result
         Then I click on the button close in the dialog box share course result
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given course with name '<course_name_share>' is deleted
         Given I am logged in as a '<teacher_2>' at '<namespace>'
@@ -71,10 +72,10 @@ Feature: Course - Teacher shares a course to other teacher from the same school
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share                | task_name             | board_title            | task_title                      | topic_text_title       | course_name_import               |
-            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | CypressAut_Mathe course to share | CypressAut_Mathe Task | CypressAut_Mathe Board | CypressAut_Mathe task for Class | CypressAut_Mathe Topic | CypressAut_Mathe course imported |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share          | task_name       | board_title      | task_title                | topic_text_title | course_name_import         |
+            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | CypressAut course to share | CypressAut Task | CypressAut Board | CypressAut task for Class | CypressAut Topic | CypressAut course imported |
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share                | task_name             | board_title            | task_title                      | topic_text_title       | course_name_import               |
-            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | CypressAut_Mathe course to share | CypressAut_Mathe Task | CypressAut_Mathe Board | CypressAut_Mathe task for Class | CypressAut_Mathe Topic | CypressAut_Mathe course imported |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share          | task_name       | board_title      | task_title                | topic_text_title | course_name_import         |
+            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | CypressAut course to share | CypressAut Task | CypressAut Board | CypressAut task for Class | CypressAut Topic | CypressAut course imported |

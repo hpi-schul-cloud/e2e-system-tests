@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
+@prio_0-staging
 Feature: Room Board - Add, edit and delete element Text in the room board
 
     As a teacher, I want to add, edit, and delete an element Text on the room board, so that I can manage and update important notes efficiently.

@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-C
+@prio_0-staging
 Feature: Task - Teacher copies a task from Course overview without student submission
 
     As a teacher I want to create, copy, edit and delete a task from course overview
