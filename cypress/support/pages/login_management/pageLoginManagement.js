@@ -363,7 +363,7 @@ class Login_Management {
 			brb: Login_Management.#loginFormSelector,
 		};
 		const selectorForLoginForm =
-			loginFormSelectorMap[namespace] || Login_Management.#loginFormSelector;
+			loginFormSelectorMap[namespace] || loginFormSelectorMap.brb;
 		cy.get(selectorForLoginForm).should("be.visible");
 	}
 }
