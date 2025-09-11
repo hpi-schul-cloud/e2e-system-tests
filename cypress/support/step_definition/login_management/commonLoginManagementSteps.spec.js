@@ -10,3 +10,7 @@ Given("I am on the {string} login page", (namespace) => {
 When("I click on Forgot Password", () => {
 	loginManagement.clickOnForgotPassword();
 });
+
+Then("I see the login form on {string}", (namespace) => {
+	loginManagement.assertLoginFormIsVisible(namespace);
+});
