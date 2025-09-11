@@ -7,7 +7,7 @@ Feature: Login Management - Login of users managed by SVS
 
     As a user, I want to login with username and password into SVS
 
-    Scenario Outline: User makes a direct login with username and password
+    Scenario Outline: User '<user>' makes a direct login at '<namespace>' with username and password
 
         Given I am logged in as a '<user>' at '<namespace>'
         Then I see my initials '<initials>' in the dashboard
