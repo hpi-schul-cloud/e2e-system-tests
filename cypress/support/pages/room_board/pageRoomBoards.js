@@ -99,8 +99,7 @@ class RoomBoards {
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolDomainUrl =
-		'[data-testid="board-external-tool-element-domain"]';
+	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
 
 	verifyBettermarksToolNotInCards() {
 		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
@@ -519,7 +518,7 @@ class RoomBoards {
 	}
 
 	clickDeleteOptionInThreeDotMenu() {
-		cy.get(RoomBoards.#deleteOptionOnCardElementThreeDot).click();
+		cy.get(RoomBoards.#deleteOptionOnCardElementThreeDot).first().click();
 	}
 
 	verifyDeleteConfirmationDialogVisible() {

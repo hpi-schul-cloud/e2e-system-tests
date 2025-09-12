@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
 @group-F
+@prio_0-dev
 Feature: Room Board - Collabora read access (add, view, delete) with viewer permission
 
     As a teacher with view permission I want to open and view the existing collabora text file

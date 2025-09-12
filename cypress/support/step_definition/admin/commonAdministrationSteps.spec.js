@@ -48,12 +48,9 @@ When("I click edit {string} button for {string}", (role, email) => {
 	management.clickEditUserButton(role, email);
 });
 
-When(
-	"I click delete user button to delete user with last name '<user_last_name>'lastname {string}",
-	(surname) => {
-		management.deleteUser(surname);
-	}
-);
+When("I click delete user button to delete user with last name {string}", (surname) => {
+	management.deleteUser(surname);
+});
 
 When("I click on delete button in pop up", () => {
 	management.clickUserDeleteButtonInModal();
