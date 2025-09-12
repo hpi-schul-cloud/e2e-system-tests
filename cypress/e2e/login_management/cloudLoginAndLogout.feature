@@ -8,25 +8,35 @@ Feature: Login Management - Login of users managed by SVS
 
     As a user, I want to login with username and password into SVS
 
-    Scenario Outline: User makes a direct login with username and password
+    Scenario Outline: User '<user>' makes a direct login at '<namespace>' with username and password
 
-        Given I am logged in as a '<student>' at '<namespace>'
-        Then I log out
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        Then I log out
-        Given I am logged in as a '<admin>' at '<namespace>'
-        Then I log out
+        Given I am logged in as a '<user>' at '<namespace>'
+        Then I see my initials '<initials>' in the dashboard
+        When I log out
+        Then I see the login form on '<namespace>'
 
         @staging_test
         Examples:
-            | namespace | teacher      | admin      | student      |
-            | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |
-            | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
-            | brb       | teacher1_brb | admin1_brb | student1_brb |
+            | namespace | user         | initials |
+            | dbc       | student1_dbc | HK       |
+            | dbc       | teacher1_dbc | KH       |
+            | dbc       | admin1_dbc   | KP       |
+            | nbc       | student1_nbc | HK       |
+            | nbc       | teacher1_nbc | KH       |
+            | nbc       | admin1_nbc   | KP       |
+            | brb       | student1_brb | HK       |
+            | brb       | teacher1_brb | KH       |
+            | brb       | admin1_brb   | KP       |
 
         @school_api_test
         Examples:
-            | namespace | teacher      | admin      | student      |
-            | dbc       | teacher1_dbc | admin1_dbc | student1_dbc |
-            | nbc       | teacher1_nbc | admin1_nbc | student1_nbc |
-            | brb       | teacher1_brb | admin1_brb | student1_brb |
+            | namespace | user         | initials |
+            | dbc       | student1_dbc | cs       |
+            | dbc       | teacher1_dbc | ct       |
+            | dbc       | admin1_dbc   | ca       |
+            | nbc       | student1_nbc | cs       |
+            | nbc       | teacher1_nbc | ct       |
+            | nbc       | admin1_nbc   | ca       |
+            | brb       | student1_brb | cs       |
+            | brb       | teacher1_brb | ct       |
+            | brb       | admin1_brb   | ca       |

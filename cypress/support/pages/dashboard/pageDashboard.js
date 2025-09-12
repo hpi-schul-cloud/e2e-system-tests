@@ -34,6 +34,12 @@ class Dashboard {
 		cy.get(Dashboard.#initialsButton).should("be.visible");
 	}
 
+	assertNameInitialsIsVisibleWithValue(initials) {
+		cy.get(Dashboard.#initialsButton)
+			.should("be.visible")
+			.should("have.text", initials);
+	}
+
 	clickInitialsOfName() {
 		cy.get(Dashboard.#initialsButton)
 			.should("be.visible")
@@ -112,15 +118,21 @@ class Dashboard {
 
 	verifyLanguageChanged(language) {
 		if (language === "german") {
-			return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInGerman);
+			return this.assertLanguageUpdate(
+				Dashboard.#testAssertionData.overviewInGerman
+			);
 		}
 
 		if (language === "spanish") {
-			return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInSpanish);
+			return this.assertLanguageUpdate(
+				Dashboard.#testAssertionData.overviewInSpanish
+			);
 		}
 
 		if (language === "ukrainian") {
-			return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInUkrainian);
+			return this.assertLanguageUpdate(
+				Dashboard.#testAssertionData.overviewInUkrainian
+			);
 		}
 
 		return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInEnglish);
