@@ -95,7 +95,7 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: "@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }}"
+      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -115,7 +115,7 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: "@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }}"
+      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }} and @pr"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -131,12 +131,8 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser}}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:regression_test:{0}:manual_trigger:pre_check:ci',
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      tag:
+      environment: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @pre_check_test"'
       groups: pre-check
 
   run-only-tagged-tests:
@@ -151,7 +147,7 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: "@only"
+      tag: '"@only"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
 
@@ -171,6 +167,6 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: "@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and ${{ needs.e2e-system-tests.outputs.prio_tag }} and @${{ matrix.group }}"
+      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and ${{ needs.e2e-system-tests.outputs.prio_tag }} and @${{ matrix.group }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
