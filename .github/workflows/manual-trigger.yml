@@ -155,6 +155,30 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
 
+  # run-staging-tests:
+  #   name: Run staging tests
+  #   needs: e2e-system-tests
+  #   if: ${{ inputs.test_mode == 'staging tests' }}
+  #   uses: ./.github/workflows/main.yml
+  #   secrets:
+  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       environment_to_test: [ref, dev]
+  #   with:
+  #     cypress_brb: ${{ inputs.instance1 }}
+  #     cypress_dbc: ${{ inputs.instance3 }}
+  #     cypress_nbc: ${{ inputs.instance2 }}
+  #     browser: ${{ inputs.browser }}
+  #     tag: >-
+  #       ${{ matrix.environment_to_test == 'ref' &&
+  #           format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, 'group-A') ||
+  #           format('"{0}"', needs.e2e-system-tests.outputs.base_tag) }}
+  #     environment: ${{ matrix.environment_to_test }}
+  #     groups: >-
+  #       ${{ matrix.environment_to_test == 'ref' && 'group-A' || 'staging-dev-tests' }}
+
   run-staging-tests:
     name: Run staging tests
     needs: e2e-system-tests
@@ -165,16 +189,38 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        environment_to_test: [ref, dev]
+        include:
+          - environment_type: ref
+            group: group-A
+            tag_suffix: "@group-A"
+          - environment_type: ref
+            group: group-B
+            tag_suffix: "@group-B"
+          - environment_type: ref
+            group: group-C
+            tag_suffix: "@group-C"
+          - environment_type: ref
+            group: group-D
+            tag_suffix: "@group-D"
+          - environment_type: ref
+            group: group-E
+            tag_suffix: "@group-E"
+          - environment_type: ref
+            group: group-F
+            tag_suffix: "@group-F"
+          - environment_type: dev
+            group: staging-dev-tests
+            tag_suffix: ""
+        exclude:
+          - environment_type: ref
+            if: ${{ needs.e2e-system-tests.outputs.environment != 'ref' }}
+          - environment_type: dev
+            if: ${{ needs.e2e-system-tests.outputs.environment != 'dev' }}
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: >-
-        ${{ matrix.environment_to_test == 'ref' &&
-            format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, 'group-A') ||
-            format('"{0}"', needs.e2e-system-tests.outputs.base_tag) }}
-      environment: ${{ matrix.environment_to_test }}
-      groups: >-
-        ${{ matrix.environment_to_test == 'ref' && 'group-A' || 'staging-dev-tests' }}
+      tag: '"${{ needs.e2e-system-tests.outputs.base_tag }} ${{ matrix.tag_suffix }}"'
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: ${{ matrix.group }}
