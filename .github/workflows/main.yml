@@ -89,8 +89,7 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run cy:headless:stable:ci --
-            --env tags=${{ inputs.tag }},
-            parallelGroup=${{ inputs.groups }}
+            --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci
           browser: ${{ inputs.browser }}
 
       # - name: Clean Up Edge Process

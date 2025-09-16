@@ -131,8 +131,8 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser}}
-      tag:
-      environment: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @pre_check_test"'
+      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @pre_check_test"'
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: pre-check
 
   run-only-tagged-tests:
