@@ -155,61 +155,66 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
 
-  run-staging-tests:
-    name: Run staging tests
-    needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'staging tests' }}
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    strategy:
-      fail-fast: false
-      matrix:
-        group: ${{ needs.e2e-system-tests.outputs.environment == 'dev' && fromJSON('["all"]') || fromJSON('["group-A","group-B","group-C","group-D","group-E","group-F"]') }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      browser: ${{ inputs.browser }}
-      tag: >-
-        ${{ needs.e2e-system-tests.outputs.environment == 'ref' &&
-            format('"{} and @{}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) ||
-            format('"{}"', needs.e2e-system-tests.outputs.base_tag) }}
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
-
-  # run-staging-tests-ref:
-  #   name: Run staging tests (staging instance)
+  # run-staging-tests:
+  #   name: Run staging tests
   #   needs: e2e-system-tests
-  #   if: ${{ (inputs.test_mode == 'staging tests') && (needs.e2e-system-tests.outputs.environment == 'ref') }}
+  #   if: ${{ inputs.test_mode == 'staging tests' }}
   #   uses: ./.github/workflows/main.yml
   #   secrets:
   #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
   #   strategy:
-  #     matrix:
-  #       group: [group-A, group-B, group-C, group-D, group-E, group-F]
   #     fail-fast: false
+  #     matrix:
+  #       group: ${{ needs.e2e-system-tests.outputs.environment == 'dev' && fromJSON('["all"]') || fromJSON('["group-A","group-B","group-C","group-D","group-E","group-F"]') }}
   #   with:
   #     cypress_brb: ${{ inputs.instance1 }}
   #     cypress_dbc: ${{ inputs.instance3 }}
   #     cypress_nbc: ${{ inputs.instance2 }}
-  #     tag: ${{ format('"{} and @{}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) }}
   #     browser: ${{ inputs.browser }}
+  #     tag: >-
+  #       ${{ needs.e2e-system-tests.outputs.environment == 'ref' &&
+  #           format('"{} and @{}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) ||
+  #           format('"{}"', needs.e2e-system-tests.outputs.base_tag) }}
   #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
   #     groups: ${{ matrix.group }}
 
-  # run-staging-tests-dev:
-  #   name: Run staging tests (dev instance)
-  #   needs: e2e-system-tests
-  #   if: ${{ (inputs.test_mode == 'staging tests') && (needs.e2e-system-tests.outputs.environment == 'dev') }}
-  #   uses: ./.github/workflows/main.yml
-  #   secrets:
-  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-  #   with:
-  #     cypress_brb: ${{ inputs.instance1 }}
-  #     cypress_dbc: ${{ inputs.instance3 }}
-  #     cypress_nbc: ${{ inputs.instance2 }}
-  #     tag: ${{ format('"{}"', needs.e2e-system-tests.outputs.base_tag) }}
-  #     browser: ${{ inputs.browser }}
-  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
-  #     groups: staging-dev-tests
+  run-staging-tests-ref:
+    name: Run staging tests (staging instance)
+    needs: e2e-system-tests
+    if: |
+        inputs.test_mode == 'staging tests' &&
+        needs.e2e-system-tests.outputs.environment == 'ref'
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      matrix:
+        group: [group-A, group-B, group-C, group-D, group-E, group-F]
+      fail-fast: false
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: ${{ format('"{} and @{}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) }}
+      browser: ${{ inputs.browser }}
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: ${{ matrix.group }}
+
+  run-staging-tests-dev:
+    name: Run staging tests (dev instance)
+    needs: e2e-system-tests
+    if: |
+        inputs.test_mode == 'staging tests' &&
+        needs.e2e-system-tests.outputs.environment == 'dev'
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      tag: ${{ format('"{}"', needs.e2e-system-tests.outputs.base_tag) }}
+      browser: ${{ inputs.browser }}
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: staging-dev-tests
+
