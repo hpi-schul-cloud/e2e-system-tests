@@ -161,12 +161,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: [group-A, group-B, group-C, group-D, group-E, group-F]
+        group: ${{ needs.e2e-system-tests.outputs.environment == 'dev' && fromJSON('["all"]') || fromJSON('["group-A","group-B","group-C","group-D","group-E","group-F"]') }}
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and ${{ needs.e2e-system-tests.outputs.prio_tag }} and @${{ matrix.group }}"'
+      tag: "@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and ${{ needs.e2e-system-tests.outputs.prio_tag }}${{ needs.e2e-system-tests.outputs.environment == 'ref' && format(' and @{0}', matrix.group) || '' }}"
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
