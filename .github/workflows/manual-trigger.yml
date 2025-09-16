@@ -155,62 +155,26 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
 
-  set-staging-context:
-    name: Set Staging Context
-    runs-on: ubuntu-latest
+  run-staging-tests:
+    name: Run staging tests
     needs: e2e-system-tests
-    outputs:
-      is_ref_env: ${{ steps.set_context.outputs.is_ref_env }}
-      is_dev_env: ${{ steps.set_context.outputs.is_dev_env }}
-    steps:
-      - name: Set context variables
-        id: set_context
-        run: |
-          env_output="${{ needs.e2e-system-tests.outputs.environment }}"
-          if [ "$env_output" == "ref" ]; then
-            echo "is_ref_env=true" >> $GITHUB_OUTPUT
-            echo "is_dev_env=false" >> $GITHUB_OUTPUT
-          else
-            echo "is_ref_env=false" >> $GITHUB_OUTPUT
-            echo "is_dev_env=true" >> $GITHUB_OUTPUT
-          fi
-
-  run-staging-tests-ref:
-    name: Run staging tests (staging instance)
-    needs: [e2e-system-tests, set-staging-context]
-    if: |
-        inputs.test_mode == 'staging tests' &&
-        needs.set-staging-context.outputs.is_ref_env == 'true'
+    if: ${{ inputs.test_mode == 'staging tests' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     strategy:
-      matrix:
-        group: [group-A, group-B, group-C, group-D, group-E, group-F]
       fail-fast: false
+      matrix:
+        environment_to_test: [ref, dev]
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) }}
       browser: ${{ inputs.browser }}
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
-
-  run-staging-tests-dev:
-    name: Run staging tests (dev instance)
-    needs: [e2e-system-tests, set-staging-context]
-    if: |
-        inputs.test_mode == 'staging tests' &&
-        needs.set-staging-context.outputs.is_dev_env == 'true'
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: ${{ format('"{}"', needs.e2e-system-tests.outputs.base_tag) }}
-      browser: ${{ inputs.browser }}
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: staging-dev-tests
+      tag: >-
+        ${{ matrix.environment_to_test == 'ref' &&
+            format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, 'group-A') ||
+            format('"{0}"', needs.e2e-system-tests.outputs.base_tag) }}
+      environment: ${{ matrix.environment_to_test }}
+      groups: >-
+        ${{ matrix.environment_to_test == 'ref' && 'group-A' || 'staging-dev-tests' }}
