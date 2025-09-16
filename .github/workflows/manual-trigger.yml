@@ -158,7 +158,7 @@ jobs:
   run-staging-tests-ref:
     name: Run staging tests (staging instance)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'staging tests' && needs.e2e-system-tests.outputs.environment == 'ref' }}
+    if: ${{ (inputs.test_mode == 'staging tests') && (needs.e2e-system-tests.outputs.environment == 'ref') }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
@@ -178,7 +178,7 @@ jobs:
   run-staging-tests-dev:
     name: Run staging tests (dev instance)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'staging tests' && needs.e2e-system-tests.outputs.environment == 'dev' }}
+    if: ${{ (inputs.test_mode == 'staging tests') && (needs.e2e-system-tests.outputs.environment == 'dev') }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
