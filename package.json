@@ -26,6 +26,7 @@
 		"cy:headless:stable:regression_test:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci,parallelGroup=automatic",
 		"cy:headless:stable:regression_test:school_api_test:manual_trigger:ci": "xvfb-run cypress run --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=ci,parallelGroup=manual-trigger",
 		"cy:headless:stable:regression_test:school_api_test:manual_trigger:pre_check:ci": "xvfb-run cypress run --browser edge -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=ci,parallelGroup=pre-check",
+		"cy:headless:stable:ci": "xvfb-run cypress run -e environmentName=ci",
 		"cy:headless:stable:pr:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@pr and @stable_test and @school_api_test\",environmentName=ci",
 		"cy:headless:stable:group-A:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-A and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-A",
 		"cy:headless:stable:group-B:school_api_test:ci": "xvfb-run cypress run --browser edge -e tags=\"@group-B and @stable_test and @school_api_test\",environmentName=ci,parallelGroup=group-B",

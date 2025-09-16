@@ -11,7 +11,17 @@ on:
           - tests for pull requests (PR)
           - pre-check release tests
           - run selective tests (@only)
+          - staging tests
         default: "tests for pull requests (PR)"
+      browser:
+        description: "Select browser"
+        required: false
+        type: choice
+        options:
+          - edge
+          - chrome
+          - electron
+        default: edge
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
@@ -43,12 +53,25 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-          if [[ ! "${{ inputs.instance1 }}" =~ (staging|schulportal) && \
-                ! "${{ inputs.instance2 }}" =~ (staging|schulportal) && \
-                ! "${{ inputs.instance3 }}" =~ (staging|schulportal) ]]; then
-              echo "environment=dev" >> $GITHUB_OUTPUT
+          if [[ "${{ inputs.instance1 }}" =~ (staging|schulportal) || \
+                "${{ inputs.instance2 }}" =~ (staging|schulportal) || \
+                "${{ inputs.instance3 }}" =~ (staging|schulportal) ]]; then
+            env_type="ref"
+            tag_env="@staging_test"
           else
-              echo "environment=ref" >> $GITHUB_OUTPUT
+            env_type="dev"
+            tag_env="@school_api_test"
+          fi
+
+          echo "environment=$env_type" >> $GITHUB_OUTPUT
+          echo "tag_env=$tag_env" >> $GITHUB_OUTPUT
+
+          if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
+            if [[ "$env_type" == "ref" ]]; then
+              echo "prio_tag=@prio_0_staging" >> $GITHUB_OUTPUT
+            else
+              echo "prio_tag=@prio_0_dev" >> $GITHUB_OUTPUT
+            fi
           fi
 
   run-all-tests:
@@ -66,12 +89,8 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:{0}:{1}:ci',
-          matrix.group,
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      browser: ${{ inputs.browser }}
+      tag: "@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }}"
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -90,12 +109,8 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:{0}:{1}:ci',
-          matrix.group,
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      browser: ${{ inputs.browser }}
+      tag: "@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }}"
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -110,6 +125,7 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
+      browser: ${{ inputs.browser}}
       tag: >-
         ${{ format(
           'cy:headless:stable:regression_test:{0}:manual_trigger:pre_check:ci',
@@ -129,6 +145,27 @@ jobs:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:only:ci
+      browser: ${{ inputs.browser }}
+      tag: "@only"
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
+
+  run-staging-tests:
+    name: Run staging tests
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'staging tests' }}
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group: [group-A, group-B, group-C, group-D, group-E, group-F]
+    with:
+      cypress_brb: ${{ inputs.instance1 }}
+      cypress_dbc: ${{ inputs.instance3 }}
+      cypress_nbc: ${{ inputs.instance2 }}
+      browser: ${{ inputs.browser }}
+      tag: "@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and ${{ needs.e2e-system-tests.outputs.prio_tag }} and @${{ matrix.group }}"
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: ${{ matrix.group }}
