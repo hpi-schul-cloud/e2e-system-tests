@@ -40,6 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
+      tag_env: ${{ steps.set_variables.outputs.tag_env }}
+      prio_tag: ${{ steps.set_variables.outputs.prio_tag }}
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -66,13 +68,16 @@ jobs:
           echo "environment=$env_type" >> $GITHUB_OUTPUT
           echo "tag_env=$tag_env" >> $GITHUB_OUTPUT
 
+          prio_tag=""
           if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
             if [[ "$env_type" == "ref" ]]; then
-              echo "prio_tag=@prio_0_staging" >> $GITHUB_OUTPUT
+              prio_tag="@prio_0-staging"
             else
-              echo "prio_tag=@prio_0_dev" >> $GITHUB_OUTPUT
+              prio_tag="@prio_0-dev"
             fi
           fi
+
+          echo "prio_tag=$prio_tag" >> $GITHUB_OUTPUT
 
   run-all-tests:
     name: Run all regression tests
