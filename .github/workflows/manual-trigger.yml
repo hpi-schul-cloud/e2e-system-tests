@@ -171,6 +171,6 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: "${{ needs.e2e-system-tests.outputs.environment == 'ref' && format('{} and @{}', needs.e2e-system-tests.outputs.base_tag, matrix.group) || needs.e2e-system-tests.outputs.base_tag }}"
+      tag: ${{ needs.e2e-system-tests.outputs.environment == 'ref' && format('"{} and @{}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) || format('"{}"', needs.e2e-system-tests.outputs.base_tag) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
