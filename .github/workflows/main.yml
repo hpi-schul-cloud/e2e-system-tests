@@ -89,7 +89,7 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: npm run cy:headless:stable:ci --
-            --env tags="@stable_test and ${{ inputs.tag }} and ${{ inputs.groups }}",
+            --env tags="${{ inputs.tag }}",
             parallelGroup=${{ inputs.groups }}
           browser: ${{ inputs.browser }}
 
