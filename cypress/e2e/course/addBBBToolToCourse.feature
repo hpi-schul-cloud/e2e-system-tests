@@ -56,7 +56,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         Then I see the BBB Video Conference BigBlueButton in the course
         When I click on the BBB Video Conference BigBlueButton in the course
         Then I see the modal to start the BBB video conference
-        When I click outside the dialog box
+        When I click outside the BBB dialog box
         Then I see the BBB Video Conference BigBlueButton in the course
         When I click on the BBB Video Conference BigBlueButton in the course
         Then I see the modal to start the BBB video conference
