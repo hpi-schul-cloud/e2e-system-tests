@@ -85,7 +85,7 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run cy:headless:stable:ci --
             --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci
-          browser: ${{ inputs.browser }}
+            --browser ${{ inputs.browser }}
 
       - name: Generate Report
         if: always()
