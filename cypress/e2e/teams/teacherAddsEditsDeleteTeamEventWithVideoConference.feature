@@ -27,7 +27,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I click on button Add Team on the teams overview page
         Then I see new team creation page
         When I enter in the title '<team_title>'
-        Then I click on button Create Team on the team creation page
+        When I click on button Create Team on the team creation page
         When I go to teams overview
         When I go to a team '<team_title>'
         When I click on team settings

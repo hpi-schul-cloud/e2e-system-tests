@@ -85,3 +85,19 @@ When("I click on news tab on the team detail page", () => {
 When("I click on create news button", () => {
 	teams.clickOnCreateNewsOnTeamDetailPage();
 });
+
+When("I click on button Create Team on the team creation page", () => {
+	teams.clickOnAddButtonToCreateTeam();
+});
+
+When("I enter in the title {string}", (teamName) => {
+	teams.enterTeamName(teamName);
+});
+
+When("I click on button Add Team on the teams overview page", () => {
+	teams.clickOnAddTeam();
+});
+
+When("I go to calendar tab", () => {
+	teams.goToTeamsCalendarTab();
+});

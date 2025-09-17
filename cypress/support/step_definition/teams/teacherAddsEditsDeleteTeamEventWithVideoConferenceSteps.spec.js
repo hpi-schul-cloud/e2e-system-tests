@@ -11,10 +11,6 @@ const teams = new Teams();
 // -\step_definition\administration\commonAdministrationSteps.spec.js
 // -\step_definition\teams\commonTeamsSteps.spec.js
 
-When("I go to calendar tab", () => {
-	teams.goToTeamsCalendarTab();
-});
-
 When("I click on Add date", () => {
 	teams.clickOnAddTeamsAppointment();
 });
