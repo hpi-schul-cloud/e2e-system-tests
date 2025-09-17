@@ -44,6 +44,22 @@ Given(
 	}
 );
 
+Given("student visibility for teachers is enabled", () => {
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickGeneralSettingsPanel();
+	management.toggleStudentVisibilityForTeachersByAdmin(true);
+	management.clickOnAdminSettingsSave();
+});
+
+Given("student visibility for teachers is disabled", () => {
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickGeneralSettingsPanel();
+	management.toggleStudentVisibilityForTeachersByAdmin(false);
+	management.clickOnAdminSettingsSave();
+});
+
 Given(
 	"task {string} with submission date exists in course {string}",
 	(taskTitle, courseName) => {
@@ -146,6 +162,57 @@ Given("a multi-column board named {string} exists in the room", (board_title) =>
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 	roomBoards.seeUpdatedRoomBoardTitle(board_title);
 });
+
+Given(
+	"a room named {string} with a multi-column board named {string} exists",
+	(room_name, board_title) => {
+		rooms.navigateToRoomsOverview();
+		rooms.clickOnCreateRoomFAB();
+		rooms.showRoomCreationPage();
+		rooms.fillRoomFormName(room_name);
+		rooms.selectRoomColour();
+		rooms.submitRoom();
+		rooms.seeRoomDetailPage(room_name);
+		rooms.clickOnAddContentButton();
+		rooms.seeFabButtonToAddBoard();
+		rooms.clickOnFabButtonToAddBoard();
+		roomBoards.seeColumnBoardDialogBox();
+		roomBoards.clickOnButtonToAddMultiColumnBoard();
+		roomBoards.seeNewRoomBoardCreatePage();
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		roomBoards.clickOnEditInBoardMenu();
+		roomBoards.enterRoomBoardTitle(board_title);
+		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+		roomBoards.seeUpdatedRoomBoardTitle(board_title);
+	}
+);
+
+Given(
+	"a room named {string} with a multi-column board named {string} exists and published",
+	(room_name, board_title) => {
+		rooms.navigateToRoomsOverview();
+		rooms.clickOnCreateRoomFAB();
+		rooms.showRoomCreationPage();
+		rooms.fillRoomFormName(room_name);
+		rooms.selectRoomColour();
+		rooms.submitRoom();
+		rooms.seeRoomDetailPage(room_name);
+		rooms.clickOnAddContentButton();
+		rooms.seeFabButtonToAddBoard();
+		rooms.clickOnFabButtonToAddBoard();
+		roomBoards.seeColumnBoardDialogBox();
+		roomBoards.clickOnButtonToAddMultiColumnBoard();
+		roomBoards.seeNewRoomBoardCreatePage();
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		roomBoards.clickOnEditInBoardMenu();
+		roomBoards.enterRoomBoardTitle(board_title);
+		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+		roomBoards.seeUpdatedRoomBoardTitle(board_title);
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		board.clickOnKebabMenuAction("publish");
+		roomBoards.verifyDraftChipNotVisible();
+	}
+);
 
 Given("a single-column board named {string} exists in the room", (board_title) => {
 	rooms.clickOnAddContentButton();
@@ -443,6 +510,48 @@ Given(
 		rooms.fillParticipantFormName(participantName);
 		rooms.selectParticipantName();
 		rooms.addParticipant();
+	}
+);
+
+Given(
+	"{string} added in the room named {string} with role {string}",
+	(participantName, roomName, role) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.selectRoomRoleFromDropdownMenu(role);
+		rooms.seeRoleOfParticipant(role);
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(participantName);
+	}
+);
+
+Given(
+	"{string} added in the room named {string} with role {string} and granted {string} permission",
+	(participantName, roomName, role, permission) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.selectRoomRoleFromDropdownMenu(role);
+		rooms.seeRoleOfParticipant(role);
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(participantName);
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
+		rooms.clickOnButtonActionMenuInSubMenu("Change-Permission");
+		rooms.changeRoleOfTheUser(permission);
+		rooms.confirmChangeRoleModalActions("Confirm", "Role");
 	}
 );
 
