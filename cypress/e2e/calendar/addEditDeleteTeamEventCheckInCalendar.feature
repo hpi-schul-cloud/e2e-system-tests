@@ -33,7 +33,7 @@ Feature: Calendar - create an event in a team and check in calendar
 
 
         # Edit team event and check in calendary
-        When I click on edit icon
+        When I click on icon Edit event
         Then I see event creation modal
         When I change the title to '<event_title_1>'
         When I change the description to '<event_description_1>'
@@ -49,7 +49,7 @@ Feature: Calendar - create an event in a team and check in calendar
         Then I am in calendar tab on team detail page and title '<event_title_1>' is visible
 
         # Delete team event and check in calendary
-        When I click on edit icon
+        When I click on icon Edit event
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
 

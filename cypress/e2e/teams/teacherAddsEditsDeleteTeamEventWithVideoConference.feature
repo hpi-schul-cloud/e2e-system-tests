@@ -87,14 +87,14 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I go to teams overview
         When I go to a team '<team_title>'
         When I go to calendar tab
-        When I click on edit icon
+        When I click on icon Edit event
         When I change the title to '<event_title_edited>'
         When I change the description to '<event_description_edited>'
         When I change the event place to 'edit cy test place cy'
         When I click on button Save team event changes
         Then I see team event with description '<event_description_edited>'
         Then I see video icon for team event
-        When I click on edit icon
+        When I click on icon Edit event
         Then I see event creation modal
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible

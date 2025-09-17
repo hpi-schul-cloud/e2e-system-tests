@@ -11,18 +11,6 @@ const teams = new Teams();
 // -\step_definition\administration\commonAdministrationSteps.spec.js
 // -\step_definition\teams\commonTeamsSteps.spec.js
 
-When("I click on Add date", () => {
-	teams.clickOnAddTeamsAppointment();
-});
-
-Then("I see event creation modal", () => {
-	teams.seeTeamEventCreationModal();
-});
-
-When("I enter the title {string}", (eventTitle) => {
-	teams.enterTeamEventTitle(eventTitle);
-});
-
 When("I select the team event start date and time", () => {
 	teams.selectTeamEventStartDate();
 });
@@ -31,59 +19,12 @@ When("I select the team event end date and time", () => {
 	teams.selectTeamEventEndDate();
 });
 
-When("I enter the description {string}", (eventDescription) => {
-	teams.enterTeamEventDescription(eventDescription);
-});
-
-When("I enter the event place {string}", (eventPlace) => {
-	teams.enterTeamEventPlace(eventPlace);
-});
-
-When("I click on button Save team event changes", () => {
-	teams.clickOnSaveTeamEvent();
-});
-
-When("I click on Save team event button", () => {
-	teams.clickOnSaveToCreateNewTeamEvent();
-});
-
-Then(
-	"I am in calendar tab on team detail page and title {string} is visible",
-	(eventTitle) => {
-		teams.seeTeamEventTitleIsVisible(eventTitle);
-	}
-);
-
-When("I click on edit icon", () => {
-	teams.clickOnTeamsEventEditOption();
-});
-
-When("I change the title to {string}", (editedEventTitle) => {
-	teams.editTeamEventTitle(editedEventTitle);
-});
-
-When("I change the description to {string}", (editedEventDescription) => {
-	teams.editTeamEventDescription(editedEventDescription);
-});
-
-When("I change the event place to {string}", (editedEventPlace) => {
-	teams.editTeamEventPlace(editedEventPlace);
-});
-
 Then(
 	"I am in calendar tab on team detail page and edited title is visible",
 	(editedEventTitle) => {
 		teams.editedTeamEventTitleIsVisible(editedEventTitle);
 	}
 );
-
-When("I click on Delete team event in modal", () => {
-	teams.deleteTeamEvent();
-});
-
-Then("I am in calendar tab on team detail page and title is NOT visible", () => {
-	teams.doNotSeeTeamEventTitle();
-});
 
 When("I enable the video conference on the teams edit page", () => {
 	teams.enableVideoConferenceOnTeamEditPage();
