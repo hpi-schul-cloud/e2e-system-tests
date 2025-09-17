@@ -3,6 +3,13 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
+Then(
+	"I see the same date of birth for student in the user table which is assigned while creating the student user",
+	() => {
+		management.seeTheAssignedBirthDateInUserTable();
+	}
+);
+
 Then("I logout from the application", () => {
 	management.logoutFromApplication();
 });
