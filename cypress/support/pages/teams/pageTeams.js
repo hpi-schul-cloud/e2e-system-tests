@@ -72,7 +72,7 @@ class Teams {
 	static #videoConferenceNotStartedIcon =
 		'[data-testid="video-conference-not-started-info-icon"]';
 	static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]';
-	static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]';
+	static #teamEventTitleOnCalendarTab = '[data-testid="team-event-calender-title"]';
 	static #teamsMembersOverviewPageTitle = '[id="page-title"]';
 	static #saveEventButton = '[data-testid="submit-btn-create-event-modal"]';
 
@@ -153,7 +153,7 @@ class Teams {
 	}
 
 	doNotSeeTeamEventTitle() {
-		cy.get(Teams.#teamEventTitleOnCalanderTab).should("not.exist");
+		cy.get(Teams.#teamEventTitleOnCalendarTab).should("not.exist");
 	}
 
 	deleteTeamEvent() {
@@ -165,7 +165,7 @@ class Teams {
 	}
 
 	editedTeamEventTitleIsVisible() {
-		cy.get(Teams.#teamEventTitleOnCalanderTab).should("be.exist");
+		cy.get(Teams.#teamEventTitleOnCalendarTab).should("be.exist");
 	}
 
 	editTeamEventDescription(editedEventDescription) {
@@ -178,6 +178,7 @@ class Teams {
 
 	editTeamEventTitle(editedEventTitle) {
 		cy.get(Teams.#teamEditEventTitleInput).clear().type(editedEventTitle);
+		cy.wait(1000);
 	}
 
 	clickOnTeamsEventEditOption() {
@@ -185,7 +186,7 @@ class Teams {
 	}
 
 	seeTeamEventTitleIsVisible(eventTitle) {
-		cy.get(Teams.#teamEventTitleOnCalanderTab).contains(eventTitle);
+		cy.get(Teams.#teamEventTitleOnCalendarTab).contains(eventTitle);
 	}
 
 	clickOnSaveTeamEvent() {

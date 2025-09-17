@@ -39,7 +39,7 @@ When("I enter the event place {string}", (eventPlace) => {
 	teams.enterTeamEventPlace(eventPlace);
 });
 
-When("I click on button Save team event", () => {
+When("I click on button Save team event changes", () => {
 	teams.clickOnSaveTeamEvent();
 });
 

@@ -91,7 +91,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I change the title to '<event_title_edited>'
         When I change the description to '<event_description_edited>'
         When I change the event place to 'edit cy test place cy'
-        When I click on button Save team event
+        When I click on button Save team event changes
         Then I see team event with description '<event_description_edited>'
         Then I see video icon for team event
         When I click on edit icon

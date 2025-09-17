@@ -40,7 +40,7 @@ Feature: Calendar - create an event in a team and check in calendar
         When I change start time to '<event_start_time_1>'
         When I change end time to '<event_end_time_1>'
         When I change the event place to '<event_place_1>'
-        When I click on Save team event button
+        When I click on button Save team event changes
         When I go to calendar tab
         Then I am in calendar tab on team detail page and title '<event_title_1>' is visible
         When I go to calendar overview
@@ -49,12 +49,12 @@ Feature: Calendar - create an event in a team and check in calendar
         Then I am in calendar tab on team detail page and title '<event_title_1>' is visible
 
         # Delete team event and check in calendary
-        # When I click on edit icon event '<event_title_1>'
-        # Then I see event creation modal
-        # When I click on Delete team event in modal
-        # Then I am in calendar tab on team detail page and title is NOT visible
-        # When I go to calendar overview
-        # Then I do not see '<event_title_1>' event in calendar
+        When I click on edit icon
+        When I click on Delete team event in modal
+        Then I am in calendar tab on team detail page and title is NOT visible
+
+        # Postcondition
+        Given team with name '<team>' is deleted
 
         @school_api_test
         @staging_test
