@@ -244,7 +244,7 @@ jobs:
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
       tag: >-
-        ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, 'group-A') }}
+        ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, matrix.groups) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: >-
         ${{ matrix.groups }}
