@@ -79,11 +79,6 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run pretest
 
-      # - name: Start Edge (Headless)
-      #   run: |
-      #     nohup microsoft-edge-stable --headless --no-sandbox &
-      #     echo $! > edge_pid
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
@@ -91,14 +86,6 @@ jobs:
           command: npm run cy:headless:stable:ci --
             --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci
           browser: ${{ inputs.browser }}
-
-      # - name: Clean Up Edge Process
-      #   if: always()
-      #   run: |
-      #     if [ -f edge_pid ]; then
-      #       kill $(cat edge_pid) || true
-      #       rm edge_pid
-      #     fi
 
       - name: Generate Report
         if: always()

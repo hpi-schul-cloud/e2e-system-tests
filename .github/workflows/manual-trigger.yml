@@ -21,6 +21,7 @@ on:
           - edge
           - chrome
           - electron
+          - firefox
         default: edge
       instance1:
         description: "Please enter a valid BRB instance URL to run the tests on"
@@ -40,15 +41,17 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
-      tag_env: ${{ steps.set_variables.outputs.tag_env }}
-      prio_tag: ${{ steps.set_variables.outputs.prio_tag }}
-      base_tag: ${{ steps.set_variables.outputs.base_tag }}
       matrix_groups: ${{ steps.set_variables.outputs.matrix_groups }}
+      all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
+      selective_tests_tag: ${{ steps.set_variables.outputs.selective_tests_tag }}
+      pre_check_tag: ${{ steps.set_variables.outputs.pre_check_tag }}
+      only_tagged_tag: ${{ steps.set_variables.outputs.only_tagged_tag }}
+      staging_base_tag: ${{ steps.set_variables.outputs.staging_base_tag }}
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -69,10 +72,6 @@ jobs:
             matrix_groups='["staging-dev-tests"]'
           fi
 
-          echo "environment=$env_type" >> $GITHUB_OUTPUT
-          echo "tag_env=$tag_env" >> $GITHUB_OUTPUT
-          echo "matrix_groups=$matrix_groups" >> $GITHUB_OUTPUT
-
           prio_tag=""
           if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
             if [[ "$env_type" == "ref" ]]; then
@@ -82,10 +81,13 @@ jobs:
             fi
           fi
 
-          echo "prio_tag=$prio_tag" >> $GITHUB_OUTPUT
-
-          tag="@stable_test and $tag_env and $prio_tag"
-          echo "base_tag=$tag" >> $GITHUB_OUTPUT
+          echo "environment=$env_type" >> $GITHUB_OUTPUT
+          echo "matrix_groups=$matrix_groups" >> $GITHUB_OUTPUT
+          echo "all_tests_tag=@stable_test and $tag_env" >> $GITHUB_OUTPUT
+          echo "selective_tests_tag=@stable_test and $tag_env and @pr" >> $GITHUB_OUTPUT
+          echo "pre_check_tag=@stable_test and $tag_env and @pre_check_test" >> $GITHUB_OUTPUT
+          echo "only_tagged_tag=@only" >> $GITHUB_OUTPUT
+          echo "staging_base_tag=@stable_test and $tag_env and $prio_tag" >> $GITHUB_OUTPUT
 
   run-all-tests:
     name: Run all regression tests
@@ -103,7 +105,7 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }}"'
+      tag: '"${{ needs.e2e-system-tests.outputs.all_tests_tag }} and @${{ matrix.group }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -123,7 +125,7 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @${{ matrix.group }} and @pr"'
+      tag: '"${{ needs.e2e-system-tests.outputs.selective_tests_tag }} and @${{ matrix.group }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -139,7 +141,7 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser}}
-      tag: '"@stable_test and ${{ needs.e2e-system-tests.outputs.tag_env }} and @pre_check_test"'
+      tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: pre-check
 
@@ -155,120 +157,9 @@ jobs:
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
-      tag: '"@only"'
+      tag: '"${{ needs.e2e-system-tests.outputs.only_tagged_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
-
-  # this one works but run both options
-  # run-staging-tests:
-  #   name: Run staging tests
-  #   needs: e2e-system-tests
-  #   if: ${{ inputs.test_mode == 'staging tests' }}
-  #   uses: ./.github/workflows/main.yml
-  #   secrets:
-  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       environment_to_test: [ref, dev]
-  #   with:
-  #     cypress_brb: ${{ inputs.instance1 }}
-  #     cypress_dbc: ${{ inputs.instance3 }}
-  #     cypress_nbc: ${{ inputs.instance2 }}
-  #     browser: ${{ inputs.browser }}
-  #     tag: >-
-  #       ${{ matrix.environment_to_test == 'ref' &&
-  #           format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, 'group-A') ||
-  #           format('"{0}"', needs.e2e-system-tests.outputs.base_tag) }}
-  #     environment: ${{ matrix.environment_to_test }}
-  #     groups: >-
-  #       ${{ matrix.environment_to_test == 'ref' && 'group-A' || 'staging-dev-tests' }}
-
-  # run-staging-tests:
-  #   name: Run staging tests
-  #   needs: e2e-system-tests
-  #   if: ${{ inputs.test_mode == 'staging tests' }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       include:
-  #         # ref groups
-  #         - environment: ref
-  #           group: group-A
-  #           tag_suffix: "@group-A"
-  #         - environment: ref
-  #           group: group-B
-  #           tag_suffix: "@group-B"
-  #         - environment: ref
-  #           group: group-C
-  #           tag_suffix: "@group-C"
-  #         - environment: ref
-  #           group: group-D
-  #           tag_suffix: "@group-D"
-  #         - environment: ref
-  #           group: group-E
-  #           tag_suffix: "@group-E"
-  #         - environment: ref
-  #           group: group-F
-  #           tag_suffix: "@group-F"
-  #         # dev group
-  #         - environment: dev
-  #           group: staging-dev-tests
-  #           tag_suffix: ""
-  #   uses: ./.github/workflows/main.yml
-  #   secrets:
-  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-  #   with:
-  #     cypress_brb: ${{ inputs.instance1 }}
-  #     cypress_dbc: ${{ inputs.instance3 }}
-  #     cypress_nbc: ${{ inputs.instance2 }}
-  #     browser: ${{ inputs.browser }}
-  #     tag: '"${{ needs.e2e-system-tests.outputs.base_tag }} ${{ matrix.tag_suffix }}"'
-  #     environment: ${{ matrix.environment }}
-  #     groups: ${{ matrix.group }}
-  #   if: ${{ matrix.environment == needs.e2e-system-tests.outputs.environment }}
-
-  # this one works so keep it
-  # run-staging-tests:
-  #   name: Run staging tests (ref tests)
-  #   needs: e2e-system-tests
-  #   if: ${{ inputs.test_mode == 'staging tests' && contains(needs.e2e-system-tests.outputs.environment, 'ref') }}
-  #   uses: ./.github/workflows/main.yml
-  #   secrets:
-  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       groups: [group-A, group-B, group-C, group-D, group-E, group-F]
-  #   with:
-  #     cypress_brb: ${{ inputs.instance1 }}
-  #     cypress_dbc: ${{ inputs.instance3 }}
-  #     cypress_nbc: ${{ inputs.instance2 }}
-  #     browser: ${{ inputs.browser }}
-  #     tag: >-
-  #       ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, matrix.groups) }}
-  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
-  #     groups: >-
-  #       ${{ matrix.groups }}
-
-  # run-staging-dev-tests:
-  #   name: Run staging tests (dev tests)
-  #   needs: e2e-system-tests
-  #   if: ${{ inputs.test_mode == 'staging tests' && contains(needs.e2e-system-tests.outputs.environment, 'dev') }}
-  #   uses: ./.github/workflows/main.yml
-  #   secrets:
-  #     service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-  #   with:
-  #     cypress_brb: ${{ inputs.instance1 }}
-  #     cypress_dbc: ${{ inputs.instance3 }}
-  #     cypress_nbc: ${{ inputs.instance2 }}
-  #     browser: ${{ inputs.browser }}
-  #     tag: >-
-  #       ${{ format('"{0}"', needs.e2e-system-tests.outputs.base_tag) }}
-  #     environment: ${{ needs.e2e-system-tests.outputs.environment }}
-  #     groups: 'staging-dev-tests'
-
-
   run-staging-tests:
     name: Run staging tests
     needs: e2e-system-tests
@@ -287,7 +178,7 @@ jobs:
       browser: ${{ inputs.browser }}
       tag: >-
         ${{ matrix.group == 'staging-dev-tests'
-          && format('"{0}"', needs.e2e-system-tests.outputs.base_tag)
-          || format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) }}
+        && format('"{0}"', needs.e2e-system-tests.outputs.staging_base_tag)
+        || format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
