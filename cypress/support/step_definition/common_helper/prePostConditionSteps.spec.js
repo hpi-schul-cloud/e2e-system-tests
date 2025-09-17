@@ -24,6 +24,55 @@ const topics = new Topics();
 const teams = new Teams();
 
 Given(
+	"topic {string} with contents exists in the course {string}",
+	(topic_name, course_name) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(course_name);
+		courses.clickOnCreateContentFAB();
+		topics.seeEditTopicPage("_");
+		topics.enterTopicTitle(topic_name);
+		topics.clickOnAddTextToTopic();
+		topics.seeFormElementText("0");
+		topics.enterTitleforElementText(
+			"CypressAut Topic Creating and Deleting Test",
+			"0"
+		);
+		topics.clickOnAddGeoGebraToTopic();
+		topics.enterTitleforElementGeoGebra(
+			"CypressAut Title for GeoGebra Element in Topic"
+		);
+		topics.enterIDforElementGeoGebra("kEBfU7AR");
+		topics.clickOnAddLearningMaterialToTopic();
+		topics.enterTitleforElementLearningMaterial(
+			"CypressAut Title for Learning Material Element in Topic"
+		);
+		topics.seeAddMaterialBtnInContent();
+		topics.clickOnAddEtherpadToTopic();
+		topics.enterTitleforElementEtherpad(
+			"CypressAut Title for Etherpad Element in Topic",
+			"3"
+		);
+		topics.enterDescriptionforElementEtherpad("changed etherpad description", "3");
+		topics.clickOnAddTaskToTopic();
+		topics.enterTitleforElementTask("CypressAut Title for Task Element in Topic");
+		topics.enterLinkforElementTask("59cce3f6c6abf042248e888d");
+		topics.clickOnSubmitChangesInTopicBtn();
+		topics.seeEditTopicPage("CypressAut Topic Creating and Deleting Test");
+		topics.clickOnSubmitChangesInTopicBtn();
+		topics.seeTopicDetailPageWithContent(
+			"CypressAut Topic Creating and Deleting Test",
+			"CypressAut Title for Text Element in Topic",
+			"CypressAut Title for GeoGebra Element in Topic",
+			"CypressAut Title for Learning Material Element in Topic",
+			"CypressAut Title for Etherpad Element in Topic",
+			"CypressAut Title for Task Element in Topic"
+		);
+		topics.navigateBackToCourseViaBreadcrumb();
+		courses.topicIsVisibleOnCoursePage("CypressAut Topic Creating and Deleting Test");
+	}
+);
+
+Given(
 	"student {string} with role {string} from school {string} added to the room {string}",
 	(studentName, studentRole, studentSchool, roomName) => {
 		const kebabMenuAction = "room-members";
