@@ -673,27 +673,34 @@ class Management {
 		const randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
 		const uniqueEmail = randomNumber + baseEmail;
 
+		// store the generated unique email as an alias for later use
 		cy.wrap(uniqueEmail).as("uniqueEmail");
 		cy.log("Generated Unique Email:", uniqueEmail);
 
+		// fill in the form with the generated email and other details
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
 		cy.get(Management.#emailCreationForm).type(uniqueEmail);
 
+		// setting the birth date to 17 years ago in the form for student user
 		cy.get("body").then((body) => {
 			if (body.find(Management.#birthDateFieldCreateStudent).length) {
 				const birthDate = new Date();
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
 
-				const isoDate = birthDate.toISOString().split("T")[0]; // YYYY-MM-DD for typing
+				// YYYY-MM-DD for typing into the input
+				// note: toISOString() returns date in UTC, so we split and take only the date part
+				// this ensures that the date is correctly interpreted regardless of local timezone
+				const isoDate = birthDate.toISOString().split("T")[0];
 				const formattedBirthDate = `${String(birthDate.getDate()).padStart(2, "0")}.${String(birthDate.getMonth() + 1).padStart(2, "0")}.${birthDate.getFullYear()}`; // DD.MM.YYYY for table check
 
 				// type the ISO string into the input (works for <input type="date">)
 				cy.get(Management.#birthDateFieldCreateStudent).type(isoDate, 100);
 
-				// store alias in DD.MM.YYYY format for verification
+				// store alias in DD.MM.YYYY format for the assertion in user table
 				cy.wrap(formattedBirthDate).as("assignedBirthDate");
 			} else {
+				// for Teacher
 				cy.log("Birthdate is not required while creating a new teacher");
 			}
 		});
@@ -709,6 +716,7 @@ class Management {
 					.and("contain", assignedBirthDate);
 			});
 		} else {
+			// for teacher
 			cy.log("user is not a student");
 		}
 	}
