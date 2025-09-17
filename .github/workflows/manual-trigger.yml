@@ -43,6 +43,7 @@ jobs:
       tag_env: ${{ steps.set_variables.outputs.tag_env }}
       prio_tag: ${{ steps.set_variables.outputs.prio_tag }}
       base_tag: ${{ steps.set_variables.outputs.base_tag }}
+      matrix_groups: ${{ steps.set_variables.outputs.matrix_groups }}
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -61,13 +62,16 @@ jobs:
                 "${{ inputs.instance3 }}" =~ (staging|schulportal) ]]; then
             env_type="ref"
             tag_env="@staging_test"
+            matrix_groups='["group-A","group-B","group-C","group-D","group-E","group-F"]'
           else
             env_type="dev"
             tag_env="@school_api_test"
+            matrix_groups='["staging-dev-tests"]'
           fi
 
           echo "environment=$env_type" >> $GITHUB_OUTPUT
           echo "tag_env=$tag_env" >> $GITHUB_OUTPUT
+          echo "matrix_groups=$matrix_groups" >> $GITHUB_OUTPUT
 
           prio_tag=""
           if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
@@ -275,31 +279,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          # for staging (ref)
-          - environment: ref
-            group: group-A
-          - environment: ref
-            group: group-B
-          - environment: ref
-            group: group-C
-          - environment: ref
-            group: group-D
-          - environment: ref
-            group: group-E
-          - environment: ref
-            group: group-F
-          # for dev
-          - environment: dev
-            group: staging-dev-tests
+        group: ${{ fromJson(needs.e2e-system-tests.outputs.matrix_groups) }}
     with:
       cypress_brb: ${{ inputs.instance1 }}
       cypress_dbc: ${{ inputs.instance3 }}
       cypress_nbc: ${{ inputs.instance2 }}
       browser: ${{ inputs.browser }}
       tag: >-
-        ${{ matrix.environment == 'ref'
-          && format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, matrix.group)
-          || format('"{0}"', needs.e2e-system-tests.outputs.base_tag) }}
-      environment: ${{ matrix.environment }}
+        ${{ matrix.group == 'staging-dev-tests'
+          && format('"{0}"', needs.e2e-system-tests.outputs.base_tag)
+          || format('"{0} and @{1}"', needs.e2e-system-tests.outputs.base_tag, matrix.group) }}
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
