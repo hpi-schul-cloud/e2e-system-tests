@@ -88,9 +88,9 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I go to a team '<team_title>'
         When I go to calendar tab
         When I click on edit icon
-        When I re enter the title '<event_title_edited>'
-        When I re enter the description '<event_description_edited>'
-        When I re enter the place 'edit cy test place cy'
+        When I change the title to '<event_title_edited>'
+        When I change the description to '<event_description_edited>'
+        When I change the event place to 'edit cy test place cy'
         When I click on button Save team event
         Then I see team event with description '<event_description_edited>'
         Then I see video icon for team event

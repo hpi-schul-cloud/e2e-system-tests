@@ -38,7 +38,8 @@ class Teams {
 		'[data-testid="start_video_conference_link"]';
 	static #teamVideoConferenceModal = '[data-testid="modal_content"]';
 	static #muteParticipantToggle = '[data-testid="toggle_mute_participants"]';
-	static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]';
+	static #moderatorApprovalToggle =
+		'[data-testid="toggle_moderator_approval_required"]';
 	static #allPartipantsAreModeratorToggel =
 		'[data-testid="toggle_all_participants_moderator"]';
 	static #disabledVideoCheckboxOnTeamEditpage = '[disabled=""]';
@@ -102,7 +103,10 @@ class Teams {
 	}
 
 	seeTeamEventDescription(teamEventDescription) {
-		cy.get(Teams.#teamCalendarEventDescription).should("contain", teamEventDescription);
+		cy.get(Teams.#teamCalendarEventDescription).should(
+			"contain",
+			teamEventDescription
+		);
 	}
 
 	seeVideoPartcipationButtonInTeamEvents() {
@@ -205,7 +209,9 @@ class Teams {
 	}
 
 	enterTeamEventTitle(eventTitle) {
-		cy.get(Teams.#teamCreateEventTitleInput).type(eventTitle, { force: true }).wait(1000);
+		cy.get(Teams.#teamCreateEventTitleInput)
+			.type(eventTitle, { force: true })
+			.wait(1000);
 	}
 
 	seeTeamEventCreationModal() {
@@ -311,7 +317,9 @@ class Teams {
 
 	canNotSeeTeamVideoCheckbox() {
 		cy.get(Teams.#teamOptions);
-		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should("not.exist");
+		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should(
+			"not.exist"
+		);
 		cy.get(Teams.#activateConfCheckbox).should("not.exist");
 	}
 

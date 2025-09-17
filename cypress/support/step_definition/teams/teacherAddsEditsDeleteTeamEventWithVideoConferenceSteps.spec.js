@@ -58,15 +58,15 @@ When("I click on edit icon", () => {
 	teams.clickOnTeamsEventEditOption();
 });
 
-When("I re enter the title {string}", (editedEventTitle) => {
+When("I change the title to {string}", (editedEventTitle) => {
 	teams.editTeamEventTitle(editedEventTitle);
 });
 
-When("I re enter the description {string}", (editedEventDescription) => {
+When("I change the description to {string}", (editedEventDescription) => {
 	teams.editTeamEventDescription(editedEventDescription);
 });
 
-When("I re enter the place {string}", (editedEventPlace) => {
+When("I change the event place to {string}", (editedEventPlace) => {
 	teams.editTeamEventPlace(editedEventPlace);
 });
 
