@@ -27,16 +27,8 @@ When("I click on team settings", () => {
 	teams.clickOnTeamSettings();
 });
 
-When("I click on button Add Team on the teams overview page", () => {
-	teams.clickOnAddTeam();
-});
-
 Then("I see new team creation page", () => {
 	teams.seeTeamCreationPage();
-});
-
-When("I enter in the title {string}", (teamName) => {
-	teams.enterTeamName(teamName);
 });
 
 When("I enter in the description {string}", (desc) => {
@@ -45,10 +37,6 @@ When("I enter in the description {string}", (desc) => {
 
 When("I select the team colour black", () => {
 	teams.selectTeamColour();
-});
-
-Then("I click on button Create Team on the team creation page", () => {
-	teams.clickOnAddButtonToCreateTeam();
 });
 
 Then("I see team title {string} is visible", (teamName) => {
