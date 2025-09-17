@@ -178,7 +178,6 @@ class Teams {
 
 	editTeamEventTitle(editedEventTitle) {
 		cy.get(Teams.#teamEditEventTitleInput).clear().type(editedEventTitle);
-		cy.wait(1000);
 	}
 
 	clickOnTeamsEventEditOption() {
