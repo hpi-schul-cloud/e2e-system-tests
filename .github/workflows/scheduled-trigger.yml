@@ -39,7 +39,7 @@ jobs:
         group: ["group-A","group-B","group-C","group-D","group-E","group-F"]
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_dbc: https://main.nbc.dbildungscloud.dev
+      cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
       browser: edge
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_tests_tag, matrix.group) }}

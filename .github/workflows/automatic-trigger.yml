@@ -22,10 +22,8 @@ jobs:
         run: |
           env_type="dev"
           tag_env="@school_api_test"
-          matrix_groups=''
 
           echo "environment=$env_type" >> $GITHUB_OUTPUT
-          echo "matrix_groups=$matrix_groups" >> $GITHUB_OUTPUT
           echo "all_tests_tag=@stable_test and $tag_env" >> $GITHUB_OUTPUT
 
   run-automatic-tests:
