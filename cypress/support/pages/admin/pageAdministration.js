@@ -709,15 +709,24 @@ class Management {
 	seeTheAssignedBirthDateInUserTable() {
 		// check if the alias exists before trying to get it
 		if (Cypress._.get(cy.state("aliases"), "assignedBirthDate")) {
-			cy.get("@assignedBirthDate").then((assignedBirthDate) => {
-				cy.log("verifying assigned birthdate for student:", assignedBirthDate);
-				cy.get(Management.#tableContents)
-					.should("exist")
-					.and("contain", assignedBirthDate);
+			cy.get("@uniqueEmail").then((uniqueEmail) => {
+				cy.get("@assignedBirthDate").then((assignedBirthDate) => {
+					cy.log(
+						"verifying student row with email:",
+						uniqueEmail,
+						"and birthdate:",
+						assignedBirthDate
+					);
+
+					// find the row by unique email, then check that DOB exists in the same row
+					cy.get(Management.#tableContents)
+						.contains("tr", uniqueEmail)
+						.should("contain", assignedBirthDate);
+				});
 			});
 		} else {
 			// for teacher
-			cy.log("user is not a student");
+			cy.log("user is not a student (no birthdate assigned).");
 		}
 	}
 
