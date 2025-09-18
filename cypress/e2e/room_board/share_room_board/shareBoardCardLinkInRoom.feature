@@ -65,11 +65,9 @@ Feature: Room Board - To share a board card link
         @staging_test
         Examples:
             | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name      | school_name                 |
-            | teacher1_nbc | teacher2_nbc | nbc       | Herzog         | Hande          | Cypress Test Room | Lernbegleitend | Felix Mendelssohn-Gymnasium |
             | teacher1_dbc | teacher2_dbc | dbc       | Herzog         | Hande          | Cypress Test Room | Lernbegleitend | Felix Mendelssohn-Gymnasium |
 
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name      | school_name           |
-            | teacher1_nbc | teacher2_nbc | nbc       | teacher_1      | teacher_2      | Cypress Test Room | Lernbegleitend | cypress-test-school-1 |
             | teacher1_dbc | teacher2_dbc | dbc       | teacher_1      | teacher_2      | Cypress Test Room | Lernbegleitend | cypress-test-school-1 |
