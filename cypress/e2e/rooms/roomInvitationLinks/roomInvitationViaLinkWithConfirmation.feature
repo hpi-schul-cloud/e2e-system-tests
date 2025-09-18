@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-C
-@prio_0-dev
+@prio_0_dev
 Feature: Rooms - Invite User to room via Invitation link
 
     As a room owner, when I invite a user through an invitation link, I want to confirm his application before he can join the room.

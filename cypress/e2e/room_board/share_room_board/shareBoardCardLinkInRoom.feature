@@ -2,7 +2,7 @@
 @stable_test
 @group-F
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - To share a board card link
 
     As a teacher I want to share a link to a board card.

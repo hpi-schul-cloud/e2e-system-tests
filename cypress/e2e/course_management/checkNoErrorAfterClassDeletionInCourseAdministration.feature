@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature: Course Management - To create, add class with course and after deletion of class, check for errors
 
     As an administrator I want to add created class into course and after deletion of class, check for errors

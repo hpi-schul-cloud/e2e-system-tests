@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-B
-@prio_0-dev
+@prio_0_dev
 # unstable because feature rename files is not merged yet.
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 

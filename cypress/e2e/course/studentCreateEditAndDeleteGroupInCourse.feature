@@ -3,7 +3,7 @@
 @schedule_run
 @group-D
 @pr
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Teacher can create, edit and delete a group in the course
 
     Scenario Outline: user creation, course creation, and creating,editing and deleting a group

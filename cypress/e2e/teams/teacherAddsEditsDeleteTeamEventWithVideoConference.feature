@@ -3,7 +3,7 @@
 @schedule_run
 @group-E
 @pr
-@prio_0-staging
+@prio_0_staging
 Feature: Teams - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
     As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.

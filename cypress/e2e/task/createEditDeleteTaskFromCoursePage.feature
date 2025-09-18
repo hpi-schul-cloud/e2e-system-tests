@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
-@prio_0-staging
+@prio_0_staging
 Feature: Task - To create, edit and delete tasks by the teacher.
 
     As a teacher I want to create, edit and delete a new task on course page

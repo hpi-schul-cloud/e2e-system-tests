@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-F
-@prio_0-dev
+@prio_0_dev
 Feature: Room Board - Copying room board with files in a file folder
 
     As a teacher I want to copy a room board with files in file folder, so that in the new room board there are the files of the original board available.

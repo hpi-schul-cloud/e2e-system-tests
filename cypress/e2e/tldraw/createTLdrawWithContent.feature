@@ -2,7 +2,7 @@
 @schedule_run
 @stable_test
 @group-C
-@prio_0-staging
+@prio_0_staging
 Feature: TLDraw - Test tldraw on board
 
     Scenario Outline: I can create a whiteboard element and draw on it

@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Course Management - To create, edit and delete class
 
     As an administrator I want create, edit and delete a class

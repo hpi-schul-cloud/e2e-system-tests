@@ -3,7 +3,7 @@
 @schedule_run
 @group-C
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Teams - Student managed teams
 
     As a student I want to create/edit/delete the team so that I can manage the team. This is not possible for NBC, because there students are generally not allowed to create teams.

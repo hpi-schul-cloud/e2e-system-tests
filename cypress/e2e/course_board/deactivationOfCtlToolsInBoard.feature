@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Course Board - Deactivation of ctl tools in board
 
     As a user I want to see deactivated und activated tools in a board

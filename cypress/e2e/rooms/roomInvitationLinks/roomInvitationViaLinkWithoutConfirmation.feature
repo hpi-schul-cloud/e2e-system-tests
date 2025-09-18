@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-C
-@prio_0-dev
+@prio_0_dev
 Feature: Rooms - Invite User to room via Invitation link
 
     As a room owner, I want to invite a user to the room through an invitation link, so that I don't have to add every user manually.

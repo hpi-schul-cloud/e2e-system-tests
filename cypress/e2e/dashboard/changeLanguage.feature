@@ -3,7 +3,7 @@
 @schedule_run
 @group-F
 @pr
-@prio_0-staging
+@prio_0_staging
 Feature: Dashboard - Change language of the user from user setting
 
     As a user, I want to language change from user menu for all users i.e. (Admin, Teacher, Student)

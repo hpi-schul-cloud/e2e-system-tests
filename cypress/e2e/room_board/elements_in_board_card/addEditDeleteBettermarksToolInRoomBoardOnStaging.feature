@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-F
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Add bettermarks Tool in the Room Board
 
     As a teacher, I want to integrate the bettermarks external CTL tool into the room board so that I can seamlessly assign and track learning tasks with students.

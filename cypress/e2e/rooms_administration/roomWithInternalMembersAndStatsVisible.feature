@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-F
-@prio_0-dev
+@prio_0_dev
 Feature: Room Administration - Add room and internal members with visibility on rooms administration page
 
     As a school admin I want to see the created rooms with correct information visible on rooms administration page.

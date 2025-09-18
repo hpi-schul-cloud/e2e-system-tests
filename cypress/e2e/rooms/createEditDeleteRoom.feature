@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature: Rooms - To create, edit and delete room
 
     As a teacher I want to create, edit and delete rooms.

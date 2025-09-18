@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-E
-@prio_0-staging
+@prio_0_staging
 # Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same feature and scenario.
 
 Feature: Rooms - Invite Student from another school via teacher from another school

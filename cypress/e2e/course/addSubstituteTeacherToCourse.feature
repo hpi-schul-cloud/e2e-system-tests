@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Add substitute teacher to course
 
     As a teacher I want to add substitute teacher to the course.

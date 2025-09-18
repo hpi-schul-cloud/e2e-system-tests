@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@prio_0-staging
+@prio_0_staging
 # Note: This feature should only be executed in the staging environment due to the school API limitation,
 #       which prevents creating two separate schools in the same scenario and using the copied URL
 #       from Scenario One in Scenario Two due to new sessions.

@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group_V
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Teacher shares a course to other teacher from the same school
 
     As a teacher I want to share a course to other teachers from the same school

@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature: Media Shelf - Deactivation of ctl tools in media shelf
 
     As an User I want to see a deactivated tool in media shelf

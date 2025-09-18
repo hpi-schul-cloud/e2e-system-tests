@@ -2,7 +2,7 @@
 @regression_test
 @schedule_run
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature: Rooms - To duplicate the existing room
 
     As a teacher I want to duplicate an existing room, so that I can have a copy of it.

@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
     As a teacher, I want to verify the impact of enabling the feature checkbox in the room edit page on the ability to add the BBB Tool to room boards.

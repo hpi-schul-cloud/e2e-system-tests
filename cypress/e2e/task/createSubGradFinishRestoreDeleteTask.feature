@@ -3,7 +3,7 @@
 @schedule_run
 @group-B
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Task - To create, submit, grade, archive, restore and delete task.
 
     As a teacher I want to create, grade, finish, restore and delete a new task so that the student can submit it

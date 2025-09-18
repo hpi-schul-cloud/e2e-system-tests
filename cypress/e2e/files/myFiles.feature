@@ -4,7 +4,7 @@
 @group-E
 @pr
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Files - To use LibreOffice for text, calc and presentation document
 
     As a user I want to create and edit a LibreOffice text document so that I write into it

@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
-@prio_0-staging
+@prio_0_staging
 Feature: Admin - Admin creates, manually register and deletes students
 
     As an admin, I want to perform the 4 CRUD operations and manual registration on students

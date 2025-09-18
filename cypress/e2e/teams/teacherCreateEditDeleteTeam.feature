@@ -3,7 +3,7 @@
 @schedule_run
 @group-C
 @pr
-@prio_0-staging
+@prio_0_staging
 Feature: Teams - Create, delete and edit operations on Teams
 
     As a teacher I want to create/edit/delete the team so that I can manage the team.

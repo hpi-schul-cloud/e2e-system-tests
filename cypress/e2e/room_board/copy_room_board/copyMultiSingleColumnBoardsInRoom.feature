@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Copy multi-column and single-column boards in the room
 
     As a teacher, I want to copy both multi-column and single-column boards in the room so that I can effectively manage its contents.

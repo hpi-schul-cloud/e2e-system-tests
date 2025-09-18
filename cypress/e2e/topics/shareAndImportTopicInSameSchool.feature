@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-F
-@prio_0-staging
+@prio_0_staging
 Feature: Topics - Teacher shares a topic to other teacher from the same school to import it
 
     As a teacher I want to share a topic to other teachers from the same school to import it

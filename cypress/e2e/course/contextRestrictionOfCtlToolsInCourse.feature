@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Restrict CTL tools to context course
 
     As a teacher I want to add ctl tools with context restriction course

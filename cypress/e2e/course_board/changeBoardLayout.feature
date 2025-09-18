@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
-@prio_0-staging
+@prio_0_staging
 Feature: Course Board - To change the board layout
 
     As a teacher I want to change the board layout

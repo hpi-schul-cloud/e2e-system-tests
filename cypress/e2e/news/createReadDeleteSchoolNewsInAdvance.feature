@@ -2,7 +2,7 @@
 @regression_test
 @schedule_run
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature:  News - To read a news on the respective dashboards
 
     As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news

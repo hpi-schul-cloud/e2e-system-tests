@@ -2,7 +2,7 @@
 @stable_test
 @group-C
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Copy course with CTL tools
 
     As a Teacher I want to be able to copy ctl tools, when I copy a course

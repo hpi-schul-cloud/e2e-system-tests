@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Share multi-column room board in the Rooms with teacher from the same school
 
     As a teacher, I want to share a multi-column board with another teacher within the same school so that I can collaborate effectively.

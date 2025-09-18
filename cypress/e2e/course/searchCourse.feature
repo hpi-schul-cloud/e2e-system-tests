@@ -1,7 +1,7 @@
 @stable_test
 @schedule_run
 @regression_test
-@prio_0-staging
+@prio_0_staging
 Feature: Course - To search for a course via search input box on the course overview page
 
     As a user (teacher & student) I want to search for dedicated course so that I can quickly find it.

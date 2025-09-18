@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Rooms - Leave room as a Student
 
     As a student, I should be able to leave a room that I have been invited to, and after leaving, I should not see the room in my room overview.

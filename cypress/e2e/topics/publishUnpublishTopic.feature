@@ -3,7 +3,7 @@
 @schedule_run
 @group-F
 @pr
-@prio_0-staging
+@prio_0_staging
 Feature: Topics - To publish and unpublish topic by teacher.
 
     As a teacher I want to publish and unpublish as draft version

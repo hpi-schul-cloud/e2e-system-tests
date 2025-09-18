@@ -2,7 +2,7 @@
 @stable_test
 @group-D
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Course - To add, edit and delete a ctl tool in a course
 
     As a teacher I want to add, edit and delete a ctl tool in my course.

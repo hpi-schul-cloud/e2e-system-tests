@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
-@prio_0-dev
+@prio_0_dev
 Feature: Admin - Student registration with registration link send by admin
 
     As a student, I want to register in the SVS

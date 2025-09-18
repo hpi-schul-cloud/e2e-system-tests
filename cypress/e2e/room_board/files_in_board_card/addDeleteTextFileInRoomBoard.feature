@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Upload, download and delete docx file type in the Room Board
 
     As a teacher, I want to upload, download and delete docx file in the room board so that I can easily share and manage the board contents.

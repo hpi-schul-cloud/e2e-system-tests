@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group_V
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Copy Course with Topic and Task
 
     As a teacher I want to copy a course with a topic and task so that I can reuse the course content

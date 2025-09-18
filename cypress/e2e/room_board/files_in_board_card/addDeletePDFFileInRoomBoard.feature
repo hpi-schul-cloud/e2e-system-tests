@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Upload, download and delete pdf file type in the Room Board
 
     As a teacher, I want to upload, download and delete pdf file in the room board so that I can easily share and manage the board contents.

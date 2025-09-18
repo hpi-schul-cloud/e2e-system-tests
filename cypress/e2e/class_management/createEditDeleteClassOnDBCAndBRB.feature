@@ -3,7 +3,7 @@
 @schedule_run
 @group-D
 @pr
-@prio_0-staging
+@prio_0_staging
 Feature:  Class Management - To create, edit and delete class on dBC or on BRB
 
     As a teacher, I want to create, edit and delete class, so that I can manage the class

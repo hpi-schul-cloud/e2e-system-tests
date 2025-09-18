@@ -3,7 +3,7 @@
 @group-C
 @schedule_run
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Admin - Admin adds, edits and deletes CTL tools in school
 
     As an admin I want to administrate the CTL tools used in the school

@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature: Media Shelf - No available tools in media shelf
 
     As a user I want to see the no longer available chip on media element in media shelf

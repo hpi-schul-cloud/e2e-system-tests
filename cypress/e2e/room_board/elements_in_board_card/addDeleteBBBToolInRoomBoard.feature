@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Add BBB Tool in the Room Board
 
     As a teacher, I want to add a BBB (BigBlueButton) Tool to the room board so that I can manage video conferencing effectively.

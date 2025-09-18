@@ -4,7 +4,7 @@
 @group-D
 @pr
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Admin - To add, edit and delete new users by the admin.
 
     As an admin I want to create a new user so that I can administrate it

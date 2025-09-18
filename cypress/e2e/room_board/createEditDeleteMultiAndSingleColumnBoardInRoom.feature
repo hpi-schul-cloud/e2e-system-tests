@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature: Room Board - Add, edit and delete board in room
 
     As a teacher I want to add, edit and delete board in the room.

@@ -2,7 +2,7 @@
 @stable_test
 @group-D
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Teacher can share a course with ctl tools
 
     As a teacher I want to share a course with ctl tools to other teachers from the same school

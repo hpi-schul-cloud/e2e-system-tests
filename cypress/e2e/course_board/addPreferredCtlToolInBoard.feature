@@ -2,7 +2,7 @@
 @stable_test
 @group-C
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Course Board  - To add a preferred tool in a board
 
     As a teacher I want to add a preferred tool in my course board

@@ -76,9 +76,9 @@ jobs:
           prio_tag=""
           if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
             if [[ "$env_type" == "ref" ]]; then
-              prio_tag="@prio_0-staging"
+              prio_tag="@prio_0_staging"
             else
-              prio_tag="@prio_0-dev"
+              prio_tag="@prio_0_dev"
             fi
           fi
 
@@ -161,6 +161,7 @@ jobs:
       tag: '"${{ needs.e2e-system-tests.outputs.only_tagged_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
+
   run-staging-tests:
     name: Run staging tests
     needs: e2e-system-tests

@@ -4,7 +4,7 @@
 @group-C
 @pr
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Course - To add and delete a course by the teacher
 
     As a teacher I want to create a new course and want to delete the newly created test course so that list of courses can be cleaned and not full with the newly created test courses.

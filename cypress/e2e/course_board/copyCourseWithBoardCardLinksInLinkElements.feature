@@ -2,7 +2,7 @@
 @stable_test
 @group-F
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Course Board - Copy course with a board which contains link elements with board card links
 
     As a teacher, I want to be able to copy course with links elements in a board, when the link elements contain board card links

@@ -2,7 +2,7 @@
 @stable_test
 @group-C
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Copy course
 
     As a Teacher I want to be able to copy a course so that I can reuse the course content

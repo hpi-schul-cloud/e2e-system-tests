@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-E
-@prio_0-staging
+@prio_0_staging
 Feature: Rooms - Student can access room content after being added to room via Add Members Dialog
 
     As a room owner, when I add a student through the Add Members Dialog, the user should see the room in the room overview and access its content.

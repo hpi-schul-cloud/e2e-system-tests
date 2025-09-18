@@ -4,7 +4,7 @@
 @group-B
 @pr
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Learning store - Activating and deactivating access for students
 
     As an admin I want to activate and deactivate students access to learning store

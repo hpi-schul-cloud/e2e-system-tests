@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-A
-@prio_0-staging
+@prio_0_staging
 Feature: Media Shelf - To show media shelf with respective functionality
 
     As a teacher I want to use the media shelf

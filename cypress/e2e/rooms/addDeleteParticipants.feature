@@ -3,7 +3,7 @@
 @schedule_run
 @group-A
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Rooms - Add and delete participants
 
     As a teacher I want to add and delete participants in the room.

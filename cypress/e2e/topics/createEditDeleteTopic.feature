@@ -4,7 +4,7 @@
 @group-C
 @pr
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Topics - To create, edit and delete topics by the teacher.
 
     As a teacher I want to create, edit and delete a new topic so that the student can see it

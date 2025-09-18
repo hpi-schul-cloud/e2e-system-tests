@@ -2,7 +2,7 @@
 @stable_test
 @group-D
 @schedule_run
-@prio_0-staging
+@prio_0_staging
 Feature: Course - Deactivation of ctl tools in course
 
     As a user I want to see deactivated und activated tools in a course

@@ -3,7 +3,7 @@
 @schedule_run
 @group-A
 @pre_check_test
-@prio_0-staging
+@prio_0_staging
 Feature: Learning store - Search Learning Material in Learning Store
 
     As an admin I want to activate and deactivate students access to learning store
