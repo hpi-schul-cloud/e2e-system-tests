@@ -21,7 +21,7 @@ Feature: Editing permissions for boards
 
         # Administer student grant the read permission of the room board user to edit permission of the roomboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -40,7 +40,7 @@ Feature: Editing permissions for boards
         # student checks that he has edit permission wrt board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Editable for all
@@ -48,7 +48,7 @@ Feature: Editing permissions for boards
 
         # Administer student revoke the edit permission of the room board user to read permission of the roomboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -66,7 +66,7 @@ Feature: Editing permissions for boards
         # student checks that he didnot have edit permission wrt board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Editable for all
@@ -74,7 +74,7 @@ Feature: Editing permissions for boards
 
         # post-condition: teacher deletes room and admin disables student visibility for teachers
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room named '<room_name_source>' is deleted
         Given I am logged in as a '<admin>' at '<namespace>'
         Given student visibility for teachers is disabled
 

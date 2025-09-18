@@ -21,19 +21,19 @@ Feature: Editing permissions for boards
 
         # Administer student cannot grant the read permission of the room board user to edit permission of the roomboard if unpublished the room board.
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
         Then I see the option Editing Settings
         When I select the three dot menu action 'Editing Settings'
-        Then I see a modal with the message The board must be published first
+        Then I see a warning modal for The board must be published first
         When I click on the button Close
         Then I see the chip Draft in the course board
 
         # Administer student grant the read permission of the room board user to edit permission of the roomboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -52,7 +52,7 @@ Feature: Editing permissions for boards
         # student checks that he has edit permission wrt board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Editable for all
@@ -60,7 +60,7 @@ Feature: Editing permissions for boards
 
         # Board returns to default permissions after unpublishing and Administer cannot grant edit permission
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I select the three dot menu action 'Revert'
@@ -76,7 +76,7 @@ Feature: Editing permissions for boards
         # student checks that he cannot access unpublish board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I go to room '<room_name_source>'
         Then I do not see the multi-column board in the room detail page
 
 

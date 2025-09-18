@@ -29,7 +29,6 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionRevokePublish = '[data-testid="kebab-menu-action-revert"]';
 	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
@@ -99,10 +98,6 @@ class Board {
 
 	clickPublishOptionInThreeDotMenuInCourseBoard() {
 		cy.get(Board.#boardMenuActionPublish).click();
-	}
-
-	clickRevokePublishOptionInThreeDotMenuInCourseBoard() {
-		cy.get(Board.#boardMenuActionRevokePublish).click();
 	}
 
 	clickChangeLayoutOptionInThreeDotMenuInCourseBoard() {
