@@ -95,7 +95,7 @@ When("I click on the tool delete button", () => {
 	courses.clickOnToolDeleteButton();
 });
 
-When("I lauch tool {string} with given url {string}", (toolName, url) => {
+When("I launch tool {string} with given url {string}", (toolName, url) => {
 	courses.launchTool(toolName, url);
 });
 

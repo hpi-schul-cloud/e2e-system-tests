@@ -11,18 +11,30 @@ on:
           - tests for pull requests (PR)
           - pre-check release tests
           - run selective tests (@only)
+          - staging tests
         default: "tests for pull requests (PR)"
-      instance1:
+      browser:
+        description: "Select browser"
+        required: false
+        type: choice
+        options:
+          - edge
+          - chrome
+          - electron
+          - firefox
+        default: edge
+      brb_instance:
         description: "Please enter a valid BRB instance URL to run the tests on"
         default: "https://main.brb.dbildungscloud.dev"
         required: true
-      instance2:
-        description: "Please enter a valid NBC instance URL to run the tests on"
-        default: "https://main.nbc.dbildungscloud.dev"
-        required: true
-      instance3:
+
+      dbc_instance:
         description: "Please enter a valid DBC instance URL to run the tests on"
         default: "https://main.dbc.dbildungscloud.dev"
+        required: true
+      nbc_instance:
+        description: "Please enter a valid NBC instance URL to run the tests on"
+        default: "https://main.nbc.dbildungscloud.dev"
         required: true
 
 jobs:
@@ -30,11 +42,17 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
+      matrix_groups: ${{ steps.set_variables.outputs.matrix_groups }}
+      all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
+      pr_tests_tag: ${{ steps.set_variables.outputs.pr_tests_tag }}
+      pre_check_tag: ${{ steps.set_variables.outputs.pre_check_tag }}
+      only_tagged_tag: ${{ steps.set_variables.outputs.only_tagged_tag }}
+      staging_base_tag: ${{ steps.set_variables.outputs.staging_base_tag }}
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,13 +61,34 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-          if [[ ! "${{ inputs.instance1 }}" =~ (staging|schulportal) && \
-                ! "${{ inputs.instance2 }}" =~ (staging|schulportal) && \
-                ! "${{ inputs.instance3 }}" =~ (staging|schulportal) ]]; then
-              echo "environment=dev" >> $GITHUB_OUTPUT
+          if [[ "${{ inputs.brb_instance }}" =~ (staging|schulportal) || \
+                "${{ inputs.nbc_instance }}" =~ (staging|schulportal) || \
+                "${{ inputs.dbc_instance }}" =~ (staging|schulportal) ]]; then
+            env_type="ref"
+            tag_env="@staging_test"
+            matrix_groups='["group-A","group-B","group-C","group-D","group-E","group-F"]'
           else
-              echo "environment=ref" >> $GITHUB_OUTPUT
+            env_type="dev"
+            tag_env="@school_api_test"
+            matrix_groups='["staging-dev-tests"]'
           fi
+
+          prio_tag=""
+          if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
+            if [[ "$env_type" == "ref" ]]; then
+              prio_tag="@prio_0_staging"
+            else
+              prio_tag="@prio_0_dev"
+            fi
+          fi
+
+          echo "environment=$env_type" >> $GITHUB_OUTPUT
+          echo "matrix_groups=$matrix_groups" >> $GITHUB_OUTPUT
+          echo "all_tests_tag=@stable_test and $tag_env" >> $GITHUB_OUTPUT
+          echo "pr_tests_tag=@stable_test and $tag_env and @pr" >> $GITHUB_OUTPUT
+          echo "pre_check_tag=@stable_test and $tag_env and @pre_check_test" >> $GITHUB_OUTPUT
+          echo "only_tagged_tag=@only" >> $GITHUB_OUTPUT
+          echo "staging_base_tag=@stable_test and $tag_env and $prio_tag" >> $GITHUB_OUTPUT
 
   run-all-tests:
     name: Run all regression tests
@@ -63,15 +102,11 @@ jobs:
       matrix:
         group: [group-A, group-B, group-C, group-D, group-E, group-F]
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:{0}:{1}:ci',
-          matrix.group,
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      cypress_brb: ${{ inputs.brb_instance }}
+      cypress_dbc: ${{ inputs.dbc_instance }}
+      cypress_nbc: ${{ inputs.nbc_instance }}
+      browser: ${{ inputs.browser }}
+      tag: '"${{ needs.e2e-system-tests.outputs.all_tests_tag }} and @${{ matrix.group }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -87,15 +122,11 @@ jobs:
       matrix:
         group: [group-A, group-B, group-C, group-D, group-E, group-F]
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:{0}:{1}:ci',
-          matrix.group,
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      cypress_brb: ${{ inputs.brb_instance }}
+      cypress_dbc: ${{ inputs.dbc_instance }}
+      cypress_nbc: ${{ inputs.nbc_instance }}
+      browser: ${{ inputs.browser }}
+      tag: '"${{ needs.e2e-system-tests.outputs.pr_tests_tag }} and @${{ matrix.group }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
@@ -107,14 +138,11 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:regression_test:{0}:manual_trigger:pre_check:ci',
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      cypress_brb: ${{ inputs.brb_instance }}
+      cypress_dbc: ${{ inputs.dbc_instance }}
+      cypress_nbc: ${{ inputs.nbc_instance }}
+      browser: ${{ inputs.browser}}
+      tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: pre-check
 
@@ -126,9 +154,33 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:only:ci
+      cypress_brb: ${{ inputs.brb_instance }}
+      cypress_dbc: ${{ inputs.dbc_instance }}
+      cypress_nbc: ${{ inputs.nbc_instance }}
+      browser: ${{ inputs.browser }}
+      tag: '"${{ needs.e2e-system-tests.outputs.only_tagged_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
+
+  run-staging-tests:
+    name: Run staging tests
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'staging tests' }}
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ${{ fromJson(needs.e2e-system-tests.outputs.matrix_groups) }}
+    with:
+      cypress_brb: ${{ inputs.brb_instance }}
+      cypress_dbc: ${{ inputs.dbc_instance }}
+      cypress_nbc: ${{ inputs.nbc_instance }}
+      browser: ${{ inputs.browser }}
+      tag: >-
+        ${{ matrix.group == 'staging-dev-tests'
+        && format('"{0}"', needs.e2e-system-tests.outputs.staging_base_tag)
+        || format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: ${{ matrix.group }}

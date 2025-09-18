@@ -11,7 +11,7 @@ Then("I see the school external tool configuration page", () => {
 	toolConfiguration.seeExternalToolConfiguratorPage();
 });
 
-Then("I see the school external tool configuration infotext", () => {
+Then("I see the school external tool configuration info text", () => {
 	toolConfiguration.seeToolConfigurationInfoText();
 });
 
