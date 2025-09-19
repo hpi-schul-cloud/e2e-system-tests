@@ -25,16 +25,15 @@ Feature: Editing permissions for boards
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
-        Then I see the option Editing Settings
-        When I select the three dot menu action 'Editing Settings'
-        Then I see the Edit settings dialog
-        Then I see the title in the edit modal
-        Then I see the two options in edit modal
-        Then I see the button Cancel in the edit modal
+        Then I see the option Editing settings
+        When I click on editing setting in board menu
+        Then I see the Editing settings dialog
+        Then I see the two options in editing settings modal
+        Then I see the button Cancel in the editing settings modal
         Then I see the option This board is not editable for members with room role Read is by default selected
         When I click the option All members can edit this board
         Then I see the option All members can edit this board is by default selected
-        When I click on the button Save
+        When I click on the button Save in Editing settings modal
         Then I see the chip Editable for all
 
         # student checks that he has edit permission wrt board
@@ -47,20 +46,20 @@ Feature: Editing permissions for boards
         Then I see the button Add column in the course board
 
         # Administer student revoke the edit permission of the room board user to read permission of the roomboard
+        Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
-        Then I see the option Editing Settings
-        When I select the three dot menu action 'Editing Settings'
-        Then I see the Edit settings dialog
-        Then I see the title in the edit modal
-        Then I see the two options in edit modal
-        Then I see the button Cancel in the edit modal
+        Then I see the option Editing settings
+        When I click on editing setting in board menu
+        Then I see the Editing settings dialog
+        Then I see the two options in editing settings modal
+        Then I see the button Cancel in the editing settings modal
         When I click the option This board is not editable for members with room role Read
         Then I see the option This board is not editable for members with room role Read is by default selected
-        When I click on the button Save
+        When I click on the button Save in Editing settings modal
         Then I do not see the chip Editable for all
 
         # student checks that he didnot have edit permission wrt board
@@ -69,7 +68,7 @@ Feature: Editing permissions for boards
         When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
-        Then I see the chip Editable for all
+        Then I do not see the chip Editable for all
         Then I see the button Add column in the course board is not visible
 
         # post-condition: teacher deletes room and admin disables student visibility for teachers
@@ -82,7 +81,7 @@ Feature: Editing permissions for boards
         @school_api_test
         Examples:
             | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
-            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | Cypress Room Name-1 | Board Cy Title | student_1    | student_2    | Lernend   |
+            | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | Cypress Room Name-1 | Board Cy Title | student_1    | student_2    | Lernend   |
 
         @staging_test
         Examples:

@@ -25,28 +25,25 @@ Feature: Editing permissions for boards
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
-        Then I see the option Editing Settings
-        When I select the three dot menu action 'Editing Settings'
+        Then I see the option Editing settings
+        When I click on editing setting in board menu
         Then I see a warning modal for The board must be published first
-        When I click on the button Close
+        When I click on the button Cancel in the editing settings modal
         Then I see the chip Draft in the course board
 
-        # Administer student grant the read permission of the room board user to edit permission of the roomboard
-        When I go to rooms overview
-        When I go to room '<room_name_source>'
-        When I click on the multi-column board in the room detail page
-        Then I see the page board details
+        # Administer student publishes and grant the read permission of the room board user to edit permission of the roomboard
         When I click on the three dot menu in room board title
-        Then I see the option Editing Settings
-        When I select the three dot menu action 'Editing Settings'
-        Then I see the Edit settings dialog
-        Then I see the title in the edit modal
-        Then I see the two options in edit modal
-        Then I see the button Cancel in the edit modal
+        When I select the three dot menu action 'Publish'
+        When I click on the three dot menu in room board title
+        Then I see the option Editing settings
+        When I click on editing setting in board menu
+        Then I see the Editing settings dialog
+        Then I see the two options in editing settings modal
+        Then I see the button Cancel in the editing settings modal
         Then I see the option This board is not editable for members with room role Read is by default selected
         When I click the option All members can edit this board
         Then I see the option All members can edit this board is by default selected
-        When I click on the button Save
+        When I click on the button Save in Editing settings modal
         Then I see the chip Editable for all
 
         # student checks that he has edit permission wrt board
@@ -63,21 +60,22 @@ Feature: Editing permissions for boards
         When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
         Then I see the page board details
+        When I click on the three dot menu in room board title
         When I select the three dot menu action 'Revert'
         Then I see the chip Draft in the course board
         Then I do not see the chip Editable for all
         When I click on the three dot menu in room board title
-        Then I see the option Editing Settings
-        When I select the three dot menu action 'Editing Settings'
-        Then I see a modal with the message The board must be published first
-        When I click on the button Close
+        Then I see the option Editing settings
+        When I click on editing setting in board menu
+        Then I see a warning modal for The board must be published first
+        When I click on the button Cancel in the editing settings modal
         Then I see the chip Draft in the course board
 
         # student checks that he cannot access unpublish board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name_source>'
-        Then I do not see the multi-column board in the room detail page
+        Then I do not see the board '<board_title>' in the room
 
 
         # post-condition: teacher deletes room and admin disables student visibility for teachers
@@ -90,7 +88,7 @@ Feature: Editing permissions for boards
         @school_api_test
         Examples:
             | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
-            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | Cypress Room Name-1 | Board Cy Title | student_1    | student_2    | Lernend   |
+            | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | Cypress Room Name-1 | Board Cy Title | student_1    | student_2    | Lernend   |
 
         @staging_test
         Examples:
