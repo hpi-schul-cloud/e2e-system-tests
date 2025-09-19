@@ -53,11 +53,11 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         When I click on checkbox Activate video conferences in page Edit course to enable the BBB tool
         When I click on button Save changes in page Edit course
         When I click on tab Tools
-        Then I see the BBB Video Conference BigBlueButton in the course
+        Then I see the Video Conference BigBlueButton in the course
         When I click on the BBB Video Conference BigBlueButton in the course
         Then I see the modal to start the BBB video conference
         When I click outside the BBB dialog box
-        Then I see the BBB Video Conference BigBlueButton in the course
+        Then I see the Video Conference BigBlueButton in the course
         When I click on the BBB Video Conference BigBlueButton in the course
         Then I see the modal to start the BBB video conference
         Then I click on button Cancel in BBB dialog box
