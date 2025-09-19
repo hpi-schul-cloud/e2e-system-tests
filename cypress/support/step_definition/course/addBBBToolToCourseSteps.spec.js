@@ -14,7 +14,7 @@ When("I click on tab Tools", () => {
 	courses.clickOnToolsTabInCourse();
 });
 
-Then("I see the BBB Video Conference BigBlueButton in the course", () => {
+Then("I see the Video Conference BigBlueButton in the course", () => {
 	courses.seeBBBInCourseToolTab();
 });
 
