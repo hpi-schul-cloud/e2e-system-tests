@@ -687,24 +687,28 @@ class Management {
 			if (body.find(Management.#birthDateFieldCreateStudent).length) {
 				const birthDate = new Date();
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
-
-				// local date formatting (no UTC issues)
-				const year = birthDate.getFullYear();
-				const month = String(birthDate.getMonth() + 1).padStart(2, "0");
-				const day = String(birthDate.getDate()).padStart(2, "0");
-
-				const isoDate = `${year}-${month}-${day}`; // YYYY-MM-DD (for input)
-				const formattedBirthDate = `${day}.${month}.${year}`; // DD.MM.YYYY (for table)
-
+				// Intl.DateTimeFormat for clean formatting
+				const isoFormatter = new Intl.DateTimeFormat("en-CA", {
+					year: "numeric",
+					month: "2-digit",
+					day: "2-digit",
+				});
+				// YYYY-MM-DD (for <input type="date">)
+				const isoDate = isoFormatter.format(birthDate);
+				const displayFormatter = new Intl.DateTimeFormat("de-DE", {
+					year: "numeric",
+					month: "2-digit",
+					day: "2-digit",
+				});
+				// DD.MM.YYYY (for user table)
+				const formattedBirthDate = displayFormatter.format(birthDate);
 				// type the ISO string into the input
 				cy.get(Management.#birthDateFieldCreateStudent)
 					.clear()
 					.type(isoDate, { delay: 100 });
-
-				// store alias in DD.MM.YYYY format for the assertion in user table
+				// store alias in DD.MM.YYYY format
 				cy.wrap(formattedBirthDate).as("assignedBirthDate");
 			} else {
-				// for Teacher
 				cy.log("Birthdate is not required while creating a new teacher");
 				// alias always exists
 				cy.wrap(null).as("assignedBirthDate");
