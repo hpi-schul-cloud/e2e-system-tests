@@ -1,7 +1,6 @@
 @regression_test
 @stable_test
 @group-F
-@only
 Feature: Room Board - Collabora full text file access (add, edit, delete) with editor permission
 
     As a teacher with edit permission I want to add collabora text file, add text content and delete the file in a room board
