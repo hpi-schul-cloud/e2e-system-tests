@@ -1,7 +1,7 @@
 "use strict";
 
 class Collabora {
-	static #collaboraDocx = 'iframe[title="Office-Dokument Editor"]';
+	static #collaboraEditor = 'iframe[title="Office-Dokument Editor"]';
 	static #collaboraSaveButton = "[id=save-button]";
 	static #fileButtonText = "Datei";
 	static #pdfDownloadText = "PDF-Dokument (.pdf)";
@@ -20,30 +20,30 @@ class Collabora {
 	}
 
 	seeCollaboraTextEditor() {
-		this.getIframeBody(Collabora.#collaboraDocx).should("be.visible");
+		this.getIframeBody(Collabora.#collaboraEditor).should("be.visible");
 	}
 
 	typeCollaboraText(text, x, y) {
-		cy.get(Collabora.#collaboraDocx)
+		cy.get(Collabora.#collaboraEditor)
 			.realClick({ x: x, y: y })
 			.realType(`{enter}${text}`); // to type in new line
 	}
 
 	clickCollaboraSaveButton() {
-		this.getIframeBody(Collabora.#collaboraDocx)
+		this.getIframeBody(Collabora.#collaboraEditor)
 			.find(Collabora.#collaboraSaveButton)
 			.click({ force: true }); // need to force click otherwise does not click
 	}
 
 	cannotTypeCollaboraText(text, x, y) {
-		cy.get(Collabora.#collaboraDocx)
+		cy.get(Collabora.#collaboraEditor)
 			.realClick({ x: x, y: y })
 			.realType(`{enter}${text}`);
-		this.getIframeBody(Collabora.#collaboraDocx).should("not.contain.text", text);
+		this.getIframeBody(Collabora.#collaboraEditor).should("not.contain.text", text);
 	}
 
 	clickCollaboraFileIcon() {
-		this.getIframeBody(Collabora.#collaboraDocx)
+		this.getIframeBody(Collabora.#collaboraEditor)
 			.contains(Collabora.#fileButtonText)
 			.click();
 		// user with read access has id in the form of number and for edit permission has id in the text format.
@@ -51,7 +51,7 @@ class Collabora {
 	}
 
 	clickCollaboraDownloadButton() {
-		this.getIframeBody(Collabora.#collaboraDocx).within(() => {
+		this.getIframeBody(Collabora.#collaboraEditor).within(() => {
 			cy.contains(
 				`${Collabora.#writeDownloadButton}, ${Collabora.#readDownloadLink}`,
 				/Herunterladen( als)?/,
@@ -65,7 +65,7 @@ class Collabora {
 	// user with read access has id in the form of number and for edit permission has id and text.
 
 	clickCollaboraPDFDownloadOption() {
-		this.getIframeBody(Collabora.#collaboraDocx).within(() => {
+		this.getIframeBody(Collabora.#collaboraEditor).within(() => {
 			cy.contains(
 				`${Collabora.#pdfDownloadSpan}, ${Collabora.#pdfDownloadLink}`,
 				Collabora.#pdfDownloadText,

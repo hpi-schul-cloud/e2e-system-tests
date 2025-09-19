@@ -678,3 +678,7 @@ When("I click on the collabora file {string}", (fileName) => {
 Then("I see the collabora Docx file type in the card", () => {
 	roomBoards.verifyDocxFileUploaded();
 });
+
+Then("I see the file type XLSX is uploaded in the card", () => {
+	roomBoards.verifyXlsxFileUploaded();
+});
