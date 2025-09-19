@@ -94,6 +94,8 @@ class Management {
 	static #dataTable = '[data-testid="table_container"]';
 	static #studentVisiblityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
+	static #studentVisiblityToggleInput =
+		'[data-testid="admin-school-toggle-student-visibility"] .v-input__control input';
 	static #buttonNewAdminPage = '[data-testid="button_new_admin_page"]';
 	static #birthDateFieldCreateStudent = '[data-testid="input_create-student_birthdate"]';
 	static #manualRegistrationSummaryPage = '[data-testid="consent_table_3"]';
@@ -503,6 +505,26 @@ class Management {
 		cy.get(Management.#studentVisiblityToggle)
 			.find("input")
 			.should("have.prop", "checked");
+	}
+
+	checkingVideoToggleButtonStatus() {
+		return cy.get(Management.#studentVisiblityToggleInput).invoke("prop", "checked");
+	}
+
+	toggleStudentVisibilityForTeachersByAdmin(desiredState) {
+		this.checkingVideoToggleButtonStatus().then((toggleBtnStatus) => {
+			toggleBtnStatus === desiredState
+				? cy.log(`Element is already in the desired state, skipping click`)
+				: cy
+						.get(Management.#studentVisiblityToggleInput)
+						.click({ force: true })
+						.wait(500);
+		});
+		cy.get(Management.#studentVisiblityToggleInput).should(
+			"have.prop",
+			"checked",
+			desiredState
+		);
 	}
 
 	clickOnAdminSettingsSave() {

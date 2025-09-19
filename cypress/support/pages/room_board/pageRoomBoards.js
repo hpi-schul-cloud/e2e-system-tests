@@ -4,6 +4,9 @@ class RoomBoards {
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
 	static #btnDialogConfirm = '[data-testid="dialog-confirm"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
+	static #addNewColumnButton = '[data-testid="add-column"]';
+	static #boardMenuActionEditingSetting =
+		'[data-testid="kebab-menu-action-edit-setting"]';
 	static #mainPageArea = '[id="main-content"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
 	static #btnBoardMenuActionRename = '[data-testid="kebab-menu-action-rename"]';
@@ -37,6 +40,7 @@ class RoomBoards {
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
 	static #continueButton = '[data-testid="dialog-next"]';
@@ -49,11 +53,18 @@ class RoomBoards {
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
 	static #importButton = '[data-testid="dialog-confirm"]';
 	static #shareModalTitle = '[data-testid="dialog-title"]';
+	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
+	static #editSettingsOption1 = '[data-testid="edit-settings-option-1"]';
+	static #editSettingsOption2 = '[data-testid="edit-settings-option-2"]';
+	static #saveButtonInEditingSettingsModal = '[data-testid="edit-settings-save-btn"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
 	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
+	static #cancelButtonInEditingSettingsModal = '[data-testid="edit-settings-cancel-btn"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
+	static #editingSettingsAlert = '[class="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
+	static #radioButtonInEditingSettingsModal = 'input[type="radio"]';
 	static #inputAttachFile = 'input[type="file"]';
 	static #downloadFileIconSelector =
 		'[data-testid="board-file-element-edit-menu-download"]';
@@ -99,8 +110,7 @@ class RoomBoards {
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolDomainUrl =
-		'[data-testid="board-external-tool-element-domain"]';
+	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
 
 	verifyBettermarksToolNotInCards() {
 		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
@@ -136,6 +146,14 @@ class RoomBoards {
 
 	clickSaveButtonToSaveLinkInCard() {
 		cy.get(RoomBoards.#linkSaveButton).click();
+	}
+
+	seeAddNewColumnButton() {
+		cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist");
+	}
+
+	seeNoAddNewColumnButton() {
+		cy.get(RoomBoards.#addNewColumnButton).should("not.exist");
 	}
 
 	verifyLinkElementClickableInRoomBoard() {
@@ -387,6 +405,29 @@ class RoomBoards {
 		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
 	}
 
+	verifyTwoOptionsInEditingSettingsModal() {
+		cy.get(RoomBoards.#editSettingsOption1).should("be.visible");
+		cy.get(RoomBoards.#editSettingsOption2).should("be.visible");
+	}
+
+	verifyBoardNotEditableForReadRoleIsSelected() {
+		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).first().should("be.checked");
+	}
+
+	verifyAllMembersCanEditBoardIsSelected() {
+		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).last().should("be.checked");
+	}
+
+	clickOptionBoardNotEditableForReadRole() {
+		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).first().check();
+		cy.wait(500);
+	}
+
+	clickOptionAllMembersCanEditBoard() {
+		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).last().check();
+		cy.wait(500);
+	}
+
 	verifyShareInformationBox() {
 		cy.get(RoomBoards.#shareInformationBox).should("be.visible");
 	}
@@ -395,8 +436,24 @@ class RoomBoards {
 		cy.get(RoomBoards.#cancelButtonInShareModal).should("be.visible");
 	}
 
+	verifyCancelButtonInEditingSettingsModal() {
+		cy.get(RoomBoards.#cancelButtonInEditingSettingsModal).should("be.visible");
+	}
+
+	seeWarningModalForUnpublishedBoard() {
+		cy.get(RoomBoards.#editingSettingsAlert).should("be.visible");
+	}
+
+	clickCancelButtonInEditingSettingsModal() {
+		cy.get(RoomBoards.#cancelButtonInEditingSettingsModal).click();
+	}
+
 	verifyImportSharedBoardModal() {
 		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	clickSaveButtonInEditingSettingsModal() {
+		cy.get(RoomBoards.#saveButtonInEditingSettingsModal).click();
 	}
 
 	selectRoomForImport() {
@@ -437,6 +494,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
 	}
 
+	seeEditingSettingsDialog() {
+		cy.get(RoomBoards.#editingSettingsDialog).should("be.visible");
+	}
+
 	verifySameSchoolLinkCheckboxChecked() {
 		cy.get(RoomBoards.#sameSchoolCheckbox)
 			// Move to the parent container holding the checkbox
@@ -469,8 +530,20 @@ class RoomBoards {
 		cy.get(RoomBoards.#copyLinkOption).should("be.visible");
 	}
 
+	verifyEditingSettingOption() {
+		cy.get(RoomBoards.#boardMenuActionEditingSetting).should("be.visible");
+	}
+
 	verifyScanQRCodeOption() {
 		cy.get(RoomBoards.#scanQRCodeOption).should("be.visible");
+	}
+
+	seeChipEditableForAll() {
+		cy.get(RoomBoards.#chipEditableForAllSelector).should("be.visible");
+	}
+
+	seeNoChipEditableForAll() {
+		cy.get(RoomBoards.#chipEditableForAllSelector).should("not.exist");
 	}
 
 	copyBoardURLInModal() {
@@ -670,6 +743,9 @@ class RoomBoards {
 	}
 	clickOnDeleteInBoardMenu() {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
+	}
+	clickOnEditingSettingInBoardMenu() {
+		cy.get(RoomBoards.#boardMenuActionEditingSetting).click();
 	}
 	seeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("exist");

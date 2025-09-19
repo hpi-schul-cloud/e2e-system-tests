@@ -31,12 +31,17 @@ When("I enter the tool display name {string}", (bettermarksTitle) => {
 Then(
 	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
 	(bettermarksTitle, bettermarksDomainUrl) => {
-		roomBoards.verifyBettermarksToolAddedInCard(
-			bettermarksTitle,
-			bettermarksDomainUrl
-		);
+		roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
 	}
 );
+
+Then("I see the chip Editable for all", () => {
+	roomBoards.seeChipEditableForAll();
+});
+
+Then("I do not see the chip Editable for all", () => {
+	roomBoards.seeNoChipEditableForAll();
+});
 
 Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);
@@ -197,12 +202,60 @@ Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
 
+Then("I see the two options in editing settings modal", () => {
+	roomBoards.verifyTwoOptionsInEditingSettingsModal();
+});
+
+Then("I see the button Cancel in the editing settings modal", () => {
+	roomBoards.verifyCancelButtonInEditingSettingsModal();
+});
+
+When("I click on the button Cancel in the editing settings modal", () => {
+	roomBoards.clickCancelButtonInEditingSettingsModal();
+});
+
+When("I click on the button Save in Editing settings modal", () => {
+	roomBoards.clickSaveButtonInEditingSettingsModal();
+});
+
+Then("I see the button Add column in the course board", () => {
+	roomBoards.seeAddNewColumnButton();
+});
+
+Then("I see a warning modal for The board must be published first", () => {
+	roomBoards.seeWarningModalForUnpublishedBoard();
+});
+
+Then("I see the button Add column in the course board is not visible", () => {
+	roomBoards.seeNoAddNewColumnButton();
+});
+
+When(
+	"I click the option This board is not editable for members with room role Read",
+	() => {
+		roomBoards.clickOptionBoardNotEditableForReadRole();
+	}
+);
+
+When("I click the option All members can edit this board", () => {
+	roomBoards.clickOptionAllMembersCanEditBoard();
+});
+
 Then("I see the information box in share modal", () => {
 	roomBoards.verifyShareInformationBox();
 });
 
 Then("I see the button Cancel in the share modal", () => {
 	roomBoards.verifyCancelButtonInShareModal();
+});
+Then(
+	"I see the option This board is not editable for members with room role Read is by default selected",
+	() => {
+		roomBoards.verifyBoardNotEditableForReadRoleIsSelected();
+	}
+);
+Then("I see the option All members can edit this board is by default selected", () => {
+	roomBoards.verifyAllMembersCanEditBoardIsSelected();
 });
 
 When("I open the shared URL", () => {
@@ -236,6 +289,10 @@ Then("I see the Share settings dialog", () => {
 	roomBoards.seeShareSettingsDialog();
 });
 
+Then("I see the Editing settings dialog", () => {
+	roomBoards.seeEditingSettingsDialog();
+});
+
 Then("I see the checkbox Link valid for the same school is by default checked", () => {
 	roomBoards.verifySameSchoolLinkCheckboxChecked();
 });
@@ -258,6 +315,10 @@ Then("I see the option Share via Email", () => {
 
 Then("I see the option Copy link", () => {
 	roomBoards.verifyCopyLinkOption();
+});
+
+Then("I see the option Editing settings", () => {
+	roomBoards.verifyEditingSettingOption();
 });
 
 Then("I see the option Scan QR Code", () => {
@@ -432,6 +493,10 @@ Then("I see my room board is named {string}", (boardTitle) => {
 
 When("I click on delete in board menu", () => {
 	roomBoards.clickOnDeleteInBoardMenu();
+});
+
+When("I click on editing setting in board menu", () => {
+	roomBoards.clickOnEditingSettingInBoardMenu();
 });
 
 Then("I see the button to cancel the dialog", () => {
