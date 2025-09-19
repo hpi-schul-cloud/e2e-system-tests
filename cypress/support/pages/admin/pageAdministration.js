@@ -688,29 +688,34 @@ class Management {
 				const birthDate = new Date();
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
 
-				// YYYY-MM-DD for typing into the input
-				// note: toISOString() returns date in UTC, so we split and take only the date part
-				// this ensures that the date is correctly interpreted regardless of local timezone
-				const isoDate = birthDate.toISOString().split("T")[0];
-				const formattedBirthDate = `${String(birthDate.getDate()).padStart(2, "0")}.${String(birthDate.getMonth() + 1).padStart(2, "0")}.${birthDate.getFullYear()}`; // DD.MM.YYYY for table check
+				// local date formatting (no UTC issues)
+				const year = birthDate.getFullYear();
+				const month = String(birthDate.getMonth() + 1).padStart(2, "0");
+				const day = String(birthDate.getDate()).padStart(2, "0");
 
-				// type the ISO string into the input (works for <input type="date">)
-				cy.get(Management.#birthDateFieldCreateStudent).type(isoDate, 100);
+				const isoDate = `${year}-${month}-${day}`; // YYYY-MM-DD (for input)
+				const formattedBirthDate = `${day}.${month}.${year}`; // DD.MM.YYYY (for table)
+
+				// type the ISO string into the input
+				cy.get(Management.#birthDateFieldCreateStudent)
+					.clear()
+					.type(isoDate, { delay: 100 });
 
 				// store alias in DD.MM.YYYY format for the assertion in user table
 				cy.wrap(formattedBirthDate).as("assignedBirthDate");
 			} else {
 				// for Teacher
 				cy.log("Birthdate is not required while creating a new teacher");
+				// alias always exists
+				cy.wrap(null).as("assignedBirthDate");
 			}
 		});
 	}
 
 	seeTheAssignedBirthDateInUserTable() {
-		// check if the alias exists before trying to get it
-		if (Cypress._.get(cy.state("aliases"), "assignedBirthDate")) {
-			cy.get("@uniqueEmail").then((uniqueEmail) => {
-				cy.get("@assignedBirthDate").then((assignedBirthDate) => {
+		cy.get("@assignedBirthDate").then((assignedBirthDate) => {
+			if (assignedBirthDate) {
+				cy.get("@uniqueEmail").then((uniqueEmail) => {
 					cy.log(
 						"verifying student row with email:",
 						uniqueEmail,
@@ -718,16 +723,14 @@ class Management {
 						assignedBirthDate
 					);
 
-					// find the row by unique email, then check that DOB exists in the same row
 					cy.get(Management.#tableContents)
 						.contains("tr", uniqueEmail)
 						.should("contain", assignedBirthDate);
 				});
-			});
-		} else {
-			// for teacher
-			cy.log("user is not a student (no birthdate assigned).");
-		}
+			} else {
+				cy.log("user is not a student");
+			}
+		});
 	}
 
 	enterEmailOnFirstLogin() {
