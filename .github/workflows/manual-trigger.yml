@@ -345,7 +345,7 @@ jobs:
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ inputs.browser }}
-      tag: ${{ needs.e2e-system-tests.outputs.dev_base_tag }}
+      tag: ${{ format('"{0}"',needs.e2e-system-tests.outputs.dev_base_tag) }}
       environment: dev
       groups: ${{ matrix.group }}
 
