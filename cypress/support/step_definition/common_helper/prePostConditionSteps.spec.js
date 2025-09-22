@@ -120,7 +120,7 @@ Given("the room named {string} is deleted", (room_name) => {
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	//rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	rooms.roomIsNotVisibleOnOverviewPage(room_name);
 });
 
 Given("a room named {string} exists", (room_name) => {
