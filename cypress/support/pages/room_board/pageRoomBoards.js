@@ -1003,6 +1003,10 @@ class RoomBoards {
 				cy.wait(5000);
 			});
 	}
+
+	verifyXlsxFileUploaded() {
+		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
 }
 
 export default RoomBoards;
