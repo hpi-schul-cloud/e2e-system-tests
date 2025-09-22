@@ -67,6 +67,6 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
 #@staging_test
 #Examples:
 #| namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            |
-#| brb       | teacher1_brb | teacher2_brb | Hande          | CypressAut_Collabora Room | CypressAut_Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
+#| brb       | teacher1_brb | teacher2_brb | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
 
 
