@@ -334,6 +334,13 @@ Given("team with name {string} is deleted", (teamName) => {
 	teams.doNotSeeTeam(teamName);
 });
 
+Given("team with name {string} is created", (teamName) => {
+	teams.navigateToTeamsOverview();
+	teams.clickOnAddTeam();
+	teams.enterTeamName(teamName);
+	teams.clickOnAddButtonToCreateTeam();
+});
+
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);

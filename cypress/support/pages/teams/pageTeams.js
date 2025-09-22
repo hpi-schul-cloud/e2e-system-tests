@@ -38,7 +38,8 @@ class Teams {
 		'[data-testid="start_video_conference_link"]';
 	static #teamVideoConferenceModal = '[data-testid="modal_content"]';
 	static #muteParticipantToggle = '[data-testid="toggle_mute_participants"]';
-	static #moderatorApprovalToggle = '[data-testid="toggle_moderator_approval_required"]';
+	static #moderatorApprovalToggle =
+		'[data-testid="toggle_moderator_approval_required"]';
 	static #allPartipantsAreModeratorToggel =
 		'[data-testid="toggle_all_participants_moderator"]';
 	static #disabledVideoCheckboxOnTeamEditpage = '[disabled=""]';
@@ -71,7 +72,7 @@ class Teams {
 	static #videoConferenceNotStartedIcon =
 		'[data-testid="video-conference-not-started-info-icon"]';
 	static #videoConferenceNotStartedInfoModal = '[data-testid="modal_content"]';
-	static #teamEventTitleOnCalanderTab = '[data-testid="team-event-calender-title"]';
+	static #teamEventTitleOnCalendarTab = '[data-testid="team-event-calender-title"]';
 	static #teamsMembersOverviewPageTitle = '[id="page-title"]';
 	static #saveEventButton = '[data-testid="submit-btn-create-event-modal"]';
 
@@ -102,7 +103,10 @@ class Teams {
 	}
 
 	seeTeamEventDescription(teamEventDescription) {
-		cy.get(Teams.#teamCalendarEventDescription).should("contain", teamEventDescription);
+		cy.get(Teams.#teamCalendarEventDescription).should(
+			"contain",
+			teamEventDescription
+		);
 	}
 
 	seeVideoPartcipationButtonInTeamEvents() {
@@ -149,7 +153,7 @@ class Teams {
 	}
 
 	doNotSeeTeamEventTitle() {
-		cy.get(Teams.#teamEventTitleOnCalanderTab).should("not.exist");
+		cy.get(Teams.#teamEventTitleOnCalendarTab).should("not.exist");
 	}
 
 	deleteTeamEvent() {
@@ -161,7 +165,7 @@ class Teams {
 	}
 
 	editedTeamEventTitleIsVisible() {
-		cy.get(Teams.#teamEventTitleOnCalanderTab).should("be.exist");
+		cy.get(Teams.#teamEventTitleOnCalendarTab).should("be.exist");
 	}
 
 	editTeamEventDescription(editedEventDescription) {
@@ -181,7 +185,7 @@ class Teams {
 	}
 
 	seeTeamEventTitleIsVisible(eventTitle) {
-		cy.get(Teams.#teamEventTitleOnCalanderTab).contains(eventTitle);
+		cy.get(Teams.#teamEventTitleOnCalendarTab).contains(eventTitle);
 	}
 
 	clickOnSaveTeamEvent() {
@@ -205,11 +209,13 @@ class Teams {
 	}
 
 	enterTeamEventTitle(eventTitle) {
-		cy.get(Teams.#teamCreateEventTitleInput).type(eventTitle, { force: true }).wait(1000);
+		cy.get(Teams.#teamCreateEventTitleInput)
+			.type(eventTitle, { force: true })
+			.wait(1000);
 	}
 
 	seeTeamEventCreationModal() {
-		cy.get(Teams.#teamEventCreteModal);
+		cy.get(Teams.#teamEventCreteModal).should("be.visible");
 	}
 
 	clickOnAddTeamsAppointment() {
@@ -311,7 +317,9 @@ class Teams {
 
 	canNotSeeTeamVideoCheckbox() {
 		cy.get(Teams.#teamOptions);
-		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should("not.exist");
+		cy.contains(Teams.#testAssertionData.activateVideoMessengerText).should(
+			"not.exist"
+		);
 		cy.get(Teams.#activateConfCheckbox).should("not.exist");
 	}
 
