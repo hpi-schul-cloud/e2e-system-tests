@@ -98,7 +98,7 @@ When("I click on button Add Team on the teams overview page", () => {
 	teams.clickOnAddTeam();
 });
 
-When("I go to calendar tab", () => {
+When("I go to tab Calendar", () => {
 	teams.goToTeamsCalendarTab();
 });
 

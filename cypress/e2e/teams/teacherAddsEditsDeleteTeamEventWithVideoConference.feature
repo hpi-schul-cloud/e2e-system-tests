@@ -49,7 +49,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         # Teacher adds event with video conference
         When I go to teams overview
         When I go to a team '<team_title>'
-        When I go to calendar tab
+        When I go to tab Calendar
         When I click on Add date
         Then I see event creation modal
         When I enter the title '<event_title>'
@@ -59,7 +59,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         When I enable the video conference toggle on the modal
         When I enter the event place '<event_place>'
         When I click on Save team event button
-        When I go to calendar tab
+        When I go to tab Calendar
         Then I am in calendar tab on team detail page and title '<event_title>' is visible
         Then I see the start video conference button
         When I click on start video conference button as a moderator teacher
@@ -70,7 +70,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to teams overview
         When I go to a team '<team_title>'
-        When I go to calendar tab
+        When I go to tab Calendar
         Then I am in calendar tab on team detail page and title '<event_title>' is visible
         Then I click on participate to video conference button as a participating student
 
@@ -86,7 +86,7 @@ Feature: Team - Teacher adds edits and deletes team event with video conference 
         # as a post condition Teacher edits and deletes the event
         When I go to teams overview
         When I go to a team '<team_title>'
-        When I go to calendar tab
+        When I go to tab Calendar
         When I click on icon Edit event
         When I change the title to '<event_title_edited>'
         When I change the description to '<event_description_edited>'
