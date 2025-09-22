@@ -61,12 +61,12 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name              | board_title             | docx_file_name   | text_1             | text_2             |
-            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | Cypress_Collabora Room | Cypress_Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | docx_file_name   | text_1             | text_2             |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | CypressAut_Collabora Room | CypressAut_Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
 
 #@staging_test
 #Examples:
-#| namespace | teacher_1    | teacher_2    | teacher_2_name | room_name               | board_title             | docx_file_name   | text_1    | text_2       |
-#| brb       | teacher1_brb | teacher2_brb | Hande          | Cypress_Collabora Room  | Cypress_Collabora Board | sample-docx.docx | Collabora | Cypress Test |
+#| namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | docx_file_name   | text_1             | text_2             |
+#| brb       | teacher1_brb | teacher2_brb | Hande          | CypressAut_Collabora Room | CypressAut_Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
 
 
