@@ -215,7 +215,7 @@ class Teams {
 	}
 
 	seeTeamEventCreationModal() {
-		cy.get(Teams.#teamEventCreteModal);
+		cy.get(Teams.#teamEventCreteModal).should("be.visible");
 	}
 
 	clickOnAddTeamsAppointment() {
