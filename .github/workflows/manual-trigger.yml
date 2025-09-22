@@ -60,6 +60,7 @@ jobs:
       only_tagged_tag: ${{ steps.set_variables.outputs.only_tagged_tag }}
       staging_base_tag: ${{ steps.set_variables.outputs.staging_base_tag }}
       dev_base_tag: ${{ steps.set_variables.outputs.dev_base_tag }}
+      environment: ${{ steps.set_variables.outputs.environment }}
 
       # comment for checking the behavior
       # environment: ${{ steps.set_variables.outputs.environment }}
@@ -104,18 +105,28 @@ jobs:
           echo "cypress_dbc_staging=$dbc_staging" >> $GITHUB_OUTPUT
           echo "cypress_nbc_staging=$nbc_staging" >> $GITHUB_OUTPUT
 
-          # Matrix groups (export as JSON arrays so downstream can use fromJson)
+          # Matrix groups
           echo 'dev_groups=["group-A","group-B","group-C","group-D","group-E","group-F"]' >> $GITHUB_OUTPUT
           echo 'staging_groups=["group-A","group-B","group-C","group-D","group-E","group-F"]' >> $GITHUB_OUTPUT
           echo 'staging_dev_groups=["staging-dev-tests"]' >> $GITHUB_OUTPUT
 
-          # Tags
+          # Default Tags
           echo "all_tests_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
           echo "pr_tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
           echo "pre_check_tag=@stable_test and @school_api_test and @pre_check_test" >> $GITHUB_OUTPUT
           echo "only_tagged_tag=@only" >> $GITHUB_OUTPUT
-          echo "staging_base_tag=@stable_test and @staging_test" >> $GITHUB_OUTPUT
-          echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
+          # echo "staging_base_tag=@stable_test and @staging_test" >> $GITHUB_OUTPUT
+          # echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
+
+          # Base tags with prio
+          if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
+            echo "staging_base_tag=@stable_test and @staging_test and @prio_0_staging" >> $GITHUB_OUTPUT
+            echo "dev_base_tag=@stable_test and @school_api_test and @prio_0_dev" >> $GITHUB_OUTPUT
+            echo "environment=ref" >> $GITHUB_OUTPUT
+          else
+            echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
+            echo "environment=dev" >> $GITHUB_OUTPUT
+          fi
 
           # comment for checking the behavior
           # if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
@@ -211,7 +222,7 @@ jobs:
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.dev_base_tag, matrix.group) }}
-      environment: dev
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
@@ -239,7 +250,7 @@ jobs:
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.pr_tests_tag, matrix.group) }}
-      environment: dev
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
@@ -262,7 +273,7 @@ jobs:
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ inputs.browser}}
       tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
-      environment: dev
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: pre-check
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
@@ -285,7 +296,7 @@ jobs:
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ inputs.browser }}
       tag: '"${{ needs.e2e-system-tests.outputs.only_tagged_tag }}"'
-      environment: dev
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: only-tagged
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
@@ -315,7 +326,7 @@ jobs:
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_staging }}
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
-      environment: ref
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ matrix.group }}
 
   run-dev-tests:
