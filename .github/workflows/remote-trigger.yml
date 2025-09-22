@@ -117,7 +117,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      browser: edge
+      browser: chrome
       tag:  >-
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_pr_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}

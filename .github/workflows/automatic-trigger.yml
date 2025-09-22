@@ -40,7 +40,7 @@ jobs:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      browser: edge
+      browser: chrome
       tag: >-
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
