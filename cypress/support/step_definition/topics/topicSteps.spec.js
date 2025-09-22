@@ -3,12 +3,59 @@ import Topics from "../../pages/topics/pageTopics";
 
 const topics = new Topics();
 
-// EXTERNAL COMMON STEP DEFINITIONS
-// =========================
-// External defined steps can be found here:
-// -----------------------------------------
-// -->\step_definition\authentication\loginStep.spec.js
-// -->\step_definition\course\commonCourseSteps.spec.js
+Then("I see the dialog for copying topic alert", () => {
+	topics.seeCopyAlertDialog();
+});
+
+Then("I see information in the dialog that GeoGebra was not copied", () => {
+	topics.seeGeoGebraNotCopiedInfoInDialog();
+});
+
+Then("I see information in the dialog that the Etherpad content was not copied", () => {
+	topics.seeEtherpadNotCopiedInfoInDialog();
+});
+
+When("I click the button Close in the dialog", () => {
+	topics.clickCloseButtonInDialog();
+});
+
+Then(
+	"I see the topic title {string} with the suffix {string} on the course detail page",
+	(topicName, suffix) => {
+		topics.seeCopiedTopicTitleOnCourseDetailPage(topicName, suffix);
+	}
+);
+
+Then(
+	"I see the topic title {string} with the suffix {string} on the topic detail page",
+	(topicName, suffix) => {
+		topics.seeCopiedTopicTitleOnTopicDetailPage(topicName, suffix);
+	}
+);
+
+Then("I see the Publish button on the copied topic", () => {
+	topics.seePublishButtonOnCopiedTopic();
+});
+
+When("I click on the copied topic {string}", (topicName) => {
+	topics.clickOnCopiedTopic(topicName);
+});
+
+Then("I see the topic details page", () => {
+	topics.seeTopicDetailsPage();
+});
+
+Then("I see the element Text {string} on the topic detail page", (expectedText) => {
+	topics.seeTextElementOnTopicDetailPage(expectedText);
+});
+
+Then("I see the element Lernstore {string} on the topic detail page", (expectedText) => {
+	topics.seeLernstoreElementOnTopicDetailPage(expectedText);
+});
+
+Then("I see the element Etherpad {string} on the topic detail page", (expectedText) => {
+	topics.seeEtherpadElementOnTopicDetailPage(expectedText);
+});
 
 Then("I can see edit topic page {string}", (topicTitle) => {
 	topics.seeEditTopicPage(topicTitle);
@@ -130,9 +177,8 @@ Then(
 );
 
 Then("I see topic detail page {string}", (topicTitle) => {
-		topics.seeTopicDetailPage(topicTitle);
-	}
-);
+	topics.seeTopicDetailPage(topicTitle);
+});
 
 When("I navigate back to course detail page via breadcrumb menu", () => {
 	topics.navigateBackToCourseViaBreadcrumb();

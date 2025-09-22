@@ -222,6 +222,13 @@ When(
 	}
 );
 
+When(
+	"I select the three dot menu action {string} at topic index {string} in course detail page",
+	(action, index) => {
+		courses.clickThreeDotMenuActionCopyAtTopicIndex(action, index);
+	}
+);
+
 When("I click on Copy in dot menu of task", () => {
 	courses.clickCopyOptionInThreeDotMenuOfTaskMenu();
 });
@@ -490,17 +497,17 @@ Then("I see the dialog box topic in course", () => {
 });
 
 When("I select the fixture file {string}", (fixture) => {
-    courses.selectFixtureForImport(fixture);
-})
+	courses.selectFixtureForImport(fixture);
+});
 
 When("I start the import", () => {
-    courses.startImport();
-})
+	courses.startImport();
+});
 
 Then("I see the loading bar", () => {
-    courses.seeLoadingBar();
-})
+	courses.seeLoadingBar();
+});
 
 When("I wait for the loading bar to close", () => {
-    courses.waitForImportFinish();
-})
+	courses.waitForImportFinish();
+});

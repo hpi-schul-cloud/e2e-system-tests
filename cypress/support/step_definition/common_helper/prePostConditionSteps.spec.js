@@ -22,53 +22,59 @@ const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
-
 Given(
-	"topic {string} with contents exists in the course {string}",
-	(topic_name, course_name) => {
+	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string}",
+	(
+		topic_name,
+		course_name,
+		text_element_title,
+		geogebra_title,
+		geogebra_id,
+		learning_material_title,
+		etherpad_title,
+		etherpad_description,
+		task_title,
+		task_link_id
+	) => {
 		courses.navigateToCoursesOverview();
 		courses.navigateToCoursePage(course_name);
 		courses.clickOnCreateContentFAB();
-		topics.seeEditTopicPage("_");
+		courses.clickOnNewTopicFAB();
+
 		topics.enterTopicTitle(topic_name);
+
+		// text element
 		topics.clickOnAddTextToTopic();
 		topics.seeFormElementText("0");
-		topics.enterTitleforElementText(
-			"CypressAut Topic Creating and Deleting Test",
-			"0"
-		);
+		topics.enterTitleforElementText(text_element_title, "0");
+
+		// geoGebra element
 		topics.clickOnAddGeoGebraToTopic();
-		topics.enterTitleforElementGeoGebra(
-			"CypressAut Title for GeoGebra Element in Topic"
-		);
-		topics.enterIDforElementGeoGebra("kEBfU7AR");
+		topics.enterTitleforElementGeoGebra(geogebra_title);
+		topics.enterIDforElementGeoGebra(geogebra_id);
+
+		// learning material element
 		topics.clickOnAddLearningMaterialToTopic();
-		topics.enterTitleforElementLearningMaterial(
-			"CypressAut Title for Learning Material Element in Topic"
-		);
+		topics.enterTitleforElementLearningMaterial(learning_material_title);
 		topics.seeAddMaterialBtnInContent();
+
+		// etherpad element
 		topics.clickOnAddEtherpadToTopic();
-		topics.enterTitleforElementEtherpad(
-			"CypressAut Title for Etherpad Element in Topic",
-			"3"
-		);
-		topics.enterDescriptionforElementEtherpad("changed etherpad description", "3");
+		topics.enterTitleforElementEtherpad(etherpad_title, "3");
+		topics.enterDescriptionforElementEtherpad(etherpad_description, "3");
+
+		// task element
 		topics.clickOnAddTaskToTopic();
-		topics.enterTitleforElementTask("CypressAut Title for Task Element in Topic");
-		topics.enterLinkforElementTask("59cce3f6c6abf042248e888d");
+		topics.enterTitleforElementTask(task_title);
+		topics.enterLinkforElementTask(task_link_id);
+
+		// save changes
 		topics.clickOnSubmitChangesInTopicBtn();
-		topics.seeEditTopicPage("CypressAut Topic Creating and Deleting Test");
-		topics.clickOnSubmitChangesInTopicBtn();
-		topics.seeTopicDetailPageWithContent(
-			"CypressAut Topic Creating and Deleting Test",
-			"CypressAut Title for Text Element in Topic",
-			"CypressAut Title for GeoGebra Element in Topic",
-			"CypressAut Title for Learning Material Element in Topic",
-			"CypressAut Title for Etherpad Element in Topic",
-			"CypressAut Title for Task Element in Topic"
-		);
+		topics.clickOnSubmitChangesInTopicBtn(); // double click for CKEditor file upload
 		topics.navigateBackToCourseViaBreadcrumb();
-		courses.topicIsVisibleOnCoursePage("CypressAut Topic Creating and Deleting Test");
+
+		// verify topic appears on course deatail page
+		courses.topicIsVisibleOnCoursePage(topic_name);
 	}
 );
 
