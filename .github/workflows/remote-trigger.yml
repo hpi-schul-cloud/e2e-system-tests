@@ -121,7 +121,7 @@ jobs:
       tag:  >-
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_pr_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
+      groups: ${{ format('{0}-{1}', 'remote-trigger-pr-tagged-tests', matrix.group) }}
 
   cypress-tests-successful:
     needs:

@@ -223,7 +223,7 @@ jobs:
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.dev_base_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger-all-regression-tests', matrix.group) }}
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
       # cypress_nbc: ${{ inputs.nbc_instance }}
@@ -251,7 +251,7 @@ jobs:
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.pr_tests_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger-pr-tagged-tests', matrix.group) }}
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
       # cypress_nbc: ${{ inputs.nbc_instance }}
@@ -274,7 +274,7 @@ jobs:
       browser: ${{ inputs.browser}}
       tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: pre-check
+      groups: manual-trigger-pre-check-tests
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
       # cypress_nbc: ${{ inputs.nbc_instance }}
@@ -297,7 +297,7 @@ jobs:
       browser: ${{ inputs.browser }}
       tag: '"${{ needs.e2e-system-tests.outputs.only_tagged_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: only-tagged
+      groups: manual-trigger-only-tagged-tests
       # cypress_brb: ${{ inputs.brb_instance }}
       # cypress_dbc: ${{ inputs.dbc_instance }}
       # cypress_nbc: ${{ inputs.nbc_instance }}
@@ -327,7 +327,7 @@ jobs:
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger-staging-tests', matrix.group) }}
 
   run-dev-tests:
     name: Run dev tests (staging-dev-tests against branch)
@@ -347,7 +347,7 @@ jobs:
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0}"',needs.e2e-system-tests.outputs.dev_base_tag) }}
       environment: dev
-      groups: ${{ matrix.group }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger-staging-dev-tests', matrix.group) }}
 
 
   # run-staging-tests:
