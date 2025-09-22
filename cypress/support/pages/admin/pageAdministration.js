@@ -687,14 +687,9 @@ class Management {
 			if (body.find(Management.#birthDateFieldCreateStudent).length) {
 				const birthDate = new Date();
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
-				// Intl.DateTimeFormat for clean formatting
-				const isoFormatter = new Intl.DateTimeFormat("en-CA", {
-					year: "numeric",
-					month: "2-digit",
-					day: "2-digit",
-				});
-				// YYYY-MM-DD (for <input type="date">)
-				const isoDate = isoFormatter.format(birthDate);
+				// set time to noon to avoid timezone issues
+				birthDate.setHours(12, 0, 0, 0);
+				const isoFormatter = birthDate.toISOString().split("T")[0];
 				const displayFormatter = new Intl.DateTimeFormat("de-DE", {
 					year: "numeric",
 					month: "2-digit",
@@ -705,7 +700,7 @@ class Management {
 				// type the ISO string into the input
 				cy.get(Management.#birthDateFieldCreateStudent)
 					.clear()
-					.type(isoDate, { delay: 100 });
+					.type(isoFormatter, { delay: 100 });
 				// store alias in DD.MM.YYYY format
 				cy.wrap(formattedBirthDate).as("assignedBirthDate");
 			} else {
