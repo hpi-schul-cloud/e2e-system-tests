@@ -21,6 +21,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I click on add button to add '<role_to_manage>'
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
+        Then I see the assigned date of birth for student in the table
 
         # admin adds edits a student and a teacher
         When I go to '<role_to_manage>' administration

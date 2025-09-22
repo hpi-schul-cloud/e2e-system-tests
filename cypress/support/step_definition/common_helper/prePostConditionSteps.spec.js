@@ -120,7 +120,7 @@ Given("the room named {string} is deleted", (room_name) => {
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	//rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	rooms.roomIsNotVisibleOnOverviewPage(room_name);
 });
 
 Given("a room named {string} exists", (room_name) => {
@@ -332,6 +332,13 @@ Given("team with name {string} is deleted", (teamName) => {
 	teams.clickOnDeleteOption();
 	teams.confirmDeleteOnDialogBox();
 	teams.doNotSeeTeam(teamName);
+});
+
+Given("team with name {string} is created", (teamName) => {
+	teams.navigateToTeamsOverview();
+	teams.clickOnAddTeam();
+	teams.enterTeamName(teamName);
+	teams.clickOnAddButtonToCreateTeam();
 });
 
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {

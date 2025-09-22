@@ -5,9 +5,9 @@
 @pr
 @pre_check_test
 @prio_0_staging
-Feature: Course - Teacher can add and remove BBB tool in the course with admin permission
+Feature: Course - Teacher can add and remove BigBlueButton tool in the course with admin permission
 
-    As a teacher I want to activate and deactivate BBB tool in the course, so that I can manage the video lectures.
+    As a teacher I want to activate and deactivate BigBlueButton tool in the course, so that I can manage the video lectures.
 
     Scenario Outline: Teacher creates, edits and deletes a topic in the course, including pre-conditions
 
@@ -45,28 +45,32 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         Then I enable the video conference
         Then I click on button Save admin settings
 
-        # teacher can add and remove BBB tool in the course
+        # teacher can add and remove BigBlueButton tool in the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
         When I open page Edit course
         Then I see page Edit course
-        When I click on checkbox Activate video conferences in page Edit course to enable the BBB tool
+        When I click on checkbox Activate video conferences in page Edit course to enable the BigBlueButton tool
         When I click on button Save changes in page Edit course
         When I click on tab Tools
-        Then I see the BBB Video Conference BigBlueButton in the course
-        When I click on the BBB Video Conference BigBlueButton in the course
-        Then I see the modal to start the BBB video conference
-        Then I click on button Cancel in BBB dialog box
-        #Teacher removes the BBB tool in the course
+        Then I see the Video Conference BigBlueButton in the course
+        When I click on the tool BigBlueButton in the course
+        Then I see the modal to start the BigBlueButton video conference
+        When I click outside the BigBlueButton dialog box
+        Then I see the Video Conference BigBlueButton in the course
+        When I click on the tool BigBlueButton in the course
+        Then I see the modal to start the BigBlueButton video conference
+        Then I click on button Cancel in BigBlueButton dialog box
+        #Teacher removes the BigBlueButton tool in the course
         When I open page Edit course
         Then I see page Edit course
-        When I uncheck the checkbox to Activate video conferences in page Edit course to enable the BBB tool
+        When I uncheck the checkbox to Activate video conferences in page Edit course to enable the BigBlueButton tool
         When I click on button Save changes in page Edit course
         When I click on tab Tools
         Then I do not see the the card Video Conference BigBlueButton
 
-        # admin disables the video conference option in the school settings page and teacher can not add the bbb tool in the course
+        # admin disables the video conference option in the school settings page and teacher can not add the BigBlueButton tool in the course
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
@@ -74,7 +78,7 @@ Feature: Course - Teacher can add and remove BBB tool in the course with admin p
         Then I disable the video conference
         Then I click on button Save admin settings
 
-        # teacher can not add BBB tool in the course
+        # teacher can not add BigBlueButton tool in the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'

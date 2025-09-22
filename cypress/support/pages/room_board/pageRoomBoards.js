@@ -100,6 +100,11 @@ class RoomBoards {
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
 	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
+	static #body = "body";
+
+	clickOutsideBBBDialogBox() {
+		cy.get(RoomBoards.#body).click("topLeft");
+	}
 
 	verifyBettermarksToolNotInCards() {
 		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
@@ -976,6 +981,10 @@ class RoomBoards {
 				cy.visit(url); // force Cypress into same tab
 				cy.wait(5000);
 			});
+	}
+
+	verifyXlsxFileUploaded() {
+		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
 }
 
