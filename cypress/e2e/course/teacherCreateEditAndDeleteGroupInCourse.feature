@@ -8,7 +8,7 @@ Feature: Course - Teacher can create, edit and delete a group in the course
 
     Scenario Outline: user creation, course creation, and creating,editing and deleting a group
 
-        # pre-condition: creating all users accounts
+        # pre-condition: creating all users accounts (admin, teacher, students)
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

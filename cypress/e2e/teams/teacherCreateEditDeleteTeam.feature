@@ -9,6 +9,7 @@ Feature: Teams - Create, delete and edit operations on Teams
     As a teacher I want to create/edit/delete the team so that I can manage the team.
 
     Scenario Outline: Teacher create, edit and deletes the team
+
         # pre-condition: user logged in and create team
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to teams overview

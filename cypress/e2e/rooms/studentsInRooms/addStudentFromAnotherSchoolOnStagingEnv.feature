@@ -1,9 +1,10 @@
+# NOTE: This feature should only be executed in the staging environment due to the school API limitation,
+# which prevents creating two separate schools in the same feature and scenario.
+
 @regression_test
 @stable_test
 @group-E
 @prio_0_staging
-# Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same feature and scenario.
-
 Feature: Rooms - Invite Student from another school via teacher from another school
 
     As a room owner, when I invite a teacher from another school to a room, the teacher should be able to invite a student from their school, and the student should see the room in their room overview.

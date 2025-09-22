@@ -1,11 +1,12 @@
-@regression_test
-@stable_test
-@group-F
-@prio_0_staging
 # NOTE: this feature can not be currently executed using the school API, as creating two different school
 #       within the same scenario is not possible. And creating them in two different scenarios results
 #       in separate sessions, which prevents the copied board URL from the first scenario
 #       from being used in another scenario.
+
+@regression_test
+@stable_test
+@group-F
+@prio_0_staging
 Feature: Topics - Teacher shares a topic to other teacher from different school to import it
 
     As a teacher I want to share a topic to other teachers from different school to import it

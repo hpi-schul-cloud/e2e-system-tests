@@ -71,10 +71,10 @@ jobs:
       # only_tagged_tag: ${{ steps.set_variables.outputs.only_tagged_tag }}
       # staging_base_tag: ${{ steps.set_variables.outputs.staging_base_tag }}
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      # - name: Setup Node
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 22
 
       - name: Checkout
         uses: actions/checkout@v4

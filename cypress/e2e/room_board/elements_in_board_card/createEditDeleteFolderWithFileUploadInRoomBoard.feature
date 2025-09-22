@@ -2,7 +2,6 @@
 @stable_test
 @group-B
 @prio_0_dev
-# unstable because feature rename files is not merged yet.
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 
     As a content editor I want to create a file folder in a room board so that I can manage the files in the room.

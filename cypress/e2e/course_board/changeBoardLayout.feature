@@ -9,7 +9,7 @@ Feature: Course Board - To change the board layout
 
     Scenario Outline: Teacher changes board layout
 
-        # pre-condition: creating users account
+        # pre-condition: creating teacher account
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creates a course

@@ -1,10 +1,10 @@
-@regression_test
-@stable_test
-@prio_0_staging
-# Note: This feature should only be executed in the staging environment due to the school API limitation,
+# NOTE: This feature should only be executed in the staging environment due to the school API limitation,
 #       which prevents creating two separate schools in the same scenario and using the copied URL
 #       from Scenario One in Scenario Two due to new sessions.
 
+@regression_test
+@stable_test
+@prio_0_staging
 Feature: Rooms - Share and import room with a teacher from different school
 
     As a teacher, I want to share and import a rooms board with another teacher from different school so that I can collaborate effectively.

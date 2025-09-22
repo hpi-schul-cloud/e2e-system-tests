@@ -8,7 +8,7 @@ Feature: Course - To search for a course via search input box on the course over
 
     Scenario Outline: user creation, course creation, and search functionality
 
-        # pre-condition: creating all users
+        # pre-condition: creating all users accounts (admin, teacher, students)
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
