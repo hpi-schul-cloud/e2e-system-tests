@@ -33,7 +33,6 @@ class Topics {
 	static #textElementPos4 = '[data-testid="topic-content-element-text-4"]';
 	// static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
 	// static #draftCheckbox = '[data-testid="private-checkbox"]'
-
 	static #copyAlertDialog = '[data-testid="dialog-content"]';
 	static #copytopicDialogWarning = '[data-testid="warning-title"]';
 	static #closeButtonInCopyTopicDialog = '[data-testid="dialog-close"]';
