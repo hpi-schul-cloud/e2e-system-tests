@@ -37,7 +37,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I see the video conference element added in the card
         When I click on the video conference element in the card
         Then I see the modal to start the video conference
-        When I click outside the BBB dialog box
+        When I click outside the BigBlueButton dialog box
         Then I see the video conference element added in the card
         When I click on the video conference element in the card
         Then I see the modal to start the video conference

@@ -3,6 +3,6 @@ import RoomBoards from "../../pages/room_board/pageRoomBoards";
 
 const roomBoards = new RoomBoards();
 
-When("I click outside the BBB dialog box", () => {
+When("I click outside the BigBlueButton dialog box", () => {
 	roomBoards.clickOutsideBBBDialogBox();
 });
