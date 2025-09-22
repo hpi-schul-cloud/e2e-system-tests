@@ -57,5 +57,5 @@ Feature: Course - Copy Course with Topic and Task
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name | task_name         | topic_text_title   | course_name_copy        | task_index_number | student_lastname |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Karl Herzog       | Copy course | Cypress Copy Task | Cypress Copy Topic | Cypress Copy course (1) | 1                 | Kraft            |
+            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name         | task_name         | topic_text_title   | course_name_copy        | task_index_number | student_lastname |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Karl Herzog       | Cypress Copy course | Cypress Copy Task | Cypress Copy Topic | Cypress Copy course (1) | 1                 | Kraft            |
