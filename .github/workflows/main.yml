@@ -37,12 +37,25 @@ jobs:
           path: e2e-system-tests
 
       - name: Install 1Password CLI
-        uses: 1password/install-cli-action@v2
+        run: |
+          curl -sS https://downloads.1password.com/linux/cli/latest/op_linux_amd64.zip -o op.zip
+          unzip -qq op.zip -d /usr/local/bin
+          chmod +x /usr/local/bin/op
+          op --version
 
-      - name: Configure 1Password Service Account
-        uses: 1password/load-secrets-action/configure@v2
-        with:
-          service-account-token: ${{ secrets.service-account-token }}
+      - name: Configure 1Password CLI
+        run: |
+          export OP_SERVICE_ACCOUNT_TOKEN="${{ secrets.service-account-token }}"
+          # You may need to sign in or create a session depending on your workflow
+          op --version
+
+      # - name: Install 1Password CLI
+      #   uses: 1password/install-cli-action@v2
+
+      # - name: Configure 1Password Service Account
+      #   uses: 1password/load-secrets-action/configure@v2
+      #   with:
+      #     service-account-token: ${{ secrets.service-account-token }}
 
       - name: Fetch JSON files from 1Password
         run: |
