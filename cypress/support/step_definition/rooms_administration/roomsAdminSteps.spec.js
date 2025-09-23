@@ -11,10 +11,6 @@ Then("I see the rooms administration page", () => {
 	roomsAdmin.isRoomsAdministrationPage();
 });
 
-Then("I see the rooms administration page", () => {
-	roomsAdmin.isRoomsAdministrationPage();
-});
-
 Then("I see {string} in the room members list", (participantName) => {
 	roomsAdmin.seeParticipantInAdminList(participantName);
 });
