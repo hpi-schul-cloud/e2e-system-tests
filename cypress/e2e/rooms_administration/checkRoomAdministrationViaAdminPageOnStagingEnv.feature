@@ -105,9 +105,8 @@ Feature: Room Administration - external members shown as 'anonymised' except for
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
         Then I see the rooms administration page
-        When I click on button Three Dot Menu to edit room '<room_name>'
-        When I select the three dot menu action 'manage room members'
-        Then I see detail page for room '<room_name>'
+        When I click on three dot menu in the room admin page for room '<room_name>'
+        When I click on manage room members in the three dot menu
         Then I see '<teacher_1>' in the room participants list
         Then I see '<participant_external_name_teacher>' in the room participants list
         Then I see '<participant_external_name_student>' in the room participants list
@@ -133,10 +132,12 @@ Feature: Room Administration - external members shown as 'anonymised' except for
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-        @staging_test
-        Examples:
-            | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student | participant_same_school_student |
-            | teacher1_nbc | student1_nbc | teacherExt1_nbc | studentExt1_nbc | adminExt1_nbc | nbc       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              | Kraft                           |
+# In Staging this feature is still not available so the test is only executed in School API environments
+
+#        @staging_test
+#       Examples:
+#           | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student | participant_same_school_student |
+#          | teacher1_nbc | student1_nbc | teacherExt1_nbc | studentExt1_nbc | adminExt1_nbc | nbc       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              | Kraft                           |
 
 # Note: This feature should only be executed in the staging environment due to the school API limitation
 # @school_api_test

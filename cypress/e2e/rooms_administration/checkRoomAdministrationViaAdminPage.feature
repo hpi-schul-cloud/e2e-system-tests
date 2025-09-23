@@ -9,12 +9,7 @@ Feature: Room Administration - able to see all the rooms and in each room all de
 
     Scenario Outline: Room Administrator can visualize all the rooms and the rooms with different school members are shown as 'anonymised' except member with 'own' role
 
-        # Goethe-Gymnasium
-        Given I am logged in as a '<teacher_1>' at '<namespace>'
-        # Goethe-Gymnasium
-        Given I am logged in as a '<teacher_2>' at '<namespace>'
-        # Goethe-Gymnasium
-        Given I am logged in as a '<student_1>' at '<namespace>'
+
         # Goethe-Gymnasium
         Given I am logged in as a '<admin_1>' at '<namespace>'
 
@@ -25,8 +20,13 @@ Feature: Room Administration - able to see all the rooms and in each room all de
         When I click the toggle switch to enable student visibility for teachers
         When I click on button Save admin settings
 
-        # pre-condition: teacher creating a new room in the origin school (Goethe-Gymnasium), becoming the owner
+        # Goethe-Gymnasium
+        Given I am logged in as a '<student_1>' at '<namespace>'
+        Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
+
+
+        # pre-condition: teacher creating a new room in the origin school (Goethe-Gymnasium), becoming the owner
         Given a room named '<room_name>' exists
 
         # the owner adds student from same school
@@ -72,9 +72,9 @@ Feature: Room Administration - able to see all the rooms and in each room all de
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
         #Then I see the rooms administration page
-        When I click on button Three Dot Menu to edit room '<room_name>'
-        When I select the three dot menu option 'manage room members'
-        Then I see detail page for room '<room_name>'
+        When I click on three dot menu in the room admin page for room '<room_name>'
+        When I click on manage room members in the three dot menu
+        Then I see the admin page Edit participants of room '<room_name>'
         Then I see 'teacher_1' in the room members list
         Then I see '<participant_same_school_name_teacher>' in the room members list
         Then I see '<participant_same_school_student>' in the room members list
@@ -91,10 +91,11 @@ Feature: Room Administration - able to see all the rooms and in each room all de
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-        @staging_test
-        Examples:
-            | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name         | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_name_teacher |
-            | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_nbc | nbc       | Cypress Room Name | Goethe-Gymnasium        | Lernbegleitend    | Lernend           | Kraft                           | Carlo                                |
+        # In Staging this feature is still not available so the test is only executed in School API environments
+        # @staging_test
+        # Examples:
+        #    | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name         | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_name_teacher |
+        #     | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_nbc | nbc       | Cypress Room Name | Goethe-Gymnasium        | Lernbegleitend    | Lernend           | Kraft                           | Carlo                                |
 
         @school_api_test
         Examples:
