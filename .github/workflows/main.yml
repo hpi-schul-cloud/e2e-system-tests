@@ -38,8 +38,8 @@ jobs:
 
       - name: Install dependencies for 1Password CLI
         run: |
-          apt-get update
-          apt-get install -y curl unzip
+          sudo apt-get update
+          sudo apt-get install -y curl unzip
 
       - name: Install 1Password CLI
         run: |
