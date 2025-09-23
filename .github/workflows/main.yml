@@ -82,7 +82,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          CYPRESS_CONNECT_RETRY_THRESHOLD: "200"
+          CYPRESS_CONNECT_RETRY_THRESHOLD: "300"
         with:
           working-directory: e2e-system-tests
           command: npm run cy:headless:stable:ci --
