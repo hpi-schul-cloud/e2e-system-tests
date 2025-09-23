@@ -36,6 +36,11 @@ jobs:
           repository: hpi-schul-cloud/e2e-system-tests
           path: e2e-system-tests
 
+      - name: Install dependencies for 1Password CLI
+        run: |
+          apt-get update
+          apt-get install -y curl unzip
+
       - name: Install 1Password CLI
         run: |
           curl -sS https://downloads.1password.com/linux/cli/latest/op_linux_amd64.zip -o op.zip
