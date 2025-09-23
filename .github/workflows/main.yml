@@ -27,6 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: cypress/browsers:node-22.19.0-chrome-140.0.7339.127-1-ff-142.0.1-edge-140.0.3485.54-1
+    env:
+      OP_SERVICE_ACCOUNT_TOKEN: ${{ secrets.service-account-token }}
 
     steps:
       - name: Checkout tests
@@ -58,11 +60,11 @@ jobs:
             apt-get install -y 1password-cli
             op --version
 
-      - name: Configure 1Password CLI
-        run: |
-          export OP_SERVICE_ACCOUNT_TOKEN="${{ secrets.service-account-token }}"
-          # You may need to sign in or create a session depending on your workflow
-          op --version
+      # - name: Configure 1Password CLI
+      #   run: |
+      #     export OP_SERVICE_ACCOUNT_TOKEN="${{ secrets.service-account-token }}"
+      #     # You may need to sign in or create a session depending on your workflow
+      #     op --version
 
       # - name: Install 1Password CLI
       #   uses: 1password/install-cli-action@v2
