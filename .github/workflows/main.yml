@@ -26,7 +26,7 @@ jobs:
   configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
     container:
-      image: cypress/browsers:node-22.0.0-chrome-122.0.0-1
+      image: cypress/browsers:node-20.11.0-chrome-124.0.0-1
       options: --user 1001
 
     steps:
