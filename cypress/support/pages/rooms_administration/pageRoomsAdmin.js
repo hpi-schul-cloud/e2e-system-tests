@@ -1,5 +1,5 @@
 class RoomsAdmin {
-	static #roomAdministrationLink = '[data-testid="sidebar-management"]';
+	static #roomsAdministrationLink = '[data-testid="sidebar-management"]';
 	static #submenuRoomAdminLink = '[data-testid="sidebar-management-rooms"]';
 	static #roomOwnerAlertIcon = '[data-testid="room-admin-table-owner-not-existing"]';
 	static #roomsTableName = '[data-testid="room-admin-table"]';
@@ -12,7 +12,7 @@ class RoomsAdmin {
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 
 	navigateToRoomsAdministrationPageViaSubmenu() {
-		cy.get(RoomsAdmin.#roomAdministrationLink).should("be.visible");
+		cy.get(RoomsAdmin.#roomsAdministrationLink).should("be.visible");
 		cy.get(RoomsAdmin.#submenuRoomAdminLink).should("be.visible").click();
 	}
 
