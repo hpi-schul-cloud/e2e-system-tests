@@ -1,4 +1,5 @@
 name: configure, load secrets, run Cypress tests, generate and upload reports
+
 on:
   workflow_call:
     secrets:
@@ -6,33 +7,30 @@ on:
         required: true
     inputs:
       cypress_brb:
-        description: "brb url from the workflow"
         type: string
       cypress_nbc:
-        description: "nbc url from the workflow"
         type: string
       cypress_dbc:
-        description: "dbc url from the workflow"
         type: string
       tag:
-        description: "tag for running cypress tests"
         type: string
       environment:
-        description: "environment for retrieving credentials from 1Password vault"
         type: string
       groups:
-        description: "identifier to store test results, reports, and artifacts separately, preventing overwrites in parallel runs."
         type: string
       browser:
-        description: "browser to run tests in"
         type: string
         default: "chrome"
 
 jobs:
   configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node-22.0.0-chrome-122.0.0-1
+      options: --user 1001
+
     steps:
-      - name: Checkout
+      - name: Checkout tests
         uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/e2e-system-tests
@@ -41,9 +39,6 @@ jobs:
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v2
 
-      - name: Verify 1Password was Installed
-        run: op --version
-
       - name: Configure 1Password Service Account
         uses: 1password/load-secrets-action/configure@v2
         with:
@@ -51,61 +46,62 @@ jobs:
 
       - name: Fetch JSON files from 1Password
         run: |
+          mkdir -p ${{ github.workspace }}/e2e-system-tests/env_variables
           instances=(brb dbc nbc)
-
           for instance in "${instances[@]}"; do
-              vault_name="cy-${{ inputs.environment }}-${instance}"
-              op document get cypress-json --vault "$vault_name" --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${{ inputs.environment }}-${instance}.json
+            vault_name="cy-${{ inputs.environment }}-${instance}"
+            op document get cypress-json --vault "$vault_name" \
+              --output ${{ github.workspace }}/e2e-system-tests/env_variables/file-${{ inputs.environment }}-${instance}.json
           done
 
       - name: Aggregate JSON Data into one File
-        id: read_variables
         run: |
-          workflow="${{ github.workflow }}"
-          workspace_path="${{ github.workspace }}"
-
-          chmod +x ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh
-          ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh \
-            "${workflow}" \
+          chmod +x e2e-system-tests/scripts/aggregate-json-files.sh
+          e2e-system-tests/scripts/aggregate-json-files.sh \
+            "${{ github.workflow }}" \
             "${{ inputs.cypress_brb }}" \
             "${{ inputs.cypress_dbc }}" \
             "${{ inputs.cypress_nbc }}" \
-            "${workspace_path}" \
+            "${{ github.workspace }}" \
             "${{ inputs.environment }}"
 
+      - name: Install dependencies
+        working-directory: e2e-system-tests
+        run: npm ci
+
       - name: Clean up previous report
-        uses: cypress-io/github-action@v6
-        with:
-          working-directory: e2e-system-tests
-          command: npm run pretest
+        working-directory: e2e-system-tests
+        run: npm run pretest
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        working-directory: e2e-system-tests
         env:
           CYPRESS_CONNECT_RETRY_THRESHOLD: "300"
-        with:
-          working-directory: e2e-system-tests
-          command: npm run cy:headless:stable:ci --
-            --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci
+        run: |
+          npm run cy:headless:stable:ci -- \
+            --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
             --browser ${{ inputs.browser }}
 
       - name: Generate Report
         if: always()
         working-directory: e2e-system-tests
-        run: |
-          npm run generate:report
+        run: npm run generate:report
 
       - name: Upload Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ${{ inputs.groups }}-cypress-report
-          path: ${{ github.workspace }}/e2e-system-tests/reports/
+          path: e2e-system-tests/reports/
 
       - name: Upload Video Artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ${{ inputs.groups }}-cypress-video-artifact
-          path: ${{ github.workspace }}/e2e-system-tests/cypress/videos/${{ inputs.groups }}
+          path: e2e-system-tests/cypress/videos/${{ inputs.groups }}
           retention-days: 3
+
+      - name: Cleanup secrets
+        if: always()
+        run: rm -rf e2e-system-tests/env_variables
