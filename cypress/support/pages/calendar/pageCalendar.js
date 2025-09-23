@@ -9,7 +9,10 @@ class Calendar {
 	static #editEventNameFormElement = '[data-testid="edit-event-name"]';
 	static #createEventStartDateFormElement = '[data-testid="create-startDate"]';
 	static #createEventEndDateFormElement = '[data-testid="create-endDate"]';
-	static #createEventDescriptionFormElement = '[data-testid="create-event-description"]';
+	static #editEventStartDateFormElement = '[data-testid="edit-startDate"]';
+	static #editEventEndDateFormElement = '[data-testid="edit-endDate"]';
+	static #createEventDescriptionFormElement =
+		'[data-testid="create-event-description"]';
 	static #createEventLocationFormElement = '[data-testid="create-event-location"]';
 	static #createEventFormSubmitButton = '[data-testid="submit-btn-create-event-modal"]';
 	static #editEventFormDeleteButton = '[data-testid="calendar-event-btn-delete"]';
@@ -56,11 +59,25 @@ class Calendar {
 		cy.get(Calendar.#createEventNameFormElement).click();
 	}
 
+	changeEventStartTime(eventStartTime) {
+		cy.get(Calendar.#editEventStartDateFormElement)
+			.type("{backspace}".repeat(4))
+			.type(eventStartTime);
+		cy.get(Calendar.#editEventNameFormElement).click();
+	}
+
 	enterEventEndTime(eventEndTime) {
 		cy.get(Calendar.#createEventEndDateFormElement)
 			.type("{backspace}".repeat(4))
 			.type(eventEndTime);
 		cy.get(Calendar.#createEventNameFormElement).click();
+	}
+
+	changeEventEndTime(eventEndTime) {
+		cy.get(Calendar.#editEventEndDateFormElement)
+			.type("{backspace}".repeat(4))
+			.type(eventEndTime);
+		cy.get(Calendar.#editEventNameFormElement).click();
 	}
 
 	enterEventDescription(eventDescription) {
@@ -75,7 +92,7 @@ class Calendar {
 		cy.get(Calendar.#createEventFormSubmitButton).click();
 	}
 
-	seeEventInCalendar(eventStartTime, eventTitle) {
+	seeEventInCalendarWithStartTime(eventStartTime, eventTitle) {
 		cy.get(Calendar.#calendarElement)
 			.find("span")
 			.contains(eventTitle)
