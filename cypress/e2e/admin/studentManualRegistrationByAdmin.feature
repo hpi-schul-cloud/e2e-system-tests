@@ -5,9 +5,9 @@
 @prio_0_staging
 Feature: Admin - Admin creates, manually register and deletes students
 
-    As an admin, I want to perform the 4 CRUD operations and manual registration on students
+    As an admin, I want to create, register, edit, and delete students manually
 
-    Scenario Outline: Admin creates a student and perform manual registration, including pre-conditions.
+    Scenario Outline: Admin creates a student and performs manual registration
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'

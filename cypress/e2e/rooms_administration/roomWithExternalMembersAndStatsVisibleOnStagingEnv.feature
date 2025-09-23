@@ -1,14 +1,13 @@
-@regression_test
-@stable_test
-@group-F
+# Note: This feature should only be executed in the staging environment due to the school API limitation,
+#       which prevents creating two separate schools in the same feature and scenario.
 
-# Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same feature and scenario.
-
+@unstable_test
 Feature: Room Administration - Add room and external members with visibility on rooms administration page
 
     As a school admin I want to see the created rooms with correct information visible on rooms administration page.
 
-    Scenario: Admin sees room with external members, including pre-conditions
+    Scenario: Admin sees room with external members
+
         # Felix Mendelssohn-Gymnasium
         Given I am logged in as a '<admin>' at '<namespace>'
         # Felix Mendelssohn-Gymnasium

@@ -6,7 +6,9 @@ Feature: Rooms - Student can access room content after being added to room via A
 
     As a room owner, when I add a student through the Add Members Dialog, the user should see the room in the room overview and access its content.
 
-    Scenario Outline: Room Owner adds a student to the room, the student can access the room and its content, including pre-conditions
+    Scenario Outline: Room Owner adds a student to the room, the student can access the room and its content
+
+        # pre-condition: users (admin, teacher and student) logged in
         Given I am logged in as a '<student_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<admin_1>' at '<namespace>'
@@ -87,10 +89,10 @@ Feature: Rooms - Student can access room content after being added to room via A
 
         @school_api_test
         Examples:
-            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name           | role_name | participant_name | board_title    |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernend   | student_1        | Board Cy Title |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name            | school_name           | role_name | participant_name | board_title            |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernend   | student_1        | CypressAut Board Title |
 
         @staging_test
         Examples:
-            | teacher_1    | student_1    | admin_1    | namespace | room_name         | school_name                 | role_name | participant_name | board_title    |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Herbert          | Board Cy Title |
+            | teacher_1    | student_1    | admin_1    | namespace | room_name            | school_name                 | role_name | participant_name | board_title            |
+            | teacher1_brb | student1_brb | admin1_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Herbert          | CypressAut Board Title |

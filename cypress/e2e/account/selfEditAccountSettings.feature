@@ -5,9 +5,9 @@
 @prio_0_dev
 Feature: Account - Edit E-mail in the account setting page
 
-    As a user I want to navigation to my account's settings page so that I can see and edit my account details (e. g. email).
+    As a user, I want to edit my account details, such as email, in the account settings page
 
-    Scenario Outline: I see my E-mail is editable as an internal user, including pre conditions
+    Scenario Outline: Internal user can edit their email address
 
         # pre-condition: user logs in to create their account in a school
         Given I am logged in as a '<user>' at '<namespace>'

@@ -9,11 +9,11 @@ Feature: Rooms - Share and import room with a teacher from the same school
 
     Scenario Outline: Share and import a room with a teacher within the same school
 
-        # pre-condition: Creating teacher accounts
+        # pre-condition: creating teacher accounts
         Given I am logged in as a '<teacher2>' at '<namespace>'
         Given I am logged in as a '<teacher1>' at '<namespace>'
 
-        # pre-condition: Room and room exist
+        # pre-condition: room and room exist
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given multi column board is published to not to be in a draft mode
@@ -21,7 +21,7 @@ Feature: Rooms - Share and import room with a teacher from the same school
         Given link element is added in the card
         Given I navigate to the room detail page via Breadcrumb
 
-        # the first teacher shares the room with another teacher in the same school using the copied URL
+        # first teacher shares the room with another teacher in the same school using the copied URL
         When I click on three dot menu in room page
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
@@ -43,7 +43,7 @@ Feature: Rooms - Share and import room with a teacher from the same school
         # pre-condition: the second teacher is logged into the application, and a room exists
         Given I am logged in as a '<teacher2>' at '<namespace>'
 
-        # the second teacher within the same school imports the room
+        # second teacher within the same school imports the room
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
@@ -66,11 +66,7 @@ Feature: Rooms - Share and import room with a teacher from the same school
         Given the room named '<room_name_target>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    |
-            | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
-
         @staging_test
         Examples:
-            | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    |
-            | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
+            | teacher1     | teacher2     | namespace | room_name_source       | room_name_target       | board_title            |
+            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title |

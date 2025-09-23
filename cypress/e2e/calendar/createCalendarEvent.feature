@@ -5,9 +5,10 @@
 @prio_0_staging
 Feature: Calendar - create a simple event in the calendar
 
-    As a user, I want to be able to create a simple event in the calendar without course/team and check if it's displayed properly.
+    As a user, I want to create a simple event in the calendar and verify its display
 
-    Scenario Outline: create an event in the calendar as an admin, teacher and student
+    Scenario Outline: Create, view, and delete a calendar event as admin, teacher, or student
+
         Given I am logged in as a '<user>' at '<namespace>'
         When I go to calendar overview
         Then I see calendar page

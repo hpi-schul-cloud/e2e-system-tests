@@ -5,10 +5,12 @@
 @prio_0_staging
 Feature: Media Shelf - No available tools in media shelf
 
-    As a user I want to see the no longer available chip on media element in media shelf
+    As a user, I want to see the no longer available chip on media element in media shelf
 
     @stable_test
     Scenario Outline: User sees no longer available chip on media element in media shelf
+
+        # pre-condition: user (admin, teacher) logs in, admin verifies ctl tools in school
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>'
@@ -44,10 +46,6 @@ Feature: Media Shelf - No available tools in media shelf
         Then I see the no available media info text
 
         @staging_test
-        Examples:
-            | admin      | teacher      | namespace | ctl_tool_1     |
-            | admin1_nbc | teacher1_nbc | nbc       | CY Test Tool 1 |
-
         @school_api_test
         Examples:
             | admin      | teacher      | namespace | ctl_tool_1     |

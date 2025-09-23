@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Course Board - To change the board layout
 
-    As a teacher I want to change the board layout
+    As a teacher, I want to change the board layout
 
     Scenario Outline: Teacher changes board layout
 

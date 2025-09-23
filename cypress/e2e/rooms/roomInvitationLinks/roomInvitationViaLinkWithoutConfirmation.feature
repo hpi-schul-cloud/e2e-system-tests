@@ -7,7 +7,9 @@ Feature: Rooms - Invite User to room via Invitation link
 
     As a room owner, I want to invite a user to the room through an invitation link, so that I don't have to add every user manually.
 
-    Scenario Outline: Room Owner creates an invitation link, another teacher uses it, including pre-conditions
+    Scenario Outline: Room Owner creates an invitation link, another teacher uses it
+
+        # pre-condition: teachers logged in
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -21,7 +23,7 @@ Feature: Rooms - Invite User to room via Invitation link
         Then I see the page Edit participants of room '<room_name>'
 
         When I click on tab Invitations
-        When I click on the fab button to create an invitationlink
+        When I click on the fab button to create an invitation link
         Then I see the modal Create Invitation Link
         When I enter '<invitation_description>' into the Invitation Link Description field
         When I uncheck the Checkbox to require confirmation
@@ -42,6 +44,6 @@ Feature: Rooms - Invite User to room via Invitation link
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | invitation_description |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | testinvitationlink     |
+            | teacher_1    | teacher_2    | namespace | room_name            | invitation_description |
+            | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | test invitation link   |
 

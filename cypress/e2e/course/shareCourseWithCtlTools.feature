@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Teacher can share a course with ctl tools
 
-    As a teacher I want to share a course with ctl tools to other teachers from the same school
+    As a teacher, I want to share a course with ctl tools with other teachers in the same school
 
     @stable_test
     Scenario Outline: Teacher shares course with ctl tools

@@ -7,9 +7,9 @@
 @prio_0_staging
 Feature: Topics - To create, edit and delete topics by the teacher.
 
-    As a teacher I want to create, edit and delete a new topic so that the student can see it
+    As a teacher, I want to create, edit and delete a new topic so that the student can see it
 
-    Scenario Outline: Teacher creates, edits and deletes a topic in the course, including pre-conditions
+    Scenario Outline: Teacher creates, edits and deletes a topic in the course
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -29,12 +29,12 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Then I see section two area on the course create page
         Then I see class selection box to select the class for the course
         Then I see student selection box to select the student for the course
-        # Note: student user is not needed in this feature so this step is commented out
+        # NOTE: student user is not needed in this feature so this step is commented out
         #When I select the student 'cypress student_1' in the list
         When I click on button Next Steps after selecting course participant details
         Then I see the section three as the finish page
         When I click on button To Course Overview on the finish page
-        # Note: this step is not applicable for the admin user
+        # NOTE: this step is not applicable for the admin user
         #Then I see the course '<course_name>' on the course overview page
 
         # teacher creates topic in a course
@@ -55,7 +55,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I click on button Add Learning Material to topic
         When I enter title 'CypressAut Title for Learning Material Element in Topic' into element Learning Material
         Then I see second learning material button in the content area
-        # Note: currently step for adding material is excluded because this process is via new browser window
+        # NOTE: currently step for adding material is excluded because this process is via new browser window
         When I click on button Add Etherpad to topic
         When I enter title 'CypressAut Title for Etherpad Element in Topic' into element Etherpad in element position '3'
         When I enter description for the ether pad 'this is my epad description' in element position '3'
@@ -92,7 +92,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         Then I can see form element Text on position '4'
         When I enter title 'CypressAut New text element Title' into element Text in element position '4'
         When I enter description 'CypressAut New this is the description of the topic. It is used for automated Cypress tests.' into element Text in element position '4'
-        # Note: steps for later implementation are commented out
+        # NOTE: steps for later implementation are commented out
         # When I load up a file 'example_jpg.jpg' to the description of form element Text on position '4'
         # When I move Text element on position '4' to position '3'
         # Then I can see form element Text on position '3'
@@ -101,7 +101,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I enter description for the ether pad 'changed etherpad description' in element position '2'
         When I click on save button to save changes
         Then I see topic detail page "CypressAut Topic Creating and Deleting Test - Edited topic" with content elements "CypressAut Title for GeoGebra Element in Topic", "CypressAut Title for Learning Material Element in Topic", "CypressAut Title for Etherpad Element in Topic Changed", "CypressAut Title for Task Element in Topic" and "CypressAut New text element Title"
-        # Note: steps for later implementation are commented out
+        # NOTE: steps for later implementation are commented out
         # Then I see file 'example_jpg.jpg' on topic page
         # When I click on button Edit on topic page
         # Then I can see form element Text on position '3'

@@ -6,9 +6,9 @@
 @prio_0_staging
 Feature: Learning store - Search Learning Material in Learning Store
 
-    As an admin I want to activate and deactivate students access to learning store
+    As an admin, I want to activate and deactivate students access to learning store
 
-    Scenario Outline: Search, open and download material form learning store, including pre-condition
+    Scenario Outline: Search, open and download material form learning store
 
         # pre-condition: admin, student and teacher log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

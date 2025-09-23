@@ -5,11 +5,11 @@
 @prio_0_staging
 Feature: Course Board - Deactivation of ctl tools in board
 
-    As a user I want to see deactivated und activated tools in a board
+    As a user, I want to see deactivated und activated tools in a board
 
     Scenario Outline: Users see deactivated tool in board
 
-        # pre-condition: creating all users and check ctl tools are available
+        # pre-condition: creating all users (admin, teacher and student) and check ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -59,6 +59,7 @@ Feature: Course Board - Deactivation of ctl tools in board
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         Then I do not see tool '<ctl_tool_2>' in the tool selection
+
         # teacher adds a activated tool
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected

@@ -5,9 +5,11 @@
 @prio_0_staging
 Feature: Class Management - To create, manage, edit, upgrade and delete class on NBC
 
-    As a teacher I want create, manage, edit, upgrade and delete a class
+    As a teacher, I want create, manage, edit, upgrade and delete a class
 
     Scenario Outline: Teacher creates, manages, edits, upgrades and deletes a class
+
+        # pre-condition: user (admin, teacher and student) logs in
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -68,7 +70,7 @@ Feature: Class Management - To create, manage, edit, upgrade and delete class on
         Then I see the new class administration page
         Then I see the disabled create successor button of the original class '<edit_custom_class_name>'
 
-        # teacher deletes successor class on next year tab
+        # post-condition: teacher deletes successor class on next year tab
         When I click on the next year tab
         Then I see the class '<edit_custom_class_name>' has '<number_of_students>' students
         Then I see the enabled create successor button of the original class '<edit_custom_class_name>'
@@ -77,10 +79,10 @@ Feature: Class Management - To create, manage, edit, upgrade and delete class on
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | student      | school_year | school_year_next | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher | fullname_student |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2025/26     | 2026/27          | cyClassNameManage | cyEditClassNameManage  | 1                  | Karl Herzog      | Herbert Kraft    |
+            | namespace | admin      | teacher      | student      | school_year | school_year_next | custom_class_name     | edit_custom_class_name       | number_of_students | fullname_teacher | fullname_student |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2025/26     | 2026/27          | CypressAut Class Name | CypressAut Class Name Edited | 1                  | Karl Herzog      | Herbert Kraft    |
 
         @school_api_test
         Examples:
-            | namespace | admin      | teacher      | student      | school_year | school_year_next | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher  | fullname_student  |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2025/26     | 2026/27          | cyClassNameManage | cyEditClassNameManage  | 1                  | cypress teacher_1 | cypress student_1 |
+            | namespace | admin      | teacher      | student      | school_year | school_year_next | custom_class_name     | edit_custom_class_name       | number_of_students | fullname_teacher  | fullname_student  |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | 2025/26     | 2026/27          | CypressAut Class Name | CypressAut Class Name Edited | 1                  | cypress teacher_1 | cypress student_1 |

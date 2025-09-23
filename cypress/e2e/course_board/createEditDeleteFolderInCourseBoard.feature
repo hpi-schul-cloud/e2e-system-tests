@@ -5,9 +5,10 @@
 @prio_0_dev
 Feature: Course Board - Create folder in board, check breadcrumb
 
-    As a content editor I want to create a file folder in a course board
+    As a content editor, I want to create a file folder in a course board
 
     Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
+
         # pre-condition: creating accounts and course with board
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a course named '<course_name>' exists
@@ -27,7 +28,7 @@ Feature: Course Board - Create folder in board, check breadcrumb
         When I click on the folder '<folder_name>' in the card
         Then I see page Folder content for '<folder_name>'
         Then I see message Empty folder
-        #Then I see page Folder content does not contain files - will be implemented when files can be displayed in folders
+        # Then I see page Folder content does not contain files - will be implemented when files can be displayed in folders
         Then I see breadcrumb with 'Kurse, <course_name>, <board_title>'
         Then I see sidebar item 'courses' is highlighted
         Then I see button Add file

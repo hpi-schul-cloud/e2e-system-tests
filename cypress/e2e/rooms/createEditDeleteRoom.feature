@@ -5,9 +5,11 @@
 @prio_0_staging
 Feature: Rooms - To create, edit and delete room
 
-    As a teacher I want to create, edit and delete rooms.
+    As a teacher, I want to create, edit and delete rooms.
 
-    Scenario Outline: Teacher creates room, edits room and deletes room, including pre-conditions where applicable
+    Scenario Outline: Teacher creates room, edits room and deletes room
+
+        # pre-condition: teacher logged in
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # teacher creates a new room
@@ -35,11 +37,7 @@ Feature: Rooms - To create, edit and delete room
         Then I do not see '<room_name_new>' on room overview page
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | room_name_new         |
-            | teacher1_brb | brb       | Cypress Room Name | Cypress Room Name New |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | room_name_new         |
-            | teacher1_brb | brb       | Cypress Room Name | Cypress Room Name New |
+            | teacher      | namespace | room_name            | room_name_new            |
+            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Room Name New |

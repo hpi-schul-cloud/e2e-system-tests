@@ -5,9 +5,11 @@
 @prio_0_staging
 Feature: Course Management - To create, edit and delete class
 
-    As an administrator I want create, edit and delete a class
+    As an administrator, I want to manage classes by creating, editing, and deleting them in course administration.
 
     Scenario Outline: Admin creates, edits and deletes a class
+
+        # pre-condition: creating users (admin, teacher and student) and logging in
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

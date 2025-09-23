@@ -4,15 +4,15 @@
 
 @regression_test
 @stable_test
-@group_V
+@group-F
 @prio_0_staging
-Feature: Course - Teacher shares a course to other teacher from different school
+Feature: Course - Teacher shares a course with another teacher from a different school
 
-    As a teacher I want to share a course to other teachers from different school
+    As a teacher, I want to share a course with teachers from different school
 
-    Scenario Outline: Teacher shares a course to other teacher from different school
+    Scenario Outline: Teacher shares a course with another teacher from a different school
 
-        # pre-condition: Creating two teacher accounts
+        # pre-condition: creating two teachers accounts
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -79,4 +79,4 @@ Feature: Course - Teacher shares a course to other teacher from different school
         @staging_test
         Examples:
             | teacher_1    | teacherExt_1    | namespace | fullname_teacher_1 | course_name_share          | task_name       | board_title      | task_title                | topic_text_title | course_name_import         |
-            | teacher1_dbc | teacherExt1_dbc | dbc       | cypress teacher_1  | CypressAut course to share | CypressAut Task | CypressAut Board | CypressAut task for Class | CypressAut Topic | CypressAut course imported |
+            | teacher1_dbc | teacherExt1_dbc | dbc       | cypress teacher_1  | CypressAut Course To Share | CypressAut Task | CypressAut Board | CypressAut Task For Class | CypressAut Topic | CypressAut Course Imported |

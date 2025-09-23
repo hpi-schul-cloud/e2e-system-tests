@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Task - To create, edit and delete tasks by the teacher.
 
-    As a teacher I want to create, edit and delete a new task on course page
+    As a teacher, I want to create, edit and delete a new task on course page
 
     Scenario Outline: Teacher creates, edits, and deletes a task
 
@@ -132,7 +132,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on Delete in dot menu
         When I click on Cancel in confirmation window
-        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # NOTE: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'
@@ -140,7 +140,7 @@ Feature: Task - To create, edit and delete tasks by the teacher.
         When I click on three dot menu of content 'CypressAut Task Creating, Editing, Deleting Test'
         When I click on Delete in dot menu
         When I click on Delete in confirmation window
-        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # NOTE: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'

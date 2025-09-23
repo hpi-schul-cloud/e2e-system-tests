@@ -6,7 +6,7 @@
 @prio_0_staging
 Feature: Admin - Admin adds, edits and deletes CTL tools in school
 
-    As an admin I want to administrate the CTL tools used in the school
+    As an admin, I want to manage CTL tools in the school
 
     Scenario Outline: Admin adds, edits and deletes external tools
 

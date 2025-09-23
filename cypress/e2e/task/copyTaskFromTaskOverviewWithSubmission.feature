@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Task - Teacher copies tasks from Task overview with student submission.
 
-    As a teacher I want to create, copy, edit and delete a task from task overview and the task is submitted by the student.
+    As a teacher, I want to create, copy, edit and delete a task from task overview and the task is submitted by the student.
 
     Scenario Outline: Teacher copies a task submitted by the student in task overview
 
@@ -61,8 +61,8 @@ Feature: Task - Teacher copies tasks from Task overview with student submission.
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name        | fullname_teacher  | fullname_student  | task_name        | copy_task_name       | success_message                | draft_indicator   | image_file      |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | Cypress Aut Course | cypress teacher_1 | cypress student_1 | Cypress Aut Task | Cypress Aut Task (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name       | fullname_teacher  | fullname_student  | task_name       | copy_task_name      | success_message                | draft_indicator   | image_file      |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Course | cypress teacher_1 | cypress student_1 | CypressAut Task | CypressAut Task (1) | Aufgabe erfolgreich dupliziert | Aufgabe - Entwurf | example_jpg.jpg |
 
         @staging_test
         Examples:

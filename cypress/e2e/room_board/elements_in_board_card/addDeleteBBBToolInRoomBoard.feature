@@ -63,11 +63,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | admin      | namespace | room_name         | board_title    | video_conference_title |
-            | teacher1_dbc | admin1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |
-
         @staging_test
         Examples:
-            | teacher      | admin      | namespace | room_name         | board_title    | video_conference_title |
-            | teacher1_dbc | admin1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |
+            | teacher      | admin      | namespace | room_name            | board_title            | video_conference_title |
+            | teacher1_dbc | admin1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | CypressAut BBB Tool    |

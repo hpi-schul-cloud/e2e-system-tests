@@ -4,10 +4,12 @@
 @prio_0_staging
 Feature: Media Shelf - Deactivation of ctl tools in media shelf
 
-    As an User I want to see a deactivated tool in media shelf
+    As an user, I want to see a deactivated tool in media shelf
 
     @stable_test
     Scenario Outline: Users see deactivated tool in media shelf
+
+        # pre-condition: user (admin, teacher and student) logs in, admin verifies ctl tools in school
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -98,10 +100,6 @@ Feature: Media Shelf - Deactivation of ctl tools in media shelf
         Given all external tools at the school are deleted
 
         @staging_test
-        Examples:
-            | admin      | teacher      | student      | namespace | ctl_tool_1     | ctl_tool_2     |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CY Test Tool 1 | CY Test Tool 2 |
-
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | ctl_tool_1     | ctl_tool_2     |

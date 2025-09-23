@@ -1,12 +1,13 @@
 @stable_test
 @schedule_run
 @regression_test
+@group-E
 @prio_0_staging
 Feature: Course - To search for a course via search input box on the course overview page
 
-    As a user (teacher & student) I want to search for dedicated course so that I can quickly find it.
+    As a teacher or student, I want to use the search box to locate courses efficiently
 
-    Scenario Outline: user creation, course creation, and search functionality
+    Scenario Outline: Search for a course as teacher or student
 
         # pre-condition: creating all users accounts (admin, teacher, students)
         Given I am logged in as a '<teacher>' at '<namespace>'

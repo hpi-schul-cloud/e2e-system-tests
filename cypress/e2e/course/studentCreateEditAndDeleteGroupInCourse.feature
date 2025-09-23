@@ -6,7 +6,9 @@
 @prio_0_staging
 Feature: Course - Teacher can create, edit and delete a group in the course
 
-    Scenario Outline: user creation, course creation, and creating,editing and deleting a group
+    As a student, I want to manage groups within a course by creating, editing, and deleting them.
+
+    Scenario Outline: Student creates, edits, and deletes a group in a course
 
         # pre-condition: creating all users accounts (admin, teacher, students)
         Given I am logged in as a '<teacher>' at '<namespace>'

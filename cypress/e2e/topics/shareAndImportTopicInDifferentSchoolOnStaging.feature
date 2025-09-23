@@ -9,11 +9,11 @@
 @prio_0_staging
 Feature: Topics - Teacher shares a topic to other teacher from different school to import it
 
-    As a teacher I want to share a topic to other teachers from different school to import it
+    As a teacher, I want to share a topic to other teachers from different school to import it
 
     Scenario Outline: Teacher shares a topic to other teacher from different school
 
-        # pre-condition: Creating two teacher accounts
+        # pre-condition: creating two teacher accounts
         Given I am logged in as a '<teacherExt_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -65,5 +65,5 @@ Feature: Topics - Teacher shares a topic to other teacher from different school 
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_2    | namespace | fullname_teacher_1 | course_name_1           | topic_text_title_share       | topic_text_title_import         | course_name_2                    |
-            | teacher2_brb | teacherExt2_brb | brb       | cypress teacher_1  | CypressAut_Mathe course | CypressAut_Mathe Topic Share | CypressAut_Mathe Topic Imported | CypressAut_Mathe Course Imported |
+            | teacher_1    | teacherExt_2    | namespace | fullname_teacher_1 | course_name_1          | topic_text_title_share      | topic_text_title_import        | course_name_2                   |
+            | teacher2_brb | teacherExt2_brb | brb       | cypress teacher_1  | CypressAut Math course | CypressAut Math Topic Share | CypressAut Math Topic Imported | CypressAut Math Course Imported |

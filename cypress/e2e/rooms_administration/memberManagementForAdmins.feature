@@ -4,9 +4,11 @@
 @prio_0_dev
 Feature: Room Administration - Add room and manage its members via rooms administration page
 
-    As a school admin I want to see the created rooms and edit its members via rooms administration page.
+    As a school admin, I want to see the created rooms and edit its members via rooms administration page.
 
-    Scenario: Admin sees room with owner, adding new members, including pre-conditions
+    Scenario: Admin sees room with owner, adding new members
+
+        # pre-condition: admin and teacher logged in
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -53,10 +55,10 @@ Feature: Room Administration - Add room and manage its members via rooms adminis
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | room_name         | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 1                      | 0                      | 1                   |
+            | admin      | teacher      | namespace | room_name            | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 1                      | 0                      | 1                   |
 
 # @staging_test
 # Examples:
 #     | admin      | teacher      | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-#     | admin1_brb | teacher1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 1                      | 0                      | 1                   |
+#     | admin1_brb | teacher1_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 1                      | 0                      | 1                   |

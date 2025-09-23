@@ -5,11 +5,11 @@
 @prio_0_staging
 Feature: Course - Copy course
 
-    As a Teacher I want to be able to copy a course so that I can reuse the course content
+    As a teacher, I want to duplicate courses so I can reuse materials and structure
 
     Scenario Outline: Teacher copies a course
 
-        # pre-condition: creating all users
+        # pre-condition: creating users (admin, teacher and student)
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

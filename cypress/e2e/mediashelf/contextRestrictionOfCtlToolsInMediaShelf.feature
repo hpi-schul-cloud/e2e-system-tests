@@ -4,10 +4,12 @@
 @prio_0_staging
 Feature: Media Shelf - Restrict CTL tools to context media-board
 
-    As a teacher I want to add ctl tools with context restriction media-board
+    As a teacher, I want to add ctl tools with context restriction media-board
 
     @stable_test
     Scenario Outline: Teacher sees tools with context restriction media-board in the media shelf
+
+        # pre-condition: user (admin, teacher) logs in, admin verifies ctl tools in school
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>,<ctl_tool_restriction_course>,<ctl_tool_restriction_board_element>,<ctl_tool_restriction_media_board>,<ctl_tool_restriction_all>'

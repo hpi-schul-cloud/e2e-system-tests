@@ -6,9 +6,11 @@
 @prio_0_staging
 Feature: Rooms - Add and delete participants
 
-    As a teacher I want to add and delete participants in the room.
+    As a teacher, I want to add and delete participants in the room.
 
-    Scenario Outline: Teacher adds participants and deletes participants, including pre-conditions
+    Scenario Outline: Teacher adds participants and deletes participants
+
+        # pre-condition: teachers logged in
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -71,10 +73,10 @@ Feature: Rooms - Add and delete participants
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | school_name           | role_name      | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        |
+            | teacher_1    | teacher_2    | namespace | room_name            | school_name           | role_name      | participant_name |
+            | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        |
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name      | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            |
+            | teacher_1    | teacher_2    | namespace | room_name            | school_name                 | role_name      | participant_name |
+            | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            |

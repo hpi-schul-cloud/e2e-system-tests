@@ -5,9 +5,10 @@
 @prio_0_dev
 Feature: Room Board - Copying room board with files in a file folder
 
-    As a teacher I want to copy a room board with files in file folder, so that in the new room board there are the files of the original board available.
+    As a teacher, I want to copy a room board with files in file folder, so that in the new room board there are the files of the original board available.
 
     Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
+
         # pre-condition: creating accounts and room with board and a folder in a card
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' exists

@@ -6,7 +6,7 @@
 @prio_0_staging
 Feature: Teams - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
-    As a teacher I want to add video conference to the team event so that team members can collaborate via video conference.
+    As a teacher, I want to add video conference to the team event so that team members can collaborate via video conference.
 
     Scenario Outline: Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
@@ -128,10 +128,10 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | student_last_name | student_fullname | team_title                             | event_title        | event_description            | event_place  | event_title_edited        | event_description_edited               | event_description_edited |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Kraft, Herbert    | Herbert Kraft    | CypressAut - team for video conference | CypressAut - Event | this is cy event description | Cypress Aula | CypressAut - Edited Event | this is an edited cy event description | Cypress Mensa            |
+            | admin      | teacher      | student      | namespace | student_last_name | student_fullname | team_title                           | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_description_edited |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Kraft, Herbert    | Herbert Kraft    | CypressAut team for video conference | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa            |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | student_last_name  | student_fullname  | team_title                             | event_title        | event_description            | event_place  | event_title_edited        | event_description_edited               | event_description_edited |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | student_1, cypress | cypress student_1 | CypressAut - team for video conference | CypressAut - Event | this is cy event description | Cypress Aula | CypressAut - Edited Event | this is an edited cy event description | Cypress Mensa            |
+            | admin      | teacher      | student      | namespace | student_last_name  | student_fullname  | team_title                           | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_description_edited |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | student_1, cypress | cypress student_1 | CypressAut team for video conference | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa            |

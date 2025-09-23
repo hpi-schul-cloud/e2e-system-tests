@@ -5,11 +5,11 @@
 @prio_0_staging
 Feature: Files - Delete multiple files in folder and check file resource
 
-    As a content editor I want to delete multiple files from a folder in a room board and check if the file resource is not available anymore so that I can manage files in the board.
+    As a content editor, I want to delete multiple files from a folder in a room board and verify they are no longer available
 
     Scenario Outline:  Content editor is able to delete multiple files from folder in a board
 
-        # pre-condition: creating accounts and room with board
+        # pre-condition: creating teacher accounts and room with board
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room

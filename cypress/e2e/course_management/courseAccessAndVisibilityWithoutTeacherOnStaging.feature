@@ -7,17 +7,11 @@
 @prio_0_staging
 Feature: Course Management - Visibility of courses without a teacher assigned
 
-    As an admin
-    I want to see which courses do not have a teacher assigned
-    So that I can easily manage and update course assignments
-
-    As a student
-    I want to see a lock icon on courses without assigned teachers
-    So that I know which courses I cannot access
+    As an admin or student, I want to identify courses without assigned teachers and see a lock icon if access is restricted.
 
     Scenario Outline: Course without teacher is visible to admin but inaccessible to student
 
-        # pre-condition: creating a user and logging in
+        # pre-condition: creating users (admin and student) and logging in
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 

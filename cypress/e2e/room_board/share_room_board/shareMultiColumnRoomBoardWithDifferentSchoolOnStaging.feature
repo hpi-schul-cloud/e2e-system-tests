@@ -4,6 +4,7 @@
 
 @regression_test
 @stable_test
+@group-E
 @prio_0_staging
 Feature: Room Board - Share multi-column board in the rooms with the teacher from different school
 
@@ -82,6 +83,6 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
-            | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
+            | teacher_1    | teacherExt_1    | namespace | room_name_source       | room_name_target       | board_title            | import_board_title            |
+            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | CypressAut Board Import Title |
 

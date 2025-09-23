@@ -5,9 +5,9 @@
 @prio_0_dev
 Feature: Admin - Student registration with registration link send by admin
 
-    As a student, I want to register in the SVS
+    As a student, I want to register in SVS using a link sent by the admin
 
-    Scenario Outline: Admin add a new student and register it via registration link
+    Scenario Outline: Admin adds a new student and registers them via registration link
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'

@@ -51,12 +51,7 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
-
+            | teacher      | namespace | room_name            | board_title            |
+            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Board Title |

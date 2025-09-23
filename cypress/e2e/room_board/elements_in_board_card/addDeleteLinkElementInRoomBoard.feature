@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Room Board - Add, delete element Link in the room board
 
-    As a teacher, I want to add and delete link element in the room board, so that I can link an important resouces efficiently.
+    As a teacher, I want to add and delete link element in the room board, so that I can link an important resources efficiently.
 
     Scenario Outline: Add, delete link element in the room the room board, including pre & post conditions
 
@@ -49,11 +49,7 @@ Feature: Room Board - Add, delete element Link in the room board
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    | example_link                        |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | https://main.brb.dbildungscloud.dev |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | example_link                        |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title | https://main.brb.dbildungscloud.dev |
+            | teacher      | namespace | room_name            | board_title            | example_link                        |
+            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Board Title | https://main.brb.dbildungscloud.dev |

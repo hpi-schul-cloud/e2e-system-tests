@@ -37,7 +37,7 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         Then I see the file type DOCX is uploaded in the card
 
         # student can see the docx file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the docx file in the multi-column room board
         When I click on the page outside of the column
@@ -57,17 +57,13 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         Then I do not see the element File
 
         # student can not see the docx file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    | docx_file_name   | docx_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | docx_file_name   | docx_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-docx.docx | CY docx test file |
+            | teacher      | namespace | room_name            | board_title            | docx_file_name   | docx_caption_text         |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-docx.docx | CypressAut docx test file |

@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Task - Teacher copies a task from Task overview without student submission.
 
-    As a teacher I want to create, copy, edit and delete a task from task overview
+    As a teacher, I want to create, copy, edit and delete a task from task overview
 
     Scenario Outline: Teacher copies a task not submitted by the student in task overview
 

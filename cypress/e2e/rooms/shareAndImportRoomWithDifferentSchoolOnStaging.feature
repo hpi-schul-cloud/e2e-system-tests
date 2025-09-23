@@ -4,6 +4,7 @@
 
 @regression_test
 @stable_test
+@group-E
 @prio_0_staging
 Feature: Rooms - Share and import room with a teacher from different school
 
@@ -11,11 +12,11 @@ Feature: Rooms - Share and import room with a teacher from different school
 
     Scenario Outline: Share and import a room with a teacher from different school
 
-        # pre-condition: Creating teacher accounts
+        # pre-condition: creating teacher accounts
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
-        # pre-condition: Room and room exist
+        # pre-condition: room and room exist
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given multi column board is published to not to be in a draft mode
@@ -70,5 +71,5 @@ Feature: Rooms - Share and import room with a teacher from different school
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | room_name_source    | room_name_target    | board_title    |
-            | teacher1_dbc | teacherExt1_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
+            | teacher_1    | teacherExt_1    | namespace | room_name_source       | room_name_target       | board_title            |
+            | teacher1_dbc | teacherExt1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title |

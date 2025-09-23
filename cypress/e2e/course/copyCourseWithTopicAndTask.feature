@@ -1,14 +1,14 @@
 @regression_test
 @stable_test
-@group_V
+@group-E
 @prio_0_staging
 Feature: Course - Copy Course with Topic and Task
 
-    As a teacher I want to copy a course with a topic and task so that I can reuse the course content
+    As a teacher, I want to copy a course with its topics and tasks to reuse content
 
     Scenario Outline: Teacher copies a course with topic and task
 
-        # pre-condition: creating users accounts
+        # pre-condition: creating users accounts (admin, teacher and student)
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'

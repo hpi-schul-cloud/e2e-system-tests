@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Course Board  - To add a preferred tool in a board
 
-    As a teacher I want to add a preferred tool in my course board
+    As a teacher, I want to add a preferred tool in my course board
 
     Scenario Outline: Teacher adds, edits and deletes tools in a course board
 

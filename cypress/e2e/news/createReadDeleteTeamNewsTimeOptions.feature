@@ -5,10 +5,11 @@
 @prio_0_staging
 Feature:  News - To read a news on the respective dashboards
 
-    As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
+    As a teacher, I want to read the news shown on the dashboard so that I'm informed about the latest news
 
     Scenario Outline: User creates news with time options, reads them and deletes them
-        # as a pre-condition create users for author and reader
+
+        # pre-condition: create users for author and reader
         Given I am logged in as a '<news_reader>' at '<namespace>'
         Given I am logged in as a '<news_author>' at '<namespace>'
 
@@ -42,14 +43,14 @@ Feature:  News - To read a news on the respective dashboards
         Then I can read the news '<team_news_title>' with description '<team_news_description>' on news detail page
         Then I can see the publishing time info '<news_time_info_detailpage>' on news detail page
 
-        # first user deletes the team news
+        # post-condition: first user deletes the team news
         When I arrive on the dashboard
         When I click on the news teaser '<team_news_title>'
         When I click on delete button
         When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<team_news_title>'
 
-        # first user deletes the team
+        # post-condition: first user deletes the team
         When I go to teams overview
         When I go to a team '<team_name>'
         When I click on team settings

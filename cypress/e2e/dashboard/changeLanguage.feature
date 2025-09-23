@@ -10,7 +10,7 @@ Feature: Dashboard - Change language of the user from user setting
 
     Scenario Outline: user can change language to '<language>'
 
-        # pre-condition: creating all users
+        # pre-condition: creating all users (admin, teacher and student)
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'

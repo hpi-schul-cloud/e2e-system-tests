@@ -6,9 +6,9 @@
 @prio_0_staging
 Feature:  Class Management - To create, edit and delete class on dBC or on BRB
 
-    As a teacher, I want to create, edit and delete class, so that I can manage the class
+    As a teacher, I want to create, edit, and delete classes to manage them efficiently
 
-    Scenario Outline: Teacher creates, edits and delete a class, including pre-conditions
+    Scenario Outline: Teacher creates, edits, and deletes a class
 
         # Note: Student list does not load sometimes on the class management page.
 
@@ -48,10 +48,10 @@ Feature:  Class Management - To create, edit and delete class on dBC or on BRB
 
         @staging_test
         Examples:
-            | namespace | teacher      | student      | school_year | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher | fullname_student |
-            | dbc       | teacher1_dbc | student1_dbc | 2025/26     | cyTestClassName   | cyEditClassName        | 1                  | Karl Herzog      | Herbert Kraft    |
+            | namespace | teacher      | student      | school_year | custom_class_name          | edit_custom_class_name            | number_of_students | fullname_teacher | fullname_student |
+            | dbc       | teacher1_dbc | student1_dbc | 2025/26     | CypressAut Test Class Name | CypressAut Test Class Name Edited | 1                  | Karl Herzog      | Herbert Kraft    |
 
         @school_api_test
         Examples:
-            | namespace | teacher      | student      | school_year | custom_class_name | edit_custom_class_name | number_of_students | fullname_teacher  | fullname_student  |
-            | dbc       | teacher1_dbc | student1_dbc | 2025/26     | cyTestClassName   | cyEditClassName        | 1                  | cypress teacher_1 | cypress student_1 |
+            | namespace | teacher      | student      | school_year | custom_class_name          | edit_custom_class_name            | number_of_students | fullname_teacher  | fullname_student  |
+            | dbc       | teacher1_dbc | student1_dbc | 2025/26     | CypressAut Test Class Name | CypressAut Test Class Name Edited | 1                  | cypress teacher_1 | cypress student_1 |

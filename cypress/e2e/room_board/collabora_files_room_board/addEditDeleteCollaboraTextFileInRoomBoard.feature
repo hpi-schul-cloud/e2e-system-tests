@@ -4,7 +4,7 @@
 @prio_0_dev
 Feature: Room Board - Collabora full text file access (add, edit, delete) with editor permission
 
-    As a teacher with edit permission I want to add collabora text file, add text content and delete the file in a room board
+    As a teacher with edit permission, I want to add collabora text file, add text content and delete the file in a room board
 
     Scenario Outline:  Teacher is able to create, add content and delete collabora file in a board
 

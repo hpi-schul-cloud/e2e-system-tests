@@ -321,7 +321,7 @@ When("I click on tab Invitations", () => {
 	rooms.clickOnTabRoomInvitations();
 });
 
-When("I click on the fab button to create an invitationlink", () => {
+When("I click on the fab button to create an invitation link", () => {
 	rooms.clickOnInviteParticipantsFAB();
 });
 

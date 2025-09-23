@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Course Board - Copy course with a board which has CTL tools
 
-    As a Teacher I want to be able to copy ctl tools, when I copy a course with ctl tools within a board
+    As a teacher, I want to be able to copy ctl tools, when I copy a course with ctl tools within a board
 
     Scenario Outline: Teacher copies a course with a board that has ctl tools
 

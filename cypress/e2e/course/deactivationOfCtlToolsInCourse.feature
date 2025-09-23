@@ -5,11 +5,11 @@
 @prio_0_staging
 Feature: Course - Deactivation of ctl tools in course
 
-    As a user I want to see deactivated und activated tools in a course
+    As a user, I want to see which tools in a course are activated or deactivated
 
-    Scenario Outline: Users see deactivated tool in course
+    Scenario Outline: Users see activated and deactivated tools in a course
 
-        # pre-condition: creating all users
+        # pre-condition: creating all users (admin, teacher and student), admin sees ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

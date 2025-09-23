@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Task - Teacher copies a task from Course overview without student submission
 
-    As a teacher I want to create, copy, edit and delete a task from course overview
+    As a teacher, I want to create, copy, edit and delete a task from course overview
 
     Scenario Outline: Teacher copies a task not submitted by the student in course overview
 

@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Course Board - Restrict CTL tools to context board-element
 
-    As a teacher I want to add ctl tools with context restriction board-element
+    As a teacher, I want to add ctl tools with context restriction board-element
 
     Scenario Outline: Teacher adds tools with context restriction board-element in a board
 

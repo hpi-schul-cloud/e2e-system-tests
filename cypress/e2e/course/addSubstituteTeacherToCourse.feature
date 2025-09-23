@@ -5,11 +5,11 @@
 @prio_0_staging
 Feature: Course - Add substitute teacher to course
 
-    As a teacher I want to add substitute teacher to the course.
+    As a teacher, I want to add substitute teacher to the course.
 
-    Scenario Outline: user creation, course creation, and adding substitute teacher to the course, including pre-conditions
+    Scenario Outline: Add substitute teacher to a course
 
-        # pre-condition: creating all users and creating course
+        # pre-condition: creating users (admin and teachers) and creating course
         Given I am logged in as a '<teacher1>' at '<namespace>'
         Given I am logged in as a '<teacher2>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

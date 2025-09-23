@@ -4,9 +4,11 @@
 @prio_0_staging
 Feature: Rooms - Students can only add students from their own classes to a room on dBC or on BRB
 
-    As a student I can only add students from my own class to a room.
+    As a student, I can only add students from my own class to a room.
 
-    Scenario Outline: Teacher adds participants and deletes participants, including pre-conditions
+    Scenario Outline: Teacher adds participants and deletes participants
+
+        # pre-condition: users (admin, teacher and students) logged in
         Given I am logged in as a '<student_1>' at '<namespace>'
         Given I am logged in as a '<student_2>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -124,10 +126,10 @@ Feature: Rooms - Students can only add students from their own classes to a room
 
         @school_api_test
         Examples:
-            | namespace | admin      | teacher      | student_1    | student_2    | room_name         | school_name           | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher  | fullname_student_1 | fullname_student_2 |
-            | brb       | admin1_brb | teacher1_brb | student1_brb | student2_brb | Cypress Room Name | cypress-test-school-1 | Lernend   | student_1          | student_2          | 2025/26     | 2026/27          | cyClassNameManage | 2                  | cypress teacher_1 | cypress student_1  | cypress student_2  |
+            | namespace | admin      | teacher      | student_1    | student_2    | room_name            | school_name           | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name            | number_of_students | fullname_teacher  | fullname_student_1 | fullname_student_2 |
+            | brb       | admin1_brb | teacher1_brb | student1_brb | student2_brb | CypressAut Room Name | cypress-test-school-1 | Lernend   | student_1          | student_2          | 2025/26     | 2026/27          | CypressAut Class Name Manage | 2                  | cypress teacher_1 | cypress student_1  | cypress student_2  |
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | student_1    | student_2    | room_name         | school_name                 | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher | fullname_student_1 | fullname_student_2 |
-            | brb       | admin1_brb | teacher1_brb | student1_brb | student2_brb | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog      | Herbert Kraft      | Amelia Strobl      |
+            | namespace | admin      | teacher      | student_1    | student_2    | room_name            | school_name                 | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name            | number_of_students | fullname_teacher | fullname_student_1 | fullname_student_2 |
+            | brb       | admin1_brb | teacher1_brb | student1_brb | student2_brb | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Kraft              | Strobl             | 2025/26     | 2026/27          | CypressAut Class Name Manage | 2                  | Karl Herzog      | Herbert Kraft      | Amelia Strobl      |

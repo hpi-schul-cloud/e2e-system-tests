@@ -6,9 +6,9 @@
 @prio_0_staging
 Feature: Task - To create, submit, grade, archive, restore and delete task.
 
-    As a teacher I want to create, grade, finish, restore and delete a new task so that the student can submit it
+    As a teacher, I want to create, grade, finish, restore and delete a new task so that the student can submit it
 
-    Scenario Outline: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course, including pre-conditions
+    Scenario Outline: Teacher creates, edits, grades, finishes, restores, deletes a task and student can submit, access the task in a course
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -111,7 +111,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
 
         # teacher restores the finished task from course
         When I go to tasks overview
-        # Note: below step is commented because icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
+        # NOTE: below step is commented because icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
         #When I open task list with due date
         Then I do not see task '<task_name>' in the list as teacher
         When I click on finished tab
@@ -133,7 +133,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I click on three dot menu of content '<task_name>'
         When I click on Delete in dot menu
         When I click on Delete in confirmation window
-        # Note: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
+        # NOTE: new opening of the course page is necessary to clear DOM from deleted tasks (reload would also work but would need a cy.wait)
         When I arrive on the dashboard
         When I go to courses overview
         When I go to course '<course_name>'

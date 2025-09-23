@@ -6,7 +6,7 @@
 @prio_0_staging
 Feature: Teams - Create, delete and edit operations on Teams
 
-    As a teacher I want to create/edit/delete the team so that I can manage the team.
+    As a teacher, I want to create/edit/delete the team so that I can manage the team.
 
     Scenario Outline: Teacher create, edit and deletes the team
 
@@ -47,5 +47,5 @@ Feature: Teams - Create, delete and edit operations on Teams
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | team_title                          | team_description              | team_edited_title                          | team_edited_description              |
-            | teacher1_brb | brb       | CypressAut: Create,Edit,Delete Team | This is CRUD team description | CypressAut: Edited Create,Edit,Delete team | This is edited CRUD team description |
+            | teacher      | namespace | team_title                         | team_description              | team_edited_title                         | team_edited_description              |
+            | teacher1_brb | brb       | CypressAut Create,Edit,Delete Team | This is CRUD team description | CypressAut Edited Create,Edit,Delete team | This is edited CRUD team description |

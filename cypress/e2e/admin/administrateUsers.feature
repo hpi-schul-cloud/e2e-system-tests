@@ -7,9 +7,9 @@
 @prio_0_staging
 Feature: Admin - To add, edit and delete new users by the admin.
 
-    As an admin I want to create a new user so that I can administrate it
+    As an admin, I want to manage users by creating, editing, and removing them
 
-    Scenario Outline: Adding a new user, edit and delete this user
+    Scenario Outline: Admin adds, edits, and deletes a user
 
         # pre-condition: admin adds a new student and a new teacher
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -36,11 +36,11 @@ Feature: Admin - To add, edit and delete new users by the admin.
         Then I can not see user '<user_email>' in the table
 
         # admin reverts teacher user information (Note: This scenario can be further implemented)
-        #When I am on the teachers management page
-        #When I go to teacher edit page for '<user_first_name>' with email '<user_email>'
-        #When I Change the name to '<user_first_name>' '<user_first_name_edited>'
-        #When I  Change the email to '<user_email>'
-        #Then I can save the changes
+        # When I am on the teachers management page
+        # When I go to teacher edit page for '<user_first_name>' with email '<user_email>'
+        # When I Change the name to '<user_first_name>' '<user_first_name_edited>'
+        # When I  Change the email to '<user_email>'
+        # Then I can save the changes
 
         # post-condition: admin deletes a student and a teacher
         When I go to '<role_to_manage>' administration

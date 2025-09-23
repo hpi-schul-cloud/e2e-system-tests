@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Course Management - To create, add class with course and after deletion of class, check for errors
 
-    As an administrator I want to add created class into course and after deletion of class, check for errors
+    As an administrator, I want to add created class into course and after deletion of class, check for errors
 
     Scenario Outline: Admin creates, adds class into course and after deleting the class check for no errors
 

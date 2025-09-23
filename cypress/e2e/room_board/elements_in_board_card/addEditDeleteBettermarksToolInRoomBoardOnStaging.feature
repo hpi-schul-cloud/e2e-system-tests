@@ -41,7 +41,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         When I click on button Add in the modal to add an external tool
         Then I see the Title '<bettermarks_title>' and the Domain URL '<bettermarks_domain_url>' of bettermarks in the card
         # clicking on the bettermarks tool even with stubbing causing unstable error, so this step is commented out and is for manual testing part.
-        #Then I click on the bettermarks element in the card
+        # Then I click on the bettermarks element in the card
 
         # teacher publishes the room board for student to access the bettermarks tool
         When I click on the three dot menu in room board title
@@ -104,6 +104,6 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
 
         @staging_test
         Examples:
-            | teacher      | admin      | student      | namespace | room_name         | board_title    | bettermarks_title | bettermarks_edit_title | student_name | student_role | student_school              | external_tool_name | bettermarks_domain_url                                      |
-            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | Cypress Room Name | Board Cy Title | bettermarks       | bettermarks edited     | Herbert      | Lernend      | Felix Mendelssohn-Gymnasium | bettermarks        | school.bettermarks.staging.niedersachsen.dbildungscloud.org |
+            | teacher      | admin      | student      | namespace | room_name            | board_title            | bettermarks_title      | bettermarks_edit_title        | student_name | student_role | student_school              | external_tool_name | bettermarks_domain_url                                      |
+            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | CypressAut Room Name | CypressAut Board Title | CypressAut bettermarks | CypressAut bettermarks edited | Herbert      | Lernend      | Felix Mendelssohn-Gymnasium | bettermarks        | school.bettermarks.staging.niedersachsen.dbildungscloud.org |
 

@@ -7,9 +7,8 @@
 @prio_0_staging
 Feature: Course - Teacher can add and remove BigBlueButton tool in the course with admin permission
 
-    As a teacher I want to activate and deactivate BigBlueButton tool in the course, so that I can manage the video lectures.
-
-    Scenario Outline: Teacher creates, edits and deletes a topic in the course, including pre-conditions
+    As a teacher, I want to activate and deactivate the BigBlueButton tool in a course to manage video lectures
+    Scenario Outline: Teacher adds and removes BigBlueButton tool in the course
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

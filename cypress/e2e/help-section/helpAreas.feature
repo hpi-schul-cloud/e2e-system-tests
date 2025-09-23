@@ -7,7 +7,7 @@
 @prio_0_staging
 Feature: Help Section - To use the help areas in dBildungscloud
 
-    As a user I want to use the help areas in the sidebar so that I can find help when needed
+    As a user, I want to use the help areas in the sidebar so that I can find help when needed
 
     Scenario Outline: User can use the help area in the sidebar, search article and submit an issue and a request via contact form
 

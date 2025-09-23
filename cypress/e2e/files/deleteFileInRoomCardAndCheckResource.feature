@@ -5,11 +5,11 @@
 @prio_0_staging
 Feature: Files - Delete image file in room board and check file resource
 
-    As a teacher delete an image file in the room board and check if the file resource is not available anymore so that I can manage files in the board.
+    As a teacher, I want to remove image files from the board and confirm they are not accessible anymore
 
     Scenario Outline: Upload and delete image file in the room board and check file resource
 
-        # pre-condition: creating account
+        # pre-condition: creating teacher account
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: room, board and card are existing

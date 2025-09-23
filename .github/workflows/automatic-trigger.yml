@@ -8,11 +8,6 @@ jobs:
       environment: ${{ steps.set_variables.outputs.environment }}
       all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
     steps:
-      # - name: Setup Node
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 22
-
       - name: Checkout
         uses: actions/checkout@v4
 

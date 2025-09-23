@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Course Board - To share a board card link
 
-    As a teacher I want to share a link to a board card.
+    As a teacher, I want to share a link to a board card.
 
     Scenario Outline: Teacher shares a link to a board card
 

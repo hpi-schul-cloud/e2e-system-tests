@@ -5,9 +5,11 @@
 @prio_0_staging
 Feature: Course - Restrict CTL tools to context course
 
-    As a teacher I want to add ctl tools with context restriction course
+    As a teacher, I want to add ctl tools with context restriction course
 
-    Scenario Outline: Teacher adds tools with context restriction course in a course
+    Scenario Outline: Teacher adds CTL tools with course context restrictions
+
+        # pre-condition: user logs in and admin sees ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>,<ctl_tool_restriction_course>,<ctl_tool_restriction_board_element>,<ctl_tool_restriction_media_board>,<ctl_tool_restriction_all>'

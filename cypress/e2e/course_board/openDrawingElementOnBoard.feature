@@ -5,8 +5,8 @@
 @prio_0_staging
 Feature: Course Board - Opening a drawing element on a course page
 
-    As a teacher and student I want to open already created drawing element on a course page
-    Scenario Outline: Users (admin, teacher, student), create a course with board and open TLDraw, including pre-conditions
+    As a teacher and student, I want to open already created drawing element on a course page
+    Scenario Outline: Users (admin, teacher, student), create a course with board and open TLDraw
 
         # pre-condition: creating all users accounts (admin, teacher, student)
         Given I am logged in as a '<teacher>' at '<namespace>'

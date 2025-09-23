@@ -5,11 +5,11 @@
 @prio_0_staging
 Feature: Course - Copy course with CTL tools
 
-    As a Teacher I want to be able to copy ctl tools, when I copy a course
+    As a teacher, I want to be able to copy ctl tools when I copy a course
 
     Scenario Outline: Teacher copies a course with ctl tools
 
-        # pre-condition: creating all users
+        # pre-condition: creating users (admin, teacher and student), admin sees ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'

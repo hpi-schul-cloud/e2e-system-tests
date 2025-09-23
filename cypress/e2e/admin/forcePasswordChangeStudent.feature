@@ -5,9 +5,9 @@
 @prio_0_dev
 Feature: Admin - user must set a new password during login
 
-    As a user, I have to set a new password during login
+    As a user, I want to update my password during my first login
 
-    Scenario Outline: Admin updates the password for the users, they set a new password during login.
+    Scenario Outline: Admin updates user password, user sets a new password during first time login
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'

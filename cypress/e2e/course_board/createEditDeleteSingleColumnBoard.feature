@@ -5,7 +5,7 @@
 @prio_0_staging
 Feature: Course Board - To create, edit and delete a single-column course board
 
-    As a teacher I want to create, edit and delete a single-column course board so that I can use this option.
+    As a teacher, I want to create, edit and delete a single-column course board so that I can use this option.
 
     Scenario Outline: user creation, course creation, and creating single-column board, adding a card with text and whiteboard, deleting the single-column board in the course
 

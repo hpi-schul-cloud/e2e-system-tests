@@ -6,10 +6,11 @@
 @prio_0_staging
 Feature:  News - To read a news on the respective dashboards
 
-    As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
+    As a teacher, I want to read the news shown on the dashboard so that I'm informed about the latest news
 
     Scenario Outline: Teacher creates news, reads them and deletes them
-        # as a pre-condition create teacher and student
+
+        # pre-condition: create teacher and student
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
 
@@ -68,14 +69,14 @@ Feature:  News - To read a news on the respective dashboards
         When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<news_title>'
 
-        # teacher deletes the team news
+        # post-condition: teacher deletes the team news
         When I arrive on the dashboard
         When I click on the news teaser '<team_news_title>'
         When I click on delete button
         When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<team_news_title>'
 
-        # teacher deletes the team
+        # post-condition: teacher deletes the team
         When I go to teams overview
         When I go to a team '<team_name>'
         When I click on team settings

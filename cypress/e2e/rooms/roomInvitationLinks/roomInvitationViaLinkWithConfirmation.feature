@@ -7,7 +7,9 @@ Feature: Rooms - Invite User to room via Invitation link
 
     As a room owner, when I invite a user through an invitation link, I want to confirm his application before he can join the room.
 
-    Scenario Outline: Room Owner creates an invitation link with confirmation, another teacher uses it, the first user confirms, including pre-conditions
+    Scenario Outline: Room Owner creates an invitation link with confirmation, another teacher uses it, the first user confirms
+
+        # pre-condition: teachers logged in
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -21,7 +23,7 @@ Feature: Rooms - Invite User to room via Invitation link
         Then I see the page Edit participants of room '<room_name>'
 
         When I click on tab Invitations
-        When I click on the fab button to create an invitationlink
+        When I click on the fab button to create an invitation link
         Then I see the modal Create Invitation Link
         When I enter '<invitation_description>' into the Invitation Link Description field
         When I check the Checkbox to require confirmation
@@ -68,5 +70,5 @@ Feature: Rooms - Invite User to room via Invitation link
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | teacher_2_name | namespace | room_name         | invitation_description |
-            | teacher1_brb | teacher2_brb | teacher_2      | brb       | Cypress Room Name | testinvitationlink     |
+            | teacher_1    | teacher_2    | teacher_2_name | namespace | room_name            | invitation_description |
+            | teacher1_brb | teacher2_brb | teacher_2      | brb       | CypressAut Room Name | test invitation link   |

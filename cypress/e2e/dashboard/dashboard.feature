@@ -7,9 +7,9 @@
 @prio_0_staging
 Feature: Dashboard - To check contents on the dashboard
 
-    As a student and a teacher I want to see important information on the dashboard so that I can be updated start working
+    As a student and teacher, I want to stay updated by viewing essential information on the dashboard
 
-    Scenario Outline: student and a teacher see important information on the dashboard, including pre-conditions
+    Scenario Outline: student and a teacher see important information on the dashboard
 
         # pre-condition: admin, teacher and student log in to create their account in a same school
         Given I am logged in as a '<teacher>' at '<namespace>'

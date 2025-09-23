@@ -9,7 +9,8 @@ Feature: Rooms - Invite Student from another school via teacher from another sch
 
     As a room owner, when I invite a teacher from another school to a room, the teacher should be able to invite a student from their school, and the student should see the room in their room overview.
 
-    Scenario Outline: Room Owner invites a teacher from another school, the teacher invites a student from their school, the student can access the room, including pre-conditions
+    Scenario Outline: Room Owner invites a teacher from another school, the teacher invites a student from their school, the student can access the room
+
         # Goethe-Gymnasium
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         # Goethe-Gymnasium
@@ -119,5 +120,5 @@ Feature: Rooms - Invite Student from another school via teacher from another sch
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name         | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
-            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              |
+            | teacher_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name            | participant_external_school | participant_same_school     | role_name_teacher | participant_external_name_teacher | role_name_student | participant_external_name_student |
+            | teacher1_brb | teacherExt1_brb | studentExt1_brb | adminExt1_brb | brb       | CypressAut Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                             | Lernend           | Alex                              |
