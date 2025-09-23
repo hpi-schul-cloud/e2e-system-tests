@@ -73,6 +73,7 @@ jobs:
       #     service-account-token: ${{ secrets.service-account-token }}
 
       - name: Fetch JSON files from 1Password
+        shell: bash
         run: |
           mkdir -p ${{ github.workspace }}/e2e-system-tests/env_variables
           instances=(brb dbc nbc)
