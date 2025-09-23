@@ -173,6 +173,21 @@ class Courses {
 	static #confirmButton = '[data-testid="dialog-confirm-btn"]';
 	static #loadingDialog = '[data-testid="dialog-text"]';
 	static #inputOfTypeFile = 'input[type="file"]';
+	static #breadcrumbToCoursePageNavigation =
+		'[data-testid="navigate-to-course-from-topic"]';
+
+	openThreeDotMenuForCopiedTopic(contentTitle, suffix) {
+		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(
+			`${contentTitle} (${suffix})`
+		);
+		cy.get(Courses.#topicCardThreeDotInCoursePageWithIndex).click();
+	}
+
+	navigateToCourseViaBreadcrumb() {
+		cy.get(Courses.#breadcrumbToCoursePageNavigation).click();
+		// ensure the URL includes /rooms
+		cy.url().should("include", "/rooms");
+	}
 
 	verifyImportSharedModal() {
 		cy.get(Courses.#shareSettingsDialog).should("be.visible");

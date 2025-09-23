@@ -33,27 +33,32 @@ class Topics {
 	static #textElementPos4 = '[data-testid="topic-content-element-text-4"]';
 	// static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
 	// static #draftCheckbox = '[data-testid="private-checkbox"]'
-	static #copyAlertDialog = '[data-testid="dialog-content"]';
+	static #copyAlertDialog = '[data-testid="dialog-title"]';
 	static #copytopicDialogWarning = '[data-testid="warning-title"]';
 	static #closeButtonInCopyTopicDialog = '[data-testid="dialog-close"]';
 	static #topicTitleCourseDetail = '[data-testid="lesson-name-0"]';
 	static #publishButtonCopiedTopic = '[data-testid="lesson-card-action-publish-0"]';
 	static #topicTitleTopicDetailPage = '[id="page-title"]';
 	static #sectionTopic = '[data-testid="section-topic"]';
+	static #copyResultNotifications = '[data-testid="copy-result-notifications"]';
 
 	seeCopyAlertDialog() {
 		cy.get(Topics.#copyAlertDialog).should("be.visible");
 	}
 
-	seeGeoGebraNotCopiedInfoInDialog() {
-		cy.get(Topics.#copytopicDialogWarning).should("contain.text", "Geogebra IDs");
-	}
+	seeGeoGebraAndEtherpadNotCopiedWarnings() {
+		cy.get(Topics.#copyResultNotifications).within(() => {
+			cy.get(Topics.#copytopicDialogWarning)
+				.invoke("text")
+				.then((text) => {
+					// normalize text: lowercase, trim, collapse spaces
+					const normalizedText = text.replace(/\s+/g, " ").trim().toLowerCase();
 
-	seeEtherpadNotCopiedInfoInDialog() {
-		cy.get(Topics.#copytopicDialogWarning).should(
-			"contain.text",
-			"Inhalte aus Etherpads"
-		);
+					// assert presence of words in any letter combination "GeoGebra", "GEOGEBRA", "Etherpad", "ETHERPADS" etc.
+					expect(normalizedText).to.include("geogebra");
+					expect(normalizedText).to.match(/etherpads?/);
+				});
+		});
 	}
 
 	clickCloseButtonInDialog() {
@@ -67,12 +72,18 @@ class Topics {
 		);
 	}
 
+	doNotSeeCopiedTopicTitleOnCourseDetailPage(topicName, suffix) {
+		cy.get(Topics.#topicTitleCourseDetail)
+			.should("not.contain.text", `(${suffix})`)
+			.and("contain.text", topicName);
+	}
+
 	seePublishButtonOnCopiedTopic() {
 		cy.get(Topics.#publishButtonCopiedTopic).should("be.visible");
 	}
 
-	clickOnCopiedTopic(topicName) {
-		cy.contains(Topics.#topicTitleCourseDetail, `${topicName} (1)`).click();
+	clickOnCopiedTopic(topicName, suffix) {
+		cy.contains(Topics.#topicTitleCourseDetail, `${topicName} (${suffix})`).click();
 	}
 
 	seeTopicDetailsPage() {
@@ -86,19 +97,7 @@ class Topics {
 		);
 	}
 
-	seeTextElementOnTopicDetailPage(expectedText) {
-		cy.get(Topics.#sectionTopic)
-			.should("be.visible")
-			.should("contain.text", expectedText);
-	}
-
-	seeLernstoreElementOnTopicDetailPage(expectedText) {
-		cy.get(Topics.#sectionTopic)
-			.should("be.visible")
-			.should("contain.text", expectedText);
-	}
-
-	seeEtherpadElementOnTopicDetailPage(expectedText) {
+	seeTopicElementNamesOnTopicDetailPage(expectedText) {
 		cy.get(Topics.#sectionTopic)
 			.should("be.visible")
 			.should("contain.text", expectedText);
@@ -157,7 +156,7 @@ class Topics {
 		}
 	}
 
-	enterTitleforElementText(elementTextTitle, elementPosition) {
+	enterTitleForElementText(elementTextTitle, elementPosition) {
 		if (elementPosition === "0") {
 			cy.get(Topics.#textElementPos0).within(() => {
 				cy.get(Topics.#cardHeader)
@@ -193,7 +192,7 @@ class Topics {
 		}
 	}
 
-	enterTitleforElementGeoGebra(elementGeoGebraTitle) {
+	enterTitleForElementGeoGebra(elementGeoGebraTitle) {
 		cy.get(Topics.#elementGeoGebraCard).within(() => {
 			cy.get(Topics.#cardHeader)
 				.find("div > input")
@@ -208,7 +207,7 @@ class Topics {
 		});
 	}
 
-	enterTitleforElementLearningMaterial(elementLearningMaterialTitle) {
+	enterTitleForElementLearningMaterial(elementLearningMaterialTitle) {
 		cy.get(Topics.#elementLearningMaterialCard).within(() => {
 			cy.get(Topics.#cardHeader)
 				.find("div > input")
@@ -223,7 +222,7 @@ class Topics {
 		});
 	}
 
-	enterTitleforElementEtherpad(elementEtherpadTitle, elementPosition) {
+	enterTitleForElementEtherpad(elementEtherpadTitle, elementPosition) {
 		if (elementPosition === "2") {
 			cy.get(Topics.#elementEtherpadCardPos2).within(() => {
 				cy.get(Topics.#cardHeader)
@@ -243,7 +242,7 @@ class Topics {
 		}
 	}
 
-	enterDescriptionforElementEtherpad(elementEtherpadDescription, elementPosition) {
+	enterDescriptionForElementEtherpad(elementEtherpadDescription, elementPosition) {
 		if (elementPosition === "2") {
 			cy.get(Topics.#elementEtherpadCardPos2).within(() => {
 				cy.get(Topics.#cardBlock)
@@ -261,7 +260,7 @@ class Topics {
 		}
 	}
 
-	enterTitleforElementTask(elementEtherpadTask) {
+	enterTitleForElementTask(elementEtherpadTask) {
 		cy.get(Topics.#elementTaskCard).within(() => {
 			cy.get(Topics.#cardHeader)
 				.find("div > input")
@@ -270,9 +269,11 @@ class Topics {
 		});
 	}
 
-	enterLinkforElementTask(taskId) {
-		const env = Cypress.env("BRB").toLowerCase().replace(/\/$/, "");
-		const taskURL = `${env}/homework/${taskId}`;
+	enterLinkForElementTask(taskId, namespace) {
+		const ns = namespace.toUpperCase();
+		let envUrl = Cypress.env(ns);
+		envUrl = envUrl ? envUrl.toLowerCase().replace(/\/$/, "") : "";
+		const taskURL = `${envUrl}/homework/${taskId}`;
 		cy.get(Topics.#elementTaskCard).within(() => {
 			cy.get(Topics.#cardBlock).find("input").type(taskURL);
 		});

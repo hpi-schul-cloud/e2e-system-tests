@@ -5,6 +5,17 @@ import Courses from "../../pages/course/pageCourses";
 const courses = new Courses();
 const management = new Management();
 
+When(
+	"I click on three dot menu of topic {string} with the suffix {string} on the course detail page",
+	(topicName, suffix) => {
+		courses.openThreeDotMenuForCopiedTopic(topicName, suffix);
+	}
+);
+
+When("I click on the breadcrumb to go back to the course page", () => {
+	courses.navigateToCourseViaBreadcrumb();
+});
+
 Then("I select teacher {string} is selected by default", (teacherName) => {
 	courses.selectTeacherInCourseCreatePage(teacherName);
 });

@@ -23,58 +23,60 @@ const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
 Given(
-	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string}",
+	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
 	(
-		topic_name,
-		course_name,
-		text_element_title,
-		geogebra_title,
-		geogebra_id,
-		learning_material_title,
-		etherpad_title,
-		etherpad_description,
-		task_title,
-		task_link_id
+		topicName,
+		courseName,
+		textElementTitle,
+		geoGebraTitle,
+		geoGebraId,
+		learningMaterialTitle,
+		etherpadTitle,
+		etherpadDescription,
+		taskTitle,
+		taskId,
+		namespace
 	) => {
 		courses.navigateToCoursesOverview();
-		courses.navigateToCoursePage(course_name);
+		courses.navigateToCoursePage(courseName);
 		courses.clickOnCreateContentFAB();
 		courses.clickOnNewTopicFAB();
 
-		topics.enterTopicTitle(topic_name);
+		topics.enterTopicTitle(topicName);
 
 		// text element
 		topics.clickOnAddTextToTopic();
 		topics.seeFormElementText("0");
-		topics.enterTitleforElementText(text_element_title, "0");
+		topics.enterTitleForElementText(textElementTitle, "0");
 
 		// geoGebra element
 		topics.clickOnAddGeoGebraToTopic();
-		topics.enterTitleforElementGeoGebra(geogebra_title);
-		topics.enterIDforElementGeoGebra(geogebra_id);
+		topics.enterTitleForElementGeoGebra(geoGebraTitle);
+		topics.enterIDforElementGeoGebra(geoGebraId);
 
 		// learning material element
 		topics.clickOnAddLearningMaterialToTopic();
-		topics.enterTitleforElementLearningMaterial(learning_material_title);
+		topics.enterTitleForElementLearningMaterial(learningMaterialTitle);
 		topics.seeAddMaterialBtnInContent();
 
 		// etherpad element
 		topics.clickOnAddEtherpadToTopic();
-		topics.enterTitleforElementEtherpad(etherpad_title, "3");
-		topics.enterDescriptionforElementEtherpad(etherpad_description, "3");
+		topics.enterTitleForElementEtherpad(etherpadTitle, "3");
+		topics.enterDescriptionForElementEtherpad(etherpadDescription, "3");
 
 		// task element
 		topics.clickOnAddTaskToTopic();
-		topics.enterTitleforElementTask(task_title);
-		topics.enterLinkforElementTask(task_link_id);
+		topics.enterTitleForElementTask(taskTitle);
+		topics.enterLinkForElementTask(taskId, namespace);
 
 		// save changes
 		topics.clickOnSubmitChangesInTopicBtn();
-		topics.clickOnSubmitChangesInTopicBtn(); // double click for CKEditor file upload
+		// double click for CKEditor file upload
+		topics.clickOnSubmitChangesInTopicBtn();
 		topics.navigateBackToCourseViaBreadcrumb();
 
-		// verify topic appears on course deatail page
-		courses.topicIsVisibleOnCoursePage(topic_name);
+		// verify topic appears on course detail page
+		courses.topicIsVisibleOnCoursePage(topicName);
 	}
 );
 
@@ -421,7 +423,7 @@ Given(
 		courses.clickOnNewTopicFAB();
 		topics.enterTopicTitle(topicTitle);
 		topics.clickOnAddTextToTopic();
-		topics.enterTitleforElementText("element Text", "0");
+		topics.enterTitleForElementText("element Text", "0");
 		topics.enterDescriptionforElementText("element text description", "0");
 		topics.clickOnSubmitChangesInTopicBtn();
 		topics.clickOnSubmitChangesInTopicBtn();
