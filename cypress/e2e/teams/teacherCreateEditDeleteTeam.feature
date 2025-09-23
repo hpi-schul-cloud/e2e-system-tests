@@ -1,9 +1,8 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-A
+@group-C
 @pr
-@pre_check_test
 Feature: Team - Create, delete and edit operations on Teams
 
     As a teacher I want to create/edit/delete the team so that I can manage the team.
@@ -16,7 +15,7 @@ Feature: Team - Create, delete and edit operations on Teams
         When I enter in the title '<team_title>'
         When I enter in the description '<team_description>'
         When I select the team colour black
-        Then I click on button Create Team on the team creation page
+        When I click on button Create Team on the team creation page
         When I go to teams overview
         Then I see team title '<team_title>' is visible
         Then I see the description '<team_description>' is visible

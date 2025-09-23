@@ -60,6 +60,78 @@ class Rooms {
 	static #infoBoxContentRestriction = '[data-testid="share-options-table-header"]';
 	static #roomBadgeLock = '[data-testid="room-badge-lock"]';
 	static #roomLockedMessage = '[data-testid="img-permission"]';
+	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
+	static #noRoomsMessage = '[data-testid="empty-state"]';
+
+	deleteElementsWithText(textSelector, roomName) {
+		cy.get("body").then(($body) => {
+			if ($body.find(Rooms.#noRoomsMessage).length) {
+				cy.log("No rooms available to delete. Test will exit.");
+				return;
+			} else {
+				this.findAndDeleteRooms(textSelector, roomName);
+			}
+		});
+	}
+
+	findAndDeleteRooms(textSelector, roomName) {
+		const roomRegex = new RegExp(`^${roomName}.*$`, "i");
+
+		cy.get(textSelector).then(($elements) => {
+			const matchingElements = Cypress.$($elements).filter((_, el) =>
+				roomRegex.test(Cypress.$(el).text().trim())
+			);
+
+			if (matchingElements.length > 0) {
+				cy.log(`Found ${matchingElements.length} rooms matching "${roomName}"`);
+				this.deleteRoom(textSelector, roomName);
+			} else {
+				cy.log(`No more rooms found with name "${roomName}".`);
+			}
+		});
+	}
+
+	deleteRoom(textSelector, roomName) {
+		// open the room detail page
+		cy.contains(textSelector, new RegExp(`^${roomName}.*$`, "i"))
+			.scrollIntoView()
+			.should("be.visible")
+			.click();
+
+		// perform deletion inside detail view
+		cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
+		cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
+		cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+		cy.get(Rooms.#confirmButtonOnModal).should("be.visible").click();
+
+		// wait for page update
+		cy.wait(2000);
+
+		// recurse until all rooms with this name are deleted
+		cy.get("body").then(($body) => {
+			if ($body.text().includes(roomName)) {
+				this.deleteElementsWithText(textSelector, roomName);
+			} else {
+				cy.log(`All rooms with name "${roomName}" deleted successfully.`);
+			}
+		});
+	}
+
+	verifyRoomDeletion(roomName) {
+		cy.get("body").then(($body) => {
+			if (!$body.text().includes(roomName)) {
+				cy.log(`All rooms with name "${roomName}" deleted successfully.`);
+			} else {
+				cy.get(Rooms.#roomTitle).should("not.contain.text", roomName);
+			}
+		});
+	}
+
+	deleteAllRoomsWithName(roomName) {
+		cy.wait(2000);
+		this.deleteElementsWithText(Rooms.#roomTitle, roomName);
+		this.verifyRoomDeletion(roomName);
+	}
 
 	seeLockIconInRoom(roomName) {
 		cy.get(Rooms.#roomTitle)

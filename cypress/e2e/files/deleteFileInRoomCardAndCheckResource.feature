@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-G
+@group-A
 Feature: Room Board - Delete image file in room board and check file resource
 
     As a teacher delete an image file in the room board and check if the file resource is not available anymore so that I can manage files in the board.
 
-    Scenario: Upload and delete image file in the room board and check file resource
+    Scenario Outline: Upload and delete image file in the room board and check file resource
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -34,8 +34,8 @@ Feature: Room Board - Delete image file in room board and check file resource
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three-dot in the element File
-        When I click on the option Delete in the three-dot menu
+        When I click on the three dot in the element File
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element File

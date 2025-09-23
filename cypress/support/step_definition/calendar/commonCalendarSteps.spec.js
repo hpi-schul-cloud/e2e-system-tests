@@ -39,6 +39,14 @@ When("I enter end time with time {string}", (eventEndTime) => {
 	calendar.enterEventEndTime(eventEndTime);
 });
 
+When("I change start time to {string}", (eventStartTime) => {
+	calendar.changeEventStartTime(eventStartTime);
+});
+
+When("I change end time to {string}", (eventEndTime) => {
+	calendar.changeEventEndTime(eventEndTime);
+});
+
 When("I enter event description {string}", (eventDescription) => {
 	calendar.enterEventDescription(eventDescription);
 });
@@ -54,7 +62,7 @@ When("I click button Add event", () => {
 Then(
 	"I see an event with start time {string} and event title {string}",
 	(eventStartTime, eventTitle) => {
-		calendar.seeEventInCalendar(eventStartTime, eventTitle);
+		calendar.seeEventInCalendarWithStartTime(eventStartTime, eventTitle);
 	}
 );
 

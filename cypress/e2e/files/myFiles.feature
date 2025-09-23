@@ -3,11 +3,12 @@
 @schedule_run
 @group-E
 @pr
+@pre_check_test
 Feature: Files Overview - To use LibreOffice for text, calc and presentation document
 
     As a user I want to create and edit a LibreOffice text document so that I write into it
 
-    Scenario: Create a LibreOffice text document
+    Scenario Outline: Create a LibreOffice text document
         Given I am logged in as a '<user>' at '<namespace>'
         When I click on Files in menu
         Then I go to personal files overview
@@ -19,7 +20,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
         Then I go to personal files overview
         Then I can see file with name '<document_title>'
 
-        # Edit name of LibreOffice text document
+        # edit name of LibreOffice text document
         When I click on Files in menu
         Then I can see file with name '<document_title_full>'
         Then I click rename file button of file '<document_title_full>'
@@ -28,7 +29,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
         Then I click save name button
         Then I can see file with name '<document_title_edited>'
 
-        # Delete a LibreOffice text document
+        # delete a LibreOffice text document
         When I click on Files in menu
         Then I can see file with name '<document_title_edited>'
         Then I click delete file button of file '<document_title_edited>'

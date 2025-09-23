@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-U
+@group-E
 
 Feature: Room - Students can only add students from their own classes to a room on dBC or on BRB
 
@@ -130,4 +130,4 @@ Feature: Room - Students can only add students from their own classes to a room 
         @staging_test
         Examples:
             | namespace | admin      | teacher      | student_1    | student_2    | room_name         | school_name                 | role_name | participant_name_1 | participant_name_2 | school_year | school_year_next | custom_class_name | number_of_students | fullname_teacher | fullname_student_1 | fullname_student_2 |
-            | dbc       | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog      | Herbert Kraft      | Amelia Strobl      |
+            | brb       | admin1_brb | teacher1_brb | student1_brb | student2_brb | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Kraft              | Strobl             | 2025/26     | 2026/27          | cyClassNameManage | 2                  | Karl Herzog      | Herbert Kraft      | Amelia Strobl      |

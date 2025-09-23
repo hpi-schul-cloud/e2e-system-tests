@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group-N
+@group-C
 @schedule_run
 Feature: Course - Copy course
 
     As a Teacher I want to be able to copy a course so that I can reuse the course content
 
-    Scenario: Teacher copies a course
+    Scenario Outline: Teacher copies a course
         # pre-condition: creating all users
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
@@ -68,4 +68,4 @@ Feature: Course - Copy course
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name           | course_name_copy          | fullname_teacher | fullname_student | searchstring_student | board_title                   | folder_name         | image_file_name |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut CourseCopy | CypressAut CourseCopy (1) | Karl Herzog      | Herbert Kraft    | Kraft                | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut CourseCopy | CypressAut CourseCopy (1) | Karl Herzog      | Herbert Kraft    | Kraft                | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |

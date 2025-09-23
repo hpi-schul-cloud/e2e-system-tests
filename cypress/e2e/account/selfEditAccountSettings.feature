@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-O
+@group-C
 Feature: Account - Edit E-mail in the account setting page
 
     As a user I want to navigation to my account's settings page so that I can see and edit my account details (e. g. email).
 
-    Scenario: I see my E-mail is editable as an internal user, including pre conditions
+    Scenario Outline: I see my E-mail is editable as an internal user, including pre conditions
         Given I am logged in as a '<user>' at '<namespace>'
 
         # user changes/updates the E-mail
@@ -37,7 +37,3 @@ Feature: Account - Edit E-mail in the account setting page
 
 # E-mail is not editable by an external student user
 # Note: this scenario is currently unstable
-#Given I am logged in as a 'student_extern_dbc' at 'dbc'
-#When I go to my account settings
-#Then I see my email is not editable
-

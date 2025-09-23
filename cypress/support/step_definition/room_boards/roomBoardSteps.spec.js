@@ -9,6 +9,35 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I click on the three dot in the element external tool bettermarks", () => {
+	roomBoards.openThreeDotMenuForExternalTool();
+});
+
+When(
+	"I click on the option Settings in the three dot menu of the external tool bettermarks",
+	() => {
+		roomBoards.selectBettermarksSettingOption();
+	}
+);
+
+Then("I do not see the tool bettermarks in the card", () => {
+	roomBoards.verifyBettermarksToolNotInCards();
+});
+
+When("I enter the tool display name {string}", (bettermarksTitle) => {
+	roomBoards.enterToolDisplayName(bettermarksTitle);
+});
+
+Then(
+	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
+	(bettermarksTitle, bettermarksDomainUrl) => {
+		roomBoards.verifyBettermarksToolAddedInCard(
+			bettermarksTitle,
+			bettermarksDomainUrl
+		);
+	}
+);
+
 Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);
 });
@@ -17,7 +46,7 @@ When("I click on the button Save link", () => {
 	roomBoards.clickSaveButtonToSaveLinkInCard();
 });
 
-When("I click on the three-dot in the element Link", () => {
+When("I click on the three dot in the element Link", () => {
 	roomBoards.clickOnThreeDotOnLinkElement();
 });
 
@@ -45,7 +74,7 @@ Then("I see the element H5P {string} in the card", (title) => {
 	roomBoards.seeH5PElementInRoomBoard(title);
 });
 
-When("I click on the three-dot in the element Etherpad", () => {
+When("I click on the three dot in the element Etherpad", () => {
 	roomBoards.clickOnThreeDotOnEtherpad();
 });
 
@@ -112,7 +141,7 @@ When("I do not see the element File", () => {
 	roomBoards.shouldNotSeeFileElement();
 });
 
-When("I click on the three-dot in the element File", () => {
+When("I click on the three dot in the element File", () => {
 	roomBoards.clickThreeDotMenuInFileElement();
 });
 
@@ -247,11 +276,11 @@ When("I click on the three dot on the card", () => {
 	roomBoards.clickOnThreeDotInCard();
 });
 
-When("I click on the three-dot menu in the video conference element", () => {
+When("I click on the three dot menu in the video conference element", () => {
 	roomBoards.clickThreeDotMenuInVideoConferenceElement();
 });
 
-When("I click on the option Delete in the three-dot menu", () => {
+When("I click on the option Delete in the three dot menu", () => {
 	roomBoards.clickDeleteOptionInThreeDotMenu();
 });
 
@@ -626,10 +655,6 @@ Then("I see the H5P page", () => {
 	roomBoards.seeH5PPage();
 });
 
-When("I go back to the board page", () => {
-	roomBoards.goBackToBoardPage();
-});
-
 When("I copy the file path of the image file {string} from folder", (fileName) => {
 	roomBoards.copyFilePathOfImageFileFromFolder(fileName);
 });
@@ -644,4 +669,16 @@ Then("I see that image resource is available {string}", (fileName) => {
 
 Then("I see that image resource is not available {string}", (fileName) => {
 	roomBoards.verifyImageFileRessourceNotAvailable(fileName);
+});
+
+When("I click on the collabora file {string}", (fileName) => {
+	roomBoards.clickCollaboraFile(fileName);
+});
+
+Then("I see the collabora Docx file type in the card", () => {
+	roomBoards.verifyDocxFileUploaded();
+});
+
+Then("I see the file type XLSX is uploaded in the card", () => {
+	roomBoards.verifyXlsxFileUploaded();
 });

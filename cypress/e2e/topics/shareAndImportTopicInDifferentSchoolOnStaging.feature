@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-V
+@group-F
 
 # note: this feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in another scenario.
 
@@ -63,5 +63,5 @@ Feature: Topics - Teacher shares a topic to other teacher from different school 
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_2    | namespace | fullname_teacher_1 | course_name_1 | topic_text_title_share | topic_text_title_import | course_name_2        |
-            | teacher2_brb | teacherExt2_brb | brb       | cypress teacher_1  | Mathe course  | Mathe Topic Share      | Mathe Topic Imported    | Math Course Imported |
+            | teacher_1    | teacherExt_2    | namespace | fullname_teacher_1 | course_name_1           | topic_text_title_share       | topic_text_title_import         | course_name_2                    |
+            | teacher2_brb | teacherExt2_brb | brb       | cypress teacher_1  | CypressAut_Mathe course | CypressAut_Mathe Topic Share | CypressAut_Mathe Topic Imported | CypressAut_Mathe Course Imported |

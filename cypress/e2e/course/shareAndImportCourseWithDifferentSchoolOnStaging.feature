@@ -76,5 +76,5 @@ Feature: Course - Teacher shares a course to other teacher from different school
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | fullname_teacher_1 | course_name_share     | task_name  | board_title | task_title           | topic_text_title | course_name_import    |
-            | teacher1_dbc | teacherExt1_dbc | dbc       | cypress teacher_1  | Mathe course to share | Mathe Task | Mathe Board | Mathe task for Class | Mathe Topic      | Mathe course imported |
+            | teacher_1    | teacherExt_1    | namespace | fullname_teacher_1 | course_name_share                | task_name             | board_title            | task_title                      | topic_text_title       | course_name_import               |
+            | teacher1_dbc | teacherExt1_dbc | dbc       | cypress teacher_1  | CypressAut_Mathe course to share | CypressAut_Mathe Task | CypressAut_Mathe Board | CypressAut_Mathe task for Class | CypressAut_Mathe Topic | CypressAut_Mathe course imported |

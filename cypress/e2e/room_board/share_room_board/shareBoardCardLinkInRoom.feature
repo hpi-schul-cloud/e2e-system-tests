@@ -1,11 +1,12 @@
-@unstable_test
-# Due to brwowser security permission, there is an error while extracting copied linked card url from the clipboard.
-
+@regression_test
+@stable_test
+@group-F
+@schedule_run
 Feature: Room Board - To share a board card link
 
     As a teacher I want to share a link to a board card.
 
-    Scenario: Teacher shares a link to a board card
+    Scenario Outline: Teacher shares a link to a board card
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -64,9 +65,9 @@ Feature: Room Board - To share a board card link
         @staging_test
         Examples:
             | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name      | school_name                 |
-            | teacher1_nbc | teacher2_nbc | nbc       | Herzog         | Hande          | Cypress Test Room | Lernbegleitend | Felix Mendelssohn-Gymnasium |
+            | teacher1_dbc | teacher2_dbc | dbc       | Herzog         | Hande          | Cypress Test Room | Lernbegleitend | Felix Mendelssohn-Gymnasium |
 
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | name_teacher_1 | name_teacher_2 | room_name         | role_name      | school_name           |
-            | teacher1_nbc | teacher2_nbc | nbc       | teacher_1      | teacher_2      | Cypress Test Room | Lernbegleitend | cypress-test-school-1 |
+            | teacher1_dbc | teacher2_dbc | dbc       | teacher_1      | teacher_2      | Cypress Test Room | Lernbegleitend | cypress-test-school-1 |

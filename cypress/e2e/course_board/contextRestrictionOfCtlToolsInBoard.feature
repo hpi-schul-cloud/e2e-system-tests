@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
-@group-P
+@group-D
 @schedule_run
 Feature: Media Shelf - Restrict CTL tools to context board-element
 
     As a teacher I want to add ctl tools with context restriction board-element
 
-    Scenario: Teacher adds tools with context restriction board-element in a board
+    Scenario Outline: Teacher adds tools with context restriction board-element in a board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>,<ctl_tool_restriction_course>,<ctl_tool_restriction_board_element>,<ctl_tool_restriction_media_board>,<ctl_tool_restriction_all>,<ctl_tool_preferred_restriction_course>,<ctl_tool_preferred_restriction_board_element>'
@@ -40,7 +40,7 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
         When I click on the page outside of the column
         When I click on icon Plus to add card in column
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         Then I do not see tool '<ctl_tool_restriction_course>' in the tool selection
         # teacher tries to add a tool with context restriction media-board
         Then I do not see tool '<ctl_tool_restriction_media_board>' in the tool selection
@@ -48,27 +48,27 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
         # teacher adds a tool with context restriction board-element
         When I select the tool '<ctl_tool_restriction_board_element>' from available tools
         Then I see tool '<ctl_tool_restriction_board_element>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_restriction_board_element>'
 
         # teacher adds a tool with all context restrictions
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_restriction_all>' from available tools
         Then I see tool '<ctl_tool_restriction_all>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_restriction_all>'
 
         # teacher adds a tool without any context restriction
         When I click on three dot menu in the card
         When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
-        When I select external tools from the menu
+        When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_1>'
 
         # teacher tries to add a preferred tool with context restriction course

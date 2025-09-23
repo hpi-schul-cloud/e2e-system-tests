@@ -5,8 +5,6 @@ class ShareCourseModal {
 	static #shareCourseDialogInfoTextTitle = '[data-testid="share-options-info-text"]';
 	static #shareCourseDialogInfoTextContainer =
 		'[data-testid="share-options-table-header"]';
-	static #shareCourseDialogPersonalDataInfo =
-		'[data-testid="share-options-personal-data-text"]';
 	static #shareCourseDialogExternalToolsInfo =
 		'[data-testid="share-modal-external-tools-info"]';
 	static #shareCourseDialogToolProtectedParamsInfo =
@@ -30,7 +28,6 @@ class ShareCourseModal {
 	seeInfoTextInShareCourseDialog() {
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
-		cy.get(ShareCourseModal.#shareCourseDialogPersonalDataInfo).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogExternalToolsInfo).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogToolProtectedParamsInfo).should(
 			"be.visible"

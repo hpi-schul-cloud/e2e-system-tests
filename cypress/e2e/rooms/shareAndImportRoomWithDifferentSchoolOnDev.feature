@@ -6,7 +6,7 @@ Feature: Rooms - Share and import room with a teacher from different school
 
     As a teacher, I want to Share and import a rooms board with another teacher from different school so that I can collaborate effectively.
 
-    Scenario: Share and import a room with a teacher from different school
+    Scenario Outline: Share and import a room with a teacher from different school
 
         # pre-condition: Creating teacher accounts
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
@@ -18,7 +18,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Given multi column board is published to not to be in a draft mode
         Given the multi-column board has a column with a card
         Given link element is added in the card
-        Given I navigate to the room detail page via Breadcrumb from the board page
+        Given I navigate to the room detail page via Breadcrumb
 
         # the first teacher shares the room with another teacher from the different school using the copied URL
         When I click on three dot menu in room page

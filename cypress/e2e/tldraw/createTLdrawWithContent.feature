@@ -1,10 +1,10 @@
 @regression_test
 @schedule_run
 @stable_test
-@group-J
+@group-C
 Feature: TLDraw - Test tldraw on board
 
-    Scenario: I can create a whiteboard element and draw on it
+    Scenario Outline: I can create a whiteboard element and draw on it
         # pre-condition: creating accounts
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -64,7 +64,7 @@ Feature: TLDraw - Test tldraw on board
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | teacher_fullname  | student      | student_fullname  | course_name              | board_name              | text_to_write |
-            | dbc       | admin1_dbc | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
+            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
 
         @staging_test
         Examples:

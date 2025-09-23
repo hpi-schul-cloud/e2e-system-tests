@@ -454,6 +454,18 @@ When("I edit the title of the course to {string}", (newCourseName) => {
 	courses.editCourseTitle(newCourseName);
 });
 
+When("I open column board {string}", (boardName) => {
+	courses.openColumnBoardWithName(boardName);
+});
+
+Then("I see breadcrumb contains course name {string}", (courseName) => {
+	courses.seeBreadcrumbWithCourseName(courseName);
+});
+
+When("I click the delete button for course {string} in course table", (courseName) => {
+	courses.deleteCourseFromCourseTable(courseName);
+});
+
 When("I click on the share a copy of Topic from three dot menu {string}", (topicName) => {
 	courses.clickOnShareCopyOfTopic(topicName);
 });
@@ -476,3 +488,19 @@ Then(
 Then("I see the dialog box topic in course", () => {
 	courses.seeTopicCourseDialogBox();
 });
+
+When("I select the fixture file {string}", (fixture) => {
+    courses.selectFixtureForImport(fixture);
+})
+
+When("I start the import", () => {
+    courses.startImport();
+})
+
+Then("I see the loading bar", () => {
+    courses.seeLoadingBar();
+})
+
+When("I wait for the loading bar to close", () => {
+    courses.waitForImportFinish();
+})

@@ -1,12 +1,12 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-K
+@group-B
 Feature: Room Board - Add BBB Tool in the Room Board
 
     As a teacher, I want to add a BBB (BigBlueButton) Tool to the room board so that I can manage video conferencing effectively.
 
-    Scenario: Add BBB Tool to the Room Board, including pre & post conditions
+    Scenario Outline: Add BBB Tool to the Room Board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -37,6 +37,10 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I see the video conference element added in the card
         When I click on the video conference element in the card
         Then I see the modal to start the video conference
+        When I click outside the BigBlueButton dialog box
+        Then I see the video conference element added in the card
+        When I click on the video conference element in the card
+        Then I see the modal to start the video conference
         Then I see the moderator approval checkbox is checked in the video conference start modal
         Then I see the button create in the video conference creation modal to start the call
         Then I click on the button cancel in the video conference creation modal to go back to the card
@@ -48,8 +52,8 @@ Feature: Room Board - Add BBB Tool in the Room Board
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three-dot menu in the video conference element
-        When I click on the option Delete in the three-dot menu
+        When I click on the three dot menu in the video conference element
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the video conference element

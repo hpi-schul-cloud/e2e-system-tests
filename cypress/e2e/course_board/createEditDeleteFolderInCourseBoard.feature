@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-Q
+@group-D
 Feature: Course Board - Create folder in board, check breadcrumb
 
     As a content editor I want to create a file folder in a course board
@@ -42,4 +42,4 @@ Feature: Course Board - Create folder in board, check breadcrumb
 # @staging_test
 # Examples:
 #     | namespace | content_editor      | course_name              | board_title             | folder_name         |
-#     | brb       | teacher1_brb        | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner  |
+#     | dbc       | teacher1_dbc        | CypressAut Folder Course | CypressAut Folder Board | Unbenannter Ordner  |

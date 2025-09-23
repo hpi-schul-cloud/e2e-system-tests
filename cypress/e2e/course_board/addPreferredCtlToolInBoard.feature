@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-O
+@group-C
 @schedule_run
 Feature: Course Board  - To add a preferred tool in a board
 
@@ -51,7 +51,7 @@ Feature: Course Board  - To add a preferred tool in a board
         Then I see tool '<ctl_tool_preferred_param>' is selected
         When I enter 'test' in required custom parameter field 'contextParam'
         Then I see custom parameter input field '<param_name>' contains '<param_value>'
-        When I click on save external tool button
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_preferred_param>'
 
         # post-condition: teacher deletes course
