@@ -4,11 +4,14 @@
 @group-E
 @pr
 @pre_check_test
-Feature: Files Overview - To use LibreOffice for text, calc and presentation document
+@prio_0_staging
+Feature: Files - To use LibreOffice for text, calc and presentation document
 
-    As a user I want to create and edit a LibreOffice text document so that I write into it
+    As a user, I want to create, edit, and delete LibreOffice documents in my personal files
 
     Scenario Outline: Create a LibreOffice text document
+
+        # pre-condition: creating user (student) account and create LibreOffice text document
         Given I am logged in as a '<user>' at '<namespace>'
         When I click on Files in menu
         Then I go to personal files overview
@@ -20,7 +23,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
         Then I go to personal files overview
         Then I can see file with name '<document_title>'
 
-        # edit name of LibreOffice text document
+        # edit title of LibreOffice text document
         When I click on Files in menu
         Then I can see file with name '<document_title_full>'
         Then I click rename file button of file '<document_title_full>'
@@ -29,7 +32,7 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
         Then I click save name button
         Then I can see file with name '<document_title_edited>'
 
-        # delete a LibreOffice text document
+        # post-condition: delete a LibreOffice text document
         When I click on Files in menu
         Then I can see file with name '<document_title_edited>'
         Then I click delete file button of file '<document_title_edited>'
@@ -39,5 +42,5 @@ Feature: Files Overview - To use LibreOffice for text, calc and presentation doc
         @school_api_test
         @staging_test
         Examples:
-            | user         | namespace | document_title       | document_title_full       | document_title_edited     |
-            | student1_brb | brb       | Cy: LibraOffice Open | Cy: LibraOffice Open.docx | Cy: LibraOffice Edit.docx |
+            | user         | namespace | document_title              | document_title_full              | document_title_edited            |
+            | student1_brb | brb       | CypressAut LibraOffice Open | CypressAut LibraOffice Open.docx | CypressAut LibraOffice Edit.docx |

@@ -2,11 +2,14 @@
 @stable_test
 @schedule_run
 @group-D
+@prio_0_staging
 Feature: Course Board - To change the board layout
 
-    As a teacher I want to change the board layout
+    As a teacher, I want to change the board layout
 
     Scenario Outline: Teacher changes board layout
+
+        # pre-condition: creating teacher account
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creates a course
@@ -64,9 +67,9 @@ Feature: Course Board - To change the board layout
         @staging_test
         Examples:
             | teacher      | namespace | course_name             | fullname_teacher |
-            | teacher1_nbc | nbc       | CypressAUT Board Layout | Karl Herzog      |
+            | teacher1_nbc | nbc       | CypressAut Board Layout | Karl Herzog      |
 
         @school_api_test
         Examples:
             | teacher      | namespace | course_name             | fullname_teacher  |
-            | teacher1_nbc | nbc       | CypressAUT Board Layout | cypress teacher_1 |
+            | teacher1_nbc | nbc       | CypressAut Board Layout | cypress teacher_1 |

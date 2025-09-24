@@ -18,11 +18,15 @@ on:
         description: "tag for running cypress tests"
         type: string
       environment:
-        description: "environment for retriving credentials from 1Password vault"
+        description: "environment for retrieving credentials from 1Password vault"
         type: string
       groups:
         description: "identifier to store test results, reports, and artifacts separately, preventing overwrites in parallel runs."
         type: string
+      browser:
+        description: "browser to run tests in"
+        type: string
+        default: "chrome"
 
 jobs:
   configure-load-secrets-and-run_tests:
@@ -75,25 +79,16 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run pretest
 
-      - name: Start Edge (Headless)
-        run: |
-          nohup microsoft-edge-stable --headless --no-sandbox &
-          echo $! > edge_pid
-
       - name: Cypress run
         uses: cypress-io/github-action@v6
+        env:
+          CYPRESS_CONNECT_RETRY_THRESHOLD: '100'
         with:
           working-directory: e2e-system-tests
-          command: npm run ${{ inputs.tag }}
-          browser: edge
-
-      - name: Clean Up Edge Process
-        if: always()
-        run: |
-          if [ -f edge_pid ]; then
-            kill $(cat edge_pid) || true
-            rm edge_pid
-          fi
+          command: |
+            npx cypress run \
+              --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
+              --browser ${{ inputs.browser }}
 
       - name: Generate Report
         if: always()

@@ -2,11 +2,14 @@
 @stable_test
 @schedule_run
 @group-E
-Feature: Deactivation of ctl tools in board
+@prio_0_staging
+Feature: Course Board - Deactivation of ctl tools in board
 
-    As a user I want to see deactivated und activated tools in a board
+    As a user, I want to see deactivated und activated tools in a board
 
     Scenario Outline: Users see deactivated tool in board
+
+        # pre-condition: creating all users (admin, teacher and student) and check ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -56,6 +59,7 @@ Feature: Deactivation of ctl tools in board
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         Then I do not see tool '<ctl_tool_2>' in the tool selection
+
         # teacher adds a activated tool
         When I select the tool '<ctl_tool_1>' from available tools
         Then I see tool '<ctl_tool_1>' is selected
@@ -71,7 +75,7 @@ Feature: Deactivation of ctl tools in board
         Then I see the tool '<ctl_tool_1>' in external tools table
         When I click on edit button of tool '<ctl_tool_1>'
         Then I see the school external tool configuration page
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         Then I see tool '<ctl_tool_1>' is selected
         When I deactivate the tool
         Then I see the deactivate checkbox is checked
@@ -90,7 +94,6 @@ Feature: Deactivation of ctl tools in board
         Then I see an external tool element with tool '<ctl_tool_1>' is marked as deactivated
         # teacher tries to launch a deactivated tool
         When I click on external tool element with tool '<ctl_tool_1>'
-        # Then nothing should happen
 
         # student sees that a tool is marked as deactivated in board
         Given I am logged in as a '<student>' at '<namespace>'
@@ -104,7 +107,6 @@ Feature: Deactivation of ctl tools in board
         Then I see an external tool element with tool '<ctl_tool_1>' is marked as deactivated
         # student tries to launch a deactivated tool
         When I click on external tool element with tool '<ctl_tool_1>'
-        # Then nothing should happen
 
         # admin activates existing deactivated tools
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -123,7 +125,7 @@ Feature: Deactivation of ctl tools in board
         Then I see the tool '<ctl_tool_1>' is active in tools table
         Then I see the tool '<ctl_tool_2>' in external tools table
         When I click on edit button of tool '<ctl_tool_2>'
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         Then I see tool '<ctl_tool_2>' is selected
         When I activate the tool
         Then I see the deactivate checkbox is not checked
@@ -171,10 +173,10 @@ Feature: Deactivation of ctl tools in board
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher | fullname_student | course_name                      | ctl_tool_1     | ctl_tool_2     |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    | CypressAut ToolDeactivationBoard | CY Test Tool 1 | CY Test Tool 2 |
+            | admin      | teacher      | student      | namespace | fullname_teacher | fullname_student | course_name                        | ctl_tool_1     | ctl_tool_2     |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    | CypressAut Tool Deactivation Board | CY Test Tool 1 | CY Test Tool 2 |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher  | fullname_student  | course_name                      | ctl_tool_1     | ctl_tool_2     |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | cypress teacher_1 | cypress student_1 | CypressAut ToolDeactivationBoard | CY Test Tool 1 | CY Test Tool 2 |
+            | admin      | teacher      | student      | namespace | fullname_teacher  | fullname_student  | course_name                        | ctl_tool_1     | ctl_tool_2     |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | cypress teacher_1 | cypress student_1 | CypressAut Tool Deactivation Board | CY Test Tool 1 | CY Test Tool 2 |

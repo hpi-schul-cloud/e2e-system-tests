@@ -2,11 +2,14 @@
 @stable_test
 @group-F
 @schedule_run
+@prio_0_staging
 Feature: Course Board - To share a board card link
 
-    As a teacher I want to share a link to a board card.
+    As a teacher, I want to share a link to a board card.
 
     Scenario Outline: Teacher shares a link to a board card
+
+        # pre-condition: creating two teachers accounts
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
@@ -59,10 +62,10 @@ Feature: Course Board - To share a board card link
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name                   |
-            | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | Lara Hande         | CypressAut ShareBoardCardLink |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name                      |
+            | teacher1_nbc | teacher2_nbc | nbc       | Karl Herzog        | Lara Hande         | CypressAut Share Board Card Link |
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name                   |
-            | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | CypressAut ShareBoardCardLink |
+            | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | fullname_teacher_2 | course_name                      |
+            | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | cypress teacher_2  | CypressAut Share Board Card Link |

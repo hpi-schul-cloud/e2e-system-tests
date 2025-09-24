@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
 @group-B
-# unstable because feature rename files is not merged yet.
+@prio_0_dev
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 
-    As a content editor I want to create a file folder in a room board so that I can manage the files in the room.
+    As a content editor, I want to create a file folder in a room board so that I can manage the files in the room.
 
     Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
 
@@ -24,7 +24,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I approve new folder name in card
         Then I see a folder with name '<folder_name_edited>' in the card
 
-        # editor removes folder name and name is resetted to standard folder name
+        # editor removes folder name and name is reset to standard folder name
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
@@ -93,7 +93,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on three dot menu in row of file '<file_name>'
         When I select the three dot menu action 'rename'
         Then I see modal Rename file
-        When I enter '<file_name_renamed_withoutsuffix>' in input field New name
+        When I enter '<file_name_renamed_without_suffix>' in input field New name
         When I click on button Approve in modal
         Then I see file '<file_name_renamed>' with file size '<file_size>' in file list
 
@@ -131,8 +131,8 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | standard_folder_name | folder_name_edited      | file_name                | file_name_renamed        | file_name_renamed_withoutsuffix | file_size | file_name_2                | file_size_2 |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner   | CypressTest File Folder | sample_video_1mb_mp4.mp4 | sample_video_renamed.mp4 | sample_video_renamed            | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
+            | namespace | content_editor | room_name              | board_title             | standard_folder_name | folder_name_edited      | file_name                | file_name_renamed        | file_name_renamed_without_suffix | file_size | file_name_2                | file_size_2 |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner   | CypressTest File Folder | sample_video_1mb_mp4.mp4 | sample_video_renamed.mp4 | sample_video_renamed             | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
 
 # @staging_test
 # Examples:

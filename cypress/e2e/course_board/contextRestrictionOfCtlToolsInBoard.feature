@@ -2,11 +2,14 @@
 @stable_test
 @group-D
 @schedule_run
-Feature: Media Shelf - Restrict CTL tools to context board-element
+@prio_0_staging
+Feature: Course Board - Restrict CTL tools to context board-element
 
-    As a teacher I want to add ctl tools with context restriction board-element
+    As a teacher, I want to add ctl tools with context restriction board-element
 
     Scenario Outline: Teacher adds tools with context restriction board-element in a board
+
+        # pre-condition: creating users accounts and check ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
         Given the school has external tool '<ctl_tool_1>,<ctl_tool_restriction_course>,<ctl_tool_restriction_board_element>,<ctl_tool_restriction_media_board>,<ctl_tool_restriction_all>,<ctl_tool_preferred_restriction_course>,<ctl_tool_preferred_restriction_board_element>'
@@ -91,10 +94,10 @@ Feature: Media Shelf - Restrict CTL tools to context board-element
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | course_name                         | fullname_teacher | ctl_tool_1     | ctl_tool_restriction_course     | ctl_tool_restriction_board_element     | ctl_tool_restriction_media_board     | ctl_tool_restriction_all      | ctl_tool_preferred_restriction_course     | ctl_tool_preferred_restriction_board_element | context_course | context_board_element | context_media_board | context_all                       |
-            | admin1_nbc | teacher1_nbc | nbc       | CypressAUT ContextRestriction Board | Karl Herzog      | CY Test Tool 1 | CY Test Tool Course Restriction | CY Test Tool Board-Element Restriction | CY Test Tool Media-Board Restriction | CY Test Tool All Restrictions | CY Test Tool Preferred Course Restriction | CY Test Tool Preferred Board Restriction     | Kurs-Tools     | Bereiche              | Medienregal         | Kurs-Tools, Bereiche, Medienregal |
+            | admin      | teacher      | namespace | course_name                          | fullname_teacher | ctl_tool_1     | ctl_tool_restriction_course     | ctl_tool_restriction_board_element     | ctl_tool_restriction_media_board     | ctl_tool_restriction_all      | ctl_tool_preferred_restriction_course     | ctl_tool_preferred_restriction_board_element | context_course | context_board_element | context_media_board | context_all                       |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Context Restriction Board | Karl Herzog      | CY Test Tool 1 | CY Test Tool Course Restriction | CY Test Tool Board-Element Restriction | CY Test Tool Media-Board Restriction | CY Test Tool All Restrictions | CY Test Tool Preferred Course Restriction | CY Test Tool Preferred Board Restriction     | Kurs-Tools     | Bereiche              | Medienregal         | Kurs-Tools, Bereiche, Medienregal |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | course_name                         | fullname_teacher  | ctl_tool_1     | ctl_tool_restriction_course     | ctl_tool_restriction_board_element     | ctl_tool_restriction_media_board     | ctl_tool_restriction_all      | ctl_tool_preferred_restriction_course     | ctl_tool_preferred_restriction_board_element | context_course | context_board_element | context_media_board | context_all                       |
-            | admin1_nbc | teacher1_nbc | nbc       | CypressAUT ContextRestriction Board | cypress teacher_1 | CY Test Tool 1 | CY Test Tool Course Restriction | CY Test Tool Board-Element Restriction | CY Test Tool Media-Board Restriction | CY Test Tool All Restrictions | CY Test Tool Preferred Course Restriction | CY Test Tool Preferred Board Restriction     | Kurs-Tools     | Bereiche              | Medienregal         | Kurs-Tools, Bereiche, Medienregal |
+            | admin      | teacher      | namespace | course_name                          | fullname_teacher  | ctl_tool_1     | ctl_tool_restriction_course     | ctl_tool_restriction_board_element     | ctl_tool_restriction_media_board     | ctl_tool_restriction_all      | ctl_tool_preferred_restriction_course     | ctl_tool_preferred_restriction_board_element | context_course | context_board_element | context_media_board | context_all                       |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Context Restriction Board | cypress teacher_1 | CY Test Tool 1 | CY Test Tool Course Restriction | CY Test Tool Board-Element Restriction | CY Test Tool Media-Board Restriction | CY Test Tool All Restrictions | CY Test Tool Preferred Course Restriction | CY Test Tool Preferred Board Restriction     | Kurs-Tools     | Bereiche              | Medienregal         | Kurs-Tools, Bereiche, Medienregal |

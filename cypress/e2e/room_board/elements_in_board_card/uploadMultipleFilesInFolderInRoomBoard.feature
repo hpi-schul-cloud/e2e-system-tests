@@ -3,9 +3,10 @@
 @schedule_run
 @group-B
 @pre_check_test
+@prio_0_dev
 Feature: Room Board - Upload multiple files in folder in board
 
-    As a content editor I want to upload multiple files to a folder in a room board
+    As a content editor, I want to upload multiple files to a folder in a room board
 
     Scenario Outline:  Content editor is able to upload multiple files to folder in a board
 
@@ -137,7 +138,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on button Approve in modal
         Then I see page Folder content for '<folder_name_edited>'
 
-        # content editor removes folder name and name is resetted to standard folder name
+        # content editor removes folder name and name is reset to standard folder name
         When I click on the three dot menu button next to the folder title
         When I select the three dot menu action 'rename'
         When I clear input field New name

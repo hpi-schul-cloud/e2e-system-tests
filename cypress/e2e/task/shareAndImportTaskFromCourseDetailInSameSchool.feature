@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
 @group-F
-
+@prio_0_staging
 Feature: Task - Teacher shares a task with another teacher from the same school
 
-    As a teacher
+    As a teacher,
     I want to share a task from my course with another teacher in the same school
     So that the other teacher can import the task into their own course as a draft
 
@@ -58,20 +58,16 @@ Feature: Task - Teacher shares a task with another teacher from the same school
         Then I see the task detail page
         Then I see the attached files in the task detail page
 
-        # post-condition: Teacher 1 deletes course
+        # post-condition: teacher 1 deletes course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given course with name '<course_name_source>' is deleted
 
-        # post-condition: Teacher 2 deletes course_name_target
+        # post-condition: teacher 2 deletes course
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given course with name '<course_name_target>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher_1    | teacher_2    | namespace | course_name_source    | course_name_target    | task_title                | new_task_title              |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
-
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | namespace | course_name_source    | course_name_target    | task_title                | new_task_title              |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
+            | teacher_1    | teacher_2    | namespace | course_name_source       | course_name_target       | task_title                   | new_task_title                 |
+            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Source Course | CypressAut Target Course | CypressAut Sample Task Title | CypressAut Imported Task Title |

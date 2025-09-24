@@ -1,9 +1,7 @@
-@regression_test
-@stable_test
-@group-F
+# Note: This feature should only be executed in the staging environment due to the school API limitation,
+#       which prevents creating two separate schools in the same feature and scenario.
 
-# Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same feature and scenario.
-
+@unstable_test
 Feature: Room Administration - Add external room and members with visibility on rooms administration page
 
     As a school admin I want to see the created external rooms with correct information visible on rooms administration page.

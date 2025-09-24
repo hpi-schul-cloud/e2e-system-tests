@@ -98,16 +98,16 @@ function generateReport() {
 			data: [
 				{ label: "Project", value: "dBildungscloud" },
 				{
-					label: "Instance 1",
+					label: "BRB Instance",
 					value: browserData.env.BRB,
 				},
 				{
-					label: "Instance 2",
-					value: browserData.env.NBC,
+					label: "DBC Instance",
+					value: browserData.env.DBC,
 				},
 				{
-					label: "Instance 3",
-					value: browserData.env.DBC,
+					label: "NBC Instance",
+					value: browserData.env.NBC,
 				},
 				{
 					label: "Execution Time",

@@ -1,10 +1,10 @@
 @regression_test
 @stable_test
 @group-F
-
+@prio_0_staging
 Feature: Task - share and import task between two teachers from different schools
 
-    As a teacher
+    As a teacher,
     I want to share a task from my course with another teacher in a different school
     So that the other teacher can import the task into their own course as a draft
 
@@ -69,5 +69,5 @@ Feature: Task - share and import task between two teachers from different school
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_2    | namespace | course_name_source    | course_name_target    | task_title                | new_task_title              |
-            | teacher1_dbc | teacherExt2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
+            | teacher_1    | teacherExt_2    | namespace | course_name_source       | course_name_target       | task_title                   | new_task_title                 |
+            | teacher1_dbc | teacherExt2_dbc | dbc       | CypressAut Source Course | CypressAut Target Course | CypressAut Sample Task Title | CypressAut Imported Task Title |

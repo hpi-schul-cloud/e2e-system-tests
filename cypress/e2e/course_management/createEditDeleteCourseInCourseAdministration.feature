@@ -2,11 +2,14 @@
 @stable_test
 @schedule_run
 @group-E
+@prio_0_staging
 Feature: Course Management - To create, edit and delete class
 
-    As an administrator I want create, edit and delete a class
+    As an administrator, I want to manage classes by creating, editing, and deleting them in course administration.
 
     Scenario Outline: Admin creates, edits and deletes a class
+
+        # pre-condition: creating users (admin, teacher and student) and logging in
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -51,7 +54,7 @@ Feature: Course Management - To create, edit and delete class
         When I click on button Save changes in page Edit course
         Then I see the course '<course_title_edited>' on the new course administration page
 
-        # admin deletes course
+        # post-condition: admin deletes course
         When I click on the delete button of course '<course_title_edited>'
         Then I see the delete modal
         When I click the confirmation button on the delete modal
@@ -60,10 +63,10 @@ Feature: Course Management - To create, edit and delete class
 
         @staging_test
         Examples:
-            | namespace | admin      | teacher      | student      | course_title                    | course_title_edited                 | fullname_teacher | fullname_student |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT TestCourseManagement | CypressAUT TestCourseManagementEdit | Karl Herzog      | Herbert Kraft    |
+            | namespace | admin      | teacher      | student      | course_title                      | course_title_edited                      | fullname_teacher | fullname_student |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAut Test Course Management | CypressAut Test Course Management Edited | Karl Herzog      | Herbert Kraft    |
 
         @school_api_test
         Examples:
-            | namespace | admin      | teacher      | student      | course_title                    | course_title_edited                 | fullname_teacher  | fullname_student  |
-            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAUT TestCourseManagement | CypressAUT TestCourseManagementEdit | cypress teacher_1 | cypress student_1 |
+            | namespace | admin      | teacher      | student      | course_title                      | course_title_edited                      | fullname_teacher  | fullname_student  |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | CypressAut Test Course Management | CypressAut Test Course Management Edited | cypress teacher_1 | cypress student_1 |

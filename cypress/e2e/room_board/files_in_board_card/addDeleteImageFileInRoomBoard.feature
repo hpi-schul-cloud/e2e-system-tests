@@ -2,11 +2,12 @@
 @stable_test
 @schedule_run
 @group-A
+@prio_0_staging
 Feature: Room Board - Upload, download and delete image file type in the Room Board
 
     As a teacher, I want to upload, download and delete image file in the room board so that I can easily share and manage the board contents.
 
-    Scenario Outline: Upload, download and delete image file in the room board, including pre & post conditions
+    Scenario Outline: Upload, download and delete image file in the room board
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -42,7 +43,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Then I see the image in a lightbox
 
         # student can see the image file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the image file and closes the fullscreen image window
         When I click on icon Download in the fullscreen image
@@ -61,17 +62,13 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Then I do not see the element File
 
         # student can not see the image file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | image_file_name | image_caption_text | alternative_text  |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | example_jpg.jpg | CY image test file | CY image alt text |
+            | teacher      | namespace | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text |

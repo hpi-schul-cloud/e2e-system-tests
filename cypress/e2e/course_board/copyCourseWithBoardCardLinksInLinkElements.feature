@@ -2,6 +2,7 @@
 @stable_test
 @group-F
 @schedule_run
+@prio_0_staging
 Feature: Course Board - Copy course with a board which contains link elements with board card links
 
     As a teacher, I want to be able to copy course with links elements in a board, when the link elements contain board card links
@@ -121,10 +122,10 @@ Feature: Course Board - Copy course with a board which contains link elements wi
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | course_name_1         | course_name_1_copy        | course_name_2         | fullname_teacher | board_title_1 | board_title_2 | board_title_3 | card_title_1 | card_title_2 | card_title_3 |
-            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course 1 | Cypress Test Course 1 (1) | Cypress Test Course 2 | Karl Herzog      | Board 1       | Board 2       | Board 3       | Card Link 1  | Card Link 2  | Card Link 3  |
+            | admin      | teacher      | namespace | course_name_1            | course_name_1_copy           | course_name_2            | fullname_teacher | board_title_1      | board_title_2      | board_title_3      | card_title_1 | card_title_2 | card_title_3 |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Test Course 1 | CypressAut Test Course 1 (1) | CypressAut Test Course 2 | Karl Herzog      | CypressAut Board 1 | CypressAut Board 2 | CypressAut Board 3 | Card Link 1  | Card Link 2  | Card Link 3  |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | course_name_1         | course_name_1_copy        | course_name_2         | fullname_teacher  | board_title_1 | board_title_2 | board_title_3 | card_title_1 | card_title_2 | card_title_3 |
-            | admin1_nbc | teacher1_nbc | nbc       | Cypress Test Course 1 | Cypress Test Course 1 (1) | Cypress Test Course 2 | cypress teacher_1 | Board 1       | Board 2       | Board 3       | Card Link 1  | Card Link 2  | Card Link 3  |
+            | admin      | teacher      | namespace | course_name_1            | course_name_1_copy           | course_name_2            | fullname_teacher  | board_title_1      | board_title_2      | board_title_3      | card_title_1 | card_title_2 | card_title_3 |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Test Course 1 | CypressAut Test Course 1 (1) | CypressAut Test Course 2 | cypress teacher_1 | CypressAut Board 1 | CypressAut Board 2 | CypressAut Board 3 | Card Link 1  | Card Link 2  | Card Link 3  |

@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
+@prio_0_staging
 Feature: Room Board - Add, edit and delete element Etherpad in the room board
 
     As a teacher, I want to add, edit, and delete an element Etherpad on the room board, so that I can manage and update important notes efficiently.
@@ -46,11 +47,7 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    | example_text         | edit_example_text         |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | example_text         | edit_example_text         |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cypress example text | Cypress edit example text |
+            | teacher      | namespace | room_name            | board_title            | example_text            | edit_example_text            |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | CypressAut example text | CypressAut edit example text |

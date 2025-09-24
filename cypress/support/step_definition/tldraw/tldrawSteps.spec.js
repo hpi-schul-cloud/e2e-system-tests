@@ -19,13 +19,19 @@ When("I click on icon delete", () => {
 	tldraw.removeElement();
 });
 
-When("I draw a line on the canvas with startpoint {string}, {string} and endpoint {string}, {string}", (startX, startY, endX, endY) => {
-	tldraw.drawLine(startX,startY,endX,endY);
-});
+When(
+	"I draw a line on the canvas with start point {string}, {string} and endpoint {string}, {string}",
+	(startX, startY, endX, endY) => {
+		tldraw.drawLine(startX, startY, endX, endY);
+	}
+);
 
-When("I type text {string} on the canvas on position {string}, {string}", (text, posX, posY) => {
-	tldraw.typeText(text, posX, posY);
-});
+When(
+	"I type text {string} on the canvas on position {string}, {string}",
+	(text, posX, posY) => {
+		tldraw.typeText(text, posX, posY);
+	}
+);
 
 Then("I should see the line drawn", () => {
 	tldraw.checkLine();

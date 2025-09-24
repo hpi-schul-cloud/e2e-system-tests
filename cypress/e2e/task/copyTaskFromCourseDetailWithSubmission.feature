@@ -2,9 +2,10 @@
 @stable_test
 @schedule_run
 @group-B
+@prio_0_staging
 Feature: Task - Teacher copies task from Course overview with student submission.
 
-    As a teacher I want to create, copy, edit and delete a task from course overview and the task is submitted by the student.
+    As a teacher, I want to create, copy, edit and delete a task from course overview and the task is submitted by the student.
 
     Scenario Outline: Teacher copies a task submitted by the student in course overview
 

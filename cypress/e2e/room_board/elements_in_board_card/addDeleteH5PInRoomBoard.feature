@@ -1,9 +1,10 @@
 @regression_test
 @stable_test
 @group-E
+@prio_0_staging
 Feature: Room Board - Add H5P learning element in the board
 
-    As a content editor I want to add H5P learning elements in a room board
+    As a content editor, I want to add H5P learning elements in a room board
 
     Scenario Outline:  Content editor is able to add H5P learning elements in a board
 
@@ -31,13 +32,7 @@ Feature: Room Board - Add H5P learning element in the board
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | namespace | content_editor | room_name              | board_title             | h5p_title                |
-            | nbc       | teacher1_nbc   | CypressAut Folder Room | CypressAut Folder Board | Lernelement erstellen... |
-
         @staging_test
         Examples:
             | namespace | content_editor | room_name              | board_title             | h5p_title                |
             | nbc       | teacher1_nbc   | CypressAut Folder Room | CypressAut Folder Board | Lernelement erstellen... |
-
-

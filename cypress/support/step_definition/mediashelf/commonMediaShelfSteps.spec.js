@@ -1,5 +1,5 @@
-import MediaShelf from "../../pages/mediashelf/pageMediaShelf";
 import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
+import MediaShelf from "../../pages/mediashelf/pageMediaShelf";
 
 const mediaShelf = new MediaShelf();
 
@@ -231,6 +231,6 @@ When("I try to launch tool {string} in the first media line", (toolName) => {
 	mediaShelf.clickToolInFirstMediaLine(toolName);
 });
 
-Then("I see the no available media infotext", () => {
+Then("I see the no available media info text", () => {
 	mediaShelf.seeNoAvailableMediaInfoText();
 });

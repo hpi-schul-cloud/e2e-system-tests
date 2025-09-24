@@ -3,9 +3,10 @@
 @schedule_run
 @group-F
 @pr
+@prio_0_staging
 Feature: Topics - To publish and unpublish topic by teacher.
 
-    As a teacher I want to publish and unpublish as draft version
+    As a teacher, I want to publish and unpublish as draft version
 
     Scenario Outline: Teacher publishes a topic in the course, student can see this course, then teacher unpublishes topic, student cannot see it
 
@@ -51,7 +52,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I go to course '<course_title>'
         Then I can not see topic '<topic_title>' on course page
 
-        # teacher publishs topic
+        # teacher publishes topic
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title>'
@@ -65,7 +66,7 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I click on topic '<topic_title>' on course page
         Then I see topic detail page "<topic_title>"
 
-        # teacher unpublishs topic
+        # teacher unpublishes topic
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title>'
@@ -78,13 +79,13 @@ Feature: Topics - To publish and unpublish topic by teacher.
         When I go to course '<course_title>'
         Then I can not see topic '<topic_title>' on course page
 
-        # teacher deletes course
+        # post-condition: teacher deletes course
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title>'
         When I open page Edit course
         When I click on the button delete course
-        #Then I see the modal to confirm the deletion
+        # Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_title>' on the course overview page
 
