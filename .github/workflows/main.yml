@@ -115,6 +115,7 @@ jobs:
         working-directory: e2e-system-tests
         env:
           CYPRESS_CONNECT_RETRY_THRESHOLD: "300"
+          COMBINED_ENV_FILE: ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json
         run: |
           npm run cy:headless:stable:ci -- \
             --env tags=\"${{ inputs.tag }}\",parallelGroup=${{ inputs.groups }},environmentName=ci \
