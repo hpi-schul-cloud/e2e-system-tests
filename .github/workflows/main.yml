@@ -86,7 +86,7 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: |
-            cypress run \
+            npx cypress run \
               --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
               --browser ${{ inputs.browser }}
             # npm run cy:headless:stable:ci -- \
