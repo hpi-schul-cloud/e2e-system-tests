@@ -35,7 +35,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: hpi-schul-cloud/e2e-system-tests
-          path: .
+          path: e2e-system-tests
 
       - name: Install dependencies for 1Password CLI
         run: |
