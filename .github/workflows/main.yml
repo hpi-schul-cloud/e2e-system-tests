@@ -85,9 +85,9 @@ jobs:
           CYPRESS_CONNECT_RETRY_THRESHOLD: '100'
         with:
           working-directory: e2e-system-tests
-          command: npm run cy:headless:stable:ci --
-            --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci
-            --browser ${{ inputs.browser }}
+          command: npx xvfb-run cypress run \
+              --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
+              --browser ${{ inputs.browser }}
 
       - name: Generate Report
         if: always()
