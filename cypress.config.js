@@ -18,9 +18,10 @@ const fs = require("fs");
 async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === "ci";
 	if (isCI) {
-		const workspace = process.cwd();
+		const workspace = process.env.GITHUB_WORKSPACE;
 		const environmentFilename = path.join(
 			workspace,
+			"e2e-system-tests",
 			"env_variables",
 			"combined_credentials.json"
 		);
