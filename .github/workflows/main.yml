@@ -86,9 +86,12 @@ jobs:
         with:
           working-directory: e2e-system-tests
           command: |
-            npm run cy:headless:stable:ci -- \
-            --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
-            --browser ${{ inputs.browser }}
+            cypress run \
+              --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
+              --browser ${{ inputs.browser }}
+            # npm run cy:headless:stable:ci -- \
+            # --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
+            # --browser ${{ inputs.browser }}
 
       - name: Generate Report
         if: always()
