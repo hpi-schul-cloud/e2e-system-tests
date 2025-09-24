@@ -17,7 +17,10 @@ const path = require("path");
 async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === "ci";
 	if (isCI) {
-		const environmentFilename = `./env_variables/combined_credentials.json`;
+		const environmentFilename = path.resolve(
+			__dirname,
+			"env_variables/combined_credentials.json"
+		);
 		const settings = require(environmentFilename);
 		if (settings) {
 			config.env = {
