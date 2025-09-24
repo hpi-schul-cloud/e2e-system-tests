@@ -61,7 +61,7 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I enter description for the ether pad 'this is my epad description' in element position '3'
         When I click on button Add Task to topic
         When I enter title 'CypressAut Title for Task Element in Topic' into element Task
-        When I enter URL of the task from the another course for task id '59cce3f6c6abf042248e888d'
+        When I enter URL of the task from the another course for task id '59cce3f6c6abf042248e888d' for '<namespace>'
         When I click on create button to create topic
         Then I can see edit topic page 'CypressAut Topic Creating and Deleting Test'
         When I click on save button to save changes

@@ -3,12 +3,71 @@ import Topics from "../../pages/topics/pageTopics";
 
 const topics = new Topics();
 
-// EXTERNAL COMMON STEP DEFINITIONS
-// =========================
-// External defined steps can be found here:
-// -----------------------------------------
-// -->\step_definition\authentication\loginStep.spec.js
-// -->\step_definition\course\commonCourseSteps.spec.js
+Then("I see the dialog for copying topic alert", () => {
+	topics.seeCopyAlertDialog();
+});
+
+Then(
+	"I see the warning in the dialog that GeoGebra and Etherpad content were not copied",
+	() => {
+		topics.seeGeoGebraAndEtherpadNotCopiedWarnings();
+	}
+);
+
+When("I click the button Close in the dialog", () => {
+	topics.clickCloseButtonInDialog();
+});
+
+Then(
+	"I see the topic title {string} with the suffix {string} on the course detail page",
+	(topicName, suffix) => {
+		topics.seeCopiedTopicTitleOnCourseDetailPage(topicName, suffix);
+	}
+);
+
+Then(
+	"I do not see the topic title {string} with the suffix {string} on the course detail page",
+	(topicName, suffix) => {
+		topics.doNotSeeCopiedTopicTitleOnCourseDetailPage(topicName, suffix);
+	}
+);
+
+Then(
+	"I see the topic title {string} with the suffix {string} on the topic detail page",
+	(topicName, suffix) => {
+		topics.seeCopiedTopicTitleOnTopicDetailPage(topicName, suffix);
+	}
+);
+
+Then("I see the button Publish on the copied topic", () => {
+	topics.seePublishButtonOnCopiedTopic();
+});
+
+When(
+	"I click on the copied topic {string} with the suffix {string} on the course detail page",
+	(topicName, suffix) => {
+		topics.clickOnCopiedTopic(topicName, suffix);
+	}
+);
+
+Then("I see the topic details page", () => {
+	topics.seeTopicDetailsPage();
+});
+
+Then("I see the element Text {string} on the topic detail page", (expectedText) => {
+	topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
+});
+
+Then(
+	"I see the element Learning Store {string} on the topic detail page",
+	(expectedText) => {
+		topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
+	}
+);
+
+Then("I see the element Etherpad {string} on the topic detail page", (expectedText) => {
+	topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
+});
 
 Then("I can see edit topic page {string}", (topicTitle) => {
 	topics.seeEditTopicPage(topicTitle);
@@ -45,7 +104,7 @@ Then("I can see form element Text on position {string}", (elementPosition) => {
 When(
 	"I enter title {string} into element Text in element position {string}",
 	(elementTextTitle, elementPosition) => {
-		topics.enterTitleforElementText(elementTextTitle, elementPosition);
+		topics.enterTitleForElementText(elementTextTitle, elementPosition);
 	}
 );
 
@@ -57,7 +116,7 @@ When(
 );
 
 When("I enter title {string} into element GeoGebra", (elementGeoGebraTitle) => {
-	topics.enterTitleforElementGeoGebra(elementGeoGebraTitle);
+	topics.enterTitleForElementGeoGebra(elementGeoGebraTitle);
 });
 
 When("I enter GeoGebra material ID {string}", (geoGebraMaterialID) => {
@@ -67,7 +126,7 @@ When("I enter GeoGebra material ID {string}", (geoGebraMaterialID) => {
 When(
 	"I enter title {string} into element Learning Material",
 	(elementLearningMaterialTitle) => {
-		topics.enterTitleforElementLearningMaterial(elementLearningMaterialTitle);
+		topics.enterTitleForElementLearningMaterial(elementLearningMaterialTitle);
 	}
 );
 
@@ -78,25 +137,25 @@ Then("I see second learning material button in the content area", () => {
 When(
 	"I enter title {string} into element Etherpad in element position {string}",
 	(elementEtherpadTitle, elementPosition) => {
-		topics.enterTitleforElementEtherpad(elementEtherpadTitle, elementPosition);
+		topics.enterTitleForElementEtherpad(elementEtherpadTitle, elementPosition);
 	}
 );
 
 When(
 	"I enter description for the ether pad {string} in element position {string}",
 	(descriptionEtherpad, elementPosition) => {
-		topics.enterDescriptionforElementEtherpad(descriptionEtherpad, elementPosition);
+		topics.enterDescriptionForElementEtherpad(descriptionEtherpad, elementPosition);
 	}
 );
 
 When("I enter title {string} into element Task", (elementTaskTitle) => {
-	topics.enterTitleforElementTask(elementTaskTitle);
+	topics.enterTitleForElementTask(elementTaskTitle);
 });
 
 When(
-	"I enter URL of the task from the another course for task id {string}",
-	(elementTaskLink) => {
-		topics.enterLinkforElementTask(elementTaskLink);
+	"I enter URL of the task from the another course for task id {string} for {string}",
+	(elementTaskLink, namespace) => {
+		topics.enterLinkForElementTask(elementTaskLink, namespace);
 	}
 );
 
@@ -130,9 +189,8 @@ Then(
 );
 
 Then("I see topic detail page {string}", (topicTitle) => {
-		topics.seeTopicDetailPage(topicTitle);
-	}
-);
+	topics.seeTopicDetailPage(topicTitle);
+});
 
 When("I navigate back to course detail page via breadcrumb menu", () => {
 	topics.navigateBackToCourseViaBreadcrumb();
