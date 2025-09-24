@@ -11,6 +11,10 @@ Then("I see the rooms administration page", () => {
 	roomsAdmin.isRoomsAdministrationPage();
 });
 
+Then("I see {string} in the room members list", (participantName) => {
+	roomsAdmin.seeParticipantInAdminList(participantName);
+});
+
 Then(
 	"I see the icon Alert in the column Room owner for the room {string}",
 	(roomName) => {

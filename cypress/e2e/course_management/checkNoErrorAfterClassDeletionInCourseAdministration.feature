@@ -41,4 +41,4 @@ Feature: Course Management - To create, add class with course and after deletion
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name       | fullname_teacher | fullname_student | class_name       |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course | Karl Herzog      | Herbert Kraft    | CypressAut class |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course | Karl Herzog      | Herbert Kraft    | CypressAut class |
