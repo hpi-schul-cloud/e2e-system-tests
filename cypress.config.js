@@ -18,9 +18,12 @@ const fs = require("fs");
 async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === "ci";
 	if (isCI) {
-		const environmentFilename = path.resolve(
-			__dirname,
-			"env_variables/combined_credentials.json"
+		const workspace = process.env.GITHUB_WORKSPACE || __dirname;
+		const environmentFilename = path.join(
+			workspace,
+			"e2e-system-tests",
+			"env_variables",
+			"combined_credentials.json"
 		);
 		if (!fs.existsSync(environmentFilename)) {
 			throw new Error(`❌ Missing environment file: ${environmentFilename}`);
