@@ -19,10 +19,10 @@ In our Cypress and Cucumber setup, tags are used to categorize and selectively r
 - **@school_api_test:** This tag is specific to tests that interact with the school API.
   <br>
 
-- **@prio_0_staging:** Tests marked with this tag are specific to the staging environment.
+- **@prio_0_staging:** Tests that are part of the prio 0 staging test plan. These tests run specifically against the staging instance.
   <br>
 
-- **@prio_0_dev:** Tests marked with this tag are specific to the staging dev environment.
+- **@prio_0_dev:** Tests that are part of the prio 0 dev cluster test plan. These tests run specifically against the dev cluster environment.
   <br>
 
 - **@pr:** Tests tagged with @pr are executed as part of the CI process for Pull Requests. These tests provide quick feedback on the stability of changes before merging.

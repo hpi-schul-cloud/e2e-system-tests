@@ -1,6 +1,7 @@
 @regression_test
 @stable_test
 @group-F
+@prio_0_staging
 Feature: Topics - Teacher copies a topic in the course
 
     As a teacher, I want to copy a topic in the course so that I can reuse content efficiently

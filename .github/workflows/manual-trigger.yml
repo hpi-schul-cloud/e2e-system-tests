@@ -11,7 +11,7 @@ on:
           - tests for pull requests (PR)
           - pre-check release tests
           - run selective tests (@only)
-          - staging tests
+          - staging tests (@prio_0_staging & @prio_0_dev)
         default: "tests for pull requests (PR)"
       browser:
         description: "Select browser"
@@ -19,7 +19,7 @@ on:
         type: choice
         options:
           - chrome
-          - chrome
+          - edge
           - electron
           - firefox
         default: chrome
@@ -93,7 +93,7 @@ jobs:
           # echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
 
           # Base tags with prio
-          if [[ "${{ inputs.test_mode }}" == "staging tests" ]]; then
+          if [[ "${{ inputs.test_mode }}" == "staging tests (@prio_0_staging & @prio_0_dev)" ]]; then
             echo "staging_base_tag=@stable_test and @staging_test and @prio_0_staging" >> $GITHUB_OUTPUT
             echo "dev_base_tag=@stable_test and @school_api_test and @prio_0_dev" >> $GITHUB_OUTPUT
             echo "environment=ref" >> $GITHUB_OUTPUT
@@ -175,11 +175,11 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: manual-trigger-only-tagged-tests
 
-  # ---------------- staging-mode jobs (run when test_mode == 'staging tests') -------------------
+  # ---------------- staging-mode jobs (run when test_mode == 'staging tests (@prio_0_staging & @prio_0_dev)') -------------------
   run-staging-tests:
     name: Run staging tests (staging URLs, groups A-F)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'staging tests' }}
+    if: ${{ inputs.test_mode == 'staging tests (@prio_0_staging & @prio_0_dev)' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
