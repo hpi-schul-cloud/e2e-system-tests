@@ -96,6 +96,31 @@ jobs:
             "${{ github.workspace }}" \
             "${{ inputs.environment }}"
 
+      - name: Verify combined env file
+        run: |
+          FILE="${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
+
+          echo "Checking if combined_credentials.json exists..."
+          if [ -f "$FILE" ]; then
+            echo "✅ File exists at $FILE"
+          else
+            echo "❌ File is missing"
+            exit 1
+          fi
+
+          echo "Checking file size..."
+          stat --printf="Size: %s bytes\n" "$FILE"
+
+          echo "Validating JSON structure..."
+          if jq empty "$FILE" >/dev/null 2>&1; then
+            echo "✅ JSON is valid"
+          else
+            echo "❌ JSON is invalid"
+            exit 1
+          fi
+
+          echo "Previewing keys (safe)..."
+          jq -r 'keys | .[:10]' "$FILE"
       - name: Install dependencies
         working-directory: e2e-system-tests
         run: npm ci
