@@ -17,8 +17,14 @@ const fs = require("fs");
 
 async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === "ci";
+	console.log("CWD:", process.cwd());
+	console.log("COMBINED_ENV_FILE:", process.env.COMBINED_ENV_FILE);
+	console.log("File exists?", fs.existsSync(process.env.COMBINED_ENV_FILE));
 	if (isCI) {
-		const environmentFilename = process.env.COMBINED_ENV_FILE;
+		const environmentFilename = path.resolve(
+			process.cwd(),
+			process.env.COMBINED_ENV_FILE || ""
+		);
 		console.log("🔍 Looking for env file at:", environmentFilename);
 		if (!fs.existsSync(environmentFilename)) {
 			throw new Error(`❌ Missing environment file: ${environmentFilename}`);
