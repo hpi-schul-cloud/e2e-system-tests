@@ -89,9 +89,6 @@ jobs:
             npx cypress run \
               --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
               --browser ${{ inputs.browser }}
-            # npm run cy:headless:stable:ci -- \
-            # --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
-            # --browser ${{ inputs.browser }}
 
       - name: Generate Report
         if: always()
