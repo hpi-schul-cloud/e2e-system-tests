@@ -111,6 +111,13 @@ jobs:
         working-directory: e2e-system-tests
         run: npm run pretest
 
+      - name: Print working directory before Cypress run
+        working-directory: e2e-system-tests
+        run: |
+          pwd
+          ls -al
+          ls -al env_variables
+
       - name: Cypress run
         working-directory: e2e-system-tests
         env:
