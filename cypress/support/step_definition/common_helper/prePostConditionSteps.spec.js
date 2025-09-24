@@ -22,6 +22,63 @@ const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
+Given(
+	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
+	(
+		topicName,
+		courseName,
+		textElementTitle,
+		geoGebraTitle,
+		geoGebraId,
+		learningMaterialTitle,
+		etherpadTitle,
+		etherpadDescription,
+		taskTitle,
+		taskId,
+		namespace
+	) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.clickOnCreateContentFAB();
+		courses.clickOnNewTopicFAB();
+
+		topics.enterTopicTitle(topicName);
+
+		// text element
+		topics.clickOnAddTextToTopic();
+		topics.seeFormElementText("0");
+		topics.enterTitleForElementText(textElementTitle, "0");
+
+		// geoGebra element
+		topics.clickOnAddGeoGebraToTopic();
+		topics.enterTitleForElementGeoGebra(geoGebraTitle);
+		topics.enterIDforElementGeoGebra(geoGebraId);
+
+		// learning material element
+		topics.clickOnAddLearningMaterialToTopic();
+		topics.enterTitleForElementLearningMaterial(learningMaterialTitle);
+		topics.seeAddMaterialBtnInContent();
+
+		// etherpad element
+		topics.clickOnAddEtherpadToTopic();
+		topics.enterTitleForElementEtherpad(etherpadTitle, "3");
+		topics.enterDescriptionForElementEtherpad(etherpadDescription, "3");
+
+		// task element
+		topics.clickOnAddTaskToTopic();
+		topics.enterTitleForElementTask(taskTitle);
+		topics.enterLinkForElementTask(taskId, namespace);
+
+		// save changes
+		topics.clickOnSubmitChangesInTopicBtn();
+		// double click for CKEditor file upload
+		topics.clickOnSubmitChangesInTopicBtn();
+		topics.navigateBackToCourseViaBreadcrumb();
+
+		// verify topic appears on course detail page
+		courses.topicIsVisibleOnCoursePage(topicName);
+	}
+);
 
 Given(
 	"student {string} with role {string} from school {string} added to the room {string}",
@@ -373,7 +430,7 @@ Given(
 		courses.clickOnNewTopicFAB();
 		topics.enterTopicTitle(topicTitle);
 		topics.clickOnAddTextToTopic();
-		topics.enterTitleforElementText("element Text", "0");
+		topics.enterTitleForElementText("element Text", "0");
 		topics.enterDescriptionforElementText("element text description", "0");
 		topics.clickOnSubmitChangesInTopicBtn();
 		topics.clickOnSubmitChangesInTopicBtn();

@@ -5,6 +5,17 @@ import Courses from "../../pages/course/pageCourses";
 const courses = new Courses();
 const management = new Management();
 
+When(
+	"I click on three dot menu of topic {string} with the suffix {string} on the course detail page",
+	(topicName, suffix) => {
+		courses.openThreeDotMenuForCopiedTopic(topicName, suffix);
+	}
+);
+
+When("I click on the breadcrumb to go back to the course page", () => {
+	courses.navigateToCourseViaBreadcrumb();
+});
+
 Then("I select teacher {string} is selected by default", (teacherName) => {
 	courses.selectTeacherInCourseCreatePage(teacherName);
 });
@@ -219,6 +230,13 @@ When(
 	"I select the three dot menu action {string} at task index {string} in course detail page",
 	(action, index) => {
 		courses.clickThreeDotMenuActionAtTaskIndex(action, index);
+	}
+);
+
+When(
+	"I select the three dot menu action {string} at topic index {string} in course detail page",
+	(action, index) => {
+		courses.clickThreeDotMenuActionCopyAtTopicIndex(action, index);
 	}
 );
 
@@ -490,17 +508,17 @@ Then("I see the dialog box topic in course", () => {
 });
 
 When("I select the fixture file {string}", (fixture) => {
-    courses.selectFixtureForImport(fixture);
-})
+	courses.selectFixtureForImport(fixture);
+});
 
 When("I start the import", () => {
-    courses.startImport();
-})
+	courses.startImport();
+});
 
 Then("I see the loading bar", () => {
-    courses.seeLoadingBar();
-})
+	courses.seeLoadingBar();
+});
 
 When("I wait for the loading bar to close", () => {
-    courses.waitForImportFinish();
-})
+	courses.waitForImportFinish();
+});
