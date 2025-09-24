@@ -40,7 +40,7 @@ jobs:
       - name: Install dependencies for 1Password CLI
         run: |
           apt-get update
-          apt-get install -y curl unzip
+          apt-get install -y curl unzip gnupg jq xauth
 
       - name: Install 1Password CLI
         run: |
@@ -110,7 +110,7 @@ jobs:
           CYPRESS_CONNECT_RETRY_THRESHOLD: "300"
         run: |
           npm run cy:headless:stable:ci -- \
-            --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
+            --env tags=\"${{ inputs.tag }}\",parallelGroup=${{ inputs.groups }},environmentName=ci \
             --browser ${{ inputs.browser }}
 
       - name: Generate Report
