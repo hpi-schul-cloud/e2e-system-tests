@@ -19,7 +19,7 @@ on:
         type: choice
         options:
           - chrome
-          - chrome
+          - edge
           - electron
           - firefox
         default: chrome

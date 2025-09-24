@@ -30,7 +30,6 @@ async function setupNodeEvents(on, config) {
 			throw new Error(`❌ Missing environment file: ${environmentFilename}`);
 		}
 		const settings = JSON.parse(fs.readFileSync(environmentFilename, "utf-8"));
-		// const settings = require(environmentFilename);
 		if (settings) {
 			config.env = {
 				...config.env,

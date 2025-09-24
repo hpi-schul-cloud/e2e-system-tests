@@ -60,20 +60,6 @@ jobs:
             apt-get install -y 1password-cli
             op --version
 
-      # - name: Configure 1Password CLI
-      #   run: |
-      #     export OP_SERVICE_ACCOUNT_TOKEN="${{ secrets.service-account-token }}"
-      #     # You may need to sign in or create a session depending on your workflow
-      #     op --version
-
-      # - name: Install 1Password CLI
-      #   uses: 1password/install-cli-action@v2
-
-      # - name: Configure 1Password Service Account
-      #   uses: 1password/load-secrets-action/configure@v2
-      #   with:
-      #     service-account-token: ${{ secrets.service-account-token }}
-
       - name: Fetch JSON files from 1Password
         shell: bash
         run: |
@@ -96,13 +82,6 @@ jobs:
             "${{ github.workspace }}" \
             "${{ inputs.environment }}"
 
-      - name: Debug env_variables contents
-        run: |
-          echo "Listing env_variables dir:"
-          ls -al ${{ github.workspace }}/e2e-system-tests/env_variables
-          echo "Combined file content length:"
-          wc -c ${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json || true
-
       - name: Install dependencies
         working-directory: e2e-system-tests
         run: npm ci
@@ -111,15 +90,10 @@ jobs:
         working-directory: e2e-system-tests
         run: npm run pretest
 
-      - name: Print workspace tree (excluding node_modules)
-        run: |
-          find ${{ github.workspace }} -type d -name node_modules -prune -o -print
-
       - name: Cypress run
         working-directory: e2e-system-tests
         env:
           CYPRESS_CONNECT_RETRY_THRESHOLD: "300"
-          # COMBINED_ENV_FILE: env_variables/combined_credentials.json
         run: |
           export COMBINED_ENV_FILE="${{ github.workspace }}/e2e-system-tests/env_variables/combined_credentials.json"
           echo "Using combined env file: $COMBINED_ENV_FILE"
