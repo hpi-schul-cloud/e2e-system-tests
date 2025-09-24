@@ -13,6 +13,7 @@ const {
 	ccOrganizationHasWeblink,
 } = require("./scripts/commonCartridgeValidation");
 const path = require("path");
+const fs = require("fs");
 
 async function setupNodeEvents(on, config) {
 	const isCI = config.env.environmentName === "ci";
