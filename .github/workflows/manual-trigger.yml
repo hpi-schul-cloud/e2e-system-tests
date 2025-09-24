@@ -199,7 +199,7 @@ jobs:
   run-dev-tests:
     name: Run dev tests (staging-dev-tests against branch)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'staging tests' }}
+    if: ${{ inputs.test_mode == 'staging tests (@prio_0_staging & @prio_0_dev)' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
