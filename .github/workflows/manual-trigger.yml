@@ -11,7 +11,7 @@ on:
           - tests for pull requests (PR)
           - pre-check release tests
           - run selective tests (@only)
-          - staging tests (@prio_0_staging & @prio_0_dev)
+          - release tests (runs tests tagged @prio_0_staging and @prio_0_dev)
         default: "tests for pull requests (PR)"
       browser:
         description: "Select browser"
@@ -49,7 +49,6 @@ jobs:
       dev_base_tag: ${{ steps.set_variables.outputs.dev_base_tag }}
       environment: ${{ steps.set_variables.outputs.environment }}
     steps:
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -93,7 +92,7 @@ jobs:
           # echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
 
           # Base tags with prio
-          if [[ "${{ inputs.test_mode }}" == "staging tests (@prio_0_staging & @prio_0_dev)" ]]; then
+          if [[ "${{ inputs.test_mode }}" == "release tests (runs tests tagged @prio_0_staging and @prio_0_dev)" ]]; then
             echo "staging_base_tag=@stable_test and @staging_test and @prio_0_staging" >> $GITHUB_OUTPUT
             echo "dev_base_tag=@stable_test and @school_api_test and @prio_0_dev" >> $GITHUB_OUTPUT
             echo "environment=ref" >> $GITHUB_OUTPUT
@@ -175,11 +174,11 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: manual-trigger-only-tagged-tests
 
-  # ---------------- staging-mode jobs (run when test_mode == 'staging tests (@prio_0_staging & @prio_0_dev)') -------------------
+  # ---------------- staging-mode jobs (run when test_mode == 'release tests (runs tests tagged @prio_0_staging and @prio_0_dev)') -------------------
   run-staging-tests:
     name: Run staging tests (staging URLs, groups A-F)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'staging tests (@prio_0_staging & @prio_0_dev)' }}
+    if: ${{ inputs.test_mode == 'release tests (runs tests tagged @prio_0_staging and @prio_0_dev)' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
@@ -197,9 +196,9 @@ jobs:
       groups: ${{ format('{0}-{1}', 'manual-trigger-staging-tests', matrix.group) }}
 
   run-dev-tests:
-    name: Run dev tests (staging-dev-tests against branch)
+    name: Run dev tests (staging-dev-tests against dev branch)
     needs: e2e-system-tests
-    if: ${{ inputs.test_mode == 'staging tests (@prio_0_staging & @prio_0_dev)' }}
+    if: ${{ inputs.test_mode == 'release tests (runs tests tagged @prio_0_staging and @prio_0_dev)' }}
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
@@ -214,4 +213,4 @@ jobs:
       browser: ${{ inputs.browser }}
       tag: ${{ format('"{0}"',needs.e2e-system-tests.outputs.dev_base_tag) }}
       environment: dev
-      groups: ${{ format('{0}-{1}', 'manual-trigger-staging-dev-tests', matrix.group) }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger', matrix.group) }}
