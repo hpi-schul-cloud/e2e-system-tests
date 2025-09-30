@@ -104,6 +104,6 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
 
         @staging_test
         Examples:
-            | teacher      | admin      | student      | namespace | room_name            | board_title            | bettermarks_title      | bettermarks_edit_title        | student_name | student_role | student_school              | external_tool_name | bettermarks_domain_url                                      |
-            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | CypressAut Room Name | CypressAut Board Title | CypressAut bettermarks | CypressAut bettermarks edited | Herbert      | Lernend      | Felix Mendelssohn-Gymnasium | bettermarks        | school.bettermarks.staging.niedersachsen.dbildungscloud.org |
+            | teacher      | admin      | student      | namespace | room_name            | board_title            | bettermarks_title | bettermarks_edit_title | student_name | student_role | student_school              | external_tool_name | bettermarks_domain_url                                      |
+            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | CypressAut Room Name | CypressAut Board Title | bettermarks       | bettermarks edited     | Herbert      | Lernend      | Felix Mendelssohn-Gymnasium | bettermarks        | school.bettermarks.staging.niedersachsen.dbildungscloud.org |
 

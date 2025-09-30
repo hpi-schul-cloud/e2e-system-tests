@@ -4,7 +4,7 @@
 @group-D
 @pr
 @prio_0_staging
-Feature: Course - Teacher can create, edit and delete a group in the course
+Feature: Course - Student can create, edit and delete a group in the course
 
     As a student, I want to manage groups within a course by creating, editing, and deleting them.
 
