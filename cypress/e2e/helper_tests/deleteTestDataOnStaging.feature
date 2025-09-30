@@ -14,8 +14,8 @@ Feature: Deletion of test data that are left from previous failed test runs on s
         Then I delete all courses whose names start with '<course_name_prefix>'
 
         # deleting test data rooms
-        # When I go to rooms overview
-        # Then I delete all rooms whose names start with '<room_name_prefix>'
+        When I go to rooms overview
+        Then I delete all rooms whose names start with '<room_name_prefix>'
 
         @staging_test
         Examples:

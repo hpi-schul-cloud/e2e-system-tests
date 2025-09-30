@@ -3,7 +3,7 @@
 @group-D
 @schedule_run
 @prio_0_staging
-Feature: Teacher can share a course with ctl tools
+Feature: Course - Teacher can share a course with CTL tools
 
     As a teacher, I want to share a course with ctl tools with other teachers in the same school
 

@@ -3,7 +3,7 @@
 @schedule_run
 @group-F
 @prio_0_staging
-Feature: Calendar - create an event in a team and check in calendar
+Feature: Calendar - Create an event in a team and check in calendar
 
     As a user, I want to create, edit, and delete team events and verify their display to manage my team's schedule.
 

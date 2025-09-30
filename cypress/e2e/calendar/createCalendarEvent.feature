@@ -3,7 +3,7 @@
 @schedule_run
 @group-C
 @prio_0_staging
-Feature: Calendar - create a simple event in the calendar
+Feature: Calendar - Create a simple event in the calendar
 
     As a user, I want to create a simple event in the calendar and verify its display
 

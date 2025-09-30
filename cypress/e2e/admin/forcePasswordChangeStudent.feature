@@ -3,7 +3,7 @@
 @schedule_run
 @group-C
 @prio_0_dev
-Feature: Admin - user must set a new password during login
+Feature: Admin - Student must set a new password during login
 
     As a user, I want to update my password during my first login
 
