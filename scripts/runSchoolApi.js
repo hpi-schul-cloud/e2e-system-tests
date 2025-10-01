@@ -67,8 +67,18 @@ const createSchool = async (schoolUrl, headers) => {
 		console.log(`School created with ID: ${id}`);
 		return { id };
 	} catch (error) {
-		console.error("Error creating school:", error.message);
-		throw error;
+		if (axios.isAxiosError(error)) {
+			console.error("Error creating school:", error.message);
+			if (error.response) {
+				console.error("Status:", error.response.status);
+				console.error("Data:", error.response.data);
+			}
+			// rethrow only safe error message
+			throw new Error(`Failed to create school: ${error.message}`);
+		} else {
+			console.error("Unexpected error:", error.message);
+			throw new Error(`Unexpected failure: ${error.message}`);
+		}
 	}
 };
 
@@ -143,13 +153,17 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 		const { username, initialPassword } = response.data;
 		return { schoolId, username, initialPassword };
 	} catch (error) {
-		console.error("Error creating users:", error.message);
-		if (error.response) {
-			console.error("Response data:", error.response.data);
-			console.error("Response status:", error.response.status);
-			console.error("Response headers:", JSON.stringify(error.response.headers));
+		if (axios.isAxiosError(error)) {
+			console.error("Error creating users:", error.message);
+			if (error.response) {
+				console.error("Status:", error.response.status);
+				console.error("Data:", error.response.data);
+			}
+			throw new Error(`Failed to create user: ${error.message}`);
+		} else {
+			console.error("Unexpected error:", error.message);
+			throw new Error(`Unexpected failure: ${error.message}`);
 		}
-		throw error;
 	}
 };
 
