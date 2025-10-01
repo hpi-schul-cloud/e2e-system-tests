@@ -414,15 +414,20 @@ class RoomBoards {
 
 	seeZipFileWithDatePrefixIsSavedInDownloads(fileName) {
 		const today = new Date();
-		const yyyy = today.getFullYear();
-		let mm = today.getMonth() + 1;
-		let dd = today.getDate();
-		if (dd < 10) dd = "0" + dd;
-		if (mm < 10) mm = "0" + mm;
-		let zipFileName = yyyy + mm + dd + "_" + fileName + ".zip";
-		cy.readFile(`cypress/downloads/${zipFileName}`, "binary", {
-			timeout: 15000,
-		}).should((buffer) => expect(buffer.length).to.be.gt(100));
+		const yyyyMMdd = today.toISOString().slice(0, 10).replace(/-/g, "");
+		const expectedPattern = new RegExp(
+			`^${yyyyMMdd}_${fileName.replace(/ /g, "( |%20)")}\\.zip$`
+		);
+
+		cy.exec("ls cypress/downloads").then((result) => {
+			const foundFile = result.stdout
+				.split("\n")
+				.find((f) => expectedPattern.test(decodeURIComponent(f)));
+			expect(foundFile, "Downloaded zip file").to.exist;
+			cy.readFile(`cypress/downloads/${foundFile}`, "binary", { timeout: 15000 }).should(
+				(buffer) => expect(buffer.length).to.be.gt(100)
+			);
+		});
 	}
 
 	clickContinueOnImportModal() {
