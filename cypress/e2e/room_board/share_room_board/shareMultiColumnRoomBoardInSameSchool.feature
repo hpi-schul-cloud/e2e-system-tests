@@ -2,21 +2,22 @@
 @stable_test
 @schedule_run
 @group-E
-Feature: Room Board - Share multi-column room board in the Rooms with teacher from the same school
+@prio_0_staging
+Feature: Room Board - Share multi-column room board in the rooms with teacher from the same school
 
     As a teacher, I want to share a multi-column board with another teacher within the same school so that I can collaborate effectively.
 
-    Scenario Outline: Share a multi-column board with a Teacher within the Sameschool
+    Scenario Outline: Share a multi-column board with a Teacher within the same school
 
-        # pre-condition: Creating teacher accounts
+        # pre-condition: creating teacher accounts
         Given I am logged in as a '<teacher2>' at '<namespace>'
         Given I am logged in as a '<teacher1>' at '<namespace>'
 
-        # pre-condition: Room and multi-column board exist
+        # pre-condition: room and multi-column board exist
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title>' exists in the room
 
-        # the first teacher shares the multi-column board with another teacher in the same school using the copied URL
+        # first teacher shares the multi-column board with another teacher in the same school using the copied URL
         Then I see the page board details
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
@@ -35,11 +36,11 @@ Feature: Room Board - Share multi-column room board in the Rooms with teacher fr
         Then I copy the board URL
         Then I see the alert message
 
-        # pre-condition: the second teacher is logged into the application, and a room exists
+        # pre-condition: second teacher is logged into the application, and a room exists
         Given I am logged in as a '<teacher2>' at '<namespace>'
         Given a room named '<room_name_target>' exists
 
-        # the second teacher within the same school imports the multi-column board
+        # second teacher within the same school imports the multi-column board
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
@@ -59,11 +60,7 @@ Feature: Room Board - Share multi-column room board in the Rooms with teacher fr
         Given the room named '<room_name_source>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
-
         @staging_test
         Examples:
-            | teacher1     | teacher2     | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
-            | teacher1_brb | teacher2_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
+            | teacher1     | teacher2     | namespace | room_name_source       | room_name_target       | board_title            | import_board_title            |
+            | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | CypressAut Board Import Title |

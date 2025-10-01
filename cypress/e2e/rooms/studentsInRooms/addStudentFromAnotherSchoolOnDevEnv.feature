@@ -6,7 +6,8 @@ Feature: Room - Invite Student from another school via teacher from another scho
 
     As a room owner, when I invite a teacher from another school to a room, the teacher should be able to invite a student from their school, and the student should see the room in their room overview.
 
-    Scenario Outline: Room Owner invites a teacher from another school, the teacher invites a student from their school, the student can access the room, including pre-conditions
+    Scenario Outline: Room Owner invites a teacher from another school, the teacher invites a student from their school, the student can access the room
+
         # cypress-test-school-2
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         # cypress-test-school-2

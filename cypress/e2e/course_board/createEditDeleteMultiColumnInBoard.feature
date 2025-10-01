@@ -3,9 +3,10 @@
 @schedule_run
 @group-D
 @pre_check_test
+@prio_0_staging
 Feature: Course Board - To create, edit and delete column in the course board
 
-    As a teacher I want to create, edit and delete the column in the course board so that I can manage the column in the board.
+    As a teacher, I want to create, edit and delete the column in the course board so that I can manage the column in the board.
 
     Scenario Outline: user creation, course creation, and creating, editing, deleting a column board in the course
 
@@ -28,12 +29,12 @@ Feature: Course Board - To create, edit and delete column in the course board
         Then I see class selection box to select the class for the course
         Then I see student selection box to select the student for the course
         # Note: student user is not needed in this feature so this step is commented out
-        #When I select the student '<fullname_student>' in the list
+        # When I select the student '<fullname_student>' in the list
         When I click on button Next Steps after selecting course participant details
         Then I see the section three as the finish page
         When I click on button To Course Overview on the finish page
         # Note: this step is not applicable for the admin user
-        #Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
+        # Then I see the course 'CypressAut Test Creation and Deletion' on the course overview page
 
         # teacher adds a new Board
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -51,7 +52,7 @@ Feature: Course Board - To create, edit and delete column in the course board
         When I select the three dot menu action 'rename'
         When I enter the course board title '<board_title>'
         When I click on the page outside of the column
-        #Then I see the course Board name 'Board Cy Title'
+        # Then I see the course Board name 'Board Cy Title'
         Then I see the chip Draft in the course board
 
         # teacher adds a new column in the Board
@@ -86,10 +87,10 @@ Feature: Course Board - To create, edit and delete column in the course board
 
         @school_api_test
         Examples:
-            | teacher      | admin      | namespace | fullname_teacher  | course_name                    | board_title    | column_board_title     | edited_column_board_title |
-            | teacher1_brb | admin1_brb | brb       | cypress teacher_1 | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |
+            | teacher      | admin      | namespace | fullname_teacher  | course_name                    | board_title            | column_board_title     | edited_column_board_title     |
+            | teacher1_brb | admin1_brb | brb       | cypress teacher_1 | CypressAut Column Board Course | CypressAut Board Title | CypressAut Test Column | CypressAut Test Column Edited |
 
         @staging_test
         Examples:
-            | teacher      | admin      | namespace | fullname_teacher | course_name                    | board_title    | column_board_title     | edited_column_board_title |
-            | teacher1_brb | admin1_brb | brb       | Karl Herzog      | CypressAut Column Board Course | Board Cy Title | My Cypress Test Column | Edit Cypress Test Column  |
+            | teacher      | admin      | namespace | fullname_teacher | course_name                    | board_title            | column_board_title     | edited_column_board_title     |
+            | teacher1_brb | admin1_brb | brb       | Karl Herzog      | CypressAut Column Board Course | CypressAut Board Title | CypressAut Test Column | CypressAut Test Column Edited |

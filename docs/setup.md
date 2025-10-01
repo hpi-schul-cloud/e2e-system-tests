@@ -11,7 +11,7 @@ This document provides comprehensive instructions for setting up the project env
 
    - Install [Node v20](https://nodejs.org/dist/)
    - Install [Git](https://git-scm.com/downloads)
-   - Install browsers (recommended Microsoft Edge) [Edge Browser](https://www.microsoft.com/de-de/edge/download?form=MA13FJ)
+   - Install browsers (recommended Google Chrome) [Chrome Browser](https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop)
    - Install IDE of your choice e.g. [VS code](https://code.visualstudio.com/download)
    - Install [Github Desktop App](https://desktop.github.com/) (Optional)
    - Install VS code extensions: - [Cucumber (Gherkin) Full Support](https://marketplace.visualstudio.com/items?itemName=alexkrechik.cucumberautocomplete) - [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig) - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
@@ -31,7 +31,7 @@ This document provides comprehensive instructions for setting up the project env
 3. **Setting Up Environment Variables for the Testing User Credentials and URLs**
    <br>
 
-   ##### Setting Up Environment Variables for Dev Environment/Cluster:
+   <h5>Setting Up Environment Variables for Dev Environment/Cluster:</h5>
 
    - Duplicate the file [devTemplate.env.json](../env_variables/devTemplate.env.json) and rename the duplicated file to `local.env.json` inside the `env_variables` folder.
    - Include the required development namespace URLs for BRB/DBC/NBC.
@@ -39,7 +39,7 @@ This document provides comprehensive instructions for setting up the project env
    - To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
    - Contact QA team for the necessary 1Password links.
 
-   ##### Setting Up Environment Variables for Staging Environment/Cluster:
+   <h5>Setting Up Environment Variables for Staging Environment/Cluster:</h5>
 
    - Duplicate the file [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) and rename the duplicated file to `staging.env.json` in the `env_variables` folder.
    - Include the required staging namespace URLs for BRB/DBC/NBC.
