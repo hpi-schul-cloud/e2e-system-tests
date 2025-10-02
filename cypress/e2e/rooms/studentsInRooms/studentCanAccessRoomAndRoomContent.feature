@@ -90,9 +90,9 @@ Feature: Rooms - Student can access room content after being added to room via A
         @school_api_test
         Examples:
             | teacher_1    | student_1    | admin_1    | namespace | room_name            | school_name           | role_name | participant_name | board_title            |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernend   | student_1        | CypressAut Board Title |
+            | teacher1_dbc | student1_dbc | admin1_dbc | dbc       | CypressAut Room Name | cypress-test-school-1 | Lernend   | student_1        | CypressAut Board Title |
 
         @staging_test
         Examples:
             | teacher_1    | student_1    | admin_1    | namespace | room_name            | school_name                 | role_name | participant_name | board_title            |
-            | teacher1_brb | student1_brb | admin1_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Herbert          | CypressAut Board Title |
+            | teacher1_dbc | student1_dbc | admin1_dbc | dbc       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernend   | Herbert          | CypressAut Board Title |

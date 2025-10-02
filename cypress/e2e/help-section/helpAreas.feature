@@ -45,4 +45,4 @@ Feature: Help Section - To use the help areas in dBildungscloud
         @staging_test
         Examples:
             | teacher      | namespace | search_term | search_result    | contact_option | contact_subject                     | contact_email    | link_trainings                | feedback_message                |
-            | teacher1_brb | brb       | QR          | QR-Code Funktion | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home | Feedback erfolgreich versendet! |
+            | teacher1_dbc | dbc       | QR          | QR-Code Funktion | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home | Feedback erfolgreich versendet! |

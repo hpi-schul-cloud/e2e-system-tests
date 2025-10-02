@@ -22,9 +22,9 @@ Feature: Deletion of test data that are left from previous failed test runs on s
             | namespace | teacher      | course_name_prefix | room_name_prefix |
             | nbc       | teacher1_nbc | CypressAut         | CypressAut       |
             | dbc       | teacher1_dbc | CypressAut         | CypressAut       |
-            | brb       | teacher1_brb | CypressAut         | CypressAut       |
+            | dbc       | teacher1_dbc | CypressAut         | CypressAut       |
             | nbc       | teacher2_nbc | CypressAut         | CypressAut       |
             | dbc       | teacher2_dbc | CypressAut         | CypressAut       |
-            | brb       | teacher2_brb | CypressAut         | CypressAut       |
+            | dbc       | teacher2_dbc | CypressAut         | CypressAut       |
 
 

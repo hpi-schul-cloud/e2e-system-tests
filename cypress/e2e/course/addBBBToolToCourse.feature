@@ -97,9 +97,9 @@ Feature: Course - Teacher can add and remove BigBlueButton tool in the course wi
         @staging_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher | course_name                           |
-            | nbc       | admin1_nbc | teacher1_nbc | Karl Herzog      | CypressAut Test Creation and Deletion |
+            | dbc       | admin1_dbc | teacher1_dbc | Karl Herzog      | CypressAut Test Creation and Deletion |
 
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | fullname_teacher  | course_name                           |
-            | nbc       | admin1_nbc | teacher1_nbc | cypress teacher_1 | CypressAut Test Creation and Deletion |
+            | dbc       | admin1_dbc | teacher1_dbc | cypress teacher_1 | CypressAut Test Creation and Deletion |

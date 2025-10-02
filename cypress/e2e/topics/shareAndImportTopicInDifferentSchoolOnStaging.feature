@@ -66,4 +66,4 @@ Feature: Topics - Teacher shares a topic to other teacher from different school 
         @staging_test
         Examples:
             | teacher_1    | teacherExt_2    | namespace | fullname_teacher_1 | course_name_1          | topic_text_title_share      | topic_text_title_import        | course_name_2                   |
-            | teacher2_brb | teacherExt2_brb | brb       | cypress teacher_1  | CypressAut Math course | CypressAut Math Topic Share | CypressAut Math Topic Imported | CypressAut Math Course Imported |
+            | teacher2_dbc | teacherExt2_dbc | dbc       | cypress teacher_1  | CypressAut Math course | CypressAut Math Topic Share | CypressAut Math Topic Imported | CypressAut Math Course Imported |

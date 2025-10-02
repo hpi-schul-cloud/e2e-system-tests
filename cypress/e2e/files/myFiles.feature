@@ -43,4 +43,4 @@ Feature: Files - To use LibreOffice for text, calc and presentation document
         @staging_test
         Examples:
             | user         | namespace | document_title              | document_title_full              | document_title_edited            |
-            | student1_brb | brb       | CypressAut LibraOffice Open | CypressAut LibraOffice Open.docx | CypressAut LibraOffice Edit.docx |
+            | student1_dbc | dbc       | CypressAut LibraOffice Open | CypressAut LibraOffice Open.docx | CypressAut LibraOffice Edit.docx |

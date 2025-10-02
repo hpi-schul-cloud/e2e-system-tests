@@ -52,4 +52,4 @@ Feature: Room Board - Add, delete element Link in the room board
         @staging_test
         Examples:
             | teacher      | namespace | room_name            | board_title            | example_link                        |
-            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Board Title | https://main.brb.dbildungscloud.dev |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | https://main.dbc.dbildungscloud.dev |

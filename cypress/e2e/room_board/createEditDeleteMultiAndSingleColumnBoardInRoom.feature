@@ -90,4 +90,4 @@ Feature: Room Board - Add, edit and delete board in room
         @staging_test
         Examples:
             | teacher      | namespace | room_name            | board_title            |
-            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Board Title |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title |

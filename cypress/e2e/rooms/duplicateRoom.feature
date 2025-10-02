@@ -55,4 +55,4 @@ Feature: Rooms - To duplicate the existing room
         @staging_test
         Examples:
             | teacher      | admin      | namespace | room_name            | copied_room_name         | board_title            |
-            | teacher1_brb | admin1_brb | brb       | CypressAut Room Name | CypressAut Room Name (1) | CypressAut Board Title |
+            | teacher1_dbc | admin1_dbc | dbc       | CypressAut Room Name | CypressAut Room Name (1) | CypressAut Board Title |

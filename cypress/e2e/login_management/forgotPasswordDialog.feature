@@ -26,6 +26,6 @@ Feature: Login Management - Forgot Password Dialog Visibility Checks
         @staging_test
         Examples:
             | namespace |
-            | brb       |
+            | dbc       |
             | dbc       |
             | nbc       |

@@ -65,9 +65,9 @@ Feature: Course - To search for a course via search input box on the course over
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | created_course_name      | nonexistent_course_name                    | fullname_teacher  | fullname_student  |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Search Course | CypressAut Not Existing Mathematics Course | cypress teacher_1 | cypress student_1 |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Search Course | CypressAut Not Existing Mathematics Course | cypress teacher_1 | cypress student_1 |
 
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | created_course_name      | nonexistent_course_name                    | fullname_teacher | fullname_student |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Search Course | CypressAut Not Existing Mathematics Course | Karl Herzog      | Herbert Kraft    |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Search Course | CypressAut Not Existing Mathematics Course | Karl Herzog      | Herbert Kraft    |

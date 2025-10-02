@@ -60,4 +60,4 @@ Feature: Calendar - Create an event in a team and check in calendar
         @staging_test
         Examples:
             | user         | namespace | team                     | event_title | event_start_time | event_start_text | event_end_time | event_start_time_1 | event_start_text_1 | event_end_time_1 | event_description         | event_place  | event_title_1 | event_description_1            | event_place_1      |
-            | teacher1_brb | brb       | CypressAut Calendar Team | cy title    | 15:00            | 15 Uhr           | 16:00          | 18:00              | 18 Uhr             | 19:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |
+            | teacher1_dbc | dbc       | CypressAut Calendar Team | cy title    | 15:00            | 15 Uhr           | 16:00          | 18:00              | 18 Uhr             | 19:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |

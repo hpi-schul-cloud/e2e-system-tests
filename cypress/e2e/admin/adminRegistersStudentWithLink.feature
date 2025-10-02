@@ -76,5 +76,5 @@ Feature: Admin - Student registration with registration link send by admin
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   |
-            | brb       | admin1_brb | student        | cypress         | student_admin_test | original_student_admin_users@cypress-mail.de |
+            | dbc       | admin1_dbc | student        | cypress         | student_admin_test | original_student_admin_users@cypress-mail.de |
 

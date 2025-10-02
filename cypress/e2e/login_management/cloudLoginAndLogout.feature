@@ -24,9 +24,9 @@ Feature: Login Management - Login of users managed by SVS
             | nbc       | student1_nbc | HK       |
             | nbc       | teacher1_nbc | KH       |
             | nbc       | admin1_nbc   | KP       |
-            | brb       | student1_brb | HK       |
-            | brb       | teacher1_brb | KH       |
-            | brb       | admin1_brb   | KP       |
+            | dbc       | student1_dbc | HK       |
+            | dbc       | teacher1_dbc | KH       |
+            | dbc       | admin1_dbc   | KP       |
 
         @school_api_test
         Examples:
@@ -37,6 +37,6 @@ Feature: Login Management - Login of users managed by SVS
             | nbc       | student1_nbc | cs       |
             | nbc       | teacher1_nbc | ct       |
             | nbc       | admin1_nbc   | ca       |
-            | brb       | student1_brb | cs       |
-            | brb       | teacher1_brb | ct       |
-            | brb       | admin1_brb   | ca       |
+            | dbc       | student1_dbc | cs       |
+            | dbc       | teacher1_dbc | ct       |
+            | dbc       | admin1_dbc   | ca       |

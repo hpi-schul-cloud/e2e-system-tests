@@ -40,4 +40,4 @@ Feature: Rooms - To create, edit and delete room
         @staging_test
         Examples:
             | teacher      | namespace | room_name            | room_name_new            |
-            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Room Name New |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Room Name New |

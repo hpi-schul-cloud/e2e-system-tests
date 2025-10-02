@@ -54,4 +54,4 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         @staging_test
         Examples:
             | teacher      | namespace | room_name            | board_title            |
-            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Board Title |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title |

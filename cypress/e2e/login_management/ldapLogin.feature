@@ -20,12 +20,12 @@ Feature: Login Management - Login of users not managed by SVS
         # login credentials need to be clarified in order to execute this test. LDAP school is also not available on staging dropdown.
         Examples:
             | namespace | user             | ldap_school_name |
-            | brb       | student_ldap_brb | School One 0     |
+            | dbc       | student_ldap_dbc | School One 0     |
             | dbc       | student_ldap_dbc | School One 0     |
             | nbc       | student_ldap_nbc | School One 0     |
-            | brb       | teacher_ldap_brb | School One 0     |
+            | dbc       | teacher_ldap_dbc | School One 0     |
             | dbc       | teacher_ldap_dbc | School One 0     |
             | nbc       | teacher_ldap_nbc | School One 0     |
-            | brb       | admin_ldap_brb   | School One 0     |
+            | dbc       | admin_ldap_dbc   | School One 0     |
             | dbc       | admin_ldap_dbc   | School One 0     |
             | nbc       | admin_ldap_nbc   | School One 0     |

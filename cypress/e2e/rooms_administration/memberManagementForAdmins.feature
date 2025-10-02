@@ -56,9 +56,9 @@ Feature: Room Administration - Add room and manage its members via rooms adminis
         @school_api_test
         Examples:
             | admin      | teacher      | namespace | room_name            | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 1                      | 0                      | 1                   |
+            | admin1_dbc | teacher1_dbc | dbc       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 1                      | 0                      | 1                   |
 
 # @staging_test
 # Examples:
 #     | admin      | teacher      | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-#     | admin1_brb | teacher1_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 1                      | 0                      | 1                   |
+#     | admin1_dbc | teacher1_dbc | dbc       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 1                      | 0                      | 1                   |

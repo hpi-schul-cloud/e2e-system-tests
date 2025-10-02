@@ -68,9 +68,9 @@ Feature: TLDraw - Test tldraw on board
         @school_api_test
         Examples:
             | namespace | admin      | teacher      | teacher_fullname  | student      | student_fullname  | course_name              | board_name              | text_to_write |
-            | brb       | admin1_brb | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
+            | dbc       | admin1_dbc | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
 
         @staging_test
         Examples:
             | namespace | admin      | teacher      | teacher_fullname | student      | student_fullname | course_name              | board_name              | text_to_write |
-            | brb       | admin1_brb | teacher1_brb | Karl Herzog      | student1_brb | Herbert Kraft    | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |
+            | dbc       | admin1_dbc | teacher1_dbc | Karl Herzog      | student1_dbc | Herbert Kraft    | CypressAut TLDraw Course | CypressAut TLDraw Board | Hello World!  |

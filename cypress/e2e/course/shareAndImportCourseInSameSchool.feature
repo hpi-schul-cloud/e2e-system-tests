@@ -73,9 +73,9 @@ Feature: Course - Teacher shares a course to other teacher from the same school
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share          | task_name       | board_title      | task_title                | topic_text_title | course_name_import         |
-            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | CypressAut Course To Share | CypressAut Task | CypressAut Board | CypressAut Task For Class | CypressAut Topic | CypressAut Course Imported |
+            | teacher1_dbc | teacher2_dbc | dbc       | cypress teacher_1  | CypressAut Course To Share | CypressAut Task | CypressAut Board | CypressAut Task For Class | CypressAut Topic | CypressAut Course Imported |
 
         @staging_test
         Examples:
             | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_share          | task_name       | board_title      | task_title                | topic_text_title | course_name_import         |
-            | teacher1_brb | teacher2_brb | brb       | cypress teacher_1  | CypressAut Course To Share | CypressAut Task | CypressAut Board | CypressAut Task For Class | CypressAut Topic | CypressAut Course Imported |
+            | teacher1_dbc | teacher2_dbc | dbc       | cypress teacher_1  | CypressAut Course To Share | CypressAut Task | CypressAut Board | CypressAut Task For Class | CypressAut Topic | CypressAut Course Imported |

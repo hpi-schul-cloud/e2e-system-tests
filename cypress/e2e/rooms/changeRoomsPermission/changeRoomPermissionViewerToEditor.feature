@@ -80,9 +80,9 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name            | school_name           | role_name      | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        |
+            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        |
 
         @staging_test
         Examples:
             | teacher_1    | teacher_2    | namespace | room_name            | school_name                 | role_name      | participant_name |
-            | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            |
+            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            |
