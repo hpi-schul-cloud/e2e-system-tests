@@ -1,3 +1,6 @@
+# NOTE: This test case is not executable in Staging as it is not active there.
+# Hence, the Staging tag and examples are commented out.
+
 @regression_test
 @stable_test
 @schedule_run
@@ -83,7 +86,7 @@ Feature: Editing permissions for boards
             | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
             | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | Cypress Room Name-1 | Board Cy Title | student_1    | student_2    | Lernend   |
 
-        @staging_test
-        Examples:
-            | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
-            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | Cypress Room Name-1 | Board Cy Title | Kraft        | Strobl       | Lernend   |
+#        @staging_test
+#        Examples:
+#            | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
+#            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | Cypress Room Name-1 | Board Cy Title | Kraft        | Strobl       | Lernend   |

@@ -1,3 +1,6 @@
+# NOTE: This test case is not executable in Staging as it is not active there.
+# Hence, the Staging tag and examples are commented out.
+
 @regression_test
 @stable_test
 @schedule_run
@@ -56,6 +59,7 @@ Feature: Editing permissions for boards
         Then I see the button Add column in the course board
 
         # Board returns to default permissions after unpublishing and Administer cannot grant edit permission
+        Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name_source>'
         When I click on the multi-column board in the room detail page
@@ -77,20 +81,18 @@ Feature: Editing permissions for boards
         When I go to room '<room_name_source>'
         Then I do not see the board '<board_title>' in the room
 
-
         # post-condition: teacher deletes room and admin disables student visibility for teachers
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room named '<room_name_source>' is deleted
         Given I am logged in as a '<admin>' at '<namespace>'
         Given student visibility for teachers is disabled
-
 
         @school_api_test
         Examples:
             | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
             | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | Cypress Room Name-1 | Board Cy Title | student_1    | student_2    | Lernend   |
 
-        @staging_test
-        Examples:
-            | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
-            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | Cypress Room Name-1 | Board Cy Title | Kraft        | Strobl       | Lernend   |
+#       @staging_test
+#       Examples:
+#            | admin      | teacher      | student_1    | student_2    | namespace | room_name_source    | board_title    | student1name | student2name | role_name |
+#            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | Cypress Room Name-1 | Board Cy Title | Kraft        | Strobl       | Lernend   |
