@@ -1,12 +1,15 @@
+# NOTE:  in staging environment this feature is still not available and cannot be executed.
+
 @regression_test
 @stable_test
 @group-E
-
-Feature: Room Administration - able to see all the rooms and in each room all details about same school members are visible
+Feature: Room Administration - Able to see all the rooms and in each room all details about same school members are visible
 
     As a room administrator, I am able to see all the rooms and in the rooms the members from same school details can be visualized.
 
-    Scenario Outline: Room administrator sees all rooms with members from other schools are shown as 'anonymised' except 'own' role
+    Scenario Outline: Room administrator sees all rooms with members from same school with all roles
+
+        # pre-condition: user logins
         Given I am logged in as a '<student_1>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -60,11 +63,11 @@ Feature: Room Administration - able to see all the rooms and in each room all de
         Then I see Role changed to 'admin' for second user
         Then I click on button 'Confirm' in the 'Role' action menu
 
-        # administrator can check the Room members via room admin page
+        # administrator can check the room members via room admin page
         Given I am logged in as a '<admin_1>' at '<namespace>'
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
-        #Then I see the rooms administration page
+        # Then I see the rooms administration page
         When I click on three dot menu in the room admin page for room '<room_name>'
         When I click on manage room members in the three dot menu
         Then I see the admin page Edit participants of room '<room_name>'
@@ -88,9 +91,8 @@ Feature: Room Administration - able to see all the rooms and in each room all de
         Examples:
             | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name            | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher |
             | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Room Name | cypress-test-school-1   | Lernbegleitend    | Lernend           | student_1                       | teacher_2                       |
-# NOTE:
-# In Staging this feature is still not available so the test is only executed in School API environments
-# @staging_test
-# Examples:
-#    | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name            | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher |
-#    | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Room Name | Goethe-Gymnasium        | Lernbegleitend    | Lernend           | Kraft                           | Carlo                           |
+
+#  @staging_test
+#  Examples:
+#    | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name            | participant_same_school     | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher |
+#    | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft                           | Lara                            |

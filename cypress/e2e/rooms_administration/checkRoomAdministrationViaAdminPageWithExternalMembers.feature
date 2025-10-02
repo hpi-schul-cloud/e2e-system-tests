@@ -1,17 +1,15 @@
-@regression_test
-@stable_test
-@group-E
-
-# NOTE:
-# This feature should not be executed in main instance due to the school API limitation,
+# NOTE: This feature should not be executed in dev instance due to the school api limitation,
 # which prevents creating two separate schools in the same feature and scenario.
-# also in staging environment this feature is still not available and not be executed.
+# also in staging environment this feature is still not available and cannot be executed.
 
-Feature: Room Administration - able to see all rooms and in each rooms the external members shown as 'anonymised' except for "own" role from another school
+@unstable_test
+Feature: Room Administration - Able to see all rooms and the external members are shown as 'anonymized' except for "own" role from another school
 
-    As a room Administrator, I am able to see all the rooms and in the rooms the members from different school shown as 'anonymised' except member with 'own' role.
+    As a room administrator visualize all the rooms and the external members from different school seen as 'anonymized' except for 'own' role member.
 
-    Scenario Outline: Room administrator sees all rooms with members from other schools are shown as 'anonymised' except 'own' role
+    Scenario Outline: Room administrator sees all rooms with members from other schools are shown as 'anonymized' except 'own' role
+
+        # pre-condition: user logins
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given I am logged in as a '<studentExt_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -98,7 +96,7 @@ Feature: Room Administration - able to see all rooms and in each rooms the exter
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
 
-        # administrator can check the Room members via room admin page
+        # administrator can check the room members via room admin page
         Given I am logged in as a '<adminExt_1>' at '<namespace>'
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
@@ -129,16 +127,13 @@ Feature: Room Administration - able to see all rooms and in each rooms the exter
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
-#NOTE:
-# In Staging this feature is still not available so the test is only executed in School API environments
+
 #  @staging_test
 #  Examples:
 #          | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name            | participant_external_school | participant_same_school     | role_name_teacher | participant_external_school_teacher | role_name_student | participant_external_school_student | participant_same_school_student |
 #          | teacher1_dbc | student1_dbc | teacherExt1_dbc | studentExt1_dbc | adminExt1_dbc | dbc       | CypressAut Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                               | Lernend           | Alex                                | Kraft                           |
 
-# This feature should only be executed in the staging environment due to the school API limitation
 # @school_api_test
 #Examples:
 #          | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name            | participant_external_school | participant_same_school | role_name_teacher | participant_external_school_teacher | role_name_student | participant_external_school__student | participant_same_school_student |
 #          | teacher1_dbc | student1_dbc | teacherExt1_dbc | studentExt1_dbc | adminExt1_dbc | dbc       | CypressAut Room Name | cypress-test-school-2       | cypress-test-school-1   | Lernbegleitend    | cypressExt                          | Lernend           | cypress                              | student_1                       |
-
