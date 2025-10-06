@@ -111,9 +111,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
+        # group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
         browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }} # user-selected browser for A–E
         include:
+          - group: group-A
+            browser: ${{ inputs.browser }}
+          - group: group-B
+            browser: ${{ inputs.browser }}
+          - group: group-C
+            browser: ${{ inputs.browser }}
+          - group: group-D
+            browser: ${{ inputs.browser }}
+          - group: group-E
+            browser: ${{ inputs.browser }}
           - group: group-F
             browser: electron # override for F
     with:
@@ -135,9 +145,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
+        # group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
         browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
         include:
+          - group: group-A
+            browser: ${{ inputs.browser }}
+          - group: group-B
+            browser: ${{ inputs.browser }}
+          - group: group-C
+            browser: ${{ inputs.browser }}
+          - group: group-D
+            browser: ${{ inputs.browser }}
+          - group: group-E
+            browser: ${{ inputs.browser }}
           - group: group-F
             browser: electron
     with:
@@ -195,6 +215,16 @@ jobs:
         group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_groups) }}
         browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
         include:
+          - group: group-A
+            browser: ${{ inputs.browser }}
+          - group: group-B
+            browser: ${{ inputs.browser }}
+          - group: group-C
+            browser: ${{ inputs.browser }}
+          - group: group-D
+            browser: ${{ inputs.browser }}
+          - group: group-E
+            browser: ${{ inputs.browser }}
           - group: group-F
             browser: electron
     with:
