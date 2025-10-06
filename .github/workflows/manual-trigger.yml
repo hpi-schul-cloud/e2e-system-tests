@@ -112,7 +112,7 @@ jobs:
       fail-fast: false
       matrix:
         # group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
-        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }} # user-selected browser for A–E
+        # browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }} # user-selected browser for A–E
         include:
           - group: group-A
             browser: ${{ inputs.browser }}
@@ -146,7 +146,7 @@ jobs:
       fail-fast: false
       matrix:
         # group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
-        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
+        # browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
         include:
           - group: group-A
             browser: ${{ inputs.browser }}
@@ -212,8 +212,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_groups) }}
-        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
+        # group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_groups) }}
+        # browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
         include:
           - group: group-A
             browser: ${{ inputs.browser }}
