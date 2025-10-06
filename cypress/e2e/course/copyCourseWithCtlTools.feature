@@ -2,11 +2,14 @@
 @stable_test
 @group-C
 @schedule_run
+@prio_0_staging
 Feature: Course - Copy course with CTL tools
 
-    As a Teacher I want to be able to copy ctl tools, when I copy a course
+    As a teacher, I want to be able to copy ctl tools when I copy a course
 
     Scenario Outline: Teacher copies a course with ctl tools
+
+        # pre-condition: creating users (admin, teacher and student), admin sees ctl tools are available
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -23,6 +26,7 @@ Feature: Course - Copy course with CTL tools
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
+
         # pre-condition: admin activates student visibility
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
@@ -43,6 +47,7 @@ Feature: Course - Copy course with CTL tools
         When I enter '<param_search_value>' in required custom parameter field '<param_search_1_name>'
         When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_scope_context>' in the tool overview
+
         # pre-condition: teacher adds a tool with optional protected parameter
         When I click on the button to add a tool
         Then I see the context external tool configuration page
@@ -51,6 +56,7 @@ Feature: Course - Copy course with CTL tools
         When I enter '<param_protected_value>' in optional custom parameter field '<param_protected_name>'
         When I click on button Add in the modal to add an external tool
         Then I see the tool '<ctl_tool_optional_protected_param>' in the tool overview
+
         # pre-condition: teacher adds a tool with required protected parameter
         When I click on the button to add a tool
         Then I see the context external tool configuration page
@@ -71,6 +77,7 @@ Feature: Course - Copy course with CTL tools
         When I go to courses overview
         When I go to course '<course_name_copy>'
         Then I see course page '<course_name_copy>'
+
         # teacher adds a student to newly copied course
         When I open page Edit course
         Then I see page Edit course
@@ -87,7 +94,7 @@ Feature: Course - Copy course with CTL tools
         # teacher sees marked tool as incomplete
         Then I see the tool '<ctl_tool_protected_param>' is marked as incomplete
         # teacher launches incomplete operational tool
-        When I lauch tool '<ctl_tool_optional_protected_param>' with given url '<ctl_tool_launch_url>'
+        When I launch tool '<ctl_tool_optional_protected_param>' with given url '<ctl_tool_launch_url>'
         Then I see tool '<ctl_tool_optional_protected_param>' was launched
         # teacher tries to launch incomplete tool
         When I click on the tool '<ctl_tool_protected_param>'
@@ -108,7 +115,7 @@ Feature: Course - Copy course with CTL tools
         Then I see the tool '<ctl_tool_optional_protected_param>' is not marked as incomplete operational
         Then I see the tool '<ctl_tool_protected_param>' is marked as incomplete
         # student launches incomplete operational tool
-        When I lauch tool '<ctl_tool_optional_protected_param>' with given url '<ctl_tool_launch_url>'
+        When I launch tool '<ctl_tool_optional_protected_param>' with given url '<ctl_tool_launch_url>'
         Then I see tool '<ctl_tool_optional_protected_param>' was launched
         # student tries to launch incomplete tool
         When I click on the tool '<ctl_tool_protected_param>'
@@ -145,10 +152,10 @@ Feature: Course - Copy course with CTL tools
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name           | course_name_copy          | fullname_teacher | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CourseCopy | CypressAut CourseCopy (1) | Karl Herzog      | Kraft        | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Copy | CypressAut Course Copy (1) | Karl Herzog      | Kraft        | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name           | course_name_copy          | fullname_teacher  | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CourseCopy | CypressAut CourseCopy (1) | cypress teacher_1 | student_1    | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher  | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Copy | CypressAut Course Copy (1) | cypress teacher_1 | student_1    | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |

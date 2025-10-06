@@ -66,7 +66,7 @@ Feature: Course - Teacher shares a course to other teacher from different school
         Then I see the qr code in the dialog box share course result
         Then I click on the button close in the dialog box share course result
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given course with name '<course_name_share>' is deleted
         Given I am logged in as a '<teacherExt_2>' at '<namespace>'

@@ -3,12 +3,14 @@
 @schedule_run
 @group-F
 @pr
-Feature: Account - Change language of the user from user setting
+@prio_0_staging
+Feature: Dashboard - Change language of the user from user setting
 
     As a user, I want to language change from user menu for all users i.e. (Admin, Teacher, Student)
 
     Scenario Outline: user can change language to '<language>'
-        # pre-condition: creating all users
+
+        # pre-condition: creating all users (admin, teacher and student)
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'

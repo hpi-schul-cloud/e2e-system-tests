@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-E
+@prio_0_staging
 Feature: Room Board - Upload, download and delete pdf file type in the Room Board
 
     As a teacher, I want to upload, download and delete pdf file in the room board so that I can easily share and manage the board contents.
@@ -36,7 +37,7 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         Then I see the file type PDF is uploaded in the card
 
         # student can see the pdf file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the pdf file in the multi-column room board
         When I click on the page outside of the column
@@ -56,17 +57,13 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         Then I do not see the element File
 
         # student can not see the pdf file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    | pdf_file_name  | pdf_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-pdf.pdf | CY pdf test file |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | pdf_file_name  | pdf_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample-pdf.pdf | CY pdf test file |
+            | teacher      | namespace | room_name            | board_title            | pdf_file_name  | pdf_caption_text         |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file |

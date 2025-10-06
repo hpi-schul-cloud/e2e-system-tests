@@ -4,9 +4,10 @@
 @group-E
 @pr
 @pre_check_test
+@prio_0_staging
 Feature: Help Section - To use the help areas in dBildungscloud
 
-    As a user I want to use the help areas in the sidebar so that I can find help when needed
+    As a user, I want to use the help areas in the sidebar so that I can find help when needed
 
     Scenario Outline: User can use the help area in the sidebar, search article and submit an issue and a request via contact form
 
@@ -43,5 +44,5 @@ Feature: Help Section - To use the help areas in dBildungscloud
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | search_term | search_result        | contact_option | contact_subject                     | contact_email    | link_trainings                | feedback_message                |
-            | teacher1_brb | brb       | archivieren | Aufgaben archivieren | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home | Feedback erfolgreich versendet! |
+            | teacher      | namespace | search_term | search_result    | contact_option | contact_subject                     | contact_email    | link_trainings                | feedback_message                |
+            | teacher1_brb | brb       | QR          | QR-Code Funktion | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.lisum.de/home | Feedback erfolgreich versendet! |

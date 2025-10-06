@@ -2,11 +2,12 @@
 @stable_test
 @schedule_run
 @group-C
-Feature: Admin - user must set a new password during login
+@prio_0_dev
+Feature: Admin - Student must set a new password during login
 
-    As a user, I have to set a new password during login
+    As a user, I want to update my password during my first login
 
-    Scenario Outline: Admin updates the password for the users, they set a new password during login.
+    Scenario Outline: Admin updates user password, user sets a new password during first time login
 
         # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -16,7 +17,7 @@ Feature: Admin - user must set a new password during login
         When I go to '<role_to_manage>' administration
         When I click on FAB
         When I click on Add User in opened FAB for '<role_to_manage>'
-        When I fill out the user creation form for '<user_firstname>' '<user_lastname>' with email '<user_email>'
+        When I fill out the user creation form for '<user_first_name>' '<user_last_name>' with email '<user_email>'
         When I click on add button to add '<role_to_manage>'
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can see the user with email '<user_email>' in the table
@@ -32,8 +33,8 @@ Feature: Admin - user must set a new password during login
         Then I click on the button Next to proceed to the age selection
         When I select the age over 16 years for registration
         Then I click on the button Next to proceed to the personal data information page
-        Then I see my first name '<user_firstname>'
-        Then I see my last name '<user_lastname>'
+        Then I see my first name '<user_first_name>'
+        Then I see my last name '<user_last_name>'
         When I click on the button Next to proceed to the next step
         When I accept the privacy and terms of use consents
         Then I click on the button Next to proceed to the registration pin step
@@ -80,13 +81,13 @@ Feature: Admin - user must set a new password during login
         When I click on the button Next to proceed
         Then I see the dashboard
 
-        # admin deletes a student
+        # post-condition: admin deletes a student
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
-        When I click delete user button to delete user with lastname '<user_lastname>'
+        When I click delete user button to delete user with last name '<user_last_name>'
         When I click on delete button in pop up
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
@@ -96,6 +97,6 @@ Feature: Admin - user must set a new password during login
 
         @school_api_test
         Examples:
-            | namespace | admin      | role_to_manage | user_firstname | user_lastname     | user_email                                  |
-            | brb       | admin1_brb | student        | cypress        | student_admintest | original_student_adminusers@cypress-mail.de |
+            | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   |
+            | brb       | admin1_brb | student        | cypress         | student_admin_test | original_student_admin_users@cypress-mail.de |
 

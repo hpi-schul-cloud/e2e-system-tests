@@ -42,7 +42,7 @@ When("I click edit {string} button for {string}", (role, email) => {
 	management.clickEditUserButton(role, email);
 });
 
-When("I click delete user button to delete user with lastname {string}", (surname) => {
+When("I click delete user button to delete user with last name {string}", (surname) => {
 	management.deleteUser(surname);
 });
 

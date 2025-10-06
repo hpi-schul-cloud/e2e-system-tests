@@ -73,7 +73,7 @@ Feature: Topics - To access the H5P editor as a teacher.
         When I click on the Add Content H5P button
         Then I can click on the Create H5P button
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         When I go to courses overview
         When I go to course '<course_name>'
         When I open page Edit course

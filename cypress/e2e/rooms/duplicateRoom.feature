@@ -2,11 +2,14 @@
 @regression_test
 @schedule_run
 @group-A
-Feature: Room - To duplicate the existing room
+@prio_0_staging
+Feature: Rooms - To duplicate the existing room
 
-    As a teacher I want to duplicate an existing room, so that I can have a copy of it.
+    As a teacher, I want to duplicate an existing room, so that I can have a copy of it.
 
-    Scenario Outline: Teacher duplicates and deletes the room, including pre & post conditions where applicable
+    Scenario Outline: Teacher duplicates and deletes the room
+
+        # pre-condition: teacher logged in
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creates a new room with multi and single column board in it
@@ -49,11 +52,7 @@ Feature: Room - To duplicate the existing room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | admin      | namespace | room_name         | copied_room_name      | board_title    |
-            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
-
         @staging_test
         Examples:
-            | teacher      | admin      | namespace | room_name         | copied_room_name      | board_title    |
-            | teacher1_brb | admin1_brb | brb       | Cypress Room Name | Cypress Room Name (1) | Board Cy Title |
+            | teacher      | admin      | namespace | room_name            | copied_room_name         | board_title            |
+            | teacher1_brb | admin1_brb | brb       | CypressAut Room Name | CypressAut Room Name (1) | CypressAut Board Title |

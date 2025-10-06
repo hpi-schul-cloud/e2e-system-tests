@@ -1,17 +1,17 @@
-
 @stable_test
 @regression_test
 @schedule_run
 @group-C
 @pr
 @pre_check_test
+@prio_0_staging
 Feature: Course - To add and delete a course by the teacher
 
-    As a teacher I want to create a new course and want to delete the newly created test course so that list of courses can be cleaned and not full with the newly created test courses.
-
+    As a teacher, I want to manage courses by adding, updating, and removing them
 
     Scenario Outline: Create, edit and delete course
-        # pre-conditions: creating users
+
+        # pre-conditions: creating users (teacher and student)
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
 
@@ -30,7 +30,7 @@ Feature: Course - To add and delete a course by the teacher
         Then I see section two area on the course create page
         Then I see class selection box to select the class for the course
         Then I see student selection box to select the class for the course
-        When I select the student '<student_listname>' in the list
+        When I select the student '<student_last_name>' in the list
         When I click on button Next Steps after selecting course participant details
         Then I see the section three area as the finish page
         When I click on button To Course Overview on the finish page
@@ -52,7 +52,7 @@ Feature: Course - To add and delete a course by the teacher
         When I go to course '<course_title_edited>'
         Then I see course page '<course_title_edited>'
 
-        # deleting the course created in this feature test
+        # post-condition: deleting the course created in this feature test
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title_edited>'
@@ -62,19 +62,19 @@ Feature: Course - To add and delete a course by the teacher
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_title_edited>' on the course overview page
 
-        # student does not see the course anymore
+        # post-condition: student does not see the course anymore
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to courses overview
         Then I do not see the course '<course_title_edited>' on the course overview page
 
         @staging_test
         Examples:
-            | namespace | teacher      | fullname_teacher | student      | student_listname | course_title                          | course_title_edited      | course_description               |
-            | dbc       | teacher1_dbc | Karl Herzog      | student1_dbc | Herbert Kraft    | CypressAut Test Creation and Deletion | CypressAut Testkurs Edit | cy edit this is test description |
+            | namespace | teacher      | fullname_teacher | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
+            | dbc       | teacher1_dbc | Karl Herzog      | student1_dbc | Herbert Kraft     | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
 
         # Note: This can not be run against BRB/NBC because student visibility is forbidden for Teacher while creating a new course.
 
         @school_api_test
         Examples:
-            | namespace | teacher      | fullname_teacher  | student      | student_listname  | course_title                          | course_title_edited      | course_description               |
-            | dbc       | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Testkurs Edit | cy edit this is test description |
+            | namespace | teacher      | fullname_teacher  | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
+            | dbc       | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |

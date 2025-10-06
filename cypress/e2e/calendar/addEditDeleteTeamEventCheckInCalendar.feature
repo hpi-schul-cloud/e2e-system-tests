@@ -2,16 +2,18 @@
 @regression_test
 @schedule_run
 @group-F
-Feature: Calendar - create an event in a team and check in calendar
+@prio_0_staging
+Feature: Calendar - Create an event in a team and check in calendar
 
-    As a user, I want to be able to create, edit and delete an event in a team and check if it's displayed properly after each action, so that I can manage my team's schedule effectively.
+    As a user, I want to create, edit, and delete team events and verify their display to manage my team's schedule.
 
-    Scenario Outline: create, edit and delete an event in the calendar and check in calendar
-        # precondition
+    Scenario Outline: Create, edit and delete a team event and verify its display in the calendar
+
+        # pre-condition: teacher logs in to their account and create a team
         Given I am logged in as a '<user>' at '<namespace>'
         Given team with name '<team>' is created
 
-        # add team event and check in calendary
+        # add team event and check in calendar
         When I go to teams overview
         When I go to a team '<team>'
         When I go to tab Calendar
@@ -30,7 +32,7 @@ Feature: Calendar - create an event in a team and check in calendar
         When I click on event with start time '<event_start_text>' and event title '<event_title>'
         Then I am in calendar tab on team detail page and title '<event_title>' is visible
 
-        # edit team event and check in calendary
+        # edit team event and check in calendar
         When I click on icon Edit event
         Then I see event creation modal
         When I change the title to '<event_title_1>'
@@ -46,12 +48,12 @@ Feature: Calendar - create an event in a team and check in calendar
         When I click on event with start time '<event_start_text_1>' and event title '<event_title_1>'
         Then I am in calendar tab on team detail page and title '<event_title_1>' is visible
 
-        # delete team event and check in calendary
+        # delete team event and check in calendar
         When I click on icon Edit event
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
 
-        # postcondition
+        # post-condition: teacher deletes the team
         Given team with name '<team>' is deleted
 
         @school_api_test

@@ -2,11 +2,12 @@
 @stable_test
 @schedule_run
 @group-B
-Feature: Room Board - Upload, download and delete video & audio files type in the Room Board
+@prio_0_staging
+Feature: Room Board - Upload, download and delete video & audio files type in the room board
 
     As a teacher, I want to upload, download and delete video & audio files in the room board so that I can easily share and manage the board contents.
 
-    Scenario Outline: Upload, download and delete video & audio files in the room board, including pre & post conditions
+    Scenario Outline: Upload, download and delete video & audio files in the room board
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -35,7 +36,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         Then I see the file type Video in the card
 
         # student can see the video file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the video file in the multi-column room board
         When I click on the icon Download file
@@ -52,7 +53,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         Then I do not see the element File
 
         # student can not see the video file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # ------------------------- AUDIO FILE --------------------------------------
 
@@ -72,7 +73,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         Then I see the file type Audio in the card
 
         # student can see the audio file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher downloads the audio file in the multi-column room board
         When I click on the icon Download file
@@ -89,17 +90,13 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         Then I do not see the element File
 
         # student can not see the file in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    | video_file_name          | video_caption_text | audio_file_name            | audio_caption_text |
-            | teacher1_dbc | dbc       | Cypress Room Name | Board Cy Title | sample_video_1mb_mp4.mp4 | CY video test file | sample_audio_0.4mb_mp3.mp3 | CY audio test file |
+            | teacher      | namespace | room_name            | board_title            | video_file_name          | video_caption_text         | audio_file_name            | audio_caption_text         |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample_video_1mb_mp4.mp4 | CypressAut video test file | sample_audio_0.4mb_mp3.mp3 | CypressAut audio test file |
