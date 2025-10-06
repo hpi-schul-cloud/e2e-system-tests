@@ -1,11 +1,15 @@
-# @pr
-# @regression_test
-# @stable_test
+@regression_test
+@stable_test
+@schedule_run
+@group-E
+@prio_0_dev
 Feature: Course Board - To import a course from common cartridge 1.1
 
-    As a teacher I want to import a course from a common cartridge file which was exported from Moodle
+    As a teacher, I want to import a course from a common cartridge file exported from Moodle
 
     Scenario Outline: Teacher imports course from Moodle
+
+        # pre-condition: user (teacher) logs in
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # import the course

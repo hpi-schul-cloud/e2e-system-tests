@@ -2,12 +2,14 @@
 @regression_test
 @schedule_run
 @group-A
+@prio_0_staging
 Feature:  News - To read a news on the respective dashboards
 
-    As a teacher I want to read the news shown on the dashboard so that I'm informed about the latest news
+    As a teacher, I want to read the news shown on the dashboard so that I'm informed about the latest news
 
     Scenario Outline: User creates news with time options, reads them and deletes them
-        # as a pre-condition create users for author and reader
+
+        # pre-condition: create users as author (teacher) and reader (student)
         Given I am logged in as a '<news_reader>' at '<namespace>'
         Given I am logged in as a '<news_author>' at '<namespace>'
 
@@ -35,7 +37,7 @@ Feature:  News - To read a news on the respective dashboards
         When I click on the news teaser '<news_title>'
         Then I can read the news '<news_title>' with description '<news_description>' on news detail page
 
-        # first user deletes the school news
+        # post-condition: first user deletes the school news
         Given I am logged in as a '<news_author>' at '<namespace>'
         When I arrive on the dashboard
         When I go to news overview

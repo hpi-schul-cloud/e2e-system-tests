@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-E
-
+@prio_0_staging
 Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
     As a teacher, I want to verify the impact of enabling the feature checkbox in the room edit page on the ability to add the BBB Tool to room boards.
@@ -137,10 +137,10 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         @school_api_test
         Examples:
-            | teacher_1    | teacher_2    | admin      | namespace | room_name         | school_name           | role_name      | participant_name | board_title | video_conference_title |
-            | teacher1_brb | teacher2_brb | admin1_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | Board Title | Cy BBB Tool            |
+            | teacher_1    | teacher_2    | admin      | namespace | room_name            | school_name           | role_name      | participant_name | board_title            | video_conference_title |
+            | teacher1_brb | teacher2_brb | admin1_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | CypressAut Board Title | CypressAut BBB Tool    |
 
         @staging_test
         Examples:
-            | teacher_1    | teacher_2    | admin      | namespace | room_name         | school_name                 | role_name      | participant_name | board_title | video_conference_title |
-            | teacher1_brb | teacher2_brb | admin1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | Board Title | Cy BBB Tool            |
+            | teacher_1    | teacher_2    | admin      | namespace | room_name            | school_name                 | role_name      | participant_name | board_title            | video_conference_title |
+            | teacher1_brb | teacher2_brb | admin1_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | CypressAut Board Title | CypressAut BBB Tool    |

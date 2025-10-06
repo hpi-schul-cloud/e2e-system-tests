@@ -1,9 +1,10 @@
 @regression_test
 @stable_test
 @group-F
+@prio_0_staging
 Feature: Room Board - Collabora spreadsheet file type with full file access (add, edit, delete) with editor permission
 
-    As a teacher with edit permission I want to add collabora spreadsheet file, add content and delete the file in a room board
+    As a teacher with edit permission, I want to add collabora spreadsheet file, add content and delete the file in a room board
 
     Scenario Outline:  Teacher is able to create, add content and delete collabora spreadsheet file type in a board
 
@@ -66,7 +67,7 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            |
             | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
 
-#@staging_test
-#Examples:
-#| namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            |
-#| brb       | teacher1_brb | teacher2_brb | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
+        @staging_test
+        Examples:
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            |
+            | brb       | teacher1_brb | teacher2_brb | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |

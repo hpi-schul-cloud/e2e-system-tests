@@ -3,11 +3,13 @@
 @schedule_run
 @group-C
 @pre_check_test
-Feature: Team - Student managed teams
+@prio_0_staging
+Feature: Teams - Student managed teams
 
-    As a student I want to create/edit/delete the team so that I can manage the team. This is not possible for NBC, because there students are generally not allowed to create teams.
+    As a student, I want to create/edit/delete the team so that I can manage the team. This is not possible for NBC, because there students are generally not allowed to create teams.
 
-    Scenario Outline: student creates, edits and deletes team
+    Scenario Outline: Student creates, edits and deletes team
+
         # as a pre-condition create teacher and student
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
@@ -46,7 +48,7 @@ Feature: Team - Student managed teams
         Then I see team title '<team_title_edited>' is visible
         Then I see the description '<team_description_edited>' is visible
 
-        # student deletes team
+        # post-condition: student deletes team
         When I go to a team '<team_title_edited>'
         When I click on team settings
         When I click on delete option
@@ -56,5 +58,5 @@ Feature: Team - Student managed teams
         @school_api_test
         @staging_test
         Examples:
-            | admin      | student      | namespace | team_title                 | team_description                    | team_title_edited             | team_description_edited                    |
-            | admin1_brb | student1_brb | brb       | CypressAut - students team | this is cy student team description | CypressAut - Edited News Team | edited this is cy student team description |
+            | admin      | student      | namespace | team_title               | team_description                    | team_title_edited           | team_description_edited                    |
+            | admin1_brb | student1_brb | brb       | CypressAut students team | this is cy student team description | CypressAut Edited News Team | edited this is cy student team description |

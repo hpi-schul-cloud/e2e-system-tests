@@ -3,11 +3,14 @@
 @schedule_run
 @group-D
 @pr
-Feature: Course - Teacher can create, edit and delete a group in the course
+@prio_0_staging
+Feature: Course - Student can create, edit and delete a group in the course
 
-    Scenario Outline: user creation, course creation, and creating,editing and deleting a group
+    As a student, I want to manage groups within a course by creating, editing, and deleting them.
 
-        # pre-condition: creating all users
+    Scenario Outline: Student creates, edits, and deletes a group in a course
+
+        # pre-condition: creating all users accounts (admin, teacher, students)
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<student2>' at '<namespace>'
@@ -42,7 +45,7 @@ Feature: Course - Teacher can create, edit and delete a group in the course
         When I click on tab Groups
         Then I see group name changed to '<group_rename>'
 
-        # student2 checks the group after editing
+        # student 2 checks the group after editing
         Given I am logged in as a '<student2>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_name>'
@@ -59,7 +62,7 @@ Feature: Course - Teacher can create, edit and delete a group in the course
         When I click on button Delete group confirmation
         Then I do not see group name '<group_rename>' in tab Course group
 
-        # Post-condition: Teacher deletes the course
+        # post-condition: teacher deletes the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given course with name '<course_name>' is deleted
 
@@ -71,4 +74,4 @@ Feature: Course - Teacher can create, edit and delete a group in the course
         @staging_test
         Examples:
             | admin      | teacher      | student      | student2     | namespace | course_name             | fullname_teacher | fullname_student | group_name | group_member  | group_rename  |
-            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | CypressAut Group Course | Karl Herzog      | Herbert Kraft    | Group-Work | Amelia Strobl | Gruppe-Arbeit |
+            | admin1_brb | teacher1_brb | student1_brb | student2_brb | brb       | CypressAut Group Course | Karl Herzog      | Herbert Kraft    | Group-Work | Amelia Storbl | Gruppe-Arbeit |

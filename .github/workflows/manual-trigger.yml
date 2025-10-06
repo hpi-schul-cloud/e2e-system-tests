@@ -11,31 +11,44 @@ on:
           - tests for pull requests (PR)
           - pre-check release tests
           - run selective tests (@only)
+          - release tests (runs tests tagged @prio_0_staging and @prio_0_dev)
         default: "tests for pull requests (PR)"
-      instance1:
-        description: "Please enter a valid BRB instance URL to run the tests on"
-        default: "https://main.brb.dbildungscloud.dev"
-        required: true
-      instance2:
-        description: "Please enter a valid NBC instance URL to run the tests on"
-        default: "https://main.nbc.dbildungscloud.dev"
-        required: true
-      instance3:
-        description: "Please enter a valid DBC instance URL to run the tests on"
-        default: "https://main.dbc.dbildungscloud.dev"
-        required: true
+      browser:
+        description: "Select browser"
+        required: false
+        type: choice
+        options:
+          - chrome
+          - edge
+          - electron
+          - firefox
+        default: chrome
+      branch_name:
+        description: "Branch name (only needed for dev tests)"
+        required: false
+        default: "main"
 
 jobs:
   e2e-system-tests:
     runs-on: ubuntu-latest
     outputs:
+      cypress_brb_staging: ${{ steps.set_variables.outputs.cypress_brb_staging }}
+      cypress_dbc_staging: ${{ steps.set_variables.outputs.cypress_dbc_staging }}
+      cypress_nbc_staging: ${{ steps.set_variables.outputs.cypress_nbc_staging }}
+      cypress_brb_dev: ${{ steps.set_variables.outputs.cypress_brb_dev }}
+      cypress_dbc_dev: ${{ steps.set_variables.outputs.cypress_dbc_dev }}
+      cypress_nbc_dev: ${{ steps.set_variables.outputs.cypress_nbc_dev }}
+      dev_groups: ${{ steps.set_variables.outputs.dev_groups }}
+      staging_groups: ${{ steps.set_variables.outputs.staging_groups }}
+      staging_dev_groups: ${{ steps.set_variables.outputs.staging_dev_groups }}
+      all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
+      pr_tests_tag: ${{ steps.set_variables.outputs.pr_tests_tag }}
+      pre_check_tag: ${{ steps.set_variables.outputs.pre_check_tag }}
+      only_tagged_tag: ${{ steps.set_variables.outputs.only_tagged_tag }}
+      staging_base_tag: ${{ steps.set_variables.outputs.staging_base_tag }}
+      dev_base_tag: ${{ steps.set_variables.outputs.dev_base_tag }}
       environment: ${{ steps.set_variables.outputs.environment }}
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -43,13 +56,52 @@ jobs:
         id: set_variables
         shell: bash
         run: |
-          if [[ ! "${{ inputs.instance1 }}" =~ (staging|schulportal) && \
-                ! "${{ inputs.instance2 }}" =~ (staging|schulportal) && \
-                ! "${{ inputs.instance3 }}" =~ (staging|schulportal) ]]; then
-              echo "environment=dev" >> $GITHUB_OUTPUT
+          # sanitize branch (keep only last path segment, lowercase, replace _ and . with -)
+          branch="$(echo '${{ inputs.branch_name }}' | sed 's@.*/@@' | tr '[:upper:]' '[:lower:]' | tr _ - | tr . -)"
+
+          # DEV URLs (branch-based)
+          brb_dev="https://${branch}.brb.dbildungscloud.dev/"
+          dbc_dev="https://${branch}.dbc.dbildungscloud.dev/"
+          nbc_dev="https://${branch}.nbc.dbildungscloud.dev/"
+
+          # STAGING URLs (fixed)
+          brb_staging="https://staging.brandenburg.dbildungscloud.org/"
+          dbc_staging="https://staging.dbildungscloud.org/"
+          nbc_staging="https://staging.niedersachsen.dbildungscloud.org/"
+
+          # Export URLs
+          echo "cypress_brb_dev=$brb_dev" >> $GITHUB_OUTPUT
+          echo "cypress_dbc_dev=$dbc_dev" >> $GITHUB_OUTPUT
+          echo "cypress_nbc_dev=$nbc_dev" >> $GITHUB_OUTPUT
+
+          echo "cypress_brb_staging=$brb_staging" >> $GITHUB_OUTPUT
+          echo "cypress_dbc_staging=$dbc_staging" >> $GITHUB_OUTPUT
+          echo "cypress_nbc_staging=$nbc_staging" >> $GITHUB_OUTPUT
+
+          # Matrix groups
+          echo 'dev_groups=["group-A","group-B","group-C","group-D","group-E","group-F"]' >> $GITHUB_OUTPUT
+          echo 'staging_groups=["group-A","group-B","group-C","group-D","group-E","group-F"]' >> $GITHUB_OUTPUT
+          echo 'staging_dev_groups=["staging-dev-tests"]' >> $GITHUB_OUTPUT
+
+          # Default Tags
+          echo "all_tests_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
+          echo "pr_tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
+          echo "pre_check_tag=@stable_test and @school_api_test and @pre_check_test" >> $GITHUB_OUTPUT
+          echo "only_tagged_tag=@only" >> $GITHUB_OUTPUT
+          # echo "staging_base_tag=@stable_test and @staging_test" >> $GITHUB_OUTPUT
+          # echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
+
+          # Base tags with prio
+          if [[ "${{ inputs.test_mode }}" == "release tests (runs tests tagged @prio_0_staging and @prio_0_dev)" ]]; then
+            echo "staging_base_tag=@stable_test and @staging_test and @prio_0_staging" >> $GITHUB_OUTPUT
+            echo "dev_base_tag=@stable_test and @school_api_test and @prio_0_dev" >> $GITHUB_OUTPUT
+            echo "environment=ref" >> $GITHUB_OUTPUT
           else
-              echo "environment=ref" >> $GITHUB_OUTPUT
+            echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
+            echo "environment=dev" >> $GITHUB_OUTPUT
           fi
+
+  # ---------------- dev-mode jobs (use dev_groups) ----------------------------------------------
 
   run-all-tests:
     name: Run all regression tests
@@ -61,19 +113,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: [group-A, group-B, group-C, group-D, group-E, group-F]
+        group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:{0}:{1}:ci',
-          matrix.group,
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
+      browser: ${{ inputs.browser }}
+      tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.dev_base_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger-all-regression-tests', matrix.group) }}
 
   run-tests-selective:
     name: Run tests for pull requests (PR)
@@ -85,19 +133,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: [group-A, group-B, group-C, group-D, group-E, group-F]
+        group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:{0}:{1}:ci',
-          matrix.group,
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
+      browser: ${{ inputs.browser }}
+      tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.pr_tests_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ matrix.group }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger-pr-tagged-tests', matrix.group) }}
 
   run-pre-check-tests:
     name: Run pre-check release tests
@@ -107,17 +151,13 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: >-
-        ${{ format(
-          'cy:headless:stable:regression_test:{0}:manual_trigger:pre_check:ci',
-          needs.e2e-system-tests.outputs.environment == 'dev' && 'school_api_test' || 'staging_test'
-        ) }}
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
+      browser: ${{ inputs.browser}}
+      tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: pre-check
-
+      groups: manual-trigger-pre-check-tests
   run-only-tagged-tests:
     name: Run only tagged tests
     needs: e2e-system-tests
@@ -126,9 +166,51 @@ jobs:
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
-      cypress_brb: ${{ inputs.instance1 }}
-      cypress_dbc: ${{ inputs.instance3 }}
-      cypress_nbc: ${{ inputs.instance2 }}
-      tag: cy:headless:only:ci
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
+      browser: ${{ inputs.browser }}
+      tag: '"${{ needs.e2e-system-tests.outputs.only_tagged_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: only-tagged
+      groups: manual-trigger-only-tagged-tests
+
+  # ---------------- staging-mode jobs (run when test_mode == 'release tests (runs tests tagged @prio_0_staging and @prio_0_dev)') -------------------
+  run-staging-tests:
+    name: Run staging tests (staging URLs, groups A-F)
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'release tests (runs tests tagged @prio_0_staging and @prio_0_dev)' }}
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_groups) }}
+    with:
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_staging }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_staging }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_staging }}
+      browser: ${{ inputs.browser }}
+      tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
+      environment: ${{ needs.e2e-system-tests.outputs.environment }}
+      groups: ${{ format('{0}-{1}', 'manual-trigger-staging-tests', matrix.group) }}
+
+  run-dev-tests:
+    name: Run dev tests (staging-dev-tests against dev branch)
+    needs: e2e-system-tests
+    if: ${{ inputs.test_mode == 'release tests (runs tests tagged @prio_0_staging and @prio_0_dev)' }}
+    uses: ./.github/workflows/main.yml
+    secrets:
+      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_dev_groups) }}
+    with:
+      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
+      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
+      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
+      browser: ${{ inputs.browser }}
+      tag: ${{ format('"{0}"',needs.e2e-system-tests.outputs.dev_base_tag) }}
+      environment: dev
+      groups: ${{ format('{0}-{1}', 'manual-trigger', matrix.group) }}

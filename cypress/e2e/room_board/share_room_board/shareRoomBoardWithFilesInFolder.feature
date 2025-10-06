@@ -2,11 +2,13 @@
 @stable_test
 @schedule_run
 @group-B
-Feature: Share room board copy with files in file folder
+@prio_0_dev
+Feature: Room Board - Share room board copy with files in file folder
 
-    As a content editor I want to copy a room board with files in file folder, so that the file folder and also the files inside are available in the new room board
+    As a content editor, I want to copy a room board with files in file folder, so that the file folder and also the files inside are available in the new room board
 
     Scenario Outline:  Content editor is able to create, edit and delete a folder in a board
+
         # pre-condition: creating accounts and 2 rooms, one with board and folder in a card (name of second room has to be after first room in room list)
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<second_room_name>' exists
@@ -48,7 +50,7 @@ Feature: Share room board copy with files in file folder
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | second_room_name       | board_title                      | import_board_title               | folder_name        | video_file_name          | audio_file_name            | image_file_name |
-            | dbc       | teacher1_dbc   | CypressAut Room Source | CypressAut Room Second | CypressAut Folder Board Original | CypressAut Folder Board Imported | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg |
+            | namespace | content_editor | room_name              | second_room_name       | board_title                      | import_board_title               | folder_name           | video_file_name          | audio_file_name            | image_file_name |
+            | dbc       | teacher1_dbc   | CypressAut Room Source | CypressAut Room Second | CypressAut Folder Board Original | CypressAut Folder Board Imported | CypressAut Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg |
 
 

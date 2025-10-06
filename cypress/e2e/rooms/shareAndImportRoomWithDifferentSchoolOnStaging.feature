@@ -1,18 +1,22 @@
+# NOTE: This feature should only be executed in the staging environment due to the school API limitation,
+#       which prevents creating two separate schools in the same scenario and using the copied URL
+#       from Scenario One in Scenario Two due to new sessions.
+
 @regression_test
 @stable_test
-# Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same scenario and using the copied URL from Scenario One in Scenario Two due to new sessions.
-
+@group-E
+@prio_0_staging
 Feature: Rooms - Share and import room with a teacher from different school
 
-    As a teacher, I want to Share and import a rooms board with another teacher from different school so that I can collaborate effectively.
+    As a teacher, I want to share and import a rooms board with another teacher from different school so that I can collaborate effectively.
 
     Scenario Outline: Share and import a room with a teacher from different school
 
-        # pre-condition: Creating teacher accounts
+        # pre-condition: creating teacher accounts
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
-        # pre-condition: Room and room exist
+        # pre-condition: room and room exist
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given multi column board is published to not to be in a draft mode
@@ -20,7 +24,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Given link element is added in the card
         Given I navigate to the room detail page via Breadcrumb
 
-        # the first teacher shares the room with another teacher from the different school using the copied URL
+        # first teacher shares the room with another teacher from the different school using the copied URL
         When I click on three dot menu in room page
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
@@ -40,10 +44,10 @@ Feature: Rooms - Share and import room with a teacher from different school
         Then I copy the board URL
         Then I see the alert message
 
-        # pre-condition: the second teacher is logged into the application, and a room exists
+        # second teacher logged into the application
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
 
-        # the second teacher from different school imports the room
+        # second teacher from different school imports the room
         When I open the shared URL
         Then I see the modal to import the shared board into the room
         Then I see the title in the share modal
@@ -67,5 +71,5 @@ Feature: Rooms - Share and import room with a teacher from different school
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | room_name_source    | room_name_target    | board_title    |
-            | teacher1_dbc | teacherExt1_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
+            | teacher_1    | teacherExt_1    | namespace | room_name_source       | room_name_target       | board_title            |
+            | teacher1_dbc | teacherExt1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title |

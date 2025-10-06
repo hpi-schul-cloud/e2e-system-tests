@@ -1,8 +1,11 @@
+# NOTE: This feature should only be executed in the staging environment due to the school API limitation,
+# which prevents creating two separate schools in the same scenario and using the copied URL from Scenario One
+# in Scenario Two due to new sessions.
+
 @regression_test
 @stable_test
-
-# Note: This feature should only be executed in the staging environment due to the school API limitation, which prevents creating two separate schools in the same scenario and using the copied URL from Scenario One in Scenario Two due to new sessions.
-
+@group-E
+@prio_0_staging
 Feature: Room Board - Share multi-column board in the rooms with the teacher from different school
 
     As a teacher, I want to share a multi-column board with another teacher from a different school so that I can collaborate effectively.
@@ -80,6 +83,6 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | room_name_source    | room_name_target    | board_title    | import_board_title    |
-            | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Board Cy Import Title |
+            | teacher_1    | teacherExt_1    | namespace | room_name_source       | room_name_target       | board_title            | import_board_title            |
+            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | CypressAut Board Import Title |
 

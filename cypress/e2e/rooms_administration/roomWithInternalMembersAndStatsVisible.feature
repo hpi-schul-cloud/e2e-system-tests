@@ -1,12 +1,14 @@
 @regression_test
 @stable_test
 @group-F
-
+@prio_0_dev
 Feature: Room Administration - Add room and internal members with visibility on rooms administration page
 
-    As a school admin I want to see the created rooms with correct information visible on rooms administration page.
+    As a school admin, I want to see the created rooms with correct information visible on rooms administration page.
 
-    Scenario: Admin sees room with internal members, including pre-conditions
+    Scenario: Admin sees room with internal members
+
+        # pre-condition: users (admin and teachers) logged in
         Given I am logged in as a '<admin>' at '<namespace>'
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -66,10 +68,10 @@ Feature: Room Administration - Add room and internal members with visibility on 
 
         @school_api_test
         Examples:
-            | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 2                      | 0                      | 2                   |
+            | admin      | teacher_1    | teacher_2    | namespace | room_name            | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 2                      | 0                      | 2                   |
 
 # @staging_test
 # Examples:
 #     | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-#     | admin1_brb | teacher1_brb | teacher2_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 2                      | 0                      | 2                   |
+#     | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 2                      | 0                      | 2                   |
