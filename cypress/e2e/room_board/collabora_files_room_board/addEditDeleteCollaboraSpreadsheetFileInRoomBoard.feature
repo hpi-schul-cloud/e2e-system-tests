@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-F
-@prio_0_dev
+@prio_0_staging
 Feature: Room Board - Collabora spreadsheet file type with full file access (add, edit, delete) with editor permission
 
     As a teacher with edit permission, I want to add collabora spreadsheet file, add content and delete the file in a room board

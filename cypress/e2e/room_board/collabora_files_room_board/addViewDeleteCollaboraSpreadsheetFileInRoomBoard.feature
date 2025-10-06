@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-F
-@prio_0_dev
+@prio_0_staging
 Feature: Room Board - Collabora spreadsheet file read access (add, view, delete) with viewer permission
 
     As a teacher with viewer permission, I want to open and view the existing collabora spreadsheet file
