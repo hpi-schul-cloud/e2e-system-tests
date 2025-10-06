@@ -14,7 +14,7 @@ on:
           - release tests (runs tests tagged @prio_0_staging and @prio_0_dev)
         default: "tests for pull requests (PR)"
       browser:
-        description: "Select browser"
+        description: "Select browser (used for groups A–E, group-F always runs electron)"
         required: false
         type: choice
         options:
@@ -88,8 +88,6 @@ jobs:
           echo "pr_tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
           echo "pre_check_tag=@stable_test and @school_api_test and @pre_check_test" >> $GITHUB_OUTPUT
           echo "only_tagged_tag=@only" >> $GITHUB_OUTPUT
-          # echo "staging_base_tag=@stable_test and @staging_test" >> $GITHUB_OUTPUT
-          # echo "dev_base_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
 
           # Base tags with prio
           if [[ "${{ inputs.test_mode }}" == "release tests (runs tests tagged @prio_0_staging and @prio_0_dev)" ]]; then
@@ -114,11 +112,15 @@ jobs:
       fail-fast: false
       matrix:
         group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
+        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }} # user-selected browser for A–E
+        include:
+          - group: group-F
+            browser: electron # override for F
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
-      browser: ${{ inputs.browser }}
+      browser: ${{ matrix.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.dev_base_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ format('{0}-{1}', 'manual-trigger-all-regression-tests', matrix.group) }}
@@ -134,11 +136,15 @@ jobs:
       fail-fast: false
       matrix:
         group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
+        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
+        include:
+          - group: group-F
+            browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
-      browser: ${{ inputs.browser }}
+      browser: ${{ matrix.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.pr_tests_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ format('{0}-{1}', 'manual-trigger-pr-tagged-tests', matrix.group) }}
@@ -154,10 +160,11 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
-      browser: ${{ inputs.browser}}
+      browser: ${{ inputs.browser }} # non-matrix jobs respect manual browser input
       tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: manual-trigger-pre-check-tests
+
   run-only-tagged-tests:
     name: Run only tagged tests
     needs: e2e-system-tests
@@ -174,7 +181,7 @@ jobs:
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: manual-trigger-only-tagged-tests
 
-  # ---------------- staging-mode jobs (run when test_mode == 'release tests (runs tests tagged @prio_0_staging and @prio_0_dev)') -------------------
+  # ---------------- staging-mode jobs -------------------
   run-staging-tests:
     name: Run staging tests (staging URLs, groups A-F)
     needs: e2e-system-tests
@@ -186,11 +193,15 @@ jobs:
       fail-fast: false
       matrix:
         group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_groups) }}
+        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
+        include:
+          - group: group-F
+            browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_staging }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_staging }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_staging }}
-      browser: ${{ inputs.browser }}
+      browser: ${{ matrix.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ format('{0}-{1}', 'manual-trigger-staging-tests', matrix.group) }}
@@ -206,11 +217,12 @@ jobs:
       fail-fast: false
       matrix:
         group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_dev_groups) }}
+        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
-      browser: ${{ inputs.browser }}
+      browser: ${{ matrix.browser }}
       tag: ${{ format('"{0}"',needs.e2e-system-tests.outputs.dev_base_tag) }}
       environment: dev
       groups: ${{ format('{0}-{1}', 'manual-trigger', matrix.group) }}
