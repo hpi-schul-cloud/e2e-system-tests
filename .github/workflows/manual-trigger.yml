@@ -113,7 +113,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
+        include:
+          - group: group-A
+            browser: ${{ inputs.browser }}
+          - group: group-B
+            browser: ${{ inputs.browser }}
+          - group: group-C
+            browser: ${{ inputs.browser }}
+          - group: group-D
+            browser: ${{ inputs.browser }}
+          - group: group-E
+            browser: ${{ inputs.browser }}
+          - group: group-F
+            browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
@@ -133,7 +145,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
+        include:
+          - group: group-A
+            browser: ${{ inputs.browser }}
+          - group: group-B
+            browser: ${{ inputs.browser }}
+          - group: group-C
+            browser: ${{ inputs.browser }}
+          - group: group-D
+            browser: ${{ inputs.browser }}
+          - group: group-E
+            browser: ${{ inputs.browser }}
+          - group: group-F
+            browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
@@ -185,7 +209,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_groups) }}
+        include:
+          - group: group-A
+            browser: ${{ inputs.browser }}
+          - group: group-B
+            browser: ${{ inputs.browser }}
+          - group: group-C
+            browser: ${{ inputs.browser }}
+          - group: group-D
+            browser: ${{ inputs.browser }}
+          - group: group-E
+            browser: ${{ inputs.browser }}
+          - group: group-F
+            browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_staging }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_staging }}
