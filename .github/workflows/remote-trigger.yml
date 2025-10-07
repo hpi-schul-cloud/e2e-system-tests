@@ -17,12 +17,12 @@ jobs:
       cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
       cypress_dbc: ${{ steps.set_target.outputs.CYPRESS_DBC }}
       environment: ${{ steps.set_target.outputs.environment }}
-
+      all_pr_tests_tag: ${{ steps.set_target.outputs.all_pr_tests_tag }}
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
 
       - name: check local branch
         id: check_branch
@@ -71,10 +71,11 @@ jobs:
           echo "Set CYPRESS_DBC=https://${cleaned_branch_name}.dbc.dbildungscloud.dev"
 
           if [[ ! $CYPRESS_BRB =~ (staging|schulportal) && ! $CYPRESS_DBC =~ (staging|schulportal) && ! $CYPRESS_NBC =~ (staging|schulportal) ]]; then
-               echo "environment=dev" >> $GITHUB_OUTPUT
+              echo "environment=dev" >> $GITHUB_OUTPUT
           else
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
+          echo "all_pr_tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
 
       - name: Check if all apps are running
         shell: bash
@@ -103,92 +104,37 @@ jobs:
           check_availability ${{ steps.set_target.outputs.cypress_nbc }}/version
           check_availability ${{ steps.set_target.outputs.cypress_dbc }}/version
 
-  run-tests-group-A:
+  run-remote-repo-tests:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.service-account-token }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group:
+          ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-A:school_api_test:pr:ci
+      browser: chrome
+      tag: >-
+        ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_pr_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-A
-
-  run-tests-group-B:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.service-account-token }}
-    with:
-      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-B:school_api_test:pr:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-B
-
-  run-tests-group-C:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.service-account-token }}
-    with:
-      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-C:school_api_test:pr:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-C
-
-  run-tests-group-D:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.service-account-token }}
-    with:
-      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-D:school_api_test:pr:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-D
-
-  run-tests-group-E:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.service-account-token }}
-    with:
-      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-E:school_api_test:pr:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-E
-
-  run-tests-group-F:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.service-account-token }}
-    with:
-      cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
-      cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
-      tag: cy:headless:stable:group-F:school_api_test:pr:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-F
+      groups: ${{ format('{0}-{1}', 'remote-trigger-pr-tagged-tests', matrix.group) }}
 
   cypress-tests-successful:
     needs:
-      - run-tests-group-A
-      - run-tests-group-B
-      - run-tests-group-C
-      - run-tests-group-D
-      - run-tests-group-E
-      - run-tests-group-F
+      - run-remote-repo-tests
     runs-on: ubuntu-latest
+    if: always()
     steps:
-      - run: echo "cypress tests were successful"
+      - name: Check cypress test result
+        run: |
+          # github sometimes treats skipped as success, so enforce failures here
+          if [[ "${{ needs.run-remote-repo-tests.result }}" != "success" ]]; then
+            echo "Cypress tests failed or were skipped"
+            exit 1
+          fi
+          echo "Cypress tests were successful"

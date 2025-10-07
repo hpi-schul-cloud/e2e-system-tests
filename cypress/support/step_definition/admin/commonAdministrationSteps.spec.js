@@ -3,8 +3,6 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
-//Scenario: Adding a new user
-
 When("I visit the login page", () => {
 	management.visitUrlForFirstLogin();
 });
@@ -24,8 +22,6 @@ Then("I can see the user with email {string} in the table", (email) => {
 	management.userIsVisibleInTable(email);
 });
 
-//Scenario: Editing a new user
-
 When("I enter {string} email {string} in search input field", (role, keyword) => {
 	management.enterNameForSearch(role, keyword);
 });
@@ -42,13 +38,11 @@ When("I click save changes button", () => {
 	management.clickSaveButton();
 });
 
-// Scenario: Deleting an user
-
 When("I click edit {string} button for {string}", (role, email) => {
 	management.clickEditUserButton(role, email);
 });
 
-When("I click delete user button to delete user with lastname {string}", (surname) => {
+When("I click delete user button to delete user with last name {string}", (surname) => {
 	management.deleteUser(surname);
 });
 

@@ -1,9 +1,6 @@
 "use strict";
 
 class Topics {
-	static #pageTitle = '[id="page-title"]';
-	static #localeDateFormat = "de-DE";
-	static #contentBlocks = '[id="content-blocks"]';
 	static #mainContentMain = '[id="main-content"]';
 	static #topicTitleInput = '[id="topicTitleInput"]';
 	static #addTextBtn = '[data-testid="topic-addcontent-text-btn"]';
@@ -16,7 +13,6 @@ class Topics {
 	// class is used for cardHeader and cardBlock because the elements are too generic and depend on position of the element, so using data-testid would need much more logic (also in the feature file) and code than using class.
 	static #cardHeader = '[class="card-header"]';
 	static #cardBlock = '[class="card-block"]';
-	static #elementTextCard = '[data-testid="topic-content-element-text-0"]';
 	static #elementGeoGebraCard = '[data-testid="topic-content-element-geoGebra-1"]';
 	static #elementLearningMaterialCard =
 		'[data-testid="topic-content-element-resources-2"]';
@@ -27,11 +23,9 @@ class Topics {
 		'[data-testid="topic-material-addmaterial-btn"]';
 	static #submitChangesInTopicBtn = '[data-testid="topic-submitchanges-btn"]';
 	static #elementTextDescriptionTextarea = '[class="ck ck-editor__main"]';
-	static #inputClassFormControl = '[class="form-control"]';
 	static #navCourseOverviewLink = '[data-testid="sidebar-courses"]';
 	static #titlebar = '[id="titlebar"]';
 	static #sectionCourse = '[data-testid="section-topic"]';
-	static #topNavbar = '[id="top-navbar"]';
 	static #breadcrumbBackToCourse = '[data-testid="navigate-to-course-from-topic"]';
 	static #penIcon = '[data-testid="edit-icon-pencil"]';
 	static #editTopicButton = '[data-testid="topic-button-edit"]';
@@ -39,6 +33,75 @@ class Topics {
 	static #textElementPos4 = '[data-testid="topic-content-element-text-4"]';
 	// static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
 	// static #draftCheckbox = '[data-testid="private-checkbox"]'
+	static #copyAlertDialog = '[data-testid="dialog-title"]';
+	static #copytopicDialogWarning = '[data-testid="warning-title"]';
+	static #closeButtonInCopyTopicDialog = '[data-testid="dialog-close"]';
+	static #topicTitleCourseDetail = '[data-testid="lesson-name-0"]';
+	static #publishButtonCopiedTopic = '[data-testid="lesson-card-action-publish-0"]';
+	static #topicTitleTopicDetailPage = '[id="page-title"]';
+	static #sectionTopic = '[data-testid="section-topic"]';
+	static #copyResultNotifications = '[data-testid="copy-result-notifications"]';
+
+	seeCopyAlertDialog() {
+		cy.get(Topics.#copyAlertDialog).should("be.visible");
+	}
+
+	seeGeoGebraAndEtherpadNotCopiedWarnings() {
+		cy.get(Topics.#copyResultNotifications).within(() => {
+			cy.get(Topics.#copytopicDialogWarning)
+				.invoke("text")
+				.then((text) => {
+					// normalize text: lowercase, trim, collapse spaces
+					const normalizedText = text.replace(/\s+/g, " ").trim().toLowerCase();
+
+					// assert presence of words in any letter combination "GeoGebra", "GEOGEBRA", "Etherpad", "ETHERPADS" etc.
+					expect(normalizedText).to.include("geogebra");
+					expect(normalizedText).to.match(/etherpads?/);
+				});
+		});
+	}
+
+	clickCloseButtonInDialog() {
+		cy.get(Topics.#closeButtonInCopyTopicDialog).click();
+	}
+
+	seeCopiedTopicTitleOnCourseDetailPage(topicName, suffix) {
+		cy.get(Topics.#topicTitleCourseDetail).should(
+			"contain.text",
+			`${topicName} (${suffix})`
+		);
+	}
+
+	doNotSeeCopiedTopicTitleOnCourseDetailPage(topicName, suffix) {
+		cy.get(Topics.#topicTitleCourseDetail)
+			.should("not.contain.text", `(${suffix})`)
+			.and("contain.text", topicName);
+	}
+
+	seePublishButtonOnCopiedTopic() {
+		cy.get(Topics.#publishButtonCopiedTopic).should("be.visible");
+	}
+
+	clickOnCopiedTopic(topicName, suffix) {
+		cy.contains(Topics.#topicTitleCourseDetail, `${topicName} (${suffix})`).click();
+	}
+
+	seeTopicDetailsPage() {
+		cy.url().should("match", /courses\/[a-f0-9]+\/topics\/[a-f0-9]+/);
+	}
+
+	seeCopiedTopicTitleOnTopicDetailPage(topicName, suffix) {
+		cy.get(Topics.#topicTitleTopicDetailPage).should(
+			"contain.text",
+			`${topicName} (${suffix})`
+		);
+	}
+
+	seeTopicElementNamesOnTopicDetailPage(expectedText) {
+		cy.get(Topics.#sectionTopic)
+			.should("be.visible")
+			.should("contain.text", expectedText);
+	}
 
 	seeEditTopicPage(topicTitle) {
 		if (topicTitle === "-") {
@@ -93,14 +156,20 @@ class Topics {
 		}
 	}
 
-	enterTitleforElementText(elementTextTitle, elementPosition) {
+	enterTitleForElementText(elementTextTitle, elementPosition) {
 		if (elementPosition === "0") {
 			cy.get(Topics.#textElementPos0).within(() => {
-				cy.get(Topics.#cardHeader).find("div > input").eq(0).type(elementTextTitle);
+				cy.get(Topics.#cardHeader)
+					.find("div > input")
+					.eq(0)
+					.type(elementTextTitle);
 			});
 		} else if (elementPosition === "4") {
 			cy.get(Topics.#textElementPos4).within(() => {
-				cy.get(Topics.#cardHeader).find("div > input").eq(0).type(elementTextTitle);
+				cy.get(Topics.#cardHeader)
+					.find("div > input")
+					.eq(0)
+					.type(elementTextTitle);
 			});
 		}
 	}
@@ -123,9 +192,12 @@ class Topics {
 		}
 	}
 
-	enterTitleforElementGeoGebra(elementGeoGebraTitle) {
+	enterTitleForElementGeoGebra(elementGeoGebraTitle) {
 		cy.get(Topics.#elementGeoGebraCard).within(() => {
-			cy.get(Topics.#cardHeader).find("div > input").eq(0).type(elementGeoGebraTitle);
+			cy.get(Topics.#cardHeader)
+				.find("div > input")
+				.eq(0)
+				.type(elementGeoGebraTitle);
 		});
 	}
 
@@ -135,7 +207,7 @@ class Topics {
 		});
 	}
 
-	enterTitleforElementLearningMaterial(elementLearningMaterialTitle) {
+	enterTitleForElementLearningMaterial(elementLearningMaterialTitle) {
 		cy.get(Topics.#elementLearningMaterialCard).within(() => {
 			cy.get(Topics.#cardHeader)
 				.find("div > input")
@@ -150,7 +222,7 @@ class Topics {
 		});
 	}
 
-	enterTitleforElementEtherpad(elementEtherpadTitle, elementPosition) {
+	enterTitleForElementEtherpad(elementEtherpadTitle, elementPosition) {
 		if (elementPosition === "2") {
 			cy.get(Topics.#elementEtherpadCardPos2).within(() => {
 				cy.get(Topics.#cardHeader)
@@ -170,7 +242,7 @@ class Topics {
 		}
 	}
 
-	enterDescriptionforElementEtherpad(elementEtherpadDescription, elementPosition) {
+	enterDescriptionForElementEtherpad(elementEtherpadDescription, elementPosition) {
 		if (elementPosition === "2") {
 			cy.get(Topics.#elementEtherpadCardPos2).within(() => {
 				cy.get(Topics.#cardBlock)
@@ -188,15 +260,20 @@ class Topics {
 		}
 	}
 
-	enterTitleforElementTask(elementEtherpadTask) {
+	enterTitleForElementTask(elementEtherpadTask) {
 		cy.get(Topics.#elementTaskCard).within(() => {
-			cy.get(Topics.#cardHeader).find("div > input").eq(0).type(elementEtherpadTask);
+			cy.get(Topics.#cardHeader)
+				.find("div > input")
+				.eq(0)
+				.type(elementEtherpadTask);
 		});
 	}
 
-	enterLinkforElementTask(taskId) {
-		const env = Cypress.env("BRB").toLowerCase().replace(/\/$/, "");
-		const taskURL = `${env}/homework/${taskId}`;
+	enterLinkForElementTask(taskId, namespace) {
+		const ns = namespace.toUpperCase();
+		let envUrl = Cypress.env(ns);
+		envUrl = envUrl ? envUrl.toLowerCase().replace(/\/$/, "") : "";
+		const taskURL = `${envUrl}/homework/${taskId}`;
 		cy.get(Topics.#elementTaskCard).within(() => {
 			cy.get(Topics.#cardBlock).find("input").type(taskURL);
 		});

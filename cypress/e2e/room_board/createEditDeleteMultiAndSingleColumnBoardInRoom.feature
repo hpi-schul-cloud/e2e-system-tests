@@ -2,11 +2,14 @@
 @stable_test
 @schedule_run
 @group-A
+@prio_0_staging
 Feature: Room Board - Add, edit and delete board in room
 
-    As a teacher I want to add, edit and delete board in the room.
+    As a teacher, I want to add, edit and delete board in the room.
 
-    Scenario Outline: Teacher add, edit, and delete board in the room, including pre-conditions
+    Scenario Outline: Teacher add, edit, and delete board in the room
+
+        # pre-condition: teacher logs in
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: teacher creating a new room
@@ -84,11 +87,7 @@ Feature: Room Board - Add, edit and delete board in room
 
 
         @school_api_test
-        Examples:
-            | teacher      | namespace | room_name         | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
-
         @staging_test
         Examples:
-            | teacher      | namespace | room_name         | board_title    |
-            | teacher1_brb | brb       | Cypress Room Name | Board Cy Title |
+            | teacher      | namespace | room_name            | board_title            |
+            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Board Title |

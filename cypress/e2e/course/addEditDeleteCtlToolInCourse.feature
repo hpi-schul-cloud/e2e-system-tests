@@ -2,11 +2,14 @@
 @stable_test
 @group-D
 @schedule_run
+@prio_0_staging
 Feature: Course - To add, edit and delete a ctl tool in a course
 
-    As a teacher I want to add, edit and delete a ctl tool in my course.
+    As a teacher, I want to add, edit and delete a ctl tools in a course
 
-    Scenario Outline: Teacher adds, edits and deletes tools in a course, Student sees course tools but does not see the button to add a tool
+    Scenario Outline: Teacher manages CTL tools in a course; student can view but not add tools
+
+        # pre-condition: creating all users and creating course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
@@ -41,7 +44,7 @@ Feature: Course - To add, edit and delete a ctl tool in a course
         Then I see the domain of '<ctl_tool_1>' in the tool overview
 
         # teacher launches tool
-        When I lauch tool '<ctl_tool_1>' with given url '<ctl_tool_launch_url>'
+        When I launch tool '<ctl_tool_1>' with given url '<ctl_tool_launch_url>'
         Then I see tool '<ctl_tool_1>' was launched
 
         # teacher adds a tool twice but with a different name
@@ -134,10 +137,10 @@ Feature: Course - To add, edit and delete a ctl tool in a course
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name                   | fullname_teacher | fullname_student | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CourseWithCtlTools | Karl Herzog      | Herbert Kraft    | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name                      | fullname_teacher | fullname_student | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course With Ctl Tools | Karl Herzog      | Herbert Kraft    | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name                   | fullname_teacher  | fullname_student  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut CourseWithCtlTools | cypress teacher_1 | cypress student_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name                      | fullname_teacher  | fullname_student  | ctl_tool_1     | ctl_tool_1_new     | ctl_tool_required_param          | school_param_name | context_param_name | param_value | param_value_updated | ctl_tool_optional_param          | ctl_tool_openstreetmap     | ctl_tool_link                                                                             | ctl_tool_launch_url |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course With Ctl Tools | cypress teacher_1 | cypress student_1 | CY Test Tool 1 | CY Test Tool 1 New | CY Test Tool Required Parameters | schoolParam       | contextParam       | test        | updated test        | CY Test Tool Optional Parameters | CY Test Tool OpenStreetMap | https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823 | https://google.com/ |

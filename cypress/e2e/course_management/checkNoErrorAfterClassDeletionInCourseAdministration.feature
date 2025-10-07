@@ -2,11 +2,13 @@
 @stable_test
 @schedule_run
 @group-A
+@prio_0_staging
 Feature: Course Management - To create, add class with course and after deletion of class, check for errors
 
-    As an administrator I want to add created class into course and after deletion of class, check for errors
+    As an administrator, I want to add created class into course and after deletion of class, check for errors
 
     Scenario Outline: Admin creates, adds class into course and after deleting the class check for no errors
+
         # pre-condition: admin, teacher and student log in to create their account in a same school (valid only for dev instances)
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -21,8 +23,7 @@ Feature: Course Management - To create, add class with course and after deletion
         When I go to course administration page
         Then I see no error info
 
-        # remove course from the teacher in case error caught for other reasons and admin course page not accessed
-        # post condition
+        # post-condition: teacher deletes course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given course with name '<course_name>' is deleted
 
@@ -32,7 +33,6 @@ Feature: Course Management - To create, add class with course and after deletion
         When I go to course administration page
         Then I see no error info
 
-
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name       | fullname_teacher  | fullname_student  | class_name       |
@@ -41,4 +41,4 @@ Feature: Course Management - To create, add class with course and after deletion
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name       | fullname_teacher | fullname_student | class_name       |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course | Karl Herzog      | Herbert Kraft    | CypressAut class |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course | Karl Herzog      | Herbert Kraft    | CypressAut class |

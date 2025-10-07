@@ -3,11 +3,14 @@
 @group-C
 @schedule_run
 @pre_check_test
+@prio_0_staging
 Feature: Admin - Admin adds, edits and deletes CTL tools in school
 
-    As an admin I want to administrate the CTL tools used in the school
+    As an admin, I want to manage CTL tools in the school
 
     Scenario Outline: Admin adds, edits and deletes external tools
+
+        # pre-condition: admin logs in to create their account in a school
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
@@ -15,7 +18,7 @@ Feature: Admin - Admin adds, edits and deletes CTL tools in school
         Then I see the external tools table is empty
         When I click the add external tool button
         Then I see the school external tool configuration page
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         # admin tries to find a hidden external tool
         Then I do not see tool '<ctl_tool_hidden>' in the tool selection
 
@@ -28,7 +31,7 @@ Feature: Admin - Admin adds, edits and deletes CTL tools in school
         # admin adds a tool with required custom parameter
         When I click the add external tool button
         Then I see the school external tool configuration page
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         When I select the tool '<ctl_tool_required_param>' from available tools
         Then I see tool '<ctl_tool_required_param>' is selected
         When I enter '<param_value>' in required custom parameter field '<param_name>'
@@ -39,7 +42,7 @@ Feature: Admin - Admin adds, edits and deletes CTL tools in school
         # admin adds a tool via tool link with parameter
         When I click the add external tool button
         Then I see the school external tool configuration page
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         When I insert the external tool link '<ctl_tool_link>'
         Then I see tool '<ctl_tool_openstreetmap>' is selected
         When I click on button Add in the modal to add an external tool
@@ -48,7 +51,7 @@ Feature: Admin - Admin adds, edits and deletes CTL tools in school
         # admin adds a tool with optional custom parameter
         When I click the add external tool button
         Then I see the school external tool configuration page
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         When I select the tool '<ctl_tool_optional_param>' from available tools
         Then I see tool '<ctl_tool_optional_param>' is selected
         When I enter '<param_value>' in optional custom parameter field '<param_name>'
@@ -59,7 +62,7 @@ Feature: Admin - Admin adds, edits and deletes CTL tools in school
         # admin edits a tool
         When I click on edit button of tool '<ctl_tool_optional_param>'
         Then I see the school external tool configuration page
-        Then I see the school external tool configuration infotext
+        Then I see the school external tool configuration info text
         Then I see tool '<ctl_tool_optional_param>' is selected
         When I enter '<param_value_updated>' in optional custom parameter field '<param_name>'
         When I click on button Add in the modal to add an external tool
@@ -67,7 +70,7 @@ Feature: Admin - Admin adds, edits and deletes CTL tools in school
         Then I see the school external tool configuration page
         Then I see custom parameter input field '<param_name>' contains '<param_value_updated>'
 
-        # admin deletes tools
+        # post-condition: admin deletes tools
         When I click on administration in menu
         When I navigate to new school admin page via sub menu
         When I click on external tools panel

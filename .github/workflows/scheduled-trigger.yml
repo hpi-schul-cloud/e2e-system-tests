@@ -8,121 +8,43 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       environment: ${{ steps.set_variables.outputs.environment }}
-    env:
-      instance1: https://main.brb.dbildungscloud.dev
-      instance2: https://main.nbc.dbildungscloud.dev
-      instance3: https://main.dbc.dbildungscloud.dev
+      all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set environment output
+      - name: Set environment and tags
         id: set_variables
         run: |
-          if [[ ! "$instance1" =~ (staging|schulportal) && \
-                ! "$instance2" =~ (staging|schulportal) && \
-                ! "$instance3" =~ (staging|schulportal) ]]; then
-            echo "environment=dev" >> $GITHUB_OUTPUT
-          else
-            echo "environment=ref" >> $GITHUB_OUTPUT
-          fi
+          # since this is scheduled, environment is always dev
+          env_type="dev"
+          all_tests_tag="@stable_test and @school_api_test"
 
-  run-tests-group-A:
+          echo "environment=$env_type" >> $GITHUB_OUTPUT
+          echo "all_tests_tag=$all_tests_tag" >> $GITHUB_OUTPUT
+
+  run-scheduled-tests:
     needs: e2e-system-tests
     uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        group: ["group-A","group-B","group-C","group-D","group-E","group-F"]
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:group-A:school_api_test:ci
+      browser: chrome
+      tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_tests_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-A
-
-  run-tests-group-B:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_dbc: https://main.dbc.dbildungscloud.dev
-      cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:group-B:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-B
-
-  run-tests-group-C:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_dbc: https://main.dbc.dbildungscloud.dev
-      cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:group-C:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-C
-
-  run-tests-group-D:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_dbc: https://main.dbc.dbildungscloud.dev
-      cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:group-D:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-D
-
-  run-tests-group-E:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_dbc: https://main.dbc.dbildungscloud.dev
-      cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:group-E:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-E
-
-  run-tests-group-F:
-    needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
-    secrets:
-      service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
-    with:
-      cypress_brb: https://main.brb.dbildungscloud.dev
-      cypress_dbc: https://main.dbc.dbildungscloud.dev
-      cypress_nbc: https://main.nbc.dbildungscloud.dev
-      tag: cy:headless:stable:group-F:school_api_test:ci
-      environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: group-F
+      groups: ${{ format('{0}-{1}', 'scheduled-trigger-regression-tests', matrix.group) }}
 
   notify_RC:
     runs-on: ubuntu-latest
-    needs:
-      - e2e-system-tests
-      - run-tests-group-A
-      - run-tests-group-B
-      - run-tests-group-C
-      - run-tests-group-D
-      - run-tests-group-E
-      - run-tests-group-F
-    if: |
-      always()
-
+    needs: run-scheduled-tests
+    if: always()
     steps:
       - uses: technote-space/workflow-conclusion-action@v3
 

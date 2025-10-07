@@ -2,6 +2,7 @@
 @stable_test
 @schedule_run
 @group-B
+@prio_0_staging
 Feature: Room Board - Add BBB Tool in the Room Board
 
     As a teacher, I want to add a BBB (BigBlueButton) Tool to the room board so that I can manage video conferencing effectively.
@@ -37,6 +38,10 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I see the video conference element added in the card
         When I click on the video conference element in the card
         Then I see the modal to start the video conference
+        When I click outside the BigBlueButton dialog box
+        Then I see the video conference element added in the card
+        When I click on the video conference element in the card
+        Then I see the modal to start the video conference
         Then I see the moderator approval checkbox is checked in the video conference start modal
         Then I see the button create in the video conference creation modal to start the call
         Then I click on the button cancel in the video conference creation modal to go back to the card
@@ -58,11 +63,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Given the room named '<room_name>' is deleted
 
         @school_api_test
-        Examples:
-            | teacher      | admin      | namespace | room_name         | board_title    | video_conference_title |
-            | teacher1_dbc | admin1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |
-
         @staging_test
         Examples:
-            | teacher      | admin      | namespace | room_name         | board_title    | video_conference_title |
-            | teacher1_dbc | admin1_dbc | dbc       | Cypress Room Name | Board Cy Title | Cy BBB Tool            |
+            | teacher      | admin      | namespace | room_name            | board_title            | video_conference_title |
+            | teacher1_dbc | admin1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | CypressAut BBB Tool    |

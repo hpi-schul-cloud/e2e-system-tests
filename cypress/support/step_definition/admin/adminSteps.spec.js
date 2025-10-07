@@ -3,6 +3,10 @@ import Management from "../../pages/admin/pageAdministration";
 
 const management = new Management();
 
+Then("I see the assigned date of birth for student in the table", () => {
+	management.seeTheAssignedBirthDateInUserTable();
+});
+
 Then("I logout from the application", () => {
 	management.logoutFromApplication();
 });
