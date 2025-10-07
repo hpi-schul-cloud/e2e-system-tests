@@ -111,8 +111,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
-        # browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }} # user-selected browser for A–E
         include:
           - group: group-A
             browser: ${{ inputs.browser }}
@@ -125,7 +123,7 @@ jobs:
           - group: group-E
             browser: ${{ inputs.browser }}
           - group: group-F
-            browser: electron # override for F
+            browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
@@ -145,8 +143,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # group: ${{ fromJson(needs.e2e-system-tests.outputs.dev_groups) }}
-        # browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
         include:
           - group: group-A
             browser: ${{ inputs.browser }}
@@ -180,7 +176,7 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
-      browser: ${{ inputs.browser }} # non-matrix jobs respect manual browser input
+      browser: ${{ inputs.browser }}
       tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: manual-trigger-pre-check-tests
@@ -212,8 +208,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_groups) }}
-        # browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
         include:
           - group: group-A
             browser: ${{ inputs.browser }}
