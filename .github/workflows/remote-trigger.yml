@@ -112,13 +112,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ["group-A","group-B","group-C","group-D","group-E","group-F"]
+        group:
+          ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       browser: chrome
-      tag:  >-
+      tag: >-
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_pr_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ format('{0}-{1}', 'remote-trigger-pr-tagged-tests', matrix.group) }}
@@ -127,5 +128,13 @@ jobs:
     needs:
       - run-remote-repo-tests
     runs-on: ubuntu-latest
+    if: always()
     steps:
-      - run: echo "cypress tests were successful"
+      - name: Check cypress test result
+        run: |
+          # github sometimes treats skipped as success, so enforce failures here
+          if [[ "${{ needs.run-remote-repo-tests.result }}" != "success" ]]; then
+            echo "Cypress tests failed or were skipped"
+            exit 1
+          fi
+          echo "Cypress tests were successful"
