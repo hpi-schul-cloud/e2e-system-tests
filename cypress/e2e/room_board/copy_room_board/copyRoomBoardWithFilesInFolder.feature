@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-F
+@group-D
 @prio_0_dev
 Feature: Room Board - Copying room board with files in a file folder
 

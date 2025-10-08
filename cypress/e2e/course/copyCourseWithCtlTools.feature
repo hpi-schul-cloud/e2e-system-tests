@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-C
+@group-F
 @schedule_run
 @prio_0_staging
 Feature: Course - Copy course with CTL tools
