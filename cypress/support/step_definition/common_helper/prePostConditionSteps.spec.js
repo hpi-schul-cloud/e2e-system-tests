@@ -185,28 +185,28 @@ Given("admin enables video conference for the school in the school settings page
 	management.clickOnAdminSettingsSave();
 });
 
-Given("the room named {string} is deleted", (room_name) => {
+Given("the room named {string} is deleted", (roomName) => {
 	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(room_name);
-	rooms.seeRoomDetailPage(room_name);
+	rooms.navigateToRoom(roomName);
+	rooms.seeRoomDetailPage(roomName);
 	rooms.openThreeDotMenuForRoom();
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	rooms.roomIsNotVisibleOnOverviewPage(roomName);
 });
 
-Given("a room named {string} exists", (room_name) => {
+Given("a room named {string} exists", (roomName) => {
 	rooms.navigateToRoomsOverview();
 	rooms.clickOnCreateRoomFAB();
 	rooms.showRoomCreationPage();
-	rooms.fillRoomFormName(room_name);
+	rooms.fillRoomFormName(roomName);
 	rooms.selectRoomColour();
 	rooms.submitRoom();
-	rooms.seeRoomDetailPage(room_name);
+	rooms.seeRoomDetailPage(roomName);
 });
 
-Given("a multi-column board named {string} exists in the room", (board_title) => {
+Given("a multi-column board named {string} exists in the room", (boardTitle) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -215,21 +215,21 @@ Given("a multi-column board named {string} exists in the room", (board_title) =>
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(board_title);
+	roomBoards.enterRoomBoardTitle(boardTitle);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(board_title);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
 Given(
 	"a room named {string} with a multi-column board named {string} exists",
-	(room_name, board_title) => {
+	(roomName, boardTitle) => {
 		rooms.navigateToRoomsOverview();
 		rooms.clickOnCreateRoomFAB();
 		rooms.showRoomCreationPage();
-		rooms.fillRoomFormName(room_name);
+		rooms.fillRoomFormName(roomName);
 		rooms.selectRoomColour();
 		rooms.submitRoom();
-		rooms.seeRoomDetailPage(room_name);
+		rooms.seeRoomDetailPage(roomName);
 		rooms.clickOnAddContentButton();
 		rooms.seeFabButtonToAddBoard();
 		rooms.clickOnFabButtonToAddBoard();
@@ -238,22 +238,22 @@ Given(
 		roomBoards.seeNewRoomBoardCreatePage();
 		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 		roomBoards.clickOnEditInBoardMenu();
-		roomBoards.enterRoomBoardTitle(board_title);
+		roomBoards.enterRoomBoardTitle(boardTitle);
 		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-		roomBoards.seeUpdatedRoomBoardTitle(board_title);
+		roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 	}
 );
 
 Given(
 	"a room named {string} with a multi-column board named {string} exists and published",
-	(room_name, board_title) => {
+	(roomName, boardTitle) => {
 		rooms.navigateToRoomsOverview();
 		rooms.clickOnCreateRoomFAB();
 		rooms.showRoomCreationPage();
-		rooms.fillRoomFormName(room_name);
+		rooms.fillRoomFormName(roomName);
 		rooms.selectRoomColour();
 		rooms.submitRoom();
-		rooms.seeRoomDetailPage(room_name);
+		rooms.seeRoomDetailPage(roomName);
 		rooms.clickOnAddContentButton();
 		rooms.seeFabButtonToAddBoard();
 		rooms.clickOnFabButtonToAddBoard();
@@ -262,16 +262,16 @@ Given(
 		roomBoards.seeNewRoomBoardCreatePage();
 		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 		roomBoards.clickOnEditInBoardMenu();
-		roomBoards.enterRoomBoardTitle(board_title);
+		roomBoards.enterRoomBoardTitle(boardTitle);
 		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-		roomBoards.seeUpdatedRoomBoardTitle(board_title);
+		roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 		board.clickOnKebabMenuAction("publish");
 		roomBoards.verifyDraftChipNotVisible();
 	}
 );
 
-Given("a single-column board named {string} exists in the room", (board_title) => {
+Given("a single-column board named {string} exists in the room", (boardTitle) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -280,9 +280,9 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(board_title);
+	roomBoards.enterRoomBoardTitle(boardTitle);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(board_title);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
 Given("I navigate to the room detail page via Breadcrumb", () => {
