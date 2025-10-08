@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-A
+@group-F
 @prio_0_staging
 Feature: Media Shelf - Restrict CTL tools to context media-board
 

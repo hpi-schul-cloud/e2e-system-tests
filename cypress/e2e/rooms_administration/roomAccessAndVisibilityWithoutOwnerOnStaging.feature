@@ -6,7 +6,7 @@
 
 @stable_test
 @regression_test
-@group-F
+@group-D
 @prio_0_staging
 Feature: Room Administration - Visibility of rooms without an owner assigned
 

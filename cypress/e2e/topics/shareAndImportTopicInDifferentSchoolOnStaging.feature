@@ -5,7 +5,7 @@
 
 @regression_test
 @stable_test
-@group-F
+@group-E
 @prio_0_staging
 Feature: Topics - Teacher shares a topic to other teacher from different school to import it
 

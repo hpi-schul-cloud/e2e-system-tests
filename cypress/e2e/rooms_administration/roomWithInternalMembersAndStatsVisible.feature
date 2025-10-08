@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-F
+@group-D
 @prio_0_dev
 Feature: Room Administration - Add room and internal members with visibility on rooms administration page
 

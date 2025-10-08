@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-F
+@group-D
 @schedule_run
 @prio_0_staging
 Feature: Course Board - To share a board card link

@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-F
+@group-D
 @prio_0_staging
 Feature: Topics - Teacher copies a topic in the course
 
