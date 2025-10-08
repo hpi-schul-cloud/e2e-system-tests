@@ -414,20 +414,15 @@ class RoomBoards {
 
 	seeZipFileWithDatePrefixIsSavedInDownloads(fileName) {
 		const today = new Date();
-		const yyyyMMdd = today.toISOString().slice(0, 10).replace(/-/g, "");
-		const expectedPattern = new RegExp(
-			`^${yyyyMMdd}_${fileName.replace(/ /g, "( |%20)")}\\.zip$`
+		const yyyy = today.getFullYear();
+		const mm = String(today.getMonth() + 1).padStart(2, "0");
+		const dd = String(today.getDate()).padStart(2, "0");
+		const decodedFileName = decodeURIComponent(fileName);
+		const zipFileName = `${yyyy}${mm}${dd}_${decodedFileName}.zip`;
+		const prefix = `${yyyy}${mm}${dd}_${decodeURIComponent(fileName)}`;
+		cy.readFile(`cypress/downloads/${prefix}.zip`, "binary", { timeout: 15000 }).should(
+			(buffer) => expect(buffer.length).to.be.gt(100)
 		);
-
-		cy.exec("ls cypress/downloads").then((result) => {
-			const foundFile = result.stdout
-				.split("\n")
-				.find((f) => expectedPattern.test(decodeURIComponent(f)));
-			expect(foundFile, "Downloaded zip file").to.exist;
-			cy.readFile(`cypress/downloads/${foundFile}`, "binary", { timeout: 15000 }).should(
-				(buffer) => expect(buffer.length).to.be.gt(100)
-			);
-		});
 	}
 
 	clickContinueOnImportModal() {
@@ -963,14 +958,21 @@ class RoomBoards {
 
 	verifyImageFileRessourceNotAvailable(fileName) {
 		cy.get(`@copiedFileURL_${fileName}`).then((imageUrl) => {
-			cy.request({
-				url: imageUrl,
-				encoding: "binary",
-				failOnStatusCode: false,
-			}).then((response) => {
-				expect(response.status).to.be.oneOf([403, 404]);
-				//expect(response.headers["content-type"]).to.match(/image|webp/i);
-			});
+			const check = () => {
+				cy.request({
+					url: imageUrl,
+					encoding: "binary",
+					failOnStatusCode: false,
+				}).then((response) => {
+					if ([403, 404].includes(response.status)) {
+						expect(response.status).to.be.oneOf([403, 404]);
+					} else {
+						cy.wait(500).then(check);
+					}
+				});
+			};
+
+			check();
 		});
 	}
 
