@@ -101,7 +101,7 @@ Given(
 	}
 );
 
-Given("student visibility for teachers is enabled", () => {
+Given("student visibility for teachers in school management is enabled", () => {
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();
 	management.clickGeneralSettingsPanel();
@@ -109,7 +109,7 @@ Given("student visibility for teachers is enabled", () => {
 	management.clickOnAdminSettingsSave();
 });
 
-Given("student visibility for teachers is disabled", () => {
+Given("student visibility for teachers in school management is disabled", () => {
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();
 	management.clickGeneralSettingsPanel();
@@ -578,7 +578,7 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string}",
+	"{string} added in the room named {string} with role {string} and default permission",
 	(participantName, roomName, role) => {
 		rooms.navigateToRoomsOverview();
 		rooms.navigateToRoom(roomName);

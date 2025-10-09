@@ -248,14 +248,15 @@ Then("I see the information box in share modal", () => {
 Then("I see the button Cancel in the share modal", () => {
 	roomBoards.verifyCancelButtonInShareModal();
 });
-Then(
-	"I see the option This board is not editable for members with room role Read is by default selected",
-	() => {
-		roomBoards.verifyBoardNotEditableForReadRoleIsSelected();
+
+Then("I see the option {string} is by {string} selected", (option, state) => {
+	if (state === "default") {
+		if (option === "This board is not editable for Read members") {
+			roomBoards.verifyBoardNotEditableForReadRoleIsSelected();
+		} else if (option === "All members can edit this board") {
+			roomBoards.verifyAllMembersCanEditBoardIsSelected();
+		}
 	}
-);
-Then("I see the option All members can edit this board is by default selected", () => {
-	roomBoards.verifyAllMembersCanEditBoardIsSelected();
 });
 
 When("I open the shared URL", () => {
