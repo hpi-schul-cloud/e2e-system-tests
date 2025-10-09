@@ -31,6 +31,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Then I see the title in the share modal
         Then I see the information box in share modal
         Then I see the info box indicating that the content cannot be copied or shared
+        Then I see information on "Data protection, Room member, Etherpad content, Whiteboard content, External tool, Protected tool"
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I see the checkbox Link valid for 21 days is by default checked
