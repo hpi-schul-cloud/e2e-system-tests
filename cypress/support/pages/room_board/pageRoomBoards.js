@@ -1,4 +1,6 @@
 "use strict";
+//import Board from "../../pages/course_board/pageBoard";
+//const board = new Board();
 
 class RoomBoards {
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
@@ -54,7 +56,7 @@ class RoomBoards {
 	static #importButton = '[data-testid="dialog-confirm"]';
 	static #shareModalTitle = '[data-testid="dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
-	static #editSettingsOption1 = '[data-testid="edit-settings-option-1"]';
+	static #editSettingsOption = '[data-testid="edit-settings-option-';
 	static #editSettingsOption2 = '[data-testid="edit-settings-option-2"]';
 	static #saveButtonInEditingSettingsModal = '[data-testid="edit-settings-save-btn"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
@@ -153,12 +155,12 @@ class RoomBoards {
 		cy.get(RoomBoards.#linkSaveButton).click();
 	}
 
-	seeAddNewColumnButton() {
-		cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist");
-	}
-
-	seeNoAddNewColumnButton() {
-		cy.get(RoomBoards.#addNewColumnButton).should("not.exist");
+	seeAddNewColumnButton(shouldExist = true) {
+		if (!shouldExist) {
+			cy.get(RoomBoards.#addNewColumnButton).should("not.exist");
+		} else {
+			cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist");
+		}
 	}
 
 	verifyLinkElementClickableInRoomBoard() {
@@ -410,9 +412,9 @@ class RoomBoards {
 		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
 	}
 
-	verifyTwoOptionsInEditingSettingsModal() {
-		cy.get(RoomBoards.#editSettingsOption1).should("be.visible");
-		cy.get(RoomBoards.#editSettingsOption2).should("be.visible");
+	verifyTwoOptionsInEditingSettingsModal(optionType) {
+		cy.get(RoomBoards.#editSettingsOption + '1"]').should("be.visible");
+		cy.get(RoomBoards.#editSettingsOption + '2"]').should("be.visible");
 	}
 
 	verifyBoardNotEditableForReadRoleIsSelected() {
@@ -425,12 +427,10 @@ class RoomBoards {
 
 	clickOptionBoardNotEditableForReadRole() {
 		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).first().check();
-		cy.wait(500);
 	}
 
 	clickOptionAllMembersCanEditBoard() {
 		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).last().check();
-		cy.wait(500);
 	}
 
 	verifyShareInformationBox() {
@@ -755,6 +755,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
 	}
 	clickOnEditingSettingInBoardMenu() {
+		//board.clickOnKebabMenuAction("editing-setting");
 		cy.get(RoomBoards.#boardMenuActionEditingSetting).click();
 	}
 	seeBoardOnRoomDetailPage(boardName) {

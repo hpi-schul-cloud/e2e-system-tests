@@ -203,7 +203,7 @@ Then("I see the title in the share modal", () => {
 });
 
 Then("I see the two options in editing settings modal", () => {
-	roomBoards.verifyTwoOptionsInEditingSettingsModal();
+	roomBoards.verifyTwoOptionsInEditingSettingsModal("editSettingsOption");
 });
 
 Then("I see the button Cancel in the editing settings modal", () => {
@@ -219,7 +219,7 @@ When("I click on the button Save in Editing settings modal", () => {
 });
 
 Then("I see the button Add column in the course board", () => {
-	roomBoards.seeAddNewColumnButton();
+	roomBoards.seeAddNewColumnButton(true);
 });
 
 Then("I see a warning modal for The board must be published first", () => {
@@ -227,7 +227,7 @@ Then("I see a warning modal for The board must be published first", () => {
 });
 
 Then("I see the button Add column in the course board is not visible", () => {
-	roomBoards.seeNoAddNewColumnButton();
+	roomBoards.seeAddNewColumnButton(false);
 });
 
 When(
