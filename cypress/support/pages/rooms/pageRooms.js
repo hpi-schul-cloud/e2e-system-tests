@@ -649,7 +649,7 @@ class Rooms {
 		cy.get(Rooms.#threeDotMenuConfirm).click();
 	}
 
-	checkMessagePoints(infoPointsArray) {
+	checkShareModalMessagePoints(infoPointsArray) {
 		const selectors = {
 			"data protection": Rooms.#shareInformationDataProtectionText,
 			"room member": Rooms.#shareInformationRoomMemberPermission,
