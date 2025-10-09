@@ -38,9 +38,6 @@ jobs:
       cypress_brb_dev: ${{ steps.set_variables.outputs.cypress_brb_dev }}
       cypress_dbc_dev: ${{ steps.set_variables.outputs.cypress_dbc_dev }}
       cypress_nbc_dev: ${{ steps.set_variables.outputs.cypress_nbc_dev }}
-      dev_groups: ${{ steps.set_variables.outputs.dev_groups }}
-      staging_groups: ${{ steps.set_variables.outputs.staging_groups }}
-      staging_dev_groups: ${{ steps.set_variables.outputs.staging_dev_groups }}
       all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
       pr_tests_tag: ${{ steps.set_variables.outputs.pr_tests_tag }}
       pre_check_tag: ${{ steps.set_variables.outputs.pre_check_tag }}
@@ -77,11 +74,6 @@ jobs:
           echo "cypress_brb_staging=$brb_staging" >> $GITHUB_OUTPUT
           echo "cypress_dbc_staging=$dbc_staging" >> $GITHUB_OUTPUT
           echo "cypress_nbc_staging=$nbc_staging" >> $GITHUB_OUTPUT
-
-          # Matrix groups
-          echo 'dev_groups=["group-A","group-B","group-C","group-D","group-E","group-F"]' >> $GITHUB_OUTPUT
-          echo 'staging_groups=["group-A","group-B","group-C","group-D","group-E","group-F"]' >> $GITHUB_OUTPUT
-          echo 'staging_dev_groups=["staging-dev-tests"]' >> $GITHUB_OUTPUT
 
           # Default Tags
           echo "all_tests_tag=@stable_test and @school_api_test" >> $GITHUB_OUTPUT
@@ -240,8 +232,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group: ${{ fromJson(needs.e2e-system-tests.outputs.staging_dev_groups) }}
-        browser: ${{ fromJson(format('["{0}"]', inputs.browser)) }}
+        include:
+          - group: staging-dev-tests
+            browser: ${{ inputs.browser }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}

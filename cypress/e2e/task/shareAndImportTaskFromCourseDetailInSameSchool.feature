@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-F
+@group-E
 @prio_0_staging
 Feature: Task - Teacher shares a task with another teacher from the same school
 
