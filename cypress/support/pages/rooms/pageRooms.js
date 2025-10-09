@@ -650,24 +650,6 @@ class Rooms {
 	}
 
 	checkMessagePoints(infoPointsArray) {
-		const selectorMap = {
-			"data protection": Rooms.#shareInformationDataProtectionText,
-			"room member": Rooms.#shareInformationRoomMemberPermission,
-			"etherpad content": Rooms.#shareModalContentEtherpad,
-			"whiteboard content": Rooms.#shareModalContentWhiteboard,
-			"external tool": Rooms.#shareModalExternalTool,
-			"protected tool": Rooms.#shareModalProtectedParameter,
-		};
-
-		infoPointsArray.forEach((point) => {
-			const normalized = point.trim().toLowerCase();
-			const selector = selectorMap[normalized];
-
-			cy.get(selector).should("be.visible");
-		});
-	}
-
-	checkMessagePoints(infoPointsArray) {
 		const selectors = {
 			"data protection": Rooms.#shareInformationDataProtectionText,
 			"room member": Rooms.#shareInformationRoomMemberPermission,
