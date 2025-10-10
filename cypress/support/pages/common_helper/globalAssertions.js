@@ -13,32 +13,54 @@ class GlobalAssertions {
 			.replace(/[\[\]"]/g, "")
 			.split(", ")
 			.map((opt) => opt.trim());
-			contents.forEach((content) => {
-			cy.get(GlobalAssertions.#firstElementOfBreadcrumb).parent().contains('li', content);
+		contents.forEach((content) => {
+			cy.get(GlobalAssertions.#firstElementOfBreadcrumb)
+				.parent()
+				.contains("li", content);
 		});
 	}
 
 	checkSidebar(activePage) {
-		cy.get(`[data-testid="sidebar-${activePage}"]`).should('have.class', 'v-list-item--active');
+		cy.get(`[data-testid="sidebar-${activePage}"]`).should(
+			"have.class",
+			"v-list-item--active"
+		);
 	}
 
 	checkElementWithDataTestIdExists(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).should('exist');
+		cy.get(`[data-testid="${elementId}"]`).should("exist");
 	}
 
 	checkElementWithDataTestIdNotExists(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).should('not.exist');
+		cy.get(`[data-testid="${elementId}"]`).should("not.exist");
 	}
 
 	checkStateOfHeaderCheckbox(checkboxState) {
-		if (checkboxState == 'mixed') {
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('have.attr', 'aria-checked', 'mixed')
-		} else if (checkboxState == 'checked'){
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('have.attr', 'checked')
+		if (checkboxState == "mixed") {
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+				.find("input")
+				.should("have.attr", "aria-checked", "mixed");
+		} else if (checkboxState == "checked") {
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+				.find("input")
+				.should("have.attr", "checked");
 		} else {
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('not.have.attr', 'checked')
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader).find('input').should('not.have.attr', 'aria-checked')
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+				.find("input")
+				.should("not.have.attr", "checked");
+			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+				.find("input")
+				.should("not.have.attr", "aria-checked");
 		}
+	}
+
+	checkMessagePoints(infoPointsArray, selectors) {
+		infoPointsArray.forEach((point) => {
+			const normalized = point.trim().toLowerCase();
+			const selector = selectors[normalized];
+
+			cy.get(selector).should("be.visible");
+		});
 	}
 }
 
