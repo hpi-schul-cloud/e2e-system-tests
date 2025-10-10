@@ -1,6 +1,6 @@
 "use strict";
-//import Board from "../../pages/course_board/pageBoard";
-//const board = new Board();
+import Board from "../../pages/course_board/pageBoard";
+const board = new Board();
 
 class RoomBoards {
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
@@ -57,7 +57,6 @@ class RoomBoards {
 	static #shareModalTitle = '[data-testid="dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
 	static #editSettingsOption = '[data-testid="edit-settings-option-';
-	static #editSettingsOption2 = '[data-testid="edit-settings-option-2"]';
 	static #saveButtonInEditingSettingsModal = '[data-testid="edit-settings-save-btn"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
 	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
@@ -755,8 +754,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
 	}
 	clickOnEditingSettingInBoardMenu() {
-		//board.clickOnKebabMenuAction("editing-setting");
-		cy.get(RoomBoards.#boardMenuActionEditingSetting).click();
+		board.clickOnKebabMenuAction("edit-setting");
 	}
 	seeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("exist");
