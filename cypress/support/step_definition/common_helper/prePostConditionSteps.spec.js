@@ -101,6 +101,22 @@ Given(
 	}
 );
 
+Given("student visibility for teachers in school management is enabled", () => {
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickGeneralSettingsPanel();
+	management.toggleStudentVisibilityForTeachersByAdmin(true);
+	management.clickOnAdminSettingsSave();
+});
+
+Given("student visibility for teachers in school management is disabled", () => {
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickGeneralSettingsPanel();
+	management.toggleStudentVisibilityForTeachersByAdmin(false);
+	management.clickOnAdminSettingsSave();
+});
+
 Given(
 	"task {string} with submission date exists in course {string}",
 	(taskTitle, courseName) => {
@@ -169,28 +185,28 @@ Given("admin enables video conference for the school in the school settings page
 	management.clickOnAdminSettingsSave();
 });
 
-Given("the room named {string} is deleted", (room_name) => {
+Given("the room named {string} is deleted", (roomName) => {
 	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(room_name);
-	rooms.seeRoomDetailPage(room_name);
+	rooms.navigateToRoom(roomName);
+	rooms.seeRoomDetailPage(roomName);
 	rooms.openThreeDotMenuForRoom();
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	rooms.roomIsNotVisibleOnOverviewPage(roomName);
 });
 
-Given("a room named {string} exists", (room_name) => {
+Given("a room named {string} exists", (roomName) => {
 	rooms.navigateToRoomsOverview();
 	rooms.clickOnCreateRoomFAB();
 	rooms.showRoomCreationPage();
-	rooms.fillRoomFormName(room_name);
+	rooms.fillRoomFormName(roomName);
 	rooms.selectRoomColour();
 	rooms.submitRoom();
-	rooms.seeRoomDetailPage(room_name);
+	rooms.seeRoomDetailPage(roomName);
 });
 
-Given("a multi-column board named {string} exists in the room", (board_title) => {
+Given("a multi-column board named {string} exists in the room", (boardTitle) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -199,12 +215,63 @@ Given("a multi-column board named {string} exists in the room", (board_title) =>
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(board_title);
+	roomBoards.enterRoomBoardTitle(boardTitle);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(board_title);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
-Given("a single-column board named {string} exists in the room", (board_title) => {
+Given(
+	"a room named {string} with a multi-column board named {string} exists",
+	(roomName, boardTitle) => {
+		rooms.navigateToRoomsOverview();
+		rooms.clickOnCreateRoomFAB();
+		rooms.showRoomCreationPage();
+		rooms.fillRoomFormName(roomName);
+		rooms.selectRoomColour();
+		rooms.submitRoom();
+		rooms.seeRoomDetailPage(roomName);
+		rooms.clickOnAddContentButton();
+		rooms.seeFabButtonToAddBoard();
+		rooms.clickOnFabButtonToAddBoard();
+		roomBoards.seeColumnBoardDialogBox();
+		roomBoards.clickOnButtonToAddMultiColumnBoard();
+		roomBoards.seeNewRoomBoardCreatePage();
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		roomBoards.clickOnEditInBoardMenu();
+		roomBoards.enterRoomBoardTitle(boardTitle);
+		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+		roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
+	}
+);
+
+Given(
+	"a room named {string} with a multi-column board named {string} exists and published",
+	(roomName, boardTitle) => {
+		rooms.navigateToRoomsOverview();
+		rooms.clickOnCreateRoomFAB();
+		rooms.showRoomCreationPage();
+		rooms.fillRoomFormName(roomName);
+		rooms.selectRoomColour();
+		rooms.submitRoom();
+		rooms.seeRoomDetailPage(roomName);
+		rooms.clickOnAddContentButton();
+		rooms.seeFabButtonToAddBoard();
+		rooms.clickOnFabButtonToAddBoard();
+		roomBoards.seeColumnBoardDialogBox();
+		roomBoards.clickOnButtonToAddMultiColumnBoard();
+		roomBoards.seeNewRoomBoardCreatePage();
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		roomBoards.clickOnEditInBoardMenu();
+		roomBoards.enterRoomBoardTitle(boardTitle);
+		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+		roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		board.clickOnKebabMenuAction("publish");
+		roomBoards.verifyDraftChipNotVisible();
+	}
+);
+
+Given("a single-column board named {string} exists in the room", (boardTitle) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -213,9 +280,9 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(board_title);
+	roomBoards.enterRoomBoardTitle(boardTitle);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(board_title);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
 Given("I navigate to the room detail page via Breadcrumb", () => {
@@ -507,6 +574,48 @@ Given(
 		rooms.fillParticipantFormName(participantName);
 		rooms.selectParticipantName();
 		rooms.addParticipant();
+	}
+);
+
+Given(
+	"{string} added in the room named {string} with role {string} and default permission",
+	(participantName, roomName, role) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.selectRoomRoleFromDropdownMenu(role);
+		rooms.seeRoleOfParticipant(role);
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(participantName);
+	}
+);
+
+Given(
+	"{string} added in the room named {string} with role {string} and granted {string} permission",
+	(participantName, roomName, role, permission) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.selectRoomRoleFromDropdownMenu(role);
+		rooms.seeRoleOfParticipant(role);
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(participantName);
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
+		rooms.clickOnButtonActionMenuInSubMenu("Change-Permission");
+		rooms.changeRoleOfTheUser(permission);
+		rooms.confirmChangeRoleModalActions("Confirm", "Role");
 	}
 );
 
