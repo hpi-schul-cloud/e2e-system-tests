@@ -49,8 +49,7 @@ class Rooms {
 		'[data-testid="input-invite-participants-requires-confirmation"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose =
-		'[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -127,10 +126,54 @@ class Rooms {
 		});
 	}
 
-	deleteAllRoomsWithName(roomName) {
-		cy.wait(2000);
-		this.deleteElementsWithText(Rooms.#roomTitle, roomName);
-		this.verifyRoomDeletion(roomName);
+	deleteAllRoomsWithName(prefix = "CypressAut") {
+		const tileAnchorSelector = 'a[data-testid^="room-tile"]';
+		const titleSelector = '[data-testid="room-title"]';
+		const rx = new RegExp(`^${prefix}.*$`, "i");
+
+		// collect hrefs (strings) for all currently visible matching rooms
+		cy.get(tileAnchorSelector, { timeout: 10000 }).then(($anchors) => {
+			const hrefs = [];
+
+			$anchors.each((_, anchor) => {
+				const title = Cypress.$(anchor).find(titleSelector).text().trim();
+				if (rx.test(title)) {
+					// anchor is the <a href="/rooms/xxx" ...>
+					const href = anchor.getAttribute("href");
+					if (href) hrefs.push(href);
+				}
+			});
+
+			if (hrefs.length === 0) {
+				cy.log(`No rooms starting with "${prefix}" found`);
+				return;
+			}
+
+			cy.log(
+				`Found ${hrefs.length} rooms starting with "${prefix}" - deleting sequentially`
+			);
+
+			// iterate over hrefs; for each iteration we re-query the DOM by href
+			cy.wrap(hrefs).each((href) => {
+				// re-query the anchor by href (fresh element)
+				cy.get(`a[href="${href}"]`, { timeout: 10000 })
+					.scrollIntoView()
+					.should("be.visible")
+					.click(); // navigate to room detail
+
+				// Do delete flow on detail page (use timeouts to be robust)
+				cy.get(Rooms.#roomDetailFAB, { timeout: 10000 }).should("be.visible").click();
+				cy.get(Rooms.#btnRoomDelete, { timeout: 10000 }).should("be.visible").click();
+				cy.get(Rooms.#deletionConfirmationModalTitle, { timeout: 10000 }).should("exist");
+				cy.get(Rooms.#confirmButtonOnModal, { timeout: 10000 })
+					.should("be.visible")
+					.click();
+
+				// Wait for the rooms list to be available again before continuing.
+				// If deletion triggers a redirect back to /rooms, the next `cy.get(tileAnchorSelector)` should succeed.
+				cy.get(tileAnchorSelector, { timeout: 10000 }).should("exist");
+			});
+		});
 	}
 
 	seeLockIconInRoom(roomName) {
@@ -311,9 +354,7 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -364,9 +405,7 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool)
-			.should("be.visible")
-			.type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantSchool).should("be.visible").type("{downArrow}{enter}");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -403,9 +442,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -470,9 +507,7 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {

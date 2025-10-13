@@ -3,6 +3,7 @@
 @regression_test
 @stable_test
 @group-E
+@prio_0_dev
 Feature: Room Administration - Able to see all the rooms and in each room all details about same school members are visible
 
     As a room administrator, I am able to see all the rooms and in the rooms the members from same school details can be visualized.

@@ -74,4 +74,4 @@ Feature: Course - Student can create, edit and delete a group in the course
         @staging_test
         Examples:
             | admin      | teacher      | student      | student2     | namespace | course_name             | fullname_teacher | fullname_student | group_name | group_member  | group_rename  |
-            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Group Course | Karl Herzog      | Herbert Kraft    | Group-Work | Amelia Storbl | Gruppe-Arbeit |
+            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Group Course | Karl Herzog      | Herbert Kraft    | Group-Work | Amelia Strobl | Gruppe-Arbeit |
