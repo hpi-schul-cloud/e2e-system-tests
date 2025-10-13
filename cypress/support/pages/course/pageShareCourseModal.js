@@ -1,7 +1,5 @@
 "use strict";
 
-import GlobalAssertions from "../../pages/common_helper/globalAssertions";
-
 class ShareCourseModal {
 	static #shareCourseDialog = '[data-testid="share-dialog"]';
 	static #shareCourseDialogInfoTextTitle = '[data-testid="share-options-info-text"]';
@@ -22,15 +20,6 @@ class ShareCourseModal {
 	static #shareCourseDialogCloseButton = '[data-testid="dialog-close"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
 	static #checkboxInput = 'input[type="checkbox"]';
-	static #shareCourseInformationDataProtectionText =
-		'[data-testid="share-info-copyright-data-protection"]';
-	static #shareCourseModalContentEtherpad =
-		'[data-testid="share-modal-content-etherpad"]';
-	static #shareCourseModalContentWhiteboard =
-		'[data-testid="share-modal-content-whiteboard"]';
-	static #shareInformationCourseMemberPermission =
-		'[data-testid="share-modal-course-member-permission"]';
-	static #shareCourseModalContentGeogebra = '[data-testid="share-modal-geogebra"]';
 
 	seeShareCourseDialogBox() {
 		cy.get(ShareCourseModal.#shareCourseDialog).should("be.visible");
@@ -178,21 +167,6 @@ class ShareCourseModal {
 	seeShareOptionButtonCourseDialog(buttonName) {
 		const normalizeSelector = this.convertStringToCamelCase(buttonName);
 		cy.get(`[data-testid=${normalizeSelector}Action]`).should("be.visible");
-	}
-
-	checkCourseShareModalMessagePoints(infoPointsArray) {
-		const selectors = {
-			"data protection": ShareCourseModal.#shareCourseInformationDataProtectionText,
-			"course member": ShareCourseModal.#shareInformationCourseMemberPermission,
-			"geogebra id": ShareCourseModal.#shareCourseModalContentGeogebra,
-			"etherpad content": ShareCourseModal.#shareCourseModalContentEtherpad,
-			"whiteboard content": ShareCourseModal.#shareCourseModalContentWhiteboard,
-			"external tool": ShareCourseModal.#shareCourseDialogExternalToolsInfo,
-			"protected tool": ShareCourseModal.#shareCourseDialogToolProtectedParamsInfo,
-			"files info": ShareCourseModal.#shareCourseDialogFilesInfo,
-		};
-		const globalAssertions = new GlobalAssertions();
-		globalAssertions.checkMessagePoints(infoPointsArray, selectors);
 	}
 }
 

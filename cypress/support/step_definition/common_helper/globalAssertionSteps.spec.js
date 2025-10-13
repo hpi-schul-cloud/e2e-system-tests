@@ -15,4 +15,6 @@ Then("I see state of table header checkbox is {string}", (checkboxState) => {
 	globalAssertions.checkStateOfHeaderCheckbox(checkboxState);
 });
 
-
+Then("I see share modal information on {string}", (infoPoints) => {
+	globalAssertions.checkShareModalMessagePoints(infoPoints);
+});

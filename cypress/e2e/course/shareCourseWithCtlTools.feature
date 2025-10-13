@@ -110,6 +110,7 @@ Feature: Course - Teacher can share a course with CTL tools
         When I click on button share course
         Then I see the dialog box share course
         Then I see the info text in the dialog box share course
+        Then I see share modal information on "Copyright data protection, Course member permission, Geogebra, Content etherpad, Content whiteboard, External tools info, External tools protected parameter info, Coursefiles info"
         Then I see the checkbox school internal as checked
         Then I see the checkbox expiry date as checked
         When I click on the button continue in the dialog box share course

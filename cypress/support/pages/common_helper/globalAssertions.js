@@ -3,6 +3,8 @@
 class GlobalAssertions {
 	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
 	static #selectAllCheckboxInTableHeader = '[data-testid="select-all-checkbox"]';
+	static #shareInfoPrefix = '[data-testid="share-info-';
+	static #shareModalPrefix = '[data-testid="share-modal-';
 
 	seeBreadcrumbContainsStrings(contentString) {
 		// this line done following things:
@@ -61,6 +63,23 @@ class GlobalAssertions {
 
 			cy.get(selector).should("be.visible");
 		});
+	}
+
+	checkShareModalMessagePoints(infoPoints) {
+		const infoPointsArray = infoPoints.split(",").map((p) => p.trim().toLowerCase());
+		const selectors = {};
+		infoPointsArray.forEach((point, index) => {
+			const content_module = point.replace(/\s+/g, "-");
+
+			// First element always belongs to 'share-info', rest to 'share-modal'
+			const selector =
+				index === 0
+					? `${GlobalAssertions.#shareInfoPrefix}${content_module}"]`
+					: `${GlobalAssertions.#shareModalPrefix}${content_module}"]`;
+
+			selectors[point] = selector;
+		});
+		this.checkMessagePoints(infoPointsArray, selectors);
 	}
 }
 

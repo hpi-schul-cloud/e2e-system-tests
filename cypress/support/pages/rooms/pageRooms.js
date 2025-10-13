@@ -1,5 +1,4 @@
 "use strict";
-import GlobalAssertions from "../../pages/common_helper/globalAssertions";
 
 class Rooms {
 	static #pageTitle = '[data-testid="page-title"]';
@@ -63,16 +62,6 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
-	static #shareInformationDataProtectionText =
-		'[data-testid="share-info-copyright-data-protection"]';
-	static #shareInformationRoomMemberPermission =
-		'[data-testid="share-options-room-memberships-data-text"]';
-	static #shareModalContentEtherpad = '[data-testid="share-modal-content-etherpad"]';
-	static #shareModalContentWhiteboard =
-		'[data-testid="share-modal-content-whiteboard"]';
-	static #shareModalExternalTool = '[data-testid="share-modal-external-tools-info"]';
-	static #shareModalProtectedParameter =
-		'[data-testid="share-modal-external-tools-protected-parameter-info"]';
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -647,19 +636,6 @@ class Rooms {
 	clickConfirmButtonInThreeDotMenu() {
 		cy.get(Rooms.#threeDotMenuConfirm).should("be.visible");
 		cy.get(Rooms.#threeDotMenuConfirm).click();
-	}
-
-	checkShareModalMessagePoints(infoPointsArray) {
-		const selectors = {
-			"data protection": Rooms.#shareInformationDataProtectionText,
-			"room member": Rooms.#shareInformationRoomMemberPermission,
-			"etherpad content": Rooms.#shareModalContentEtherpad,
-			"whiteboard content": Rooms.#shareModalContentWhiteboard,
-			"external tool": Rooms.#shareModalExternalTool,
-			"protected tool": Rooms.#shareModalProtectedParameter,
-		};
-		const globalAssertions = new GlobalAssertions();
-		globalAssertions.checkMessagePoints(infoPointsArray, selectors);
 	}
 }
 export default Rooms;

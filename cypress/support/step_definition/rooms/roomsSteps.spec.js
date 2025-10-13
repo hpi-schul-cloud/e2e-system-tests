@@ -398,8 +398,3 @@ When(
 When("I click on confirm button in the three dot menu", () => {
 	rooms.clickConfirmButtonInThreeDotMenu();
 });
-
-Then("I see information on {string}", (infoPoints) => {
-	const infoPointsArray = infoPoints.split(",").map((p) => p.trim());
-	rooms.checkShareModalMessagePoints(infoPointsArray);
-});
