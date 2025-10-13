@@ -4,10 +4,10 @@
 @stable_test
 @schedule_run
 @prio_0_dev
-@group-F
-Feature: Room Board - Editing permissions for boards
+@group-B
+Feature: Room Board - Editing permissions for room boards
 
-    As a admin user, I cannot grant/revoke edit permissions on room board for all members of the room if the room board is unpublished
+    As a admin of the room, I cannot allow/restrict edit permissions on room board for all members of the room if the room board is unpublished
 
     Scenario Outline: Grant/Revoke edit permission for unpublished room board with a user having administer permission
 

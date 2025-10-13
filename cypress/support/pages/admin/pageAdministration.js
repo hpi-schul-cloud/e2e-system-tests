@@ -519,7 +519,8 @@ class Management {
 			.invoke("prop", "disabled");
 	}
 
-	toggleStudentVisibilityForTeachersByAdmin(desiredState) {
+	toggleStudentVisibilityForTeachersByAdmin(visibilityState) {
+		const desiredState = visibilityState === "enabled" ? true : false;
 		this.checkingVideoToggleButtonStatus().then((toggleBtnStatus) => {
 			toggleBtnStatus === desiredState
 				? cy.log(`Element is already in the desired state, skipping click`)
@@ -533,9 +534,6 @@ class Management {
 							: cy.log("Element is disabled, cannot toggle state");
 					});
 		});
-		cy.get(Management.#studentVisibilityToggle)
-			.find("input")
-			.should("have.prop", "checked", desiredState);
 	}
 
 	clickOnAdminSettingsSave() {

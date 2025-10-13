@@ -412,24 +412,27 @@ class RoomBoards {
 	}
 
 	verifyTwoOptionsInEditingSettingsModal(optionType) {
-		cy.get(RoomBoards.#editSettingsOption + '1"]').should("be.visible");
-		cy.get(RoomBoards.#editSettingsOption + '2"]').should("be.visible");
+		cy.get(`[data-testid=${optionType}-1]`).should("be.visible");
+		cy.get(`[data-testid=${optionType}-2]`).should("be.visible");
 	}
 
-	verifyBoardNotEditableForReadRoleIsSelected() {
-		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).first().should("be.checked");
+	verifyOptionIsSelectedInEditingSettingsModal(option) {
+		const selectedOption = option === "not editable by read members" ? "1" : "2";
+		//selectedOption = option.contains("not editable") ? "1" : "2";
+		cy.get(`[data-testid=edit-settings-option-${selectedOption}]`)
+			.find('input[type="radio"]')
+			.should("be.checked");
 	}
 
 	verifyAllMembersCanEditBoardIsSelected() {
 		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).last().should("be.checked");
 	}
 
-	clickOptionBoardNotEditableForReadRole() {
-		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).first().check();
-	}
-
-	clickOptionAllMembersCanEditBoard() {
-		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).last().check();
+	clickOptionInEditingSettingsModal(option) {
+		const selectedOption = option === "not editable by read members" ? "1" : "2";
+		cy.get(`[data-testid=edit-settings-option-${selectedOption}]`)
+			.find('input[type="radio"]')
+			.check();
 	}
 
 	verifyShareInformationBox() {
@@ -440,24 +443,22 @@ class RoomBoards {
 		cy.get(RoomBoards.#cancelButtonInShareModal).should("be.visible");
 	}
 
-	verifyCancelButtonInEditingSettingsModal() {
-		cy.get(RoomBoards.#cancelButtonInEditingSettingsModal).should("be.visible");
+	verifyButtonInEditingSettingsModal(buttonText) {
+		cy.get(`[data-testid=edit-settings-${buttonText.toLowerCase()}-btn]`).should(
+			"be.visible"
+		);
 	}
 
 	seeWarningModalForUnpublishedBoard() {
 		cy.get(RoomBoards.#editingSettingsAlert).should("be.visible");
 	}
 
-	clickCancelButtonInEditingSettingsModal() {
-		cy.get(RoomBoards.#cancelButtonInEditingSettingsModal).click();
-	}
-
 	verifyImportSharedBoardModal() {
 		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
 	}
 
-	clickSaveButtonInEditingSettingsModal() {
-		cy.get(RoomBoards.#saveButtonInEditingSettingsModal).click();
+	clickButtonInEditingSettingsModal(buttonText) {
+		cy.get(`[data-testid=edit-settings-${buttonText.toLowerCase()}-btn]`).click();
 	}
 
 	selectRoomForImport() {
@@ -541,6 +542,16 @@ class RoomBoards {
 
 	verifyEditingSettingOption() {
 		cy.get(RoomBoards.#boardMenuActionEditingSetting).should("be.visible");
+	}
+
+	verifyFirstOptionHasDefaultSettingLabel() {
+		cy.get(`[data-testid=edit-settings-option-1]`).should("be.visible");
+		cy.get(`[data-testid=edit-settings-option-1]`).within((element) => {
+			cy.get(element)
+				.find("label")
+				.contains("span", "Standardeinstellung")
+				.should("contain", "Standardeinstellung");
+		});
 	}
 
 	verifyScanQRCodeOption() {

@@ -101,21 +101,16 @@ Given(
 	}
 );
 
-Given("student visibility for teachers in school management is enabled", () => {
-	management.openAdministrationInMenu();
-	management.clickOnSchoolAdministrationInSideMenu();
-	management.clickGeneralSettingsPanel();
-	management.toggleStudentVisibilityForTeachersByAdmin(true);
-	management.clickOnAdminSettingsSave();
-});
-
-Given("student visibility for teachers in school management is disabled", () => {
-	management.openAdministrationInMenu();
-	management.clickOnSchoolAdministrationInSideMenu();
-	management.clickGeneralSettingsPanel();
-	management.toggleStudentVisibilityForTeachersByAdmin(false);
-	management.clickOnAdminSettingsSave();
-});
+Given(
+	"student visibility for teachers in school management is {string}",
+	(visibility) => {
+		management.openAdministrationInMenu();
+		management.clickOnSchoolAdministrationInSideMenu();
+		management.clickGeneralSettingsPanel();
+		management.toggleStudentVisibilityForTeachersByAdmin(visibility);
+		management.clickOnAdminSettingsSave();
+	}
+);
 
 Given(
 	"task {string} with submission date exists in course {string}",
@@ -578,7 +573,7 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and default permission",
+	"{string} added in the room named {string} with role {string} and default read permission",
 	(participantName, roomName, role) => {
 		rooms.navigateToRoomsOverview();
 		rooms.navigateToRoom(roomName);
@@ -593,6 +588,7 @@ Given(
 		rooms.selectParticipantName();
 		rooms.addParticipant();
 		rooms.seeParticipantInList(participantName);
+		rooms.seeDefaultReadPermissionOfTheUser(participantName);
 	}
 );
 

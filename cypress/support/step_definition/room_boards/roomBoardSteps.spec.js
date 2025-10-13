@@ -203,19 +203,19 @@ Then("I see the title in the share modal", () => {
 });
 
 Then("I see the two options in editing settings modal", () => {
-	roomBoards.verifyTwoOptionsInEditingSettingsModal("editSettingsOption");
+	roomBoards.verifyTwoOptionsInEditingSettingsModal("edit-settings-option");
 });
 
-Then("I see the button Cancel in the editing settings modal", () => {
-	roomBoards.verifyCancelButtonInEditingSettingsModal();
+Then("I see the button {string} in the editing settings modal", (buttonText) => {
+	roomBoards.verifyButtonInEditingSettingsModal(buttonText);
 });
 
 When("I click on the button Cancel in the editing settings modal", () => {
 	roomBoards.clickCancelButtonInEditingSettingsModal();
 });
 
-When("I click on the button Save in Editing settings modal", () => {
-	roomBoards.clickSaveButtonInEditingSettingsModal();
+When("I click on the button {string} in Editing settings modal", (buttonText) => {
+	roomBoards.clickButtonInEditingSettingsModal(buttonText);
 });
 
 Then("I see the button Add column in the course board", () => {
@@ -230,15 +230,8 @@ Then("I see the button Add column in the course board is not visible", () => {
 	roomBoards.seeAddNewColumnButton(false);
 });
 
-When(
-	"I click the option This board is not editable for members with room role Read",
-	() => {
-		roomBoards.clickOptionBoardNotEditableForReadRole();
-	}
-);
-
-When("I click the option All members can edit this board", () => {
-	roomBoards.clickOptionAllMembersCanEditBoard();
+When("I click the option {string}", (option) => {
+	roomBoards.clickOptionInEditingSettingsModal(option);
 });
 
 Then("I see the information box in share modal", () => {
@@ -249,14 +242,8 @@ Then("I see the button Cancel in the share modal", () => {
 	roomBoards.verifyCancelButtonInShareModal();
 });
 
-Then("I see the option {string} is by {string} selected", (option, state) => {
-	if (state === "default") {
-		if (option === "This board is not editable for Read members") {
-			roomBoards.verifyBoardNotEditableForReadRoleIsSelected();
-		} else if (option === "All members can edit this board") {
-			roomBoards.verifyAllMembersCanEditBoardIsSelected();
-		}
-	}
+Then("I see the option {string} is selected", (option) => {
+	roomBoards.verifyOptionIsSelectedInEditingSettingsModal(option);
 });
 
 When("I open the shared URL", () => {
@@ -320,6 +307,10 @@ Then("I see the option Copy link", () => {
 
 Then("I see the option Editing settings", () => {
 	roomBoards.verifyEditingSettingOption();
+});
+
+Then("I see the first option has Default setting label", () => {
+	roomBoards.verifyFirstOptionHasDefaultSettingLabel();
 });
 
 Then("I see the option Scan QR Code", () => {
