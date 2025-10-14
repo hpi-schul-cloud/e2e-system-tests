@@ -28,8 +28,8 @@ Feature: Room Board - Editing permissions for room boards
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
-        Then I see the option Editing settings
-        When I click on editing setting in board menu
+        Then I see the option 'edit-setting'
+        When I select the three dot menu action 'edit-setting'
         Then I see the Editing settings dialog
         Then I see the two options in editing settings modal
         Then I see the first option has Default setting label
@@ -57,8 +57,8 @@ Feature: Room Board - Editing permissions for room boards
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
-        Then I see the option Editing settings
-        When I click on editing setting in board menu
+        Then I see the option 'edit-setting'
+        When I select the three dot menu action 'edit-setting'
         Then I see the Editing settings dialog
         Then I see the two options in editing settings modal
         Then I see the first option has Default setting label

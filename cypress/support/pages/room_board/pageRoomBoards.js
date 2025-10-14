@@ -1,14 +1,10 @@
 "use strict";
-import Board from "../../pages/course_board/pageBoard";
-const board = new Board();
 
 class RoomBoards {
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
 	static #btnDialogConfirm = '[data-testid="dialog-confirm"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
-	static #boardMenuActionEditingSetting =
-		'[data-testid="kebab-menu-action-edit-setting"]';
 	static #mainPageArea = '[id="main-content"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
 	static #btnBoardMenuActionRename = '[data-testid="kebab-menu-action-rename"]';
@@ -150,12 +146,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#linkSaveButton).click();
 	}
 
-	seeAddNewColumnButton(shouldExist = true) {
-		if (!shouldExist) {
-			cy.get(RoomBoards.#addNewColumnButton).should("not.exist");
-		} else {
-			cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist");
-		}
+	verifyAddNewColumnButtonInRoomBoard(shouldExist = true) {
+		!shouldExist
+			? cy.get(RoomBoards.#addNewColumnButton).should("not.exist")
+			: cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist");
 	}
 
 	verifyLinkElementClickableInRoomBoard() {
@@ -535,8 +529,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#copyLinkOption).should("be.visible");
 	}
 
-	verifyEditingSettingOption() {
-		cy.get(RoomBoards.#boardMenuActionEditingSetting).should("be.visible");
+	verifyEditingSettingOption(option) {
+		cy.get(`[data-testid="kebab-menu-action-${option}"]`).should("be.visible");
 	}
 
 	verifyFirstOptionHasDefaultSettingLabel() {
@@ -759,9 +753,7 @@ class RoomBoards {
 	clickOnDeleteInBoardMenu() {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
 	}
-	clickOnEditingSettingInBoardMenu() {
-		board.clickOnKebabMenuAction("edit-setting");
-	}
+
 	seeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("exist");
 	}

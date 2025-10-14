@@ -215,7 +215,7 @@ When("I click on the button {string} in Editing settings modal", (buttonText) =>
 });
 
 Then("I see the button Add column in the course board", () => {
-	roomBoards.seeAddNewColumnButton(true);
+	roomBoards.verifyAddNewColumnButtonInRoomBoard(true);
 });
 
 Then("I see a warning modal for The board must first be published", () => {
@@ -223,7 +223,7 @@ Then("I see a warning modal for The board must first be published", () => {
 });
 
 Then("I see the button Add column in the course board is not visible", () => {
-	roomBoards.seeAddNewColumnButton(false);
+	roomBoards.verifyAddNewColumnButtonInRoomBoard(false);
 });
 
 When("I click the option {string}", (option) => {
@@ -301,8 +301,8 @@ Then("I see the option Copy link", () => {
 	roomBoards.verifyCopyLinkOption();
 });
 
-Then("I see the option Editing settings", () => {
-	roomBoards.verifyEditingSettingOption();
+Then("I see the option {string}", (option) => {
+	roomBoards.verifyEditingSettingOption(option);
 });
 
 Then("I see the first option has Default setting label", () => {
@@ -481,10 +481,6 @@ Then("I see my room board is named {string}", (boardTitle) => {
 
 When("I click on delete in board menu", () => {
 	roomBoards.clickOnDeleteInBoardMenu();
-});
-
-When("I click on editing setting in board menu", () => {
-	roomBoards.clickOnEditingSettingInBoardMenu();
 });
 
 Then("I see the button to cancel the dialog", () => {

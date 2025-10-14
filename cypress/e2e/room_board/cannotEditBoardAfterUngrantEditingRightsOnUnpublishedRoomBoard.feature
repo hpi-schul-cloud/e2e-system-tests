@@ -28,8 +28,9 @@ Feature: Room Board - Editing permissions for room boards
         When I click on the multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
-        Then I see the option Editing settings
-        When I click on editing setting in board menu
+        Then I see the option 'edit-setting'
+        When I select the three dot menu action 'edit-setting'
+        Then I see the Editing settings dialog
         Then I see a warning modal for The board must first be published
         When I click on the button 'Close' in Editing settings modal
         Then I see the chip Draft in the course board
@@ -38,8 +39,8 @@ Feature: Room Board - Editing permissions for room boards
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'Publish'
         When I click on the three dot menu in room board title
-        Then I see the option Editing settings
-        When I click on editing setting in board menu
+        Then I see the option 'edit-setting'
+        When I select the three dot menu action 'edit-setting'
         Then I see the Editing settings dialog
         Then I see the two options in editing settings modal
         Then I see the button 'Cancel' in the editing settings modal
@@ -70,8 +71,8 @@ Feature: Room Board - Editing permissions for room boards
         Then I see the chip Draft in the course board
         Then I do not see the chip Editable for all
         When I click on the three dot menu in room board title
-        Then I see the option Editing settings
-        When I click on editing setting in board menu
+        Then I see the option 'edit-setting'
+        When I select the three dot menu action 'edit-setting'
         Then I see a warning modal for The board must first be published
         When I click on the button 'Cancel' in Editing settings modal
         Then I see the chip Draft in the course board
