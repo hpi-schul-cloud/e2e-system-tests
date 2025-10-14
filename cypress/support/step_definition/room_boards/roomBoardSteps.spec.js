@@ -210,10 +210,6 @@ Then("I see the button {string} in the editing settings modal", (buttonText) => 
 	roomBoards.verifyButtonInEditingSettingsModal(buttonText);
 });
 
-When("I click on the button Cancel in the editing settings modal", () => {
-	roomBoards.clickCancelButtonInEditingSettingsModal();
-});
-
 When("I click on the button {string} in Editing settings modal", (buttonText) => {
 	roomBoards.clickButtonInEditingSettingsModal(buttonText);
 });
@@ -222,7 +218,7 @@ Then("I see the button Add column in the course board", () => {
 	roomBoards.seeAddNewColumnButton(true);
 });
 
-Then("I see a warning modal for The board must be published first", () => {
+Then("I see a warning modal for The board must first be published", () => {
 	roomBoards.seeWarningModalForUnpublishedBoard();
 });
 

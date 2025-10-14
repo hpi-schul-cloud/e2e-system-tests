@@ -92,5 +92,5 @@ Feature: Room Board - Editing permissions for room boards
 #        @staging_test
 #        Examples:
 #            | admin      | teacher      | student_1    | student_2    | namespace | room_name_source       | board_title               | student_1_name | student_2_name | role_name | edit_with_restriction         | editable_for_all              |
-#            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | Kraft         | Strobl        | Lernend   | not editable by read members  | also editable by read members |
+#            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | Kraft          | Strobl         | Lernend   | not editable by read members  | also editable by read members |
 

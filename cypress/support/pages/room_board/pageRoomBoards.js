@@ -56,16 +56,12 @@ class RoomBoards {
 	static #importButton = '[data-testid="dialog-confirm"]';
 	static #shareModalTitle = '[data-testid="dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
-	static #editSettingsOption = '[data-testid="edit-settings-option-';
-	static #saveButtonInEditingSettingsModal = '[data-testid="edit-settings-save-btn"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
 	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
-	static #cancelButtonInEditingSettingsModal = '[data-testid="edit-settings-cancel-btn"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #editingSettingsAlert = '[class="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
-	static #radioButtonInEditingSettingsModal = 'input[type="radio"]';
 	static #inputAttachFile = 'input[type="file"]';
 	static #downloadFileIconSelector =
 		'[data-testid="board-file-element-edit-menu-download"]';
@@ -424,10 +420,6 @@ class RoomBoards {
 			.should("be.checked");
 	}
 
-	verifyAllMembersCanEditBoardIsSelected() {
-		cy.get(RoomBoards.#radioButtonInEditingSettingsModal).last().should("be.checked");
-	}
-
 	clickOptionInEditingSettingsModal(option) {
 		const selectedOption = option === "not editable by read members" ? "1" : "2";
 		cy.get(`[data-testid=edit-settings-option-${selectedOption}]`)
@@ -458,6 +450,9 @@ class RoomBoards {
 	}
 
 	clickButtonInEditingSettingsModal(buttonText) {
+		if (buttonText === "Close") {
+			buttonText = "Cancel";
+		}
 		cy.get(`[data-testid=edit-settings-${buttonText.toLowerCase()}-btn]`).click();
 	}
 
