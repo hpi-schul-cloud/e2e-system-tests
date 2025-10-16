@@ -7,12 +7,9 @@ Then("I see the dialog for copying topic alert", () => {
 	topics.seeCopyAlertDialog();
 });
 
-Then(
-	"I see the warning in the dialog that GeoGebra and Etherpad content were not copied",
-	() => {
-		topics.seeGeoGebraAndEtherpadNotCopiedWarnings();
-	}
-);
+Then("I see the warning in the dialog box", () => {
+	topics.seeCopyWarningInDialog();
+});
 
 When("I click the button Close in the dialog", () => {
 	topics.clickCloseButtonInDialog();

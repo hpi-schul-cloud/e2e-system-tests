@@ -31,7 +31,7 @@ Feature: Course - Teacher shares a course with another teacher from a different 
         When I click on button share course
         Then I see the dialog box share course
         Then I see the info text in the dialog box share course
-        Then I see share modal information on "Copyright data protection, Course member permission, Geogebra, Content etherpad, Content whiteboard, External tools info, External tools protected parameter info, Coursefiles info"
+        Then I see 'share' info modal information on '<copyright_data_protection>, <course_member_permission>, <geogebra_info>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>, <coursefiles_info>'
         Then I see the checkbox school internal as checked
         Then I see the checkbox expiry date as checked
         When I uncheck the checkbox school internal
@@ -79,5 +79,5 @@ Feature: Course - Teacher shares a course with another teacher from a different 
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | fullname_teacher_1 | course_name_share          | task_name       | board_title      | task_title                | topic_text_title | course_name_import         |
-            | teacher1_dbc | teacherExt1_dbc | dbc       | cypress teacher_1  | CypressAut Course To Share | CypressAut Task | CypressAut Board | CypressAut Task For Class | CypressAut Topic | CypressAut Course Imported |
+            | teacher_1    | teacherExt_1    | namespace | fullname_teacher_1 | course_name_share          | task_name       | board_title      | task_title                | topic_text_title | course_name_import         | copyright_data_protection | course_member_permission | geogebra_info | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info | coursefiles_info |
+            | teacher1_dbc | teacherExt1_dbc | dbc       | cypress teacher_1  | CypressAut Course To Share | CypressAut Task | CypressAut Board | CypressAut Task For Class | CypressAut Topic | CypressAut Course Imported | Copyright data protection | Course member permission | Geogebra      | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info | Coursefiles info |

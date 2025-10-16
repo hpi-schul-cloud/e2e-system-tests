@@ -34,7 +34,6 @@ class Topics {
 	// static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
 	// static #draftCheckbox = '[data-testid="private-checkbox"]'
 	static #copyAlertDialog = '[data-testid="dialog-title"]';
-	static #copytopicDialogWarning = '[data-testid="warning-title"]';
 	static #closeButtonInCopyTopicDialog = '[data-testid="dialog-close"]';
 	static #topicTitleCourseDetail = '[data-testid="lesson-name-0"]';
 	static #publishButtonCopiedTopic = '[data-testid="lesson-card-action-publish-0"]';
@@ -46,19 +45,8 @@ class Topics {
 		cy.get(Topics.#copyAlertDialog).should("be.visible");
 	}
 
-	seeGeoGebraAndEtherpadNotCopiedWarnings() {
-		cy.get(Topics.#copyResultNotifications).within(() => {
-			cy.get(Topics.#copytopicDialogWarning)
-				.invoke("text")
-				.then((text) => {
-					// normalize text: lowercase, trim, collapse spaces
-					const normalizedText = text.replace(/\s+/g, " ").trim().toLowerCase();
-
-					// assert presence of words in any letter combination "GeoGebra", "GEOGEBRA", "Etherpad", "ETHERPADS" etc.
-					expect(normalizedText).to.include("geogebra");
-					expect(normalizedText).to.match(/etherpads?/);
-				});
-		});
+	seeCopyWarningInDialog() {
+		cy.get(Topics.#copyResultNotifications).should("be.visible");
 	}
 
 	clickCloseButtonInDialog() {

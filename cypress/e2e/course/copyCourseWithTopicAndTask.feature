@@ -25,6 +25,7 @@ Feature: Course - Copy Course with Topic and Task
         Then I see course page '<course_name>'
         When I click on button copy course
         Then I see the copy result notification
+        Then I see 'copy' info modal information on '<copyright_data_protection>, <course_member_permission>, <course_data>'
         When I close the dialog
         When I go to courses overview
         When I go to course '<course_name_copy>'
@@ -52,10 +53,10 @@ Feature: Course - Copy Course with Topic and Task
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name       | task_name       | topic_text_title | course_name_copy      | task_index_number | student_last_name |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | CypressAut Course | CypressAut Task | CypressAut Topic | CypressAut Course (1) | 1                 | student_1         |
+            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name       | task_name       | topic_text_title | course_name_copy      | task_index_number | student_last_name | copyright_data_protection | course_member_permission | course_data |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | cypress teacher_1 | CypressAut Course | CypressAut Task | CypressAut Topic | CypressAut Course (1) | 1                 | student_1         | Copyright data protection | Course member permission | Course data |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name         | task_name         | topic_text_title   | course_name_copy        | task_index_number | student_last_name |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Karl Herzog       | Cypress Copy course | Cypress Copy Task | Cypress Copy Topic | Cypress Copy course (1) | 1                 | Kraft             |
+            | admin      | teacher      | student      | namespace | fullname_teacher1 | course_name         | task_name         | topic_text_title   | course_name_copy        | task_index_number | student_last_name | copyright_data_protection | course_member_permission | course_data |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Karl Herzog       | Cypress Copy course | Cypress Copy Task | Cypress Copy Topic | Cypress Copy course (1) | 1                 | Kraft             | Copyright data protection | Course member permission | Course data |

@@ -27,7 +27,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Then I see the title in the share modal
         Then I see the information box in share modal
         Then I see the info box indicating that the content cannot be copied or shared
-        Then I see share modal information on "Copyright data protection, Room member permission, Content etherpad, Content whiteboard, External tools info, External tools protected parameter info"
+        Then I see 'share' info modal information on '<copyright_data_protection>, <room_member_permission>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I see the checkbox Link valid for 21 days is by default checked
@@ -67,5 +67,5 @@ Feature: Rooms - Share and import room with a teacher from different school
 
         @school_api_test
         Examples:
-            | teacher1     | teacherExt_1 | namespace | room_name_source    | room_name_target    | board_title    |
-            | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title |
+            | teacher1     | teacherExt_1 | namespace | room_name_source    | room_name_target    | board_title    | copyright_data_protection | room_member_permission | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
+            | teacher1_dbc | teacher2_dbc | dbc       | Cypress Room Name-1 | Cypress Room Name-2 | Board Cy Title | Copyright data protection | room member permission | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
