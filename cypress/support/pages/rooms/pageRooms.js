@@ -431,6 +431,7 @@ class Rooms {
 	}
 
 	clickOnButtonActionMenuInSubMenu(buttonAction) {
+		var buttonAction = buttonAction.replace(/ /g, "-");
 		cy.get(`[data-testid="kebab-menu-action-${buttonAction.toLowerCase()}"]`).click();
 	}
 

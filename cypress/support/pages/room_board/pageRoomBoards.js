@@ -147,9 +147,9 @@ class RoomBoards {
 	}
 
 	verifyAddNewColumnButtonInRoomBoard(shouldExist = true) {
-		!shouldExist
-			? cy.get(RoomBoards.#addNewColumnButton).should("not.exist")
-			: cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist");
+		shouldExist
+			? cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist")
+			: cy.get(RoomBoards.#addNewColumnButton).should("not.exist");
 	}
 
 	verifyLinkElementClickableInRoomBoard() {
@@ -401,13 +401,13 @@ class RoomBoards {
 		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
 	}
 
-	verifyTwoOptionsInEditingSettingsModal(optionType) {
-		cy.get(`[data-testid=${optionType}-1]`).should("be.visible");
-		cy.get(`[data-testid=${optionType}-2]`).should("be.visible");
+	verifyOptionInEditingSettingsModal(option) {
+		cy.get(`[data-testid=edit-settings-option-${option}]`).should("be.visible");
 	}
 
 	verifyOptionIsSelectedInEditingSettingsModal(option) {
-		const selectedOption = option === "not editable by read members" ? "1" : "2";
+		//use enum operator or map method
+		const selectedOption = option === "not editable" ? "1" : "2";
 		//selectedOption = option.contains("not editable") ? "1" : "2";
 		cy.get(`[data-testid=edit-settings-option-${selectedOption}]`)
 			.find('input[type="radio"]')
@@ -415,7 +415,7 @@ class RoomBoards {
 	}
 
 	clickOptionInEditingSettingsModal(option) {
-		const selectedOption = option === "not editable by read members" ? "1" : "2";
+		const selectedOption = option === "not editable" ? "1" : "2";
 		cy.get(`[data-testid=edit-settings-option-${selectedOption}]`)
 			.find('input[type="radio"]')
 			.check();
@@ -430,6 +430,7 @@ class RoomBoards {
 	}
 
 	verifyButtonInEditingSettingsModal(buttonText) {
+		//use enum or map operator
 		cy.get(`[data-testid=edit-settings-${buttonText.toLowerCase()}-btn]`).should(
 			"be.visible"
 		);
@@ -444,6 +445,7 @@ class RoomBoards {
 	}
 
 	clickButtonInEditingSettingsModal(buttonText) {
+		//use  map operator use alternative values
 		if (buttonText === "Close") {
 			buttonText = "Cancel";
 		}
@@ -533,14 +535,12 @@ class RoomBoards {
 		cy.get(`[data-testid="kebab-menu-action-${option}"]`).should("be.visible");
 	}
 
-	verifyFirstOptionHasDefaultSettingLabel() {
-		cy.get(`[data-testid=edit-settings-option-1]`).should("be.visible");
-		cy.get(`[data-testid=edit-settings-option-1]`).within((element) => {
-			cy.get(element)
-				.find("label")
-				.contains("span", "Standardeinstellung")
-				.should("contain", "Standardeinstellung");
-		});
+	verifyFirstOptionHasDefaultSettingLabel(option, label) {
+		cy.get(`[data-testid=edit-settings-option-${option}]`)
+			.should("be.visible")
+			.within((element) => {
+				cy.get(element).find("label").contains("span", label).should("contain", label);
+			});
 	}
 
 	verifyScanQRCodeOption() {

@@ -203,7 +203,8 @@ Then("I see the title in the share modal", () => {
 });
 
 Then("I see the two options in editing settings modal", () => {
-	roomBoards.verifyTwoOptionsInEditingSettingsModal("edit-settings-option");
+	roomBoards.verifyOptionInEditingSettingsModal("1");
+	roomBoards.verifyOptionInEditingSettingsModal("2");
 });
 
 Then("I see the button {string} in the editing settings modal", (buttonText) => {
@@ -218,7 +219,7 @@ Then("I see the button Add column in the course board", () => {
 	roomBoards.verifyAddNewColumnButtonInRoomBoard(true);
 });
 
-Then("I see a warning modal for The board must first be published", () => {
+Then("I see a warning modal for the board must first be published", () => {
 	roomBoards.seeWarningModalForUnpublishedBoard();
 });
 
@@ -305,8 +306,8 @@ Then("I see the option {string}", (option) => {
 	roomBoards.verifyEditingSettingOption(option);
 });
 
-Then("I see the first option has Default setting label", () => {
-	roomBoards.verifyFirstOptionHasDefaultSettingLabel();
+Then("I see the {string} option has {string} label", (option, label) => {
+	roomBoards.verifyFirstOptionHasDefaultSettingLabel(option, label);
 });
 
 Then("I see the option Scan QR Code", () => {

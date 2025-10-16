@@ -593,8 +593,8 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and granted {string} permission",
-	(participantName, roomName, role, permission) => {
+	"{string} added in the room named {string} with role {string} and {string} to {string} permission",
+	(participantName, roomName, role, action, permission) => {
 		rooms.navigateToRoomsOverview();
 		rooms.navigateToRoom(roomName);
 		rooms.openThreeDotMenuForRoom();
@@ -609,7 +609,8 @@ Given(
 		rooms.addParticipant();
 		rooms.seeParticipantInList(participantName);
 		rooms.clickOnThreeDotMenuToEditUser(participantName);
-		rooms.clickOnButtonActionMenuInSubMenu("Change-Permission");
+		// use permission variable inside method adapt "-" included.
+		rooms.clickOnButtonActionMenuInSubMenu(action);
 		rooms.changeRoleOfTheUser(permission);
 		rooms.confirmChangeRoleModalActions("Confirm", "Role");
 	}
