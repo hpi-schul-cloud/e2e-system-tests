@@ -514,9 +514,13 @@ class Management {
 				const isDisabled = $input.prop("disabled");
 				if (isDisabled) {
 					cy.log("Element is disabled, cannot toggle state");
-				} else if (isChecked === desiredState) {
+					return;
+				}
+				if (isChecked === desiredState) {
 					cy.log(`Element is already in the desired state, skipping click`);
-				} else cy.wrap($input).find("input").click({ force: true }).wait(500);
+					return;
+				}
+				cy.wrap($input).find("input").click({ force: true }).wait(500);
 			});
 	}
 
