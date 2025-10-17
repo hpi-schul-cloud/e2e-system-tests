@@ -68,14 +68,8 @@ class GlobalAssertions {
 			infoPointsArray.map((point, index) => {
 				const infoPointers = point.replace(/\s+/g, "-");
 				// first item = info section, others = modal section
-				const selector =
-				// First item = info section, others = modal section
 				const section = index === 0 ? "info" : "modal";
 				return [point, `[data-testid="${modalType}-${section}-${infoPointers}"]`];
-					index === 0
-						? `[data-testid="${modalType}-info-${infoPointers}"]`
-						: `[data-testid="${modalType}-modal-${infoPointers}"]`;
-				return [point, selector];
 			})
 		);
 		this.checkMessagePoints(infoPointsArray, selectors);
