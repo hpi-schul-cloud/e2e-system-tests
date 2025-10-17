@@ -31,7 +31,7 @@ Feature: Course - Teacher shares a course with another teacher from a different 
         When I click on button share course
         Then I see the dialog box share course
         Then I see the info text in the dialog box share course
-        Then I see modal information 'share' on '<copyright_data_protection>, <course_member_permission>, <geogebra_info>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>, <coursefiles_info>'
+        Then I see modal 'share' with information on '<copyright_data_protection>, <course_member_permission>, <geogebra_info>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>, <coursefiles_info>'
         Then I see the checkbox school internal as checked
         Then I see the checkbox expiry date as checked
         When I uncheck the checkbox school internal

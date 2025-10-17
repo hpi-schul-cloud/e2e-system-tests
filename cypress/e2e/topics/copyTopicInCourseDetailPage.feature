@@ -25,7 +25,7 @@ Feature: Topics - Teacher copies a topic in the course
         Then I see the progress bar
         Then I see the dialog for copying topic alert
         Then I see the warning section in the dialog box
-        Then I see modal information 'copy' on '<copyright_data_protection>, <geogebra_info>, <content_etherpad>'
+        Then I see modal 'copy' with information on '<copyright_data_protection>, <geogebra_info>, <content_etherpad>'
         When I click the button Close in the dialog
         Then I see the topic title '<topic_name>' with the suffix '1' on the course detail page
         Then I see the button Publish on the copied topic

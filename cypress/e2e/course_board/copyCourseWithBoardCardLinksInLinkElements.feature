@@ -78,7 +78,7 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         Then I see course page '<course_name_1>'
         When I click on button copy course
         Then I see the copy result notification
-        Then I see modal information 'copy' on '<copyright_data_protection>, <course_member_permission>, <course_data>'
+        Then I see modal 'copy' with information on '<copyright_data_protection>, <course_member_permission>, <course_data>'
         When I close the dialog
         When I go to courses overview
         When I go to course '<course_name_1_copy>'
