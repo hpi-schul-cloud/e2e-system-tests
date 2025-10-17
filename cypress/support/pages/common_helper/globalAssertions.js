@@ -67,7 +67,7 @@ class GlobalAssertions {
 		const selectors = Object.fromEntries(
 			infoPointsArray.map((point, index) => {
 				const infoPointers = point.replace(/\s+/g, "-");
-				// First item = info section, others = modal section
+				// first item = info section, others = modal section
 				const selector =
 					index === 0
 						? `[data-testid="${modalType}-info-${infoPointers}"]`
