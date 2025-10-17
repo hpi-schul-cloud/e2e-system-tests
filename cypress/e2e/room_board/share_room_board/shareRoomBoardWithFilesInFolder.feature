@@ -24,7 +24,7 @@ Feature: Room Board - Share room board copy with files in file folder
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
-        Then I see 'share' info modal information on '<copyright_data_protection>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
+        Then I see modal information 'share' on '<copyright_data_protection>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
         Then I see the checkbox Link valid for the same school is by default checked
         When I click on the button Continue
         Then I see the Share via modal

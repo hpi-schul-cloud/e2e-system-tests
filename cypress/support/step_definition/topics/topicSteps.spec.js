@@ -7,7 +7,7 @@ Then("I see the dialog for copying topic alert", () => {
 	topics.seeCopyAlertDialog();
 });
 
-Then("I see the warning in the dialog box", () => {
+Then("I see the warning section in the dialog box", () => {
 	topics.seeCopyWarningInDialog();
 });
 

@@ -25,7 +25,7 @@ Feature: Topics - Teacher shares a topic to other teacher from the same school t
         When I click on the share a copy of Topic from three dot menu '<topic_text_title_share>'
         Then I see the dialog box topic in course
         Then I see the text description in the dialog box share topic
-        Then I see 'share' info modal information on '<copyright_data_protection>, <geogebra_info>, <content_etherpad>'
+        Then I see modal information 'share' on '<copyright_data_protection>, <geogebra_info>, <content_etherpad>'
         Then I see the checkbox for topic link valid within same school is 'checked'
         Then I see the expiry date checkbox is 'checked'
         When I click on the button continue in dialog box share topic

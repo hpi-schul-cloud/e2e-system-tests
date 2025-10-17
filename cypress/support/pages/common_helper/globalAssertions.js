@@ -58,23 +58,23 @@ class GlobalAssertions {
 		infoPointsArray.forEach((point) => {
 			const normalized = point.trim().toLowerCase();
 			const selector = selectors[normalized];
-
 			cy.get(selector).should("be.visible");
 		});
 	}
 
 	checkModalMessagePoints(infoPoints, modalType) {
 		const infoPointsArray = infoPoints.split(",").map((p) => p.trim().toLowerCase());
-		const selectors = {};
-		infoPointsArray.forEach((point, index) => {
-			const infoPoints = point.replace(/\s+/g, "-");
-			// First item = info section, others = modal section
-			const selector =
-				index === 0
-					? `[data-testid="${modalType}-info-${infoPoints}"]`
-					: `[data-testid="${modalType}-modal-${infoPoints}"]`;
-			selectors[point] = selector;
-		});
+		const selectors = Object.fromEntries(
+			infoPointsArray.map((point, index) => {
+				const infoPointers = point.replace(/\s+/g, "-");
+				// First item = info section, others = modal section
+				const selector =
+					index === 0
+						? `[data-testid="${modalType}-info-${infoPointers}"]`
+						: `[data-testid="${modalType}-modal-${infoPointers}"]`;
+				return [point, selector];
+			})
+		);
 		this.checkMessagePoints(infoPointsArray, selectors);
 	}
 }
