@@ -32,7 +32,8 @@ Feature: Room Board - Edit permission for unpublished room boards
         When I select the three dot menu action 'edit-setting'
         Then I see the Editing settings dialog
         Then I see a warning modal for the board must first be published
-        When I click on the button 'Close' in Editing settings modal
+        Then I see the button 'Close' in the editing settings modal
+        When I click on the button 'Close' in the editing settings modal
         Then I see the chip Draft in the course board
 
         # administrator student publishes and allows all the room board users to edit the room board
@@ -42,13 +43,13 @@ Feature: Room Board - Edit permission for unpublished room boards
         Then I see the option 'edit-setting'
         When I select the three dot menu action 'edit-setting'
         Then I see the Editing settings dialog
-        Then I see the two options in editing settings modal
+        Then I see the two options in the editing settings modal
         Then I see the button 'Cancel' in the editing settings modal
         Then I see the button 'Save' in the editing settings modal
         Then I see the option '<not_editable_by_read_role>' is selected
         When I click the option '<editable_by_read_role>'
         Then I see the option '<editable_by_read_role>' is selected
-        When I click on the button 'Save' in Editing settings modal
+        When I click on the button 'Save' in the editing settings modal
         Then I see the chip Editable for all
 
         # viewer student checks that he has edit permission with respect to board
@@ -60,7 +61,7 @@ Feature: Room Board - Edit permission for unpublished room boards
         Then I see the chip Editable for all
         Then I see the button Add column in the course board
 
-        # room board returns to default permissions after unpublished and administrator student cannot grant edit permission
+        # room board returns to default permissions after unpublished and administrator student cannot allow/restrict edit permission
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
@@ -74,7 +75,7 @@ Feature: Room Board - Edit permission for unpublished room boards
         Then I see the option 'edit-setting'
         When I select the three dot menu action 'edit-setting'
         Then I see a warning modal for the board must first be published
-        When I click on the button 'Cancel' in Editing settings modal
+        When I click on the button 'Cancel' in the editing settings modal
         Then I see the chip Draft in the course board
 
         # student checks that he cannot access unpublish board
@@ -92,9 +93,9 @@ Feature: Room Board - Edit permission for unpublished room boards
         @school_api_test
         Examples:
             | admin      | teacher      | student_1    | student_2    | namespace | room_name              | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role | editable_by_read_role |
-            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | student_1      | student_2      | Lernend   | not editable              | editable              |
+            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | student_1      | student_2      | Lernend   | noneditable               | editable              |
 
 #       @staging_test
 #       Examples:
-#            | admin      | teacher      | student_1    | student_2    | namespace | room_name       | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role         | editable_by_read_role              |
-#            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut  Room Name-1 | CypressAut Board Cy Title | Kraft          | Strobl         | Lernend   |  not editable by read members | also editable by read members |
+#            | admin      | teacher      | student_1    | student_2    | namespace | room_name               | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role | editable_by_read_role |
+#            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut  Room Name-1 | CypressAut Board Cy Title | Kraft          | Strobl         | Lernend   |  noneditable              | editable              |

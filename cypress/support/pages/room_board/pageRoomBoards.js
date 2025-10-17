@@ -406,17 +406,21 @@ class RoomBoards {
 	}
 
 	verifyOptionIsSelectedInEditingSettingsModal(option) {
-		//use enum operator or map method
-		const selectedOption = option === "not editable" ? "1" : "2";
-		//selectedOption = option.contains("not editable") ? "1" : "2";
-		cy.get(`[data-testid=edit-settings-option-${selectedOption}]`)
+		const options = {
+			noneditable: "1",
+			editable: "2",
+		};
+		cy.get(`[data-testid=edit-settings-option-${options[option]}]`)
 			.find('input[type="radio"]')
 			.should("be.checked");
 	}
 
 	clickOptionInEditingSettingsModal(option) {
-		const selectedOption = option === "not editable" ? "1" : "2";
-		cy.get(`[data-testid=edit-settings-option-${selectedOption}]`)
+		const options = {
+			noneditable: "1",
+			editable: "2",
+		};
+		cy.get(`[data-testid=edit-settings-option-${options[option]}]`)
 			.find('input[type="radio"]')
 			.check();
 	}
@@ -430,10 +434,12 @@ class RoomBoards {
 	}
 
 	verifyButtonInEditingSettingsModal(buttonText) {
-		//use enum or map operator
-		cy.get(`[data-testid=edit-settings-${buttonText.toLowerCase()}-btn]`).should(
-			"be.visible"
-		);
+		const button = {
+			Close: "cancel",
+			Save: "save",
+			Cancel: "cancel",
+		};
+		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should("be.visible");
 	}
 
 	seeWarningModalForUnpublishedBoard() {
@@ -445,11 +451,12 @@ class RoomBoards {
 	}
 
 	clickButtonInEditingSettingsModal(buttonText) {
-		//use  map operator use alternative values
-		if (buttonText === "Close") {
-			buttonText = "Cancel";
-		}
-		cy.get(`[data-testid=edit-settings-${buttonText.toLowerCase()}-btn]`).click();
+		const button = {
+			Close: "cancel",
+			Save: "save",
+			Cancel: "cancel",
+		};
+		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).click();
 	}
 
 	selectRoomForImport() {

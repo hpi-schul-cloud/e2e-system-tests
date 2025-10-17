@@ -202,7 +202,7 @@ Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
 
-Then("I see the two options in editing settings modal", () => {
+Then("I see the two options in the editing settings modal", () => {
 	roomBoards.verifyOptionInEditingSettingsModal("1");
 	roomBoards.verifyOptionInEditingSettingsModal("2");
 });
@@ -211,7 +211,7 @@ Then("I see the button {string} in the editing settings modal", (buttonText) => 
 	roomBoards.verifyButtonInEditingSettingsModal(buttonText);
 });
 
-When("I click on the button {string} in Editing settings modal", (buttonText) => {
+When("I click on the button {string} in the editing settings modal", (buttonText) => {
 	roomBoards.clickButtonInEditingSettingsModal(buttonText);
 });
 
