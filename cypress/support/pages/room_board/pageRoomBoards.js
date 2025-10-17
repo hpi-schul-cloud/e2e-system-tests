@@ -4,6 +4,7 @@ class RoomBoards {
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
 	static #btnDialogConfirm = '[data-testid="dialog-confirm"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
+	static #addNewColumnButton = '[data-testid="add-column"]';
 	static #mainPageArea = '[id="main-content"]';
 	static #roomBoardTitleOnPage = '[data-testid="board-title"]';
 	static #btnBoardMenuActionRename = '[data-testid="kebab-menu-action-rename"]';
@@ -38,6 +39,7 @@ class RoomBoards {
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
 	static #continueButton = '[data-testid="dialog-next"]';
@@ -50,10 +52,12 @@ class RoomBoards {
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
 	static #importButton = '[data-testid="dialog-confirm"]';
 	static #shareModalTitle = '[data-testid="dialog-title"]';
+	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
 	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
+	static #editingSettingsAlert = '[class="alert-text"]';
 	static #checkBoxCopyShareBoardModal = 'input[type="checkbox"]';
 	static #inputAttachFile = 'input[type="file"]';
 	static #downloadFileIconSelector =
@@ -142,6 +146,12 @@ class RoomBoards {
 
 	clickSaveButtonToSaveLinkInCard() {
 		cy.get(RoomBoards.#linkSaveButton).click();
+	}
+
+	verifyAddNewColumnButtonInRoomBoard(shouldExist = true) {
+		shouldExist
+			? cy.get(RoomBoards.#addNewColumnButton).should("be.visible").should("exist")
+			: cy.get(RoomBoards.#addNewColumnButton).should("not.exist");
 	}
 
 	verifyLinkElementClickableInRoomBoard() {
@@ -393,6 +403,30 @@ class RoomBoards {
 		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
 	}
 
+	verifyOptionInEditingSettingsModal(option) {
+		cy.get(`[data-testid=edit-settings-option-${option}]`).should("be.visible");
+	}
+
+	verifyOptionIsSelectedInEditingSettingsModal(option) {
+		const options = {
+			noneditable: "1",
+			editable: "2",
+		};
+		cy.get(`[data-testid=edit-settings-option-${options[option]}]`)
+			.find('input[type="radio"]')
+			.should("be.checked");
+	}
+
+	clickOptionInEditingSettingsModal(option) {
+		const options = {
+			noneditable: "1",
+			editable: "2",
+		};
+		cy.get(`[data-testid=edit-settings-option-${options[option]}]`)
+			.find('input[type="radio"]')
+			.check();
+	}
+
 	verifyShareInformationBox() {
 		cy.get(RoomBoards.#shareInformationBox).should("be.visible");
 	}
@@ -401,8 +435,30 @@ class RoomBoards {
 		cy.get(RoomBoards.#cancelButtonInShareModal).should("be.visible");
 	}
 
+	verifyButtonInEditingSettingsModal(buttonText) {
+		const button = {
+			Close: "cancel",
+			Save: "save",
+			Cancel: "cancel",
+		};
+		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should("be.visible");
+	}
+
+	seeWarningModalForUnpublishedBoard() {
+		cy.get(RoomBoards.#editingSettingsAlert).should("be.visible");
+	}
+
 	verifyImportSharedBoardModal() {
 		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	}
+
+	clickButtonInEditingSettingsModal(buttonText) {
+		const button = {
+			Close: "cancel",
+			Save: "save",
+			Cancel: "cancel",
+		};
+		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).click();
 	}
 
 	selectRoomForImport() {
@@ -448,6 +504,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
 	}
 
+	seeEditingSettingsDialog() {
+		cy.get(RoomBoards.#editingSettingsDialog).should("be.visible");
+	}
+
 	verifySameSchoolLinkCheckboxChecked() {
 		cy.get(RoomBoards.#sameSchoolCheckbox)
 			// Move to the parent container holding the checkbox
@@ -480,8 +540,28 @@ class RoomBoards {
 		cy.get(RoomBoards.#copyLinkOption).should("be.visible");
 	}
 
+	verifyEditingSettingOption(option) {
+		cy.get(`[data-testid="kebab-menu-action-${option}"]`).should("be.visible");
+	}
+
+	verifyFirstOptionHasDefaultSettingLabel(option, label) {
+		cy.get(`[data-testid=edit-settings-option-${option}]`)
+			.should("be.visible")
+			.within((element) => {
+				cy.get(element).find("label").contains("span", label).should("contain", label);
+			});
+	}
+
 	verifyScanQRCodeOption() {
 		cy.get(RoomBoards.#scanQRCodeOption).should("be.visible");
+	}
+
+	seeChipEditableForAll() {
+		cy.get(RoomBoards.#chipEditableForAllSelector).should("be.visible");
+	}
+
+	seeNoChipEditableForAll() {
+		cy.get(RoomBoards.#chipEditableForAllSelector).should("not.exist");
 	}
 
 	copyBoardURLInModal() {
@@ -684,6 +764,7 @@ class RoomBoards {
 	clickOnDeleteInBoardMenu() {
 		cy.get(RoomBoards.#boardMenuActionDelete).click();
 	}
+
 	seeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("exist");
 	}

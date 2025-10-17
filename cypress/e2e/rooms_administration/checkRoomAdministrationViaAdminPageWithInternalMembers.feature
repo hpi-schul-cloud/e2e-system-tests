@@ -2,6 +2,7 @@
 
 @regression_test
 @stable_test
+@prio_0_dev
 @group-E
 Feature: Room Administration - Able to see all the rooms and in each room all details about same school members are visible
 

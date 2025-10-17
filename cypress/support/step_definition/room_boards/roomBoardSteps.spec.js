@@ -31,12 +31,17 @@ When("I enter the tool display name {string}", (bettermarksTitle) => {
 Then(
 	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
 	(bettermarksTitle, bettermarksDomainUrl) => {
-		roomBoards.verifyBettermarksToolAddedInCard(
-			bettermarksTitle,
-			bettermarksDomainUrl
-		);
+		roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
 	}
 );
+
+Then("I see the chip Editable for all", () => {
+	roomBoards.seeChipEditableForAll();
+});
+
+Then("I do not see the chip Editable for all", () => {
+	roomBoards.seeNoChipEditableForAll();
+});
 
 Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);
@@ -197,12 +202,45 @@ Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
 
+Then("I see the two options in the editing settings modal", () => {
+	roomBoards.verifyOptionInEditingSettingsModal("1");
+	roomBoards.verifyOptionInEditingSettingsModal("2");
+});
+
+Then("I see the button {string} in the editing settings modal", (buttonText) => {
+	roomBoards.verifyButtonInEditingSettingsModal(buttonText);
+});
+
+When("I click on the button {string} in the editing settings modal", (buttonText) => {
+	roomBoards.clickButtonInEditingSettingsModal(buttonText);
+});
+
+Then("I see the button Add column in the course board", () => {
+	roomBoards.verifyAddNewColumnButtonInRoomBoard(true);
+});
+
+Then("I see a warning modal for the board must first be published", () => {
+	roomBoards.seeWarningModalForUnpublishedBoard();
+});
+
+Then("I see the button Add column in the course board is not visible", () => {
+	roomBoards.verifyAddNewColumnButtonInRoomBoard(false);
+});
+
+When("I click the option {string}", (option) => {
+	roomBoards.clickOptionInEditingSettingsModal(option);
+});
+
 Then("I see the information box in share modal", () => {
 	roomBoards.verifyShareInformationBox();
 });
 
 Then("I see the button Cancel in the share modal", () => {
 	roomBoards.verifyCancelButtonInShareModal();
+});
+
+Then("I see the option {string} is selected", (option) => {
+	roomBoards.verifyOptionIsSelectedInEditingSettingsModal(option);
 });
 
 When("I open the shared URL", () => {
@@ -236,6 +274,10 @@ Then("I see the Share settings dialog", () => {
 	roomBoards.seeShareSettingsDialog();
 });
 
+Then("I see the Editing settings dialog", () => {
+	roomBoards.seeEditingSettingsDialog();
+});
+
 Then("I see the checkbox Link valid for the same school is by default checked", () => {
 	roomBoards.verifySameSchoolLinkCheckboxChecked();
 });
@@ -258,6 +300,14 @@ Then("I see the option Share via Email", () => {
 
 Then("I see the option Copy link", () => {
 	roomBoards.verifyCopyLinkOption();
+});
+
+Then("I see the option {string}", (option) => {
+	roomBoards.verifyEditingSettingOption(option);
+});
+
+Then("I see the {string} option has {string} label", (option, label) => {
+	roomBoards.verifyFirstOptionHasDefaultSettingLabel(option, label);
 });
 
 Then("I see the option Scan QR Code", () => {
