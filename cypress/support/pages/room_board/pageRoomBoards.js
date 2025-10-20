@@ -77,6 +77,7 @@ class RoomBoards {
 	static #folderDetails = '[data-testid="file-statistic"]';
 	static #ThreeDotEditOptionTool = '[data-testid="kebab-menu-action"]';
 	static #H5PPage = '[data-testid="skip-link"]';
+	static #folderTitleAlert = '[role="alert"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -1096,7 +1097,7 @@ class RoomBoards {
 
 	verifyNameFieldErrorMessage(errormessage) {
 		cy.get(RoomBoards.#folderTitleInCardInput).within(() => {
-			cy.get('[role="alert"]')
+			cy.get(RoomBoards.#folderTitleAlert)
 				.should("be.visible")
 				.and("contain.text", errormessage);
 		});

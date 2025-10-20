@@ -21,7 +21,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on icon Plus to add content into card
         When I select 'file-folder' from the element selection dialog box
         When I enter name '<folder_name_edited>' for file folder in card
-        When I click outside of the card to save it
+        When I click on the page outside of the column
         Then I see a folder with name '<folder_name_edited>' in the card
 
         # editor removes folder name and name is reset to previous folder name
@@ -30,7 +30,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on the option Edit in the three dot menu on the card
         When I clear folder name in card
         Then I see a validation error message '<error_message>' below the name field
-        When I click outside of the card to save it
+        When I click on the page outside of the column
         When I click on the page outside of the column
         Then I see a folder with name '<folder_name_edited>' in the card
 
@@ -38,7 +38,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I enter name '<folder_name_renamed>' for file folder in card
-        When I click outside of the card to save it
+        When I click on the page outside of the column
         When I click on the page outside of the column
         Then I see a folder with name '<folder_name_renamed>' in the card
 
