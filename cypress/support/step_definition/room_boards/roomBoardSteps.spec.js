@@ -1,13 +1,49 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import GlobalActions from "../../pages/common_helper/globalActions";
 import GlobalAssertions from "../../pages/common_helper/globalAssertions";
+import Collabora from "../../pages/room_board/pageCollabora";
 import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
 
+const collabora = new Collabora();
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
+
+Then("I see collabora text editor", () => {
+	collabora.seeCollaboraTextEditor();
+});
+
+When(
+	"I type text {string} in collabora editor on position {string}, {string}",
+	(text, posX, posY) => {
+		collabora.typeCollaboraText(text, posX, posY);
+	}
+);
+
+When("I click on the button Save in Collabora editor", () => {
+	collabora.clickCollaboraSaveButton();
+});
+
+Then(
+	"I cannot type text {string} in collabora editor on position {string}, {string}",
+	(text, posX, posY) => {
+		collabora.cannotTypeCollaboraText(text, posX, posY);
+	}
+);
+
+When("I click on the icon File in collabora editor top toolbar", () => {
+	collabora.clickCollaboraFileIcon();
+});
+
+When("I click on the button Download in collabora editor", () => {
+	collabora.clickCollaboraDownloadButton();
+});
+
+When("I download by clicking on the option PDF download in collabora editor", () => {
+	collabora.clickCollaboraPDFDownloadOption();
+});
 
 When("I click on the three dot in the element external tool bettermarks", () => {
 	roomBoards.openThreeDotMenuForExternalTool();
@@ -31,7 +67,10 @@ When("I enter the tool display name {string}", (bettermarksTitle) => {
 Then(
 	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
 	(bettermarksTitle, bettermarksDomainUrl) => {
-		roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
+		roomBoards.verifyBettermarksToolAddedInCard(
+			bettermarksTitle,
+			bettermarksDomainUrl
+		);
 	}
 );
 
