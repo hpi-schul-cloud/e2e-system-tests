@@ -31,14 +31,12 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I clear folder name in card
         Then I see a validation error message '<error_message>' below the name field
         When I click on the page outside of the column
-        When I click on the page outside of the column
         Then I see a folder with name '<folder_name_edited>' in the card
 
         # editor renames folder on room page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I enter name '<folder_name_renamed>' for file folder in card
-        When I click on the page outside of the column
         When I click on the page outside of the column
         Then I see a folder with name '<folder_name_renamed>' in the card
 
