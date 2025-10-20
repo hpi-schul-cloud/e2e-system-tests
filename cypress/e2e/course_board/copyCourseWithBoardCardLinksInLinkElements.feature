@@ -78,6 +78,7 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         Then I see course page '<course_name_1>'
         When I click on button copy course
         Then I see the copy result notification
+        Then I see modal 'copy' with information on '<copyright_data_protection>, <course_member_permission>, <course_data>'
         When I close the dialog
         When I go to courses overview
         When I go to course '<course_name_1_copy>'
@@ -122,10 +123,10 @@ Feature: Course Board - Copy course with a board which contains link elements wi
 
         @staging_test
         Examples:
-            | admin      | teacher      | namespace | course_name_1            | course_name_1_copy           | course_name_2            | fullname_teacher | board_title_1      | board_title_2      | board_title_3      | card_title_1 | card_title_2 | card_title_3 |
-            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Test Course 1 | CypressAut Test Course 1 (1) | CypressAut Test Course 2 | Karl Herzog      | CypressAut Board 1 | CypressAut Board 2 | CypressAut Board 3 | Card Link 1  | Card Link 2  | Card Link 3  |
+            | admin      | teacher      | namespace | course_name_1            | course_name_1_copy           | course_name_2            | fullname_teacher | board_title_1      | board_title_2      | board_title_3      | card_title_1 | card_title_2 | card_title_3 | copyright_data_protection | course_member_permission | course_data |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Test Course 1 | CypressAut Test Course 1 (1) | CypressAut Test Course 2 | Karl Herzog      | CypressAut Board 1 | CypressAut Board 2 | CypressAut Board 3 | Card Link 1  | Card Link 2  | Card Link 3  | Copyright data protection | Course member permission | Course data |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | namespace | course_name_1            | course_name_1_copy           | course_name_2            | fullname_teacher  | board_title_1      | board_title_2      | board_title_3      | card_title_1 | card_title_2 | card_title_3 |
-            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Test Course 1 | CypressAut Test Course 1 (1) | CypressAut Test Course 2 | cypress teacher_1 | CypressAut Board 1 | CypressAut Board 2 | CypressAut Board 3 | Card Link 1  | Card Link 2  | Card Link 3  |
+            | admin      | teacher      | namespace | course_name_1            | course_name_1_copy           | course_name_2            | fullname_teacher  | board_title_1      | board_title_2      | board_title_3      | card_title_1 | card_title_2 | card_title_3 | copyright_data_protection | course_member_permission | course_data |
+            | admin1_nbc | teacher1_nbc | nbc       | CypressAut Test Course 1 | CypressAut Test Course 1 (1) | CypressAut Test Course 2 | cypress teacher_1 | CypressAut Board 1 | CypressAut Board 2 | CypressAut Board 3 | Card Link 1  | Card Link 2  | Card Link 3  | Copyright data protection | Course member permission | Course data |
