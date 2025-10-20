@@ -990,10 +990,6 @@ class RoomBoards {
 			.type(newName);
 	}
 
-	approveFolderNameInCard() {
-		cy.get(RoomBoards.#approveFolderNameBtnInCard).click();
-	}
-
 	clearFolderNameInCard() {
 		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear();
 	}
