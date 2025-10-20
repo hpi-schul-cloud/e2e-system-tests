@@ -1093,6 +1093,14 @@ class RoomBoards {
 	verifyXlsxFileUploaded() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
+
+	verifyNameFieldErrorMessage(errormessage) {
+		cy.get(RoomBoards.#folderTitleInCardInput).within(() => {
+			cy.get('[role="alert"]')
+				.should("be.visible")
+				.and("contain.text", errormessage);
+		});
+	}
 }
 
 export default RoomBoards;

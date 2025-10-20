@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-B
-@prio_0_dev
+@prio_0_staging
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 
     As a content editor, I want to create a file folder in a room board so that I can manage the files in the room.
@@ -29,28 +29,22 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I clear folder name in card
+        Then I see a validation error message '<error_message>' below the name field
         When I click outside of the card to save it
-        When I click on the page outside of the column
-        Then I see a folder with name '<folder_name_edited>' in the card
-
-        # editor changes folder name without saving on room page
-        When I click on the three dot on the card
-        When I click on the option Edit in the three dot menu on the card
-        When I enter name '<folder_name_edited>' for file folder in card
         When I click on the page outside of the column
         Then I see a folder with name '<folder_name_edited>' in the card
 
         # editor renames folder on room page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I enter name '<folder_name_edited>' for file folder in card
+        When I enter name '<folder_name_renamed>' for file folder in card
         When I click outside of the card to save it
         When I click on the page outside of the column
-        Then I see a folder with name '<folder_name_edited>' in the card
+        Then I see a folder with name '<folder_name_renamed>' in the card
 
         # content editor opens folder
-        When I click on the folder '<folder_name_edited>' in the card
-        Then I see page Folder content for '<folder_name_edited>'
+        When I click on the folder '<folder_name_renamed>' in the card
+        Then I see page Folder content for '<folder_name_renamed>'
         Then I see message Empty folder
         Then I see breadcrumb with 'Räume, <room_name>, <board_title>'
         Then I see sidebar item 'rooms' is highlighted
@@ -115,7 +109,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
         When I click on button Approve in modal
-        Then I see page Folder content for '<folder_name_edited>'
+        Then I see page Folder content for '<folder_name_renamed>'
         Then I see message Empty folder
 
         # editor deletes folder on folder page
@@ -131,10 +125,10 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name_edited      | file_name                | file_name_renamed        | file_name_renamed_without_suffix | file_size | file_name_2                | file_size_2 |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressTest File Folder | sample_video_1mb_mp4.mp4 | sample_video_renamed.mp4 | sample_video_renamed             | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
+            | namespace | content_editor | room_name              | board_title             | folder_name_edited          | file_name                | file_name_renamed        | file_name_renamed_without_suffix | file_size | file_name_2                | file_size_2 | error_message               | folder_name_renamed            |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | sample_video_renamed.mp4 | sample_video_renamed             | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | Bitte fülle dieses Feld aus | CypressAut File Folder Renamed |
 
-# @staging_test
-# Examples:
-#     | namespace | content_editor      | room_name               | board_title             | folder_name         |
-#     | dbc       | teacher1_dbc        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+        @staging_test
+        Examples:
+            | namespace | content_editor | room_name              | board_title             | folder_name_edited          | file_name                | file_name_renamed        | file_name_renamed_without_suffix | file_size | file_name_2                | file_size_2 | error_message               | folder_name_renamed            |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | sample_video_renamed.mp4 | sample_video_renamed             | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | Bitte fülle dieses Feld aus | CypressAut File Folder Renamed |

@@ -731,3 +731,7 @@ Then("I see the collabora Docx file type in the card", () => {
 Then("I see the file type XLSX is uploaded in the card", () => {
 	roomBoards.verifyXlsxFileUploaded();
 });
+
+Then("I see a validation error message {string} below the name field", (errorMessage) => {
+	roomBoards.verifyNameFieldErrorMessage(errorMessage);
+});
