@@ -31,7 +31,10 @@ When("I enter the tool display name {string}", (bettermarksTitle) => {
 Then(
 	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
 	(bettermarksTitle, bettermarksDomainUrl) => {
-		roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
+		roomBoards.verifyBettermarksToolAddedInCard(
+			bettermarksTitle,
+			bettermarksDomainUrl
+		);
 	}
 );
 
@@ -668,10 +671,6 @@ When("I click on the name of file {string} in file list", (fileName) => {
 
 When("I enter name {string} for file folder in card", (newName) => {
 	roomBoards.enterFolderNameInBoardCard(newName);
-});
-
-When("I approve new folder name in card", () => {
-	roomBoards.approveFolderNameInCard();
 });
 
 When("I clear folder name in card", () => {
