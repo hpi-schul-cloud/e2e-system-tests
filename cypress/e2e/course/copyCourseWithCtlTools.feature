@@ -73,6 +73,7 @@ Feature: Course - Copy course with CTL tools
         Then I see course page '<course_name>'
         When I click on button copy course
         Then I see the copy result notification
+        Then I see modal 'copy' with information on '<copyright_data_protection>, <course_member_permission>, <course_data>'
         When I close the dialog
         When I go to courses overview
         When I go to course '<course_name_copy>'
@@ -152,10 +153,10 @@ Feature: Course - Copy course with CTL tools
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Copy | CypressAut Course Copy (1) | Karl Herzog      | Kraft        | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url | copyright_data_protection | course_member_permission | course_data |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Copy | CypressAut Course Copy (1) | Karl Herzog      | Kraft        | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ | Copyright data protection | Course member permission | Course data |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher  | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Copy | CypressAut Course Copy (1) | cypress teacher_1 | student_1    | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher  | name_student | ctl_tool_scope_context     | ctl_tool_optional_protected_param         | ctl_tool_protected_param         | param_search_1_name | param_search_2_name | param_search_value | param_protected_name | param_protected_value | param_required_protected_value | ctl_tool_launch_url | copyright_data_protection | course_member_permission | course_data |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course Copy | CypressAut Course Copy (1) | cypress teacher_1 | student_1    | CY Test Tool Context Scope | CY Test Tool Optional Protected Parameter | CY Test Tool Protected Parameter | searchparam         | search              | test               | protected            | protected             | Ja                             | https://google.com/ | Copyright data protection | Course member permission | Course data |
