@@ -28,11 +28,6 @@ class ShareCourseModal {
 	seeInfoTextInShareCourseDialog() {
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
-		cy.get(ShareCourseModal.#shareCourseDialogExternalToolsInfo).should("be.visible");
-		cy.get(ShareCourseModal.#shareCourseDialogToolProtectedParamsInfo).should(
-			"be.visible"
-		);
-		cy.get(ShareCourseModal.#shareCourseDialogFilesInfo).should("be.visible");
 	}
 
 	seeSchoolInternalCheckBoxAsChecked() {

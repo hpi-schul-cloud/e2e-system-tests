@@ -24,6 +24,7 @@ Feature: Room Board - Share room board copy with files in file folder
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
         Then I see the Share settings dialog
+        Then I see modal 'share' with information on '<copyright_data_protection>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
         Then I see the checkbox Link valid for the same school is by default checked
         When I click on the button Continue
         Then I see the Share via modal
@@ -50,7 +51,7 @@ Feature: Room Board - Share room board copy with files in file folder
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | second_room_name       | board_title                      | import_board_title               | folder_name           | video_file_name          | audio_file_name            | image_file_name |
-            | dbc       | teacher1_dbc   | CypressAut Room Source | CypressAut Room Second | CypressAut Folder Board Original | CypressAut Folder Board Imported | CypressAut Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg |
+            | namespace | content_editor | room_name              | second_room_name       | board_title                      | import_board_title               | folder_name           | video_file_name          | audio_file_name            | image_file_name | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
+            | dbc       | teacher1_dbc   | CypressAut Room Source | CypressAut Room Second | CypressAut Folder Board Original | CypressAut Folder Board Imported | CypressAut Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
 
 
