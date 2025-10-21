@@ -77,6 +77,7 @@ class RoomBoards {
 	static #folderDetails = '[data-testid="file-statistic"]';
 	static #ThreeDotEditOptionTool = '[data-testid="kebab-menu-action"]';
 	static #H5PPage = '[data-testid="skip-link"]';
+	static #folderTitleAlert = '[role="alert"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -100,7 +101,6 @@ class RoomBoards {
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
-	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
@@ -441,7 +441,9 @@ class RoomBoards {
 			Save: "save",
 			Cancel: "cancel",
 		};
-		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should("be.visible");
+		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should(
+			"be.visible"
+		);
 	}
 
 	seeWarningModalForUnpublishedBoard() {
@@ -548,7 +550,10 @@ class RoomBoards {
 		cy.get(`[data-testid=edit-settings-option-${option}]`)
 			.should("be.visible")
 			.within((element) => {
-				cy.get(element).find("label").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("label")
+					.contains("span", label)
+					.should("contain", label);
 			});
 	}
 
@@ -986,10 +991,6 @@ class RoomBoards {
 			.type(newName);
 	}
 
-	approveFolderNameInCard() {
-		cy.get(RoomBoards.#approveFolderNameBtnInCard).click();
-	}
-
 	clearFolderNameInCard() {
 		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear();
 	}
@@ -1092,6 +1093,14 @@ class RoomBoards {
 
 	verifyXlsxFileUploaded() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyNameFieldErrorMessage(errormessage) {
+		cy.get(RoomBoards.#folderTitleInCardInput).within(() => {
+			cy.get(RoomBoards.#folderTitleAlert)
+				.should("be.visible")
+				.and("contain.text", errormessage);
+		});
 	}
 }
 

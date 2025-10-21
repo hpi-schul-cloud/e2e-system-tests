@@ -422,7 +422,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	board.clickPlusIconToAddContentIntoCard();
 	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
-	roomBoards.approveFolderNameInCard();
+	roomBoards.clickOutsideToSaveCard();
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 
