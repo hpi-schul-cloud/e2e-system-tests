@@ -102,6 +102,17 @@ Given(
 );
 
 Given(
+	"student visibility for teachers in school management is {string}",
+	(visibility) => {
+		management.openAdministrationInMenu();
+		management.clickOnSchoolAdministrationInSideMenu();
+		management.clickGeneralSettingsPanel();
+		management.toggleStudentVisibilityForTeachersByAdmin(visibility);
+		management.clickOnAdminSettingsSave();
+	}
+);
+
+Given(
 	"task {string} with submission date exists in course {string}",
 	(taskTitle, courseName) => {
 		courses.navigateToCoursesOverview();
@@ -169,28 +180,28 @@ Given("admin enables video conference for the school in the school settings page
 	management.clickOnAdminSettingsSave();
 });
 
-Given("the room named {string} is deleted", (room_name) => {
+Given("the room named {string} is deleted", (roomName) => {
 	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(room_name);
-	rooms.seeRoomDetailPage(room_name);
+	rooms.navigateToRoom(roomName);
+	rooms.seeRoomDetailPage(roomName);
 	rooms.openThreeDotMenuForRoom();
 	rooms.clickOnKebabMenuAction("delete");
 	rooms.seeConfirmationModalForRoomDeletion();
 	rooms.clickDeleteInConfirmationModal();
-	rooms.roomIsNotVisibleOnOverviewPage(room_name);
+	rooms.roomIsNotVisibleOnOverviewPage(roomName);
 });
 
-Given("a room named {string} exists", (room_name) => {
+Given("a room named {string} exists", (roomName) => {
 	rooms.navigateToRoomsOverview();
 	rooms.clickOnCreateRoomFAB();
 	rooms.showRoomCreationPage();
-	rooms.fillRoomFormName(room_name);
+	rooms.fillRoomFormName(roomName);
 	rooms.selectRoomColour();
 	rooms.submitRoom();
-	rooms.seeRoomDetailPage(room_name);
+	rooms.seeRoomDetailPage(roomName);
 });
 
-Given("a multi-column board named {string} exists in the room", (board_title) => {
+Given("a multi-column board named {string} exists in the room", (boardTitle) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -199,12 +210,63 @@ Given("a multi-column board named {string} exists in the room", (board_title) =>
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(board_title);
+	roomBoards.enterRoomBoardTitle(boardTitle);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(board_title);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
-Given("a single-column board named {string} exists in the room", (board_title) => {
+Given(
+	"a room named {string} with a multi-column board named {string} exists",
+	(roomName, boardTitle) => {
+		rooms.navigateToRoomsOverview();
+		rooms.clickOnCreateRoomFAB();
+		rooms.showRoomCreationPage();
+		rooms.fillRoomFormName(roomName);
+		rooms.selectRoomColour();
+		rooms.submitRoom();
+		rooms.seeRoomDetailPage(roomName);
+		rooms.clickOnAddContentButton();
+		rooms.seeFabButtonToAddBoard();
+		rooms.clickOnFabButtonToAddBoard();
+		roomBoards.seeColumnBoardDialogBox();
+		roomBoards.clickOnButtonToAddMultiColumnBoard();
+		roomBoards.seeNewRoomBoardCreatePage();
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		roomBoards.clickOnEditInBoardMenu();
+		roomBoards.enterRoomBoardTitle(boardTitle);
+		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+		roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
+	}
+);
+
+Given(
+	"a room named {string} with a multi-column board named {string} exists and published",
+	(roomName, boardTitle) => {
+		rooms.navigateToRoomsOverview();
+		rooms.clickOnCreateRoomFAB();
+		rooms.showRoomCreationPage();
+		rooms.fillRoomFormName(roomName);
+		rooms.selectRoomColour();
+		rooms.submitRoom();
+		rooms.seeRoomDetailPage(roomName);
+		rooms.clickOnAddContentButton();
+		rooms.seeFabButtonToAddBoard();
+		rooms.clickOnFabButtonToAddBoard();
+		roomBoards.seeColumnBoardDialogBox();
+		roomBoards.clickOnButtonToAddMultiColumnBoard();
+		roomBoards.seeNewRoomBoardCreatePage();
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		roomBoards.clickOnEditInBoardMenu();
+		roomBoards.enterRoomBoardTitle(boardTitle);
+		roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+		roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
+		roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+		board.clickOnKebabMenuAction("publish");
+		roomBoards.verifyDraftChipNotVisible();
+	}
+);
+
+Given("a single-column board named {string} exists in the room", (boardTitle) => {
 	rooms.clickOnAddContentButton();
 	rooms.seeFabButtonToAddBoard();
 	rooms.clickOnFabButtonToAddBoard();
@@ -213,9 +275,9 @@ Given("a single-column board named {string} exists in the room", (board_title) =
 	roomBoards.seeNewRoomBoardCreatePage();
 	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 	roomBoards.clickOnEditInBoardMenu();
-	roomBoards.enterRoomBoardTitle(board_title);
+	roomBoards.enterRoomBoardTitle(boardTitle);
 	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
-	roomBoards.seeUpdatedRoomBoardTitle(board_title);
+	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
 Given("I navigate to the room detail page via Breadcrumb", () => {
@@ -360,7 +422,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 	board.clickPlusIconToAddContentIntoCard();
 	board.selectCardElementFromMenu("file-folder");
 	roomBoards.enterFolderNameInBoardCard(folderTitle);
-	roomBoards.approveFolderNameInCard();
+	roomBoards.clickOutsideToSaveCard();
 	roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 
@@ -396,6 +458,18 @@ Given("team with name {string} is created", (teamName) => {
 	teams.clickOnAddTeam();
 	teams.enterTeamName(teamName);
 	teams.clickOnAddButtonToCreateTeam();
+});
+
+Given("team {string} is created with student {string}", (teamName, studentName) => {
+	teams.navigateToTeamsOverview();
+	teams.clickOnAddTeam();
+	teams.enterTeamName(teamName);
+	teams.clickOnAddButtonToCreateTeam();
+	teams.clickOnThreeDotToManageTeam();
+	teams.clickOnManageTeamMembersEditOption();
+	teams.clickOnAddInternalAttendees();
+	teams.selectInternalTeamMember(studentName);
+	teams.clickOnAddingNewTeamMemberButtonOnModal();
 });
 
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
@@ -507,6 +581,50 @@ Given(
 		rooms.fillParticipantFormName(participantName);
 		rooms.selectParticipantName();
 		rooms.addParticipant();
+	}
+);
+
+Given(
+	"{string} added in the room named {string} with role {string} and default read permission",
+	(participantName, roomName, role) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.selectRoomRoleFromDropdownMenu(role);
+		rooms.seeRoleOfParticipant(role);
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(participantName);
+		rooms.seeDefaultReadPermissionOfTheUser(participantName);
+	}
+);
+
+Given(
+	"{string} added in the room named {string} with role {string} and {string} to {string} permission",
+	(participantName, roomName, role, action, permission) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName);
+		rooms.openThreeDotMenuForRoom();
+		board.clickOnKebabMenuAction("room-members");
+		rooms.seeRoomEditParticipantsPage();
+		rooms.clickOnAddParticipantsFAB();
+		rooms.seeModalForAddParticipants();
+		rooms.selectRoomRoleFromDropdownMenu(role);
+		rooms.seeRoleOfParticipant(role);
+		rooms.fillParticipantFormName(participantName);
+		rooms.selectParticipantName();
+		rooms.addParticipant();
+		rooms.seeParticipantInList(participantName);
+		rooms.clickOnThreeDotMenuToEditUser(participantName);
+		// use permission variable inside method adapt "-" included.
+		rooms.clickOnButtonActionMenuInSubMenu(action);
+		rooms.changeRoleOfTheUser(permission);
+		rooms.confirmChangeRoleModalActions("Confirm", "Role");
 	}
 );
 

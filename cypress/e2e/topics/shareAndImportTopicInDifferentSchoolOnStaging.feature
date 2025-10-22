@@ -30,6 +30,7 @@ Feature: Topics - Teacher shares a topic to other teacher from different school 
         When I click on the share a copy of Topic from three dot menu '<topic_text_title_share>'
         Then I see the dialog box topic in course
         Then I see the text description in the dialog box share topic
+        Then I see modal 'share' with information on '<copyright_data_protection>, <geogebra_info>, <content_etherpad>'
         Then I see the checkbox for topic link valid within same school is 'checked'
         Then I see the expiry date checkbox is 'checked'
         When I 'uncheck' the checkbox school internal in dialog box topic
@@ -65,5 +66,5 @@ Feature: Topics - Teacher shares a topic to other teacher from different school 
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_2    | namespace | fullname_teacher_1 | course_name_1          | topic_text_title_share      | topic_text_title_import        | course_name_2                   |
-            | teacher2_dbc | teacherExt2_dbc | dbc       | cypress teacher_1  | CypressAut Math course | CypressAut Math Topic Share | CypressAut Math Topic Imported | CypressAut Math Course Imported |
+            | teacher_1    | teacherExt_2    | namespace | fullname_teacher_1 | course_name_1          | topic_text_title_share      | topic_text_title_import        | course_name_2                   | copyright_data_protection | geogebra_info | content_etherpad |
+            | teacher2_dbc | teacherExt2_dbc | dbc       | cypress teacher_1  | CypressAut Math course | CypressAut Math Topic Share | CypressAut Math Topic Imported | CypressAut Math Course Imported | Copyright data protection | Geogebra      | Content etherpad |

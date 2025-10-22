@@ -475,6 +475,7 @@ class Rooms {
 	}
 
 	clickOnButtonActionMenuInSubMenu(buttonAction) {
+		var buttonAction = buttonAction.replace(/ /g, "-");
 		cy.get(`[data-testid="kebab-menu-action-${buttonAction.toLowerCase()}"]`).click();
 	}
 
@@ -671,6 +672,13 @@ class Rooms {
 	clickConfirmButtonInThreeDotMenu() {
 		cy.get(Rooms.#threeDotMenuConfirm).should("be.visible");
 		cy.get(Rooms.#threeDotMenuConfirm).click();
+	}
+
+	seeDefaultReadPermissionOfTheUser(participantName) {
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.parent()
+			.should("contain", "Lesen");
 	}
 }
 export default Rooms;
