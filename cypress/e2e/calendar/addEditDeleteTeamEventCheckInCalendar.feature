@@ -9,9 +9,10 @@ Feature: Calendar - Create an event in a team and check in calendar
 
     Scenario Outline: Create, edit and delete a team event and verify its display in the calendar
 
-        # pre-condition: teacher logs in to their account and create a team
-        Given I am logged in as a '<user>' at '<namespace>'
-        Given team with name '<team>' is created
+        # pre-condition: teacher and student log in and teacher create a team
+        Given I am logged in as a '<student>' at '<namespace>'
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given team '<team>' is created with student '<list_name_student>'
 
         # add team event and check in calendar
         When I go to teams overview
@@ -32,7 +33,18 @@ Feature: Calendar - Create an event in a team and check in calendar
         When I click on event with start time '<event_start_text>' and event title '<event_title>'
         Then I am in calendar tab on team detail page and title '<event_title>' is visible
 
-        # edit team event and check in calendar
+        # student logs in and sees event in team calendar page
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to teams overview
+        When I go to a team '<team>'
+        When I go to tab Calendar
+        Then I am in calendar tab on team detail page and title '<event_title>' is visible
+
+        # teacher edits team event and check in calendar
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to teams overview
+        When I go to a team '<team>'
+        When I go to tab Calendar
         When I click on icon Edit event
         Then I see event creation modal
         When I change the title to '<event_title_1>'
@@ -48,16 +60,39 @@ Feature: Calendar - Create an event in a team and check in calendar
         When I click on event with start time '<event_start_text_1>' and event title '<event_title_1>'
         Then I am in calendar tab on team detail page and title '<event_title_1>' is visible
 
-        # delete team event and check in calendar
+        # student logs in and sees edited event in team calendar page
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to teams overview
+        When I go to a team '<team>'
+        When I go to tab Calendar
+        Then I am in calendar tab on team detail page and title '<event_title_1>' is visible
+
+        # teacher deletes team event and check in calendar
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to teams overview
+        When I go to a team '<team>'
+        When I go to tab Calendar
         When I click on icon Edit event
         When I click on Delete team event in modal
         Then I am in calendar tab on team detail page and title is NOT visible
 
+        # student logs in and checks event is not visible anymore
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to teams overview
+        When I go to a team '<team>'
+        When I go to tab Calendar
+        Then I am in calendar tab on team detail page and title is NOT visible
+
         # post-condition: teacher deletes the team
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given team with name '<team>' is deleted
 
         @school_api_test
+        Examples:
+            | teacher      | student      | namespace | list_name_student  | team                     | event_title | event_start_time | event_start_text | event_end_time | event_start_time_1 | event_start_text_1 | event_end_time_1 | event_description         | event_place  | event_title_1 | event_description_1            | event_place_1      |
+            | teacher1_dbc | student1_dbc | dbc       | student_1, cypress | CypressAut Calendar Team | cy Event    | 15:00            | 15 Uhr           | 16:00          | 18:00              | 18 Uhr             | 19:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |
+
         @staging_test
         Examples:
-            | user         | namespace | team                     | event_title | event_start_time | event_start_text | event_end_time | event_start_time_1 | event_start_text_1 | event_end_time_1 | event_description         | event_place  | event_title_1 | event_description_1            | event_place_1      |
-            | teacher1_brb | brb       | CypressAut Calendar Team | cy title    | 15:00            | 15 Uhr           | 16:00          | 18:00              | 18 Uhr             | 19:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |
+            | teacher      | student      | namespace | list_name_student | team                     | event_title | event_start_time | event_start_text | event_end_time | event_start_time_1 | event_start_text_1 | event_end_time_1 | event_description         | event_place  | event_title_1 | event_description_1            | event_place_1      |
+            | teacher1_dbc | student1_dbc | dbc       | Kraft, Herbert    | CypressAut Calendar Team | cy Event    | 10:00            | 10 Uhr           | 11:00          | 12:00              | 12 Uhr             | 13:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |
