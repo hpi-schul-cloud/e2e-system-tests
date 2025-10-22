@@ -24,7 +24,8 @@ Feature: Topics - Teacher copies a topic in the course
         When I select the three dot menu action 'copy' at topic index '0' in course detail page
         Then I see the progress bar
         Then I see the dialog for copying topic alert
-        Then I see the warning in the dialog that GeoGebra and Etherpad content were not copied
+        Then I see the warning section in the dialog box
+        Then I see modal 'copy' with information on '<copyright_data_protection>, <geogebra_info>, <content_etherpad>'
         When I click the button Close in the dialog
         Then I see the topic title '<topic_name>' with the suffix '1' on the course detail page
         Then I see the button Publish on the copied topic
@@ -50,5 +51,5 @@ Feature: Topics - Teacher copies a topic in the course
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | topic_name                                  | course_name                           | text_element_title                          | geogebra_title                                 | geogebra_id | learning_store_title                                    | etherpad_title                                 | etherpad_description         | task_title                                 | task_id                  |
-            | teacher1_dbc | dbc       | CypressAut Topic Creating and Deleting Test | CypressAut Test Creation and Deletion | CypressAut Topic Creating and Deleting Test | CypressAut Title for GeoGebra Element in Topic | kEBfU7AR    | CypressAut Title for Learning Material Element in Topic | CypressAut Title for Etherpad Element in Topic | changed etherpad description | CypressAut Title for Task Element in Topic | 59cce3f6c6abf042248e888d |
+            | teacher      | namespace | topic_name                                  | course_name                           | text_element_title                          | geogebra_title                                 | geogebra_id | learning_store_title                                    | etherpad_title                                 | etherpad_description         | task_title                                 | task_id                  | copyright_data_protection | geogebra_info | content_etherpad |
+            | teacher1_dbc | dbc       | CypressAut Topic Creating and Deleting Test | CypressAut Test Creation and Deletion | CypressAut Topic Creating and Deleting Test | CypressAut Title for GeoGebra Element in Topic | kEBfU7AR    | CypressAut Title for Learning Material Element in Topic | CypressAut Title for Etherpad Element in Topic | changed etherpad description | CypressAut Title for Task Element in Topic | 59cce3f6c6abf042248e888d | Copyright data protection | Geogebra      | Content etherpad |

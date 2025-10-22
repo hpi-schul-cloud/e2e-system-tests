@@ -709,10 +709,6 @@ When("I enter name {string} for file folder in card", (newName) => {
 	roomBoards.enterFolderNameInBoardCard(newName);
 });
 
-When("I approve new folder name in card", () => {
-	roomBoards.approveFolderNameInCard();
-});
-
 When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
 });
@@ -770,4 +766,8 @@ Then("I see the collabora Docx file type in the card", () => {
 
 Then("I see the file type XLSX is uploaded in the card", () => {
 	roomBoards.verifyXlsxFileUploaded();
+});
+
+Then("I see a validation error message {string} below the name field", (errorMessage) => {
+	roomBoards.verifyNameFieldErrorMessage(errorMessage);
 });

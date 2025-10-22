@@ -31,7 +31,8 @@ class RoomBoards {
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
-	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot =
+		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -76,6 +77,7 @@ class RoomBoards {
 	static #folderDetails = '[data-testid="file-statistic"]';
 	static #ThreeDotEditOptionTool = '[data-testid="kebab-menu-action"]';
 	static #H5PPage = '[data-testid="skip-link"]';
+	static #folderTitleAlert = '[role="alert"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -99,11 +101,11 @@ class RoomBoards {
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
-	static #approveFolderNameBtnInCard = '[data-testid="save-folder-title-in-card"]';
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
+	static #bettermarksToolDomainUrl =
+		'[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
 
 	clickOutsideBBBDialogBox() {
@@ -439,7 +441,9 @@ class RoomBoards {
 			Save: "save",
 			Cancel: "cancel",
 		};
-		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should("be.visible");
+		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should(
+			"be.visible"
+		);
 	}
 
 	seeWarningModalForUnpublishedBoard() {
@@ -480,9 +484,9 @@ class RoomBoards {
 				.split("\n")
 				.find((f) => expectedPattern.test(decodeURIComponent(f)));
 			expect(foundFile, "Downloaded zip file").to.exist;
-			cy.readFile(`cypress/downloads/${foundFile}`, "binary", { timeout: 15000 }).should(
-				(buffer) => expect(buffer.length).to.be.gt(100)
-			);
+			cy.readFile(`cypress/downloads/${foundFile}`, "binary", {
+				timeout: 15000,
+			}).should((buffer) => expect(buffer.length).to.be.gt(100));
 		});
 	}
 
@@ -546,7 +550,10 @@ class RoomBoards {
 		cy.get(`[data-testid=edit-settings-option-${option}]`)
 			.should("be.visible")
 			.within((element) => {
-				cy.get(element).find("label").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("label")
+					.contains("span", label)
+					.should("contain", label);
 			});
 	}
 
@@ -572,7 +579,9 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -796,7 +805,9 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("exist")
+			.should("contain", title);
 	}
 
 	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
@@ -873,14 +884,21 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element).find("th").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("th")
+					.contains("span", label)
+					.should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element).find("th").contains("span", label).should("contain", label).click();
+			cy.get(element)
+				.find("th")
+				.contains("span", label)
+				.should("contain", label)
+				.click();
 		});
 	}
 
@@ -894,11 +912,15 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -962,11 +984,11 @@ class RoomBoards {
 	}
 
 	enterFolderNameInBoardCard(newName) {
-		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear().type(newName);
-	}
-
-	approveFolderNameInCard() {
-		cy.get(RoomBoards.#approveFolderNameBtnInCard).click();
+		cy.get(RoomBoards.#folderTitleInCardInput)
+			.find("input")
+			.eq(0)
+			.clear()
+			.type(newName);
 	}
 
 	clearFolderNameInCard() {
@@ -1071,6 +1093,14 @@ class RoomBoards {
 
 	verifyXlsxFileUploaded() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyNameFieldErrorMessage(errormessage) {
+		cy.get(RoomBoards.#folderTitleInCardInput).within(() => {
+			cy.get(RoomBoards.#folderTitleAlert)
+				.should("be.visible")
+				.and("contain.text", errormessage);
+		});
 	}
 }
 
