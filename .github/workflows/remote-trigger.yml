@@ -5,6 +5,10 @@ on:
       ref:
         required: true
         type: string
+      repo:
+        required: false
+        type: string
+        default: "default"
     secrets:
       service-account-token:
         required: true
@@ -75,7 +79,17 @@ jobs:
           else
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
-          echo "all_pr_tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
+
+          case "${{ inputs.repo }}" in
+            "file-storage")
+              echo "Detected repo: file-storage"
+              echo "all_pr_tests_tag=@file_storage and @stable_test and @school_api_test" >> $GITHUB_OUTPUT
+              ;;
+            *)
+              echo "Detected repo: default"
+              echo "all_pr_tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
+              ;;
+          esac
 
       - name: Check if all apps are running
         shell: bash
