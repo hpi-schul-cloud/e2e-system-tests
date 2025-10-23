@@ -65,10 +65,10 @@ Feature: Course - Copy course
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher  | fullname_student  | search_string_student | board_title                   | folder_name         | image_file_name |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course Copy | CypressAut Course Copy (1) | cypress teacher_1 | cypress student_1 | student_1             | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher  | fullname_student  | search_string_student | board_title                   | folder_name         | image_file_name | copyright_data_protection | course_member_permission | course_data |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course Copy | CypressAut Course Copy (1) | cypress teacher_1 | cypress student_1 | student_1             | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg | Copyright data protection | Course member permission | Course data |
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher | fullname_student | search_string_student | board_title                   | folder_name         | image_file_name |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course Copy | CypressAut Course Copy (1) | Karl Herzog      | Herbert Kraft    | Kraft                 | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg |
+            | admin      | teacher      | student      | namespace | course_name            | course_name_copy           | fullname_teacher | fullname_student | search_string_student | board_title                   | folder_name         | image_file_name | copyright_data_protection | course_member_permission | course_data |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Course Copy | CypressAut Course Copy (1) | Karl Herzog      | Herbert Kraft    | Kraft                 | Cypress Board for Copy Course | Cypress File Folder | example_jpg.jpg | Copyright data protection | Course member permission | Course data |

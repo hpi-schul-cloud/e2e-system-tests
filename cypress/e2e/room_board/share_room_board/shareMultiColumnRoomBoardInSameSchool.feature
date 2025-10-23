@@ -63,5 +63,5 @@ Feature: Room Board - Share multi-column room board in the rooms with teacher fr
         @school_api_test
         @staging_test
         Examples:
-            | teacher1     | teacher2 | namespace | room_name_source       | room_name_target       | board_title            | import_board_title            | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
-            | teacher1_dbc | dbc      | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | CypressAut Board Import Title | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
+            | teacher1     | teacher2     | namespace | room_name_source       | room_name_target       | board_title            | import_board_title            | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
+            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | CypressAut Board Import Title | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
