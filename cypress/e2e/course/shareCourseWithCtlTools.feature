@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-D
+@group-F
 @schedule_run
 @prio_0_staging
 Feature: Course - Teacher can share a course with CTL tools

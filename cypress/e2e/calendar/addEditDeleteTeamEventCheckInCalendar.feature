@@ -1,7 +1,7 @@
 @stable_test
 @regression_test
 @schedule_run
-@group-F
+@group-D
 @prio_0_staging
 Feature: Calendar - Create an event in a team and check in calendar
 

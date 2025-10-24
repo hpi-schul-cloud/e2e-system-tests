@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-F
+@group-E
 @schedule_run
 @prio_0_staging
 Feature: Room Board - To share a board card link

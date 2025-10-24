@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-D
+@group-F
 @schedule_run
 @prio_0_staging
 Feature: Course Board - Restrict CTL tools to context board-element

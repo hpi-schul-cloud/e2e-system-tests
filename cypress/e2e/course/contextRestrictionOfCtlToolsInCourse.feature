@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-E
+@group-F
 @prio_0_staging
 Feature: Course - Restrict CTL tools to context course
 

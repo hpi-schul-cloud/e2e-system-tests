@@ -4,7 +4,7 @@
 
 @regression_test
 @stable_test
-@group-F
+@group-D
 @prio_0_staging
 Feature: Course - Teacher shares a course with another teacher from a different school
 
