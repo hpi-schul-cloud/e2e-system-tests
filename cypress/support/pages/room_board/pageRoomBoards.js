@@ -77,7 +77,8 @@ class RoomBoards {
 	static #folderDetails = '[data-testid="file-statistic"]';
 	static #ThreeDotEditOptionTool = '[data-testid="kebab-menu-action"]';
 	static #H5PPage = '[data-testid="skip-link"]';
-	static #folderTitleAlert = '[role="alert"]';
+	static #titleAlert = '[role="alert"]';
+	static #fileTitleInCardInput = '[data-testid="file-name-input"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -300,6 +301,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileAltTextInputSelector)
+			.eq(0)
+			.clear()
 			.click()
 			.type(altText);
 	}
@@ -362,6 +365,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileCaptionInputSelector)
+			.eq(0)
+			.clear()
 			.click()
 			.type(captionText);
 	}
@@ -1097,10 +1102,30 @@ class RoomBoards {
 
 	verifyNameFieldErrorMessage(errormessage) {
 		cy.get(RoomBoards.#folderTitleInCardInput).within(() => {
-			cy.get(RoomBoards.#folderTitleAlert)
+			cy.get(RoomBoards.#titleAlert)
 				.should("be.visible")
 				.and("contain.text", errormessage);
 		});
+	}
+
+	clearFilename() {
+		cy.get(RoomBoards.#fileTitleInCardInput).find("input").eq(0).clear();
+	}
+
+	verifyFileFieldErrorMessage(errormessage) {
+		cy.get(RoomBoards.#fileTitleInCardInput).within(() => {
+			cy.get(RoomBoards.#titleAlert)
+				.should("be.visible")
+				.and("contain.text", errormessage);
+		});
+	}
+
+	enterFileNameInBoardCard(newName) {
+		cy.get(RoomBoards.#fileTitleInCardInput)
+			.find("input")
+			.eq(0)
+			.clear()
+			.type(newName);
 	}
 }
 
