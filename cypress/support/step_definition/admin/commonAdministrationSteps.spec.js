@@ -1,7 +1,362 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Management from "../../pages/admin/pageAdministration";
+import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 
+const toolConfiguration = new ToolConfiguration();
 const management = new Management();
+
+Then("I see the context external tool configuration page", () => {
+	toolConfiguration.seeContextExternalToolConfiguratorPage();
+});
+
+Then("I see the school external tool configuration page", () => {
+	toolConfiguration.seeExternalToolConfiguratorPage();
+});
+
+Then("I see the school external tool configuration info text", () => {
+	toolConfiguration.seeToolConfigurationInfoText();
+});
+
+When("I click on button Add in the modal to add an external tool", () => {
+	toolConfiguration.saveExternalToolButton();
+});
+
+Then("I do not see tool {string} in the tool selection", (toolName) => {
+	toolConfiguration.toolIsNotVisibleInToolSelection(toolName);
+});
+
+When("I select the tool {string} from available tools", (toolName) => {
+	toolConfiguration.addExternalTool(toolName);
+});
+
+Then("I see tool {string} is selected", (toolName) => {
+	toolConfiguration.seeSelectedExternalTool(toolName);
+});
+
+When("I insert the external tool link {string}", (toolLink) => {
+	toolConfiguration.insertToolLink(toolLink);
+});
+
+When("I deactivate the tool", () => {
+	toolConfiguration.deactivateTool();
+});
+
+When("I activate the tool", () => {
+	toolConfiguration.activateTool();
+});
+
+Then("I see the deactivate checkbox is checked", () => {
+	toolConfiguration.seeDeactivatedCheckBoxIsChecked();
+});
+
+Then("I see the deactivate checkbox is not checked", () => {
+	toolConfiguration.seeDeactivatedCheckBoxIsNotChecked();
+});
+
+Then("I see an error alert", () => {
+	toolConfiguration.seeToolErrorAlert();
+});
+
+When("I enter {string} in display name field", (toolName) => {
+	toolConfiguration.fillInToolDisplayName(toolName);
+});
+
+When("I select {string} in required protected custom parameter selection", (value) => {
+	toolConfiguration.selectProtectedCustomParameterOption(value);
+});
+
+When(
+	"I enter {string} in required custom parameter field {string}",
+	(value, paramName) => {
+		toolConfiguration.fillInCustomParameter(paramName, value);
+	}
+);
+
+When(
+	"I enter {string} in optional custom parameter field {string}",
+	(value, paramName) => {
+		toolConfiguration.fillInCustomParameter(paramName, value);
+	}
+);
+
+Then(
+	"I see custom parameter input field {string} contains {string}",
+	(paramName, value) => {
+		toolConfiguration.seeCustomParameterFormContains(paramName, value);
+	}
+);
+
+When("I click the cancel button on the tool configuration page", (paramName, value) => {
+	toolConfiguration.clickCancelButton();
+});
+
+Then("I see the school number", () => {
+	management.seeAddedSchoolNumber();
+});
+
+Then("I see button Start migration is enabled", () => {
+	management.seeMigrationButtonIsEnabled();
+});
+
+When("I click on the start migration button", () => {
+	management.clickStartMigration();
+});
+
+Then("I see the migration information text", () => {
+	management.seeMigrationInformation();
+});
+
+Then("I see the migration school number information text", () => {
+	management.seeMigrationSchoolNumberInformation();
+});
+
+Then("I see the email form with correct recipient", () => {
+	management.checkSupportLink();
+});
+
+Then(/^I see the information link href is blog\.niedersachsen\.cloud\/umzug$/, () => {
+	management.checkInfoLink();
+});
+
+When("I click on agree migration button", () => {
+	management.clickAgreeMigrationButton();
+});
+
+Then("I see the migration is active field", () => {
+	management.seeMigrationActiveTextInformation();
+});
+
+Then("I see the end migration button", () => {
+	management.seeEndMigrationButtonIsEnabled();
+});
+
+When("I click on end migration button", () => {
+	management.clickEndMigrationButton();
+});
+
+When("I click on the end migration confirmation checkbox", () => {
+	management.clickEndMigrationConfirmationCheckbox();
+});
+
+When("I click on the end migration confirmation button", () => {
+	management.clickEndMigrationConfirmationButton();
+});
+
+Then("I see the end of migration information title", () => {
+	management.seeEndMigrationInformationTitle();
+});
+
+Then("I see the end of migration information text", () => {
+	management.seeEndMigrationInformationText();
+});
+
+Then(
+	/^I see the end migration information link href is blog\.niedersachsen\.cloud\/umzug$/,
+	() => {
+		management.seeEndMigrationInfoLink();
+	}
+);
+
+Then("I see the end migration confirmation checkbox is unchecked", () => {
+	management.seeEndMigrationConfirmationCheckboxIsUnchecked();
+});
+
+Then("I see the abort button for end of migration conformation", () => {
+	management.seeEndMigrationAbortButton();
+});
+
+Then("I see the end migration confirmation button is disabled", () => {
+	management.seeEndMigrationConfirmationButtonIsDisabled();
+});
+
+Then("I see the end migration confirmation button is enabled", () => {
+	management.seeEndMigrationConfirmationButtonIsEnabled();
+});
+
+Then("I see the migration mandatory switch is not checked", () => {
+	management.seeMigrationMandatorySwitch();
+});
+
+Then("I see the sync during migration switch is visible and not checked", () => {
+	management.seeSyncDuringMigrationSwitchIsNotChecked();
+});
+
+Then("I see the sync during migration switch is checked", () => {
+	management.seeSyncDuringMigrationSwitchIsChecked();
+});
+
+Then("I see the migration mandatory switch is checked", () => {
+	management.seeMigrationMandatorySwitchIsChecked();
+});
+
+When("I check the migration mandatory switch", () => {
+	management.checkMigrationMandatorySwitch();
+});
+
+When("I check the sync during migration switch", () => {
+	management.checkSyncDuringMigrationSwitch();
+});
+
+When("I uncheck the sync during migration switch", () => {
+	management.uncheckSyncDuringMigrationSwitch();
+});
+
+Then("I see the timestamp when the migration is finished", () => {
+	management.seeMigrationFinishedTimestamp();
+});
+
+Then("I see the migration wizard button", () => {
+	management.seeMigrationWizardButton();
+});
+
+Then("I see the show outdated users switch is visible and not checked", () => {
+	management.seeShowOutdatedUsersSwitchIsNotChecked();
+});
+
+Then("I see the show outdated users switch is checked", () => {
+	management.seeShowOutdatedUsersSwitchIsChecked();
+});
+
+When("I check the show outdated users switch", () => {
+	management.checkShowOutdatedUsersSwitch();
+});
+
+When("I uncheck the show outdated users switch", () => {
+	management.uncheckShowOutdatedUsersSwitch();
+});
+
+When("I click on delete external tool button", () => {
+	management.clickDeleteExternalToolButton();
+});
+
+When("I click on cancel external tool deletion button", () => {
+	management.clickCancelExternalToolDeletionButton();
+});
+
+Then("I see the external tools table", () => {
+	management.seeExternalToolTable();
+});
+
+Then("I see the external tools table is empty", () => {
+	management.seeEmptyExternalToolTable();
+});
+
+Then("I do not see the tool {string} in external tools table", (toolName) => {
+	management.toolIsNotVisibleInExternalToolTable(toolName);
+});
+
+When("I click the add external tool button", () => {
+	management.clickAddExternalTool();
+});
+
+Then("I see the tool {string} is active in tools table", (toolName) => {
+	management.checkActivatedTool(toolName);
+});
+
+Then("I see the tool {string} is deactivated in external tools table", (toolName) => {
+	management.checkDeactivatedTool(toolName);
+});
+
+Then("I see the external tool deletion dialog information text", () => {
+	management.seeExternalToolDeletionDialogInfoText();
+});
+
+Then("I see the external tool deletion dialog title", () => {
+	management.seeExternalToolDeletionDialogTitle();
+});
+
+Then("I see the tool {string} in external tools table", (toolname) => {
+	management.seeExternalTool(toolname);
+});
+
+When("I click on edit button of tool {string}", (toolName) => {
+	management.clickOnEditButton(toolName);
+});
+
+When("I click on delete button of tool {string}", (toolName) => {
+	management.clickDeleteButtonOnTool(toolName);
+});
+
+When("I confirm deletion on deletion dialog", () => {
+	management.clickOnConfirmInToolUsageDialog();
+});
+
+Then(
+	"I see the tool {string} in external tools table has no context restriction",
+	(toolName) => {
+		management.seeToolHasNoContextRestriction(toolName);
+	}
+);
+
+Then(
+	"I see the tool {string} in external tools table has context restriction {string}",
+	(toolName, contextRestriction) => {
+		management.seeToolHasContextRestriction(toolName, contextRestriction);
+	}
+);
+
+When("I click on authentication panel", () => {
+	management.clickOnAuthenticationPanel();
+});
+
+Then("I see a systems table", () => {
+	management.seeSystemTable();
+});
+
+Then(
+	"I see system {string} of type {string} in the system table",
+	(systemName, systemType) => {
+		management.seeSystemInTable(systemName, systemType);
+	}
+);
+
+When("I click on the edit button of system {string}", (systemName) => {
+	management.clickEditButtonOfSystem(systemName);
+});
+
+Then("I see the provisioning options page", () => {
+	management.seeProvisioningOptionsPage();
+});
+
+Then("I see 4 checkboxes with assigned default values", () => {
+	management.seeCheckboxesWithDefaultValues();
+});
+
+When("I check all checkboxes", () => {
+	management.checkAllBoxes();
+});
+
+When("I click the cancel button on the provisioning options page", () => {
+	management.clickOnProvisioningOptionsCancelButton();
+});
+
+When("I click the save button on the provisioning options page", () => {
+	management.clickOnProvisioningOptionsSaveButton();
+});
+
+Then("I see all 4 checkboxes are checked", () => {
+	management.seeAllCheckboxesAreChecked();
+});
+
+When("I set the checkboxes to default values", () => {
+	management.resetCheckboxValues();
+});
+
+When("I uncheck all checkboxes", () => {
+	management.uncheckAllBoxes();
+});
+
+Then("I see a warning dialog", () => {
+	management.seeDialog();
+});
+
+When("I confirm the dialog", () => {
+	management.confirmDialog();
+});
+
+Then("I see all 4 checkboxes are unchecked", () => {
+	management.seeAllCheckboxesAreUnchecked();
+});
 
 When("I visit the login page", () => {
 	management.visitUrlForFirstLogin();

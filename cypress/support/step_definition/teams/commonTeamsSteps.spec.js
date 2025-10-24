@@ -1,6 +1,8 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+import Management from "../../pages/admin/pageAdministration";
 import Teams from "../../pages/teams/pageTeams";
 
+const management = new Management();
 const teams = new Teams();
 
 When("I click on teams save changes button", () => {
@@ -159,4 +161,16 @@ When("I enter the title {string}", (eventTitle) => {
 
 When("I click on Add date", () => {
 	teams.clickOnAddTeamsAppointment();
+});
+
+When("I click the checkbox to allow students to create a team", () => {
+	management.clickAllowStudentsTeamCheckbox();
+});
+
+When("I click on Save", () => {
+	management.clickSaveButtonToAllowStudentCreateTeam();
+});
+
+Then("I see checkbox is saved", () => {
+	management.seeStudentTeamsAllowed();
 });

@@ -5,17 +5,6 @@ import News from "../../pages/news/pageNews";
 const dashboard = new Dashboard();
 const news = new News();
 
-// EXTERNAL COMMON STEP DEFINITIONS
-// ================================
-// External defined steps can be found here:
-// -----------------------------------------
-// -->\step_definition\authentication\loginStep.spec.js
-// --> \step_definition\teams\commonTeamsSteps.spec.js
-// --> \step_definition\dashboard\commonDashboardSteps.spec.js
-// --> \step_definition\news\commonNewsSteps.spec.js
-
-//Scenario: student arrives on dashboard
-
 Then("I see the welcome message {string}", (welcomeMsg) => {
 	dashboard.seeWelcomeMessage(welcomeMsg);
 });
@@ -34,9 +23,12 @@ Then(
 	}
 );
 
-Then("I can see the assigned task {string} of course {string}", (taskName, courseName) => {
-	dashboard.seeAssignedTasks(taskName, courseName);
-});
+Then(
+	"I can see the assigned task {string} of course {string}",
+	(taskName, courseName) => {
+		dashboard.seeAssignedTasks(taskName, courseName);
+	}
+);
 
 Then("I can see the draft task {string} of course {string}", (draftName, courseName) => {
 	dashboard.seeDraftTasks(draftName, courseName);

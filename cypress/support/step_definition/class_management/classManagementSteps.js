@@ -50,3 +50,18 @@ Then("I see the teacher name {string} is selected", (teacherName) => {
 Then("I see the current school year {string} is selected", (schoolYear) => {
 	classes.seeSelectedSchoolYearInClass(schoolYear);
 });
+
+Then("I see the manage group page", () => {
+	classes.seeManageGroupPage();
+});
+
+Then(
+	"I see the {string} with name {string} {string} in the group member table",
+	(role, lastName, firstName) => {
+		classes.seeGroupMemberTableContainsMemberWithRole(role, lastName, firstName);
+	}
+);
+
+Then("I see the infobox on manage group page", () => {
+	classes.seeClassMemberInfoBox();
+});
