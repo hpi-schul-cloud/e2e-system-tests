@@ -29,7 +29,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I clear folder name in card
-        Then I see a validation error message '<error_message>' below the name field
+        Then I see a validation error message '<error_message>' below the name field for file folder
         When I click on the page outside of the column
         Then I see a folder with name '<folder_name_edited>' in the card
 

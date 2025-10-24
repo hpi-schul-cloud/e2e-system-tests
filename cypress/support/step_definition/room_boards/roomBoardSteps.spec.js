@@ -137,7 +137,7 @@ Then("I see the file type Image in the card", () => {
 	roomBoards.verifyImageFileUploadedAsThumbnail();
 });
 
-When("I enter text in the textbox Alternative Text  {string}", (altText) => {
+When("I enter text in the textbox Alternative Text {string}", (altText) => {
 	roomBoards.enterImageAltTextInCard(altText);
 });
 
@@ -732,6 +732,24 @@ Then("I see the file type XLSX is uploaded in the card", () => {
 	roomBoards.verifyXlsxFileUploaded();
 });
 
-Then("I see a validation error message {string} below the name field", (errorMessage) => {
-	roomBoards.verifyNameFieldErrorMessage(errorMessage);
+Then(
+	"I see a validation error message {string} below the name field for file folder",
+	(errorMessage) => {
+		roomBoards.verifyNameFieldErrorMessage(errorMessage);
+	}
+);
+
+When("I clear file name from the file", () => {
+	roomBoards.clearFilename();
+});
+
+Then(
+	"I see a validation error message {string} below the name field for file card",
+	(errorMessage) => {
+		roomBoards.verifyFileFieldErrorMessage(errorMessage);
+	}
+);
+
+When("I enter name {string} for file in card", (newName) => {
+	roomBoards.enterFileNameInBoardCard(newName);
 });

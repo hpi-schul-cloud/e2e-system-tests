@@ -24,7 +24,9 @@ Feature: Files - Delete image file in room board and check file resource
         When I click on icon Plus to add content into card
         When I select 'file' from the element selection dialog box
         When I upload a file '<image_file_name>'
-        When I click outside of the card to save it
+        When I enter text in the textbox Caption '<caption_text>'
+        When I enter text in the textbox Alternative Text '<alternative_text>'
+        When I click on the page outside of the column
         Then I see the file type Image in the card
 
         # teacher copies the image file path and closes the fullscreen window
@@ -48,5 +50,5 @@ Feature: Files - Delete image file in room board and check file resource
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name                     | board_title                         | image_file_name |
-            | teacher1_dbc | dbc       | CypressAut File Deletion Room | CypressAut File Deletion Test Board | example_jpg.jpg |
+            | teacher      | namespace | room_name                     | board_title                         | image_file_name | alternative_text | caption_text    |
+            | teacher1_dbc | dbc       | CypressAut File Deletion Room | CypressAut File Deletion Test Board | example_jpg.jpg | Example Image    | Example Caption |
