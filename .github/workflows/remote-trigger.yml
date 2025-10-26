@@ -21,7 +21,8 @@ jobs:
       cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
       cypress_dbc: ${{ steps.set_target.outputs.CYPRESS_DBC }}
       environment: ${{ steps.set_target.outputs.environment }}
-      all_pr_tests_tag: ${{ steps.set_target.outputs.all_pr_tests_tag }}
+      tests_tag: ${{ steps.set_target.outputs.tests_tag }}
+      matrix_groups: ${{ steps.set_target.outputs.matrix_groups }}
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -80,16 +81,15 @@ jobs:
               echo "environment=ref" >> $GITHUB_OUTPUT
           fi
 
-          case "${{ inputs.repo }}" in
-            "file-storage")
+          if [[ "${{ inputs.repo }}" == "file-storage" ]]; then
               echo "Detected repo: file-storage"
-              echo "all_pr_tests_tag=@file_storage and @stable_test and @school_api_test" >> $GITHUB_OUTPUT
-              ;;
-            *)
+              echo "tests_tag=@file_storage and @stable_test and @school_api_test" >> $GITHUB_OUTPUT
+              echo 'matrix_groups=["file-storage-group"]' >> $GITHUB_OUTPUT
+          else
               echo "Detected repo: default"
-              echo "all_pr_tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
-              ;;
-          esac
+              echo "tests_tag=@stable_test and @school_api_test and @pr" >> $GITHUB_OUTPUT
+              echo 'matrix_groups=["group-A","group-B","group-C","group-D","group-E","group-F"]' >> $GITHUB_OUTPUT
+          fi
 
       - name: Check if all apps are running
         shell: bash
@@ -126,17 +126,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group:
-          ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
+        group: ${{ fromJson(needs.e2e-system-tests.outputs.matrix_groups) }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       browser: chrome
       tag: >-
-        ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_pr_tests_tag, matrix.group ) }}
+        ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
-      groups: ${{ format('{0}-{1}', 'remote-trigger-pr-tagged-tests', matrix.group) }}
+      groups: ${{ format('{0}-{1}', 'remote-trigger-tests', matrix.group) }}
 
   cypress-tests-successful:
     needs:
