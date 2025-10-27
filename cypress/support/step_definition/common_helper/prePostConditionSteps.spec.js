@@ -22,6 +22,18 @@ const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
+
+Given("the card contains image {string} element", (imageFile) => {
+	board.clickOutsideTheColumnToSaveTheColumn();
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	roomBoards.seeElementSelectionDialog();
+	board.selectCardElementFromMenu("file");
+	roomBoards.uploadFileInCard(imageFile);
+	roomBoards.clickOutsideToSaveCard();
+});
+
 Given(
 	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
 	(

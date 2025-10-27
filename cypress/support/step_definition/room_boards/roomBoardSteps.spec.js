@@ -9,6 +9,14 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I click on the option Duplicate on the card", () => {
+	roomBoards.clickOnDuplicateOptionInCardThreeDot();
+});
+
+Then("I see a duplicated card below the original card", () => {
+	roomBoards.seeDuplicatedCardBelowOriginal();
+});
+
 When("I click on the three dot in the element external tool bettermarks", () => {
 	roomBoards.openThreeDotMenuForExternalTool();
 });

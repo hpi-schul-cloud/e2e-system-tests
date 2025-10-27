@@ -107,6 +107,28 @@ class RoomBoards {
 	static #bettermarksToolDomainUrl =
 		'[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
+	static #duplicateCardOptionOnThreeDot =
+		'[data-testid="kebab-menu-action-duplicate-card"]';
+	static #duplicatedCardPositionSecond = '[data-testid="board-card-0-1"]';
+	static #duplicatedCardPositionFirst = '[data-testid="board-card-0-0"]';
+
+	seeDuplicatedCardBelowOriginal() {
+		cy.get(RoomBoards.#duplicatedCardPositionSecond).should("exist");
+
+		cy.get(RoomBoards.#duplicatedCardPositionFirst).then(($original) => {
+			cy.get(RoomBoards.#duplicatedCardPositionSecond).then(($duplicate) => {
+				expect($duplicate).to.exist;
+				expect(
+					$original[0].compareDocumentPosition($duplicate[0]) &
+						Node.DOCUMENT_POSITION_FOLLOWING
+				).to.be.greaterThan(0);
+			});
+		});
+	}
+
+	clickOnDuplicateOptionInCardThreeDot() {
+		cy.get(RoomBoards.#duplicateCardOptionOnThreeDot).click();
+	}
 
 	clickOutsideBBBDialogBox() {
 		cy.get(RoomBoards.#body).click("topLeft");
