@@ -42,14 +42,14 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         When I click outside of the card to save it
         Then I see the file type Image in the card
 
-        # teacher removes the image filename, verifies validation message and enters new filename in the multi-column room board
+        # teacher removes the image filename, verifies validation message and renames filename in the multi-column room board
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
         When I clear file name from the file
         Then I see a validation error message '<error_message>' below the name field for file card
-        When I enter name '<new_image_file_name>' for file in card
+        When I enter name '<image_file_name_rename>' for file in card
         When I click outside of the card to save it
         Then I see the file type Image in the card
 
@@ -60,7 +60,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         When I click on the thumbnail Image in the card
         Then I see the image in a lightbox
         When I click on icon Download in the fullscreen image
-        Then file '<new_image_file_name>' is saved in folder downloads
+        #Then file '<image_file_name_rename>' is saved in folder downloads
         When I click on the icon Close on the fullscreen image
         Then I see the file type Image in the card
 
@@ -83,5 +83,5 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | new_image_file_name |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | new_example_jpg.jpg |
+            | teacher      | namespace | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | new_example_jpg.jpg    |

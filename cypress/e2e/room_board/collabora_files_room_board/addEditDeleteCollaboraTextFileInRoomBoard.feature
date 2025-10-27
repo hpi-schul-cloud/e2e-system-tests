@@ -14,16 +14,38 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
-        Given the file '<docx_file_name>' is added to the room board
+        Given the file with filename '<docx_file_name>' and caption '<docx_caption_text>' is added to the room board
         Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>'
         Given participant '<teacher_2_name>' is having room role permission '<teacher_2_role>'
+
+        # first teacher edits caption of the collabora docx file in the multi-column room board
+        When I go to rooms overview
+        When I go to room '<room_name>'
+        When I click on the multi-column board in the room detail page
+        Then I see the file type DOCX is uploaded in the card
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I enter text in the textbox Caption '<docx_caption_text_rename>'
+        When I click outside of the card to save it
+        Then I see the file type DOCX is uploaded in the card
+
+        # first teacher removes the docx filename, verifies validation message and renames filename in the multi-column room board
+        When I click on the page outside of the column
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three dot in the element File
+        When I clear file name from the file
+        Then I see a validation error message '<error_message>' below the name field for file card
+        When I enter name '<docx_file_name_rename>' for file in card
+        When I click outside of the card to save it
+        Then I see the file type DOCX is uploaded in the card
 
         # first teacher opens the collabora docx file editor in the same tab, adds text content and saves it
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
-        When I click on the collabora file '<docx_file_name>'
+        When I click on the collabora file '<docx_file_name_rename>'
         Then I see collabora text editor
         When I type text '<text_1>' in collabora editor on position '200', '400'
         When I click on the button Save in Collabora editor
@@ -44,7 +66,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
-        When I click on the collabora file '<docx_file_name>'
+        When I click on the collabora file '<docx_file_name_rename>'
         When I type text '<text_2>' in collabora editor on position '600', '500'
         When I click on the button Save in Collabora editor
 
@@ -64,12 +86,12 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             |
-            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
 
         @staging_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             |
-            | brb       | teacher1_brb | teacher2_brb | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   |
+            | brb       | teacher1_brb | teacher2_brb | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
 
 

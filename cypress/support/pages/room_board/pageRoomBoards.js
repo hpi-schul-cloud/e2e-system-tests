@@ -1125,7 +1125,10 @@ class RoomBoards {
 			.find("input")
 			.eq(0)
 			.clear()
-			.type(newName);
+			.type(newName, { delay: 80 })
+			// sometimes the typing is too fast for the input field and the name is not saved properly. Therefore, delayed typing and wait time is added.
+			.should("have.value", newName)
+			.wait(50);
 	}
 }
 
