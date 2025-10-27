@@ -115,7 +115,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
 
         # teacher downloads the audio file in the multi-column room board
         When I click on the icon Download file
-        #Then file '<audio_file_name_renamed>' is saved in folder downloads
+        Then file '<audio_file_name_renamed>' is saved in folder downloads
 
         # teacher deletes the audio file in the multi-column room board
         When I click on the page outside of the column
