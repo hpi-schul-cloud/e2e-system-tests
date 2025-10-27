@@ -56,7 +56,6 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         Then I see the file type XLSX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
 
-
         # second teacher edits the xlsx file in collabora editor in edit mode, adds text content and saves it
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview

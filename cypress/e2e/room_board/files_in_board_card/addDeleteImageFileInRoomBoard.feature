@@ -60,7 +60,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         When I click on the thumbnail Image in the card
         Then I see the image in a lightbox
         When I click on icon Download in the fullscreen image
-        #Then file '<image_file_name_rename>' is saved in folder downloads
+        Then file '<image_file_name_rename>' is saved in folder downloads
         When I click on the icon Close on the fullscreen image
         Then I see the file type Image in the card
 
@@ -84,4 +84,4 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         @staging_test
         Examples:
             | teacher      | namespace | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | new_example_jpg.jpg    |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg |
