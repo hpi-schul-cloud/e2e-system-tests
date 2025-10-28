@@ -166,6 +166,6 @@ When("I enter caption {string} in the dialog box create document", (caption) => 
 	board.enterCaptionInCreateDocumentDialog(caption);
 });
 
-When("I click on button create in dialog create document", () => {
+When("I click on button Create in dialog create document", () => {
 	board.clickCreateButtonInCreateDocumentDialog();
 });

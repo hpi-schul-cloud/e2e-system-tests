@@ -16,7 +16,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         Given the multi-column board has a column with a card
         Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>'
 
-        # first teacher adds the collabora docx file type to the room board using the collabora create element dialog box
+        # first teacher creates the collabora docx file using the collabora creation element dialog box
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
@@ -28,7 +28,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         When I choose document type '<document_type_docx>' from the dialog box create document
         When I enter filename '<docx_file_name>' in the dialog box create document
         When I enter caption '<docx_caption_name>' in the dialog box create document
-        When I click on button create in dialog create document
+        When I click on button Create in dialog create document
         Then I see the file type DOCX is uploaded in the card
 
         # first teacher opens the collabora docx file editor in the same tab, adds text content and saves it
