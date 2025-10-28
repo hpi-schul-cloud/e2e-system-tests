@@ -14,16 +14,11 @@ const users = {
 	admin: "administrator",
 	teacher: "teacher",
 	student: "student",
-	adminDoublerolle: "administrator,teacher",
 };
 const userData = {
 	admin1: {
 		firstName: "cypress",
 		lastName: "admin_1",
-	},
-	admin1Doublerolle: {
-		firstName: "cypress",
-		lastName: "admin_1_doublerolle",
 	},
 	teacher1: {
 		firstName: "cypress",
@@ -108,9 +103,7 @@ const getUrl = (baseUrl) => {
 const getUserRole = (userType) => {
 	//extend the role for doublerolle
 	const roleName = userType.split("_")[0].slice(0, -1);
-	cy.log("Extracted role name:", roleName);
 	const matchedRole = Object.keys(users).find((role) => roleName === role);
-	cy.log("Matched role:", matchedRole);
 	return matchedRole ? users[matchedRole] : "unknown";
 };
 
