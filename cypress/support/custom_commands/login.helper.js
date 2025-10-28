@@ -53,6 +53,8 @@ export const getUserCredentials = (username) => {
 			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
 		case "teacher1_dbc":
 			return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
+		case "admin1_doublerolle_dbc":
+			return ["ADMIN_1_DOUBLEROLLE_DBC_EMAIL", "ADMIN_1_DOUBLEROLLE_DBC_PASSWORD"];
 		case "teacher2_dbc":
 			return ["TEACHER_2_DBC_EMAIL", "TEACHER_2_DBC_PASSWORD"];
 		case "student1_dbc":
@@ -100,9 +102,9 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_EXT_2_NBC_EMAIL", "TEACHER_EXT_2_NBC_PASSWORD"];
 		case "studentExt2_nbc":
 			return ["STUDENT_EXT_2_NBC_EMAIL", "STUDENT_EXT_2_NBC_PASSWORD"];
-		case "studentExt1_nbc":
+		case "studentExt1_dbc":
 			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
-		case "studentExt2_nbc":
+		case "studentExt2_dbc":
 			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
 
 		case "teacher1_lh":
