@@ -29,14 +29,16 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout =
+		'[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
-	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementAlert =
+		'[data-testid="board-external-tool-element-alert"]';
 	static #externalToolElementDomain =
 		'[data-testid="board-external-tool-element-domain"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
@@ -53,6 +55,12 @@ class Board {
 	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]';
 	static #boardLinkElement = '[data-testid="board-link-element"]';
 	static #boardFileElement = '[data-testid="board-file-element"]';
+	static #dialogCreateDocument = '[data-testid="collabora-element-dialog"]';
+	static #dialogCreateDocumentTitle = '[data-testid="dialog-title"]';
+	static #dialogSelectDocumentType = '[data-testid="collabora-element-form-type"]';
+	static #dialogFileName = '[data-testid="collabora-element-form-filename"]';
+	static #dialogCaptionName = '[data-testid="collabora-element-form-caption"]';
+	static #dialogCreateButton = '[data-testid="dialog-confirm"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -195,7 +203,9 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	clickOnThreeDotOnColumn() {
@@ -508,13 +518,19 @@ class Board {
 
 	enterBoardCardTitle(cardTitle) {
 		cy.get(Board.#boardCard).within(() => {
-			cy.get(Board.#boardCardTitle).find("textarea").first().clear().type(cardTitle);
+			cy.get(Board.#boardCardTitle)
+				.find("textarea")
+				.first()
+				.clear()
+				.type(cardTitle);
 		});
 	}
 
 	seeBoardCardTitle(cardTitle) {
 		cy.get(Board.#boardCard).within(() => {
-			cy.get(Board.#boardCardTitle).should("be.visible").should("have.text", cardTitle);
+			cy.get(Board.#boardCardTitle)
+				.should("be.visible")
+				.should("have.text", cardTitle);
 		});
 	}
 
@@ -530,7 +546,9 @@ class Board {
 	}
 
 	seeLinkElementTitle(linkElementTitle) {
-		cy.get(Board.#contentElementTitle).contains(linkElementTitle).should("be.visible");
+		cy.get(Board.#contentElementTitle)
+			.contains(linkElementTitle)
+			.should("be.visible");
 	}
 
 	clickOnLinkElement(linkElementTitle) {
@@ -578,6 +596,34 @@ class Board {
 
 	seeFileElementWithTitle(fileTitle) {
 		cy.get(Board.#boardFileElement).contains(fileTitle);
+	}
+
+	seeDialogBoxForCreateDocument() {
+		cy.get(Board.#dialogCreateDocument).should("be.visible");
+		cy.get(Board.#dialogCreateDocumentTitle)
+			.should("be.visible")
+			.should("contain.text", "Dokument erstellen");
+	}
+
+	chooseDocumentTypeInCreateDocumentDialog(documentType) {
+		cy.get(Board.#dialogSelectDocumentType).find(".v-field__input").click();
+		cy.contains(".v-list-item-title", documentType).click();
+		cy.get(Board.#dialogSelectDocumentType).should("contain.text", documentType);
+	}
+
+	enterFileNameInCreateDocumentDialog(fileName) {
+		cy.get(Board.#dialogFileName).find(".v-field__input").type(fileName);
+	}
+
+	enterCaptionInCreateDocumentDialog(captionName) {
+		cy.get(Board.#dialogCaptionName)
+			.find(".v-field__input")
+			.first() // there are two inputs
+			.type(captionName);
+	}
+
+	clickCreateButtonInCreateDocumentDialog() {
+		cy.get(Board.#dialogCreateButton).click();
 	}
 }
 export default Board;
