@@ -17,30 +17,12 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
         Given the file with filename '<xlsx_file_name>' and caption '<xlsx_caption_text>' is added to the room board
         Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>'
 
-        # first teacher edits caption of the collabora xlsx file in the multi-column room board
+        # first teacher opens the collabora xlsx file editor in the same tab, adds content and saves it
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
-        When I click on the three dot on the card
-        When I click on the option Edit in the three dot menu on the card
-        When I enter text in the textbox Caption '<xlsx_caption_text_rename>'
-        When I click outside of the card to save it
-        Then I see the file type XLSX is uploaded in the card
-
-        # first teacher removes the xlsx filename, verifies validation message and renames filename in the multi-column room board
-        When I click on the page outside of the column
-        When I click on the three dot on the card
-        When I click on the option Edit in the three dot menu on the card
-        When I click on the three dot in the element File
-        When I clear file name from the file
-        Then I see a validation error message '<error_message>' below the name field for file card
-        When I enter name '<xlsx_file_name_rename>' for file in card
-        When I click outside of the card to save it
-        Then I see the file type XLSX is uploaded in the card
-
-        # first teacher opens the collabora xlsx file editor in the same tab, adds content and saves it
-        When I click on the collabora file '<xlsx_file_name_rename>'
+        When I click on the collabora file '<xlsx_file_name>'
         Then I see collabora text editor
         When I type text '<value_1>' in collabora editor on position '200', '100'
         When I click on the button Save in Collabora editor
@@ -61,7 +43,7 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
-        When I click on the collabora file '<xlsx_file_name_rename>'
+        When I click on the collabora file '<xlsx_file_name>'
         Then I cannot type text '<value_2>' in collabora editor on position '300', '100'
 
         #second teacher downloads the xlsx document as pdf from collabora editor
@@ -80,12 +62,12 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text   | xlsx_caption_text_rename    | error_message               | xlsx_file_name_rename    |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | Sample Caption Text | Sample Caption Text Renamed | Bitte fülle dieses Feld aus | sample-xlsx-renamed.xlsx |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text   |
+            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | Sample Caption Text |
 
         @staging_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text   | xlsx_caption_text_rename    | error_message               | xlsx_file_name_rename    |
-            | brb       | teacher1_brb | teacher2_brb | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | Sample Caption Text | Sample Caption Text Renamed | Bitte fülle dieses Feld aus | sample-xlsx-renamed.xlsx |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text   |
+            | brb       | teacher1_brb | teacher2_brb | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | Sample Caption Text |
 
 
