@@ -1125,9 +1125,16 @@ class RoomBoards {
 			.find("input")
 			.eq(0)
 			.clear()
-			.type(newFileName, { delay: 100 })
-			// sometimes the typing is too fast for the input field and the name is not saved properly. Therefore, delayed typing and wait time is added.
-			.should("have.value", newFileName);
+			.type(newFileName, { delay: 10 }) // sometimes the typing is too fast for the input field.
+			.blur() // focusout/blur event to save the name
+			.invoke("val")
+			.then((val) => {
+				// remove any extension at the end (e.g: .docx, .pdf, .jpg, etc.) as per the feature behaviour
+				const removeExtension = (name) => name.replace(/\.[^/.]+$/, "");
+				const actualBaseName = removeExtension(val);
+				const expectedBaseName = removeExtension(newFileName);
+				expect(actualBaseName).to.eq(expectedBaseName);
+			});
 	}
 }
 
