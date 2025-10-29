@@ -606,18 +606,17 @@ class Board {
 	}
 
 	chooseDocumentTypeInCreateDocumentDialog(documentType) {
-		cy.get(Board.#dialogSelectDocumentType).find(".v-field__input").click();
-		cy.contains(".v-list-item-title", documentType).click();
+		cy.get(Board.#dialogSelectDocumentType).click();
+		cy.contains(documentType).click();
 		cy.get(Board.#dialogSelectDocumentType).should("contain.text", documentType);
 	}
 
 	enterFileNameInCreateDocumentDialog(fileName) {
-		cy.get(Board.#dialogFileName).find(".v-field__input").type(fileName);
+		cy.get(Board.#dialogFileName).find("input").type(fileName);
 	}
 
 	enterCaptionInCreateDocumentDialog(captionName) {
 		cy.get(Board.#dialogCaptionName)
-			.find(".v-field__input")
 			.first() // there are two inputs
 			.type(captionName);
 	}
