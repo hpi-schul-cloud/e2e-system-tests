@@ -11,7 +11,7 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
 
         # pre-condition: user logins
         Given I am logged in as a '<student_1>' at '<namespace>'
-        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        #Given I am logged in as a '<teacher_2>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given I am logged in as a '<admin_1>' at '<namespace>'
 
@@ -90,7 +90,7 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
         @school_api_test
         Examples:
             | teacher_1    | student_1    | teacher_2              | admin_1                | namespace | room_name             | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher | participant_same_school_owner |
-            | teacher1_dbc | student1_dbc | admin1_doublerolle_dbc | admin1_doublerolle_dbc | dbc       | CypressAut Room Admin | cypress-test-school-1   | Lernbegleitend    | Lernend           | student_1                       | teacher_2                       | teacher_1                     |
+            | teacher1_dbc | student1_dbc | admin1_doublerolle_dbc | admin1_doublerolle_dbc | dbc       | CypressAut Room Admin | cypress-test-school-1   | Lernbegleitend    | Lernend           | student_1                       | admin_doublerolle               | admin_doublerolle             |
 
         @staging_test
         Examples:

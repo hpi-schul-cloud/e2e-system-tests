@@ -14,11 +14,16 @@ const users = {
 	admin: "administrator",
 	teacher: "teacher",
 	student: "student",
+	adminDoublerolle: "administrator,teacher",
 };
 const userData = {
 	admin1: {
 		firstName: "cypress",
 		lastName: "admin_1",
+	},
+	adminDoublerolle: {
+		firstName: "cypress",
+		lastName: "admin_doublerolle",
 	},
 	teacher1: {
 		firstName: "cypress",
@@ -101,15 +106,27 @@ const getUrl = (baseUrl) => {
 };
 
 const getUserRole = (userType) => {
-	//extend the role for doublerolle
+	//extend the role for doublerolle: userType : admin1_doublerolle1_dbc
 	const roleName = userType.split("_")[0].slice(0, -1);
+	if (userType.length > 15) {
+		const extended = userType.split("_")[1];
+		const doubleRoleName =
+			roleName + extended.charAt(0).toUpperCase() + extended.slice(1);
+		const doubleMatchedRole = Object.keys(users).find((role) => doubleRoleName === role);
+		console.log("Double role matched:", doubleMatchedRole);
+		return doubleMatchedRole ? users[doubleMatchedRole] : "unknown";
+	}
+	//convert to roleName to adminDoublerolle
+	//will not affect other roles eg. student1, teacher1, extstudent, extteacher...
 	const matchedRole = Object.keys(users).find((role) => roleName === role);
+	console.log("Matched role:", matchedRole);
 	return matchedRole ? users[matchedRole] : "unknown";
 };
 
 const generatePayload = (schoolId, userType, role) => {
+	//extend the role for doublerolle: userType : admin1_doublerolle1_dbc
 	let userRole = userType.split("_")[0];
-
+	//stucked up here because our userData has adminDoublerolle and the above outcome is admin1
 	if (userData.hasOwnProperty(userRole)) {
 		return {
 			schoolId,
