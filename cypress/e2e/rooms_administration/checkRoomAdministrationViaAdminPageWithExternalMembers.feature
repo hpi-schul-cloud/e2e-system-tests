@@ -19,19 +19,11 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         Given I am logged in as a '<adminExt_1>' at '<namespace>'
 
         # pre-condition: external admin activates student visibility in the different school
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on general settings panel
-        When I click the toggle switch to enable student visibility for teachers
-        When I click on button Save admin settings
+        Given student visibility for teachers in school management is 'enabled'
 
         # pre-condition: external teacher activates visibility in central directory in different school
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        When I go to my account settings
-        Then I see the checkbox Activate visibility in the central directory is unchecked
-        When I click on the checkbox Activate visibility in the central directory
-        When I click on the button Save Visibility Settings
-        Then I see the checkbox Activate visibility in the central directory is checked
+        Given activate visibility in central directory for teacher is 'enabled'
 
         # pre-condition: teacher creating a new room in the origin school, becoming the owner
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -113,11 +105,7 @@ Feature: Room Administration - Able to see all rooms and the external members ar
 
         # post-condition: external teacher deactivates visibility in central directory in different school
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        When I go to my account settings
-        Then I see the checkbox Activate visibility in the central directory is checked
-        When I click on the checkbox Activate visibility in the central directory
-        When I click on the button Save Visibility Settings
-        Then I see the checkbox Activate visibility in the central directory is unchecked
+        Given activate visibility in central directory for teacher is 'disabled'
 
         # post-condition: teacher deletes the room in the origin school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -132,8 +120,8 @@ Feature: Room Administration - Able to see all rooms and the external members ar
 
         @staging_test
         Examples:
-            | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name            | participant_external_school | participant_same_school     | role_name_teacher | participant_external_school_teacher | role_name_student | participant_external_school_student | participant_same_school_student | participant_same_school_owner |
-            | teacher1_dbc | student1_dbc | teacherExt1_dbc | studentExt1_dbc | adminExt1_dbc | dbc       | CypressAut Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                               | Lernend           | Alex                                | Kraft                           | Karl                          |
+            | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name                              | participant_external_school | participant_same_school     | role_name_teacher | participant_external_school_teacher | role_name_student | participant_external_school_student | participant_same_school_student | participant_same_school_owner |
+            | teacher1_dbc | student1_dbc | teacherExt1_dbc | studentExt1_dbc | adminExt1_dbc | dbc       | CypressAut External members Room Admin | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                               | Lernend           | Alex                                | Kraft                           | Karl                          |
 
 # @school_api_test
 #Examples:

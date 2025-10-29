@@ -1,4 +1,5 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
+import Account from "../../pages/account/pageAccount";
 import Management from "../../pages/admin/pageAdministration";
 import Classes from "../../pages/class_management/pageClasses";
 import GlobalActions from "../../pages/common_helper/globalActions";
@@ -11,6 +12,7 @@ import Tasks from "../../pages/tasks/pageTasks";
 import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
+const account = new Account();
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
@@ -109,6 +111,16 @@ Given(
 		management.clickGeneralSettingsPanel();
 		management.toggleStudentVisibilityForTeachersByAdmin(visibility);
 		management.clickOnAdminSettingsSave();
+	}
+);
+
+Given(
+	"activate visibility in central directory for teacher is {string}",
+	(visibility) => {
+		account.navigateToAccountSettingsSection();
+		account.clickOnCheckboxDirectoryVisibility();
+		account.toggleCentralDirectoryVisibilityForTeacher(visibility);
+		account.clickOnSaveVisibilitySettingsButton();
 	}
 );
 
