@@ -42,6 +42,7 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         # teacher edits caption of the DOCX file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
+        When I clear '<caption_field>' from the file
         When I enter text in the textbox Caption '<docx_caption_text_rename>'
         When I click outside of the card to save it
         Then I see the file type DOCX is uploaded in the card
@@ -51,7 +52,7 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
-        When I clear file name from the file
+        When I clear '<file_name_field>' from the file
         Then I see a validation error message '<error_message>' below the name field for file card
         When I enter name '<docx_file_name_rename>' for file in card
         When I click outside of the card to save it
@@ -83,5 +84,5 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | docx_file_name   | docx_caption_text         | docx_caption_text_rename         | error_message               | docx_file_name_rename    |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-docx.docx | CypressAut docx test file | CypressAut docx test file rename | Bitte fülle dieses Feld aus | sample-docx-renamed.docx |
+            | teacher      | namespace | room_name            | board_title            | docx_file_name   | docx_caption_text         | docx_caption_text_rename         | error_message               | docx_file_name_rename    | file_name_field | caption_field |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-docx.docx | CypressAut docx test file | CypressAut docx test file rename | Bitte fülle dieses Feld aus | sample-docx-renamed.docx | Name            | Caption       |

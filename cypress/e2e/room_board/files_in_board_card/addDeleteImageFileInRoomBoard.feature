@@ -37,7 +37,9 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         # teacher edits caption and alternative text of the image file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
+        When I clear '<caption_field>' from the file
         When I enter text in the textbox Caption '<image_caption_text_rename>'
+        When I clear '<alternative_text_field>' from the file
         When I enter text in the textbox Alternative Text '<alternative_text_rename>'
         When I click outside of the card to save it
         Then I see the file type Image in the card
@@ -47,7 +49,7 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
-        When I clear file name from the file
+        When I clear '<file_name_field>' from the file
         Then I see a validation error message '<error_message>' below the name field for file card
         When I enter name '<image_file_name_rename>' for file in card
         When I click outside of the card to save it
@@ -83,5 +85,5 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg |
+            | teacher      | namespace | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |

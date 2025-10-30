@@ -42,6 +42,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
+        When I clear '<caption_field>' from the file
         When I enter text in the textbox Caption '<video_caption_text_renamed>'
         When I click outside of the card to save it
         Then I see the file type Video in the card
@@ -51,7 +52,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
-        When I clear file name from the file
+        When I clear '<file_name_field>' from the file
         Then I see a validation error message '<error_message>' below the name field for file card
         When I enter name '<video_file_name_renamed>' for file in card
         When I click outside of the card to save it
@@ -98,6 +99,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
+        When I clear '<caption_field>' from the file
         When I enter text in the textbox Caption '<audio_caption_text_renamed>'
         When I click outside of the card to save it
         Then I see the file type Audio in the card
@@ -107,7 +109,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
-        When I clear file name from the file
+        When I clear '<file_name_field>' from the file
         Then I see a validation error message '<error_message>' below the name field for file card
         When I enter name '<audio_file_name_renamed>' for file in card
         When I click outside of the card to save it
@@ -136,5 +138,5 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | video_file_name          | video_caption_text         | audio_file_name            | audio_caption_text         | video_file_name_renamed         | video_caption_text_renamed         | error_message               | audio_file_name_renamed | audio_caption_text_renamed         |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample_video_1mb_mp4.mp4 | CypressAut video test file | sample_audio_0.4mb_mp3.mp3 | CypressAut audio test file | sample_video_1mb_mp4_rename.mp4 | CypressAut video test file renamed | Bitte fülle dieses Feld aus | sample_audio_rename.mp3 | CypressAut audio test file renamed |
+            | teacher      | namespace | room_name            | board_title            | video_file_name          | video_caption_text         | audio_file_name            | audio_caption_text         | video_file_name_renamed         | video_caption_text_renamed         | error_message               | audio_file_name_renamed | audio_caption_text_renamed         | file_name_field | caption_field |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample_video_1mb_mp4.mp4 | CypressAut video test file | sample_audio_0.4mb_mp3.mp3 | CypressAut audio test file | sample_video_1mb_mp4_rename.mp4 | CypressAut video test file renamed | Bitte fülle dieses Feld aus | sample_audio_rename.mp3 | CypressAut audio test file renamed | Name            | Caption       |

@@ -25,6 +25,7 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         Then I see the file type XLSX is uploaded in the card
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
+        When I clear '<caption_field>' from the file
         When I enter text in the textbox Caption '<xlsx_caption_text_rename>'
         When I click outside of the card to save it
         Then I see the file type XLSX is uploaded in the card
@@ -34,7 +35,7 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
-        When I clear file name from the file
+        When I clear '<file_name_field>' from the file
         Then I see a validation error message '<error_message>' below the name field for file card
         When I enter name '<xlsx_file_name_rename>' for file in card
         When I click outside of the card to save it
@@ -88,10 +89,10 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text        | xlsx_caption_text_rename         | error_message               | xlsx_file_name_rename   |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text        | xlsx_caption_text_rename         | error_message               | xlsx_file_name_rename   | file_name_field | caption_field |
+            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx | Name            | Caption       |
 
         @staging_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text        | xlsx_caption_text_rename         | error_message               | xlsx_file_name_rename   |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text        | xlsx_caption_text_rename         | error_message               | xlsx_file_name_rename   | file_name_field | caption_field |
+            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx | Name            | Caption       |

@@ -25,6 +25,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         Then I see the file type DOCX is uploaded in the card
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
+        When I clear '<caption_field>' from the file
         When I enter text in the textbox Caption '<docx_caption_text_rename>'
         When I click outside of the card to save it
         Then I see the file type DOCX is uploaded in the card
@@ -34,7 +35,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element File
-        When I clear file name from the file
+        When I clear '<file_name_field>' from the file
         Then I see a validation error message '<error_message>' below the name field for file card
         When I enter name '<docx_file_name_rename>' for file in card
         When I click outside of the card to save it
@@ -92,12 +93,12 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   | file_name_field | caption_field |
+            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx | Name            | Caption       |
 
         @staging_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   | file_name_field | caption_field |
+            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx | Name            | Caption       |
 
 

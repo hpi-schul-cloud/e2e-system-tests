@@ -302,7 +302,6 @@ class RoomBoards {
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileAltTextInputSelector)
 			.should("be.visible")
-			.clear()
 			.type(altText);
 	}
 
@@ -365,7 +364,6 @@ class RoomBoards {
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileCaptionInputSelector)
 			.should("be.visible")
-			.clear()
 			.type(captionText);
 	}
 
@@ -1106,13 +1104,6 @@ class RoomBoards {
 		});
 	}
 
-	clearFilename() {
-		cy.get(RoomBoards.#fileTitleInCardInput)
-			.find("input")
-			.should("be.visible")
-			.clear();
-	}
-
 	verifyFileFieldErrorMessage(errormessage) {
 		cy.get(RoomBoards.#fileTitleInCardInput).within(() => {
 			cy.get(RoomBoards.#titleAlert)
@@ -1133,6 +1124,23 @@ class RoomBoards {
 				const actualBaseName = removeExtension(val);
 				const expectedBaseName = removeExtension(newFileName);
 				expect(actualBaseName).to.eq(expectedBaseName);
+			});
+	}
+
+	clearFileField(fieldType) {
+		const normalizedField = fieldType.trim().toLowerCase();
+		const selector = `[data-testid="file-${normalizedField}-input"]`;
+		cy.get(RoomBoards.#parentContainerSelector)
+			.find(selector)
+			.should("exist")
+			.then(($el) => {
+				// Find input or textarea inside container
+				const inputOrTextarea = $el.find("input, textarea");
+				// Wrapand clear the element
+				cy.wrap(inputOrTextarea.first())
+					.should("be.visible")
+					.clear()
+					.should("have.value", "");
 			});
 	}
 }

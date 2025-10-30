@@ -739,8 +739,8 @@ Then(
 	}
 );
 
-When("I clear file name from the file", () => {
-	roomBoards.clearFilename();
+When("I clear {string} from the file", (fileField) => {
+	roomBoards.clearFileField(fileField);
 });
 
 Then(
