@@ -1,5 +1,5 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import RoomsAdmin from "../../pages/rooms_administration/pageRoomsAdmin";
+import RoomsAdmin from "../../pages/rooms_admin/pageRoomsAdmin";
 
 const roomsAdmin = new RoomsAdmin();
 

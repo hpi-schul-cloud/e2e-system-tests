@@ -1,5 +1,5 @@
 import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import CourseManagement from "../../pages/course_management/pageCourseManagement";
+import CourseManagement from "../../pages/courses_management/pageCoursesManagement";
 
 const courseManagement = new CourseManagement();
 

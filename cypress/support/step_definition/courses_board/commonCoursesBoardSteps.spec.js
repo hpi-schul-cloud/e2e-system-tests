@@ -1,5 +1,5 @@
 import { Then, When } from "@badeball/cypress-cucumber-preprocessor";
-import Board from "../../pages/course_board/pageBoard";
+import Board from "../../pages/courses_board/pageCoursesBoard";
 
 const board = new Board();
 

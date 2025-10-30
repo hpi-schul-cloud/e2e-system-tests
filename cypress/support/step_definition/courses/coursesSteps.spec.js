@@ -1,8 +1,8 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import Classes from "../../pages/class_management/pageClasses";
-import Courses from "../../pages/course/pageCourses";
-import ImportCourseModal from "../../pages/course/pageImportCourseModal";
-import ShareCourseModal from "../../pages/course/pageShareCourseModal";
+import Classes from "../../pages/classes_management/pageClasses";
+import Courses from "../../pages/courses/pageCourses";
+import ImportCourseModal from "../../pages/courses/pageImportCoursesModal";
+import ShareCourseModal from "../../pages/courses/pageShareCoursesModal";
 
 const courses = new Courses();
 const shareCourseModal = new ShareCourseModal();

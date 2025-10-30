@@ -1,6 +1,6 @@
 const { When, Then, Given } = require("@badeball/cypress-cucumber-preprocessor");
-import Management from "../../pages/admin/pageAdministration";
-import Courses from "../../pages/course/pageCourses";
+import Management from "../../pages/admin/pageAdmin";
+import Courses from "../../pages/courses/pageCourses";
 
 const courses = new Courses();
 const management = new Management();

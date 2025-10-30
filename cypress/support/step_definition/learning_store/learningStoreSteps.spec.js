@@ -1,6 +1,5 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
-import Management from "../../pages/admin/pageAdministration";
-
+import Management from "../../pages/admin/pageAdmin";
 const management = new Management();
 
 When("I click the toggle switch to disable students access to learning store", () => {

@@ -1,9 +1,9 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import GlobalActions from "../../pages/common_helper/globalActions";
 import GlobalAssertions from "../../pages/common_helper/globalAssertions";
-import Collabora from "../../pages/room_board/pageCollabora";
-import RoomBoards from "../../pages/room_board/pageRoomBoards";
 import Rooms from "../../pages/rooms/pageRooms";
+import Collabora from "../../pages/rooms_board/pageCollabora";
+import RoomBoards from "../../pages/rooms_board/pageRoomsBoard";
 
 const collabora = new Collabora();
 const roomBoards = new RoomBoards();
