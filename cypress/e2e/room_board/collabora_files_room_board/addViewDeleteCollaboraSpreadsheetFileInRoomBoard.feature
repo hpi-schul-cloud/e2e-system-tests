@@ -14,14 +14,24 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
-        Given the file '<xlsx_file_name>' is added to the room board
         Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>'
 
-        # first teacher opens the collabora xlsx file editor in the same tab, adds content and saves it
+        # first teacher creates the collabora xlsx file using the collabora creation element dialog box
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the multi-column board in the room detail page
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on icon Plus to add content into card
+        When I select '<create_collabora_document>' from the element selection dialog box
+        Then I see dialog box for create document
+        When I choose document type '<document_type_xlsx>' from the dialog box create document
+        When I enter filename '<xlsx_file_name>' in the dialog box create document
+        When I enter caption '<xlsx_caption_name>' in the dialog box create document
+        When I click on button Create in dialog create document
         Then I see the file type XLSX is uploaded in the card
+
+        # first teacher opens the collabora xlsx file editor in the same tab, adds content and saves it
         When I click on the collabora file '<xlsx_file_name>'
         Then I see collabora text editor
         When I type text '<value_1>' in collabora editor on position '200', '100'
@@ -33,7 +43,10 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
         When I download by clicking on the option PDF download in collabora editor
 
         #first teacher publishes the room board
-        When I go back to the previous page
+        When I arrive on the dashboard
+        When I go to rooms overview
+        When I go to room '<room_name>'
+        When I click on the multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
 
@@ -50,7 +63,10 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
         When I click on the icon File in collabora editor top toolbar
         When I click on the button Download in collabora editor
         When I download by clicking on the option PDF download in collabora editor
-        When I go back to the previous page
+        When I arrive on the dashboard
+        When I go to rooms overview
+        When I go to room '<room_name>'
+        When I click on the multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
 
         # first teacher deletes the collabora xlsx document from room board
@@ -62,12 +78,12 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx | xlsx_caption_name |
+            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    | xlsx_caption_name |
 
         @staging_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            |
-            | brb       | teacher1_brb | teacher2_brb | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx | xlsx_caption_name |
+            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    | xlsx_caption_name |
 
 

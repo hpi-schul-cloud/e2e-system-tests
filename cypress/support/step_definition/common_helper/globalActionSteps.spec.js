@@ -21,7 +21,3 @@ When("I clear table search field", () => {
 When("I click on breadcrumb element {string}", (breadcrumbElement) => {
 	globalActions.clickBreadcrumbElement(breadcrumbElement);
 });
-
-When("I go back to the previous page", () => {
-	globalActions.goBackToPreviousPage();
-});

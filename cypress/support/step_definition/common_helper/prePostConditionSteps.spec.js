@@ -537,6 +537,18 @@ Given("team with name {string} is created", (teamName) => {
 	teams.clickOnAddButtonToCreateTeam();
 });
 
+Given("team {string} is created with student {string}", (teamName, studentName) => {
+	teams.navigateToTeamsOverview();
+	teams.clickOnAddTeam();
+	teams.enterTeamName(teamName);
+	teams.clickOnAddButtonToCreateTeam();
+	teams.clickOnThreeDotToManageTeam();
+	teams.clickOnManageTeamMembersEditOption();
+	teams.clickOnAddInternalAttendees();
+	teams.selectInternalTeamMember(studentName);
+	teams.clickOnAddingNewTeamMemberButtonOnModal();
+});
+
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {
 	courses.navigateToCoursesOverview();
 	courses.navigateToCoursePage(courseName);
