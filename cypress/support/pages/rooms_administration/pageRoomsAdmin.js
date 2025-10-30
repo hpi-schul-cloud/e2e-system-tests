@@ -9,6 +9,7 @@ class RoomsAdmin {
 	static #adminRoomTitle = '[data-testid="admin-room-detail-title"]';
 	static #adminParticipantTable = '[data-testid="room-admin-members-table"]';
 	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
+	static #userDeletionConfirmationModalTitle = '[data-testid="dialog-title"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
 
 	navigateToRoomsAdministrationPageViaSubmenu() {
@@ -78,6 +79,10 @@ class RoomsAdmin {
 		cy.get(RoomsAdmin.#adminParticipantTable).contains(participantName);
 	}
 
+	doNotSeeParticipantInAdminList(participantName) {
+		cy.get(RoomsAdmin.#adminParticipantTable).should("not.contain", participantName);
+	}
+
 	doNotSeeRoomInRoomsTable(roomName) {
 		cy.get(RoomsAdmin.#roomsTableName).should("not.contain", roomName);
 	}
@@ -104,6 +109,19 @@ class RoomsAdmin {
 		cy.get(RoomsAdmin.#deletionConfirmationModalTitle).should("exist");
 	}
 
+	seeConfirmationModalForUserDeletionInAdminPage() {
+		cy.get(RoomsAdmin.#userDeletionConfirmationModalTitle).should("exist");
+	}
+
+	clickRemoveInConfirmationModal() {
+		cy.wait(500);
+		cy.get(RoomsAdmin.#confirmButtonOnModal).click();
+	}
+
+	clickOnRemoveInOptions(user) {
+		cy.get('[aria-label="cypress ' + user + ' aus Raum entfernen"]').should("be.visible");
+		cy.get('[aria-label="cypress ' + user + ' aus Raum entfernen"]').click();
+	}
 	// The following code finds and clicks the dialog with the highest z-index value.
 	// - First, it collects all the dialog elements.
 	// - It then sorts the dialogs in descending order based on their z-index, so the dialog on top (with the highest z-index) comes first.

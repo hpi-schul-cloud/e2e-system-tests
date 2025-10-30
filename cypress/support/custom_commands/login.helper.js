@@ -48,13 +48,15 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_EXT_2_BRB_EMAIL", "TEACHER_EXT_2_BRB_PASSWORD"];
 		case "studentExt2_brb":
 			return ["STUDENT_EXT_2_BRB_EMAIL", "STUDENT_EXT_2_BRB_PASSWORD"];
+		case "admin1_double_role_brb":
+			return ["ADMIN_1_DOUBLE_ROLE_BRB_EMAIL", "ADMIN_1_DOUBLE_ROLE_BRB_PASSWORD"];
 
 		case "admin1_dbc":
 			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
 		case "teacher1_dbc":
 			return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
-		case "admin1_doublerolle_dbc":
-			return ["ADMIN_1_DOUBLEROLLE_DBC_EMAIL", "ADMIN_1_DOUBLEROLLE_DBC_PASSWORD"];
+		case "admin1_double_role_dbc":
+			return ["ADMIN_1_DOUBLE_ROLE_DBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_DBC_PASSWORD"];
 		case "teacher2_dbc":
 			return ["TEACHER_2_DBC_EMAIL", "TEACHER_2_DBC_PASSWORD"];
 		case "student1_dbc":
@@ -75,6 +77,10 @@ export const getUserCredentials = (username) => {
 			return ["ADMIN_EXT_1_DBC_EMAIL", "ADMIN_EXT_1_DBC_PASSWORD"];
 		case "teacherExt2_dbc":
 			return ["TEACHER_EXT_2_DBC_EMAIL", "TEACHER_EXT_2_DBC_PASSWORD"];
+		case "studentExt1_dbc":
+			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
+		case "studentExt2_dbc":
+			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
 
 		case "admin1_nbc":
 			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
@@ -102,10 +108,8 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_EXT_2_NBC_EMAIL", "TEACHER_EXT_2_NBC_PASSWORD"];
 		case "studentExt2_nbc":
 			return ["STUDENT_EXT_2_NBC_EMAIL", "STUDENT_EXT_2_NBC_PASSWORD"];
-		case "studentExt1_dbc":
-			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
-		case "studentExt2_dbc":
-			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
+		case "admin1_double_role_nbc":
+			return ["ADMIN_1_DOUBLE_ROLE_NBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_NBC_PASSWORD"];
 
 		case "teacher1_lh":
 			return ["TEACHER_1_LH_EMAIL", "TEACHER_1_LH_PASSWORD"];

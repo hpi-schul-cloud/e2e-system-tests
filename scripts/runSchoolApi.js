@@ -103,16 +103,14 @@ const getUrl = (baseUrl) => {
 const getUserRole = (userType) => {
 	const roleName = userType.split("_")[0].slice(0, -1);
 	const matchedRole = Object.keys(users).find((role) => roleName === role);
-	console.log("Matched role:", matchedRole);
 	return matchedRole ? users[matchedRole] : "unknown";
 };
 
 const generatePayload = (schoolId, userType, role) => {
-	//extend the role for doublerolle: userType : admin1_doublerolle1_dbc
 	let userRole = userType.split("_")[0];
 
 	if (userData.hasOwnProperty(userRole)) {
-		if (userType.length < 15) {
+		if (!userType.includes("double_role")) {
 			return {
 				schoolId,
 				firstName: userData[userRole].firstName,
@@ -120,7 +118,7 @@ const generatePayload = (schoolId, userType, role) => {
 				email: generateRandomUserEmail(),
 				roleNames: [role],
 			};
-		} else {
+		} else if (userType.includes("admin")) {
 			return {
 				schoolId,
 				firstName: userData[userRole].firstName,
