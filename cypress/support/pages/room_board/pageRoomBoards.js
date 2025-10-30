@@ -301,9 +301,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileAltTextInputSelector)
-			.eq(0)
+			.should("be.visible")
 			.clear()
-			.click()
 			.type(altText);
 	}
 
@@ -365,9 +364,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileCaptionInputSelector)
-			.eq(0)
+			.should("be.visible")
 			.clear()
-			.click()
 			.type(captionText);
 	}
 
@@ -1109,7 +1107,10 @@ class RoomBoards {
 	}
 
 	clearFilename() {
-		cy.get(RoomBoards.#fileTitleInCardInput).find("input").eq(0).clear();
+		cy.get(RoomBoards.#fileTitleInCardInput)
+			.find("input")
+			.should("be.visible")
+			.clear();
 	}
 
 	verifyFileFieldErrorMessage(errormessage) {
@@ -1123,10 +1124,8 @@ class RoomBoards {
 	enterFileNameInBoardCard(newFileName) {
 		cy.get(RoomBoards.#fileTitleInCardInput)
 			.find("input")
-			.eq(0)
-			.clear()
 			.type(newFileName, { delay: 10 }) // sometimes the typing is too fast for the input field.
-			.blur() // focusout/blur event to save the name
+			.blur() // focus out/blur event to save the name
 			.invoke("val")
 			.then((val) => {
 				// remove any extension at the end (e.g: .docx, .pdf, .jpg, etc.) as per the feature behaviour
