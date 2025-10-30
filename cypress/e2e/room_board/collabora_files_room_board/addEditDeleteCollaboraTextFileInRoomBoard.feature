@@ -56,7 +56,10 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         When I download by clicking on the option PDF download in collabora editor
 
         # first teacher publishes the room board
-        When I go back to the previous page
+        When I arrive on the dashboard
+        When I go to rooms overview
+        When I go to room '<room_name>'
+        When I click on the multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
 
@@ -74,7 +77,10 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         When I click on the icon File in collabora editor top toolbar
         When I click on the button Download in collabora editor
         When I download by clicking on the option PDF download in collabora editor
-        When I go back to the previous page
+        When I arrive on the dashboard
+        When I go to rooms overview
+        When I go to room '<room_name>'
+        When I click on the multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
 
         # first teacher deletes the collabora docx document from room board
@@ -87,11 +93,11 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         @school_api_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   |
-            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
+            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
 
         @staging_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   |
-            | brb       | teacher1_brb | teacher2_brb | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
+            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx |
 
 

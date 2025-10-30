@@ -52,7 +52,10 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         When I download by clicking on the option PDF download in collabora editor
 
         # first teacher publishes the room board
-        When I go back to the previous page
+        When I arrive on the dashboard
+        When I go to rooms overview
+        When I go to room '<room_name>'
+        When I click on the multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
 
@@ -70,7 +73,10 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         When I click on the icon File in collabora editor top toolbar
         When I click on the button Download in collabora editor
         When I download by clicking on the option PDF download in collabora editor
-        When I go back to the previous page
+        When I arrive on the dashboard
+        When I go to rooms overview
+        When I go to room '<room_name>'
+        When I click on the multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
 
         # first teacher deletes the collabora xlsx document from room board
@@ -88,4 +94,4 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         @staging_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text        | xlsx_caption_text_rename         | error_message               | xlsx_file_name_rename   |
-            | brb       | teacher1_brb | teacher2_brb | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx |
+            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx |
