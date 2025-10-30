@@ -29,13 +29,24 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group:
-          ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
+        include:
+          - group: group-A
+            browser: chrome
+          - group: group-B
+            browser: chrome
+          - group: group-C
+            browser: chrome
+          - group: group-D
+            browser: chrome
+          - group: group-E
+            browser: chrome
+          - group: group-F
+            browser: electron
     with:
       cypress_brb: https://main.brb.dbildungscloud.dev
       cypress_dbc: https://main.dbc.dbildungscloud.dev
       cypress_nbc: https://main.nbc.dbildungscloud.dev
-      browser: chrome
+      browser: ${{ matrix.browser }}
       tag: >-
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}

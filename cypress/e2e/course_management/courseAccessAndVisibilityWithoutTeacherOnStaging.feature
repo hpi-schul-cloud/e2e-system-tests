@@ -3,7 +3,7 @@
 
 @stable_test
 @regression_test
-@group-F
+@group-C
 @prio_0_staging
 Feature: Course Management - Visibility of courses without a teacher assigned
 

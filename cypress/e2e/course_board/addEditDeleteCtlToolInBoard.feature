@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-E
+@group-F
 @prio_0_staging
 Feature: Course Board  - To add, edit and delete a ctl tool in a board
 
