@@ -14,7 +14,7 @@ import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
 const commonCartridge = new CommonCartridge();
-const toolConfiguration = new ToolConfiguration();
+const toolsConfiguration = new ToolConfiguration();
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
@@ -60,12 +60,12 @@ Given("the school has external tool {string}", (toolList) => {
 
 					// if tool has a custom parameter
 					if (toolsWithCustomParameter.includes(toolName)) {
-						toolConfiguration.fillInCustomParameter("schoolParam", "test");
+						toolsConfiguration.fillInCustomParameter("schoolParam", "test");
 					}
 
 					// activates the tool if it is deactivated
-					toolConfiguration.activateTool();
-					toolConfiguration.saveExternalToolButton();
+					toolsConfiguration.activateTool();
+					toolsConfiguration.saveExternalToolButton();
 					cy.log(`Tool ${toolName} already exists.`);
 					return;
 				}
@@ -74,17 +74,17 @@ Given("the school has external tool {string}", (toolList) => {
 				management.clickAddExternalTool();
 
 				if (linkTools.includes(toolName)) {
-					toolConfiguration.insertToolLink(
+					toolsConfiguration.insertToolLink(
 						"https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823"
 					);
 				} else if (toolsWithCustomParameter.includes(toolName)) {
-					toolConfiguration.addExternalTool(toolName);
-					toolConfiguration.fillInCustomParameter("schoolParam", "test");
+					toolsConfiguration.addExternalTool(toolName);
+					toolsConfiguration.fillInCustomParameter("schoolParam", "test");
 				} else {
-					toolConfiguration.addExternalTool(toolName);
+					toolsConfiguration.addExternalTool(toolName);
 				}
 
-				toolConfiguration.saveExternalToolButton();
+				toolsConfiguration.saveExternalToolButton();
 				management.seeExternalTool(toolName);
 				cy.log(`Tool ${toolName} was added.`);
 			});
