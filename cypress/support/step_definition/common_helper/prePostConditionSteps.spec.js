@@ -427,6 +427,11 @@ Given("the multi-column board has a column with a card", () => {
 	board.clickOutsideTheCardToSaveTheCard();
 });
 
+Given("more cards are in the column", () => {
+	board.clickPlusIconToAddCardInColumn();
+	board.clickOutsideTheCardToSaveTheCard();
+});
+
 Given("the card has a folder named {string}", (folderTitle) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
 	roomBoards.clickOnThreeDotInCard();

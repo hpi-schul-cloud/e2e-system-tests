@@ -109,19 +109,77 @@ class RoomBoards {
 	static #body = "body";
 	static #duplicateCardOptionOnThreeDot =
 		'[data-testid="kebab-menu-action-duplicate-card"]';
-	static #duplicatedCardPositionSecond = '[data-testid="board-card-0-1"]';
-	static #duplicatedCardPositionFirst = '[data-testid="board-card-0-0"]';
+	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
+	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
+	static #secondCardPositionInRoomBoard = '[data-testid="board-card-0-2"]';
+
+	verifyLinkElementInDuplicatedCard() {
+		cy.get(RoomBoards.#duplicatedCardPosition)
+			.find(RoomBoards.#linkElementOnCard)
+			.should("exist");
+	}
+
+	verifyEtherpadElementInDuplicatedCard() {
+		cy.get(RoomBoards.#duplicatedCardPosition)
+			.find(RoomBoards.#elementEtherpadInBoard)
+			.should("exist");
+	}
+
+	verifyFolderElementInDuplicatedCard() {
+		cy.get(RoomBoards.#duplicatedCardPosition)
+			.find(RoomBoards.#folderElementSelector)
+			.should("exist");
+	}
+
+	verifyImageElementInDuplicatedCard() {
+		cy.get(RoomBoards.#duplicatedCardPosition)
+			.find(RoomBoards.#thumbnailImageOnCard)
+			.should("exist");
+	}
+
+	verifySecondCardMovedToThirdPosition() {
+		cy.get(RoomBoards.#secondCardPositionInRoomBoard).should("exist");
+	}
 
 	seeDuplicatedCardBelowOriginal() {
-		cy.get(RoomBoards.#duplicatedCardPositionSecond).should("exist");
+		// assert both cards exist
+		cy.get(RoomBoards.#firstCardPositionInRoomBoard).should("exist");
+		cy.get(RoomBoards.#duplicatedCardPosition).should("exist");
 
-		cy.get(RoomBoards.#duplicatedCardPositionFirst).then(($original) => {
-			cy.get(RoomBoards.#duplicatedCardPositionSecond).then(($duplicate) => {
-				expect($duplicate).to.exist;
+		// assert DOM order: duplicated card follows the original node in the DOM
+		cy.get(RoomBoards.#firstCardPositionInRoomBoard).then(($original) => {
+			cy.get(RoomBoards.#duplicatedCardPosition).then(($duplicate) => {
 				expect(
 					$original[0].compareDocumentPosition($duplicate[0]) &
 						Node.DOCUMENT_POSITION_FOLLOWING
-				).to.be.greaterThan(0);
+				).to.be.greaterThan(
+					0,
+					"Expected duplicated card to follow the original card in the DOM"
+				);
+			});
+		});
+
+		// scroll the original card into view and assert it's visible
+		cy.get(RoomBoards.#firstCardPositionInRoomBoard)
+			.scrollIntoView()
+			.should("be.visible");
+
+		// scroll the duplicated card into view and assert it's visible
+		cy.get(RoomBoards.#duplicatedCardPosition).scrollIntoView().should("be.visible");
+
+		// assert layout position: duplicated card is rendered below the original
+		cy.get(RoomBoards.#firstCardPositionInRoomBoard).then(($original) => {
+			const originalBottom =
+				$original[0].getBoundingClientRect().bottom + window.scrollY;
+
+			cy.get(RoomBoards.#duplicatedCardPosition).then(($duplicate) => {
+				const duplicateTop =
+					$duplicate[0].getBoundingClientRect().top + window.scrollY;
+
+				expect(duplicateTop).to.be.greaterThan(
+					originalBottom,
+					"Expected duplicated card to appear visually below the original card"
+				);
 			});
 		});
 	}
