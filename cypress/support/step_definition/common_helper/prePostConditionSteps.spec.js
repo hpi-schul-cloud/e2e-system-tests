@@ -1,16 +1,20 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
-import Management from "../../pages/admin/pageAdministration";
-import Classes from "../../pages/class_management/pageClasses";
+import Management from "../../pages/admin/pageAdmin";
+import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
+import Classes from "../../pages/classes_management/pageClasses";
+import CommonCartridge from "../../pages/common_cartridge/pageCommonCartridge";
 import GlobalActions from "../../pages/common_helper/globalActions";
-import Courses from "../../pages/course/pageCourses";
-import Board from "../../pages/course_board/pageBoard";
-import CourseManagement from "../../pages/course_management/pageCourseManagement";
-import RoomBoards from "../../pages/room_board/pageRoomBoards";
+import Courses from "../../pages/courses/pageCourses";
+import Board from "../../pages/courses_board/pageCoursesBoard";
+import CourseManagement from "../../pages/courses_management/pageCoursesManagement";
 import Rooms from "../../pages/rooms/pageRooms";
+import RoomBoards from "../../pages/rooms_board/pageRoomsBoard";
 import Tasks from "../../pages/tasks/pageTasks";
 import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
+const commonCartridge = new CommonCartridge();
+const toolsConfiguration = new ToolConfiguration();
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
@@ -22,6 +26,78 @@ const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
+
+Given("the exported file is an archive and extracted", function () {
+	commonCartridge.fileIsArchive();
+});
+
+Given("extracted content and files are deleted", function () {
+	commonCartridge.cleanUp();
+});
+
+Given("the school has external tool {string}", (toolList) => {
+	// list of special tools
+	const toolsWithCustomParameter = [
+		"CY Test Tool Required Parameters",
+		"CY Test Tool Optional Parameters",
+	];
+	const linkTools = ["CY Test Tool OpenStreetMap"];
+
+	const tools = toolList.split(/\s*,\s*/);
+
+	// navigation to external tools table on admin page
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickExternalToolsPanel();
+
+	tools.forEach((toolName) => {
+		cy.wrap(null).then(() => {
+			// check if tool already exists
+			return management.schoolHasExternalTool(toolName).then((exists) => {
+				// if the tool already exists
+				if (exists) {
+					management.clickOnEditButton(toolName);
+
+					// if tool has a custom parameter
+					if (toolsWithCustomParameter.includes(toolName)) {
+						toolsConfiguration.fillInCustomParameter("schoolParam", "test");
+					}
+
+					// activates the tool if it is deactivated
+					toolsConfiguration.activateTool();
+					toolsConfiguration.saveExternalToolButton();
+					cy.log(`Tool ${toolName} already exists.`);
+					return;
+				}
+
+				// if the tool does not exists
+				management.clickAddExternalTool();
+
+				if (linkTools.includes(toolName)) {
+					toolsConfiguration.insertToolLink(
+						"https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823"
+					);
+				} else if (toolsWithCustomParameter.includes(toolName)) {
+					toolsConfiguration.addExternalTool(toolName);
+					toolsConfiguration.fillInCustomParameter("schoolParam", "test");
+				} else {
+					toolsConfiguration.addExternalTool(toolName);
+				}
+
+				toolsConfiguration.saveExternalToolButton();
+				management.seeExternalTool(toolName);
+				cy.log(`Tool ${toolName} was added.`);
+			});
+		});
+	});
+});
+
+Given("all external tools at the school are deleted", () => {
+	management.openAdministrationInMenu();
+	management.clickOnSchoolAdministrationInSideMenu();
+	management.clickExternalToolsPanel();
+	management.deleteAllExternalTools();
+});
 
 Given("the card contains image {string} element", (imageFile) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
