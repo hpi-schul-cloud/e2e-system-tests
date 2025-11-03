@@ -1129,19 +1129,14 @@ class RoomBoards {
 
 	clearFileField(fieldType) {
 		const normalizedField = fieldType.trim().toLowerCase();
-		const selector = `[data-testid="file-${normalizedField}-input"]`;
 		cy.get(RoomBoards.#parentContainerSelector)
-			.find(selector)
+			.find(`[data-testid="file-${normalizedField}-input"]`)
 			.should("exist")
-			.then(($el) => {
-				// Find input or textarea inside container
-				const inputOrTextarea = $el.find("input, textarea");
-				// Wrapand clear the element
-				cy.wrap(inputOrTextarea.first())
-					.should("be.visible")
-					.clear()
-					.should("have.value", "");
-			});
+			.find("input, textarea")
+			.first()
+			.should("be.visible")
+			.clear()
+			.should("have.value", "");
 	}
 }
 
