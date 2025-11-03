@@ -1,6 +1,6 @@
 @regression_test
 @stable_test
-@group-D
+@group-F
 @schedule_run
 @prio_0_staging
 Feature: Course - Deactivation of ctl tools in course
