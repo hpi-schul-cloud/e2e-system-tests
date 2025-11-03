@@ -278,7 +278,7 @@ class Rooms {
 
 	seeRoomEditParticipantsPage() {
 		cy.get(Rooms.#roomTitle).should("be.visible");
-		cy.wait("@members_api");
+		cy.wait("@room_members_api");
 	}
 
 	checkVideoConferenceCheckbox() {
