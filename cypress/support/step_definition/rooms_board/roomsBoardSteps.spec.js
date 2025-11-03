@@ -11,6 +11,37 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+Then("I see element Link in the duplicated card", () => {
+	roomBoards.verifyLinkElementInDuplicatedCard();
+});
+
+Then("I see element Etherpad in the duplicated card", () => {
+	roomBoards.verifyEtherpadElementInDuplicatedCard();
+});
+
+Then("I see element Folder in the duplicated card", () => {
+	roomBoards.verifyFolderElementInDuplicatedCard();
+});
+
+Then("I see element Image in the duplicated card", () => {
+	roomBoards.verifyImageElementInDuplicatedCard();
+});
+
+Then(
+	"I see that after duplicating the first card, the previously added second card has moved to the third position in the column",
+	() => {
+		roomBoards.verifySecondCardMovedToThirdPosition();
+	}
+);
+
+When("I click on the option Duplicate on the first card", () => {
+	roomBoards.clickOnDuplicateOptionInCardThreeDot();
+});
+
+Then("I see a duplicated card below the original first card", () => {
+	roomBoards.seeDuplicatedCardBelowOriginal();
+});
+
 Then("I see collabora text editor", () => {
 	collabora.seeCollaboraTextEditor();
 });

@@ -99,6 +99,17 @@ Given("all external tools at the school are deleted", () => {
 	management.deleteAllExternalTools();
 });
 
+Given("the card contains image {string} element", (imageFile) => {
+	board.clickOutsideTheColumnToSaveTheColumn();
+	roomBoards.clickOnThreeDotInCard();
+	roomBoards.clickEditOptionInCardThreeDot();
+	board.clickPlusIconToAddContentIntoCard();
+	roomBoards.seeElementSelectionDialog();
+	board.selectCardElementFromMenu("file");
+	roomBoards.uploadFileInCard(imageFile);
+	roomBoards.clickOutsideToSaveCard();
+});
+
 Given(
 	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
 	(
@@ -488,6 +499,11 @@ Given(
 Given("the multi-column board has a column with a card", () => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();
+	board.clickPlusIconToAddCardInColumn();
+	board.clickOutsideTheCardToSaveTheCard();
+});
+
+Given("more cards are in the column", () => {
 	board.clickPlusIconToAddCardInColumn();
 	board.clickOutsideTheCardToSaveTheCard();
 });

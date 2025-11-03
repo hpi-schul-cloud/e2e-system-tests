@@ -21,7 +21,7 @@ Feature: Room Board - Copying room board with files in a file folder
         When I click on breadcrumb element '<board_title>'
         Then I see a folder with name '<folder_name>' in the card
         When I click on the three dot menu in room board title
-        When I select the three dot menu action 'copy'
+        When I select the three dot menu action 'duplicate-board'
         Then I see my room board is named '<board_title> (1)'
         Then I see a folder with name '<folder_name>' in the card
         When I click on the folder '<folder_name>' in the card
