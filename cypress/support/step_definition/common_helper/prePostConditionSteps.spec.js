@@ -637,14 +637,18 @@ Given(
 	}
 );
 
-Given("the file {string} is added to the room board", (fileName) => {
-	roomBoards.clickOnThreeDotInCard();
-	roomBoards.clickEditOptionInCardThreeDot();
-	board.clickPlusIconToAddContentIntoCard();
-	board.selectCardElementFromMenu("file");
-	roomBoards.uploadFileInCard(fileName);
-	roomBoards.clickOutsideToSaveCard();
-});
+Given(
+	"the file with filename {string} and caption {string} is added to the room board",
+	(fileName, captionText) => {
+		roomBoards.clickOnThreeDotInCard();
+		roomBoards.clickEditOptionInCardThreeDot();
+		board.clickPlusIconToAddContentIntoCard();
+		board.selectCardElementFromMenu("file");
+		roomBoards.uploadFileInCard(fileName);
+		roomBoards.enterCaption(captionText);
+		roomBoards.clickOutsideToSaveCard();
+	}
+);
 
 Given(
 	"participant with participant name {string} is added to the room {string}",

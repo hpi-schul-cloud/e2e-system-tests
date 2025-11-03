@@ -39,12 +39,31 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         # student can see the docx file in the multi-column board
         # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
+        # teacher edits caption of the DOCX file in the multi-column room board
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I clear '<caption_field>' from the file
+        When I enter text in the textbox Caption '<docx_caption_text_rename>'
+        When I click outside of the card to save it
+        Then I see the file type DOCX is uploaded in the card
+
+        # teacher removes the Docx filename, verifies validation message and renames filename in the multi-column room board
+        When I click on the page outside of the column
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three dot in the element File
+        When I clear '<file_name_field>' from the file
+        Then I see a validation error message '<error_message>' below the name field for file card
+        When I enter name '<docx_file_name_rename>' for file in card
+        When I click outside of the card to save it
+        Then I see the file type DOCX is uploaded in the card
+
         # teacher downloads the docx file in the multi-column room board
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the icon Download file
-        Then file '<docx_file_name>' is saved in folder downloads
+        Then file '<docx_file_name_rename>' is saved in folder downloads
 
         # teacher deletes the element File with DOCX in the multi-column room board
         When I click on the page outside of the column
@@ -65,5 +84,5 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | docx_file_name   | docx_caption_text         |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-docx.docx | CypressAut docx test file |
+            | teacher      | namespace | room_name            | board_title            | docx_file_name   | docx_caption_text         | docx_caption_text_rename         | error_message               | docx_file_name_rename    | file_name_field | caption_field |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-docx.docx | CypressAut docx test file | CypressAut docx test file rename | Bitte fülle dieses Feld aus | sample-docx-renamed.docx | Name            | Caption       |

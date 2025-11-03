@@ -76,7 +76,8 @@ class RoomBoards {
 	static #folderDetails = '[data-testid="file-statistic"]';
 	static #ThreeDotEditOptionTool = '[data-testid="kebab-menu-action"]';
 	static #H5PPage = '[data-testid="skip-link"]';
-	static #folderTitleAlert = '[role="alert"]';
+	static #titleAlert = '[role="alert"]';
+	static #fileTitleInCardInput = '[data-testid="file-name-input"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -298,7 +299,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileAltTextInputSelector)
-			.click()
+			.should("be.visible")
 			.type(altText);
 	}
 
@@ -360,7 +361,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#parentContainerSelector)
 			// Find the input field element within the parent class
 			.find(RoomBoards.#fileCaptionInputSelector)
-			.click()
+			.should("be.visible")
 			.type(captionText);
 	}
 
@@ -1073,10 +1074,45 @@ class RoomBoards {
 
 	verifyNameFieldErrorMessage(errormessage) {
 		cy.get(RoomBoards.#folderTitleInCardInput).within(() => {
-			cy.get(RoomBoards.#folderTitleAlert)
+			cy.get(RoomBoards.#titleAlert)
 				.should("be.visible")
 				.and("contain.text", errormessage);
 		});
+	}
+
+	verifyFileFieldErrorMessage(errormessage) {
+		cy.get(RoomBoards.#fileTitleInCardInput).within(() => {
+			cy.get(RoomBoards.#titleAlert)
+				.should("be.visible")
+				.and("contain.text", errormessage);
+		});
+	}
+
+	enterFileNameInBoardCard(newFileName) {
+		cy.get(RoomBoards.#fileTitleInCardInput)
+			.find("input")
+			.type(newFileName, { delay: 10 }) // sometimes the typing is too fast for the input field.
+			.blur() // focus out/blur event to save the name
+			.invoke("val")
+			.then((val) => {
+				// remove any extension at the end (e.g: .docx, .pdf, .jpg, etc.) as per the feature behaviour
+				const removeExtension = (name) => name.replace(/\.[^/.]+$/, "");
+				const actualBaseName = removeExtension(val);
+				const expectedBaseName = removeExtension(newFileName);
+				expect(actualBaseName).to.eq(expectedBaseName);
+			});
+	}
+
+	clearFileField(fieldType) {
+		const normalizedField = fieldType.trim().toLowerCase();
+		cy.get(RoomBoards.#parentContainerSelector)
+			.find(`[data-testid="file-${normalizedField}-input"]`)
+			.should("exist")
+			.find("input, textarea")
+			.first()
+			.should("be.visible")
+			.clear()
+			.should("have.value", "");
 	}
 }
 
