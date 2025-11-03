@@ -72,7 +72,7 @@ class RoomsAdmin {
 	seeAdminRoomEditParticipantsPage(roomName) {
 		cy.get(RoomsAdmin.#adminRoomTitle).should("be.visible");
 		cy.get(RoomsAdmin.#adminRoomTitle).should("contain", roomName);
-		cy.wait("@members_api");
+		cy.wait("@room_administration_members_api");
 	}
 
 	seeParticipantInAdminList(participantName) {
@@ -114,14 +114,14 @@ class RoomsAdmin {
 	}
 
 	clickRemoveInConfirmationModal() {
-		cy.wait(500);
 		cy.get(RoomsAdmin.#confirmButtonOnModal).click();
 	}
 
 	clickOnRemoveInOptions(user) {
-		cy.get('[aria-label="cypress ' + user + ' aus Raum entfernen"]').should("be.visible");
-		cy.get('[aria-label="cypress ' + user + ' aus Raum entfernen"]').click();
+		cy.get('[aria-label="' + user + ' aus Raum entfernen"]').should("be.visible");
+		cy.get('[aria-label="' + user + ' aus Raum entfernen"]').click();
 	}
+
 	// The following code finds and clicks the dialog with the highest z-index value.
 	// - First, it collects all the dialog elements.
 	// - It then sorts the dialogs in descending order based on their z-index, so the dialog on top (with the highest z-index) comes first.

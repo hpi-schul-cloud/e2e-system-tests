@@ -1,8 +1,10 @@
+# Note: This feature should not be executed in the staging environment as feature is not available yet there,
+
 @regression_test
 @stable_test
 @prio_0_dev
 @group-E
-Feature: Unify RoomMembers Administration - Able to see rooms and manage all the room members via rooms administration page
+Feature: RoomMembers Administration - Able to see rooms and manage all the room members via rooms administration page
 
     As a room administrator and member, I can view all rooms, see school member details, and add teacher members via the rooms administration page
 
@@ -45,6 +47,7 @@ Feature: Unify RoomMembers Administration - Able to see rooms and manage all the
         When I select '<role_name_teacher>' in dropdown Role
         Then I see role '<role_name_teacher>' in dropdown Role
         When I enter '<participant_teacher_1>' in dropdown Name
+
         #participant_teacher_1 is the double role user
         When I select the first name from the dropdown
         When I click on the button Add participant
@@ -80,10 +83,10 @@ Feature: Unify RoomMembers Administration - Able to see rooms and manage all the
         When I select the first name from the dropdown
         When I click on the button Add participant
         Then I see '<participant_teacher_2>' in the room members list
-        When I click on button Three Dot Menu to edit participant '<participant_teacher_1>'
-        When I click on remove button in the options of user '<participant_teacher_1>'
+        When I click on button Three Dot Menu to edit participant '<participant_teacher_2>'
+        When I click on remove button in the options of user '<fullname_teacher_2>'
         Then I see confirmation modal for deleting the user in room admin page
-        When I click on remove button in confirmation modal in room admin page
+        When I click on delete button in confirmation modal in room admin page
         Then I do not see '<participant_teacher_2>' in the room members list
 
         # post-condition: admin deactivates student visibility
@@ -91,21 +94,14 @@ Feature: Unify RoomMembers Administration - Able to see rooms and manage all the
 
         # post-condition: teacher deletes the room in the origin school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        When I go to rooms overview
-        When I go to room '<room_name>'
-        Then I see the detail page of room '<room_name>'
-        When I click on three dot menu in room page
-        When I select the three dot menu action 'delete'
-        Then I see confirmation modal for deleting the room
-        When I click on delete button in confirmation modal
-        Then I do not see '<room_name>' on room overview page
+        Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:
-            | teacher_1    | student_1    | teacher_2    | admin_1                | namespace | room_name             | participant_school    | role_name_teacher | role_name_student | participant_student | participant_teacher_1 | participant_school_owner | participant_teacher_2 |
-            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_double_role_dbc | dbc       | CypressAut Room Admin | cypress-test-school-1 | Lernbegleitend    | Lernend           | student_1           | admin_1               | teacher_1                | teacher_2             |
+            | teacher_1    | student_1    | teacher_2    | admin_1                | namespace | room_name             | participant_school    | role_name_teacher | role_name_student | participant_student | participant_teacher_1 | participant_school_owner | participant_teacher_2 | fullname_teacher_2 |
+            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_double_role_dbc | dbc       | CypressAut Room Admin | cypress-test-school-1 | Lernbegleitend    | Lernend           | student_1           | admin_1               | teacher_1                | teacher_2             | cypress teacher_2  |
 
-        @staging_test
-        Examples:
-            | teacher_1    | student_1    | teacher_2    | admin_1                | namespace | room_name             | participant_school          | role_name_teacher | role_name_student | participant_student | participant_teacher_1 | participant_school_owner | participant_teacher_2 |
-            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_double_role_dbc | dbc       | CypressAut Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft               | watson                | Karl                     | Lara                  |
+#@staging_test
+#Examples:
+#    | teacher_1    | student_1    | teacher_2    | admin_1                | namespace | room_name             | participant_school          | role_name_teacher | role_name_student | participant_student | participant_teacher_1 | participant_school_owner | participant_teacher_2 | fullname_teacher_2 |
+#    | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_double_role_dbc | dbc       | CypressAut Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft               | watson                | Karl                     | Lara                  | lara watson        |
