@@ -39,12 +39,31 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         # student can see the pdf file in the multi-column board
         # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
+        # teacher edits caption of the pdf file in the multi-column room board
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I clear '<caption_field>' from the file
+        When I enter text in the textbox Caption '<pdf_caption_text_rename>'
+        When I click outside of the card to save it
+        Then I see the file type PDF is uploaded in the card
+
+        # teacher removes the pdf filename, verifies validation message and renames filename in the multi-column room board
+        When I click on the page outside of the column
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three dot in the element File
+        When I clear '<file_name_field>' from the file
+        Then I see a validation error message '<error_message>' below the name field for file card
+        When I enter name '<pdf_file_name_rename>' for file in card
+        When I click outside of the card to save it
+        Then I see the file type PDF is uploaded in the card
+
         # teacher downloads the pdf file in the multi-column room board
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the icon Download file
-        Then file '<pdf_file_name>' is saved in folder downloads
+        Then file '<pdf_file_name_rename>' is saved in folder downloads
 
         # teacher deletes the element File with PDF in the multi-column room board
         When I click on the page outside of the column
@@ -65,5 +84,5 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | pdf_file_name  | pdf_caption_text         |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file |
+            | teacher      | namespace | room_name            | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
+            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
