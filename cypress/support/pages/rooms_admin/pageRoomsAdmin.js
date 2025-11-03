@@ -71,7 +71,7 @@ class RoomsAdmin {
 	seeAdminRoomEditParticipantsPage(roomName) {
 		cy.get(RoomsAdmin.#adminRoomTitle).should("be.visible");
 		cy.get(RoomsAdmin.#adminRoomTitle).should("contain", roomName);
-		cy.wait("@members_api");
+		cy.wait("@room_administration_members_api");
 	}
 
 	seeParticipantInAdminList(participantName) {
