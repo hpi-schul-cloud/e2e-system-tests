@@ -146,7 +146,7 @@ module.exports = defineConfig({
 	videoCompression: 18,
 	video: true,
 	chromeWebSecurity: false,
-	numTestsKeptInMemory: 0,
+	numTestsKeptInMemory: 1,
 	e2e: {
 		specPattern: "cypress/e2e/**/*.feature",
 		supportFile: "cypress/support/e2e.js",

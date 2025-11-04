@@ -1,22 +1,14 @@
-import { BeforeAll, Given, Then } from "@badeball/cypress-cucumber-preprocessor";
+import { BeforeAll, Then } from "@badeball/cypress-cucumber-preprocessor";
 import CommonCartridge from "../../pages/common_cartridge/pageCommonCartridge";
 
 const commonCartridge = new CommonCartridge();
 
 BeforeAll(function () {
-	this.orgs = {}
-})
+	this.orgs = {};
+});
 
 Then("I have a file exported with pattern {string} and rename it", function (pattern) {
 	commonCartridge.verifyFile(pattern, CommonCartridge.fileName, 15000);
-});
-
-Given("the exported file is an archive and extracted", function () {
-	commonCartridge.fileIsArchive();
-});
-
-Given("extracted content and files are deleted", function () {
-	commonCartridge.cleanUp();
 });
 
 Then(
