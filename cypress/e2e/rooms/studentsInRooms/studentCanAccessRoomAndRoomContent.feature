@@ -55,7 +55,7 @@ Feature: Rooms - Student can access room content after being added to room via A
         When I go to room '<room_name>'
         Then I see multi-column board tile in the rooms details page
         Then I do not see single-column board tile in the room details page
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the element Link on the card
 
         # teacher is able to delete participants

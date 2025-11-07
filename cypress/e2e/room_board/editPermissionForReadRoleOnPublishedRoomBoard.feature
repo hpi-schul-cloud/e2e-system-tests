@@ -25,7 +25,7 @@ Feature: Room Board - Edit permission for published room boards
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
         Then I see the option 'edit-setting'
@@ -45,7 +45,7 @@ Feature: Room Board - Edit permission for published room boards
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Editable for all
         Then I see the button Add column in the course board
@@ -54,7 +54,7 @@ Feature: Room Board - Edit permission for published room boards
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
         Then I see the option 'edit-setting'
@@ -72,7 +72,7 @@ Feature: Room Board - Edit permission for published room boards
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I do not see the chip Editable for all
         Then I see the button Add column in the course board is not visible

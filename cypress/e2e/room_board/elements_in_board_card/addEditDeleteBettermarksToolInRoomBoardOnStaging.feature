@@ -54,7 +54,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the Title '<bettermarks_title>' and the Domain URL '<bettermarks_domain_url>' of bettermarks in the card
 
@@ -64,7 +64,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the Title '<bettermarks_title>' and the Domain URL '<bettermarks_domain_url>' of bettermarks in the card
         When I click on the three dot on the card
@@ -90,7 +90,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I do not see the tool bettermarks in the card
 
