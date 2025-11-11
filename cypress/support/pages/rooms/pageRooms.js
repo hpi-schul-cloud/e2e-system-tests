@@ -47,6 +47,10 @@ class Rooms {
 		'[data-testid="invite-participant-description-input"]';
 	static #inputInviteMembersRequireConfirmation =
 		'[data-testid="input-invite-participants-requires-confirmation"]';
+	static #inputInviteMembersRestrictedToCreatorSchool =
+		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
+	static #inputInviteMembersValidForExternalPersons =
+		'[data-testid="input-invite-participants-valid-for-external-persons"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
 	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
@@ -566,6 +570,18 @@ class Rooms {
 		cy.get(Rooms.#inputInviteMembersRequireConfirmation)
 			.find('[type="checkbox"]')
 			.uncheck();
+	}
+
+	uncheckInvitationFormRestrictToCreatorSchool() {
+		cy.get(Rooms.#inputInviteMembersRestrictedToCreatorSchool)
+			.find('[type="checkbox"]')
+			.uncheck();
+	}
+
+	checkInvitationFormValidForExternalPersons() {
+		cy.get(Rooms.#inputInviteMembersValidForExternalPersons)
+			.find('[type="checkbox"]')
+			.check();
 	}
 
 	checkInvitationFormRequireConfirmation() {
