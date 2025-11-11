@@ -497,7 +497,7 @@ When("I click on the single-column board in the room detail page", () => {
 	roomBoards.clickSingleColumnBoardInRoomDetailPage();
 });
 
-When("I click on the multi-column board in the room detail page", () => {
+When("I click on the button Open on multi-column board in the room detail page", () => {
 	roomBoards.clickMultiColumnBoardInRoomDetailPage();
 });
 

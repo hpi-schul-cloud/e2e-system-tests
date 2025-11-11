@@ -50,7 +50,7 @@ Feature: Room Board - Share multi-column room board in the rooms with teacher fr
         When I enter a new name for the imported board '<import_board_title>' in the modal
         When I click on the button Import in the modal
         Then I see the detail page of room '<room_name_target>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
 
