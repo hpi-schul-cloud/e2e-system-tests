@@ -39,6 +39,10 @@ Feature: Rooms - Invite User to room via Invitation link
         Given I am logged in as a '<expert_2>' at '<namespace>'
         When I use the remembered invitation link URL
         Then I see the detail page of room '<room_name>'
+        When I click on three dot menu in room page
+        Then I don't see 'edit, copy, share, delete' options in the menu
+        Then I don't see 'room-copy, room-members' options in the menu
+        When I select the three dot menu action 'leave-room'
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
