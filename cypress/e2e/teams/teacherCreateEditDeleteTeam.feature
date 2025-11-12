@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-C
+@group-F
 @pr
 @prio_0_staging
 Feature: Teams - Create, delete and edit operations on Teams
