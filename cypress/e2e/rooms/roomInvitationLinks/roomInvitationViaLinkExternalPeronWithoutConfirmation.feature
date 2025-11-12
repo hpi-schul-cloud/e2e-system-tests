@@ -41,8 +41,25 @@ Feature: Rooms - Invite User to room via Invitation link
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         Then I don't see 'edit, copy, share, delete' options in the menu
-        Then I don't see 'room-copy, room-members' options in the menu
+        #Then I don't see 'room-copy, room-members' options in the menu
+        When I select the three dot menu action 'room-members'
+        Then I see the page Edit participants of room '<room_name>'
+        Then I don't see button Fab Add Member
+        When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
+        Then I see dialog box to leave the room
+        Then I click on button 'Confirm' to leave the room
+
+        # first teacher logged in and assert second user is not in the table
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
+        When I go to rooms overview
+        Then I see '<room_name>' on room overview page
+        When I go to room '<room_name>'
+        Then I see the detail page of room '<room_name>'
+        When I click on three dot menu in room page
+        When I select the three dot menu action 'room-members'
+        Then I see the page Edit participants of room '<room_name>'
+        Then I see teacher '<participant_name>' not visible in the table
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
