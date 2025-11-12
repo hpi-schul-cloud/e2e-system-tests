@@ -7,15 +7,15 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
     Scenario Outline: User sees dashboard with all expected contents
 
-        # check dashboard
-        Given I am logged in as a '<user>' at '<namespace>'
+        # student checks dashboard
+        Given I am logged in as a '<student>' at '<namespace>'
         When I arrive on the dashboard
         Then I see the welcome message 'Hallo <fullname_user>!'
         Then I see school news with title 'Herzlichen Willkommen in der Cypress Health School' and description 'DIes ist ein beispielhafter News-Text'
         Then I see teams news with title 'Team HC AG nimmt Arbeit auf' and description 'Lorem ipsum'
         #Then I can see the assigned task 'Aufgabe Health Check' of course 'HC Kurs'
 
-        # check rooms, roomboard and content
+        # student check rooms, roomboard and content
         When I go to rooms overview
         When I go to room 'Health Check'
         When I click on the multi-column board in the room detail page
@@ -29,7 +29,19 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         #Then I see a card with element Whiteboard
         Then I see the video conference element added in the card
 
+        # teacher checks Course and content
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to courses overview
+        When I go to course 'HC Kurs'
+        Then I see task card info submitted contains '1/1' for task 'Aufgabe Health Check'
+        Then Task card info graded contains '1/1' for task 'Aufgabe Health Check'
+        When I click on task 'Aufgabe Health Check'
+        When I click on submissions tab
+        Then there is a tick in column delivered for '<student_last_name>'
+        When I click on submission of '<student_last_name>'
+        Then I see submission text 'Hier kommt die Antwort, siehe Datei.'
+
         @staging_test
         Examples:
-            | namespace | user           | fullname_user |
-            | dbc       | student_hc_dbc | Adam Schmitt  |
+            | namespace | teacher        | student        | fullname_user | student_last_name |
+            | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt  | Schmitt           |
