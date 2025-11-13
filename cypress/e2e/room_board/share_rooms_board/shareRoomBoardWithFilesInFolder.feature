@@ -39,7 +39,7 @@ Feature: Room Board - Share room board copy with files in file folder
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
         When I click on the button Import in the modal
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see my room board is named '<import_board_title>'
         Then I see a folder with name '<folder_name>' in the card
         When I click on the folder '<folder_name>' in the card

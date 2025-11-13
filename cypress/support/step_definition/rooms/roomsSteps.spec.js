@@ -212,14 +212,6 @@ When("I click on the button add content", () => {
 	rooms.clickOnAddContentButton();
 });
 
-Then("I see the button to add board", () => {
-	rooms.seeFabButtonToAddBoard();
-});
-
-When("I click on the fab button to add a Board", () => {
-	rooms.clickOnFabButtonToAddBoard();
-});
-
 When(
 	"I click on button Three Dot Menu to edit participant {string}",
 	(participantName) => {

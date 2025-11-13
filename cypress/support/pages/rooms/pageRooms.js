@@ -7,7 +7,6 @@ class Rooms {
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"]';
-	static #fabButtonAddBoard = '[data-testid="fab_button_add_board"]';
 	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
@@ -49,7 +48,8 @@ class Rooms {
 		'[data-testid="input-invite-participants-requires-confirmation"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose =
+		'[data-testid="invite-participant-close-btn"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -310,7 +310,9 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -361,7 +363,9 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantSchool)
+			.should("be.visible")
+			.type("{downArrow}{enter}");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -402,7 +406,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -414,12 +420,6 @@ class Rooms {
 	}
 	clickOnAddContentButton() {
 		cy.get(Rooms.#addContentButton).click();
-	}
-	seeFabButtonToAddBoard() {
-		cy.get(Rooms.#fabButtonAddBoard).should("be.visible");
-	}
-	clickOnFabButtonToAddBoard() {
-		cy.get(Rooms.#fabButtonAddBoard).click();
 	}
 
 	clickOnThreeDotMenuToEditUser(participantName) {
@@ -468,7 +468,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
