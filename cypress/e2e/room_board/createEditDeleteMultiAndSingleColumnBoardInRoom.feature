@@ -25,8 +25,6 @@ Feature: Room Board - Add, edit and delete board in room
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the button add content
-        Then I see the button to add board
-        When I click on the fab button to add a Board
         Then I see the dialog box to select the Board type
         When I click on button to add multi-column board
         Then I see the page board details
@@ -58,8 +56,6 @@ Feature: Room Board - Add, edit and delete board in room
         When I go to rooms overview
         When I go to room '<room_name>'
         When I click on the button add content
-        Then I see the button to add board
-        When I click on the fab button to add a Board
         Then I see the dialog box to select the Board type
         When I click on button to add single-column board
         Then I see the page board details

@@ -63,7 +63,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the page outside of the column
         When I click on the three dot on the card
@@ -90,7 +90,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the page outside of the column
         When I click on the three dot on the card
@@ -125,7 +125,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the page outside of the column
         When I click on the video conference element in the card

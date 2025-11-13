@@ -36,7 +36,7 @@ Feature: Rooms - To duplicate the existing room
         Then I see the detail page of room '<copied_room_name>'
         Then I see copied single-column board tile in the room details page
         Then I see copied multi-column board tile in the rooms details page
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the chip Draft
         Then I see the element Link on the card
 

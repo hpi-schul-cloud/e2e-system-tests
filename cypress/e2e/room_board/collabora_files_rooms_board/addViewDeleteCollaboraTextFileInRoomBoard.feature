@@ -19,7 +19,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         # first teacher creates the collabora docx file using the collabora creation element dialog box
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -46,7 +46,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         When I arrive on the dashboard
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
 
@@ -54,7 +54,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the collabora file '<docx_file_name>'
         Then I cannot type text '<text_2>' in collabora editor on position '600', '500'
@@ -66,7 +66,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         When I arrive on the dashboard
         When I go to rooms overview
         When I go to room '<room_name>'
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
 
         # first teacher deletes the collabora docx document from room board
