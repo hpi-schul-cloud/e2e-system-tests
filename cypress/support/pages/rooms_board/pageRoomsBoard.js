@@ -12,13 +12,13 @@ class RoomBoards {
 	static #dialogAddSingleColumnBoard = '[data-testid="dialog-add-single-column-board"]';
 	static #boardLayoutDialogTitle = '[data-testid="board-layout-dialog-title"]';
 	static #breadcrumbToRoomNavigationFromBoard = '[data-testid="breadcrumb-1"]';
-	static #multiColumnBoardSelector = '[data-testid="board-tile-subtitle-0"]';
+	static #multiColumnBoardSelector = '[data-testid="board-open-button-0"]';
 	static #copyOptionSelector = '[data-testid="kebab-menu-action-copy"]';
 	static #chipDraftSelector = '[data-testid="board-draft-chip"]';
 	static #publishMenuSelector = '[data-testid="kebab-menu-action-publish"]';
-	static #singleColumnBoardSelector = '[data-testid="board-tile-title-1"]';
-	static #multiColumnBoardTileSelector = '[data-testid="board-tile-title-0"]';
-	static #singleColumnBoardTileSelector = '[data-testid="board-tile-title-1"]';
+	static #singleColumnBoardSelector = '[data-testid="board-grid-title-1"]';
+	static #multiColumnBoardTileSelector = '[data-testid="board-grid-title-0"]';
+	static #singleColumnBoardTileSelector = '[data-testid="board-grid-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
@@ -31,7 +31,8 @@ class RoomBoards {
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
-	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot =
+		'[data-testid="kebab-menu-action-delete"]';
 	static #deleteConfirmationDialogForVideoConferenceElement =
 		'[data-testid="dialog-title"]';
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
@@ -104,7 +105,8 @@ class RoomBoards {
 	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
+	static #bettermarksToolDomainUrl =
+		'[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
 	static #duplicateCardOptionOnThreeDot =
 		'[data-testid="kebab-menu-action-duplicate-card"]';
@@ -520,7 +522,9 @@ class RoomBoards {
 			Save: "save",
 			Cancel: "cancel",
 		};
-		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should("be.visible");
+		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should(
+			"be.visible"
+		);
 	}
 
 	seeWarningModalForUnpublishedBoard() {
@@ -557,9 +561,9 @@ class RoomBoards {
 		const decodedFileName = decodeURIComponent(fileName);
 		const zipFileName = `${yyyy}${mm}${dd}_${decodedFileName}.zip`;
 		const prefix = `${yyyy}${mm}${dd}_${decodeURIComponent(fileName)}`;
-		cy.readFile(`cypress/downloads/${prefix}.zip`, "binary", { timeout: 15000 }).should(
-			(buffer) => expect(buffer.length).to.be.gt(100)
-		);
+		cy.readFile(`cypress/downloads/${prefix}.zip`, "binary", {
+			timeout: 15000,
+		}).should((buffer) => expect(buffer.length).to.be.gt(100));
 	}
 
 	clickContinueOnImportModal() {
@@ -622,7 +626,10 @@ class RoomBoards {
 		cy.get(`[data-testid=edit-settings-option-${option}]`)
 			.should("be.visible")
 			.within((element) => {
-				cy.get(element).find("label").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("label")
+					.contains("span", label)
+					.should("contain", label);
 			});
 	}
 
@@ -648,7 +655,9 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -872,7 +881,9 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("exist")
+			.should("contain", title);
 	}
 
 	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
@@ -949,14 +960,21 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element).find("th").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("th")
+					.contains("span", label)
+					.should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element).find("th").contains("span", label).should("contain", label).click();
+			cy.get(element)
+				.find("th")
+				.contains("span", label)
+				.should("contain", label)
+				.click();
 		});
 	}
 
@@ -970,11 +988,15 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -1038,7 +1060,11 @@ class RoomBoards {
 	}
 
 	enterFolderNameInBoardCard(newName) {
-		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear().type(newName);
+		cy.get(RoomBoards.#folderTitleInCardInput)
+			.find("input")
+			.eq(0)
+			.clear()
+			.type(newName);
 	}
 
 	clearFolderNameInCard() {

@@ -20,7 +20,7 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         Given I navigate to the room detail page via Breadcrumb
 
         # teacher copies the multi-column board
-        When I click on the multi-column board in the room detail page
+        When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
         When I click on the three dot menu in room board title
