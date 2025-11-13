@@ -21,7 +21,7 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given a room named '<room_name>' exists
 
-        # owner adds student from same school
+        # owner add student and teacher as participants from same school
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
