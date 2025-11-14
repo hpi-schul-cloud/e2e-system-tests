@@ -42,7 +42,7 @@ Feature: Rooms - Invite User to room via Invitation link
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -61,7 +61,7 @@ Feature: Rooms - Invite User to room via Invitation link
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
 
         # post-condition: first teacher deletes the room

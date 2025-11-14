@@ -20,7 +20,7 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
 
         # first teacher edits caption of the collabora xlsx file in the multi-column room board
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
         When I click on the three dot on the card
@@ -55,7 +55,7 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         # first teacher publishes the room board
         When I arrive on the dashboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
@@ -63,7 +63,7 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         # second teacher edits the xlsx file in collabora editor in edit mode, adds text content and saves it
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
         When I click on the collabora file '<xlsx_file_name_rename>'
@@ -76,7 +76,7 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         When I download by clicking on the option PDF download in collabora editor
         When I arrive on the dashboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type XLSX is uploaded in the card
 

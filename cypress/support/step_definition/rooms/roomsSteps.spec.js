@@ -11,7 +11,7 @@ Then("I see the icon Lock in the room {string}", (roomName) => {
 	rooms.seeLockIconInRoom(roomName);
 });
 
-When("I click on the locked room {string}", (roomName) => {
+When("I click on button Open to access the locked room {string}", (roomName) => {
 	rooms.clickLockedRoom(roomName);
 });
 
@@ -123,7 +123,7 @@ Then("I see the page Edit participants of room {string}", () => {
 	rooms.seeRoomEditParticipantsPage();
 });
 
-When("I go to room {string}", (roomName) => {
+When("I click on button Open to go to room {string}", (roomName) => {
 	rooms.navigateToRoom(roomName);
 });
 

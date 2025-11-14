@@ -34,7 +34,7 @@ Feature: Room Board - To share a board card link
 
         # first teacher adds a board with a card to the room
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button add content
         Then I see the dialog box to select the Board type
         When I click on button to add multi-column board

@@ -66,7 +66,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -89,7 +89,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
         # teacher is able to delete external student in the origin school (cypress-test-school-1)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -107,7 +107,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
         # post-condition: teacher deletes the room in the origin school (cypress-test-school-1)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

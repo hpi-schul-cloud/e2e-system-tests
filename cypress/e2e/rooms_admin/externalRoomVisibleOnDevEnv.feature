@@ -69,7 +69,7 @@ Feature: Room Administration - Add external room and members with visibility on 
         # external teacher (cypress-test-school-2) deletes the room and can not see it anymore
         Given I am logged in as a '<teacherExt>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

@@ -80,7 +80,7 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
         # post-condition: teacher deletes the room in the origin school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

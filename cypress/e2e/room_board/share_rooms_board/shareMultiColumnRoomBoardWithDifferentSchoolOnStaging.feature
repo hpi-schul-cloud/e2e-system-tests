@@ -58,7 +58,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         # first teacher from the first school does not allow sharing the multi-column board with another teacher from a different school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name_source>'
+        When I click on button Open to go to room '<room_name_source>'
         Then I see the detail page of room '<room_name_source>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details

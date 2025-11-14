@@ -45,7 +45,7 @@ Feature: Rooms - Leave room as a Student
         Then I see '<room_name>' on room overview page
 
         # student can leave the room
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
@@ -59,7 +59,7 @@ Feature: Rooms - Leave room as a Student
         # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

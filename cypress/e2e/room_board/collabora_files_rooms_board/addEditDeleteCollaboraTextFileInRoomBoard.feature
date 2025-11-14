@@ -20,7 +20,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
 
         # first teacher edits caption of the collabora docx file in the multi-column room board
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the three dot on the card
@@ -43,7 +43,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
 
         # first teacher opens the collabora docx file editor in the same tab, adds text content and saves it
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the collabora file '<docx_file_name_rename>'
@@ -59,7 +59,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         # first teacher publishes the room board
         When I arrive on the dashboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
@@ -67,7 +67,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         # second teacher edits the docx file in collabora editor in edit mode, adds text content and saves it
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the collabora file '<docx_file_name_rename>'
@@ -80,7 +80,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         When I download by clicking on the option PDF download in collabora editor
         When I arrive on the dashboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
 

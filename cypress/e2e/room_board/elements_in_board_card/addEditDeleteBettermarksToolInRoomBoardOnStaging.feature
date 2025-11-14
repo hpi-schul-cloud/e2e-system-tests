@@ -52,7 +52,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
@@ -62,7 +62,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
@@ -88,7 +88,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>'
         Then I see the detail page of room '<room_name>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
