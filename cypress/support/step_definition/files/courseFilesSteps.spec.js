@@ -11,7 +11,7 @@ When("I click on the folder {string} in the course files", (FolderName) => {
 	files.clickOnFolderCourse(FolderName);
 });
 
-When("I click on the button create a new folder", () => {
+When("I click on the button Create a new folder", () => {
 	files.createNewFolderInCourseFiles();
 });
 
@@ -23,7 +23,7 @@ When("I enter folder name {string} in course files", (folderName) => {
 	files.enterFolderName(folderName);
 });
 
-When("I click on the button new folder creation in course files", () => {
+When("I click on the button New folder creation in course files", () => {
 	files.submitNewFolderInCourseFiles();
 });
 
@@ -59,7 +59,7 @@ When("I click on the button delete in coursefiles", () => {
 	files.clickOnConfirmDeleteCourseFileOnModal();
 });
 
-When("I click on edit button of course folder {string}", (folderName) => {
+When("I click on button edit on course folder {string}", (folderName) => {
 	files.editbuttonCourseFolderName(folderName);
 });
 

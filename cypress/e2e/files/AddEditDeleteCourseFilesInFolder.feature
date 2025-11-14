@@ -4,7 +4,7 @@
 @group-F
 Feature: Course Files - Add, delete files in a folder and rename the file folder in course files
 
-    As a teacher, I want to add and delete files in course folder and rename the folder in course files
+    As a teacher, I want to add and delete files in course folder and rename the folder in course files so that I can use the file folder like the known folders in Windows
 
     Scenario Outline: Add, delete files in a folder and rename the file folder in course files
 
@@ -22,10 +22,10 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         Then I go to course files overview
         Then I see the folder title '<course_name>' in course files
         When I click on the folder '<course_name>' in the course files
-        When I click on the button create a new folder
+        When I click on the button Create a new folder
         Then I see the dialog for new folder creation in course files
         When I enter folder name '<folder_name>' in course files
-        When I click on the button new folder creation in course files
+        When I click on the button New folder creation in course files
         Then I see the new folder '<folder_name>' in the folder list
 
         # teacher uploads image file in the created folder in course files
@@ -76,24 +76,24 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         When I click on the folder '<course_name>' in the course files
         When I click on the folder '<folder_name>' in the course files
         Then I can see file with name '<audio_file_name>'
-        Then I click delete file button of file '<audio_file_name>'
-        Then I click confirm delete file button on modal
+        Then I click on button Delete file '<audio_file_name>'
+        Then I click on button confirm delete file on the modal
         Then I can not see file with name '<audio_file_name>'
         Then I can see file with name '<video_file_name>'
-        Then I click delete file button of file '<video_file_name>'
-        Then I click confirm delete file button on modal
+        Then I click on button Delete file '<video_file_name>'
+        Then I click on button confirm delete file on the modal
         Then I can not see file with name '<video_file_name>'
         Then I can see file with name '<image_file_name>'
-        Then I click delete file button of file '<image_file_name>'
-        Then I click confirm delete file button on modal
+        Then I click on button Delete file '<image_file_name>'
+        Then I click on button confirm delete file on the modal
         Then I can not see file with name '<image_file_name>'
 
         # teacher edits the foldername in course files
         Then I go to course files overview
         When I click on the folder '<course_name>' in the course files
-        When I click on edit button of course folder '<folder_name>'
+        When I click on button edit on course folder '<folder_name>'
         When I edit folder name '<folder_name_renamed>' in course files
-        Then I click save name button
+        Then I click on button Save name
         Then I see the new folder '<folder_name_renamed>' in the folder list
 
         # post-condition: teacher deletes the course folder and the course
@@ -107,7 +107,6 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
             | teacher1_dbc | student1_dbc | cypress teacher_1 | cypress student_1 | dbc       | admin1_dbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |
 
         @staging_test
-        @only
         Examples:
             | teacher      | student      | fullname_teacher | fullname_student | namespace | admin      | course_name             | folder_name       | image_file_name | video_file_name          | audio_file_name            | folder_name_renamed       |
             | teacher1_nbc | student1_nbc | Karl Herzog      | Herbert Kraft    | nbc       | admin1_nbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |

@@ -35,15 +35,15 @@ Then("I enter new file name {string}", (fileName) => {
 	files.typeNewFilename(fileName);
 });
 
-Then("I click save name button", () => {
+Then("I click on button Save name", () => {
 	files.clickOnSaveFilename();
 });
 
-Then("I click delete file button of file {string}", (fileName) => {
+Then("I click on button Delete file {string}", (fileName) => {
 	files.clickOnDeleteFile(fileName);
 });
 
-Then("I click confirm delete file button on modal", () => {
+Then("I click on button confirm delete file on the modal", () => {
 	files.clickOnConfirmDeleteFileOnModal();
 });
 

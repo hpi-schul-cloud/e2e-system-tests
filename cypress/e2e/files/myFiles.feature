@@ -29,14 +29,14 @@ Feature: Files - To use LibreOffice for text, calc and presentation document
         Then I click rename file button of file '<document_title_full>'
         Then I can see edit file popup box of file '<document_title_full>'
         Then I enter new file name '<document_title_edited>'
-        Then I click save name button
+        Then I click on button Save name
         Then I can see file with name '<document_title_edited>'
 
         # post-condition: delete a LibreOffice text document
         When I click on Files in menu
         Then I can see file with name '<document_title_edited>'
-        Then I click delete file button of file '<document_title_edited>'
-        Then I click confirm delete file button on modal
+        Then I click on button Delete file '<document_title_edited>'
+        Then I click on button confirm delete file on the modal
         Then I can not see file with name '<document_title_edited>'
 
         @school_api_test
