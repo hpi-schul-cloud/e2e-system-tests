@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @prio_0_staging
-@group-F
+@group-C
 Feature: Course Files - Add, delete files in a folder and rename the file folder in course files
 
     As a teacher, I want to add and delete files in course folder and rename the folder in course files so that I can use the file folder like the known folders in Windows
