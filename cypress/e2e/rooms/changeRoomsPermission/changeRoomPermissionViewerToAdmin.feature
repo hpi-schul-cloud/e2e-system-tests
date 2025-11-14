@@ -44,7 +44,7 @@ Feature: Rooms - Change room permission (Viewer - Admin)
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         Then I see button Fab Create Room Board
         When I click on three dot menu in room page
@@ -62,7 +62,7 @@ Feature: Rooms - Change room permission (Viewer - Admin)
         Then I see last actions column in the table
         When I go to rooms overview
         Then I see '<room_name_edited>' on room overview page
-        When I click on button Open to go to room '<room_name_edited>'
+        When I click on button Open to go to room '<room_name_edited>' at position '0'
         When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
         Then I see dialog box to leave the room
@@ -72,7 +72,7 @@ Feature: Rooms - Change room permission (Viewer - Admin)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name_edited>' on room overview page
-        When I click on button Open to go to room '<room_name_edited>'
+        When I click on button Open to go to room '<room_name_edited>' at position '0'
         Then I see the detail page of room '<room_name_edited>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -80,7 +80,7 @@ Feature: Rooms - Change room permission (Viewer - Admin)
         Then I see teacher '<participant_name>' not visible in the table
 
         # post-condition: first teacher deletes the room
-        Given the room named '<room_name_edited>' is deleted
+        Given the room named '<room_name_edited>' at position '0' is deleted
 
         @school_api_test
         Examples:

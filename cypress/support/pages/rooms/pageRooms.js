@@ -61,8 +61,6 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
-	static #openRoomButton = '[data-testid="room-open-button-0"]';
-	static #roomTitleOnRoomsOverview = '[data-testid="room--title-0"]';
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -303,9 +301,18 @@ class Rooms {
 			.should("not.be.checked");
 	}
 
-	navigateToRoom(roomName) {
-		cy.get(Rooms.#roomTitleOnRoomsOverview).contains(roomName).should("be.visible");
-		cy.get(Rooms.#openRoomButton).click();
+	navigateToRoom(roomName, position) {
+		// dynamically construct the title and button selectors based on the position
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;
+
+		// verify the room title by position
+		cy.get(roomTitleSelector)
+			.contains(roomName) // Ensure that the room title matches the room name
+			.should("be.visible");
+
+		// click the "Open" button for the room at the given position
+		cy.get(openButtonSelector).click();
 	}
 
 	openThreeDotMenuForRoom() {

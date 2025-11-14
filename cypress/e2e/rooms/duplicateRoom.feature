@@ -49,7 +49,7 @@ Feature: Rooms - To duplicate the existing room
         Then I do not see '<copied_room_name>' on room overview page
 
         # post-condition: teacher is able to delete the first original room
-        Given the room named '<room_name>' is deleted
+        Given the room named '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test

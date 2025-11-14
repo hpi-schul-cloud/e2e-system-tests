@@ -52,7 +52,7 @@ Feature: Rooms - Student can access room content after being added to room via A
         Then I see '<room_name>' on room overview page
 
         # student is able to access the room content according to visibility
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see multi-column board tile in the rooms details page
         Then I do not see single-column board tile in the room details page
         When I click on the button Open on multi-column board in the room detail page
@@ -61,7 +61,7 @@ Feature: Rooms - Student can access room content after being added to room via A
         # teacher is able to delete participants
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -79,7 +79,7 @@ Feature: Rooms - Student can access room content after being added to room via A
         # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

@@ -24,7 +24,7 @@ Feature: Room Board - Edit permission for published room boards
         # administrator student grant the read permission of the room board user to edit permission of the room board
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -44,7 +44,7 @@ Feature: Room Board - Edit permission for published room boards
         # viewer student checks that he has edit permission with respect to the room board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Editable for all
@@ -53,7 +53,7 @@ Feature: Room Board - Edit permission for published room boards
         # administrator student revoke the edit permission of the room board user to read permission of the room board
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -71,7 +71,7 @@ Feature: Room Board - Edit permission for published room boards
         # viewer student checks that he did not have edit permission with respect to the room board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I click on button Open to go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I do not see the chip Editable for all
@@ -79,7 +79,7 @@ Feature: Room Board - Edit permission for published room boards
 
         # post-condition: teacher deletes room and admin disables student visibility for teachers
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room named '<room_name>' at position '0' is deleted
         Given I am logged in as a '<admin>' at '<namespace>'
         Given student visibility for teachers in school management is 'disabled'
 

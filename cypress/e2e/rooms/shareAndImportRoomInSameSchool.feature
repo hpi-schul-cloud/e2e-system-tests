@@ -53,7 +53,7 @@ Feature: Rooms - Share and import room with a teacher from the same school
         When I click on the button Import Confirm in the modal
         Then I see the success message Alert
         Then I see '<room_name_target>' on room overview page
-        When I click on button Open to go to room '<room_name_target>'
+        When I click on button Open to go to room '<room_name_target>' at position '0'
         Then I see the detail page of room '<room_name_target>'
         Then I see copied multi-column board tile in the rooms details page
         When I click on the button Open on multi-column board in the room detail page
@@ -62,9 +62,9 @@ Feature: Rooms - Share and import room with a teacher from the same school
 
         # post-condition: rooms are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
-        Given the room named '<room_name_source>' is deleted
+        Given the room named '<room_name_source>' at position '0' is deleted
         Given I am logged in as a '<teacher2>' at '<namespace>'
-        Given the room named '<room_name_target>' is deleted
+        Given the room named '<room_name_target>' at position '0' is deleted
 
         @school_api_test
         @staging_test

@@ -268,9 +268,9 @@ Given("admin enables video conference for the school in the school settings page
 	management.clickOnAdminSettingsSave();
 });
 
-Given("the room named {string} is deleted", (roomName) => {
+Given("the room named {string} at position {string} is deleted", (roomName, position) => {
 	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(roomName);
+	rooms.navigateToRoom(roomName, position);
 	rooms.seeRoomDetailPage(roomName);
 	rooms.openThreeDotMenuForRoom();
 	rooms.clickOnKebabMenuAction("delete");

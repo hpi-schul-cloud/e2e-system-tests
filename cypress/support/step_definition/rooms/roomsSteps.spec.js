@@ -123,9 +123,12 @@ Then("I see the page Edit participants of room {string}", () => {
 	rooms.seeRoomEditParticipantsPage();
 });
 
-When("I click on button Open to go to room {string}", (roomName) => {
-	rooms.navigateToRoom(roomName);
-});
+When(
+	"I click on button Open to go to room {string} at position {string}",
+	(roomName, position) => {
+		rooms.navigateToRoom(roomName, position);
+	}
+);
 
 When("I click on three dot menu in room page", () => {
 	rooms.openThreeDotMenuForRoom();

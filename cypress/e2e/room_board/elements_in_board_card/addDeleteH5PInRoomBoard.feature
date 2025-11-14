@@ -29,7 +29,7 @@ Feature: Room Board - Add H5P learning element in the board
         Then I do not see the element H5P
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room named '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test
