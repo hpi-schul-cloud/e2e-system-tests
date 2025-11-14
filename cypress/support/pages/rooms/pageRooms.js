@@ -61,6 +61,8 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
+	static #openRoomButton = '[data-testid="room-open-button-0"]';
+	static #roomTitleOnRoomsOverview = '[data-testid="room--title-0"]';
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -302,7 +304,8 @@ class Rooms {
 	}
 
 	navigateToRoom(roomName) {
-		cy.get(Rooms.#roomTitle).contains(roomName).should("be.visible").click();
+		cy.get(Rooms.#roomTitleOnRoomsOverview).contains(roomName).should("be.visible");
+		cy.get(Rooms.#openRoomButton).click();
 	}
 
 	openThreeDotMenuForRoom() {
