@@ -674,10 +674,10 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and default read permission",
-	(participantName, roomName, role) => {
+	"{string} added in the room named {string} at position {string} with role {string} and default read permission",
+	(participantName, roomName, position, role) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
@@ -694,10 +694,10 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and {string} to {string} permission",
-	(participantName, roomName, role, action, permission) => {
+	"{string} added in the room named {string} at position {string} with role {string} and {string} to {string} permission",
+	(participantName, roomName, position, role, action, permission) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
