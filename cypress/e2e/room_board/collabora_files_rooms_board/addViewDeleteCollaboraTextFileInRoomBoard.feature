@@ -14,7 +14,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
-        Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>'
+        Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>' at position '0'
 
         # first teacher creates the collabora docx file using the collabora creation element dialog box
         When I go to rooms overview
@@ -71,7 +71,7 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
 
         # first teacher deletes the collabora docx document from room board
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the card file is deleted from room '<room_name>'
+        Given the card file is deleted from room '<room_name>' at position '0'
 
         # post-condition: delete the room
         Given the room named '<room_name>' at position '0' is deleted

@@ -659,10 +659,10 @@ Given(
 );
 
 Given(
-	"participant with participant name {string} is added to the room {string}",
-	(participantName, roomName) => {
+	"participant with participant name {string} is added to the room {string} at position {string}",
+	(participantName, roomName, position) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.clickOnAddParticipantsFAB();
@@ -727,12 +727,15 @@ Given(
 	}
 );
 
-Given("the card file is deleted from room {string}", (roomName) => {
-	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(roomName);
-	roomBoards.clickMultiColumnBoardInRoomDetailPage();
-	roomBoards.clickOnThreeDotInCard();
-	roomBoards.clickDeleteOptionInThreeDotMenu();
-	roomBoards.clickDeleteButtonInConfirmationDialog();
-	roomBoards.shouldNotSeeFileElement();
-});
+Given(
+	"the card file is deleted from room {string} at position {string}",
+	(roomName, position) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName, position);
+		roomBoards.clickMultiColumnBoardInRoomDetailPage();
+		roomBoards.clickOnThreeDotInCard();
+		roomBoards.clickDeleteOptionInThreeDotMenu();
+		roomBoards.clickDeleteButtonInConfirmationDialog();
+		roomBoards.shouldNotSeeFileElement();
+	}
+);
