@@ -7,9 +7,12 @@ Then("I delete all rooms whose names start with {string}", (roomName) => {
 	rooms.deleteAllRoomsWithName(roomName);
 });
 
-Then("I see the icon Lock in the room {string}", (roomName) => {
-	rooms.seeLockIconInRoom(roomName);
-});
+Then(
+	"I see the icon Lock in the room {string} at position {string}",
+	(roomName, position) => {
+		rooms.seeLockIconInRoom(roomName, position);
+	}
+);
 
 When("I click on button Open to access the locked room {string}", (roomName) => {
 	rooms.clickLockedRoom(roomName);

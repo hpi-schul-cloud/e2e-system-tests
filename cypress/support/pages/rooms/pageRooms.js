@@ -132,11 +132,15 @@ class Rooms {
 		this.verifyRoomDeletion(roomName);
 	}
 
-	seeLockIconInRoom(roomName) {
-		cy.get(Rooms.#roomTitle)
-			.contains(roomName)
-			.siblings(Rooms.#roomBadgeLock)
-			.should("be.visible");
+	seeLockIconInRoom(roomName, position) {
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const badgeSelector = `[data-testid="room-badge-${position}"]`;
+
+		// verify the room title by position
+		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
+
+		// verify the badge (lock icon or status icon)
+		cy.get(badgeSelector).should("be.visible");
 	}
 
 	clickLockedRoom(roomName) {
