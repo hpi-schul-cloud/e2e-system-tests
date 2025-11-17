@@ -43,7 +43,7 @@ Then("I click on button Delete file {string}", (fileName) => {
 	files.clickOnDeleteFile(fileName);
 });
 
-Then("I click on button Confirm delete file on the modal", () => {
+Then("I click on button Confirm deletion file on the modal", () => {
 	files.clickOnConfirmDeleteFileOnModal();
 });
 
