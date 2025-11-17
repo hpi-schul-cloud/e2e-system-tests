@@ -77,28 +77,28 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         When I click on the folder '<folder_name>' in the course files
         Then I can see file with name '<audio_file_name>'
         Then I click on button Delete file '<audio_file_name>'
-        Then I click on button confirm delete file on the modal
+        Then I click on button Confirm delete file on the modal
         Then I can not see file with name '<audio_file_name>'
         Then I can see file with name '<video_file_name>'
         Then I click on button Delete file '<video_file_name>'
-        Then I click on button confirm delete file on the modal
+        Then I click on button Confirm delete file on the modal
         Then I can not see file with name '<video_file_name>'
         Then I can see file with name '<image_file_name>'
         Then I click on button Delete file '<image_file_name>'
-        Then I click on button confirm delete file on the modal
+        Then I click on button Confirm delete file on the modal
         Then I can not see file with name '<image_file_name>'
 
         # teacher edits the foldername in course files
         Then I go to course files overview
         When I click on the folder '<course_name>' in the course files
-        When I click on button edit on course folder '<folder_name>'
+        When I click on button Edit on course folder '<folder_name>'
         When I edit folder name '<folder_name_renamed>' in course files
         Then I click on button Save name
         Then I see the new folder '<folder_name_renamed>' in the folder list
 
         # post-condition: teacher deletes the course folder and the course
         When I click on delete the course folder '<folder_name_renamed>' in course files
-        When I click on the button delete in coursefiles
+        When I click on the button Delete in coursefiles
         Given course with name '<course_name>' is deleted
 
         @school_api_test

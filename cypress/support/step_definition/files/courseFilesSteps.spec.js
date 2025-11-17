@@ -55,11 +55,11 @@ When("I click on delete the course folder {string} in course files", (folderName
 	files.deleteCourseFolder(folderName);
 });
 
-When("I click on the button delete in coursefiles", () => {
+When("I click on the button Delete in coursefiles", () => {
 	files.clickOnConfirmDeleteCourseFileOnModal();
 });
 
-When("I click on button edit on course folder {string}", (folderName) => {
+When("I click on button Edit on course folder {string}", (folderName) => {
 	files.editbuttonCourseFolderName(folderName);
 });
 
