@@ -94,5 +94,22 @@ class Account {
 	clickOnCheckboxDirectoryVisibility() {
 		cy.get(Account.#checkboxDirectoryVisibility).check();
 	}
+
+	toggleCentralDirectoryVisibilityForTeacher(visibilityState) {
+		const desiredState = visibilityState === "enabled";
+		cy.get(Account.#checkboxDirectoryVisibility).then(($input) => {
+			const isChecked = $input.prop("checked");
+			const isDisabled = $input.prop("disabled");
+			if (isDisabled) {
+				cy.log("Element is disabled, cannot toggle state");
+				return;
+			}
+			if (isChecked === desiredState) {
+				cy.log(`Element is already in the desired state, skipping click`);
+				return;
+			}
+			cy.wrap($input).click({ force: true }).wait(500);
+		});
+	}
 }
 export default Account;

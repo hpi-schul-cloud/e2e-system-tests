@@ -1,8 +1,10 @@
 # NOTE: This feature should not be executed in dev instance due to the school api limitation,
 # which prevents creating two separate schools in the same feature and scenario.
-# also in staging environment this feature is still not available and cannot be executed.
 
-@unstable_test
+@regression_test
+@stable_test
+@prio_0_staging
+@group-E
 Feature: Room Administration - Able to see all rooms and the external members are shown as 'anonymized' except for "own" role from another school
 
     As a room administrator visualize all the rooms and the external members from different school seen as 'anonymized' except for 'own' role member.
@@ -17,19 +19,11 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         Given I am logged in as a '<adminExt_1>' at '<namespace>'
 
         # pre-condition: external admin activates student visibility in the different school
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on general settings panel
-        When I click the toggle switch to enable student visibility for teachers
-        When I click on button Save admin settings
+        Given student visibility for teachers in school management is 'enabled'
 
         # pre-condition: external teacher activates visibility in central directory in different school
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        When I go to my account settings
-        Then I see the checkbox Activate visibility in the central directory is unchecked
-        When I click on the checkbox Activate visibility in the central directory
-        When I click on the button Save Visibility Settings
-        Then I see the checkbox Activate visibility in the central directory is checked
+        Given activate visibility in central directory for teacher is 'enabled'
 
         # pre-condition: teacher creating a new room in the origin school, becoming the owner
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -103,19 +97,15 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         Then I see the rooms administration page
         When I click on three dot menu in the room admin page for room '<room_name>'
         When I click on manage room members in the three dot menu
-        Then I see '<teacher_1>' in the room participants list
-        Then I see '<participant_external_school_teacher>' in the room participants list
-        Then I see '<participant_external_school_student>' in the room participants list
-        Then I see '(anonymized)' in the room participants list
-        Then I see '<participant_same_school>' in the room participants list
+        Then I see '<participant_same_school_owner>' in the admin room participants list
+        Then I see '<participant_external_school_teacher>' in the admin room participants list
+        Then I see '<participant_external_school_student>' in the admin room participants list
+        Then I see '(anonymisiert)' in the admin room participants list
+        Then I see '<participant_same_school>' in the admin room participants list
 
         # post-condition: external teacher deactivates visibility in central directory in different school
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        When I go to my account settings
-        Then I see the checkbox Activate visibility in the central directory is checked
-        When I click on the checkbox Activate visibility in the central directory
-        When I click on the button Save Visibility Settings
-        Then I see the checkbox Activate visibility in the central directory is unchecked
+        Given activate visibility in central directory for teacher is 'disabled'
 
         # post-condition: teacher deletes the room in the origin school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -128,10 +118,10 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         When I click on delete button in confirmation modal
         Then I do not see '<room_name>' on room overview page
 
-#  @staging_test
-#  Examples:
-#          | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name            | participant_external_school | participant_same_school     | role_name_teacher | participant_external_school_teacher | role_name_student | participant_external_school_student | participant_same_school_student |
-#          | teacher1_dbc | student1_dbc | teacherExt1_dbc | studentExt1_dbc | adminExt1_dbc | dbc       | CypressAut Room Name | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                               | Lernend           | Alex                                | Kraft                           |
+        @staging_test
+        Examples:
+            | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name                              | participant_external_school | participant_same_school     | role_name_teacher | participant_external_school_teacher | role_name_student | participant_external_school_student | participant_same_school_student | participant_same_school_owner |
+            | teacher1_nbc | student1_nbc | teacherExt1_nbc | studentExt1_nbc | adminExt1_nbc | nbc       | CypressAut External members Room Admin | Goethe-Gymnasium            | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Carlo                               | Lernend           | Alex                                | Kraft                           | Karl                          |
 
 # @school_api_test
 #Examples:

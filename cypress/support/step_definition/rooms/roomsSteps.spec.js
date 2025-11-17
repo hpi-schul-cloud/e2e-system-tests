@@ -167,6 +167,10 @@ Then("I see role {string} in dropdown Role", (participantRole) => {
 	rooms.seeRoleOfParticipant(participantRole);
 });
 
+Then("I do not see role {string} in dropdown Role", (participantRole) => {
+	rooms.notSeeRoleOfParticipant(participantRole);
+});
+
 When("I enter {string} in dropdown Name", (participantName) => {
 	rooms.fillParticipantFormName(participantName);
 });

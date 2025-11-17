@@ -372,6 +372,10 @@ class Rooms {
 		cy.get(Rooms.#addParticipantRole).contains(participantRole);
 	}
 
+	notSeeRoleOfParticipant(participantRole) {
+		cy.get(Rooms.#addParticipantRole).contains(participantRole).should("not.exist");
+	}
+
 	fillParticipantFormName(participantName) {
 		cy.get(Rooms.#addParticipantName).type(participantName);
 	}
