@@ -36,7 +36,7 @@ Feature: Files - To use LibreOffice for text, calc and presentation document
         When I click on Files in menu
         Then I can see file with name '<document_title_edited>'
         Then I click on button Delete file '<document_title_edited>'
-        Then I click on button Confirm deletion file on the modal
+        Then I click on button Confirm deletion of file on the modal
         Then I can not see file with name '<document_title_edited>'
 
         @school_api_test
