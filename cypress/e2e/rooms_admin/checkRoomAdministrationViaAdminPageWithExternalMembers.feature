@@ -70,7 +70,7 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -110,7 +110,7 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         # post-condition: teacher deletes the room in the origin school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

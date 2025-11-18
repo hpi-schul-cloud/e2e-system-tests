@@ -132,11 +132,15 @@ class Rooms {
 		this.verifyRoomDeletion(roomName);
 	}
 
-	seeLockIconInRoom(roomName) {
-		cy.get(Rooms.#roomTitle)
-			.contains(roomName)
-			.siblings(Rooms.#roomBadgeLock)
-			.should("be.visible");
+	seeLockIconInRoom(roomName, position) {
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const badgeSelector = `[data-testid="room-badge-${position}"]`;
+
+		// verify the room title by position
+		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
+
+		// verify the badge (lock icon or status icon)
+		cy.get(badgeSelector).should("be.visible");
 	}
 
 	clickLockedRoom(roomName) {
@@ -301,8 +305,18 @@ class Rooms {
 			.should("not.be.checked");
 	}
 
-	navigateToRoom(roomName) {
-		cy.get(Rooms.#roomTitle).contains(roomName).should("be.visible").click();
+	navigateToRoom(roomName, position) {
+		// dynamically construct the title and button selectors based on the position
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;
+
+		// verify the room title by position
+		cy.get(roomTitleSelector)
+			.contains(roomName) // Ensure that the room title matches the room name
+			.should("be.visible");
+
+		// click the "Open" button for the room at the given position
+		cy.get(openButtonSelector).click();
 	}
 
 	openThreeDotMenuForRoom() {

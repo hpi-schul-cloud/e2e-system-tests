@@ -15,12 +15,12 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
         Given the file with filename '<docx_file_name>' and caption '<docx_caption_text>' is added to the room board
-        Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>'
+        Given participant '<teacher_2_name>' is added to the room '<room_name>' at position '0'
         Given participant '<teacher_2_name>' is having room role permission '<teacher_2_role>'
 
         # first teacher edits caption of the collabora docx file in the multi-column room board
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the three dot on the card
@@ -43,7 +43,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
 
         # first teacher opens the collabora docx file editor in the same tab, adds text content and saves it
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the collabora file '<docx_file_name_rename>'
@@ -59,7 +59,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         # first teacher publishes the room board
         When I arrive on the dashboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         Given multi column board is published to not to be in a draft mode
@@ -67,7 +67,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         # second teacher edits the docx file in collabora editor in edit mode, adds text content and saves it
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
         When I click on the collabora file '<docx_file_name_rename>'
@@ -80,16 +80,16 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         When I download by clicking on the option PDF download in collabora editor
         When I arrive on the dashboard
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the file type DOCX is uploaded in the card
 
         # first teacher deletes the collabora docx document from room board
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the card file is deleted from room '<room_name>'
+        Given the card file is deleted from room '<room_name>' at position '0'
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

@@ -48,7 +48,7 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         Then I see copied single-column board tile in the room details page
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test

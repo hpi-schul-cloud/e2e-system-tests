@@ -45,7 +45,7 @@ Feature: Rooms - Add and delete participants
         # first teacher is able to delete participants
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -63,7 +63,7 @@ Feature: Rooms - Add and delete participants
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

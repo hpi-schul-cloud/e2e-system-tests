@@ -45,7 +45,7 @@ Feature: Files - Delete image file in room board and check file resource
         Then I see that image resource is not available '<image_file_name>'
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test

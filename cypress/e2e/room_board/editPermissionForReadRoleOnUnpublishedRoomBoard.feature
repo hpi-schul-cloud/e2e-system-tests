@@ -18,13 +18,13 @@ Feature: Room Board - Edit permission for unpublished room boards
         Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
-        Given '<student_1_name>' added in the room named '<room_name>' with role '<role_name>' and default read permission
-        Given '<student_2_name>' added in the room named '<room_name>' with role '<role_name>' and 'change permission' to 'admin' permission
+        Given '<student_1_name>' added in the room '<room_name>' at position '0' with role '<role_name>' and default read permission
+        Given '<student_2_name>' added in the room '<room_name>' at position '0' with role '<role_name>' and 'change permission' to 'admin' permission
 
         # administrator student cannot grant the edit permission of the room board if unpublished the room board.
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -55,7 +55,7 @@ Feature: Room Board - Edit permission for unpublished room boards
         # viewer student checks that he has edit permission with respect to board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Editable for all
@@ -64,7 +64,7 @@ Feature: Room Board - Edit permission for unpublished room boards
         # room board returns to default permissions after unpublished and administrator student cannot allow/restrict edit permission
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -81,12 +81,12 @@ Feature: Room Board - Edit permission for unpublished room boards
         # student checks that he cannot access unpublish board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I do not see the board '<board_title>' in the room
 
         # post-condition: teacher deletes room and admin disables student visibility for teachers
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
         Given I am logged in as a '<admin>' at '<namespace>'
         Given student visibility for teachers in school management is 'disabled'
 
