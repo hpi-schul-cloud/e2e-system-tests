@@ -96,7 +96,7 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
 
         # post-condition: delete the room
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         # @school_api_test
         # currently, the Bettermarks tool is not configurable on dev clusters for the admin API schools.

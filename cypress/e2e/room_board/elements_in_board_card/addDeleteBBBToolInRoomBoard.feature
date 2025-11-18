@@ -60,7 +60,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I do not see the video conference element
 
         # post-condition: delete the room
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test

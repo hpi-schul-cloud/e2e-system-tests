@@ -15,7 +15,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
         Given the file with filename '<docx_file_name>' and caption '<docx_caption_text>' is added to the room board
-        Given participant with participant name '<teacher_2_name>' is added to the room '<room_name>' at position '0'
+        Given participant '<teacher_2_name>' is added to the room '<room_name>' at position '0'
         Given participant '<teacher_2_name>' is having room role permission '<teacher_2_role>'
 
         # first teacher edits caption of the collabora docx file in the multi-column room board
@@ -89,7 +89,7 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         Given the card file is deleted from room '<room_name>' at position '0'
 
         # post-condition: delete the room
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

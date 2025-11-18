@@ -133,7 +133,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         # post-condition: delete the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

@@ -28,7 +28,7 @@ Feature: Room Board - Copying room board with files in a file folder
         Then I see files '<video_file_name>, <audio_file_name>, <image_file_name>' in file list
 
         # post-condition: delete the room
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

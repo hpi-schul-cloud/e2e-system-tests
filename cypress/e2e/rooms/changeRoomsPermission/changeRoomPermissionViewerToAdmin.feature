@@ -80,7 +80,7 @@ Feature: Rooms - Change room permission (Viewer - Admin)
         Then I see teacher '<participant_name>' not visible in the table
 
         # post-condition: first teacher deletes the room
-        Given the room named '<room_name_edited>' at position '0' is deleted
+        Given the room '<room_name_edited>' at position '0' is deleted
 
         @school_api_test
         Examples:

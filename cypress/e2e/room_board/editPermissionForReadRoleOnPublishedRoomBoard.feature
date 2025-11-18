@@ -18,8 +18,8 @@ Feature: Room Board - Edit permission for published room boards
         Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' with a multi-column board named '<board_title>' exists and published
-        Given '<student_1_name>' added in the room named '<room_name>' at position '0' with role '<role_name>' and default read permission
-        Given '<student_2_name>' added in the room named '<room_name>' at position '0' with role '<role_name>' and 'change permission' to 'admin' permission
+        Given '<student_1_name>' added in the room '<room_name>' at position '0' with role '<role_name>' and default read permission
+        Given '<student_2_name>' added in the room '<room_name>' at position '0' with role '<role_name>' and 'change permission' to 'admin' permission
 
         # administrator student grant the read permission of the room board user to edit permission of the room board
         Given I am logged in as a '<student_2>' at '<namespace>'
@@ -79,7 +79,7 @@ Feature: Room Board - Edit permission for published room boards
 
         # post-condition: teacher deletes room and admin disables student visibility for teachers
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
         Given I am logged in as a '<admin>' at '<namespace>'
         Given student visibility for teachers in school management is 'disabled'
 

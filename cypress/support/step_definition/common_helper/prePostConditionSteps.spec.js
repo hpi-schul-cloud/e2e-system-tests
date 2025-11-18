@@ -268,7 +268,7 @@ Given("admin enables video conference for the school in the school settings page
 	management.clickOnAdminSettingsSave();
 });
 
-Given("the room named {string} at position {string} is deleted", (roomName, position) => {
+Given("the room {string} at position {string} is deleted", (roomName, position) => {
 	rooms.navigateToRoomsOverview();
 	rooms.navigateToRoom(roomName, position);
 	rooms.seeRoomDetailPage(roomName);
@@ -659,7 +659,7 @@ Given(
 );
 
 Given(
-	"participant with participant name {string} is added to the room {string} at position {string}",
+	"participant {string} is added to the room {string} at position {string}",
 	(participantName, roomName, position) => {
 		rooms.navigateToRoomsOverview();
 		rooms.navigateToRoom(roomName, position);
@@ -674,7 +674,7 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} at position {string} with role {string} and default read permission",
+	"{string} added in the room {string} at position {string} with role {string} and default read permission",
 	(participantName, roomName, position, role) => {
 		rooms.navigateToRoomsOverview();
 		rooms.navigateToRoom(roomName, position);
@@ -694,7 +694,7 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} at position {string} with role {string} and {string} to {string} permission",
+	"{string} added in the room {string} at position {string} with role {string} and {string} to {string} permission",
 	(participantName, roomName, position, role, action, permission) => {
 		rooms.navigateToRoomsOverview();
 		rooms.navigateToRoom(roomName, position);

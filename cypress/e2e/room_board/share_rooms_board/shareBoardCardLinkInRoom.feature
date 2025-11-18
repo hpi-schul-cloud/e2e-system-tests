@@ -61,7 +61,7 @@ Feature: Room Board - To share a board card link
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @staging_test
         Examples:

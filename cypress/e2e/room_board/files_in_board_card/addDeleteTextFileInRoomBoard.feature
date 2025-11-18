@@ -79,7 +79,7 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
         # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
-        Given the room named '<room_name>' at position '0' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test

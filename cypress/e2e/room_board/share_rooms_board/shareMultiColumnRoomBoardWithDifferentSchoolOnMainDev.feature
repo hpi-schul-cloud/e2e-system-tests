@@ -77,9 +77,9 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
         # post-condition: rooms created by both teachers are deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
-        Given the room named '<room_name_source>' at position '0' is deleted
+        Given the room '<room_name_source>' at position '0' is deleted
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        Given the room named '<room_name_target>' at position '0' is deleted
+        Given the room '<room_name_target>' at position '0' is deleted
 
         @school_api_test
         Examples:
