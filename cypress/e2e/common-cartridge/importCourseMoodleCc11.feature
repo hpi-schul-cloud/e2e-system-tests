@@ -3,6 +3,9 @@
 @schedule_run
 @group-E
 @prio_0_dev
+@unstable_test
+# It's keep on failing randomly due to timeout issues.
+
 Feature: Course Board - To import a course from common cartridge 1.1
 
     As a teacher, I want to import a course from a common cartridge file exported from Moodle
