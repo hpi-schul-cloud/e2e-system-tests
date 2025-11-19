@@ -57,7 +57,6 @@ class Rooms {
 	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
 	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
 	static #infoBoxContentRestriction = '[data-testid="share-options-table-header"]';
-	static #roomBadgeLock = '[data-testid="room-badge-lock"]';
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
@@ -134,7 +133,7 @@ class Rooms {
 
 	seeLockIconInRoom(roomName, position) {
 		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
-		const badgeSelector = `[data-testid="room-badge-${position}"]`;
+		const badgeSelector = `[data-testid="room-badge-lock-${position}"]`;
 
 		// verify the room title by position
 		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
