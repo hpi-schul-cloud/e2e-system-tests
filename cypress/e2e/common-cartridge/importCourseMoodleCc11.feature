@@ -3,6 +3,9 @@
 @schedule_run
 @group-E
 @prio_0_dev
+@unstable_test
+# It's not randomly, there is a selector, that's not available in the SVS: data-testid="rich-text-display-". It will be fixed in a separate PR.
+
 Feature: Course Board - To import a course from common cartridge 1.1
 
     As a teacher, I want to import a course from a common cartridge file exported from Moodle

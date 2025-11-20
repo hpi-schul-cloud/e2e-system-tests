@@ -15,6 +15,10 @@ Then("I see {string} in the room members list", (participantName) => {
 	roomsAdmin.seeParticipantInAdminList(participantName);
 });
 
+Then("I do not see {string} in the room members list", (participantName) => {
+	roomsAdmin.doNotSeeParticipantInAdminList(participantName);
+});
+
 Then(
 	"I see the icon Alert in the column Room owner for the room {string}",
 	(roomName) => {
@@ -77,4 +81,17 @@ Then("I see confirmation modal for deleting the room in admin page", () => {
 
 When("I click on delete button in confirmation modal in room admin page", () => {
 	roomsAdmin.clickDeleteInConfirmationModal();
+});
+
+Then("I see confirmation modal for deleting the user in room admin page", () => {
+	roomsAdmin.seeConfirmationModalForUserDeletionInAdminPage();
+});
+
+When("I click on remove button in confirmation modal in room admin page", () => {
+	roomsAdmin.clickRemoveInConfirmationModal();
+	//roomsAdmin.clickDeleteInConfirmationModal();
+});
+
+When("I click on remove button in the options of user {string}", (user) => {
+	roomsAdmin.clickOnRemoveInOptions(user);
 });

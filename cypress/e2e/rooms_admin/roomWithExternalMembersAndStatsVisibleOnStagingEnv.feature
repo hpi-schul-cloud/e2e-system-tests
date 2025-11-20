@@ -1,7 +1,10 @@
 # Note: This feature should only be executed in the staging environment due to the school API limitation,
 #       which prevents creating two separate schools in the same feature and scenario.
 
-@unstable_test
+@regression_test
+@stable_test
+@prio_0_staging
+@group-E
 Feature: Room Administration - Add room and external members with visibility on rooms administration page
 
     As a school admin I want to see the created rooms with correct information visible on rooms administration page.
@@ -88,7 +91,7 @@ Feature: Room Administration - Add room and external members with visibility on 
         When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
-# @staging_test
-# Examples:
-#     | admin      | teacher      | teacherExt      | namespace | room_name         | participant_external_school | role_name      | participant_external_name  | anonymized_name  | internal_members_count | external_members_count | total_members_count |
-#     | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Lernbegleitend | Carlo                      | anonymisiert     | 1                      | 1                      | 2                   |
+        @staging_test
+        Examples:
+            | admin      | teacher      | teacherExt      | namespace | room_name         | participant_external_school | role_name      | participant_external_name | anonymized_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | Goethe-Gymnasium            | Lernbegleitend | Carlo                     | anonymisiert    | 1                      | 1                      | 2                   |
