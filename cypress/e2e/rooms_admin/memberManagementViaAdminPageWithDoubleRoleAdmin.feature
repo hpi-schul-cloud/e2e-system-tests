@@ -92,7 +92,7 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
 
         # post-condition: teacher deletes the room in the origin school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:
