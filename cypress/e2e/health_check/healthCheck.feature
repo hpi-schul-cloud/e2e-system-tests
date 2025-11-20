@@ -17,8 +17,8 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
         # student check rooms, roomboard and content
         When I go to rooms overview
-        When I go to room 'Health Check'
-        When I click on the multi-column board in the room detail page
+        When I click on button Open to go to room 'Health Check' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the folder 'Bereichsdateien' in the card
         Then I see page Folder content for 'Bereichsdateien'
         Then I see files 'mario_animiert.gif, beispiel3_10userQA.csv, NoR_Aalregatta_2020_WebNoR_Aalregatta_2020_Web-1NoR_Aalregatta_2020_Web-1-1.pdf' in file list
@@ -40,6 +40,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Then there is a tick in column delivered for '<student_last_name>'
         When I click on submission of '<student_last_name>'
         Then I see submission text 'Hier kommt die Antwort, siehe Datei.'
+        When I go to courses overview
 
         @staging_test
         Examples:
