@@ -142,12 +142,12 @@ class Rooms {
 		cy.get(badgeSelector).should("be.visible");
 	}
 
-	clickLockedRoom(roomName) {
-		cy.contains(Rooms.#roomTitle, roomName)
-			.should("be.visible")
-			.then((title) => {
-				cy.wrap(title).prev().click();
-			});
+	clickLockedRoom(roomName, position) {
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;
+
+		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
+		cy.get(openButtonSelector).should("be.visible").click();
 	}
 
 	seeRoomNotAccessibleMessage() {

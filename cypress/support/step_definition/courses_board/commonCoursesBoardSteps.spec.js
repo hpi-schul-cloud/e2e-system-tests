@@ -127,24 +127,27 @@ Then("I see that I am on a column board", () => {
 	board.seeMultiColumnBoard();
 });
 
-Then("I see a column with title {string}", (title) => {
-	board.seeColumnWithTitle(title);
+Then("I see a column with title {string} at position {string}", (title, position) => {
+	board.seeColumnWithTitle(title, position);
 });
 
 Then("I see a card with title {string}", (title) => {
 	board.seeCardWithTitle(title);
 });
 
-Then("I see a rich text element with pattern {string}", (pattern) => {
-	board.seeRichTextWithPattern(pattern);
-});
+Then(
+	"I see a rich text element with pattern {string} at position {string} {string}",
+	(patternText, row, column) => {
+		board.seeRichTextWithPatternAtPosition(patternText, row, column);
+	}
+);
 
 Then("I see a web link with title {string}", (title) => {
 	board.seeWeblinkWithTitle(title);
 });
 
-Then("I see a file element with title {string}", (title) => {
-	board.seeFileElementWithTitle(title);
+Then("I see a file element with title {string}", (fileTitle) => {
+	board.seeFileElementWithTitle(fileTitle);
 });
 
 Then("I see dialog box for create document", () => {
