@@ -43,10 +43,10 @@ Feature: Rooms - Invite User to room via Invitation link
         # expert user should be only to leave the room
         When I click on three dot menu in room page
         Then I don't see 'edit, copy, share, delete' options in the menu
-        #Then I don't see 'room-copy, room-members' options in the menu
-        #When I visit the room members page
-        #Then I see the detail page of room '<room_name>'
-        #When I click on three dot menu in room page
+        Then I don't see 'room-copy, room-members' options in the menu
+        When I visit the room members page
+        Then I see the detail page of room '<room_name>'
+        When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
         Then I see dialog box to leave the room
         Then I click on button 'Confirm' to leave the room
