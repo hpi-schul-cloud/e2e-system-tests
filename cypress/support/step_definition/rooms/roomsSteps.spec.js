@@ -14,9 +14,12 @@ Then(
 	}
 );
 
-When("I click on button Open to access the locked room {string}", (roomName) => {
-	rooms.clickLockedRoom(roomName);
-});
+When(
+	"I click on button Open to access the locked room {string} at position {string}",
+	(roomName, position) => {
+		rooms.clickLockedRoom(roomName, position);
+	}
+);
 
 Then("I see a message that the room is not accessible", () => {
 	rooms.seeRoomNotAccessibleMessage();
