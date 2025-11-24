@@ -169,6 +169,10 @@ class Board {
 		cy.get(Board.#drawingElement).invoke("removeAttr", "target").click();
 	}
 
+	seeWhiteboardElement() {
+		cy.get(Board.#drawingElement).should("exist");
+	}
+
 	clickOnOpenTldrawDrawingElement() {
 		let clickSpy;
 

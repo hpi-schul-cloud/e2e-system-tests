@@ -5,7 +5,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
     As a user, I want to see all modules and important pages are present so I can check the health of every instance.
 
-    Scenario Outline: User sees dashboard with all expected contents
+    Scenario Outline: User sees SVS with all expected modules and content on staging / ref.
 
         # student checks dashboard
         Given I am logged in as a '<student>' at '<namespace>'
@@ -54,10 +54,40 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         # teacher checks Course and content course board
         When I go to courses overview
         When I go to course 'HC Kurs'
+        Then I see the board 'K-Bereich HC' on the room overview page
+        When I click on the board 'K-Bereich HC' on the room overview page
+        When I click on the folder 'K-Bereichsdateien' in the card
+        Then I see page Folder content for 'K-Bereichsdateien'
+        Then I see files 'mario_animiert.gif' in file list
+        When I check the checkbox in the table header for all elements
+        Then I see displayed number of checked files is '2'
+        When I click on breadcrumb element 'K-Bereich HC'
+        Then I see a whiteboard element
+
+        # teacher checks Course and content topic
+        When I go to courses overview
+        When I go to course 'HC Kurs mit Thema'
+        When I click on topic 'Thema Health Check' on course page
+        Then I see topic detail page "Thema Health Check" with content elements "Was ist das?", "Externe Informationen", "Gemeinsame Notizen", "Aufgabe HC" and "Epilog"
+
+        # teacher checks team
+        When I go to teams overview
+        When I go to a team 'HC AG'
+        When I click on team settings
+        When I click on edit option
+        Then I see team edit page
+        When I go to teams overview
+        Then I see team title 'HC AG' is visible
+        When I go to a team 'HC AG'
+        When I go to tab Calendar
+        Then I am in calendar tab on team detail page and title 'Brainstorming' is visible
+        Then I see the start video conference button
+        When I click on news tab on the team detail page
+        Then I can read the news 'Team HC AG nimmt Arbeit auf' with description 'Lorem ipsum'
 
         @staging_test
         Examples:
             | namespace | teacher        | student        | fullname_student | student_last_name |
             | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt     | Schmitt           |
-#| nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           |
-#| brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           |
+            | nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           |
+            | brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           |
