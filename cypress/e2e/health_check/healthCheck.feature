@@ -85,6 +85,15 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on news tab on the team detail page
         Then I can read the news 'Team HC AG nimmt Arbeit auf' with description 'Lorem ipsum'
 
+        # teacher checks news
+        When I go to news overview
+        Then I can read the news 'Herzlichen Willkommen in der Cypress Health School' with description 'DIes ist ein beispielhafter News-Text'
+        When I click on the news teaser 'Herzlichen Willkommen in der Cypress Health School'
+        Then I can read the news 'Herzlichen Willkommen in der Cypress Health School' with description 'DIes ist ein beispielhafter News-Text' on news detail page
+        When I go to news overview
+        Then I can read the news 'Team HC AG nimmt Arbeit auf' with description 'Lorem ipsum'
+
+
         @staging_test
         Examples:
             | namespace | teacher        | student        | fullname_student | student_last_name |
