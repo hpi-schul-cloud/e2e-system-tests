@@ -3,8 +3,7 @@
 @schedule_run
 @group-E
 @prio_0_dev
-@unstable_test
-# It's not randomly, there is a selector, that's not available in the SVS: data-testid="rich-text-display-". It will be fixed in a separate PR.
+@stable_test
 
 Feature: Course Board - To import a course from common cartridge 1.1
 
