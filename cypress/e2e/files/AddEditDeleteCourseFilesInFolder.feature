@@ -21,7 +21,7 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         When I click on Files in menu
         Then I go to course files overview
         Then I see the folder title '<course_name>' in course files
-        When I click on the folder '<course_name>' in the course files
+        When I click on the folder '<course_name>' in files module
         When I click on the button Create a new folder
         Then I see the dialog for new folder creation in course files
         When I enter folder name '<folder_name>' in course files
@@ -29,52 +29,52 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         Then I see the new folder '<folder_name>' in the folder list
 
         # teacher uploads image file in the created folder in course files
-        When I click on the folder '<folder_name>' in the course files
+        When I click on the folder '<folder_name>' in files module
         When I upload a file '<image_file_name>' in course files
-        Then I see the uploaded file '<image_file_name>' in the course folder list
+        Then I see the uploaded file '<image_file_name>' in the file list
         When I click on the uploaded file '<image_file_name>' in course files
         Then I can see the preview of file '<image_file_name>'
         When I close the preview by clicking on the file preview
-        Then I see the uploaded file '<image_file_name>' in the course folder list
+        Then I see the uploaded file '<image_file_name>' in the file list
 
         # teacher uploads video file in the created folder in course files
         When I upload a file '<video_file_name>' in course files
-        Then I see the uploaded file '<video_file_name>' in the course folder list
+        Then I see the uploaded file '<video_file_name>' in the file list
         #When I click on the uploaded file '<video_file_name>' in course files - commenting out as it shows blank page only in cypress
         #Then I can see the preview of file '<video_file_name>'
         #When I go back to the previous page
 
         # teacher uploads audio file in the created folder in course files
         When I upload a file '<audio_file_name>' in course files
-        Then I see the uploaded file '<audio_file_name>' in the course folder list
-        Then I see the uploaded file '<audio_file_name>' in the course folder list
+        Then I see the uploaded file '<audio_file_name>' in the file list
+        Then I see the uploaded file '<audio_file_name>' in the file list
         When I click on the uploaded file '<audio_file_name>' in course files
         Then I can see the preview of file '<audio_file_name>'
         When I go back to the previous page
         Then I go to course files overview
         Then I see the folder title '<course_name>' in course files
-        When I click on the folder '<course_name>' in the course files
-        When I click on the folder '<folder_name>' in the course files
-        Then I see the uploaded file '<audio_file_name>' in the course folder list
+        When I click on the folder '<course_name>' in files module
+        When I click on the folder '<folder_name>' in files module
+        Then I see the uploaded file '<audio_file_name>' in the file list
 
         # student can see the uploaded files in the created folder in course files
         Given I am logged in as a '<student>' at '<namespace>'
         When I click on Files in menu
         Then I go to course files overview
         Then I see the folder title '<course_name>' in course files
-        When I click on the folder '<course_name>' in the course files
+        When I click on the folder '<course_name>' in files module
         Then I see the new folder '<folder_name>' in the folder list
-        When I click on the folder '<folder_name>' in the course files
-        Then I see the uploaded file '<image_file_name>' in the course folder list
-        Then I see the uploaded file '<video_file_name>' in the course folder list
-        Then I see the uploaded file '<audio_file_name>' in the course folder list
+        When I click on the folder '<folder_name>' in files module
+        Then I see the uploaded file '<image_file_name>' in the file list
+        Then I see the uploaded file '<video_file_name>' in the file list
+        Then I see the uploaded file '<audio_file_name>' in the file list
 
         # teacher deletes the uploaded files present in the created folder in course files
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I click on Files in menu
         Then I go to course files overview
-        When I click on the folder '<course_name>' in the course files
-        When I click on the folder '<folder_name>' in the course files
+        When I click on the folder '<course_name>' in files module
+        When I click on the folder '<folder_name>' in files module
         Then I can see file with name '<audio_file_name>'
         Then I click on button Delete file '<audio_file_name>'
         Then I click on button Confirm deletion of file on the modal
@@ -90,7 +90,7 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
 
         # teacher edits the foldername in course files
         Then I go to course files overview
-        When I click on the folder '<course_name>' in the course files
+        When I click on the folder '<course_name>' in files module
         When I click on button Edit on course folder '<folder_name>'
         When I edit folder name '<folder_name_renamed>' in course files
         Then I click on button Save name

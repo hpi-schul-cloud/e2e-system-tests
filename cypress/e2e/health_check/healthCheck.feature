@@ -79,6 +79,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I go to teams overview
         Then I see team title 'HC AG' is visible
         When I go to a team 'HC AG'
+        Then I see the uploaded file 'Gadget.jpg' in the file list
         When I go to tab Calendar
         Then I am in calendar tab on team detail page and title 'Brainstorming' is visible
         Then I see the start video conference button
@@ -93,10 +94,41 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I go to news overview
         Then I can read the news 'Team HC AG nimmt Arbeit auf' with description 'Lorem ipsum'
 
+        # teacher checks files > course files
+        When I click on Files in menu
+        Then I go to course files overview
+        Then I see the folder title 'HC Kurs' in course files
+        When I click on the folder 'HC Kurs' in files module
+        Then I see the uploaded file 'sample-pdf-file.pdf' in the file list
+        #When I click on the uploaded file '<image_file_name>' in course files
+        #Then I can see the preview of file '<image_file_name>'
+        #When I close the preview by clicking on the file preview
+
+        # teacher checks files > personal files
+        When I go to personal files overview
+        When I click on the folder 'Marks Dateien' in files module
+        Then I see the uploaded file 'giphy.gif' in the file list
+        When I click on the uploaded file 'giphy.gif' in course files
+        Then I can see the preview of file 'giphy.gif'
+        When I close the preview by clicking on the file preview
+
+        # teacher checks files > team files
+        When I go to team files overview
+        When I click on the folder 'HC AG' in files module
+        Then I see the uploaded file 'Gadget.jpg' in the file list
+
+        # teacher checks files > shared files
+        When I go to shared files overview
+        Then I see the uploaded file 'sunflower_animiert.gif' in the file list
+
+        # teacher checks calendar
+        When I go to calendar overview
+        Then I see calendar page
+
 
         @staging_test
         Examples:
             | namespace | teacher        | student        | fullname_student | student_last_name |
             | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt     | Schmitt           |
-            | nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           |
-            | brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           |
+#| nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           |
+#| brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           |

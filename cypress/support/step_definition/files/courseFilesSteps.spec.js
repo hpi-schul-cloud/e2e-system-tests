@@ -7,7 +7,7 @@ Then("I see the folder title {string} in course files", (FolderName) => {
 	files.fileFolderTitleVisible(FolderName);
 });
 
-When("I click on the folder {string} in the course files", (FolderName) => {
+When("I click on the folder {string} in files module", (FolderName) => {
 	files.clickOnFolderCourse(FolderName);
 });
 
@@ -35,8 +35,8 @@ When("I upload a file {string} in course files", (uploadFiles) => {
 	files.uploadFileInCourseFiles(uploadFiles);
 });
 
-Then("I see the uploaded file {string} in the course folder list", (fileName) => {
-	files.seeFileInCourseFiles(fileName);
+Then("I see the uploaded file {string} in the file list", (fileName) => {
+	files.seeFileInFilesList(fileName);
 });
 
 When("I click on the uploaded file {string} in course files", (fileName) => {
