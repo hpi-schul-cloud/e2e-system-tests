@@ -121,14 +121,30 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I go to shared files overview
         Then I see the uploaded file 'sunflower_animiert.gif' in the file list
 
+        # teacher checks media shelf
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to media shelf
+        Then I see the media shelf page title
+        Then I see the available media line
+        Then I see tool '<mediashelf_tool>' in the available media line
+
         # teacher checks calendar
         When I go to calendar overview
         Then I see calendar page
 
+        # teacher checks learning store
+        When I go to Learning Store overview
+        When I write 'Wurzeln' in search container and wait for search result
+        Then I see website Learning Store with search result
+        When I click on first card of search result
+        Then I see card details
+        When I click on icon Close Learning Store card details
+        Then I see website Learning Store with search result
+
 
         @staging_test
         Examples:
-            | namespace | teacher        | student        | fullname_student | student_last_name |
-            | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt     | Schmitt           |
-#| nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           |
-#| brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           |
+            | namespace | teacher        | student        | fullname_student | student_last_name | mediashelf_tool |
+            | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt     | Schmitt           | learn app       |
+            | nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           | bettermarks     |
+            | brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           | bettermarks     |

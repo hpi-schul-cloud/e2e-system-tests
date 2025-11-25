@@ -4,6 +4,8 @@ class Learning_Store {
 	static #learningStoreMenuLink = '[data-testid="sidebar-learningstore"]';
 	static #learningStoreSearchInput = '[data-testid="learningstore-search-input"]';
 	static #searchResultCard = '[data-testid="learningstore-searchresult-item"]';
+	static #closeLearningStoreDetailsIcon =
+		'[data-testid="learningstore-close-details-icon"]';
 	static #learningStoreContentDetailToContentLink =
 		'[data-testid="learningstore-to-content-link"]';
 
@@ -36,7 +38,9 @@ class Learning_Store {
 
 	assertContentDetailPageIsVisible() {
 		// there is currently no test-id in the detail page for content, but the detail page can be asserted by the visibility of the button "to content"
-		cy.get(Learning_Store.#learningStoreContentDetailToContentLink).should("be.visible");
+		cy.get(Learning_Store.#learningStoreContentDetailToContentLink).should(
+			"be.visible"
+		);
 	}
 
 	openLearningStoreContent() {
@@ -52,6 +56,10 @@ class Learning_Store {
 			});
 		cy.get(Learning_Store.#learningStoreContentDetailToContentLink).click();
 		cy.get("@clickSpy").should("have.been.called").should("have.been.calledOnce");
+	}
+
+	closeLearningStoreContent() {
+		cy.get(Learning_Store.#closeLearningStoreDetailsIcon).click();
 	}
 }
 export default Learning_Store;

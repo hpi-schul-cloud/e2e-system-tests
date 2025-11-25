@@ -34,3 +34,7 @@ Then("I see card details", () => {
 When("I click on button To content", () => {
 	learningStore.openLearningStoreContent();
 });
+
+When("I click on icon Close Learning Store card details", () => {
+	learningStore.closeLearningStoreContent();
+});
