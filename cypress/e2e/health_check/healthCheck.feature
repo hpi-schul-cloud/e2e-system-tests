@@ -5,7 +5,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
     As a user, I want to see all modules and important pages are present so I can check the health of every instance.
 
-    Scenario Outline: User sees SVS with all expected modules and content on staging / ref.
+    Scenario Outline: Teacher and student see SVS with all expected content modules and content on staging / ref.
 
         # student checks dashboard
         Given I am logged in as a '<student>' at '<namespace>'
@@ -141,10 +141,65 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on icon Close Learning Store card details
         Then I see website Learning Store with search result
 
+        @staging_test
+        Examples:
+            | namespace | teacher        | student        | fullname_student | student_last_name | mediashelf_tool                          |
+            | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt     | Schmitt           | learn app                                |
+            | nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           | Online-Diagnose Grundschule - Mathematik |
+            | brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           | bettermarks                              |
+
+    Scenario Outline: admin sees all expected management pages and content on staging / ref.
+
+        Given I am logged in as a '<admin>' at '<namespace>'
+
+        # admin sees student in student administration page
+        When I click on administration in menu
+        When I go to 'student' administration
+        Then I can see the user with email 'adam.schmitt.qa@schul-cloud.org' in the table
+        When I click edit 'student' button for 'adam.schmitt.qa@schul-cloud.org'
+        Then I see page Edit student
+
+        # admin sees teacher in teacher administration page
+        When I go to 'teacher' administration
+        Then I can see the user with email 'mark.boll.qa@schul-cloud.org' in the table
+        Then I click edit 'teacher' button for 'mark.boll.qa@schul-cloud.org'
+        Then I see page Edit teacher
+
+        # admin sees teacher and student room administration page
+        When I navigate to rooms administration page via the submenu
+        Then I see the rooms administration page
+        Then I see the room 'Health Check' on the rooms administration page
+        When I click on three dot menu in the room admin page for room 'Health Check'
+        When I click on manage room members in the three dot menu
+        Then I see the admin page Edit participants of room 'Health Check'
+        Then I see 'Schmitt' in the admin room participants list
+        Then I see 'Boll' in the admin room participants list
+
+        # admin sees course administration page
+        When I navigate to course administration page via the submenu
+        Then I see the new course administration page
+        Then I see the course 'HC Kurs' on the new course administration page
+        Then I see the course 'HC Kurs mit Thema' on the new course administration page
+        When I click on the edit button of course 'HC Kurs'
+        Then I see page Edit course
+
+        # admin sees school administration page
+        When I click on administration in menu
+        When I navigate to new school admin page via sub menu
+        When I click on external tools panel
+        Then I see the tool '<external_tool>' in external tools table
+        When I click on general settings panel
+        Then I see toggle switch to enable students access to learning store is checked
+
+        # admin sees class administration page
+        When I navigate to class administration page via sub menu
+        Then I see the class '1b' has '1' students
+        When I click on the button Edit to edit the class '1b'
+        Then I see the edit classes page
 
         @staging_test
         Examples:
-            | namespace | teacher        | student        | fullname_student | student_last_name | mediashelf_tool |
-            | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt     | Schmitt           | learn app       |
-            | nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           | bettermarks     |
-            | brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           | bettermarks     |
+            | namespace | admin        | external_tool                            |
+            | dbc       | admin_hc_dbc | learn app                                |
+            | nbc       | admin_hc_nbc | Online-Diagnose Grundschule - Mathematik |
+            | brb       | admin_hc_brb | bettermarks                              |
