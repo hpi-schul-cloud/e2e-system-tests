@@ -203,3 +203,69 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
             | dbc       | admin_hc_dbc | learn app                                |
             | nbc       | admin_hc_nbc | Online-Diagnose Grundschule - Mathematik |
             | brb       | admin_hc_brb | bettermarks                              |
+
+    Scenario Outline: teacher sees help content on staging / ref.
+
+        Given I am logged in as a '<teacher>' at '<namespace>'
+
+        # teacher sees help articles and contact page
+        When I click on Help Section in sidebar
+        Then I see element with data-testid 'sidebar-helpsection-trainings'
+        When I click on Help articles in sidebar
+        Then I see the help articles page
+        When I click on Contact in sidebar
+        Then I see the help contact page
+
+        @staging_test
+        Examples:
+            | namespace | teacher        |
+            | dbc       | teacher_hc_dbc |
+            | nbc       | teacher_hc_nbc |
+            | brb       | teacher_hc_brb |
+
+    Scenario Outline: teacher sees system content on staging / ref dbc.
+
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I click on element with data-testid 'sidebar-system'
+        Then I see element with data-testid 'sidebar-system-status'
+        Then I see element with data-testid 'sidebar-system-releases'
+        Then I see element with data-testid 'sidebar-system-github'
+        Then I see element with data-testid 'sidebar-system-security'
+        When I click on element with data-testid 'sidebar-system-releases'
+        Then I see element with data-testid 'Release Notes'
+        When I click on element with data-testid 'sidebar-system-security'
+        Then I see content page title 'Sicherheit'
+
+        @staging_test
+        Examples:
+            | namespace | teacher        |
+            | dbc       | teacher_hc_dbc |
+
+    Scenario Outline: teacher sees system content on staging / ref nbc.
+
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I click on element with data-testid 'sidebar-system'
+        Then I see element with data-testid 'sidebar-system-status'
+        Then I see element with data-testid 'sidebar-system-releases'
+        When I click on element with data-testid 'sidebar-system-releases'
+        Then I see element with data-testid 'Release Notes'
+
+        @staging_test
+        Examples:
+            | namespace | teacher        |
+            | nbc       | teacher_hc_nbc |
+
+    Scenario Outline: teacher sees system content on staging / ref brb.
+
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I click on element with data-testid 'sidebar-system'
+        Then I see element with data-testid 'sidebar-system-status'
+        Then I see element with data-testid 'sidebar-system-releases'
+        Then I see element with data-testid 'sidebar-system-github'
+        When I click on element with data-testid 'sidebar-system-releases'
+        Then I see element with data-testid 'Release Notes'
+
+        @staging_test
+        Examples:
+            | namespace | teacher        |
+            | brb       | teacher_hc_brb |
