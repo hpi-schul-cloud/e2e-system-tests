@@ -1351,6 +1351,10 @@ class Management {
 	seePageTitleEditTeacher() {
 		cy.get(Management.#pageTitleEditTeacher).should("be.visible");
 	}
+
+	seeElementInDataTable(elementText) {
+		cy.get(Management.#dataTable).should("contain", elementText);
+	}
 }
 
 export default Management;

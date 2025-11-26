@@ -124,3 +124,7 @@ Then("I see page Edit student", () => {
 Then("I see page Edit teacher", () => {
 	management.seePageTitleEditTeacher();
 });
+
+Then("I see element {string} in data table", (elementText) => {
+	management.seeElementInDataTable(elementText);
+});

@@ -1,11 +1,27 @@
 @regression_test
 @stable_test
+@prio_0_staging
 
 Feature: Health Check - To check the presences of modules in the dBildungscloud on staging / ref.
 
     As a user, I want to see all modules and important pages are present so I can check the health of every instance.
 
-    Scenario Outline: Teacher and student see SVS with all expected content modules and content on staging / ref.
+    Scenario Outline: User sees account settings page on staging / ref.
+
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to my account settings
+        Then I see my email is editable
+        When I click on the initials
+        When I logout
+
+        @staging_test
+        Examples:
+            | namespace | teacher        |
+            | dbc       | teacher_hc_dbc |
+            | nbc       | teacher_hc_nbc |
+            | brb       | teacher_hc_brb |
+
+    Scenario Outline: Student sees dashboard. rooms with roomboard and contents and tasks via task overview on staging / ref.
 
         # student checks dashboard
         Given I am logged in as a '<student>' at '<namespace>'
@@ -39,6 +55,19 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Then I see feedback text 'Das war schon mal gut.'
         Then I see grade is '74'
 
+        # student logout
+        When I click on the initials
+        When I logout
+
+        @staging_test
+        Examples:
+            | namespace | student        | fullname_student |
+            | dbc       | student_hc_dbc | Adam Schmitt     |
+            | nbc       | student_hc_nbc | Adam Schmitt     |
+            | brb       | student_hc_brb | Adam Schmitt     |
+
+    Scenario Outline: teacher sees courses and course content (tasks, topics, course boards) on staging / ref.
+
         # teacher checks Course and content task
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
@@ -70,6 +99,23 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on topic 'Thema Health Check' on course page
         Then I see topic detail page "Thema Health Check" with content elements "Was ist das?", "Externe Informationen", "Gemeinsame Notizen", "Aufgabe HC" and "Epilog"
 
+        # teacher logout
+        # next step is to load sidebar in vue
+        When I go to dashboard
+        When I click on the initials
+        When I logout
+
+        @staging_test
+        Examples:
+            | namespace | teacher        | student_last_name |
+            | dbc       | teacher_hc_dbc | Schmitt           |
+            | nbc       | teacher_hc_nbc | Schmitt           |
+            | brb       | teacher_hc_brb | Schmitt           |
+
+    Scenario Outline: teacher sees teams and news section on staging / ref.
+
+        Given I am logged in as a '<teacher>' at '<namespace>'
+
         # teacher checks team
         When I go to teams overview
         When I go to a team 'HC AG'
@@ -94,15 +140,29 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I go to news overview
         Then I can read the news 'Team HC AG nimmt Arbeit auf' with description 'Lorem ipsum'
 
+        # teacher logout
+        # next step is to load sidebar in vue
+        When I go to dashboard
+        When I click on the initials
+        When I logout
+
+        @staging_test
+        Examples:
+            | namespace | teacher        |
+            | dbc       | teacher_hc_dbc |
+            | nbc       | teacher_hc_nbc |
+            | brb       | teacher_hc_brb |
+
+    Scenario Outline: teacher sees files section, mediashelf, calendar and learning store on staging / ref.
+
+        Given I am logged in as a '<teacher>' at '<namespace>'
+
         # teacher checks files > course files
         When I click on Files in menu
         Then I go to course files overview
         Then I see the folder title 'HC Kurs' in course files
         When I click on the folder 'HC Kurs' in files module
         Then I see the uploaded file 'sample-pdf-file.pdf' in the file list
-        #When I click on the uploaded file '<image_file_name>' in course files
-        #Then I can see the preview of file '<image_file_name>'
-        #When I close the preview by clicking on the file preview
 
         # teacher checks files > personal files
         When I go to personal files overview
@@ -134,19 +194,25 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
         # teacher checks learning store
         When I go to Learning Store overview
-        When I write 'Wurzeln' in search container and wait for search result
+        When I write 'Dodo' in search container and wait for search result
         Then I see website Learning Store with search result
         When I click on first card of search result
         Then I see card details
         When I click on icon Close Learning Store card details
         Then I see website Learning Store with search result
 
+        # teacher logout
+        # next step is to load sidebar in vue
+        When I go to dashboard
+        When I click on the initials
+        When I logout
+
         @staging_test
         Examples:
-            | namespace | teacher        | student        | fullname_student | student_last_name | mediashelf_tool                          |
-            | dbc       | teacher_hc_dbc | student_hc_dbc | Adam Schmitt     | Schmitt           | learn app                                |
-            | nbc       | teacher_hc_nbc | student_hc_nbc | Adam Schmitt     | Schmitt           | Online-Diagnose Grundschule - Mathematik |
-            | brb       | teacher_hc_brb | student_hc_brb | Adam Schmitt     | Schmitt           | bettermarks                              |
+            | namespace | teacher        | mediashelf_tool                          |
+            | dbc       | teacher_hc_dbc | learn app                                |
+            | nbc       | teacher_hc_nbc | Online-Diagnose Grundschule - Mathematik |
+            | brb       | teacher_hc_brb | bettermarks                              |
 
     Scenario Outline: admin sees all expected management pages and content on staging / ref.
 
@@ -192,10 +258,12 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Then I see toggle switch to enable students access to learning store is checked
 
         # admin sees class administration page
-        When I navigate to class administration page via sub menu
-        Then I see the class '1b' has '1' students
-        When I click on the button Edit to edit the class '1b'
-        Then I see the edit classes page
+        When I go to team administration
+        Then I see element 'HC AG' in data table
+
+        # admin logout
+        When I click on the initials
+        When I logout
 
         @staging_test
         Examples:
@@ -215,6 +283,10 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Then I see the help articles page
         When I click on Contact in sidebar
         Then I see the help contact page
+
+        # teacher logout
+        When I click on the initials
+        When I logout
 
         @staging_test
         Examples:
@@ -250,6 +322,10 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on element with data-testid 'sidebar-system-security'
         Then I see content page title 'Sicherheit'
 
+        # teacher logout
+        When I click on the initials
+        When I logout
+
         @staging_test
         Examples:
             | namespace | teacher        |
@@ -279,6 +355,10 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Then I see element with data-testid 'sidebar-system-releases'
         When I click on element with data-testid 'sidebar-system-releases'
         Then I see element with data-testid 'Release Notes'
+
+        # teacher logout
+        When I click on the initials
+        When I logout
 
         @staging_test
         Examples:
@@ -310,6 +390,10 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Then I see element with data-testid 'sidebar-system-github'
         When I click on element with data-testid 'sidebar-system-releases'
         Then I see element with data-testid 'Release Notes'
+
+        # teacher logout
+        When I click on the initials
+        When I logout
 
         @staging_test
         Examples:
