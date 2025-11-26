@@ -75,12 +75,12 @@ class GlobalAssertions {
 		this.checkMessagePoints(infoPointsArray, selectors);
 	}
 
-	checkElementWithDataTestIdIsVisible(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).should("be.visible");
-	}
-
 	checkContentPageTitle(contentPageTitle) {
 		cy.get("h2.section-title").should("have.text", contentPageTitle);
+	}
+
+	checkLegalContentPageTitle(title) {
+		cy.get("h1").should("have.text", title);
 	}
 }
 

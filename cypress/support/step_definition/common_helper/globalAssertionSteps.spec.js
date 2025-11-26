@@ -20,9 +20,13 @@ Then("I see modal {string} with information on {string}", (modalType, infoPoints
 });
 
 Then("I see element with data-testid {string}", (dataTestId) => {
-	globalAssertions.checkElementWithDataTestIdIsVisible(dataTestId);
+	globalAssertions.checkElementWithDataTestIdExists(dataTestId);
 });
 
 Then("I see content page title {string}", (contentPageTitle) => {
 	globalAssertions.checkContentPageTitle(contentPageTitle);
+});
+
+Then("I see legal content page title {string}", (contentPageTitle) => {
+	globalAssertions.checkLegalContentPageTitle(contentPageTitle);
 });

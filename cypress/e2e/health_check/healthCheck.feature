@@ -223,9 +223,23 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
             | nbc       | teacher_hc_nbc |
             | brb       | teacher_hc_brb |
 
-    Scenario Outline: teacher sees system content on staging / ref dbc.
+    Scenario Outline: teacher sees system content and legal info pages on staging / ref dbc.
 
         Given I am logged in as a '<teacher>' at '<namespace>'
+        # next step is to load sidebar in vue
+        When I go to rooms overview
+
+        # teacher checks legal content pages
+        Then I see element with data-testid 'sidebar-imprint'
+        Then I see element with data-testid 'sidebar-termsofuse'
+        Then I see element with data-testid 'sidebar-privacypolicy'
+        Then I see element with data-testid 'sidebar-licenses'
+        When I click on element with data-testid 'sidebar-imprint'
+        Then I see legal content page title 'Impressum'
+        When I click on element with data-testid 'sidebar-licenses'
+        Then I see legal content page title 'Open-Source-Lizenzliste'
+
+        # teacher checks system pages
         When I click on element with data-testid 'sidebar-system'
         Then I see element with data-testid 'sidebar-system-status'
         Then I see element with data-testid 'sidebar-system-releases'
@@ -241,9 +255,25 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
             | namespace | teacher        |
             | dbc       | teacher_hc_dbc |
 
-    Scenario Outline: teacher sees system content on staging / ref nbc.
+    Scenario Outline: teacher sees system content and legal info pages on staging / ref nbc.
 
         Given I am logged in as a '<teacher>' at '<namespace>'
+        # next step is to load sidebar in vue
+        When I go to rooms overview
+
+        # teacher checks legal content pages
+        Then I see element with data-testid 'sidebar-accessibilityfeedback'
+        Then I see element with data-testid 'sidebar-system-accessibilitystatement'
+        Then I see element with data-testid 'sidebar-imprint'
+        Then I see element with data-testid 'sidebar-termsofuse'
+        Then I see element with data-testid 'sidebar-privacypolicy'
+        Then I see element with data-testid 'sidebar-licenses'
+        When I click on element with data-testid 'sidebar-imprint'
+        Then I see legal content page title 'Impressum'
+        When I click on element with data-testid 'sidebar-licenses'
+        Then I see legal content page title 'Open-Source-Lizenzliste'
+
+        # teacher checks system pages
         When I click on element with data-testid 'sidebar-system'
         Then I see element with data-testid 'sidebar-system-status'
         Then I see element with data-testid 'sidebar-system-releases'
@@ -255,9 +285,25 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
             | namespace | teacher        |
             | nbc       | teacher_hc_nbc |
 
-    Scenario Outline: teacher sees system content on staging / ref brb.
+    Scenario Outline: teacher sees system content and legal info pages on staging / ref brb.
 
         Given I am logged in as a '<teacher>' at '<namespace>'
+        # next step is to load sidebar in vue
+        When I go to rooms overview
+
+        # teacher checks legal content pages
+        Then I see element with data-testid 'sidebar-accessibilityfeedback'
+        Then I see element with data-testid 'sidebar-system-accessibilitystatement'
+        Then I see element with data-testid 'sidebar-imprint'
+        Then I see element with data-testid 'sidebar-termsofuse'
+        Then I see element with data-testid 'sidebar-privacypolicy'
+        Then I see element with data-testid 'sidebar-licenses'
+        When I click on element with data-testid 'sidebar-imprint'
+        Then I see legal content page title 'Impressum'
+        When I click on element with data-testid 'sidebar-licenses'
+        Then I see legal content page title 'Open-Source-Lizenzliste'
+
+        # teacher checks system pages
         When I click on element with data-testid 'sidebar-system'
         Then I see element with data-testid 'sidebar-system-status'
         Then I see element with data-testid 'sidebar-system-releases'
