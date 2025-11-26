@@ -7,7 +7,7 @@ Then("I see the folder title {string} in course files", (FolderName) => {
 	files.fileFolderTitleVisible(FolderName);
 });
 
-When("I click on the folder {string} in files module", (FolderName) => {
+When("I click on the folder {string} in files section", (FolderName) => {
 	files.clickOnFolderCourse(FolderName);
 });
 

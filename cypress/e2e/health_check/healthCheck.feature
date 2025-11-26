@@ -161,12 +161,12 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on Files in menu
         Then I go to course files overview
         Then I see the folder title 'HC Kurs' in course files
-        When I click on the folder 'HC Kurs' in files module
+        When I click on the folder 'HC Kurs' in files section
         Then I see the uploaded file 'sample-pdf-file.pdf' in the file list
 
         # teacher checks files > personal files
         When I go to personal files overview
-        When I click on the folder 'Marks Dateien' in files module
+        When I click on the folder 'Marks Dateien' in files section
         Then I see the uploaded file 'giphy.gif' in the file list
         When I click on the uploaded file 'giphy.gif' in course files
         Then I can see the preview of file 'giphy.gif'
@@ -174,7 +174,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
         # teacher checks files > team files
         When I go to team files overview
-        When I click on the folder 'HC AG' in files module
+        When I click on the folder 'HC AG' in files section
         Then I see the uploaded file 'Gadget.jpg' in the file list
 
         # teacher checks files > shared files
