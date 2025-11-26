@@ -119,7 +119,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Then I do not see a folder element on board
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

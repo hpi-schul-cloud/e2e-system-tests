@@ -35,7 +35,7 @@ Feature: Room Board - Copying a card with contents
         Then I see that after duplicating the first card, the previously added second card has moved to the third position in the column
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

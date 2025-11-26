@@ -1,7 +1,10 @@
 # Note: This feature should only be executed in the staging environment due to the school API limitation,
 #       which prevents creating two separate schools in the same feature and scenario.
 
-@unstable_test
+@regression_test
+@stable_test
+@prio_0_staging
+@group-E
 Feature: Room Administration - Add external room and members with visibility on rooms administration page
 
     As a school admin I want to see the created external rooms with correct information visible on rooms administration page.
@@ -69,7 +72,7 @@ Feature: Room Administration - Add external room and members with visibility on 
         # external teacher (Goethe-Gymnasium) deletes the room and can not see it anymore
         Given I am logged in as a '<teacherExt>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'
@@ -89,7 +92,7 @@ Feature: Room Administration - Add external room and members with visibility on 
         When I go to rooms overview
         Then I do not see '<room_name>' on room overview page
 
-# @staging_test
-# Examples:
-#     | admin      | teacher      | teacherExt      | namespace | room_name         | participant_origin_school   | role_name      | participant_origin_name  | participant_external_name  | internal_members_count | external_members_count | total_members_count |
-#     | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Herzog                   | Carlo                      | 1                      | 1                      | 2                   |
+        @staging_test
+        Examples:
+            | admin      | teacher      | teacherExt      | namespace | room_name         | participant_origin_school   | role_name      | participant_origin_name | participant_external_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Herzog                  | Carlo                     | 1                      | 1                      | 2                   |

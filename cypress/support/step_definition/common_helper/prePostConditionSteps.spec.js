@@ -1,4 +1,5 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
+import Account from "../../pages/account/pageAccount";
 import Management from "../../pages/admin/pageAdmin";
 import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 import Classes from "../../pages/classes_management/pageClasses";
@@ -13,8 +14,10 @@ import Tasks from "../../pages/tasks/pageTasks";
 import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
+const account = new Account();
 const commonCartridge = new CommonCartridge();
 const toolsConfiguration = new ToolConfiguration();
+
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
@@ -201,6 +204,16 @@ Given(
 );
 
 Given(
+	"activate visibility in central directory for teacher is {string}",
+	(visibility) => {
+		account.navigateToAccountSettingsSection();
+		account.clickOnCheckboxDirectoryVisibility();
+		account.toggleCentralDirectoryVisibilityForTeacher(visibility);
+		account.clickOnSaveVisibilitySettingsButton();
+	}
+);
+
+Given(
 	"task {string} with submission date exists in course {string}",
 	(taskTitle, courseName) => {
 		courses.navigateToCoursesOverview();
@@ -268,9 +281,9 @@ Given("admin enables video conference for the school in the school settings page
 	management.clickOnAdminSettingsSave();
 });
 
-Given("the room named {string} is deleted", (roomName) => {
+Given("the room {string} at position {string} is deleted", (roomName, position) => {
 	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(roomName);
+	rooms.navigateToRoom(roomName, position);
 	rooms.seeRoomDetailPage(roomName);
 	rooms.openThreeDotMenuForRoom();
 	rooms.clickOnKebabMenuAction("delete");
@@ -659,10 +672,10 @@ Given(
 );
 
 Given(
-	"participant with participant name {string} is added to the room {string}",
-	(participantName, roomName) => {
+	"participant {string} is added to the room {string} at position {string}",
+	(participantName, roomName, position) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.clickOnAddParticipantsFAB();
@@ -674,10 +687,10 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and default read permission",
-	(participantName, roomName, role) => {
+	"{string} added in the room {string} at position {string} with role {string} and default read permission",
+	(participantName, roomName, position, role) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
@@ -694,10 +707,10 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and {string} to {string} permission",
-	(participantName, roomName, role, action, permission) => {
+	"{string} added in the room {string} at position {string} with role {string} and {string} to {string} permission",
+	(participantName, roomName, position, role, action, permission) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
@@ -727,12 +740,15 @@ Given(
 	}
 );
 
-Given("the card file is deleted from room {string}", (roomName) => {
-	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(roomName);
-	roomBoards.clickMultiColumnBoardInRoomDetailPage();
-	roomBoards.clickOnThreeDotInCard();
-	roomBoards.clickDeleteOptionInThreeDotMenu();
-	roomBoards.clickDeleteButtonInConfirmationDialog();
-	roomBoards.shouldNotSeeFileElement();
-});
+Given(
+	"the card file is deleted from room {string} at position {string}",
+	(roomName, position) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName, position);
+		roomBoards.clickMultiColumnBoardInRoomDetailPage();
+		roomBoards.clickOnThreeDotInCard();
+		roomBoards.clickDeleteOptionInThreeDotMenu();
+		roomBoards.clickDeleteButtonInConfirmationDialog();
+		roomBoards.shouldNotSeeFileElement();
+	}
+);

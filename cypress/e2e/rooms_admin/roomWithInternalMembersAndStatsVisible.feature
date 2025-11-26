@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-D
-@prio_0_dev
+@prio_0_staging
 Feature: Room Administration - Add room and internal members with visibility on rooms administration page
 
     As a school admin, I want to see the created rooms with correct information visible on rooms administration page.
@@ -71,7 +71,7 @@ Feature: Room Administration - Add room and internal members with visibility on 
             | admin      | teacher_1    | teacher_2    | namespace | room_name            | school_name           | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
             | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | cypress-test-school-1 | Lernbegleitend | teacher_2        | 2                      | 0                      | 2                   |
 
-# @staging_test
-# Examples:
-#     | admin      | teacher_1    | teacher_2    | namespace | room_name         | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
-#     | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 2                      | 0                      | 2                   |
+        @staging_test
+        Examples:
+            | admin      | teacher_1    | teacher_2    | namespace | room_name            | school_name                 | role_name      | participant_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend | Hande            | 2                      | 0                      | 2                   |

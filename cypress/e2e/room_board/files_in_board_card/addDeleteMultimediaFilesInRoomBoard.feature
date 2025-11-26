@@ -96,7 +96,6 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         # teacher edits the caption of the audio file in the multi-column room board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three dot in the element File
         When I clear '<caption_field>' from the file
         When I enter text in the textbox Caption '<audio_caption_text_renamed>'
         When I click outside of the card to save it
@@ -106,7 +105,6 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         When I click on the page outside of the column
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on the three dot in the element File
         When I clear '<file_name_field>' from the file
         Then I see a validation error message '<error_message>' below the name field for file card
         When I enter name '<audio_file_name_renamed>' for file in card
@@ -131,7 +129,7 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
         # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test
