@@ -66,9 +66,9 @@ Feature: Room Board - Share and import a card in rooms with a teacher from the s
 
         # post-condition: rooms created by both teachers are deleted
         Given I am logged in as a '<teacher2>' at '<namespace>'
-        Given the room named '<room_name_target>' is deleted at position '0'
+        Given the room '<room_name_target>' at position '0' is deleted
         Given I am logged in as a '<teacher1>' at '<namespace>'
-        Given the room named '<room_name_source>' is deleted at position '0'
+        Given the room '<room_name_source>' at position '0' is deleted
 
         @school_api_test
         @staging_test
