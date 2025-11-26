@@ -45,8 +45,8 @@ Feature: Rooms - Share and import room with a teacher from the same school
         Given I am logged in as a '<teacher2>' at '<namespace>'
 
         # second teacher within the same school imports the room
-        When I open the shared URL
-        Then I see the modal to import the shared board into the room
+        When I open the shared URL for board
+        Then I see the Dialog to import
         Then I see the title in the share modal
         When I see the source room name in the modal room import
         Then I enter a new room name '<room_name_target>'

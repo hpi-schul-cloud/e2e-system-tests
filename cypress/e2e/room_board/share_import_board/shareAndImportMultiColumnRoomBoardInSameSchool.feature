@@ -42,8 +42,8 @@ Feature: Room Board - Share multi-column room board in the rooms with teacher fr
         Given a room named '<room_name_target>' exists
 
         # second teacher within the same school imports the multi-column board
-        When I open the shared URL
-        Then I see the modal to import the shared board into the room
+        When I open the shared URL for board
+        Then I see the Dialog to import
         Then I see the title in the share modal
         When I select the room from the room list in the modal
         When I click on the Continue button in the modal

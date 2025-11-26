@@ -26,12 +26,12 @@ Feature: Room Board - Copying a card with contents
         Then I see the page board details
         When I click outside of the card to save it
         When I click on the three dot on the card
-        When I click on the option Duplicate on the first card
+        When I click on the option 'duplicate-card' on the card
         Then I see a duplicated card below the original first card
-        Then I see element Link in the duplicated card
-        Then I see element Etherpad in the duplicated card
-        Then I see element Folder in the duplicated card
-        Then I see element Image in the duplicated card
+        Then I see element Link in the duplicated or in the imported card
+        Then I see element Etherpad in the duplicated or in the imported card
+        Then I see element Folder in the duplicated card or in the imported card
+        Then I see element Image in the duplicated card or in the imported card
         Then I see that after duplicating the first card, the previously added second card has moved to the third position in the column
 
         # post-condition: delete the room
