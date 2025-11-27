@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-B
-@prio_0_dev
+@prio_0_staging
 Feature: Room Board - Add, edit, view and delete collabora spreadsheet file in file folder in room board
 
     As a User, I want to add, edit, view and delete collabora spreadsheet file in a file folder in room board
@@ -24,7 +24,7 @@ Feature: Room Board - Add, edit, view and delete collabora spreadsheet file in f
         Given the folder '<folder_name>' contains files '<xlsx_file_name>'
 
         # first teacher opens and edits collabora spreadsheet file in collabora editor from the file folder in edit mode
-        When I click on the collabora file in file folder '<xlsx_file_name>'
+        When I click on the collabora file '<xlsx_file_name>' in the file folder
         Then I see collabora text editor
         When I type text '<value_1>' in collabora editor on position '200', '100'
         When I click on the button Save in Collabora editor
@@ -42,7 +42,7 @@ Feature: Room Board - Add, edit, view and delete collabora spreadsheet file in f
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         When I click on the folder '<folder_name>' in the card
-        When I click on the collabora file in file folder '<xlsx_file_name>'
+        When I click on the collabora file '<xlsx_file_name>' in the file folder
         Then I cannot type text '<value_2>' in collabora editor on position '300', '100'
 
         # first teacher deletes collabora file using action button from the file folder
@@ -62,6 +62,7 @@ Feature: Room Board - Add, edit, view and delete collabora spreadsheet file in f
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
+        @only
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | folder_name        | xlsx_file_name   | value_1            | value_2            |
             | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | Unbenannter Ordner | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
