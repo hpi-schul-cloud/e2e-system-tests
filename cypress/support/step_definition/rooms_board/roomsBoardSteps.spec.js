@@ -820,3 +820,7 @@ Then(
 When("I enter name {string} for file in card", (newName) => {
 	roomBoards.enterFileNameInBoardCard(newName);
 });
+
+When("I click on the collabora file {string} in the file folder", (fileName) => {
+	roomBoards.clickCollaboraFileInFileFolder(fileName);
+});
