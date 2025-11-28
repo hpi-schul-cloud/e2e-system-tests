@@ -21,8 +21,8 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the page board details
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
-        Then I see the Share settings dialog
-        Then I see the title in the share modal
+        Then Then I see the Share or move settings dialog
+        Then I see the title in the share or move modal
         Then I see the information box in share modal
         Then I see modal 'share' with information on '<copyright_data_protection>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
         Then I see the button Cancel in the share modal
@@ -46,11 +46,11 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         # second teacher from the second school can access the shared URL and import the multi-column board
         When I open the shared URL for board
         Then I see the Dialog to import
-        Then I see the title in the share modal
+        Then I see the title in the share or move modal
         When I select the room from the room list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
-        When I click on the button Import in the modal
+        When I click on the button Confirm in the share or move modal
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
@@ -64,7 +64,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the page board details
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'share'
-        Then I see the Share settings dialog
+        Then Then I see the Share or move settings dialog
         Then I see modal 'share' with information on '<copyright_data_protection>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
         Then I see the checkbox Link valid for the same school is by default checked
         When I click on the button Continue

@@ -11,6 +11,32 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+Then("I see the card titled {string} on the target board", (cardTitle) => {
+	roomBoards.verifyCardPresentOnTargetBoard(cardTitle);
+});
+
+Then("I do not see the card titled {string} on the source board", (cardTitle) => {
+	roomBoards.verifyCardNotPresentOnSourceBoard(cardTitle);
+});
+
+When(
+	"I select the column {string} from the column list in the move modal",
+	(columnName) => {
+		roomBoards.selectColumnInMoveCardModal(columnName);
+	}
+);
+
+When("I select the room {string} from the room list in the move modal", (roomName) => {
+	roomBoards.selectRoomInMoveCardModal(roomName);
+});
+
+When(
+	"I select the board {string} from the board list in the move modal",
+	(boardTitle) => {
+		roomBoards.selectBoardInMoveCardModal(boardTitle);
+	}
+);
+
 When("I select the room {string} from the room list in the modal", (roomName) => {
 	roomBoards.selectRoomInImportModal(roomName);
 });
@@ -288,7 +314,7 @@ Then("I see the result url text box in the modal", () => {
 	roomBoards.verifySharedBoardResultUrlTextBox();
 });
 
-Then("I see the title in the share modal", () => {
+Then("I see the title in the share or move modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
 
@@ -356,11 +382,11 @@ When(
 	}
 );
 
-When("I click on the button Import in the modal", () => {
+When("I click on the button Confirm in the share or move modal", () => {
 	roomBoards.clickImportOnModal();
 });
 
-Then("I see the Share settings dialog", () => {
+Then("Then I see the Share or move settings dialog", () => {
 	roomBoards.seeShareSettingsDialog();
 });
 

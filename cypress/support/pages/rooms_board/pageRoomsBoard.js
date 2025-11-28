@@ -115,6 +115,51 @@ class RoomBoards {
 	static #importSelectBoard = '[data-testid="import-card-select-board"]';
 	static #importSelectColumn = '[data-testid="import-card-select-column"]';
 	static #importSubmitButton = '[data-testid="dialog-confirm"]';
+	static #inputCardTitle = '[data-testid="card-title"]';
+	static #moveCardSelectBoard = '[data-testid="move-card-select-board"]';
+	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
+	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
+
+	verifyCardPresentOnTargetBoard(cardTitle) {
+		cy.get(RoomBoards.#inputCardTitle)
+			.should("be.visible")
+			.and("contain.text", cardTitle);
+	}
+
+	verifyCardNotPresentOnSourceBoard(cardTitle) {
+		cy.get(RoomBoards.#inputCardTitle)
+			.should("not.exist")
+			.should("not.contain.text", cardTitle);
+	}
+
+	selectColumnInMoveCardModal(columnName) {
+		cy.get(RoomBoards.#moveCardSelectColumn).should("be.visible").click();
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', columnName)
+			.click();
+	}
+
+	selectRoomInMoveCardModal(roomName) {
+		cy.get(RoomBoards.#moveCardSelectRoom).should("be.visible").click();
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', roomName)
+			.click();
+	}
+
+	selectBoardInMoveCardModal(boardTitle) {
+		cy.get(RoomBoards.#moveCardSelectBoard).should("be.visible").click();
+
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', boardTitle)
+			.click();
+	}
+
+	enterCardTitleInBoard(cardTitle) {
+		cy.get(RoomBoards.#inputCardTitle).should("be.visible").clear().type(cardTitle);
+	}
 
 	selectRoomInImportModal(roomName) {
 		cy.get(RoomBoards.#importSelectRoom).should("be.visible").click();

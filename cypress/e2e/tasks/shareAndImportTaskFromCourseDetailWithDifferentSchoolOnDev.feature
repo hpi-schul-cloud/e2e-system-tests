@@ -24,8 +24,8 @@ Feature: Task - share and import task between two teachers from different school
         Then I can see task '<task_title>' on course page
         When I click on three dot menu of content '<task_title>'
         When I select the three dot menu action 'share' at task index '0' in course detail page
-        Then I see the Share settings dialog
-        Then I see the title in the share modal
+        Then Then I see the Share or move settings dialog
+        Then I see the title in the share or move modal
         Then I see the information box in share modal
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
@@ -47,11 +47,11 @@ Feature: Task - share and import task between two teachers from different school
         # teacher 2 imports the task by visiting the shared URL and choosing course_name_target
         When I open the shared task URL
         Then I see the modal to import the shared task into the course
-        Then I see the title in the share modal
+        Then I see the title in the share or move modal
         When I select the course from the course list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported task '<new_task_title>' in the modal
-        When I click on the button Import in the modal
+        When I click on the button Confirm in the share or move modal
         Then I see course page '<course_name_target>'
         Then I see the task in draft mode in course detail page
         Then I see the button Publish in the task card in course detail page

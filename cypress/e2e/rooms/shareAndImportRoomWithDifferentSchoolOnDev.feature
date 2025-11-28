@@ -23,8 +23,8 @@ Feature: Rooms - Share and import room with a teacher from different school
         # the first teacher shares the room with another teacher from the different school using the copied URL
         When I click on three dot menu in room page
         When I select the three dot menu action 'share'
-        Then I see the Share settings dialog
-        Then I see the title in the share modal
+        Then Then I see the Share or move settings dialog
+        Then I see the title in the share or move modal
         Then I see the information box in share modal
         Then I see the info box indicating that the content cannot be copied or shared
         Then I see modal 'share' with information on '<copyright_data_protection>, <room_member_permission>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
@@ -46,7 +46,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         # the second teacher from different school imports the room
         When I open the shared URL for board
         Then I see the Dialog to import
-        Then I see the title in the share modal
+        Then I see the title in the share or move modal
         When I see the source room name in the modal room import
         Then I enter a new room name '<room_name_target>'
         When I click on the button Import Confirm in the modal
