@@ -27,7 +27,6 @@ Feature: Room Board - Move a card from one room to another room
         Given a multi-column board named '<board_title_target>' exists in the room
         Given the multi-column board has a column with a card titled '<card_title>'
 
-
         # teacher moves the card from source board to target board / room
         When I go to rooms overview
         When I click on button Open to go to room '<room_name_source>' at position '0'
