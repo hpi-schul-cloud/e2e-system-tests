@@ -29,8 +29,8 @@ Feature: Room Board - Share and import a card in rooms with a teacher from the s
         When I click outside of the card to save it
         When I click on the three dot on the card
         When I click on the option 'share' on the card
-        Then Then I see the Share or move settings dialog
-        Then I see the title in the share or move modal
+        Then I see the Share settings dialog
+        Then I see the title in the share modal
         Then I see the information box in share modal
         Then I see modal 'share' with information on '<copyright_data_protection>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
         Then I see the button Cancel in the share modal
@@ -57,12 +57,12 @@ Feature: Room Board - Share and import a card in rooms with a teacher from the s
         When I select the room '<room_name_target>' from the room list in the modal
         When I select the board '<board_title_target>' from the board list in the modal
         When I select the column '<column_name>' from the column list in the modal
-        When I click on the button Confirm in the share or move modal
+        When I click on the button Confirm in the share modal
         Then I see the page board details
-        Then I see element Link in the duplicated or in the imported card
-        Then I see element Etherpad in the duplicated or in the imported card
-        Then I see element Folder in the duplicated card or in the imported card
-        Then I see element Image in the duplicated card or in the imported card
+        Then I see the element Link in the target card
+        Then I see element Etherpad in the target card
+        Then I see element Folder in the target card
+        Then I see element Image in the target card
 
         # post-condition: rooms created by both teachers are deleted
         Given I am logged in as a '<teacher2>' at '<namespace>'

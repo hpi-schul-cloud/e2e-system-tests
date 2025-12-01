@@ -35,11 +35,11 @@ Feature: Room Board - Move a card from one room to another room
         When I click outside of the card to save it
         When I click on the three dot on the card
         When I click on the option 'export' on the card
-        Then I see the title in the share or move modal
+        Then I see the title in the share modal
         When I select the room '<room_name_target>' from the room list in the move modal
         When I select the board '<board_title_target>' from the board list in the move modal
         When I select the column '<column_name>' from the column list in the move modal
-        When I click on the button Confirm in the share or move modal
+        When I click on the button Confirm in the share modal
         Then I see the alert message
         Then I see the page board details
         Then I do not see the card titled '<card_title>' on the source board
@@ -51,10 +51,10 @@ Feature: Room Board - Move a card from one room to another room
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the card titled '<card_title>' on the target board
-        Then I see element Link in the duplicated or in the imported card
-        Then I see element Etherpad in the duplicated or in the imported card
-        Then I see element Folder in the duplicated card or in the imported card
-        Then I see element Image in the duplicated card or in the imported card
+        Then I see the element Link in the target card
+        Then I see element Etherpad in the target card
+        Then I see element Folder in the target card
+        Then I see element Image in the target card
 
         # post-condition: rooms created by the teacher are deleted
         Given the room '<room_name_target>' at position '1' is deleted

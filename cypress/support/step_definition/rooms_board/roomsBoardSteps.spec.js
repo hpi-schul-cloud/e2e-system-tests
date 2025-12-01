@@ -57,19 +57,19 @@ When("I open the shared URL for card", () => {
 	roomBoards.openSharedCardURL();
 });
 
-Then("I see element Link in the duplicated or in the imported card", () => {
+Then("I see the element Link in the target card", () => {
 	roomBoards.verifyLinkElementInDuplicatedCard();
 });
 
-Then("I see element Etherpad in the duplicated or in the imported card", () => {
+Then("I see element Etherpad in the target card", () => {
 	roomBoards.verifyEtherpadElementInDuplicatedCard();
 });
 
-Then("I see element Folder in the duplicated card or in the imported card", () => {
+Then("I see element Folder in the target card", () => {
 	roomBoards.verifyFolderElementInDuplicatedCard();
 });
 
-Then("I see element Image in the duplicated card or in the imported card", () => {
+Then("I see element Image in the target card", () => {
 	roomBoards.verifyImageElementInDuplicatedCard();
 });
 
@@ -314,7 +314,7 @@ Then("I see the result url text box in the modal", () => {
 	roomBoards.verifySharedBoardResultUrlTextBox();
 });
 
-Then("I see the title in the share or move modal", () => {
+Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
 
@@ -382,11 +382,11 @@ When(
 	}
 );
 
-When("I click on the button Confirm in the share or move modal", () => {
+When("I click on the button Confirm in the share modal", () => {
 	roomBoards.clickImportOnModal();
 });
 
-Then("Then I see the Share or move settings dialog", () => {
+Then("I see the Share settings dialog", () => {
 	roomBoards.seeShareSettingsDialog();
 });
 
