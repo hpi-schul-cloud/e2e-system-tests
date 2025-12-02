@@ -115,20 +115,62 @@ class Rooms {
 		});
 	}
 
-	verifyRoomDeletion(roomName) {
-		cy.get("body").then(($body) => {
-			if (!$body.text().includes(roomName)) {
-				cy.log(`All rooms with name "${roomName}" deleted successfully.`);
-			} else {
-				cy.get(Rooms.#roomTitle).should("not.contain.text", roomName);
-			}
-		});
+	verifyRoomDeletion(prefix) {
+		cy.get('[data-testid^="room--title-"]', prefix)
+			.should("not.exist")
+			.then(() => cy.log(`All rooms starting with "${prefix}" have been deleted.`));
 	}
 
-	deleteAllRoomsWithName(roomName) {
-		cy.wait(2000);
-		this.deleteElementsWithText(Rooms.#roomTitle, roomName);
-		this.verifyRoomDeletion(roomName);
+	deleteAllRoomsWithName(prefix) {
+		const deleteOne = () => {
+			// Find room titles on the page
+			cy.get('[data-testid^="room--title-"]').then(($titles) => {
+				// Find FIRST room whose title starts with the prefix
+				const match = Cypress.$($titles)
+					.toArray()
+					.find((el) => {
+						return Cypress.$(el).text().trim().startsWith(prefix);
+					});
+
+				// No more rooms with this prefix → verify and exit
+				if (!match) {
+					this.verifyRoomDeletion(prefix);
+					return;
+				}
+
+				// Extract the suffix from data-testid="room--title-{suffix}"
+				const dataTestId = match.getAttribute("data-testid"); // e.g. room--title-3
+				const suffix = dataTestId.replace("room--title-", ""); // → "3"
+
+				const roomTitleSelector = `[data-testid="room--title-${suffix}"]`;
+				const openButtonSelector = `[data-testid="room-open-button-${suffix}"]`;
+
+				// Safety check — ensure this is the correct room
+				cy.get(roomTitleSelector)
+					.should("be.visible")
+					.then(($el) => {
+						const text = $el.text().trim();
+						expect(
+							text.startsWith(prefix),
+							`Expected "${text}" to start with "${prefix}"`
+						).to.be.true;
+					});
+
+				// Open room and delete it
+				cy.get(openButtonSelector).click();
+				cy.get(Rooms.#roomDetailFAB).click();
+				cy.get(Rooms.#btnRoomDelete).click();
+				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+				cy.get(Rooms.#confirmButtonOnModal).click();
+
+				cy.wait(1500);
+
+				// Reload and delete the next matching room
+				cy.reload().then(deleteOne);
+			});
+		};
+
+		deleteOne();
 	}
 
 	seeLockIconInRoom(roomName, position) {
