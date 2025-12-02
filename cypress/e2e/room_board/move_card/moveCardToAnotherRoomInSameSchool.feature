@@ -42,7 +42,7 @@ Feature: Room Board - Move a card from one room to another room
         When I click on the button Confirm in the share modal
         Then I see the alert message
         Then I see the page board details
-        Then I do not see the card titled '<card_title>' on the source board
+        Then I do not see the source card in the source board after moving to the target board
 
         # teacher checks the moved card in the target board / room
         When I go to rooms overview
@@ -64,4 +64,4 @@ Feature: Room Board - Move a card from one room to another room
         @staging_test
         Examples:
             | teacher      | namespace | room_name_source       | room_name_target       | board_title_source   | board_title_target   | card_title             | file_folder       | image_file      | column_name |
-            | teacher1_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | Cypress Card Docs | example_jpg.jpg | Abschnitt 1 |
+            | teacher1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | Cypress Card Docs | example_jpg.jpg | Abschnitt 1 |

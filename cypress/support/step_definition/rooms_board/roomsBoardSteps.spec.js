@@ -15,9 +15,12 @@ Then("I see the card titled {string} on the target board", (cardTitle) => {
 	roomBoards.verifyCardPresentOnTargetBoard(cardTitle);
 });
 
-Then("I do not see the card titled {string} on the source board", (cardTitle) => {
-	roomBoards.verifyCardNotPresentOnSourceBoard(cardTitle);
-});
+Then(
+	"I do not see the source card in the source board after moving to the target board",
+	() => {
+		roomBoards.verifyCardNotPresentOnSourceBoard();
+	}
+);
 
 When(
 	"I select the column {string} from the column list in the move modal",

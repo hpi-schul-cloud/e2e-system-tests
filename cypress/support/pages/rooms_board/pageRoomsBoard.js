@@ -121,15 +121,14 @@ class RoomBoards {
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 
 	verifyCardPresentOnTargetBoard(cardTitle) {
+		cy.get(RoomBoards.#duplicatedCardPosition).dblclick();
 		cy.get(RoomBoards.#inputCardTitle)
 			.should("be.visible")
 			.and("contain.text", cardTitle);
 	}
 
-	verifyCardNotPresentOnSourceBoard(cardTitle) {
-		cy.get(RoomBoards.#inputCardTitle)
-			.should("not.exist")
-			.should("not.contain.text", cardTitle);
+	verifyCardNotPresentOnSourceBoard() {
+		cy.get(RoomBoards.#inputCardTitle).should("not.exist");
 	}
 
 	selectColumnInMoveCardModal(columnName) {
@@ -670,11 +669,9 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		// Go to parent element
-		cy.get(RoomBoards.#shareImportSettingsDialog)
-			// Locate the selection input of the room name
-			.find(RoomBoards.#roomSelectionBoxModal)
-			// Navigate to the room name as a first option and press enter
+		cy.get(RoomBoards.#shareImportSettingsDialog).should("exist");
+		cy.get(RoomBoards.#roomSelectionBoxModal)
+			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
 	}
 

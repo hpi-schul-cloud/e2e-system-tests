@@ -74,5 +74,5 @@ Feature: Room Board - Share and import a card in rooms with a teacher from the s
         @staging_test
         Examples:
             | teacher1     | teacher2     | namespace | room_name_source       | room_name_target       | board_title_source   | board_title_target   | card_title             | import_card_title        | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info | file_folder       | image_file      | board_title       | column_name |
-            | teacher1_brb | teacher2_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | CypressAut Imported Card | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info | Cypress Card Docs | example_jpg.jpg | CypressAuto Board | Abschnitt 1 |
+            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | CypressAut Imported Card | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info | Cypress Card Docs | example_jpg.jpg | CypressAuto Board | Abschnitt 1 |
 
