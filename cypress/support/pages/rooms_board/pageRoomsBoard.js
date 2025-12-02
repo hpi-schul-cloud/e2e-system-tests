@@ -1060,11 +1060,14 @@ class RoomBoards {
 	seeFileCreationDateToday(fileName) {
 		const today = new Date();
 		let displayedDate = today.toLocaleString("de-DE", {
-			year: "2-digit",
+			year: "numeric", // 4-digit year
 			day: "2-digit",
 			month: "2-digit",
 		});
-		cy.get(`[data-testid="created-at-${fileName}"]`).should("contain", displayedDate);
+		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should(
+			"contain",
+			displayedDate
+		);
 	}
 
 	seeFileProgressMessage() {
@@ -1341,6 +1344,20 @@ class RoomBoards {
 			.should("be.visible")
 			.clear()
 			.should("have.value", "");
+	}
+
+	clickCollaboraFileInFileFolder(fileName) {
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("windowOpen");
+		});
+		cy.get(`[data-testid="name-${fileName}"]`).click();
+		cy.get("@windowOpen")
+			.should("have.been.called")
+			.then((stub) => {
+				const url = stub.getCall(0).args[0];
+				cy.visit(url); // force Cypress into same tab
+				cy.wait(5000);
+			});
 	}
 }
 
