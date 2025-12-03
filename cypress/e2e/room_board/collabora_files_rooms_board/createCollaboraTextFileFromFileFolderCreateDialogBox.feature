@@ -44,7 +44,6 @@ Feature: Room Board - Create, edit and delete blank collabora Text file in file 
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
-        @only
         Examples:
             | namespace | teacher_1    | room_name                 | board_title                | folder_name        | document_type_docx | docx_file_name | text_1             |
             | dbc       | teacher1_dbc | CypressAut Collabora Room | CypressAut Collabora Board | Unbenannter Ordner | .docx (Text)       | collabora-docx | Collabora Teacher1 |
