@@ -1,6 +1,7 @@
 @unstable_test
 
-# Note: This feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible. And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in the second scenario.
+# Note: This feature can not be currently executed using the school API, as creating two different school within the same scenario is not possible.
+#And creating them in two different scenarios results in separate sessions, which prevents the copied board URL from the first scenario from being used in the second scenario.
 
 Feature: Room Board - Share multi-column board in the rooms with the teacher from different school
 
@@ -42,13 +43,13 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Given a room named '<room_name_target>' exists
 
         # second teacher from the second school can access the shared URL and import the multi-column board
-        When I open the shared URL
-        Then I see the modal to import the shared board into the room
+        When I open the shared URL for board
+        Then I see the Dialog to import
         Then I see the title in the share modal
         When I select the room from the room list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
-        When I click on the button Import in the modal
+        When I click on the button Confirm in the share modal
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
@@ -72,7 +73,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
         # second teacher from the second school can not access the shared board URL and sees the 'Not Allowed' alert
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        When I open the shared URL
+        When I open the shared URL for board
         Then I see an alert that importing the board is not allowed
 
         # post-condition: rooms created by both teachers are deleted

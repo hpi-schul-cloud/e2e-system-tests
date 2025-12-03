@@ -30,6 +30,14 @@ const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
 
+Given("the multi-column board has a column with a card titled {string}", (cardTitle) => {
+	board.clickOnAddNewColumnButton();
+	board.clickOutsideTheColumnToSaveTheColumn();
+	board.clickPlusIconToAddCardInColumn();
+	roomBoards.enterCardTitleInBoard(cardTitle);
+	board.clickOutsideTheCardToSaveTheCard();
+});
+
 Given("the exported file is an archive and extracted", function () {
 	commonCartridge.fileIsArchive();
 });
