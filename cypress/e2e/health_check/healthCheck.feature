@@ -4,7 +4,7 @@
 
 Feature: Health Check - To check the presences of modules in the dBildungscloud on staging / ref.
 
-    As a user, I want to see all modules and important pages are present so I can check the health of every instance.
+    As a user, I want to see all modules and important pages are present so that I can check the health of every instance.
 
     Scenario Outline: User sees account settings page on staging / ref.
 
