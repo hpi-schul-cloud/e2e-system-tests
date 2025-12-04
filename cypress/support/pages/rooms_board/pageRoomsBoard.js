@@ -38,7 +38,7 @@ class RoomBoards {
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
-	static #shareSettingsDialog = '[data-testid="dialog-content"]';
+	static #shareImportSettingsDialog = '[data-testid="dialog-title"]';
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
@@ -102,17 +102,141 @@ class RoomBoards {
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
-	static #lightBoxImagePreview = '[data-testid="image-preview"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
 	static #bettermarksToolDomainUrl =
 		'[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
-	static #duplicateCardOptionOnThreeDot =
-		'[data-testid="kebab-menu-action-duplicate-card"]';
 	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
 	static #secondCardPositionInRoomBoard = '[data-testid="board-card-0-2"]';
+
+	static #importSelectRoom = '[data-testid="import-card-select-room"]';
+	static #importSelectBoard = '[data-testid="import-card-select-board"]';
+	static #importSelectColumn = '[data-testid="import-card-select-column"]';
+	static #importSubmitButton = '[data-testid="dialog-confirm"]';
+	static #inputCardTitle = '[data-testid="card-title"]';
+	static #moveCardSelectBoard = '[data-testid="move-card-select-board"]';
+	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
+	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
+
+	verifyCardPresentOnTargetBoard(cardTitle) {
+		cy.get(RoomBoards.#duplicatedCardPosition).dblclick();
+		cy.get(RoomBoards.#inputCardTitle)
+			.should("be.visible")
+			.and("contain.text", cardTitle);
+	}
+
+	verifyCardNotPresentOnSourceBoard() {
+		cy.get(RoomBoards.#inputCardTitle).should("not.exist");
+	}
+
+	selectColumnInMoveCardModal(columnName) {
+		cy.get(RoomBoards.#moveCardSelectColumn).should("be.visible").click();
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', columnName)
+			.click();
+	}
+
+	selectRoomInMoveCardModal(roomName) {
+		cy.get(RoomBoards.#moveCardSelectRoom).should("be.visible").click();
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', roomName)
+			.click();
+	}
+
+	selectBoardInMoveCardModal(boardTitle) {
+		cy.get(RoomBoards.#moveCardSelectBoard).should("be.visible").click();
+
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', boardTitle)
+			.click();
+	}
+
+	enterCardTitleInBoard(cardTitle) {
+		cy.get(RoomBoards.#inputCardTitle).should("be.visible").clear().type(cardTitle);
+	}
+
+	selectRoomInImportModal(roomName) {
+		cy.get(RoomBoards.#importSelectRoom).should("be.visible").click();
+
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', roomName)
+			.click();
+	}
+
+	selectBoardInImportModal(boardTitle) {
+		cy.get(RoomBoards.#importSelectBoard).should("be.visible").click();
+
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', boardTitle)
+			.click();
+	}
+
+	selectColumnInImportModal(columnName) {
+		cy.get(RoomBoards.#importSelectColumn).should("be.visible").click();
+
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', columnName)
+			.click();
+	}
+
+	clickImportButtonInModal() {
+		cy.get(RoomBoards.#importSubmitButton)
+			.should("be.visible")
+			.and("not.be.disabled")
+			.click();
+	}
+
+	copyCardURLInModal() {
+		cy.get(RoomBoards.#urlInputBoxCopyBoard)
+			.parent()
+			.find('input[type="text"]')
+			.should("be.visible")
+			.invoke("val")
+			.then((cardUrl) => {
+				expect(cardUrl).to.be.a("string").and.not.be.empty;
+
+				// store for later use in the test
+				cy.wrap(cardUrl).as("copiedCardURL");
+
+				// stub clipboard for this window
+				cy.window().then((win) => {
+					if (!win.navigator.clipboard) {
+						// optional: create a fake clipboard if not present
+						win.navigator.clipboard = { writeText: () => Promise.resolve() };
+					}
+
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeCardTextStub")
+						.resolves();
+				});
+
+				// click on "Copy link" (card share)
+				cy.get(RoomBoards.#copyLinkOption).click();
+
+				// assert clipboard was used correctly
+				cy.get("@writeCardTextStub").should("be.calledOnce");
+				cy.get("@writeCardTextStub").should("be.calledWith", cardUrl);
+			});
+	}
+
+	openSharedCardURL() {
+		cy.get("@copiedCardURL").then((cardUrl) => {
+			// basic sanity check so we fail early with a clear message
+			expect(cardUrl, "shared card URL").to.be.a("string").and.not.be.empty;
+
+			// if your app returns relative URLs like "/board/abc", cy.visit handles that
+			cy.visit(cardUrl);
+			cy.wait(500);
+		});
+	}
 
 	verifyLinkElementInDuplicatedCard() {
 		cy.get(RoomBoards.#duplicatedCardPosition)
@@ -185,8 +309,8 @@ class RoomBoards {
 		});
 	}
 
-	clickOnDuplicateOptionInCardThreeDot() {
-		cy.get(RoomBoards.#duplicateCardOptionOnThreeDot).click();
+	clickOnCardThreeDotAction(actionName) {
+		cy.get(`[data-testid="kebab-menu-action-${actionName}"]`).should("exist").click();
 	}
 
 	clickOutsideBBBDialogBox() {
@@ -531,8 +655,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#editingSettingsAlert).should("be.visible");
 	}
 
-	verifyImportSharedBoardModal() {
-		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+	verifyImportDialog() {
+		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
 	}
 
 	clickButtonInEditingSettingsModal(buttonText) {
@@ -545,11 +669,9 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		// Go to parent element
-		cy.get(RoomBoards.#shareSettingsDialog)
-			// Locate the selection input of the room name
-			.find(RoomBoards.#roomSelectionBoxModal)
-			// Navigate to the room name as a first option and press enter
+		cy.get(RoomBoards.#shareImportSettingsDialog).should("exist");
+		cy.get(RoomBoards.#roomSelectionBoxModal)
+			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
 	}
 
@@ -579,7 +701,7 @@ class RoomBoards {
 	}
 
 	seeShareSettingsDialog() {
-		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
 	}
 
 	seeEditingSettingsDialog() {
@@ -607,7 +729,7 @@ class RoomBoards {
 	}
 
 	verifyShareViaModal() {
-		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
+		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
 	}
 
 	verifyShareViaEmailOption() {
@@ -938,11 +1060,14 @@ class RoomBoards {
 	seeFileCreationDateToday(fileName) {
 		const today = new Date();
 		let displayedDate = today.toLocaleString("de-DE", {
-			year: "2-digit",
+			year: "numeric", // 4-digit year
 			day: "2-digit",
 			month: "2-digit",
 		});
-		cy.get(`[data-testid="created-at-${fileName}"]`).should("contain", displayedDate);
+		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should(
+			"contain",
+			displayedDate
+		);
 	}
 
 	seeFileProgressMessage() {
@@ -1219,6 +1344,20 @@ class RoomBoards {
 			.should("be.visible")
 			.clear()
 			.should("have.value", "");
+	}
+
+	clickCollaboraFileInFileFolder(fileName) {
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("windowOpen");
+		});
+		cy.get(`[data-testid="name-${fileName}"]`).click();
+		cy.get("@windowOpen")
+			.should("have.been.called")
+			.then((stub) => {
+				const url = stub.getCall(0).args[0];
+				cy.visit(url); // force Cypress into same tab
+				cy.wait(5000);
+			});
 	}
 }
 
