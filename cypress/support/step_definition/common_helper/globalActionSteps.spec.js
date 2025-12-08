@@ -26,3 +26,7 @@ When("I click on breadcrumb element {string}", (breadcrumbElement) => {
 When("I go back to the previous page", () => {
 	globalActions.goBackToPreviousPage();
 });
+
+When("I click on element with data-testid {string}", (dataTestId) => {
+	globalActions.clickElementWithDataTestId(dataTestId);
+});

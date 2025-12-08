@@ -174,5 +174,9 @@ class Dashboard {
 		cy.get(Dashboard.#dashboardTaskCourseName).eq(0).contains(courseName);
 		cy.get(Dashboard.#dashboardTaskName).contains(draftName);
 	}
+
+	navigateToDashboard() {
+		cy.get(Dashboard.#dashboardLink).click();
+	}
 }
 export default Dashboard;
