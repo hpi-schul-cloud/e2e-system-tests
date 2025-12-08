@@ -30,3 +30,7 @@ Then("I arrive on the dashboard", () => {
 Then("I see my initials {string} in the dashboard", (initials) => {
 	dashboard.assertNameInitialsIsVisibleWithValue(initials);
 });
+
+When("I go to dashboard", () => {
+	dashboard.navigateToDashboard();
+});

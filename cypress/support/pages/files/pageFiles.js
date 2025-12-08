@@ -63,7 +63,7 @@ class Files {
 	}
 
 	navigateToTeamsFilesOverview() {
-		cy.get(Files.#teamsFilesOverviewNavigationButton).eq(1).click();
+		cy.get(Files.#teamsFilesOverviewNavigationButton).click();
 		cy.wait("@alerts_api");
 		cy.url().should("include", "/files/teams");
 	}
@@ -217,7 +217,7 @@ class Files {
 		});
 	}
 
-	seeFileInCourseFiles(fileName) {
+	seeFileInFilesList(fileName) {
 		cy.get(Files.#cardTitle).contains(fileName).should("be.visible");
 	}
 

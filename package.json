@@ -10,6 +10,7 @@
 		"cy:headless:stable:regression_test:school_api_test:localhost": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
 		"cy:gui:stable:regression_test:school_api_test:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=local",
 		"cy:gui:stable:regression_test:prio_0_staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @staging_test and @prio_0_staging\",environmentName=staging",
+		"cy:gui:stable:regression_test:staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @staging_test\",environmentName=staging",
 		"cy:gui:stable:regression_test:prio_0_dev:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @prio_0_dev\",environmentName=local",
 		"cy:gui:stable:regression_test:school_api_test:pre_check:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=local",
 		"cy:headless:stable:regression_test:school_api_test:pre_check:local": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=local",
