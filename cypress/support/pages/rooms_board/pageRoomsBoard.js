@@ -83,9 +83,10 @@ class RoomBoards {
 		'[data-testid="fab-button-create-document"]';
 	static #dialogCreateDocumentInFileFolder = '[data-testid="collabora-file-dialog"]';
 	static #dialogCreateDocumentTitleInFileFolder = '[data-testid="dialog-title"]';
-	static #dialogSelectDocumentTypeFileFolder = '[data-testid="collabora-file-type"]';
-	static #dialogFileNameFileFolder = '[data-testid="collabora-file-name"]';
-	static #dialogCreateButtonFileFolder = '[data-testid="dialog-confirm"]';
+	static #dialogSelectDocumentTypeFileFolder =
+		'[data-testid="collabora-file-form-type"]';
+	static #dialogFileNameFileFolder = '[data-testid="collabora-file-form-filename"]';
+	static #dialogCreateButton = '[data-testid="dialog-confirm"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -1395,7 +1396,7 @@ class RoomBoards {
 		cy.window().then((win) => {
 			cy.stub(win, "open").as("windowOpen");
 		});
-		cy.get(RoomBoards.#dialogCreateButtonFileFolder).click();
+		cy.get(RoomBoards.#dialogCreateButton).click();
 		cy.get("@windowOpen")
 			.should("have.been.called")
 			.then((stub) => {
@@ -1403,6 +1404,10 @@ class RoomBoards {
 				cy.visit(url); // force Cypress into same tab in file folder
 				cy.wait(5000);
 			});
+	}
+
+	clickCreateButtonInCreateDocumentDialog() {
+		cy.get(RoomBoards.#dialogCreateButton).click();
 	}
 }
 export default RoomBoards;
