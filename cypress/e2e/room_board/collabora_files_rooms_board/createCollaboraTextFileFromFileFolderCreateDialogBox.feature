@@ -4,7 +4,7 @@
 @prio_0_staging
 Feature: Room Board - Create, edit and delete blank collabora Text file in file folder from create document modal in room board
 
-    As a User, I want to create a blank collabora text file from create document modal in room board, edit and delete it in a file folder in room board
+    As a User, I want to create a blank collabora text file from create document modal in room board, edit and delete it in a file folder in room board so that I have a fast way to create and work with documents directly without uploading empty documents
 
     Scenario Outline:  User is able to create a blank collabora text file in the file folder, edit and delete it in file folder in a room board
 
