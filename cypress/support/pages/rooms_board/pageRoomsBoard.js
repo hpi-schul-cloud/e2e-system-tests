@@ -79,6 +79,13 @@ class RoomBoards {
 	static #H5PPage = '[data-testid="skip-link"]';
 	static #titleAlert = '[role="alert"]';
 	static #fileTitleInCardInput = '[data-testid="file-name-input"]';
+	static #createDocumentButtonInFileFolder =
+		'[data-testid="fab-button-create-document"]';
+	static #dialogCreateDocumentInFileFolder = '[data-testid="collabora-file-dialog"]';
+	static #dialogCreateDocumentTitleInFileFolder = '[data-testid="dialog-title"]';
+	static #dialogSelectDocumentTypeFileFolder = '[data-testid="collabora-file-type"]';
+	static #dialogFileNameFileFolder = '[data-testid="collabora-file-name"]';
+	static #dialogCreateButtonFileFolder = '[data-testid="dialog-confirm"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -1359,6 +1366,43 @@ class RoomBoards {
 				cy.wait(5000);
 			});
 	}
-}
 
+	clickCreateDocumentButtonInFileFolder() {
+		cy.get(RoomBoards.#createDocumentButtonInFileFolder).click();
+	}
+
+	seeDialogBoxForCreateDocumentInFileFolder() {
+		cy.get(RoomBoards.#dialogCreateDocumentInFileFolder).should("be.visible");
+		cy.get(RoomBoards.#dialogCreateDocumentTitleInFileFolder)
+			.should("be.visible")
+			.should("contain.text", "Dokument erstellen");
+	}
+
+	selectDocumentTypeInCreateDocumentFileFolder(documentType) {
+		cy.get(RoomBoards.#dialogSelectDocumentTypeFileFolder).click();
+		cy.contains(documentType).click();
+		cy.get(RoomBoards.#dialogSelectDocumentTypeFileFolder).should(
+			"contain.text",
+			documentType
+		);
+	}
+
+	enterFileNameInCreateDocumentDialogFileFolder(fileName) {
+		cy.get(RoomBoards.#dialogFileNameFileFolder).find("input").type(fileName);
+	}
+
+	clickCreateButtonInDocumentDialogFileFolder() {
+		cy.window().then((win) => {
+			cy.stub(win, "open").as("windowOpen");
+		});
+		cy.get(RoomBoards.#dialogCreateButtonFileFolder).click();
+		cy.get("@windowOpen")
+			.should("have.been.called")
+			.then((stub) => {
+				const url = stub.getCall(0).args[0];
+				cy.visit(url); // force Cypress into same tab in file folder
+				cy.wait(5000);
+			});
+	}
+}
 export default RoomBoards;

@@ -873,3 +873,29 @@ When("I enter name {string} for file in card", (newName) => {
 When("I click on the collabora file {string} in the file folder", (fileName) => {
 	roomBoards.clickCollaboraFileInFileFolder(fileName);
 });
+
+When("I click the button Create document in file folder", () => {
+	roomBoards.clickCreateDocumentButtonInFileFolder();
+});
+
+Then("I see the dialog box for create document in file folder", () => {
+	roomBoards.seeDialogBoxForCreateDocumentInFileFolder();
+});
+
+When(
+	"I select document type {string} from the dialog box create document in file folder",
+	(documentType) => {
+		roomBoards.selectDocumentTypeInCreateDocumentFileFolder(documentType);
+	}
+);
+
+When(
+	"I enter filename {string} in the dialog box create document in file folder",
+	(fileName) => {
+		roomBoards.enterFileNameInCreateDocumentDialogFileFolder(fileName);
+	}
+);
+
+When("I click on button Create document in file folder", () => {
+	roomBoards.clickCreateButtonInDocumentDialogFileFolder();
+});

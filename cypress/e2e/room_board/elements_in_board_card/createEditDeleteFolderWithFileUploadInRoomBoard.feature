@@ -1,7 +1,8 @@
 @regression_test
-@stable_test
+@unstable_test
 @group-B
 @prio_0_staging
+# Marking it as unstable due to BC-11009
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 
     As a content editor, I want to create a file folder in a room board so that I can manage the files in the room.
