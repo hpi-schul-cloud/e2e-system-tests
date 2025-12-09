@@ -19,9 +19,9 @@ Feature: Room Board - Create, edit and delete blank collabora Text file in file 
         When I click on the folder '<folder_name>' in the card
         When I click on button Add file
         When I click the button Create document in file folder
-        Then I see the dialog box for create document in file folder
-        When I select document type '<document_type_docx>' from the dialog box create document in file folder
-        When I enter filename '<docx_file_name>' in the dialog box create document in file folder
+        Then I see the dialog box for create collabora document
+        When I select document type '<document_type_docx>' from the dialog box create collabora document
+        When I enter filename '<docx_file_name>' in the dialog box create collabora document
         When I click on button Create document in file folder
         Then I see collabora text editor
         When I type text '<text_1>' in collabora editor on position '200', '400'
