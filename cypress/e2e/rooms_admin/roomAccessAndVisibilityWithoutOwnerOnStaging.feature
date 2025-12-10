@@ -45,7 +45,7 @@ Feature: Room Administration - Visibility of rooms without an owner assigned
         Then I see the room '<room_without_owner>' on the rooms administration page
         Then I see the icon Alert in the column Room owner for the room '<room_without_owner>'
 
-        #student-1 with the role 'Read' cannot access the room without an owner assigned
+        # student-1 with the role 'Read' cannot access the room without an owner assigned
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
         Then I see the icon Lock in the room '<room_without_owner>' at position '0'
