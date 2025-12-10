@@ -349,6 +349,14 @@ When("I check the Checkbox to require confirmation", () => {
 	rooms.checkInvitationFormRequireConfirmation();
 });
 
+When("I uncheck the Checkbox to restrict for creator school", () => {
+	rooms.uncheckInvitationFormRestrictToCreatorSchool();
+});
+
+When("I check the Checkbox to valid for external persons", () => {
+	rooms.checkInvitationFormValidForExternalPersons();
+});
+
 When("I save the invitation link", () => {
 	rooms.clickInvitationFormSave();
 });
@@ -402,4 +410,8 @@ When(
 
 When("I click on confirm button in the three dot menu", () => {
 	rooms.clickConfirmButtonInThreeDotMenu();
+});
+
+When("I visit the room members page", () => {
+	rooms.navigateToRoomMembersPage();
 });
