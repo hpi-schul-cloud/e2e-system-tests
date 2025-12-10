@@ -21,12 +21,25 @@ class Files {
 	static #pageTitle = '[data-testid="LibreOffice Online"]';
 	static #deleteDialogBoxPopupContainer = '[data-testid="modal_content"]';
 	static #filesOverviewNavigationButton = '[data-testid="sidebar-files"]';
-	static #personalFilesOverviewNavigationButton = '[data-testid="sidebar-files-personalfiles"]';
-	static #coursesFilesOverviewNavigationButton = '[data-testid="sidebar-files-coursefiles"]';
-	static #teamsFilesOverviewNavigationButton = '[data-testid="sidebar-files-teamfiles"]';
-	static #sharedFilesOverviewNavigationButton = '[data-testid="sidebar-files-sharedfiles"]';
+	static #personalFilesOverviewNavigationButton =
+		'[data-testid="sidebar-files-personalfiles"]';
+	static #coursesFilesOverviewNavigationButton =
+		'[data-testid="sidebar-files-coursefiles"]';
+	static #teamsFilesOverviewNavigationButton =
+		'[data-testid="sidebar-files-teamfiles"]';
+	static #sharedFilesOverviewNavigationButton =
+		'[data-testid="sidebar-files-sharedfiles"]';
 	static #editFilePopupBoxTitle = '[data-testid="popup-title"]';
 	static #editFilePopupBoxTextField = '[data-testid="folder-rename-text-field"]';
+	static #fileFolderTitle = '[data-testid="folder-open-button"]';
+	static #createNewFolderInCourseFilesButton = '[data-testid="create-new-folder-btn"]';
+	static #dialogNewFolder = '[data-testid="modal_content"]';
+	static #submitNewFolderInCourseFilesButton =
+		'[data-testid="btn-submit-Neuer Ordner"]';
+	static #uploadFileInCourseFiles = '[data-testid="fileupload-input"]';
+	static #courseFolderDelete = '[data-testid="delete-folder"]';
+	static #courseFolderNameEdit = '[data-testid="edit-folder-name"]';
+	static #folderRenameTextField = '[data-testid="folder-rename-text-field"]';
 
 	static #testAssertionData = {
 		fileTypeDocument: "Textdokument (docx)",
@@ -50,7 +63,7 @@ class Files {
 	}
 
 	navigateToTeamsFilesOverview() {
-		cy.get(Files.#teamsFilesOverviewNavigationButton).eq(1).click();
+		cy.get(Files.#teamsFilesOverviewNavigationButton).click();
 		cy.wait("@alerts_api");
 		cy.url().should("include", "/files/teams");
 	}
@@ -156,6 +169,127 @@ class Files {
 		cy.intercept("/lool/*").as("loleaflet");
 		cy.wait("@loleaflet");
 		cy.get("iframe").should("contain", text);
+	}
+
+	fileFolderTitleVisible(FolderName) {
+		cy.get(Files.#fileFolderTitle).contains(FolderName).should("be.visible");
+	}
+
+	clickOnFolderCourse(FolderName) {
+		cy.get(Files.#fileFolderTitle).contains(FolderName).click();
+	}
+
+	createNewFolderInCourseFiles() {
+		cy.get(Files.#createNewFolderInCourseFilesButton).click();
+	}
+
+	folderCreationDialogVisible() {
+		cy.get(Files.#dialogNewFolder).should("be.visible");
+	}
+
+	enterFolderName(folderName) {
+		cy.get(Files.#dialogNewFolder)
+			.filter(":visible")
+			.within(() => {
+				cy.get('input[name="new-dir-name"]')
+					.should("exist")
+					.and("be.visible")
+					.clear({ force: true }) // need to force clear, sometimes it fails
+					.type(folderName, { force: true }); // sometimes the typing fails if not forced
+			});
+	}
+
+	submitNewFolderInCourseFiles() {
+		cy.get(Files.#submitNewFolderInCourseFilesButton).click();
+	}
+
+	folderTitleVisible(folderName) {
+		cy.get(Files.#fileFolderTitle).contains(folderName).should("be.visible");
+	}
+
+	uploadFileInCourseFiles(fileName) {
+		cy.get(Files.#uploadFileInCourseFiles)
+			.should("exist")
+			.attachFile(fileName, { timeout: 1000 });
+		// Intercept the course file upload API call and wait for the API request to be successfully completed
+		cy.wait("@course_api").then((interception) => {
+			expect(interception.response.statusCode).to.eq(200);
+		});
+	}
+
+	seeFileInFilesList(fileName) {
+		cy.get(Files.#cardTitle).contains(fileName).should("be.visible");
+	}
+
+	clickOnFileInCourseFiles(fileName) {
+		cy.contains('a[data-testid="file-title"]', fileName)
+			.should("be.visible")
+			.click({ force: true });
+	}
+
+	filePreviewIsShown(fileName) {
+		cy.get("img#picture, video, audio") // data-testid is not available for media previews
+			.filter(":visible")
+			.should("have.length.greaterThan", 0)
+			.each(($el) => {
+				const el = $el[0];
+				const tag = el.tagName.toLowerCase();
+				if (tag === "img") {
+					expect(el.naturalWidth, "Image should be loaded").to.be.gt(0);
+					const alt = $el.attr("alt");
+					if (alt)
+						expect(alt, "Alt text should contain file name").to.include(
+							fileName
+						);
+				} else if (["video", "audio"].includes(tag)) {
+					cy.wrap(el).should(($media) => {
+						// Wait until metadata is available
+						expect(
+							$media[0].readyState,
+							`${tag} metadata loaded`
+						).to.be.greaterThan(0);
+						expect(
+							$media[0].duration,
+							`${tag} has duration`
+						).to.be.greaterThan(0);
+					});
+				}
+			});
+	}
+
+	clickOnPreviewedFile() {
+		cy.get("img#picture, video, audio").filter(":visible").first().click(); // data-testid is not available for media previews
+	}
+
+	deleteCourseFolder(folderName) {
+		cy.get(Files.#courseFolderDelete)
+			.filter((i, el) => el.getAttribute("data-file-name") === folderName)
+			.click();
+	}
+
+	clickOnConfirmDeleteCourseFileOnModal() {
+		cy.get(Files.#dialogNewFolder)
+			.last()
+			.within(() => {
+				cy.get(Files.#confirmDeleteFile).click();
+			});
+	}
+
+	editbuttonCourseFolderName(folderName) {
+		cy.get(Files.#courseFolderNameEdit)
+			.filter((i, el) => el.getAttribute("data-directory-name") === folderName)
+			.click();
+	}
+
+	renameFolderName(folderName) {
+		cy.get(Files.#dialogNewFolder)
+			.filter(":visible")
+			.within(() => {
+				cy.get(Files.#folderRenameTextField)
+					.should("be.visible")
+					.clear({ force: true })
+					.type(folderName, { force: true }); // sometimes the typing fails if not forced
+			});
 	}
 }
 export default Files;

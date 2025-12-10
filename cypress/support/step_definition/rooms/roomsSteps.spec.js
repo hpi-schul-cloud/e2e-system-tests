@@ -7,13 +7,19 @@ Then("I delete all rooms whose names start with {string}", (roomName) => {
 	rooms.deleteAllRoomsWithName(roomName);
 });
 
-Then("I see the icon Lock in the room {string}", (roomName) => {
-	rooms.seeLockIconInRoom(roomName);
-});
+Then(
+	"I see the icon Lock in the room {string} at position {string}",
+	(roomName, position) => {
+		rooms.seeLockIconInRoom(roomName, position);
+	}
+);
 
-When("I click on the locked room {string}", (roomName) => {
-	rooms.clickLockedRoom(roomName);
-});
+When(
+	"I click on button Open to access the locked room {string} at position {string}",
+	(roomName, position) => {
+		rooms.clickLockedRoom(roomName, position);
+	}
+);
 
 Then("I see a message that the room is not accessible", () => {
 	rooms.seeRoomNotAccessibleMessage();
@@ -123,9 +129,12 @@ Then("I see the page Edit participants of room {string}", () => {
 	rooms.seeRoomEditParticipantsPage();
 });
 
-When("I go to room {string}", (roomName) => {
-	rooms.navigateToRoom(roomName);
-});
+When(
+	"I click on button Open to go to room {string} at position {string}",
+	(roomName, position) => {
+		rooms.navigateToRoom(roomName, position);
+	}
+);
 
 When("I click on three dot menu in room page", () => {
 	rooms.openThreeDotMenuForRoom();
@@ -165,6 +174,10 @@ When("I select the first school from the dropdown", () => {
 
 Then("I see role {string} in dropdown Role", (participantRole) => {
 	rooms.seeRoleOfParticipant(participantRole);
+});
+
+Then("I do not see role {string} in dropdown Role", (participantRole) => {
+	rooms.notSeeRoleOfParticipant(participantRole);
 });
 
 When("I enter {string} in dropdown Name", (participantName) => {

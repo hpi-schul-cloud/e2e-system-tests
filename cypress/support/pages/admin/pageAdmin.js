@@ -171,6 +171,8 @@ class Management {
 	static #systemTableSystemType = '[data-testid="system-table-type"]';
 	static #systemTableLoginLink = '[data-testid="system-table-login-link"]';
 	static #systemTableButtonEdit = '[data-testid="system-table-button-edit"]';
+	static #pageTitleEditStudent = '[data-testid="Schüler:innen bearbeiten"]';
+	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
 
 	seeSuccessMessageAfterChangingPasswordByAdmin() {
 		cy.get(Management.#successNotificationChangePassword).should("be.visible");
@@ -533,7 +535,7 @@ class Management {
 					cy.log(`Element is already in the desired state, skipping click`);
 					return;
 				}
-				cy.wrap($input).find("input").click({ force: true }).wait(500);
+				cy.wrap($input).click({ force: true }).wait(500);
 			});
 	}
 
@@ -1340,6 +1342,18 @@ class Management {
 				);
 			});
 		});
+	}
+
+	seePageTitleEditStudent() {
+		cy.get(Management.#pageTitleEditStudent).should("be.visible");
+	}
+
+	seePageTitleEditTeacher() {
+		cy.get(Management.#pageTitleEditTeacher).should("be.visible");
+	}
+
+	seeElementInDataTable(elementText) {
+		cy.get(Management.#dataTable).should("contain", elementText);
 	}
 }
 

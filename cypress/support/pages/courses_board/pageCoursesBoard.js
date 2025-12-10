@@ -47,20 +47,9 @@ class Board {
 	static #boardCardTitle = '[data-testid="card-title"]';
 	static #createBoardLinkElement = '[data-testid="board-link-element-create"]';
 	static #contentElementTitle = '[data-testid="content-element-title-slot"]';
-	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
-
-	static #columnTitlePattern = '[data-testid^="column-title-"]';
 	static #cardTitle = '[data-testid="card-title"]';
-	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]';
 	static #boardLinkElement = '[data-testid="board-link-element"]';
-	static #boardFileElement = '[data-testid="board-file-element"]';
-	static #dialogCreateDocument = '[data-testid="collabora-element-dialog"]';
-	static #dialogCreateDocumentTitle = '[data-testid="dialog-title"]';
-	static #dialogSelectDocumentType = '[data-testid="collabora-element-form-type"]';
-	static #dialogFileName = '[data-testid="collabora-element-form-filename"]';
-	static #dialogCaptionName = '[data-testid="collabora-element-form-caption"]';
-	static #dialogCreateButton = '[data-testid="dialog-confirm"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -167,6 +156,10 @@ class Board {
 
 	clickOnWhiteboardElement() {
 		cy.get(Board.#drawingElement).invoke("removeAttr", "target").click();
+	}
+
+	seeWhiteboardElement() {
+		cy.get(Board.#drawingElement).should("exist");
 	}
 
 	clickOnOpenTldrawDrawingElement() {
@@ -397,7 +390,7 @@ class Board {
 			.should("be.visible")
 			.should("not.be.disabled")
 			.within(() => {
-				cy.contains(Board.#contentElementTitleSlot, toolName)
+				cy.contains(Board.#contentElementTitle, toolName)
 					.click()
 					.then(() => {
 						cy.wait("@courses_api");
@@ -563,12 +556,20 @@ class Board {
 		cy.url().should("include", "/boards");
 	}
 
-	seeColumnWithTitle(columnName) {
-		cy.get(Board.#columnTitlePattern).each((element) => {
-			if (element.text() === columnName) {
+	seeColumnWithTitle(columnName, position) {
+		const selector = `[data-testid="column-title-${position}"]`;
+
+		cy.get(selector).then((element) => {
+			// compare exact text (same logic as your original)
+			if (element.text().trim() === columnName) {
 				cy.wrap(element).as("columnWithTitle");
+			} else {
+				throw new Error(
+					`Expected column title "${columnName}" at position ${position}, but got "${element.text().trim()}".`
+				);
 			}
 		});
+
 		cy.get("@columnWithTitle").should("be.visible");
 	}
 
@@ -581,12 +582,21 @@ class Board {
 		cy.get("@cardWithTitle").should("be.visible");
 	}
 
-	seeRichTextWithPattern(pattern) {
-		cy.get(Board.#richTextDisplayPattern).each((element) => {
-			if (element.text().match(pattern)?.length >= 0) {
+	seeRichTextWithPatternAtPosition(patternText, row, column) {
+		const selector = `[data-testid="rich-text-display-${row}-${column}"]`;
+
+		cy.get(selector).then((element) => {
+			const text = element.text().trim();
+
+			if (text.includes(patternText)) {
 				cy.wrap(element).as("richTextWithPattern");
+			} else {
+				throw new Error(
+					`Expected text "${patternText}" in ${selector}, but got: "${text}"`
+				);
 			}
 		});
+
 		cy.get("@richTextWithPattern").should("be.visible");
 	}
 
@@ -595,34 +605,7 @@ class Board {
 	}
 
 	seeFileElementWithTitle(fileTitle) {
-		cy.get(Board.#boardFileElement).contains(fileTitle);
-	}
-
-	seeDialogBoxForCreateDocument() {
-		cy.get(Board.#dialogCreateDocument).should("be.visible");
-		cy.get(Board.#dialogCreateDocumentTitle)
-			.should("be.visible")
-			.should("contain.text", "Dokument erstellen");
-	}
-
-	chooseDocumentTypeInCreateDocumentDialog(documentType) {
-		cy.get(Board.#dialogSelectDocumentType).click();
-		cy.contains(documentType).click();
-		cy.get(Board.#dialogSelectDocumentType).should("contain.text", documentType);
-	}
-
-	enterFileNameInCreateDocumentDialog(fileName) {
-		cy.get(Board.#dialogFileName).find("input").type(fileName);
-	}
-
-	enterCaptionInCreateDocumentDialog(captionName) {
-		cy.get(Board.#dialogCaptionName)
-			.first() // there are two inputs
-			.type(captionName);
-	}
-
-	clickCreateButtonInCreateDocumentDialog() {
-		cy.get(Board.#dialogCreateButton).click();
+		cy.get(Board.#contentElementTitle).contains(fileTitle);
 	}
 }
 export default Board;

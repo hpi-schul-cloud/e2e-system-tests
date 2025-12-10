@@ -74,6 +74,14 @@ class GlobalAssertions {
 		);
 		this.checkMessagePoints(infoPointsArray, selectors);
 	}
+
+	checkContentPageTitle(contentPageTitle) {
+		cy.get("h2.section-title").should("have.text", contentPageTitle);
+	}
+
+	checkLegalContentPageTitle(title) {
+		cy.get("h1").should("have.text", title);
+	}
 }
 
 export default GlobalAssertions;

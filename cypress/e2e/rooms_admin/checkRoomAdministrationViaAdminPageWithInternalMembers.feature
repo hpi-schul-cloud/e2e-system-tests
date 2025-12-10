@@ -1,8 +1,6 @@
-# NOTE:  in staging environment this feature is still not available and cannot be executed.
-
 @regression_test
 @stable_test
-@prio_0_dev
+@prio_0_staging
 @group-E
 Feature: Room Administration - Able to see all the rooms and in each room all details about same school members are visible
 
@@ -17,11 +15,7 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
         Given I am logged in as a '<admin_1>' at '<namespace>'
 
         # pre-condition: admin activates student visibility
-        When I click on administration in menu
-        When I navigate to new school admin page via sub menu
-        When I click on general settings panel
-        When I click the toggle switch to enable student visibility for teachers
-        When I click on button Save admin settings
+        Given student visibility for teachers in school management is 'enabled'
 
         # pre-condition: teacher creating a new room in the origin school, becoming the owner
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -68,11 +62,10 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
         Given I am logged in as a '<admin_1>' at '<namespace>'
         When I click on administration in menu
         When I navigate to rooms administration page via the submenu
-        # Then I see the rooms administration page
         When I click on three dot menu in the room admin page for room '<room_name>'
         When I click on manage room members in the three dot menu
         Then I see the admin page Edit participants of room '<room_name>'
-        Then I see 'teacher_1' in the room members list
+        Then I see '<participant_same_school_owner>' in the room members list
         Then I see '<participant_same_school_teacher>' in the room members list
         Then I see '<participant_same_school_student>' in the room members list
         Then I see '<participant_same_school>' in the room members list
@@ -80,7 +73,7 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
         # post-condition: teacher deletes the room in the origin school
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'
@@ -90,10 +83,10 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
 
         @school_api_test
         Examples:
-            | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name            | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher |
-            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Room Name | cypress-test-school-1   | Lernbegleitend    | Lernend           | student_1                       | teacher_2                       |
+            | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name                              | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher | participant_same_school_owner |
+            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Internal members Room Admin | cypress-test-school-1   | Lernbegleitend    | Lernend           | student_1                       | teacher_2                       | teacher_1                     |
 
-#  @staging_test
-#  Examples:
-#    | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name            | participant_same_school     | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher |
-#    | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Room Name | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft                           | Lara                            |
+        @staging_test
+        Examples:
+            | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name                              | participant_same_school     | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher | participant_same_school_owner |
+            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Internal members Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft                           | Lara                            | Karl                          |

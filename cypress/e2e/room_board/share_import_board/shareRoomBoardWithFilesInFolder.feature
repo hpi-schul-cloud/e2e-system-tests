@@ -32,13 +32,13 @@ Feature: Room Board - Share room board copy with files in file folder
         Then I copy the board URL
 
         # content editor copies room board to second room
-        When I open the shared URL
-        Then I see the modal to import the shared board into the room
+        When I open the shared URL for board
+        Then I see the Dialog to import
         Then I see the title in the share modal
         When I select the room from the room list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
-        When I click on the button Import in the modal
+        When I click on the button Confirm in the share modal
         When I click on the button Open on multi-column board in the room detail page
         Then I see my room board is named '<import_board_title>'
         Then I see a folder with name '<folder_name>' in the card
@@ -46,8 +46,8 @@ Feature: Room Board - Share room board copy with files in file folder
         Then I see files '<video_file_name>, <audio_file_name>, <image_file_name>' in file list
 
         # post-condition: delete the rooms
-        Given the room named '<room_name>' is deleted
-        Given the room named '<second_room_name>' is deleted
+        Given the room '<room_name>' at position '1' is deleted
+        Given the room '<second_room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

@@ -119,13 +119,23 @@ const generatePayload = (schoolId, userType, role) => {
 	let userRole = userType.split("_")[0];
 
 	if (userData.hasOwnProperty(userRole)) {
-		return {
-			schoolId,
-			firstName: userData[userRole].firstName,
-			lastName: userData[userRole].lastName,
-			email: generateRandomUserEmail(),
-			roleNames: [role],
-		};
+		if (!userType.includes("double_role")) {
+			return {
+				schoolId,
+				firstName: userData[userRole].firstName,
+				lastName: userData[userRole].lastName,
+				email: generateRandomUserEmail(),
+				roleNames: [role],
+			};
+		} else if (userType.includes("admin")) {
+			return {
+				schoolId,
+				firstName: userData[userRole].firstName,
+				lastName: userData[userRole].lastName,
+				email: generateRandomUserEmail(),
+				roleNames: ["administrator", "teacher"],
+			};
+		}
 	} else {
 		console.warn(`User type "${userType}" not found in userData.`);
 		return {};

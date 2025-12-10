@@ -16,3 +16,7 @@ Then(
 		management.assertStudentsAccessIsUnchecked();
 	}
 );
+
+Then("I see toggle switch to enable students access to learning store is checked", () => {
+	management.assertStudentsAccessIsChecked();
+});
