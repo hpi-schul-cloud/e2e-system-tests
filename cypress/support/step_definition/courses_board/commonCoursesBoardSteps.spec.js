@@ -149,26 +149,3 @@ Then("I see a web link with title {string}", (title) => {
 Then("I see a file element with title {string}", (fileTitle) => {
 	board.seeFileElementWithTitle(fileTitle);
 });
-
-Then("I see dialog box for create document", () => {
-	board.seeDialogBoxForCreateDocument();
-});
-
-When(
-	"I choose document type {string} from the dialog box create document",
-	(documentType) => {
-		board.chooseDocumentTypeInCreateDocumentDialog(documentType);
-	}
-);
-
-When("I enter filename {string} in the dialog box create document", (fileName) => {
-	board.enterFileNameInCreateDocumentDialog(fileName);
-});
-
-When("I enter caption {string} in the dialog box create document", (caption) => {
-	board.enterCaptionInCreateDocumentDialog(caption);
-});
-
-When("I click on button Create in dialog create document", () => {
-	board.clickCreateButtonInCreateDocumentDialog();
-});

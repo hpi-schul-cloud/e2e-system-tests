@@ -24,11 +24,11 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         When I select '<create_collabora_document>' from the element selection dialog box
-        Then I see dialog box for create document
-        When I choose document type '<document_type_docx>' from the dialog box create document
-        When I enter filename '<docx_file_name>' in the dialog box create document
-        When I enter caption '<docx_caption_name>' in the dialog box create document
+        Then I see the dialog box for create collabora document
+        When I select document type '<document_type_docx>' from the dialog box create collabora document
+        When I enter filename '<docx_file_name>' in the dialog box create collabora document
         When I click on button Create in dialog create document
+        When I click on the page outside of the column
         Then I see the file type DOCX is uploaded in the card
 
         # first teacher opens the collabora docx file editor in the same tab, adds text content and saves it
@@ -78,12 +78,12 @@ Feature: Room Board - Collabora text file read access (add, view, delete) with v
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | create_collabora_document | document_type_docx | docx_caption_name |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .docx (Text)       | docx_caption_name |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | create_collabora_document | document_type_docx |
+            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .docx (Text)       |
 
         @staging_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | create_collabora_document | document_type_docx | docx_caption_name |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .docx (Text)       | docx_caption_name |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | create_collabora_document | document_type_docx |
+            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .docx (Text)       |
 
 

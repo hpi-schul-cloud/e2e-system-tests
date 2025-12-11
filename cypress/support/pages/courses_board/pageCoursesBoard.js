@@ -50,12 +50,6 @@ class Board {
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 	static #cardTitle = '[data-testid="card-title"]';
 	static #boardLinkElement = '[data-testid="board-link-element"]';
-	static #dialogCreateDocument = '[data-testid="collabora-element-dialog"]';
-	static #dialogCreateDocumentTitle = '[data-testid="dialog-title"]';
-	static #dialogSelectDocumentType = '[data-testid="collabora-element-form-type"]';
-	static #dialogFileName = '[data-testid="collabora-element-form-filename"]';
-	static #dialogCaptionName = '[data-testid="collabora-element-form-caption"]';
-	static #dialogCreateButton = '[data-testid="dialog-confirm"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -612,33 +606,6 @@ class Board {
 
 	seeFileElementWithTitle(fileTitle) {
 		cy.get(Board.#contentElementTitle).contains(fileTitle);
-	}
-
-	seeDialogBoxForCreateDocument() {
-		cy.get(Board.#dialogCreateDocument).should("be.visible");
-		cy.get(Board.#dialogCreateDocumentTitle)
-			.should("be.visible")
-			.should("contain.text", "Dokument erstellen");
-	}
-
-	chooseDocumentTypeInCreateDocumentDialog(documentType) {
-		cy.get(Board.#dialogSelectDocumentType).click();
-		cy.contains(documentType).click();
-		cy.get(Board.#dialogSelectDocumentType).should("contain.text", documentType);
-	}
-
-	enterFileNameInCreateDocumentDialog(fileName) {
-		cy.get(Board.#dialogFileName).find("input").type(fileName);
-	}
-
-	enterCaptionInCreateDocumentDialog(captionName) {
-		cy.get(Board.#dialogCaptionName)
-			.first() // there are two inputs
-			.type(captionName);
-	}
-
-	clickCreateButtonInCreateDocumentDialog() {
-		cy.get(Board.#dialogCreateButton).click();
 	}
 }
 export default Board;

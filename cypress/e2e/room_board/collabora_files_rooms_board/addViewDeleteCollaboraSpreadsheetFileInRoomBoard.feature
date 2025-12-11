@@ -24,11 +24,11 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         When I select '<create_collabora_document>' from the element selection dialog box
-        Then I see dialog box for create document
-        When I choose document type '<document_type_xlsx>' from the dialog box create document
-        When I enter filename '<xlsx_file_name>' in the dialog box create document
-        When I enter caption '<xlsx_caption_name>' in the dialog box create document
+        Then I see the dialog box for create collabora document
+        When I select document type '<document_type_xlsx>' from the dialog box create collabora document
+        When I enter filename '<xlsx_file_name>' in the dialog box create collabora document
         When I click on button Create in dialog create document
+        When I click on the page outside of the column
         Then I see the file type XLSX is uploaded in the card
 
         # first teacher opens the collabora xlsx file editor in the same tab, adds content and saves it
@@ -78,12 +78,12 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
 
         @school_api_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx | xlsx_caption_name |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    | xlsx_caption_name |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx |
+            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    |
 
         @staging_test
         Examples:
-            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx | xlsx_caption_name |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    | xlsx_caption_name |
+            | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx |
+            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    |
 
 
