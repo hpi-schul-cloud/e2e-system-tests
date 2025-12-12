@@ -22,6 +22,8 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory' and 'add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<school_name>' in dropdown School
         When I select '<role_name>' in dropdown Role
