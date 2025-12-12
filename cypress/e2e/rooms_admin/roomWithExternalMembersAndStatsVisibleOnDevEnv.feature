@@ -33,6 +33,8 @@ Feature: Room Administration - Add room and external members with visibility on 
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory' and 'add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_external_school>' in dropdown School
         When I select the first school from the dropdown
@@ -89,5 +91,5 @@ Feature: Room Administration - Add room and external members with visibility on 
 
         @school_api_test
         Examples:
-            | admin      | teacher      | teacherExt      | namespace | room_name         | participant_external_school | role_name      | participant_external_name  | anonymized_name  | internal_members_count | external_members_count | total_members_count |
-            | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | cypress-test-school-2       | Lernbegleitend | cypressExt                 | anonymisiert     | 1                      | 1                      | 2                   |
+            | admin      | teacher      | teacherExt      | namespace | room_name         | participant_external_school | role_name      | participant_external_name | anonymized_name | internal_members_count | external_members_count | total_members_count |
+            | admin1_brb | teacher1_brb | teacherExt1_brb | brb       | Cypress Room Name | cypress-test-school-2       | Lernbegleitend | cypressExt                | anonymisiert    | 1                      | 1                      | 2                   |
