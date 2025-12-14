@@ -10,7 +10,7 @@ When("I click on FAB to add participants", () => {
 Then(
 	"I see speed dial options {string} and {string}",
 	(selectFromDirectory, addExternalPerson) => {
-		rooms.seeSpeedDialOptions([selectFromDirectory, addExternalPerson]);
+		rooms.seeSpeedDialOptions(selectFromDirectory, addExternalPerson);
 	}
 );
 
