@@ -3,4 +3,14 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
-// this common step definition file can be used to have all common rooms related step definitions in one place
+When("I click on FAB to add participants", () => {
+	rooms.clickOnAddParticipantsFAB();
+});
+
+Then("I see speed dial options {string}", (options) => {
+	rooms.seeSpeedDialOptions(options);
+});
+
+When("I click on button {string} from speed dial option", (option) => {
+	rooms.clickOnSpeedDialOption(option);
+});

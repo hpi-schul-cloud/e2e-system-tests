@@ -22,6 +22,8 @@ Feature: Room Board - To share a board card link
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory, add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<school_name>' in dropdown School
         When I select '<role_name>' in dropdown Role

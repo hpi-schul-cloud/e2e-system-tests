@@ -101,10 +101,6 @@ When("I click on FAB to create new room", () => {
 	rooms.clickOnCreateRoomFAB();
 });
 
-When("I click on FAB to add participants", () => {
-	rooms.clickOnAddParticipantsFAB();
-});
-
 Then("I see room creation page", () => {
 	rooms.showRoomCreationPage();
 });
