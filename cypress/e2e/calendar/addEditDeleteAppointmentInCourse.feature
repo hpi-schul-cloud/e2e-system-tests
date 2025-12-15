@@ -1,6 +1,5 @@
 @stable_test
 @regression_test
-@schedule_run
 @group-C
 @prio_0_staging
 Feature: Calendar - Add, edit and delete an appointment from a course and verify the appointment in the calendar
