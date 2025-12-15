@@ -35,7 +35,7 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
-        Then I see speed dial options 'select-from-directory' and 'add-external-person'
+        Then I see speed dial options 'select-from-directory, add-external-person'
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_same_school>' in dropdown School
@@ -48,7 +48,7 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         When I click on the button Add participant
         Then I see '<participant_same_school_student>' in the room participants list
         When I click on FAB to add participants
-        Then I see speed dial options 'select-from-directory' and 'add-external-person'
+        Then I see speed dial options 'select-from-directory, add-external-person'
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_external_school>' in dropdown School
@@ -80,7 +80,7 @@ Feature: Room Administration - Able to see all rooms and the external members ar
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
-        Then I see speed dial options 'select-from-directory' and 'add-external-person'
+        Then I see speed dial options 'select-from-directory, add-external-person'
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<participant_external_school>' in dropdown School

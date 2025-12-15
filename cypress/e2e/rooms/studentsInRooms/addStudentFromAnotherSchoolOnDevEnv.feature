@@ -42,7 +42,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
-        Then I see speed dial options 'select-from-directory' and 'add-external-person'
+        Then I see speed dial options 'select-from-directory, add-external-person'
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_external_school>' in dropdown School
@@ -74,7 +74,7 @@ Feature: Room - Invite Student from another school via teacher from another scho
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
-        Then I see speed dial options 'select-from-directory' and 'add-external-person'
+        Then I see speed dial options 'select-from-directory, add-external-person'
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<participant_external_school>' in dropdown School

@@ -687,7 +687,7 @@ Given(
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.clickOnAddParticipantsFAB();
-		rooms.seeSpeedDialOptions("select-from-directory", "add-external-person");
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
 		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.selectRoomRoleFromDropdownMenu("Lernbegleitend");
 		rooms.fillParticipantFormName(participantName);
@@ -705,7 +705,7 @@ Given(
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
-		rooms.seeSpeedDialOptions("select-from-directory", "add-external-person");
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
 		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.selectRoomRoleFromDropdownMenu(role);
@@ -727,7 +727,7 @@ Given(
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
-		rooms.seeSpeedDialOptions("select-from-directory", "add-external-person");
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
 		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.selectRoomRoleFromDropdownMenu(role);

@@ -647,8 +647,9 @@ class Rooms {
 			.should("contain", "Lesen");
 	}
 
-	seeSpeedDialOptions(...speedDialButtonOptions) {
-		speedDialButtonOptions.forEach((buttonName) => {
+	seeSpeedDialOptions(options) {
+		const buttonName = options.split(/,|and/).map((option) => option.trim());
+		buttonName.forEach((buttonName) => {
 			cy.get(`[data-testid="fab-${buttonName}"]`).should("be.visible");
 		});
 	}
