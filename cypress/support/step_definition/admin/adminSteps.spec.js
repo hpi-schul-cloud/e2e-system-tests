@@ -116,3 +116,15 @@ Then("I am on the students management page", () => {
 When("I navigate to the students management page", () => {
 	management.navigateToStudentManagementOverview();
 });
+
+Then("I see page Edit student", () => {
+	management.seePageTitleEditStudent();
+});
+
+Then("I see page Edit teacher", () => {
+	management.seePageTitleEditTeacher();
+});
+
+Then("I see element {string} in data table", (elementText) => {
+	management.seeElementInDataTable(elementText);
+});

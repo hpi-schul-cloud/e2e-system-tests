@@ -14,9 +14,12 @@ Then(
 	}
 );
 
-When("I click on button Open to access the locked room {string}", (roomName) => {
-	rooms.clickLockedRoom(roomName);
-});
+When(
+	"I click on button Open to access the locked room {string} at position {string}",
+	(roomName, position) => {
+		rooms.clickLockedRoom(roomName, position);
+	}
+);
 
 Then("I see a message that the room is not accessible", () => {
 	rooms.seeRoomNotAccessibleMessage();
@@ -96,10 +99,6 @@ When("I go to rooms overview", () => {
 
 When("I click on FAB to create new room", () => {
 	rooms.clickOnCreateRoomFAB();
-});
-
-When("I click on FAB to add participants", () => {
-	rooms.clickOnAddParticipantsFAB();
 });
 
 Then("I see room creation page", () => {

@@ -29,14 +29,14 @@ Feature: Room Administration - Visibility of rooms without an owner assigned
     Scenario Outline: Room without an assigned owner is visible to the school admin but inaccessible to other users in the room
 
         # pre-condition: users logins
-        # student_1 with role 'Read' in room
+        # student-1 with permission 'Read' in the room
         Given I am logged in as a '<student_1>' at '<namespace>'
-        # student_2 with role 'Edit' in room
-        Given I am logged in as a '<student_2>' at '<namespace>'
-        # teacher_2 with role 'administrator' in room
+        # teacher-1 with permission 'Administrator' in the room
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
+        # teacher-2 with permission 'Edit' in the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         # school admin user
-        Given I am logged in as a '<admin>' at '<namespace>'
+        Given I am logged in as a '<admin_1>' at '<namespace>'
 
         # admin sees the room without an owner assigned in room administration page
         When I click on administration in menu
@@ -49,24 +49,24 @@ Feature: Room Administration - Visibility of rooms without an owner assigned
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
         Then I see the icon Lock in the room '<room_without_owner>' at position '0'
-        When I click on button Open to access the locked room '<room_without_owner>'
+        When I click on button Open to access the locked room '<room_without_owner>' at position '0'
         Then I see a message that the room is not accessible
 
-        # student-2 with role the 'Edit' cannot access the room without an owner assigned
-        Given I am logged in as a '<student_2>' at '<namespace>'
+        # teacher-1 with role the 'Administrator' cannot access the room without an owner assigned
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         Then I see the icon Lock in the room '<room_without_owner>' at position '0'
-        When I click on button Open to access the locked room '<room_without_owner>'
+        When I click on button Open to access the locked room '<room_without_owner>' at position '0'
         Then I see a message that the room is not accessible
 
-        # teacher-2 with role 'Administrator' cannot access the room without an owner assigned
+        # teacher-2 with role 'Edit' cannot access the room without an owner assigned
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see the icon Lock in the room '<room_without_owner>' at position '0'
-        When I click on button Open to access the locked room '<room_without_owner>'
+        When I click on button Open to access the locked room '<room_without_owner>' at position '0'
         Then I see a message that the room is not accessible
 
         @staging_test
         Examples:
-            | admin      | student_1    | student_2    | teacher_2    | namespace | room_without_owner                                  |
-            | admin1_nbc | student1_nbc | student2_nbc | teacher2_nbc | nbc       | cypress-room-without-teacher (please do not delete) |
+            | admin_1         | student_1         | teacher_1         | teacher_2         | namespace | room_without_owner                                  |
+            | admin_1_hcs_dbc | student_1_hcs_dbc | teacher_1_hcs_dbc | teacher_2_hcs_dbc | dbc       | cypress-room-without-teacher (please do not delete) |

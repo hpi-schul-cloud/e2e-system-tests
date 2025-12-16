@@ -3,6 +3,7 @@
 @schedule_run
 @group-E
 @prio_0_dev
+# @prio_0_staging
 Feature: Course Board - To export a course as common cartridge
 
     As a teacher, I want to export a course as a common cartridge file
@@ -95,6 +96,7 @@ Feature: Course Board - To export a course as common cartridge
 
         # post-condition: File is deleted & closed
         Given extracted content and files are deleted
+        Given course with name 'CC_Test_Kurs' is deleted
 
         # @staging_test
         # Examples:
