@@ -175,7 +175,17 @@ class Courses {
 	static #inputOfTypeFile = 'input[type="file"]';
 	static #breadcrumbToCoursePageNavigation =
 		'[data-testid="navigate-to-course-from-topic"]';
-	static #courseTimeModal = "tr.course-time"; //no data-testid available
+	//no data-testid's available for the below selectors
+	static #courseTimeSection = "tr.course-time";
+	static #newCourseTimeButton = "button.new-course-time-add";
+	static #newCourseTimebuttonName = "Neuen Stundentermin hinzufügen";
+	static #chooseSingleWeekday = ".chosen-single>span";
+	static #startOfLesson = "input#startOfLesson";
+	static #durationOfLesson = "input#lengthOfLesson";
+	static #courseAppointmentRoom = "input#room";
+	static #chooseWeekday = "#weekday_chosen";
+	static #dropDownWeekday = ".chosen-drop";
+	static #courseAppointmentDeleteButton = "button.course-time-delete";
 
 	openThreeDotMenuForCopiedTopic(contentTitle, suffix) {
 		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(
@@ -1377,57 +1387,54 @@ class Courses {
 		cy.get(Courses.#loadingDialog).should("not.exist");
 	}
 
-	clickAddNewAppointmentInCourse() {
+	clickAddNewAppointmentButtonInCourse() {
 		cy.contains(
-			"button.new-course-time-add",
-			"Neuen Stundentermin hinzufügen"
-		).click(); //no data-testid available
+			Courses.#newCourseTimeButton,
+			Courses.#newCourseTimebuttonName
+		).click();
 	}
 
 	seeModalToAddNewAppointmentInCourse() {
-		cy.get(Courses.#courseTimeModal).should("be.visible");
+		cy.get(Courses.#courseTimeSection).should("be.visible");
 	}
 
 	seeWeekday(weekday) {
-		cy.get("#weekday_chosen .chosen-single span") //no data-testid available
-			.should("be.visible")
-			.and("contain", weekday);
+		cy.get(Courses.#chooseSingleWeekday).should("be.visible").and("contain", weekday);
 	}
 
 	enterTimeInCourseAppointment(timeStart) {
-		cy.get(Courses.#courseTimeModal)
-			.find("input#startOfLesson")
+		cy.get(Courses.#courseTimeSection)
+			.find(Courses.#startOfLesson)
 			.clear()
 			.type(timeStart);
 	}
 
 	enterDurationInCourseAppointment(duration) {
-		cy.get(Courses.#courseTimeModal)
-			.find("input#lengthOfLesson")
+		cy.get(Courses.#courseTimeSection)
+			.find(Courses.#durationOfLesson)
 			.clear()
 			.type(duration);
 	}
 
 	enterRoomNameInCourseAppointment(roomName) {
-		cy.get(Courses.#courseTimeModal).find("input#room").clear().type(roomName);
+		cy.get(Courses.#courseTimeSection)
+			.find(Courses.#courseAppointmentRoom)
+			.clear()
+			.type(roomName);
 	}
 
 	optionWeekday() {
-		cy.get(Courses.#courseTimeModal).find("#weekday_chosen").click();
+		cy.get(Courses.#courseTimeSection).find(Courses.#chooseWeekday).click();
 	}
 
 	selectSpecificWeekday(weekday) {
-		cy.get(".chosen-drop").contains(weekday).click(); //no data-testid available
-	}
-
-	selectWeekday(weekday) {
-		cy.get("#weekday_chosen").should("be.visible").click(); //no data-testid available
-		//drop-down selection
-		cy.get(".chosen-drop .chosen-results li").contains(weekday).click();
+		cy.get(Courses.#dropDownWeekday).contains(weekday).click();
 	}
 
 	deleteAppointmentCourse() {
-		cy.get(Courses.#courseTimeModal).find("button.course-time-delete").click();
+		cy.get(Courses.#courseTimeSection)
+			.find(Courses.#courseAppointmentDeleteButton)
+			.click();
 	}
 }
 export default Courses;

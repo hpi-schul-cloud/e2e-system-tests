@@ -524,10 +524,10 @@ When("I wait for the loading bar to close", () => {
 });
 
 When("I click on the button Add new appointment in course", () => {
-	courses.clickAddNewAppointmentInCourse();
+	courses.clickAddNewAppointmentButtonInCourse();
 });
 
-Then("I see the modal Course appointment", () => {
+Then("I see the section Course appointment", () => {
 	courses.seeModalToAddNewAppointmentInCourse();
 });
 
@@ -543,7 +543,7 @@ When("I enter the duration {string} in the course appointment", (duration) => {
 	courses.enterDurationInCourseAppointment(duration);
 });
 
-When("I enter the room name {string} in the course appointment", (roomName) => {
+When("I enter the classroom {string} in the course appointment", (roomName) => {
 	courses.enterRoomNameInCourseAppointment(roomName);
 });
 
