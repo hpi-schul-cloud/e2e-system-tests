@@ -115,16 +115,16 @@ class Rooms {
 		});
 	}
 
-	verifyRoomDeletion(prefix) {
+	verifyRoomDeletion(roomNamePrefix) {
 		cy.get("body").then(($body) => {
 			expect(
-				$body.text().includes(prefix),
-				`Rooms containing "${prefix}" should not exist`
+				$body.text().includes(roomNamePrefix),
+				`Rooms containing "${roomNamePrefix}" should not exist`
 			).to.be.false;
 		});
 	}
 
-	deleteAllRoomsWithName(prefix) {
+	deleteAllRoomsWithName(roomNamePrefix) {
 		cy.wait(1000);
 		const deleteNext = () => {
 			// wait until room titles are rendered (or not)
@@ -132,11 +132,13 @@ class Rooms {
 				const titles = $body.find('[data-testid^="room--title-"]');
 
 				// find any room that still contains the prefix
-				const room = [...titles].find((el) => el.innerText.includes(prefix));
+				const room = [...titles].find((el) =>
+					el.innerText.includes(roomNamePrefix)
+				);
 
 				// nothing left → verify and stop
 				if (!room) {
-					this.verifyRoomDeletion(prefix);
+					this.verifyRoomDeletion(roomNamePrefix);
 					return;
 				}
 
