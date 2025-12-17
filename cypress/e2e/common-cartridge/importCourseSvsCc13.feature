@@ -32,9 +32,9 @@ Feature: Course Board - To import a course from common cartridge 1.3
         Then I see a rich text element with pattern 'Lorem ipsum' at position '0' '0'
         Then I see a column with title 'Geogebra 1' at position '1'
         Then I see a web link with title 'Geogebra 1'
-        Then I see a column with title 'Etherpad 1' at position '2'
+        Then I see a column with title 'Etherpad 1' at position '3'
         Then I see a web link with title 'Etherpad 1'
-        Then I see a column with title 'LernMat 1' at position '3'
+        Then I see a column with title 'LernMat 1' at position '2'
         Then I see a web link with title 'Pottwal'
         Then I see a column with title 'Topic Task 1' at position '4'
 

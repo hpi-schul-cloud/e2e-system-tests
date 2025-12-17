@@ -48,7 +48,8 @@ class Rooms {
 		'[data-testid="input-invite-participants-requires-confirmation"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose =
+		'[data-testid="invite-participant-close-btn"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -115,61 +116,57 @@ class Rooms {
 	}
 
 	verifyRoomDeletion(prefix) {
-		cy.get('[data-testid^="room--title-"]', prefix)
-			.should("not.exist")
-			.then(() => cy.log(`All rooms starting with "${prefix}" have been deleted.`));
+		cy.get("body").then(($body) => {
+			expect(
+				$body.text().includes(prefix),
+				`Rooms containing "${prefix}" should not exist`
+			).to.be.false;
+		});
 	}
 
 	deleteAllRoomsWithName(prefix) {
-		const deleteOne = () => {
-			// Find room titles on the page
-			cy.get('[data-testid^="room--title-"]').then(($titles) => {
-				// Find FIRST room whose title starts with the prefix
-				const match = Cypress.$($titles)
-					.toArray()
-					.find((el) => {
-						return Cypress.$(el).text().trim().startsWith(prefix);
-					});
+		cy.wait(1000);
+		const deleteNext = () => {
+			// wait until room titles are rendered (or not)
+			cy.get("body").then(($body) => {
+				const titles = $body.find('[data-testid^="room--title-"]');
 
-				// No more rooms with this prefix → verify and exit
-				if (!match) {
+				// find any room that still contains the prefix
+				const room = [...titles].find((el) => el.innerText.includes(prefix));
+
+				// nothing left → verify and stop
+				if (!room) {
 					this.verifyRoomDeletion(prefix);
 					return;
 				}
 
-				// Extract the suffix from data-testid="room--title-{suffix}"
-				const dataTestId = match.getAttribute("data-testid"); // e.g. room--title-3
-				const suffix = dataTestId.replace("room--title-", ""); // → "3"
+				// extract index from data-testid="room--title-{index}"
+				const index = room
+					.getAttribute("data-testid")
+					.replace("room--title-", "");
 
-				const roomTitleSelector = `[data-testid="room--title-${suffix}"]`;
-				const openButtonSelector = `[data-testid="room-open-button-${suffix}"]`;
-
-				// Safety check — ensure this is the correct room
-				cy.get(roomTitleSelector)
+				// open and delete the room
+				cy.get(`[data-testid="room-open-button-${index}"]`)
 					.should("be.visible")
-					.then(($el) => {
-						const text = $el.text().trim();
-						expect(
-							text.startsWith(prefix),
-							`Expected "${text}" to start with "${prefix}"`
-						).to.be.true;
-					});
+					.click();
 
-				// Open room and delete it
-				cy.get(openButtonSelector).click();
-				cy.get(Rooms.#roomDetailFAB).click();
-				cy.get(Rooms.#btnRoomDelete).click();
+				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
+				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
 				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
-				cy.get(Rooms.#confirmButtonOnModal).click();
+				cy.get(Rooms.#confirmButtonOnModal).should("be.visible").click();
 
+				// IMPORTANT: wait for navigation back + list render
 				cy.wait(1500);
 
-				// Reload and delete the next matching room
-				cy.reload().then(deleteOne);
+				// retry after UI is ready
+				cy.reload().then(() => {
+					cy.wait(1000);
+					deleteNext();
+				});
 			});
 		};
 
-		deleteOne();
+		deleteNext();
 	}
 
 	seeLockIconInRoom(roomName, position) {
@@ -364,7 +361,9 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -415,7 +414,9 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantSchool)
+			.should("be.visible")
+			.type("{downArrow}{enter}");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -456,7 +457,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -516,7 +519,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
