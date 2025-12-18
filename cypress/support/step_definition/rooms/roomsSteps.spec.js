@@ -3,8 +3,8 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
-Then("I delete all rooms whose names start with {string}", (roomName) => {
-	rooms.deleteAllRoomsWithName(roomName);
+Then("I delete all rooms whose names start with {string}", (roomNamePrefix) => {
+	rooms.deleteAllRoomsWithName(roomNamePrefix);
 });
 
 Then(
