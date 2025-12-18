@@ -14,7 +14,7 @@ class Courses {
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldCourseOverview = '[data-testid="search-field-course"]';
 	static #createCourse = '[data-testid="add-course-button"] .v-btn';
-	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"] .v-btn';
+	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
@@ -162,7 +162,7 @@ class Courses {
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 	static #adminCourseTableName = '[data-testid="admin-rooms-table-name"]';
 	static #btnCourseTableDelete = '[data-testid="course-table-delete-btn"]';
-	static #btnImportCourse = '[data-testid="fab_button_import_course"] .v-btn';
+	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #roomBoardCardPattern = '[data-testid^="room-board-card-"]';
 	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
