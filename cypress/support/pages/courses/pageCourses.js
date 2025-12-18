@@ -143,7 +143,7 @@ class Courses {
 	static #SyncConfirmDialogTitle = '[data-testid="dialog-title"]';
 	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
-	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"] .v-btn';
+	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
