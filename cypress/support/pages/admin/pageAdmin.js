@@ -681,7 +681,7 @@ class Management {
 
 	clickOnFAB() {
 		const addUserFab = role === "student" ? Management.#addStudentFab : Management.#addTeacherFab;
-		cy.get(Management.addUserFab).click();
+		cy.get(addUserFab).click();
 	}
 
 	clickOnAddUserInFAB(role) {
