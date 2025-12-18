@@ -175,6 +175,16 @@ class Courses {
 	static #inputOfTypeFile = 'input[type="file"]';
 	static #breadcrumbToCoursePageNavigation =
 		'[data-testid="navigate-to-course-from-topic"]';
+	static #newCourseTimeButton = '[data-testid="add-new-course-appointment"]';
+	static #startOfLesson = '[data-testid="start-lesson-time"]';
+	static #durationOfLesson = '[data-testid="lesson-duration"]';
+	static #courseAppointmentRoom = '[data-testid="course-appointment-room"]';
+	static #courseAppointmentDeleteButton = '[data-testid="course-time-delete-button"]';
+	//no data-testid's available for the below selectors
+	static #chooseSingleWeekday = ".chosen-single>span";
+	static #chooseWeekday = "#weekday_chosen";
+	static #dropDownWeekday = ".chosen-drop";
+	static #courseTimeSectionOption = "tr.course-time";
 
 	openThreeDotMenuForCopiedTopic(contentTitle, suffix) {
 		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(
@@ -1374,6 +1384,57 @@ class Courses {
 
 	waitForImportFinish() {
 		cy.get(Courses.#loadingDialog).should("not.exist");
+	}
+
+	clickAddNewAppointmentButtonInCourse() {
+		cy.get(Courses.#newCourseTimeButton).click();
+	}
+
+	seeModalToAddNewAppointmentInCourse() {
+		cy.get(Courses.#courseTimeSectionOption).should("be.visible");
+	}
+
+	seeWeekday(weekday) {
+		cy.get(Courses.#chooseSingleWeekday).should("be.visible").and("contain", weekday);
+	}
+
+	enterTimeInCourseAppointment(timeStart) {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#startOfLesson)
+			.last()
+			.clear()
+			.type(timeStart);
+	}
+
+	enterDurationInCourseAppointment(duration) {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#durationOfLesson)
+			.last()
+			.clear()
+			.type(duration);
+	}
+
+	enterRoomNameInCourseAppointment(roomName) {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#courseAppointmentRoom)
+			.last()
+			.clear()
+			.type(roomName);
+	}
+
+	optionWeekday() {
+		cy.get(Courses.#courseTimeSectionOption).find(Courses.#chooseWeekday).click();
+	}
+
+	selectSpecificWeekday(weekday) {
+		cy.get(Courses.#dropDownWeekday).contains(weekday).click();
+	}
+
+	deleteAppointmentCourse() {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#courseAppointmentDeleteButton)
+			.last()
+			.click();
 	}
 }
 export default Courses;
