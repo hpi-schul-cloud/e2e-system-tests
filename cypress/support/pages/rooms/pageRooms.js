@@ -48,7 +48,8 @@ class Rooms {
 		'[data-testid="input-invite-participants-requires-confirmation"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose =
+		'[data-testid="invite-participant-close-btn"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -114,20 +115,59 @@ class Rooms {
 		});
 	}
 
-	verifyRoomDeletion(roomName) {
+	verifyRoomDeletion(roomNamePrefix) {
 		cy.get("body").then(($body) => {
-			if (!$body.text().includes(roomName)) {
-				cy.log(`All rooms with name "${roomName}" deleted successfully.`);
-			} else {
-				cy.get(Rooms.#roomTitle).should("not.contain.text", roomName);
-			}
+			expect(
+				$body.text().includes(roomNamePrefix),
+				`Rooms containing "${roomNamePrefix}" should not exist`
+			).to.be.false;
 		});
 	}
 
-	deleteAllRoomsWithName(roomName) {
-		cy.wait(2000);
-		this.deleteElementsWithText(Rooms.#roomTitle, roomName);
-		this.verifyRoomDeletion(roomName);
+	deleteAllRoomsWithName(roomNamePrefix) {
+		cy.wait(1000);
+
+		const deleteNext = () => {
+			cy.get("body").then(($body) => {
+				const titles = $body.find('[data-testid^="room--title-"]');
+
+				// find first room that starts with the prefix
+				const matchingRooms = [...titles].find((el) =>
+					el.innerText.trim().startsWith(roomNamePrefix)
+				);
+
+				// nothing left -> verify and stop
+				if (!matchingRooms) {
+					this.verifyRoomDeletion(roomNamePrefix);
+					return;
+				}
+
+				// extract index from data-testid="room--title-{index}"
+				const testId = matchingRooms.getAttribute("data-testid");
+				const index = testId.replace("room--title-", "");
+
+				// open and delete the room
+				cy.get(`[data-testid="room-open-button-${index}"]`)
+					.should("be.visible")
+					.click();
+
+				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
+				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
+				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+				cy.get(Rooms.#confirmButtonOnModal).should("be.visible").click();
+
+				// wait for deletion to complete
+				cy.wait(1500);
+
+				// reload and continue
+				cy.reload().then(() => {
+					cy.wait(1000);
+					deleteNext();
+				});
+			});
+		};
+
+		deleteNext();
 	}
 
 	seeLockIconInRoom(roomName, position) {
@@ -322,7 +362,9 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -373,7 +415,9 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantSchool)
+			.should("be.visible")
+			.type("{downArrow}{enter}");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -414,7 +458,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -474,7 +520,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
