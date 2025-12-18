@@ -13,8 +13,8 @@ class Courses {
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldCourseOverview = '[data-testid="search-field-course"]';
-	static #createCourse = '[data-testid="add-course-button"]';
-	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
+	static #createCourse = '[data-testid="add-course-button"] .v-btn';
+	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"] .v-btn';
 	static #createContent = '[data-testid="add-content-button"]';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
@@ -117,7 +117,7 @@ class Courses {
 	static #bbbDialogBoxCancelButtonCourse = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
-	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
+	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"] .v-btn';
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardPublishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-publish-0"]';
@@ -143,7 +143,7 @@ class Courses {
 	static #SyncConfirmDialogTitle = '[data-testid="dialog-title"]';
 	static #endSyncDialogInfoText = '[data-testid="end-course-sync-dialog-info-text"]';
 	static #syncedCourseChip = '[data-testid="synced-course-chip"]';
-	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"]';
+	static #subMenuFabButtonToAddNewCourse = '[data-testid="fab_button_add_course"] .v-btn';
 	static #studentSelectionBoxInCourseCreate = '[data-testid="pupils"]';
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
@@ -162,7 +162,7 @@ class Courses {
 	static #btnDialogExport = '[data-testid="dialog-export-btn"]';
 	static #adminCourseTableName = '[data-testid="admin-rooms-table-name"]';
 	static #btnCourseTableDelete = '[data-testid="course-table-delete-btn"]';
-	static #btnImportCourse = '[data-testid="fab_button_import_course"]';
+	static #btnImportCourse = '[data-testid="fab_button_import_course"] .v-btn';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #roomBoardCardPattern = '[data-testid^="room-board-card-"]';
 	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
