@@ -6,7 +6,7 @@ class Rooms {
 	static #roomNameInput = '[data-testid="room-name-input"]';
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
-	static #addContentButton = '[data-testid="add-content-button"]';
+	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
 	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
@@ -16,8 +16,8 @@ class Rooms {
 	static #addParticipantName = '[data-testid="add-participant-name"]';
 	static #btnSubmit = '[data-testid="room-form-save-btn"]';
 	static #btnAddParticipant = '[data-testid="add-participant-save-btn"]';
-	static #createRoom = '[data-testid="fab-add-room"]';
-	static #addParticipants = '[data-testid="fab-add-members"]';
+	static #createRoom = '[data-testid="fab-add-room"] .v-btn';
+	static #addParticipants = '[data-testid="fab-add-members"] .v-btn';
 	static #participantTable = '[data-testid="participants-table"]';
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
@@ -40,7 +40,7 @@ class Rooms {
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
 	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
 	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
-	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
+	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"] .v-btn';
 	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
 	static #inputInviteMembersDescription =
 		'[data-testid="invite-participant-description-input"]';

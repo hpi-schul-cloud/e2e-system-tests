@@ -2,7 +2,8 @@
 import { getPageUrl } from "../../custom_commands/input.utils";
 
 class Management {
-	static #fabButton = "#fab";
+	static #addStudentFab = '[data-testid="fab_button_students_table"] .v-btn';
+	static #addTeacherFab = '[data-testid="fab_button_teachers_table"] .v-btn';
 	static #addStudentButton = '[data-testid="fab_button_add_students"]';
 	static #addTeacherButton = '[data-testid="fab_button_add_teachers"]';
 	static #firstNameCreationForm = '[data-testid="input_create-user_firstname"]';
@@ -679,7 +680,8 @@ class Management {
 	}
 
 	clickOnFAB() {
-		cy.get(Management.#fabButton).click();
+		const addUserFab = role === "student" ? Management.#addStudentFab : Management.#addTeacherFab;
+		cy.get(Management.addUserFab).click();
 	}
 
 	clickOnAddUserInFAB(role) {
