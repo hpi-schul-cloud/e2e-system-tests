@@ -132,18 +132,18 @@ class Rooms {
 				const titles = $body.find('[data-testid^="room--title-"]');
 
 				// find first room that starts with the prefix
-				const matchingRoom = [...titles].find((el) =>
+				const matchingRooms = [...titles].find((el) =>
 					el.innerText.trim().startsWith(roomNamePrefix)
 				);
 
 				// nothing left -> verify and stop
-				if (!matchingRoom) {
+				if (!matchingRooms) {
 					this.verifyRoomDeletion(roomNamePrefix);
 					return;
 				}
 
 				// extract index from data-testid="room--title-{index}"
-				const testId = matchingRoom.getAttribute("data-testid");
+				const testId = matchingRooms.getAttribute("data-testid");
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
