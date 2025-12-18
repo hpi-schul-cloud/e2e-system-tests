@@ -18,13 +18,15 @@ class GlobalActions {
 	}
 
 	enterStringToTableSearch(searchString) {
-		cy.get(GlobalActions.#tableSearchInput)
-			.find("div div div input")
-			.type(searchString);
+		cy.get(GlobalActions.#tableSearchInput).find("div div div input").type(searchString);
 	}
 
-	clickElementWithDataTestId(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).click();
+	clickElementWithDataTestId(elementId, nestedSelector = null) {
+		const baseSelector = `[data-testid="${elementId}"]`;
+		const fullSelector = nestedSelector
+			? `${baseSelector} ${nestedSelector}`
+			: baseSelector;
+		cy.get(fullSelector).click();
 	}
 
 	clickBreadcrumbElement(breadcrumbElement) {
