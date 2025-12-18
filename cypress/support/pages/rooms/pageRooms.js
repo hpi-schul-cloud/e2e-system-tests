@@ -126,26 +126,25 @@ class Rooms {
 
 	deleteAllRoomsWithName(roomNamePrefix) {
 		cy.wait(1000);
+
 		const deleteNext = () => {
-			// wait until room titles are rendered (or not)
 			cy.get("body").then(($body) => {
 				const titles = $body.find('[data-testid^="room--title-"]');
 
-				// find any room that still contains the prefix
-				const room = [...titles].find((el) =>
-					el.innerText.includes(roomNamePrefix)
+				// find first room that starts with the prefix
+				const matchingRoom = [...titles].find((el) =>
+					el.innerText.trim().startsWith(roomNamePrefix)
 				);
 
-				// nothing left → verify and stop
-				if (!room) {
+				// nothing left -> verify and stop
+				if (!matchingRoom) {
 					this.verifyRoomDeletion(roomNamePrefix);
 					return;
 				}
 
 				// extract index from data-testid="room--title-{index}"
-				const index = room
-					.getAttribute("data-testid")
-					.replace("room--title-", "");
+				const testId = matchingRoom.getAttribute("data-testid");
+				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
 				cy.get(`[data-testid="room-open-button-${index}"]`)
@@ -157,10 +156,10 @@ class Rooms {
 				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
 				cy.get(Rooms.#confirmButtonOnModal).should("be.visible").click();
 
-				// IMPORTANT: wait for navigation back + list render
+				// wait for deletion to complete
 				cy.wait(1500);
 
-				// retry after UI is ready
+				// reload and continue
 				cy.reload().then(() => {
 					cy.wait(1000);
 					deleteNext();
