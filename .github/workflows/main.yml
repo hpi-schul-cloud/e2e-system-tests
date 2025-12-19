@@ -39,6 +39,7 @@ jobs:
           path: e2e-system-tests
 
       - name: Format Checking
+        working-directory: e2e-system-tests
         run: npm run format:check
 
       - name: Install 1Password CLI
