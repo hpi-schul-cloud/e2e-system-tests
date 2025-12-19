@@ -13,9 +13,9 @@ class Courses {
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldCourseOverview = '[data-testid="search-field-course"]';
-	static #createCourse = '[data-testid="add-course-button"]';
+	static #createCourse = '[data-testid="add-course-button"] .v-btn';
 	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
-	static #createContent = '[data-testid="add-content-button"]';
+	static #createContent = '[data-testid="add-content-button"] .v-btn';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
 	static #courseOverviewNavigationButton = '[data-testid="sidebar-courses"]';
@@ -76,7 +76,7 @@ class Courses {
 	static #learningContentTab = '[data-testid="learnContent-tab"]';
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
 	static #toolsTab = '[data-testid="tools-tab"]';
-	static #addToolButton = '[data-testid="add-tool-button"]';
+	static #addToolButton = '[data-testid="add-tool-button"] .v-btn';
 	static #classSelection = '[id="classId_chosen"]';
 	static #chosenStudents = '[id="studentsId_chosen"] > .chosen-choices';
 	static #errorDialog = '[data-testId="error-dialog"]';
@@ -117,7 +117,7 @@ class Courses {
 	static #bbbDialogBoxCancelButtonCourse = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
-	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
+	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"] .v-btn';
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardPublishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-publish-0"]';

@@ -147,10 +147,7 @@ When("I enter the tool display name {string}", (bettermarksTitle) => {
 Then(
 	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
 	(bettermarksTitle, bettermarksDomainUrl) => {
-		roomBoards.verifyBettermarksToolAddedInCard(
-			bettermarksTitle,
-			bettermarksDomainUrl
-		);
+		roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
 	}
 );
 
@@ -659,7 +656,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElementWithDataTestId("fab-add-files");
+	globalActions.clickElementWithDataTestId("fab-add-files", "button");
 });
 
 When("I upload a file {string} to file folder", (fileName) => {

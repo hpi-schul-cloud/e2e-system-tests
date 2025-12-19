@@ -100,7 +100,7 @@ class RoomBoards {
 	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
 	static #parentClassEtherpadThreeDot = ".three-dot-menu";
 	static #folderPageMessageEmptyFolder = '[data-testid="empty-state"]';
-	static #addFileButton = '[data-testid="fab-add-files"]';
+	static #addFileButton = '[data-testid="fab-add-files"] .v-btn';
 	static #uploadProgressMessage = '[data-testid="upload-progress"]';
 	static #dataTable = '[data-testid="data-table"]';
 	static #titleOnCardElement = '[data-testid="content-element-title-slot"]';

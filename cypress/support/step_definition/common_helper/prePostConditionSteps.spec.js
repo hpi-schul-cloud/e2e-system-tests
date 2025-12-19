@@ -535,7 +535,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 Given("the folder {string} contains files {string}", (folderTitle, uploadFiles) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
 	roomBoards.clickFolderElementWithTitle(folderTitle);
-	globalActions.clickElementWithDataTestId("fab-add-files");
+	globalActions.clickElementWithDataTestId("fab-add-files", "button");
 	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
 	roomBoards.seeMultipleFilesInFolderList(uploadFiles);
 });
