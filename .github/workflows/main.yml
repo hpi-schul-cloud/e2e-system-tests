@@ -49,6 +49,7 @@ jobs:
         with:
           service-account-token: ${{ secrets.service-account-token }}
 
+      - run: npm run format:check
       - name: Fetch JSON files from 1Password
         run: |
           instances=(brb dbc nbc)
@@ -82,7 +83,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         env:
-          CYPRESS_CONNECT_RETRY_THRESHOLD: '100'
+          CYPRESS_CONNECT_RETRY_THRESHOLD: "100"
         with:
           working-directory: e2e-system-tests
           command: |

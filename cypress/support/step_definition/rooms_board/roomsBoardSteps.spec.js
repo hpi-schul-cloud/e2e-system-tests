@@ -12,891 +12,891 @@ const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
 Then("I see the card titled {string} on the target board", (cardTitle) => {
-	roomBoards.verifyCardPresentOnTargetBoard(cardTitle);
+  roomBoards.verifyCardPresentOnTargetBoard(cardTitle);
 });
 
 Then(
-	"I do not see the source card in the source board after moving to the target board",
-	() => {
-		roomBoards.verifyCardNotPresentOnSourceBoard();
-	}
+  "I do not see the source card in the source board after moving to the target board",
+  () => {
+    roomBoards.verifyCardNotPresentOnSourceBoard();
+  }
 );
 
 When(
-	"I select the column {string} from the column list in the move modal",
-	(columnName) => {
-		roomBoards.selectColumnInMoveCardModal(columnName);
-	}
+  "I select the column {string} from the column list in the move modal",
+  (columnName) => {
+    roomBoards.selectColumnInMoveCardModal(columnName);
+  }
 );
 
 When("I select the room {string} from the room list in the move modal", (roomName) => {
-	roomBoards.selectRoomInMoveCardModal(roomName);
+  roomBoards.selectRoomInMoveCardModal(roomName);
 });
 
 When(
-	"I select the board {string} from the board list in the move modal",
-	(boardTitle) => {
-		roomBoards.selectBoardInMoveCardModal(boardTitle);
-	}
+  "I select the board {string} from the board list in the move modal",
+  (boardTitle) => {
+    roomBoards.selectBoardInMoveCardModal(boardTitle);
+  }
 );
 
 When("I select the room {string} from the room list in the modal", (roomName) => {
-	roomBoards.selectRoomInImportModal(roomName);
+  roomBoards.selectRoomInImportModal(roomName);
 });
 
 When("I select the board {string} from the board list in the modal", (boardTitle) => {
-	roomBoards.selectBoardInImportModal(boardTitle);
+  roomBoards.selectBoardInImportModal(boardTitle);
 });
 
 When("I select the column {string} from the column list in the modal", (columnName) => {
-	roomBoards.selectColumnInImportModal(columnName);
+  roomBoards.selectColumnInImportModal(columnName);
 });
 
 Then("I copy the card URL", () => {
-	roomBoards.copyCardURLInModal();
+  roomBoards.copyCardURLInModal();
 });
 
 When("I open the shared URL for card", () => {
-	roomBoards.openSharedCardURL();
+  roomBoards.openSharedCardURL();
 });
 
 Then("I see the element Link in the target card", () => {
-	roomBoards.verifyLinkElementInDuplicatedCard();
+  roomBoards.verifyLinkElementInDuplicatedCard();
 });
 
 Then("I see element Etherpad in the target card", () => {
-	roomBoards.verifyEtherpadElementInDuplicatedCard();
+  roomBoards.verifyEtherpadElementInDuplicatedCard();
 });
 
 Then("I see element Folder in the target card", () => {
-	roomBoards.verifyFolderElementInDuplicatedCard();
+  roomBoards.verifyFolderElementInDuplicatedCard();
 });
 
 Then("I see element Image in the target card", () => {
-	roomBoards.verifyImageElementInDuplicatedCard();
+  roomBoards.verifyImageElementInDuplicatedCard();
 });
 
 Then(
-	"I see that after duplicating the first card, the previously added second card has moved to the third position in the column",
-	() => {
-		roomBoards.verifySecondCardMovedToThirdPosition();
-	}
+  "I see that after duplicating the first card, the previously added second card has moved to the third position in the column",
+  () => {
+    roomBoards.verifySecondCardMovedToThirdPosition();
+  }
 );
 
 When("I click on the option {string} on the card", (actionName) => {
-	roomBoards.clickOnCardThreeDotAction(actionName);
+  roomBoards.clickOnCardThreeDotAction(actionName);
 });
 
 Then("I see a duplicated card below the original first card", () => {
-	roomBoards.seeDuplicatedCardBelowOriginal();
+  roomBoards.seeDuplicatedCardBelowOriginal();
 });
 
 Then("I see collabora text editor", () => {
-	collabora.seeCollaboraTextEditor();
+  collabora.seeCollaboraTextEditor();
 });
 
 When(
-	"I type text {string} in collabora editor on position {string}, {string}",
-	(text, posX, posY) => {
-		collabora.typeCollaboraText(text, posX, posY);
-	}
+  "I type text {string} in collabora editor on position {string}, {string}",
+  (text, posX, posY) => {
+    collabora.typeCollaboraText(text, posX, posY);
+  }
 );
 
 When("I click on the button Save in Collabora editor", () => {
-	collabora.clickCollaboraSaveButton();
+  collabora.clickCollaboraSaveButton();
 });
 
 Then(
-	"I cannot type text {string} in collabora editor on position {string}, {string}",
-	(text, posX, posY) => {
-		collabora.cannotTypeCollaboraText(text, posX, posY);
-	}
+  "I cannot type text {string} in collabora editor on position {string}, {string}",
+  (text, posX, posY) => {
+    collabora.cannotTypeCollaboraText(text, posX, posY);
+  }
 );
 
 When("I click on the icon File in collabora editor top toolbar", () => {
-	collabora.clickCollaboraFileIcon();
+  collabora.clickCollaboraFileIcon();
 });
 
 When("I click on the button Download in collabora editor", () => {
-	collabora.clickCollaboraDownloadButton();
+  collabora.clickCollaboraDownloadButton();
 });
 
 When("I download by clicking on the option PDF download in collabora editor", () => {
-	collabora.clickCollaboraPDFDownloadOption();
+  collabora.clickCollaboraPDFDownloadOption();
 });
 
 When("I click on the three dot in the element external tool bettermarks", () => {
-	roomBoards.openThreeDotMenuForExternalTool();
+  roomBoards.openThreeDotMenuForExternalTool();
 });
 
 When(
-	"I click on the option Settings in the three dot menu of the external tool bettermarks",
-	() => {
-		roomBoards.selectBettermarksSettingOption();
-	}
+  "I click on the option Settings in the three dot menu of the external tool bettermarks",
+  () => {
+    roomBoards.selectBettermarksSettingOption();
+  }
 );
 
 Then("I do not see the tool bettermarks in the card", () => {
-	roomBoards.verifyBettermarksToolNotInCards();
+  roomBoards.verifyBettermarksToolNotInCards();
 });
 
 When("I enter the tool display name {string}", (bettermarksTitle) => {
-	roomBoards.enterToolDisplayName(bettermarksTitle);
+  roomBoards.enterToolDisplayName(bettermarksTitle);
 });
 
 Then(
-	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
-	(bettermarksTitle, bettermarksDomainUrl) => {
-		roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
-	}
+  "I see the Title {string} and the Domain URL {string} of bettermarks in the card",
+  (bettermarksTitle, bettermarksDomainUrl) => {
+    roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
+  }
 );
 
 Then("I see the chip Editable for all", () => {
-	roomBoards.seeChipEditableForAll();
+  roomBoards.seeChipEditableForAll();
 });
 
 Then("I do not see the chip Editable for all", () => {
-	roomBoards.seeNoChipEditableForAll();
+  roomBoards.seeNoChipEditableForAll();
 });
 
 Then("I enter link URL {string}", (linkName) => {
-	roomBoards.enterLinkInLinkElement(linkName);
+  roomBoards.enterLinkInLinkElement(linkName);
 });
 
 When("I click on the button Save link", () => {
-	roomBoards.clickSaveButtonToSaveLinkInCard();
+  roomBoards.clickSaveButtonToSaveLinkInCard();
 });
 
 When("I click on the three dot in the element Link", () => {
-	roomBoards.clickOnThreeDotOnLinkElement();
+  roomBoards.clickOnThreeDotOnLinkElement();
 });
 
 Then("I do not see the element Link", () => {
-	roomBoards.verifyLinkElementIsNotVisible();
+  roomBoards.verifyLinkElementIsNotVisible();
 });
 
 Then("I see the element Link on the card", () => {
-	roomBoards.seeLinkElementInRoomBoard();
+  roomBoards.seeLinkElementInRoomBoard();
 });
 
 Then("I verify the element Link is clickable", () => {
-	roomBoards.verifyLinkElementClickableInRoomBoard();
+  roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
 Then("I see the element Etherpad in the card", () => {
-	roomBoards.verifyEtherpadIsVisibleOnCard();
+  roomBoards.verifyEtherpadIsVisibleOnCard();
 });
 
 Then("I verify the element Etherpad is clickable", () => {
-	roomBoards.verifyEtherpadIsClickableInBoard();
+  roomBoards.verifyEtherpadIsClickableInBoard();
 });
 
 Then("I see the element H5P {string} in the card", (title) => {
-	roomBoards.seeH5PElementInRoomBoard(title);
+  roomBoards.seeH5PElementInRoomBoard(title);
 });
 
 When("I click on the three dot in the element Etherpad", () => {
-	roomBoards.clickOnThreeDotOnEtherpad();
+  roomBoards.clickOnThreeDotOnEtherpad();
 });
 
 Then("I do not see the element Etherpad", () => {
-	roomBoards.verifyEtherpadIsNotVisibleOnCard();
+  roomBoards.verifyEtherpadIsNotVisibleOnCard();
 });
 
 Then(
-	"I enter the text {string} in the element Text with the visible inline CKEditor toolbar",
-	(text) => {
-		roomBoards.enterTextInTextElement(text);
-	}
+  "I enter the text {string} in the element Text with the visible inline CKEditor toolbar",
+  (text) => {
+    roomBoards.enterTextInTextElement(text);
+  }
 );
 
 Then("I see the element Text {string} in the card", (text) => {
-	roomBoards.verifyTextInCard(text);
+  roomBoards.verifyTextInCard(text);
 });
 
 Then("I re enter the text {string} in the element Text", (editedText) => {
-	roomBoards.reEnterTextInTextElement(editedText);
+  roomBoards.reEnterTextInTextElement(editedText);
 });
 
 When("I remove the text {string} in the element Text", (editedText) => {
-	roomBoards.removeTextFromTextElement(editedText);
+  roomBoards.removeTextFromTextElement(editedText);
 });
 
 Then("I do not see the element Text in the card", (editedText) => {
-	roomBoards.verifyTextElementNotInCard(editedText);
+  roomBoards.verifyTextElementNotInCard(editedText);
 });
 
 Then("I see the file type Video in the card", () => {
-	roomBoards.verifyVideoFileInCard();
+  roomBoards.verifyVideoFileInCard();
 });
 
 Then("I see the file type Audio in the card", () => {
-	roomBoards.verifyAudioFileInCard();
+  roomBoards.verifyAudioFileInCard();
 });
 
 When("I click outside of the card to save it", () => {
-	roomBoards.clickOutsideToSaveCard();
+  roomBoards.clickOutsideToSaveCard();
 });
 
 When("I click on the icon Close on the fullscreen image", () => {
-	roomBoards.clickCloseButtonOnFullScreenImage();
+  roomBoards.clickCloseButtonOnFullScreenImage();
 });
 
 When("I click on icon Download in the fullscreen image", () => {
-	roomBoards.clickDownloadIconOnFullScreenImage();
+  roomBoards.clickDownloadIconOnFullScreenImage();
 });
 
 Then("I see the file type Image in the card", () => {
-	roomBoards.verifyImageFileUploadedAsThumbnail();
+  roomBoards.verifyImageFileUploadedAsThumbnail();
 });
 
 When("I enter text in the textbox Alternative Text {string}", (altText) => {
-	roomBoards.enterImageAltTextInCard(altText);
+  roomBoards.enterImageAltTextInCard(altText);
 });
 
 Then("I see the file type DOCX is uploaded in the card", () => {
-	roomBoards.verifyDocxFileUploaded();
+  roomBoards.verifyDocxFileUploaded();
 });
 
 When("I do not see the element File", () => {
-	roomBoards.shouldNotSeeFileElement();
+  roomBoards.shouldNotSeeFileElement();
 });
 
 When("I click on the three dot in the element File", () => {
-	roomBoards.clickThreeDotMenuInFileElement();
+  roomBoards.clickThreeDotMenuInFileElement();
 });
 
 When("I click on the icon Download file", () => {
-	roomBoards.downloadFileIcon();
+  roomBoards.downloadFileIcon();
 });
 
 When("I upload a file {string}", (fileName) => {
-	roomBoards.uploadFileInCard(fileName);
+  roomBoards.uploadFileInCard(fileName);
 });
 
 When("I enter text in the textbox Caption {string}", (captionText) => {
-	roomBoards.enterCaption(captionText);
+  roomBoards.enterCaption(captionText);
 });
 
 Then("I see the file type PDF is uploaded in the card", () => {
-	roomBoards.verifyPdfUploaded();
+  roomBoards.verifyPdfUploaded();
 });
 
 When("I click on the thumbnail Image in the card", () => {
-	roomBoards.clickOnImageThumbnailInCard();
+  roomBoards.clickOnImageThumbnailInCard();
 });
 
 Then("I see the image in a lightbox", () => {
-	roomBoards.verifyImageInLightbox();
+  roomBoards.verifyImageInLightbox();
 });
 
 Then("I see audio player", () => {
-	roomBoards.verifyAudioPlayer();
+  roomBoards.verifyAudioPlayer();
 });
 
 Then("I see video player", () => {
-	roomBoards.verifyVideoPlayer();
+  roomBoards.verifyVideoPlayer();
 });
 
 Then("I see the alert message", () => {
-	roomBoards.verifyShareImportBoardAlert();
+  roomBoards.verifyShareImportBoardAlert();
 });
 
 Then("I click to uncheck Link valid for the same school", () => {
-	roomBoards.uncheckLinkValidForSameSchool();
+  roomBoards.uncheckLinkValidForSameSchool();
 });
 
 Then("I see an alert that importing the board is not allowed", () => {
-	roomBoards.verifyShareImportBoardAlert();
+  roomBoards.verifyShareImportBoardAlert();
 });
 
 Then("I see the result url text box in the modal", () => {
-	roomBoards.verifySharedBoardResultUrlTextBox();
+  roomBoards.verifySharedBoardResultUrlTextBox();
 });
 
 Then("I see the title in the share modal", () => {
-	roomBoards.verifyShareModalTitle();
+  roomBoards.verifyShareModalTitle();
 });
 
 Then("I see the two options in the editing settings modal", () => {
-	roomBoards.verifyOptionInEditingSettingsModal("1");
-	roomBoards.verifyOptionInEditingSettingsModal("2");
+  roomBoards.verifyOptionInEditingSettingsModal("1");
+  roomBoards.verifyOptionInEditingSettingsModal("2");
 });
 
 Then("I see the button {string} in the editing settings modal", (buttonText) => {
-	roomBoards.verifyButtonInEditingSettingsModal(buttonText);
+  roomBoards.verifyButtonInEditingSettingsModal(buttonText);
 });
 
 When("I click on the button {string} in the editing settings modal", (buttonText) => {
-	roomBoards.clickButtonInEditingSettingsModal(buttonText);
+  roomBoards.clickButtonInEditingSettingsModal(buttonText);
 });
 
 Then("I see the button Add column in the course board", () => {
-	roomBoards.verifyAddNewColumnButtonInRoomBoard(true);
+  roomBoards.verifyAddNewColumnButtonInRoomBoard(true);
 });
 
 Then("I see a warning modal for the board must first be published", () => {
-	roomBoards.seeWarningModalForUnpublishedBoard();
+  roomBoards.seeWarningModalForUnpublishedBoard();
 });
 
 Then("I see the button Add column in the course board is not visible", () => {
-	roomBoards.verifyAddNewColumnButtonInRoomBoard(false);
+  roomBoards.verifyAddNewColumnButtonInRoomBoard(false);
 });
 
 When("I click the option {string}", (option) => {
-	roomBoards.clickOptionInEditingSettingsModal(option);
+  roomBoards.clickOptionInEditingSettingsModal(option);
 });
 
 Then("I see the information box in share modal", () => {
-	roomBoards.verifyShareInformationBox();
+  roomBoards.verifyShareInformationBox();
 });
 
 Then("I see the button Cancel in the share modal", () => {
-	roomBoards.verifyCancelButtonInShareModal();
+  roomBoards.verifyCancelButtonInShareModal();
 });
 
 Then("I see the option {string} is selected", (option) => {
-	roomBoards.verifyOptionIsSelectedInEditingSettingsModal(option);
+  roomBoards.verifyOptionIsSelectedInEditingSettingsModal(option);
 });
 
 When("I open the shared URL for board", () => {
-	roomBoards.openSharedBoardURL();
+  roomBoards.openSharedBoardURL();
 });
 
 Then("I see the Dialog to import", () => {
-	roomBoards.verifyImportDialog();
+  roomBoards.verifyImportDialog();
 });
 
 When("I select the room from the room list in the modal", () => {
-	roomBoards.selectRoomForImport();
+  roomBoards.selectRoomForImport();
 });
 
 When("I click on the Continue button in the modal", () => {
-	roomBoards.clickContinueOnImportModal();
+  roomBoards.clickContinueOnImportModal();
 });
 
 When(
-	"I enter a new name for the imported board {string} in the modal",
-	(importBoardName) => {
-		roomBoards.enterNewBoardNameForImport(importBoardName);
-	}
+  "I enter a new name for the imported board {string} in the modal",
+  (importBoardName) => {
+    roomBoards.enterNewBoardNameForImport(importBoardName);
+  }
 );
 
 When("I click on the button Confirm in the share modal", () => {
-	roomBoards.clickImportOnModal();
+  roomBoards.clickImportOnModal();
 });
 
 Then("I see the Share settings dialog", () => {
-	roomBoards.seeShareSettingsDialog();
+  roomBoards.seeShareSettingsDialog();
 });
 
 Then("I see the Editing settings dialog", () => {
-	roomBoards.seeEditingSettingsDialog();
+  roomBoards.seeEditingSettingsDialog();
 });
 
 Then("I see the checkbox Link valid for the same school is by default checked", () => {
-	roomBoards.verifySameSchoolLinkCheckboxChecked();
+  roomBoards.verifySameSchoolLinkCheckboxChecked();
 });
 
 Then("I see the checkbox Link valid for 21 days is by default checked", () => {
-	roomBoards.verify21DaysLinkCheckboxChecked();
+  roomBoards.verify21DaysLinkCheckboxChecked();
 });
 
 When("I click on the button Continue", () => {
-	roomBoards.clickContinueButtonInShareSettingsDialog();
+  roomBoards.clickContinueButtonInShareSettingsDialog();
 });
 
 Then("I see the Share via modal", () => {
-	roomBoards.verifyShareViaModal();
+  roomBoards.verifyShareViaModal();
 });
 
 Then("I see the option Share via Email", () => {
-	roomBoards.verifyShareViaEmailOption();
+  roomBoards.verifyShareViaEmailOption();
 });
 
 Then("I see the option Copy link", () => {
-	roomBoards.verifyCopyLinkOption();
+  roomBoards.verifyCopyLinkOption();
 });
 
 Then("I see the option {string}", (option) => {
-	roomBoards.verifyEditingSettingOption(option);
+  roomBoards.verifyEditingSettingOption(option);
 });
 
 Then("I see the {string} option has {string} label", (option, label) => {
-	roomBoards.verifyFirstOptionHasDefaultSettingLabel(option, label);
+  roomBoards.verifyFirstOptionHasDefaultSettingLabel(option, label);
 });
 
 Then("I see the option Scan QR Code", () => {
-	roomBoards.verifyScanQRCodeOption();
+  roomBoards.verifyScanQRCodeOption();
 });
 
 Then("I copy the board URL", () => {
-	roomBoards.copyBoardURLInModal();
+  roomBoards.copyBoardURLInModal();
 });
 
 When("I click on the option Edit in the three dot menu on the card", () => {
-	roomBoards.clickEditOptionInCardThreeDot();
+  roomBoards.clickEditOptionInCardThreeDot();
 });
 
 When("I click on the three dot on the card", () => {
-	roomBoards.clickOnThreeDotInCard();
+  roomBoards.clickOnThreeDotInCard();
 });
 
 When("I click on the three dot menu in the video conference element", () => {
-	roomBoards.clickThreeDotMenuInVideoConferenceElement();
+  roomBoards.clickThreeDotMenuInVideoConferenceElement();
 });
 
 When("I click on the option Delete in the three dot menu", () => {
-	roomBoards.clickDeleteOptionInThreeDotMenu();
+  roomBoards.clickDeleteOptionInThreeDotMenu();
 });
 
 Then("I see the dialog Confirm deletion", () => {
-	roomBoards.verifyDeleteConfirmationDialogVisible();
+  roomBoards.verifyDeleteConfirmationDialogVisible();
 });
 
 When("I click on the button Delete in the confirmation dialog", () => {
-	roomBoards.clickDeleteButtonInConfirmationDialog();
+  roomBoards.clickDeleteButtonInConfirmationDialog();
 });
 
 Then("I do not see the video conference element", () => {
-	roomBoards.verifyVideoConferenceElementNotVisible();
+  roomBoards.verifyVideoConferenceElementNotVisible();
 });
 
 Then(
-	"I see the moderator approval checkbox is checked in the video conference start modal",
-	() => {
-		roomBoards.verifyModeratorApprovalCheckboxCheckedInBBBModal();
-	}
+  "I see the moderator approval checkbox is checked in the video conference start modal",
+  () => {
+    roomBoards.verifyModeratorApprovalCheckboxCheckedInBBBModal();
+  }
 );
 
 Then("I see the dialog box for element selection", () => {
-	roomBoards.seeElementSelectionDialog();
+  roomBoards.seeElementSelectionDialog();
 });
 
 When("I click on the button Close in the dialog Add Element", () => {
-	roomBoards.clickCloseButtonOnElementSelectionDialog();
+  roomBoards.clickCloseButtonOnElementSelectionDialog();
 });
 
 Then("I do not see the dialog Add Element in the card", () => {
-	roomBoards.doNotSeeElementSelectionDialog();
+  roomBoards.doNotSeeElementSelectionDialog();
 });
 
 Then("I see the dialog Add Element in the card", () => {
-	roomBoards.seeElementSelectionDialog();
+  roomBoards.seeElementSelectionDialog();
 });
 
 When("I enter the video conference title {string}", (videoConferenceTitle) => {
-	roomBoards.enterVideoConferenceTitle(videoConferenceTitle);
+  roomBoards.enterVideoConferenceTitle(videoConferenceTitle);
 });
 
 When("I click on the save button or press the button enter key", () => {
-	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
+  roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
 });
 
 Then("I see the video conference element added in the card", () => {
-	roomBoards.verifyVideoConferenceElementAddedInCard();
+  roomBoards.verifyVideoConferenceElementAddedInCard();
 });
 
 When("I click on the video conference element in the card", () => {
-	roomBoards.clickVideoConferenceElementInCard();
+  roomBoards.clickVideoConferenceElementInCard();
 });
 
 Then("I see the modal to start the video conference", () => {
-	roomBoards.seeVideoConferenceStartDaialog();
+  roomBoards.seeVideoConferenceStartDaialog();
 });
 
 Then("I do not see the modal to start the video conference", () => {
-	roomBoards.doNotSeeVideoConferenceStartDaialog();
+  roomBoards.doNotSeeVideoConferenceStartDaialog();
 });
 
 Then(
-	"I see the button create in the video conference creation modal to start the call",
-	() => {
-		roomBoards.seeCreateButtonInVideoConferenceDialog();
-	}
+  "I see the button create in the video conference creation modal to start the call",
+  () => {
+    roomBoards.seeCreateButtonInVideoConferenceDialog();
+  }
 );
 
 Then(
-	"I click on the button cancel in the video conference creation modal to go back to the card",
-	() => {
-		roomBoards.clickCancelButtonInVideoConferenceCreationModal();
-	}
+  "I click on the button cancel in the video conference creation modal to go back to the card",
+  () => {
+    roomBoards.clickCancelButtonInVideoConferenceCreationModal();
+  }
 );
 
 Then("I see multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
+  roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied multi-column board tile in the rooms details page", () => {
-	roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
+  roomBoards.verifyMultiColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I see copied single-column board tile in the room details page", () => {
-	roomBoards.verifySingleColumnBoardTileVisibleOnRoomDetailsPage();
+  roomBoards.verifySingleColumnBoardTileVisibleOnRoomDetailsPage();
 });
 
 Then("I do not see single-column board tile in the room details page", () => {
-	roomBoards.verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage();
+  roomBoards.verifySingleColumnBoardTileNotVisibleOnRoomDetailsPage();
 });
 
 When("I click on the single-column board in the room detail page", () => {
-	roomBoards.clickSingleColumnBoardInRoomDetailPage();
+  roomBoards.clickSingleColumnBoardInRoomDetailPage();
 });
 
 When("I click on the button Open on multi-column board in the room detail page", () => {
-	roomBoards.clickMultiColumnBoardInRoomDetailPage();
+  roomBoards.clickMultiColumnBoardInRoomDetailPage();
 });
 
 Then("I do not see the chip Draft", () => {
-	// Method to verify the Draft chip is not visible
-	roomBoards.verifyDraftChipNotVisible();
+  // Method to verify the Draft chip is not visible
+  roomBoards.verifyDraftChipNotVisible();
 });
 
 Then("I see the chip Draft", () => {
-	roomBoards.verifyChipDraftVisible();
+  roomBoards.verifyChipDraftVisible();
 });
 
 When("I click on the breadcrumb to navigate to the room detail page", () => {
-	roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
+  roomBoards.clickOnBreadcrumbToNavigateToRoomDetail();
 });
 
 Then("I see the dialog box to select the Board type", () => {
-	roomBoards.seeColumnBoardDialogBox();
+  roomBoards.seeColumnBoardDialogBox();
 });
 
 When("I click on button to add multi-column board", () => {
-	roomBoards.clickOnButtonToAddMultiColumnBoard();
+  roomBoards.clickOnButtonToAddMultiColumnBoard();
 });
 
 When("I click on button to add single-column board", () => {
-	roomBoards.clickOnButtonToAddSingleColumnBoard();
+  roomBoards.clickOnButtonToAddSingleColumnBoard();
 });
 
 Then("I see the page board details", () => {
-	roomBoards.seeNewRoomBoardCreatePage();
+  roomBoards.seeNewRoomBoardCreatePage();
 });
 
 Then("I do not see the page board details", () => {
-	roomBoards.doNotSeeNewRoomBoardCreatePage();
+  roomBoards.doNotSeeNewRoomBoardCreatePage();
 });
 
 When("I click on the three dot menu in room board title", () => {
-	roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
+  roomBoards.clickOnThreeDotMenuInRoomBoardTitle();
 });
 
 Then("I change the default room board title to {string}", (boardTitle) => {
-	roomBoards.enterRoomBoardTitle(boardTitle);
+  roomBoards.enterRoomBoardTitle(boardTitle);
 });
 
 When("I click on the page outside of the title of the board", () => {
-	roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
+  roomBoards.clickOutsideTheTitleToSaveTheModifiedTitle();
 });
 
 Then("I see my room board is named {string}", (boardTitle) => {
-	roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
+  roomBoards.seeUpdatedRoomBoardTitle(boardTitle);
 });
 
 When("I click on delete in board menu", () => {
-	roomBoards.clickOnDeleteInBoardMenu();
+  roomBoards.clickOnDeleteInBoardMenu();
 });
 
 Then("I see the button to cancel the dialog", () => {
-	roomBoards.seeBtnDialogCancel();
+  roomBoards.seeBtnDialogCancel();
 });
 
 When("I click on the button to cancel the deletion", () => {
-	roomBoards.clickOnBtnDialogCancel();
+  roomBoards.clickOnBtnDialogCancel();
 });
 
 Then("I see the board {string} on the room overview page", (boardTitle) => {
-	roomBoards.seeBoardOnRoomDetailPage(boardTitle);
+  roomBoards.seeBoardOnRoomDetailPage(boardTitle);
 });
 
 When("I click on the board {string} on the room overview page", (boardTitle) => {
-	roomBoards.clickOnBoard(boardTitle);
+  roomBoards.clickOnBoard(boardTitle);
 });
 
 Then("I see the button to confirm the dialog", () => {
-	roomBoards.seeBtnDialogConfirmDelete();
+  roomBoards.seeBtnDialogConfirmDelete();
 });
 
 When("I click on the button to confirm the deletion", () => {
-	roomBoards.clickBtnDialogConfirmDelete();
+  roomBoards.clickBtnDialogConfirmDelete();
 });
 
 Then("I do not see the board {string} in the room", (boardTitle) => {
-	roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
+  roomBoards.doNotSeeBoardOnRoomDetailPage(boardTitle);
 });
 
 Then("I see a folder with name {string} in the card", (folderTitle) => {
-	roomBoards.seeFolderElementWithTitle(folderTitle);
+  roomBoards.seeFolderElementWithTitle(folderTitle);
 });
 
 Then(
-	"I see folder size and number of files {string} in the folder element in the card",
-	(folderDetails) => {
-		roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
-	}
+  "I see folder size and number of files {string} in the folder element in the card",
+  (folderDetails) => {
+    roomBoards.seeFolderElementWithSizeAndNumberOfFiles(folderDetails);
+  }
 );
 
 When("I click on the folder {string} in the card", (folderTitle) => {
-	roomBoards.clickFolderElementWithTitle(folderTitle);
+  roomBoards.clickFolderElementWithTitle(folderTitle);
 });
 
 Then("I see page Folder content for {string}", (folderTitle) => {
-	roomBoards.seeFolderPageWithTitle(folderTitle);
+  roomBoards.seeFolderPageWithTitle(folderTitle);
 });
 
 Then("I see message Empty folder", () => {
-	roomBoards.seeMessageEmptyFolder();
+  roomBoards.seeMessageEmptyFolder();
 });
 
 Then("I see button Add file", () => {
-	roomBoards.seeBtnAddFile();
+  roomBoards.seeBtnAddFile();
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElementWithDataTestId("fab-add-files", "button");
+  globalActions.clickElementWithDataTestId("fab-add-files", "button");
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
-	roomBoards.uploadFileInFolder(fileName);
+  roomBoards.uploadFileInFolder(fileName);
 });
 
 Then("I see file {string} with file size {string} in file list", (fileName, fileSize) => {
-	roomBoards.seeFileInFolderList(fileName, fileSize);
+  roomBoards.seeFileInFolderList(fileName, fileSize);
 });
 
 Then("I see today as creation date of file {string}", (fileName) => {
-	roomBoards.seeFileCreationDateToday(fileName);
+  roomBoards.seeFileCreationDateToday(fileName);
 });
 
 Then("I see message Upload progress", () => {
-	roomBoards.seeFileProgressMessage();
+  roomBoards.seeFileProgressMessage();
 });
 
 Then("I see links to change order for {string}", (headerLabels) => {
-	roomBoards.seeHeaderLinksToChangeOrder(headerLabels);
+  roomBoards.seeHeaderLinksToChangeOrder(headerLabels);
 });
 
 When("I click on table header link {string}", (label) => {
-	roomBoards.clickOnTableHeaderLink(label);
+  roomBoards.clickOnTableHeaderLink(label);
 });
 
 Then(
-	"I see {string} and {string} on the first two positions",
-	(firstElement, secondElement) => {
-		roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
-	}
+  "I see {string} and {string} on the first two positions",
+  (firstElement, secondElement) => {
+    roomBoards.checkOrderOfFirstTwoElements(firstElement, secondElement);
+  }
 );
 
 When("I upload multiple files {string} to file folder", (uploadFiles) => {
-	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
+  roomBoards.uploadMultipleFilesInFolder(uploadFiles);
 });
 
 Then("I see files {string} in file list", (uploadedFiles) => {
-	roomBoards.seeMultipleFilesInFolderList(uploadedFiles);
+  roomBoards.seeMultipleFilesInFolderList(uploadedFiles);
 });
 
 Then("I do not see files {string} in file list", (uploadedFiles) => {
-	roomBoards.doNotSeeMultipleFilesInFolderList(uploadedFiles);
+  roomBoards.doNotSeeMultipleFilesInFolderList(uploadedFiles);
 });
 
 When("I check the checkbox of file {string}", (fileName) => {
-	roomBoards.checkCheckboxOfFile(fileName);
+  roomBoards.checkCheckboxOfFile(fileName);
 });
 
 When("I uncheck the checkbox of file {string}", (fileName) => {
-	roomBoards.uncheckCheckboxOfFile(fileName);
+  roomBoards.uncheckCheckboxOfFile(fileName);
 });
 
 Then("I see checkboxes of files {string} are checked", (files) => {
-	roomBoards.seeFileCheckboxesAreChecked(files);
+  roomBoards.seeFileCheckboxesAreChecked(files);
 });
 
 Then("I see checkboxes of files {string} are unchecked", (files) => {
-	roomBoards.seeFileCheckboxesAreUnchecked(files);
+  roomBoards.seeFileCheckboxesAreUnchecked(files);
 });
 
 When("I click on button Action in the header of the list", () => {
-	globalActions.clickElementWithDataTestId("action-menu-button");
+  globalActions.clickElementWithDataTestId("action-menu-button");
 });
 
 When("I click on three dot menu in row of file {string}", (fileName) => {
-	roomBoards.openThreeDotMenuForFileInFolder(fileName);
+  roomBoards.openThreeDotMenuForFileInFolder(fileName);
 });
 
 Then("I see confirmation modal for deleting the file", () => {
-	rooms.seeConfirmationModalForFileDeletion();
+  rooms.seeConfirmationModalForFileDeletion();
 });
 
 Then("I see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdExists("action-menu-button");
+  globalAssertions.checkElementWithDataTestIdExists("action-menu-button");
 });
 
 Then("I do not see fab button Action at the top of the list", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists("action-menu-button");
+  globalAssertions.checkElementWithDataTestIdNotExists("action-menu-button");
 });
 
 When("I click on the three dot menu button next to the folder title", () => {
-	globalActions.clickElementWithDataTestId("folder-menu");
+  globalActions.clickElementWithDataTestId("folder-menu");
 });
 
 Then("I do not see a folder element on board", () => {
-	globalAssertions.checkElementWithDataTestIdNotExists("board-folder-element");
+  globalAssertions.checkElementWithDataTestIdNotExists("board-folder-element");
 });
 
 When("I click on the three dot menu of the folder in card", () => {
-	roomBoards.openThreeDotMenuForFolderInCard();
+  roomBoards.openThreeDotMenuForFolderInCard();
 });
 
 Then("I see confirmation modal for deleting the file folder", () => {
-	rooms.seeConfirmationModalForRoomDeletion();
+  rooms.seeConfirmationModalForRoomDeletion();
 });
 
 Then("I see displayed number of checked files is {string}", (numberOfCheckedFiles) => {
-	roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
+  roomBoards.checkNumberOfCheckedFilesInFileFolder(numberOfCheckedFiles);
 });
 
 Then("I see modal Rename file", () => {
-	roomBoards.seeModalRenameElement();
+  roomBoards.seeModalRenameElement();
 });
 
 Then("I see modal Rename folder", () => {
-	roomBoards.seeModalRenameElement();
+  roomBoards.seeModalRenameElement();
 });
 
 When("I enter {string} in input field New name", (newName) => {
-	roomBoards.enterNewElementNameInDialog(newName);
+  roomBoards.enterNewElementNameInDialog(newName);
 });
 
 When("I clear input field New name", () => {
-	roomBoards.clearNewElementNameInDialog();
+  roomBoards.clearNewElementNameInDialog();
 });
 
 When("I click on button Approve in modal", () => {
-	globalActions.clickElementWithDataTestId("dialog-confirm");
+  globalActions.clickElementWithDataTestId("dialog-confirm");
 });
 
 When("I click on the name of file {string} in file list", (fileName) => {
-	roomBoards.clickOnFileNameInFolder(fileName);
+  roomBoards.clickOnFileNameInFolder(fileName);
 });
 
 When("I enter name {string} for file folder in card", (newName) => {
-	roomBoards.enterFolderNameInBoardCard(newName);
+  roomBoards.enterFolderNameInBoardCard(newName);
 });
 
 When("I clear folder name in card", () => {
-	roomBoards.clearFolderNameInCard();
+  roomBoards.clearFolderNameInCard();
 });
 
 Then(
-	"zip file for folder {string} with date of today is saved in folder downloads",
-	(folderName) => {
-		roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
-	}
+  "zip file for folder {string} with date of today is saved in folder downloads",
+  (folderName) => {
+    roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
+  }
 );
 
 When("I click on the three dot menu in the H5P element", () => {
-	roomBoards.openThreeDotMenuForH5PInCard();
+  roomBoards.openThreeDotMenuForH5PInCard();
 });
 
 Then("I do not see the element H5P", () => {
-	roomBoards.verifyH5PElementIsNotVisible();
+  roomBoards.verifyH5PElementIsNotVisible();
 });
 
 When("I click on the H5P element", () => {
-	roomBoards.clickOnH5PElement();
+  roomBoards.clickOnH5PElement();
 });
 
 When("I click on the option Edit in the three dot menu on the H5P element", () => {
-	roomBoards.clickOnEditOptionInH5PThreeDotMenu();
+  roomBoards.clickOnEditOptionInH5PThreeDotMenu();
 });
 
 Then("I see the H5P page", () => {
-	roomBoards.seeH5PPage();
+  roomBoards.seeH5PPage();
 });
 
 When("I copy the file path of the image file {string} from folder", (fileName) => {
-	roomBoards.copyFilePathOfImageFileFromFolder(fileName);
+  roomBoards.copyFilePathOfImageFileFromFolder(fileName);
 });
 
 When("I copy the file path of the image file {string} from the card", (fileName) => {
-	roomBoards.copyFilePathOfImageFileFromCard(fileName);
+  roomBoards.copyFilePathOfImageFileFromCard(fileName);
 });
 
 Then("I see that image resource is available {string}", (fileName) => {
-	roomBoards.verifyImageFileRessourceAvailable(fileName);
+  roomBoards.verifyImageFileRessourceAvailable(fileName);
 });
 
 Then("I see that image resource is not available {string}", (fileName) => {
-	roomBoards.verifyImageFileRessourceNotAvailable(fileName);
+  roomBoards.verifyImageFileRessourceNotAvailable(fileName);
 });
 
 When("I click on the collabora file {string}", (fileName) => {
-	roomBoards.clickCollaboraFile(fileName);
+  roomBoards.clickCollaboraFile(fileName);
 });
 
 Then("I see the collabora Docx file type in the card", () => {
-	roomBoards.verifyDocxFileUploaded();
+  roomBoards.verifyDocxFileUploaded();
 });
 
 Then("I see the file type XLSX is uploaded in the card", () => {
-	roomBoards.verifyXlsxFileUploaded();
+  roomBoards.verifyXlsxFileUploaded();
 });
 
 Then(
-	"I see a validation error message {string} below the name field for file folder",
-	(errorMessage) => {
-		roomBoards.verifyNameFieldErrorMessage(errorMessage);
-	}
+  "I see a validation error message {string} below the name field for file folder",
+  (errorMessage) => {
+    roomBoards.verifyNameFieldErrorMessage(errorMessage);
+  }
 );
 
 When("I clear {string} from the file", (fileField) => {
-	roomBoards.clearFileField(fileField);
+  roomBoards.clearFileField(fileField);
 });
 
 Then(
-	"I see a validation error message {string} below the name field for file card",
-	(errorMessage) => {
-		roomBoards.verifyFileFieldErrorMessage(errorMessage);
-	}
+  "I see a validation error message {string} below the name field for file card",
+  (errorMessage) => {
+    roomBoards.verifyFileFieldErrorMessage(errorMessage);
+  }
 );
 
 When("I enter name {string} for file in card", (newName) => {
-	roomBoards.enterFileNameInBoardCard(newName);
+  roomBoards.enterFileNameInBoardCard(newName);
 });
 
 When("I click on the collabora file {string} in the file folder", (fileName) => {
-	roomBoards.clickCollaboraFileInFileFolder(fileName);
+  roomBoards.clickCollaboraFileInFileFolder(fileName);
 });
 
 When("I click the button Create document in file folder", () => {
-	roomBoards.clickCreateDocumentButtonInFileFolder();
+  roomBoards.clickCreateDocumentButtonInFileFolder();
 });
 
 Then("I see the dialog box for create collabora document", () => {
-	roomBoards.seeDialogBoxForCreateDocumentInFileFolder();
+  roomBoards.seeDialogBoxForCreateDocumentInFileFolder();
 });
 
 When(
-	"I select document type {string} from the dialog box create collabora document",
-	(documentType) => {
-		roomBoards.selectDocumentTypeInCreateDocumentFileFolder(documentType);
-	}
+  "I select document type {string} from the dialog box create collabora document",
+  (documentType) => {
+    roomBoards.selectDocumentTypeInCreateDocumentFileFolder(documentType);
+  }
 );
 
 When(
-	"I enter filename {string} in the dialog box create collabora document",
-	(fileName) => {
-		roomBoards.enterFileNameInCreateDocumentDialogFileFolder(fileName);
-	}
+  "I enter filename {string} in the dialog box create collabora document",
+  (fileName) => {
+    roomBoards.enterFileNameInCreateDocumentDialogFileFolder(fileName);
+  }
 );
 
 When("I click on button Create document in file folder", () => {
-	roomBoards.clickCreateButtonInDocumentDialogFileFolder();
+  roomBoards.clickCreateButtonInDocumentDialogFileFolder();
 });
 
 When("I click on button Create in dialog create document", () => {
-	roomBoards.clickCreateButtonInCreateDocumentDialog();
+  roomBoards.clickCreateButtonInCreateDocumentDialog();
 });

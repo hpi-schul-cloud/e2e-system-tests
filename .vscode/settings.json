@@ -1,22 +1,22 @@
 {
-	"cucumberautocomplete.steps": ["cypress/support/step_definition/**/*.spec.js"],
-	"cucumberautocomplete.syncfeatures": "cypress/e2e/**/*.feature",
-	"editor.formatOnSave": true,
-	"cucumberautocomplete.strictGherkinCompletion": true,
-	"[javascript]": {
-		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[typescript]": {
-		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[json]": {
-		"editor.formatOnSave": true,
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"editor.codeActionsOnSave": {
-		"source.organizeImports": "explicit",
-		"source.addMissingImports": "explicit"
-	}
+  "cucumberautocomplete.steps": ["cypress/support/step_definition/**/*.spec.js"],
+  "cucumberautocomplete.syncfeatures": "cypress/e2e/**/*.feature",
+  "editor.formatOnSave": true,
+  "cucumberautocomplete.strictGherkinCompletion": true,
+  "[javascript]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.formatOnSave": false,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.addMissingImports": "explicit"
+  }
 }

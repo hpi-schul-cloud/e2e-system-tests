@@ -13,11 +13,9 @@ For each unique Pull Request (PR), you can extend the namespace's activation tim
 #### Steps to Extend Activation Time
 
 1. **Navigate to the PR**
-
    - Go to the Pull Request for which you want to extend the activation time.
 
 2. **Apply the Label**
-
    - Add the label `auto-extend-activation-time` to the PR. This label initiates a new rollout and extends the activation time for the namespace.
 
 3. **Automatic Extension**

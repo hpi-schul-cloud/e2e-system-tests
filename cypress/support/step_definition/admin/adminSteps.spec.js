@@ -4,127 +4,127 @@ import Management from "../../pages/admin/pageAdmin";
 const management = new Management();
 
 Then("I see the assigned date of birth for student in the table", () => {
-	management.seeTheAssignedBirthDateInUserTable();
+  management.seeTheAssignedBirthDateInUserTable();
 });
 
 Then("I logout from the application", () => {
-	management.logoutFromApplication();
+  management.logoutFromApplication();
 });
 Then("I see the page download access data with info table", () => {
-	management.seeTheLastStepPageSummaryManualRegistration();
+  management.seeTheLastStepPageSummaryManualRegistration();
 });
 
 When("I enter the email assigned during user creation", () => {
-	management.enterEmailOnFirstLogin();
+  management.enterEmailOnFirstLogin();
 });
 
 When("I enter the password", () => {
-	management.enterPasswordOnFirstLogin();
+  management.enterPasswordOnFirstLogin();
 });
 
 When("I click on the button Login", () => {
-	management.clickOnLoginButtonForFirstLogin();
+  management.clickOnLoginButtonForFirstLogin();
 });
 
 Then("I see the first login page section 1", () => {
-	management.seeSectionOneFirstLoginPage();
+  management.seeSectionOneFirstLoginPage();
 });
 
 When("I click on the button Next in section 1", () => {
-	management.clickOnNextButtonOnFirstLoginSectionOne();
+  management.clickOnNextButtonOnFirstLoginSectionOne();
 });
 
 Then("I see the section 2", () => {
-	management.seeSectionTwoFirstLoginPage();
+  management.seeSectionTwoFirstLoginPage();
 });
 
 When("I click on the button Next in section 2", () => {
-	management.clickOnNextButtonOnFirstLoginSectionTwo();
+  management.clickOnNextButtonOnFirstLoginSectionTwo();
 });
 
 Then("I see the section 3", () => {
-	management.seeSectionThreeFirstLoginPage();
+  management.seeSectionThreeFirstLoginPage();
 });
 
 Then("I re enter the new password", () => {
-	management.reEnterPasswordOnManualRegistration();
+  management.reEnterPasswordOnManualRegistration();
 });
 
 When("I click on the button Next to proceed", () => {
-	management.clickOnNextButtonOnFirstLoginSectionThree();
+  management.clickOnNextButtonOnFirstLoginSectionThree();
 });
 
 Then("I set a new password", () => {
-	management.setNewPasswordOnFirstLogin();
+  management.setNewPasswordOnFirstLogin();
 });
 
 Then("I click on the button Get started now in section 4", () => {
-	management.clickOnStartImmediateButtonOnFirstLoginSectionFour();
+  management.clickOnStartImmediateButtonOnFirstLoginSectionFour();
 });
 
 Then("I see the dashboard", () => {
-	management.seeDashboardAfterFirstLogin();
+  management.seeDashboardAfterFirstLogin();
 });
 
 When("I select student {string} with email {string}", (firstname, userEmail) => {
-	management.selectStudentOnStudentOverview(firstname, userEmail);
+  management.selectStudentOnStudentOverview(firstname, userEmail);
 });
 
 When("I click on the button Actions", () => {
-	management.clickOnActionsOnStudentOverview();
+  management.clickOnActionsOnStudentOverview();
 });
 
 When("I click on the option Manual Registration", () => {
-	management.clickOnManualRegistrationOption();
+  management.clickOnManualRegistrationOption();
 });
 
 Then("I see the page Manual Registration", () => {
-	management.seeManualRegistrationPage();
+  management.seeManualRegistrationPage();
 });
 
 When("I clear the default assigned password", () => {
-	management.clearDefaultPasswordInManualRegistration();
+  management.clearDefaultPasswordInManualRegistration();
 });
 
 Then("I enter the initial password", () => {
-	management.enterPasswordOnManualRegistration();
+  management.enterPasswordOnManualRegistration();
 });
 
 When("I click on the button Apply data", () => {
-	management.clickOnApplyDataButton();
+  management.clickOnApplyDataButton();
 });
 
 When("I click on the checkbox to confirm the consent", () => {
-	management.clickOnConsentCheckBox();
+  management.clickOnConsentCheckBox();
 });
 When("I click on the button Register users", () => {
-	management.clickOnRegisterUserButton();
+  management.clickOnRegisterUserButton();
 });
 
 When("I click on the button Abbrechen", () => {
-	management.clickOnCancelButton();
+  management.clickOnCancelButton();
 });
 
 When("I click on the button Trotzdem abbrechen on the confirmation modal", () => {
-	management.clickOnCancelRegardlessOnModalButton();
+  management.clickOnCancelRegardlessOnModalButton();
 });
 
 Then("I am on the students management page", () => {
-	management.beingOnStudentManagementOverview();
+  management.beingOnStudentManagementOverview();
 });
 
 When("I navigate to the students management page", () => {
-	management.navigateToStudentManagementOverview();
+  management.navigateToStudentManagementOverview();
 });
 
 Then("I see page Edit student", () => {
-	management.seePageTitleEditStudent();
+  management.seePageTitleEditStudent();
 });
 
 Then("I see page Edit teacher", () => {
-	management.seePageTitleEditTeacher();
+  management.seePageTitleEditTeacher();
 });
 
 Then("I see element {string} in data table", (elementText) => {
-	management.seeElementInDataTable(elementText);
+  management.seeElementInDataTable(elementText);
 });

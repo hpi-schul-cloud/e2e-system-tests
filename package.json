@@ -1,72 +1,81 @@
 {
-	"name": "e2e-system-tests",
-	"version": "1.0.0",
-	"description": "e2e testing",
-	"main": "index.js",
-	"scripts": {
-		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
-		"generate:report": "node reporter.js",
-		"cy:gui:stable:regression_test:school_api_test:localhost": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
-		"cy:headless:stable:regression_test:school_api_test:localhost": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
-		"cy:gui:stable:regression_test:school_api_test:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=local",
-		"cy:gui:stable:regression_test:prio_0_staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @staging_test and @prio_0_staging\",environmentName=staging",
-		"cy:gui:stable:regression_test:staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @staging_test\",environmentName=staging",
-		"cy:gui:stable:regression_test:prio_0_dev:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @prio_0_dev\",environmentName=local",
-		"cy:gui:stable:regression_test:school_api_test:pre_check:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=local",
-		"cy:headless:stable:regression_test:school_api_test:pre_check:local": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=local",
-		"cy:gui:stable:pr:school_api_test:local": "cypress open --browser chrome -e tags=\"@stable_test and @pr and @school_api_test\",environmentName=local",
-		"cy:gui:stable:pr:staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @pr and @staging_test\",environmentName=staging",
-		"cy:headless:stable:regression_test:prio_0_dev:local": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @prio_0_dev\",environmentName=local",
-		"cy:headless:stable:regression_test:prio_0_staging:local": "cypress run --browser chrome -e tags=\"@regression_test and @stable_test and @staging_test and @prio_0_staging\",environmentName=staging",
-		"cy:headless:stable:pr:school_api_test:local": "cypress run --browser chrome -e tags=\"@stable_test and @pr and @school_api_test\",environmentName=local",
-		"cy:headless:stable:pr:staging:local": "cypress run --browser chrome -e tags=\"@pr and @stable_test and @staging_test\",environmentName=staging",
-		"cy:headless:only:local": "cypress run --browser chrome -e tags=@only,environmentName=local",
-		"cy:headless:unstable:local": "cypress run --browser chrome -e tags=@unstable_test,environmentName=local",
-		"cy:gui:stable:clean_up_staging:local": "cypress open --browser chrome -e tags=\"@clean_up_staging_test_data\",environmentName=staging",
-		"cy:headless:stable:ci": "xvfb-run cypress run"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/hpi-schul-cloud/e2e-system-tests.git"
-	},
-	"keywords": [
-		"e2e"
-	],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/hpi-schul-cloud/e2e-system-tests/issues"
-	},
-	"homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
-	"devDependencies": {
-		"@4tw/cypress-drag-drop": "^2.2.5",
-		"@badeball/cypress-cucumber-preprocessor": "^22.0.1",
-		"@cypress/webpack-preprocessor": "^5.17.0",
-		"adm-zip": "^0.5.16",
-		"axios": "^1.12.0",
-		"cheerio": "^1.1.0",
-		"cypress": "^13.2.0",
-		"cypress-file-upload": "^5.0.8",
-		"cypress-real-events": "^1.13.0",
-		"multiple-cucumber-html-reporter": "^1.21.4",
-		"prettier": "^3.2.5",
-		"webpack": "^5.77.0"
-	},
-	"cypress-cucumber-preprocessor": {
-		"stepDefinitions": "cypress/support/step_definition/**/*.js",
-		"filterSpecs": true,
-		"omitFiltered": true,
-		"json": {
-			"enabled": true,
-			"output": "${jsonOutput}"
-		},
-		"messages": {
-			"enabled": false,
-			"output": "logs/messages.ndjson"
-		},
-		"html": {
-			"enabled": false,
-			"output": "html-report/report.html"
-		}
-	}
+  "name": "e2e-system-tests",
+  "version": "1.0.0",
+  "description": "e2e testing",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
+    "generate:report": "node reporter.js",
+    "cy:gui:stable:regression_test:school_api_test:localhost": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
+    "cy:headless:stable:regression_test:school_api_test:localhost": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
+    "cy:gui:stable:regression_test:school_api_test:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=local",
+    "cy:gui:stable:regression_test:prio_0_staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @staging_test and @prio_0_staging\",environmentName=staging",
+    "cy:gui:stable:regression_test:staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @staging_test\",environmentName=staging",
+    "cy:gui:stable:regression_test:prio_0_dev:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @prio_0_dev\",environmentName=local",
+    "cy:gui:stable:regression_test:school_api_test:pre_check:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=local",
+    "cy:headless:stable:regression_test:school_api_test:pre_check:local": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @pre_check_test\",environmentName=local",
+    "cy:gui:stable:pr:school_api_test:local": "cypress open --browser chrome -e tags=\"@stable_test and @pr and @school_api_test\",environmentName=local",
+    "cy:gui:stable:pr:staging:local": "cypress open --browser chrome -e tags=\"@stable_test and @pr and @staging_test\",environmentName=staging",
+    "cy:headless:stable:regression_test:prio_0_dev:local": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test and @prio_0_dev\",environmentName=local",
+    "cy:headless:stable:regression_test:prio_0_staging:local": "cypress run --browser chrome -e tags=\"@regression_test and @stable_test and @staging_test and @prio_0_staging\",environmentName=staging",
+    "cy:headless:stable:pr:school_api_test:local": "cypress run --browser chrome -e tags=\"@stable_test and @pr and @school_api_test\",environmentName=local",
+    "cy:headless:stable:pr:staging:local": "cypress run --browser chrome -e tags=\"@pr and @stable_test and @staging_test\",environmentName=staging",
+    "cy:headless:only:local": "cypress run --browser chrome -e tags=@only,environmentName=local",
+    "cy:headless:unstable:local": "cypress run --browser chrome -e tags=@unstable_test,environmentName=local",
+    "cy:gui:stable:clean_up_staging:local": "cypress open --browser chrome -e tags=\"@clean_up_staging_test_data\",environmentName=staging",
+    "cy:headless:stable:ci": "xvfb-run cypress run",
+    "prepare": "husky",
+    "format:check": "prettier --check ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hpi-schul-cloud/e2e-system-tests.git"
+  },
+  "keywords": [
+    "e2e"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hpi-schul-cloud/e2e-system-tests/issues"
+  },
+  "homepage": "https://github.com/hpi-schul-cloud/e2e-system-tests#readme",
+  "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.2.5",
+    "@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+    "@cypress/webpack-preprocessor": "^5.17.0",
+    "adm-zip": "^0.5.16",
+    "axios": "^1.12.0",
+    "cheerio": "^1.1.0",
+    "cypress": "^13.2.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-real-events": "^1.13.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "multiple-cucumber-html-reporter": "^1.21.4",
+    "prettier": "^3.7.4",
+    "webpack": "^5.77.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/support/step_definition/**/*.js",
+    "filterSpecs": true,
+    "omitFiltered": true,
+    "json": {
+      "enabled": true,
+      "output": "${jsonOutput}"
+    },
+    "messages": {
+      "enabled": false,
+      "output": "logs/messages.ndjson"
+    },
+    "html": {
+      "enabled": false,
+      "output": "html-report/report.html"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  }
 }

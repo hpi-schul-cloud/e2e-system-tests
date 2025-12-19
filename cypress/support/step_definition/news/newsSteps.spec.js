@@ -12,8 +12,8 @@ const news = new News();
 // --> \step_definition\news\commonNewsSteps.spec.js
 
 Then(
-	"I can read the news {string} with description {string}",
-	(titleOfNews, descriptionOfNews) => {
-		news.seeNewsOnOverviewPage(titleOfNews, descriptionOfNews);
-	}
+  "I can read the news {string} with description {string}",
+  (titleOfNews, descriptionOfNews) => {
+    news.seeNewsOnOverviewPage(titleOfNews, descriptionOfNews);
+  }
 );

@@ -1,354 +1,354 @@
 "use strict";
 
 class Classes {
-	static #createClass = '[data-testid="admin-class-add-button"]';
-	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
-	static #classTitleNew = '[data-testid="admin-class-title"]';
-	static #classTableNew = '[data-testid="admin-class-table"]';
-	static #nextYearTab = '[data-testid="admin-class-next-year-tab"]';
-	static #currentYearTab = '[data-testid="admin-class-current-year-tab"]';
-	static #previousYearsTab = '[data-testid="admin-class-previous-years-tab"]';
-	static #manageClassButton = '[data-testid="legacy-class-table-manage-btn"]';
-	static #cancelModal = '[data-testid="modal_content"]';
-	static #editClassButton = '[data-testid="class-table-edit-btn"]';
-	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
-	static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
-	static #deleteDialog = '[data-testid="dialog-title"]';
-	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
-	static #adminGroupTitle = '[data-testid="admin-class-title"]';
-	static #groupMemberTable = '[data-testid="class-members-table"]';
-	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
-	static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
-	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
-	static #adminClassNavigationSidebarCard = '[data-testid="sidebar-management-classes"]';
-	static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
-	static #dropDownSchoolYearCreateClass = '[data-testid="class-school-year-selection"]';
-	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
-	static #moreOptionButtonInClassPage = '[data-testid="classCreationExtraOptions"]';
-	static #textBoxCustomClassName = '[data-testid="Klassenbezeichnung"]';
-	static #checkBoxMaintainSchoolYearInClassCreate =
-		'[data-testid="maintain-school-year-in-class"]';
-	static #dropDownTeacherSelectionOnClassManage =
-		'[data-testid="teacher-selection-on-manage-class"]';
-	static #dropDownStudentSelectionOnClassManage =
-		'[data-testid="student-selection-on-manage-class"]';
-	static #buttonSaveChangedClassManage = '[data-testid="manage-confirm"]';
-	static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
-	static #tableOldClassOverview = '[data-testid="table_container"]';
-	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
-	static #emptyAdminClassTable = '[class="v-data-table-rows-no-data"]';
-	static #buttonCancelOnDeleteModalClassAdminPage = '[data-testid="dialog-cancel"]';
-	static #tableClassName = '[data-testid="class-table-name"]';
-	static #tableClassSource = '[data-testid="class-table-source"]';
-	static #tableClassMemberFirstName = '[data-testid="class-members-table-firstname"]';
-	static #tableClassMemberLastName = '[data-testid="class-members-table-lastname"]';
-	static #tableClassMemberRole = '[data-testid="class-members-table-role"]';
-	static #tableClassSyncedCourse = '[data-testid="class-table-synced-courses"]';
-	static #tableClassStudentCount = '[data-testid="class-table-student-count"]';
-	static #stopSyncButton = '[data-testid="class-table-end-course-sync-btn"]';
+  static #createClass = '[data-testid="admin-class-add-button"]';
+  static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
+  static #classTitleNew = '[data-testid="admin-class-title"]';
+  static #classTableNew = '[data-testid="admin-class-table"]';
+  static #nextYearTab = '[data-testid="admin-class-next-year-tab"]';
+  static #currentYearTab = '[data-testid="admin-class-current-year-tab"]';
+  static #previousYearsTab = '[data-testid="admin-class-previous-years-tab"]';
+  static #manageClassButton = '[data-testid="legacy-class-table-manage-btn"]';
+  static #cancelModal = '[data-testid="modal_content"]';
+  static #editClassButton = '[data-testid="class-table-edit-btn"]';
+  static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
+  static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
+  static #deleteDialog = '[data-testid="dialog-title"]';
+  static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
+  static #adminGroupTitle = '[data-testid="admin-class-title"]';
+  static #groupMemberTable = '[data-testid="class-members-table"]';
+  static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
+  static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
+  static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
+  static #adminClassNavigationSidebarCard = '[data-testid="sidebar-management-classes"]';
+  static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
+  static #dropDownSchoolYearCreateClass = '[data-testid="class-school-year-selection"]';
+  static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
+  static #moreOptionButtonInClassPage = '[data-testid="classCreationExtraOptions"]';
+  static #textBoxCustomClassName = '[data-testid="Klassenbezeichnung"]';
+  static #checkBoxMaintainSchoolYearInClassCreate =
+    '[data-testid="maintain-school-year-in-class"]';
+  static #dropDownTeacherSelectionOnClassManage =
+    '[data-testid="teacher-selection-on-manage-class"]';
+  static #dropDownStudentSelectionOnClassManage =
+    '[data-testid="student-selection-on-manage-class"]';
+  static #buttonSaveChangedClassManage = '[data-testid="manage-confirm"]';
+  static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
+  static #tableOldClassOverview = '[data-testid="table_container"]';
+  static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
+  static #emptyAdminClassTable = '[class="v-data-table-rows-no-data"]';
+  static #buttonCancelOnDeleteModalClassAdminPage = '[data-testid="dialog-cancel"]';
+  static #tableClassName = '[data-testid="class-table-name"]';
+  static #tableClassSource = '[data-testid="class-table-source"]';
+  static #tableClassMemberFirstName = '[data-testid="class-members-table-firstname"]';
+  static #tableClassMemberLastName = '[data-testid="class-members-table-lastname"]';
+  static #tableClassMemberRole = '[data-testid="class-members-table-role"]';
+  static #tableClassSyncedCourse = '[data-testid="class-table-synced-courses"]';
+  static #tableClassStudentCount = '[data-testid="class-table-student-count"]';
+  static #stopSyncButton = '[data-testid="class-table-end-course-sync-btn"]';
 
-	clickOnCancelDeleteModalOnClassAdminPage() {
-		cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
-	}
+  clickOnCancelDeleteModalOnClassAdminPage() {
+    cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
+  }
 
-	clickOnSaveChangesOnEditClassPage() {
-		cy.get(Classes.#buttonSaveChangeOnEditClass).click();
-	}
+  clickOnSaveChangesOnEditClassPage() {
+    cy.get(Classes.#buttonSaveChangeOnEditClass).click();
+  }
 
-	clickOnEditClassOnClassOverview(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#editClassButton).click();
-			});
-	}
+  clickOnEditClassOnClassOverview(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#editClassButton).click();
+      });
+  }
 
-	clickOnSaveChangesOnManageClassPage() {
-		cy.get(Classes.#buttonSaveChangedClassManage).click();
-	}
+  clickOnSaveChangesOnManageClassPage() {
+    cy.get(Classes.#buttonSaveChangedClassManage).click();
+  }
 
-	selectStudentInManageClassPage(fullNameStudent) {
-		cy.get(Classes.#dropDownStudentSelectionOnClassManage).click();
-		cy.get(Classes.#selectionBoxStudentInManageClass).contains(fullNameStudent).click();
-	}
+  selectStudentInManageClassPage(fullNameStudent) {
+    cy.get(Classes.#dropDownStudentSelectionOnClassManage).click();
+    cy.get(Classes.#selectionBoxStudentInManageClass).contains(fullNameStudent).click();
+  }
 
-	seeSelectedTeacherOnManageClassPage(teacherName) {
-		cy.get(Classes.#dropDownTeacherSelectionOnClassManage).contains(teacherName);
-	}
+  seeSelectedTeacherOnManageClassPage(teacherName) {
+    cy.get(Classes.#dropDownTeacherSelectionOnClassManage).contains(teacherName);
+  }
 
-	seeSelectedStudentOnManageClassPage(studentName) {
-		cy.get(Classes.#dropDownStudentSelectionOnClassManage).contains(studentName);
-	}
+  seeSelectedStudentOnManageClassPage(studentName) {
+    cy.get(Classes.#dropDownStudentSelectionOnClassManage).contains(studentName);
+  }
 
-	clickOnCheckBoxMaintainSchoolYearAssignment() {
-		cy.get(Classes.#checkBoxMaintainSchoolYearInClassCreate).check();
-	}
+  clickOnCheckBoxMaintainSchoolYearAssignment() {
+    cy.get(Classes.#checkBoxMaintainSchoolYearInClassCreate).check();
+  }
 
-	enterCustomClassName(customClassName) {
-		cy.get(Classes.#textBoxCustomClassName).clear().type(customClassName);
-	}
+  enterCustomClassName(customClassName) {
+    cy.get(Classes.#textBoxCustomClassName).clear().type(customClassName);
+  }
 
-	clickOnMoreOptionsInClassCreatePage() {
-		cy.get(Classes.#moreOptionButtonInClassPage).click({ force: true });
-	}
+  clickOnMoreOptionsInClassCreatePage() {
+    cy.get(Classes.#moreOptionButtonInClassPage).click({ force: true });
+  }
 
-	seeTeacherNameInClassCreatePage(teacherName) {
-		cy.get(Classes.#teacherNameInClassPage).contains(teacherName);
-	}
+  seeTeacherNameInClassCreatePage(teacherName) {
+    cy.get(Classes.#teacherNameInClassPage).contains(teacherName);
+  }
 
-	seeSelectedSchoolYearInClass(schoolYear) {
-		cy.get(Classes.#dropDownSchoolYearCreateClass).contains(schoolYear);
-	}
+  seeSelectedSchoolYearInClass(schoolYear) {
+    cy.get(Classes.#dropDownSchoolYearCreateClass).contains(schoolYear);
+  }
 
-	clickOnClassInAdministrationSubMenu() {
-		cy.get(Classes.#adminClassNavigationSidebarCard).click();
-	}
+  clickOnClassInAdministrationSubMenu() {
+    cy.get(Classes.#adminClassNavigationSidebarCard).click();
+  }
 
-	clickCreateClassButtonOnNewClassPage() {
-		cy.get(Classes.#createClass).click();
-	}
+  clickCreateClassButtonOnNewClassPage() {
+    cy.get(Classes.#createClass).click();
+  }
 
-	clickAddClassButton() {
-		cy.get(Classes.#confirmClassCreate).click();
-	}
+  clickAddClassButton() {
+    cy.get(Classes.#confirmClassCreate).click();
+  }
 
-	clickCancelButton() {
-		cy.get(".btn-cancel").click();
-	}
+  clickCancelButton() {
+    cy.get(".btn-cancel").click();
+  }
 
-	clickConfirmButton() {
-		cy.get(".historyback").click();
-	}
+  clickConfirmButton() {
+    cy.get(".historyback").click();
+  }
 
-	clickConfirmSuccessor() {
-		cy.get(".btn-primary").eq(0).click();
-	}
+  clickConfirmSuccessor() {
+    cy.get(".btn-primary").eq(0).click();
+  }
 
-	clickConfirmDeleteDialogButton() {
-		cy.get(Classes.#deleteDialogConfirm).click();
-	}
+  clickConfirmDeleteDialogButton() {
+    cy.get(Classes.#deleteDialogConfirm).click();
+  }
 
-	clickNextYearTab() {
-		cy.get(Classes.#nextYearTab).click();
-		cy.get(Classes.#nextYearTab).should("have.attr", "aria-selected", "true");
-	}
+  clickNextYearTab() {
+    cy.get(Classes.#nextYearTab).click();
+    cy.get(Classes.#nextYearTab).should("have.attr", "aria-selected", "true");
+  }
 
-	isNewClassAdministrationPage() {
-		cy.url().should("include", "/administration/groups/classes");
-	}
+  isNewClassAdministrationPage() {
+    cy.url().should("include", "/administration/groups/classes");
+  }
 
-	isManageClassPage() {
-		cy.url().should("include", "/administration/classes");
-		cy.url().should("include", "/manage");
-	}
+  isManageClassPage() {
+    cy.url().should("include", "/administration/classes");
+    cy.url().should("include", "/manage");
+  }
 
-	isEditClassPage() {
-		cy.url().should("include", "/administration/classes");
-		cy.url().should("include", "/edit");
-	}
+  isEditClassPage() {
+    cy.url().should("include", "/administration/classes");
+    cy.url().should("include", "/edit");
+  }
 
-	isCreateSuccessorPage() {
-		cy.url().should("include", "/administration/classes");
-		cy.url().should("include", "/createSuccessor");
-	}
+  isCreateSuccessorPage() {
+    cy.url().should("include", "/administration/classes");
+    cy.url().should("include", "/createSuccessor");
+  }
 
-	seeSuccessorButtonIsDisabled(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#createSuccessorButton).should("have.class", "v-btn--disabled");
-			});
-	}
+  seeSuccessorButtonIsDisabled(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#createSuccessorButton).should("have.class", "v-btn--disabled");
+      });
+  }
 
-	seeSuccessorButtonIsEnabled(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#createSuccessorButton).should(
-					"not.have.class",
-					"v-btn--disabled"
-				);
-			});
-	}
+  seeSuccessorButtonIsEnabled(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#createSuccessorButton).should(
+          "not.have.class",
+          "v-btn--disabled"
+        );
+      });
+  }
 
-	isDeleteDialog() {
-		cy.get(Classes.#deleteDialog).should("be.visible");
-	}
+  isDeleteDialog() {
+    cy.get(Classes.#deleteDialog).should("be.visible");
+  }
 
-	seeSourceOfClass(className, sourceName) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#tableClassSource).should("have.text", sourceName);
-			});
-	}
+  seeSourceOfClass(className, sourceName) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#tableClassSource).should("have.text", sourceName);
+      });
+  }
 
-	doNotSeeSourceOfClass(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#tableClassSource).should("have.text", "");
-			});
-	}
+  doNotSeeSourceOfClass(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#tableClassSource).should("have.text", "");
+      });
+  }
 
-	see3Tabs() {
-		cy.get(Classes.#nextYearTab).should("be.visible");
-		cy.get(Classes.#currentYearTab).should("be.visible");
-		cy.get(Classes.#previousYearsTab).should("be.visible");
-	}
+  see3Tabs() {
+    cy.get(Classes.#nextYearTab).should("be.visible");
+    cy.get(Classes.#currentYearTab).should("be.visible");
+    cy.get(Classes.#previousYearsTab).should("be.visible");
+  }
 
-	seeManageGroupPage() {
-		cy.url().should("include", "/administration/groups/classes/");
-	}
+  seeManageGroupPage() {
+    cy.url().should("include", "/administration/groups/classes/");
+  }
 
-	seeGroupMemberTableContainsMemberWithRole(role, lastName, firstName) {
-		cy.get(Classes.#tableClassMemberLastName)
-			.contains(lastName)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#tableClassMemberRole).should("have.text", role);
-				cy.get(Classes.#tableClassMemberFirstName).should("contain", firstName);
-			});
-	}
+  seeGroupMemberTableContainsMemberWithRole(role, lastName, firstName) {
+    cy.get(Classes.#tableClassMemberLastName)
+      .contains(lastName)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#tableClassMemberRole).should("have.text", role);
+        cy.get(Classes.#tableClassMemberFirstName).should("contain", firstName);
+      });
+  }
 
-	seeClassMemberInfoBox() {
-		cy.get(Classes.#classMemberInfoBox).should("be.visible");
-	}
+  seeClassMemberInfoBox() {
+    cy.get(Classes.#classMemberInfoBox).should("be.visible");
+  }
 
-	seeNoNewClassAdministrationPage() {
-		cy.get(Classes.#adminClassNavigationSidebarCard).should(
-			"not.have.attr",
-			"href",
-			"/administration/groups/classes"
-		);
-		cy.get(Classes.#adminClassNavigationCard).should(
-			"not.have.attr",
-			"data-loclink",
-			"/administration/groups/classes"
-		);
-	}
+  seeNoNewClassAdministrationPage() {
+    cy.get(Classes.#adminClassNavigationSidebarCard).should(
+      "not.have.attr",
+      "href",
+      "/administration/groups/classes"
+    );
+    cy.get(Classes.#adminClassNavigationCard).should(
+      "not.have.attr",
+      "data-loclink",
+      "/administration/groups/classes"
+    );
+  }
 
-	clickEndSyncWithCourseButton(groupName) {
-		cy.get(Classes.#tableClassName)
-			.contains(groupName)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#stopSyncButton).should("be.visible").click();
-			});
-	}
+  clickEndSyncWithCourseButton(groupName) {
+    cy.get(Classes.#tableClassName)
+      .contains(groupName)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#stopSyncButton).should("be.visible").click();
+      });
+  }
 
-	doNotSeeClassInTable(className) {
-		cy.get(Classes.#tableClassName).should("not.contain", className);
-	}
+  doNotSeeClassInTable(className) {
+    cy.get(Classes.#tableClassName).should("not.contain", className);
+  }
 
-	isClassInTheTable(
-		className,
-		expectedState = "exist",
-		classTableSelector = Classes.#classTableNew,
-		classRowInTableSelector = Classes.#tableClassName
-	) {
-		const isClassPresent = expectedState === "exist";
-		cy.get(classTableSelector).then(($table) => {
-			const isRowEmpty = $table.find("tbody tr").length > 1;
-			cy.get(classRowInTableSelector).should(
-				isClassPresent ? "contain" : isRowEmpty ? "not.contain" : "not.exist",
-				className
-			);
-		});
-	}
+  isClassInTheTable(
+    className,
+    expectedState = "exist",
+    classTableSelector = Classes.#classTableNew,
+    classRowInTableSelector = Classes.#tableClassName
+  ) {
+    const isClassPresent = expectedState === "exist";
+    cy.get(classTableSelector).then(($table) => {
+      const isRowEmpty = $table.find("tbody tr").length > 1;
+      cy.get(classRowInTableSelector).should(
+        isClassPresent ? "contain" : isRowEmpty ? "not.contain" : "not.exist",
+        className
+      );
+    });
+  }
 
-	clickOnManageClassButton(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#manageClassButton).should("be.visible").click();
-			});
-	}
+  clickOnManageClassButton(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#manageClassButton).should("be.visible").click();
+      });
+  }
 
-	clickOnManageGroupButton(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#manageGroupButton).should("be.visible").click();
-			});
-	}
+  clickOnManageGroupButton(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#manageGroupButton).should("be.visible").click();
+      });
+  }
 
-	clickOnEditClassButton(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#editClassButton).should("be.visible").click();
-			});
-	}
+  clickOnEditClassButton(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#editClassButton).should("be.visible").click();
+      });
+  }
 
-	clickOnCreateSuccessorButton(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#createSuccessorButton).should("be.visible").click();
-			});
-	}
+  clickOnCreateSuccessorButton(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#createSuccessorButton).should("be.visible").click();
+      });
+  }
 
-	clickOnDeleteClassButton(className) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#deleteClassButton).should("be.visible").click();
-			});
-		cy.wait(500);
-		cy.get(Classes.#deleteDialog).should("be.visible");
-	}
+  clickOnDeleteClassButton(className) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#deleteClassButton).should("be.visible").click();
+      });
+    cy.wait(500);
+    cy.get(Classes.#deleteDialog).should("be.visible");
+  }
 
-	seeGroupIsSyncedWithCourse(groupName, courseName) {
-		cy.get(Classes.#tableClassName)
-			.contains(groupName)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#tableClassSyncedCourse).should("have.text", courseName);
-			});
-	}
+  seeGroupIsSyncedWithCourse(groupName, courseName) {
+    cy.get(Classes.#tableClassName)
+      .contains(groupName)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#tableClassSyncedCourse).should("have.text", courseName);
+      });
+  }
 
-	clickStopSyncButtonOfGroup(groupName) {
-		cy.get(Classes.#tableClassName)
-			.contains(groupName)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#stopSyncButton).should("be.visible").click();
-			});
-	}
+  clickStopSyncButtonOfGroup(groupName) {
+    cy.get(Classes.#tableClassName)
+      .contains(groupName)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#stopSyncButton).should("be.visible").click();
+      });
+  }
 
-	doNotSeeStopSyncButtonOfGroup(groupName) {
-		cy.get(Classes.#tableClassName)
-			.contains(groupName)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#stopSyncButton).should("not.exist");
-			});
-	}
+  doNotSeeStopSyncButtonOfGroup(groupName) {
+    cy.get(Classes.#tableClassName)
+      .contains(groupName)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#stopSyncButton).should("not.exist");
+      });
+  }
 
-	seeNumberOfStudentsOfClass(className, numberOfStudents) {
-		cy.get(Classes.#tableClassName)
-			.contains(className)
-			.parents("tr")
-			.within(() => {
-				cy.get(Classes.#tableClassStudentCount).should("have.text", numberOfStudents);
-			});
-	}
+  seeNumberOfStudentsOfClass(className, numberOfStudents) {
+    cy.get(Classes.#tableClassName)
+      .contains(className)
+      .parents("tr")
+      .within(() => {
+        cy.get(Classes.#tableClassStudentCount).should("have.text", numberOfStudents);
+      });
+  }
 
-	isCreateClassPage() {
-		cy.url().should("include", "/administration/classes");
-		cy.url().should("include", "/create");
-	}
+  isCreateClassPage() {
+    cy.url().should("include", "/administration/classes");
+    cy.url().should("include", "/create");
+  }
 }
 
 export default Classes;

@@ -1,87 +1,85 @@
 "use strict";
 
 class GlobalAssertions {
-	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
-	static #selectAllCheckboxInTableHeader = '[data-testid="select-all-checkbox"]';
+  static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
+  static #selectAllCheckboxInTableHeader = '[data-testid="select-all-checkbox"]';
 
-	seeBreadcrumbContainsStrings(contentString) {
-		// this line done following things:
-		// - first remove brackets and quotes if passed
-		// - second split into an array based on ", "
-		// - and in the last trim spaces
-		const contents = contentString
-			.replace(/[\[\]"]/g, "")
-			.split(", ")
-			.map((opt) => opt.trim());
-		contents.forEach((content) => {
-			cy.get(GlobalAssertions.#firstElementOfBreadcrumb)
-				.parent()
-				.contains("li", content);
-		});
-	}
+  seeBreadcrumbContainsStrings(contentString) {
+    // this line done following things:
+    // - first remove brackets and quotes if passed
+    // - second split into an array based on ", "
+    // - and in the last trim spaces
+    const contents = contentString
+      .replace(/[\[\]"]/g, "")
+      .split(", ")
+      .map((opt) => opt.trim());
+    contents.forEach((content) => {
+      cy.get(GlobalAssertions.#firstElementOfBreadcrumb).parent().contains("li", content);
+    });
+  }
 
-	checkSidebar(activePage) {
-		cy.get(`[data-testid="sidebar-${activePage}"]`).should(
-			"have.class",
-			"v-list-item--active"
-		);
-	}
+  checkSidebar(activePage) {
+    cy.get(`[data-testid="sidebar-${activePage}"]`).should(
+      "have.class",
+      "v-list-item--active"
+    );
+  }
 
-	checkElementWithDataTestIdExists(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).should("exist");
-	}
+  checkElementWithDataTestIdExists(elementId) {
+    cy.get(`[data-testid="${elementId}"]`).should("exist");
+  }
 
-	checkElementWithDataTestIdNotExists(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).should("not.exist");
-	}
+  checkElementWithDataTestIdNotExists(elementId) {
+    cy.get(`[data-testid="${elementId}"]`).should("not.exist");
+  }
 
-	checkStateOfHeaderCheckbox(checkboxState) {
-		if (checkboxState == "mixed") {
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
-				.find("input")
-				.should("have.attr", "aria-checked", "mixed");
-		} else if (checkboxState == "checked") {
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
-				.find("input")
-				.should("have.attr", "checked");
-		} else {
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
-				.find("input")
-				.should("not.have.attr", "checked");
-			cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
-				.find("input")
-				.should("not.have.attr", "aria-checked");
-		}
-	}
+  checkStateOfHeaderCheckbox(checkboxState) {
+    if (checkboxState == "mixed") {
+      cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+        .find("input")
+        .should("have.attr", "aria-checked", "mixed");
+    } else if (checkboxState == "checked") {
+      cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+        .find("input")
+        .should("have.attr", "checked");
+    } else {
+      cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+        .find("input")
+        .should("not.have.attr", "checked");
+      cy.get(GlobalAssertions.#selectAllCheckboxInTableHeader)
+        .find("input")
+        .should("not.have.attr", "aria-checked");
+    }
+  }
 
-	checkMessagePoints(infoPointsArray, selectors) {
-		infoPointsArray.forEach((point) => {
-			const normalized = point.trim().toLowerCase();
-			const selector = selectors[normalized];
-			cy.get(selector).should("be.visible");
-		});
-	}
+  checkMessagePoints(infoPointsArray, selectors) {
+    infoPointsArray.forEach((point) => {
+      const normalized = point.trim().toLowerCase();
+      const selector = selectors[normalized];
+      cy.get(selector).should("be.visible");
+    });
+  }
 
-	checkModalMessagePoints(infoPoints, modalType) {
-		const infoPointsArray = infoPoints.split(",").map((p) => p.trim().toLowerCase());
-		const selectors = Object.fromEntries(
-			infoPointsArray.map((point, index) => {
-				const infoPointers = point.replace(/\s+/g, "-");
-				// first item = info section, others = modal section
-				const section = index === 0 ? "info" : "modal";
-				return [point, `[data-testid="${modalType}-${section}-${infoPointers}"]`];
-			})
-		);
-		this.checkMessagePoints(infoPointsArray, selectors);
-	}
+  checkModalMessagePoints(infoPoints, modalType) {
+    const infoPointsArray = infoPoints.split(",").map((p) => p.trim().toLowerCase());
+    const selectors = Object.fromEntries(
+      infoPointsArray.map((point, index) => {
+        const infoPointers = point.replace(/\s+/g, "-");
+        // first item = info section, others = modal section
+        const section = index === 0 ? "info" : "modal";
+        return [point, `[data-testid="${modalType}-${section}-${infoPointers}"]`];
+      })
+    );
+    this.checkMessagePoints(infoPointsArray, selectors);
+  }
 
-	checkContentPageTitle(contentPageTitle) {
-		cy.get("h2.section-title").should("have.text", contentPageTitle);
-	}
+  checkContentPageTitle(contentPageTitle) {
+    cy.get("h2.section-title").should("have.text", contentPageTitle);
+  }
 
-	checkLegalContentPageTitle(title) {
-		cy.get("h1").should("have.text", title);
-	}
+  checkLegalContentPageTitle(title) {
+    cy.get("h1").should("have.text", title);
+  }
 }
 
 export default GlobalAssertions;

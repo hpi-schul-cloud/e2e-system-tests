@@ -112,8 +112,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        group:
-          ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
+        group: ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}

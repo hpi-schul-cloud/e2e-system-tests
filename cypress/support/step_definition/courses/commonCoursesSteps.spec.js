@@ -6,192 +6,192 @@ const courses = new Courses();
 const management = new Management();
 
 When(
-	"I click on three dot menu of topic {string} with the suffix {string} on the course detail page",
-	(topicName, suffix) => {
-		courses.openThreeDotMenuForCopiedTopic(topicName, suffix);
-	}
+  "I click on three dot menu of topic {string} with the suffix {string} on the course detail page",
+  (topicName, suffix) => {
+    courses.openThreeDotMenuForCopiedTopic(topicName, suffix);
+  }
 );
 
 When("I click on the breadcrumb to go back to the course page", () => {
-	courses.navigateToCourseViaBreadcrumb();
+  courses.navigateToCourseViaBreadcrumb();
 });
 
 Then("I select teacher {string} is selected by default", (teacherName) => {
-	courses.selectTeacherInCourseCreatePage(teacherName);
+  courses.selectTeacherInCourseCreatePage(teacherName);
 });
 
 Then("I see the section three as the finish page", () => {
-	courses.seeFinalStepPageOnCourseCreate();
+  courses.seeFinalStepPageOnCourseCreate();
 });
 
 When("I select the student {string} in the list", (studentName) => {
-	courses.selectStudentsInCourseCreatePage(studentName);
+  courses.selectStudentsInCourseCreatePage(studentName);
 });
 
 When("I select the class {string} in the class list", (className) => {
-	courses.selectClassInCourseCreatePage(className);
+  courses.selectClassInCourseCreatePage(className);
 });
 
 When("I select the class {string}", (className) => {
-	courses.selectClassInCourseEditPage(className);
+  courses.selectClassInCourseEditPage(className);
 });
 
 Then("I see {string} in the class selection box", (className) => {
-	courses.seeClassInClassSelectionBox(className);
+  courses.seeClassInClassSelectionBox(className);
 });
 
 Then("I see {string} in the student selection box", (studentName) => {
-	courses.seeStudentInStudentSelectionBox(studentName);
+  courses.seeStudentInStudentSelectionBox(studentName);
 });
 
 When("I click on the remove icon of class {string}", (className) => {
-	courses.removeClassFromCourse(className);
+  courses.removeClassFromCourse(className);
 });
 
 Then("I do not see {string} in the class selection box", (className) => {
-	courses.doNotSeeClassInClassSelectionBox(className);
+  courses.doNotSeeClassInClassSelectionBox(className);
 });
 
 Then("I do not see {string} in the student selection box", (studentName) => {
-	courses.doNotSeeStudentInStudentSelectionBox(studentName);
+  courses.doNotSeeStudentInStudentSelectionBox(studentName);
 });
 
 When("I click on the button delete on the modal to confirm the course deletion", () => {
-	courses.confirmCourseDeletionOnModal();
+  courses.confirmCourseDeletionOnModal();
 });
 
 Then("I see the modal to confirm the deletion", () => {
-	courses.seeModalToConfirmCourseDeletion();
+  courses.seeModalToConfirmCourseDeletion();
 });
 
 When("I click on the button delete course", () => {
-	courses.clickOnDeleteButtonOnCourseEditPage();
+  courses.clickOnDeleteButtonOnCourseEditPage();
 });
 
 When("I edit the course description to {string}", (editedCourseDescription) => {
-	courses.editCourseDescription(editedCourseDescription);
+  courses.editCourseDescription(editedCourseDescription);
 });
 
 Then("I see student selection box to select the class for the course", () => {
-	courses.seeSelectionInBoxToSelectStudent();
+  courses.seeSelectionInBoxToSelectStudent();
 });
 
 Then("I see class selection box to select the class for the course", () => {
-	courses.seeSelectionBoxToSelectClass();
+  courses.seeSelectionBoxToSelectClass();
 });
 
 Then("I see the substitute teacher {string} is selected", (substituteTeacher) => {
-	courses.seeSelectedSubstituteTeacher(substituteTeacher);
+  courses.seeSelectedSubstituteTeacher(substituteTeacher);
 });
 
 Then("I see the teacher {string} is selected", (teacherName) => {
-	courses.seeSelectedTeacher(teacherName);
+  courses.seeSelectedTeacher(teacherName);
 });
 
 Then("I see the student {string} is selected", (studentName) => {
-	courses.seeSelectedStudent(studentName);
+  courses.seeSelectedStudent(studentName);
 });
 
 Then("I see the class {string} is selected", (className) => {
-	courses.seeSelectedClass(className);
+  courses.seeSelectedClass(className);
 });
 
 Then("I see the course title form contains {string}", (name) => {
-	courses.seeCourseTitleFormContains(name);
+  courses.seeCourseTitleFormContains(name);
 });
 
 When("I click on the three dot menu button next to the course title", () => {
-	courses.clickThreeDotMenuInCourse();
+  courses.clickThreeDotMenuInCourse();
 });
 
 When("I see student selection box to select the student for the course", () => {
-	courses.seeStudentSelectionBoxInCourseCreatePage();
+  courses.seeStudentSelectionBoxInCourseCreatePage();
 });
 
 When("I click on FAB to add or import courses", () => {
-	courses.clickOnFABToAddOrImportCourse();
+  courses.clickOnFABToAddOrImportCourse();
 });
 
 Then("I see course search box on the course overview page", () => {
-	courses.seeCourseSearchBoxOnCourseOverview();
+  courses.seeCourseSearchBoxOnCourseOverview();
 });
 
 When("I go to course administration page", () => {
-	// default check for no error information in the course administration page
-	management.seeNoErrorInfoInCourseAdministration();
-	management.navigateToCourseAdministration();
+  // default check for no error information in the course administration page
+  management.seeNoErrorInfoInCourseAdministration();
+  management.navigateToCourseAdministration();
 });
 
 Then("I see no error info", () => {
-	management.seeNoErrorInfoInCourseAdministration();
+  management.seeNoErrorInfoInCourseAdministration();
 });
 
 When("I go to courses overview", () => {
-	courses.navigateToCoursesOverview();
+  courses.navigateToCoursesOverview();
 });
 
 When("I go to course {string}", (courseName) => {
-	courses.navigateToCoursePage(courseName);
+  courses.navigateToCoursePage(courseName);
 });
 
 When("I delete all courses whose names start with {string}", (courseName) => {
-	courses.deleteAllCoursesWithName(courseName);
+  courses.deleteAllCoursesWithName(courseName);
 });
 
 Then("I see the course {string} on the course overview page", (courseName) => {
-	courses.courseIsVisiblOnOverviewPage(courseName);
+  courses.courseIsVisiblOnOverviewPage(courseName);
 });
 
 Then("I do not see the course {string} on the course overview page", (courseName) => {
-	courses.courseIsNotVisiblOnOverviewPage(courseName);
+  courses.courseIsNotVisiblOnOverviewPage(courseName);
 });
 
 When("I click on button Save changes in page Edit course", () => {
-	courses.submitChangesAfterEditingCourse();
+  courses.submitChangesAfterEditingCourse();
 });
 
 When("I open page Edit course", () => {
-	courses.openCourseEditPage();
+  courses.openCourseEditPage();
 });
 
 Then("I see page Edit course", () => {
-	courses.showCourseEditPage();
+  courses.showCourseEditPage();
 });
 
 Then("I see the course title is {string}", (courseName) => {
-	courses.isCorrectCourseEditPage(courseName);
+  courses.isCorrectCourseEditPage(courseName);
 });
 
 When("I click on FAB to create a new course depending on sub menu", () => {
-	courses.clickOnCreateCourseFAB();
+  courses.clickOnCreateCourseFAB();
 });
 
 When("I click on new course create button in sub menu", () => {
-	courses.clickOnCreateNewCourseInSubMenu();
+  courses.clickOnCreateNewCourseInSubMenu();
 });
 
 When("I click on FAB to create new content", () => {
-	courses.clickOnCreateContentFAB();
+  courses.clickOnCreateContentFAB();
 });
 
 When("I click on New Task FAB", () => {
-	courses.clickOnNewTaskFAB();
+  courses.clickOnNewTaskFAB();
 });
 
 When("I click on New Topic FAB", () => {
-	courses.clickOnNewTopicFAB();
+  courses.clickOnNewTopicFAB();
 });
 
 When("I can see task {string} on course page", (taskTitle) => {
-	courses.seeTaskOnCoursePage(taskTitle);
+  courses.seeTaskOnCoursePage(taskTitle);
 });
 
 Then("I can see board {string} on course page", (boardTitle) => {
-	courses.seeBoardOnCoursePage(boardTitle);
+  courses.seeBoardOnCoursePage(boardTitle);
 });
 
 When("I can not see content {string}", (contentTitle) => {
-	courses.contentIsNotVisibleOnCoursePage(contentTitle);
+  courses.contentIsNotVisibleOnCoursePage(contentTitle);
 });
 
 // When('I can see task {string} on course page', taskTitle => {
@@ -203,358 +203,358 @@ When("I can not see content {string}", (contentTitle) => {
 // })
 
 Then("I see the modal to import the shared task into the course", () => {
-	courses.verifyImportSharedModal();
+  courses.verifyImportSharedModal();
 });
 
 When("I select the course from the course list in the modal", () => {
-	courses.selectCourseForTaskImport();
+  courses.selectCourseForTaskImport();
 });
 
 When("I click on topic {string} on course page", (contentTitle) => {
-	courses.openTopic(contentTitle);
+  courses.openTopic(contentTitle);
 });
 
 When("I click on three dot menu of content {string}", (contentTitle) => {
-	courses.openThreeDotMenuForContent(contentTitle);
+  courses.openThreeDotMenuForContent(contentTitle);
 });
 
 When("I click on three dot menu of topic {string}", (contentTitle) => {
-	courses.openThreeDotMenuForTopic(contentTitle);
+  courses.openThreeDotMenuForTopic(contentTitle);
 });
 
 When("I click on Delete in dot menu", () => {
-	courses.clickDeleteInDotMenu();
+  courses.clickDeleteInDotMenu();
 });
 
 When(
-	"I select the three dot menu action {string} at task index {string} in course detail page",
-	(action, index) => {
-		courses.clickThreeDotMenuActionAtTaskIndex(action, index);
-	}
+  "I select the three dot menu action {string} at task index {string} in course detail page",
+  (action, index) => {
+    courses.clickThreeDotMenuActionAtTaskIndex(action, index);
+  }
 );
 
 When(
-	"I select the three dot menu action {string} at topic index {string} in course detail page",
-	(action, index) => {
-		courses.clickThreeDotMenuActionCopyAtTopicIndex(action, index);
-	}
+  "I select the three dot menu action {string} at topic index {string} in course detail page",
+  (action, index) => {
+    courses.clickThreeDotMenuActionCopyAtTopicIndex(action, index);
+  }
 );
 
 When("I click on Copy in dot menu of task", () => {
-	courses.clickCopyOptionInThreeDotMenuOfTaskMenu();
+  courses.clickCopyOptionInThreeDotMenuOfTaskMenu();
 });
 
 Then("I see the option Copy on the list", () => {
-	courses.seeCopyOptionInThreeDotMenuOfTopic();
+  courses.seeCopyOptionInThreeDotMenuOfTopic();
 });
 
 Then("I see the option Copy on the task menu list", () => {
-	courses.seeCopyOptionInThreeDotMenuOfTaskMenu();
+  courses.seeCopyOptionInThreeDotMenuOfTaskMenu();
 });
 
 Then("I see confirmation modal for deleting the task", () => {
-	courses.seeConfirmationModalForTaskDeletion();
+  courses.seeConfirmationModalForTaskDeletion();
 });
 
 Then("I see success message {string}", (successMessage) => {
-	courses.seeDuplicateTaskSuccessAlert(successMessage);
+  courses.seeDuplicateTaskSuccessAlert(successMessage);
 });
 
 Then("I see button Publish on the copied task", () => {
-	courses.seeTaskOnCoursePagePublish();
+  courses.seeTaskOnCoursePagePublish();
 });
 
 When("I click on Delete in dot menu of topic", () => {
-	courses.clickDeleteInDotMenuOfTopic();
+  courses.clickDeleteInDotMenuOfTopic();
 });
 
 When("I click on Edit in dot menu", () => {
-	courses.clickEditInDotMenu();
+  courses.clickEditInDotMenu();
 });
 
 When("I click on Edit in dot menu of topic", () => {
-	courses.clickEditInDotMenuOfTopic();
+  courses.clickEditInDotMenuOfTopic();
 });
 
 When("I click on option Back to draft in dot menu of first topic", () => {
-	courses.clickBackToDraftInDotMenuOfTopic();
+  courses.clickBackToDraftInDotMenuOfTopic();
 });
 
 When("I click on button Publish for first topic in content list", () => {
-	courses.clickPublishLinkForFirstTopic();
+  courses.clickPublishLinkForFirstTopic();
 });
 
 When("I click on Cancel in confirmation window", () => {
-	courses.clickOnCancelInConfirmationWindow();
+  courses.clickOnCancelInConfirmationWindow();
 });
 
 When("I click on Delete in confirmation window", () => {
-	courses.clickDeleteInConfirmationWindow();
+  courses.clickDeleteInConfirmationWindow();
 });
 
 When("I click on task {string}", (taskTitle) => {
-	courses.openTask(taskTitle);
+  courses.openTask(taskTitle);
 });
 
 Then(
-	"I see task card info submitted contains {string} for task {string}",
-	(submittedTasks, taskTitle) => {
-		courses.compareSubmittedTasksInformation(submittedTasks, taskTitle);
-	}
+  "I see task card info submitted contains {string} for task {string}",
+  (submittedTasks, taskTitle) => {
+    courses.compareSubmittedTasksInformation(submittedTasks, taskTitle);
+  }
 );
 
 Then("I see task card info not submitted for task {string}", (taskTitle) => {
-	courses.compareNotSubmittedTasksInformation(taskTitle);
+  courses.compareNotSubmittedTasksInformation(taskTitle);
 });
 
 When(
-	"Task card info graded contains {string} for task {string}",
-	(gradedTasks, taskTitle) => {
-		courses.compareGradedTasksInformation(gradedTasks, taskTitle);
-	}
+  "Task card info graded contains {string} for task {string}",
+  (gradedTasks, taskTitle) => {
+    courses.compareGradedTasksInformation(gradedTasks, taskTitle);
+  }
 );
 
 When("I click on link finish for task {string}", (taskTitle) => {
-	courses.clickOnFinishTask(taskTitle);
+  courses.clickOnFinishTask(taskTitle);
 });
 
 Then("I see task {string} does not contain any buttons", (taskTitle) => {
-	courses.checkTaskCardDoesNotHaveButtons(taskTitle);
+  courses.checkTaskCardDoesNotHaveButtons(taskTitle);
 });
 
 Then("I see task {string} contains buttons", (taskTitle) => {
-	courses.checkTaskCardDoesHaveButtons(taskTitle);
+  courses.checkTaskCardDoesHaveButtons(taskTitle);
 });
 
 Then("I can see topic {string} on course page", (topicTitle) => {
-	courses.topicIsVisibleOnCoursePage(topicTitle);
+  courses.topicIsVisibleOnCoursePage(topicTitle);
 });
 
 Then("I can not see topic {string} on course page", (topicTitle) => {
-	courses.topicIsNotVisibleOnCoursePage(topicTitle);
+  courses.topicIsNotVisibleOnCoursePage(topicTitle);
 });
 
 When("I clear substitute teacher field", () => {
-	courses.clearSubstituteTeacherField();
+  courses.clearSubstituteTeacherField();
 });
 
 When("I add substitute teacher {string}", (userFullName) => {
-	courses.addSubstituteTeacher(userFullName);
+  courses.addSubstituteTeacher(userFullName);
 });
 
 Then("I delete all courses named {string}", (courseName) => {
-	courses.deleteAllCoursesMatchingName(courseName);
+  courses.deleteAllCoursesMatchingName(courseName);
 });
 
 When("I click on button copy course", () => {
-	courses.clickCopyCourseButton();
+  courses.clickCopyCourseButton();
 });
 
 When("I click on export course button", () => {
-	courses.clickExportCourseButton();
+  courses.clickExportCourseButton();
 });
 
 When("I click on dialog next button", () => {
-	courses.clickDialogNextButton();
+  courses.clickDialogNextButton();
 });
 
 When("I click on dialog export button", () => {
-	courses.clickDialogExportButton();
+  courses.clickDialogExportButton();
 });
 
 When("I click on the import course button", () => {
-	courses.clickImportCourseButton();
+  courses.clickImportCourseButton();
 });
 
 Then("I see the copy result notification", () => {
-	courses.seeCopyResultNotification();
+  courses.seeCopyResultNotification();
 });
 
 When("I close the dialog", () => {
-	courses.clickOnDialogClose();
+  courses.clickOnDialogClose();
 });
 
 Then("I see course page {string}", (courseName) => {
-	courses.seeCoursePage(courseName);
+  courses.seeCoursePage(courseName);
 });
 
 When("I click on edit course", () => {
-	courses.clickOnEditCourse();
+  courses.clickOnEditCourse();
 });
 
 When(
-	"I add the first student with search string {string} to the course",
-	(searchString) => {
-		courses.addStudentWithSearchStringToCourse(searchString);
-	}
+  "I add the first student with search string {string} to the course",
+  (searchString) => {
+    courses.addStudentWithSearchStringToCourse(searchString);
+  }
 );
 
 Then("I see section one area on the course create page", () => {
-	courses.seeSectionOneAreaOnCourseCreatePage();
+  courses.seeSectionOneAreaOnCourseCreatePage();
 });
 
 When("I enter the course title {string}", (newCourseName) => {
-	courses.fillCourseCreationForm(newCourseName);
+  courses.fillCourseCreationForm(newCourseName);
 });
 
 When("I select course colour as red", () => {
-	courses.selectCourseColour();
+  courses.selectCourseColour();
 });
 
 Then("I see teacher {string} is selected by default", (defaultTeacherName) => {
-	courses.seeSelectedDefaultTeacher(defaultTeacherName);
+  courses.seeSelectedDefaultTeacher(defaultTeacherName);
 });
 
 When("I select the teacher {string} in the list", (teacherName) => {
-	courses.selectTeacherInCourseCreatePage(teacherName);
+  courses.selectTeacherInCourseCreatePage(teacherName);
 });
 
 Then("I see teacher selection box", () => {
-	courses.seeTeacherSelectionBox();
+  courses.seeTeacherSelectionBox();
 });
 
 Then("I see substitute teacher selection box", () => {
-	courses.seeSubstituteTeacherSelectionBox();
+  courses.seeSubstituteTeacherSelectionBox();
 });
 
 Then("I see date pickers to start and end the course as per school year", () => {
-	courses.seeDatePickersForCourseInSchoolYear();
+  courses.seeDatePickersForCourseInSchoolYear();
 });
 
 Then("I see button to create a course time table container", () => {
-	courses.seeCreateCourseTimeTableContainer();
+  courses.seeCreateCourseTimeTableContainer();
 });
 
 Then("I see the progress bar", () => {
-	courses.seeProgressBar();
+  courses.seeProgressBar();
 });
 
 Then("I see the title 'Aufgabe - Entwurf' in the task", () => {
-	courses.seeDraftTaskTitle();
+  courses.seeDraftTaskTitle();
 });
 
 Then("I see the success message {string}", (successMessage) => {
-	courses.seeDuplicateTaskSuccessAlert(successMessage);
+  courses.seeDuplicateTaskSuccessAlert(successMessage);
 });
 
 When(
-	"I click on button Next Steps after entering the course detail in section one",
-	() => {
-		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
-	}
+  "I click on button Next Steps after entering the course detail in section one",
+  () => {
+    courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+  }
 );
 
 Then("I see section two area on the course create page", () => {
-	courses.seeSectionTwoAreaOnCourseCreatePage();
+  courses.seeSectionTwoAreaOnCourseCreatePage();
 });
 
 When("I click on button Next Steps after selecting course participant details", () => {
-	courses.clickOnNextStepButtonOnCourseParticipationDetail();
+  courses.clickOnNextStepButtonOnCourseParticipationDetail();
 });
 
 Then("I see the section three area as the finish page", () => {
-	courses.seeCourseCreationFinishPageSectionThree();
+  courses.seeCourseCreationFinishPageSectionThree();
 });
 
 When("I click on button To Course Overview on the finish page", () => {
-	courses.clickOnToCourseOverviewBtn();
+  courses.clickOnToCourseOverviewBtn();
 });
 
 When("I click the cancel edit course button", () => {
-	courses.clickCancelButton();
+  courses.clickCancelButton();
 });
 
 When("I click on the save course changes button", () => {
-	courses.clickSaveChangesButton();
+  courses.clickSaveChangesButton();
 });
 
 When("I edit the title of the course to {string}", (newCourseName) => {
-	courses.editCourseTitle(newCourseName);
+  courses.editCourseTitle(newCourseName);
 });
 
 When("I open column board {string}", (boardName) => {
-	courses.openColumnBoardWithName(boardName);
+  courses.openColumnBoardWithName(boardName);
 });
 
 Then("I see breadcrumb contains course name {string}", (courseName) => {
-	courses.seeBreadcrumbWithCourseName(courseName);
+  courses.seeBreadcrumbWithCourseName(courseName);
 });
 
 When("I click the delete button for course {string} in course table", (courseName) => {
-	courses.deleteCourseFromCourseTable(courseName);
+  courses.deleteCourseFromCourseTable(courseName);
 });
 
 When("I click on the share a copy of Topic from three dot menu {string}", (topicName) => {
-	courses.clickOnShareCopyOfTopic(topicName);
+  courses.clickOnShareCopyOfTopic(topicName);
 });
 
 Then("I publish the topic in course {string}", (courseName) => {
-	courses.clickPublishLinkForFirstTopic();
+  courses.clickPublishLinkForFirstTopic();
 });
 
 Then("I publish the task in index {string} in course page", (taskIndex) => {
-	courses.clickPublishLinkForTaskWithDynamicIndex(taskIndex);
+  courses.clickPublishLinkForTaskWithDynamicIndex(taskIndex);
 });
 
 Then(
-	"I can see task {string} in index {string} on course page",
-	(taskTitle, taskIndex) => {
-		courses.seeTaskOnCoursePageWithDynamicIndex(taskTitle, taskIndex);
-	}
+  "I can see task {string} in index {string} on course page",
+  (taskTitle, taskIndex) => {
+    courses.seeTaskOnCoursePageWithDynamicIndex(taskTitle, taskIndex);
+  }
 );
 
 Then("I see the dialog box topic in course", () => {
-	courses.seeTopicCourseDialogBox();
+  courses.seeTopicCourseDialogBox();
 });
 
 When("I select the fixture file {string}", (fixture) => {
-	courses.selectFixtureForImport(fixture);
+  courses.selectFixtureForImport(fixture);
 });
 
 When("I start the import", () => {
-	courses.startImport();
+  courses.startImport();
 });
 
 Then("I see the loading bar", () => {
-	courses.seeLoadingBar();
+  courses.seeLoadingBar();
 });
 
 When("I wait for the loading bar to close", () => {
-	courses.waitForImportFinish();
+  courses.waitForImportFinish();
 });
 
 When("I click on the button Add new appointment in course", () => {
-	courses.clickAddNewAppointmentButtonInCourse();
+  courses.clickAddNewAppointmentButtonInCourse();
 });
 
 Then("I see the section Course appointment", () => {
-	courses.seeModalToAddNewAppointmentInCourse();
+  courses.seeModalToAddNewAppointmentInCourse();
 });
 
 Then("I see the weekday {string} in the course appointment", (weekday) => {
-	courses.seeWeekday(weekday);
+  courses.seeWeekday(weekday);
 });
 
 When("I enter the time {string} in the course appointment", (timeStart) => {
-	courses.enterTimeInCourseAppointment(timeStart);
+  courses.enterTimeInCourseAppointment(timeStart);
 });
 
 When("I enter the duration {string} in the course appointment", (duration) => {
-	courses.enterDurationInCourseAppointment(duration);
+  courses.enterDurationInCourseAppointment(duration);
 });
 
 When("I enter the classroom {string} in the course appointment", (roomName) => {
-	courses.enterRoomNameInCourseAppointment(roomName);
+  courses.enterRoomNameInCourseAppointment(roomName);
 });
 
 When("I click on the option weekday", () => {
-	courses.optionWeekday();
+  courses.optionWeekday();
 });
 
 When("I select the weekday {string} in the course appointment", (weekday) => {
-	courses.selectSpecificWeekday(weekday);
+  courses.selectSpecificWeekday(weekday);
 });
 
 When("I click on the button Delete appointment in the course", () => {
-	courses.deleteAppointmentCourse();
+  courses.deleteAppointmentCourse();
 });

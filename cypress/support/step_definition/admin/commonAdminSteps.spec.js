@@ -6,600 +6,600 @@ const toolConfiguration = new ToolConfiguration();
 const management = new Management();
 
 Then("I see the context external tool configuration page", () => {
-	toolConfiguration.seeContextExternalToolConfiguratorPage();
+  toolConfiguration.seeContextExternalToolConfiguratorPage();
 });
 
 Then("I see the school external tool configuration page", () => {
-	toolConfiguration.seeExternalToolConfiguratorPage();
+  toolConfiguration.seeExternalToolConfiguratorPage();
 });
 
 Then("I see the school external tool configuration info text", () => {
-	toolConfiguration.seeToolConfigurationInfoText();
+  toolConfiguration.seeToolConfigurationInfoText();
 });
 
 When("I click on button Add in the modal to add an external tool", () => {
-	toolConfiguration.saveExternalToolButton();
+  toolConfiguration.saveExternalToolButton();
 });
 
 Then("I do not see tool {string} in the tool selection", (toolName) => {
-	toolConfiguration.toolIsNotVisibleInToolSelection(toolName);
+  toolConfiguration.toolIsNotVisibleInToolSelection(toolName);
 });
 
 When("I select the tool {string} from available tools", (toolName) => {
-	toolConfiguration.addExternalTool(toolName);
+  toolConfiguration.addExternalTool(toolName);
 });
 
 Then("I see tool {string} is selected", (toolName) => {
-	toolConfiguration.seeSelectedExternalTool(toolName);
+  toolConfiguration.seeSelectedExternalTool(toolName);
 });
 
 When("I insert the external tool link {string}", (toolLink) => {
-	toolConfiguration.insertToolLink(toolLink);
+  toolConfiguration.insertToolLink(toolLink);
 });
 
 When("I deactivate the tool", () => {
-	toolConfiguration.deactivateTool();
+  toolConfiguration.deactivateTool();
 });
 
 When("I activate the tool", () => {
-	toolConfiguration.activateTool();
+  toolConfiguration.activateTool();
 });
 
 Then("I see the deactivate checkbox is checked", () => {
-	toolConfiguration.seeDeactivatedCheckBoxIsChecked();
+  toolConfiguration.seeDeactivatedCheckBoxIsChecked();
 });
 
 Then("I see the deactivate checkbox is not checked", () => {
-	toolConfiguration.seeDeactivatedCheckBoxIsNotChecked();
+  toolConfiguration.seeDeactivatedCheckBoxIsNotChecked();
 });
 
 Then("I see an error alert", () => {
-	toolConfiguration.seeToolErrorAlert();
+  toolConfiguration.seeToolErrorAlert();
 });
 
 When("I enter {string} in display name field", (toolName) => {
-	toolConfiguration.fillInToolDisplayName(toolName);
+  toolConfiguration.fillInToolDisplayName(toolName);
 });
 
 When("I select {string} in required protected custom parameter selection", (value) => {
-	toolConfiguration.selectProtectedCustomParameterOption(value);
+  toolConfiguration.selectProtectedCustomParameterOption(value);
 });
 
 When(
-	"I enter {string} in required custom parameter field {string}",
-	(value, paramName) => {
-		toolConfiguration.fillInCustomParameter(paramName, value);
-	}
+  "I enter {string} in required custom parameter field {string}",
+  (value, paramName) => {
+    toolConfiguration.fillInCustomParameter(paramName, value);
+  }
 );
 
 When(
-	"I enter {string} in optional custom parameter field {string}",
-	(value, paramName) => {
-		toolConfiguration.fillInCustomParameter(paramName, value);
-	}
+  "I enter {string} in optional custom parameter field {string}",
+  (value, paramName) => {
+    toolConfiguration.fillInCustomParameter(paramName, value);
+  }
 );
 
 Then(
-	"I see custom parameter input field {string} contains {string}",
-	(paramName, value) => {
-		toolConfiguration.seeCustomParameterFormContains(paramName, value);
-	}
+  "I see custom parameter input field {string} contains {string}",
+  (paramName, value) => {
+    toolConfiguration.seeCustomParameterFormContains(paramName, value);
+  }
 );
 
 When("I click the cancel button on the tool configuration page", (paramName, value) => {
-	toolConfiguration.clickCancelButton();
+  toolConfiguration.clickCancelButton();
 });
 
 Then("I see the school number", () => {
-	management.seeAddedSchoolNumber();
+  management.seeAddedSchoolNumber();
 });
 
 Then("I see button Start migration is enabled", () => {
-	management.seeMigrationButtonIsEnabled();
+  management.seeMigrationButtonIsEnabled();
 });
 
 When("I click on the start migration button", () => {
-	management.clickStartMigration();
+  management.clickStartMigration();
 });
 
 Then("I see the migration information text", () => {
-	management.seeMigrationInformation();
+  management.seeMigrationInformation();
 });
 
 Then("I see the migration school number information text", () => {
-	management.seeMigrationSchoolNumberInformation();
+  management.seeMigrationSchoolNumberInformation();
 });
 
 Then("I see the email form with correct recipient", () => {
-	management.checkSupportLink();
+  management.checkSupportLink();
 });
 
 Then(/^I see the information link href is blog\.niedersachsen\.cloud\/umzug$/, () => {
-	management.checkInfoLink();
+  management.checkInfoLink();
 });
 
 When("I click on agree migration button", () => {
-	management.clickAgreeMigrationButton();
+  management.clickAgreeMigrationButton();
 });
 
 Then("I see the migration is active field", () => {
-	management.seeMigrationActiveTextInformation();
+  management.seeMigrationActiveTextInformation();
 });
 
 Then("I see the end migration button", () => {
-	management.seeEndMigrationButtonIsEnabled();
+  management.seeEndMigrationButtonIsEnabled();
 });
 
 When("I click on end migration button", () => {
-	management.clickEndMigrationButton();
+  management.clickEndMigrationButton();
 });
 
 When("I click on the end migration confirmation checkbox", () => {
-	management.clickEndMigrationConfirmationCheckbox();
+  management.clickEndMigrationConfirmationCheckbox();
 });
 
 When("I click on the end migration confirmation button", () => {
-	management.clickEndMigrationConfirmationButton();
+  management.clickEndMigrationConfirmationButton();
 });
 
 Then("I see the end of migration information title", () => {
-	management.seeEndMigrationInformationTitle();
+  management.seeEndMigrationInformationTitle();
 });
 
 Then("I see the end of migration information text", () => {
-	management.seeEndMigrationInformationText();
+  management.seeEndMigrationInformationText();
 });
 
 Then(
-	/^I see the end migration information link href is blog\.niedersachsen\.cloud\/umzug$/,
-	() => {
-		management.seeEndMigrationInfoLink();
-	}
+  /^I see the end migration information link href is blog\.niedersachsen\.cloud\/umzug$/,
+  () => {
+    management.seeEndMigrationInfoLink();
+  }
 );
 
 Then("I see the end migration confirmation checkbox is unchecked", () => {
-	management.seeEndMigrationConfirmationCheckboxIsUnchecked();
+  management.seeEndMigrationConfirmationCheckboxIsUnchecked();
 });
 
 Then("I see the abort button for end of migration conformation", () => {
-	management.seeEndMigrationAbortButton();
+  management.seeEndMigrationAbortButton();
 });
 
 Then("I see the end migration confirmation button is disabled", () => {
-	management.seeEndMigrationConfirmationButtonIsDisabled();
+  management.seeEndMigrationConfirmationButtonIsDisabled();
 });
 
 Then("I see the end migration confirmation button is enabled", () => {
-	management.seeEndMigrationConfirmationButtonIsEnabled();
+  management.seeEndMigrationConfirmationButtonIsEnabled();
 });
 
 Then("I see the migration mandatory switch is not checked", () => {
-	management.seeMigrationMandatorySwitch();
+  management.seeMigrationMandatorySwitch();
 });
 
 Then("I see the sync during migration switch is visible and not checked", () => {
-	management.seeSyncDuringMigrationSwitchIsNotChecked();
+  management.seeSyncDuringMigrationSwitchIsNotChecked();
 });
 
 Then("I see the sync during migration switch is checked", () => {
-	management.seeSyncDuringMigrationSwitchIsChecked();
+  management.seeSyncDuringMigrationSwitchIsChecked();
 });
 
 Then("I see the migration mandatory switch is checked", () => {
-	management.seeMigrationMandatorySwitchIsChecked();
+  management.seeMigrationMandatorySwitchIsChecked();
 });
 
 When("I check the migration mandatory switch", () => {
-	management.checkMigrationMandatorySwitch();
+  management.checkMigrationMandatorySwitch();
 });
 
 When("I check the sync during migration switch", () => {
-	management.checkSyncDuringMigrationSwitch();
+  management.checkSyncDuringMigrationSwitch();
 });
 
 When("I uncheck the sync during migration switch", () => {
-	management.uncheckSyncDuringMigrationSwitch();
+  management.uncheckSyncDuringMigrationSwitch();
 });
 
 Then("I see the timestamp when the migration is finished", () => {
-	management.seeMigrationFinishedTimestamp();
+  management.seeMigrationFinishedTimestamp();
 });
 
 Then("I see the migration wizard button", () => {
-	management.seeMigrationWizardButton();
+  management.seeMigrationWizardButton();
 });
 
 Then("I see the show outdated users switch is visible and not checked", () => {
-	management.seeShowOutdatedUsersSwitchIsNotChecked();
+  management.seeShowOutdatedUsersSwitchIsNotChecked();
 });
 
 Then("I see the show outdated users switch is checked", () => {
-	management.seeShowOutdatedUsersSwitchIsChecked();
+  management.seeShowOutdatedUsersSwitchIsChecked();
 });
 
 When("I check the show outdated users switch", () => {
-	management.checkShowOutdatedUsersSwitch();
+  management.checkShowOutdatedUsersSwitch();
 });
 
 When("I uncheck the show outdated users switch", () => {
-	management.uncheckShowOutdatedUsersSwitch();
+  management.uncheckShowOutdatedUsersSwitch();
 });
 
 When("I click on delete external tool button", () => {
-	management.clickDeleteExternalToolButton();
+  management.clickDeleteExternalToolButton();
 });
 
 When("I click on cancel external tool deletion button", () => {
-	management.clickCancelExternalToolDeletionButton();
+  management.clickCancelExternalToolDeletionButton();
 });
 
 Then("I see the external tools table", () => {
-	management.seeExternalToolTable();
+  management.seeExternalToolTable();
 });
 
 Then("I see the external tools table is empty", () => {
-	management.seeEmptyExternalToolTable();
+  management.seeEmptyExternalToolTable();
 });
 
 Then("I do not see the tool {string} in external tools table", (toolName) => {
-	management.toolIsNotVisibleInExternalToolTable(toolName);
+  management.toolIsNotVisibleInExternalToolTable(toolName);
 });
 
 When("I click the add external tool button", () => {
-	management.clickAddExternalTool();
+  management.clickAddExternalTool();
 });
 
 Then("I see the tool {string} is active in tools table", (toolName) => {
-	management.checkActivatedTool(toolName);
+  management.checkActivatedTool(toolName);
 });
 
 Then("I see the tool {string} is deactivated in external tools table", (toolName) => {
-	management.checkDeactivatedTool(toolName);
+  management.checkDeactivatedTool(toolName);
 });
 
 Then("I see the external tool deletion dialog information text", () => {
-	management.seeExternalToolDeletionDialogInfoText();
+  management.seeExternalToolDeletionDialogInfoText();
 });
 
 Then("I see the external tool deletion dialog title", () => {
-	management.seeExternalToolDeletionDialogTitle();
+  management.seeExternalToolDeletionDialogTitle();
 });
 
 Then("I see the tool {string} in external tools table", (toolname) => {
-	management.seeExternalTool(toolname);
+  management.seeExternalTool(toolname);
 });
 
 When("I click on edit button of tool {string}", (toolName) => {
-	management.clickOnEditButton(toolName);
+  management.clickOnEditButton(toolName);
 });
 
 When("I click on delete button of tool {string}", (toolName) => {
-	management.clickDeleteButtonOnTool(toolName);
+  management.clickDeleteButtonOnTool(toolName);
 });
 
 When("I confirm deletion on deletion dialog", () => {
-	management.clickOnConfirmInToolUsageDialog();
+  management.clickOnConfirmInToolUsageDialog();
 });
 
 Then(
-	"I see the tool {string} in external tools table has no context restriction",
-	(toolName) => {
-		management.seeToolHasNoContextRestriction(toolName);
-	}
+  "I see the tool {string} in external tools table has no context restriction",
+  (toolName) => {
+    management.seeToolHasNoContextRestriction(toolName);
+  }
 );
 
 Then(
-	"I see the tool {string} in external tools table has context restriction {string}",
-	(toolName, contextRestriction) => {
-		management.seeToolHasContextRestriction(toolName, contextRestriction);
-	}
+  "I see the tool {string} in external tools table has context restriction {string}",
+  (toolName, contextRestriction) => {
+    management.seeToolHasContextRestriction(toolName, contextRestriction);
+  }
 );
 
 When("I click on authentication panel", () => {
-	management.clickOnAuthenticationPanel();
+  management.clickOnAuthenticationPanel();
 });
 
 Then("I see a systems table", () => {
-	management.seeSystemTable();
+  management.seeSystemTable();
 });
 
 Then(
-	"I see system {string} of type {string} in the system table",
-	(systemName, systemType) => {
-		management.seeSystemInTable(systemName, systemType);
-	}
+  "I see system {string} of type {string} in the system table",
+  (systemName, systemType) => {
+    management.seeSystemInTable(systemName, systemType);
+  }
 );
 
 When("I click on the edit button of system {string}", (systemName) => {
-	management.clickEditButtonOfSystem(systemName);
+  management.clickEditButtonOfSystem(systemName);
 });
 
 Then("I see the provisioning options page", () => {
-	management.seeProvisioningOptionsPage();
+  management.seeProvisioningOptionsPage();
 });
 
 Then("I see 4 checkboxes with assigned default values", () => {
-	management.seeCheckboxesWithDefaultValues();
+  management.seeCheckboxesWithDefaultValues();
 });
 
 When("I check all checkboxes", () => {
-	management.checkAllBoxes();
+  management.checkAllBoxes();
 });
 
 When("I click the cancel button on the provisioning options page", () => {
-	management.clickOnProvisioningOptionsCancelButton();
+  management.clickOnProvisioningOptionsCancelButton();
 });
 
 When("I click the save button on the provisioning options page", () => {
-	management.clickOnProvisioningOptionsSaveButton();
+  management.clickOnProvisioningOptionsSaveButton();
 });
 
 Then("I see all 4 checkboxes are checked", () => {
-	management.seeAllCheckboxesAreChecked();
+  management.seeAllCheckboxesAreChecked();
 });
 
 When("I set the checkboxes to default values", () => {
-	management.resetCheckboxValues();
+  management.resetCheckboxValues();
 });
 
 When("I uncheck all checkboxes", () => {
-	management.uncheckAllBoxes();
+  management.uncheckAllBoxes();
 });
 
 Then("I see a warning dialog", () => {
-	management.seeDialog();
+  management.seeDialog();
 });
 
 When("I confirm the dialog", () => {
-	management.confirmDialog();
+  management.confirmDialog();
 });
 
 Then("I see all 4 checkboxes are unchecked", () => {
-	management.seeAllCheckboxesAreUnchecked();
+  management.seeAllCheckboxesAreUnchecked();
 });
 
 When("I visit the login page", () => {
-	management.visitUrlForFirstLogin();
+  management.visitUrlForFirstLogin();
 });
 
 When(
-	"I fill out the user creation form for {string} {string} with email {string}",
-	(forename, surname, email) => {
-		management.fillUserCreationForm(forename, surname, email);
-	}
+  "I fill out the user creation form for {string} {string} with email {string}",
+  (forename, surname, email) => {
+    management.fillUserCreationForm(forename, surname, email);
+  }
 );
 
 When("I click on add button to add {string}", (role) => {
-	management.clickOnAddButton(role);
+  management.clickOnAddButton(role);
 });
 
 Then("I can see the user with email {string} in the table", (email) => {
-	management.userIsVisibleInTable(email);
+  management.userIsVisibleInTable(email);
 });
 
 When("I enter {string} email {string} in search input field", (role, keyword) => {
-	management.enterNameForSearch(role, keyword);
+  management.enterNameForSearch(role, keyword);
 });
 
 When("I change username to {string} {string}", (firstname, surname) => {
-	management.changeUsername(firstname, surname);
+  management.changeUsername(firstname, surname);
 });
 
 When("I change email to {string}", (newEmail) => {
-	management.changeEmail(newEmail);
+  management.changeEmail(newEmail);
 });
 
 When("I click save changes button", () => {
-	management.clickSaveButton();
+  management.clickSaveButton();
 });
 
 When("I click edit {string} button for {string}", (role, email) => {
-	management.clickEditUserButton(role, email);
+  management.clickEditUserButton(role, email);
 });
 
 When("I click delete user button to delete user with last name {string}", (surname) => {
-	management.deleteUser(surname);
+  management.deleteUser(surname);
 });
 
 When("I click on delete button in pop up", () => {
-	management.clickUserDeleteButtonInModal();
+  management.clickUserDeleteButtonInModal();
 });
 
 Then("I can not see user {string} in the table", (email) => {
-	management.userIsNotVisibleInTable(email);
+  management.userIsNotVisibleInTable(email);
 });
 
 When("I click delete user button", () => {
-	management.clickDeleteButton();
+  management.clickDeleteButton();
 });
 When("I enter the initial generated password", () => {
-	management.enterInitialPasswordAsStudentAfterRegistration();
+  management.enterInitialPasswordAsStudentAfterRegistration();
 });
 
 Then("I click on the button Generate Personal Registration Link for student", () => {
-	management.generateRegistrationLinkForStudent();
+  management.generateRegistrationLinkForStudent();
 });
 
 Then("I click on the button Next to proceed to the age selection", () => {
-	management.clickOnNextForAgeSelection();
+  management.clickOnNextForAgeSelection();
 });
 
 When("I select the age over 16 years for registration", () => {
-	management.selectAgeOnRegistrationProcess();
+  management.selectAgeOnRegistrationProcess();
 });
 
 Then(
-	"I click on the button Next to proceed to the personal data information page",
-	() => {
-		management.clickOnNextToProceedToPersonalRegistrationData();
-	}
+  "I click on the button Next to proceed to the personal data information page",
+  () => {
+    management.clickOnNextToProceedToPersonalRegistrationData();
+  }
 );
 
 Then("I see the page user data summary", () => {
-	management.seeUserSummaryOnRegistrationFinalPage();
+  management.seeUserSummaryOnRegistrationFinalPage();
 });
 
 When("I click on the button Next on the section 1", () => {
-	management.clickOnNextOnSectionOneTeacherFirstLogin();
+  management.clickOnNextOnSectionOneTeacherFirstLogin();
 });
 Then("I see my email", () => {
-	management.seeEmailOnFirstLoginSectionTwoPage();
+  management.seeEmailOnFirstLoginSectionTwoPage();
 });
 
 When("I click on the button Next on the section 2", () => {
-	management.clickOnNextOnSectionTwoTeacherFirstLogin();
+  management.clickOnNextOnSectionTwoTeacherFirstLogin();
 });
 When("I click on the button Get started right away on the section 3", () => {
-	management.clickOnGetStartedOnSectionThreeTeacherFirstLogin();
+  management.clickOnGetStartedOnSectionThreeTeacherFirstLogin();
 });
 
 When("I enter the set password", () => {
-	management.enterNewSetPasswordAsTeacher();
+  management.enterNewSetPasswordAsTeacher();
 });
 
 Then("I see the summary page", () => {
-	management.seeSummaryOnTeacherRegistration();
+  management.seeSummaryOnTeacherRegistration();
 });
 
 Then("I click on the button Next to proceed to next step", () => {
-	management.clickOnNextButtonOnTeacherRegistration();
+  management.clickOnNextButtonOnTeacherRegistration();
 });
 Then(
-	"I click again on the button Next to proceed to the personal data information page",
-	() => {
-		management.clickOnNextButtonOnTeacherRegistration();
-	}
+  "I click again on the button Next to proceed to the personal data information page",
+  () => {
+    management.clickOnNextButtonOnTeacherRegistration();
+  }
 );
 Then("I set a new password on personal data page", () => {
-	management.setNewPasswordAsTeacherOnRegistration();
+  management.setNewPasswordAsTeacherOnRegistration();
 });
 
 Then("I click on the button Generate Personal Registration Link for teacher", () => {
-	management.generateRegistrationLinkForTeacher();
+  management.generateRegistrationLinkForTeacher();
 });
 
 Then("I see my assigned Email", () => {
-	management.seeEmailOnFirstLoginSectionTwoPage();
+  management.seeEmailOnFirstLoginSectionTwoPage();
 });
 
 When("I click on the button Change password", () => {
-	management.clickOnChanagePasswordByAdmin();
+  management.clickOnChanagePasswordByAdmin();
 });
 Then("I see the pop-up window", () => {
-	management.seeChangePasswordDialogForAdmin();
+  management.seeChangePasswordDialogForAdmin();
 });
 Then("I enter a new password in the pop-up window", () => {
-	management.enterNewPasswordForUserByAdmin();
+  management.enterNewPasswordForUserByAdmin();
 });
 Then("I click on the button Save", () => {
-	management.clickOnSaveAfterChangingPasswordByAdmin();
+  management.clickOnSaveAfterChangingPasswordByAdmin();
 });
 Then("I see the success message", () => {
-	management.seeSuccessMessageAfterChangingPasswordByAdmin();
+  management.seeSuccessMessageAfterChangingPasswordByAdmin();
 });
 
 Then("I click on the button Next to proceed to the registration pin step", () => {
-	management.clickOnNextToProceedToRegistrationPinPage();
+  management.clickOnNextToProceedToRegistrationPinPage();
 });
 
 Then(
-	"I click on the button Send and Get Started to successfully complete the registration process",
-	() => {
-		management.clickOnSendAndGetStartedOnRegistration();
-	}
+  "I click on the button Send and Get Started to successfully complete the registration process",
+  () => {
+    management.clickOnSendAndGetStartedOnRegistration();
+  }
 );
 
 Then(
-	"I retrieve the registration pin to enter it into the form for {string}",
-	(environment) => {
-		management.retrieveAndEnterRegistrationPinViaApi(environment);
-	}
+  "I retrieve the registration pin to enter it into the form for {string}",
+  (environment) => {
+    management.retrieveAndEnterRegistrationPinViaApi(environment);
+  }
 );
 
 When("I request a new registration pin", () => {
-	management.requestRegistrationPin();
+  management.requestRegistrationPin();
 });
 
 When("I accept the privacy and terms of use consents", () => {
-	management.acceptingConsentOnRegistrationProcess();
+  management.acceptingConsentOnRegistrationProcess();
 });
 
 When("I click on the button Next to proceed to the next step", () => {
-	management.clickOnNextOnRegistrationPage();
+  management.clickOnNextOnRegistrationPage();
 });
 
 When("I choose the language for the registration process", () => {
-	management.chooseLanguageOnRegistrationProcess();
+  management.chooseLanguageOnRegistrationProcess();
 });
 
 Then("I visit to the generated registration link", () => {
-	management.openAndVisitToRegistrationPage();
+  management.openAndVisitToRegistrationPage();
 });
 
 Then("I see my first name {string}", (firstName) => {
-	management.seeFirstNameOnRegistrationPage(firstName);
+  management.seeFirstNameOnRegistrationPage(firstName);
 });
 
 Then("I see my last name {string}", (lastName) => {
-	management.seeLastNameOnRegistrationPage(lastName);
+  management.seeLastNameOnRegistrationPage(lastName);
 });
 
 When("I click the toggle switch to enable student visibility for teachers", () => {
-	management.enableStudentVisibilityForTeacher();
+  management.enableStudentVisibilityForTeacher();
 });
 
 Then("I disable the video conference", () => {
-	management.disableTeamsVideoConferenceByAdmin();
+  management.disableTeamsVideoConferenceByAdmin();
 });
 
 Then("I click on button Save admin settings", () => {
-	management.clickOnAdminSettingsSave();
+  management.clickOnAdminSettingsSave();
 });
 
 Then("I enable the video conference", () => {
-	management.enableTeamsVideoConferenceByAdmin();
+  management.enableTeamsVideoConferenceByAdmin();
 });
 
 When("I navigate to new school admin page via sub menu", () => {
-	management.clickOnSchoolAdministrationInSideMenu();
+  management.clickOnSchoolAdministrationInSideMenu();
 });
 
 When("I click on administration in menu", () => {
-	management.openAdministrationInMenu();
+  management.openAdministrationInMenu();
 });
 
 When("I click on general settings panel", () => {
-	management.clickGeneralSettingsPanel();
+  management.clickGeneralSettingsPanel();
 });
 
 When("I click on account migration panel", () => {
-	management.clickAccountMigrationPanel();
+  management.clickAccountMigrationPanel();
 });
 
 When("I click on external tools panel", () => {
-	management.clickExternalToolsPanel();
+  management.clickExternalToolsPanel();
 });
 
 When("I click save general settings button", () => {
-	management.clickSaveGeneralSettingsButton();
+  management.clickSaveGeneralSettingsButton();
 });
 
 When("I go to {string} administration", (role) => {
-	management.navigateToUserAdministration(role);
+  management.navigateToUserAdministration(role);
 });
 
 When("I go to team administration", () => {
-	management.navigateToTeamAdministration();
+  management.navigateToTeamAdministration();
 });
 
 When("I go to legacy course administration", () => {
-	management.navigateToLegacyCourseAdministration();
+  management.navigateToLegacyCourseAdministration();
 });
 
 When("I click on FAB to add {string}", (role) => {
-	management.clickOnFAB(role);
+  management.clickOnFAB(role);
 });
 
 When("I click on Add User in opened FAB for {string}", (role) => {
-	management.clickOnAddUserInFAB(role);
+  management.clickOnAddUserInFAB(role);
 });

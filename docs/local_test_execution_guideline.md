@@ -26,7 +26,6 @@ There are two categories of example tables:
 
 1. Dev/Staging Examples
    Tags: `@school_api_test, @staging_test`
-
    - Target deployed test environments (e.g., brb, staging)
    - Use real test data and environments - Common in CI pipelines
 

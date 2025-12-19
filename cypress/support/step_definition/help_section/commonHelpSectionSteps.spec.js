@@ -4,13 +4,13 @@ import Help from "../../pages/help_section/pageHelpSection";
 const help = new Help();
 
 When("I click on Help Section in sidebar", () => {
-	help.navigateToHelpSection();
+  help.navigateToHelpSection();
 });
 
 When("I click on Help articles in sidebar", () => {
-	help.navigateToHelpArticles();
+  help.navigateToHelpArticles();
 });
 
 When("I click on Contact in sidebar", () => {
-	help.navigateToHelpContact();
+  help.navigateToHelpContact();
 });

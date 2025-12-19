@@ -4,13 +4,13 @@ import Login_Management from "../../pages/login_management/pageLoginManagement";
 const loginManagement = new Login_Management();
 
 Given("I am on the {string} login page", (namespace) => {
-	loginManagement.visitLoginPage(namespace);
+  loginManagement.visitLoginPage(namespace);
 });
 
 When("I click on Forgot Password", () => {
-	loginManagement.clickOnForgotPassword();
+  loginManagement.clickOnForgotPassword();
 });
 
 Then("I see the login form on {string}", (namespace) => {
-	loginManagement.assertLoginFormIsVisible(namespace);
+  loginManagement.assertLoginFormIsVisible(namespace);
 });

@@ -26,7 +26,6 @@ This guide provides instructions on how to execute tests using Cypress, includin
    <br>
 
 2. **Examples**
-
    - **Run all stable regression tests in GUI mode locally:**
      <br>
 
@@ -34,26 +33,23 @@ This guide provides instructions on how to execute tests using Cypress, includin
      npm run cy:gui:stable:regression:local
      ```
 
-    <br>
+      <br>
+     - **Run all unstable tests in headless mode for CI:**
+       <br>
 
-   - **Run all unstable tests in headless mode for CI:**
-     <br>
+   ```txt
+   npm run cy:headless:unstable:smoke:ci
+   ```
 
-     ```txt
-     npm run cy:headless:unstable:smoke:ci
-     ```
-
-    <br>
-
-   - **Run specific scenario tagged with @only:**
-     <br>
-     ```txt
-     npm run cy:gui:only:local
-     ```
+      <br>
+     - **Run specific scenario tagged with @only:**
+       <br>
+       ```txt
+       npm run cy:gui:only:local
+       ```
 
 3. **Running Tests Locally**
    To run tests locally:
-
    - **Ensure Environment Configuration:** Verify that local.env.json contains the correct credentials and api keys.
    - **Select and Run Tests:** Choose the appropriate script based on your test requirements.
 

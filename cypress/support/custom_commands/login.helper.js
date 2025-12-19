@@ -1,7 +1,7 @@
 const externalUsernameInputFieldElement = '[id="Username"]';
 const externalPasswordInputFieldElement = '[id="Password"]';
 const oauth_url =
-	"https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock";
+  "https://idm-default-main.cd.dbildungscloud.dev/realms/default/protocol/openid-connect/auth?client_id=dbildungscloud-server&redirect_uri=https://default-main.cd.dbildungscloud.dev/api/v3/sso/oauth/62c7f233f35a554ba3ed42f1&response_type=code&scope=openid%20profile%20email&kc_idp_hint=oidcmock";
 
 const emailInputFieldElement = '[data-testid="username-email"]';
 const passwordInputFieldElement = '[data-testid="password-email"]';
@@ -21,152 +21,152 @@ const env = Cypress.env();
 let environmentUpperCased;
 
 export const getUserCredentials = (username) => {
-	switch (username) {
-		case "admin1_brb":
-			return ["ADMIN_1_BRB_EMAIL", "ADMIN_1_BRB_PASSWORD"];
-		case "admin_hc_brb":
-			return ["ADMIN_HC_BRB_EMAIL", "ADMIN_HC_BRB_PASSWORD"];
-		case "teacher1_brb":
-			return ["TEACHER_1_BRB_EMAIL", "TEACHER_1_BRB_PASSWORD"];
-		case "teacher2_brb":
-			return ["TEACHER_2_BRB_EMAIL", "TEACHER_2_BRB_PASSWORD"];
-		case "teacher_hc_brb":
-			return ["TEACHER_HC_BRB_EMAIL", "TEACHER_HC_BRB_PASSWORD"];
-		case "student1_brb":
-			return ["STUDENT_1_BRB_EMAIL", "STUDENT_1_BRB_PASSWORD"];
-		case "student2_brb":
-			return ["STUDENT_2_BRB_EMAIL", "STUDENT_2_BRB_PASSWORD"];
-		case "student_hc_brb":
-			return ["STUDENT_HC_BRB_EMAIL", "STUDENT_HC_BRB_PASSWORD"];
-		case "student_ldap_brb":
-			return ["STUDENT_LDAP_BRB", "STUDENT_LDAP_BRB_PASSWORD"];
-		case "teacher_ldap_brb":
-			return ["TEACHER_LDAP_BRB", "TEACHER_LDAP_BRB_PASSWORD"];
-		case "admin_ldap_brb":
-			return ["ADMIN_LDAP_BRB", "ADMIN_LDAP_BRB_PASSWORD"];
-		case "teacherExt1_brb":
-			return ["TEACHER_EXT_1_BRB_EMAIL", "TEACHER_EXT_1_BRB_PASSWORD"];
-		case "adminExt1_brb":
-			return ["ADMIN_EXT_1_BRB_EMAIL", "ADMIN_EXT_1_BRB_PASSWORD"];
-		case "studentExt1_brb":
-			return ["STUDENT_EXT_1_BRB_EMAIL", "STUDENT_EXT_1_BRB_PASSWORD"];
-		case "teacherExt2_brb":
-			return ["TEACHER_EXT_2_BRB_EMAIL", "TEACHER_EXT_2_BRB_PASSWORD"];
-		case "studentExt2_brb":
-			return ["STUDENT_EXT_2_BRB_EMAIL", "STUDENT_EXT_2_BRB_PASSWORD"];
-		case "admin1_double_role_brb":
-			return ["ADMIN_1_DOUBLE_ROLE_BRB_EMAIL", "ADMIN_1_DOUBLE_ROLE_BRB_PASSWORD"];
-		case "student_1_hcs_brb":
-			return ["STUDENT_1_HCS_BRB_EMAIL", "STUDENT_1_HCS_BRB_PASSWORD"];
-		case "teacher_1_hcs_brb":
-			return ["TEACHER_1_HCS_BRB_EMAIL", "TEACHER_1_HCS_BRB_PASSWORD"];
-		case "teacher_2_hcs_brb":
-			return ["TEACHER_2_HCS_BRB_EMAIL", "TEACHER_2_HCS_BRB_PASSWORD"];
-		case "admin_1_hcs_brb":
-			return ["ADMIN_1_HCS_BRB_EMAIL", "ADMIN_1_HCS_BRB_PASSWORD"];
+  switch (username) {
+    case "admin1_brb":
+      return ["ADMIN_1_BRB_EMAIL", "ADMIN_1_BRB_PASSWORD"];
+    case "admin_hc_brb":
+      return ["ADMIN_HC_BRB_EMAIL", "ADMIN_HC_BRB_PASSWORD"];
+    case "teacher1_brb":
+      return ["TEACHER_1_BRB_EMAIL", "TEACHER_1_BRB_PASSWORD"];
+    case "teacher2_brb":
+      return ["TEACHER_2_BRB_EMAIL", "TEACHER_2_BRB_PASSWORD"];
+    case "teacher_hc_brb":
+      return ["TEACHER_HC_BRB_EMAIL", "TEACHER_HC_BRB_PASSWORD"];
+    case "student1_brb":
+      return ["STUDENT_1_BRB_EMAIL", "STUDENT_1_BRB_PASSWORD"];
+    case "student2_brb":
+      return ["STUDENT_2_BRB_EMAIL", "STUDENT_2_BRB_PASSWORD"];
+    case "student_hc_brb":
+      return ["STUDENT_HC_BRB_EMAIL", "STUDENT_HC_BRB_PASSWORD"];
+    case "student_ldap_brb":
+      return ["STUDENT_LDAP_BRB", "STUDENT_LDAP_BRB_PASSWORD"];
+    case "teacher_ldap_brb":
+      return ["TEACHER_LDAP_BRB", "TEACHER_LDAP_BRB_PASSWORD"];
+    case "admin_ldap_brb":
+      return ["ADMIN_LDAP_BRB", "ADMIN_LDAP_BRB_PASSWORD"];
+    case "teacherExt1_brb":
+      return ["TEACHER_EXT_1_BRB_EMAIL", "TEACHER_EXT_1_BRB_PASSWORD"];
+    case "adminExt1_brb":
+      return ["ADMIN_EXT_1_BRB_EMAIL", "ADMIN_EXT_1_BRB_PASSWORD"];
+    case "studentExt1_brb":
+      return ["STUDENT_EXT_1_BRB_EMAIL", "STUDENT_EXT_1_BRB_PASSWORD"];
+    case "teacherExt2_brb":
+      return ["TEACHER_EXT_2_BRB_EMAIL", "TEACHER_EXT_2_BRB_PASSWORD"];
+    case "studentExt2_brb":
+      return ["STUDENT_EXT_2_BRB_EMAIL", "STUDENT_EXT_2_BRB_PASSWORD"];
+    case "admin1_double_role_brb":
+      return ["ADMIN_1_DOUBLE_ROLE_BRB_EMAIL", "ADMIN_1_DOUBLE_ROLE_BRB_PASSWORD"];
+    case "student_1_hcs_brb":
+      return ["STUDENT_1_HCS_BRB_EMAIL", "STUDENT_1_HCS_BRB_PASSWORD"];
+    case "teacher_1_hcs_brb":
+      return ["TEACHER_1_HCS_BRB_EMAIL", "TEACHER_1_HCS_BRB_PASSWORD"];
+    case "teacher_2_hcs_brb":
+      return ["TEACHER_2_HCS_BRB_EMAIL", "TEACHER_2_HCS_BRB_PASSWORD"];
+    case "admin_1_hcs_brb":
+      return ["ADMIN_1_HCS_BRB_EMAIL", "ADMIN_1_HCS_BRB_PASSWORD"];
 
-		case "admin1_dbc":
-			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
-		case "admin_hc_dbc":
-			return ["ADMIN_HC_DBC_EMAIL", "ADMIN_HC_DBC_PASSWORD"];
-		case "teacher1_dbc":
-			return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
-		case "admin1_double_role_dbc":
-			return ["ADMIN_1_DOUBLE_ROLE_DBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_DBC_PASSWORD"];
-		case "teacher2_dbc":
-			return ["TEACHER_2_DBC_EMAIL", "TEACHER_2_DBC_PASSWORD"];
-		case "teacher_hc_dbc":
-			return ["TEACHER_HC_DBC_EMAIL", "TEACHER_HC_DBC_PASSWORD"];
-		case "student1_dbc":
-			return ["STUDENT_1_DBC_EMAIL", "STUDENT_1_DBC_PASSWORD"];
-		case "student2_dbc":
-			return ["STUDENT_2_DBC_EMAIL", "STUDENT_2_DBC_PASSWORD"];
-		case "student_hc_dbc":
-			return ["STUDENT_HC_DBC_EMAIL", "STUDENT_HC_DBC_PASSWORD"];
-		case "student_extern_dbc":
-			return ["STUDENT_DBC_EXTERN", "STUDENT_DBC_EXTERN_PASSWORD"];
-		case "student_ldap_dbc":
-			return ["STUDENT_LDAP_DBC", "STUDENT_LDAP_DBC_PASSWORD"];
-		case "teacher_ldap_dbc":
-			return ["TEACHER_LDAP_DBC", "TEACHER_LDAP_DBC_PASSWORD"];
-		case "admin_ldap_dbc":
-			return ["ADMIN_LDAP_DBC", "ADMIN_LDAP_DBC_PASSWORD"];
-		case "teacherExt1_dbc":
-			return ["TEACHER_EXT_1_DBC_EMAIL", "TEACHER_EXT_1_DBC_PASSWORD"];
-		case "adminExt1_dbc":
-			return ["ADMIN_EXT_1_DBC_EMAIL", "ADMIN_EXT_1_DBC_PASSWORD"];
-		case "teacherExt2_dbc":
-			return ["TEACHER_EXT_2_DBC_EMAIL", "TEACHER_EXT_2_DBC_PASSWORD"];
-		case "studentExt1_dbc":
-			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
-		case "studentExt2_dbc":
-			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
-		case "student_1_hcs_dbc":
-			return ["STUDENT_1_HCS_DBC_EMAIL", "STUDENT_1_HCS_DBC_PASSWORD"];
-		case "teacher_1_hcs_dbc":
-			return ["TEACHER_1_HCS_DBC_EMAIL", "TEACHER_1_HCS_DBC_PASSWORD"];
-		case "teacher_2_hcs_dbc":
-			return ["TEACHER_2_HCS_DBC_EMAIL", "TEACHER_2_HCS_DBC_PASSWORD"];
-		case "admin_1_hcs_dbc":
-			return ["ADMIN_1_HCS_DBC_EMAIL", "ADMIN_1_HCS_DBC_PASSWORD"];
+    case "admin1_dbc":
+      return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
+    case "admin_hc_dbc":
+      return ["ADMIN_HC_DBC_EMAIL", "ADMIN_HC_DBC_PASSWORD"];
+    case "teacher1_dbc":
+      return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
+    case "admin1_double_role_dbc":
+      return ["ADMIN_1_DOUBLE_ROLE_DBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_DBC_PASSWORD"];
+    case "teacher2_dbc":
+      return ["TEACHER_2_DBC_EMAIL", "TEACHER_2_DBC_PASSWORD"];
+    case "teacher_hc_dbc":
+      return ["TEACHER_HC_DBC_EMAIL", "TEACHER_HC_DBC_PASSWORD"];
+    case "student1_dbc":
+      return ["STUDENT_1_DBC_EMAIL", "STUDENT_1_DBC_PASSWORD"];
+    case "student2_dbc":
+      return ["STUDENT_2_DBC_EMAIL", "STUDENT_2_DBC_PASSWORD"];
+    case "student_hc_dbc":
+      return ["STUDENT_HC_DBC_EMAIL", "STUDENT_HC_DBC_PASSWORD"];
+    case "student_extern_dbc":
+      return ["STUDENT_DBC_EXTERN", "STUDENT_DBC_EXTERN_PASSWORD"];
+    case "student_ldap_dbc":
+      return ["STUDENT_LDAP_DBC", "STUDENT_LDAP_DBC_PASSWORD"];
+    case "teacher_ldap_dbc":
+      return ["TEACHER_LDAP_DBC", "TEACHER_LDAP_DBC_PASSWORD"];
+    case "admin_ldap_dbc":
+      return ["ADMIN_LDAP_DBC", "ADMIN_LDAP_DBC_PASSWORD"];
+    case "teacherExt1_dbc":
+      return ["TEACHER_EXT_1_DBC_EMAIL", "TEACHER_EXT_1_DBC_PASSWORD"];
+    case "adminExt1_dbc":
+      return ["ADMIN_EXT_1_DBC_EMAIL", "ADMIN_EXT_1_DBC_PASSWORD"];
+    case "teacherExt2_dbc":
+      return ["TEACHER_EXT_2_DBC_EMAIL", "TEACHER_EXT_2_DBC_PASSWORD"];
+    case "studentExt1_dbc":
+      return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
+    case "studentExt2_dbc":
+      return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
+    case "student_1_hcs_dbc":
+      return ["STUDENT_1_HCS_DBC_EMAIL", "STUDENT_1_HCS_DBC_PASSWORD"];
+    case "teacher_1_hcs_dbc":
+      return ["TEACHER_1_HCS_DBC_EMAIL", "TEACHER_1_HCS_DBC_PASSWORD"];
+    case "teacher_2_hcs_dbc":
+      return ["TEACHER_2_HCS_DBC_EMAIL", "TEACHER_2_HCS_DBC_PASSWORD"];
+    case "admin_1_hcs_dbc":
+      return ["ADMIN_1_HCS_DBC_EMAIL", "ADMIN_1_HCS_DBC_PASSWORD"];
 
-		case "admin1_nbc":
-			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
-		case "admin_hc_nbc":
-			return ["ADMIN_HC_NBC_EMAIL", "ADMIN_HC_NBC_PASSWORD"];
-		case "teacher1_nbc":
-			return ["TEACHER_1_NBC_EMAIL", "TEACHER_1_NBC_PASSWORD"];
-		case "teacher2_nbc":
-			return ["TEACHER_2_NBC_EMAIL", "TEACHER_2_NBC_PASSWORD"];
-		case "teacher_hc_nbc":
-			return ["TEACHER_HC_NBC_EMAIL", "TEACHER_HC_NBC_PASSWORD"];
-		case "student1_nbc":
-			return ["STUDENT_1_NBC_EMAIL", "STUDENT_1_NBC_PASSWORD"];
-		case "student2_nbc":
-			return ["STUDENT_2_NBC_EMAIL", "STUDENT_2_NBC_PASSWORD"];
-		case "student_hc_nbc":
-			return ["STUDENT_HC_NBC_EMAIL", "STUDENT_HC_NBC_PASSWORD"];
-		case "student_ldap_nbc":
-			return ["STUDENT_LDAP_NBC", "STUDENT_LDAP_NBC_PASSWORD"];
-		case "teacher_ldap_nbc":
-			return ["TEACHER_LDAP_NBC", "TEACHER_LDAP_NBC_PASSWORD"];
-		case "admin_ldap_nbc":
-			return ["ADMIN_LDAP_NBC", "ADMIN_LDAP_NBC_PASSWORD"];
-		case "teacherExt1_nbc":
-			return ["TEACHER_EXT_1_NBC_EMAIL", "TEACHER_EXT_1_NBC_PASSWORD"];
-		case "adminExt1_nbc":
-			return ["ADMIN_EXT_1_NBC_EMAIL", "ADMIN_EXT_1_NBC_PASSWORD"];
-		case "studentExt1_nbc":
-			return ["STUDENT_EXT_1_NBC_EMAIL", "STUDENT_EXT_1_NBC_PASSWORD"];
-		case "teacherExt2_nbc":
-			return ["TEACHER_EXT_2_NBC_EMAIL", "TEACHER_EXT_2_NBC_PASSWORD"];
-		case "studentExt2_nbc":
-			return ["STUDENT_EXT_2_NBC_EMAIL", "STUDENT_EXT_2_NBC_PASSWORD"];
-		case "admin1_double_role_nbc":
-			return ["ADMIN_1_DOUBLE_ROLE_NBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_NBC_PASSWORD"];
-		case "student_1_hcs_nbc":
-			return ["STUDENT_1_HCS_NBC_EMAIL", "STUDENT_1_HCS_NBC_PASSWORD"];
-		case "teacher_1_hcs_nbc":
-			return ["TEACHER_1_HCS_NBC_EMAIL", "TEACHER_1_HCS_NBC_PASSWORD"];
-		case "teacher_2_hcs_nbc":
-			return ["TEACHER_2_HCS_NBC_EMAIL", "TEACHER_2_HCS_NBC_PASSWORD"];
-		case "admin_1_hcs_nbc":
-			return ["ADMIN_1_HCS_NBC_EMAIL", "ADMIN_1_HCS_NBC_PASSWORD"];
+    case "admin1_nbc":
+      return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
+    case "admin_hc_nbc":
+      return ["ADMIN_HC_NBC_EMAIL", "ADMIN_HC_NBC_PASSWORD"];
+    case "teacher1_nbc":
+      return ["TEACHER_1_NBC_EMAIL", "TEACHER_1_NBC_PASSWORD"];
+    case "teacher2_nbc":
+      return ["TEACHER_2_NBC_EMAIL", "TEACHER_2_NBC_PASSWORD"];
+    case "teacher_hc_nbc":
+      return ["TEACHER_HC_NBC_EMAIL", "TEACHER_HC_NBC_PASSWORD"];
+    case "student1_nbc":
+      return ["STUDENT_1_NBC_EMAIL", "STUDENT_1_NBC_PASSWORD"];
+    case "student2_nbc":
+      return ["STUDENT_2_NBC_EMAIL", "STUDENT_2_NBC_PASSWORD"];
+    case "student_hc_nbc":
+      return ["STUDENT_HC_NBC_EMAIL", "STUDENT_HC_NBC_PASSWORD"];
+    case "student_ldap_nbc":
+      return ["STUDENT_LDAP_NBC", "STUDENT_LDAP_NBC_PASSWORD"];
+    case "teacher_ldap_nbc":
+      return ["TEACHER_LDAP_NBC", "TEACHER_LDAP_NBC_PASSWORD"];
+    case "admin_ldap_nbc":
+      return ["ADMIN_LDAP_NBC", "ADMIN_LDAP_NBC_PASSWORD"];
+    case "teacherExt1_nbc":
+      return ["TEACHER_EXT_1_NBC_EMAIL", "TEACHER_EXT_1_NBC_PASSWORD"];
+    case "adminExt1_nbc":
+      return ["ADMIN_EXT_1_NBC_EMAIL", "ADMIN_EXT_1_NBC_PASSWORD"];
+    case "studentExt1_nbc":
+      return ["STUDENT_EXT_1_NBC_EMAIL", "STUDENT_EXT_1_NBC_PASSWORD"];
+    case "teacherExt2_nbc":
+      return ["TEACHER_EXT_2_NBC_EMAIL", "TEACHER_EXT_2_NBC_PASSWORD"];
+    case "studentExt2_nbc":
+      return ["STUDENT_EXT_2_NBC_EMAIL", "STUDENT_EXT_2_NBC_PASSWORD"];
+    case "admin1_double_role_nbc":
+      return ["ADMIN_1_DOUBLE_ROLE_NBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_NBC_PASSWORD"];
+    case "student_1_hcs_nbc":
+      return ["STUDENT_1_HCS_NBC_EMAIL", "STUDENT_1_HCS_NBC_PASSWORD"];
+    case "teacher_1_hcs_nbc":
+      return ["TEACHER_1_HCS_NBC_EMAIL", "TEACHER_1_HCS_NBC_PASSWORD"];
+    case "teacher_2_hcs_nbc":
+      return ["TEACHER_2_HCS_NBC_EMAIL", "TEACHER_2_HCS_NBC_PASSWORD"];
+    case "admin_1_hcs_nbc":
+      return ["ADMIN_1_HCS_NBC_EMAIL", "ADMIN_1_HCS_NBC_PASSWORD"];
 
-		case "teacher1_lh":
-			return ["TEACHER_1_LH_EMAIL", "TEACHER_1_LH_PASSWORD"];
-		case "teacher2_lh":
-			return ["TEACHER_2_LH_EMAIL", "TEACHER_2_LH_PASSWORD"];
-		case "student1_lh":
-			return ["STUDENT_1_LH_EMAIL", "STUDENT_1_LH_PASSWORD"];
-		case "student2_lh":
-			return ["STUDENT_2_LH_EMAIL", "STUDENT_2_LH_PASSWORD"];
-		case "admin1_lh":
-			return ["ADMIN_1_LH_EMAIL", "ADMIN_1_LH_PASSWORD"];
+    case "teacher1_lh":
+      return ["TEACHER_1_LH_EMAIL", "TEACHER_1_LH_PASSWORD"];
+    case "teacher2_lh":
+      return ["TEACHER_2_LH_EMAIL", "TEACHER_2_LH_PASSWORD"];
+    case "student1_lh":
+      return ["STUDENT_1_LH_EMAIL", "STUDENT_1_LH_PASSWORD"];
+    case "student2_lh":
+      return ["STUDENT_2_LH_EMAIL", "STUDENT_2_LH_PASSWORD"];
+    case "admin1_lh":
+      return ["ADMIN_1_LH_EMAIL", "ADMIN_1_LH_PASSWORD"];
 
-		default:
-			return [null, null];
-	}
+    default:
+      return [null, null];
+  }
 };
 
 // const performExternalLogin = async () => {
@@ -188,118 +188,118 @@ export const getUserCredentials = (username) => {
 // performExternalLogin method needs to update. One suggestion is from Uwe mentioned above but its upto the dev how he needs to handle this situation.
 
 const performExternalLogin = (username, password) => {
-	cy.request("GET", oauth_url).then((resp) => {
-		cy.intercept(resp.requestHeaders.referer).as("oauth_url");
-		cy.visit(resp.requestHeaders.referer).then((window) => {
-			expect(window.location.pathname).to.include("/Account/Login");
-			cy.get("@oauth_url").then((resp) => {
-				expect(resp.response.statusCode).to.equal(308);
-				cy.get(externalUsernameInputFieldElement).should("be.visible");
-				cy.get(externalUsernameInputFieldElement).type(username, {
-					log: false,
-				});
-				cy.get(externalPasswordInputFieldElement)
-					.type(password, { log: false })
-					.type("{enter}");
-			});
-		});
-	});
+  cy.request("GET", oauth_url).then((resp) => {
+    cy.intercept(resp.requestHeaders.referer).as("oauth_url");
+    cy.visit(resp.requestHeaders.referer).then((window) => {
+      expect(window.location.pathname).to.include("/Account/Login");
+      cy.get("@oauth_url").then((resp) => {
+        expect(resp.response.statusCode).to.equal(308);
+        cy.get(externalUsernameInputFieldElement).should("be.visible");
+        cy.get(externalUsernameInputFieldElement).type(username, {
+          log: false,
+        });
+        cy.get(externalPasswordInputFieldElement)
+          .type(password, { log: false })
+          .type("{enter}");
+      });
+    });
+  });
 };
 
 const fillLoginForm = (username, password) => {
-	return (
-		cy.get(emailInputFieldElement).type(username, { log: false }),
-		cy.get(passwordInputFieldElement).type(password, { log: false }),
-		cy.get(submitButton).click()
-	);
+  return (
+    cy.get(emailInputFieldElement).type(username, { log: false }),
+    cy.get(passwordInputFieldElement).type(password, { log: false }),
+    cy.get(submitButton).click()
+  );
 };
 
 const studentFirstLogin = (environment) => {
-	Cypress.env("password", Cypress.env("SET_NEW_PWD_BY_STUDENT"));
-	cy.get(studentAgeSelectRadioBtn).check();
-	cy.get(nextButtonAfterAgeSelection).click();
-	cy.get(nextButtonOnFirstLoginPages).click();
-	cy.get(nextButtonOnFirstLoginPages).click();
-	cy.get(datePickerSelectorForDOB).type("21").type("03").type("2000");
-	cy.get(nextButtonOnFirstLoginPages).click();
-	if (environment === "dbc") {
-		cy.get(privacyConsentCheckboxDBC).check();
-		cy.get(termsOfUseCheckboxDBC).check();
-		cy.get(nextButtonOnFirstLoginPages).click();
-	}
-	cy.get(studentUpdatePassword).type(env["password"], { log: false });
-	cy.get(studentConfirmPassword).type(env["password"], { log: false });
-	cy.get(nextButtonOnFirstLoginPages).click();
-	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
+  Cypress.env("password", Cypress.env("SET_NEW_PWD_BY_STUDENT"));
+  cy.get(studentAgeSelectRadioBtn).check();
+  cy.get(nextButtonAfterAgeSelection).click();
+  cy.get(nextButtonOnFirstLoginPages).click();
+  cy.get(nextButtonOnFirstLoginPages).click();
+  cy.get(datePickerSelectorForDOB).type("21").type("03").type("2000");
+  cy.get(nextButtonOnFirstLoginPages).click();
+  if (environment === "dbc") {
+    cy.get(privacyConsentCheckboxDBC).check();
+    cy.get(termsOfUseCheckboxDBC).check();
+    cy.get(nextButtonOnFirstLoginPages).click();
+  }
+  cy.get(studentUpdatePassword).type(env["password"], { log: false });
+  cy.get(studentConfirmPassword).type(env["password"], { log: false });
+  cy.get(nextButtonOnFirstLoginPages).click();
+  cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
 
 const nonStudentUsersFirstLogin = (environment) => {
-	cy.get(nextButtonOnFirstLoginPages).click();
-	cy.get(nextButtonOnFirstLoginPages).click();
-	if (environment === "dbc") {
-		cy.get(privacyConsentCheckboxDBC).check();
-		cy.get(termsOfUseCheckboxDBC).check();
-		cy.get(nextButtonOnFirstLoginPages).click();
-	}
-	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
+  cy.get(nextButtonOnFirstLoginPages).click();
+  cy.get(nextButtonOnFirstLoginPages).click();
+  if (environment === "dbc") {
+    cy.get(privacyConsentCheckboxDBC).check();
+    cy.get(termsOfUseCheckboxDBC).check();
+    cy.get(nextButtonOnFirstLoginPages).click();
+  }
+  cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
 
 export const loginWithoutSchoolApi = (username, environment) => {
-	visitLoginPage(environment);
+  visitLoginPage(environment);
 
-	environmentUpperCased === "NBC" && cy.get(nbcLoginWithEmailOptionButton).click();
+  environmentUpperCased === "NBC" && cy.get(nbcLoginWithEmailOptionButton).click();
 
-	let doExternalLogin;
+  let doExternalLogin;
 
-	username.includes("extern") ? (doExternalLogin = true) : (doExternalLogin = false);
+  username.includes("extern") ? (doExternalLogin = true) : (doExternalLogin = false);
 
-	const [userEmail, userPassword] = getUserCredentials(username);
+  const [userEmail, userPassword] = getUserCredentials(username);
 
-	doExternalLogin
-		? performExternalLogin(env[userEmail], env[userPassword])
-		: fillLoginForm(env[userEmail], env[userPassword]);
+  doExternalLogin
+    ? performExternalLogin(env[userEmail], env[userPassword])
+    : fillLoginForm(env[userEmail], env[userPassword]);
 };
 
 export const loginViaSchoolApi = async (username, environment) => {
-	try {
-		visitLoginPage(environment);
-		const link = Cypress.config("baseUrl");
+  try {
+    visitLoginPage(environment);
+    const link = Cypress.config("baseUrl");
 
-		await cy
-			.task(
-				"loginViaSchoolApi",
-				{
-					url: link,
-					apiKey: Cypress.env(`apiKey-${environment}`),
-					schoolId: Cypress.env(`schoolId-${environment}`),
-					userType: username,
-				},
-				{ log: false }
-			)
-			.as("school_api_response");
+    await cy
+      .task(
+        "loginViaSchoolApi",
+        {
+          url: link,
+          apiKey: Cypress.env(`apiKey-${environment}`),
+          schoolId: Cypress.env(`schoolId-${environment}`),
+          userType: username,
+        },
+        { log: false }
+      )
+      .as("school_api_response");
 
-		await cy.get("@school_api_response").then((res) => {
-			Cypress.env(`schoolId-${environment}`, res.schoolId);
-			Cypress.env("username", res.username);
-			Cypress.env("password", res.initialPassword);
-			if (environment.includes("nbc")) {
-				cy.get(nbcLoginWithEmailOptionButton).click();
-			}
+    await cy.get("@school_api_response").then((res) => {
+      Cypress.env(`schoolId-${environment}`, res.schoolId);
+      Cypress.env("username", res.username);
+      Cypress.env("password", res.initialPassword);
+      if (environment.includes("nbc")) {
+        cy.get(nbcLoginWithEmailOptionButton).click();
+      }
 
-			fillLoginForm(env["username"], env["password"]);
-			username.includes("student")
-				? studentFirstLogin(environment)
-				: nonStudentUsersFirstLogin(environment);
-		});
-	} catch (error) {
-		console.error("Error in loginViaSchoolApi:", error);
-		throw error;
-	}
+      fillLoginForm(env["username"], env["password"]);
+      username.includes("student")
+        ? studentFirstLogin(environment)
+        : nonStudentUsersFirstLogin(environment);
+    });
+  } catch (error) {
+    console.error("Error in loginViaSchoolApi:", error);
+    throw error;
+  }
 };
 
 const visitLoginPage = (environment) => {
-	environmentUpperCased = environment.toUpperCase();
-	const link = Cypress.config("baseUrl", env[environmentUpperCased]);
-	cy.log(link);
-	cy.visit("/login");
+  environmentUpperCased = environment.toUpperCase();
+  const link = Cypress.config("baseUrl", env[environmentUpperCased]);
+  cy.log(link);
+  cy.visit("/login");
 };

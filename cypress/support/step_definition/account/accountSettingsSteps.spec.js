@@ -4,33 +4,33 @@ import Account from "../../pages/account/pageAccount";
 const account = new Account();
 
 When("I enter my current password on the login page", () => {
-	account.enterCurrentPasswordOnLoginAfterChangingEmailInAccountSettings();
+  account.enterCurrentPasswordOnLoginAfterChangingEmailInAccountSettings();
 });
 
 When("I enter my updated email", () => {
-	account.enterUpdatedEmailAfterSavingInAccountSettings();
+  account.enterUpdatedEmailAfterSavingInAccountSettings();
 });
 
 When("I enter my current password", () => {
-	account.enterCurrentPasswordOnUserSettingsPage();
+  account.enterCurrentPasswordOnUserSettingsPage();
 });
 
 When("I change my email to a new email", () => {
-	account.enterNewEmailOnUserSettingsPage();
+  account.enterNewEmailOnUserSettingsPage();
 });
 
 When("I click on the button Save Account Settings", () => {
-	account.clickOnSaveAccountSettingsButton();
+  account.clickOnSaveAccountSettingsButton();
 });
 
 Then("I see the message successful", () => {
-	account.seeSuccessMessageOnAccountSettingsPage();
+  account.seeSuccessMessageOnAccountSettingsPage();
 });
 
 When("I click on the checkbox Activate visibility in the central directory", () => {
-	account.clickOnCheckboxDirectoryVisibility();
+  account.clickOnCheckboxDirectoryVisibility();
 });
 
 When("I click on the button Save Visibility Settings", () => {
-	account.clickOnSaveVisibilitySettingsButton();
+  account.clickOnSaveVisibilitySettingsButton();
 });

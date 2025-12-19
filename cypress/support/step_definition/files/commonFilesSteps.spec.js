@@ -4,21 +4,21 @@ import Files from "../../pages/files/pageFiles";
 const files = new Files();
 
 When("I click on Files in menu", () => {
-	files.openFilesMenu();
+  files.openFilesMenu();
 });
 
 Then("I go to personal files overview", () => {
-	files.navigateToPersonalFilesOverview();
+  files.navigateToPersonalFilesOverview();
 });
 
 When("I go to course files overview", () => {
-	files.navigateToCourseFilesOverview();
+  files.navigateToCourseFilesOverview();
 });
 
 When("I go to team files overview", () => {
-	files.navigateToTeamsFilesOverview();
+  files.navigateToTeamsFilesOverview();
 });
 
 When("I go to shared files overview", () => {
-	files.navigateToSharedFilesOverview();
+  files.navigateToSharedFilesOverview();
 });

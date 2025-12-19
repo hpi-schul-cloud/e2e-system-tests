@@ -4,13 +4,13 @@ import Rooms from "../../pages/rooms/pageRooms";
 const rooms = new Rooms();
 
 When("I click on FAB to add participants", () => {
-	rooms.clickOnAddParticipantsFAB();
+  rooms.clickOnAddParticipantsFAB();
 });
 
 Then("I see speed dial options {string}", (options) => {
-	rooms.seeSpeedDialOptions(options);
+  rooms.seeSpeedDialOptions(options);
 });
 
 When("I click on button {string} from speed dial option", (option) => {
-	rooms.clickOnSpeedDialOption(option);
+  rooms.clickOnSpeedDialOption(option);
 });
