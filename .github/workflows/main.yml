@@ -38,6 +38,10 @@ jobs:
           repository: hpi-schul-cloud/e2e-system-tests
           path: e2e-system-tests
 
+      - name: Install dependencies
+        working-directory: e2e-system-tests
+        run: npm ci
+
       - name: Format Checking
         working-directory: e2e-system-tests
         run: npm run format:check
