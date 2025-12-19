@@ -38,6 +38,9 @@ jobs:
           repository: hpi-schul-cloud/e2e-system-tests
           path: e2e-system-tests
 
+      - name: Format Checking
+        run: npm run format:check
+
       - name: Install 1Password CLI
         uses: 1password/install-cli-action@v2
 
@@ -48,9 +51,6 @@ jobs:
         uses: 1password/load-secrets-action/configure@v2
         with:
           service-account-token: ${{ secrets.service-account-token }}
-
-      - name: Format Checking
-        run: npm run format:check
 
       - name: Fetch JSON files from 1Password
         run: |
