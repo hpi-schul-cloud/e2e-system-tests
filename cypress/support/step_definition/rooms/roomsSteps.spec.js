@@ -407,7 +407,3 @@ When(
 When("I click on confirm button in the three dot menu", () => {
 	rooms.clickConfirmButtonInThreeDotMenu();
 });
-
-When("I visit the room members page", () => {
-	rooms.navigateToRoomMembersPage();
-});

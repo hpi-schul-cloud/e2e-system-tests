@@ -682,13 +682,6 @@ class Rooms {
 		});
 	}
 
-	navigateToRoomMembersPage() {
-		cy.url().then((currentUrl) => {
-			const roomMembersUrl = currentUrl + "/members";
-			cy.visit(roomMembersUrl);
-		});
-	}
-
 	seeLinkInvitationStatusMessage() {
 		cy.get(Rooms.#roomInvitationStatusMessage).should("be.visible");
 	}
