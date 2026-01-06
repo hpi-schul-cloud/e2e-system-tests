@@ -3,20 +3,20 @@
 @schedule_run
 @group-C
 @prio_0_staging
-Feature: Rooms - Invite User to room via Invitation link for External Person with Confirmation
+Feature: Rooms - Room invitations via link with confirmation for external persons
 
-    As a room owner, when I invite an expert user through an invitation link, I want to confirm his application before he can join the room.
+    As a room owner, I create an invitation link that requires confirmation; external persons request access via the link and must be approved before joining.
 
-    Scenario Outline: Room Owner creates an invitation link with confirmation, another expert uses it, the first user confirms
+    Scenario Outline: Room Owner creates confirmation required link, external person applies, owner approves, access is granted
 
-        # pre-condition: teachers logged in
-        Given I am logged in as a '<expert_2>' at '<namespace>'
+        # pre-condition: users (teacher & external person) logged in
+        Given I am logged in as a '<external_person_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
-        # pre-condition: first user creating a new room, becoming the owner
+        # pre-condition: teacher creates a new room
         Given a room named '<room_name>' exists
 
-        # the owner can create an invitation link
+        # teacher creates an confirmation required invitation link
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -35,12 +35,12 @@ Feature: Rooms - Invite User to room via Invitation link for External Person wit
         When I close the invitation modal
         Then I see '<invitation_description>' in the list of invitation links
 
-        # second user uses the invitation link to join the room
-        Given I am logged in as a '<expert_2>' at '<namespace>'
+        # external person uses the invitation link to join the room
+        Given I am logged in as a '<external_person_1>' at '<namespace>'
         When I use the remembered invitation link URL
         Then I see a link invitation status message
 
-        # first user confirms the invitation
+        # teacher confirms the invitation
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
@@ -49,29 +49,29 @@ Feature: Rooms - Invite User to room via Invitation link for External Person wit
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
-        Then I see teacher '<expert_2_name>' not visible in the table
+        Then I see teacher '<external_person_last_name>' not visible in the table
 
         When I click on tab Confirmations
-        Then I see user '<expert_2_name>' in the confirmations table
-        When I click on button Three Dot Menu in Confirmations table for user '<expert_2_name>'
+        Then I see user '<external_person_last_name>' in the confirmations table
+        When I click on button Three Dot Menu in Confirmations table for user '<external_person_last_name>'
         When I click on confirm button in the three dot menu
-        Then I do not see user '<expert_2_name>' in the confirmations table
+        Then I do not see user '<external_person_last_name>' in the confirmations table
         When I click on tab Members
-        Then I see '<expert_2_name>' in the room participants list
+        Then I see '<external_person_last_name>' in the room participants list
 
-        # second user can now access the room
-        Given I am logged in as a '<expert_2>' at '<namespace>'
+        # external person can now access the room
+        Given I am logged in as a '<external_person_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
         When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
 
-        # post-condition: first teacher deletes the room
+        # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test
         Examples:
-            | teacher_1    | expert_2    | expert_2_name | namespace | room_name         | invitation_description |
-            | teacher1_dbc | expert2_dbc | expert_2      | dbc       | CypressAut Expert | test invitation link   |
+            | teacher_1    | external_person_1   | external_person_last_name | namespace | room_name                     | invitation_description |
+            | teacher1_dbc | externalPerson1_dbc | external_person_1         | dbc       | CypressAut EP Invite Approval | test invitation link   |

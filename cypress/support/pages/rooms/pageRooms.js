@@ -363,7 +363,17 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).first().click();
+		cy.get(Rooms.#roomDetailFAB)
+			.first()
+			.then((btn) => {
+				const menuId = btn.attr("aria-controls");
+				cy.wrap(btn).click();
+				cy.get(`#${menuId}`)
+					.should("be.visible")
+					.within(() => {
+						cy.get('[role="menuitem"]').should("have.length.at.least", 1);
+					});
+			});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {

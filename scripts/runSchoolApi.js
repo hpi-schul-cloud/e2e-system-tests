@@ -14,7 +14,7 @@ const users = {
 	admin: "administrator",
 	teacher: "teacher",
 	student: "student",
-	expert: "externalPerson",
+	externalPerson: "externalPerson",
 };
 const userData = {
 	admin1: {
@@ -29,10 +29,6 @@ const userData = {
 		firstName: "cypress",
 		lastName: "student_1",
 	},
-	expert1: {
-		firstName: "cypress",
-		lastName: "expert_1",
-	},
 	admin2: {
 		firstName: "cypress",
 		lastName: "admin_2",
@@ -45,9 +41,9 @@ const userData = {
 		firstName: "cypress",
 		lastName: "student_2",
 	},
-	expert2: {
+	externalPerson1: {
 		firstName: "cypress",
-		lastName: "expert_2",
+		lastName: "external_person_1",
 	},
 };
 
