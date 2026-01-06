@@ -596,8 +596,8 @@ When("I go to legacy course administration", () => {
 	management.navigateToLegacyCourseAdministration();
 });
 
-When("I click on FAB", () => {
-	management.clickOnFAB();
+When("I click on FAB to add {string}", (role) => {
+	management.clickOnFAB(role);
 });
 
 When("I click on Add User in opened FAB for {string}", (role) => {

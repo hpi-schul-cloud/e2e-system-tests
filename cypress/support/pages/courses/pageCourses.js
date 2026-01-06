@@ -13,9 +13,9 @@ class Courses {
 	static #createFAB = '[name="fab-icon"]';
 	static #newTopicFAB = '[data-testid="fab_button_add_lesson"]';
 	static #searchFieldCourseOverview = '[data-testid="search-field-course"]';
-	static #createCourse = '[data-testid="add-course-button"]';
+	static #createCourse = '[data-testid="add-course-button"] .v-btn';
 	static #createSyncedCourse = '[data-testid="fab_button_add_synced_course"]';
-	static #createContent = '[data-testid="add-content-button"]';
+	static #createContent = '[data-testid="add-content-button"] .v-btn';
 	static #ltiToolsTab = '[data-testid="tools"]';
 	static #toolsList = '[data-testid="course_tool_list_add_tool"]';
 	static #courseOverviewNavigationButton = '[data-testid="sidebar-courses"]';
@@ -76,7 +76,7 @@ class Courses {
 	static #learningContentTab = '[data-testid="learnContent-tab"]';
 	static #courseDetailPageTitle = '[data-testid="courses-course-title"]';
 	static #toolsTab = '[data-testid="tools-tab"]';
-	static #addToolButton = '[data-testid="add-tool-button"]';
+	static #addToolButton = '[data-testid="add-tool-button"] .v-btn';
 	static #classSelection = '[id="classId_chosen"]';
 	static #chosenStudents = '[id="studentsId_chosen"] > .chosen-choices';
 	static #errorDialog = '[data-testId="error-dialog"]';
@@ -117,7 +117,7 @@ class Courses {
 	static #bbbDialogBoxCancelButtonCourse = '[data-testid="dialog-cancel"]';
 	static #bbbDisabledCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
-	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"]';
+	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"] .v-btn';
 	static #topicTitleOnCoursePageWithIndex = '[data-testid="lesson-name-0"]';
 	static #taskCardPublishButtonInCoursePageWithIndex =
 		'[data-testid="task-card-action-publish-0"]';
@@ -175,6 +175,16 @@ class Courses {
 	static #inputOfTypeFile = 'input[type="file"]';
 	static #breadcrumbToCoursePageNavigation =
 		'[data-testid="navigate-to-course-from-topic"]';
+	static #newCourseTimeButton = '[data-testid="add-new-course-appointment"]';
+	static #startOfLesson = '[data-testid="start-lesson-time"]';
+	static #durationOfLesson = '[data-testid="lesson-duration"]';
+	static #courseAppointmentRoom = '[data-testid="course-appointment-room"]';
+	static #courseAppointmentDeleteButton = '[data-testid="course-time-delete-button"]';
+	//no data-testid's available for the below selectors
+	static #chooseSingleWeekday = ".chosen-single>span";
+	static #chooseWeekday = "#weekday_chosen";
+	static #dropDownWeekday = ".chosen-drop";
+	static #courseTimeSectionOption = "tr.course-time";
 
 	openThreeDotMenuForCopiedTopic(contentTitle, suffix) {
 		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(
@@ -1374,6 +1384,57 @@ class Courses {
 
 	waitForImportFinish() {
 		cy.get(Courses.#loadingDialog).should("not.exist");
+	}
+
+	clickAddNewAppointmentButtonInCourse() {
+		cy.get(Courses.#newCourseTimeButton).click();
+	}
+
+	seeModalToAddNewAppointmentInCourse() {
+		cy.get(Courses.#courseTimeSectionOption).should("be.visible");
+	}
+
+	seeWeekday(weekday) {
+		cy.get(Courses.#chooseSingleWeekday).should("be.visible").and("contain", weekday);
+	}
+
+	enterTimeInCourseAppointment(timeStart) {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#startOfLesson)
+			.last()
+			.clear()
+			.type(timeStart);
+	}
+
+	enterDurationInCourseAppointment(duration) {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#durationOfLesson)
+			.last()
+			.clear()
+			.type(duration);
+	}
+
+	enterRoomNameInCourseAppointment(roomName) {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#courseAppointmentRoom)
+			.last()
+			.clear()
+			.type(roomName);
+	}
+
+	optionWeekday() {
+		cy.get(Courses.#courseTimeSectionOption).find(Courses.#chooseWeekday).click();
+	}
+
+	selectSpecificWeekday(weekday) {
+		cy.get(Courses.#dropDownWeekday).contains(weekday).click();
+	}
+
+	deleteAppointmentCourse() {
+		cy.get(Courses.#courseTimeSectionOption)
+			.find(Courses.#courseAppointmentDeleteButton)
+			.last()
+			.click();
 	}
 }
 export default Courses;

@@ -3,8 +3,8 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
-Then("I delete all rooms whose names start with {string}", (roomName) => {
-	rooms.deleteAllRoomsWithName(roomName);
+Then("I delete all rooms whose names start with {string}", (roomNamePrefix) => {
+	rooms.deleteAllRoomsWithName(roomNamePrefix);
 });
 
 Then(
@@ -99,10 +99,6 @@ When("I go to rooms overview", () => {
 
 When("I click on FAB to create new room", () => {
 	rooms.clickOnCreateRoomFAB();
-});
-
-When("I click on FAB to add participants", () => {
-	rooms.clickOnAddParticipantsFAB();
 });
 
 Then("I see room creation page", () => {

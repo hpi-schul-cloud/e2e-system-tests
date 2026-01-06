@@ -6,7 +6,7 @@ class Rooms {
 	static #roomNameInput = '[data-testid="room-name-input"]';
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
-	static #addContentButton = '[data-testid="add-content-button"]';
+	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
 	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
@@ -16,8 +16,8 @@ class Rooms {
 	static #addParticipantName = '[data-testid="add-participant-name"]';
 	static #btnSubmit = '[data-testid="room-form-save-btn"]';
 	static #btnAddParticipant = '[data-testid="add-participant-save-btn"]';
-	static #createRoom = '[data-testid="fab-add-room"]';
-	static #addParticipants = '[data-testid="fab-add-members"]';
+	static #createRoom = '[data-testid="fab-add-room"] .v-btn';
+	static #addParticipants = '[data-testid="fab-add-members"] .v-btn';
 	static #participantTable = '[data-testid="participants-table"]';
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
@@ -40,7 +40,7 @@ class Rooms {
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
 	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
 	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
-	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
+	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"] .v-btn';
 	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
 	static #inputInviteMembersDescription =
 		'[data-testid="invite-participant-description-input"]';
@@ -120,20 +120,59 @@ class Rooms {
 		});
 	}
 
-	verifyRoomDeletion(roomName) {
+	verifyRoomDeletion(roomNamePrefix) {
 		cy.get("body").then(($body) => {
-			if (!$body.text().includes(roomName)) {
-				cy.log(`All rooms with name "${roomName}" deleted successfully.`);
-			} else {
-				cy.get(Rooms.#roomTitle).should("not.contain.text", roomName);
-			}
+			expect(
+				$body.text().includes(roomNamePrefix),
+				`Rooms containing "${roomNamePrefix}" should not exist`
+			).to.be.false;
 		});
 	}
 
-	deleteAllRoomsWithName(roomName) {
-		cy.wait(2000);
-		this.deleteElementsWithText(Rooms.#roomTitle, roomName);
-		this.verifyRoomDeletion(roomName);
+	deleteAllRoomsWithName(roomNamePrefix) {
+		cy.wait(1000);
+
+		const deleteNext = () => {
+			cy.get("body").then(($body) => {
+				const titles = $body.find('[data-testid^="room--title-"]');
+
+				// find first room that starts with the prefix
+				const matchingRooms = [...titles].find((el) =>
+					el.innerText.trim().startsWith(roomNamePrefix)
+				);
+
+				// nothing left -> verify and stop
+				if (!matchingRooms) {
+					this.verifyRoomDeletion(roomNamePrefix);
+					return;
+				}
+
+				// extract index from data-testid="room--title-{index}"
+				const testId = matchingRooms.getAttribute("data-testid");
+				const index = testId.replace("room--title-", "");
+
+				// open and delete the room
+				cy.get(`[data-testid="room-open-button-${index}"]`)
+					.should("be.visible")
+					.click();
+
+				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
+				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
+				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+				cy.get(Rooms.#confirmButtonOnModal).should("be.visible").click();
+
+				// wait for deletion to complete
+				cy.wait(1500);
+
+				// reload and continue
+				cy.reload().then(() => {
+					cy.wait(1000);
+					deleteNext();
+				});
+			});
+		};
+
+		deleteNext();
 	}
 
 	seeLockIconInRoom(roomName, position) {
@@ -670,6 +709,17 @@ class Rooms {
 			.contains("td", participantName)
 			.parent()
 			.should("contain", "Lesen");
+	}
+
+	seeSpeedDialOptions(options) {
+		const buttonName = options.split(/,|and/).map((option) => option.trim());
+		buttonName.forEach((buttonName) => {
+			cy.get(`[data-testid="fab-${buttonName}"]`).should("be.visible");
+		});
+	}
+
+	clickOnSpeedDialOption(option) {
+		cy.get(`[data-testid="fab-${option}"]`).should("be.visible").click();
 	}
 }
 export default Rooms;

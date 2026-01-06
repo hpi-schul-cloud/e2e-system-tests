@@ -535,7 +535,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 Given("the folder {string} contains files {string}", (folderTitle, uploadFiles) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
 	roomBoards.clickFolderElementWithTitle(folderTitle);
-	globalActions.clickElementWithDataTestId("fab-add-files");
+	globalActions.clickElementWithDataTestId("fab-add-files", "button");
 	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
 	roomBoards.seeMultipleFilesInFolderList(uploadFiles);
 });
@@ -687,6 +687,8 @@ Given(
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.selectRoomRoleFromDropdownMenu("Lernbegleitend");
 		rooms.fillParticipantFormName(participantName);
 		rooms.selectParticipantName();
@@ -703,6 +705,8 @@ Given(
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.selectRoomRoleFromDropdownMenu(role);
 		rooms.seeRoleOfParticipant(role);
@@ -723,6 +727,8 @@ Given(
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.selectRoomRoleFromDropdownMenu(role);
 		rooms.seeRoleOfParticipant(role);

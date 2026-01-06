@@ -65,7 +65,7 @@ class Tasks {
 	static #uploadedFileNameTag = ".card-block > div > a";
 	static #taskForm = '[id="homework-form"]';
 	static #submitButton = '[data-testid="submit-task-btn"]';
-	static #addTaskButton = "#fab";
+	static #addTaskButton = "[data-testid='add-task'] .v-btn";
 	static #taskNameInput = '[data-testid="homework-name"]';
 	static #homeworkDescription = '[data-testid="homework-description"]';
 	static #submissionComment = '[data-testid="submission-comment"]';

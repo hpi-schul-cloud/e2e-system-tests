@@ -15,7 +15,7 @@ Feature: Admin - Student must set a new password during login
         # admin creates a new student
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
-        When I click on FAB
+        When I click on FAB to add '<role_to_manage>'
         When I click on Add User in opened FAB for '<role_to_manage>'
         When I fill out the user creation form for '<user_first_name>' '<user_last_name>' with email '<user_email>'
         When I click on add button to add '<role_to_manage>'

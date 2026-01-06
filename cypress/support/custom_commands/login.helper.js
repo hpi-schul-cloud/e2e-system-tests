@@ -56,6 +56,14 @@ export const getUserCredentials = (username) => {
 			return ["STUDENT_EXT_2_BRB_EMAIL", "STUDENT_EXT_2_BRB_PASSWORD"];
 		case "admin1_double_role_brb":
 			return ["ADMIN_1_DOUBLE_ROLE_BRB_EMAIL", "ADMIN_1_DOUBLE_ROLE_BRB_PASSWORD"];
+		case "student_1_hcs_brb":
+			return ["STUDENT_1_HCS_BRB_EMAIL", "STUDENT_1_HCS_BRB_PASSWORD"];
+		case "teacher_1_hcs_brb":
+			return ["TEACHER_1_HCS_BRB_EMAIL", "TEACHER_1_HCS_BRB_PASSWORD"];
+		case "teacher_2_hcs_brb":
+			return ["TEACHER_2_HCS_BRB_EMAIL", "TEACHER_2_HCS_BRB_PASSWORD"];
+		case "admin_1_hcs_brb":
+			return ["ADMIN_1_HCS_BRB_EMAIL", "ADMIN_1_HCS_BRB_PASSWORD"];
 
 		case "admin1_dbc":
 			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
@@ -93,6 +101,14 @@ export const getUserCredentials = (username) => {
 			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
 		case "studentExt2_dbc":
 			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
+		case "student_1_hcs_dbc":
+			return ["STUDENT_1_HCS_DBC_EMAIL", "STUDENT_1_HCS_DBC_PASSWORD"];
+		case "teacher_1_hcs_dbc":
+			return ["TEACHER_1_HCS_DBC_EMAIL", "TEACHER_1_HCS_DBC_PASSWORD"];
+		case "teacher_2_hcs_dbc":
+			return ["TEACHER_2_HCS_DBC_EMAIL", "TEACHER_2_HCS_DBC_PASSWORD"];
+		case "admin_1_hcs_dbc":
+			return ["ADMIN_1_HCS_DBC_EMAIL", "ADMIN_1_HCS_DBC_PASSWORD"];
 
 		case "admin1_nbc":
 			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
@@ -128,6 +144,14 @@ export const getUserCredentials = (username) => {
 			return ["STUDENT_EXT_2_NBC_EMAIL", "STUDENT_EXT_2_NBC_PASSWORD"];
 		case "admin1_double_role_nbc":
 			return ["ADMIN_1_DOUBLE_ROLE_NBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_NBC_PASSWORD"];
+		case "student_1_hcs_nbc":
+			return ["STUDENT_1_HCS_NBC_EMAIL", "STUDENT_1_HCS_NBC_PASSWORD"];
+		case "teacher_1_hcs_nbc":
+			return ["TEACHER_1_HCS_NBC_EMAIL", "TEACHER_1_HCS_NBC_PASSWORD"];
+		case "teacher_2_hcs_nbc":
+			return ["TEACHER_2_HCS_NBC_EMAIL", "TEACHER_2_HCS_NBC_PASSWORD"];
+		case "admin_1_hcs_nbc":
+			return ["ADMIN_1_HCS_NBC_EMAIL", "ADMIN_1_HCS_NBC_PASSWORD"];
 
 		case "teacher1_lh":
 			return ["TEACHER_1_LH_EMAIL", "TEACHER_1_LH_PASSWORD"];
