@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-C
-@prio_0_dev
+@prio_0_staging
 Feature: Rooms - Invite User to room via Invitation link for External Person with Confirmation
 
     As a room owner, when I invite an expert user through an invitation link, I want to confirm his application before he can join the room.
@@ -44,7 +44,7 @@ Feature: Rooms - Invite User to room via Invitation link for External Person wit
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -63,14 +63,15 @@ Feature: Rooms - Invite User to room via Invitation link for External Person wit
         Given I am logged in as a '<expert_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
+        @staging_test
         Examples:
             | teacher_1    | expert_2    | expert_2_name | namespace | room_name         | invitation_description |
             | teacher1_dbc | expert2_dbc | expert_2      | dbc       | CypressAut Expert | test invitation link   |

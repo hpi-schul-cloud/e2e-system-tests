@@ -14,7 +14,7 @@ const users = {
 	admin: "administrator",
 	teacher: "teacher",
 	student: "student",
-	expert: "expert",
+	expert: "externalPerson",
 };
 const userData = {
 	admin1: {

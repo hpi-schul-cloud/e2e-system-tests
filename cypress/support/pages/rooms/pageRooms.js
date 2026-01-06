@@ -63,6 +63,8 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
+	static #inputInviteMembersRestrictedToAllSchool =
+		'[data-testid="input-invite-participants-all-schools"]';
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -583,9 +585,9 @@ class Rooms {
 	}
 
 	uncheckInvitationFormRestrictToCreatorSchool() {
-		cy.get(Rooms.#inputInviteMembersRestrictedToCreatorSchool)
-			.find('[type="checkbox"]')
-			.uncheck();
+		cy.get(Rooms.#inputInviteMembersRestrictedToAllSchool)
+			.find('input[type="radio"]')
+			.check();
 	}
 
 	checkInvitationFormValidForExternalPersons() {
