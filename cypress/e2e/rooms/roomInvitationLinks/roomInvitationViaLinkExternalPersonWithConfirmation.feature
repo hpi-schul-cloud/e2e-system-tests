@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-C
-@prio_0_staging
+@prio_0_dev
 Feature: Rooms - Room invitations via link with confirmation for external persons
 
     As a room owner, I create an invitation link that requires confirmation; external persons request access via the link and must be approved before joining.
@@ -71,7 +71,6 @@ Feature: Rooms - Room invitations via link with confirmation for external person
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
-        @staging_test
         Examples:
             | teacher_1    | external_person_1   | external_person_last_name | namespace | room_name                     | invitation_description |
             | teacher1_dbc | externalPerson1_dbc | external_person_1         | dbc       | CypressAut EP Invite Approval | test invitation link   |

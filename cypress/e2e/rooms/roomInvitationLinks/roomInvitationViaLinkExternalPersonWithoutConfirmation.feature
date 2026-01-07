@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-C
-@prio_0_staging
+@prio_0_dev
 Feature: Rooms - Room invitations via link without confirmation for external persons
 
     As a room owner, I want to invite a user to the room through an invitation link, so that I don't have to add every user manually.
@@ -64,7 +64,6 @@ Feature: Rooms - Room invitations via link without confirmation for external per
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
-        @staging_test
         @school_api_test
         Examples:
             | teacher_1    | external_person_1   | namespace | room_name                     | invitation_description | external_person_last_name |
