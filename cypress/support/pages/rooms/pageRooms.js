@@ -65,6 +65,7 @@ class Rooms {
 	static #noRoomsMessage = '[data-testid="empty-state"]';
 	static #inputInviteMembersRestrictedToAllSchool =
 		'[data-testid="input-invite-participants-all-schools"]';
+	static #threeDotMenuOptions = '[role="menuitem"]';
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -152,9 +153,7 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`)
-					.should("be.visible")
-					.click();
+				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -371,7 +370,7 @@ class Rooms {
 				cy.get(`#${menuId}`)
 					.should("be.visible")
 					.within(() => {
-						cy.get('[role="menuitem"]').should("have.length.at.least", 1);
+						cy.get(Rooms.#threeDotMenuOptions).should("have.length.at.least", 1);
 					});
 			});
 	}
