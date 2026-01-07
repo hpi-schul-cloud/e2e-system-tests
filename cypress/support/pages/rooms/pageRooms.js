@@ -46,10 +46,13 @@ class Rooms {
 		'[data-testid="invite-participant-description-input"]';
 	static #inputInviteMembersRequireConfirmation =
 		'[data-testid="input-invite-participants-requires-confirmation"]';
+	static #inputInviteMembersRestrictedToCreatorSchool =
+		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
+	static #inputInviteMembersValidForExternalPersons =
+		'[data-testid="input-invite-participants-valid-for-external-persons"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose =
-		'[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -60,6 +63,9 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
+	static #inputInviteMembersRestrictedToAllSchool =
+		'[data-testid="input-invite-participants-all-schools"]';
+	static #threeDotMenuOptions = '[role="menuitem"]';
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -147,9 +153,7 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`)
-					.should("be.visible")
-					.click();
+				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -358,13 +362,21 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).first().click();
+		cy.get(Rooms.#roomDetailFAB)
+			.first()
+			.then((btn) => {
+				const menuId = btn.attr("aria-controls");
+				cy.wrap(btn).click();
+				cy.get(`#${menuId}`)
+					.should("be.visible")
+					.within(() => {
+						cy.get(Rooms.#threeDotMenuOptions).should("have.length.at.least", 1);
+					});
+			});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -415,9 +427,7 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool)
-			.should("be.visible")
-			.type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantSchool).should("be.visible").type("{downArrow}{enter}");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -458,9 +468,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -520,9 +528,7 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
@@ -624,6 +630,18 @@ class Rooms {
 		cy.get(Rooms.#inputInviteMembersRequireConfirmation)
 			.find('[type="checkbox"]')
 			.uncheck();
+	}
+
+	uncheckInvitationFormRestrictToCreatorSchool() {
+		cy.get(Rooms.#inputInviteMembersRestrictedToAllSchool)
+			.find('input[type="radio"]')
+			.check();
+	}
+
+	checkInvitationFormValidForExternalPersons() {
+		cy.get(Rooms.#inputInviteMembersValidForExternalPersons)
+			.find('[type="checkbox"]')
+			.check();
 	}
 
 	checkInvitationFormRequireConfirmation() {

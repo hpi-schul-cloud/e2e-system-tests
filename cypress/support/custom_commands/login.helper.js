@@ -64,6 +64,8 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_2_HCS_BRB_EMAIL", "TEACHER_2_HCS_BRB_PASSWORD"];
 		case "admin_1_hcs_brb":
 			return ["ADMIN_1_HCS_BRB_EMAIL", "ADMIN_1_HCS_BRB_PASSWORD"];
+		case "externalPerson1_brb":
+			return ["EXTERNAL_PERSON_1_BRB_EMAIL", "EXTERNAL_PERSON_1_BRB_PASSWORD"];
 
 		case "admin1_dbc":
 			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
@@ -109,6 +111,8 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_2_HCS_DBC_EMAIL", "TEACHER_2_HCS_DBC_PASSWORD"];
 		case "admin_1_hcs_dbc":
 			return ["ADMIN_1_HCS_DBC_EMAIL", "ADMIN_1_HCS_DBC_PASSWORD"];
+		case "externalPerson1_dbc":
+			return ["EXTERNAL_PERSON_1_DBC_EMAIL", "EXTERNAL_PERSON_1_DBC_PASSWORD"];
 
 		case "admin1_nbc":
 			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
@@ -152,6 +156,8 @@ export const getUserCredentials = (username) => {
 			return ["TEACHER_2_HCS_NBC_EMAIL", "TEACHER_2_HCS_NBC_PASSWORD"];
 		case "admin_1_hcs_nbc":
 			return ["ADMIN_1_HCS_NBC_EMAIL", "ADMIN_1_HCS_NBC_PASSWORD"];
+		case "externalPerson1_nbc":
+			return ["EXTERNAL_PERSON_1_NBC_EMAIL", "EXTERNAL_PERSON_1_NBC_PASSWORD"];
 
 		case "teacher1_lh":
 			return ["TEACHER_1_LH_EMAIL", "TEACHER_1_LH_PASSWORD"];
@@ -251,7 +257,7 @@ export const loginWithoutSchoolApi = (username, environment) => {
 
 	let doExternalLogin;
 
-	username.includes("extern") ? (doExternalLogin = true) : (doExternalLogin = false);
+	doExternalLogin = /(?:^|_)extern(?:_|$)/.test(username);
 
 	const [userEmail, userPassword] = getUserCredentials(username);
 
