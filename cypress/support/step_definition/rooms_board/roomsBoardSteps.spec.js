@@ -147,7 +147,10 @@ When("I enter the tool display name {string}", (bettermarksTitle) => {
 Then(
 	"I see the Title {string} and the Domain URL {string} of bettermarks in the card",
 	(bettermarksTitle, bettermarksDomainUrl) => {
-		roomBoards.verifyBettermarksToolAddedInCard(bettermarksTitle, bettermarksDomainUrl);
+		roomBoards.verifyBettermarksToolAddedInCard(
+			bettermarksTitle,
+			bettermarksDomainUrl
+		);
 	}
 );
 
@@ -899,4 +902,8 @@ When("I click on button Create document in file folder", () => {
 
 When("I click on button Create in dialog create document", () => {
 	roomBoards.clickCreateButtonInCreateDocumentDialog();
+});
+
+When("I click on button Download in the card file folder", () => {
+	roomBoards.clickFolderDownloadButtonOnBoardcard();
 });
