@@ -102,7 +102,15 @@ Feature: Room Board - Upload multiple files in folder in board
         When I select the three dot menu action 'download'
         Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
 
+        # content editor downloads zip file from the file folder in the room board
+        When I click on breadcrumb element '<board_title>'
+        Then I see a folder with name '<standard_folder_name>' in the card
+        When I click on button Download in the card file folder
+        Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
+
         # content editor checks / unchecks all files
+        When I click on the folder '<standard_folder_name>' in the card
+        Then I see page Folder content for '<standard_folder_name>'
         When I check the checkbox in the table header for all elements
         Then I see checkboxes of files '<video_file_name>, <audio_file_name>, <image_file_name>, <pdf_file_name>' are checked
         When I uncheck the checkbox in the table header for all elements
