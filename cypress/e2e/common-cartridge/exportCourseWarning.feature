@@ -34,13 +34,15 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
         # a warning box should be shown if CC 1.1.0 was selected
         Then I should see a warning that CC can not export file folders
 
-        # click on the back button (fast than cancel)
+        # click on the back button (faster than cancel)
         When I click on the back button
         Then I should see a fixed warning that CC can not export file folders
         When I select the latest CC radio button
         When I click on dialog next button
         # a warning box should not be shown if CC 1.3.0 was selected
         Then I should not see a warning that CC can not export file folders
+        # set to default state
+        When I click on the cancel export button
 
         # @staging_test
         # Examples:
