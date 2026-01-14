@@ -87,6 +87,9 @@ class RoomBoards {
 		'[data-testid="collabora-file-form-type"]';
 	static #dialogFileNameFileFolder = '[data-testid="collabora-file-form-filename"]';
 	static #dialogCreateButton = '[data-testid="dialog-confirm"]';
+	static #boardFolderDownloadButton =
+		'[data-testid="board-folder-element-download-button"]';
+	static #boardContentElementBar = '[data-testid="content-element-bar-board"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
 	static #lightBoxParentElementImagePreview = '[data-testid="light-box"]';
@@ -1025,7 +1028,11 @@ class RoomBoards {
 	}
 
 	clickFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector).should("contain", title).click();
+		cy.contains(RoomBoards.#titleOnCardElement, title)
+			.should("be.visible")
+			.parents(RoomBoards.#folderElementSelector)
+			.find(RoomBoards.#boardContentElementBar)
+			.click();
 	}
 
 	seeFolderPageWithTitle(title) {
@@ -1408,6 +1415,12 @@ class RoomBoards {
 
 	clickCreateButtonInCreateDocumentDialog() {
 		cy.get(RoomBoards.#dialogCreateButton).click();
+	}
+
+	clickFolderDownloadButtonOnBoardcard() {
+		cy.get(RoomBoards.#folderElementSelector)
+			.find(RoomBoards.#boardFolderDownloadButton)
+			.click();
 	}
 }
 export default RoomBoards;

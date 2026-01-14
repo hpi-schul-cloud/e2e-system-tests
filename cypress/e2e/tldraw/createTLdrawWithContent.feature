@@ -51,6 +51,7 @@ Feature: TLDraw - Test tldraw on board
         Then I should see the text '<text_to_write>' drawn
         When I click the icon Redo
         Then I do not see the text '<text_to_write>'
+        Then I should see the line drawn
 
         # teacher does not see the deleted element anymore
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -58,8 +59,8 @@ Feature: TLDraw - Test tldraw on board
         When I go to course '<course_name>'
         When I click on the board
         When I click on the whiteboard element
-        Then I should see the line drawn
         Then I do not see the text '<text_to_write>'
+        Then I should see the line drawn
 
         # post-condition: clean up the created course
         Given I am logged in as a '<teacher>' at '<namespace>'
