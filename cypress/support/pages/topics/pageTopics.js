@@ -8,8 +8,6 @@ class Topics {
 	static #addLearningMaterialBtn = '[data-testid="topic-addcontent-material-btn"]';
 	static #addEtherpadBtn = '[data-testid="topic-addcontent-etherpad-btn"]';
 	static #addTaskBtn = '[data-testid="topic-addcontent-task-btn"]';
-	static #addContentH5pBtn = '[data-testid="topic-addcontent-h5p-btn"]';
-	static #createH5pBtn = '[data-testid="topic-h5p-create-btn"]';
 	// class is used for cardHeader and cardBlock because the elements are too generic and depend on position of the element, so using data-testid would need much more logic (also in the feature file) and code than using class.
 	static #cardHeader = '[class="card-header"]';
 	static #cardBlock = '[class="card-block"]';
@@ -122,14 +120,6 @@ class Topics {
 
 	clickOnAddTaskToTopic() {
 		cy.get(Topics.#addTaskBtn).click();
-	}
-
-	clickOnAddContentH5PToTopic() {
-		cy.get(Topics.#addContentH5pBtn).click();
-	}
-
-	seeCreateH5PInTopic() {
-		cy.get(Topics.#createH5pBtn).should("exist").click();
 	}
 
 	clickOnSubmitChangesInTopicBtn() {
