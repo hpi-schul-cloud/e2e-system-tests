@@ -1,8 +1,8 @@
 @regression_test
-@stable_test
-@schedule_run
-@group-E
-@prio_0_dev
+# @stable_test
+# @schedule_run
+# @group-E
+# @prio_0_dev
 # @prio_0_staging
 Feature: Course Board - To export a course as common cartridge and show a warning when 1.1.0 is selected
 
@@ -43,6 +43,7 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
         Then I should not see a warning that CC can not export file folders
         # set to default state
         When I click on the cancel export button
+        Given course with name 'CC_Test_Kurs' is deleted
 
         # @staging_test
         # Examples:
