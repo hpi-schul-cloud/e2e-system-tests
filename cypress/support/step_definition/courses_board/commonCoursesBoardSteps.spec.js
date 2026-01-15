@@ -149,3 +149,27 @@ Then("I see a web link with title {string}", (title) => {
 Then("I see a file element with title {string}", (fileTitle) => {
 	board.seeFileElementWithTitle(fileTitle);
 });
+
+Then("I should see a fixed warning that CC can not export file folders", () => {
+	board.seeFixedCcWarning();
+});
+
+Then("I should see a warning that CC can not export file folders", () => {
+	board.seeCcWarning();
+});
+
+When("I select the latest CC radio button", () => {
+	board.selectLatestCc();
+});
+
+Then("I should not see a warning that CC can not export file folders", () => {
+	board.notSeeCcWarning();
+});
+
+When("I click on the back button", () => {
+	board.clickExportBackButton();
+});
+
+When("I click on the cancel export button", () => {
+	board.clickCancelExport();
+});

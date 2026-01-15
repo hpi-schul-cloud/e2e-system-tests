@@ -50,6 +50,13 @@ class Board {
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 	static #cardTitle = '[data-testid="card-title"]';
 	static #boardLinkElement = '[data-testid="board-link-element"]';
+	static #fixedExportInfoPoint3 = '[data-testid="fixed-export-options-warning-info-point3"]';
+	static #exportInfoPoint3 = '[data-testid="export-options-info-point3"]';
+	static #versionRadioGroup = '[data-testid="version-radio-group"]';
+	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
+	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
+	static #coursesExportCancelButton = '[data-testid="dialog-cancel-btn"]';
+	static #coursesExportBackButton = '[data-testid="dialog-back-btn"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -606,6 +613,32 @@ class Board {
 
 	seeFileElementWithTitle(fileTitle) {
 		cy.get(Board.#contentElementTitle).contains(fileTitle);
+	}
+
+	seeFixedCcWarning() {
+		cy.get(Board.#fixedExportInfoPoint3).should("be.visible");
+	}
+
+	seeCcWarning() {
+		cy.get(Board.#exportInfoPoint3).should("be.visible");
+	}
+
+	notSeeCcWarning() {
+		cy.get(Board.#exportInfoPoint3).should("not.exist");
+	}
+
+	selectLatestCc() {
+		cy.get(Board.#versionRadioGroup).get('input[type="radio"][value="1.3.0"]')
+      	.check()
+      	.should('be.checked');
+	}
+
+	clickCancelExport() {
+		cy.get(Board.#coursesExportCancelButton).click();
+	}
+
+	clickExportBackButton() {
+		cy.get(Board.#coursesExportBackButton).click();
 	}
 }
 export default Board;
