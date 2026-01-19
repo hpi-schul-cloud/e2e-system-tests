@@ -11,6 +11,7 @@ Feature: Room Board - Add BBB Tool in the Room Board
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
         # pre-condition: admin enable the video conference in school settings page
@@ -18,12 +19,15 @@ Feature: Room Board - Add BBB Tool in the Room Board
 
         # pre-condition: room and boards are existing
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given a room named '<room_name>' exists
-        Given a multi-column board named '<board_title>' exists in the room
+        Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
         Given the multi-column board has a column with a card
+        Given multi column board is published to not to be in a draft mode
+        Given '<student_name>' added in the room '<room_name>' at position '0' with role '<role_name_student>' and default read permission
 
         # teacher adds BBB Tool to the multi-column board
-        When I click on the page outside of the column
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -47,10 +51,18 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I click on the button cancel in the video conference creation modal to go back to the card
 
         # student can see the video conference in the multi-column board
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I see the video conference element added in the card
         # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher deletes the BBB Tool from the multi-column board card
-        When I click on the page outside of the column
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot menu in the video conference element
@@ -65,5 +77,5 @@ Feature: Room Board - Add BBB Tool in the Room Board
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | admin      | namespace | room_name            | board_title            | video_conference_title |
-            | teacher1_dbc | admin1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | CypressAut BBB Tool    |
+            | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title |
+            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut BBB Tool    |
