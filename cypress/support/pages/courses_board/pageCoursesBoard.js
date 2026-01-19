@@ -55,8 +55,6 @@ class Board {
 	static #versionRadioGroup = '[data-testid="version-radio-group"]';
 	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
 	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
-	static #coursesExportCancelButton = '[data-testid="dialog-cancel-btn"]';
-	static #coursesExportBackButton = '[data-testid="dialog-back-btn"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -633,12 +631,8 @@ class Board {
       	.should('be.checked');
 	}
 
-	clickCancelExport() {
-		cy.get(Board.#coursesExportCancelButton).click();
-	}
-
-	clickExportBackButton() {
-		cy.get(Board.#coursesExportBackButton).click();
+	clickDialogButton(buttonName) {
+		cy.get('[data-testid="dialog-'+buttonName+'-btn"]').click();
 	}
 }
 export default Board;

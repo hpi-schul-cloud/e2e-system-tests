@@ -167,9 +167,9 @@ Then("I should not see a warning that CC can not export file folders", () => {
 });
 
 When("I click on the back button", () => {
-	board.clickExportBackButton();
+	board.clickDialogButton('back');
 });
 
 When("I click on the cancel export button", () => {
-	board.clickCancelExport();
+	board.clickDialogButton('cancel');
 });
