@@ -56,7 +56,6 @@ Feature: Room Board - Add BBB Tool in the Room Board
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the video conference element added in the card
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
 
         # teacher deletes the BBB Tool from the multi-column board card
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -71,7 +70,15 @@ Feature: Room Board - Add BBB Tool in the Room Board
         When I click on the button Delete in the confirmation dialog
         Then I do not see the video conference element
 
+        # student cannot see the video conference in the multi-column board
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I do not see the video conference element
+
         # post-condition: delete the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
