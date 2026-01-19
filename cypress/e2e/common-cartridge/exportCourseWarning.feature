@@ -17,20 +17,22 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
         When I go to courses overview
         When I click on FAB to add or import courses
         When I click on the import course button
-        When I select the fixture file 'cc/CC_Test_Kurs.imscc'
+        When I select the fixture file 'cc/<course>.imscc'
         When I start the import
         Then I see the loading bar
         When I wait for the loading bar to close
-        Then I see the course 'CC_Test_Kurs' on the course overview page
+        Then I see the course '<course>' on the course overview page
 
         # export the course with CC 1.1.0 (does not support file folder export)
         When I go to courses overview
-        When I go to course 'CC_Test_Kurs'
-        Then I see course page 'CC_Test_Kurs'
+        When I go to course '<course>'
+        Then I see course page '<course>'
         When I click on export course button
+
         # warning box should be shown
         Then I should see a fixed warning that CC can not export file folders
         When I click on dialog next button
+
         # a warning box should be shown if CC 1.1.0 was selected
         Then I should see a warning that CC can not export file folders
 
@@ -39,11 +41,13 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
         Then I should see a fixed warning that CC can not export file folders
         When I select the latest CC radio button
         When I click on dialog next button
+
         # a warning box should not be shown if CC 1.3.0 was selected
         Then I should not see a warning that CC can not export file folders
-        # set to default state
+
+        # post-condition: File is deleted & closed and state is set back to default state
         When I click on the cancel export button
-        Given course with name 'CC_Test_Kurs' is deleted
+        Given course with name '<course>' is deleted
 
         # @staging_test
         # Examples:
@@ -52,5 +56,5 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
 
         @school_api_test
         Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+            | teacher      | namespace | course |
+            | teacher1_dbc | dbc       | CC_Test_Kurs |
