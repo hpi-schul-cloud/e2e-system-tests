@@ -1335,7 +1335,6 @@ class RoomBoards {
 	}
 
 	enterFileNameInBoardCard(newFileName) {
-		cy.intercept("PATCH", "**/api/v3/file/**").as("renameFile");
 		cy.get(RoomBoards.#fileTitleInCardInput)
 			.find("input")
 			.type(newFileName, { delay: 10 }) // sometimes the typing is too fast for the input field.
