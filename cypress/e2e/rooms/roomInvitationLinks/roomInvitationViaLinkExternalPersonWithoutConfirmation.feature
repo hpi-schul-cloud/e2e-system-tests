@@ -26,8 +26,8 @@ Feature: Rooms - Room invitations via link without confirmation for external per
         Then I see the modal Create Invitation Link
         When I enter '<invitation_description>' into the Invitation Link Description field
         When I uncheck the Checkbox to require confirmation
-        When I uncheck the Checkbox to restrict for creator school
-        When I check the Checkbox to valid for external persons
+        When I select the radio button for 'all-schools'
+        When I "check" the checkbox to allow external persons to use the invitation link
         When I save the invitation link
         Then I see the Link URL in the Modal
         When I remember the invitation link URL in the Modal

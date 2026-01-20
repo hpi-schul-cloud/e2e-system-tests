@@ -345,13 +345,16 @@ When("I check the Checkbox to require confirmation", () => {
 	rooms.checkInvitationFormRequireConfirmation();
 });
 
-When("I uncheck the Checkbox to restrict for creator school", () => {
-	rooms.uncheckInvitationFormRestrictToCreatorSchool();
+When("I select the radio button for {string}", (schoolScope) => {
+	rooms.selectInvitationLinkSchoolScope(schoolScope);
 });
 
-When("I check the Checkbox to valid for external persons", () => {
-	rooms.checkInvitationFormValidForExternalPersons();
-});
+When(
+	"I {string} the checkbox to allow external persons to use the invitation link",
+	(action) => {
+		rooms.setExternalPersonOptionForInvitationLink(action);
+	}
+);
 
 When("I save the invitation link", () => {
 	rooms.clickInvitationFormSave();

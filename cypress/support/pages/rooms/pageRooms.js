@@ -63,8 +63,10 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
-	static #inputInviteMembersRestrictedToAllSchool =
+	static #inputInviteMembersForAllSchool =
 		'[data-testid="input-invite-participants-all-schools"]';
+	static #inputInviteMembersFromCreatorSchool =
+		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
 	static #threeDotMenuOptions = '[role="menuitem"]';
 
 	deleteElementsWithText(textSelector, roomName) {
@@ -632,16 +634,31 @@ class Rooms {
 			.uncheck();
 	}
 
-	uncheckInvitationFormRestrictToCreatorSchool() {
-		cy.get(Rooms.#inputInviteMembersRestrictedToAllSchool)
+	selectInvitationLinkSchoolScope(schoolScope) {
+		// @param {'all-schools'|'creator-school'} => schoolScope
+		const selector =
+			schoolScope === "all-schools"
+				? Rooms.#inputInviteMembersForAllSchool
+				: Rooms.#inputInviteMembersFromCreatorSchool;
+		cy.get(selector)
 			.find('input[type="radio"]')
-			.check();
+			.then((radioBtn) => {
+				if (!radioBtn.is(":checked")) {
+					cy.wrap(radioBtn).check();
+				}
+			});
 	}
 
-	checkInvitationFormValidForExternalPersons() {
+	setExternalPersonOptionForInvitationLink(action) {
+		const desiredState = action === "check";
 		cy.get(Rooms.#inputInviteMembersValidForExternalPersons)
 			.find('[type="checkbox"]')
-			.check();
+			.then(($checkbox) => {
+				const actualState = $checkbox.is(":checked");
+				if (actualState !== desiredState) {
+					cy.wrap($checkbox)[desiredState ? "check" : "uncheck"]();
+				}
+			});
 	}
 
 	checkInvitationFormRequireConfirmation() {
