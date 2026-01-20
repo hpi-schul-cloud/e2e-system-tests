@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @prio_0_staging
+@only
 Feature: Room Board - Add, edit and delete element text in the room board
 
     As a teacher, I want to add, edit and delete an element Text on the room board, so that I can manage and update important notes efficiently.
@@ -39,7 +40,7 @@ Feature: Room Board - Add, edit and delete element text in the room board
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
-        Then I see the element Text '<example_text>' in the card
+        Then I see the element Text '<example_text>' in the card as student
 
         # teacher edits the element Text in the multi-column board
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -64,7 +65,7 @@ Feature: Room Board - Add, edit and delete element text in the room board
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
-        Then I do not see the element Text in the card
+        Then I do not see the element Text in the card as student
 
         # post-condition: delete the room
         Given I am logged in as a '<teacher>' at '<namespace>'

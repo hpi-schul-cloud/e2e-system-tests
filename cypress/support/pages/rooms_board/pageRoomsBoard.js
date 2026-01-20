@@ -98,6 +98,7 @@ class RoomBoards {
 	static #audioPreviewOnCard = '[data-testid="audio-thumbnail-in-card"]';
 	static #inputTextFieldCard = '[data-testid="rich-text-edit-0-0"]';
 	static #cardContentText = '[data-testid="rich-text-display-0-0"]';
+	static #cardContentTextForStudent = '[data-testid="rich-text-display-0-1"]';
 	// Tricky to be assigned data-testid here in the ckeditor inline toolbar
 	static #inlineCkToolbar = ".ck-balloon-panel";
 	static #elementEtherpadInBoard = '[data-testid="collaborative-text-editor-element"]';
@@ -447,6 +448,16 @@ class RoomBoards {
 		cy.get(RoomBoards.#cardContentText).should("not.exist");
 	}
 
+	verifyTextElementNotInCard() {
+		cy.wait(500);
+		cy.get(RoomBoards.#cardContentText).should("not.exist");
+	}
+
+	verifyTextElementNotInCardForStudent() {
+		cy.wait(500);
+		cy.get(RoomBoards.#cardContentTextForStudent).should("not.exist");
+	}
+
 	enterTextInTextElement(text) {
 		// CKEditor to be available before proceeding the test
 		cy.get(RoomBoards.#inputTextFieldCard, { timeout: 10000 })
@@ -463,6 +474,10 @@ class RoomBoards {
 
 	verifyTextInCard(text) {
 		cy.get(RoomBoards.#cardContentText).should("contain.text", text);
+	}
+
+	verifyTextInCardForStudent(text) {
+		cy.get(RoomBoards.#cardContentTextForStudent).should("contain.text", text);
 	}
 
 	reEnterTextInTextElement(text) {

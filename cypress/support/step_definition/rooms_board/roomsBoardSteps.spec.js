@@ -217,6 +217,10 @@ Then("I see the element Text {string} in the card", (text) => {
 	roomBoards.verifyTextInCard(text);
 });
 
+Then("I see the element Text {string} in the card as student", (text) => {
+	roomBoards.verifyTextInCardForStudent(text);
+});
+
 Then("I re enter the text {string} in the element Text", (editedText) => {
 	roomBoards.reEnterTextInTextElement(editedText);
 });
@@ -227,6 +231,10 @@ When("I remove the text {string} in the element Text", (editedText) => {
 
 Then("I do not see the element Text in the card", (editedText) => {
 	roomBoards.verifyTextElementNotInCard(editedText);
+});
+
+Then("I do not see the element Text in the card as student", (editedText) => {
+	roomBoards.verifyTextElementNotInCardForStudent(editedText);
 });
 
 Then("I see the file type Video in the card", () => {
