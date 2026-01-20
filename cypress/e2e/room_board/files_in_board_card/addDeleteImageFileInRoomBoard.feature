@@ -101,8 +101,12 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
-        @school_api_test
         @staging_test
+        Examples:
+            | teacher      | student      | namespace | student_name | role_name_student | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
+            | teacher1_dbc | student1_dbc | dbc       | Kraft        | Lernend           | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |
+
+        @school_api_test
         Examples:
             | teacher      | student      | namespace | student_name | role_name_student | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
             | teacher1_dbc | student1_dbc | dbc       | student_1    | Lernend           | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |

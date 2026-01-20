@@ -81,8 +81,12 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
-        @school_api_test
         @staging_test
+        Examples:
+            | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title |
+            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut BBB Tool    |
+
+        @school_api_test
         Examples:
             | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title |
             | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut BBB Tool    |

@@ -3,7 +3,6 @@
 @schedule_run
 @group-B
 @prio_0_staging
-@only
 Feature: Room Board - Add, edit and delete element text in the room board
 
     As a teacher, I want to add, edit and delete an element Text on the room board, so that I can manage and update important notes efficiently.
@@ -71,8 +70,12 @@ Feature: Room Board - Add, edit and delete element text in the room board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
-        @school_api_test
         @staging_test
+        Examples:
+            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
+
+        @school_api_test
         Examples:
             | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
             | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |

@@ -64,8 +64,12 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
-        @school_api_test
         @staging_test
+        Examples:
+            | teacher      | student      | namespace | room_name            | board_title            | student_name | role_name_student | example_text            | edit_example_text            |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | Kraft        | Lernend           | CypressAut example text | CypressAut edit example text |
+
+        @school_api_test
         Examples:
             | teacher      | student      | namespace | room_name            | board_title            | student_name | role_name_student | example_text            | edit_example_text            |
             | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | student_1    | Lernend           | CypressAut example text | CypressAut edit example text |
