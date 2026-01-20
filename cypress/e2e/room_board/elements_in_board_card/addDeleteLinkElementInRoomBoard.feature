@@ -10,11 +10,10 @@ Feature: Room Board - Add, delete element Link in the room board
     Scenario Outline: Add, delete link element in the room the room board, including pre & post conditions
 
         # pre-condition: creating accounts
-        Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student>' at '<namespace>'
+        Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: room, board and card are existing
-        Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
         Given the multi-column board has a column with a card
         Given multi column board is published to not to be in a draft mode

@@ -10,15 +10,19 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
     Scenario Outline: Add, edit and delete element Etherpad in the room the room board, including pre & post conditions
 
         # pre-condition: creating accounts
+        Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: room, board and card are existing
-        Given a room named '<room_name>' exists
-        Given a multi-column board named '<board_title>' exists in the room
+        Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
         Given the multi-column board has a column with a card
+        Given multi column board is published to not to be in a draft mode
+        Given '<student_name>' added in the room '<room_name>' at position '0' with role '<role_name_student>' and default read permission
 
         # teacher adds element Etherpad in the multi-column room board
-        When I click on the page outside of the column
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -29,9 +33,18 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         Then I verify the element Etherpad is clickable
 
         # student can see the element Etherpad in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I see the element Etherpad in the card
+        Then I verify the element Etherpad is clickable
 
         # teacher deletes the element Etherpad in the multi-column board
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element Etherpad
@@ -41,13 +54,18 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         Then I do not see the element Etherpad
 
         # student can not see the element Etherpad in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I do not see the element Etherpad
 
         # post-condition: delete the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | example_text            | edit_example_text            |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
+            | teacher      | student      | namespace | room_name            | board_title            | student_name | role_name_student | example_text            | edit_example_text            |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | student_1    | Lernend           | CypressAut example text | CypressAut edit example text |
