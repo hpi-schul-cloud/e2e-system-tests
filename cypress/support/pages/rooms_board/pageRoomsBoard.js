@@ -1335,6 +1335,7 @@ class RoomBoards {
 	}
 
 	enterFileNameInBoardCard(newFileName) {
+		cy.intercept("PATCH", "**/api/v3/file/**").as("renameFile");
 		cy.get(RoomBoards.#fileTitleInCardInput)
 			.find("input")
 			.type(newFileName, { delay: 10 }) // sometimes the typing is too fast for the input field.
@@ -1346,6 +1347,12 @@ class RoomBoards {
 				const actualBaseName = removeExtension(val);
 				const expectedBaseName = removeExtension(newFileName);
 				expect(actualBaseName).to.eq(expectedBaseName);
+
+				//wait and verify via API response for the name of the file to be updated in the backend as well
+				cy.wait("@renameFile").then(({ response }) => {
+					expect(response.statusCode).to.eq(200);
+					expect(response.body.name).to.eq(newFileName);
+				});
 			});
 	}
 
