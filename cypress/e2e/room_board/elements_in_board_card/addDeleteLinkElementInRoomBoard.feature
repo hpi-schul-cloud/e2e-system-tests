@@ -11,14 +11,19 @@ Feature: Room Board - Add, delete element Link in the room board
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<student>' at '<namespace>'
 
         # pre-condition: room, board and card are existing
-        Given a room named '<room_name>' exists
-        Given a multi-column board named '<board_title>' exists in the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
         Given the multi-column board has a column with a card
+        Given multi column board is published to not to be in a draft mode
+        Given '<student_name>' added in the room '<room_name>' at position '0' with role '<role_name_student>' and default read permission
 
         # teacher adds element Link in the multi-column room board
-        When I click on the page outside of the column
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -31,9 +36,18 @@ Feature: Room Board - Add, delete element Link in the room board
         Then I verify the element Link is clickable
 
         # student can see the element Link in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I see the element Link on the card
+        Then I verify the element Link is clickable
 
         # teacher deletes the element Link in the multi-column board
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on the three dot in the element Link
@@ -43,13 +57,18 @@ Feature: Room Board - Add, delete element Link in the room board
         Then I do not see the element Link
 
         # student can not see the element Link in the multi-column board
-        # note: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I do not see the element Link
 
         # post-condition: delete the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | example_link                        |
-            | teacher1_brb | brb       | CypressAut Room Name | CypressAut Board Title | https://main.brb.dbildungscloud.dev |
+            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                        |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.dbc.dbildungscloud.dev |
