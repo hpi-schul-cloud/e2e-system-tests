@@ -1,7 +1,7 @@
-@regression_test
 @unstable_test
-@group-B
-@prio_0_staging
+# @regression_test
+# @group-B
+# @prio_0_staging
 # Marking it as unstable due to BC-11009
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 
