@@ -10,15 +10,19 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
     Scenario Outline: Upload, download and delete image file in the room board
 
         # pre-condition: creating accounts
+        Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: room, board and card are existing
-        Given a room named '<room_name>' exists
-        Given a multi-column board named '<board_title>' exists in the room
+        Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
         Given the multi-column board has a column with a card
+        Given multi column board is published to not to be in a draft mode
+        Given '<student_name>' added in the room '<room_name>' at position '0' with role '<role_name_student>' and default read permission
 
         # teacher uploads image file with caption and alternative text in the multi-column room board
-        When I click on the page outside of the column
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -56,9 +60,19 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Then I see the file type Image in the card
 
         # student can see the image file in the multi-column board
-        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I see the file type Image in the card
+        When I click on the thumbnail Image in the card
+        Then I see the image in a lightbox
 
         # teacher previews the image, downloads the image file and closes the fullscreen image window
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the thumbnail Image in the card
         Then I see the image in a lightbox
         When I click on icon Download in the fullscreen image
@@ -77,13 +91,18 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
         Then I do not see the element File
 
         # student can not see the image file in the multi-column board
-        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I do not see the element File
 
         # post-condition: delete the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |
+            | teacher      | student      | namespace | student_name | role_name_student | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
+            | teacher1_dbc | student1_dbc | dbc       | student_1    | Lernend           | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |
