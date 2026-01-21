@@ -1,14 +1,10 @@
 "use strict";
 
 class Files {
-	static #newFile = '[data-testid="create-new-file-btn"]';
-	static #filetypeDropdown = "#file_ending_chosen";
-	static #filetypeDocument = "li.active-result:nth-child(2)";
 	static #filetypeTable = "li.active-result:nth-child(3)";
 	static #filetypePresentation = "li.active-result:nth-child(4)";
 	static #filenameInputField = "#file-name";
 	static #newFilenameInputField = '[data-testid="folder-rename-text-field"]';
-	static #createFileButtonOnModal = '[data-testid="btn-submit-Neue Datei erstellen"]';
 	static #downloadFile = '[data-testid="file-download-btn"]';
 	static #renameFile = '[data-testid="file-edit-btn"]';
 	static #saveRenameFile = '[data-testid="submit-btn-rename-modal"]';
@@ -41,11 +37,6 @@ class Files {
 	static #courseFolderNameEdit = '[data-testid="edit-folder-name"]';
 	static #folderRenameTextField = '[data-testid="folder-rename-text-field"]';
 
-	static #testAssertionData = {
-		fileTypeDocument: "Textdokument (docx)",
-		libraOfficeOpenTitleText: "LibreOffice Online",
-	};
-
 	openFilesMenu() {
 		cy.get(Files.#filesOverviewNavigationButton).click();
 	}
@@ -74,27 +65,11 @@ class Files {
 		cy.url().should("include", "/files/shared");
 	}
 
-	clickOnCreateNewFile() {
-		cy.get(Files.#newFile).click();
-	}
-
-	selectFiletypeDocument() {
-		cy.get(Files.#filetypeDropdown).click();
-		cy.get(Files.#filetypeDocument)
-			.contains(Files.#testAssertionData.fileTypeDocument)
-			.should("be.visible")
-			.click();
-	}
-
 	typeFilename(fileName) {
 		cy.get(Files.#filenameInputField)
 			.should("be.visible")
 			.type(fileName, { delay: 50 })
 			.should("have.value", fileName);
-	}
-
-	clickOnCreateFile() {
-		cy.get(Files.#createFileButtonOnModal).click();
 	}
 
 	clickOnFileWithName(fileName) {
@@ -139,15 +114,6 @@ class Files {
 
 	clickOnConfirmDeleteFileOnModal() {
 		cy.get(Files.#confirmDeleteFile).focus().click();
-	}
-
-	libreOfficeOpens() {
-		cy.url().should("include", "/files/file/");
-		cy.wait("@alerts_api");
-		cy.contains(
-			Files.#pageTitle,
-			Files.#testAssertionData.libraOfficeOpenTitleText
-		).should("be.visible");
 	}
 
 	fileNameIsShown(fileName) {
