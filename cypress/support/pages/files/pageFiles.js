@@ -1,9 +1,6 @@
 "use strict";
 
 class Files {
-	static #newFile = '[data-testid="create-new-file-btn"]';
-	static #filetypeDropdown = "#file_ending_chosen";
-	static #filetypeDocument = "li.active-result:nth-child(2)";
 	static #filetypeTable = "li.active-result:nth-child(3)";
 	static #filetypePresentation = "li.active-result:nth-child(4)";
 	static #filenameInputField = "#file-name";
@@ -40,10 +37,6 @@ class Files {
 	static #courseFolderNameEdit = '[data-testid="edit-folder-name"]';
 	static #folderRenameTextField = '[data-testid="folder-rename-text-field"]';
 
-	static #testAssertionData = {
-		fileTypeDocument: "Textdokument (docx)",
-	};
-
 	openFilesMenu() {
 		cy.get(Files.#filesOverviewNavigationButton).click();
 	}
@@ -70,18 +63,6 @@ class Files {
 		cy.get(Files.#sharedFilesOverviewNavigationButton).click();
 		cy.wait("@alerts_api");
 		cy.url().should("include", "/files/shared");
-	}
-
-	clickOnCreateNewFile() {
-		cy.get(Files.#newFile).click();
-	}
-
-	selectFiletypeDocument() {
-		cy.get(Files.#filetypeDropdown).click();
-		cy.get(Files.#filetypeDocument)
-			.contains(Files.#testAssertionData.fileTypeDocument)
-			.should("be.visible")
-			.click();
 	}
 
 	typeFilename(fileName) {

@@ -3,14 +3,6 @@ import Files from "../../pages/files/pageFiles";
 
 const files = new Files();
 
-When("I click create a new file button", () => {
-	files.clickOnCreateNewFile();
-});
-
-Then("I select filetype document", () => {
-	files.selectFiletypeDocument();
-});
-
 When("I type in {string}", (fileName) => {
 	files.typeFilename(fileName);
 });
