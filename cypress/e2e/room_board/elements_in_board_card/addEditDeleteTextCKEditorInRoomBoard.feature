@@ -39,7 +39,7 @@ Feature: Room Board - Add, edit and delete element text in the room board
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
-        Then I see the element Text '<example_text>' in the card as student
+        Then I see the element Text '<example_text>' in the card
 
         # teacher edits the element Text in the multi-column board
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -64,7 +64,7 @@ Feature: Room Board - Add, edit and delete element text in the room board
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
-        Then I do not see the element Text in the card as student
+        Then I do not see the element Text in the card
 
         # post-condition: delete the room
         Given I am logged in as a '<teacher>' at '<namespace>'
