@@ -8,7 +8,6 @@ class Files {
 	static #filetypePresentation = "li.active-result:nth-child(4)";
 	static #filenameInputField = "#file-name";
 	static #newFilenameInputField = '[data-testid="folder-rename-text-field"]';
-	static #createFileButtonOnModal = '[data-testid="btn-submit-Neue Datei erstellen"]';
 	static #downloadFile = '[data-testid="file-download-btn"]';
 	static #renameFile = '[data-testid="file-edit-btn"]';
 	static #saveRenameFile = '[data-testid="submit-btn-rename-modal"]';
@@ -43,7 +42,6 @@ class Files {
 
 	static #testAssertionData = {
 		fileTypeDocument: "Textdokument (docx)",
-		libraOfficeOpenTitleText: "LibreOffice Online",
 	};
 
 	openFilesMenu() {
@@ -93,10 +91,6 @@ class Files {
 			.should("have.value", fileName);
 	}
 
-	clickOnCreateFile() {
-		cy.get(Files.#createFileButtonOnModal).click();
-	}
-
 	clickOnFileWithName(fileName) {
 		cy.get(Files.#cardTitle).contains(fileName).should("be.visible").click();
 	}
@@ -139,15 +133,6 @@ class Files {
 
 	clickOnConfirmDeleteFileOnModal() {
 		cy.get(Files.#confirmDeleteFile).focus().click();
-	}
-
-	libreOfficeOpens() {
-		cy.url().should("include", "/files/file/");
-		cy.wait("@alerts_api");
-		cy.contains(
-			Files.#pageTitle,
-			Files.#testAssertionData.libraOfficeOpenTitleText
-		).should("be.visible");
 	}
 
 	fileNameIsShown(fileName) {

@@ -15,10 +15,6 @@ When("I type in {string}", (fileName) => {
 	files.typeFilename(fileName);
 });
 
-Then("I click create file button", () => {
-	files.clickOnCreateFile();
-});
-
 When("I click file with {string}", (fileName) => {
 	files.clickOnFileWithName(fileName);
 });
@@ -45,10 +41,6 @@ Then("I click on button Delete file {string}", (fileName) => {
 
 Then("I click on button Confirm deletion of file on the modal", () => {
 	files.clickOnConfirmDeleteFileOnModal();
-});
-
-Then("LibreOffice opens", () => {
-	files.libreOfficeOpens();
 });
 
 Then("I can see file with name {string}", (fileName) => {
