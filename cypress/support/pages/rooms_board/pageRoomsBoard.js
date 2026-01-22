@@ -430,6 +430,7 @@ class RoomBoards {
 			throw new Error("CKEditor instance not found.");
 		}
 		editorInstance.setData(text);
+		cy.wait(500);
 	}
 
 	removeTextFromTextElement() {
