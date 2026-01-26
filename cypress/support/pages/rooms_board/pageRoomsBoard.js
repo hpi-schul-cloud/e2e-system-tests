@@ -430,6 +430,7 @@ class RoomBoards {
 			throw new Error("CKEditor instance not found.");
 		}
 		editorInstance.setData(text);
+		cy.wait(500);
 	}
 
 	removeTextFromTextElement() {
@@ -1346,6 +1347,12 @@ class RoomBoards {
 				const actualBaseName = removeExtension(val);
 				const expectedBaseName = removeExtension(newFileName);
 				expect(actualBaseName).to.eq(expectedBaseName);
+
+				//wait and verify via API response for the name of the file to be updated in the backend as well
+				cy.wait("@renameFile").then(({ response }) => {
+					expect(response.statusCode).to.eq(200);
+					expect(response.body.name).to.eq(newFileName);
+				});
 			});
 	}
 

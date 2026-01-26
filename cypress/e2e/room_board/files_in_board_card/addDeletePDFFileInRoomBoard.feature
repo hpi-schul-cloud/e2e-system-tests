@@ -10,15 +10,19 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
     Scenario Outline: Upload, download and delete pdf file in the room board, including pre & post conditions
 
         # pre-condition: creating accounts
+        Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
         # pre-condition: room, board and card are existing
-        Given a room named '<room_name>' exists
-        Given a multi-column board named '<board_title>' exists in the room
+        Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
         Given the multi-column board has a column with a card
+        Given multi column board is published to not to be in a draft mode
+        Given '<student_name>' added in the room '<room_name>' at position '0' with role '<role_name_student>' and default read permission
 
         # teacher uploads a pdf file in the multi-column room board
-        When I click on the page outside of the column
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
@@ -37,9 +41,17 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         Then I see the file type PDF is uploaded in the card
 
         # student can see the pdf file in the multi-column board
-        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I see the file type PDF is uploaded in the card
 
         # teacher edits caption of the pdf file in the multi-column room board
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I clear '<caption_field>' from the file
@@ -76,13 +88,22 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
         Then I do not see the element File
 
         # student can not see the pdf file in the multi-column board
-        # NOTE: this scenario can not be defined as adding a student into the room is not yet implemented.
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I do not see the element File
 
         # post-condition: delete the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
-        @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name            | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
-            | teacher1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
+            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
+
+        @school_api_test
+        Examples:
+            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
