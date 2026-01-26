@@ -925,7 +925,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#multiColumnBoardSelector)
 			.click()
 			.then(() => {
-				cy.get('[data-testid="board-title"]').should("be.visible").should("exist");
+				cy.get(RoomBoards.#roomBoardTitleOnPage).should("be.visible").should("exist");
 			});
 	}
 
