@@ -34,7 +34,7 @@ Feature: Room Board - Share room board copy with files in file folder
         # content editor copies room board to second room
         When I open the shared URL for board
         Then I see the Dialog to import
-        Then I see the title in the share modal
+        Then I see the title in the import modal
         When I select the room from the room list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal

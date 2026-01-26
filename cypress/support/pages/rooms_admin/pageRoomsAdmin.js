@@ -8,9 +8,8 @@ class RoomsAdmin {
 	static #threeDotMenuManageRoomMembers = '[data-testid^="menu-manage-room-"]';
 	static #adminRoomTitle = '[data-testid="admin-room-detail-title"]';
 	static #adminParticipantTable = '[data-testid="room-admin-members-table"]';
-	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
-	static #userDeletionConfirmationModalTitle = '[data-testid="dialog-title"]';
-	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
+	static #deletionConfirmationModalTitle = '[data-testid="confirmation-dialog-title"]';
+	static #confirmButtonOnModal = '[data-testid="confirmation-dialog-confirm"]';
 
 	navigateToRoomsAdministrationPageViaSubmenu() {
 		cy.get(RoomsAdmin.#roomsAdministrationLink).should("be.visible");
@@ -110,7 +109,7 @@ class RoomsAdmin {
 	}
 
 	seeConfirmationModalForUserDeletionInAdminPage() {
-		cy.get(RoomsAdmin.#userDeletionConfirmationModalTitle).should("exist");
+		cy.get(RoomsAdmin.#deletionConfirmationModalTitle).should("exist");
 	}
 
 	clickRemoveInConfirmationModal() {
@@ -122,21 +121,11 @@ class RoomsAdmin {
 		cy.get('[aria-label="' + user + ' aus Raum entfernen"]').click();
 	}
 
-	// The following code finds and clicks the dialog with the highest z-index value.
-	// - First, it collects all the dialog elements.
-	// - It then sorts the dialogs in descending order based on their z-index, so the dialog on top (with the highest z-index) comes first.
-	// - If there is only one dialog, it will automatically be selected as the highest.
-	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(RoomsAdmin.#deletionConfirmationModalTitle).then((dialogs) => {
-			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
-				return (
-					parseInt(Cypress.$(dialogB).css("z-index")) -
-					parseInt(Cypress.$(dialogA).css("z-index"))
-				);
-			})[0];
-			cy.wrap(highestZIndexDialog).find(RoomsAdmin.#confirmButtonOnModal).click();
-		});
+		cy.get(RoomsAdmin.#confirmButtonOnModal)
+			.filter(":visible")
+			.first()
+			.click({ force: true });
 	}
 }
 

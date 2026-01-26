@@ -25,10 +25,12 @@ class RoomBoards {
 	static #saveButton = '[data-testid="save-video-conference-title-button"]';
 	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
 	static #videoConferenceModal = '[data-testid="video-conference-config-dialog"]';
-	static #createVideoConferenceButton = '[data-testid="dialog-create"]';
+	static #createVideoConferenceButton =
+		'[data-testid="video-conference-config-dialog-confirm"]';
 	static #moderatorApprovalCheckbox =
 		'[data-testid="moderator-must-approve-join-requests"]';
-	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
+	static #cancelButtonInVideoConferenceModal =
+		'[data-testid="video-conference-config-dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #deleteOptionOnCardElementThreeDot =
@@ -38,11 +40,12 @@ class RoomBoards {
 	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
-	static #shareImportSettingsDialog = '[data-testid="dialog-title"]';
+	static #shareSettingsDialog = '[data-testid="share-dialog-title"]';
+	static #shareModalTitle = '[data-testid="share-dialog-title"]';
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
-	static #continueButton = '[data-testid="dialog-next"]';
+	static #continueButton = '[data-testid="share-dialog-next"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
@@ -51,10 +54,10 @@ class RoomBoards {
 	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
 	static #importButton = '[data-testid="dialog-confirm"]';
-	static #shareModalTitle = '[data-testid="dialog-title"]';
+	static #importModalTitle = '[data-testid="import-modal-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
-	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
+	static #cancelButtonInShareModal = '[data-testid="share-dialog-cancel"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #editingSettingsAlert = '[class="alert-text"]';
@@ -620,6 +623,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
 	}
 
+	verifyImportModalTitle() {
+		cy.get(RoomBoards.#importModalTitle).should("be.visible");
+	}
+
 	verifyOptionInEditingSettingsModal(option) {
 		cy.get(`[data-testid=edit-settings-option-${option}]`).should("be.visible");
 	}
@@ -668,7 +675,7 @@ class RoomBoards {
 	}
 
 	verifyImportDialog() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
+		cy.get(RoomBoards.#importModalTitle).should("be.visible");
 	}
 
 	clickButtonInEditingSettingsModal(buttonText) {
@@ -681,7 +688,7 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("exist");
+		cy.get(RoomBoards.#importModalTitle).should("exist");
 		cy.get(RoomBoards.#roomSelectionBoxModal)
 			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
@@ -713,7 +720,7 @@ class RoomBoards {
 	}
 
 	seeShareSettingsDialog() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
 	}
 
 	seeEditingSettingsDialog() {
@@ -741,7 +748,7 @@ class RoomBoards {
 	}
 
 	verifyShareViaModal() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
+		cy.get(RoomBoards.#shareSettingsDialog).should("be.visible");
 	}
 
 	verifyShareViaEmailOption() {
