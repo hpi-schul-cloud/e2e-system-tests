@@ -132,7 +132,7 @@ class RoomBoards {
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 
 	verifyCardPresentOnTargetBoard(cardTitle) {
-		cy.get(RoomBoards.#duplicatedCardPosition).dblclick();
+		cy.get(RoomBoards.#duplicatedCardPosition).should("be.visible");
 		cy.get(RoomBoards.#inputCardTitle)
 			.should("be.visible")
 			.and("contain.text", cardTitle);
@@ -922,11 +922,8 @@ class RoomBoards {
 	}
 
 	clickMultiColumnBoardInRoomDetailPage() {
-		cy.get(RoomBoards.#multiColumnBoardSelector)
-			.click()
-			.then(() => {
-				cy.get(RoomBoards.#roomBoardTitleOnPage).should("be.visible").should("exist");
-			});
+		cy.get(RoomBoards.#multiColumnBoardSelector).click();
+		cy.get(RoomBoards.#roomBoardTitleOnPage).should("be.visible");
 	}
 
 	clickOptionCopy() {

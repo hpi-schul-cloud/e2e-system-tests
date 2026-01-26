@@ -355,6 +355,7 @@ class Rooms {
 
 		// click the "Open" button for the room at the given position
 		cy.get(openButtonSelector).click();
+		cy.wait(500);
 	}
 
 	openThreeDotMenuForRoom() {
