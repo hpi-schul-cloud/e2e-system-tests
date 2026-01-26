@@ -1,7 +1,9 @@
-@unstable_test
-Feature: Login Management - Login of users not managed by SVS
+@stable_test
+@regression_test
+@prio_0_staging
+Feature: Login Management - Login of users not managed by SVS (LDAP users)
 
-    As a user, I want to login with LDAP username and password into SVS
+    As a user, I want to login with LDAP username and password into SVS so that I can access my account
 
     Scenario Outline: User makes a direct login with ldap username and password
         Given I am on the '<namespace>' login page
@@ -11,21 +13,16 @@ Feature: Login Management - Login of users not managed by SVS
         When I enter LDAP password '<user>' on '<namespace>'
         When I click on the button LDAP login on '<namespace>'
         Then I see the dashboard
-        Then I logout from the application
+        Then I see my initials '<initials>' in the dashboard
+        When I logout from the application
+        Then I see the login form on '<namespace>'
 
         #@school_api_test
         # this feature can not be executed using the school api, as we do not create LDAP external user using this api.
 
         @staging_test
-        # login credentials need to be clarified in order to execute this test. LDAP school is also not available on staging dropdown.
+        # this test is only executed for BRB teachers and students
         Examples:
-            | namespace | user             | ldap_school_name |
-            | brb       | student_ldap_brb | School One 0     |
-            | dbc       | student_ldap_dbc | School One 0     |
-            | nbc       | student_ldap_nbc | School One 0     |
-            | brb       | teacher_ldap_brb | School One 0     |
-            | dbc       | teacher_ldap_dbc | School One 0     |
-            | nbc       | teacher_ldap_nbc | School One 0     |
-            | brb       | admin_ldap_brb   | School One 0     |
-            | dbc       | admin_ldap_dbc   | School One 0     |
-            | nbc       | admin_ldap_nbc   | School One 0     |
+            | namespace | user             | ldap_school_name                                    | initials |
+            | brb       | student_ldap_brb | Carl Friedrich Gauß Grundschule (Inkl.), Hirschheim | AS       |
+            | brb       | teacher_ldap_brb | Carl Friedrich Gauß Grundschule (Inkl.), Hirschheim | AB       |
