@@ -922,7 +922,11 @@ class RoomBoards {
 	}
 
 	clickMultiColumnBoardInRoomDetailPage() {
-		cy.get(RoomBoards.#multiColumnBoardSelector).click();
+		cy.get(RoomBoards.#multiColumnBoardSelector)
+			.click()
+			.then(() => {
+				cy.get('[data-testid="board-title"]').should("be.visible").should("exist");
+			});
 	}
 
 	clickOptionCopy() {
