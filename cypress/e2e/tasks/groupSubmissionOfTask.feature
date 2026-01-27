@@ -12,22 +12,61 @@ Feature: Task - To submit a task as students group and grade it by teacher.
     Scenario Outline: Teacher creates, edits and deletes a task from the task overview
 
         # pre-condition: teacher logs in to create their account in the school
-        Given I am logged in as a '<teacher>' at '<namespace>'
         Given I am logged in as a '<student1>' at '<namespace>'
         Given I am logged in as a '<student2>' at '<namespace>'
         Given I am logged in as a '<student3>' at '<namespace>'
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
 
-        Given a course with name '<course_name>' exists with '<fullname_teacher>' as teacher and '<fullname_student1>' as student
+        # pre-condition: admin creates a course and assign teacher and student to the course, teacher creates group and task and published
+        Given a course with name '<course_name>' exists with '<fullname_teacher>' as teacher and '<fullname_student1>, <fullname_student2>, <fullname_student3>' as student
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given group with name '<group_name>' in the course '<course_name>' with students '<fullname_student1>, <fullname_student2>'
         Given published task with name '<task_name>' in the course with name '<course_name>'
 
+        # Student submits task for the group in the course
+        Given I am logged in as a '<student1>' at '<namespace>'
+        When I go to courses overview
+        When I go to course '<course_name>'
+        When I click on task '<task_name>'
+        When I click on submission tab
+        When I click on option Group for team submission
+        # Group selection not needed as only one group exists
+        When I enter text submission '<submission_text>'
+        When I upload file 'testboard_jpg.jpg' for submission
+        Then I see file 'testboard_jpg.jpg' is visible in uploaded files section of submission
+        When I click on button Send Submission
+        Then I see hint that submission has been sent successfully
 
+        # Teacher grades the group submission
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to courses overview
+        When I go to course '<course_name>'
+        When I click on task '<task_name>'
+        When I click on submissions tab
+        Then there is a tick in column delivered for group '<group_name>'
+        # When I click on submission of '<group_name>'
+        # Then I see submission text '<submission_text>'
+        # When I click on download file in submission
+        # Then file 'testboard_jpg.jpg' is saved in folder downloads
+        # When I click on grading tab
+        # When I upload file 'gradingfile-pdf.pdf'
+        # Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
+        # When I enter comment 'Gut gemacht!'
+        # When I enter grade '83'
+        # When I click on button Save and Send grading
+        # Then there is a tick in column delivered for '<student_last_name>'
+        # Then grading for '<student_last_name>' contains '83'
+        # When I click on button To Course
+        # Then I see task card info submitted contains '1/1' for task '<task_name>'
+        # Then Task card info graded contains '1/1' for task '<task_name>'
 
         @school_api_test
         Examples:
-            | namespace | teacher      | fullname_teacher  | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | task_name             |
-            | brb       | teacher1_brb | cypress teacher_1 | student1_brb | cypress student_1 | student2_brb | cypress student_2 | student3_brb | cypress student_3 | CypressAut Course | CypressAut Group Task |
+            | namespace | teacher      | fullname_teacher  | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         |
+            | brb       | teacher1_brb | cypress teacher_1 | admin1_brb | student1_brb | cypress student_1 | student2_brb | cypress student_2 | student3_brb | cypress student_3 | CypressAut Course | Cypress Aut Group | CypressAut Group Task | Dies ist die Gruppenabgabe der Aufgabe. |
 
         @staging_test
         Examples:
-            | namespace | teacher      | fullname_teacher | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | task_name             |
-            | brb       | teacher1_brb | Karl Herzog      | student1_brb | cypress student_1 | student2_brb | cypress student_2 | student3_brb | cypress student_3 | CypressAut Course | CypressAut Group Task |
+            | namespace | teacher      | fullname_teacher | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             |
+            | brb       | teacher1_brb | Karl Herzog      | admin1_brb | student1_brb | cypress student_1 | student2_brb | cypress student_2 | student3_brb | cypress student_3 | CypressAut Course | Cypress Aut Group | CypressAut Group Task |

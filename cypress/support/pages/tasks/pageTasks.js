@@ -87,6 +87,7 @@ class Tasks {
 	static #fileTitleInTaskDetail = '[data-testid="file-title-card-0"]';
 	static #urlInputBoxCopyTask = '[data-testid="share-course-result-url"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
+	static #groupSubmissionOption = '[id="courseGroup1"]';
 
 	copyTaskURLInModal() {
 		cy.get(Tasks.#urlInputBoxCopyTask)
@@ -608,6 +609,15 @@ class Tasks {
 			.should("be.visible");
 	}
 
+	seeTickInGroupsSubmissionLine(groupName) {
+		cy.get(Tasks.#submissionsSection)
+			.contains(groupName)
+			.parent()
+			.parent()
+			.find(Tasks.#taskSubmissionsSubmittedIcon)
+			.should("be.visible");
+	}
+
 	openStudentsSubmission(studentLastname) {
 		cy.get(Tasks.#submissionsSection)
 			.contains(studentLastname)
@@ -699,6 +709,10 @@ class Tasks {
 						);
 					})
 			: cy.log(`Lower task sub-section already active`);
+	}
+
+	clickOptionGroupForTeamSubmission() {
+		cy.get(Tasks.#groupSubmissionOption).click();
 	}
 }
 export default Tasks;

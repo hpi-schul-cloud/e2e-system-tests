@@ -237,6 +237,10 @@ Then("there is a tick in column delivered for {string}", (studentLastname) => {
 	tasks.seeTickInStudentsSubmissionLine(studentLastname);
 });
 
+Then("there is a tick in column delivered for group {string}", (groupName) => {
+	tasks.seeTickInGroupsSubmissionLine(groupName);
+});
+
 When("I click on submission of {string}", (studentLastname) => {
 	tasks.openStudentsSubmission(studentLastname);
 });
@@ -313,4 +317,8 @@ When("I click on button Cancel in confirmation window in edit task page", () => 
 
 When("I click on button Delete in confirmation window in edit task page", () => {
 	tasks.clickConfirmDeletionButtonInEditTask();
+});
+
+When("I click on option Group for team submission", () => {
+	tasks.clickOptionGroupForTeamSubmission();
 });
