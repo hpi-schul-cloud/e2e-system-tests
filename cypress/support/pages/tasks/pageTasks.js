@@ -626,6 +626,15 @@ class Tasks {
 			.click();
 	}
 
+	openGroupsSubmission(groupName) {
+		cy.get(Tasks.#submissionsSection)
+			.contains(groupName)
+			.parent()
+			.parent()
+			.find(Tasks.#taskSubmissionsOpenSubmissionIcon)
+			.click();
+	}
+
 	compareSubmissionText(submissionText) {
 		cy.get(Tasks.#submissionDiv).should("contain", submissionText);
 	}
@@ -645,6 +654,14 @@ class Tasks {
 	checkGradingForStudent(studentLastname, gradingPercent) {
 		cy.get(Tasks.#submissionsSection)
 			.contains(studentLastname)
+			.parent()
+			.should("contain", gradingPercent);
+	}
+
+	checkGradingForGroup(groupName, gradingPercent) {
+		cy.get(Tasks.#submissionsSection)
+			.contains(groupName)
+			.parent()
 			.parent()
 			.should("contain", gradingPercent);
 	}

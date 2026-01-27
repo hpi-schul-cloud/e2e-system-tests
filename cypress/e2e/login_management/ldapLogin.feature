@@ -9,8 +9,8 @@ Feature: Login Management - Login of users not managed by SVS (LDAP users)
         Given I am on the '<namespace>' login page
         When I click on the option button for the login via LDAP
         When I select the LDAP school '<ldap_school_name>'
-        When I enter LDAP user name for '<user>' on '<namespace>'
-        When I enter LDAP password '<user>' on '<namespace>'
+        When I enter LDAP user name for '<username>' on '<namespace>'
+        When I enter LDAP password '<username>' on '<namespace>'
         When I click on the button LDAP login on '<namespace>'
         Then I see the dashboard
         Then I see my initials '<initials>' in the dashboard
@@ -23,6 +23,6 @@ Feature: Login Management - Login of users not managed by SVS (LDAP users)
         @staging_test
         # this test is only executed for BRB teachers and students
         Examples:
-            | namespace | user             | ldap_school_name                                    | initials |
+            | namespace | username         | ldap_school_name                                    | initials |
             | brb       | student_ldap_brb | Carl Friedrich Gauß Grundschule (Inkl.), Hirschheim | AS       |
             | brb       | teacher_ldap_brb | Carl Friedrich Gauß Grundschule (Inkl.), Hirschheim | AB       |

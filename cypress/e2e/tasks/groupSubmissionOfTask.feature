@@ -45,21 +45,21 @@ Feature: Task - To submit a task as students group and grade it by teacher.
         When I click on task '<task_name>'
         When I click on submissions tab
         Then there is a tick in column delivered for group '<group_name>'
-        # When I click on submission of '<group_name>'
-        # Then I see submission text '<submission_text>'
-        # When I click on download file in submission
-        # Then file 'testboard_jpg.jpg' is saved in folder downloads
-        # When I click on grading tab
-        # When I upload file 'gradingfile-pdf.pdf'
-        # Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
-        # When I enter comment 'Gut gemacht!'
-        # When I enter grade '83'
-        # When I click on button Save and Send grading
-        # Then there is a tick in column delivered for '<student_last_name>'
-        # Then grading for '<student_last_name>' contains '83'
-        # When I click on button To Course
-        # Then I see task card info submitted contains '1/1' for task '<task_name>'
-        # Then Task card info graded contains '1/1' for task '<task_name>'
+        When I click on submission of group '<group_name>'
+        Then I see submission text '<submission_text>'
+        When I click on download file in submission
+        Then file 'testboard_jpg.jpg' is saved in folder downloads
+        When I click on grading tab
+        When I upload file 'gradingfile-pdf.pdf'
+        Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
+        When I enter comment 'Gut gemacht!'
+        When I enter grade '83'
+        When I click on button Save and Send grading
+        Then there is a tick in column delivered for group '<group_name>'
+        Then grading for group '<group_name>' contains '83'
+        When I click on button To Course
+        Then I see task card info submitted contains '2/3' for task '<task_name>'
+        Then Task card info graded contains '2/3' for task '<task_name>'
 
         @school_api_test
         Examples:

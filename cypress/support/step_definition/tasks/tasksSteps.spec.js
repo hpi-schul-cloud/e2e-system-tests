@@ -245,6 +245,10 @@ When("I click on submission of {string}", (studentLastname) => {
 	tasks.openStudentsSubmission(studentLastname);
 });
 
+When("I click on submission of group {string}", (groupName) => {
+	tasks.openGroupsSubmission(groupName);
+});
+
 Then("I see submission text {string}", (submissionText) => {
 	tasks.compareSubmissionText(submissionText);
 });
@@ -271,6 +275,10 @@ When("I click on button Save and Send grading", () => {
 
 When("grading for {string} contains {string}", (studentLastname, gradingPercent) => {
 	tasks.checkGradingForStudent(studentLastname, gradingPercent);
+});
+
+When("grading for group {string} contains {string}", (groupName, gradingPercent) => {
+	tasks.checkGradingForGroup(groupName, gradingPercent);
 });
 
 When("I click on button To Course", () => {
