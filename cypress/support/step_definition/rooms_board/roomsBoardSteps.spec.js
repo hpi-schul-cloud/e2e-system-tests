@@ -321,6 +321,10 @@ Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
 
+Then("I see the title in the import modal", () => {
+	roomBoards.verifyImportModalTitle();
+});
+
 Then("I see the two options in the editing settings modal", () => {
 	roomBoards.verifyOptionInEditingSettingsModal("1");
 	roomBoards.verifyOptionInEditingSettingsModal("2");
