@@ -19,8 +19,8 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
         When I click on the import course button
         When I select the fixture file 'cc/<course>.imscc'
         When I start the import
-        Then I see the loading bar
         When I wait for the loading bar to close
+        When I wait '<import_wait_time>' seconds and reload
         Then I see the course '<course>' on the course overview page
 
         # export the course with CC 1.1.0 (does not support file folder export)
@@ -51,10 +51,10 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
 
         # @staging_test
         # Examples:
-        #     | teacher      | namespace |
-        #     | teacher1_dbc | dbc       |
+        #     | teacher      | namespace | course       | import_wait_time |
+        #     | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
 
         @school_api_test
         Examples:
-            | teacher      | namespace | course |
-            | teacher1_dbc | dbc       | CC_Test_Kurs |
+            | teacher      | namespace | course       | import_wait_time |
+            | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
