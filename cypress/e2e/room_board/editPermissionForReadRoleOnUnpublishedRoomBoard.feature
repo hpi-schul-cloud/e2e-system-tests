@@ -45,11 +45,11 @@ Feature: Room Board - Edit permission for unpublished room boards
         Then I see the Editing settings dialog
         Then I see the two options in the editing settings modal
         Then I see the button 'Cancel' in the editing settings modal
-        Then I see the button 'Save' in the editing settings modal
+        Then I see the button 'Confirm' in the editing settings modal
         Then I see the option '<not_editable_by_read_role>' is selected
         When I click the option '<editable_by_read_role>'
         Then I see the option '<editable_by_read_role>' is selected
-        When I click on the button 'Save' in the editing settings modal
+        When I click on the button 'Confirm' in the editing settings modal
         Then I see the chip Editable for all
 
         # viewer student checks that he has edit permission with respect to board
