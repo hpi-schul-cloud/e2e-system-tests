@@ -1,5 +1,6 @@
 @stable_test
 @regression_test
+@group-B
 @prio_0_staging
 Feature: Login Management - Login of users not managed by SVS (LDAP users)
 

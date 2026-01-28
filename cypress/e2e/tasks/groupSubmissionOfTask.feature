@@ -61,6 +61,27 @@ Feature: Task - To submit a task as students group and grade it by teacher.
         Then I see task card info submitted contains '2/3' for task '<task_name>'
         Then Task card info graded contains '2/3' for task '<task_name>'
 
+        # student2 sees grading
+        Given I am logged in as a '<student2>' at '<namespace>'
+        When I go to tasks overview
+        When I click completed task tab
+        Then I see task '<task_name>' in the list as student
+        When I click on task '<task_name>' in tasks overview
+        Then I see submission text '<submission_text>'
+        When I click on feedback tab
+        Then I see feedback text 'Gut gemacht!'
+        Then I see grade is '83'
+        When I click on download file in grading
+        Then file 'gradingfile-pdf.pdf' is saved in folder downloads
+
+
+
+        # student3 sees task is not submitted
+        Given I am logged in as a '<student3>' at '<namespace>'
+        When I go to tasks overview
+        When I click completed task tab
+        Then I see task '<task_name>' in the list as student
+
         @school_api_test
         Examples:
             | namespace | teacher      | fullname_teacher  | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         |
