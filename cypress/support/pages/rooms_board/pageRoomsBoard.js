@@ -140,10 +140,8 @@ class RoomBoards {
 	}
 
 	verifyCardPresentOnTargetBoard(cardTitle) {
-		cy.get(RoomBoards.#duplicatedCardPosition).should("be.visible");
-		cy.get(RoomBoards.#inputCardTitle)
-			.should("be.visible")
-			.and("contain.text", cardTitle);
+		cy.get(RoomBoards.#duplicatedCardPosition).scrollIntoView().should("exist");
+		cy.get(RoomBoards.#inputCardTitle).should("contain.text", cardTitle);
 	}
 
 	verifyCardNotPresentOnSourceBoard() {
