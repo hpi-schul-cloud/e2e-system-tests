@@ -51,7 +51,7 @@ Feature: Task - share and import task between two teachers from different school
         When I select the course from the course list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported task '<new_task_title>' in the modal
-        When I click on the button Import in the Import modal
+        When I click on the button Import in the import modal
         Then I see course page '<course_name_target>'
         Then I see the task in draft mode in course detail page
         Then I see the button Publish in the task card in course detail page

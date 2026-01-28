@@ -389,7 +389,7 @@ When(
 	}
 );
 
-When("I click on the button Import in the Import modal", () => {
+When("I click on the button Import in the import modal", () => {
 	roomBoards.clickImportOnModal();
 });
 
