@@ -18,8 +18,8 @@ Feature: Course Board - To import a course from common cartridge 1.3
         When I click on the import course button
         When I select the fixture file 'cc/CC-Import-Test.imscc'
         When I start the import
-        Then I see the loading bar
         When I wait for the loading bar to close
+        When I wait '<import_wait_time>' seconds and reload
         Then I see the course 'CC-Import-Test' on the course overview page
 
         # Topic 1
@@ -95,10 +95,10 @@ Feature: Course Board - To import a course from common cartridge 1.3
 
         # @staging_test
         # Examples:
-        #     | teacher      | namespace |
-        #     | teacher1_dbc | dbc       |
+        #     | teacher      | namespace | import_wait_time |
+        #     | teacher1_dbc | dbc       | 3                |
 
         @school_api_test
         Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+            | teacher      | namespace | import_wait_time |
+            | teacher1_dbc | dbc       | 3                |
