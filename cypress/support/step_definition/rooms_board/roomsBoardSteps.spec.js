@@ -317,10 +317,6 @@ Then("I see the result url text box in the modal", () => {
 	roomBoards.verifySharedBoardResultUrlTextBox();
 });
 
-Then("I see the title in the import modal", () => {
-	roomBoards.verifyImportDialog();
-});
-
 Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
@@ -389,16 +385,8 @@ When(
 	}
 );
 
-When("I click on the button Import in the import modal", () => {
+When("I click on the button Confirm in the share modal", () => {
 	roomBoards.clickImportOnModal();
-});
-
-When("I click on the button Import in the import card modal", () => {
-	roomBoards.clickOnImportButtonInImportCardModal();
-});
-
-When("I click on the button Move in the move Card modal", () => {
-	roomBoards.clickOnMoveButtonInMoveCardModal();
 });
 
 Then("I see the Share settings dialog", () => {
@@ -790,11 +778,7 @@ When("I clear input field New name", () => {
 });
 
 When("I click on button Approve in modal", () => {
-	roomBoards.clickOnConfirmOnModal();
-});
-
-When("I click on button Approve in modal for deletion", () => {
-	roomBoards.clickOnConfirmOnModalForDeletion();
+	globalActions.clickElementWithDataTestId("dialog-confirm");
 });
 
 When("I click on the name of file {string} in file list", (fileName) => {
