@@ -672,7 +672,7 @@ class RoomBoards {
 		const button = {
 			// close button is named 'cancel' in the data-testid
 			Close: "cancel",
-			Confirm: "confirm",
+			Save: "confirm",
 			Cancel: "cancel",
 		};
 		cy.get(`[data-testid=dialog-edit-settings-${button[buttonText]}]`).should(
@@ -694,7 +694,7 @@ class RoomBoards {
 		const button = {
 			// close button is named 'cancel' in the data-testid
 			Close: "cancel",
-			Confirm: "confirm",
+			Save: "confirm",
 			Cancel: "cancel",
 		};
 		cy.get(`[data-testid=dialog-edit-settings-${button[buttonText]}]`).click();

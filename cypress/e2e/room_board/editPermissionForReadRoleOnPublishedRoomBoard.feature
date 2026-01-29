@@ -34,11 +34,11 @@ Feature: Room Board - Edit permission for published room boards
         Then I see the two options in the editing settings modal
         Then I see the '1' option has 'Standardeinstellung' label
         Then I see the button 'Cancel' in the editing settings modal
-        Then I see the button 'Confirm' in the editing settings modal
+        Then I see the button 'Save' in the editing settings modal
         Then I see the option '<not_editable_by_read_role>' is selected
         When I click the option '<editable_by_read_role>'
         Then I see the option '<editable_by_read_role>' is selected
-        When I click on the button 'Confirm' in the editing settings modal
+        When I click on the button 'Save' in the editing settings modal
         Then I see the chip Editable for all
 
         # viewer student checks that he has edit permission with respect to the room board
@@ -65,7 +65,7 @@ Feature: Room Board - Edit permission for published room boards
         Then I see the option '<editable_by_read_role>' is selected
         When I click the option '<not_editable_by_read_role>'
         Then I see the option '<not_editable_by_read_role>' is selected
-        When I click on the button 'Confirm' in the editing settings modal
+        When I click on the button 'Save' in the editing settings modal
         Then I do not see the chip Editable for all
 
         # viewer student checks that he did not have edit permission with respect to the room board
