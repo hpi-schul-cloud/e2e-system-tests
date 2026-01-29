@@ -39,7 +39,7 @@ Feature: Room Board - Move a card from one room to another room
         When I select the room '<room_name_target>' from the room list in the move modal
         When I select the board '<board_title_target>' from the board list in the move modal
         When I select the column '<column_name>' from the column list in the move modal
-        When I click on the button Move in the Move Card modal
+        When I click on the button Move in the move Card modal
         Then I see the alert message
         Then I see the page board details
         Then I do not see the source card in the source board after moving to the target board

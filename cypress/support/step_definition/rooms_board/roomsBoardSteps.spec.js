@@ -393,11 +393,11 @@ When("I click on the button Import in the import modal", () => {
 	roomBoards.clickImportOnModal();
 });
 
-When("I click on the button Import in the Import Card modal", () => {
+When("I click on the button Import in the import card modal", () => {
 	roomBoards.clickOnImportButtonInImportCardModal();
 });
 
-When("I click on the button Move in the Move Card modal", () => {
+When("I click on the button Move in the move Card modal", () => {
 	roomBoards.clickOnMoveButtonInMoveCardModal();
 });
 
