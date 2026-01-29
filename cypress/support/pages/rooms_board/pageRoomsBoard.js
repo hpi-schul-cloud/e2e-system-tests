@@ -126,10 +126,14 @@ class RoomBoards {
 	static #moveCardSelectBoard = '[data-testid="move-card-select-board"]';
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
-	static #confirmButtonOnModal = '[data-testid="delete-file-dialog-confirm"]';
+	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
 	static #globalDialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
 	static #globalDialogTitle = '[data-testid="dialog-title"]';
+
+	clickOnConfirmOnModalForDeletion() {
+		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+	}
 
 	clickOnImportButtonInImportCardModal() {
 		cy.get(RoomBoards.#importCardDialogConfirm).click();

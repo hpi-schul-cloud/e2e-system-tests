@@ -37,7 +37,7 @@ Feature: Room Board - Create, edit and delete blank collabora Text file in file 
         When I check the checkbox in the table header for all elements
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on button Approve in modal
+        When I click on button Approve in modal for deletion
         Then I do not see files '<docx_file_name>' in file list
 
         # post-condition: delete the room

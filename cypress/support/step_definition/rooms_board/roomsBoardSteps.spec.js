@@ -793,6 +793,10 @@ When("I click on button Approve in modal", () => {
 	roomBoards.clickOnConfirmOnModal();
 });
 
+When("I click on button Approve in modal for deletion", () => {
+	roomBoards.clickOnConfirmOnModalForDeletion();
+});
+
 When("I click on the name of file {string} in file list", (fileName) => {
 	roomBoards.clickOnFileNameInFolder(fileName);
 });
