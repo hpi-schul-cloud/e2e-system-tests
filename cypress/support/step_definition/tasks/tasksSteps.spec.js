@@ -330,3 +330,15 @@ When("I click on button Delete in confirmation window in edit task page", () => 
 When("I click on option Group for team submission", () => {
 	tasks.clickOptionGroupForTeamSubmission();
 });
+
+Then("I see red tick for not submitted task", () => {
+	tasks.seeRedTickForNotSubmittedTask();
+});
+
+Then("I see green tick for submitted task", () => {
+	tasks.seeGreenTickForSubmittedTask();
+});
+
+Then("I see a hint about no available feedback", () => {
+	tasks.seeHintAboutNoAvailableFeedback();
+});

@@ -88,6 +88,7 @@ class Tasks {
 	static #urlInputBoxCopyTask = '[data-testid="share-course-result-url"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #groupSubmissionOption = '[id="courseGroup1"]';
+	static #feedbackHint = '[id="feedback"]';
 
 	copyTaskURLInModal() {
 		cy.get(Tasks.#urlInputBoxCopyTask)
@@ -272,6 +273,12 @@ class Tasks {
 
 	compareFeedbackGrade(feedbackGrade) {
 		cy.get(Tasks.#feedbackGrade).should("contain", feedbackGrade);
+	}
+
+	seeHintAboutNoAvailableFeedback() {
+		cy.get(Tasks.#feedbackHint)
+			.should("be.visible")
+			.and("contain", "Noch kein Kommentar vorhanden.");
 	}
 
 	seeUploadFileButtonIsDisabled() {
@@ -730,6 +737,14 @@ class Tasks {
 
 	clickOptionGroupForTeamSubmission() {
 		cy.get(Tasks.#groupSubmissionOption).click();
+	}
+
+	seeRedTickForNotSubmittedTask() {
+		cy.get(Tasks.#taskSection).find('i[class*="danger"]').should("be.visible");
+	}
+
+	seeGreenTickForSubmittedTask() {
+		cy.get(Tasks.#taskSection).find('i[class*="done"]').should("be.visible");
 	}
 }
 export default Tasks;
