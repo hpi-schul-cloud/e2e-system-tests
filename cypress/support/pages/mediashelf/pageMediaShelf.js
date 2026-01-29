@@ -165,7 +165,9 @@ class MediaShelf {
 
 	seeMediaElementDeactivatedChip(toolName) {
 		cy.get(`[data-testid="media-element-${toolName}"]`).within(() => {
-			cy.get(MediaShelf.#mediaElementDeactivatedChip).should("be.visible");
+			cy.get(
+				`${MediaShelf.#mediaElementDeactivatedChip}, ${MediaShelf.#mediaElementNoLongerAvailableChip}`
+			).should("be.visible");
 		});
 	}
 
