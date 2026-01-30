@@ -1449,5 +1449,9 @@ class RoomBoards {
 			.find(RoomBoards.#boardFolderDownloadButton)
 			.click();
 	}
+
+	verifyPptxFileUploaded() {
+		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
 }
 export default RoomBoards;
