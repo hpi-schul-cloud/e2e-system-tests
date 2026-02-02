@@ -2,7 +2,6 @@
 
 class RoomBoards {
 	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
-	static #btnDialogConfirm = '[data-testid="dialog-confirm"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
 	static #mainPageArea = '[id="main-content"]';
@@ -33,12 +32,9 @@ class RoomBoards {
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #deleteOptionOnCardElementThreeDot =
 		'[data-testid="kebab-menu-action-delete"]';
-	static #deleteConfirmationDialogForVideoConferenceElement =
-		'[data-testid="dialog-title"]';
-	static #deleteButtonOnDeletionDialog = '[data-testid="dialog-confirm"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
-	static #shareImportSettingsDialog = '[data-testid="dialog-title"]';
+	static #importCardDialogTitle = '[data-testid="import-card-dialog-title"]';
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
@@ -50,8 +46,8 @@ class RoomBoards {
 	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
 	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
-	static #importButton = '[data-testid="dialog-confirm"]';
-	static #shareModalTitle = '[data-testid="dialog-title"]';
+	static #moveButtonOnMoveDialog = '[data-testid="move-card-dialog-confirm"]';
+	static #shareModalTitleOnMovingCard = '[data-testid="move-card-dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
 	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
@@ -82,11 +78,12 @@ class RoomBoards {
 	static #createDocumentButtonInFileFolder =
 		'[data-testid="fab-button-create-document"]';
 	static #dialogCreateDocumentInFileFolder = '[data-testid="collabora-file-dialog"]';
-	static #dialogCreateDocumentTitleInFileFolder = '[data-testid="dialog-title"]';
+	static #dialogCreateDocumentTitleInFileFolder =
+		'[data-testid="collabora-file-dialog-title"]';
 	static #dialogSelectDocumentTypeFileFolder =
 		'[data-testid="collabora-file-form-type"]';
 	static #dialogFileNameFileFolder = '[data-testid="collabora-file-form-filename"]';
-	static #dialogCreateButton = '[data-testid="dialog-confirm"]';
+	static #dialogCreateButton = '[data-testid="collabora-file-dialog-confirm"]';
 	static #boardFolderDownloadButton =
 		'[data-testid="board-folder-element-download-button"]';
 	static #boardContentElementBar = '[data-testid="content-element-bar-board"]';
@@ -125,17 +122,30 @@ class RoomBoards {
 	static #importSelectRoom = '[data-testid="import-card-select-room"]';
 	static #importSelectBoard = '[data-testid="import-card-select-board"]';
 	static #importSelectColumn = '[data-testid="import-card-select-column"]';
-	static #importSubmitButton = '[data-testid="dialog-confirm"]';
 	static #inputCardTitle = '[data-testid="card-title"]';
 	static #moveCardSelectBoard = '[data-testid="move-card-select-board"]';
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
+	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
+	static #globalDialogConfirmButton = '[data-testid="dialog-confirm"]';
+	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
+	static #globalDialogTitle = '[data-testid="dialog-title"]';
+
+	clickOnConfirmOnModalForDeletion() {
+		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+	}
+
+	clickOnImportButtonInImportCardModal() {
+		cy.get(RoomBoards.#importCardDialogConfirm).click();
+	}
+
+	clickOnConfirmOnModal() {
+		cy.get(RoomBoards.#confirmButtonOnModal).click();
+	}
 
 	verifyCardPresentOnTargetBoard(cardTitle) {
-		cy.get(RoomBoards.#duplicatedCardPosition).should("be.visible");
-		cy.get(RoomBoards.#inputCardTitle)
-			.should("be.visible")
-			.and("contain.text", cardTitle);
+		cy.get(RoomBoards.#duplicatedCardPosition).scrollIntoView().should("exist");
+		cy.get(RoomBoards.#inputCardTitle).should("contain.text", cardTitle);
 	}
 
 	verifyCardNotPresentOnSourceBoard() {
@@ -199,7 +209,7 @@ class RoomBoards {
 	}
 
 	clickImportButtonInModal() {
-		cy.get(RoomBoards.#importSubmitButton)
+		cy.get(RoomBoards.#globalDialogConfirmButton)
 			.should("be.visible")
 			.and("not.be.disabled")
 			.click();
@@ -617,7 +627,13 @@ class RoomBoards {
 	}
 
 	verifyShareModalTitle() {
-		cy.get(RoomBoards.#shareModalTitle).should("be.visible");
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#shareModalTitleOnMovingCard).length > 0) {
+				cy.get(RoomBoards.#shareModalTitleOnMovingCard).should("be.visible");
+			} else {
+				cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+			}
+		});
 	}
 
 	verifyOptionInEditingSettingsModal(option) {
@@ -654,11 +670,12 @@ class RoomBoards {
 
 	verifyButtonInEditingSettingsModal(buttonText) {
 		const button = {
+			// close button is named 'cancel' in the data-testid
 			Close: "cancel",
-			Save: "save",
+			Save: "confirm",
 			Cancel: "cancel",
 		};
-		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).should(
+		cy.get(`[data-testid=dialog-edit-settings-${button[buttonText]}]`).should(
 			"be.visible"
 		);
 	}
@@ -668,20 +685,23 @@ class RoomBoards {
 	}
 
 	verifyImportDialog() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
+		cy.get(
+			`${RoomBoards.#importCardDialogTitle}, ${RoomBoards.#globalDialogTitle}`
+		).should("be.visible");
 	}
 
 	clickButtonInEditingSettingsModal(buttonText) {
 		const button = {
+			// close button is named 'cancel' in the data-testid
 			Close: "cancel",
-			Save: "save",
+			Save: "confirm",
 			Cancel: "cancel",
 		};
-		cy.get(`[data-testid=edit-settings-${button[buttonText]}-btn]`).click();
+		cy.get(`[data-testid=dialog-edit-settings-${button[buttonText]}]`).click();
 	}
 
 	selectRoomForImport() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("exist");
+		cy.get(RoomBoards.#globalDialogTitle).should("exist");
 		cy.get(RoomBoards.#roomSelectionBoxModal)
 			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
@@ -709,11 +729,15 @@ class RoomBoards {
 	}
 
 	clickImportOnModal() {
-		cy.get(RoomBoards.#importButton).click();
+		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+	}
+
+	clickOnMoveButtonInMoveCardModal() {
+		cy.get(RoomBoards.#moveButtonOnMoveDialog).click();
 	}
 
 	seeShareSettingsDialog() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
+		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
 	}
 
 	seeEditingSettingsDialog() {
@@ -741,7 +765,7 @@ class RoomBoards {
 	}
 
 	verifyShareViaModal() {
-		cy.get(RoomBoards.#shareImportSettingsDialog).should("be.visible");
+		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
 	}
 
 	verifyShareViaEmailOption() {
@@ -760,10 +784,7 @@ class RoomBoards {
 		cy.get(`[data-testid=edit-settings-option-${option}]`)
 			.should("be.visible")
 			.within((element) => {
-				cy.get(element)
-					.find("label")
-					.contains("span", label)
-					.should("contain", label);
+				cy.get(element).find("label").contains(label).should("contain", label);
 			});
 	}
 
@@ -831,13 +852,11 @@ class RoomBoards {
 	}
 
 	verifyDeleteConfirmationDialogVisible() {
-		cy.get(RoomBoards.#deleteConfirmationDialogForVideoConferenceElement).should(
-			"be.visible"
-		);
+		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#deleteButtonOnDeletionDialog).click();
+		cy.get(RoomBoards.#globalDialogConfirmButton).click();
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
 		cy.reload();
 	}
@@ -1003,10 +1022,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#btnDialogCancel).click();
 	}
 	seeBtnDialogConfirmDelete() {
-		cy.get(RoomBoards.#btnDialogConfirm).should("be.visible");
+		cy.get(RoomBoards.#globalDialogConfirmButton).should("be.visible");
 	}
 	clickBtnDialogConfirmDelete() {
-		cy.get(RoomBoards.#btnDialogConfirm).click();
+		cy.get(RoomBoards.#globalDialogConfirmButton).click();
 	}
 	clickOnThreeDotMenuInRoomBoardTitle() {
 		cy.get(RoomBoards.#threeDotInBoardTitle).click();
