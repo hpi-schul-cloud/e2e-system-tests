@@ -108,5 +108,5 @@ Feature: Task - To submit a task as students group and grade it by teacher.
 
         @staging_test
         Examples:
-            | namespace | teacher      | fullname_teacher | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             |
-            | brb       | teacher1_brb | Karl Herzog      | admin1_brb | student1_brb | Herbert Kraft     | student2_brb | Amelia Strobl     | student3_brb | cypress student_3 | CypressAut Course | Cypress Aut Group | CypressAut Group Task |
+            | namespace | teacher      | fullname_teacher | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         |
+            | brb       | teacher1_brb | Karl Herzog      | admin1_brb | student1_brb | Herbert Kraft     | student2_brb | Amelia Strobl     | student3_brb | Georg Findeisen   | CypressAut Course | Cypress Aut Group | CypressAut Group Task | Dies ist die Gruppenabgabe der Aufgabe. |
