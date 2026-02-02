@@ -16,7 +16,7 @@ Feature: Room Board - Move a card from one room to another room
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name_source>' exists
         Given a multi-column board named '<board_title_source>' exists in the room
-        Given the multi-column board has a column with a card titled '<card_title_source>'
+        Given the multi-column board has a column with a card titled '<card_title>'
         Given link element is added in the card
         Given etherpad is added in the card
         Given the card has a folder named '<file_folder>'
@@ -25,7 +25,7 @@ Feature: Room Board - Move a card from one room to another room
         # pre-condition: target room and target board exist
         Given a room named '<room_name_target>' exists
         Given a multi-column board named '<board_title_target>' exists in the room
-        Given the multi-column board has a column with a card titled '<card_title_target>'
+        Given the multi-column board has a column with a card titled '<card_title>'
 
         # teacher moves the card from source board to target board / room
         When I go to rooms overview
@@ -39,7 +39,7 @@ Feature: Room Board - Move a card from one room to another room
         When I select the room '<room_name_target>' from the room list in the move modal
         When I select the board '<board_title_target>' from the board list in the move modal
         When I select the column '<column_name>' from the column list in the move modal
-        When I click on the button Move in the move Card modal
+        When I click on the button Confirm in the share modal
         Then I see the alert message
         Then I see the page board details
         Then I do not see the source card in the source board after moving to the target board
@@ -50,7 +50,7 @@ Feature: Room Board - Move a card from one room to another room
         Then I see the detail page of room '<room_name_target>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
-        Then I see the card titled '<card_title_source>' on the target board
+        Then I see the card titled '<card_title>' on the target board
         Then I see the element Link in the target card
         Then I see element Etherpad in the target card
         Then I see element Folder in the target card
@@ -63,5 +63,5 @@ Feature: Room Board - Move a card from one room to another room
         @school_api_test
         @staging_test
         Examples:
-            | teacher      | namespace | room_name_source       | room_name_target       | board_title_source   | board_title_target   | card_title_source      | card_title_target      | file_folder       | image_file      | column_name |
-            | teacher1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | CypressAut Target Card | Cypress Card Docs | example_jpg.jpg | Abschnitt 1 |
+            | teacher      | namespace | room_name_source       | room_name_target       | board_title_source   | board_title_target   | card_title             | file_folder       | image_file      | column_name |
+            | teacher1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | Cypress Card Docs | example_jpg.jpg | Abschnitt 1 |

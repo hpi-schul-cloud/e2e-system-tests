@@ -99,7 +99,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I click on three dot menu in row of file '<file_name_2>'
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the file
-        When I click on button Approve in modal for deletion
+        When I click on button Approve in modal
         Then I do not see files '<file_name_2>' in file list
 
         # editor deletes first file using header action menu, so no file is in the list anymore
@@ -107,7 +107,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on button Approve in modal for deletion
+        When I click on button Approve in modal
         Then I see page Folder content for '<folder_name_renamed>'
         Then I see message Empty folder
 

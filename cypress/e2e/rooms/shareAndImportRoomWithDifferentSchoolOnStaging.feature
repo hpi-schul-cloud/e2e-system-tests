@@ -51,7 +51,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         # second teacher from different school imports the room
         When I open the shared URL for board
         Then I see the Dialog to import
-        Then I see the title in the import modal
+        Then I see the title in the share modal
         When I see the source room name in the modal room import
         Then I enter a new room name '<room_name_target>'
         When I click on the button Import Confirm in the modal
