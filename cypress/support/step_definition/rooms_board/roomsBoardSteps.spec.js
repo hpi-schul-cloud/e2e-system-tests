@@ -923,3 +923,7 @@ When("I click on button Create in dialog create document", () => {
 When("I click on button Download in the card file folder", () => {
 	roomBoards.clickFolderDownloadButtonOnBoardcard();
 });
+
+Then("I see the file type PPTX is uploaded in the card", () => {
+	roomBoards.verifyPptxFileUploaded();
+});
