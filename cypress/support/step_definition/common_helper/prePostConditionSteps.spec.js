@@ -414,6 +414,19 @@ Given(
 	}
 );
 
+Given(
+	"group with name {string} in the course {string} with students {string}",
+	(groupName, courseName, studentNames) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.navigateToGroupsTab();
+		courses.clickOnAddGroup();
+		courses.typeNameOfTheCourseGroup(groupName);
+		courses.selectGroupMember(studentNames);
+		courses.clickOnCreateStudentGroupButton();
+	}
+);
+
 Given("a class name {string} is {string}", (className, classState) => {
 	management.openAdministrationInMenu();
 	classManagement.clickOnClassInAdministrationSubMenu();
