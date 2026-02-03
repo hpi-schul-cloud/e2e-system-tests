@@ -130,9 +130,10 @@ class RoomBoards {
 	static #globalDialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
 	static #globalDialogTitle = '[data-testid="dialog-title"]';
+	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
 
 	clickOnConfirmOnModalForDeletion() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.get(RoomBoards.#deleteFileDialogConfirm).click();
 	}
 
 	clickOnImportButtonInImportCardModal() {

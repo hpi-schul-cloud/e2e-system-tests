@@ -635,7 +635,7 @@ Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
 
-When("I click on the button to confirm the deletion", () => {
+When("I click on the buttom Delete in the dialog", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
 

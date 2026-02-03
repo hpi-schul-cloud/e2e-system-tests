@@ -87,6 +87,8 @@ class Tasks {
 	static #fileTitleInTaskDetail = '[data-testid="file-title-card-0"]';
 	static #urlInputBoxCopyTask = '[data-testid="share-course-result-url"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
+	static #groupSubmissionOption = '[id="courseGroup1"]';
+	static #feedbackHint = '[id="feedback"]';
 
 	copyTaskURLInModal() {
 		cy.get(Tasks.#urlInputBoxCopyTask)
@@ -271,6 +273,12 @@ class Tasks {
 
 	compareFeedbackGrade(feedbackGrade) {
 		cy.get(Tasks.#feedbackGrade).should("contain", feedbackGrade);
+	}
+
+	seeHintAboutNoAvailableFeedback() {
+		cy.get(Tasks.#feedbackHint)
+			.should("be.visible")
+			.and("contain", "Noch kein Kommentar vorhanden.");
 	}
 
 	seeUploadFileButtonIsDisabled() {
@@ -608,9 +616,27 @@ class Tasks {
 			.should("be.visible");
 	}
 
+	seeTickInGroupsSubmissionLine(groupName) {
+		cy.get(Tasks.#submissionsSection)
+			.contains(groupName)
+			.parent()
+			.parent()
+			.find(Tasks.#taskSubmissionsSubmittedIcon)
+			.should("be.visible");
+	}
+
 	openStudentsSubmission(studentLastname) {
 		cy.get(Tasks.#submissionsSection)
 			.contains(studentLastname)
+			.parent()
+			.find(Tasks.#taskSubmissionsOpenSubmissionIcon)
+			.click();
+	}
+
+	openGroupsSubmission(groupName) {
+		cy.get(Tasks.#submissionsSection)
+			.contains(groupName)
+			.parent()
 			.parent()
 			.find(Tasks.#taskSubmissionsOpenSubmissionIcon)
 			.click();
@@ -635,6 +661,14 @@ class Tasks {
 	checkGradingForStudent(studentLastname, gradingPercent) {
 		cy.get(Tasks.#submissionsSection)
 			.contains(studentLastname)
+			.parent()
+			.should("contain", gradingPercent);
+	}
+
+	checkGradingForGroup(groupName, gradingPercent) {
+		cy.get(Tasks.#submissionsSection)
+			.contains(groupName)
+			.parent()
 			.parent()
 			.should("contain", gradingPercent);
 	}
@@ -699,6 +733,18 @@ class Tasks {
 						);
 					})
 			: cy.log(`Lower task sub-section already active`);
+	}
+
+	clickOptionGroupForTeamSubmission() {
+		cy.get(Tasks.#groupSubmissionOption).click();
+	}
+
+	seeRedTickForNotSubmittedTask() {
+		cy.get(Tasks.#taskSection).find('i[class*="danger"]').should("be.visible");
+	}
+
+	seeGreenTickForSubmittedTask() {
+		cy.get(Tasks.#taskSection).find('i[class*="done"]').should("be.visible");
 	}
 }
 export default Tasks;
