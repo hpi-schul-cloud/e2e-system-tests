@@ -1,4 +1,3 @@
-
 @regression_test
 @stable_test
 @schedule_run
@@ -7,7 +6,7 @@
 @prio_0_staging
 Feature: Task - To submit a task as students group and grade it by teacher.
 
-    As a student, I want to submit a task as group of students sp that we can work together on the task and the teacher can grade us all.
+    As a student, I want to submit a task as group of students so that we can work together on the task and the teacher can grade us all.
 
     Scenario Outline: Teacher creates, edits and deletes a task from the task overview
 
@@ -33,8 +32,8 @@ Feature: Task - To submit a task as students group and grade it by teacher.
         When I click on option Group for team submission
         # Group selection not needed as only one group exists
         When I enter text submission '<submission_text>'
-        When I upload file 'testboard_jpg.jpg' for submission
-        Then I see file 'testboard_jpg.jpg' is visible in uploaded files section of submission
+        When I upload file '<submission_file>' for submission
+        Then I see file '<submission_file>' is visible in uploaded files section of submission
         When I click on button Send Submission
         Then I see hint that submission has been sent successfully
 
@@ -48,10 +47,10 @@ Feature: Task - To submit a task as students group and grade it by teacher.
         When I click on submission of group '<group_name>'
         Then I see submission text '<submission_text>'
         When I click on download file in submission
-        Then file 'testboard_jpg.jpg' is saved in folder downloads
+        Then file '<submission_file>' is saved in folder downloads
         When I click on grading tab
-        When I upload file 'gradingfile-pdf.pdf'
-        Then I see file 'gradingfile-pdf.pdf' is visible in uploaded files section
+        When I upload file '<grading_file>'
+        Then I see file '<grading_file>' is visible in uploaded files section
         When I enter comment 'Gut gemacht!'
         When I enter grade '83'
         When I click on button Save and Send grading
@@ -73,7 +72,7 @@ Feature: Task - To submit a task as students group and grade it by teacher.
         Then I see feedback text 'Gut gemacht!'
         Then I see grade is '83'
         When I click on download file in grading
-        Then file 'gradingfile-pdf.pdf' is saved in folder downloads
+        Then file '<grading_file>' is saved in folder downloads
 
         # student2 sees grading
         Given I am logged in as a '<student2>' at '<namespace>'
@@ -103,10 +102,10 @@ Feature: Task - To submit a task as students group and grade it by teacher.
 
         @school_api_test
         Examples:
-            | namespace | teacher      | fullname_teacher  | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         |
-            | brb       | teacher1_brb | cypress teacher_1 | admin1_brb | student1_brb | cypress student_1 | student2_brb | cypress student_2 | student3_brb | cypress student_3 | CypressAut Course | Cypress Aut Group | CypressAut Group Task | Dies ist die Gruppenabgabe der Aufgabe. |
+            | namespace | teacher      | fullname_teacher  | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         | submission_file   | grading_file        |
+            | brb       | teacher1_brb | cypress teacher_1 | admin1_brb | student1_brb | cypress student_1 | student2_brb | cypress student_2 | student3_brb | cypress student_3 | CypressAut Course | Cypress Aut Group | CypressAut Group Task | Dies ist die Gruppenabgabe der Aufgabe. | testboard_jpg.jpg | gradingfile-pdf.pdf |
 
         @staging_test
         Examples:
-            | namespace | teacher      | fullname_teacher | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         |
-            | brb       | teacher1_brb | Karl Herzog      | admin1_brb | student1_brb | Herbert Kraft     | student2_brb | Amelia Strobl     | student3_brb | Georg Findeisen   | CypressAut Course | Cypress Aut Group | CypressAut Group Task | Dies ist die Gruppenabgabe der Aufgabe. |
+            | namespace | teacher      | fullname_teacher | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         | submission_file   | grading_file        |
+            | brb       | teacher1_brb | Karl Herzog      | admin1_brb | student1_brb | Herbert Kraft     | student2_brb | Amelia Strobl     | student3_brb | Georg Findeisen   | CypressAut Course | Cypress Aut Group | CypressAut Group Task | Dies ist die Gruppenabgabe der Aufgabe. | testboard_jpg.jpg | gradingfile-pdf.pdf |
