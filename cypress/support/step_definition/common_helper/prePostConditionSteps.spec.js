@@ -189,6 +189,8 @@ Given(
 		board.clickOnKebabMenuAction(kebabMenuAction);
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.seeSchoolOfParticipant(studentSchool);
 		rooms.selectRoomRoleFromDropdownMenu(studentRole);
