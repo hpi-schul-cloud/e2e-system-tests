@@ -57,7 +57,7 @@ Feature: Room Board - Share and import a card in rooms with the teacher from dif
         When I select the room '<room_name_target>' from the room list in the modal
         When I select the board '<board_title_target>' from the board list in the modal
         When I select the column '<column_name>' from the column list in the modal
-        When I click on the button Confirm in the share modal
+        When I click on the button Import in the import card modal
         Then I see the page board details
         Then I see the element Link in the target card
         Then I see element Etherpad in the target card

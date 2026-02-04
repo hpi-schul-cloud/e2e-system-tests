@@ -317,6 +317,10 @@ Then("I see the result url text box in the modal", () => {
 	roomBoards.verifySharedBoardResultUrlTextBox();
 });
 
+Then("I see the title in the import modal", () => {
+	roomBoards.verifyImportDialog();
+});
+
 Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
@@ -385,8 +389,16 @@ When(
 	}
 );
 
-When("I click on the button Confirm in the share modal", () => {
+When("I click on the button Import in the import modal", () => {
 	roomBoards.clickImportOnModal();
+});
+
+When("I click on the button Import in the import card modal", () => {
+	roomBoards.clickOnImportButtonInImportCardModal();
+});
+
+When("I click on the button Move in the move Card modal", () => {
+	roomBoards.clickOnMoveButtonInMoveCardModal();
 });
 
 Then("I see the Share settings dialog", () => {
@@ -623,7 +635,7 @@ Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
 
-When("I click on the button to confirm the deletion", () => {
+When("I click on the buttom Delete in the dialog", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
 
@@ -778,7 +790,11 @@ When("I clear input field New name", () => {
 });
 
 When("I click on button Approve in modal", () => {
-	globalActions.clickElementWithDataTestId("dialog-confirm");
+	roomBoards.clickOnConfirmOnModal();
+});
+
+When("I click on button Approve in modal for deletion", () => {
+	roomBoards.clickOnConfirmOnModalForDeletion();
 });
 
 When("I click on the name of file {string} in file list", (fileName) => {
@@ -906,4 +922,8 @@ When("I click on button Create in dialog create document", () => {
 
 When("I click on button Download in the card file folder", () => {
 	roomBoards.clickFolderDownloadButtonOnBoardcard();
+});
+
+Then("I see the file type PPTX is uploaded in the card", () => {
+	roomBoards.verifyPptxFileUploaded();
 });

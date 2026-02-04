@@ -530,9 +530,20 @@ class Courses {
 		cy.get(Courses.#groupNameField).clear();
 	}
 
-	selectGroupMember(groupMember) {
-		cy.get(Courses.#chosenChoices).click();
-		cy.get(Courses.#chosenResults).contains(groupMember).click();
+	selectGroupMember(studentNames) {
+		// Accepts a single student name, a comma-separated string, or an array
+		let students = [];
+		if (Array.isArray(studentNames)) {
+			students = studentNames;
+		} else if (typeof studentNames === "string") {
+			students = studentNames.split(",");
+		} else if (studentNames) {
+			students = [studentNames];
+		}
+		cy.get(Courses.#groupMemberField).invoke("show");
+		cy.get(Courses.#groupMemberField).should("be.visible");
+		// Select all students at once
+		cy.get(Courses.#groupMemberField).select(students.map((s) => s.trim()));
 	}
 
 	clickOnCreateStudentGroupButton() {

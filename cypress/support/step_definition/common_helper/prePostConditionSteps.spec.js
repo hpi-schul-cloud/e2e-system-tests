@@ -189,6 +189,8 @@ Given(
 		board.clickOnKebabMenuAction(kebabMenuAction);
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.seeSchoolOfParticipant(studentSchool);
 		rooms.selectRoomRoleFromDropdownMenu(studentRole);
@@ -411,6 +413,19 @@ Given(
 		courses.addClassToCourse(className);
 		courses.selectStudentsInCourseCreatePage(studentName);
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+	}
+);
+
+Given(
+	"group with name {string} in the course {string} with students {string}",
+	(groupName, courseName, studentNames) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.navigateToGroupsTab();
+		courses.clickOnAddGroup();
+		courses.typeNameOfTheCourseGroup(groupName);
+		courses.selectGroupMember(studentNames);
+		courses.clickOnCreateStudentGroupButton();
 	}
 );
 

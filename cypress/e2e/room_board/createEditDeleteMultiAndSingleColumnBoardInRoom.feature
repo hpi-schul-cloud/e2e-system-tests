@@ -48,7 +48,7 @@ Feature: Room Board - Add, edit and delete board in room
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'delete'
         Then I see the button to confirm the dialog
-        Then I click on the button to confirm the deletion
+        Then I click on the buttom Delete in the dialog
         Then I do not see the board '<board_title>' in the room
 
         # teacher creates a new single-column board in the room
@@ -71,7 +71,7 @@ Feature: Room Board - Add, edit and delete board in room
         When I click on the three dot menu in room board title
         When I click on delete in board menu
         Then I see the button to confirm the dialog
-        Then I click on the button to confirm the deletion
+        Then I click on the buttom Delete in the dialog
         Then I do not see the page board details
 
         # post-condition: teacher deletes room
