@@ -42,14 +42,15 @@ Feature: Admin - To add, edit and delete new users by the admin.
         # When I  Change the email to '<user_email>'
         # Then I can save the changes
 
+        ### KNL user deletion asynchronously by cron, so we can't wait until the user is deleted
         # post-condition: admin deletes a student and a teacher
-        When I go to '<role_to_manage>' administration
-        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
-        When I click edit '<role_to_manage>' button for '<user_email_edited>'
-        When I click delete user button to delete user with last name '<user_last_name_edited>'
-        When I click on delete button in pop up
-        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
-        Then I can not see user '<user_email_edited>' in the table
+        #When I go to '<role_to_manage>' administration
+        #When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+        #When I click edit '<role_to_manage>' button for '<user_email_edited>'
+        #When I click delete user button to delete user with last name '<user_last_name_edited>'
+        #When I click on delete button in pop up
+        #When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+        #Then I can not see user '<user_email_edited>' in the table
 
         @school_api_test
         Examples:
