@@ -28,6 +28,7 @@ Feature: TLDraw - Test tldraw on board
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         When I select 'drawing-element' from the element selection dialog box
+        When I click outside of the card to save it
         When I click on the whiteboard element
         When I click on the icon Pencil tool
         When I draw a line on the canvas with start point '300', '200' and endpoint '400', '300'

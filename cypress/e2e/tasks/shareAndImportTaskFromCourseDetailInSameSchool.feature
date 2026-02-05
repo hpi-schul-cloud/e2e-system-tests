@@ -46,11 +46,11 @@ Feature: Task - Teacher shares a task with another teacher from the same school
         # teacher 2 imports the task by visiting the shared URL and choosing course_name_target
         When I open the shared task URL
         Then I see the modal to import the shared task into the course
-        Then I see the title in the share modal
+        Then I see the title in the import modal
         When I select the course from the course list in the modal
         When I click on the Continue button in the modal
         When I enter a new name for the imported task '<new_task_title>' in the modal
-        When I click on the button Confirm in the share modal
+        When I click on the button Import in the import modal
         Then I see course page '<course_name_target>'
         Then I see the task in draft mode in course detail page
         Then I see the button Publish in the task card in course detail page

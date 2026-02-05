@@ -55,7 +55,7 @@ Feature: Room Board - Add, edit, view and delete collabora spreadsheet file in f
         When I check the checkbox in the table header for all elements
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on button Approve in modal
+        When I click on button Approve in modal for deletion
         Then I do not see files '<xlsx_file_name>' in file list
 
         # post-condition: delete the room

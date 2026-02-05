@@ -361,6 +361,7 @@ class Rooms {
 
 		// click the "Open" button for the room at the given position
 		cy.get(openButtonSelector).click();
+		cy.wait(500);
 	}
 
 	openThreeDotMenuForRoom() {
@@ -733,12 +734,12 @@ class Rooms {
 	seeSpeedDialOptions(options) {
 		const buttonName = options.split(/,|and/).map((option) => option.trim());
 		buttonName.forEach((buttonName) => {
-			cy.get(`[data-testid="fab-${buttonName}"]`).should("be.visible");
+			cy.get(`[data-testid="fab-${buttonName}-icon-btn"]`).should("be.visible");
 		});
 	}
 
 	clickOnSpeedDialOption(option) {
-		cy.get(`[data-testid="fab-${option}"]`).should("be.visible").click();
+		cy.get(`[data-testid="fab-${option}-icon-btn"]`).should("be.visible").click();
 	}
 }
 export default Rooms;

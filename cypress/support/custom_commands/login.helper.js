@@ -36,6 +36,8 @@ export const getUserCredentials = (username) => {
 			return ["STUDENT_1_BRB_EMAIL", "STUDENT_1_BRB_PASSWORD"];
 		case "student2_brb":
 			return ["STUDENT_2_BRB_EMAIL", "STUDENT_2_BRB_PASSWORD"];
+		case "student3_brb":
+			return ["STUDENT_3_BRB_EMAIL", "STUDENT_3_BRB_PASSWORD"];
 		case "student_hc_brb":
 			return ["STUDENT_HC_BRB_EMAIL", "STUDENT_HC_BRB_PASSWORD"];
 		case "student_ldap_brb":

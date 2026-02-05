@@ -41,6 +41,10 @@ const userData = {
 		firstName: "cypress",
 		lastName: "student_2",
 	},
+	student3: {
+		firstName: "cypress",
+		lastName: "student_3",
+	},
 	externalPerson1: {
 		firstName: "cypress",
 		lastName: "external_person_1",

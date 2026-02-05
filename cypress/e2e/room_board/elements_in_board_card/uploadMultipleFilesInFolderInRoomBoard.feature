@@ -132,7 +132,7 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on button Approve in modal
+        When I click on button Approve in modal for deletion
         Then I do not see files '<video_file_name>, <image_file_name>, <pdf_file_name>' in file list
         Then I see files '<audio_file_name>' in file list
         Then I see checkboxes of files '<audio_file_name>' are unchecked
@@ -162,7 +162,7 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the three dot menu of the folder in card
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the file folder
-        When I click on button Approve in modal
+        When I click on the buttom Delete in the dialog
         Then I see my room board is named '<board_title>'
         Then I do not see a folder element on board
 
