@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-B
-@pr
 @prio_0_staging
 Feature: Task - To submit a task as students group and grade it by teacher.
 
