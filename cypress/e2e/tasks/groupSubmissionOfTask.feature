@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @prio_0_staging
+@only
 Feature: Task - To submit a task as students group and grade it by teacher.
 
     As a student, I want to submit a task as group of students so that we can work together on the task and the teacher can grade us all.
