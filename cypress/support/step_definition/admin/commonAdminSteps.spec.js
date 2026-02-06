@@ -5,6 +5,10 @@ import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 const toolConfiguration = new ToolConfiguration();
 const management = new Management();
 
+Then("I see the alert Info in the deletion pop up", () => {
+	management.checkDeleteUserAlertInfo();
+});
+
 Then("I see the context external tool configuration page", () => {
 	toolConfiguration.seeContextExternalToolConfiguratorPage();
 });

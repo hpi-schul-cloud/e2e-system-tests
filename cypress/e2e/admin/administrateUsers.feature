@@ -47,6 +47,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email_edited>'
         When I click delete user button to delete user with last name '<user_last_name_edited>'
+        Then I see the alert Info in the deletion pop up
         When I click on delete button in pop up
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         # KNL user deletion asynchronously by cron, so we can't wait until the user is deleted, thus we still see the deleted user on the overview table until the cron jon is finished.
