@@ -11,7 +11,6 @@ class Management {
 	static #emailCreationForm = '[data-testid="input_create-user_email"]';
 	static #addButton = '[data-testid="button_create-user_submit"]';
 	static #searchbar = '.core > [data-testid="searchbar"]';
-	static #editStudentButton = '[data-testid="edit_student_button"]';
 	static #firstNameEditForm = "input[name='firstName']";
 	static #lastNameEditForm = "input[name='lastName']";
 	static #emailEditForm = "input[id='email']";
@@ -35,8 +34,8 @@ class Management {
 		'[data-testid="sidebar-management-courses"]';
 	static #classAdministrationNavigationButton =
 		'[data-testid="sidebar-management-classes"]';
-	static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes"]';
-	static #teamAdministrationNavigationButton = '[data-testid="sidebar-management-teams"]';
+	static #teamAdministrationNavigationButton =
+		'[data-testid="sidebar-management-teams"]';
 	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =
@@ -48,7 +47,8 @@ class Management {
 	static #migrationInformationText = '[data-testid="text-description"]';
 	static #migrationSchoolNumberInformationText = '[data-testid="migration-info-text"]';
 	static #migrationWizardButton = '[data-testid="migration-wizard-button"]';
-	static #migrationShowOutdatedUsersSwitch = '[data-testid="show-outdated-users-switch"]';
+	static #migrationShowOutdatedUsersSwitch =
+		'[data-testid="show-outdated-users-switch"]';
 	static #agreeMigrationButton = '[data-testid="agree-btn"]';
 	static #migrationEndButton = '[data-testid="migration-end-button"]';
 	static #endMigrationConfirmationCheckbox =
@@ -76,7 +76,8 @@ class Management {
 	static #deleteExternalToolButton = '[data-testId="deleteAction"]';
 	static #confirmExternalToolDeletionButton = '[data-testid="delete-dialog-confirm"]';
 	static #cancelExternalToolDeletionButton = '[data-testid="delete-dialog-cancel"]';
-	static #externalToolDeletionDialogText = '[data-testid="delete-dialog-content-header"]';
+	static #externalToolDeletionDialogText =
+		'[data-testid="delete-dialog-content-header"]';
 	static #externalToolDeletionDialogTitle = '[data-testid="delete-dialog-title"]';
 	static #systemPanel = '[data-testid="systems-panel"]';
 	static #systemtable = '[data-testid="system-table"]';
@@ -95,8 +96,8 @@ class Management {
 	static #dataTable = '[data-testid="table_container"]';
 	static #studentVisibilityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
-	static #buttonNewAdminPage = '[data-testid="button_new_admin_page"]';
-	static #birthDateFieldCreateStudent = '[data-testid="input_create-student_birthdate"]';
+	static #birthDateFieldCreateStudent =
+		'[data-testid="input_create-student_birthdate"]';
 	static #manualRegistrationSummaryPage = '[data-testid="consent_table_3"]';
 	static #userPasswordLoginPage = '[data-testid="password-email"]';
 	static #submitButtonOnLoginPage = '[data-testid="submit-login-email"]';
@@ -107,11 +108,13 @@ class Management {
 	static #getStartedFirstLoginButton = '[data-testid="btn_schul-cloud_erkunden"]';
 	static #pageTitleOnDashboard = '[id="page-title"]';
 	static #passwordInputFirstLogin = '[data-testid="firstlogin_password"]';
-	static #reEnterPasswordInputFirstLogin = '[data-testid="firstlogin_password_control"]';
+	static #reEnterPasswordInputFirstLogin =
+		'[data-testid="firstlogin_password_control"]';
 	static #actionButtonUserOverview = '[data-test-id="context-menu-open"]';
 	static #manualRegitrationOption = '[data-testid="consent_action"]';
 	static #breadcrumbManualRegistration = '[data-testid="breadcrumb-1"]';
-	static #inputPasswordManualRegistrationStepOne = 'input[data-testid="password-input"]';
+	static #inputPasswordManualRegistrationStepOne =
+		'input[data-testid="password-input"]';
 	static #applyDataManualRegistrationButton = '[data-testid="button-next"]';
 	static #consentCheckboxManualRegistration = 'div[id="consent-checkbox"]';
 	static #buttonRegisterUserOnManualPage = '[data-testid="button-next-2"]';
@@ -159,14 +162,13 @@ class Management {
 	static #externalToolStatus = '[data-testid="external-tool-status"]';
 	static #externalToolContextRestriction =
 		'[data-testid="external-tool-context-restriction"]';
-	static #externalToolActions = '[data-testid="external-tool-actions"]';
 	static #externalToolName = '[data-testid="external-tool-name"]';
 	static #systemTableAlias = '[data-testid="system-table-alias"]';
 	static #systemTableSystemType = '[data-testid="system-table-type"]';
-	static #systemTableLoginLink = '[data-testid="system-table-login-link"]';
 	static #systemTableButtonEdit = '[data-testid="system-table-button-edit"]';
 	static #pageTitleEditStudent = '[data-testid="Schüler:innen bearbeiten"]';
 	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
+	static #globalDialogCancel = '[data-testid="dialog-cancel"]';
 
 	seeSuccessMessageAfterChangingPasswordByAdmin() {
 		cy.get(Management.#successNotificationChangePassword).should("be.visible");
@@ -286,7 +288,10 @@ class Management {
 					"X-API-KEY": Cypress.env(`apiKey-${environment}`),
 				},
 				// Construct the URL with the unique email
-				url: getPageUrl(environment, `/admin/api/v1/registration-pin/${uniqueEmail}`),
+				url: getPageUrl(
+					environment,
+					`/admin/api/v1/registration-pin/${uniqueEmail}`
+				),
 			}).then(({ body }) => {
 				// Check if the response is an array and is not empty
 				expect(body).to.be.an("array").that.is.not.empty;
@@ -360,7 +365,10 @@ class Management {
 	}
 
 	seeLastNameOnRegistrationPage(lastName) {
-		cy.get(Management.#lastNameTextBoxOnRegistrationPage).should("have.value", lastName);
+		cy.get(Management.#lastNameTextBoxOnRegistrationPage).should(
+			"have.value",
+			lastName
+		);
 	}
 
 	logoutFromApplication() {
@@ -477,9 +485,7 @@ class Management {
 	}
 
 	clickOnCancelRegardlessOnModalButton() {
-		cy.contains("button", "trotzdem abbrechen", {
-			matchCase: false,
-		}).click();
+		cy.get(Management.#globalDialogCancel).click();
 	}
 
 	beingOnStudentManagementOverview() {
@@ -539,7 +545,10 @@ class Management {
 		this.checkingToggleButtonStatus().then((toggleBtnStatus) => {
 			toggleBtnStatus === desiredState
 				? cy.log(`Element is already in the desired state, skipping click`)
-				: cy.get(Management.#videoConferenceToggle).click({ force: true }).wait(500);
+				: cy
+						.get(Management.#videoConferenceToggle)
+						.click({ force: true })
+						.wait(500);
 		});
 		cy.get(Management.#videoConferenceToggle).should(
 			"have.prop",
@@ -576,7 +585,9 @@ class Management {
 		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
 			!el.is(":checked")
 				? cy.log("Element is already unchecked, skipping click")
-				: cy.get(Management.#learningStoreStudentAccessToggle).click({ force: true });
+				: cy
+						.get(Management.#learningStoreStudentAccessToggle)
+						.click({ force: true });
 		});
 	}
 
@@ -584,7 +595,9 @@ class Management {
 		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
 			el.is(":checked")
 				? cy.log("Element is already checked, skipping click")
-				: cy.get(Management.#learningStoreStudentAccessToggle).click({ force: true });
+				: cy
+						.get(Management.#learningStoreStudentAccessToggle)
+						.click({ force: true });
 		});
 	}
 
@@ -667,7 +680,9 @@ class Management {
 
 	clickOnAddUserInFAB(role) {
 		let addUserButtonInFAB =
-			role === "student" ? Management.#addStudentButton : Management.#addTeacherButton;
+			role === "student"
+				? Management.#addStudentButton
+				: Management.#addTeacherButton;
 		cy.get(addUserButtonInFAB).click({ force: true });
 	}
 
@@ -846,7 +861,9 @@ class Management {
 	clickVideoConferenceToggleSwitch() {
 		cy.intercept("**/federalStates/**").as("federalStates");
 		cy.wait("@federalStates");
-		cy.get(Management.#videoconferenceToggleSwitch).find("input").click({ force: true });
+		cy.get(Management.#videoconferenceToggleSwitch)
+			.find("input")
+			.click({ force: true });
 	}
 
 	clickSaveGeneralSettingsButton() {
@@ -974,7 +991,9 @@ class Management {
 	}
 
 	seeMigrationMandatorySwitch() {
-		cy.get(Management.#migrationMandatorySwitch).find("input").should("not.be.checked");
+		cy.get(Management.#migrationMandatorySwitch)
+			.find("input")
+			.should("not.be.checked");
 	}
 
 	seeMigrationMandatorySwitchIsChecked() {
@@ -1072,7 +1091,10 @@ class Management {
 
 	seeEmptyExternalToolTable() {
 		cy.get(Management.#externalToolsTable).within(() => {
-			cy.get(Management.#tableExternalTool).should("have.text", "Keine Daten vorhanden");
+			cy.get(Management.#tableExternalTool).should(
+				"have.text",
+				"Keine Daten vorhanden"
+			);
 		});
 	}
 
@@ -1086,7 +1108,9 @@ class Management {
 			.contains(toolName)
 			.parents("tr")
 			.within(() => {
-				cy.get(Management.#externalToolStatus).should("be.visible").contains("Aktuell");
+				cy.get(Management.#externalToolStatus)
+					.should("be.visible")
+					.contains("Aktuell");
 			});
 	}
 
@@ -1131,7 +1155,10 @@ class Management {
 			.contains(toolName)
 			.parents("tr")
 			.within(() => {
-				cy.get(Management.#externalToolContextRestriction).should("have.text", "");
+				cy.get(Management.#externalToolContextRestriction).should(
+					"have.text",
+					""
+				);
 			});
 	}
 
@@ -1193,7 +1220,9 @@ class Management {
 	checkAllBoxes() {
 		cy.get(Management.#courseOptionCheckbox).find("input").check({ force: true });
 		cy.get(Management.#othersOptionCheckbox).find("input").check({ force: true });
-		cy.get(Management.#externalToolsOptionCheckbox).find("input").check({ force: true });
+		cy.get(Management.#externalToolsOptionCheckbox)
+			.find("input")
+			.check({ force: true });
 	}
 
 	clickOnProvisioningOptionsCancelButton() {
@@ -1208,7 +1237,9 @@ class Management {
 		cy.get(Management.#classOptionCheckbox).find("input").should("be.checked");
 		cy.get(Management.#courseOptionCheckbox).find("input").should("be.checked");
 		cy.get(Management.#othersOptionCheckbox).find("input").should("be.checked");
-		cy.get(Management.#externalToolsOptionCheckbox).find("input").should("be.checked");
+		cy.get(Management.#externalToolsOptionCheckbox)
+			.find("input")
+			.should("be.checked");
 	}
 
 	resetCheckboxValues() {
@@ -1264,13 +1295,18 @@ class Management {
 				})
 				.then(($rows) => {
 					// check empty state
-					if ($rows.length === 1 && $rows.text().includes("Keine Daten vorhanden")) {
+					if (
+						$rows.length === 1 &&
+						$rows.text().includes("Keine Daten vorhanden")
+					) {
 						return cy.wrap(false);
 					}
 
 					// otherwise check for tool
 					return cy.get(Management.#externalToolName).then(($names) => {
-						const found = [...$names].some((el) => el.textContent.trim() === toolName);
+						const found = [...$names].some(
+							(el) => el.textContent.trim() === toolName
+						);
 						return cy.wrap(found);
 					});
 				})
@@ -1287,7 +1323,9 @@ class Management {
 				cy.wrap($element)
 					.parents("tr")
 					.within(() => {
-						cy.get(Management.#deleteExternalToolButton).should("be.visible").click();
+						cy.get(Management.#deleteExternalToolButton)
+							.should("be.visible")
+							.click();
 					});
 
 				cy.get(Management.#confirmExternalToolDeletionButton).click();
