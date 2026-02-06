@@ -61,11 +61,10 @@ Feature: Admin - Admin creates, manually register and deletes students
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
-
-        ### KNL user deletion asynchronously by cron, so we can't wait until the user is deleted
-        #When I click delete user button to delete user with last name '<user_last_name>'
-        #When I click on delete button in pop up
-        #When I enter '<role_to_manage>' email '<user_email>' in search input field
+        When I click delete user button to delete user with last name '<user_last_name>'
+        When I click on delete button in pop up
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
+        # KNL user deletion asynchronously by cron, so we can't wait until the user is deleted, thus we still see the deleted user on the overview table until the cron jon is finished.
         #Then I can not see user '<user_email>' in the table
 
         @school_api_test
