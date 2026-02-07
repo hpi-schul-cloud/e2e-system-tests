@@ -50,7 +50,7 @@
 		"cypress-real-events": "^1.13.0",
 		"multiple-cucumber-html-reporter": "^1.21.4",
 		"prettier": "^3.2.5",
-		"webpack": "^5.77.0"
+		"webpack": "^5.105.0"
 	},
 	"cypress-cucumber-preprocessor": {
 		"stepDefinitions": "cypress/support/step_definition/**/*.js",
