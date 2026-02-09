@@ -65,15 +65,14 @@ Feature: Admin - Admin creates, manually register and deletes students
         Then I see the alert Info in the deletion pop up
         When I click on delete button in pop up
         When I enter '<role_to_manage>' email '<user_email>' in search input field
-        # KNL user deletion asynchronously by cron, so we can't wait until the user is deleted, thus we still see the deleted user on the overview table until the cron jon is finished.
-        #Then I can not see user '<user_email>' in the table
-
-        #Then I can see the user with email '<user_email>' in the table
+        # KNL user deletion asynchronously by cron, so we can't wait until cron job runs and the user gets deleted.
+        # Thus, we still see the deleted user on the overview table until the cron jon is finished as per scheduled.
+        Then I can see the user with email '<user_email>' in the table
 
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   |
-            | dbc       | admin1_dbc | student        | cypress         | student_admin_test | original_student_admin_users@cypress-mail.de |
+            | brb       | admin1_brb | student        | cypress         | student_admin_test | original_student_admin_users@cypress-mail.de |
 
         @staging_test
         Examples:
