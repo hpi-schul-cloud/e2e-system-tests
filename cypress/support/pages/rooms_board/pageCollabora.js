@@ -26,7 +26,10 @@ class Collabora {
 	typeCollaboraText(text, x, y) {
 		cy.get(Collabora.#collaboraEditor)
 			.realClick({ x: x, y: y })
+			.wait(300)
+			.should("be.focused") // focus is needed as the first letter is not typed sometimes.
 			.realType(`{enter}${text}`); // to type in new line
+		this.getIframeBody(Collabora.#collaboraEditor).should("contain.text", text);
 	}
 
 	clickCollaboraSaveButton() {
