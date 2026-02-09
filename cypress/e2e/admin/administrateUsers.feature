@@ -43,16 +43,15 @@ Feature: Admin - To add, edit and delete new users by the admin.
         # Then I can save the changes
 
         # post-condition: admin deletes a student and a teacher
+        # KNL user deletion asynchronously by cron, so we can't wait until cron job runs and the user gets deleted.
+        # Thus, we still see the deleted user on the overview table until the cron jon is finished as per scheduled.
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email_edited>'
         When I click delete user button to delete user with last name '<user_last_name_edited>'
         Then I see the alert Info in the deletion pop up
-        When I click on delete button in pop up
-        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
-        # KNL user deletion asynchronously by cron, so we can't wait until cron job runs and the user gets deleted.
-        # Thus, we still see the deleted user on the overview table until the cron jon is finished as per scheduled.
-        Then I can see the user with email '<user_email_edited>' in the table
+        When I click on the button Delete in the pop up
+        Then I see the user management overview page
 
         @school_api_test
         Examples:

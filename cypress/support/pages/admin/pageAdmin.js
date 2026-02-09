@@ -176,6 +176,16 @@ class Management {
 	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
 	static #warningAlertDeleteUser = '[data-testid="warning-alert-deleteuser"]';
 
+	verifyUserManagementOverviewPage() {
+		cy.url().should((url) => {
+			expect(
+				url.includes("/administration/students") ||
+					url.includes("/administration/teachers"),
+				"This is user management overview page"
+			).to.be.true;
+		});
+	}
+
 	checkDeleteUserAlertInfo() {
 		cy.get(Management.#warningAlertDeleteUser);
 	}
