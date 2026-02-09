@@ -11,7 +11,6 @@ class Management {
 	static #emailCreationForm = '[data-testid="input_create-user_email"]';
 	static #addButton = '[data-testid="button_create-user_submit"]';
 	static #searchbar = '.core > [data-testid="searchbar"]';
-	static #editStudentButton = '[data-testid="edit_student_button"]';
 	static #firstNameEditForm = "input[name='firstName']";
 	static #lastNameEditForm = "input[name='lastName']";
 	static #emailEditForm = "input[id='email']";
@@ -166,14 +165,13 @@ class Management {
 	static #externalToolStatus = '[data-testid="external-tool-status"]';
 	static #externalToolContextRestriction =
 		'[data-testid="external-tool-context-restriction"]';
-	static #externalToolActions = '[data-testid="external-tool-actions"]';
 	static #externalToolName = '[data-testid="external-tool-name"]';
 	static #systemTableAlias = '[data-testid="system-table-alias"]';
 	static #systemTableSystemType = '[data-testid="system-table-type"]';
-	static #systemTableLoginLink = '[data-testid="system-table-login-link"]';
 	static #systemTableButtonEdit = '[data-testid="system-table-button-edit"]';
 	static #pageTitleEditStudent = '[data-testid="Schüler:innen bearbeiten"]';
 	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
+	static #globalDialogCancel = '[data-testid="dialog-cancel"]';
 	static #warningAlertDeleteUser = '[data-testid="warning-alert-deleteuser"]';
 
 	verifyUserManagementOverviewPage() {
@@ -505,9 +503,7 @@ class Management {
 	}
 
 	clickOnCancelRegardlessOnModalButton() {
-		cy.contains("button", "trotzdem abbrechen", {
-			matchCase: false,
-		}).click();
+		cy.get(Management.#globalDialogCancel).click();
 	}
 
 	beingOnStudentManagementOverview() {
