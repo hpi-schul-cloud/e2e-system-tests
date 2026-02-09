@@ -101,6 +101,7 @@ Feature: Task - To submit a task as students group and grade it by teacher.
         Given course with name '<course_name>' is deleted
 
         @school_api_test
+        @only
         Examples:
             | namespace | teacher      | fullname_teacher  | admin      | student1     | fullname_student1 | student2     | fullname_student2 | student3     | fullname_student3 | course_name       | group_name        | task_name             | submission_text                         | submission_file   | grading_file        |
             | brb       | teacher1_brb | cypress teacher_1 | admin1_brb | student1_brb | cypress student_1 | student2_brb | cypress student_2 | student3_brb | cypress student_3 | CypressAut Course | Cypress Aut Group | CypressAut Group Task | Dies ist die Gruppenabgabe der Aufgabe. | testboard_jpg.jpg | gradingfile-pdf.pdf |
