@@ -5,6 +5,14 @@ import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 const toolConfiguration = new ToolConfiguration();
 const management = new Management();
 
+Then("I see the user management overview page", () => {
+	management.verifyUserManagementOverviewPage();
+});
+
+Then("I see the alert Info in the deletion pop up", () => {
+	management.checkDeleteUserAlertInfo();
+});
+
 Then("I see the context external tool configuration page", () => {
 	toolConfiguration.seeContextExternalToolConfiguratorPage();
 });
@@ -401,7 +409,7 @@ When("I click delete user button to delete user with last name {string}", (surna
 	management.deleteUser(surname);
 });
 
-When("I click on delete button in pop up", () => {
+When("I click on the button Delete in the pop up", () => {
 	management.clickUserDeleteButtonInModal();
 });
 

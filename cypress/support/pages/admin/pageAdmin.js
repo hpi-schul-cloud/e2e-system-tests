@@ -34,6 +34,8 @@ class Management {
 		'[data-testid="sidebar-management-courses"]';
 	static #classAdministrationNavigationButton =
 		'[data-testid="sidebar-management-classes"]';
+	static #newClassAdministrationNavigationButton =
+		'[data-testid="administrate_classes"]';
 	static #teamAdministrationNavigationButton =
 		'[data-testid="sidebar-management-teams"]';
 	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
@@ -96,6 +98,7 @@ class Management {
 	static #dataTable = '[data-testid="table_container"]';
 	static #studentVisibilityToggle =
 		'[data-testid="admin-school-toggle-student-visibility"]';
+	static #buttonNewAdminPage = '[data-testid="button_new_admin_page"]';
 	static #birthDateFieldCreateStudent =
 		'[data-testid="input_create-student_birthdate"]';
 	static #manualRegistrationSummaryPage = '[data-testid="consent_table_3"]';
@@ -169,6 +172,21 @@ class Management {
 	static #pageTitleEditStudent = '[data-testid="Schüler:innen bearbeiten"]';
 	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
 	static #globalDialogCancel = '[data-testid="dialog-cancel"]';
+	static #warningAlertDeleteUser = '[data-testid="warning-alert-deleteuser"]';
+
+	verifyUserManagementOverviewPage() {
+		cy.url().should((url) => {
+			expect(
+				url.includes("/administration/students") ||
+					url.includes("/administration/teachers"),
+				"This is user management overview page"
+			).to.be.true;
+		});
+	}
+
+	checkDeleteUserAlertInfo() {
+		cy.get(Management.#warningAlertDeleteUser);
+	}
 
 	seeSuccessMessageAfterChangingPasswordByAdmin() {
 		cy.get(Management.#successNotificationChangePassword).should("be.visible");
