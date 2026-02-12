@@ -77,7 +77,7 @@ Feature: Admin - Teacher must set a new password during login
         Then I see the dashboard
 
         # post-condition: admin deletes a teacher
-        # KNL user deletion asynchronously by cron, so cron job runs as scheduled and the user gets deleted in the DB, In the GUI it deletes immidate.
+        # KNL user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immidiate.
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration

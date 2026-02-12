@@ -43,7 +43,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         # Then I can save the changes
 
         # post-condition: admin deletes a student and a teacher
-        # KNL user deletion asynchronously by cron, so cron job runs as scheduled and the user gets deleted in the DB, In the GUI it deletes immidate.
+        # KNL user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immidiate.
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email_edited>'
