@@ -143,19 +143,11 @@ When("I click on save button to save changes", () => {
 });
 
 Then(
-	"I see topic detail page {string} with content elements {string}, {string}, {string}, {string} and {string}",
-	(
-		topicTitle,
-		contentTitle1,
-		contentTitle2,
-		contentTitle3,
-		contentTitle4,
-		contentTitle5
-	) => {
+	"I see topic detail page {string} with content elements {string}, {string}, {string} and {string}",
+	(topicTitle, contentTitle1, contentTitle3, contentTitle4, contentTitle5) => {
 		topics.seeTopicDetailPageWithContent(
 			topicTitle,
 			contentTitle1,
-			contentTitle2,
 			contentTitle3,
 			contentTitle4,
 			contentTitle5

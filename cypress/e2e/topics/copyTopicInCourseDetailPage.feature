@@ -13,7 +13,7 @@ Feature: Topics - Teacher copies a topic in the course
 
         # pre-condition: teacher creates the course with topic and publishes it
         Given a course named '<course_name>' exists
-        Given topic '<topic_name>' with contents exists in the course '<course_name>' with text element '<text_element_title>' geoGebra '<geogebra_title>' and id '<geogebra_id>' learning material '<learning_store_title>' etherpad '<etherpad_title>' and description '<etherpad_description>' task '<task_title>' and link '<task_id>' for '<namespace>'
+        Given topic '<topic_name>' with contents exists in the course '<course_name>' with text element '<text_element_title>' geoGebra '<geogebra_title>' and id '<geogebra_id>' etherpad '<etherpad_title>' and description '<etherpad_description>' task '<task_title>' and link '<task_id>' for '<namespace>'
         Given the topic is published in course '<course_name>'
 
         # teacher copies the topic in the course detail page
