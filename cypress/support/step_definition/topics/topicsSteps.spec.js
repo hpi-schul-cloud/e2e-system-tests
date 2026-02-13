@@ -55,13 +55,6 @@ Then("I see the element Text {string} on the topic detail page", (expectedText) 
 	topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
 });
 
-Then(
-	"I see the element Learning Store {string} on the topic detail page",
-	(expectedText) => {
-		topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
-	}
-);
-
 Then("I see the element Etherpad {string} on the topic detail page", (expectedText) => {
 	topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
 });
@@ -80,10 +73,6 @@ When("I click on button Add Text to topic", () => {
 
 When("I click on button Add GeoGebra to topic", () => {
 	topics.clickOnAddGeoGebraToTopic();
-});
-
-When("I click on button Add Learning Material to topic", () => {
-	topics.clickOnAddLearningMaterialToTopic();
 });
 
 When("I click on button Add Etherpad to topic", () => {
@@ -121,17 +110,6 @@ When("I enter GeoGebra material ID {string}", (geoGebraMaterialID) => {
 });
 
 When(
-	"I enter title {string} into element Learning Material",
-	(elementLearningMaterialTitle) => {
-		topics.enterTitleForElementLearningMaterial(elementLearningMaterialTitle);
-	}
-);
-
-Then("I see second learning material button in the content area", () => {
-	topics.seeAddMaterialBtnInContent();
-});
-
-When(
 	"I enter title {string} into element Etherpad in element position {string}",
 	(elementEtherpadTitle, elementPosition) => {
 		topics.enterTitleForElementEtherpad(elementEtherpadTitle, elementPosition);
@@ -165,19 +143,11 @@ When("I click on save button to save changes", () => {
 });
 
 Then(
-	"I see topic detail page {string} with content elements {string}, {string}, {string}, {string} and {string}",
-	(
-		topicTitle,
-		contentTitle1,
-		contentTitle2,
-		contentTitle3,
-		contentTitle4,
-		contentTitle5
-	) => {
+	"I see topic detail page {string} with content elements {string}, {string}, {string} and {string}",
+	(topicTitle, contentTitle1, contentTitle3, contentTitle4, contentTitle5) => {
 		topics.seeTopicDetailPageWithContent(
 			topicTitle,
 			contentTitle1,
-			contentTitle2,
 			contentTitle3,
 			contentTitle4,
 			contentTitle5
