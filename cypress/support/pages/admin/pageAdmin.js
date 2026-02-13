@@ -909,7 +909,14 @@ class Management {
 	}
 
 	userIsNotVisibleInTable(email) {
-		cy.get(Management.#searchbar).clear(Management.#searchbar);
+		// vuetify text fields wrap the real <input> inside a div.
+		// data-testid points to the wrapper, so the inner input should be clear.
+		cy.get(Management.#searchbar)
+			.find("input")
+			.should("be.visible")
+			.clear({ force: true });
+
+		// verify the user email is not present in the table
 		cy.get(Management.#tableContents).contains(email).should("not.exist");
 	}
 
