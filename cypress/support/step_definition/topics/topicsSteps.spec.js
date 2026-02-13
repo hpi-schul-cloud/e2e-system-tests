@@ -55,13 +55,6 @@ Then("I see the element Text {string} on the topic detail page", (expectedText) 
 	topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
 });
 
-Then(
-	"I see the element Learning Store {string} on the topic detail page",
-	(expectedText) => {
-		topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
-	}
-);
-
 Then("I see the element Etherpad {string} on the topic detail page", (expectedText) => {
 	topics.seeTopicElementNamesOnTopicDetailPage(expectedText);
 });
@@ -80,10 +73,6 @@ When("I click on button Add Text to topic", () => {
 
 When("I click on button Add GeoGebra to topic", () => {
 	topics.clickOnAddGeoGebraToTopic();
-});
-
-When("I click on button Add Learning Material to topic", () => {
-	topics.clickOnAddLearningMaterialToTopic();
 });
 
 When("I click on button Add Etherpad to topic", () => {
@@ -118,17 +107,6 @@ When("I enter title {string} into element GeoGebra", (elementGeoGebraTitle) => {
 
 When("I enter GeoGebra material ID {string}", (geoGebraMaterialID) => {
 	topics.enterIDforElementGeoGebra(geoGebraMaterialID);
-});
-
-When(
-	"I enter title {string} into element Learning Material",
-	(elementLearningMaterialTitle) => {
-		topics.enterTitleForElementLearningMaterial(elementLearningMaterialTitle);
-	}
-);
-
-Then("I see second learning material button in the content area", () => {
-	topics.seeAddMaterialBtnInContent();
 });
 
 When(

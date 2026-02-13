@@ -42,8 +42,6 @@ class Management {
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =
 		'[data-testid="toggle_video_conference"] .v-input__control input';
-	static #learningStoreStudentAccessToggle =
-		'[data-testid="admin-school-toggle-learning-store"] input';
 	static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]';
 	static #startMigrationButton = '[data-testid="migration-start-button"]';
 	static #migrationInformationText = '[data-testid="text-description"]';
@@ -597,34 +595,6 @@ class Management {
 					cy.get("@checkbox").check();
 				}
 			});
-	}
-
-	clickToggleSwitchToDisableAccessToLearningStore() {
-		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
-			!el.is(":checked")
-				? cy.log("Element is already unchecked, skipping click")
-				: cy
-						.get(Management.#learningStoreStudentAccessToggle)
-						.click({ force: true });
-		});
-	}
-
-	clickToggleSwitchToEnableAccessToLearningStore() {
-		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
-			el.is(":checked")
-				? cy.log("Element is already checked, skipping click")
-				: cy
-						.get(Management.#learningStoreStudentAccessToggle)
-						.click({ force: true });
-		});
-	}
-
-	assertStudentsAccessIsUnchecked() {
-		cy.get(Management.#learningStoreStudentAccessToggle).should("not.be.checked");
-	}
-
-	assertStudentsAccessIsChecked() {
-		cy.get(Management.#learningStoreStudentAccessToggle).should("be.checked");
 	}
 
 	clickSaveButtonToAllowStudentCreateTeam() {

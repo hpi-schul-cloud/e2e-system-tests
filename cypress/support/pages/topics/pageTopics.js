@@ -5,20 +5,15 @@ class Topics {
 	static #topicTitleInput = '[id="topicTitleInput"]';
 	static #addTextBtn = '[data-testid="topic-addcontent-text-btn"]';
 	static #addGeoGebraBtn = '[data-testid="topic-addcontent-geogebra-btn"]';
-	static #addLearningMaterialBtn = '[data-testid="topic-addcontent-material-btn"]';
 	static #addEtherpadBtn = '[data-testid="topic-addcontent-etherpad-btn"]';
 	static #addTaskBtn = '[data-testid="topic-addcontent-task-btn"]';
 	// class is used for cardHeader and cardBlock because the elements are too generic and depend on position of the element, so using data-testid would need much more logic (also in the feature file) and code than using class.
 	static #cardHeader = '[class="card-header"]';
 	static #cardBlock = '[class="card-block"]';
 	static #elementGeoGebraCard = '[data-testid="topic-content-element-geoGebra-1"]';
-	static #elementLearningMaterialCard =
-		'[data-testid="topic-content-element-resources-2"]';
 	static #elementEtherpadCardPos2 = '[data-testid="topic-content-element-Etherpad-2"]';
 	static #elementEtherpadCardPos3 = '[data-testid="topic-content-element-Etherpad-3"]';
 	static #elementTaskCard = '[data-testid="topic-content-element-internal-4"]';
-	static #addLearningMaterialToContentBtn =
-		'[data-testid="topic-material-addmaterial-btn"]';
 	static #submitChangesInTopicBtn = '[data-testid="topic-submitchanges-btn"]';
 	static #elementTextDescriptionTextarea = '[class="ck ck-editor__main"]';
 	static #navCourseOverviewLink = '[data-testid="sidebar-courses"]';
@@ -110,10 +105,6 @@ class Topics {
 		cy.get(Topics.#addGeoGebraBtn).click();
 	}
 
-	clickOnAddLearningMaterialToTopic() {
-		cy.get(Topics.#addLearningMaterialBtn).click();
-	}
-
 	clickOnAddEtherpadToTopic() {
 		cy.get(Topics.#addEtherpadBtn).click();
 	}
@@ -182,21 +173,6 @@ class Topics {
 	enterIDforElementGeoGebra(geoGebraMaterialID) {
 		cy.get(Topics.#elementGeoGebraCard).within(() => {
 			cy.get(Topics.#cardBlock).find("div > input").type(geoGebraMaterialID);
-		});
-	}
-
-	enterTitleForElementLearningMaterial(elementLearningMaterialTitle) {
-		cy.get(Topics.#elementLearningMaterialCard).within(() => {
-			cy.get(Topics.#cardHeader)
-				.find("div > input")
-				.eq(0)
-				.type(elementLearningMaterialTitle);
-		});
-	}
-
-	seeAddMaterialBtnInContent() {
-		cy.get(Topics.#elementLearningMaterialCard).within(() => {
-			cy.get(Topics.#addLearningMaterialToContentBtn).should("be.visible");
 		});
 	}
 
