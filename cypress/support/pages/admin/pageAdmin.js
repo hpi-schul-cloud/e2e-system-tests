@@ -10,7 +10,7 @@ class Management {
 	static #lastNameCreationForm = '[data-testid="input_create-user_lastname"]';
 	static #emailCreationForm = '[data-testid="input_create-user_email"]';
 	static #addButton = '[data-testid="button_create-user_submit"]';
-	static #searchbar = '.core > [data-testid="searchbar"]';
+	static #searchbar = '[data-testid="searchbar"]';
 	static #firstNameEditForm = "input[name='firstName']";
 	static #lastNameEditForm = "input[name='lastName']";
 	static #emailEditForm = "input[id='email']";
@@ -773,15 +773,25 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
+		// seload to ensure clean state
 		cy.reload();
-		if (!(role == "student")) {
-			cy.intercept("**/teachers?**").as("search_api");
+		const apiAlias = "search_api";
+		if (role === "student") {
+			cy.intercept("**/students?**").as(apiAlias);
 		} else {
-			cy.intercept("**/students?**").as("search_api");
+			cy.intercept("**/teachers?**").as(apiAlias);
 		}
-		cy.get(Management.#searchbar).clear();
-		cy.get(Management.#searchbar).type(keyword);
-		cy.wait("@search_api").its("response.statusCode").should("eq", 200);
+
+		// vuetify text fields wrap the real <input> inside a div
+		// the data-testid points to the wrapper, so to locate and interact with the inner input for clear/type
+		cy.get(Management.#searchbar)
+			.find("input")
+			.should("be.visible")
+			.clear({ force: true })
+			.type(keyword, { delay: 50, force: true });
+
+		// wait for search request and verify it succeeded
+		cy.wait(`@${apiAlias}`).its("response.statusCode").should("eq", 200);
 	}
 
 	clickEditUserButton(role, email) {
@@ -869,7 +879,14 @@ class Management {
 	}
 
 	userIsNotVisibleInTable(email) {
-		cy.get(Management.#searchbar).clear(Management.#searchbar);
+		// vuetify text fields wrap the real <input> inside a div.
+		// data-testid points to the wrapper, so the inner input should be clear.
+		cy.get(Management.#searchbar)
+			.find("input")
+			.should("be.visible")
+			.clear({ force: true });
+
+		// verify the user email is not present in the table
 		cy.get(Management.#tableContents).contains(email).should("not.exist");
 	}
 
