@@ -172,7 +172,6 @@ class Management {
 	static #pageTitleEditStudent = '[data-testid="Schüler:innen bearbeiten"]';
 	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
 	static #globalDialogCancel = '[data-testid="dialog-cancel"]';
-	static #warningAlertDeleteUser = '[data-testid="warning-alert-deleteuser"]';
 
 	verifyUserManagementOverviewPage() {
 		cy.url().should((url) => {
@@ -182,10 +181,6 @@ class Management {
 				"This is user management overview page"
 			).to.be.true;
 		});
-	}
-
-	checkDeleteUserAlertInfo() {
-		cy.get(Management.#warningAlertDeleteUser);
 	}
 
 	seeSuccessMessageAfterChangingPasswordByAdmin() {

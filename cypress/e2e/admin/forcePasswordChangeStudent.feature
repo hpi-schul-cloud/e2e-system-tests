@@ -82,8 +82,7 @@ Feature: Admin - Student must set a new password during login
         Then I see the dashboard
 
         # post-condition: admin deletes a student
-        # KNL user deletion asynchronously by cron, so we can't wait until cron job runs and the user gets deleted.
-        # Thus, we still see the deleted user on the overview table until the cron jon is finished as per scheduled.
+        # KNL user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immediate.
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
@@ -91,7 +90,8 @@ Feature: Admin - Student must set a new password during login
         When I click edit '<role_to_manage>' button for '<user_email>'
         When I click delete user button to delete user with last name '<user_last_name>'
         When I click on the button Delete in the pop up
-        Then I see the user management overview page
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
+        Then I can not see user '<user_email>' in the table
 
         #@staging_test
         # this feature is not executable on staging as we do not access the API calls on staging.
