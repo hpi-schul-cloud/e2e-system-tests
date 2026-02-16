@@ -42,8 +42,6 @@ class Management {
 	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =
 		'[data-testid="toggle_video_conference"] .v-input__control input';
-	static #learningStoreStudentAccessToggle =
-		'[data-testid="admin-school-toggle-learning-store"] input';
 	static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]';
 	static #startMigrationButton = '[data-testid="migration-start-button"]';
 	static #migrationInformationText = '[data-testid="text-description"]';
@@ -116,12 +114,11 @@ class Management {
 	static #actionButtonUserOverview = '[data-test-id="context-menu-open"]';
 	static #manualRegitrationOption = '[data-testid="consent_action"]';
 	static #breadcrumbManualRegistration = '[data-testid="breadcrumb-1"]';
-	static #inputPasswordManualRegistrationStepOne =
-		'input[data-testid="password-input"]';
+	static #inputPasswordManualRegistrationStepOne = 'div[data-testid="password-input"]';
 	static #applyDataManualRegistrationButton = '[data-testid="button-next"]';
 	static #consentCheckboxManualRegistration = 'div[id="consent-checkbox"]';
 	static #buttonRegisterUserOnManualPage = '[data-testid="button-next-2"]';
-	static #searchBarUserOverview = 'input[data-testid="searchbar"]';
+	static #searchBarUserOverview = '[data-testid="searchbar"]';
 	static #buttonLoginViaEmailNbc = '[data-testid="submit-cloud-site"]';
 	static #inputBoxUserEmailOnLoginPage = '[data-testid="username-email"]';
 	static #userSummaryDiv = '[id = "userdata-summary"]';
@@ -471,7 +468,12 @@ class Management {
 	}
 
 	clearDefaultPasswordInManualRegistration() {
-		cy.get(Management.#inputPasswordManualRegistrationStepOne).clear();
+		// vuetify wraps the real password input inside the component.
+		// locate the inner <input>, not the wrapper div.
+		cy.get(Management.#inputPasswordManualRegistrationStepOne)
+			.find('input[type="text"]')
+			.should("exist")
+			.clear({ force: true });
 	}
 
 	enterPasswordOnManualRegistration() {
@@ -517,9 +519,21 @@ class Management {
 	}
 
 	selectStudentOnStudentOverview(firstname, userEmail) {
-		cy.get(Management.#searchBarUserOverview).clear();
-		cy.get(Management.#searchBarUserOverview).type(firstname);
-		cy.contains("tr", userEmail).find("svg").first().should("be.visible").click();
+		// vuetify text fields wrap the actual <input> inside a div.
+		// data-testid targets the wrapper, so we must interact with the inner input.
+		cy.get(Management.#searchBarUserOverview)
+			.find("input")
+			.should("be.visible")
+			.clear({ force: true })
+
+			.type(firstname, { delay: 50, force: true });
+
+		// select the student row and click the first action icon
+		cy.contains("tr", userEmail)
+			.find('[data-testid="selection-column"]')
+			.first()
+			.should("be.visible")
+			.click();
 	}
 
 	enableStudentVisibilityForTeacher() {
@@ -597,34 +611,6 @@ class Management {
 					cy.get("@checkbox").check();
 				}
 			});
-	}
-
-	clickToggleSwitchToDisableAccessToLearningStore() {
-		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
-			!el.is(":checked")
-				? cy.log("Element is already unchecked, skipping click")
-				: cy
-						.get(Management.#learningStoreStudentAccessToggle)
-						.click({ force: true });
-		});
-	}
-
-	clickToggleSwitchToEnableAccessToLearningStore() {
-		cy.get(Management.#learningStoreStudentAccessToggle).then((el) => {
-			el.is(":checked")
-				? cy.log("Element is already checked, skipping click")
-				: cy
-						.get(Management.#learningStoreStudentAccessToggle)
-						.click({ force: true });
-		});
-	}
-
-	assertStudentsAccessIsUnchecked() {
-		cy.get(Management.#learningStoreStudentAccessToggle).should("not.be.checked");
-	}
-
-	assertStudentsAccessIsChecked() {
-		cy.get(Management.#learningStoreStudentAccessToggle).should("be.checked");
 	}
 
 	clickSaveButtonToAllowStudentCreateTeam() {
