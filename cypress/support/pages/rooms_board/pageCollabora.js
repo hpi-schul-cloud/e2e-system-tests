@@ -2,7 +2,7 @@
 
 class Collabora {
 	static #collaboraEditor = 'iframe[title="Office-Dokument Editor"]';
-	static #collaboraSaveButton = "[id=save-button]";
+	static #collaboraSaveButton = "[modelid=save]";
 	static #fileButtonText = "Datei";
 	static #pdfDownloadText = "PDF-Dokument (.pdf)";
 	static #writeDownloadButton = '[id="downloadas-button"]';
