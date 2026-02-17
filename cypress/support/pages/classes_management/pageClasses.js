@@ -1,7 +1,7 @@
 "use strict";
 
 class Classes {
-	static #createClass = '[data-testid="admin-class-add-button"]';
+	static #createClass = '[id="fab-label"]';
 	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
 	static #classTitleNew = '[data-testid="admin-class-title"]';
 	static #classTableNew = '[data-testid="admin-class-table"]';
@@ -20,7 +20,8 @@ class Classes {
 	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
 	static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
-	static #adminClassNavigationSidebarCard = '[data-testid="sidebar-management-classes"]';
+	static #adminClassNavigationSidebarCard =
+		'[data-testid="sidebar-management-classes"]';
 	static #adminClassNavigationCard = '[data-testid="administrate_classes"]';
 	static #dropDownSchoolYearCreateClass = '[data-testid="class-school-year-selection"]';
 	static #teacherNameInClassPage = '[data-testid="class-teacher-selection"]';
@@ -70,7 +71,9 @@ class Classes {
 
 	selectStudentInManageClassPage(fullNameStudent) {
 		cy.get(Classes.#dropDownStudentSelectionOnClassManage).click();
-		cy.get(Classes.#selectionBoxStudentInManageClass).contains(fullNameStudent).click();
+		cy.get(Classes.#selectionBoxStudentInManageClass)
+			.contains(fullNameStudent)
+			.click();
 	}
 
 	seeSelectedTeacherOnManageClassPage(teacherName) {
@@ -158,7 +161,10 @@ class Classes {
 			.contains(className)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#createSuccessorButton).should("have.class", "v-btn--disabled");
+				cy.get(Classes.#createSuccessorButton).should(
+					"have.class",
+					"v-btn--disabled"
+				);
 			});
 	}
 
@@ -341,7 +347,10 @@ class Classes {
 			.contains(className)
 			.parents("tr")
 			.within(() => {
-				cy.get(Classes.#tableClassStudentCount).should("have.text", numberOfStudents);
+				cy.get(Classes.#tableClassStudentCount).should(
+					"have.text",
+					numberOfStudents
+				);
 			});
 	}
 
