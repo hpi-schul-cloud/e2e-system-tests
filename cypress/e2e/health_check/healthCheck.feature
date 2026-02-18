@@ -153,7 +153,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
             | nbc       | teacher_hc_nbc |
             | brb       | teacher_hc_brb |
 
-    Scenario Outline: teacher sees files section, mediashelf, calendar and learning store on staging / ref.
+    Scenario Outline: teacher sees files section, mediashelf, calendar on staging / ref.
 
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -191,15 +191,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         # teacher checks calendar
         When I go to calendar overview
         Then I see calendar page
-
-        # teacher checks learning store
-        When I go to Learning Store overview
-        When I write 'Dodo' in search container and wait for search result
-        Then I see website Learning Store with search result
-        When I click on first card of search result
-        Then I see card details
-        When I click on icon Close Learning Store card details
-        Then I see website Learning Store with search result
 
         # teacher logout
         # next step is to load sidebar in vue
@@ -255,7 +246,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on external tools panel
         Then I see the tool '<external_tool>' in external tools table
         When I click on general settings panel
-        Then I see toggle switch to enable students access to learning store is checked
 
         # admin sees class administration page
         When I go to team administration
