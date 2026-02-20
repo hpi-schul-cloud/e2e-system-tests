@@ -9,10 +9,6 @@ Then("I see the user management overview page", () => {
 	management.verifyUserManagementOverviewPage();
 });
 
-Then("I see the alert Info in the deletion pop up", () => {
-	management.checkDeleteUserAlertInfo();
-});
-
 Then("I see the context external tool configuration page", () => {
 	toolConfiguration.seeContextExternalToolConfiguratorPage();
 });
