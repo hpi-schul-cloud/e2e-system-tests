@@ -431,6 +431,7 @@ class RoomBoards {
 	}
 
 	verifyEtherpadIsNotVisibleOnCard() {
+		cy.reload();
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("not.exist");
 		cy.get(RoomBoards.#titleOnCardElement).should("not.exist");
 	}
@@ -859,7 +860,7 @@ class RoomBoards {
 	clickDeleteButtonInConfirmationDialog() {
 		cy.get(RoomBoards.#globalDialogConfirmButton).click();
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
-		cy.reload();
+		cy.wait(500);
 	}
 
 	verifyVideoConferenceElementNotVisible() {
