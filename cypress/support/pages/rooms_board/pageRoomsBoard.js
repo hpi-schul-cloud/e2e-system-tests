@@ -421,6 +421,7 @@ class RoomBoards {
 	}
 
 	verifyH5PElementIsNotVisible() {
+		cy.reload();
 		cy.get(RoomBoards.#H5PElementSelector).should("not.exist");
 	}
 
