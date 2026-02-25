@@ -113,7 +113,7 @@ Feature: Course - Copy course with CTL tools
         Then I see the tool '<ctl_tool_protected_param>' in the tool overview
         Then I see the tool '<ctl_tool_optional_protected_param>' in the tool overview
         Then I see the tool '<ctl_tool_scope_context>' is not marked as incomplete
-        Then I see the tool '<ctl_tool_optional_protected_param>' is not marked as incomplete operational
+        Then I see the tool '<ctl_tool_optional_protected_param>' is marked as incomplete operational
         Then I see the tool '<ctl_tool_protected_param>' is marked as incomplete
         # student launches incomplete operational tool
         When I launch tool '<ctl_tool_optional_protected_param>' with given url '<ctl_tool_launch_url>'
