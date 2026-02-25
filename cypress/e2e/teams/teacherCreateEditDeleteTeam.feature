@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-F
-@pr
 @prio_0_staging
 Feature: Teams - Create, delete and edit operations on Teams
 
