@@ -70,43 +70,11 @@ Feature: Dashboard - To check contents on the dashboard
         When I click on save button
         Then I see news is created successfully with title 'CypressAut Dashboard - school news' and with description 'test school news description'
 
-        # pre-condition: teacher creates a team
-        When I go to teams overview
-        When I click on button Add Team on the teams overview page
-        Then I see new team creation page
-        When I enter in the title 'CypressAut - News Team'
-        When I click on button Create Team on the team creation page
-
-        # pre-condition: teacher creates team news
-        When I go to teams overview
-        When I go to a team 'CypressAut - News Team'
-        When I click on news tab on the team detail page
-        When I click on create news button
-        Then I see news creation page
-        When I enter news title 'CypressAut Dashboard - team news'
-        When I enter news description 'test team news description'
-        Then I see date input field
-        Then I see time input field
-        When I click on save button
-        Then I see news is created successfully with title 'CypressAut Dashboard - team news' and with description 'test team news description'
-
-        # pre-condition: teacher adds student as team member
-        When I go to teams overview
-        When I go to a team 'CypressAut - News Team'
-        When I click on three dot menu on the team title
-        When I click on manage team members option
-        Then I see team participants overview page
-        When I click on add internal attendees button
-        Then new dialog opens to select student '<listname_student>' from the drop down list
-        When I click on add user button
-        Then I see the student named '<listname_student>' on the team members table
-
         # student arrives on dashboard
         Given I am logged in as a '<student>' at '<namespace>'
         When I arrive on the dashboard
         Then I see the welcome message 'Hallo <fullname_student>!'
         Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
-        Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
         # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course '<course_name>'
 
         # teacher arrives on dashboard
@@ -114,7 +82,6 @@ Feature: Dashboard - To check contents on the dashboard
         When I arrive on the dashboard
         Then I see the welcome message 'Hallo <fullname_teacher>!'
         Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
-        Then I see teams news with title 'CypressAut Dashboard - team news' and description 'test team news description'
         # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course '<course_name>'
         # Then I can see the draft task 'CypressAut Dashboard Task Draft' of course '<course_name>'
 
@@ -125,32 +92,14 @@ Feature: Dashboard - To check contents on the dashboard
         When I confirm the deletion on confirmation dialog box
         Then I do not see the news 'CypressAut Dashboard - school news'
 
-        # teacher deletes the team news
-        When I arrive on the dashboard
-        When I click on the news teaser 'CypressAut Dashboard - team news'
-        When I click on delete button
-        When I confirm the deletion on confirmation dialog box
-        Then I do not see the news 'CypressAut Dashboard - team news'
-
         # student does not see news anymore on dashboard
         Given I am logged in as a '<student>' at '<namespace>'
         When I arrive on the dashboard
         Then I do not see school news with title 'CypressAut Dashboard - school news'
-        Then I do not see teams news with title 'CypressAut Dashboard - team news'
-
-        # post-condition: teacher deletes the student as a  team member
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to teams overview
-        When I go to a team 'CypressAut - News Team'
-        When I click on three dot menu on the team title
-        When I click on manage team members option
-        Then I see team participants overview page
-        When I select the student '<fullname_student>' and click on delete icon
-        Then I see '<fullname_student>' is not visible on the table
 
         # post-condition:  teacher deletes the team and course
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given course with name '<course_name>' is deleted
-        Given team with name 'CypressAut - News Team' is deleted
 
         @school_api_test
         Examples:

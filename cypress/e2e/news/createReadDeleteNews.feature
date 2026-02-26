@@ -2,7 +2,6 @@
 @regression_test
 @schedule_run
 @group-C
-@pr
 @prio_0_staging
 Feature:  News - To read a news on the respective dashboards
 
