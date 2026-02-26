@@ -7,13 +7,13 @@
 @prio_0_staging
 Feature: Admin - To add, edit and delete new users by the admin.
 
-    As an admin, I want to manage users by creating, editing, and removing them
+    As an admin, I want to manage users by creating, editing, and removing them, so that I can manage user administration effectively.
 
     #------------------------------------------ Student user deletion via legacy page ------------------------------------------
 
     Scenario Outline: Admin adds, edits, and deletes a student
 
-        # pre-condition: admin adds a new student
+        # admin adds a new student
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
@@ -25,7 +25,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         Then I can see the user with email '<user_email>' in the table
         Then I see the assigned date of birth for student in the table
 
-        # admin adds edits a student
+        # admin edits a student
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
@@ -37,8 +37,8 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
-        # post-condition: admin deletes a student
-        # KNL user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immediate.
+        # admin deletes a student
+        # knl user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immediate.
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email_edited>'
@@ -62,7 +62,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
 
     Scenario Outline: Admin adds, edits, and deletes a teacher
 
-        # pre-condition: admin adds a new teacher
+        # admin adds a new teacher
         Given I am logged in as a '<admin>' at '<namespace>'
         When I click on administration in menu
         When I go to '<role_to_manage>' administration
@@ -74,7 +74,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         Then I can see the user with email '<user_email>' in the table
         Then I see the assigned date of birth for student in the table
 
-        # admin adds edits a teacher
+        # admin edits a teacher
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         When I click edit '<role_to_manage>' button for '<user_email>'
@@ -86,8 +86,8 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
-        # post-condition: admin deletes a teacher
-        # KNL user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immediate.
+        # admin deletes a teacher
+        # knl user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immediate.
         When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         When I select the checkbox '<role_to_manage>' button for '<user_email_edited>'
