@@ -1,7 +1,7 @@
 "use strict";
 
 class RoomBoards {
-	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
+	static #btnDialogCancel = '[data-testid="confirmation-dialog-cancel"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
 	static #mainPageArea = '[id="main-content"]';
@@ -127,10 +127,12 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #globalDialogConfirmButton = '[data-testid="dialog-confirm"]';
+	static #globalDialogConfirmButton = '[data-testid="confirmation-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
-	static #globalDialogTitle = '[data-testid="dialog-title"]';
+	static #globalDialogTitle = '[data-testid="confirmation-dialog-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
+	static #dialogTitle = '[data-testid="dialog-title"]';
+	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 
 	clickOnConfirmOnModalForDeletion() {
 		cy.get(RoomBoards.#deleteFileDialogConfirm).click();
@@ -632,7 +634,9 @@ class RoomBoards {
 			if ($body.find(RoomBoards.#shareModalTitleOnMovingCard).length > 0) {
 				cy.get(RoomBoards.#shareModalTitleOnMovingCard).should("be.visible");
 			} else {
-				cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+				cy.get(
+					`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+				).should("exist");
 			}
 		});
 	}
@@ -687,7 +691,7 @@ class RoomBoards {
 
 	verifyImportDialog() {
 		cy.get(
-			`${RoomBoards.#importCardDialogTitle}, ${RoomBoards.#globalDialogTitle}`
+			`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}, ${RoomBoards.#importCardDialogTitle}`
 		).should("be.visible");
 	}
 
@@ -702,7 +706,9 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		cy.get(RoomBoards.#globalDialogTitle).should("exist");
+		cy.get(`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}`).should(
+			"exist"
+		);
 		cy.get(RoomBoards.#roomSelectionBoxModal)
 			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
@@ -730,7 +736,9 @@ class RoomBoards {
 	}
 
 	clickImportOnModal() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.get(
+			`${RoomBoards.#globalDialogConfirmButton}, ${RoomBoards.#dialogConfirm}`
+		).click();
 	}
 
 	clickOnMoveButtonInMoveCardModal() {
@@ -738,7 +746,9 @@ class RoomBoards {
 	}
 
 	seeShareSettingsDialog() {
-		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+		cy.get(
+			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+		).should("exist");
 	}
 
 	seeEditingSettingsDialog() {
@@ -766,7 +776,9 @@ class RoomBoards {
 	}
 
 	verifyShareViaModal() {
-		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+		cy.get(
+			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+		).should("exist");
 	}
 
 	verifyShareViaEmailOption() {

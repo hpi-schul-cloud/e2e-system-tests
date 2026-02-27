@@ -5,6 +5,37 @@ import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 const toolConfiguration = new ToolConfiguration();
 const management = new Management();
 
+When("I select the checkbox {string} button for {string}", (role, email) => {
+	management.selectUserCheckboxByEmail(role, email);
+});
+
+When("I click on the button Action", () => {
+	management.clickActionButton();
+});
+
+When("I click on the Option Delete", () => {
+	management.clickDeleteOption();
+});
+
+Then("I see the dialog for deleting user", () => {
+	management.verifyDeleteUserDialogVisible();
+});
+
+Then(
+	"I see the user name {string} {string} in the deletion dialog",
+	(firstNameEdited, lastNameEdited) => {
+		management.verifyUserNameInDeleteDialog(firstNameEdited, lastNameEdited);
+	}
+);
+
+When("I click on the button Delete to confirm the deletion", () => {
+	management.confirmUserDeletion();
+});
+
+Then("I see the success alert", () => {
+	management.verifySuccessAlert();
+});
+
 Then("I see the user management overview page", () => {
 	management.verifyUserManagementOverviewPage();
 });
