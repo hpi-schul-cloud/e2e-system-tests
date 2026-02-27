@@ -7,9 +7,9 @@ class Rooms {
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
-	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
+	static #deletionConfirmationModalTitle = '[data-testid="confirmation-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
-	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
+	static #confirmButtonOnModal = '[data-testid="confirmation-dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
@@ -30,7 +30,7 @@ class Rooms {
 		'[data-testid="dialog-change-role-participants"]';
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
-	static #roomLeaveDialogBox = '[data-testid="dialog-title"]';
+	static #roomLeaveDialogBox = '[data-testid="confirmation-dialog-title"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
 	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
 	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
@@ -60,6 +60,8 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
+	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
+	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -206,7 +208,9 @@ class Rooms {
 	}
 
 	clickOnImportConfirmButtonInModal() {
-		cy.get(Rooms.#confirmButtonOnModal).click();
+		cy.get(
+			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#dialogConfirm}:visible`
+		).click();
 	}
 
 	seeDuplicateRoomSuccessAlert() {
@@ -386,15 +390,7 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#deletionConfirmationModalTitle).then((dialogs) => {
-			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
-				return (
-					parseInt(Cypress.$(dialogB).css("z-index")) -
-					parseInt(Cypress.$(dialogA).css("z-index"))
-				);
-			})[0];
-			cy.wrap(highestZIndexDialog).find(Rooms.#confirmButtonOnModal).click();
-		});
+		cy.get(Rooms.#confirmButtonOnModal).filter(":visible").first().click();
 	}
 
 	roomIsVisibleOnOverviewPage(roomName) {
@@ -513,11 +509,15 @@ class Rooms {
 	}
 
 	isRoomLeaveDialogBoxVisible() {
-		cy.get(Rooms.#roomLeaveDialogBox).should("be.visible");
+		cy.get(
+			`${Rooms.#roomLeaveDialogBox}:visible, ${Rooms.#dialogTitleLeaveRoomOwner}:visible`
+		).should("exist");
 	}
 
 	clickOnActionButtonForRoomLeave(buttonAction) {
-		cy.get(`[data-testid="dialog-${buttonAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="confirmation-dialog-${buttonAction.toLowerCase()}"]`
+		).click();
 	}
 
 	isParticipantNotVisible(participantName) {
