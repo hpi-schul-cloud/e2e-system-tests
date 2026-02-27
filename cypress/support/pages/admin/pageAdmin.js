@@ -126,7 +126,7 @@ class Management {
 	static #pinInputField = "div[id='pinverification'] input[class='digit']";
 	static #requestPinButton = "button[id='resend-pin']";
 	static #pinSuccessMessage = "div[class*='alert-success']";
-	static #courseAdminNotification = '[data-testid="alert-text"]';
+	static #adminAlertNotification = '[data-testid="alert-text"]';
 	static #nextButtonOnRegistration = "button[id='nextSection']";
 	static #checkBoxPrivacyConsentRegistration = "input[name='privacyConsent']";
 	static #checkBoxTermsOfUseConsentRegistration = "input[name='termsOfUseConsent']";
@@ -169,6 +169,56 @@ class Management {
 	static #pageTitleEditStudent = '[data-testid="Schüler:innen bearbeiten"]';
 	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
 	static #globalDialogCancel = '[data-testid="dialog-cancel"]';
+	static #tableRows = '[data-testid="table-data-row"]';
+	static #actionButton = '[data-test-id="context-menu-open"]';
+	static #deleteOption = '[data-testid="delete_action"]';
+	static #deleteDialogUsersList = '[data-testid="delete-user-dialog-user-list"]';
+	static #deleteDialogTitle = '[data-testid="delete-user-dialog-title"]';
+	static #confirmDeleteButtonDialog = '[data-testid="delete-user-dialog-confirm"]';
+	static #selectionColumnUserTable = '[data-testid="selection-column"]';
+
+	selectUserCheckboxByEmail(role, email) {
+		if (role !== "teacher") return;
+
+		cy.get(Management.#tableContents)
+			.contains("td", email)
+			.closest(Management.#tableRows)
+			.within(() => {
+				cy.get(
+					`${Management.#selectionColumnUserTable} input[type="checkbox"][aria-label^="Zeile"]`
+				)
+					.should("exist")
+					.click({ force: true });
+			});
+	}
+
+	clickActionButton() {
+		cy.get(Management.#actionButton).should("be.visible").click();
+	}
+
+	clickDeleteOption() {
+		cy.get(Management.#deleteOption).should("be.visible").click();
+	}
+
+	verifyDeleteUserDialogVisible() {
+		cy.get(Management.#deleteDialogTitle).should("be.visible");
+	}
+
+	verifyUserNameInDeleteDialog(firstNameEdited, lastNameEdited) {
+		const fullName = `${firstNameEdited} ${lastNameEdited}`;
+
+		cy.get(Management.#deleteDialogUsersList)
+			.should("be.visible")
+			.and("contain.text", fullName);
+	}
+
+	confirmUserDeletion() {
+		cy.get(Management.#confirmDeleteButtonDialog).should("be.visible").click();
+	}
+
+	verifySuccessAlert() {
+		cy.get(Management.#adminAlertNotification).should("be.visible");
+	}
 
 	verifyUserManagementOverviewPage() {
 		cy.url().should((url) => {
@@ -459,7 +509,7 @@ class Management {
 	}
 
 	seeNoErrorInfoInCourseAdministration() {
-		cy.get(Management.#courseAdminNotification).should("not.exist");
+		cy.get(Management.#adminAlertNotification).should("not.exist");
 	}
 
 	clearDefaultPasswordInManualRegistration() {
@@ -525,7 +575,7 @@ class Management {
 
 		// select the student row and click the first action icon
 		cy.contains("tr", userEmail)
-			.find('[data-testid="selection-column"]')
+			.find(Management.#selectionColumnUserTable)
 			.first()
 			.should("be.visible")
 			.click();

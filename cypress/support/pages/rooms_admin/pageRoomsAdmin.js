@@ -8,9 +8,10 @@ class RoomsAdmin {
 	static #threeDotMenuManageRoomMembers = '[data-testid^="menu-manage-room-"]';
 	static #adminRoomTitle = '[data-testid="admin-room-detail-title"]';
 	static #adminParticipantTable = '[data-testid="room-admin-members-table"]';
-	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
-	static #userDeletionConfirmationModalTitle = '[data-testid="dialog-title"]';
-	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
+	static #deletionConfirmationModalTitle = '[data-testid="confirmation-dialog-title"]';
+	static #userDeletionConfirmationModalTitle =
+		'[data-testid="confirmation-dialog-title"]';
+	static #confirmButtonOnModal = '[data-testid="confirmation-dialog-confirm"]';
 
 	navigateToRoomsAdministrationPageViaSubmenu() {
 		cy.get(RoomsAdmin.#roomsAdministrationLink).should("be.visible");
@@ -128,15 +129,7 @@ class RoomsAdmin {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(RoomsAdmin.#deletionConfirmationModalTitle).then((dialogs) => {
-			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
-				return (
-					parseInt(Cypress.$(dialogB).css("z-index")) -
-					parseInt(Cypress.$(dialogA).css("z-index"))
-				);
-			})[0];
-			cy.wrap(highestZIndexDialog).find(RoomsAdmin.#confirmButtonOnModal).click();
-		});
+		cy.get(RoomsAdmin.#confirmButtonOnModal).click();
 	}
 }
 
