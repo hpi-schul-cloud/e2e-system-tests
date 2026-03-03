@@ -1,7 +1,18 @@
-const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
+const { When, Then, Given } = require("@badeball/cypress-cucumber-preprocessor");
 import Management from "../../pages/admin/pageAdmin";
 
 const management = new Management();
+
+When("I select the checkbox to select all rows in the user overview table", () => {
+	management.selectAllRowsCheckboxInUserTable();
+});
+
+Then(
+	"I see all selected users {string} in the deletion dialog with the user first name, last name",
+	(numberOfUsers) => {
+		management.seeAllSelectedUsersInDeletionDialog(numberOfUsers);
+	}
+);
 
 Then("I see the assigned date of birth for student in the table", () => {
 	management.seeTheAssignedBirthDateInUserTable();

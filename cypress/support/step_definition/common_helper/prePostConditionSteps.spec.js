@@ -30,6 +30,29 @@ const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
 
+Given("multiple users {string} added by the admin {string}", (numberOfUsers, role) => {
+	const num = parseInt(numberOfUsers, 10);
+
+	const baseFirstName = "cypress";
+	const baseLastName = "student_admin_test";
+	const baseEmailSuffix = "original_student_admin_users@cypress-mail.de";
+
+	for (let i = 1; i <= num; i++) {
+		const uniqueFirstName = `${baseFirstName}${i}`;
+		const uniqueLastName = `${baseLastName}${i}`;
+
+		management.openAdministrationInMenu();
+		management.navigateToUserAdministration(role);
+		management.clickOnFAB(role);
+		management.clickOnAddUserInFAB(role);
+		management.fillUserCreationForm(uniqueFirstName, uniqueLastName, baseEmailSuffix);
+		management.clickOnAddButton(role);
+	}
+	// after adding users, navigate back to the user overview page
+	management.openAdministrationInMenu();
+	management.navigateToUserAdministration(role);
+});
+
 Given("the multi-column board has a column with a card titled {string}", (cardTitle) => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();

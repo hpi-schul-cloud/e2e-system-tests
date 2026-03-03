@@ -176,6 +176,35 @@ class Management {
 	static #deleteDialogTitle = '[data-testid="delete-user-dialog-title"]';
 	static #confirmDeleteButtonDialog = '[data-testid="delete-user-dialog-confirm"]';
 	static #selectionColumnUserTable = '[data-testid="selection-column"]';
+	static #userTableDataHead = '[data-testid="table-data-head"]';
+
+	seeAllSelectedUsersInDeletionDialog(numberOfUsers) {
+		const num = parseInt(numberOfUsers, 10);
+
+		const baseFirstName = "cypress";
+		const baseLastName = "student_admin_test";
+
+		cy.get(Management.#deleteDialogUsersList)
+			.should("be.visible")
+			.find('[role="listitem"]')
+			.should("have.length", num)
+			.each(($item, index) => {
+				const i = index + 1;
+
+				cy.wrap($item)
+					.should("be.visible")
+					.and("contain.text", `${baseFirstName}${i}`)
+					.and("contain.text", `${baseLastName}${i}`);
+			});
+	}
+
+	selectAllRowsCheckboxInUserTable() {
+		cy.get(Management.#userTableDataHead)
+			.find('input[type="checkbox"][aria-label^="Alle Zeilen"]')
+			.each(($checkbox) => {
+				cy.wrap($checkbox).click({ force: true });
+			});
+	}
 
 	selectUserCheckboxByEmail(role, email) {
 		if (role !== "teacher") return;
