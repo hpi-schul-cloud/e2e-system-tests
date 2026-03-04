@@ -36,7 +36,7 @@ class Rooms {
 	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
-	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
+	static #alertMessage = '[data-testid="alert-text"]';
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
 	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
 	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
@@ -62,6 +62,31 @@ class Rooms {
 	static #noRoomsMessage = '[data-testid="empty-state"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
+
+	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
+		// ensure the room is currently at the starting position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
+			.should("be.visible")
+			.and("contain.text", roomName);
+
+		// drag room to target position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
+			`[data-testid="board-grid-item-${toPosition}"]`,
+			{ force: true }
+		);
+		// wait for the drag-and-drop action to complete and UI to update
+		cy.wait(300);
+	}
+
+	verifyRoomAtPosition(roomName, position) {
+		cy.get(`[data-testid="board-grid-item-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", roomName);
+	}
+
+	verifyNoErrorAlert() {
+		cy.get(Rooms.#alertMessage).should("not.exist");
+	}
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -214,7 +239,7 @@ class Rooms {
 	}
 
 	seeDuplicateRoomSuccessAlert() {
-		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
+		cy.get(Rooms.#alertMessage).should("be.visible");
 	}
 
 	seeDuplicationModal() {
