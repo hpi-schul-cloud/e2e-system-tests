@@ -18,12 +18,13 @@ class Help {
 	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
 	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection-contact"]';
 	static #advancedTrainingsNavigationButtonLink = 'a[title="Fortbildungen"]';
-	static #advancedTrainingsNavigationButton = '[data-testid="sidebar-helpsection-trainings"]';
+	static #advancedTrainingsNavigationButton =
+		'[data-testid="sidebar-helpsection-trainings"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
 	static #selectDropdownOptions = ".chosen-drop .chosen-results";
 	static #contactTypeWishButton = '[id="wish"]';
-	static #contactFormWish = '.wish_form';
+	static #contactFormWish = ".wish_form";
 	static #requestFormRole = '[name="role"]';
 	static #requestFormDesire = '[name="desire"]';
 	static #requestFormBenefit = '[name="benefit"]';
@@ -70,16 +71,44 @@ class Help {
 		cy.get(Help.#helpContactform).contains("Kontaktformular");
 	}
 
-	enterKeywordInHelpArticlesSearchbar(search_term) {
-		cy.get(Help.#searchBar).should("be.visible").clear();
+	enterKeywordInHelpArticlesSearchbar(searchTerm) {
+		cy.intercept("GET", "**/rest/searchv3/**").as("search");
 
-		let currentValue = "";
-		for (let i = 0; i < search_term.length; i++) {
-			currentValue += search_term[i];
-			cy.get(Help.#searchBar)
-				.type(search_term[i], { delay: 300 })
-				.should("have.value", currentValue);
-		}
+		cy.get(Help.#searchBar).clear().type(`${searchTerm} `);
+
+		cy.wait("@search");
+
+		cy.get("@search.all").then((calls) => {
+			calls.forEach((call, index) => {
+				const query = new URL(call.request.url).searchParams.get("queryString");
+				const status = call.response ? call.response.statusCode : "NO_RESPONSE";
+				const total = call.response?.body?.total ?? "N/A";
+
+				cy.task("log", `Call ${index + 1}: query="${query}", total=${total}`);
+			});
+		});
+		// cy.intercept("GET", "**/rest/searchv3/**", (req) => {
+		// 	req.continue((res) => {
+		// 		console.log("Search:", req.url, "Total:", res.body.total);
+		// 	});
+		// });
+		// // cy.intercept("GET", "**/rest/searchv3/**", (req) => {
+		// // 	const url = new URL(req.url);
+
+		// // 	if (url.searchParams.get("queryString") === searchTerm) {
+		// // 		req.alias = "help_search_api";
+		// // 	}
+		// // });
+		// cy.get(Help.#searchBar).should("be.visible").clear().type(searchTerm);
+		// cy.wait("@help_search_api").its("response.body.total").should("be.greaterThan", 0);
+		cy.get(Help.#searchResult)
+			.should("be.visible")
+			.invoke("text")
+			.then((text) => {
+				const normalized = text.replace(/\s+/g, " ").trim();
+				expect(normalized).to.not.include("Keine Ergebnisse gefunden");
+				expect(normalized).to.include("QR-Code Funktion");
+			});
 	}
 
 	fillOutContactForm(problem_option, subject, email) {
@@ -106,13 +135,13 @@ class Help {
 	}
 
 	selectContactType(contactType) {
-		if(contactType == 'wish'){
+		if (contactType == "wish") {
 			cy.get(Help.#contactTypeWishButton).next().click();
 		}
 	}
 
 	seeContactFormType(formType) {
-		if(formType == 'wish'){
+		if (formType == "wish") {
 			cy.get(Help.#contactFormWish).should("be.visible");
 		}
 	}
