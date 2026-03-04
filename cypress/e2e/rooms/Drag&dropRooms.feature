@@ -22,7 +22,6 @@ Feature: Rooms - Drag and Drop Rooms on the Rooms Overview Page
         Then I see the room '<room_two>' at position '0'
 
         # teacher drags and drops the room one from the position two to the first position back (right to left)
-        When I go to rooms overview
         When I drag and drop the room one '<room_one>' from position '1' to position '0'
         Then I do not see error alrert
         Then I see the room '<room_one>' at position '0'

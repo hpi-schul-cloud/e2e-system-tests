@@ -134,6 +134,27 @@ class RoomBoards {
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 
+	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
+		// ensure the board is currently at the starting position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
+			.should("be.visible")
+			.and("contain.text", boardTitle);
+
+		// drag board to target position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
+			`[data-testid="board-grid-item-${toPosition}"]`,
+			{ force: true }
+		);
+		// wait for the drag-and-drop action to complete and UI to update
+		cy.wait(300);
+	}
+
+	verifyBoardAtPosition(boardTitle, position) {
+		cy.get(`[data-testid="board-grid-item-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", boardTitle);
+	}
+
 	clickOnConfirmOnModalForDeletion() {
 		cy.get(RoomBoards.#deleteFileDialogConfirm).click();
 	}
