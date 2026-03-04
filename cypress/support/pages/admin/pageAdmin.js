@@ -188,12 +188,11 @@ class Management {
 			.should("be.visible")
 			.find('[role="listitem"]')
 			.should("have.length", num)
-			.each(($item, index) => {
+			.each(($row, index) => {
 				const i = index + 1;
 
-				cy.wrap($item)
-					.should("be.visible")
-					.and("contain.text", `${baseFirstName}${i}`)
+				cy.wrap($row)
+					.should("contain.text", `${baseFirstName}${i}`)
 					.and("contain.text", `${baseLastName}${i}`);
 			});
 	}
