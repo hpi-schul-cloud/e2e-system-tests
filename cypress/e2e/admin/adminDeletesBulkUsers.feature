@@ -11,7 +11,7 @@ Feature: Admin - To add and delete new users by the admin in bulk
 
         # admin adds multiple users
         Given I am logged in as a '<admin>' at '<namespace>'
-        Given multiple users '<number_of_users>' added by the admin '<role_to_manage>'
+        Given the admin has added '<number_of_users>' '<role_to_manage>' users
 
         # admin deletes multiple users in a bulk
         # knl user deletion asynchronously by cron, cron job runs as scheduled and the user gets deleted in the DB, but in the GUI it deletes immediate.
@@ -21,7 +21,7 @@ Feature: Admin - To add and delete new users by the admin in bulk
         When I click on the button Action
         When I click on the Option Delete
         Then I see the dialog for deleting user
-        Then I see all selected users '<number_of_users>' in the deletion dialog with the user first name, last name
+        Then I see all '<number_of_users>' selected users in the deletion dialog with their first name and last name
         When I click on the button Delete to confirm the deletion
         Then I see the success alert
         When I enter '<role_to_manage>' email '<search_email_suffix>' in search input field

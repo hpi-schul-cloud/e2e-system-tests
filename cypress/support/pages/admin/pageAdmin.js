@@ -179,7 +179,7 @@ class Management {
 	static #userTableDataHead = '[data-testid="table-data-head"]';
 
 	seeAllSelectedUsersInDeletionDialog(numberOfUsers) {
-		const num = parseInt(numberOfUsers, 10);
+		const num = numberOfUsers;
 
 		const baseFirstName = "cypress";
 		const baseLastName = "student_admin_test";
@@ -189,7 +189,7 @@ class Management {
 			.find('[role="listitem"]')
 			.should("have.length", num)
 			.each(($row, index) => {
-				const i = index + 1;
+				const i = index++;
 
 				cy.wrap($row)
 					.should("contain.text", `${baseFirstName}${i}`)

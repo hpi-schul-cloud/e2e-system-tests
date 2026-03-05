@@ -8,7 +8,7 @@ When("I select the checkbox to select all rows in the user overview table", () =
 });
 
 Then(
-	"I see all selected users {string} in the deletion dialog with the user first name, last name",
+	"I see all {string} selected users in the deletion dialog with their first name and last name",
 	(numberOfUsers) => {
 		management.seeAllSelectedUsersInDeletionDialog(numberOfUsers);
 	}
