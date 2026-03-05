@@ -180,20 +180,18 @@ class Management {
 
 	seeAllSelectedUsersInDeletionDialog(numberOfUsers) {
 		const num = numberOfUsers;
-
-		const baseFirstName = "cypress";
-		const baseLastName = "student_admin_test";
+		let index = 1;
 
 		cy.get(Management.#deleteDialogUsersList)
 			.should("be.visible")
 			.find('[role="listitem"]')
 			.should("have.length", num)
-			.each(($row, index) => {
-				const i = index++;
-
+			.each(($row) => {
 				cy.wrap($row)
-					.should("contain.text", `${baseFirstName}${i}`)
-					.and("contain.text", `${baseLastName}${i}`);
+					.should("contain.text", `cypress${index}`)
+					.and("contain.text", `student_admin_test${index}`);
+				// increment after assertion
+				index++;
 			});
 	}
 
