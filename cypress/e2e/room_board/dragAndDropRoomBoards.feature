@@ -3,7 +3,7 @@
 @schedule_run
 @group-F
 @prio_0_staging
-Feature: Rooms - Drag and Drop Boards on the Rooms Overview Page
+Feature: Room Board - Drag and Drop Boards on the Rooms Overview Page
 
     As a teacher, I want to drag and drop boards on the rooms overview page so that I can organize my boards effectively.
 
