@@ -3,6 +3,21 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
+When(
+	"I drag and drop the room one {string} from position {string} to position {string}",
+	(roomName, fromPos, toPos) => {
+		rooms.dragRoomFromPositionToPosition(roomName, fromPos, toPos);
+	}
+);
+
+Then("I do not see error alrert", () => {
+	rooms.verifyNoErrorAlert();
+});
+
+Then("I see the room {string} at position {string}", (roomName, position) => {
+	rooms.verifyRoomAtPosition(roomName, position);
+});
+
 Then("I delete all rooms whose names start with {string}", (roomNamePrefix) => {
 	rooms.deleteAllRoomsWithName(roomNamePrefix);
 });
