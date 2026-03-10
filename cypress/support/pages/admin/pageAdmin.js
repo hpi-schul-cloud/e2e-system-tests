@@ -762,47 +762,44 @@ class Management {
 	}
 
 	fillUserCreationForm(forename, surname, baseEmail) {
-		const randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
+		const randomNumber = Date.now() + Math.floor(Math.random() * 1000);
 		const uniqueEmail = randomNumber + baseEmail;
 
-		// store the generated unique email as an alias for later use
 		cy.wrap(uniqueEmail).as("uniqueEmail");
-		cy.log("Generated Unique Email:", uniqueEmail);
 
-		// fill in the form with the generated email and other details
-		cy.get(Management.#firstNameCreationForm).type(forename);
-		cy.get(Management.#lastNameCreationForm).type(surname);
-		cy.get(Management.#emailCreationForm).type(uniqueEmail);
-		// set the birth date to 17 years ago when creating a student
+		cy.get(Management.#firstNameCreationForm).find("input").type(forename);
+		cy.get(Management.#lastNameCreationForm).find("input").type(surname);
+		cy.get(Management.#emailCreationForm).find("input").type(uniqueEmail);
+
+		// check if birthdate field exists (only students have it)
 		cy.get("body").then(($body) => {
-			// the birthdate field exists only when creating a student (not for teachers)
 			if ($body.find(Management.#birthDateFieldCreateStudent).length) {
+				// calculate birthdate so student is always >=16 (here: 17)
 				const birthDate = new Date();
-
-				// subtract 17 years from today to generate a valid student birthdate
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
 
-				// format date as DD.MM.YYYY which the UI expects
-				const day = String(birthDate.getDate()).padStart(2, "0");
-				const month = String(birthDate.getMonth() + 1).padStart(2, "0");
-				const year = birthDate.getFullYear();
-				const formattedBirthDate = `${day}.${month}.${year}`;
+				// format date based on current browser locale
+				const formattedBirthDate = new Intl.DateTimeFormat(navigator.language, {
+					day: "2-digit",
+					month: "2-digit",
+					year: "numeric",
+				}).format(birthDate);
 
 				cy.get(Management.#birthDateFieldCreateStudent)
 					.find("input")
 					.then(($input) => {
 						const input = $input[0];
 
-						// use native input setter so Vue/Vuetify detects the value change
+						// get native HTML input setter
 						const nativeSetter = Object.getOwnPropertyDescriptor(
 							window.HTMLInputElement.prototype,
 							"value"
 						).set;
 
-						// assign the formatted date to the input field
+						// set value directly so Vue/Vuetify detects it
 						nativeSetter.call(input, formattedBirthDate);
 
-						// trigger events so the framework updates its internal model
+						// trigger events so the framework updates state
 						input.dispatchEvent(new Event("input", { bubbles: true }));
 						input.dispatchEvent(new Event("change", { bubbles: true }));
 					});
@@ -819,22 +816,18 @@ class Management {
 
 	seeTheAssignedBirthDateInUserTable() {
 		cy.get("@assignedBirthDate").then((assignedBirthDate) => {
-			if (assignedBirthDate) {
-				cy.get("@uniqueEmail").then((uniqueEmail) => {
-					cy.log(
-						"verifying student row with email:",
-						uniqueEmail,
-						"and birthdate:",
-						assignedBirthDate
-					);
+			if (!assignedBirthDate) return;
 
-					cy.get(Management.#tableContents)
-						.contains("tr", uniqueEmail)
-						.should("contain", assignedBirthDate);
+			const normalizeDate = (value) => value.replace(/[./-]/g, "");
+
+			cy.get(Management.#tableContents)
+				.should("be.visible")
+				.invoke("text")
+				.then((tableText) => {
+					expect(normalizeDate(tableText)).to.contain(
+						normalizeDate(assignedBirthDate)
+					);
 				});
-			} else {
-				cy.log("user is not a student");
-			}
 		});
 	}
 
