@@ -773,27 +773,41 @@ class Management {
 		cy.get(Management.#firstNameCreationForm).type(forename);
 		cy.get(Management.#lastNameCreationForm).type(surname);
 		cy.get(Management.#emailCreationForm).type(uniqueEmail);
-
-		// setting the birth date to 17 years ago in the form for student user
-		cy.get("body").then((body) => {
-			if (body.find(Management.#birthDateFieldCreateStudent).length) {
+		// set the birth date to 17 years ago when creating a student
+		cy.get("body").then(($body) => {
+			// the birthdate field exists only when creating a student (not for teachers)
+			if ($body.find(Management.#birthDateFieldCreateStudent).length) {
 				const birthDate = new Date();
+
+				// subtract 17 years from today to generate a valid student birthdate
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
-				// set time to noon to avoid timezone issues
-				birthDate.setHours(12, 0, 0, 0);
-				const isoFormatter = birthDate.toISOString().split("T")[0];
-				const displayFormatter = new Intl.DateTimeFormat("de-DE", {
-					year: "numeric",
-					month: "2-digit",
-					day: "2-digit",
-				});
-				// DD.MM.YYYY (for user table)
-				const formattedBirthDate = displayFormatter.format(birthDate);
-				// type the ISO string into the input
+
+				// format date as DD.MM.YYYY which the UI expects
+				const day = String(birthDate.getDate()).padStart(2, "0");
+				const month = String(birthDate.getMonth() + 1).padStart(2, "0");
+				const year = birthDate.getFullYear();
+				const formattedBirthDate = `${day}.${month}.${year}`;
+
 				cy.get(Management.#birthDateFieldCreateStudent)
-					.clear()
-					.type(isoFormatter, { delay: 100 });
-				// store alias in DD.MM.YYYY format
+					.find("input")
+					.then(($input) => {
+						const input = $input[0];
+
+						// use native input setter so Vue/Vuetify detects the value change
+						const nativeSetter = Object.getOwnPropertyDescriptor(
+							window.HTMLInputElement.prototype,
+							"value"
+						).set;
+
+						// assign the formatted date to the input field
+						nativeSetter.call(input, formattedBirthDate);
+
+						// trigger events so the framework updates its internal model
+						input.dispatchEvent(new Event("input", { bubbles: true }));
+						input.dispatchEvent(new Event("change", { bubbles: true }));
+					});
+
+				// store the assigned birthdate for later verification in the test
 				cy.wrap(formattedBirthDate).as("assignedBirthDate");
 			} else {
 				cy.log("Birthdate is not required while creating a new teacher");
@@ -860,7 +874,7 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
-		// seload to ensure clean state
+		// reload to ensure clean state
 		cy.reload();
 		const apiAlias = "search_api";
 		if (role === "student") {
