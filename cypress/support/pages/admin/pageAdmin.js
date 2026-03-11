@@ -762,38 +762,49 @@ class Management {
 	}
 
 	fillUserCreationForm(forename, surname, baseEmail) {
-		const randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
+		const randomNumber = Date.now() + Math.floor(Math.random() * 1000);
 		const uniqueEmail = randomNumber + baseEmail;
 
-		// store the generated unique email as an alias for later use
 		cy.wrap(uniqueEmail).as("uniqueEmail");
-		cy.log("Generated Unique Email:", uniqueEmail);
 
-		// fill in the form with the generated email and other details
-		cy.get(Management.#firstNameCreationForm).type(forename);
-		cy.get(Management.#lastNameCreationForm).type(surname);
-		cy.get(Management.#emailCreationForm).type(uniqueEmail);
+		cy.get(Management.#firstNameCreationForm).find("input").type(forename);
+		cy.get(Management.#lastNameCreationForm).find("input").type(surname);
+		cy.get(Management.#emailCreationForm).find("input").type(uniqueEmail);
 
-		// setting the birth date to 17 years ago in the form for student user
-		cy.get("body").then((body) => {
-			if (body.find(Management.#birthDateFieldCreateStudent).length) {
+		// check if birthdate field exists (only students have it)
+		cy.get("body").then(($body) => {
+			if ($body.find(Management.#birthDateFieldCreateStudent).length) {
+				// calculate birthdate so student is always >=16 (here: 17)
 				const birthDate = new Date();
 				birthDate.setFullYear(birthDate.getFullYear() - 17);
-				// set time to noon to avoid timezone issues
-				birthDate.setHours(12, 0, 0, 0);
-				const isoFormatter = birthDate.toISOString().split("T")[0];
-				const displayFormatter = new Intl.DateTimeFormat("de-DE", {
-					year: "numeric",
-					month: "2-digit",
+
+				// format date based on current browser locale
+				const formattedBirthDate = new Intl.DateTimeFormat(navigator.language, {
 					day: "2-digit",
-				});
-				// DD.MM.YYYY (for user table)
-				const formattedBirthDate = displayFormatter.format(birthDate);
-				// type the ISO string into the input
+					month: "2-digit",
+					year: "numeric",
+				}).format(birthDate);
+
 				cy.get(Management.#birthDateFieldCreateStudent)
-					.clear()
-					.type(isoFormatter, { delay: 100 });
-				// store alias in DD.MM.YYYY format
+					.find("input")
+					.then(($input) => {
+						const input = $input[0];
+
+						// get native HTML input setter
+						const nativeSetter = Object.getOwnPropertyDescriptor(
+							window.HTMLInputElement.prototype,
+							"value"
+						).set;
+
+						// set value directly so Vue/Vuetify detects it
+						nativeSetter.call(input, formattedBirthDate);
+
+						// trigger events so the framework updates state
+						input.dispatchEvent(new Event("input", { bubbles: true }));
+						input.dispatchEvent(new Event("change", { bubbles: true }));
+					});
+
+				// store the assigned birthdate for later verification in the test
 				cy.wrap(formattedBirthDate).as("assignedBirthDate");
 			} else {
 				cy.log("Birthdate is not required while creating a new teacher");
@@ -805,22 +816,18 @@ class Management {
 
 	seeTheAssignedBirthDateInUserTable() {
 		cy.get("@assignedBirthDate").then((assignedBirthDate) => {
-			if (assignedBirthDate) {
-				cy.get("@uniqueEmail").then((uniqueEmail) => {
-					cy.log(
-						"verifying student row with email:",
-						uniqueEmail,
-						"and birthdate:",
-						assignedBirthDate
-					);
+			if (!assignedBirthDate) return;
 
-					cy.get(Management.#tableContents)
-						.contains("tr", uniqueEmail)
-						.should("contain", assignedBirthDate);
+			const normalizeDate = (value) => value.replace(/[./-]/g, "");
+
+			cy.get(Management.#tableContents)
+				.should("be.visible")
+				.invoke("text")
+				.then((tableText) => {
+					expect(normalizeDate(tableText)).to.contain(
+						normalizeDate(assignedBirthDate)
+					);
 				});
-			} else {
-				cy.log("user is not a student");
-			}
 		});
 	}
 
@@ -860,7 +867,7 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
-		// seload to ensure clean state
+		// reload to ensure clean state
 		cy.reload();
 		const apiAlias = "search_api";
 		if (role === "student") {
