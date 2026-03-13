@@ -814,6 +814,7 @@ class Management {
 					input.dispatchEvent(new Event("input", { bubbles: true }));
 					input.dispatchEvent(new Event("change", { bubbles: true }));
 				});
+			cy.wait(500);
 
 			// only store alias if value is really present in the input
 			cy.get(Management.#birthDateFieldCreateStudent)
@@ -821,7 +822,7 @@ class Management {
 				.invoke("val")
 				.then((actualValue) => {
 					if (actualValue) {
-						cy.wrap(actualValue).as("assignedBirthDate");
+						cy.wrap(actualValue).should("exist").as("assignedBirthDate");
 					} else {
 						cy.log("Birthdate field exists but no DOB was persisted in the input");
 						cy.wrap(null).as("assignedBirthDate");
