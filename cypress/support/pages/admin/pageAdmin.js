@@ -814,7 +814,6 @@ class Management {
 					input.dispatchEvent(new Event("input", { bubbles: true }));
 					input.dispatchEvent(new Event("change", { bubbles: true }));
 				});
-			cy.wait(500);
 
 			// only store alias if value is really present in the input
 			cy.get(Management.#birthDateFieldCreateStudent)
@@ -837,10 +836,7 @@ class Management {
 				cy.log("No birthdate assigned, skipping DOB verification");
 				return;
 			}
-
-
 			const normalizeDate = (value) => value.replace(/[./-]/g, "");
-
 			cy.get(Management.#tableContents)
 				.should("be.visible")
 				.invoke("text")
