@@ -242,10 +242,9 @@ class Management {
 		cy.get(Management.#confirmDeleteButtonDialog).should("be.visible").click();
 
 		cy.get("body").then(($body) => {
-			if ($body.find(Management.#confirmDeleteButtonDialog).length) {
-				cy.get(Management.#confirmDeleteButtonDialog)
-					.should("be.visible")
-					.click({ force: true });
+			const $secondConfirm = $body.find(Management.#confirmDeleteButtonDialog);
+			if ($secondConfirm.length) {
+				cy.wrap($secondConfirm).click({ force: true });
 			}
 		});
 	}
