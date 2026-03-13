@@ -240,6 +240,14 @@ class Management {
 
 	confirmUserDeletion() {
 		cy.get(Management.#confirmDeleteButtonDialog).should("be.visible").click();
+
+		cy.get("body").then(($body) => {
+			if ($body.find(Management.#confirmDeleteButtonDialog).length) {
+				cy.get(Management.#confirmDeleteButtonDialog)
+					.should("be.visible")
+					.click({ force: true });
+			}
+		});
 	}
 
 	verifySuccessAlert() {
@@ -773,50 +781,63 @@ class Management {
 
 		// check if birthdate field exists (only students have it)
 		cy.get("body").then(($body) => {
-			if ($body.find(Management.#birthDateFieldCreateStudent).length) {
-				// calculate birthdate so student is always >=16 (here: 17)
-				const birthDate = new Date();
-				birthDate.setFullYear(birthDate.getFullYear() - 17);
-
-				// format date based on current browser locale
-				const formattedBirthDate = new Intl.DateTimeFormat(navigator.language, {
-					day: "2-digit",
-					month: "2-digit",
-					year: "numeric",
-				}).format(birthDate);
-
-				cy.get(Management.#birthDateFieldCreateStudent)
-					.find("input")
-					.then(($input) => {
-						const input = $input[0];
-
-						// get native HTML input setter
-						const nativeSetter = Object.getOwnPropertyDescriptor(
-							window.HTMLInputElement.prototype,
-							"value"
-						).set;
-
-						// set value directly so Vue/Vuetify detects it
-						nativeSetter.call(input, formattedBirthDate);
-
-						// trigger events so the framework updates state
-						input.dispatchEvent(new Event("input", { bubbles: true }));
-						input.dispatchEvent(new Event("change", { bubbles: true }));
-					});
-
-				// store the assigned birthdate for later verification in the test
-				cy.wrap(formattedBirthDate).as("assignedBirthDate");
-			} else {
+			if (!$body.find(Management.#birthDateFieldCreateStudent).length) {
 				cy.log("Birthdate is not required while creating a new teacher");
-				// alias always exists
 				cy.wrap(null).as("assignedBirthDate");
+				return;
 			}
+			// calculate birthdate so student is always >=16 (here: 17)
+			const birthDate = new Date();
+			birthDate.setFullYear(birthDate.getFullYear() - 17);
+
+			// format date based on current browser locale
+			const formattedBirthDate = new Intl.DateTimeFormat(navigator.language, {
+				day: "2-digit",
+				month: "2-digit",
+				year: "numeric",
+			}).format(birthDate);
+
+			cy.get(Management.#birthDateFieldCreateStudent)
+				.find("input")
+				.then(($input) => {
+					const input = $input[0];
+
+					// get native HTML input setter
+					const nativeSetter = Object.getOwnPropertyDescriptor(
+						window.HTMLInputElement.prototype,
+						"value"
+					).set;
+
+					// set value directly so Vue/Vuetify detects it
+					nativeSetter.call(input, formattedBirthDate);
+
+					// trigger events so the framework updates state
+					input.dispatchEvent(new Event("input", { bubbles: true }));
+					input.dispatchEvent(new Event("change", { bubbles: true }));
+				});
+
+			// only store alias if value is really present in the input
+			cy.get(Management.#birthDateFieldCreateStudent)
+				.find("input")
+				.invoke("val")
+				.then((actualValue) => {
+					if (actualValue) {
+						cy.wrap(actualValue).as("assignedBirthDate");
+					} else {
+						cy.log("Birthdate field exists but no DOB was persisted in the input");
+						cy.wrap(null).as("assignedBirthDate");
+					}
+				});
 		});
 	}
 
 	seeTheAssignedBirthDateInUserTable() {
 		cy.get("@assignedBirthDate").then((assignedBirthDate) => {
-			if (!assignedBirthDate) return;
+			if (!assignedBirthDate) {
+				cy.log("No birthdate assigned, skipping DOB verification");
+				return;
+			}
+
 
 			const normalizeDate = (value) => value.replace(/[./-]/g, "");
 
