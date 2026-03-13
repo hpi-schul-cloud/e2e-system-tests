@@ -790,7 +790,7 @@ class Management {
 			birthDate.setFullYear(birthDate.getFullYear() - 17);
 
 			// format date based on current browser locale
-			const formattedBirthDate = new Intl.DateTimeFormat(navigator.language, {
+			const formattedBirthDate = new Intl.DateTimeFormat("de-DE", {
 				day: "2-digit",
 				month: "2-digit",
 				year: "numeric",
