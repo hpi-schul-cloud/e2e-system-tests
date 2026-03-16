@@ -891,6 +891,7 @@ class RoomBoards {
 
 	clickDeleteButtonInConfirmationDialog() {
 		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.wait(1000);
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
 		cy.reload();
 	}
