@@ -127,9 +127,9 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #globalDialogConfirmButton = '[data-testid="confirmation-dialog-confirm"]';
+	static #globalDialogConfirmButton = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
-	static #globalDialogTitle = '[data-testid="confirmation-dialog-title"]';
+	static #globalDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
