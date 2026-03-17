@@ -21,7 +21,7 @@ class Courses {
 	static #courseOverviewNavigationButton = '[data-testid="sidebar-courses"]';
 	static #newTaskFAB = '[data-testid="fab_button_add_task"]';
 	static #dialogConfirmButton = '[data-testid="confirm-dialog-confirm"]';
-	static #dialogCancelButton = '[data-testid="confirmation-dialog-cancel"]';
+	static #dialogCancelButton = '[data-testid="confirm-dialog-cancel"]';
 	static #successAlertDuplicateTask = '[data-testid="alert-text"]';
 	static #copyButtonInDotMenu = '[data-testid="room-task-card-menu-copy-0"]';
 	static #copyButtonInDotTaskMenu = '[data-testid="task-copy"]';
@@ -149,10 +149,10 @@ class Courses {
 	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #classFieldContainer = '[data-testid="class_container"]';
 	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
-	static #delteToolDialog = '[data-testid="confirmation-dialog"]';
-	static #deleteDialogTitle = '[data-testid="confirmation-dialog-title"]';
+	static #delteToolDialog = '[data-testid="confirm-dialog"]';
+	static #deleteDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #deleteDialogContent = '[data-testid="confirm-dialog-alert"]';
-	static #confirmDeleteDialogButton = '[data-testid="confirmation-dialog-confirm"]';
+	static #confirmDeleteDialogButton = '[data-testid="confirm-dialog-confirm"]';
 	static #btnShareCourse = '[data-testid="room-menu-share"]';
 	static #messageNoTasksAvailable = '[data-testid="empty-state-title"]';
 	static #iconCourse = '[data-testid="course-icon"]';
