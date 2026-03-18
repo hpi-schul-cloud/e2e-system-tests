@@ -7,9 +7,9 @@ class Rooms {
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
-	static #deletionConfirmationModalTitle = '[data-testid="confirmation-dialog-title"]';
+	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
-	static #confirmButtonOnModal = '[data-testid="confirmation-dialog-confirm"]';
+	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
