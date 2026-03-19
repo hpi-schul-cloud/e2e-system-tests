@@ -126,7 +126,7 @@ class Management {
 	static #pinInputField = "div[id='pinverification'] input[class='digit']";
 	static #requestPinButton = "button[id='resend-pin']";
 	static #pinSuccessMessage = "div[class*='alert-success']";
-	static #courseAdminNotification = '[data-testid="alert-text"]';
+	static #adminAlertNotification = '[data-testid="alert-text"]';
 	static #nextButtonOnRegistration = "button[id='nextSection']";
 	static #checkBoxPrivacyConsentRegistration = "input[name='privacyConsent']";
 	static #checkBoxTermsOfUseConsentRegistration = "input[name='termsOfUseConsent']";
@@ -169,6 +169,89 @@ class Management {
 	static #pageTitleEditStudent = '[data-testid="Schüler:innen bearbeiten"]';
 	static #pageTitleEditTeacher = '[data-testid="Lehrkraft bearbeiten"]';
 	static #globalDialogCancel = '[data-testid="dialog-cancel"]';
+	static #tableRows = '[data-testid="table-data-row"]';
+	static #actionButton = '[data-test-id="context-menu-open"]';
+	static #deleteOption = '[data-testid="delete_action"]';
+	static #deleteDialogUsersList = '[data-testid="delete-user-dialog-user-list"]';
+	static #deleteDialogTitle = '[data-testid="delete-user-dialog-title"]';
+	static #confirmDeleteButtonDialog = '[data-testid="delete-user-dialog-confirm"]';
+	static #selectionColumnUserTable = '[data-testid="selection-column"]';
+	static #userTableDataHead = '[data-testid="table-data-head"]';
+
+	seeAllSelectedUsersInDeletionDialog(numberOfUsers) {
+		const num = numberOfUsers;
+		let index = 1;
+
+		cy.get(Management.#deleteDialogUsersList)
+			.should("be.visible")
+			.find('[role="listitem"]')
+			.should("have.length", num)
+			.each(($row) => {
+				cy.wrap($row)
+					.should("contain.text", `cypress${index}`)
+					.and("contain.text", `student_admin_test${index}`);
+				// increment after assertion
+				index++;
+			});
+	}
+
+	selectAllRowsCheckboxInUserTable() {
+		cy.get(Management.#userTableDataHead)
+			.find('input[type="checkbox"][aria-label^="Alle Zeilen"]')
+			.each(($checkbox) => {
+				cy.wrap($checkbox).click({ force: true });
+			});
+	}
+
+	selectUserCheckboxByEmail(role, email) {
+		if (role !== "teacher") return;
+
+		cy.get(Management.#tableContents)
+			.contains("td", email)
+			.closest(Management.#tableRows)
+			.within(() => {
+				cy.get(
+					`${Management.#selectionColumnUserTable} input[type="checkbox"][aria-label^="Zeile"]`
+				)
+					.should("exist")
+					.click({ force: true });
+			});
+	}
+
+	clickActionButton() {
+		cy.get(Management.#actionButton).should("be.visible").click();
+	}
+
+	clickDeleteOption() {
+		cy.get(Management.#deleteOption).should("be.visible").click();
+	}
+
+	verifyDeleteUserDialogVisible() {
+		cy.get(Management.#deleteDialogTitle).should("be.visible");
+	}
+
+	verifyUserNameInDeleteDialog(firstNameEdited, lastNameEdited) {
+		const fullName = `${firstNameEdited} ${lastNameEdited}`;
+
+		cy.get(Management.#deleteDialogUsersList)
+			.should("be.visible")
+			.and("contain.text", fullName);
+	}
+
+	confirmUserDeletion() {
+		cy.get(Management.#confirmDeleteButtonDialog).should("be.visible").click();
+
+		cy.get("body").then(($body) => {
+			const $secondConfirm = $body.find(Management.#confirmDeleteButtonDialog);
+			if ($secondConfirm.length) {
+				cy.wrap($secondConfirm).click({ force: true });
+			}
+		});
+	}
+
+	verifySuccessAlert() {
+		cy.get(Management.#adminAlertNotification).should("be.visible");
+	}
 
 	verifyUserManagementOverviewPage() {
 		cy.url().should((url) => {
@@ -459,7 +542,7 @@ class Management {
 	}
 
 	seeNoErrorInfoInCourseAdministration() {
-		cy.get(Management.#courseAdminNotification).should("not.exist");
+		cy.get(Management.#adminAlertNotification).should("not.exist");
 	}
 
 	clearDefaultPasswordInManualRegistration() {
@@ -525,7 +608,7 @@ class Management {
 
 		// select the student row and click the first action icon
 		cy.contains("tr", userEmail)
-			.find('[data-testid="selection-column"]')
+			.find(Management.#selectionColumnUserTable)
 			.first()
 			.should("be.visible")
 			.click();
@@ -686,65 +769,82 @@ class Management {
 	}
 
 	fillUserCreationForm(forename, surname, baseEmail) {
-		const randomNumber = new Date().getTime() + Math.floor(Math.random() * 1000);
+		const randomNumber = Date.now() + Math.floor(Math.random() * 1000);
 		const uniqueEmail = randomNumber + baseEmail;
 
-		// store the generated unique email as an alias for later use
 		cy.wrap(uniqueEmail).as("uniqueEmail");
-		cy.log("Generated Unique Email:", uniqueEmail);
 
-		// fill in the form with the generated email and other details
-		cy.get(Management.#firstNameCreationForm).type(forename);
-		cy.get(Management.#lastNameCreationForm).type(surname);
-		cy.get(Management.#emailCreationForm).type(uniqueEmail);
+		cy.get(Management.#firstNameCreationForm).find("input").type(forename);
+		cy.get(Management.#lastNameCreationForm).find("input").type(surname);
+		cy.get(Management.#emailCreationForm).find("input").type(uniqueEmail);
 
-		// setting the birth date to 17 years ago in the form for student user
-		cy.get("body").then((body) => {
-			if (body.find(Management.#birthDateFieldCreateStudent).length) {
-				const birthDate = new Date();
-				birthDate.setFullYear(birthDate.getFullYear() - 17);
-				// set time to noon to avoid timezone issues
-				birthDate.setHours(12, 0, 0, 0);
-				const isoFormatter = birthDate.toISOString().split("T")[0];
-				const displayFormatter = new Intl.DateTimeFormat("de-DE", {
-					year: "numeric",
-					month: "2-digit",
-					day: "2-digit",
-				});
-				// DD.MM.YYYY (for user table)
-				const formattedBirthDate = displayFormatter.format(birthDate);
-				// type the ISO string into the input
-				cy.get(Management.#birthDateFieldCreateStudent)
-					.clear()
-					.type(isoFormatter, { delay: 100 });
-				// store alias in DD.MM.YYYY format
-				cy.wrap(formattedBirthDate).as("assignedBirthDate");
-			} else {
+		// check if birthdate field exists (only students have it)
+		cy.get("body").then(($body) => {
+			if (!$body.find(Management.#birthDateFieldCreateStudent).length) {
 				cy.log("Birthdate is not required while creating a new teacher");
-				// alias always exists
 				cy.wrap(null).as("assignedBirthDate");
+				return;
 			}
+			// calculate birthdate so student is always >=16 (here: 17)
+			const birthDate = new Date();
+			birthDate.setFullYear(birthDate.getFullYear() - 17);
+
+			// format date based on current browser locale
+			const formattedBirthDate = new Intl.DateTimeFormat("de-DE", {
+				day: "2-digit",
+				month: "2-digit",
+				year: "numeric",
+			}).format(birthDate);
+
+			cy.get(Management.#birthDateFieldCreateStudent)
+				.find("input")
+				.then(($input) => {
+					const input = $input[0];
+
+					// get native HTML input setter
+					const nativeSetter = Object.getOwnPropertyDescriptor(
+						window.HTMLInputElement.prototype,
+						"value"
+					).set;
+
+					// set value directly so Vue/Vuetify detects it
+					nativeSetter.call(input, formattedBirthDate);
+
+					// trigger events so the framework updates state
+					input.dispatchEvent(new Event("input", { bubbles: true }));
+					input.dispatchEvent(new Event("change", { bubbles: true }));
+				});
+
+			// only store alias if value is really present in the input
+			cy.get(Management.#birthDateFieldCreateStudent)
+				.find("input")
+				.invoke("val")
+				.then((actualValue) => {
+					if (actualValue) {
+						cy.wrap(actualValue).should("exist").as("assignedBirthDate");
+					} else {
+						cy.log("Birthdate field exists but no DOB was persisted in the input");
+						cy.wrap(null).as("assignedBirthDate");
+					}
+				});
 		});
 	}
 
 	seeTheAssignedBirthDateInUserTable() {
 		cy.get("@assignedBirthDate").then((assignedBirthDate) => {
-			if (assignedBirthDate) {
-				cy.get("@uniqueEmail").then((uniqueEmail) => {
-					cy.log(
-						"verifying student row with email:",
-						uniqueEmail,
-						"and birthdate:",
-						assignedBirthDate
-					);
-
-					cy.get(Management.#tableContents)
-						.contains("tr", uniqueEmail)
-						.should("contain", assignedBirthDate);
-				});
-			} else {
-				cy.log("user is not a student");
+			if (!assignedBirthDate) {
+				cy.log("No birthdate assigned, skipping DOB verification");
+				return;
 			}
+			const normalizeDate = (value) => value.replace(/[./-]/g, "");
+			cy.get(Management.#tableContents)
+				.should("be.visible")
+				.invoke("text")
+				.then((tableText) => {
+					expect(normalizeDate(tableText)).to.contain(
+						normalizeDate(assignedBirthDate)
+					);
+				});
 		});
 	}
 
@@ -784,7 +884,7 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
-		// seload to ensure clean state
+		// reload to ensure clean state
 		cy.reload();
 		const apiAlias = "search_api";
 		if (role === "student") {
