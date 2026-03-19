@@ -12,7 +12,6 @@ class Classes {
 	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
 	static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
 	static #deleteDialog = '[data-testid="confirm-dialog-title"]';
-	static #dialogTitleSecondary = '[data-testid="dialog-title"]';
 	static #deleteDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
 	static #deleteDialogConfirmSecondary = '[data-testid="dialog-confirm"]';
 	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
@@ -326,7 +325,7 @@ class Classes {
 				cy.get(Classes.#deleteClassButton).should("be.visible").click();
 			});
 		cy.wait(500);
-		cy.get(Classes.#dialogTitleSecondary).should("be.visible");
+		cy.get(Classes.#deleteDialog).should("be.visible");
 	}
 
 	seeGroupIsSyncedWithCourse(groupName, courseName) {
