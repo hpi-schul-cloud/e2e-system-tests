@@ -8,8 +8,10 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
+	static #confirmationDialogTitle = '[data-testid="confirmation-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
+	static #confirmationDialogConfirm = '[data-testid="confirmation-dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
@@ -398,7 +400,15 @@ class Rooms {
 	}
 
 	seeConfirmationModalForRoomDeletion() {
-		cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+		cy.get("body").then(($body) => {
+			if ($body.find(Rooms.#deletionConfirmationModalTitle).length > 0) {
+				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+			} else if ($body.find(Rooms.#confirmationDialogTitle).length > 0) {
+				cy.get(Rooms.#confirmationDialogTitle).should("exist");
+			} else {
+				throw new Error("No confirmation modal for room deletion found.");
+			}
+		});
 	}
 
 	seeConfirmationModalForFileDeletion() {
@@ -415,7 +425,7 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#confirmButtonOnModal).filter(":visible").first().click();
+		cy.get(`${Rooms.#confirmButtonOnModal}, ${Rooms.#confirmationDialogConfirm}`).filter(':visible').first().click();
 	}
 
 	roomIsVisibleOnOverviewPage(roomName) {
