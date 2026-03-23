@@ -8,7 +8,6 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
-	static #confirmationDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
 	static #confirmationDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
@@ -403,8 +402,6 @@ class Rooms {
 		cy.get("body").then(($body) => {
 			if ($body.find(Rooms.#deletionConfirmationModalTitle).length > 0) {
 				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
-			} else if ($body.find(Rooms.#confirmationDialogTitle).length > 0) {
-				cy.get(Rooms.#confirmationDialogTitle).should("exist");
 			} else {
 				throw new Error("No confirmation modal for room deletion found.");
 			}
