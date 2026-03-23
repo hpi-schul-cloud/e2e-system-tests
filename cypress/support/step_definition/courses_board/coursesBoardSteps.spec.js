@@ -19,17 +19,6 @@ When("I select external tools from the element selection dialog box", () => {
 	board.selectExternalToolsFromMenu();
 });
 
-Then("I see preferred tool {string} in the menu", (toolName) => {
-	board.seePreferredExternalToolInMenu(toolName);
-});
-
-Then(
-	"I select preferred tool {string} from the element selection dialog box",
-	(toolName) => {
-		board.selectPreferredExternalToolFromMenu(toolName);
-	}
-);
-
 Then("I do not see preferred tool {string} in the menu", (toolName) => {
 	board.preferredExternalToolIsNotVisibleInMenu(toolName);
 });
@@ -92,8 +81,15 @@ Then("I see tool {string} on external tool element was launched", (toolName) => 
 });
 
 When("I select preferred tool {string} from the menu", (toolName) => {
-	board.selectPreferredExternalToolFromMenu(toolName);
+	board.selectAndSeePreferredExternalToolFromMenu(toolName);
 });
+
+When(
+	"I enter the preferred tool display title {string} in the configuration dialog box",
+	(toolName) => {
+		board.enterDisplayTitleForPreferredTool(toolName);
+	}
+);
 
 When("I click on the button FAB New Column Board", () => {
 	board.clickOnFABToCreateNewColumnBoard();

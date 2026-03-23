@@ -43,13 +43,17 @@ Feature: Course Board  - To add a preferred tool in a board
         When I click on the page outside of the column
         When I click on icon Plus to add card in column
         When I click on icon Plus to add content into card
-        Then I see preferred tool '<ctl_tool_preferred>' in the menu
+        When I select external tools from the element selection dialog box
         When I select preferred tool '<ctl_tool_preferred>' from the menu
+        When I enter the preferred tool display title '<ctl_tool_preferred>' in the configuration dialog box
+        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_preferred>'
 
         # teacher adds a preferred tool with a custom parameter
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
-        Then I see preferred tool '<ctl_tool_preferred_param>' in the menu
+        When I select external tools from the element selection dialog box
         When I select preferred tool '<ctl_tool_preferred_param>' from the menu
         Then I see tool '<ctl_tool_preferred_param>' is selected
         When I enter 'test' in required custom parameter field 'contextParam'
