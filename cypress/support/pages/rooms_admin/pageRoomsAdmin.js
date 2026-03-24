@@ -8,10 +8,9 @@ class RoomsAdmin {
 	static #threeDotMenuManageRoomMembers = '[data-testid^="menu-manage-room-"]';
 	static #adminRoomTitle = '[data-testid="admin-room-detail-title"]';
 	static #adminParticipantTable = '[data-testid="room-admin-members-table"]';
-	static #deletionConfirmationModalTitle = '[data-testid="confirmation-dialog-title"]';
-	static #userDeletionConfirmationModalTitle =
-		'[data-testid="confirmation-dialog-title"]';
-	static #confirmButtonOnModal = '[data-testid="confirmation-dialog-confirm"]';
+	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
+	static #userDeletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
+	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
 
 	navigateToRoomsAdministrationPageViaSubmenu() {
 		cy.get(RoomsAdmin.#roomsAdministrationLink).should("be.visible");
