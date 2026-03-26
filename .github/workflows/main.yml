@@ -33,19 +33,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           repository: hpi-schul-cloud/e2e-system-tests
           path: e2e-system-tests
 
       - name: Install 1Password CLI
-        uses: 1password/install-cli-action@v2
+        uses: 1password/install-cli-action@9a0c9dd934086b7ab1d90115d455bda1c53c2bdb # v2.0.2
 
       - name: Verify 1Password was Installed
         run: op --version
 
       - name: Configure 1Password Service Account
-        uses: 1password/load-secrets-action/configure@v2
+        uses: 1password/load-secrets-action/configure@dafbe7cb03502b260e2b2893c753c352eee545bf # v3.2.1
         with:
           service-account-token: ${{ secrets.service-account-token }}
 
@@ -74,13 +74,13 @@ jobs:
             "${{ inputs.environment }}"
 
       - name: Clean up previous report
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@ed2d88ccbbf936c5aac087dd43e10425abc3534f # v7.1.7
         with:
           working-directory: e2e-system-tests
           command: npm run pretest
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@ed2d88ccbbf936c5aac087dd43e10425abc3534f # v7.1.7
         env:
           CYPRESS_CONNECT_RETRY_THRESHOLD: '100'
         with:
@@ -97,14 +97,14 @@ jobs:
           npm run generate:report
 
       - name: Upload Report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         if: always()
         with:
           name: ${{ inputs.groups }}-cypress-report
           path: ${{ github.workspace }}/e2e-system-tests/reports/
 
       - name: Upload Video Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         if: always()
         with:
           name: ${{ inputs.groups }}-cypress-video-artifact
