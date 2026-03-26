@@ -54,9 +54,8 @@ class Board {
 		'[data-testid="fixed-export-options-warning-info-point3"]';
 	static #exportInfoPoint3 = '[data-testid="export-options-info-point3"]';
 	static #versionRadioGroup = '[data-testid="version-radio-group"]';
-	static #configurationSelectionBox = '[data-testid="configuration-select"]';
-	static #configurationSelectionBoxItem = '[data-testId="configuration-select-item"]';
-	static #parameterDisplayNameToolsDialog = '[data-testid="parameter-display-name"]';
+	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
+	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -291,15 +290,14 @@ class Board {
 		cy.get(Board.#singleColumnBoardOptionInDialogBox).click();
 	}
 
-	selectAndSeePreferredExternalToolFromMenu(toolName) {
-		cy.get(Board.#configurationSelectionBox).click();
-		cy.get(Board.#configurationSelectionBoxItem).contains(toolName).click();
-		// see the selected preferred tool after selecting it from the menu
-		cy.get(Board.#configurationSelectionBox).should("contain.text", toolName);
+	seePreferredExternalToolInMenu(toolName) {
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).should(
+			"be.visible"
+		);
 	}
 
-	enterDisplayTitleForPreferredTool(toolName) {
-		cy.get(Board.#parameterDisplayNameToolsDialog).type(toolName);
+	selectPreferredExternalToolFromMenu(toolName) {
+		cy.get(`[data-testid="create-element-preferred-element-${toolName}"]`).click();
 	}
 
 	preferredExternalToolIsNotVisibleInMenu(toolName) {

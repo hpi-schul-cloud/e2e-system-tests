@@ -81,10 +81,8 @@ Feature: Course Board - Restrict CTL tools to context board-element
         Then I do not see preferred tool '<ctl_tool_preferred_restriction_course>' in the menu
 
         # teacher adds a preferred tool with context restriction board
-        When I select external tools from the element selection dialog box
+        Then I see preferred tool '<ctl_tool_preferred_restriction_board_element>' in the menu
         When I select preferred tool '<ctl_tool_preferred_restriction_board_element>' from the menu
-        When I enter the preferred tool display title '<ctl_tool_preferred_restriction_board_element>' in the configuration dialog box
-        When I click on button Add in the modal to add an external tool
         Then I see an external tool element with tool '<ctl_tool_preferred_restriction_board_element>'
 
         # post-condition: teacher deletes course
