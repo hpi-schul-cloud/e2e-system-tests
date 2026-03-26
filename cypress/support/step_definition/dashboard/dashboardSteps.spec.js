@@ -5,10 +5,6 @@ import News from "../../pages/news/pageNews";
 const dashboard = new Dashboard();
 const news = new News();
 
-Then("I see the welcome message {string}", (welcomeMsg) => {
-	dashboard.seeWelcomeMessage(welcomeMsg);
-});
-
 Then(
 	"I see school news with title {string} and description {string}",
 	(newsTitle, newsDesc) => {

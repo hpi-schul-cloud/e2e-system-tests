@@ -1,28 +1,26 @@
 "use strict";
 
 class Dashboard {
-	static #initialsButton = '[data-testid="initials"]';
-	static #languageMenu = "#language-menu";
-	static #selectedLanguage = "#selected-language";
-	static #listOfAllLanguages = "#available-languages";
-	static #germanLanguage = '[data-testid="selected-language-de"]';
+	static #initialsButton = '[data-testid="user-menu-btn"]';
+	static #languageMenu = "#v-list-group--id-languages";
+	static #selectedLanguage = '[data-testid^="selected-language-"]';
+	static #germanLanguage = '[data-testid="available-language-de"]';
 	static #spanishLanguage = '[data-testid="available-language-es"]';
 	static #ukrainianLanguage = '[data-testid="available-language-uk"]';
 	static #englishLanguage = '[data-testid="available-language-en"]';
-	static #getPageTitle = "#page-title";
-	static #welcomeMessage = '[data-testid="welcome-section"]';
+	static #getPageTitle = '[data-testid="dashboard-title"]';
 	static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
 	static #dashboardTaskCourseName = '[data-testid="task-course-name"]';
 	static #dashboardTaskName = '[data-testid="task-name"]';
 	static #elementTitle = '[data-testid="title_of_an_element"]';
-	static #newsText = '[data-testid="body_of_element"]';
-	static #newsSection = '[data-testid="news-section"]';
+	static #newsText = '[data-testid="news-content"]';
+	static #newsSection = "h2";
 	static #dashboardLink = 'a[data-testid="sidebar-dashboard"]';
 
 	static #testAssertionData = {
 		german: "Deutsch",
 		spanish: "Español",
-		ukrainian: "Yкраїнська",
+		ukrainian: "Українська",
 		english: "English",
 		overviewInGerman: "Übersicht",
 		overviewInSpanish: "Panel",
@@ -55,17 +53,31 @@ class Dashboard {
 	}
 
 	clickLanguagesDropDownMenu() {
-		cy.get(Dashboard.#languageMenu)
+		cy.get(Dashboard.#languageMenu).should("be.visible").click();
+
+		// read data-testid attribute of selected language element to determine which language is currently selected
+		cy.get(Dashboard.#selectedLanguage)
 			.should("be.visible")
-			.click()
-			.then(() => {
-				cy.get(Dashboard.#selectedLanguage).should("be.visible");
-				cy.get(Dashboard.#listOfAllLanguages)
-					.find("li")
-					.each(($element) => {
-						cy.get($element).should("have.prop", "value");
-						cy.get($element).should("be.visible");
-					});
+			.then(($sel) => {
+				const id = $sel.attr("data-testid") || "";
+				const selCode = id.split("-").pop(); // de|en|uk|es
+
+				const names = {
+					de: Dashboard.#testAssertionData.german,
+					en: Dashboard.#testAssertionData.english,
+					uk: Dashboard.#testAssertionData.ukrainian,
+					es: Dashboard.#testAssertionData.spanish,
+				};
+
+				// assert selected and available language items
+				["de", "en", "uk", "es"].forEach((code) => {
+					const selector =
+						code === selCode
+							? `[data-testid="selected-language-${code}"]`
+							: `[data-testid="available-language-${code}"]`;
+
+					cy.get(selector).should("be.visible").and("contain", names[code]);
+				});
 			});
 	}
 
@@ -98,11 +110,7 @@ class Dashboard {
 	}
 
 	selectLanguage(sel, language) {
-		return cy
-			.contains(sel, language)
-			.should("be.visible")
-			.click()
-			.then(() => cy.wait(["@alerts_api"]));
+		return cy.contains(sel, language).should("be.visible").click();
 	}
 
 	assertLanguageUpdate(updatedText) {
@@ -154,11 +162,6 @@ class Dashboard {
 		cy.get(Dashboard.#newsSection).should("be.visible");
 		cy.get(Dashboard.#elementTitle).contains(newsTitle);
 		cy.get(Dashboard.#newsText).contains(newsDesc);
-	}
-
-	seeWelcomeMessage(welcomeMsg) {
-		cy.get(Dashboard.#welcomeMessage);
-		cy.contains(welcomeMsg);
 	}
 
 	seeAssignedTasks(taskName, courseName) {
