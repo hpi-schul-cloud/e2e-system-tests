@@ -12,21 +12,51 @@ class Dashboard {
 	static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
 	static #dashboardTaskCourseName = '[data-testid="task-course-name"]';
 	static #dashboardTaskName = '[data-testid="task-name"]';
-	static #elementTitle = '[data-testid="title_of_an_element"]';
+	static #elementTitle = '[data-testid="news-title"]';
 	static #newsText = '[data-testid="news-content"]';
-	static #newsSection = "h2";
+	static #newsSection = '[data-testid="news-section"]';
 	static #dashboardLink = 'a[data-testid="sidebar-dashboard"]';
+	static #showAllNewsButtonOnDashboard = '[data-testid="show-all-news"]';
+	static #showAllTasksButtonOnDashboard = '[data-testid="show-all-tasks"]';
+	static #titlebarNewsOverviewPage = '[id="titlebar"]';
+	static #titlebarTasksOverviewPage = "h1";
 
 	static #testAssertionData = {
 		german: "Deutsch",
 		spanish: "Español",
-		ukrainian: "Українська",
+		ukrainian: "Yкраїнська",
 		english: "English",
 		overviewInGerman: "Übersicht",
 		overviewInSpanish: "Panel",
 		overviewInUkrainian: "Панель керування",
 		overviewInEnglish: "Dashboard",
 	};
+
+	clickShowAllTasksButtonOnDashboard() {
+		cy.get(Dashboard.#showAllTasksButtonOnDashboard).should("be.visible").click();
+	}
+
+	seeTasksOverviewPage() {
+		cy.url().should("include", "/tasks");
+		cy.get(Dashboard.#titlebarTasksOverviewPage).should("exist");
+	}
+
+	seeNewsOverviewPage() {
+		cy.url().should("include", "/news");
+		cy.get(Dashboard.#titlebarNewsOverviewPage).should("exist");
+	}
+
+	clickShowAllNewsButtonOnDashboard() {
+		cy.get(Dashboard.#showAllNewsButtonOnDashboard).should("be.visible").click();
+	}
+
+	seeShowAllTasksButtonOnDashboard() {
+		cy.get(Dashboard.#showAllTasksButtonOnDashboard).should("exist");
+	}
+
+	seeShowAllNewsButtonOnDashboard() {
+		cy.get(Dashboard.#showAllNewsButtonOnDashboard).should("exist");
+	}
 
 	assertNameInitialsIsVisible() {
 		cy.get(Dashboard.#initialsButton).should("be.visible");

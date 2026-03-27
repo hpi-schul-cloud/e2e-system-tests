@@ -5,6 +5,30 @@ import News from "../../pages/news/pageNews";
 const dashboard = new Dashboard();
 const news = new News();
 
+When("I click on the button Show All in the tasks section", () => {
+	dashboard.clickShowAllTasksButtonOnDashboard();
+});
+
+Then("I see the tasks overview page", () => {
+	dashboard.seeTasksOverviewPage();
+});
+
+When("I click on the button Show All in the news section", () => {
+	dashboard.clickShowAllNewsButtonOnDashboard();
+});
+
+Then("I see the news overview page", () => {
+	dashboard.seeNewsOverviewPage();
+});
+
+Then("I see the button Show All in the news section", () => {
+	dashboard.seeShowAllNewsButtonOnDashboard();
+});
+
+Then("I see the button Show All in the tasks section", () => {
+	dashboard.seeShowAllTasksButtonOnDashboard();
+});
+
 Then(
 	"I see school news with title {string} and description {string}",
 	(newsTitle, newsDesc) => {
