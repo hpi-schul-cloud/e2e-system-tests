@@ -15,8 +15,8 @@ class Board {
 	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
 	static #deleteOptionThreeDot = '[data-testid="kebab-menu-action-delete"]';
-	static #confirmButtonInModal = '[data-testid="confirmation-dialog-confirm"]';
-	static #deleteDialogBox = '[data-testid="confirmation-dialog-title"]';
+	static #confirmButtonInModal = '[data-testid="confirm-dialog-confirm"]';
+	static #deleteDialogBox = '[data-testid="confirm-dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
