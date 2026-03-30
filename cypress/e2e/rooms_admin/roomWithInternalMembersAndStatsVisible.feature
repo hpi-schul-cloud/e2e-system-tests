@@ -58,8 +58,8 @@ Feature: Room Administration - Add room and internal members with visibility on 
         Then I see the rooms administration page
         When I click on three dot menu in the room admin page for room '<room_name>'
         When I click on delete in the three dot menu
-        Then I see confirm modal for deleting the room in admin page
-        When I click on delete button in confirm modal in room admin page
+        Then I see confirmation modal for deleting the room in admin page
+        When I click on delete button in confirmation modal in room admin page
         Then I see the rooms administration page
         Then I do not see the room '<room_name>' on the rooms administration page
 

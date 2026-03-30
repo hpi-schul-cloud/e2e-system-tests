@@ -3,11 +3,11 @@ import RoomsAdmin from "../../pages/rooms_admin/pageRoomsAdmin";
 
 const roomsAdmin = new RoomsAdmin();
 
-When("I click on delete button in confirm modal in room admin page", () => {
+When("I click on delete button in confirmation modal in room admin page", () => {
 	roomsAdmin.clickDeleteInConfirmationModal();
 });
 
-Then("I see confirm modal for deleting the room in admin page", () => {
+Then("I see confirmation modal for deleting the room in admin page", () => {
 	roomsAdmin.seeConfirmationModalForRoomDeletionInAdminPage();
 });
 
