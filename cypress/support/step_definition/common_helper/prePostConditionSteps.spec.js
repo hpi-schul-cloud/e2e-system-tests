@@ -613,7 +613,7 @@ Given("task with name {string} in course {string} is deleted", (taskName, course
 	courses.navigateToCoursePage(courseName);
 	courses.openThreeDotMenuForContent(taskName);
 	courses.clickDeleteInDotMenu();
-	courses.clickDeleteInConfirmationWindow();
+	courses.clickOnConfirmInDialogWindow();
 });
 
 Given(

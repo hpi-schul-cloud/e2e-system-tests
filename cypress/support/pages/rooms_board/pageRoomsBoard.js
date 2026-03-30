@@ -1,7 +1,7 @@
 "use strict";
 
 class RoomBoards {
-	static #btnDialogCancel = '[data-testid="confirmation-dialog-cancel"]';
+	static #btnDialogCancel = '[data-testid="confirm-dialog-cancel"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
 	static #mainPageArea = '[id="main-content"]';
@@ -127,7 +127,6 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #confirmationButtonDialog = '[data-testid="confirmation-dialog-confirm"]';
 	static #globalDialogConfirmButton = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
 	static #globalDialogTitle = '[data-testid="confirm-dialog-title"]';
@@ -891,12 +890,7 @@ class RoomBoards {
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(
-			`${RoomBoards.#globalDialogConfirmButton}, ${RoomBoards.#confirmationButtonDialog}`
-		)
-			.filter(":visible")
-			.first()
-			.click();
+		cy.get(RoomBoards.#globalDialogConfirmButton).filter(":visible").first().click();
 		cy.wait(1000);
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
 		cy.reload();
@@ -1069,8 +1063,6 @@ class RoomBoards {
 		cy.get("body").then(($body) => {
 			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
 				cy.get(RoomBoards.#globalDialogConfirmButton).should("be.visible");
-			} else if ($body.find(RoomBoards.#confirmationButtonDialog).length > 0) {
-				cy.get(RoomBoards.#confirmationButtonDialog).should("be.visible");
 			} else {
 				throw new Error("No confirm delete button found in dialog.");
 			}
@@ -1081,8 +1073,6 @@ class RoomBoards {
 		cy.get("body").then(($body) => {
 			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
 				cy.get(RoomBoards.#globalDialogConfirmButton).click();
-			} else if ($body.find(RoomBoards.#confirmationButtonDialog).length > 0) {
-				cy.get(RoomBoards.#confirmationButtonDialog).click();
 			} else {
 				throw new Error("No confirm delete button found in dialog.");
 			}
