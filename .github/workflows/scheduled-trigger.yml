@@ -11,7 +11,7 @@ jobs:
       all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Set environment and tags
         id: set_variables
@@ -58,10 +58,10 @@ jobs:
     needs: run-scheduled-tests
     if: always()
     steps:
-      - uses: technote-space/workflow-conclusion-action@v3
+      - uses: technote-space/workflow-conclusion-action@45ce8e0eb155657ab8ccf346ade734257fd196a5 # v3.0.3
 
       - name: Send Notification to Rocket Chat
-        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@1.1.1
+        uses: RocketChat/Rocket.Chat.GitHub.Action.Notification@2966f5f2e0313a94f965a51c08700cfecf0b6572 # 1.1.1
         with:
           type: ${{ env.WORKFLOW_CONCLUSION }}
           job_name: "Cypress Tests"
