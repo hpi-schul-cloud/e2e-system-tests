@@ -61,6 +61,7 @@ class Rooms {
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
+	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
 		// ensure the room is currently at the starting position
@@ -232,7 +233,9 @@ class Rooms {
 	}
 
 	clickOnImportConfirmButtonInModal() {
-		cy.get(Rooms.#confirmButtonOnModal).click();
+		cy.get(
+			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#dialogConfirm}:visible`
+		).click();
 	}
 
 	seeDuplicateRoomSuccessAlert() {
