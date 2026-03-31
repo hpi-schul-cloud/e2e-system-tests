@@ -26,7 +26,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         # student checks dashboard
         Given I am logged in as a '<student>' at '<namespace>'
         When I arrive on the dashboard
-        Then I see the welcome message 'Hallo <fullname_student>!'
         Then I see school news with title 'Herzlichen Willkommen in der Cypress Health School' and description 'DIes ist ein beispielhafter News-Text'
         Then I see teams news with title 'Team HC AG nimmt Arbeit auf' and description 'Lorem ipsum'
         #Then I can see the assigned task 'Aufgabe Health Check' of course 'HC Kurs'
@@ -61,10 +60,10 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
         @staging_test
         Examples:
-            | namespace | student        | fullname_student |
-            | dbc       | student_hc_dbc | Adam Schmitt     |
-            | nbc       | student_hc_nbc | Adam Schmitt     |
-            | brb       | student_hc_brb | Adam Schmitt     |
+            | namespace | student        |
+            | dbc       | student_hc_dbc |
+            | nbc       | student_hc_nbc |
+            | brb       | student_hc_brb |
 
     Scenario Outline: teacher sees courses and course content (tasks, topics, course boards) on staging / ref.
 

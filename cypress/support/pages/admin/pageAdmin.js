@@ -107,7 +107,7 @@ class Management {
 	static #sectionTwoOnFirstLogin = '[data-panel="section-2"]';
 	static #sectionThreeOnFirstLogin = '[data-panel="section-3"]';
 	static #getStartedFirstLoginButton = '[data-testid="btn_schul-cloud_erkunden"]';
-	static #pageTitleOnDashboard = '[id="page-title"]';
+	static #pageTitleOnDashboard = '[data-testid="dashboard-title"]';
 	static #passwordInputFirstLogin = '[data-testid="firstlogin_password"]';
 	static #reEnterPasswordInputFirstLogin =
 		'[data-testid="firstlogin_password_control"]';
