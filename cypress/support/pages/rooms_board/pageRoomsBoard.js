@@ -1,7 +1,7 @@
 "use strict";
 
 class RoomBoards {
-	static #btnDialogCancel = '[data-testid="confirmation-dialog-cancel"]';
+	static #btnDialogCancel = '[data-testid="confirm-dialog-cancel"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
 	static #mainPageArea = '[id="main-content"]';
@@ -127,9 +127,9 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #globalDialogConfirmButton = '[data-testid="confirmation-dialog-confirm"]';
+	static #globalDialogConfirmButton = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
-	static #globalDialogTitle = '[data-testid="confirmation-dialog-title"]';
+	static #globalDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
@@ -890,7 +890,8 @@ class RoomBoards {
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.get(RoomBoards.#globalDialogConfirmButton).filter(":visible").first().click();
+		cy.wait(1000);
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
 		cy.reload();
 	}
@@ -1049,21 +1050,39 @@ class RoomBoards {
 	doNotSeeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("not.exist");
 	}
+
 	seeBtnDialogCancel() {
 		cy.get(RoomBoards.#btnDialogCancel).should("be.visible");
 	}
+
 	clickOnBtnDialogCancel() {
 		cy.get(RoomBoards.#btnDialogCancel).click();
 	}
+
 	seeBtnDialogConfirmDelete() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).should("be.visible");
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
+				cy.get(RoomBoards.#globalDialogConfirmButton).should("be.visible");
+			} else {
+				throw new Error("No confirm delete button found in dialog.");
+			}
+		});
 	}
+
 	clickBtnDialogConfirmDelete() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
+				cy.get(RoomBoards.#globalDialogConfirmButton).click();
+			} else {
+				throw new Error("No confirm delete button found in dialog.");
+			}
+		});
 	}
+
 	clickOnThreeDotMenuInRoomBoardTitle() {
 		cy.get(RoomBoards.#threeDotInBoardTitle).click();
 	}
+
 	clickOnEditInBoardMenu() {
 		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
 	}

@@ -16,7 +16,8 @@ class News {
 	static #newsCreateButton = '[data-testid="btn_news_submit"]';
 	static #newsTitle = '[id="page-title"]';
 	static #newsDescriptionVisible = '[class="ckcontent"]';
-	static #newsName = '[data-testid="title_of_an_element"]';
+	static #newsNameOnNewsOverview = '[data-testid="title_of_an_element"]';
+	static #newsNameOnDashboard = '[data-testid="news-title"]';
 	static #deleteNews = '[data-testid="btn-delete-news"]';
 	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
@@ -25,7 +26,7 @@ class News {
 
 	doNotSeeNewsWhenNewsNotYetPublished(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
-			if ($span.find(News.#newsName)) {
+			if ($span.find(News.#newsNameOnNewsOverview)) {
 				cy.contains(newsTitle).should("not.be.visible");
 			} else {
 				cy.contains(
@@ -43,7 +44,7 @@ class News {
 
 	doNotSeeNews(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
-			if ($span.find(News.#newsName)) {
+			if ($span.find(News.#newsNameOnNewsOverview)) {
 				cy.contains(newsTitle).should("not.exist");
 			} else {
 				cy.contains(
@@ -66,7 +67,14 @@ class News {
 	}
 
 	openNewsDetailPage(newsName) {
-		cy.get(News.#newsName).contains(newsName).click();
+		const overviewSel = News.#newsNameOnNewsOverview;
+		const dashSel = News.#newsNameOnDashboard;
+
+		if (Cypress.$(overviewSel).length) {
+			cy.contains(overviewSel, newsName).click();
+		} else {
+			cy.contains(dashSel, newsName).click();
+		}
 	}
 
 	seeCreatedNews(newsTitle, newsDesc) {

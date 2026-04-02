@@ -7,9 +7,9 @@ class Rooms {
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
-	static #deletionConfirmationModalTitle = '[data-testid="confirmation-dialog-title"]';
+	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
-	static #confirmButtonOnModal = '[data-testid="confirmation-dialog-confirm"]';
+	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
@@ -30,7 +30,7 @@ class Rooms {
 		'[data-testid="dialog-change-role-participants"]';
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
-	static #roomLeaveDialogBox = '[data-testid="confirmation-dialog-title"]';
+	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-title"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
 	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
 	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
@@ -398,7 +398,13 @@ class Rooms {
 	}
 
 	seeConfirmationModalForRoomDeletion() {
-		cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+		cy.get("body").then(($body) => {
+			if ($body.find(Rooms.#deletionConfirmationModalTitle).length > 0) {
+				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+			} else {
+				throw new Error("No confirmation modal for room deletion found.");
+			}
+		});
 	}
 
 	seeConfirmationModalForFileDeletion() {
@@ -415,7 +421,7 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#confirmButtonOnModal).filter(":visible").first().click();
+		cy.get(Rooms.#confirmButtonOnModal).first().click();
 	}
 
 	roomIsVisibleOnOverviewPage(roomName) {
@@ -540,9 +546,7 @@ class Rooms {
 	}
 
 	clickOnActionButtonForRoomLeave(buttonAction) {
-		cy.get(
-			`[data-testid="confirmation-dialog-${buttonAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="confirm-dialog-${buttonAction.toLowerCase()}"]`).click();
 	}
 
 	isParticipantNotVisible(participantName) {

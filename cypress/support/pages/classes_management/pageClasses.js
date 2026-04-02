@@ -3,22 +3,18 @@
 class Classes {
 	static #createClass = '[id="fab-label"]';
 	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
-	static #classTitleNew = '[data-testid="admin-class-title"]';
 	static #classTableNew = '[data-testid="admin-class-table"]';
 	static #nextYearTab = '[data-testid="admin-class-next-year-tab"]';
 	static #currentYearTab = '[data-testid="admin-class-current-year-tab"]';
 	static #previousYearsTab = '[data-testid="admin-class-previous-years-tab"]';
 	static #manageClassButton = '[data-testid="legacy-class-table-manage-btn"]';
-	static #cancelModal = '[data-testid="modal_content"]';
 	static #editClassButton = '[data-testid="class-table-edit-btn"]';
 	static #createSuccessorButton = '[data-testid="class-table-successor-btn"]';
 	static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
-	static #deleteDialog = '[data-testid="dialog-title"]';
-	static #deleteDialogConfirm = '[data-testid="dialog-confirm"]';
-	static #adminGroupTitle = '[data-testid="admin-class-title"]';
-	static #groupMemberTable = '[data-testid="class-members-table"]';
+	static #deleteDialog = '[data-testid="confirm-dialog-title"]';
+	static #deleteDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
+	static #deleteDialogConfirmSecondary = '[data-testid="dialog-confirm"]';
 	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
-	static #classMemberInfoBoxText = '[data-testid="class-members-info-box-text"]';
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 	static #adminClassNavigationSidebarCard =
 		'[data-testid="sidebar-management-classes"]';
@@ -34,11 +30,12 @@ class Classes {
 	static #dropDownStudentSelectionOnClassManage =
 		'[data-testid="student-selection-on-manage-class"]';
 	static #buttonSaveChangedClassManage = '[data-testid="manage-confirm"]';
-	static #selectionBoxStudentInManageClass = ".chosen-results"; // this is a hidden class, so not visible in the FE code to assign the data-testid
-	static #tableOldClassOverview = '[data-testid="table_container"]';
+	// this is a hidden class, so not visible in the FE code to assign the data-testid
+	static #selectionBoxStudentInManageClass = ".chosen-results";
 	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
-	static #emptyAdminClassTable = '[class="v-data-table-rows-no-data"]';
-	static #buttonCancelOnDeleteModalClassAdminPage = '[data-testid="dialog-cancel"]';
+	static #buttonCancelOnDeleteModalClassAdminPage =
+		'[data-testid="confirm-dialog-cancel"]';
+	static #cancelDeleteButtonDialog = '[data-testid="dialog-cancel"]';
 	static #tableClassName = '[data-testid="class-table-name"]';
 	static #tableClassSource = '[data-testid="class-table-source"]';
 	static #tableClassMemberFirstName = '[data-testid="class-members-table-firstname"]';
@@ -49,7 +46,15 @@ class Classes {
 	static #stopSyncButton = '[data-testid="class-table-end-course-sync-btn"]';
 
 	clickOnCancelDeleteModalOnClassAdminPage() {
-		cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
+		cy.get("body").then(($body) => {
+			if ($body.find(Classes.#buttonCancelOnDeleteModalClassAdminPage).length > 0) {
+				cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
+			} else if ($body.find(Classes.#cancelDeleteButtonDialog).length > 0) {
+				cy.get(Classes.#cancelDeleteButtonDialog).click();
+			} else {
+				throw new Error("No cancel button found in delete modal");
+			}
+		});
 	}
 
 	clickOnSaveChangesOnEditClassPage() {
@@ -129,7 +134,15 @@ class Classes {
 	}
 
 	clickConfirmDeleteDialogButton() {
-		cy.get(Classes.#deleteDialogConfirm).click();
+		cy.get("body").then(($body) => {
+			if ($body.find(Classes.#deleteDialogConfirm).length > 0) {
+				cy.get(Classes.#deleteDialogConfirm).click();
+			} else if ($body.find(Classes.#deleteDialogConfirmSecondary).length > 0) {
+				cy.get(Classes.#deleteDialogConfirmSecondary).click();
+			} else {
+				throw new Error("No confirm delete button found in dialog");
+			}
+		});
 	}
 
 	clickNextYearTab() {

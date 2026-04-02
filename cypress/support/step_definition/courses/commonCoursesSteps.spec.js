@@ -289,7 +289,7 @@ When("I click on Cancel in confirmation window", () => {
 });
 
 When("I click on Delete in confirmation window", () => {
-	courses.clickDeleteInConfirmationWindow();
+	courses.clickOnConfirmInDialogWindow();
 });
 
 When("I click on task {string}", (taskTitle) => {

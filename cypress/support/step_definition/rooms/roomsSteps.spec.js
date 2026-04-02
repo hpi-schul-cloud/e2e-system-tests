@@ -159,10 +159,6 @@ Then("I see modal Add participants", () => {
 	rooms.seeModalForAddParticipants();
 });
 
-When("I click on delete button in confirmation modal", () => {
-	rooms.clickDeleteInConfirmationModal();
-});
-
 Then("I see {string} on room overview page", (roomName) => {
 	rooms.roomIsVisibleOnOverviewPage(roomName);
 });
