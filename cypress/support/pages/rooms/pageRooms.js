@@ -10,7 +10,6 @@ class Rooms {
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
-	static #confirmationDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
@@ -422,10 +421,7 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(`${Rooms.#confirmButtonOnModal}, ${Rooms.#confirmationDialogConfirm}`)
-			.filter(":visible")
-			.first()
-			.click();
+		cy.get(Rooms.#confirmButtonOnModal).first().click();
 	}
 
 	roomIsVisibleOnOverviewPage(roomName) {

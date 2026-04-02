@@ -177,16 +177,6 @@ class Management {
 	static #confirmDeleteButtonDialog = '[data-testid="delete-user-dialog-confirm"]';
 	static #selectionColumnUserTable = '[data-testid="selection-column"]';
 	static #userTableDataHead = '[data-testid="table-data-head"]';
-	static #confirmDialogTitle = '[data-testid="confirm-dialog-title"]';
-	static #confirmDialogConfirmButton = '[data-testid="confirm-dialog-confirm"]';
-
-	clickDeleteInConfirmationModal() {
-		cy.get(Management.#confirmDialogConfirmButton).should("be.visible").click();
-	}
-
-	seeConfirmationModalForRoomDeletionInAdminPage() {
-		cy.get(Management.#confirmDialogTitle).should("be.visible");
-	}
 
 	seeAllSelectedUsersInDeletionDialog(numberOfUsers) {
 		const num = numberOfUsers;

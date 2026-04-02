@@ -3,6 +3,10 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
+When("I click on delete button in confirmation modal", () => {
+	rooms.clickDeleteInConfirmationModal();
+});
+
 When("I click on FAB to add participants", () => {
 	rooms.clickOnAddParticipantsFAB();
 });
