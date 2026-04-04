@@ -419,84 +419,83 @@ class Courses {
 			});
 	}
 
-	deleteElementsWithText(textSelector, courseName, clickSelector) {
-		cy.get("body").then(($body) => {
-			if ($body.find(Courses.#messageNoTasksAvailable).length) {
-				cy.log("No courses available to delete. Test will exit.");
-				return;
-			} else {
-				this.findAndDeleteCourses(textSelector, courseName, clickSelector);
-			}
-		});
+	deleteAllCoursesWithName(courseNamePrefix) {
+		const courseRegex = new RegExp(`^${courseNamePrefix}.*$`, "i");
+
+		const deleteNext = () => {
+			cy.get("body").then(($body) => {
+				const $titles = $body.find(Courses.#courseTitleInCourseoverview);
+
+				// wait for UI render
+				if ($titles.length === 0) {
+					const noCourses =
+						$body.find(Courses.#messageNoTasksAvailable).length > 0;
+
+					if (!noCourses) {
+						cy.wait(500);
+						return deleteNext();
+					}
+
+					cy.log("No courses available.");
+					return;
+				}
+
+				// find first matching course
+				const titlesArray = [...$titles];
+				const index = titlesArray.findIndex((el) =>
+					courseRegex.test(el.innerText.trim())
+				);
+
+				// no matching prefix → done
+				if (index === -1) {
+					cy.log(
+						`All courses starting with "${courseNamePrefix}" deleted successfully.`
+					);
+					return;
+				}
+
+				// scroll to title
+				cy.wrap(titlesArray[index]).scrollIntoView();
+
+				// click corresponding icon by index
+				cy.get(Courses.#iconCourse).eq(index).should("be.visible").click();
+
+				// delete flow
+				cy.get(Courses.#dropDownCourse).should("be.visible").click();
+				cy.get(Courses.#btnCourseEdit).should("be.visible").click();
+				cy.get(Courses.#deleteButton).should("be.visible").click();
+				cy.get(Courses.#courseDeleteConfirmationModal).should("exist");
+				cy.get(Courses.#confirmDeletionPopup).should("be.visible").click();
+
+				cy.wait(1200);
+				deleteNext();
+			});
+		};
+
+		deleteNext();
 	}
 
-	findAndDeleteCourses(textSelector, courseName, clickSelector) {
-		const courseRegex = new RegExp(`^${courseName}.*$`, "i");
+	verifyCourseDeletion(courseNamePrefix) {
+		const courseRegex = new RegExp(`^${courseNamePrefix}.*$`, "i");
 
-		cy.get(textSelector).then(($elements) => {
-			const matchingElements = Cypress.$($elements).filter((_, el) =>
-				courseRegex.test(Cypress.$(el).text().trim())
+		cy.get("body").then(($body) => {
+			const $titles = $body.find(Courses.#courseTitleInCourseoverview);
+
+			// no titles at all → success
+			if ($titles.length === 0) {
+				cy.log("No courses remaining.");
+				return;
+			}
+
+			const stillExists = [...$titles].some((el) =>
+				courseRegex.test(el.innerText.trim())
 			);
 
-			if (matchingElements.length > 0) {
-				cy.log(
-					`Found ${matchingElements.length} courses matching "${courseName}"`
-				);
-				this.deleteCourse(textSelector, courseName, clickSelector);
-			} else {
-				cy.log(`No more courses found with course name "${courseName}".`);
-			}
+			expect(
+				stillExists,
+				`Courses starting with "${courseNamePrefix}" should not exist`
+			).to.be.false;
 		});
-	}
-
-	deleteCourse(textSelector, courseName, clickSelector) {
-		cy.get(textSelector)
-			.contains(new RegExp(`^${courseName}.*$`, "i"))
-			.scrollIntoView()
-			.parent("div")
-			.within(() => {
-				cy.get(clickSelector).should("be.visible").click();
-			});
-
-		cy.get(Courses.#dropDownCourse).should("be.visible").click();
-		cy.get(Courses.#btnCourseEdit).should("be.visible").click();
-		cy.get(Courses.#deleteButton).should("be.visible").click();
-		cy.get(Courses.#courseDeleteConfirmationModal).should("exist");
-		cy.get(Courses.#confirmDeletionPopup).should("be.visible").click();
-
-		cy.wait(2000);
-
-		cy.get("body").then(($body) => {
-			if ($body.text().includes(courseName)) {
-				this.deleteElementsWithText(textSelector, courseName, clickSelector);
-			} else {
-				cy.log(`All courses with name "${courseName}" deleted successfully.`);
-			}
-		});
-	}
-
-	verifyCourseDeletion(courseName) {
-		cy.get("body").then(($body) => {
-			if (!$body.text().includes(courseName)) {
-				cy.log(`All courses with name "${courseName}" deleted successfully.`);
-			} else {
-				cy.get(Courses.#courseTitleInCourseoverview).should(
-					"not.contain.text",
-					courseName
-				);
-			}
-		});
-	}
-
-	deleteAllCoursesWithName(courseName) {
-		cy.wait(2000);
-		this.deleteElementsWithText(
-			Courses.#courseTitleInCourseoverview,
-			courseName,
-			Courses.#iconCourse
-		);
-
-		this.verifyCourseDeletion(courseName);
 	}
 
 	navigateToLtiTools() {
