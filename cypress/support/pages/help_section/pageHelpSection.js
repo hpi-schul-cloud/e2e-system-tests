@@ -71,10 +71,15 @@ class Help {
 	}
 
 	enterKeywordInHelpArticlesSearchbar(search_term) {
-		cy.get(Help.#searchBar)
-			.should("be.visible")
-			.type(search_term, { delay: 50 })
-			.should("have.value", search_term);
+		cy.get(Help.#searchBar).should("be.visible").clear();
+
+		let currentValue = "";
+		for (let i = 0; i < search_term.length; i++) {
+			currentValue += search_term[i];
+			cy.get(Help.#searchBar)
+				.type(search_term[i], { delay: 300 })
+				.should("have.value", currentValue);
+		}
 	}
 
 	fillOutContactForm(problem_option, subject, email) {
