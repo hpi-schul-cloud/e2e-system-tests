@@ -11,6 +11,17 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When(
+	"I drag and drop the board one {string} from position {string} to position {string}",
+	(boardTitle, fromPosition, toPosition) => {
+		roomBoards.dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition);
+	}
+);
+
+Then("I see the board {string} at position {string}", (boardTitle, position) => {
+	roomBoards.verifyBoardAtPosition(boardTitle, position);
+});
+
 Then("I see the card titled {string} on the target board", (cardTitle) => {
 	roomBoards.verifyCardPresentOnTargetBoard(cardTitle);
 });

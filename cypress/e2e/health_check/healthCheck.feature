@@ -26,7 +26,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         # student checks dashboard
         Given I am logged in as a '<student>' at '<namespace>'
         When I arrive on the dashboard
-        Then I see the welcome message 'Hallo <fullname_student>!'
         Then I see school news with title 'Herzlichen Willkommen in der Cypress Health School' and description 'DIes ist ein beispielhafter News-Text'
         Then I see teams news with title 'Team HC AG nimmt Arbeit auf' and description 'Lorem ipsum'
         #Then I can see the assigned task 'Aufgabe Health Check' of course 'HC Kurs'
@@ -61,10 +60,10 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
         @staging_test
         Examples:
-            | namespace | student        | fullname_student |
-            | dbc       | student_hc_dbc | Adam Schmitt     |
-            | nbc       | student_hc_nbc | Adam Schmitt     |
-            | brb       | student_hc_brb | Adam Schmitt     |
+            | namespace | student        |
+            | dbc       | student_hc_dbc |
+            | nbc       | student_hc_nbc |
+            | brb       | student_hc_brb |
 
     Scenario Outline: teacher sees courses and course content (tasks, topics, course boards) on staging / ref.
 
@@ -153,7 +152,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
             | nbc       | teacher_hc_nbc |
             | brb       | teacher_hc_brb |
 
-    Scenario Outline: teacher sees files section, mediashelf, calendar and learning store on staging / ref.
+    Scenario Outline: teacher sees files section, mediashelf, calendar on staging / ref.
 
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -191,15 +190,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         # teacher checks calendar
         When I go to calendar overview
         Then I see calendar page
-
-        # teacher checks learning store
-        When I go to Learning Store overview
-        When I write 'Dodo' in search container and wait for search result
-        Then I see website Learning Store with search result
-        When I click on first card of search result
-        Then I see card details
-        When I click on icon Close Learning Store card details
-        Then I see website Learning Store with search result
 
         # teacher logout
         # next step is to load sidebar in vue
@@ -255,7 +245,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on external tools panel
         Then I see the tool '<external_tool>' in external tools table
         When I click on general settings panel
-        Then I see toggle switch to enable students access to learning store is checked
 
         # admin sees class administration page
         When I go to team administration

@@ -15,8 +15,8 @@ class Board {
 	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
 	static #deleteOptionThreeDot = '[data-testid="kebab-menu-action-delete"]';
-	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
-	static #deleteDialogBox = '[data-testid="dialog-title"]';
+	static #confirmButtonInModal = '[data-testid="confirm-dialog-confirm"]';
+	static #deleteDialogBox = '[data-testid="confirm-dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
@@ -50,7 +50,8 @@ class Board {
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 	static #cardTitle = '[data-testid="card-title"]';
 	static #boardLinkElement = '[data-testid="board-link-element"]';
-	static #fixedExportInfoPoint3 = '[data-testid="fixed-export-options-warning-info-point3"]';
+	static #fixedExportInfoPoint3 =
+		'[data-testid="fixed-export-options-warning-info-point3"]';
 	static #exportInfoPoint3 = '[data-testid="export-options-info-point3"]';
 	static #versionRadioGroup = '[data-testid="version-radio-group"]';
 	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
@@ -629,13 +630,14 @@ class Board {
 	}
 
 	selectLatestCc() {
-		cy.get(Board.#versionRadioGroup).get('input[type="radio"][value="1.3.0"]')
-      	.check()
-      	.should('be.checked');
+		cy.get(Board.#versionRadioGroup)
+			.get('input[type="radio"][value="1.3.0"]')
+			.check()
+			.should("be.checked");
 	}
 
 	clickDialogButton(buttonName) {
-		cy.get('[data-testid="dialog-'+buttonName+'-btn"]').click();
+		cy.get('[data-testid="dialog-' + buttonName + '-btn"]').click();
 	}
 }
 export default Board;

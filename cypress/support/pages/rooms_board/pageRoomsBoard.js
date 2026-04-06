@@ -1,7 +1,7 @@
 "use strict";
 
 class RoomBoards {
-	static #btnDialogCancel = '[data-testid="dialog-cancel"]';
+	static #btnDialogCancel = '[data-testid="confirm-dialog-cancel"]';
 	static #boardMenuActionDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #addNewColumnButton = '[data-testid="add-column"]';
 	static #mainPageArea = '[id="main-content"]';
@@ -127,10 +127,33 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #globalDialogConfirmButton = '[data-testid="dialog-confirm"]';
+	static #globalDialogConfirmButton = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
-	static #globalDialogTitle = '[data-testid="dialog-title"]';
+	static #globalDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
+	static #dialogTitle = '[data-testid="dialog-title"]';
+	static #dialogConfirm = '[data-testid="dialog-confirm"]';
+
+	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
+		// ensure the board is currently at the starting position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
+			.should("be.visible")
+			.and("contain.text", boardTitle);
+
+		// drag board to target position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
+			`[data-testid="board-grid-item-${toPosition}"]`,
+			{ force: true }
+		);
+		// wait for the drag-and-drop action to complete and UI to update
+		cy.wait(300);
+	}
+
+	verifyBoardAtPosition(boardTitle, position) {
+		cy.get(`[data-testid="board-grid-item-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", boardTitle);
+	}
 
 	clickOnConfirmOnModalForDeletion() {
 		cy.get(RoomBoards.#deleteFileDialogConfirm).click();
@@ -632,7 +655,9 @@ class RoomBoards {
 			if ($body.find(RoomBoards.#shareModalTitleOnMovingCard).length > 0) {
 				cy.get(RoomBoards.#shareModalTitleOnMovingCard).should("be.visible");
 			} else {
-				cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+				cy.get(
+					`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+				).should("exist");
 			}
 		});
 	}
@@ -687,7 +712,7 @@ class RoomBoards {
 
 	verifyImportDialog() {
 		cy.get(
-			`${RoomBoards.#importCardDialogTitle}, ${RoomBoards.#globalDialogTitle}`
+			`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}, ${RoomBoards.#importCardDialogTitle}`
 		).should("be.visible");
 	}
 
@@ -702,7 +727,9 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		cy.get(RoomBoards.#globalDialogTitle).should("exist");
+		cy.get(`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}`).should(
+			"exist"
+		);
 		cy.get(RoomBoards.#roomSelectionBoxModal)
 			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
@@ -730,7 +757,9 @@ class RoomBoards {
 	}
 
 	clickImportOnModal() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.get(
+			`${RoomBoards.#globalDialogConfirmButton}, ${RoomBoards.#dialogConfirm}`
+		).click();
 	}
 
 	clickOnMoveButtonInMoveCardModal() {
@@ -738,7 +767,9 @@ class RoomBoards {
 	}
 
 	seeShareSettingsDialog() {
-		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+		cy.get(
+			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+		).should("exist");
 	}
 
 	seeEditingSettingsDialog() {
@@ -766,7 +797,9 @@ class RoomBoards {
 	}
 
 	verifyShareViaModal() {
-		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+		cy.get(
+			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+		).should("exist");
 	}
 
 	verifyShareViaEmailOption() {
@@ -857,7 +890,8 @@ class RoomBoards {
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.get(RoomBoards.#globalDialogConfirmButton).filter(":visible").first().click();
+		cy.wait(1000);
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
 		cy.reload();
 	}
@@ -1016,21 +1050,39 @@ class RoomBoards {
 	doNotSeeBoardOnRoomDetailPage(boardName) {
 		cy.contains(boardName).should("not.exist");
 	}
+
 	seeBtnDialogCancel() {
 		cy.get(RoomBoards.#btnDialogCancel).should("be.visible");
 	}
+
 	clickOnBtnDialogCancel() {
 		cy.get(RoomBoards.#btnDialogCancel).click();
 	}
+
 	seeBtnDialogConfirmDelete() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).should("be.visible");
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
+				cy.get(RoomBoards.#globalDialogConfirmButton).should("be.visible");
+			} else {
+				throw new Error("No confirm delete button found in dialog.");
+			}
+		});
 	}
+
 	clickBtnDialogConfirmDelete() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).click();
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
+				cy.get(RoomBoards.#globalDialogConfirmButton).click();
+			} else {
+				throw new Error("No confirm delete button found in dialog.");
+			}
+		});
 	}
+
 	clickOnThreeDotMenuInRoomBoardTitle() {
 		cy.get(RoomBoards.#threeDotInBoardTitle).click();
 	}
+
 	clickOnEditInBoardMenu() {
 		cy.get(RoomBoards.#btnBoardMenuActionRename).click();
 	}

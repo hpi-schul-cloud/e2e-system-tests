@@ -30,6 +30,27 @@ const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
 
+Given("the admin has added {string} {string} users", (numberOfUsers, role) => {
+	const num = parseInt(numberOfUsers, 10);
+
+	for (let i = 1; i <= num; i++) {
+		const uniqueFirstName = `cypress${i}`;
+		const uniqueLastName = `student_admin_test${i}`;
+		const uniqueEmail = `original_student_admin_users${i}@cypress-mail.de`;
+
+		management.openAdministrationInMenu();
+		management.navigateToUserAdministration(role);
+		management.clickOnFAB(role);
+		management.clickOnAddUserInFAB(role);
+		management.fillUserCreationForm(uniqueFirstName, uniqueLastName, uniqueEmail);
+		management.clickOnAddButton(role);
+	}
+
+	// after adding users, navigate back to overview
+	management.openAdministrationInMenu();
+	management.navigateToUserAdministration(role);
+});
+
 Given("the multi-column board has a column with a card titled {string}", (cardTitle) => {
 	board.clickOnAddNewColumnButton();
 	board.clickOutsideTheColumnToSaveTheColumn();
@@ -122,14 +143,13 @@ Given("the card contains image {string} element", (imageFile) => {
 });
 
 Given(
-	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
+	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
 	(
 		topicName,
 		courseName,
 		textElementTitle,
 		geoGebraTitle,
 		geoGebraId,
-		learningMaterialTitle,
 		etherpadTitle,
 		etherpadDescription,
 		taskTitle,
@@ -153,15 +173,10 @@ Given(
 		topics.enterTitleForElementGeoGebra(geoGebraTitle);
 		topics.enterIDforElementGeoGebra(geoGebraId);
 
-		// learning material element
-		topics.clickOnAddLearningMaterialToTopic();
-		topics.enterTitleForElementLearningMaterial(learningMaterialTitle);
-		topics.seeAddMaterialBtnInContent();
-
 		// etherpad element
 		topics.clickOnAddEtherpadToTopic();
-		topics.enterTitleForElementEtherpad(etherpadTitle, "3");
-		topics.enterDescriptionForElementEtherpad(etherpadDescription, "3");
+		topics.enterTitleForElementEtherpad(etherpadTitle, "2");
+		topics.enterDescriptionForElementEtherpad(etherpadDescription, "2");
 
 		// task element
 		topics.clickOnAddTaskToTopic();
@@ -598,7 +613,7 @@ Given("task with name {string} in course {string} is deleted", (taskName, course
 	courses.navigateToCoursePage(courseName);
 	courses.openThreeDotMenuForContent(taskName);
 	courses.clickDeleteInDotMenu();
-	courses.clickDeleteInConfirmationWindow();
+	courses.clickOnConfirmInDialogWindow();
 });
 
 Given(

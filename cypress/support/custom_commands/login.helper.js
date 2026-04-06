@@ -228,7 +228,7 @@ const studentFirstLogin = (environment) => {
 	cy.get(nextButtonAfterAgeSelection).click();
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(nextButtonOnFirstLoginPages).click();
-	cy.get(datePickerSelectorForDOB).type("21").type("03").type("2000");
+	cy.get(datePickerSelectorForDOB).type("2000-03-21");
 	cy.get(nextButtonOnFirstLoginPages).click();
 	if (environment === "dbc") {
 		cy.get(privacyConsentCheckboxDBC).check();
