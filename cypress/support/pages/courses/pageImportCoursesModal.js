@@ -9,7 +9,8 @@ class ImportCourseModal {
 		'div[data-testid="import-modal-name-input"] input[class="v-field__input"]';
 	static #importShareCourseDialogConfirmButton = '[data-testid="import-modal-confirm"]';
 	static #importShareCourseDialogTitle = '[data-testid="import-modal-title"]';
-	static #importShareCourseDialogTableHeader = ".alert-text";
+	static #importShareCourseDialogTableHeader =
+		'[data-testid="import-card-information"]';
 	static #importShareCourseDialogPersonalData =
 		'[data-testid="import-options-personal-data-text"]';
 	static #importShareCourseDialogFilesInfo =
