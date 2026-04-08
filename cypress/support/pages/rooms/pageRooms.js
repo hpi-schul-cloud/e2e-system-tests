@@ -68,6 +68,8 @@ class Rooms {
 	static #threeDotMenuOptions = '[role="menuitem"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
+	static #invitationLinkExpirationCheckbox =
+		'[data-testid="input-invite-participants-link-expires"]';
 
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
 		// ensure the room is currently at the starting position
@@ -663,16 +665,35 @@ class Rooms {
 	}
 
 	selectInvitationLinkSchoolScope(schoolScope) {
-		// @param {'all-schools'|'creator-school'} => schoolScope
-		const selector =
-			schoolScope === "all-schools"
-				? Rooms.#inputInviteMembersForAllSchool
-				: Rooms.#inputInviteMembersFromCreatorSchool;
+		const normalizedInput = schoolScope
+			.toLowerCase()
+			.replace(/[\s\-_]+/g, "")
+			.trim();
+
+		let selector;
+
+		switch (true) {
+			case normalizedInput.includes("all"):
+				selector = Rooms.#inputInviteMembersForAllSchool;
+				break;
+			case normalizedInput.includes("creator") ||
+				normalizedInput.includes("school") ||
+				normalizedInput === "":
+				selector = Rooms.#inputInviteMembersFromCreatorSchool;
+				break;
+			default:
+				throw new Error(
+					`Invalid school scope: "${schoolScope}". ` +
+						`Expected variations of "all schools" or "creator school". ` +
+						`Examples: "all-schools", "All Schools", "creator-school", "Creator School"`
+				);
+		}
+
 		cy.get(selector)
 			.find('input[type="radio"]')
 			.then((radioBtn) => {
 				if (!radioBtn.is(":checked")) {
-					cy.wrap(radioBtn).check();
+					cy.wrap(radioBtn).check().should("be.checked");
 				}
 			});
 	}
@@ -770,9 +791,9 @@ class Rooms {
 	}
 
 	verifyLinkExpirationInInvitationDialog(linkExpirationAction) {
-		cy.get('[data-testid="input-invite-participants-link-expires"]').should(
-			linkExpirationAction === "check" ? "be.checked" : "not.be.checked"
-		);
+		cy.get(Rooms.#invitationLinkExpirationCheckbox)
+			.find('[type="checkbox"]')
+			.should(linkExpirationAction === "check" ? "be.checked" : "not.be.checked");
 	}
 }
 export default Rooms;
