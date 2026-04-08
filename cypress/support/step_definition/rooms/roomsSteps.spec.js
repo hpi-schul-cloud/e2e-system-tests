@@ -342,7 +342,7 @@ Then("I see the modal Create Invitation Link", () => {
 });
 
 When(
-	"I enter {string} into the Invitation Link Description field",
+	"I enter {string} into the Field Invitation Link Description",
 	(invitationDescription) => {
 		rooms.fillInvitationFormDescription(invitationDescription);
 	}

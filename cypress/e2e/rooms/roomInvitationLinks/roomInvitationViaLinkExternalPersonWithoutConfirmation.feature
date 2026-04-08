@@ -24,7 +24,7 @@ Feature: Rooms - External Person Invitation via Link with Immediate Access
         When I click on tab Invitations
         When I click on the fab button to create an invitation link
         Then I see the modal Create Invitation Link
-        When I enter '<invitation_description>' into the Invitation Link Description field
+        When I enter '<invitation_description>' into the Field Invitation Link Description
         When I uncheck the Checkbox to require confirmation
         When I select the radio button for 'all-schools'
         When I "check" the checkbox to allow external persons to use the invitation link

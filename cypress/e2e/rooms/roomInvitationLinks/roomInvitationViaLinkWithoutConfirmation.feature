@@ -25,7 +25,7 @@ Feature: Rooms - Invite User to room via Invitation link
         When I click on tab Invitations
         When I click on the fab button to create an invitation link
         Then I see the modal Create Invitation Link
-        When I enter '<invitation_description>' into the Invitation Link Description field
+        When I enter '<invitation_description>' into the Field Invitation Link Description
         When I uncheck the Checkbox to require confirmation
         When I save the invitation link
         Then I see the Link URL in the Modal
