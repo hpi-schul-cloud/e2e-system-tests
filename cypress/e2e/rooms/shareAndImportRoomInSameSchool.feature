@@ -38,14 +38,14 @@ Feature: Rooms - Share and import room with a teacher from the same school
         Then I see the option Share via Email
         Then I see the option Copy link
         Then I see the option Scan QR Code
-        Then I copy the board URL
+        Then I copy the URL from the modal
         Then I see the alert message
 
         # pre-condition: the second teacher is logged into the application, and a room exists
         Given I am logged in as a '<teacher2>' at '<namespace>'
 
         # second teacher within the same school imports the room
-        When I open the shared URL for board
+        When I navigate to the shared URL
         Then I see the Dialog to import
         Then I see the title in the import modal
         When I see the source room name in the modal room import

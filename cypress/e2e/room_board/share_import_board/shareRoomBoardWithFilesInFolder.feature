@@ -29,10 +29,10 @@ Feature: Room Board - Share room board copy with files in file folder
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the option Copy link
-        Then I copy the board URL
+        Then I copy the URL from the modal
 
         # content editor copies room board to second room
-        When I open the shared URL for board
+        When I navigate to the shared URL
         Then I see the Dialog to import
         Then I see the title in the import modal
         When I select the room from the room list in the modal

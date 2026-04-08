@@ -35,7 +35,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the option Share via Email
         Then I see the option Copy link
         Then I see the option Scan QR Code
-        Then I copy the board URL
+        Then I copy the URL from the modal
         Then I see the alert message
 
         # pre-condition: second teacher logged into the application, and a room exists
@@ -43,7 +43,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Given a room named '<room_name_target>' exists
 
         # second teacher from the second school can access the shared URL and import the multi-column board
-        When I open the shared URL for board
+        When I navigate to the shared URL
         Then I see the Dialog to import
         Then I see the title in the import modal
         When I select the room from the room list in the modal
@@ -69,11 +69,11 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the option Copy link
-        Then I copy the board URL
+        Then I copy the URL from the modal
 
         # second teacher from the second school can not access the shared board URL and sees the 'Not Allowed' alert
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        When I open the shared URL for board
+        When I navigate to the shared URL
         Then I see an alert that importing the board is not allowed
 
         # post-condition: rooms created by both teachers are deleted
