@@ -37,7 +37,6 @@ Feature: Rooms - External Person Invitation via Link with Immediate Access
         Then I see the option Scan QR Code
         Then I copy the URL from the modal
         Then I see the alert message
-        # When I close the invitation modal
         Then I see '<invitation_description>' in the list of invitation links
 
         # external person uses the no-confirmation invitation link to join the room

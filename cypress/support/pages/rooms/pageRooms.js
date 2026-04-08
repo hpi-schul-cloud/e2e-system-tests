@@ -46,8 +46,6 @@ class Rooms {
 		'[data-testid="invite-participant-description-input"]';
 	static #inputInviteMembersRequireConfirmation =
 		'[data-testid="input-invite-participants-requires-confirmation"]';
-	static #inputInviteMembersRestrictedToCreatorSchool =
-		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
 	static #inputInviteMembersValidForExternalPersons =
 		'[data-testid="input-invite-participants-valid-for-external-persons"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
