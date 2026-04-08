@@ -57,7 +57,7 @@ Feature: Rooms - External Person Invitation via Link with Approval Required
         When I click on tab Confirmations
         Then I see user '<external_person_last_name>' in the confirmations table
         When I click on three dot menu for user '<external_person_last_name>' in Confirmations table
-        When I click on confirm button in the three dot menu
+        When I click on button Confirm in the three dot menu
         Then I do not see user '<external_person_last_name>' in the confirmations table
         When I click on tab Members
         Then I see '<external_person_last_name>' in the room participants list

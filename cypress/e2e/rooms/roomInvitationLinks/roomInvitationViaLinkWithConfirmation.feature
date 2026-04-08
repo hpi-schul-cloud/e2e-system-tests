@@ -52,7 +52,7 @@ Feature: Rooms - Invite User to room via Invitation link
         When I click on tab Confirmations
         Then I see user '<teacher_2_name>' in the confirmations table
         When I click on three dot menu for user '<teacher_2_name>' in Confirmations table
-        When I click on confirm button in the three dot menu
+        When I click on button Confirm in the three dot menu
         Then I do not see user '<teacher_2_name>' in the confirmations table
         When I click on tab Members
         Then I see '<teacher_2_name>' in the room participants list

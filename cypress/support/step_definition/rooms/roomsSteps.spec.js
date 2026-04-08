@@ -415,6 +415,6 @@ When("I click on three dot menu for user {string} in Confirmations table", (user
 	rooms.clickOnThreeDotMenuToEditUser(userName);
 });
 
-When("I click on confirm button in the three dot menu", () => {
+When("I click on button Confirm in the three dot menu", () => {
 	rooms.clickConfirmButtonInThreeDotMenu();
 });
