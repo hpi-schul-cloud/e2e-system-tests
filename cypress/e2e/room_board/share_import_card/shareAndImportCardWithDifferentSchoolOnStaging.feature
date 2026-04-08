@@ -39,7 +39,6 @@ Feature: Room Board - Share and import a card in rooms with the teacher from dif
         Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I see the checkbox Link valid for 21 days is by default checked
-        When I uncheck the checkbox school internal
         When I click on the button Continue
         Then I see the Share via modal
         Then I see the result url text box in the modal
@@ -77,5 +76,5 @@ Feature: Room Board - Share and import a card in rooms with the teacher from dif
         @staging_test
         Examples:
             | teacher1     | teacherExt_1    | namespace | room_name_source       | room_name_target       | board_title_source   | board_title_target   | card_title             | import_card_title        | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info | file_folder       | image_file      | board_title       | column_name |
-            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | CypressAut Imported Card | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info | Cypress Card Docs | example_jpg.jpg | CypressAuto Board | Abschnitt 1 |
+            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | CypressAut Imported Card | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info | Cypress Card Docs | example_jpg.jpg | CypressAuto Board | Column 1    |
 
