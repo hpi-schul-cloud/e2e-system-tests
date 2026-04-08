@@ -770,5 +770,11 @@ class Rooms {
 	clickOnSpeedDialOption(option) {
 		cy.get(`[data-testid="fab-${option}-icon-btn"]`).should("be.visible").click();
 	}
+
+	verifyLinkExpirationInInvitationDialog(linkExpirationAction) {
+		cy.get('[data-testid="input-invite-participants-link-expires"]').should(
+			linkExpirationAction === "check" ? "be.checked" : "not.be.checked"
+		);
+	}
 }
 export default Rooms;

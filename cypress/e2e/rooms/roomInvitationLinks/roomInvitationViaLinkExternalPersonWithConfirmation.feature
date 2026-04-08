@@ -2,12 +2,12 @@
 @stable_test
 @schedule_run
 @group-C
-@prio_0_dev
-Feature: Rooms - Room invitations via link with confirmation for external persons
+@prio_0_staging
+Feature: Rooms - External Person Invitation via Link with Approval Required
 
-    As a room owner, I create an invitation link that requires confirmation; external persons request access via the link and must be approved before joining.
+    As a room owner, I want to create an invitation link with approval workflow so external persons must request access and await my confirmation before joining.
 
-    Scenario Outline: Room Owner creates confirmation required link, external person applies, owner approves, access is granted
+    Scenario Outline: Room owner creates confirmation-required link, external person applies, owner approves, access is granted
 
         # pre-condition: users (teacher & external person) logged in
         Given I am logged in as a '<external_person_1>' at '<namespace>'
@@ -16,7 +16,7 @@ Feature: Rooms - Room invitations via link with confirmation for external person
         # pre-condition: teacher creates a new room
         Given a room named '<room_name>' exists
 
-        # teacher creates an confirmation required invitation link
+        # teacher creates a confirmation required invitation link
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -27,28 +27,21 @@ Feature: Rooms - Room invitations via link with confirmation for external person
         When I enter '<invitation_description>' into the Invitation Link Description field
         When I select the radio button for 'all-schools'
         When I "check" the checkbox to allow external persons to use the invitation link
+        When I see the checkbox Link Expiration as "uncheck"
         When I check the Checkbox to require confirmation
         When I save the invitation link
-        # Then I see the Link URL in the Modal
-        # When I remember the invitation link URL in the Modal
-
-        # When I click on the button Continue
-        # Then I see the Share via modal
-        # Then I see the result url text box in the modal
-        # Then I see the option Share via Email
-        # Then I see the option Copy link
-        # Then I see the option Scan QR Code
-        Then I copy the board URL
+        Then I see the Link URL in the Modal
+        Then I see the result url text box in the modal
+        Then I see the option Share via Email
+        Then I see the option Copy link
+        Then I see the option Scan QR Code
+        Then I copy the URL from the modal
         Then I see the alert message
-
         Then I see '<invitation_description>' in the list of invitation links
 
         # external person uses the invitation link to join the room
         Given I am logged in as a '<external_person_1>' at '<namespace>'
-        # When I use the remembered invitation link URL
-
-        When I open the shared URL for board
-
+        When I navigate to the shared URL
         Then I see a link invitation status message
 
         # teacher confirms the invitation
@@ -63,7 +56,7 @@ Feature: Rooms - Room invitations via link with confirmation for external person
         Then I see teacher '<external_person_last_name>' not visible in the table
         When I click on tab Confirmations
         Then I see user '<external_person_last_name>' in the confirmations table
-        When I click on button Three Dot Menu in Confirmations table for user '<external_person_last_name>'
+        When I click on three dot menu for user '<external_person_last_name>' in Confirmations table
         When I click on confirm button in the three dot menu
         Then I do not see user '<external_person_last_name>' in the confirmations table
         When I click on tab Members
@@ -84,3 +77,9 @@ Feature: Rooms - Room invitations via link with confirmation for external person
         Examples:
             | teacher_1    | external_person_1   | external_person_last_name | namespace | room_name                     | invitation_description |
             | teacher1_dbc | externalPerson1_dbc | external_person_1         | dbc       | CypressAut EP Invite Approval | test invitation link   |
+
+        @staging_test
+        Examples:
+            | teacher_1    | external_person_1   | external_person_last_name | namespace | room_name                     | invitation_description |
+            | teacher1_dbc | externalPerson1_dbc | Ol                        | dbc       | CypressAut EP Invite Approval | test invitation link   |
+

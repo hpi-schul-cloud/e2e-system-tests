@@ -411,12 +411,9 @@ Then("I do not see user {string} in the confirmations table", (userName) => {
 	rooms.notSeeUserInConfirmationsTable(userName);
 });
 
-When(
-	"I click on button Three Dot Menu in Confirmations table for user {string}",
-	(userName) => {
-		rooms.clickOnThreeDotMenuToEditUser(userName);
-	}
-);
+When("I click on three dot menu for user {string} in Confirmations table", (userName) => {
+	rooms.clickOnThreeDotMenuToEditUser(userName);
+});
 
 When("I click on confirm button in the three dot menu", () => {
 	rooms.clickConfirmButtonInThreeDotMenu();

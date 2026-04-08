@@ -2,18 +2,18 @@
 @stable_test
 @schedule_run
 @group-C
-@prio_0_dev
-Feature: Rooms - Room invitations via link without confirmation for external persons
+@prio_0_staging
+Feature: Rooms - External Person Invitation via Link with Immediate Access
 
-    As a room owner, I want to invite a user to the room through an invitation link, so that I don't have to add every user manually.
+    As a room owner, I want to invite external persons to the room through an invitation link with immediate access, so that they don't need manual approval.
 
-    Scenario Outline: Room Owner creates no-confirmation link; external person joins, rights are limited, leaves; owner verifies removal
+    Scenario Outline: Room owner creates auto-join link, external person joins with limited permissions, leaves, and owner verifies removal
 
         # pre-condition: users (teacher & external person) logged in
         Given I am logged in as a '<external_person_1>' at '<namespace>'
         Given I am logged in as a '<teacher_1>' at '<namespace>'
 
-        # pre-condition: teacher creating a new room
+        # pre-condition: teacher creates a new room
         Given a room named '<room_name>' exists
 
         # teacher create a no-confirmation link
@@ -28,15 +28,21 @@ Feature: Rooms - Room invitations via link without confirmation for external per
         When I uncheck the Checkbox to require confirmation
         When I select the radio button for 'all-schools'
         When I "check" the checkbox to allow external persons to use the invitation link
+        When I see the checkbox Link Expiration as "uncheck"
         When I save the invitation link
         Then I see the Link URL in the Modal
-        When I remember the invitation link URL in the Modal
-        When I close the invitation modal
+        Then I see the result url text box in the modal
+        Then I see the option Share via Email
+        Then I see the option Copy link
+        Then I see the option Scan QR Code
+        Then I copy the URL from the modal
+        Then I see the alert message
+        # When I close the invitation modal
         Then I see '<invitation_description>' in the list of invitation links
 
         # external person uses the no-confirmation invitation link to join the room
         Given I am logged in as a '<external_person_1>' at '<namespace>'
-        When I use the remembered invitation link URL
+        When I navigate to the shared URL
         Then I see the detail page of room '<room_name>'
 
         # external person should only allow to leave the room
@@ -69,3 +75,7 @@ Feature: Rooms - Room invitations via link without confirmation for external per
             | teacher_1    | external_person_1   | namespace | room_name                     | invitation_description | external_person_last_name |
             | teacher1_dbc | externalPerson1_dbc | dbc       | CypressAut EP Invite AutoJoin | test invitation link   | external_person_1         |
 
+        @staging_test
+        Examples:
+            | teacher_1    | external_person_1   | external_person_last_name | namespace | room_name                     | invitation_description |
+            | teacher1_dbc | externalPerson1_dbc | Ol                        | dbc       | CypressAut EP Invite Approval | test invitation link   |

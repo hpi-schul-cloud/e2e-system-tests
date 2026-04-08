@@ -34,7 +34,7 @@ Feature: Room Board - Share multi-column room board in the rooms with teacher fr
         Then I see the option Share via Email
         Then I see the option Copy link
         Then I see the option Scan QR Code
-        Then I copy the board URL
+        Then I copy the URL from the modal
         Then I see the alert message
 
         # pre-condition: second teacher is logged into the application, and a room exists
@@ -42,7 +42,7 @@ Feature: Room Board - Share multi-column room board in the rooms with teacher fr
         Given a room named '<room_name_target>' exists
 
         # second teacher within the same school imports the multi-column board
-        When I open the shared URL for board
+        When I navigate to the shared URL
         Then I see the Dialog to import
         Then I see the title in the import modal
         When I select the room from the room list in the modal
