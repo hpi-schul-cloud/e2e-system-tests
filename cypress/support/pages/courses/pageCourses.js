@@ -116,7 +116,8 @@ class Courses {
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
 	static #bbbVideoStartDialogBoxCourse =
 		'[data-testid="video-conference-config-dialog-title"]';
-	static #bbbDialogBoxCancelButtonCourse = '[data-testid="dialog-cancel"]';
+	static #bbbDialogBoxCancelButtonCourse =
+		'[data-testid="video-conference-config-dialog-cancel"]';
 	static #bbbDisabledCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #addBBBButton = '[data-testid="submit-btn-add-bbb-tool-modal"]';
 	static #fabButtonToAddOrImportCourse = '[data-testid="add-course-button"] .v-btn';
