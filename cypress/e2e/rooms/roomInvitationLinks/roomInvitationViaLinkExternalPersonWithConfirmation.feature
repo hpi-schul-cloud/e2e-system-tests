@@ -75,11 +75,11 @@ Feature: Rooms - External Person Invitation via Link with Approval Required
 
         @school_api_test
         Examples:
-            | teacher_1    | external_person_1   | external_person_last_name | namespace | room_name                     | invitation_description |
-            | teacher1_dbc | externalPerson1_dbc | external_person_1         | dbc       | CypressAut EP Invite Approval | test invitation link   |
+            | teacher_1    | external_person_1   | namespace | room_name                     | invitation_description | external_person_last_name |
+            | teacher1_dbc | externalPerson1_dbc | dbc       | CypressAut EP Invite Approval | test invitation link   | external_person_1         |
 
         @staging_test
         Examples:
-            | teacher_1    | external_person_1   | external_person_last_name | namespace | room_name                     | invitation_description |
-            | teacher1_dbc | externalPerson1_dbc | Ol                        | dbc       | CypressAut EP Invite Approval | test invitation link   |
+            | teacher_1    | external_person_1   | namespace | room_name                     | invitation_description | external_person_last_name |
+            | teacher1_dbc | externalPerson1_dbc | dbc       | CypressAut EP Invite Approval | test invitation link   | Ol                        |
 
