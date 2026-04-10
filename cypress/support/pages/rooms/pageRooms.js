@@ -61,7 +61,7 @@ class Rooms {
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
-	static #dialogConfirm = '[data-testid="dialog-confirm"]';
+	static #importRoomsModalConfirm = '[data-testid="import-modal-confirm"]';
 
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
 		// ensure the room is currently at the starting position
@@ -234,7 +234,7 @@ class Rooms {
 
 	clickOnImportConfirmButtonInModal() {
 		cy.get(
-			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#dialogConfirm}:visible`
+			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#importRoomsModalConfirm}:visible`
 		).click();
 	}
 
