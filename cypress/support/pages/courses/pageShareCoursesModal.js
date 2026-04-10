@@ -13,7 +13,9 @@ class ShareCourseModal {
 	static #shareCourseDialogSchoolInternalCheckBox = '[data-testid="isSchoolInternal"]';
 	static #shareCourseDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
 	static #shareCourseResultUrlTextBox = '[data-testid="share-course-result-url"]';
-	static #dialogNextButton = '[data-testid="dialog-next"]';
+	static #dialogNextButton = '[data-testid="share-dialog-next"]';
+	static #selectDestinationModalConfirm =
+		'[data-testid="select-destination-modal-confirm"]';
 	static #shareCourseDialogMailButton = '[data-testid="shareMailAction"]';
 	static #shareCourseDialogCopyLinkButton = '[data-testid="copyAction"]';
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
@@ -153,7 +155,9 @@ class ShareCourseModal {
 	}
 
 	clickContinueButtonInShareDialog() {
-		cy.get(ShareCourseModal.#dialogNextButton).click();
+		cy.get(
+			`${ShareCourseModal.#dialogNextButton}, ${ShareCourseModal.#selectDestinationModalConfirm}`
+		).click();
 	}
 
 	checkExpiryDateCheckBoxState(expectedState) {

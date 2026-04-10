@@ -8,6 +8,7 @@ class ImportCourseModal {
 	static #importShareCourseNameInputField =
 		'div[data-testid="import-modal-name-input"] input[class="v-field__input"]';
 	static #importShareCourseDialogConfirmButton = '[data-testid="dialog-confirm"]';
+	static #importDialogConfirmButton = '[data-testid="import-modal-confirm"]';
 	static #importShareCourseDialogTitle = '[data-testid="dialog-title"]';
 	static #importShareCourseDialogTableHeader =
 		'[data-testid="import-options-table-header"]';
@@ -46,7 +47,9 @@ class ImportCourseModal {
 	}
 
 	clickOnConfirmButtonInImportShareCourseDialog() {
-		cy.get(ImportCourseModal.#importShareCourseDialogConfirmButton).click();
+		cy.get(
+			`${ImportCourseModal.#importShareCourseDialogConfirmButton}, ${ImportCourseModal.#importDialogConfirmButton}`
+		).click();
 	}
 
 	visitSavedShareCourseUrl() {

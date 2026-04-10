@@ -10,12 +10,13 @@ class Rooms {
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
+	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
 	static #addParticipantName = '[data-testid="add-participant-name"]';
 	static #btnSubmit = '[data-testid="room-form-save-btn"]';
-	static #btnAddParticipant = '[data-testid="add-participant-save-btn"]';
+	static #btnAddParticipant = '[data-testid="dialog-add-participants-confirm"]';
 	static #createRoom = '[data-testid="fab-add-room"] .v-btn';
 	static #addParticipants = '[data-testid="fab-add-members"] .v-btn';
 	static #participantTable = '[data-testid="participants-table"]';
@@ -30,12 +31,12 @@ class Rooms {
 		'[data-testid="dialog-change-role-participants"]';
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
-	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-title"]';
+	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-confirm"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
-	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
-	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
-	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
-	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
+	static #modalDuplicateRoom = '[data-testid="dialog-title"]'; //[data-testid="copy-info-dialog"]';
+	static #modalTitleDuplicateRoom = '[data-testid="dialog-title"]';
+	static #cancelButtonDuplicateRoom = '[data-testid="dialog-cancel"]'; //[data-testid="copy-info-dialog-cancel"]';
+	static #duplicateButton = '[data-testid="dialog-confirm"]'; //[data-testid="copy-info-dialog-confirm"]';
 	static #alertMessage = '[data-testid="alert-text"]';
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
 	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
@@ -46,10 +47,9 @@ class Rooms {
 		'[data-testid="invite-participant-description-input"]';
 	static #inputInviteMembersRequireConfirmation =
 		'[data-testid="input-invite-participants-requires-confirmation"]';
-	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
+	static #modalCreateInvitationLinkSave = '[data-testid="dialog-confirm"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose =
-		'[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose = '[data-testid="dialog-cancel"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -234,7 +234,7 @@ class Rooms {
 
 	clickOnImportConfirmButtonInModal() {
 		cy.get(
-			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#dialogConfirm}:visible`
+			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#dialogConfirm}:visible, ${Rooms.#importModalConfirm}:visible`
 		).click();
 	}
 
