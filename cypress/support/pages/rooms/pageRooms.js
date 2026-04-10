@@ -67,7 +67,7 @@ class Rooms {
 		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
 	static #threeDotMenuOptions = '[role="menuitem"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
-	static #dialogConfirm = '[data-testid="dialog-confirm"]';
+	static #importRoomsModalConfirm = '[data-testid="import-modal-confirm"]';
 	static #invitationLinkExpirationCheckbox =
 		'[data-testid="input-invite-participants-link-expires"]';
 
@@ -240,7 +240,7 @@ class Rooms {
 
 	clickOnImportConfirmButtonInModal() {
 		cy.get(
-			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#dialogConfirm}:visible`
+			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#importRoomsModalConfirm}:visible`
 		).click();
 	}
 

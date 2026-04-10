@@ -37,19 +37,20 @@ class RoomBoards {
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
-	static #continueButton = '[data-testid="dialog-next"]';
+	static #continueButton = '[data-testid="share-dialog-next"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
 	static #scanQRCodeOption = '[data-testid="qrCodeAction"]';
 	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
-	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
+	static #continueButtonInImportModal =
+		'[data-testid="select-destination-modal-confirm"]';
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
 	static #moveButtonOnMoveDialog = '[data-testid="move-card-dialog-confirm"]';
 	static #shareModalTitleOnMovingCard = '[data-testid="move-card-dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
-	static #cancelButtonInShareModal = '[data-testid="dialog-cancel"]';
+	static #cancelButtonInShareModal = '[data-testid="share-dialog-cancel"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #editingSettingsAlert = '[class="alert-text"]';
@@ -123,12 +124,16 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #globalDialogConfirmButton = '[data-testid="confirm-dialog-confirm"]';
+	static #globalDialogConfirmButton = '[data-testid="import-modal-confirm"]';
+	static #confirmDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
-	static #globalDialogTitle = '[data-testid="confirm-dialog-title"]';
+	static #globalShareDialogTitle = '[data-testid="share-dialog-title"]';
+	static #confirmDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
+	static #importDialogTitle = '[data-testid="select-destination-modal-title"]';
+	static #importRoomsModalTitle = '[data-testid="import-modal-title"]';
 
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
 		// ensure the board is currently at the starting position
@@ -650,7 +655,7 @@ class RoomBoards {
 				cy.get(RoomBoards.#shareModalTitleOnMovingCard).should("be.visible");
 			} else {
 				cy.get(
-					`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+					`${RoomBoards.#globalShareDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
 				).should("exist");
 			}
 		});
@@ -706,7 +711,7 @@ class RoomBoards {
 
 	verifyImportDialog() {
 		cy.get(
-			`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}, ${RoomBoards.#importCardDialogTitle}`
+			`${RoomBoards.#importRoomsModalTitle}, ${RoomBoards.#importDialogTitle}, ${RoomBoards.#importCardDialogTitle}`
 		).should("be.visible");
 	}
 
@@ -721,9 +726,9 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		cy.get(`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}`).should(
-			"exist"
-		);
+		cy.get(
+			`${RoomBoards.#importDialogTitle}, ${RoomBoards.#importCardDialogTitle}`
+		).should("exist");
 		cy.get(RoomBoards.#roomSelectionBoxModal)
 			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
@@ -762,7 +767,7 @@ class RoomBoards {
 
 	seeShareSettingsDialog() {
 		cy.get(
-			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+			`${RoomBoards.#globalShareDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
 		).should("exist");
 	}
 
@@ -792,7 +797,7 @@ class RoomBoards {
 
 	verifyShareViaModal() {
 		cy.get(
-			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+			`${RoomBoards.#globalShareDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
 		).should("exist");
 	}
 
@@ -878,11 +883,28 @@ class RoomBoards {
 	}
 
 	verifyDeleteConfirmationDialogVisible() {
-		cy.get(RoomBoards.#globalDialogTitle).should("be.visible");
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#globalShareDialogTitle).length > 0) {
+				cy.get(RoomBoards.#globalShareDialogTitle).should("be.visible");
+			} else if ($body.find(RoomBoards.#confirmDialogTitle).length > 0) {
+				cy.get(RoomBoards.#confirmDialogTitle).should("be.visible");
+			} else {
+				throw new Error("No confirmation dialog title found.");
+			}
+		});
 	}
 
 	clickDeleteButtonInConfirmationDialog() {
-		cy.get(RoomBoards.#globalDialogConfirmButton).filter(":visible").first().click();
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
+				cy.get(RoomBoards.#globalDialogConfirmButton).click();
+			} else if ($body.find(RoomBoards.#confirmDialogConfirm).length > 0) {
+				cy.get(RoomBoards.#confirmDialogConfirm).click();
+			} else {
+				throw new Error("No confirm button found in dialog.");
+			}
+		});
+
 		cy.wait(1000);
 		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
 		cy.reload();
@@ -1065,6 +1087,8 @@ class RoomBoards {
 		cy.get("body").then(($body) => {
 			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
 				cy.get(RoomBoards.#globalDialogConfirmButton).click();
+			} else if ($body.find(RoomBoards.#confirmDialogConfirm).length > 0) {
+				cy.get(RoomBoards.#confirmDialogConfirm).click();
 			} else {
 				throw new Error("No confirm delete button found in dialog.");
 			}
