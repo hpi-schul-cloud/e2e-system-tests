@@ -88,7 +88,7 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
         When I click on button Three Dot Menu to edit participant '<participant_teacher_2>'
         When I click on remove button in the options of user '<fullname_teacher_2>'
         Then I see confirmation modal for deleting the user in room admin page
-        When I click on delete button in confirmation modal in room admin page
+        When I click on delete button in confirmation modal
         Then I do not see '<participant_teacher_2>' in the room members list
 
         # post-condition: admin deactivates student visibility
