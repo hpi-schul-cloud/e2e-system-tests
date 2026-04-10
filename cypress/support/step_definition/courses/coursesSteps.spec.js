@@ -337,7 +337,7 @@ When("I uncheck the checkbox school internal", () => {
 });
 
 When("I click on the button continue in the dialog box share course", () => {
-	shareCourseModal.clickContinueButtonInDialog();
+	shareCourseModal.clickContinueButtonInShareDialog();
 });
 
 Then("I see the import share course url in the dialog box share course result", () => {
