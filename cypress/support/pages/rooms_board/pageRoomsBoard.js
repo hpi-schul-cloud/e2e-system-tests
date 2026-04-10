@@ -30,21 +30,22 @@ class RoomBoards {
 	static #cancelButtonInVideoConferenceModal = '[data-testid="dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #importCardDialogTitle = '[data-testid="import-card-dialog-title"]';
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
-	static #continueButton = '[data-testid="dialog-next"]';
+	static #continueButton =
+		'[data-testid="dialog-next"], [data-testid="share-dialog-next"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
 	static #scanQRCodeOption = '[data-testid="qrCodeAction"]';
 	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
-	static #continueButtonInImportModal = '[data-testid="dialog-next"]';
+	static #continueButtonInImportModal =
+		'[data-testid="dialog-next"], [data-testid="select-destination-modal-confirm"]';
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
 	static #moveButtonOnMoveDialog = '[data-testid="move-card-dialog-confirm"]';
 	static #shareModalTitleOnMovingCard = '[data-testid="move-card-dialog-title"]';
@@ -75,13 +76,11 @@ class RoomBoards {
 	static #H5PPage = '[data-testid="skip-link"]';
 	static #titleAlert = '[role="alert"]';
 	static #fileTitleInCardInput = '[data-testid="file-name-input"]';
-	static #createDocumentButtonInFileFolder =
-		'[data-testid="fab-button-create-document"]';
+	static #createDocumentButtonInFileFolder = '[data-testid="fab-button-create-document"]';
 	static #dialogCreateDocumentInFileFolder = '[data-testid="collabora-file-dialog"]';
 	static #dialogCreateDocumentTitleInFileFolder =
 		'[data-testid="collabora-file-dialog-title"]';
-	static #dialogSelectDocumentTypeFileFolder =
-		'[data-testid="collabora-file-form-type"]';
+	static #dialogSelectDocumentTypeFileFolder = '[data-testid="collabora-file-form-type"]';
 	static #dialogFileNameFileFolder = '[data-testid="collabora-file-form-filename"]';
 	static #dialogCreateButton = '[data-testid="collabora-file-dialog-confirm"]';
 	static #boardFolderDownloadButton =
@@ -112,8 +111,7 @@ class RoomBoards {
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolDomainUrl =
-		'[data-testid="board-external-tool-element-domain"]';
+	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
 	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
@@ -339,12 +337,10 @@ class RoomBoards {
 
 		// assert layout position: duplicated card is rendered below the original
 		cy.get(RoomBoards.#firstCardPositionInRoomBoard).then(($original) => {
-			const originalBottom =
-				$original[0].getBoundingClientRect().bottom + window.scrollY;
+			const originalBottom = $original[0].getBoundingClientRect().bottom + window.scrollY;
 
 			cy.get(RoomBoards.#duplicatedCardPosition).then(($duplicate) => {
-				const duplicateTop =
-					$duplicate[0].getBoundingClientRect().top + window.scrollY;
+				const duplicateTop = $duplicate[0].getBoundingClientRect().top + window.scrollY;
 
 				expect(duplicateTop).to.be.greaterThan(
 					originalBottom,
@@ -712,7 +708,7 @@ class RoomBoards {
 
 	verifyImportDialog() {
 		cy.get(
-			`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}, ${RoomBoards.#importCardDialogTitle}`
+			`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}, ${RoomBoards.#importCardDialogTitle}, [data-testid="select-destination-modal"]`
 		).should("be.visible");
 	}
 
@@ -727,9 +723,9 @@ class RoomBoards {
 	}
 
 	selectRoomForImport() {
-		cy.get(`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}`).should(
-			"exist"
-		);
+		cy.get(
+			`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}, [data-testid="select-destination-modal-title"]`
+		).should("exist");
 		cy.get(RoomBoards.#roomSelectionBoxModal)
 			// navigate to the room name as a first option and press enter
 			.type("{downarrow}{enter}");
@@ -758,7 +754,7 @@ class RoomBoards {
 
 	clickImportOnModal() {
 		cy.get(
-			`${RoomBoards.#globalDialogConfirmButton}, ${RoomBoards.#dialogConfirm}`
+			`${RoomBoards.#globalDialogConfirmButton}, ${RoomBoards.#dialogConfirm}, [data-testid="import-modal-confirm"]`
 		).click();
 	}
 
@@ -768,7 +764,8 @@ class RoomBoards {
 
 	seeShareSettingsDialog() {
 		cy.get(
-			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+			// `${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`,
+			'[data-testid="share-dialog-next"]'
 		).should("exist");
 	}
 
@@ -798,7 +795,7 @@ class RoomBoards {
 
 	verifyShareViaModal() {
 		cy.get(
-			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`
+			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible, [data-testid="share-dialog"]`
 		).should("exist");
 	}
 
@@ -844,9 +841,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -1088,9 +1083,7 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("exist")
-			.should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
 	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
@@ -1174,21 +1167,14 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element)
-					.find("th")
-					.contains("span", label)
-					.should("contain", label);
+				cy.get(element).find("th").contains("span", label).should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element)
-				.find("th")
-				.contains("span", label)
-				.should("contain", label)
-				.click();
+			cy.get(element).find("th").contains("span", label).should("contain", label).click();
 		});
 	}
 
@@ -1202,15 +1188,11 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -1274,11 +1256,7 @@ class RoomBoards {
 	}
 
 	enterFolderNameInBoardCard(newName) {
-		cy.get(RoomBoards.#folderTitleInCardInput)
-			.find("input")
-			.eq(0)
-			.clear()
-			.type(newName);
+		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear().type(newName);
 	}
 
 	clearFolderNameInCard() {
