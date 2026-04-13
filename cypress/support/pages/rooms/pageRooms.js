@@ -33,10 +33,10 @@ class Rooms {
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
 	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-confirm"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
-	static #modalDuplicateRoom = '[data-testid="dialog-title"]'; //[data-testid="copy-info-dialog"]';
+	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
 	static #modalTitleDuplicateRoom = '[data-testid="dialog-title"]';
-	static #cancelButtonDuplicateRoom = '[data-testid="dialog-cancel"]'; //[data-testid="copy-info-dialog-cancel"]';
-	static #duplicateButton = '[data-testid="dialog-confirm"]'; //[data-testid="copy-info-dialog-confirm"]';
+	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
+	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #alertMessage = '[data-testid="alert-text"]';
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
 	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';

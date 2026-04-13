@@ -43,7 +43,7 @@ class RoomBoards {
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
-	static #continueButton = '[data-testid="share-dialog-next"]'; // [data-testid="dialog-next"]';
+	static #continueButton = '[data-testid="share-dialog-next"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
@@ -56,7 +56,7 @@ class RoomBoards {
 	static #shareModalTitleOnMovingCard = '[data-testid="move-card-dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
-	static #cancelButtonInShareModal = '[data-testid="share-dialog-cancel"]'; //[data-testid="dialog-cancel"]';
+	static #cancelButtonInShareModal = '[data-testid="share-dialog-cancel"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #editingSettingsAlert = '[class="alert-text"]';
