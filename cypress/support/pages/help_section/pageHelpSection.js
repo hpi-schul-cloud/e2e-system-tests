@@ -17,13 +17,15 @@ class Help {
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
 	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
 	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection-contact"]';
-	static #advancedTrainingsNavigationButtonLink = 'a[title="Fortbildungen"]';
-	static #advancedTrainingsNavigationButton = '[data-testid="sidebar-helpsection-trainings"]';
+	static #advancedTrainingsNavigationButtonLink =
+		'a[title="Fortbildungen"], [data-testid="sidebar-helpsection-trainings"]';
+	static #advancedTrainingsNavigationButton =
+		'[data-testid="sidebar-helpsection-trainings"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
 	static #selectDropdownOptions = ".chosen-drop .chosen-results";
 	static #contactTypeWishButton = '[id="wish"]';
-	static #contactFormWish = '.wish_form';
+	static #contactFormWish = ".wish_form";
 	static #requestFormRole = '[name="role"]';
 	static #requestFormDesire = '[name="desire"]';
 	static #requestFormBenefit = '[name="benefit"]';
@@ -101,13 +103,13 @@ class Help {
 	}
 
 	selectContactType(contactType) {
-		if(contactType == 'wish'){
+		if (contactType == "wish") {
 			cy.get(Help.#contactTypeWishButton).next().click();
 		}
 	}
 
 	seeContactFormType(formType) {
-		if(formType == 'wish'){
+		if (formType == "wish") {
 			cy.get(Help.#contactFormWish).should("be.visible");
 		}
 	}

@@ -885,9 +885,24 @@ class RoomBoards {
 
 	clickDeleteButtonInConfirmationDialog() {
 		cy.get(RoomBoards.#globalDialogConfirmButton).filter(":visible").first().click();
-		cy.wait(1000);
-		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
-		cy.reload();
+		const pollForDeletion = () => {
+			cy.reload();
+			cy.get('[data-testid="board-card-0-0"]').should("be.visible");
+			cy.get("body").then(($body) => {
+				if (
+					$body.find('[data-testid="board-external-tool-element-bettermarks edited"]')
+						.length > 0
+				) {
+					cy.wait(1500);
+					pollForDeletion();
+				}
+			});
+		};
+
+		pollForDeletion();
+		cy.get('[data-testid="board-external-tool-element-bettermarks edited"]').should(
+			"not.exist"
+		);
 	}
 
 	verifyVideoConferenceElementNotVisible() {

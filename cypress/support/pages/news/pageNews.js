@@ -16,7 +16,7 @@ class News {
 	static #newsCreateButton = '[data-testid="btn_news_submit"]';
 	static #newsTitle = '[id="page-title"]';
 	static #newsDescriptionVisible = '[class="ckcontent"]';
-	static #newsName = '[data-testid="title_of_an_element"]';
+	static #newsName = '[data-testid="title_of_an_element"], [data-testid="news-title"]';
 	static #deleteNews = '[data-testid="btn-delete-news"]';
 	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';

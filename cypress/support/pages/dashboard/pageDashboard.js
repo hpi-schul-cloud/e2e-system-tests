@@ -18,8 +18,9 @@ class Dashboard {
 	static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
 	static #dashboardTaskCourseName = '[data-testid="task-course-name"]';
 	static #dashboardTaskName = '[data-testid="task-name"]';
-	static #elementTitle = '[data-testid="title_of_an_element"]';
-	static #newsText = '[data-testid="body_of_element"]';
+	static #elementTitle =
+		'[data-testid="title_of_an_element"], [data-testid="news-title"]';
+	static #newsText = '[data-testid="body_of_element"], [data-testid="news-content"]';
 	static #newsSection = '[data-testid="news-section"]';
 	static #dashboardLink = 'a[data-testid="sidebar-dashboard"]';
 
