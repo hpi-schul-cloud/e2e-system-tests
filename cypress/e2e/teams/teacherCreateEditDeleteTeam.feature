@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-F
-@prio_0_staging
+# @prio_0_staging
 Feature: Teams - Create, delete and edit operations on Teams
 
     As a teacher, I want to create/edit/delete the team so that I can manage the team.
@@ -44,7 +44,7 @@ Feature: Teams - Create, delete and edit operations on Teams
         Then I do not see the team '<team_edited_title>'
 
         @school_api_test
-        @staging_test
+        # @staging_test
         Examples:
             | teacher      | namespace | team_title                         | team_description              | team_edited_title                         | team_edited_description              |
             | teacher1_brb | brb       | CypressAut Create,Edit,Delete Team | This is CRUD team description | CypressAut Edited Create,Edit,Delete team | This is edited CRUD team description |

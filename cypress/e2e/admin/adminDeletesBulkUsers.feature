@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-D
-@prio_0_staging
+# @prio_0_staging
 Feature: Admin - To add and delete new users by the admin in bulk
 
     As an admin, I want to manage users by creating and removing them in bulk, so that I can manage user administration effectively.
@@ -32,7 +32,7 @@ Feature: Admin - To add and delete new users by the admin in bulk
             | namespace | admin      | role_to_manage | number_of_users | search_email_suffix                          |
             | dbc       | admin1_dbc | student        | 3               | original_student_admin_users@cypress-mail.de |
 
-        @staging_test
+        # @staging_test
         Examples:
             | namespace | admin      | role_to_manage | number_of_users | search_email_suffix                          |
             | dbc       | admin1_dbc | student        | 3               | original_student_admin_users@cypress-mail.de |

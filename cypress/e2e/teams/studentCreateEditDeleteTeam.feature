@@ -3,7 +3,7 @@
 @schedule_run
 @group-C
 @pre_check_test
-@prio_0_staging
+# @prio_0_staging
 Feature: Teams - Student managed teams
 
     As a student, I want to create/edit/delete the team so that I can manage the team. This is not possible for NBC, because there students are generally not allowed to create teams.
@@ -56,7 +56,7 @@ Feature: Teams - Student managed teams
         Then I do not see the team '<team_title_edited>'
 
         @school_api_test
-        @staging_test
+        # @staging_test
         Examples:
             | admin      | student      | namespace | team_title               | team_description                    | team_title_edited           | team_description_edited                    |
             | admin1_brb | student1_brb | brb       | CypressAut students team | this is cy student team description | CypressAut Edited News Team | edited this is cy student team description |

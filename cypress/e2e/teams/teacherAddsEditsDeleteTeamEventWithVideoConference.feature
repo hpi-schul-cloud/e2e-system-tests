@@ -2,7 +2,7 @@
 @regression_test
 @schedule_run
 @group-E
-@prio_0_staging
+# @prio_0_staging
 Feature: Teams - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
     As a teacher, I want to add video conference to the team event so that team members can collaborate via video conference.
@@ -125,7 +125,7 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
         Then I see dialog box and click on delete button to confirm the deletion
         Then I do not see the team '<event_title_edited>'
 
-        @staging_test
+        # @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | student_last_name | student_fullname | team_title                           | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_description_edited |
             | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Kraft, Herbert    | Herbert Kraft    | CypressAut team for video conference | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa            |

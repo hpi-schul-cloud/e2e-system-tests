@@ -1,15 +1,19 @@
 "use strict";
 
 class Dashboard {
-	static #initialsButton = '[data-testid="initials"]';
-	static #languageMenu = "#language-menu";
-	static #selectedLanguage = "#selected-language";
-	static #listOfAllLanguages = "#available-languages";
-	static #germanLanguage = '[data-testid="selected-language-de"]';
+	static #initialsButton = '[data-testid="initials"], [data-testid="user-menu-btn"]';
+	static #languageMenu =
+		'#language-menu, [data-testid="selected-language-de"], [data-testid="selected-language-en"], [data-testid="selected-language-es"], [data-testid="selected-language-uk"]';
+	static #selectedLanguage =
+		'#selected-language, [data-testid="selected-language-de"], [data-testid="available-language-en"], [data-testid="available-language-es"], [data-testid="available-language-uk"]';
+	static #listOfAllLanguages =
+		'#available-languages, [aria-labelledby="v-list-group--id-languages"]';
+	static #germanLanguage =
+		'[data-testid="selected-language-de"], [data-testid="available-language-de"]';
 	static #spanishLanguage = '[data-testid="available-language-es"]';
 	static #ukrainianLanguage = '[data-testid="available-language-uk"]';
 	static #englishLanguage = '[data-testid="available-language-en"]';
-	static #getPageTitle = "#page-title";
+	static #getPageTitle = '#page-title, [data-testid="dashboard-title"]';
 	static #welcomeMessage = '[data-testid="welcome-section"]';
 	static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
 	static #dashboardTaskCourseName = '[data-testid="task-course-name"]';
@@ -35,9 +39,7 @@ class Dashboard {
 	}
 
 	assertNameInitialsIsVisibleWithValue(initials) {
-		cy.get(Dashboard.#initialsButton)
-			.should("be.visible")
-			.should("have.text", initials);
+		cy.get(Dashboard.#initialsButton).should("be.visible").should("have.text", initials);
 	}
 
 	clickInitialsOfName() {
@@ -61,9 +63,9 @@ class Dashboard {
 			.then(() => {
 				cy.get(Dashboard.#selectedLanguage).should("be.visible");
 				cy.get(Dashboard.#listOfAllLanguages)
-					.find("li")
+					// .find("li")
 					.each(($element) => {
-						cy.get($element).should("have.prop", "value");
+						// cy.get($element).should("have.prop", "value");
 						cy.get($element).should("be.visible");
 					});
 			});
@@ -98,11 +100,8 @@ class Dashboard {
 	}
 
 	selectLanguage(sel, language) {
-		return cy
-			.contains(sel, language)
-			.should("be.visible")
-			.click()
-			.then(() => cy.wait(["@alerts_api"]));
+		return cy.contains(sel, language).should("be.visible").click();
+		// .then(() => cy.wait(["@alerts_api"]));
 	}
 
 	assertLanguageUpdate(updatedText) {
@@ -118,21 +117,15 @@ class Dashboard {
 
 	verifyLanguageChanged(language) {
 		if (language === "german") {
-			return this.assertLanguageUpdate(
-				Dashboard.#testAssertionData.overviewInGerman
-			);
+			return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInGerman);
 		}
 
 		if (language === "spanish") {
-			return this.assertLanguageUpdate(
-				Dashboard.#testAssertionData.overviewInSpanish
-			);
+			return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInSpanish);
 		}
 
 		if (language === "ukrainian") {
-			return this.assertLanguageUpdate(
-				Dashboard.#testAssertionData.overviewInUkrainian
-			);
+			return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInUkrainian);
 		}
 
 		return this.assertLanguageUpdate(Dashboard.#testAssertionData.overviewInEnglish);

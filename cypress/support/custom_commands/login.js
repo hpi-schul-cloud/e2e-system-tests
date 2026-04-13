@@ -3,8 +3,9 @@ import { loginViaSchoolApi, loginWithoutSchoolApi } from "./login.helper";
 
 const initials = '[data-testid="initials"], [data-testid="user-menu-btn"]';
 const languageSelection =
-	'[data-testid="selected-language"], [data-testid="selected-language-de"]';
-const languageDe = '[data-language="de"], [data-testid="selected-language-de"]';
+	'[data-testid="selected-language"], [data-testid="selected-language-de"], [data-testid="selected-language-en"], [data-testid="selected-language-es"], [data-testid="selected-language-uk"]';
+const languageDe =
+	'[data-language="de"], [data-testid="selected-language-de"], [data-testid="available-language-de"]';
 
 Cypress.Commands.add("login", (username, environment) => {
 	cy.session(

@@ -2,7 +2,7 @@
 @regression_test
 @schedule_run
 @group-C
-@prio_0_staging
+# @prio_0_staging
 Feature:  News - To read a news on the respective dashboards
 
     As a teacher, I want to read the news shown on the dashboard so that I'm informed about the latest news
@@ -84,7 +84,7 @@ Feature:  News - To read a news on the respective dashboards
         Then I do not see the team '<team_name>'
 
         @school_api_test
-        @staging_test
+        # @staging_test
         Examples:
             | teacher      | student      | namespace | news_title                         | news_description        | team_name              | team_news_title                  | team_news_description      |
             | teacher1_brb | student1_brb | brb       | CypressAut - this is a school news | school news description | CypressAut - News Team | CypressAut - this is a team news | test team news description |

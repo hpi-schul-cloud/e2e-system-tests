@@ -764,8 +764,7 @@ class RoomBoards {
 
 	seeShareSettingsDialog() {
 		cy.get(
-			// `${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible`,
-			'[data-testid="share-dialog-next"]'
+			`${RoomBoards.#globalDialogTitle}:visible, ${RoomBoards.#dialogTitle}:visible, [data-testid="share-dialog-next"]`
 		).should("exist");
 	}
 

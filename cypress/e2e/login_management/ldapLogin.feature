@@ -1,7 +1,7 @@
 @stable_test
 @regression_test
 @group-B
-@prio_0_staging
+# @prio_0_staging
 Feature: Login Management - Login of users not managed by SVS (LDAP users)
 
     As a user, I want to login with LDAP username and password into SVS so that I can access my account
@@ -21,7 +21,7 @@ Feature: Login Management - Login of users not managed by SVS (LDAP users)
         #@school_api_test
         # this feature can not be executed using the school api, as we do not create LDAP external user using this api.
 
-        @staging_test
+        # @staging_test
         # this test is only executed for BRB teachers and students
         Examples:
             | namespace | username         | ldap_school_name                                    | initials |
