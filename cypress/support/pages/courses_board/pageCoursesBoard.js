@@ -615,9 +615,7 @@ class Board {
 	}
 
 	seeFixedCcWarning() {
-		cy.get(`${Board.#fixedExportFolderInfo}, ${Board.#fixedExportFolderInfo}`).should(
-			"be.visible"
-		);
+		cy.get(Board.#fixedExportFolderInfo).should("be.visible");
 	}
 
 	seeCcWarning() {

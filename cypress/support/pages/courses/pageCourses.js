@@ -96,7 +96,6 @@ class Courses {
 	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="dialog-close"]';
 	static #copyDialogCancel = '[data-testid="copy-dialog-cancel"]';
-	static #dialogCancel = '[data-testid="dialog-cancel"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #toolDomain = '[data-testid="tool-card-domain"]';
@@ -1047,7 +1046,7 @@ class Courses {
 	}
 
 	clickOnDialogClose() {
-		cy.get(` ${Courses.#dialogClose}, ${Courses.#copyDialogCancel}`).click();
+		cy.get(`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}`).click();
 	}
 
 	seeCoursePage(courseName) {
