@@ -52,6 +52,7 @@ class Board {
 	static #boardLinkElement = '[data-testid="board-link-element"]';
 	static #fixedExportFolderInfo = '[data-testid="cartridge-export-folder-info"]';
 	static #exportInfoPoint3 = '[data-testid="export-options-info-point3"]';
+	static #exportInfoPoint4Sub4 = '[data-testid="export-options-info-point4-sub4"]';
 	static #versionRadioGroup = '[data-testid="version-radio-group"]';
 	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
 	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
@@ -620,10 +621,12 @@ class Board {
 
 	seeCcWarning() {
 		cy.get(Board.#cartridgeExportContentInfo).should("be.visible");
+		cy.get(Board.#exportInfoPoint4Sub4).should("be.visible");
 	}
 
 	notSeeCcWarning() {
 		cy.get(Board.#exportInfoPoint3).should("not.exist");
+		cy.get(Board.#exportInfoPoint4Sub4).should("not.exist");
 	}
 
 	selectLatestCc() {

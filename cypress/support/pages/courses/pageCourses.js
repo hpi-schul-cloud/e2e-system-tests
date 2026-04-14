@@ -91,11 +91,13 @@ class Courses {
 	static #addNewCourseGroupButton = '[data-testid="add-course-group"]';
 	static #copyResultDialog = '[data-testid="dialog-text"]';
 	static #copyResultNotification = '[data-testid="copy-result-notifications"]';
-	static #dialogTitle = '[data-testid="dialog-title"]';
+	static #dialogTitle = '[data-testid="copy-dialog-title"]';
+	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
 	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
 	static #copyDialogTitle = '[data-testid="copy-dialog-title"]';
 	static #warningTitle = '[data-testid="warning-title"]';
-	static #dialogClose = '[data-testid="dialog-close"]';
+	static #dialogClose = '[data-testid="copy-dialog-cancel"]';
+	static #errorDialogClose = '[data-testid="error-dialog-cancel"]';
 	static #errorDialogCancel = '[data-testid="error-dialog-cancel"]';
 	static #copyDialogCancel = '[data-testid="copy-dialog-cancel"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
@@ -1049,8 +1051,8 @@ class Courses {
 
 	clickOnDialogClose() {
 		cy.get(
-			`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}, ${Courses.#errorDialogCancel}`
-		).click();
+			`${`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}, ${Courses.#errorDialogCancel}`
+		}, ${Courses.#errorDialogClose}`).click();
 	}
 
 	seeCoursePage(courseName) {
@@ -1100,7 +1102,7 @@ class Courses {
 	}
 
 	checkIfErrorDialogIsOpen() {
-		cy.get(`${Courses.#dialogTitle}, ${Courses.#errorDialogTitle}`).should(
+		cy.get(`${Courses.#errorDialogTitle}, ${Courses.#errorDialogTitle}`).should(
 			"be.visible"
 		);
 		cy.get(Courses.#errorDialog).should("be.visible");

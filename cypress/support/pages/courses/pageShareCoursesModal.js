@@ -5,21 +5,16 @@ class ShareCourseModal {
 	static #shareCourseDialogInfoTextTitle = '[data-testid="share-options-info-text"]';
 	static #shareCourseDialogInfoTextContainer =
 		'[data-testid="share-options-table-header"]';
-	static #shareCourseDialogExternalToolsInfo =
-		'[data-testid="share-modal-external-tools-info"]';
-	static #shareCourseDialogToolProtectedParamsInfo =
-		'[data-testid="share-modal-external-tools-protected-parameter-info"]';
-	static #shareCourseDialogFilesInfo = '[data-testid="share-modal-coursefiles-info"]';
 	static #shareCourseDialogSchoolInternalCheckBox = '[data-testid="isSchoolInternal"]';
 	static #shareCourseDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
 	static #shareCourseResultUrlTextBox = '[data-testid="share-course-result-url"]';
-	static #dialogNextButton = '[data-testid="share-dialog-next"]';
+	static #shareDialogNextButton = '[data-testid="share-share-dialog-next"]';
 	static #selectDestinationModalConfirm =
 		'[data-testid="select-destination-modal-confirm"]';
 	static #shareCourseDialogMailButton = '[data-testid="shareMailAction"]';
 	static #shareCourseDialogCopyLinkButton = '[data-testid="copyAction"]';
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
-	static #shareCourseDialogCloseButton = '[data-testid="dialog-close"]';
+	static #shareCourseDialogCloseButton = '[data-testid="share-dialog-cancel"]';
 	static #shareDialogCancelButton = '[data-testid="share-dialog-cancel"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
 	static #checkboxInput = 'input[type="checkbox"]';
@@ -55,10 +50,6 @@ class ShareCourseModal {
 		cy.get(ShareCourseModal.#shareCourseDialogSchoolInternalCheckBox)
 			.find(ShareCourseModal.#checkboxInput)
 			.uncheck();
-	}
-
-	clickContinueButtonInDialog() {
-		cy.get(ShareCourseModal.#dialogNextButton).click();
 	}
 
 	seeCopyUrlInShareCourseResultDialog() {
@@ -159,7 +150,7 @@ class ShareCourseModal {
 
 	clickContinueButtonInShareDialog() {
 		cy.get(
-			`${ShareCourseModal.#dialogNextButton}, ${ShareCourseModal.#selectDestinationModalConfirm}`
+			`${ShareCourseModal.#shareDialogNextButton}, ${ShareCourseModal.#selectDestinationModalConfirm}`
 		).click();
 	}
 
