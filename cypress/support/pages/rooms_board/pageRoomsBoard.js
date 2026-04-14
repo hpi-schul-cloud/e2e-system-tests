@@ -51,8 +51,6 @@ class RoomBoards {
 	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
 	static #continueButtonInImportModal =
 		'[data-testid="select-destination-modal-confirm"]';
-	static #continueButtonInImportModal =
-		'[data-testid="select-destination-modal-confirm"]';
 	static #boardNameInput = '[data-testid="import-modal-name-input"]';
 	static #moveButtonOnMoveDialog = '[data-testid="move-card-dialog-confirm"]';
 	static #shareModalTitleOnMovingCard = '[data-testid="move-card-dialog-title"]';
@@ -745,7 +743,7 @@ class RoomBoards {
 
 	selectRoomForImport() {
 		cy.get(
-			`${RoomBoards.#dialogTitle}, ${RoomBoards.#globalDialogTitle}, ${RoomBoards.#selectDestinationModalTitle}`
+			`${RoomBoards.#dialogTitle}, ${RoomBoards.#selectDestinationModalTitle}`
 		).should("exist");
 		cy.get(RoomBoards.#roomSelectionBoxModal)
 			// navigate to the room name as a first option and press enter

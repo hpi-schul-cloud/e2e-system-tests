@@ -93,7 +93,6 @@ class Courses {
 	static #copyResultNotification = '[data-testid="copy-result-notifications"]';
 	static #dialogTitle = '[data-testid="copy-dialog-title"]';
 	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
-	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
 	static #copyDialogTitle = '[data-testid="copy-dialog-title"]';
 	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="copy-dialog-cancel"]';
@@ -1051,8 +1050,8 @@ class Courses {
 
 	clickOnDialogClose() {
 		cy.get(
-			`${`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}, ${Courses.#errorDialogCancel}`
-		}, ${Courses.#errorDialogClose}`).click();
+			`${`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}, ${Courses.#errorDialogCancel}`}, ${Courses.#errorDialogClose}`
+		).click();
 	}
 
 	seeCoursePage(courseName) {
