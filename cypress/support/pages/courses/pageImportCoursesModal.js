@@ -10,8 +10,9 @@ class ImportCourseModal {
 	static #importShareCourseDialogConfirmButton = '[data-testid="dialog-confirm"]';
 	static #importDialogConfirmButton = '[data-testid="import-modal-confirm"]';
 	static #importShareCourseDialogTitle = '[data-testid="dialog-title"]';
+	static #importCourseDialogTitle = '[data-testid="import-modal-title"]';
 	static #importShareCourseDialogTableHeader =
-		'[data-testid="import-options-table-header"]';
+		'[data-testid="import-options-personal-data-text"]';
 	static #importShareCourseDialogPersonalData =
 		'[data-testid="import-options-personal-data-text"]';
 	static #importShareCourseDialogFilesInfo =
@@ -27,7 +28,9 @@ class ImportCourseModal {
 
 	seeImportShareCourseToolsInfo() {
 		cy.get(ImportCourseModal.#importShareCourseToolsInfo).should("be.visible");
-		cy.get(ImportCourseModal.#importShareCourseDialogTitle).should("be.visible");
+		cy.get(
+			`${ImportCourseModal.#importShareCourseDialogTitle}, ${ImportCourseModal.#importCourseDialogTitle}`
+		).should("be.visible");
 		cy.get(ImportCourseModal.#importShareCourseDialogTableHeader).should(
 			"be.visible"
 		);

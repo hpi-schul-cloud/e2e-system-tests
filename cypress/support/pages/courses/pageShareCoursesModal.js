@@ -20,6 +20,7 @@ class ShareCourseModal {
 	static #shareCourseDialogCopyLinkButton = '[data-testid="copyAction"]';
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
 	static #shareCourseDialogCloseButton = '[data-testid="dialog-close"]';
+	static #shareDialogCancelButton = '[data-testid="share-dialog-cancel"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
 	static #checkboxInput = 'input[type="checkbox"]';
 
@@ -90,7 +91,9 @@ class ShareCourseModal {
 	}
 
 	clickCloseButtonInShareCourseResultDialog() {
-		cy.get(ShareCourseModal.#shareCourseDialogCloseButton).click();
+		cy.get(
+			`${ShareCourseModal.#shareCourseDialogCloseButton}, ${ShareCourseModal.#shareDialogCancelButton}`
+		).click();
 	}
 
 	seeQrCodeScannerInShareCourseResultDialog() {

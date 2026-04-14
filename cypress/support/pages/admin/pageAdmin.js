@@ -77,7 +77,7 @@ class Management {
 	static #confirmExternalToolDeletionButton = '[data-testid="delete-dialog-confirm"]';
 	static #cancelExternalToolDeletionButton = '[data-testid="delete-dialog-cancel"]';
 	static #externalToolDeletionDialogText =
-		'[data-testid="delete-dialog-content-header"]';
+		'[data-testid="delete-dialog-content-media-warning"]';
 	static #externalToolDeletionDialogTitle = '[data-testid="delete-dialog-title"]';
 	static #systemPanel = '[data-testid="systems-panel"]';
 	static #systemtable = '[data-testid="system-table"]';

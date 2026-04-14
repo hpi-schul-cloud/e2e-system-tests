@@ -32,9 +32,11 @@ class Rooms {
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
 	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-confirm"]';
+	static #dialogLeaveRoomOwner = '[data-testid="dialog-leave-room-owner"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
 	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
 	static #modalTitleDuplicateRoom = '[data-testid="dialog-title"]';
+	static #copyInfoDialogTitle = '[data-testid="copy-info-dialog-title"]';
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #alertMessage = '[data-testid="alert-text"]';
@@ -247,7 +249,9 @@ class Rooms {
 	}
 
 	seeDuplicationModalModalTitle() {
-		cy.get(Rooms.#modalTitleDuplicateRoom).should("exist");
+		cy.get(`${Rooms.#modalTitleDuplicateRoom}, ${Rooms.#copyInfoDialogTitle}`).should(
+			"exist"
+		);
 	}
 
 	clickCancelButtonOnDuplicationModal() {
@@ -541,7 +545,7 @@ class Rooms {
 
 	isRoomLeaveDialogBoxVisible() {
 		cy.get(
-			`${Rooms.#roomLeaveDialogBox}:visible, ${Rooms.#dialogTitleLeaveRoomOwner}:visible`
+			`${Rooms.#roomLeaveDialogBox}:visible, ${Rooms.#dialogTitleLeaveRoomOwner}:visible, ${Rooms.#dialogLeaveRoomOwner} :visible`
 		).should("exist");
 	}
 
