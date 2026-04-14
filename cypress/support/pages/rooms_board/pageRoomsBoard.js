@@ -43,7 +43,7 @@ class RoomBoards {
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
-	static #continueButton = '[data-testid="share-share-dialog-next"]';
+	static #continueButton = '[data-testid="share-dialog-next"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
@@ -56,7 +56,7 @@ class RoomBoards {
 	static #shareModalTitleOnMovingCard = '[data-testid="move-card-dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
 	static #shareInformationBox = '[data-testid="share-options-info-text"]';
-	static #cancelButtonInShareModal = '[data-testid="share-share-dialog-cancel"]';
+	static #cancelButtonInShareModal = '[data-testid="share-dialog-cancel"]';
 	static #sharedBoardResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareImportAlert = '[data-testid="alert-text"]';
 	static #editingSettingsAlert = '[class="alert-text"]';
@@ -1094,13 +1094,9 @@ class RoomBoards {
 	}
 
 	seeBtnDialogConfirmDelete() {
-		cy.get("body").then(($body) => {
-			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
-				cy.get(RoomBoards.#globalDialogConfirmButton).should("be.visible");
-			} else {
-				throw new Error("No confirm delete button found in dialog.");
-			}
-		});
+		cy.get(
+			`${RoomBoards.#globalDialogConfirmButton}, ${RoomBoards.#confirmDialogConfirm}`
+		).should("be.visible");
 	}
 
 	clickBtnDialogConfirmDelete() {

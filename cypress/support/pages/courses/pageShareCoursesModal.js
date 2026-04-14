@@ -8,7 +8,7 @@ class ShareCourseModal {
 	static #shareCourseDialogSchoolInternalCheckBox = '[data-testid="isSchoolInternal"]';
 	static #shareCourseDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
 	static #shareCourseResultUrlTextBox = '[data-testid="share-course-result-url"]';
-	static #shareDialogNextButton = '[data-testid="share-share-dialog-next"]';
+	static #shareDialogNextButton = '[data-testid="share-dialog-next"]';
 	static #selectDestinationModalConfirm =
 		'[data-testid="select-destination-modal-confirm"]';
 	static #shareCourseDialogMailButton = '[data-testid="shareMailAction"]';
