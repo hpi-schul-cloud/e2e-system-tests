@@ -451,6 +451,7 @@ class Rooms {
 			.should("be.visible")
 			.type("{downArrow}{enter}")
 			.type("{esc}");
+		cy.get(Rooms.#roomRoleDropdownOverlay).should("not.exist");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -626,8 +627,11 @@ class Rooms {
 	}
 
 	selectRoomRoleFromDropdownMenu(participantRole) {
-		cy.get(Rooms.#addParticipantRole).type("{downArrow}");
-		cy.get(Rooms.#roomRoleDropdownOverlay).contains(participantRole).click();
+		cy.get(Rooms.#addParticipantRole).click();
+		cy.get(Rooms.#roomRoleDropdownOverlay)
+			.contains(participantRole)
+			.should("be.visible")
+			.click();
 		cy.get(Rooms.#roomRoleDropdownOverlay).should("not.exist");
 		cy.get(Rooms.#addParticipantRole).should("contain", participantRole);
 	}
