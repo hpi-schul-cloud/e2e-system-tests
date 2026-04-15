@@ -437,7 +437,7 @@ class Rooms {
 	}
 
 	seeSchoolOfParticipant(participantSchool) {
-		cy.get(Rooms.#addParticipantSchool).contains(participantSchool);
+		cy.get(Rooms.#addParticipantSchool).contains(participantSchool).should("exist");
 	}
 
 	fillParticipantFormSchool(participantSchool) {
@@ -449,7 +449,8 @@ class Rooms {
 	selectParticipantSchool() {
 		cy.get(Rooms.#addParticipantSchool)
 			.should("be.visible")
-			.type("{downArrow}{enter}");
+			.type("{downArrow}{enter}")
+			.type("{esc}");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -625,8 +626,9 @@ class Rooms {
 	}
 
 	selectRoomRoleFromDropdownMenu(participantRole) {
-		cy.get(Rooms.#addParticipantRole).type("downArrow");
+		cy.get(Rooms.#addParticipantRole).type("{downArrow}");
 		cy.get(Rooms.#roomRoleDropdownOverlay).contains(participantRole).click();
+		cy.get(Rooms.#roomRoleDropdownOverlay).should("not.exist");
 		cy.get(Rooms.#addParticipantRole).should("contain", participantRole);
 	}
 
