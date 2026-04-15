@@ -17,8 +17,7 @@ class Help {
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
 	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
 	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection-contact"]';
-	static #advancedTrainingsNavigationButtonLink = 'a[title="Fortbildungen"]';
-	static #advancedTrainingsNavigationButton =
+	static #advancedTrainingsNavigationButtonLink =
 		'[data-testid="sidebar-helpsection-trainings"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
