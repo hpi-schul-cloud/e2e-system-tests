@@ -17,7 +17,7 @@ class Help {
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
 	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
 	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection-contact"]';
-	static #advancedTrainingsNavigationButtonLink =
+	static #advancedTrainingsNavigationButton =
 		'[data-testid="sidebar-helpsection-trainings"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
@@ -46,7 +46,7 @@ class Help {
 	}
 
 	checkLinkToAdvancedTrainings(linkUrl) {
-		cy.get(Help.#advancedTrainingsNavigationButtonLink).should(($a) => {
+		cy.get(Help.#advancedTrainingsNavigationButton).should(($a) => {
 			expect($a.attr("href"), "href").to.equal(linkUrl);
 			expect($a.attr("target"), "target").to.equal("_blank");
 		});
@@ -71,42 +71,18 @@ class Help {
 	}
 
 	enterKeywordInHelpArticlesSearchbar(searchTerm) {
-		cy.intercept("GET", "**/rest/searchv3/**").as("search");
+		cy.get(Help.#searchBar)
+			.should("be.visible")
+			.type(searchTerm, { delay: 200 })
+			.should("have.value", searchTerm);
 
-		cy.get(Help.#searchBar).clear().type(`${searchTerm} `);
-
-		cy.wait("@search");
-
-		cy.get("@search.all").then((calls) => {
-			calls.forEach((call, index) => {
-				const query = new URL(call.request.url).searchParams.get("queryString");
-				const status = call.response ? call.response.statusCode : "NO_RESPONSE";
-				const total = call.response?.body?.total ?? "N/A";
-
-				cy.task("log", `Call ${index + 1}: query="${query}", total=${total}`);
-			});
-		});
-		// cy.intercept("GET", "**/rest/searchv3/**", (req) => {
-		// 	req.continue((res) => {
-		// 		console.log("Search:", req.url, "Total:", res.body.total);
-		// 	});
-		// });
-		// // cy.intercept("GET", "**/rest/searchv3/**", (req) => {
-		// // 	const url = new URL(req.url);
-
-		// // 	if (url.searchParams.get("queryString") === searchTerm) {
-		// // 		req.alias = "help_search_api";
-		// // 	}
-		// // });
-		// cy.get(Help.#searchBar).should("be.visible").clear().type(searchTerm);
-		// cy.wait("@help_search_api").its("response.body.total").should("be.greaterThan", 0);
 		cy.get(Help.#searchResult)
 			.should("be.visible")
 			.invoke("text")
 			.then((text) => {
 				const normalized = text.replace(/\s+/g, " ").trim();
 				expect(normalized).to.not.include("Keine Ergebnisse gefunden");
-				expect(normalized).to.include("QR-Code Funktion");
+				expect(normalized).to.include(searchTerm);
 			});
 	}
 
