@@ -9,10 +9,13 @@ class ShareCourseModal {
 	static #shareCourseDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
 	static #shareCourseResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareDialogNextButton = '[data-testid="share-dialog-next"]';
+	static #selectDestinationModalConfirm =
+		'[data-testid="select-destination-modal-confirm"]';
 	static #shareCourseDialogMailButton = '[data-testid="shareMailAction"]';
 	static #shareCourseDialogCopyLinkButton = '[data-testid="copyAction"]';
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
 	static #shareCourseDialogCloseButton = '[data-testid="share-dialog-cancel"]';
+	static #shareDialogCancelButton = '[data-testid="share-dialog-cancel"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
 	static #checkboxInput = 'input[type="checkbox"]';
 
@@ -79,7 +82,9 @@ class ShareCourseModal {
 	}
 
 	clickCloseButtonInShareCourseResultDialog() {
-		cy.get(ShareCourseModal.#shareCourseDialogCloseButton).click();
+		cy.get(
+			`${ShareCourseModal.#shareCourseDialogCloseButton}, ${ShareCourseModal.#shareDialogCancelButton}`
+		).click();
 	}
 
 	seeQrCodeScannerInShareCourseResultDialog() {
@@ -144,7 +149,9 @@ class ShareCourseModal {
 	}
 
 	clickContinueButtonInShareDialog() {
-		cy.get(ShareCourseModal.#shareDialogNextButton).click();
+		cy.get(
+			`${ShareCourseModal.#shareDialogNextButton}, ${ShareCourseModal.#selectDestinationModalConfirm}`
+		).click();
 	}
 
 	checkExpiryDateCheckBoxState(expectedState) {
