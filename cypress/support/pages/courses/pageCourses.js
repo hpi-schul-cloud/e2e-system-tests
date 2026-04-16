@@ -179,6 +179,8 @@ class Courses {
 	static #topicCourseDialog = '[data-testid="share-dialog"]';
 	static #selectDestinationModal = '[data-testid="select-destination-modal"]';
 	static #dialogFileInput = '[data-testid="dialog-file-input"]';
+	static #ccImportModal = '[data-testid="common-cartridge-import-modal"]';
+	static #ccImportCancelButton = '[data-testid="common-cartridge-import-modal-cancel"]';
 	static #confirmButton = '[data-testid="common-cartridge-import-modal-confirm"]';
 	static #loadingDialog = '[data-testid="dialog-text"]';
 	static #inputOfTypeFile = 'input[type="file"]';
@@ -1479,6 +1481,56 @@ class Courses {
 			.find(Courses.#courseAppointmentDeleteButton)
 			.last()
 			.click();
+	}
+
+	seeMaxFilesizeInfoMessage() {
+		cy.get(Courses.#ccImportModal).get(".text-body-2").should("be.visible");
+	}
+
+	seeImportButtonDisabled() {
+		cy.get(Courses.#confirmButton).should("be.disabled");
+	}
+
+	seeImportButtonEnabled() {
+		cy.get(Courses.#confirmButton).should("not.be.disabled");
+	}
+
+	selectOversizedFileForImport() {
+		const fileName = "oversized-file.imscc";
+		const fileContent = "dummy content";
+
+		cy.get(Courses.#dialogFileInput).within(() => {
+			cy.get(Courses.#inputOfTypeFile).then(($input) => {
+				const blob = new Blob([fileContent], {
+					type: "application/octet-stream",
+				});
+				const file = new File([blob], fileName, {
+					type: "application/octet-stream",
+				});
+
+				const oversizedFileSizeBytes = 1.5 * 1024 ** 3;
+
+				Object.defineProperty(file, "size", { value: oversizedFileSizeBytes });
+
+				const dataTransfer = new DataTransfer();
+				dataTransfer.items.add(file);
+				$input[0].files = dataTransfer.files;
+
+				cy.wrap($input).trigger("change", { force: true });
+			});
+		});
+	}
+
+	seeFilesizeExceededError() {
+		cy.get(Courses.#ccImportModal).find(".v-messages__message").should("be.visible");
+	}
+
+	clearSelectedFileInImportDialog() {
+		cy.get(Courses.#ccImportModal).find(".v-field__clearable").click();
+	}
+
+	cancelSelectedFileInImportDialog() {
+		cy.get(Courses.#ccImportCancelButton).click();
 	}
 }
 export default Courses;

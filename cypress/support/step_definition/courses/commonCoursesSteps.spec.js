@@ -523,6 +523,34 @@ When("I wait for the loading bar to close", () => {
 	courses.waitForImportFinish();
 });
 
+Then("I see the maximum filesize info message in the import dialog", () => {
+	courses.seeMaxFilesizeInfoMessage();
+});
+
+Then("I see the import button is disabled", () => {
+	courses.seeImportButtonDisabled();
+});
+
+Then("I see the import button is enabled", () => {
+	courses.seeImportButtonEnabled();
+});
+
+When("I select a file that exceeds the filesize limit", () => {
+	courses.selectOversizedFileForImport();
+});
+
+Then("I see the filesize exceeded error message", () => {
+	courses.seeFilesizeExceededError();
+});
+
+When("I clear the selected file in the import dialog", () => {
+	courses.clearSelectedFileInImportDialog();
+});
+
+Then("I click cancel in the import dialog", () => {
+	courses.cancelSelectedFileInImportDialog();
+});
+
 When("I click on the button Add new appointment in course", () => {
 	courses.clickAddNewAppointmentButtonInCourse();
 });
