@@ -64,6 +64,8 @@ class Rooms {
 	static #noRoomsMessage = '[data-testid="empty-state"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
 	static #importRoomsModalConfirm = '[data-testid="import-modal-confirm"]';
+	static #dropdownListbox = '[role="listbox"]';
+	static #dropdownOptions = `${Rooms.#dropdownListbox} [role="option"]`;
 
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
 		// ensure the room is currently at the starting position
@@ -176,9 +178,7 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`)
-					.should("be.visible")
-					.click();
+				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -396,9 +396,7 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -447,11 +445,10 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool)
-			.should("be.visible")
-			.type("{downArrow}{enter}")
-			.type("{esc}");
-		cy.get(Rooms.#roomRoleDropdownOverlay).should("not.exist");
+		cy.get(Rooms.#addParticipantSchool).should("be.visible").click();
+		cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
+		cy.get(Rooms.#dropdownOptions).should("have.length.greaterThan", 0).first().click();
+		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -492,9 +489,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -556,9 +551,7 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
