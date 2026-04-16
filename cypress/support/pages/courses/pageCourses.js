@@ -1496,14 +1496,11 @@ class Courses {
 	}
 
 	selectOversizedFileForImport() {
-		// Create a file that exceeds the 1GB limit (we'll create a small file and mock its size)
-		// For e2e testing, we'll use a file with a mocked large size property
 		const fileName = "oversized-file.imscc";
 		const fileContent = "dummy content";
 
 		cy.get(Courses.#dialogFileInput).within(() => {
 			cy.get(Courses.#inputOfTypeFile).then(($input) => {
-				// Create a file with large size by using Object.defineProperty
 				const blob = new Blob([fileContent], {
 					type: "application/octet-stream",
 				});
@@ -1511,8 +1508,9 @@ class Courses {
 					type: "application/octet-stream",
 				});
 
-				// Override the size property to simulate a large file (1.5 GB)
-				Object.defineProperty(file, "size", { value: 1610612736 });
+				const oversizedFileSizeBytes = 1.5 * 1024 ** 3;
+
+				Object.defineProperty(file, "size", { value: oversizedFileSizeBytes });
 
 				const dataTransfer = new DataTransfer();
 				dataTransfer.items.add(file);
@@ -1524,11 +1522,11 @@ class Courses {
 	}
 
 	seeFilesizeExceededError() {
-		cy.get(Courses.#ccImportModal).get(".v-messages__message").should("be.visible");
+		cy.get(Courses.#ccImportModal).find(".v-messages__message").should("be.visible");
 	}
 
 	clearSelectedFileInImportDialog() {
-		cy.get(Courses.#ccImportModal).get(".v-field__clearable").click();
+		cy.get(Courses.#ccImportModal).find(".v-field__clearable").click();
 	}
 
 	cancelSelectedFileInImportDialog() {
