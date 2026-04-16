@@ -179,6 +179,8 @@ class Courses {
 	static #topicCourseDialog = '[data-testid="share-dialog"]';
 	static #selectDestinationModal = '[data-testid="select-destination-modal"]';
 	static #dialogFileInput = '[data-testid="dialog-file-input"]';
+	static #ccImportModal = '[data-testid="common-cartridge-import-modal"]';
+	static #ccImportCancelButton = '[data-testid="common-cartridge-import-modal-cancel"]';
 	static #confirmButton = '[data-testid="common-cartridge-import-modal-confirm"]';
 	static #loadingDialog = '[data-testid="dialog-text"]';
 	static #inputOfTypeFile = 'input[type="file"]';
@@ -1479,6 +1481,58 @@ class Courses {
 			.find(Courses.#courseAppointmentDeleteButton)
 			.last()
 			.click();
+	}
+
+	seeMaxFilesizeInfoMessage() {
+		cy.get(Courses.#ccImportModal).get(".text-body-2").should("be.visible");
+	}
+
+	seeImportButtonDisabled() {
+		cy.get(Courses.#confirmButton).should("be.disabled");
+	}
+
+	seeImportButtonEnabled() {
+		cy.get(Courses.#confirmButton).should("not.be.disabled");
+	}
+
+	selectOversizedFileForImport() {
+		// Create a file that exceeds the 1GB limit (we'll create a small file and mock its size)
+		// For e2e testing, we'll use a file with a mocked large size property
+		const fileName = "oversized-file.imscc";
+		const fileContent = "dummy content";
+
+		cy.get(Courses.#dialogFileInput).within(() => {
+			cy.get(Courses.#inputOfTypeFile).then(($input) => {
+				// Create a file with large size by using Object.defineProperty
+				const blob = new Blob([fileContent], {
+					type: "application/octet-stream",
+				});
+				const file = new File([blob], fileName, {
+					type: "application/octet-stream",
+				});
+
+				// Override the size property to simulate a large file (1.5 GB)
+				Object.defineProperty(file, "size", { value: 1610612736 });
+
+				const dataTransfer = new DataTransfer();
+				dataTransfer.items.add(file);
+				$input[0].files = dataTransfer.files;
+
+				cy.wrap($input).trigger("change", { force: true });
+			});
+		});
+	}
+
+	seeFilesizeExceededError() {
+		cy.get(Courses.#ccImportModal).get(".v-messages__message").should("be.visible");
+	}
+
+	clearSelectedFileInImportDialog() {
+		cy.get(Courses.#ccImportModal).get(".v-field__clearable").click();
+	}
+
+	cancelSelectedFileInImportDialog() {
+		cy.get(Courses.#ccImportCancelButton).click();
 	}
 }
 export default Courses;
