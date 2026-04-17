@@ -10,12 +10,13 @@ class Rooms {
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
+	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
 	static #addParticipantName = '[data-testid="add-participant-name"]';
 	static #btnSubmit = '[data-testid="room-form-save-btn"]';
-	static #btnAddParticipant = '[data-testid="add-participant-save-btn"]';
+	static #btnAddParticipant = '[data-testid="dialog-add-participants-confirm"]';
 	static #createRoom = '[data-testid="fab-add-room"] .v-btn';
 	static #addParticipants = '[data-testid="fab-add-members"] .v-btn';
 	static #participantTable = '[data-testid="participants-table"]';
@@ -30,10 +31,12 @@ class Rooms {
 		'[data-testid="dialog-change-role-participants"]';
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
-	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-title"]';
+	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-confirm"]';
+	static #dialogLeaveRoomOwner = '[data-testid="dialog-leave-room-owner"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
 	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
-	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
+	static #modalTitleDuplicateRoom = '[data-testid="dialog-title"]';
+	static #copyInfoDialogTitle = '[data-testid="copy-info-dialog-title"]';
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
 	static #alertMessage = '[data-testid="alert-text"]';
@@ -48,9 +51,9 @@ class Rooms {
 		'[data-testid="input-invite-participants-requires-confirmation"]';
 	static #inputInviteMembersValidForExternalPersons =
 		'[data-testid="input-invite-participants-valid-for-external-persons"]';
-	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
+	static #modalCreateInvitationLinkSave = '[data-testid="dialog-confirm"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose = '[data-testid="dialog-cancel"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -67,7 +70,7 @@ class Rooms {
 		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
 	static #threeDotMenuOptions = '[role="menuitem"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
-	static #dialogConfirm = '[data-testid="dialog-confirm"]';
+	static #importRoomsModalConfirm = '[data-testid="import-modal-confirm"]';
 	static #invitationLinkExpirationCheckbox =
 		'[data-testid="input-invite-participants-link-expires"]';
 
@@ -182,7 +185,9 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
+				cy.get(`[data-testid="room-open-button-${index}"]`)
+					.should("be.visible")
+					.click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -240,7 +245,7 @@ class Rooms {
 
 	clickOnImportConfirmButtonInModal() {
 		cy.get(
-			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#dialogConfirm}:visible`
+			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#importRoomsModalConfirm}:visible, ${Rooms.#importModalConfirm}:visible`
 		).click();
 	}
 
@@ -253,7 +258,9 @@ class Rooms {
 	}
 
 	seeDuplicationModalModalTitle() {
-		cy.get(Rooms.#modalTitleDuplicateRoom).should("exist");
+		cy.get(`${Rooms.#modalTitleDuplicateRoom}, ${Rooms.#copyInfoDialogTitle}`).should(
+			"exist"
+		);
 	}
 
 	clickCancelButtonOnDuplicationModal() {
@@ -402,13 +409,18 @@ class Rooms {
 				cy.get(`#${menuId}`)
 					.should("be.visible")
 					.within(() => {
-						cy.get(Rooms.#threeDotMenuOptions).should("have.length.at.least", 1);
+						cy.get(Rooms.#threeDotMenuOptions).should(
+							"have.length.at.least",
+							1
+						);
 					});
 			});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -457,7 +469,9 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantSchool)
+			.should("be.visible")
+			.type("{downArrow}{enter}");
 	}
 
 	seeRoleOfParticipant(participantRole) {
@@ -498,7 +512,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -551,7 +567,7 @@ class Rooms {
 
 	isRoomLeaveDialogBoxVisible() {
 		cy.get(
-			`${Rooms.#roomLeaveDialogBox}:visible, ${Rooms.#dialogTitleLeaveRoomOwner}:visible`
+			`${Rooms.#roomLeaveDialogBox}:visible, ${Rooms.#dialogTitleLeaveRoomOwner}:visible, ${Rooms.#dialogLeaveRoomOwner} :visible`
 		).should("exist");
 	}
 
@@ -560,7 +576,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {

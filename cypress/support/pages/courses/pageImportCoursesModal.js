@@ -7,10 +7,12 @@ class ImportCourseModal {
 	static #importShareCourseNameInputDiv = '[data-testid="import-modal-name-input"]';
 	static #importShareCourseNameInputField =
 		'div[data-testid="import-modal-name-input"] input[class="v-field__input"]';
-	static #importShareCourseDialogConfirmButton = '[data-testid="dialog-confirm"]';
-	static #importShareCourseDialogTitle = '[data-testid="dialog-title"]';
+	static #importShareCourseDialogConfirmButton = '[data-testid="import-modal-confirm"]';
+	static #importDialogConfirmButton = '[data-testid="import-modal-confirm"]';
+	static #importShareCourseDialogTitle = '[data-testid="import-modal-title"]';
+	static #importCourseDialogTitle = '[data-testid="import-modal-title"]';
 	static #importShareCourseDialogTableHeader =
-		'[data-testid="import-options-table-header"]';
+		'[data-testid="import-options-personal-data-text"]';
 	static #importShareCourseDialogPersonalData =
 		'[data-testid="import-options-personal-data-text"]';
 	static #importShareCourseDialogFilesInfo =
@@ -26,7 +28,9 @@ class ImportCourseModal {
 
 	seeImportShareCourseToolsInfo() {
 		cy.get(ImportCourseModal.#importShareCourseToolsInfo).should("be.visible");
-		cy.get(ImportCourseModal.#importShareCourseDialogTitle).should("be.visible");
+		cy.get(
+			`${ImportCourseModal.#importShareCourseDialogTitle}, ${ImportCourseModal.#importCourseDialogTitle}`
+		).should("be.visible");
 		cy.get(ImportCourseModal.#importShareCourseDialogTableHeader).should(
 			"be.visible"
 		);
@@ -46,7 +50,9 @@ class ImportCourseModal {
 	}
 
 	clickOnConfirmButtonInImportShareCourseDialog() {
-		cy.get(ImportCourseModal.#importShareCourseDialogConfirmButton).click();
+		cy.get(
+			`${ImportCourseModal.#importShareCourseDialogConfirmButton}, ${ImportCourseModal.#importDialogConfirmButton}`
+		).click();
 	}
 
 	visitSavedShareCourseUrl() {
