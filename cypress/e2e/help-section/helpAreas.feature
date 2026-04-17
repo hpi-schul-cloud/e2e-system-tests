@@ -43,7 +43,6 @@ Feature: Help Section - To use the help areas in dBildungscloud
 
         @school_api_test
         @staging_test
-        @only
         Examples:
             | teacher      | namespace | search_term      | search_result    | contact_option | contact_subject                     | contact_email    | link_trainings                                      | feedback_message                |
             | teacher1_brb | brb       | QR-Code Funktion | QR-Code Funktion | Aufgaben       | Dies ist ein Test! Bitte ignorieren | test@example.com | https://ecampus.meinlibra.de/course/view.php?id=303 | Feedback erfolgreich versendet! |
