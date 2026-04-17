@@ -377,10 +377,6 @@ Then("I see the option {string} is selected", (option) => {
 	roomBoards.verifyOptionIsSelectedInEditingSettingsModal(option);
 });
 
-When("I open the shared URL for board", () => {
-	roomBoards.openSharedBoardURL();
-});
-
 Then("I see the Dialog to import", () => {
 	roomBoards.verifyImportDialog();
 });
@@ -454,10 +450,6 @@ Then("I see the {string} option has {string} label", (option, label) => {
 
 Then("I see the option Scan QR Code", () => {
 	roomBoards.verifyScanQRCodeOption();
-});
-
-Then("I copy the board URL", () => {
-	roomBoards.copyBoardURLInModal();
 });
 
 When("I click on the option Edit in the three dot menu on the card", () => {
