@@ -9,7 +9,7 @@ This document provides comprehensive instructions for setting up the project env
 1. **Prerequisites**
    <br>
 
-   - Install [Node v20](https://nodejs.org/dist/)
+   - Install [Node v24](https://nodejs.org/dist/)
    - Install [Git](https://git-scm.com/downloads)
    - Install browsers (recommended Google Chrome) [Chrome Browser](https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop)
    - Install IDE of your choice e.g. [VS code](https://code.visualstudio.com/download)

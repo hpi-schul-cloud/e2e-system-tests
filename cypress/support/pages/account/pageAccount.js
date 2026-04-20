@@ -1,8 +1,8 @@
 "use strict";
 
 class Account {
-	static #initialsButton = '[data-testid="initials"]';
-	static #settingsButton = '[data-testid="settings"]';
+	static #initialsButton = '[data-testid="user-menu-btn"]';
+	static #settingsButton = '[data-testid="account-link"]';
 	static #email = '[data-testid="user_email"]';
 	static #emailReadOnly = '[data-testid="user_email_readonly"]';
 	static #inputBoxCurrentPasswordOnUserSettings =
