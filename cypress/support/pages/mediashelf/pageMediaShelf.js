@@ -14,8 +14,8 @@ class MediaShelf {
 	static #collapseLineButton = '[data-testid="collapse-line-btn"]';
 	static #threeDotMenuInMediaLine = '[data-testid="line-menu-btn"]';
 	static #editLineTitleButton = '[data-testid="action-update-line-title"]';
-	static #colorPickerButton = '[data-testid="color-picker-btn"]';
-	static #colorPicker = '[data-testid="line-color-picker"]';
+	static #colorPickerButton = '[data-testid="color-picker-menu"]';
+	static #colorPicker = '[data-testid="color-picker"]';
 	static #deleteLineButton = '[data-testid="action-delete-line"]';
 	static #availableLine = '[data-testid="available-line"]';
 	static #mediaElementThumbnail = '[data-testid="media-element-thumbnail"]';
@@ -258,7 +258,7 @@ class MediaShelf {
 
 	selectLineColor() {
 		cy.get(MediaShelf.#colorPicker).within(() => {
-			cy.get('[style="background: rgb(255, 204, 188);"]').click();
+			cy.get('[style="background: rgb(176, 190, 197);"]').click();
 		});
 	}
 
