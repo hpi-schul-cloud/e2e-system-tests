@@ -740,8 +740,7 @@ class Tasks {
 	}
 
 	seeRedTickForNotSubmittedTask() {
-		//cy.get(Tasks.#taskSection).find('i[class*="danger"]').should("be.visible");
-		cy.get(Tasks.#taskSection).find('i[class*="danger"]').should("exist");
+		cy.get(Tasks.#taskSection).find('i[class*="danger"]').should("be.visible");
 	}
 
 	seeGreenTickForSubmittedTask() {
