@@ -475,6 +475,7 @@ Given(
 		tasks.setTaskText("Dies ist deine erste Aufgabe");
 		tasks.executeFileUpload("example_jpg.jpg");
 		tasks.setVisibilityStartDate("today", "0000");
+		// set due date to tomorrow with time 01:00 because only 24 hours before due date, a red tick is displayed when user didn't submit yet. This is needed in groupSubmissionOfTask.feature to verify the red tick for not submitted task.
 		tasks.setVisibilityDueDate("tomorrow", "0100");
 		tasks.clickOnDraftCheckbox();
 		tasks.clickOnSubmit();
