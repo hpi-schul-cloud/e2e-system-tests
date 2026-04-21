@@ -475,7 +475,7 @@ Given(
 		tasks.setTaskText("Dies ist deine erste Aufgabe");
 		tasks.executeFileUpload("example_jpg.jpg");
 		tasks.setVisibilityStartDate("today", "0000");
-		tasks.setVisibilityDueDate("tomorrow", "1000");
+		tasks.setVisibilityDueDate("tomorrow", "0100");
 		tasks.clickOnDraftCheckbox();
 		tasks.clickOnSubmit();
 	}
