@@ -1,3 +1,5 @@
+# ---------- creating a new team feature is no longer possible in GUI, therefore This feature is not execuable anymore ----------
+
 @stable_test
 @regression_test
 @schedule_run

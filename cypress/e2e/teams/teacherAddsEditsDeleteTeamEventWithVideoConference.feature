@@ -1,6 +1,5 @@
 @stable_test
 @regression_test
-@schedule_run
 @group-E
 @prio_0_staging
 Feature: Teams - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
@@ -22,13 +21,15 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
         Then I enable the video conference
         Then I click on button Save admin settings
 
-        # pre-condition: teacher creates a team and enables the video conference option in team edit
+        # pre-condition: teacher enables the video conference option in the existing team
         Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to teams overview
-        When I click on button Add Team on the teams overview page
-        Then I see new team creation page
-        When I enter in the title '<team_title>'
-        When I click on button Create Team on the team creation page
+        # ---------- creating a new team feature is no longer possible in GUI ----------
+        #When I go to teams overview
+        #When I click on button Add Team on the teams overview page
+        #Then I see new team creation page
+        #When I enter in the title '<team_title>'
+        # When I click on button Create Team on the team creation page
+        --------------------------------------------------------------------------------
         When I go to teams overview
         When I go to a team '<team_title>'
         When I click on team settings
@@ -117,20 +118,16 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
         Then I see team edit page
         Then I see video conference option is disabled
 
+        # ---------- creating a new team feature is no longer possible in GUI, so please do not delete the existing teams ----------
         # post-condition: deleting the newly created team by teacher
-        When I go to teams overview
-        When I go to a team '<team_title>'
-        When I click on team settings
-        When I click on delete option
-        Then I see dialog box and click on delete button to confirm the deletion
-        Then I do not see the team '<event_title_edited>'
+        #When I go to teams overview
+        # When I go to a team '<team_title>'
+        #When I click on team settings
+        #When I click on delete option
+        #Then I see dialog box and click on delete button to confirm the deletion
+        #Then I do not see the team '<event_title_edited>'
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | student_last_name | student_fullname | team_title                           | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_description_edited |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | Kraft, Herbert    | Herbert Kraft    | CypressAut team for video conference | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa            |
-
-        @school_api_test
-        Examples:
-            | admin      | teacher      | student      | namespace | student_last_name  | student_fullname  | team_title                           | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_description_edited |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | student_1, cypress | cypress student_1 | CypressAut team for video conference | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa            |
+            | admin      | teacher      | student      | namespace | student_last_name | student_fullname | team_title             | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_description_edited |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | Kraft, Herbert    | Herbert Kraft    | QA_01 - do not delete! | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa            |
