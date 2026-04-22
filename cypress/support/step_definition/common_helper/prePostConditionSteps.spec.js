@@ -1,4 +1,5 @@
 import { Given } from "@badeball/cypress-cucumber-preprocessor";
+import Account from "../../pages/account/pageAccount";
 import Management from "../../pages/admin/pageAdmin";
 import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 import Classes from "../../pages/classes_management/pageClasses";
@@ -13,8 +14,10 @@ import Tasks from "../../pages/tasks/pageTasks";
 import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
+const account = new Account();
 const commonCartridge = new CommonCartridge();
 const toolsConfiguration = new ToolConfiguration();
+
 const roomBoards = new RoomBoards();
 const rooms = new Rooms();
 const courses = new Courses();
@@ -26,6 +29,35 @@ const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
 const teams = new Teams();
+
+Given("the admin has added {string} {string} users", (numberOfUsers, role) => {
+	const num = parseInt(numberOfUsers, 10);
+
+	for (let i = 1; i <= num; i++) {
+		const uniqueFirstName = `cypress${i}`;
+		const uniqueLastName = `student_admin_test${i}`;
+		const uniqueEmail = `original_student_admin_users${i}@cypress-mail.de`;
+
+		management.openAdministrationInMenu();
+		management.navigateToUserAdministration(role);
+		management.clickOnFAB(role);
+		management.clickOnAddUserInFAB(role);
+		management.fillUserCreationForm(uniqueFirstName, uniqueLastName, uniqueEmail);
+		management.clickOnAddButton(role);
+	}
+
+	// after adding users, navigate back to overview
+	management.openAdministrationInMenu();
+	management.navigateToUserAdministration(role);
+});
+
+Given("the multi-column board has a column with a card titled {string}", (cardTitle) => {
+	board.clickOnAddNewColumnButton();
+	board.clickOutsideTheColumnToSaveTheColumn();
+	board.clickPlusIconToAddCardInColumn();
+	roomBoards.enterCardTitleInBoard(cardTitle);
+	board.clickOutsideTheCardToSaveTheCard();
+});
 
 Given("the exported file is an archive and extracted", function () {
 	commonCartridge.fileIsArchive();
@@ -111,14 +143,13 @@ Given("the card contains image {string} element", (imageFile) => {
 });
 
 Given(
-	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} learning material {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
+	"topic {string} with contents exists in the course {string} with text element {string} geoGebra {string} and id {string} etherpad {string} and description {string} task {string} and link {string} for {string}",
 	(
 		topicName,
 		courseName,
 		textElementTitle,
 		geoGebraTitle,
 		geoGebraId,
-		learningMaterialTitle,
 		etherpadTitle,
 		etherpadDescription,
 		taskTitle,
@@ -142,15 +173,10 @@ Given(
 		topics.enterTitleForElementGeoGebra(geoGebraTitle);
 		topics.enterIDforElementGeoGebra(geoGebraId);
 
-		// learning material element
-		topics.clickOnAddLearningMaterialToTopic();
-		topics.enterTitleForElementLearningMaterial(learningMaterialTitle);
-		topics.seeAddMaterialBtnInContent();
-
 		// etherpad element
 		topics.clickOnAddEtherpadToTopic();
-		topics.enterTitleForElementEtherpad(etherpadTitle, "3");
-		topics.enterDescriptionForElementEtherpad(etherpadDescription, "3");
+		topics.enterTitleForElementEtherpad(etherpadTitle, "2");
+		topics.enterDescriptionForElementEtherpad(etherpadDescription, "2");
 
 		// task element
 		topics.clickOnAddTaskToTopic();
@@ -178,6 +204,8 @@ Given(
 		board.clickOnKebabMenuAction(kebabMenuAction);
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.seeSchoolOfParticipant(studentSchool);
 		rooms.selectRoomRoleFromDropdownMenu(studentRole);
@@ -197,6 +225,16 @@ Given(
 		management.clickGeneralSettingsPanel();
 		management.toggleStudentVisibilityForTeachersByAdmin(visibility);
 		management.clickOnAdminSettingsSave();
+	}
+);
+
+Given(
+	"activate visibility in central directory for teacher is {string}",
+	(visibility) => {
+		account.navigateToAccountSettingsSection();
+		account.clickOnCheckboxDirectoryVisibility();
+		account.toggleCentralDirectoryVisibilityForTeacher(visibility);
+		account.clickOnSaveVisibilitySettingsButton();
 	}
 );
 
@@ -268,9 +306,9 @@ Given("admin enables video conference for the school in the school settings page
 	management.clickOnAdminSettingsSave();
 });
 
-Given("the room named {string} is deleted", (roomName) => {
+Given("the room {string} at position {string} is deleted", (roomName, position) => {
 	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(roomName);
+	rooms.navigateToRoom(roomName, position);
 	rooms.seeRoomDetailPage(roomName);
 	rooms.openThreeDotMenuForRoom();
 	rooms.clickOnKebabMenuAction("delete");
@@ -390,6 +428,19 @@ Given(
 		courses.addClassToCourse(className);
 		courses.selectStudentsInCourseCreatePage(studentName);
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+	}
+);
+
+Given(
+	"group with name {string} in the course {string} with students {string}",
+	(groupName, courseName, studentNames) => {
+		courses.navigateToCoursesOverview();
+		courses.navigateToCoursePage(courseName);
+		courses.navigateToGroupsTab();
+		courses.clickOnAddGroup();
+		courses.typeNameOfTheCourseGroup(groupName);
+		courses.selectGroupMember(studentNames);
+		courses.clickOnCreateStudentGroupButton();
 	}
 );
 
@@ -514,7 +565,7 @@ Given("the card has a folder named {string}", (folderTitle) => {
 Given("the folder {string} contains files {string}", (folderTitle, uploadFiles) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
 	roomBoards.clickFolderElementWithTitle(folderTitle);
-	globalActions.clickElementWithDataTestId("fab-add-files");
+	globalActions.clickElementWithDataTestId("fab-add-files", "button");
 	roomBoards.uploadMultipleFilesInFolder(uploadFiles);
 	roomBoards.seeMultipleFilesInFolderList(uploadFiles);
 });
@@ -562,7 +613,7 @@ Given("task with name {string} in course {string} is deleted", (taskName, course
 	courses.navigateToCoursePage(courseName);
 	courses.openThreeDotMenuForContent(taskName);
 	courses.clickDeleteInDotMenu();
-	courses.clickDeleteInConfirmationWindow();
+	courses.clickOnConfirmInDialogWindow();
 });
 
 Given(
@@ -659,13 +710,15 @@ Given(
 );
 
 Given(
-	"participant with participant name {string} is added to the room {string}",
-	(participantName, roomName) => {
+	"participant {string} is added to the room {string} at position {string}",
+	(participantName, roomName, position) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.selectRoomRoleFromDropdownMenu("Lernbegleitend");
 		rooms.fillParticipantFormName(participantName);
 		rooms.selectParticipantName();
@@ -674,14 +727,16 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and default read permission",
-	(participantName, roomName, role) => {
+	"{string} added in the room {string} at position {string} with role {string} and default read permission",
+	(participantName, roomName, position, role) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.selectRoomRoleFromDropdownMenu(role);
 		rooms.seeRoleOfParticipant(role);
@@ -694,14 +749,16 @@ Given(
 );
 
 Given(
-	"{string} added in the room named {string} with role {string} and {string} to {string} permission",
-	(participantName, roomName, role, action, permission) => {
+	"{string} added in the room {string} at position {string} with role {string} and {string} to {string} permission",
+	(participantName, roomName, position, role, action, permission) => {
 		rooms.navigateToRoomsOverview();
-		rooms.navigateToRoom(roomName);
+		rooms.navigateToRoom(roomName, position);
 		rooms.openThreeDotMenuForRoom();
 		board.clickOnKebabMenuAction("room-members");
 		rooms.seeRoomEditParticipantsPage();
 		rooms.clickOnAddParticipantsFAB();
+		rooms.seeSpeedDialOptions("select-from-directory, add-external-person");
+		rooms.clickOnSpeedDialOption("select-from-directory");
 		rooms.seeModalForAddParticipants();
 		rooms.selectRoomRoleFromDropdownMenu(role);
 		rooms.seeRoleOfParticipant(role);
@@ -727,12 +784,15 @@ Given(
 	}
 );
 
-Given("the card file is deleted from room {string}", (roomName) => {
-	rooms.navigateToRoomsOverview();
-	rooms.navigateToRoom(roomName);
-	roomBoards.clickMultiColumnBoardInRoomDetailPage();
-	roomBoards.clickOnThreeDotInCard();
-	roomBoards.clickDeleteOptionInThreeDotMenu();
-	roomBoards.clickDeleteButtonInConfirmationDialog();
-	roomBoards.shouldNotSeeFileElement();
-});
+Given(
+	"the card file is deleted from room {string} at position {string}",
+	(roomName, position) => {
+		rooms.navigateToRoomsOverview();
+		rooms.navigateToRoom(roomName, position);
+		roomBoards.clickMultiColumnBoardInRoomDetailPage();
+		roomBoards.clickOnThreeDotInCard();
+		roomBoards.clickDeleteOptionInThreeDotMenu();
+		roomBoards.clickDeleteButtonInConfirmationDialog();
+		roomBoards.shouldNotSeeFileElement();
+	}
+);

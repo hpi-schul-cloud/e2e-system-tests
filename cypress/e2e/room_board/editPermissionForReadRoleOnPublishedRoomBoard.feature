@@ -3,7 +3,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@prio_0_dev
+@prio_0_staging
 @group-B
 Feature: Room Board - Edit permission for published room boards
 
@@ -18,13 +18,13 @@ Feature: Room Board - Edit permission for published room boards
         Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given a room named '<room_name>' with a multi-column board named '<board_title>' exists and published
-        Given '<student_1_name>' added in the room named '<room_name>' with role '<role_name>' and default read permission
-        Given '<student_2_name>' added in the room named '<room_name>' with role '<role_name>' and 'change permission' to 'admin' permission
+        Given '<student_1_name>' added in the room '<room_name>' at position '0' with role '<role_name>' and default read permission
+        Given '<student_2_name>' added in the room '<room_name>' at position '0' with role '<role_name>' and 'change permission' to 'admin' permission
 
         # administrator student grant the read permission of the room board user to edit permission of the room board
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -44,7 +44,7 @@ Feature: Room Board - Edit permission for published room boards
         # viewer student checks that he has edit permission with respect to the room board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Editable for all
@@ -53,7 +53,7 @@ Feature: Room Board - Edit permission for published room boards
         # administrator student revoke the edit permission of the room board user to read permission of the room board
         Given I am logged in as a '<student_2>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the three dot menu in room board title
@@ -71,7 +71,7 @@ Feature: Room Board - Edit permission for published room boards
         # viewer student checks that he did not have edit permission with respect to the room board
         Given I am logged in as a '<student_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I do not see the chip Editable for all
@@ -79,7 +79,7 @@ Feature: Room Board - Edit permission for published room boards
 
         # post-condition: teacher deletes room and admin disables student visibility for teachers
         Given I am logged in as a '<teacher>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
         Given I am logged in as a '<admin>' at '<namespace>'
         Given student visibility for teachers in school management is 'disabled'
 
@@ -89,8 +89,8 @@ Feature: Room Board - Edit permission for published room boards
             | admin      | teacher      | student_1    | student_2    | namespace | room_name              | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role | editable_by_read_role |
             | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | student_1      | student_2      | Lernend   | noneditable               | editable              |
 
-#        @staging_test
-#        Examples:
-#            | admin      | teacher      | student_1    | student_2    | namespace | room_name              | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role  | editable_by_read_role  |
-#            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | Kraft          | Strobl         | Lernend   | noneditable                | editable               |
+        @staging_test
+        Examples:
+            | admin      | teacher      | student_1    | student_2    | namespace | room_name              | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role | editable_by_read_role |
+            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | Kraft          | Strobl         | Lernend   | noneditable               | editable              |
 

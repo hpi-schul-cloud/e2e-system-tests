@@ -45,6 +45,8 @@ Feature: Rooms - Invite Student from another school via teacher from another sch
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory, add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_external_school>' in dropdown School
         When I select the first school from the dropdown
@@ -69,12 +71,14 @@ Feature: Rooms - Invite Student from another school via teacher from another sch
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory, add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<participant_external_school>' in dropdown School
         When I select '<role_name_student>' in dropdown Role
@@ -92,7 +96,7 @@ Feature: Rooms - Invite Student from another school via teacher from another sch
         # teacher is able to delete external student in the origin school (Felix Mendelssohn-Gymnasium)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -110,7 +114,7 @@ Feature: Rooms - Invite Student from another school via teacher from another sch
         # post-condition: teacher deletes the room in the origin school (Felix Mendelssohn-Gymnasium)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

@@ -5,6 +5,41 @@ import ToolConfiguration from "../../pages/admin/pageToolConfiguration";
 const toolConfiguration = new ToolConfiguration();
 const management = new Management();
 
+When("I select the checkbox {string} button for {string}", (role, email) => {
+	management.selectUserCheckboxByEmail(role, email);
+});
+
+When("I click on the button Action", () => {
+	management.clickActionButton();
+});
+
+When("I click on the Option Delete", () => {
+	management.clickDeleteOption();
+});
+
+Then("I see the dialog for deleting user", () => {
+	management.verifyDeleteUserDialogVisible();
+});
+
+Then(
+	"I see the user name {string} {string} in the deletion dialog",
+	(firstNameEdited, lastNameEdited) => {
+		management.verifyUserNameInDeleteDialog(firstNameEdited, lastNameEdited);
+	}
+);
+
+When("I click on the button Delete to confirm the deletion", () => {
+	management.confirmUserDeletion();
+});
+
+Then("I see the success alert", () => {
+	management.verifySuccessAlert();
+});
+
+Then("I see the user management overview page", () => {
+	management.verifyUserManagementOverviewPage();
+});
+
 Then("I see the context external tool configuration page", () => {
 	toolConfiguration.seeContextExternalToolConfiguratorPage();
 });
@@ -401,7 +436,7 @@ When("I click delete user button to delete user with last name {string}", (surna
 	management.deleteUser(surname);
 });
 
-When("I click on delete button in pop up", () => {
+When("I click on the button Delete in the pop up", () => {
 	management.clickUserDeleteButtonInModal();
 });
 
@@ -596,8 +631,8 @@ When("I go to legacy course administration", () => {
 	management.navigateToLegacyCourseAdministration();
 });
 
-When("I click on FAB", () => {
-	management.clickOnFAB();
+When("I click on FAB to add {string}", (role) => {
+	management.clickOnFAB(role);
 });
 
 When("I click on Add User in opened FAB for {string}", (role) => {

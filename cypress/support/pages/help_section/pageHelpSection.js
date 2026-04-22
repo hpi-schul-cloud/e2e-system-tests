@@ -17,13 +17,13 @@ class Help {
 	static #feedbackSendConfirmation = '[data-testid="notification"]';
 	static #helpOverviewNavigationButton = '[data-testid="sidebar-helpsection"]';
 	static #helpContactNavigationButton = '[data-testid="sidebar-helpsection-contact"]';
-	static #advancedTrainingsNavigationButtonLink = 'a[title="Fortbildungen"]';
-	static #advancedTrainingsNavigationButton = '[data-testid="sidebar-helpsection-trainings"]';
+	static #advancedTrainingsNavigationButton =
+		'[data-testid="sidebar-helpsection-trainings"]';
 	static #selectProblemDropdown = "#problemAreaBug_chosen .chosen-search-input";
 	static #selectRequestDropdown = "#problemAreaWish_chosen .chosen-search-input";
 	static #selectDropdownOptions = ".chosen-drop .chosen-results";
 	static #contactTypeWishButton = '[id="wish"]';
-	static #contactFormWish = '.wish_form';
+	static #contactFormWish = ".wish_form";
 	static #requestFormRole = '[name="role"]';
 	static #requestFormDesire = '[name="desire"]';
 	static #requestFormBenefit = '[name="benefit"]';
@@ -46,7 +46,7 @@ class Help {
 	}
 
 	checkLinkToAdvancedTrainings(linkUrl) {
-		cy.get(Help.#advancedTrainingsNavigationButtonLink).should(($a) => {
+		cy.get(Help.#advancedTrainingsNavigationButton).should(($a) => {
 			expect($a.attr("href"), "href").to.equal(linkUrl);
 			expect($a.attr("target"), "target").to.equal("_blank");
 		});
@@ -70,11 +70,20 @@ class Help {
 		cy.get(Help.#helpContactform).contains("Kontaktformular");
 	}
 
-	enterKeywordInHelpArticlesSearchbar(search_term) {
+	enterKeywordInHelpArticlesSearchbar(searchTerm) {
 		cy.get(Help.#searchBar)
 			.should("be.visible")
-			.type(search_term, { delay: 50 })
-			.should("have.value", search_term);
+			.type(searchTerm, { delay: 200 })
+			.should("have.value", searchTerm);
+
+		cy.get(Help.#searchResult)
+			.should("be.visible")
+			.invoke("text")
+			.then((text) => {
+				const normalized = text.replace(/\s+/g, " ").trim();
+				expect(normalized).to.not.include("Keine Ergebnisse gefunden");
+				expect(normalized).to.include(searchTerm);
+			});
 	}
 
 	fillOutContactForm(problem_option, subject, email) {
@@ -101,13 +110,13 @@ class Help {
 	}
 
 	selectContactType(contactType) {
-		if(contactType == 'wish'){
+		if (contactType == "wish") {
 			cy.get(Help.#contactTypeWishButton).next().click();
 		}
 	}
 
 	seeContactFormType(formType) {
-		if(formType == 'wish'){
+		if (formType == "wish") {
 			cy.get(Help.#contactFormWish).should("be.visible");
 		}
 	}

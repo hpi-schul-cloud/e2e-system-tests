@@ -16,7 +16,8 @@ class News {
 	static #newsCreateButton = '[data-testid="btn_news_submit"]';
 	static #newsTitle = '[id="page-title"]';
 	static #newsDescriptionVisible = '[class="ckcontent"]';
-	static #newsName = '[data-testid="title_of_an_element"]';
+	static #newsNameOnNewsOverview = '[data-testid="title_of_an_element"]';
+	static #newsNameOnDashboard = '[data-testid="news-title"]';
 	static #deleteNews = '[data-testid="btn-delete-news"]';
 	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
@@ -25,7 +26,7 @@ class News {
 
 	doNotSeeNewsWhenNewsNotYetPublished(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
-			if ($span.find(News.#newsName)) {
+			if ($span.find(News.#newsNameOnNewsOverview)) {
 				cy.contains(newsTitle).should("not.be.visible");
 			} else {
 				cy.contains(
@@ -43,7 +44,7 @@ class News {
 
 	doNotSeeNews(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
-			if ($span.find(News.#newsName)) {
+			if ($span.find(News.#newsNameOnNewsOverview)) {
 				cy.contains(newsTitle).should("not.exist");
 			} else {
 				cy.contains(
@@ -66,7 +67,14 @@ class News {
 	}
 
 	openNewsDetailPage(newsName) {
-		cy.get(News.#newsName).contains(newsName).click();
+		const overviewSel = News.#newsNameOnNewsOverview;
+		const dashSel = News.#newsNameOnDashboard;
+
+		if (Cypress.$(overviewSel).length) {
+			cy.contains(overviewSel, newsName).click();
+		} else {
+			cy.contains(dashSel, newsName).click();
+		}
 	}
 
 	seeCreatedNews(newsTitle, newsDesc) {
@@ -125,39 +133,65 @@ class News {
 	}
 
 	setNewsStartDate(newsStartDateDifference, newsStartTime) {
-		if (newsStartDateDifference != "notselected") {
-			const today = new Date();
-			let startDate = new Date(today);
-			let startTime;
-			let startTimeText;
-			let daysFromNow = parseInt(newsStartDateDifference);
-			startDate.setDate(startDate.getDate() + daysFromNow);
+		// skip if date should not be changed
+		if (newsStartDateDifference === "notselected") return;
 
-			let startDateText = startDate.toLocaleString(News.#enDateFormat, {
-				year: "numeric",
-				day: "2-digit",
-				month: "2-digit",
-			});
-			cy.get(News.#newsDateInput).eq(1).type(`${startDateText}`);
+		const now = new Date();
 
-			if (newsStartTime === "currentTime") {
-				startTime = new Date(today);
-				startTimeText = startTime.toLocaleString(News.#deDateFormat, {
-					hour: "2-digit",
-					minute: "2-digit",
-				});
-			} else if (newsStartTime === "+2minutes") {
-				startTime = new Date(today);
-				startTime.setMinutes(startTime.getMinutes() + 2);
-				startTimeText = startTime.toLocaleString(News.#deDateFormat, {
-					hour: "2-digit",
-					minute: "2-digit",
-				});
-			} else {
-				startTimeText = newsStartTime;
-			}
-			cy.get(News.#newsTimeInput).eq(1).type(`${startTimeText}`);
+		// ----- date (DD.MM.YYYY) -----
+		const daysFromNow = parseInt(newsStartDateDifference, 10) || 0;
+		const startDate = new Date(now);
+		startDate.setDate(startDate.getDate() + daysFromNow);
+
+		const day = String(startDate.getDate()).padStart(2, "0");
+		const month = String(startDate.getMonth() + 1).padStart(2, "0");
+		const year = startDate.getFullYear();
+		const startDateText = `${day}.${month}.${year}`;
+
+		// set date via helper (vuetify inputs are controlled and don’t always react to .type())
+		this.setVuetifyInputValue(News.#newsDateInput, startDateText);
+
+		// ----- time -----
+		let time = new Date(now);
+
+		if (newsStartTime === "+2minutes") {
+			time.setMinutes(time.getMinutes() + 2);
 		}
+
+		time.setSeconds(0, 0);
+
+		const hh = String(time.getHours()).padStart(2, "0");
+		const mm = String(time.getMinutes()).padStart(2, "0");
+
+		const startTimeText =
+			newsStartTime === "currentTime" || newsStartTime === "+2minutes"
+				? `${hh}:${mm}`
+				: newsStartTime;
+
+		this.setVuetifyInputValue(News.#newsTimeInput, startTimeText);
+	}
+
+	setVuetifyInputValue(selector, value) {
+		// vuetify uses Vue-controlled inputs.
+		// direct DOM typing may not update the Vue model immediately, so the native setter is used and fire input/change events.
+
+		cy.get(selector)
+			.find("input")
+			.then(($input) => {
+				const input = $input[0];
+				const setter = Object.getOwnPropertyDescriptor(
+					window.HTMLInputElement.prototype,
+					"value"
+				).set;
+
+				setter.call(input, value);
+				input.dispatchEvent(new Event("input", { bubbles: true }));
+				input.dispatchEvent(new Event("change", { bubbles: true }));
+				input.dispatchEvent(new Event("blur", { bubbles: true }));
+			});
+
+		// ensure the UI reflects the value before continuing
+		cy.get(selector).find("input").should("have.value", value);
 	}
 
 	seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo) {

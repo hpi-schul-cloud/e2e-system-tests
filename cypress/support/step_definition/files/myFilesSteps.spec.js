@@ -3,20 +3,8 @@ import Files from "../../pages/files/pageFiles";
 
 const files = new Files();
 
-When("I click create a new file button", () => {
-	files.clickOnCreateNewFile();
-});
-
-Then("I select filetype document", () => {
-	files.selectFiletypeDocument();
-});
-
 When("I type in {string}", (fileName) => {
 	files.typeFilename(fileName);
-});
-
-Then("I click create file button", () => {
-	files.clickOnCreateFile();
 });
 
 When("I click file with {string}", (fileName) => {
@@ -35,20 +23,16 @@ Then("I enter new file name {string}", (fileName) => {
 	files.typeNewFilename(fileName);
 });
 
-Then("I click save name button", () => {
+Then("I click on button Save name", () => {
 	files.clickOnSaveFilename();
 });
 
-Then("I click delete file button of file {string}", (fileName) => {
+Then("I click on button Delete file {string}", (fileName) => {
 	files.clickOnDeleteFile(fileName);
 });
 
-Then("I click confirm delete file button on modal", () => {
+Then("I click on button Confirm deletion of file on the modal", () => {
 	files.clickOnConfirmDeleteFileOnModal();
-});
-
-Then("LibreOffice opens", () => {
-	files.libreOfficeOpens();
 });
 
 Then("I can see file with name {string}", (fileName) => {

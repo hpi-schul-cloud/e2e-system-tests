@@ -289,7 +289,7 @@ When("I click on Cancel in confirmation window", () => {
 });
 
 When("I click on Delete in confirmation window", () => {
-	courses.clickDeleteInConfirmationWindow();
+	courses.clickOnConfirmInDialogWindow();
 });
 
 When("I click on task {string}", (taskTitle) => {
@@ -521,4 +521,40 @@ Then("I see the loading bar", () => {
 
 When("I wait for the loading bar to close", () => {
 	courses.waitForImportFinish();
+});
+
+When("I click on the button Add new appointment in course", () => {
+	courses.clickAddNewAppointmentButtonInCourse();
+});
+
+Then("I see the section Course appointment", () => {
+	courses.seeModalToAddNewAppointmentInCourse();
+});
+
+Then("I see the weekday {string} in the course appointment", (weekday) => {
+	courses.seeWeekday(weekday);
+});
+
+When("I enter the time {string} in the course appointment", (timeStart) => {
+	courses.enterTimeInCourseAppointment(timeStart);
+});
+
+When("I enter the duration {string} in the course appointment", (duration) => {
+	courses.enterDurationInCourseAppointment(duration);
+});
+
+When("I enter the classroom {string} in the course appointment", (roomName) => {
+	courses.enterRoomNameInCourseAppointment(roomName);
+});
+
+When("I click on the option weekday", () => {
+	courses.optionWeekday();
+});
+
+When("I select the weekday {string} in the course appointment", (weekday) => {
+	courses.selectSpecificWeekday(weekday);
+});
+
+When("I click on the button Delete appointment in the course", () => {
+	courses.deleteAppointmentCourse();
 });

@@ -22,6 +22,8 @@ Feature: Room Board - To share a board card link
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory, add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<school_name>' in dropdown School
         When I select '<role_name>' in dropdown Role
@@ -34,7 +36,7 @@ Feature: Room Board - To share a board card link
 
         # first teacher adds a board with a card to the room
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button add content
         Then I see the dialog box to select the Board type
         When I click on button to add multi-column board
@@ -61,7 +63,7 @@ Feature: Room Board - To share a board card link
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @staging_test
         Examples:

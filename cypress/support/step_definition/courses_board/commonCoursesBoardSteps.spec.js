@@ -127,45 +127,49 @@ Then("I see that I am on a column board", () => {
 	board.seeMultiColumnBoard();
 });
 
-Then("I see a column with title {string}", (title) => {
-	board.seeColumnWithTitle(title);
+Then("I see a column with title {string} at position {string}", (title, position) => {
+	board.seeColumnWithTitle(title, position);
 });
 
 Then("I see a card with title {string}", (title) => {
 	board.seeCardWithTitle(title);
 });
 
-Then("I see a rich text element with pattern {string}", (pattern) => {
-	board.seeRichTextWithPattern(pattern);
-});
+Then(
+	"I see a rich text element with pattern {string} at position {string} {string}",
+	(patternText, row, column) => {
+		board.seeRichTextWithPatternAtPosition(patternText, row, column);
+	}
+);
 
 Then("I see a web link with title {string}", (title) => {
 	board.seeWeblinkWithTitle(title);
 });
 
-Then("I see a file element with title {string}", (title) => {
-	board.seeFileElementWithTitle(title);
+Then("I see a file element with title {string}", (fileTitle) => {
+	board.seeFileElementWithTitle(fileTitle);
 });
 
-Then("I see dialog box for create document", () => {
-	board.seeDialogBoxForCreateDocument();
+Then("I should see a fixed warning that CC can not export file folders", () => {
+	board.seeFixedCcWarning();
 });
 
-When(
-	"I choose document type {string} from the dialog box create document",
-	(documentType) => {
-		board.chooseDocumentTypeInCreateDocumentDialog(documentType);
-	}
-);
-
-When("I enter filename {string} in the dialog box create document", (fileName) => {
-	board.enterFileNameInCreateDocumentDialog(fileName);
+Then("I should see a warning that CC can not export file folders", () => {
+	board.seeCcWarning();
 });
 
-When("I enter caption {string} in the dialog box create document", (caption) => {
-	board.enterCaptionInCreateDocumentDialog(caption);
+When("I select the latest CC radio button", () => {
+	board.selectLatestCc();
 });
 
-When("I click on button Create in dialog create document", () => {
-	board.clickCreateButtonInCreateDocumentDialog();
+Then("I should not see a warning that CC can not export file folders", () => {
+	board.notSeeCcWarning();
+});
+
+When("I click on the back button", () => {
+	board.clickDialogButton('back');
+});
+
+When("I click on the cancel export button", () => {
+	board.clickDialogButton('cancel');
 });

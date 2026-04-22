@@ -1,6 +1,6 @@
 class RoomsAdmin {
 	static #roomsAdministrationLink = '[data-testid="sidebar-management"]';
-	static #submenuRoomAdminLink = '[data-testid="sidebar-management-rooms"]';
+	static #submenuRoomAdminLink = '[data-testid="sidebar-room-management"]';
 	static #roomOwnerAlertIcon = '[data-testid="room-admin-table-owner-not-existing"]';
 	static #roomsTableName = '[data-testid="room-admin-table"]';
 	static #threeDotMenuForRoom = '[data-testid^="kebab-menu-room-"]';
@@ -8,8 +8,8 @@ class RoomsAdmin {
 	static #threeDotMenuManageRoomMembers = '[data-testid^="menu-manage-room-"]';
 	static #adminRoomTitle = '[data-testid="admin-room-detail-title"]';
 	static #adminParticipantTable = '[data-testid="room-admin-members-table"]';
-	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
-	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
+	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
+	static #userDeletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 
 	navigateToRoomsAdministrationPageViaSubmenu() {
 		cy.get(RoomsAdmin.#roomsAdministrationLink).should("be.visible");
@@ -78,6 +78,10 @@ class RoomsAdmin {
 		cy.get(RoomsAdmin.#adminParticipantTable).contains(participantName);
 	}
 
+	doNotSeeParticipantInAdminList(participantName) {
+		cy.get(RoomsAdmin.#adminParticipantTable).should("not.contain", participantName);
+	}
+
 	doNotSeeRoomInRoomsTable(roomName) {
 		cy.get(RoomsAdmin.#roomsTableName).should("not.contain", roomName);
 	}
@@ -104,21 +108,13 @@ class RoomsAdmin {
 		cy.get(RoomsAdmin.#deletionConfirmationModalTitle).should("exist");
 	}
 
-	// The following code finds and clicks the dialog with the highest z-index value.
-	// - First, it collects all the dialog elements.
-	// - It then sorts the dialogs in descending order based on their z-index, so the dialog on top (with the highest z-index) comes first.
-	// - If there is only one dialog, it will automatically be selected as the highest.
-	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
-	clickDeleteInConfirmationModal() {
-		cy.get(RoomsAdmin.#deletionConfirmationModalTitle).then((dialogs) => {
-			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
-				return (
-					parseInt(Cypress.$(dialogB).css("z-index")) -
-					parseInt(Cypress.$(dialogA).css("z-index"))
-				);
-			})[0];
-			cy.wrap(highestZIndexDialog).find(RoomsAdmin.#confirmButtonOnModal).click();
-		});
+	seeConfirmationModalForUserDeletionInAdminPage() {
+		cy.get(RoomsAdmin.#userDeletionConfirmationModalTitle).should("exist");
+	}
+
+	clickOnRemoveInOptions(user) {
+		cy.get('[aria-label="' + user + ' aus Raum entfernen"]').should("be.visible");
+		cy.get('[aria-label="' + user + ' aus Raum entfernen"]').click();
 	}
 }
 

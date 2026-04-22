@@ -3,6 +3,7 @@
 @schedule_run
 @group-E
 @prio_0_dev
+# @prio_0_staging
 Feature: Course Board - To export a course as common cartridge
 
     As a teacher, I want to export a course as a common cartridge file
@@ -16,24 +17,24 @@ Feature: Course Board - To export a course as common cartridge
         When I go to courses overview
         When I click on FAB to add or import courses
         When I click on the import course button
-        When I select the fixture file 'cc/CC_Test_Kurs.imscc'
+        When I select the fixture file 'cc/<course>.imscc'
         When I start the import
-        Then I see the loading bar
         When I wait for the loading bar to close
-        Then I see the course 'CC_Test_Kurs' on the course overview page
+        When I wait '<import_wait_time>' seconds and reload
+        Then I see the course '<course>' on the course overview page
 
         # export the course
         When I go to courses overview
-        When I go to course 'CC_Test_Kurs'
-        Then I see course page 'CC_Test_Kurs'
+        When I go to course '<course>'
+        Then I see course page '<course>'
         When I click on export course button
         When I click on dialog next button
         When I click on dialog export button
-        Then I have a file exported with pattern 'CC_Test_Kurs-.+\.imscc' and rename it
+        Then I have a file exported with pattern '<course>-.+\.imscc' and rename it
 
         # Further validation on file
         Given the exported file is an archive and extracted
-        Then a manifest exists in the common cartridge file with version '1.1.0' and title 'CC_Test_Kurs'
+        Then a manifest exists in the common cartridge file with version '1.1.0' and title '<course>'
 
         # Topic without task
         Then an organization exists on level 0 with title 'Thema Ohne Aufgabe' as 't1'
@@ -95,13 +96,15 @@ Feature: Course Board - To export a course as common cartridge
 
         # post-condition: File is deleted & closed
         Given extracted content and files are deleted
+        Given course with name '<course>' is deleted
 
         # @staging_test
         # Examples:
-        #     | teacher      | namespace |
-        #     | teacher1_dbc | dbc       |
+        #     | teacher      | namespace | course       | import_wait_time |
+        #     | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
 
         @school_api_test
         Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+            | teacher      | namespace | course       | import_wait_time |
+            | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
+

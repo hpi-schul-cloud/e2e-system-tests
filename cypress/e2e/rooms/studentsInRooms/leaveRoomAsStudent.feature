@@ -30,6 +30,8 @@ Feature: Rooms - Leave room as a Student
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory, add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<school_name>' in dropdown School
         When I select '<role_name>' in dropdown Role
@@ -45,7 +47,7 @@ Feature: Rooms - Leave room as a Student
         Then I see '<room_name>' on room overview page
 
         # student can leave the room
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
@@ -59,7 +61,7 @@ Feature: Rooms - Leave room as a Student
         # post-condition: teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'

@@ -15,8 +15,8 @@ class Board {
 	static #threeDotMenuInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #threeDotMenuOnDeletedElement = '[data-testid="deleted-element-menu-btn"]';
 	static #deleteOptionThreeDot = '[data-testid="kebab-menu-action-delete"]';
-	static #confirmButtonInModal = '[data-testid="dialog-confirm"]';
-	static #deleteDialogBox = '[data-testid="dialog-title"]';
+	static #confirmButtonInModal = '[data-testid="confirm-dialog-confirm"]';
+	static #deleteDialogBox = '[data-testid="confirm-dialog-title"]';
 	static #drawingElement = '[data-testid="drawing-element"]';
 	static #newColumnBoardFABInCourseDetail = '[data-testid="fab_button_add_board"]';
 	static #threeDotInCourseBoardTitle = '[data-testid="board-menu-icon"]';
@@ -47,20 +47,16 @@ class Board {
 	static #boardCardTitle = '[data-testid="card-title"]';
 	static #createBoardLinkElement = '[data-testid="board-link-element-create"]';
 	static #contentElementTitle = '[data-testid="content-element-title-slot"]';
-	static #contentElementTitleSlot = '[data-testid="content-element-title-slot"]';
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
-
-	static #columnTitlePattern = '[data-testid^="column-title-"]';
 	static #cardTitle = '[data-testid="card-title"]';
-	static #richTextDisplayPattern = '[data-testid^="rich-text-display-"]';
 	static #boardLinkElement = '[data-testid="board-link-element"]';
-	static #boardFileElement = '[data-testid="board-file-element"]';
-	static #dialogCreateDocument = '[data-testid="collabora-element-dialog"]';
-	static #dialogCreateDocumentTitle = '[data-testid="dialog-title"]';
-	static #dialogSelectDocumentType = '[data-testid="collabora-element-form-type"]';
-	static #dialogFileName = '[data-testid="collabora-element-form-filename"]';
-	static #dialogCaptionName = '[data-testid="collabora-element-form-caption"]';
-	static #dialogCreateButton = '[data-testid="dialog-confirm"]';
+	static #fixedExportFolderInfo = '[data-testid="cartridge-export-folder-info"]';
+	static #exportInfoPoint3 = '[data-testid="export-options-info-point3"]';
+	static #exportInfoPoint4Sub4 = '[data-testid="export-options-info-point4-sub4"]';
+	static #versionRadioGroup = '[data-testid="version-radio-group"]';
+	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
+	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
+	static #cartridgeExportContentInfo = '[data-testid="cartridge-export-content-info"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -167,6 +163,10 @@ class Board {
 
 	clickOnWhiteboardElement() {
 		cy.get(Board.#drawingElement).invoke("removeAttr", "target").click();
+	}
+
+	seeWhiteboardElement() {
+		cy.get(Board.#drawingElement).should("exist");
 	}
 
 	clickOnOpenTldrawDrawingElement() {
@@ -397,7 +397,7 @@ class Board {
 			.should("be.visible")
 			.should("not.be.disabled")
 			.within(() => {
-				cy.contains(Board.#contentElementTitleSlot, toolName)
+				cy.contains(Board.#contentElementTitle, toolName)
 					.click()
 					.then(() => {
 						cy.wait("@courses_api");
@@ -563,12 +563,20 @@ class Board {
 		cy.url().should("include", "/boards");
 	}
 
-	seeColumnWithTitle(columnName) {
-		cy.get(Board.#columnTitlePattern).each((element) => {
-			if (element.text() === columnName) {
+	seeColumnWithTitle(columnName, position) {
+		const selector = `[data-testid="column-title-${position}"]`;
+
+		cy.get(selector).then((element) => {
+			// compare exact text (same logic as your original)
+			if (element.text().trim() === columnName) {
 				cy.wrap(element).as("columnWithTitle");
+			} else {
+				throw new Error(
+					`Expected column title "${columnName}" at position ${position}, but got "${element.text().trim()}".`
+				);
 			}
 		});
+
 		cy.get("@columnWithTitle").should("be.visible");
 	}
 
@@ -581,12 +589,21 @@ class Board {
 		cy.get("@cardWithTitle").should("be.visible");
 	}
 
-	seeRichTextWithPattern(pattern) {
-		cy.get(Board.#richTextDisplayPattern).each((element) => {
-			if (element.text().match(pattern)?.length >= 0) {
+	seeRichTextWithPatternAtPosition(patternText, row, column) {
+		const selector = `[data-testid="rich-text-display-${row}-${column}"]`;
+
+		cy.get(selector).then((element) => {
+			const text = element.text().trim();
+
+			if (text.includes(patternText)) {
 				cy.wrap(element).as("richTextWithPattern");
+			} else {
+				throw new Error(
+					`Expected text "${patternText}" in ${selector}, but got: "${text}"`
+				);
 			}
 		});
+
 		cy.get("@richTextWithPattern").should("be.visible");
 	}
 
@@ -595,34 +612,32 @@ class Board {
 	}
 
 	seeFileElementWithTitle(fileTitle) {
-		cy.get(Board.#boardFileElement).contains(fileTitle);
+		cy.get(Board.#contentElementTitle).contains(fileTitle);
 	}
 
-	seeDialogBoxForCreateDocument() {
-		cy.get(Board.#dialogCreateDocument).should("be.visible");
-		cy.get(Board.#dialogCreateDocumentTitle)
-			.should("be.visible")
-			.should("contain.text", "Dokument erstellen");
+	seeFixedCcWarning() {
+		cy.get(Board.#fixedExportFolderInfo).should("be.visible");
 	}
 
-	chooseDocumentTypeInCreateDocumentDialog(documentType) {
-		cy.get(Board.#dialogSelectDocumentType).click();
-		cy.contains(documentType).click();
-		cy.get(Board.#dialogSelectDocumentType).should("contain.text", documentType);
+	seeCcWarning() {
+		cy.get(Board.#cartridgeExportContentInfo).should("be.visible");
+		cy.get(Board.#exportInfoPoint4Sub4).should("be.visible");
 	}
 
-	enterFileNameInCreateDocumentDialog(fileName) {
-		cy.get(Board.#dialogFileName).find("input").type(fileName);
+	notSeeCcWarning() {
+		cy.get(Board.#exportInfoPoint3).should("not.exist");
+		cy.get(Board.#exportInfoPoint4Sub4).should("not.exist");
 	}
 
-	enterCaptionInCreateDocumentDialog(captionName) {
-		cy.get(Board.#dialogCaptionName)
-			.first() // there are two inputs
-			.type(captionName);
+	selectLatestCc() {
+		cy.get(Board.#versionRadioGroup)
+			.get('input[type="radio"][value="1.3.0"]')
+			.check()
+			.should("be.checked");
 	}
 
-	clickCreateButtonInCreateDocumentDialog() {
-		cy.get(Board.#dialogCreateButton).click();
+	clickDialogButton(buttonName) {
+		cy.get('[data-testid="dialog-' + buttonName + '-btn"]').click();
 	}
 }
 export default Board;

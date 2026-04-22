@@ -3,17 +3,38 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
-Then("I delete all rooms whose names start with {string}", (roomName) => {
-	rooms.deleteAllRoomsWithName(roomName);
+When(
+	"I drag and drop the room one {string} from position {string} to position {string}",
+	(roomName, fromPos, toPos) => {
+		rooms.dragRoomFromPositionToPosition(roomName, fromPos, toPos);
+	}
+);
+
+Then("I do not see error alrert", () => {
+	rooms.verifyNoErrorAlert();
 });
 
-Then("I see the icon Lock in the room {string}", (roomName) => {
-	rooms.seeLockIconInRoom(roomName);
+Then("I see the room {string} at position {string}", (roomName, position) => {
+	rooms.verifyRoomAtPosition(roomName, position);
 });
 
-When("I click on the locked room {string}", (roomName) => {
-	rooms.clickLockedRoom(roomName);
+Then("I delete all rooms whose names start with {string}", (roomNamePrefix) => {
+	rooms.deleteAllRoomsWithName(roomNamePrefix);
 });
+
+Then(
+	"I see the icon Lock in the room {string} at position {string}",
+	(roomName, position) => {
+		rooms.seeLockIconInRoom(roomName, position);
+	}
+);
+
+When(
+	"I click on button Open to access the locked room {string} at position {string}",
+	(roomName, position) => {
+		rooms.clickLockedRoom(roomName, position);
+	}
+);
 
 Then("I see a message that the room is not accessible", () => {
 	rooms.seeRoomNotAccessibleMessage();
@@ -95,10 +116,6 @@ When("I click on FAB to create new room", () => {
 	rooms.clickOnCreateRoomFAB();
 });
 
-When("I click on FAB to add participants", () => {
-	rooms.clickOnAddParticipantsFAB();
-});
-
 Then("I see room creation page", () => {
 	rooms.showRoomCreationPage();
 });
@@ -123,9 +140,12 @@ Then("I see the page Edit participants of room {string}", () => {
 	rooms.seeRoomEditParticipantsPage();
 });
 
-When("I go to room {string}", (roomName) => {
-	rooms.navigateToRoom(roomName);
-});
+When(
+	"I click on button Open to go to room {string} at position {string}",
+	(roomName, position) => {
+		rooms.navigateToRoom(roomName, position);
+	}
+);
 
 When("I click on three dot menu in room page", () => {
 	rooms.openThreeDotMenuForRoom();
@@ -137,10 +157,6 @@ Then("I see confirmation modal for deleting the room", () => {
 
 Then("I see modal Add participants", () => {
 	rooms.seeModalForAddParticipants();
-});
-
-When("I click on delete button in confirmation modal", () => {
-	rooms.clickDeleteInConfirmationModal();
 });
 
 Then("I see {string} on room overview page", (roomName) => {
@@ -165,6 +181,10 @@ When("I select the first school from the dropdown", () => {
 
 Then("I see role {string} in dropdown Role", (participantRole) => {
 	rooms.seeRoleOfParticipant(participantRole);
+});
+
+Then("I do not see role {string} in dropdown Role", (participantRole) => {
+	rooms.notSeeRoleOfParticipant(participantRole);
 });
 
 When("I enter {string} in dropdown Name", (participantName) => {

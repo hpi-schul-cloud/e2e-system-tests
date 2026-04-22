@@ -6,18 +6,19 @@ class Rooms {
 	static #roomNameInput = '[data-testid="room-name-input"]';
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
-	static #addContentButton = '[data-testid="add-content-button"]';
-	static #deletionConfirmationModalTitle = '[data-testid="delete-dialog-item"]';
+	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
+	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 	static #modal = '[data-testid="dialog"]';
-	static #confirmButtonOnModal = '[data-testid="dialog-confirm"]';
+	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
+	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
 	static #addParticipantSchool = '[data-testid="add-participant-school"]';
 	static #addParticipantRole = '[data-testid="add-participant-role"]';
 	static #addParticipantName = '[data-testid="add-participant-name"]';
 	static #btnSubmit = '[data-testid="room-form-save-btn"]';
-	static #btnAddParticipant = '[data-testid="add-participant-save-btn"]';
-	static #createRoom = '[data-testid="fab-add-room"]';
-	static #addParticipants = '[data-testid="fab-add-members"]';
+	static #btnAddParticipant = '[data-testid="dialog-add-participants-confirm"]';
+	static #createRoom = '[data-testid="fab-add-room"] .v-btn';
+	static #addParticipants = '[data-testid="fab-add-members"] .v-btn';
 	static #participantTable = '[data-testid="participants-table"]';
 	static #colourPickerForRoom = '[data-testid="color-swatch-red"]';
 	static #inputStartDateForRoom = '[data-testid="room-start-date-input"]';
@@ -30,26 +31,27 @@ class Rooms {
 		'[data-testid="dialog-change-role-participants"]';
 	static #infoTextBannerInRoomMembersTable = '[data-testid="info-text"]';
 	static #firstColumnInRoomMembersTable = ".v-checkbox-btn";
-	static #roomLeaveDialogBox = '[data-testid="dialog-title"]';
+	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-confirm"]';
+	static #dialogLeaveRoomOwner = '[data-testid="dialog-leave-room-owner"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
 	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
-	static #modalTitleDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
+	static #modalTitleDuplicateRoom = '[data-testid="dialog-title"]';
+	static #copyInfoDialogTitle = '[data-testid="copy-info-dialog-title"]';
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
 	static #duplicateButton = '[data-testid="copy-info-dialog-confirm"]';
-	static #successAlertDuplicateRoom = '[data-testid="alert-text"]';
+	static #alertMessage = '[data-testid="alert-text"]';
 	static #tabRoomInvitations = '[data-testid="room-members-tab-invitations"]';
 	static #tabRoomConfirmations = '[data-testid="room-members-tab-confirmations"]';
 	static #tabRoomMembers = '[data-testid="room-members-tab-members"]';
-	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"]';
+	static #fabButtonInviteMembers = '[data-testid="fab-invite-members"] .v-btn';
 	static #modalCreateInvitationLink = '[data-testid="dialog-invite-participants"]';
 	static #inputInviteMembersDescription =
 		'[data-testid="invite-participant-description-input"]';
 	static #inputInviteMembersRequireConfirmation =
 		'[data-testid="input-invite-participants-requires-confirmation"]';
-	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
+	static #modalCreateInvitationLinkSave = '[data-testid="dialog-confirm"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
-	static #modalCreateInvitationLinkClose =
-		'[data-testid="invite-participant-close-btn"]';
+	static #modalCreateInvitationLinkClose = '[data-testid="dialog-cancel"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
@@ -57,10 +59,38 @@ class Rooms {
 	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
 	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
 	static #infoBoxContentRestriction = '[data-testid="share-options-table-header"]';
-	static #roomBadgeLock = '[data-testid="room-badge-lock"]';
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
+	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
+	static #importRoomsModalConfirm = '[data-testid="import-modal-confirm"]';
+	static #dropdownListbox = '[role="listbox"]';
+	static #dropdownOptions = `${Rooms.#dropdownListbox} [role="option"]`;
+
+	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
+		// ensure the room is currently at the starting position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
+			.should("be.visible")
+			.and("contain.text", roomName);
+
+		// drag room to target position
+		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
+			`[data-testid="board-grid-item-${toPosition}"]`,
+			{ force: true }
+		);
+		// wait for the drag-and-drop action to complete and UI to update
+		cy.wait(300);
+	}
+
+	verifyRoomAtPosition(roomName, position) {
+		cy.get(`[data-testid="board-grid-item-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", roomName);
+	}
+
+	verifyNoErrorAlert() {
+		cy.get(Rooms.#alertMessage).should("not.exist");
+	}
 
 	deleteElementsWithText(textSelector, roomName) {
 		cy.get("body").then(($body) => {
@@ -116,35 +146,76 @@ class Rooms {
 		});
 	}
 
-	verifyRoomDeletion(roomName) {
+	verifyRoomDeletion(roomNamePrefix) {
 		cy.get("body").then(($body) => {
-			if (!$body.text().includes(roomName)) {
-				cy.log(`All rooms with name "${roomName}" deleted successfully.`);
-			} else {
-				cy.get(Rooms.#roomTitle).should("not.contain.text", roomName);
-			}
+			expect(
+				$body.text().includes(roomNamePrefix),
+				`Rooms containing "${roomNamePrefix}" should not exist`
+			).to.be.false;
 		});
 	}
 
-	deleteAllRoomsWithName(roomName) {
-		cy.wait(2000);
-		this.deleteElementsWithText(Rooms.#roomTitle, roomName);
-		this.verifyRoomDeletion(roomName);
-	}
+	deleteAllRoomsWithName(roomNamePrefix) {
+		cy.wait(1000);
 
-	seeLockIconInRoom(roomName) {
-		cy.get(Rooms.#roomTitle)
-			.contains(roomName)
-			.siblings(Rooms.#roomBadgeLock)
-			.should("be.visible");
-	}
+		const deleteNext = () => {
+			cy.get("body").then(($body) => {
+				const titles = $body.find('[data-testid^="room--title-"]');
 
-	clickLockedRoom(roomName) {
-		cy.contains(Rooms.#roomTitle, roomName)
-			.should("be.visible")
-			.then((title) => {
-				cy.wrap(title).prev().click();
+				// find first room that starts with the prefix
+				const matchingRooms = [...titles].find((el) =>
+					el.innerText.trim().startsWith(roomNamePrefix)
+				);
+
+				// nothing left -> verify and stop
+				if (!matchingRooms) {
+					this.verifyRoomDeletion(roomNamePrefix);
+					return;
+				}
+
+				// extract index from data-testid="room--title-{index}"
+				const testId = matchingRooms.getAttribute("data-testid");
+				const index = testId.replace("room--title-", "");
+
+				// open and delete the room
+				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
+
+				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
+				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
+				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+				cy.get(Rooms.#confirmButtonOnModal).should("be.visible").click();
+
+				// wait for deletion to complete
+				cy.wait(1500);
+
+				// reload and continue
+				cy.reload().then(() => {
+					cy.wait(1000);
+					deleteNext();
+				});
 			});
+		};
+
+		deleteNext();
+	}
+
+	seeLockIconInRoom(roomName, position) {
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const badgeSelector = `[data-testid="room-badge-lock-${position}"]`;
+
+		// verify the room title by position
+		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
+
+		// verify the badge (lock icon or status icon)
+		cy.get(badgeSelector).should("be.visible");
+	}
+
+	clickLockedRoom(roomName, position) {
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;
+
+		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
+		cy.get(openButtonSelector).should("be.visible").click();
 	}
 
 	seeRoomNotAccessibleMessage() {
@@ -164,11 +235,13 @@ class Rooms {
 	}
 
 	clickOnImportConfirmButtonInModal() {
-		cy.get(Rooms.#confirmButtonOnModal).click();
+		cy.get(
+			`${Rooms.#confirmButtonOnModal}:visible, ${Rooms.#importRoomsModalConfirm}:visible, ${Rooms.#importModalConfirm}:visible`
+		).click();
 	}
 
 	seeDuplicateRoomSuccessAlert() {
-		cy.get(Rooms.#successAlertDuplicateRoom).should("be.visible");
+		cy.get(Rooms.#alertMessage).should("be.visible");
 	}
 
 	seeDuplicationModal() {
@@ -176,7 +249,9 @@ class Rooms {
 	}
 
 	seeDuplicationModalModalTitle() {
-		cy.get(Rooms.#modalTitleDuplicateRoom).should("exist");
+		cy.get(`${Rooms.#modalTitleDuplicateRoom}, ${Rooms.#copyInfoDialogTitle}`).should(
+			"exist"
+		);
 	}
 
 	clickCancelButtonOnDuplicationModal() {
@@ -301,8 +376,19 @@ class Rooms {
 			.should("not.be.checked");
 	}
 
-	navigateToRoom(roomName) {
-		cy.get(Rooms.#roomTitle).contains(roomName).should("be.visible").click();
+	navigateToRoom(roomName, position) {
+		// dynamically construct the title and button selectors based on the position
+		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
+		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;
+
+		// verify the room title by position
+		cy.get(roomTitleSelector)
+			.contains(roomName) // Ensure that the room title matches the room name
+			.should("be.visible");
+
+		// click the "Open" button for the room at the given position
+		cy.get(openButtonSelector).click();
+		cy.wait(500);
 	}
 
 	openThreeDotMenuForRoom() {
@@ -310,13 +396,17 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
-		cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+		cy.get("body").then(($body) => {
+			if ($body.find(Rooms.#deletionConfirmationModalTitle).length > 0) {
+				cy.get(Rooms.#deletionConfirmationModalTitle).should("exist");
+			} else {
+				throw new Error("No confirmation modal for room deletion found.");
+			}
+		});
 	}
 
 	seeConfirmationModalForFileDeletion() {
@@ -333,15 +423,7 @@ class Rooms {
 	// - If there is only one dialog, it will automatically be selected as the highest.
 	// - The script then clicks on the dialog with the highest z-index, ensuring that the most visible dialog is interacted with.
 	clickDeleteInConfirmationModal() {
-		cy.get(Rooms.#deletionConfirmationModalTitle).then((dialogs) => {
-			const highestZIndexDialog = dialogs.toArray().sort((dialogA, dialogB) => {
-				return (
-					parseInt(Cypress.$(dialogB).css("z-index")) -
-					parseInt(Cypress.$(dialogA).css("z-index"))
-				);
-			})[0];
-			cy.wrap(highestZIndexDialog).find(Rooms.#confirmButtonOnModal).click();
-		});
+		cy.get(Rooms.#confirmButtonOnModal).first().click();
 	}
 
 	roomIsVisibleOnOverviewPage(roomName) {
@@ -353,7 +435,7 @@ class Rooms {
 	}
 
 	seeSchoolOfParticipant(participantSchool) {
-		cy.get(Rooms.#addParticipantSchool).contains(participantSchool);
+		cy.get(Rooms.#addParticipantSchool).contains(participantSchool).should("exist");
 	}
 
 	fillParticipantFormSchool(participantSchool) {
@@ -363,13 +445,18 @@ class Rooms {
 	}
 
 	selectParticipantSchool() {
-		cy.get(Rooms.#addParticipantSchool)
-			.should("be.visible")
-			.type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantSchool).should("be.visible").click();
+		cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
+		cy.get(Rooms.#dropdownOptions).should("have.length.greaterThan", 0).first().click();
+		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
 	seeRoleOfParticipant(participantRole) {
 		cy.get(Rooms.#addParticipantRole).contains(participantRole);
+	}
+
+	notSeeRoleOfParticipant(participantRole) {
+		cy.get(Rooms.#addParticipantRole).contains(participantRole).should("not.exist");
 	}
 
 	fillParticipantFormName(participantName) {
@@ -402,9 +489,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -456,17 +541,17 @@ class Rooms {
 	}
 
 	isRoomLeaveDialogBoxVisible() {
-		cy.get(Rooms.#roomLeaveDialogBox).should("be.visible");
+		cy.get(
+			`${Rooms.#roomLeaveDialogBox}:visible, ${Rooms.#dialogTitleLeaveRoomOwner}:visible, ${Rooms.#dialogLeaveRoomOwner} :visible`
+		).should("exist");
 	}
 
 	clickOnActionButtonForRoomLeave(buttonAction) {
-		cy.get(`[data-testid="dialog-${buttonAction.toLowerCase()}"]`).click();
+		cy.get(`[data-testid="confirm-dialog-${buttonAction.toLowerCase()}"]`).click();
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
@@ -535,8 +620,12 @@ class Rooms {
 	}
 
 	selectRoomRoleFromDropdownMenu(participantRole) {
-		cy.get(Rooms.#addParticipantRole).type("downArrow");
-		cy.get(Rooms.#roomRoleDropdownOverlay).contains(participantRole).click();
+		cy.get(Rooms.#addParticipantRole).click();
+		cy.get(Rooms.#roomRoleDropdownOverlay)
+			.contains(participantRole)
+			.should("be.visible")
+			.click();
+		cy.get(Rooms.#roomRoleDropdownOverlay).should("not.exist");
 		cy.get(Rooms.#addParticipantRole).should("contain", participantRole);
 	}
 
@@ -637,6 +726,17 @@ class Rooms {
 			.contains("td", participantName)
 			.parent()
 			.should("contain", "Lesen");
+	}
+
+	seeSpeedDialOptions(options) {
+		const buttonName = options.split(/,|and/).map((option) => option.trim());
+		buttonName.forEach((buttonName) => {
+			cy.get(`[data-testid="fab-${buttonName}-icon-btn"]`).should("be.visible");
+		});
+	}
+
+	clickOnSpeedDialOption(option) {
+		cy.get(`[data-testid="fab-${option}-icon-btn"]`).should("be.visible").click();
 	}
 }
 export default Rooms;

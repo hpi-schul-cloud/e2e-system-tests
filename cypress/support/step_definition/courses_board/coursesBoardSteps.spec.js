@@ -214,3 +214,7 @@ When("I click on open Drawing Element", () => {
 When("I click on the whiteboard element", () => {
 	board.clickOnWhiteboardElement();
 });
+
+Then("I see a whiteboard element", () => {
+	board.seeWhiteboardElement();
+});

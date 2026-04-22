@@ -23,7 +23,7 @@ Feature: Room Board - Add, edit and delete board in room
         # teacher creates a new multi-column board in the room
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button add content
         Then I see the dialog box to select the Board type
         When I click on button to add multi-column board
@@ -48,13 +48,13 @@ Feature: Room Board - Add, edit and delete board in room
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'delete'
         Then I see the button to confirm the dialog
-        Then I click on the button to confirm the deletion
+        Then I click on the buttom Delete in the dialog
         Then I do not see the board '<board_title>' in the room
 
         # teacher creates a new single-column board in the room
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button add content
         Then I see the dialog box to select the Board type
         When I click on button to add single-column board
@@ -71,7 +71,7 @@ Feature: Room Board - Add, edit and delete board in room
         When I click on the three dot menu in room board title
         When I click on delete in board menu
         Then I see the button to confirm the dialog
-        Then I click on the button to confirm the deletion
+        Then I click on the buttom Delete in the dialog
         Then I do not see the page board details
 
         # post-condition: teacher deletes room

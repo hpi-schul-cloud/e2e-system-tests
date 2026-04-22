@@ -3,7 +3,6 @@
 class GlobalActions {
 	static #headerCheckboxAllElements = '[data-testid="select-all-checkbox"]';
 	static #tableSearchInput = '[data-testid="table-search"]';
-	static #firstElementOfBreadcrumb = '[data-testid="breadcrumb-0"]';
 
 	checkHeaderCheckboxForAllElements() {
 		cy.get(GlobalActions.#headerCheckboxAllElements).find("div div input").check();
@@ -23,8 +22,12 @@ class GlobalActions {
 			.type(searchString);
 	}
 
-	clickElementWithDataTestId(elementId) {
-		cy.get(`[data-testid="${elementId}"]`).click();
+	clickElementWithDataTestId(elementId, nestedSelector = null) {
+		const baseSelector = `[data-testid="${elementId}"]`;
+		const fullSelector = nestedSelector
+			? `${baseSelector} ${nestedSelector}`
+			: baseSelector;
+		cy.get(fullSelector).click();
 	}
 
 	clickBreadcrumbElement(breadcrumbElement) {

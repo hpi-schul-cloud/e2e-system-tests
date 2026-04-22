@@ -18,3 +18,15 @@ Then("I see state of table header checkbox is {string}", (checkboxState) => {
 Then("I see modal {string} with information on {string}", (modalType, infoPoints) => {
 	globalAssertions.checkModalMessagePoints(infoPoints, modalType);
 });
+
+Then("I see element with data-testid {string}", (dataTestId) => {
+	globalAssertions.checkElementWithDataTestIdExists(dataTestId);
+});
+
+Then("I see content page title {string}", (contentPageTitle) => {
+	globalAssertions.checkContentPageTitle(contentPageTitle);
+});
+
+Then("I see legal content page title {string}", (contentPageTitle) => {
+	globalAssertions.checkLegalContentPageTitle(contentPageTitle);
+});

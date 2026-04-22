@@ -3,7 +3,7 @@
 @schedule_run
 @group-B
 @pre_check_test
-@prio_0_dev
+@prio_0_staging
 Feature: Room Board - Upload multiple files in folder in board
 
     As a content editor, I want to upload multiple files to a folder in a room board
@@ -102,7 +102,15 @@ Feature: Room Board - Upload multiple files in folder in board
         When I select the three dot menu action 'download'
         Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
 
+        # content editor downloads zip file from the file folder in the room board
+        When I click on breadcrumb element '<board_title>'
+        Then I see a folder with name '<standard_folder_name>' in the card
+        When I click on button Download in the card file folder
+        Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
+
         # content editor checks / unchecks all files
+        When I click on the folder '<standard_folder_name>' in the card
+        Then I see page Folder content for '<standard_folder_name>'
         When I check the checkbox in the table header for all elements
         Then I see checkboxes of files '<video_file_name>, <audio_file_name>, <image_file_name>, <pdf_file_name>' are checked
         When I uncheck the checkbox in the table header for all elements
@@ -124,7 +132,7 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see fab button Action at the top of the list
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on button Approve in modal
+        When I click on button Approve in modal for deletion
         Then I do not see files '<video_file_name>, <image_file_name>, <pdf_file_name>' in file list
         Then I see files '<audio_file_name>' in file list
         Then I see checkboxes of files '<audio_file_name>' are unchecked
@@ -154,19 +162,19 @@ Feature: Room Board - Upload multiple files in folder in board
         When I click on the three dot menu of the folder in card
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the file folder
-        When I click on button Approve in modal
+        When I click on the buttom Delete in the dialog
         Then I see my room board is named '<board_title>'
         Then I do not see a folder element on board
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:
             | namespace | content_editor | reader       | room_name              | board_title             | standard_folder_name | folder_name_edited | video_file_name          | audio_file_name            | image_file_name | pdf_file_name  | search_request | video_file_size | audio_file_size | image_file_size | pdf_file_size | total_folder_details |
             | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner   | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample-pdf.pdf | sample_audio   | 1,83 MB         | 433,52 KB       | 564,48 KB       | 6,96 MB       | 4 Dateien ⋅ 9,76 MB  |
 
-# @staging_test
-# Examples:
-#     | namespace | content_editor      | room_name               | board_title             | folder_name         |
-#     | dbc       | teacher1_dbc        | CypressAut Folder Board | CypressAut Folder Board | Unbenannter Ordner  |
+        @staging_test
+        Examples:
+            | namespace | content_editor | reader       | room_name              | board_title             | standard_folder_name | folder_name_edited | video_file_name          | audio_file_name            | image_file_name | pdf_file_name  | search_request | video_file_size | audio_file_size | image_file_size | pdf_file_size | total_folder_details |
+            | dbc       | teacher1_dbc   | teacher2_dbc | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner   | Cypress Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | sample-pdf.pdf | sample_audio   | 1,83 MB         | 433,52 KB       | 564,48 KB       | 6,96 MB       | 4 Dateien ⋅ 9,76 MB  |

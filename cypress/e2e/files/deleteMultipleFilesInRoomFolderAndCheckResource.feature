@@ -43,13 +43,13 @@ Feature: Files - Delete multiple files in folder and check file resource
         When I check the checkbox in the table header for all elements
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
-        When I click on button Approve in modal
+        When I click on button Approve in modal for deletion
         Then I do not see files '<image1_file_name>, <image2_file_name>' in file list
         Then I see that image resource is not available '<image1_file_name>'
         Then I see that image resource is not available '<image2_file_name>'
 
         # post-condition: delete the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         @staging_test

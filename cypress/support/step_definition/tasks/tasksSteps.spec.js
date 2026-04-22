@@ -237,8 +237,16 @@ Then("there is a tick in column delivered for {string}", (studentLastname) => {
 	tasks.seeTickInStudentsSubmissionLine(studentLastname);
 });
 
+Then("there is a tick in column delivered for group {string}", (groupName) => {
+	tasks.seeTickInGroupsSubmissionLine(groupName);
+});
+
 When("I click on submission of {string}", (studentLastname) => {
 	tasks.openStudentsSubmission(studentLastname);
+});
+
+When("I click on submission of group {string}", (groupName) => {
+	tasks.openGroupsSubmission(groupName);
 });
 
 Then("I see submission text {string}", (submissionText) => {
@@ -267,6 +275,10 @@ When("I click on button Save and Send grading", () => {
 
 When("grading for {string} contains {string}", (studentLastname, gradingPercent) => {
 	tasks.checkGradingForStudent(studentLastname, gradingPercent);
+});
+
+When("grading for group {string} contains {string}", (groupName, gradingPercent) => {
+	tasks.checkGradingForGroup(groupName, gradingPercent);
 });
 
 When("I click on button To Course", () => {
@@ -313,4 +325,20 @@ When("I click on button Cancel in confirmation window in edit task page", () => 
 
 When("I click on button Delete in confirmation window in edit task page", () => {
 	tasks.clickConfirmDeletionButtonInEditTask();
+});
+
+When("I click on option Group for team submission", () => {
+	tasks.clickOptionGroupForTeamSubmission();
+});
+
+Then("I see red tick for not submitted task", () => {
+	tasks.seeRedTickForNotSubmittedTask();
+});
+
+Then("I see green tick for submitted task", () => {
+	tasks.seeGreenTickForSubmittedTask();
+});
+
+Then("I see a hint about no available feedback", () => {
+	tasks.seeHintAboutNoAvailableFeedback();
 });

@@ -11,19 +11,79 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
-Then("I see element Link in the duplicated card", () => {
+When(
+	"I drag and drop the board one {string} from position {string} to position {string}",
+	(boardTitle, fromPosition, toPosition) => {
+		roomBoards.dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition);
+	}
+);
+
+Then("I see the board {string} at position {string}", (boardTitle, position) => {
+	roomBoards.verifyBoardAtPosition(boardTitle, position);
+});
+
+Then("I see the card titled {string} on the target board", (cardTitle) => {
+	roomBoards.verifyCardPresentOnTargetBoard(cardTitle);
+});
+
+Then(
+	"I do not see the source card in the source board after moving to the target board",
+	() => {
+		roomBoards.verifyCardNotPresentOnSourceBoard();
+	}
+);
+
+When(
+	"I select the column {string} from the column list in the move modal",
+	(columnName) => {
+		roomBoards.selectColumnInMoveCardModal(columnName);
+	}
+);
+
+When("I select the room {string} from the room list in the move modal", (roomName) => {
+	roomBoards.selectRoomInMoveCardModal(roomName);
+});
+
+When(
+	"I select the board {string} from the board list in the move modal",
+	(boardTitle) => {
+		roomBoards.selectBoardInMoveCardModal(boardTitle);
+	}
+);
+
+When("I select the room {string} from the room list in the modal", (roomName) => {
+	roomBoards.selectRoomInImportModal(roomName);
+});
+
+When("I select the board {string} from the board list in the modal", (boardTitle) => {
+	roomBoards.selectBoardInImportModal(boardTitle);
+});
+
+When("I select the column {string} from the column list in the modal", (columnName) => {
+	roomBoards.selectColumnInImportModal(columnName);
+});
+
+Then("I copy the card URL", () => {
+	roomBoards.copyCardURLInModal();
+});
+
+When("I open the shared URL for card", () => {
+	roomBoards.openSharedCardURL();
+});
+
+Then("I see the element Link in the target card", () => {
 	roomBoards.verifyLinkElementInDuplicatedCard();
 });
 
-Then("I see element Etherpad in the duplicated card", () => {
+Then("I see element Etherpad in the target card", () => {
 	roomBoards.verifyEtherpadElementInDuplicatedCard();
 });
 
-Then("I see element Folder in the duplicated card", () => {
+Then("I see element Folder in the target card", () => {
 	roomBoards.verifyFolderElementInDuplicatedCard();
 });
 
-Then("I see element Image in the duplicated card", () => {
+Then("I see element Image in the target card", () => {
 	roomBoards.verifyImageElementInDuplicatedCard();
 });
 
@@ -34,8 +94,8 @@ Then(
 	}
 );
 
-When("I click on the option Duplicate on the first card", () => {
-	roomBoards.clickOnDuplicateOptionInCardThreeDot();
+When("I click on the option {string} on the card", (actionName) => {
+	roomBoards.clickOnCardThreeDotAction(actionName);
 });
 
 Then("I see a duplicated card below the original first card", () => {
@@ -268,6 +328,10 @@ Then("I see the result url text box in the modal", () => {
 	roomBoards.verifySharedBoardResultUrlTextBox();
 });
 
+Then("I see the title in the import modal", () => {
+	roomBoards.verifyImportDialog();
+});
+
 Then("I see the title in the share modal", () => {
 	roomBoards.verifyShareModalTitle();
 });
@@ -313,12 +377,12 @@ Then("I see the option {string} is selected", (option) => {
 	roomBoards.verifyOptionIsSelectedInEditingSettingsModal(option);
 });
 
-When("I open the shared URL", () => {
+When("I open the shared URL for board", () => {
 	roomBoards.openSharedBoardURL();
 });
 
-Then("I see the modal to import the shared board into the room", () => {
-	roomBoards.verifyImportSharedBoardModal();
+Then("I see the Dialog to import", () => {
+	roomBoards.verifyImportDialog();
 });
 
 When("I select the room from the room list in the modal", () => {
@@ -336,8 +400,16 @@ When(
 	}
 );
 
-When("I click on the button Import in the modal", () => {
+When("I click on the button Import in the import modal", () => {
 	roomBoards.clickImportOnModal();
+});
+
+When("I click on the button Import in the import card modal", () => {
+	roomBoards.clickOnImportButtonInImportCardModal();
+});
+
+When("I click on the button Move in the move Card modal", () => {
+	roomBoards.clickOnMoveButtonInMoveCardModal();
 });
 
 Then("I see the Share settings dialog", () => {
@@ -574,7 +646,7 @@ Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
 
-When("I click on the button to confirm the deletion", () => {
+When("I click on the buttom Delete in the dialog", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
 
@@ -610,7 +682,7 @@ Then("I see button Add file", () => {
 });
 
 When("I click on button Add file", () => {
-	globalActions.clickElementWithDataTestId("fab-add-files");
+	globalActions.clickElementWithDataTestId("fab-add-files", "button");
 });
 
 When("I upload a file {string} to file folder", (fileName) => {
@@ -729,7 +801,11 @@ When("I clear input field New name", () => {
 });
 
 When("I click on button Approve in modal", () => {
-	globalActions.clickElementWithDataTestId("dialog-confirm");
+	roomBoards.clickOnConfirmOnModal();
+});
+
+When("I click on button Approve in modal for deletion", () => {
+	roomBoards.clickOnConfirmOnModalForDeletion();
 });
 
 When("I click on the name of file {string} in file list", (fileName) => {
@@ -819,4 +895,46 @@ Then(
 
 When("I enter name {string} for file in card", (newName) => {
 	roomBoards.enterFileNameInBoardCard(newName);
+});
+
+When("I click on the collabora file {string} in the file folder", (fileName) => {
+	roomBoards.clickCollaboraFileInFileFolder(fileName);
+});
+
+When("I click the button Create document in file folder", () => {
+	roomBoards.clickCreateDocumentButtonInFileFolder();
+});
+
+Then("I see the dialog box for create collabora document", () => {
+	roomBoards.seeDialogBoxForCreateDocumentInFileFolder();
+});
+
+When(
+	"I select document type {string} from the dialog box create collabora document",
+	(documentType) => {
+		roomBoards.selectDocumentTypeInCreateDocumentFileFolder(documentType);
+	}
+);
+
+When(
+	"I enter filename {string} in the dialog box create collabora document",
+	(fileName) => {
+		roomBoards.enterFileNameInCreateDocumentDialogFileFolder(fileName);
+	}
+);
+
+When("I click on button Create document in file folder", () => {
+	roomBoards.clickCreateButtonInDocumentDialogFileFolder();
+});
+
+When("I click on button Create in dialog create document", () => {
+	roomBoards.clickCreateButtonInCreateDocumentDialog();
+});
+
+When("I click on button Download in the card file folder", () => {
+	roomBoards.clickFolderDownloadButtonOnBoardcard();
+});
+
+Then("I see the file type PPTX is uploaded in the card", () => {
+	roomBoards.verifyPptxFileUploaded();
 });

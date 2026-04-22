@@ -32,6 +32,8 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory, add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<school_name>' in dropdown School
         When I select '<role_name>' in dropdown Role
@@ -53,7 +55,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         # pre-condition: first teacher adds board to the room
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
@@ -62,7 +64,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the page outside of the column
@@ -75,7 +77,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         # first teacher enables the feature checkbox in the room edit page
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on three dot menu in room page
         When I select the three dot menu action 'edit'
         Then I see edit page of room '<room_name>'
@@ -89,7 +91,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the page outside of the column
@@ -110,7 +112,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         # first teacher deactivates the feature checkbox in the room edit page
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on three dot menu in room page
         When I select the three dot menu action 'edit'
         Then I see edit page of room '<room_name>'
@@ -124,7 +126,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         When I click on the page outside of the column
@@ -133,7 +135,7 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
 
         # post-condition: delete the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

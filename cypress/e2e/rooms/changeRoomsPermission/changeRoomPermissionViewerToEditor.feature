@@ -22,6 +22,8 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         When I select the three dot menu action 'room-members'
         Then I see the page Edit participants of room '<room_name>'
         When I click on FAB to add participants
+        Then I see speed dial options 'select-from-directory, add-external-person'
+        When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         Then I see school '<school_name>' in dropdown School
         When I select '<role_name>' in dropdown Role
@@ -44,7 +46,7 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         Then I see button Fab Create Room Board
         When I click on three dot menu in room page
@@ -57,7 +59,7 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         Then I don't see last actions column in the table
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         When I click on three dot menu in room page
         When I select the three dot menu action 'leave-room'
         Then I see dialog box to leave the room
@@ -67,7 +69,7 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
-        When I go to room '<room_name>'
+        When I click on button Open to go to room '<room_name>' at position '0'
         Then I see the detail page of room '<room_name>'
         When I click on three dot menu in room page
         When I select the three dot menu action 'room-members'
@@ -75,7 +77,7 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         Then I see teacher '<participant_name>' not visible in the table
 
         # post-condition: first teacher deletes the room
-        Given the room named '<room_name>' is deleted
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:

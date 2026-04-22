@@ -28,11 +28,12 @@ Feature: TLDraw - Test tldraw on board
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         When I select 'drawing-element' from the element selection dialog box
+        When I click outside of the card to save it
         When I click on the whiteboard element
         When I click on the icon Pencil tool
         When I draw a line on the canvas with start point '300', '200' and endpoint '400', '300'
         When I click on the icon Text tool
-        When I type text '<text_to_write>' on the canvas on position '350', '350'
+        When I type text '<text_to_write>' on the canvas on position '500', '250'
         Then I should see the line drawn
         Then I should see the text '<text_to_write>' drawn
 
@@ -51,6 +52,7 @@ Feature: TLDraw - Test tldraw on board
         Then I should see the text '<text_to_write>' drawn
         When I click the icon Redo
         Then I do not see the text '<text_to_write>'
+        Then I should see the line drawn
 
         # teacher does not see the deleted element anymore
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -58,8 +60,8 @@ Feature: TLDraw - Test tldraw on board
         When I go to course '<course_name>'
         When I click on the board
         When I click on the whiteboard element
-        Then I should see the line drawn
         Then I do not see the text '<text_to_write>'
+        Then I should see the line drawn
 
         # post-condition: clean up the created course
         Given I am logged in as a '<teacher>' at '<namespace>'
