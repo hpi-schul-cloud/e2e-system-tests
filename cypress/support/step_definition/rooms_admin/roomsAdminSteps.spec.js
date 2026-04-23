@@ -79,17 +79,8 @@ Then("I see confirmation modal for deleting the room in admin page", () => {
 	roomsAdmin.seeConfirmationModalForRoomDeletionInAdminPage();
 });
 
-When("I click on delete button in confirmation modal in room admin page", () => {
-	roomsAdmin.clickDeleteInConfirmationModal();
-});
-
 Then("I see confirmation modal for deleting the user in room admin page", () => {
 	roomsAdmin.seeConfirmationModalForUserDeletionInAdminPage();
-});
-
-When("I click on remove button in confirmation modal in room admin page", () => {
-	roomsAdmin.clickRemoveInConfirmationModal();
-	//roomsAdmin.clickDeleteInConfirmationModal();
 });
 
 When("I click on remove button in the options of user {string}", (user) => {

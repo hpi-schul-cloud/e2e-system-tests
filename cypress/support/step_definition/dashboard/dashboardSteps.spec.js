@@ -5,8 +5,28 @@ import News from "../../pages/news/pageNews";
 const dashboard = new Dashboard();
 const news = new News();
 
-Then("I see the welcome message {string}", (welcomeMsg) => {
-	dashboard.seeWelcomeMessage(welcomeMsg);
+When("I click on the button Show All in the tasks section", () => {
+	dashboard.clickShowAllTasksButtonOnDashboard();
+});
+
+Then("I see the tasks overview page", () => {
+	dashboard.seeTasksOverviewPage();
+});
+
+When("I click on the button Show All in the news section", () => {
+	dashboard.clickShowAllNewsButtonOnDashboard();
+});
+
+Then("I see the news overview page", () => {
+	dashboard.seeNewsOverviewPage();
+});
+
+Then("I see the button Show All in the news section", () => {
+	dashboard.seeShowAllNewsButtonOnDashboard();
+});
+
+Then("I see the button Show All in the tasks section", () => {
+	dashboard.seeShowAllTasksButtonOnDashboard();
 });
 
 Then(

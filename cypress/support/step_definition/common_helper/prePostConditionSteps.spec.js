@@ -475,7 +475,8 @@ Given(
 		tasks.setTaskText("Dies ist deine erste Aufgabe");
 		tasks.executeFileUpload("example_jpg.jpg");
 		tasks.setVisibilityStartDate("today", "0000");
-		tasks.setVisibilityDueDate("tomorrow", "1000");
+		// set due date to tomorrow with time 01:30 because only 24 hours before due date, a red tick is displayed when user didn't submit yet. This is needed in groupSubmissionOfTask.feature to verify the red tick for not submitted task.
+		tasks.setVisibilityDueDate("tomorrow", "0130");
 		tasks.clickOnDraftCheckbox();
 		tasks.clickOnSubmit();
 	}
@@ -613,7 +614,7 @@ Given("task with name {string} in course {string} is deleted", (taskName, course
 	courses.navigateToCoursePage(courseName);
 	courses.openThreeDotMenuForContent(taskName);
 	courses.clickDeleteInDotMenu();
-	courses.clickDeleteInConfirmationWindow();
+	courses.clickOnConfirmInDialogWindow();
 });
 
 Given(
