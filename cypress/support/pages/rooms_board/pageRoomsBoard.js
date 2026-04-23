@@ -630,6 +630,7 @@ class RoomBoards {
 
 	clickOutsideToSaveCard() {
 		cy.get(RoomBoards.#mainContentSelector).click();
+		cy.wait(500);
 	}
 
 	enterCaption(captionText) {
