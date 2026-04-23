@@ -49,9 +49,9 @@ class Rooms {
 		'[data-testid="invite-participant-description-input"]';
 	static #inputInviteMembersRequireConfirmation =
 		'[data-testid="input-invite-participants-requires-confirmation"]';
-	static #modalCreateInvitationLinkSave = '[data-testid="dialog-confirm"]';
 	static #inputInviteMembersValidForExternalPersons =
 		'[data-testid="input-invite-participants-valid-for-external-persons"]';
+	static #modalCreateInvitationLinkSave = '[data-testid="dialog-confirm"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
 	static #modalCreateInvitationLinkClose = '[data-testid="dialog-cancel"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
