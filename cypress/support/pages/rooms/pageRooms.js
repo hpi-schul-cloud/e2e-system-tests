@@ -52,10 +52,8 @@ class Rooms {
 	static #modalCreateInvitationLinkSave = '[data-testid="dialog-confirm"]';
 	static #inputInviteMembersValidForExternalPersons =
 		'[data-testid="input-invite-participants-valid-for-external-persons"]';
-	static #modalCreateInvitationLinkSave = '[data-testid="invite-participant-save-btn"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
 	static #modalCreateInvitationLinkClose = '[data-testid="dialog-cancel"]';
-	static #modalCreateInvitationLinkClose = '[data-testid="invite-participant-close-btn"]';
 	static #roomInvitationsTable = '[data-testid="data-table"]';
 	static #roomInvitationStatusMessage = '[data-testid="status-message"]';
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
