@@ -285,10 +285,10 @@ Given("link element is added in the card", () => {
 	board.clickPlusIconToAddContentIntoCard();
 	roomBoards.seeElementSelectionDialog();
 	board.selectCardElementFromMenu("link");
-	roomBoards.enterLinkInLinkElement("https://main.dbc.dbildungscloud.dev");
-	roomBoards.clickSaveButtonToSaveLinkInCard();
-	roomBoards.seeLinkElementInRoomBoard();
+	roomBoards.enterLinkInLinkElement("https://main.dbc.dbildungscloud.dev/");
 	roomBoards.clickOutsideToSaveCard();
+	roomBoards.seeLinkElementInRoomBoard();
+	roomBoards.verifyLinkURLInLinkElement("https://main.dbc.dbildungscloud.dev/");
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
