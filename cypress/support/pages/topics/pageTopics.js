@@ -26,8 +26,8 @@ class Topics {
 	static #textElementPos3 = '[data-testid="topic-content-element-text-3"]';
 	// static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
 	// static #draftCheckbox = '[data-testid="private-checkbox"]'
-	static #copyAlertDialog = '[data-testid="dialog-title"]';
-	static #closeButtonInCopyTopicDialog = '[data-testid="dialog-close"]';
+	static #copyAlertDialog = '[data-testid="copy-dialog-title"]';
+	static #closeButtonInCopyTopicDialog = '[data-testid="copy-dialog-cancel"]';
 	static #topicTitleCourseDetail = '[data-testid="lesson-name-0"]';
 	static #publishButtonCopiedTopic = '[data-testid="lesson-card-action-publish-0"]';
 	static #topicTitleTopicDetailPage = '[id="page-title"]';

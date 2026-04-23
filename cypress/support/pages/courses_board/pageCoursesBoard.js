@@ -50,12 +50,13 @@ class Board {
 	static #ckEditorText = '[data-testid="rich-text-edit-0-0"]';
 	static #cardTitle = '[data-testid="card-title"]';
 	static #boardLinkElement = '[data-testid="board-link-element"]';
-	static #fixedExportInfoPoint3 =
-		'[data-testid="fixed-export-options-warning-info-point3"]';
+	static #fixedExportFolderInfo = '[data-testid="cartridge-export-folder-info"]';
 	static #exportInfoPoint3 = '[data-testid="export-options-info-point3"]';
+	static #exportInfoPoint4Sub4 = '[data-testid="export-options-info-point4-sub4"]';
 	static #versionRadioGroup = '[data-testid="version-radio-group"]';
 	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
 	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
+	static #cartridgeExportContentInfo = '[data-testid="cartridge-export-content-info"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -618,15 +619,17 @@ class Board {
 	}
 
 	seeFixedCcWarning() {
-		cy.get(Board.#fixedExportInfoPoint3).should("be.visible");
+		cy.get(Board.#fixedExportFolderInfo).should("be.visible");
 	}
 
 	seeCcWarning() {
-		cy.get(Board.#exportInfoPoint3).should("be.visible");
+		cy.get(Board.#cartridgeExportContentInfo).should("be.visible");
+		cy.get(Board.#exportInfoPoint4Sub4).should("be.visible");
 	}
 
 	notSeeCcWarning() {
 		cy.get(Board.#exportInfoPoint3).should("not.exist");
+		cy.get(Board.#exportInfoPoint4Sub4).should("not.exist");
 	}
 
 	selectLatestCc() {
