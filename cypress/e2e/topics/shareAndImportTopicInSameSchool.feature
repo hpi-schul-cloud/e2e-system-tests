@@ -46,7 +46,6 @@ Feature: Topics - Teacher shares a topic to other teacher from the same school t
         When I click on the button continue in dialog box share topic
         When I enter '<topic_text_title_import>' in the topic name field
         When I click on the button import topic
-        When I go to course '<course_name_2>'
         Then I see course page '<course_name_2>'
         When I click on button Publish for first topic in content list
         Then I can see topic '<topic_text_title_import>' on course page

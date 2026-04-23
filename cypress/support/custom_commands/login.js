@@ -1,9 +1,9 @@
-import { loginViaSchoolApi, loginWithoutSchoolApi } from "./login.helper";
 import { getPageUrl } from "./input.utils";
+import { loginViaSchoolApi, loginWithoutSchoolApi } from "./login.helper";
 
-const initials = '[data-testid="initials"]';
-const languageSelection = '[id="selected-language"]';
-const languageDe = '[data-language="de"]';
+const initials = '[data-testid="user-menu-btn"]';
+const languageSelection = '[id="v-list-group--id-languages"]';
+const languageDe = '[data-testid="selected-language-de"]';
 
 Cypress.Commands.add("login", (username, environment) => {
 	cy.session(

@@ -13,6 +13,7 @@ class Classes {
 	static #deleteClassButton = '[data-testid="class-table-delete-btn"]';
 	static #deleteDialog = '[data-testid="confirm-dialog-title"]';
 	static #deleteDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
+	static #deleteDialogConfirmSecondary = '[data-testid="dialog-confirm"]';
 	static #classMemberInfoBox = '[data-testid="class-members-info-box"]';
 	static #manageGroupButton = '[data-testid="class-table-members-manage-btn"]';
 	static #adminClassNavigationSidebarCard =
@@ -34,6 +35,7 @@ class Classes {
 	static #buttonSaveChangeOnEditClass = '[data-testid="confirm-class-edit"]';
 	static #buttonCancelOnDeleteModalClassAdminPage =
 		'[data-testid="confirm-dialog-cancel"]';
+	static #cancelDeleteButtonDialog = '[data-testid="dialog-cancel"]';
 	static #tableClassName = '[data-testid="class-table-name"]';
 	static #tableClassSource = '[data-testid="class-table-source"]';
 	static #tableClassMemberFirstName = '[data-testid="class-members-table-firstname"]';
@@ -44,7 +46,15 @@ class Classes {
 	static #stopSyncButton = '[data-testid="class-table-end-course-sync-btn"]';
 
 	clickOnCancelDeleteModalOnClassAdminPage() {
-		cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
+		cy.get("body").then(($body) => {
+			if ($body.find(Classes.#buttonCancelOnDeleteModalClassAdminPage).length > 0) {
+				cy.get(Classes.#buttonCancelOnDeleteModalClassAdminPage).click();
+			} else if ($body.find(Classes.#cancelDeleteButtonDialog).length > 0) {
+				cy.get(Classes.#cancelDeleteButtonDialog).click();
+			} else {
+				throw new Error("No cancel button found in delete modal");
+			}
+		});
 	}
 
 	clickOnSaveChangesOnEditClassPage() {
@@ -124,7 +134,15 @@ class Classes {
 	}
 
 	clickConfirmDeleteDialogButton() {
-		cy.get(Classes.#deleteDialogConfirm).click();
+		cy.get("body").then(($body) => {
+			if ($body.find(Classes.#deleteDialogConfirm).length > 0) {
+				cy.get(Classes.#deleteDialogConfirm).click();
+			} else if ($body.find(Classes.#deleteDialogConfirmSecondary).length > 0) {
+				cy.get(Classes.#deleteDialogConfirmSecondary).click();
+			} else {
+				throw new Error("No confirm delete button found in dialog");
+			}
+		});
 	}
 
 	clickNextYearTab() {

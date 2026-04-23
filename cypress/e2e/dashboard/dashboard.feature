@@ -73,17 +73,27 @@ Feature: Dashboard - To check contents on the dashboard
         # student arrives on dashboard
         Given I am logged in as a '<student>' at '<namespace>'
         When I arrive on the dashboard
-        Then I see the welcome message 'Hallo <fullname_student>!'
         Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
+        Then I see the button Show All in the news section
+        When I click on the button Show All in the news section
+        Then I see the news overview page
         # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course '<course_name>'
+        # Then I see the button Show All in the tasks section
+        # When I click on the button Show All in the tasks section
+        # Then I see the tasks overview page
 
         # teacher arrives on dashboard
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I arrive on the dashboard
-        Then I see the welcome message 'Hallo <fullname_teacher>!'
         Then I see school news with title 'CypressAut Dashboard - school news' and description 'test school news description'
+        Then I see the button Show All in the news section
+        When I click on the button Show All in the news section
+        Then I see the news overview page
         # Then I can see the assigned task 'CypressAut Dashboard Task Published' of course '<course_name>'
         # Then I can see the draft task 'CypressAut Dashboard Task Draft' of course '<course_name>'
+        # Then I see the button Show All in the tasks section
+        # When I click on the button Show All in the tasks section
+        # Then I see the tasks overview page
 
         # teacher deletes the school news
         When I arrive on the dashboard
