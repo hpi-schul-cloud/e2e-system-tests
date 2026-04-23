@@ -254,6 +254,7 @@ Then("I see the file type Audio in the card", () => {
 
 When("I click outside of the card to save it", () => {
 	roomBoards.clickOutsideToSaveCard();
+	cy.wait(500);
 });
 
 When("I click on the icon Close on the fullscreen image", () => {

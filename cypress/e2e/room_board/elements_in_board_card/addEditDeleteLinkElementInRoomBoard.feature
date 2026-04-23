@@ -3,7 +3,6 @@
 @schedule_run
 @group-B
 @prio_0_staging
-@only
 Feature: Room Board - Add, edit, delete element Link in the room board
 
     As a teacher, I want to add, edit and delete link element in the room board, so that I can link an important resources efficiently.
@@ -40,8 +39,9 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
-        #Then I see the element Link on the card
-        #Then I verify the element Link is clickable
+        Then I see the element Link on the card
+        Then I see the URL '<example_link>' in the element Link
+        Then I verify the element Link is clickable
 
         # teacher edits the element Link in the multi-column board
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -80,12 +80,12 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
 
-        #@staging_test
-        #Examples:
-        #    | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                        | example_link_edited                        |
-        #    | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.dbc.dbildungscloud.dev/ | https://main.dbc.dbildungscloud.dev/edited/ |
+        @staging_test
+        Examples:
+            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                        | example_link_edited                        |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.dbc.dbildungscloud.dev/ | https://main.dbc.dbildungscloud.dev/edited/ |
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                        | example_link_edited                        |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name5 | student_1    | Lernend           | CypressAut Board Title5 | https://main.dbc.dbildungscloud.dev/ | https://main.dbc.dbildungscloud.dev/edited/ |
+            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
+            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.dbc.dbildungscloud.dev/ | https://main.dbc.dbildungscloud.dev/edited/ |
