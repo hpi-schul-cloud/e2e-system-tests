@@ -34,6 +34,7 @@ class RoomBoards {
 		'[data-testid="video-conference-config-dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
+	static #threeDotInLinkElement = '[data-testid="board-menu-button"]';
 	static #deleteOptionOnCardElementThreeDot =
 		'[data-testid="kebab-menu-action-delete"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
@@ -112,7 +113,6 @@ class RoomBoards {
 	static #titleOnCardElement = '[data-testid="content-element-title-slot"]';
 	static #linkInputField = '[data-testid="input-link"]';
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
-	static #linkSaveButton = '[data-testid="save-link-in-card"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
@@ -409,8 +409,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
 	}
 
-	clickSaveButtonToSaveLinkInCard() {
-		cy.get(RoomBoards.#linkSaveButton).click();
+	editLinkInLinkElement(newLinkName) {
+		cy.get(RoomBoards.#linkInputField).type(
+			"{selectall}{backspace}{selectall}{backspace}"
+		);
+		cy.get(RoomBoards.#linkInputField).type(newLinkName);
 	}
 
 	verifyAddNewColumnButtonInRoomBoard(shouldExist = true) {
@@ -424,7 +427,7 @@ class RoomBoards {
 	}
 
 	clickOnThreeDotOnLinkElement() {
-		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
+		cy.get(RoomBoards.#threeDotInLinkElement)
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
 	}
@@ -435,6 +438,12 @@ class RoomBoards {
 
 	seeLinkElementInRoomBoard() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyLinkURLInLinkElement(expectedURL) {
+		cy.get(RoomBoards.#linkElementOnCard)
+			.should("be.visible")
+			.and("have.attr", "href", expectedURL);
 	}
 
 	verifyEtherpadIsVisibleOnCard() {
@@ -621,6 +630,7 @@ class RoomBoards {
 
 	clickOutsideToSaveCard() {
 		cy.get(RoomBoards.#mainContentSelector).click();
+		cy.wait(500);
 	}
 
 	enterCaption(captionText) {
