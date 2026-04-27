@@ -203,9 +203,11 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click({
-			force: true,
-		});
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`)
+			.should("be.visible")
+			.click({
+				force: true,
+			});
 		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).should(
 			"not.exist"
 		);
