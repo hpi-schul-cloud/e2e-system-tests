@@ -203,11 +203,18 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`)
-			.should("be.visible")
-			.click({
-				force: true,
-			});
+		cy.get("@openMenuId").then((menuId) => {
+			cy.get(`#${menuId}`)
+				.should("be.visible")
+				.find(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`)
+				.should("be.visible")
+				.click({ force: true });
+		});
+		// cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`)
+		// 	.should("be.visible")
+		// 	.click({
+		// 		force: true,
+		// 	});
 		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).should(
 			"not.exist"
 		);
