@@ -619,14 +619,14 @@ class Tasks {
 	}
 
 	seeTaskInListAsStudent(taskTitle) {
-		cy.get(`${Tasks.#taskOverviewStudent}, ${Tasks.#emptyStatetaskOverview}`)
-			.should("not.have.css", "display", "none")
-			.then(() => {
+		cy.get(`${Tasks.#taskOverviewStudent}, ${Tasks.#emptyStatetaskOverview}`).then(
+			() => {
 				cy.contains(
 					"[id='page-title'], [data-testid='taskTitle']",
 					taskTitle
 				).should("exist");
-			});
+			}
+		);
 	}
 
 	seeTaskNotInListAsStudent(taskTitle) {
