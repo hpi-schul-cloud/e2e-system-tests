@@ -52,7 +52,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I go to course '<course_name>'
         When I click on task '<task_name>'
         Then I see detail page for task '<task_name>'
-        When  I click on submission tab
+        When I click on submission tab
         When I enter text submission '<submission_text>'
         When I upload file 'testboard_jpg.jpg' for submission
         Then I see file 'testboard_jpg.jpg' is visible in uploaded files section of submission
@@ -112,7 +112,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         # teacher restores the finished task from course
         When I go to tasks overview
         # NOTE: below step is commented because icon to open this is only available if there are other tasks with due date (not guaranteed in environment)
-        #When I open task list with due date
+        #When I filter task list with due date
         Then I do not see task '<task_name>' in the list as teacher
         When I click on finished tab
         Then I see task '<task_name>' in the list as teacher
@@ -120,7 +120,7 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I click on Restore
         Then I do not see task '<task_name>' in the list as teacher
         When I click on open tasks tab
-        When I open task list with due date
+        When I filter task list with due date
         Then I see task '<task_name>' in the list as teacher
         When I arrive on the dashboard
         When I go to courses overview

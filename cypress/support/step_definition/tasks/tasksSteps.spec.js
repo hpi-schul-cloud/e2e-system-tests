@@ -313,8 +313,8 @@ When("I click on Restore", () => {
 	tasks.clickTaskFinishInDotMenu();
 });
 
-When("I open task list with due date", () => {
-	tasks.clickLowerTaskSectionIcon();
+When("I filter task list with due date", () => {
+	tasks.clickOnFilterToSeeDueTasks();
 });
 
 // steps from createDeleteTaskFromTaskPage.feature
