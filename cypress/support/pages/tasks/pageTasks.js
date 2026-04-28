@@ -46,7 +46,7 @@ class Tasks {
 	static #submissionDiv = '[id="submission"]';
 	static #gradingPercentInput = '[data-testid="evaluation_procent"]';
 	static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]';
-	static #lowerTaskSectionText = '[data-test-id="dueDateLabel"]'; //'[data-testid="task-submitted-student"]';
+	static #lowerTaskSectionText = '[data-testid="due-date-label"]';
 	static #upperTaskSectionIcon = '[data-testid="upperTaskSectionIcon"]';
 	static #upperTaskSectionText = '[data-testid="upperTaskSection"]';
 	static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]';
