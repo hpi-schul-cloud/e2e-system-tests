@@ -55,7 +55,6 @@ class Board {
 	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
 	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
 	static #cartridgeExportContentInfo = '[data-testid="cartridge-export-content-info"]';
-	static #expandedMenuButton = '[aria-expanded="true"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -203,17 +202,14 @@ class Board {
 
 	clickOnKebabMenuAction(kebabMenuAction) {
 		const actionSelector = `[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`;
-
-		cy.get("body").then(($body) => {
-			const hasExpandedMenu = $body.find(Board.#expandedMenuButton).length > 0;
-
-			if (hasExpandedMenu) {
-				cy.get(actionSelector).should("be.visible").click();
+		cy.window().then((win) => {
+			const el = win.document.querySelector(actionSelector);
+			if (el) {
+				el.click();
 			} else {
-				cy.get(actionSelector).should("be.visible").click({ force: true });
+				throw new Error(`Element "${actionSelector}" not found`);
 			}
 		});
-
 		cy.get(actionSelector).should("not.exist");
 	}
 
