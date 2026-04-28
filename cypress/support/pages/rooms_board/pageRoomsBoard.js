@@ -69,7 +69,6 @@ class RoomBoards {
 	static #folderPageTitle = '[data-testid="folder-title"]';
 	static #folderTrashPageTitle = '[data-testid="folder-trash-title"]';
 	static #trashInfoAlert = '[data-testid="trash-info-alert"]';
-	static #breadcrumbRoot = '[data-testid="breadcrumb-0"]';
 	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
 	static #mainContentSelector = "#main-content";
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
@@ -1157,14 +1156,6 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderTrashPageTitle)
 			.should("be.visible")
 			.and("contain", `Papierkorb: ${folderName}`);
-	}
-
-	seeBreadcrumbPathToRecycleBin(roomName, folderName) {
-		cy.get(RoomBoards.#breadcrumbRoot)
-			.parent("ul")
-			.should("contain", roomName)
-			.and("contain", folderName)
-			.and("contain", "Papierkorb");
 	}
 
 	seeTrashInfoAlert(message) {
