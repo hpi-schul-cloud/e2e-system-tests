@@ -408,21 +408,10 @@ class Rooms {
 				cy.wrap(btn).click();
 				cy.get(`#${menuId}`)
 					.should("be.visible")
-					.find(".v-list-item")
-					.should("have.length.at.least", 1);
-				cy.wrap(menuId).as("openMenuId");
+					.within(() => {
+						cy.get(Rooms.#threeDotMenuOptions).should("have.length.at.least", 1);
+					});
 			});
-		// cy.get(Rooms.#roomDetailFAB)
-		// 	.first()
-		// 	.then((btn) => {
-		// 		const menuId = btn.attr("aria-controls");
-		// 		cy.wrap(btn).click();
-		// 		cy.get(`#${menuId}`)
-		// 			.should("be.visible")
-		// 			.within(() => {
-		// 				cy.get(Rooms.#threeDotMenuOptions).should("have.length.at.least", 1);
-		// 			});
-		// 	});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {

@@ -29,16 +29,14 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout =
-		'[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
-	static #externalToolElementAlert =
-		'[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
 	static #externalToolElementDomain =
 		'[data-testid="board-external-tool-element-domain"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
@@ -57,6 +55,7 @@ class Board {
 	static #version110RadioButton = '[data-testid="version-110-radio-button"]';
 	static #version130RadioButton = '[data-testid="version-130-radio-button"]';
 	static #cartridgeExportContentInfo = '[data-testid="cartridge-export-content-info"]';
+	static #expandedMenuButton = '[aria-expanded="true"]';
 
 	clickPlusIconToAddCardInColumn() {
 		cy.get(Board.#addCardInColumnButton).click();
@@ -203,21 +202,19 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get("@openMenuId").then((menuId) => {
-			cy.get(`#${menuId}`)
-				.should("be.visible")
-				.find(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`)
-				.should("be.visible")
-				.click({ force: true });
+		const actionSelector = `[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`;
+
+		cy.get("body").then(($body) => {
+			const hasExpandedMenu = $body.find(Board.#expandedMenuButton).length > 0;
+
+			if (hasExpandedMenu) {
+				cy.get(actionSelector).should("be.visible").click();
+			} else {
+				cy.get(actionSelector).should("be.visible").click({ force: true });
+			}
 		});
-		// cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`)
-		// 	.should("be.visible")
-		// 	.click({
-		// 		force: true,
-		// 	});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).should(
-			"not.exist"
-		);
+
+		cy.get(actionSelector).should("not.exist");
 	}
 
 	clickOnThreeDotOnColumn() {
@@ -530,19 +527,13 @@ class Board {
 
 	enterBoardCardTitle(cardTitle) {
 		cy.get(Board.#boardCard).within(() => {
-			cy.get(Board.#boardCardTitle)
-				.find("textarea")
-				.first()
-				.clear()
-				.type(cardTitle);
+			cy.get(Board.#boardCardTitle).find("textarea").first().clear().type(cardTitle);
 		});
 	}
 
 	seeBoardCardTitle(cardTitle) {
 		cy.get(Board.#boardCard).within(() => {
-			cy.get(Board.#boardCardTitle)
-				.should("be.visible")
-				.should("have.text", cardTitle);
+			cy.get(Board.#boardCardTitle).should("be.visible").should("have.text", cardTitle);
 		});
 	}
 
@@ -558,9 +549,7 @@ class Board {
 	}
 
 	seeLinkElementTitle(linkElementTitle) {
-		cy.get(Board.#contentElementTitle)
-			.contains(linkElementTitle)
-			.should("be.visible");
+		cy.get(Board.#contentElementTitle).contains(linkElementTitle).should("be.visible");
 	}
 
 	clickOnLinkElement(linkElementTitle) {
