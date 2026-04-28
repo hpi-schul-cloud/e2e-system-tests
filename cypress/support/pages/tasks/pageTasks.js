@@ -3,8 +3,8 @@
 class Tasks {
 	static #pageTitle = '[id="page-title"]';
 	static #localeDateFormat = "de-DE";
-	static #taskOverviewTeacher = '[class="task-dashboard-teacher"]';
-	static #taskOverviewStudent = '[class="task-dashboard-student"]';
+	static #taskOverviewStudent = '[data-testid="task-section-task"]';
+	static #emptyStatetaskOverview = '[data-testid="empty-state"]';
 	static #groupSubmissionCheckbox = '[id="teamSubmissions"]';
 	static #draftCheckbox = '[data-testid="private-checkbox"]';
 	static #visibilityStartDateInput =
@@ -39,14 +39,14 @@ class Tasks {
 	static #gradingSaveAndSendBtn =
 		'[data-testid="tasks-submission-grading-save-and-send-btn"]';
 	static #hintForSubmissionReceived = '[data-testid="tasks-submission-hint-received"]';
-	static #doneTasksTab = '[data-testid="closedTasks"]';
+	static #doneTasksTab = '[data-testid="completed-tasks"]';
 	static #taskTitleInList = '[data-testid="taskTitle"]';
 	static #taskSection = '[data-testid="task-section-task"]';
 	static #submissionsSection = '[id="submissions"]';
 	static #submissionDiv = '[id="submission"]';
 	static #gradingPercentInput = '[data-testid="evaluation_procent"]';
 	static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]';
-	static #lowerTaskSectionText = '[data-testid="lowerTaskSection"]';
+	static #lowerTaskSectionText = '[data-testid="due-date-label"]';
 	static #upperTaskSectionIcon = '[data-testid="upperTaskSectionIcon"]';
 	static #upperTaskSectionText = '[data-testid="upperTaskSection"]';
 	static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]';
@@ -58,8 +58,8 @@ class Tasks {
 	static #taskFeedbackTabLink = '[id="feedback-tab-link"]';
 	static #feedbackComment = '[data-testid="feedback-comment"]';
 	static #feedbackGrade = '[data-testid="feedback-grade"]';
-	static #finishedTasksTab = '[data-testid="finishedTasks"]';
-	static #openTasksTab = '[data-testid="openTasks"]';
+	static #finishedTasksTab = '[data-testid="finished-tasks"]';
+	static #openTasksTab = '[data-testid="open-tasks"]';
 	static #finishedTasksListDiv = '[aria-label="Aufgabe"]';
 	static #taskFinishButtonInDotMenu = '[data-testid="task-finish"]';
 	static #uploadedFileNameTag = ".card-block > div > a";
@@ -70,8 +70,9 @@ class Tasks {
 	static #homeworkDescription = '[data-testid="homework-description"]';
 	static #submissionComment = '[data-testid="submission-comment"]';
 	static #submissionText = '[data-testid="submission-text"]';
-	static #draftTasksTab = '[data-testid="draftTasks"]';
+	static #draftTasksTab = '[data-testid="drafts-tasks"]';
 	static #taskCardTitle = '[data-testid="taskTitle"]';
+	static #taskMenuOnOverview = '[data-testid="task-menu"]';
 	static #taskEditPage = '[data-testid="Aufgabe bearbeiten"]';
 	static #taskMenuDelete = '[data-testid="task-delete"]';
 	static #deleteTaskButton = '[data-testid="task-details-btn-delete"]';
@@ -89,6 +90,38 @@ class Tasks {
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #groupSubmissionOption = '[id="courseGroup1"]';
 	static #feedbackHint = '[id="feedback"]';
+	static #dueStatusFilter = '[data-testid="due-status-filter"]';
+	static #courseFilter = '[data-testid="course-filter"]';
+	static #scoreFilter = '[data-testid="grade-status-filter"]';
+	static #resetFilterButton = '[data-testid="reset-filters-btn"]';
+	static #includeSubstituteFilter = '[data-testid="include-substitute-filter"]';
+
+	seeToggleTasksFromSubstitutes() {
+		cy.get(Tasks.#includeSubstituteFilter).should("be.visible");
+	}
+
+	selectNoDueDateInDeadlineFilter() {
+		cy.get(Tasks.#dueStatusFilter).filter(":visible").first().click();
+		cy.contains(":visible", "Ohne Abgabefrist").click();
+	}
+
+	seeNoSearchResultForTaskAsTeacher(taskTitle) {
+		cy.wait("@tasks_api");
+		cy.get(Tasks.#emptyStatetaskOverview).should("exist");
+		cy.contains(Tasks.#taskTitleInList, taskTitle).should("not.exist");
+	}
+
+	clickOnResetFilterButton() {
+		cy.get(Tasks.#resetFilterButton).filter(":visible").first().click();
+	}
+
+	seeDeadlineFilterIsReset() {
+		cy.wait("@tasks_api");
+		cy.get(Tasks.#dueStatusFilter)
+			.should("be.visible")
+			.find('input[role="combobox"]')
+			.should("have.value", "");
+	}
 
 	copyTaskURLInModal() {
 		cy.get(Tasks.#urlInputBoxCopyTask)
@@ -239,12 +272,10 @@ class Tasks {
 	}
 
 	openThreeDotMenuForTask(taskTitle) {
-		cy.get(Tasks.#taskCardTitle)
-			.contains(taskTitle)
-			.parent()
-			.parent()
-			.find("button")
-			.click();
+		cy.contains(Tasks.#taskCardTitle, taskTitle).then((elm) => {
+			const taskIndex = Cypress.$(Tasks.#taskCardTitle).index(elm);
+			cy.get(Tasks.#taskMenuOnOverview).eq(taskIndex).click();
+		});
 	}
 
 	openTaskFromTasksOverview(taskTitle) {
@@ -571,7 +602,7 @@ class Tasks {
 	}
 
 	openNotGradedTasks() {
-		cy.contains(Tasks.#lowerTaskSectionText, "Unbewertet").click();
+		cy.get(Tasks.#lowerTaskSectionText).click();
 	}
 
 	seeTaskInListAsTeacher(taskTitle) {
@@ -584,20 +615,25 @@ class Tasks {
 
 	seeTaskNotInListAsTeacher(taskTitle) {
 		cy.wait("@tasks_api");
-		cy.get(Tasks.#taskOverviewTeacher).contains(taskTitle).should("not.exist");
+		cy.get(Tasks.#emptyStatetaskOverview).should("exist");
 	}
 
 	seeTaskInListAsStudent(taskTitle) {
-		cy.get(Tasks.#taskOverviewStudent)
-			.should("not.have.css", "display", "none")
-			.then(() => {
-				cy.contains("[data-testid='taskTitle']", taskTitle).should("exist");
-			});
+		cy.get(`${Tasks.#taskOverviewStudent}, ${Tasks.#emptyStatetaskOverview}`).then(
+			() => {
+				cy.contains(
+					"[id='page-title'], [data-testid='taskTitle']",
+					taskTitle
+				).should("exist");
+			}
+		);
 	}
 
 	seeTaskNotInListAsStudent(taskTitle) {
 		cy.wait("@tasks_api");
-		cy.get(Tasks.#taskOverviewStudent).contains(taskTitle).should("not.exist");
+		cy.get(`${Tasks.#taskOverviewStudent}, ${Tasks.#emptyStatetaskOverview}`)
+			.contains(taskTitle)
+			.should("not.exist");
 	}
 
 	openTaskInTaskOverview(taskTitle) {
@@ -717,22 +753,9 @@ class Tasks {
 			});
 	}
 
-	clickLowerTaskSectionIcon() {
-		const isUpperTaskSectionActive = this.checkTaskSectionPanelActivation();
-		isUpperTaskSectionActive === "true"
-			? cy
-					.get(Tasks.#upperTaskSectionText)
-					.find(Tasks.#upperTaskSectionIcon)
-					.click()
-					.then(() => {
-						cy.wait(500);
-						cy.get(Tasks.#upperTaskSectionText).should(
-							"have.attr",
-							"aria-expanded",
-							"false"
-						);
-					})
-			: cy.log(`Lower task sub-section already active`);
+	clickOnFilterToSeeDueTasks() {
+		cy.get(Tasks.#dueStatusFilter).filter(":visible").first().click();
+		cy.contains(":visible", "Mit Abgabefrist").click();
 	}
 
 	clickOptionGroupForTeamSubmission() {
