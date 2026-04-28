@@ -705,6 +705,14 @@ Then("I see today as creation date of file {string}", (fileName) => {
 	roomBoards.seeFileCreationDateToday(fileName);
 });
 
+Then("I see today as deletion date of file {string}", (fileName) => {
+	roomBoards.seeFileDeletionDateToday(fileName);
+});
+
+Then("I do not see creation date of file {string}", (fileName) => {
+	roomBoards.doNotSeeFileCreationDate(fileName);
+});
+
 Then("I see message Upload progress", () => {
 	roomBoards.seeFileProgressMessage();
 });

@@ -1219,6 +1219,23 @@ class RoomBoards {
 		);
 	}
 
+	doNotSeeFileCreationDate(fileName) {
+		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should("not.exist");
+	}
+
+	seeFileDeletionDateToday(fileName) {
+		const today = new Date();
+		const day = today.getDate();
+		const month = today.getMonth() + 1;
+		const year = today.getFullYear();
+		const displayedDatePattern = new RegExp(`\\b0?${day}\\.0?${month}\\.${year}\\b`);
+		cy.get(`[data-testid="deleted-since-${fileName}"]`)
+			.invoke("text")
+			.should((text) => {
+				expect(text.trim()).to.match(displayedDatePattern);
+			});
+	}
+
 	seeFileProgressMessage() {
 		cy.get(RoomBoards.#uploadProgressMessage).should("exist");
 	}

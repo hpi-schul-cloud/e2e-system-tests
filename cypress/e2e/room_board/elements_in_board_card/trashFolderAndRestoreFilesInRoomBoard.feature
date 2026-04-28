@@ -29,17 +29,21 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then I see the trash bin page for folder '<folder_name>'
         Then I see breadcrumb with '<board_title>, <folder_name>, Papierkorb'
         Then I see an info message "Dateien werden 7 Tage nach dem Verschieben in den Papierkorb automatisch gelöscht."
+        Then I see file '<file_name_2>' with file size '<file_size_2>' in file list
+        Then I see today as deletion date of file '<file_name_2>'
+        Then I do not see creation date of file '<file_name_2>'
 
+        # Recycling of file
+        When I click on three dot menu in row of file '<file_name_2>'
+        When I select the three dot menu action 'restore'
+        Then I see the trash bin page for folder '<folder_name>'
+        Then I do not see files '<file_name_2>' in file list
+        Then I see message Empty folder
 
-        # And I see file '<image1_file_name>' in the recycle bin list
-        # And I see the column "gelöscht am" for the file '<image1_file_name>'
-        # And I do not see the column "zuletzt bearbeitet" for the file '<image1_file_name>'
-
-        # #Wiederherstellen von Dateien
-        # When I click on the three dot menu for file '<image1_file_name>' in the recycle bin
-        # Then I see the action "Wiederherstellen"
-        # When I select the action "Wiederherstellen"
-        # Then I see file '<image1_file_name>' back in the file list of folder '<folder_name>'
+        # See the restored file back in the folder
+        When I click on breadcrumb element '<folder_name>'
+        Then I see page Folder content for '<folder_name>'
+        Then I see file '<file_name_2>' with file size '<file_size_2>' in file list
 
         # #MultiSelect Wiederherstellen
         # When I check the checkbox for multiple files in the recycle bin
@@ -51,10 +55,10 @@ Feature: Room Board - Trash for file folders and restoring deleted files
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_name_2                |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 |
+            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_name_2                | file_size_2 |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
 
         @staging_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_name_2                |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 |
+            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_name_2                | file_size_2 |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   |
