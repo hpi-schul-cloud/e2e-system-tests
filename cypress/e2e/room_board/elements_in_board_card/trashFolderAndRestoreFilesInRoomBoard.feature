@@ -24,33 +24,30 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         When I click on button Approve in modal for deletion
         Then I do not see files '<file_name_2>' in file list
 
-        # When I delete file '<file_name>' via three dot menu
-        # Then I see a link 'Papierkorb' below the file table
-        # When I click on the link 'Papierkorb'
-        # Then I see the trash page with heading 'Papierkorb: <folder_name_edited>'
-        # Then I see a breadcrumb showing the path to the trash
-        # Then I see an info message 'Dateien werden 7 Tage nach Verschieben in den Papierkorb automatisch gelöscht.'
-        # Then I see file '<file_name>' with column 'gelöscht am' and the deletion date
-        # Then I do not see file '<file_name_2>' in the trash
+        # open trash bin
+        When I click on the link Show trash bin
+        Then I see the trash bin page for folder '<folder_name>'
+        Then I see breadcrumb with '<board_title>, <folder_name>, Papierkorb'
+        Then I see an info message "Dateien werden 7 Tage nach dem Verschieben in den Papierkorb automatisch gelöscht."
 
-        # # Restore file
-        # When I select file '<file_name>' in the trash
-        # When I click on the action 'Wiederherstellen' in the three dot menu
-        # Then I see file '<file_name>' restored in the file folder
 
-        # # MultiSelect restore
-        # When I delete file '<file_name_2>' via three dot menu
-        # When I select all files in the trash
-        # When I click on the action 'Wiederherstellen' in the header
-        # Then I see all files restored in the file folder
+        # And I see file '<image1_file_name>' in the recycle bin list
+        # And I see the column "gelöscht am" for the file '<image1_file_name>'
+        # And I do not see the column "zuletzt bearbeitet" for the file '<image1_file_name>'
 
-        # # Check wording in delete flow
-        # When I open the three dot menu for a file
-        # Then I see the action 'In Papierkorb verschieben'
-        # When I click on the action 'In Papierkorb verschieben'
-        # Then I see the dialog 'Datei <file_name> wirklich in den Papierkorb verschieben?'
-        # When I confirm the dialog
-        # Then I see file '<file_name>' in the trash
+        # #Wiederherstellen von Dateien
+        # When I click on the three dot menu for file '<image1_file_name>' in the recycle bin
+        # Then I see the action "Wiederherstellen"
+        # When I select the action "Wiederherstellen"
+        # Then I see file '<image1_file_name>' back in the file list of folder '<folder_name>'
+
+        # #MultiSelect Wiederherstellen
+        # When I check the checkbox for multiple files in the recycle bin
+        # When I click on the action "Wiederherstellen" in the header of the list
+        # Then I see the selected files back in the file list of folder '<folder_name>'
+
+        # #Post-condition: delete the room
+        # Given the room named '<room_name>' is deleted
 
         @school_api_test
         Examples:

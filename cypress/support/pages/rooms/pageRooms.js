@@ -8,7 +8,7 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
-	static #modal = '[data-testid="dialog"]';
+	static #modalForFileDeletion = '[data-testid="delete-file-dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
 	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
@@ -178,7 +178,9 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
+				cy.get(`[data-testid="room-open-button-${index}"]`)
+					.should("be.visible")
+					.click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -396,7 +398,9 @@ class Rooms {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -410,7 +414,7 @@ class Rooms {
 	}
 
 	seeConfirmationModalForFileDeletion() {
-		cy.get(Rooms.#modal).should("exist");
+		cy.get(Rooms.#modalForFileDeletion).should("exist");
 	}
 
 	seeModalForAddParticipants() {
@@ -447,7 +451,10 @@ class Rooms {
 	selectParticipantSchool() {
 		cy.get(Rooms.#addParticipantSchool).should("be.visible").click();
 		cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
-		cy.get(Rooms.#dropdownOptions).should("have.length.greaterThan", 0).first().click();
+		cy.get(Rooms.#dropdownOptions)
+			.should("have.length.greaterThan", 0)
+			.first()
+			.click();
 		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
@@ -489,7 +496,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -551,7 +560,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {

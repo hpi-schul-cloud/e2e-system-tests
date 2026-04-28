@@ -646,7 +646,7 @@ Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
 
-When("I click on the buttom Delete in the dialog", () => {
+When("I click on the button Delete in the dialog", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
 
@@ -671,6 +671,14 @@ When("I click on the folder {string} in the card", (folderTitle) => {
 
 Then("I see page Folder content for {string}", (folderTitle) => {
 	roomBoards.seeFolderPageWithTitle(folderTitle);
+});
+
+Then("I see the trash bin page for folder {string}", (folderName) => {
+	roomBoards.seeTrashBinPageForFolder(folderName);
+});
+
+Then("I see an info message {string}", (message) => {
+	roomBoards.seeTrashInfoAlert(message);
 });
 
 Then("I see message Empty folder", () => {
@@ -937,4 +945,8 @@ When("I click on button Download in the card file folder", () => {
 
 Then("I see the file type PPTX is uploaded in the card", () => {
 	roomBoards.verifyPptxFileUploaded();
+});
+
+When("I click on the link Show trash bin", () => {
+	roomBoards.clickShowTrashBinLink();
 });

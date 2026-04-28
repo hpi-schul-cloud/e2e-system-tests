@@ -67,6 +67,9 @@ class RoomBoards {
 	static #fileElementSelector = '[data-testid="board-file-element"]';
 	static #folderElementSelector = '[data-testid="board-folder-element"]';
 	static #folderPageTitle = '[data-testid="folder-title"]';
+	static #folderTrashPageTitle = '[data-testid="folder-trash-title"]';
+	static #trashInfoAlert = '[data-testid="trash-info-alert"]';
+	static #breadcrumbRoot = '[data-testid="breadcrumb-0"]';
 	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
 	static #mainContentSelector = "#main-content";
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
@@ -141,6 +144,7 @@ class RoomBoards {
 	static #selectDestinationModalTitle =
 		'[data-testid="select-destination-modal-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
+	static #showTrashBinLink = '[data-testid="trash-link"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #shareDialogTitle = '[data-testid="share-dialog-title"]';
 	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
@@ -252,6 +256,10 @@ class RoomBoards {
 			.should("be.visible")
 			.and("not.be.disabled")
 			.click();
+	}
+
+	clickShowTrashBinLink() {
+		cy.get(RoomBoards.#showTrashBinLink).click();
 	}
 
 	copyCardURLInModal() {
@@ -1143,6 +1151,26 @@ class RoomBoards {
 
 	seeFolderPageWithTitle(title) {
 		cy.get(RoomBoards.#folderPageTitle).should("contain", title);
+	}
+
+	seeTrashBinPageForFolder(folderName) {
+		cy.get(RoomBoards.#folderTrashPageTitle)
+			.should("be.visible")
+			.and("contain", `Papierkorb: ${folderName}`);
+	}
+
+	seeBreadcrumbPathToRecycleBin(roomName, folderName) {
+		cy.get(RoomBoards.#breadcrumbRoot)
+			.parent("ul")
+			.should("contain", roomName)
+			.and("contain", folderName)
+			.and("contain", "Papierkorb");
+	}
+
+	seeTrashInfoAlert(message) {
+		cy.get(RoomBoards.#trashInfoAlert)
+			.should("be.visible")
+			.and("contain.text", message);
 	}
 
 	seeMessageEmptyFolder() {
