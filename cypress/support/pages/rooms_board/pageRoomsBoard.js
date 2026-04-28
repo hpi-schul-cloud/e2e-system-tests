@@ -20,8 +20,7 @@ class RoomBoards {
 	static #singleColumnBoardTileSelector = '[data-testid="board-grid-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
-	static #elementSelectionCancelButton =
-		'[data-testid="element-type-selection-cancel"]';
+	static #elementSelectionCancelButton = '[data-testid="element-type-selection-cancel"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
 	static #saveButton = '[data-testid="save-video-conference-title-button"]';
 	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
@@ -34,6 +33,7 @@ class RoomBoards {
 		'[data-testid="video-conference-config-dialog-cancel"]';
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
+	static #threeDotInLinkElement = '[data-testid="board-menu-button"]';
 	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
@@ -109,7 +109,6 @@ class RoomBoards {
 	static #titleOnCardElement = '[data-testid="content-element-title-slot"]';
 	static #linkInputField = '[data-testid="input-link"]';
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
-	static #linkSaveButton = '[data-testid="save-link-in-card"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
@@ -134,8 +133,7 @@ class RoomBoards {
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
 	static #globalShareDialogTitle = '[data-testid="share-dialog-title"]';
 	static #confirmDialogTitle = '[data-testid="confirm-dialog-title"]';
-	static #selectDestinationModalTitle =
-		'[data-testid="select-destination-modal-title"]';
+	static #selectDestinationModalTitle = '[data-testid="select-destination-modal-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #shareDialogTitle = '[data-testid="share-dialog-title"]';
@@ -403,8 +401,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#linkInputField).type(linkName);
 	}
 
-	clickSaveButtonToSaveLinkInCard() {
-		cy.get(RoomBoards.#linkSaveButton).click();
+	editLinkInLinkElement(newLinkName) {
+		cy.get(RoomBoards.#linkInputField).type(
+			"{selectall}{backspace}{selectall}{backspace}"
+		);
+		cy.get(RoomBoards.#linkInputField).type(newLinkName);
 	}
 
 	verifyAddNewColumnButtonInRoomBoard(shouldExist = true) {
@@ -418,7 +419,7 @@ class RoomBoards {
 	}
 
 	clickOnThreeDotOnLinkElement() {
-		cy.get(RoomBoards.#parentClassEtherpadThreeDot)
+		cy.get(RoomBoards.#threeDotInLinkElement)
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
 	}
@@ -429,6 +430,12 @@ class RoomBoards {
 
 	seeLinkElementInRoomBoard() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyLinkURLInLinkElement(expectedURL) {
+		cy.get(RoomBoards.#linkElementOnCard)
+			.should("be.visible")
+			.and("have.attr", "href", expectedURL);
 	}
 
 	verifyEtherpadIsVisibleOnCard() {
@@ -615,6 +622,7 @@ class RoomBoards {
 
 	clickOutsideToSaveCard() {
 		cy.get(RoomBoards.#mainContentSelector).click();
+		cy.wait(500);
 	}
 
 	enterCaption(captionText) {
