@@ -46,7 +46,7 @@ class Tasks {
 	static #submissionDiv = '[id="submission"]';
 	static #gradingPercentInput = '[data-testid="evaluation_procent"]';
 	static #lowerTaskSectionIcon = '[data-testid="lowerTaskSectionIcon"]';
-	static #lowerTaskSectionText = '[data-testid="task-submitted-student"]';
+	static #lowerTaskSectionText = '[data-test-id="dueDateLabel"]'; //'[data-testid="task-submitted-student"]';
 	static #upperTaskSectionIcon = '[data-testid="upperTaskSectionIcon"]';
 	static #upperTaskSectionText = '[data-testid="upperTaskSection"]';
 	static #toCourseButton = '[data-testid="tasks-navbtn-to-room"]';
@@ -91,6 +91,37 @@ class Tasks {
 	static #groupSubmissionOption = '[id="courseGroup1"]';
 	static #feedbackHint = '[id="feedback"]';
 	static #dueStatusFilter = '[data-testid="due-status-filter"]';
+	static #courseFilter = '[data-testid="course-filter"]';
+	static #scoreFilter = '[data-testid="grade-status-filter"]';
+	static #resetFilterButton = '[data-testid="reset-filters-btn"]';
+	static #includeSubstituteFilter = '[data-testid="include-substitute-filter"]';
+
+	seeToggleTasksFromSubstitutes() {
+		cy.get(Tasks.#includeSubstituteFilter).should("be.visible");
+	}
+
+	selectNoDueDateInDeadlineFilter() {
+		cy.get(Tasks.#dueStatusFilter).filter(":visible").first().click();
+		cy.contains(":visible", "Ohne Abgabefrist").click();
+	}
+
+	seeNoSearchResultForTaskAsTeacher(taskTitle) {
+		cy.wait("@tasks_api");
+		cy.get(Tasks.#emptyStatetaskOverview).should("exist");
+		cy.contains(Tasks.#taskTitleInList, taskTitle).should("not.exist");
+	}
+
+	clickOnResetFilterButton() {
+		cy.get(Tasks.#resetFilterButton).filter(":visible").first().click();
+	}
+
+	seeDeadlineFilterIsReset() {
+		cy.wait("@tasks_api");
+		cy.get(Tasks.#dueStatusFilter)
+			.should("be.visible")
+			.find('input[role="combobox"]')
+			.should("have.value", "");
+	}
 
 	copyTaskURLInModal() {
 		cy.get(Tasks.#urlInputBoxCopyTask)

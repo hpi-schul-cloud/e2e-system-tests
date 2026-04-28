@@ -3,13 +3,25 @@ import Tasks from "../../pages/tasks/pageTasks";
 
 const tasks = new Tasks();
 
-// EXTERNAL COMMON STEP DEFINITIONS
-// =========================
-// External defined steps can be found here:
-// -----------------------------------------
-// -->\step_definition\authentication\loginStep.spec.js
-// -->\step_definition\course\commonCourseSteps.spec.js
-// -->\step_definition\tasks\commonTaskSteps.spec.js
+Then("I see the toggle tasks from substitutes teachers", () => {
+	tasks.seeToggleTasksFromSubstitutes();
+});
+
+When("I select the option with no due date in the deadline filter", () => {
+	tasks.selectNoDueDateInDeadlineFilter();
+});
+
+Then("I see no search result for task {string} in the list as teacher", (taskTitle) => {
+	tasks.seeNoSearchResultForTaskAsTeacher(taskTitle);
+});
+
+When("I click on the button Reset filter", () => {
+	tasks.clickOnResetFilterButton();
+});
+
+Then("I see deadline filter is reset", () => {
+	tasks.seeDeadlineFilterIsReset();
+});
 
 When("I open the draft task card in course detail page", () => {
 	tasks.openDraftTaskCardInCourseDetail();

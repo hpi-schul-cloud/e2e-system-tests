@@ -120,6 +120,11 @@ Feature: Task - To create, submit, grade, archive, restore and delete task.
         When I click on Restore
         Then I do not see task '<task_name>' in the list as teacher
         When I click on open tasks tab
+        Then I see the toggle tasks from substitutes teachers
+        When I select the option with no due date in the deadline filter
+        Then I see no search result for task '<task_name>' in the list as teacher
+        When I click on the button Reset filter
+        Then I see deadline filter is reset
         When I filter task list with due date
         Then I see task '<task_name>' in the list as teacher
         When I arrive on the dashboard
