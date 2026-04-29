@@ -1,7 +1,7 @@
 @stable_test
 @regression_test
-# @group-B
-# @prio_0_staging
+@group-F
+@prio_0_staging
 Feature: Room Board - Trash for file folders and restoring deleted files
 
     As an authorized user, I want to see deleted files of a file folder in the corresponding trash and be able to restore them.
@@ -26,6 +26,8 @@ Feature: Room Board - Trash for file folders and restoring deleted files
 
         # open trash bin
         When I click on the link Show trash bin
+        # waiting because sometimes the file is not immediately moved to trash and the test fails because of that, waiting for 1 second should be enough
+        When I wait '1' seconds and reload
         Then I see the trash bin page for folder '<folder_name>'
         Then I see breadcrumb with '<board_title>, <folder_name>, Papierkorb'
         Then I see an info message "Dateien werden 7 Tage nach dem Verschieben in den Papierkorb automatisch gelöscht."
@@ -60,16 +62,12 @@ Feature: Room Board - Trash for file folders and restoring deleted files
 
         # Check and Restore multiple files
         When I click on the link Show trash bin
+        # waiting because sometimes the file is not immediately moved to trash and the test fails because of that, waiting for 1 second should be enough
+        When I wait '1' seconds and reload
         Then I see files '<file_name>, <file_name_3>, <file_name_4>' in file list
-        # restoring using the action menu in header has to be reactivated when data-testid in menu is fixed.
-        # When I check the checkbox of file '<file_name_3>'
-        # When I check the checkbox of file '<file_name_4>'
-        # When I click on button Action in the header of the list
-        # When I select the three dot menu action 'restore'
-        # temporary workaround for restore action until data-testid in menu is fixed:
-        When I click on three dot menu in row of file '<file_name_3>'
-        When I select the three dot menu action 'restore'
-        When I click on three dot menu in row of file '<file_name_4>'
+        When I check the checkbox of file '<file_name_3>'
+        When I check the checkbox of file '<file_name_4>'
+        When I click on button Action in the header of the list
         When I select the three dot menu action 'restore'
         Then I see the trash bin page for folder '<folder_name>'
         Then I do not see files '<file_name_3>, <file_name_4>' in file list
