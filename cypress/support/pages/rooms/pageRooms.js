@@ -406,12 +406,25 @@ class Rooms {
 			.then((btn) => {
 				const menuId = btn.attr("aria-controls");
 				cy.wrap(btn).click();
-				cy.get(`#${menuId}`)
-					.should("be.visible")
-					.within(() => {
-						cy.get(Rooms.#threeDotMenuOptions).should("have.length.at.least", 1);
-					});
+				cy.window().then((win) => {
+					const menu = win.document.querySelector(`#${menuId}`);
+					expect(menu, `Menu #${menuId} should exist`).to.not.be.null;
+					expect(menu.offsetParent, `Menu #${menuId} should be visible`).to.not.be.null;
+					const options = menu.querySelectorAll('[role="menuitem"]');
+					expect(options.length, "Menu should have at least 1 option").to.be.at.least(1);
+				});
 			});
+		// cy.get(Rooms.#roomDetailFAB)
+		// 	.first()
+		// 	.then((btn) => {
+		// 		const menuId = btn.attr("aria-controls");
+		// 		cy.wrap(btn).click();
+		// 		cy.get(`#${menuId}`)
+		// 			.should("be.visible")
+		// 			.within(() => {
+		// 				cy.get(Rooms.#threeDotMenuOptions).should("have.length.at.least", 1);
+		// 			});
+		// 	});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
