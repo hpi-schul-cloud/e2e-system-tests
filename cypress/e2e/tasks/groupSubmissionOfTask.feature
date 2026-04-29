@@ -57,7 +57,7 @@ Feature: Task - To submit a task as students group and grade it by teacher.
         Then grading for group '<group_name>' contains '83'
         When I click on button To Course
         Then I see task card info submitted contains '2/3' for task '<task_name>'
-        Then Task card info graded contains '2/3' for task '<task_name>'
+        Then Task card info graded contains '2/2' for task '<task_name>'
 
         # student1 sees grading
         Given I am logged in as a '<student1>' at '<namespace>'
