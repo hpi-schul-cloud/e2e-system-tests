@@ -1,6 +1,6 @@
 @stable_test
 @regression_test
-@group-F
+@group-A
 @prio_0_staging
 Feature: Room Board - Trash for file folders and restoring deleted files
 
