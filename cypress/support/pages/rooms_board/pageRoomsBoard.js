@@ -135,6 +135,8 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
+	static #confirmRenamingFileButtonOnModal =
+		'[data-testid="rename-file-dialog-confirm"]';
 	static #globalDialogConfirmButton = '[data-testid="import-modal-confirm"]';
 	static #confirmDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
@@ -183,6 +185,10 @@ class RoomBoards {
 
 	clickOnConfirmOnModal() {
 		cy.get(RoomBoards.#confirmButtonOnModal).click();
+	}
+
+	clickOnConfirmRenamingFileInModal() {
+		cy.get(RoomBoards.#confirmRenamingFileButtonOnModal).click();
 	}
 
 	verifyCardPresentOnTargetBoard(cardTitle) {
@@ -1200,34 +1206,21 @@ class RoomBoards {
 		});
 	}
 
-	seeFileCreationDateToday(fileName) {
-		const today = new Date();
-		let displayedDate = today.toLocaleString("de-DE", {
-			year: "numeric", // 4-digit year
-			day: "2-digit",
-			month: "2-digit",
-		});
-		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should(
-			"contain",
-			displayedDate
-		);
-	}
-
-	doNotSeeFileCreationDate(fileName) {
-		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should("not.exist");
-	}
-
-	seeFileDeletionDateToday(fileName) {
+	seeFileDateToday(fileName, dataTestId) {
 		const today = new Date();
 		const day = today.getDate();
 		const month = today.getMonth() + 1;
 		const year = today.getFullYear();
 		const displayedDatePattern = new RegExp(`\\b0?${day}\\.0?${month}\\.${year}\\b`);
-		cy.get(`[data-testid="deleted-since-${fileName}"]`)
+		cy.get(`[data-testid="${dataTestId}-${fileName}"]`)
 			.invoke("text")
 			.should((text) => {
 				expect(text.trim()).to.match(displayedDatePattern);
 			});
+	}
+
+	doNotSeeFileCreationDate(fileName) {
+		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should("not.exist");
 	}
 
 	seeFileProgressMessage() {

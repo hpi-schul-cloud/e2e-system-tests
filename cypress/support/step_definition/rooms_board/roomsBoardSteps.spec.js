@@ -702,11 +702,11 @@ Then("I see file {string} with file size {string} in file list", (fileName, file
 });
 
 Then("I see today as creation date of file {string}", (fileName) => {
-	roomBoards.seeFileCreationDateToday(fileName);
+	roomBoards.seeFileDateToday(fileName, "content-modified-at");
 });
 
 Then("I see today as deletion date of file {string}", (fileName) => {
-	roomBoards.seeFileDeletionDateToday(fileName);
+	roomBoards.seeFileDateToday(fileName, "deleted-since");
 });
 
 Then("I do not see creation date of file {string}", (fileName) => {
@@ -818,6 +818,10 @@ When("I clear input field New name", () => {
 
 When("I click on button Approve in modal", () => {
 	roomBoards.clickOnConfirmOnModal();
+});
+
+When("I click on button Approve renaming file in modal", () => {
+	roomBoards.clickOnConfirmRenamingFileInModal();
 });
 
 When("I click on button Approve in modal for deletion", () => {
