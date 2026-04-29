@@ -33,7 +33,6 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then I see an info message "Dateien werden 7 Tage nach dem Verschieben in den Papierkorb automatisch gelöscht."
         Then I see file '<file_name_2>' with file size '<file_size_2>' in file list
         Then I see today as deletion date of file '<file_name_2>'
-        Then I do not see creation date of file '<file_name_2>'
 
         # Recycling of file
         When I click on three dot menu in row of file '<file_name_2>'

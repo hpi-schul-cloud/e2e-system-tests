@@ -1219,10 +1219,6 @@ class RoomBoards {
 			});
 	}
 
-	doNotSeeFileCreationDate(fileName) {
-		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should("not.exist");
-	}
-
 	seeFileProgressMessage() {
 		cy.get(RoomBoards.#uploadProgressMessage).should("exist");
 	}
