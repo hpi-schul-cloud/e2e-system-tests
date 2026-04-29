@@ -258,7 +258,10 @@ class RoomBoards {
 	}
 
 	clickShowTrashBinLink() {
-		cy.get(RoomBoards.#showTrashBinLink).click();
+		cy.get(RoomBoards.#showTrashBinLink)
+			.should("be.visible")
+			.and("not.be.disabled")
+			.click();
 	}
 
 	copyCardURLInModal() {
