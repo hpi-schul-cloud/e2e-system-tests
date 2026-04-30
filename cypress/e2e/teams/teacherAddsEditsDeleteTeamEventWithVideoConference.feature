@@ -2,6 +2,9 @@
 @regression_test
 @group-E
 @prio_0_staging
+
+#---NEW TEAM CAN NOT BE CREATED IN GUI, SO PLEASE USE THE EXISTING TEAM AND DO NOT DELETE IT---#
+
 Feature: Teams - Teacher adds edits and deletes team event with video conference and student can participate as an internal team member
 
     As a teacher, I want to add video conference to the team event so that team members can collaborate via video conference.
@@ -23,13 +26,6 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
 
         # pre-condition: teacher enables the video conference option in the existing team
         Given I am logged in as a '<teacher>' at '<namespace>'
-        # ---------- creating a new team feature is no longer possible in GUI ----------
-        #When I go to teams overview
-        #When I click on button Add Team on the teams overview page
-        #Then I see new team creation page
-        #When I enter in the title '<team_title>'
-        # When I click on button Create Team on the team creation page
-        --------------------------------------------------------------------------------
         When I go to teams overview
         When I go to a team '<team_title>'
         When I click on team settings
@@ -117,15 +113,6 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
         When I click on edit option
         Then I see team edit page
         Then I see video conference option is disabled
-
-        # ---------- creating a new team feature is no longer possible in GUI, so please do not delete the existing teams ----------
-        # post-condition: deleting the newly created team by teacher
-        #When I go to teams overview
-        # When I go to a team '<team_title>'
-        #When I click on team settings
-        #When I click on delete option
-        #Then I see dialog box and click on delete button to confirm the deletion
-        #Then I do not see the team '<event_title_edited>'
 
         @staging_test
         Examples:

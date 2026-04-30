@@ -3,6 +3,9 @@
 @schedule_run
 @group-C
 @prio_0_staging
+
+#---NEW TEAM CAN NOT BE CREATED IN GUI, SO PLEASE USE THE EXISTING TEAM AND DO NOT DELETE IT---#
+
 Feature:  News - To read a news on the respective dashboards
 
     As a teacher, I want to read the news shown on the dashboard so that I'm informed about the latest news
@@ -24,13 +27,6 @@ Feature:  News - To read a news on the respective dashboards
         Then I see time input field
         When I click on save button
         Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
-
-        # teacher creates a team
-        When I go to teams overview
-        When I click on button Add Team on the teams overview page
-        Then I see new team creation page
-        When I enter in the title '<team_name>'
-        When I click on button Create Team on the team creation page
 
         # teacher creates a team news
         When I go to teams overview
@@ -75,16 +71,7 @@ Feature:  News - To read a news on the respective dashboards
         When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<team_news_title>'
 
-        # post-condition: teacher deletes the team
-        When I go to teams overview
-        When I go to a team '<team_name>'
-        When I click on team settings
-        When I click on delete option
-        Then I see dialog box and click on delete button to confirm the deletion
-        Then I do not see the team '<team_name>'
-
-        @school_api_test
         @staging_test
         Examples:
             | teacher      | student      | namespace | news_title                         | news_description        | team_name              | team_news_title                  | team_news_description      |
-            | teacher1_brb | student1_brb | brb       | CypressAut - this is a school news | school news description | CypressAut - News Team | CypressAut - this is a team news | test team news description |
+            | teacher1_brb | student1_brb | brb       | CypressAut - this is a school news | school news description | QA_01 - do not delete! | CypressAut - this is a team news | test team news description |
