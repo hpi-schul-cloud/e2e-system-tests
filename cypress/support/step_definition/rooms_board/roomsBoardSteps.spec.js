@@ -642,7 +642,7 @@ Then("I see the button to confirm the dialog", () => {
 	roomBoards.seeBtnDialogConfirmDelete();
 });
 
-When("I click on the buttom Delete in the dialog", () => {
+When("I click on the button Delete in the dialog", () => {
 	roomBoards.clickBtnDialogConfirmDelete();
 });
 
@@ -669,6 +669,14 @@ Then("I see page Folder content for {string}", (folderTitle) => {
 	roomBoards.seeFolderPageWithTitle(folderTitle);
 });
 
+Then("I see the trash bin page for folder {string}", (folderName) => {
+	roomBoards.seeTrashBinPageForFolder(folderName);
+});
+
+Then("I see an info message {string}", (message) => {
+	roomBoards.seeTrashInfoAlert(message);
+});
+
 Then("I see message Empty folder", () => {
 	roomBoards.seeMessageEmptyFolder();
 });
@@ -690,7 +698,11 @@ Then("I see file {string} with file size {string} in file list", (fileName, file
 });
 
 Then("I see today as creation date of file {string}", (fileName) => {
-	roomBoards.seeFileCreationDateToday(fileName);
+	roomBoards.seeFileDateToday(fileName, "content-modified-at");
+});
+
+Then("I see today as deletion date of file {string}", (fileName) => {
+	roomBoards.seeFileDateToday(fileName, "deleted-since");
 });
 
 Then("I see message Upload progress", () => {
@@ -798,6 +810,10 @@ When("I clear input field New name", () => {
 
 When("I click on button Approve in modal", () => {
 	roomBoards.clickOnConfirmOnModal();
+});
+
+When("I click on button Approve renaming file in modal", () => {
+	roomBoards.clickOnConfirmRenamingFileInModal();
 });
 
 When("I click on button Approve in modal for deletion", () => {
@@ -933,4 +949,8 @@ When("I click on button Download in the card file folder", () => {
 
 Then("I see the file type PPTX is uploaded in the card", () => {
 	roomBoards.verifyPptxFileUploaded();
+});
+
+When("I click on the link Show trash bin", () => {
+	roomBoards.clickShowTrashBinLink();
 });
