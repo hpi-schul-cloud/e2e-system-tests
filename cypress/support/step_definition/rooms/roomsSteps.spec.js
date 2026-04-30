@@ -342,7 +342,7 @@ Then("I see the modal Create Invitation Link", () => {
 });
 
 When(
-	"I enter {string} into the Invitation Link Description field",
+	"I enter {string} into the Field Invitation Link Description",
 	(invitationDescription) => {
 		rooms.fillInvitationFormDescription(invitationDescription);
 	}
@@ -355,6 +355,17 @@ When("I uncheck the Checkbox to require confirmation", () => {
 When("I check the Checkbox to require confirmation", () => {
 	rooms.checkInvitationFormRequireConfirmation();
 });
+
+When("I select the radio button for {string}", (schoolScope) => {
+	rooms.selectInvitationLinkSchoolScope(schoolScope);
+});
+
+When(
+	"I {string} the checkbox to allow external persons to use the invitation link",
+	(action) => {
+		rooms.setExternalPersonOptionForInvitationLink(action);
+	}
+);
 
 When("I save the invitation link", () => {
 	rooms.clickInvitationFormSave();
@@ -400,13 +411,10 @@ Then("I do not see user {string} in the confirmations table", (userName) => {
 	rooms.notSeeUserInConfirmationsTable(userName);
 });
 
-When(
-	"I click on button Three Dot Menu in Confirmations table for user {string}",
-	(userName) => {
-		rooms.clickOnThreeDotMenuToEditUser(userName);
-	}
-);
+When("I click on three dot menu for user {string} in Confirmations table", (userName) => {
+	rooms.clickOnThreeDotMenuToEditUser(userName);
+});
 
-When("I click on confirm button in the three dot menu", () => {
+When("I click on button Confirm in the three dot menu", () => {
 	rooms.clickConfirmButtonInThreeDotMenu();
 });
