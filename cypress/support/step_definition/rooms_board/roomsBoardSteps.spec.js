@@ -177,8 +177,8 @@ Then("I enter link URL {string}", (linkName) => {
 	roomBoards.enterLinkInLinkElement(linkName);
 });
 
-When("I click on the button Save link", () => {
-	roomBoards.clickSaveButtonToSaveLinkInCard();
+Then("I edit link URL to {string}", (newLinkName) => {
+	roomBoards.editLinkInLinkElement(newLinkName);
 });
 
 When("I click on the three dot in the element Link", () => {
@@ -191,6 +191,10 @@ Then("I do not see the element Link", () => {
 
 Then("I see the element Link on the card", () => {
 	roomBoards.seeLinkElementInRoomBoard();
+});
+
+Then("I see the URL {string} in the element Link", (linkName) => {
+	roomBoards.verifyLinkURLInLinkElement(linkName);
 });
 
 Then("I verify the element Link is clickable", () => {
@@ -377,10 +381,6 @@ Then("I see the option {string} is selected", (option) => {
 	roomBoards.verifyOptionIsSelectedInEditingSettingsModal(option);
 });
 
-When("I open the shared URL for board", () => {
-	roomBoards.openSharedBoardURL();
-});
-
 Then("I see the Dialog to import", () => {
 	roomBoards.verifyImportDialog();
 });
@@ -454,10 +454,6 @@ Then("I see the {string} option has {string} label", (option, label) => {
 
 Then("I see the option Scan QR Code", () => {
 	roomBoards.verifyScanQRCodeOption();
-});
-
-Then("I copy the board URL", () => {
-	roomBoards.copyBoardURLInModal();
 });
 
 When("I click on the option Edit in the three dot menu on the card", () => {

@@ -48,10 +48,10 @@ class Courses {
 	static #btnCourseEdit = '[data-testid="room-menu-edit-delete"]';
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChipWithIndex =
-		'[data-testid="task-submitted-teacher"]';
+		'[data-testid="room-task-card-chip-submitted-0"]';
 	static #contentCardTaskInfoDueDate = '[data-testid="dueDateHintLabel"]';
 	static #contentCardTaskInfoGradingsChipWithIndex =
-		'[data-testid="task-graded-teacher"]';
+		'[data-testid="room-task-card-chip-graded-0"]';
 	static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]';
 	static #chosenChoices = ".chosen-choices";
 	static #chosenResults = ".chosen-results li";
@@ -799,9 +799,10 @@ class Courses {
 
 	compareSubmittedTasksInformation(submittedTasks, contentTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
-		cy.get(Courses.#taskCardInCoursePageWithIndex)
-			.find(Courses.#contentCardTaskInfoSubmissionsChipWithIndex)
-			.should("contain", submittedTasks);
+		cy.get(Courses.#contentCardTaskInfoSubmissionsChipWithIndex).should(
+			"contain",
+			submittedTasks
+		);
 	}
 
 	compareNotSubmittedTasksInformation(contentTitle) {
@@ -810,12 +811,10 @@ class Courses {
 	}
 
 	compareGradedTasksInformation(gradedTasks, contentTitle) {
-		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(contentTitle);
-		cy.get(Courses.#taskCardInCoursePageWithIndex).within(() => {
-			cy.get(Courses.#contentCardTaskInfoGradingsChipWithIndex)
-				.filter(":visible")
-				.should("contain", gradedTasks);
-		});
+		cy.get(Courses.#taskCardTitleInCoursePageWithIndex)
+			.contains(contentTitle)
+			.get(Courses.#contentCardTaskInfoGradingsChipWithIndex)
+			.should("contain", gradedTasks);
 	}
 
 	clickOnFinishTask(taskTitle) {
