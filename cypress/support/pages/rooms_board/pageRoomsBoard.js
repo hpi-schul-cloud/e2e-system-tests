@@ -66,6 +66,8 @@ class RoomBoards {
 	static #fileElementSelector = '[data-testid="board-file-element"]';
 	static #folderElementSelector = '[data-testid="board-folder-element"]';
 	static #folderPageTitle = '[data-testid="folder-title"]';
+	static #folderTrashPageTitle = '[data-testid="folder-trash-title"]';
+	static #trashInfoAlert = '[data-testid="trash-info-alert"]';
 	static #threeDotMenuSelector = '[data-testid="element-menu-button-0-0-1"]';
 	static #mainContentSelector = "#main-content";
 	static #fileCaptionInputSelector = '[data-testid="file-caption-input"]';
@@ -128,6 +130,8 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
+	static #confirmRenamingFileButtonOnModal =
+		'[data-testid="rename-file-dialog-confirm"]';
 	static #globalDialogConfirmButton = '[data-testid="import-modal-confirm"]';
 	static #confirmDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
@@ -135,6 +139,7 @@ class RoomBoards {
 	static #confirmDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #selectDestinationModalTitle = '[data-testid="select-destination-modal-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
+	static #showTrashBinLink = '[data-testid="trash-link"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #shareDialogTitle = '[data-testid="share-dialog-title"]';
 	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
@@ -174,6 +179,10 @@ class RoomBoards {
 
 	clickOnConfirmOnModal() {
 		cy.get(RoomBoards.#confirmButtonOnModal).click();
+	}
+
+	clickOnConfirmRenamingFileInModal() {
+		cy.get(RoomBoards.#confirmRenamingFileButtonOnModal).click();
 	}
 
 	verifyCardPresentOnTargetBoard(cardTitle) {
@@ -243,6 +252,13 @@ class RoomBoards {
 
 	clickImportButtonInModal() {
 		cy.get(RoomBoards.#globalDialogConfirmButton)
+			.should("be.visible")
+			.and("not.be.disabled")
+			.click();
+	}
+
+	clickShowTrashBinLink() {
+		cy.get(RoomBoards.#showTrashBinLink)
 			.should("be.visible")
 			.and("not.be.disabled")
 			.click();
@@ -1143,6 +1159,18 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderPageTitle).should("contain", title);
 	}
 
+	seeTrashBinPageForFolder(folderName) {
+		cy.get(RoomBoards.#folderTrashPageTitle)
+			.should("be.visible")
+			.and("contain", `Papierkorb: ${folderName}`);
+	}
+
+	seeTrashInfoAlert(message) {
+		cy.get(RoomBoards.#trashInfoAlert)
+			.should("be.visible")
+			.and("contain.text", message);
+	}
+
 	seeMessageEmptyFolder() {
 		cy.get(RoomBoards.#folderPageMessageEmptyFolder).should("exist");
 	}
@@ -1176,17 +1204,17 @@ class RoomBoards {
 		});
 	}
 
-	seeFileCreationDateToday(fileName) {
+	seeFileDateToday(fileName, dataTestId) {
 		const today = new Date();
-		let displayedDate = today.toLocaleString("de-DE", {
-			year: "numeric", // 4-digit year
-			day: "2-digit",
-			month: "2-digit",
-		});
-		cy.get(`[data-testid="content-modified-at-${fileName}"]`).should(
-			"contain",
-			displayedDate
-		);
+		const day = today.getDate();
+		const month = today.getMonth() + 1;
+		const year = today.getFullYear();
+		const displayedDatePattern = new RegExp(`\\b0?${day}\\.0?${month}\\.${year}\\b`);
+		cy.get(`[data-testid="${dataTestId}-${fileName}"]`)
+			.invoke("text")
+			.should((text) => {
+				expect(text.trim()).to.match(displayedDatePattern);
+			});
 	}
 
 	seeFileProgressMessage() {
