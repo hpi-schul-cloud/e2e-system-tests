@@ -105,10 +105,41 @@ class Rooms {
 		const roomRegex = new RegExp(`^${roomNamePrefix}.*$`, "i");
 		const scrollContainer =
 			".v-container.v-container--fluid.main-content.container-full-width";
+		const MAX_ITERATIONS = 100;
+		const TIMEOUT_MS = 60000;
+
+		let iterations = 0;
+		const startTime = Date.now();
+
+		// capture upfront count of visible matching rooms for post-check reference
+		cy.get("body").then(($body) => {
+			const initialCount = [...$body.find('[data-testid^="room--title-"]')].filter(
+				(el) => roomRegex.test(el.innerText.trim())
+			).length;
+			cy.log(
+				`Found ${initialCount} room(s) matching "${roomNamePrefix}" before deletion.`
+			);
+		});
 
 		const loop = (lastScrollTop = -1) => {
+			iterations++;
+
+			// guard: max iterations exceeded
+			if (iterations > MAX_ITERATIONS) {
+				throw new Error(
+					`deleteAllRoomsWithName: exceeded ${MAX_ITERATIONS} iterations while deleting rooms with prefix "${roomNamePrefix}". Possible infinite loop.`
+				);
+			}
+
+			// guard: overall timeout exceeded
+			if (Date.now() - startTime > TIMEOUT_MS) {
+				throw new Error(
+					`deleteAllRoomsWithName: timed out after ${TIMEOUT_MS}ms while deleting rooms with prefix "${roomNamePrefix}".`
+				);
+			}
+
 			cy.get("body").then(($body) => {
-				// stop if UI shows there are no rooms
+				// stop if UI shows there are no rooms at all
 				if ($body.find(Rooms.#noRoomsMessage).length > 0) {
 					cy.log("No rooms available.");
 					return;
@@ -117,7 +148,7 @@ class Rooms {
 				// safe query: does not fail if nothing exists
 				const titles = $body.find('[data-testid^="room--title-"]');
 
-				// still loading -> retry
+				// still loading -> retry (counts against iteration limit)
 				if (titles.length === 0) {
 					cy.wait(500);
 					return loop(lastScrollTop);
@@ -134,9 +165,7 @@ class Rooms {
 					const index = testId.replace("room--title-", "");
 
 					cy.get(`[data-testid="room-open-button-${index}"]`)
-
 						.should("be.visible")
-
 						.click();
 
 					cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
@@ -155,12 +184,12 @@ class Rooms {
 					});
 				}
 
-				// no match in current DOM -> scroll container down and keep scanning
+				// no match in current viewport -> scroll down and keep scanning
 				cy.get(scrollContainer).then(($el) => {
 					const el = $el[0];
 					const currentScrollTop = el.scrollTop;
 
-					// if we cannot scroll further -> we're at bottom -> done
+					// reached the bottom without finding more matches -> done
 					if (currentScrollTop === lastScrollTop) {
 						cy.log(
 							`All rooms starting with "${roomNamePrefix}" deleted successfully.`
@@ -168,7 +197,7 @@ class Rooms {
 						return;
 					}
 
-					// scroll down a bit (forces more rows to render in virtual list)
+					// scroll down to render more rows in the virtual list
 					cy.wrap($el).scrollTo(0, currentScrollTop + 900, {
 						ensureScrollable: false,
 					});
@@ -179,9 +208,20 @@ class Rooms {
 			});
 		};
 
-		// start from top
+		// start from top, then run loop
 		cy.get(scrollContainer).scrollTo("top", { ensureScrollable: false });
 		loop(-1);
+
+		// post-check: verify no matching rooms remain in the DOM
+		cy.get("body").then(($body) => {
+			const remaining = [...$body.find('[data-testid^="room--title-"]')].filter(
+				(el) => roomRegex.test(el.innerText.trim())
+			);
+			expect(
+				remaining.length,
+				`Expected no rooms matching "${roomNamePrefix}" to remain after deletion`
+			).to.equal(0);
+		});
 	}
 
 	clickLockedRoom(roomName, position) {

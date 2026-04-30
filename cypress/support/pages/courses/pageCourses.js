@@ -484,29 +484,6 @@ class Courses {
 		deleteNext();
 	}
 
-	verifyCourseDeletion(courseNamePrefix) {
-		const courseRegex = new RegExp(`^${courseNamePrefix}.*$`, "i");
-
-		cy.get("body").then(($body) => {
-			const $titles = $body.find(Courses.#courseTitleInCourseoverview);
-
-			// no titles at all → success
-			if ($titles.length === 0) {
-				cy.log("No courses remaining.");
-				return;
-			}
-
-			const stillExists = [...$titles].some((el) =>
-				courseRegex.test(el.innerText.trim())
-			);
-
-			expect(
-				stillExists,
-				`Courses starting with "${courseNamePrefix}" should not exist`
-			).to.be.false;
-		});
-	}
-
 	navigateToLtiTools() {
 		cy.get(Courses.#ltiToolsTab).click();
 	}
