@@ -285,10 +285,10 @@ Given("link element is added in the card", () => {
 	board.clickPlusIconToAddContentIntoCard();
 	roomBoards.seeElementSelectionDialog();
 	board.selectCardElementFromMenu("link");
-	roomBoards.enterLinkInLinkElement("https://main.dbc.dbildungscloud.dev");
-	roomBoards.clickSaveButtonToSaveLinkInCard();
-	roomBoards.seeLinkElementInRoomBoard();
+	roomBoards.enterLinkInLinkElement("https://main.dbc.dbildungscloud.dev/");
 	roomBoards.clickOutsideToSaveCard();
+	roomBoards.seeLinkElementInRoomBoard();
+	roomBoards.verifyLinkURLInLinkElement("https://main.dbc.dbildungscloud.dev/");
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
 
@@ -475,7 +475,8 @@ Given(
 		tasks.setTaskText("Dies ist deine erste Aufgabe");
 		tasks.executeFileUpload("example_jpg.jpg");
 		tasks.setVisibilityStartDate("today", "0000");
-		tasks.setVisibilityDueDate("tomorrow", "1000");
+		// set due date to tomorrow with time 01:30 because only 24 hours before due date, a red tick is displayed when user didn't submit yet. This is needed in groupSubmissionOfTask.feature to verify the red tick for not submitted task.
+		tasks.setVisibilityDueDate("tomorrow", "0130");
 		tasks.clickOnDraftCheckbox();
 		tasks.clickOnSubmit();
 	}
