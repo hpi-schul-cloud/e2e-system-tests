@@ -1,8 +1,7 @@
-@unstable_test
-# @regression_test
-# @group-B
-# @prio_0_staging
-# Marking it as unstable due to BC-11009
+@stable_test
+@regression_test
+@group-C
+@prio_0_staging
 Feature: Room Board - Create, edit and delete folder in board, including file handling inside the folder
 
     As a content editor, I want to create a file folder in a room board so that I can manage the files in the room.
@@ -87,7 +86,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I select the three dot menu action 'rename'
         Then I see modal Rename file
         When I enter '<file_name_renamed_without_suffix>' in input field New name
-        When I click on button Approve in modal
+        When I click on button Approve renaming file in modal
         Then I see file '<file_name_renamed>' with file size '<file_size>' in file list
 
         # editor downloads renamed first file

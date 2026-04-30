@@ -30,6 +30,7 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
         When I enter the copied board card link in the link element
+        When I click outside of the card to save it
         Then I see link element with title '<card_title_1>'
 
         # teacher copies board card link and adds it to a link element in the first board
@@ -50,6 +51,7 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
         When I enter the copied board card link in the link element
+        When I click outside of the card to save it
         Then I see link element with title '<card_title_2>'
 
         # teacher copies board card link and adds it to a link element in the first board
@@ -70,6 +72,7 @@ Feature: Course Board - Copy course with a board which contains link elements wi
         When I click on icon Plus to add content into card
         When I select "link" from the element selection dialog box
         When I enter the copied board card link in the link element
+        When I click outside of the card to save it
         Then I see link element with title '<card_title_3>'
 
         # teacher copies the first course

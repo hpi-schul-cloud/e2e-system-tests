@@ -29,16 +29,14 @@ class Board {
 		'[data-testid="create-element-external-tool-container"]';
 	static #deletedElement = '[data-testid="board-deleted-element"]';
 	static #boardMenuActionPublish = '[data-testid="kebab-menu-action-publish"]';
-	static #boardMenuActionChangeLayout =
-		'[data-testid="board-menu-action-change-layout"]';
+	static #boardMenuActionChangeLayout = '[data-testid="board-menu-action-change-layout"]';
 	static #boardLayoutDialogBoxTitle = '[data-testid="board-layout-dialog-title"]';
 	static #multiColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-multi-column-board"]';
 	static #singleColumnBoardOptionInDialogBox =
 		'[data-testid="dialog-add-single-column-board"]';
 	static #editButtonInThreeDotMenu = '[data-testid="kebab-menu-action"]';
-	static #externalToolElementAlert =
-		'[data-testid="board-external-tool-element-alert"]';
+	static #externalToolElementAlert = '[data-testid="board-external-tool-element-alert"]';
 	static #externalToolElementDomain =
 		'[data-testid="board-external-tool-element-domain"]';
 	static #boardCard = '[data-testid="board-card-0-0"]';
@@ -203,9 +201,16 @@ class Board {
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		const actionSelector = `[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`;
+		cy.window().then((win) => {
+			const el = win.document.querySelector(actionSelector);
+			if (el) {
+				el.click();
+			} else {
+				throw new Error(`Element "${actionSelector}" not found`);
+			}
+		});
+		cy.get(actionSelector).should("not.exist");
 	}
 
 	clickOnThreeDotOnColumn() {
@@ -518,19 +523,13 @@ class Board {
 
 	enterBoardCardTitle(cardTitle) {
 		cy.get(Board.#boardCard).within(() => {
-			cy.get(Board.#boardCardTitle)
-				.find("textarea")
-				.first()
-				.clear()
-				.type(cardTitle);
+			cy.get(Board.#boardCardTitle).find("textarea").first().clear().type(cardTitle);
 		});
 	}
 
 	seeBoardCardTitle(cardTitle) {
 		cy.get(Board.#boardCard).within(() => {
-			cy.get(Board.#boardCardTitle)
-				.should("be.visible")
-				.should("have.text", cardTitle);
+			cy.get(Board.#boardCardTitle).should("be.visible").should("have.text", cardTitle);
 		});
 	}
 
@@ -546,9 +545,7 @@ class Board {
 	}
 
 	seeLinkElementTitle(linkElementTitle) {
-		cy.get(Board.#contentElementTitle)
-			.contains(linkElementTitle)
-			.should("be.visible");
+		cy.get(Board.#contentElementTitle).contains(linkElementTitle).should("be.visible");
 	}
 
 	clickOnLinkElement(linkElementTitle) {

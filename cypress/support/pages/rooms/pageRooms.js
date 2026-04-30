@@ -8,7 +8,7 @@ class Rooms {
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
-	static #modal = '[data-testid="dialog"]';
+	static #modalForFileDeletion = '[data-testid="delete-file-dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
 	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
 	static #addParticipantsModal = '[data-testid="dialog-add-participants"]';
@@ -49,6 +49,8 @@ class Rooms {
 		'[data-testid="invite-participant-description-input"]';
 	static #inputInviteMembersRequireConfirmation =
 		'[data-testid="input-invite-participants-requires-confirmation"]';
+	static #inputInviteMembersValidForExternalPersons =
+		'[data-testid="input-invite-participants-valid-for-external-persons"]';
 	static #modalCreateInvitationLinkSave = '[data-testid="dialog-confirm"]';
 	static #CreateInvitationLinkResult = '[data-testid="share-course-result-url"]';
 	static #modalCreateInvitationLinkClose = '[data-testid="dialog-cancel"]';
@@ -62,8 +64,15 @@ class Rooms {
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
 	static #noRoomsMessage = '[data-testid="empty-state"]';
+	static #inputInviteMembersForAllSchool =
+		'[data-testid="input-invite-participants-all-schools"]';
+	static #inputInviteMembersFromCreatorSchool =
+		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
+	static #threeDotMenuOptions = '[role="menuitem"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
 	static #importRoomsModalConfirm = '[data-testid="import-modal-confirm"]';
+	static #invitationLinkExpirationCheckbox =
+		'[data-testid="input-invite-participants-link-expires"]';
 	static #dropdownListbox = '[role="listbox"]';
 	static #dropdownOptions = `${Rooms.#dropdownListbox} [role="option"]`;
 
@@ -178,7 +187,9 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
+				cy.get(`[data-testid="room-open-button-${index}"]`)
+					.should("be.visible")
+					.click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -392,11 +403,24 @@ class Rooms {
 	}
 
 	openThreeDotMenuForRoom() {
-		cy.get(Rooms.#roomDetailFAB).first().click();
+		cy.get(Rooms.#roomDetailFAB)
+			.first()
+			.then((btn) => {
+				const menuId = btn.attr("aria-controls");
+				cy.wrap(btn).click();
+				cy.window().then((win) => {
+					const menu = win.document.querySelector(`#${menuId}`);
+					expect(menu, `Menu #${menuId} should exist`).to.not.be.null;
+					const options = menu.querySelectorAll(Rooms.#threeDotMenuOptions);
+					expect(options.length, "Menu should have at least 1 option").to.be.at.least(1);
+				});
+			});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -410,7 +434,7 @@ class Rooms {
 	}
 
 	seeConfirmationModalForFileDeletion() {
-		cy.get(Rooms.#modal).should("exist");
+		cy.get(Rooms.#modalForFileDeletion).should("exist");
 	}
 
 	seeModalForAddParticipants() {
@@ -447,7 +471,10 @@ class Rooms {
 	selectParticipantSchool() {
 		cy.get(Rooms.#addParticipantSchool).should("be.visible").click();
 		cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
-		cy.get(Rooms.#dropdownOptions).should("have.length.greaterThan", 0).first().click();
+		cy.get(Rooms.#dropdownOptions)
+			.should("have.length.greaterThan", 0)
+			.first()
+			.click();
 		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
@@ -489,7 +516,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -551,7 +580,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
@@ -659,6 +690,52 @@ class Rooms {
 			.uncheck();
 	}
 
+	selectInvitationLinkSchoolScope(schoolScope) {
+		const normalizedInput = schoolScope
+			.toLowerCase()
+			.replace(/[\s\-_]+/g, "")
+			.trim();
+
+		let selector;
+
+		switch (true) {
+			case normalizedInput.includes("all"):
+				selector = Rooms.#inputInviteMembersForAllSchool;
+				break;
+			case normalizedInput.includes("creator") ||
+				normalizedInput.includes("school") ||
+				normalizedInput === "":
+				selector = Rooms.#inputInviteMembersFromCreatorSchool;
+				break;
+			default:
+				throw new Error(
+					`Invalid school scope: "${schoolScope}". ` +
+						`Expected variations of "all schools" or "creator school". ` +
+						`Examples: "all-schools", "All Schools", "creator-school", "Creator School"`
+				);
+		}
+
+		cy.get(selector)
+			.find('input[type="radio"]')
+			.then((radioBtn) => {
+				if (!radioBtn.is(":checked")) {
+					cy.wrap(radioBtn).check().should("be.checked");
+				}
+			});
+	}
+
+	setExternalPersonOptionForInvitationLink(action) {
+		const desiredState = action === "check";
+		cy.get(Rooms.#inputInviteMembersValidForExternalPersons)
+			.find('[type="checkbox"]')
+			.then(($checkbox) => {
+				const actualState = $checkbox.is(":checked");
+				if (actualState !== desiredState) {
+					cy.wrap($checkbox)[desiredState ? "check" : "uncheck"]();
+				}
+			});
+	}
+
 	checkInvitationFormRequireConfirmation() {
 		cy.get(Rooms.#inputInviteMembersRequireConfirmation)
 			.find('[type="checkbox"]')
@@ -737,6 +814,12 @@ class Rooms {
 
 	clickOnSpeedDialOption(option) {
 		cy.get(`[data-testid="fab-${option}-icon-btn"]`).should("be.visible").click();
+	}
+
+	verifyLinkExpirationInInvitationDialog(linkExpirationAction) {
+		cy.get(Rooms.#invitationLinkExpirationCheckbox)
+			.find('[type="checkbox"]')
+			.should(linkExpirationAction === "check" ? "be.checked" : "not.be.checked");
 	}
 }
 export default Rooms;
