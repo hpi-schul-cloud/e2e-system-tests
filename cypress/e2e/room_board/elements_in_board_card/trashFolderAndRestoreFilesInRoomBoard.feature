@@ -76,6 +76,69 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         When I click on breadcrumb element '<folder_name>'
         Then I see files '<file_name_2>, <file_name_3>, <file_name_4>' in file list
 
+        # Permanently delete single file from trash via three dot menu
+        # file_name is still in trash from the previous section
+        When I click on the link Show trash bin
+        When I wait '1' seconds and reload
+        Then I see the trash bin page for folder '<folder_name>'
+        Then I see files '<file_name>' in file list
+        Then I see the three dot menu next to the trash bin page title
+        When I click on three dot menu in row of file '<file_name>'
+        When I select the three dot menu action 'purge'
+        Then I see the permanent delete confirmation dialog for '1' files
+        Then the confirm button in the permanent delete dialog is disabled
+        When I click the warning checkbox in the permanent delete dialog
+        Then the confirm button in the permanent delete dialog is enabled
+        When I confirm the permanent deletion
+        Then I do not see files '<file_name>' in file list
+        Then I see message Empty folder
+        Then I do not see the three dot menu next to the trash bin page title
+
+        # Permanently delete multiple files from trash via batch action
+        When I click on breadcrumb element '<folder_name>'
+        When I check the checkbox of file '<file_name_2>'
+        When I check the checkbox of file '<file_name_3>'
+        When I click on button Action in the header of the list
+        When I select the three dot menu action 'delete'
+        When I click on button Approve in modal for deletion
+        Then I do not see files '<file_name_2>, <file_name_3>' in file list
+        When I click on the link Show trash bin
+        When I wait '1' seconds and reload
+        Then I see files '<file_name_2>, <file_name_3>' in file list
+        When I check the checkbox of file '<file_name_2>'
+        When I check the checkbox of file '<file_name_3>'
+        When I click on button Action in the header of the list
+        When I select the three dot menu action 'purge'
+        Then I see the permanent delete confirmation dialog for '2' files
+        Then the confirm button in the permanent delete dialog is disabled
+        When I click the warning checkbox in the permanent delete dialog
+        Then the confirm button in the permanent delete dialog is enabled
+        When I confirm the permanent deletion
+        Then I do not see files '<file_name_2>, <file_name_3>' in file list
+        Then I see message Empty folder
+
+        # Empty entire trash via the title three dot menu
+        When I click on breadcrumb element '<folder_name>'
+        When I check the checkbox of file '<file_name_4>'
+        When I click on button Action in the header of the list
+        When I select the three dot menu action 'delete'
+        When I click on button Approve in modal for deletion
+        Then I do not see files '<file_name_4>' in file list
+        When I click on the link Show trash bin
+        When I wait '1' seconds and reload
+        Then I see files '<file_name_4>' in file list
+        Then I see the three dot menu next to the trash bin page title
+        When I click on the three dot menu next to the trash bin page title
+        When I select the three dot menu action 'empty-trash'
+        Then I see the permanent delete confirmation dialog for '1' files
+        Then the confirm button in the permanent delete dialog is disabled
+        When I click the warning checkbox in the permanent delete dialog
+        Then the confirm button in the permanent delete dialog is enabled
+        When I confirm the permanent deletion
+        Then I do not see files '<file_name_4>' in file list
+        Then I see message Empty folder
+        Then I do not see the three dot menu next to the trash bin page title
+
         #Post-condition: delete the room
         Given the room '<room_name>' at position '0' is deleted
 
