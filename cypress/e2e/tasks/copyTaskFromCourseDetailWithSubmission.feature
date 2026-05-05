@@ -33,7 +33,7 @@ Feature: Task - Teacher copies task from Course overview with student submission
         When I select the three dot menu action 'copy' at task index '0' in course detail page
         Then I see dialog copy information
         When I click on button duplicate
-        # progress bar not showing, so to be confirmed
+        # progress bar not showing until the request takes longer than 200ms, so this assertion is not stable, commenting out for now.
         #Then I see the progress bar
         Then I see the success message '<success_message>'
         Then I see the title '<draft_indicator>' in the task

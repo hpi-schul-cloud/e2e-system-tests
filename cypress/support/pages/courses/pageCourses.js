@@ -89,7 +89,8 @@ class Courses {
 	static #btnCopyCourse = '[data-testid="room-menu-copy"]';
 	static #courseGroupTab = '[data-testid="groups-tab"]';
 	static #addNewCourseGroupButton = '[data-testid="add-course-group"]';
-	static #copyResultDialog = '[data-testid="dialog-text"]';
+	// commented out as the progress bar is not showing until the request takes longer than 200ms, so this element is commented out.
+	// static #copyResultDialog = '[data-testid="dialog-text"]';
 	static #copyResultNotification = '[data-testid="copy-info-warnings"]';
 	static #dialogTitle = '[data-testid="copy-dialog-title"]';
 	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
@@ -362,9 +363,10 @@ class Courses {
 		cy.get(Courses.#courseTimeTableContainer).should("exist");
 	}
 
-	seeProgressBar() {
-		cy.get(Courses.#copyResultDialog).should("be.visible");
-	}
+	// progress bar not showing until the request takes longer than 200ms, so this assertion is not stable, commenting out for now.
+	// seeProgressBar() {
+	// 	cy.get(Courses.#copyResultDialog).should("be.visible");
+	// }
 
 	seeSelectionBoxToSelectClass() {
 		cy.get(Courses.#addClassToCourseSelectionBox).should("exist");
