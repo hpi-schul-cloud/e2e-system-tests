@@ -28,6 +28,10 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         Then I do not see the chip Draft
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'duplicate-board'
+        Then I see the Modal to confirm the duplication
+        Then I see the Title in the modal
+        When I click on the button Duplicate in the modal to confirm
+        Then I see the success message Alert
         Then I see the chip Draft
         When I click on the breadcrumb to navigate to the room detail page
         Then I see the detail page of room '<room_name>'
@@ -42,6 +46,10 @@ Feature: Room Board - Copy multi-column and single-column boards in the room
         Then I do not see the chip Draft
         When I click on the three dot menu in room board title
         When I select the three dot menu action 'duplicate-board'
+        Then I see the Modal to confirm the duplication
+        Then I see the Title in the modal
+        When I click on the button Duplicate in the modal to confirm
+        Then I see the success message Alert
         Then I see the chip Draft
         When I click on the breadcrumb to navigate to the room detail page
         Then I see the detail page of room '<room_name>'

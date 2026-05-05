@@ -26,16 +26,19 @@ class Topics {
 	static #textElementPos3 = '[data-testid="topic-content-element-text-3"]';
 	// static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
 	// static #draftCheckbox = '[data-testid="private-checkbox"]'
-	static #copyAlertDialog = '[data-testid="copy-dialog-title"]';
-	static #closeButtonInCopyTopicDialog = '[data-testid="copy-dialog-cancel"]';
+	static #copyAlertDialog = '[data-testid="copy-info-dialog-title"]';
+	static #closeButtonInCopyTopicDialog = '[data-testid="copy-info-dialog-confirm"]';
 	static #topicTitleCourseDetail = '[data-testid="lesson-name-0"]';
 	static #publishButtonCopiedTopic = '[data-testid="lesson-card-action-publish-0"]';
 	static #topicTitleTopicDetailPage = '[id="page-title"]';
 	static #sectionTopic = '[data-testid="section-topic"]';
-	static #copyResultNotifications = '[data-testid="copy-result-notifications"]';
+	static #copyResultNotifications = '[data-testid="copy-info-warnings"]';
+	static #infoCopyrightDataProtectionInModal =
+		'[data-testid="copy-info-copyright-data-protection"]';
 
 	seeCopyAlertDialog() {
 		cy.get(Topics.#copyAlertDialog).should("be.visible");
+		cy.get(Topics.#infoCopyrightDataProtectionInModal).should("be.visible");
 	}
 
 	seeCopyWarningInDialog() {
