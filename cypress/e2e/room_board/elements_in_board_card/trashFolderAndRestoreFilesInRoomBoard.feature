@@ -94,8 +94,12 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then I see message Empty folder
         Then I do not see the three dot menu next to the trash bin page title
 
-        # Permanently delete multiple files from trash via batch action
+        # Verify permanently deleted file is not in the folder
         When I click on breadcrumb element '<folder_name>'
+        Then I see page Folder content for '<folder_name>'
+        Then I do not see files '<file_name>' in file list
+
+        # Permanently delete multiple files from trash via batch action
         When I check the checkbox of file '<file_name_2>'
         When I check the checkbox of file '<file_name_3>'
         When I click on button Action in the header of the list
@@ -117,37 +121,50 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then I do not see files '<file_name_2>, <file_name_3>' in file list
         Then I see message Empty folder
 
-        # Empty entire trash via the title three dot menu
+        # Verify permanently deleted files are not in the folder
         When I click on breadcrumb element '<folder_name>'
+        Then I see page Folder content for '<folder_name>'
+        Then I do not see files '<file_name_2>, <file_name_3>' in file list
+
+        # Empty entire trash via the title three dot menu
+        When I click on button Add file
+        When I upload a file '<file_name_5>' to file folder
+        Then I see files '<file_name_4>, <file_name_5>' in file list
         When I check the checkbox of file '<file_name_4>'
+        When I check the checkbox of file '<file_name_5>'
         When I click on button Action in the header of the list
         When I select the three dot menu action 'delete'
         When I click on button Approve in modal for deletion
-        Then I do not see files '<file_name_4>' in file list
+        Then I do not see files '<file_name_4>, <file_name_5>' in file list
         When I click on the link Show trash bin
         When I wait '1' seconds and reload
-        Then I see files '<file_name_4>' in file list
+        Then I see files '<file_name_4>, <file_name_5>' in file list
         Then I see the three dot menu next to the trash bin page title
         When I click on the three dot menu next to the trash bin page title
-        When I select the three dot menu action 'empty-trash'
-        Then I see the permanent delete confirmation dialog for '1' files
+        When I select the three dot menu action 'empty-thrash'
+        Then I see the permanent delete confirmation dialog for '2' files
         Then the confirm button in the permanent delete dialog is disabled
         When I click the warning checkbox in the permanent delete dialog
         Then the confirm button in the permanent delete dialog is enabled
         When I confirm the permanent deletion
-        Then I do not see files '<file_name_4>' in file list
+        Then I do not see files '<file_name_4>, <file_name_5>' in file list
         Then I see message Empty folder
         Then I do not see the three dot menu next to the trash bin page title
+
+        # Verify permanently deleted files are not in the folder
+        When I click on breadcrumb element '<folder_name>'
+        Then I see page Folder content for '<folder_name>'
+        Then I do not see files '<file_name_4>, <file_name_5>' in file list
 
         #Post-condition: delete the room
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_size | file_name_2                | file_size_2 | file_name_3     | file_name_4      |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | example_jpg.jpg | sample-docx.docx |
+            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_size | file_name_2                | file_size_2 | file_name_3     | file_name_4      | file_name_5    |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | example_jpg.jpg | sample-docx.docx | sample-pdf.pdf |
 
         @staging_test
         Examples:
-            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_size | file_name_2                | file_size_2 | file_name_3     | file_name_4      |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | example_jpg.jpg | sample-docx.docx |
+            | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_size | file_name_2                | file_size_2 | file_name_3     | file_name_4      | file_name_5    |
+            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | example_jpg.jpg | sample-docx.docx | sample-pdf.pdf |
