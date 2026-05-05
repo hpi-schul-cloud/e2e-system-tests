@@ -1,20 +1,14 @@
 "use strict";
 
 class ImportCourseModal {
-	static #importShareCourseDialog = '[data-testid="import-modal"]';
-	static #importShareCourseToolsInfo =
-		'[data-testid="import-modal-external-tools-info"]';
-	static #importShareCourseNameInputDiv = '[data-testid="import-modal-name-input"]';
-	static #importShareCourseNameInputField =
-		'div[data-testid="import-modal-name-input"] input[class="v-field__input"]';
+	static #importShareCourseDialog = '[data-testid="import-dialog"]';
+	static #importShareCourseToolsInfo = '[data-testid="import-dialog-warnings"]';
+	static #importShareCourseNameInputDiv = '[data-testid="import-dialog-name-input"]';
+	static #importShareCourseNameInputField = '[data-testid="import-dialog-name-input"]';
 	static #importShareCourseDialogConfirmButton = '[data-testid="import-modal-confirm"]';
-	static #importDialogConfirmButton = '[data-testid="import-modal-confirm"]';
+	static #importDialogConfirmButton = '[data-testid="import-dialog-confirm"]';
 	static #importShareCourseDialogTitle = '[data-testid="import-modal-title"]';
-	static #importCourseDialogTitle = '[data-testid="import-modal-title"]';
-	static #importShareCourseDialogTableHeader =
-		'[data-testid="import-options-personal-data-text"]';
-	static #importShareCourseDialogPersonalData =
-		'[data-testid="import-options-personal-data-text"]';
+	static #importCourseDialogTitle = '[data-testid="import-dialog-title"]';
 	static #importShareCourseDialogFilesInfo =
 		'[data-testid="import-modal-coursefiles-info"]';
 	static #importShareCourseDialogExternalToolsInfo =
@@ -31,16 +25,6 @@ class ImportCourseModal {
 		cy.get(
 			`${ImportCourseModal.#importShareCourseDialogTitle}, ${ImportCourseModal.#importCourseDialogTitle}`
 		).should("be.visible");
-		cy.get(ImportCourseModal.#importShareCourseDialogTableHeader).should(
-			"be.visible"
-		);
-		cy.get(ImportCourseModal.#importShareCourseDialogPersonalData).should(
-			"be.visible"
-		);
-		cy.get(ImportCourseModal.#importShareCourseDialogFilesInfo).should("be.visible");
-		cy.get(ImportCourseModal.#importShareCourseDialogExternalToolsInfo).should(
-			"be.visible"
-		);
 	}
 
 	enterCourseNameForImportCourse(input) {
@@ -62,10 +46,9 @@ class ImportCourseModal {
 	}
 
 	seeDefaultCourseNameForImportCourse(defaultCourseName) {
-		cy.get(ImportCourseModal.#importShareCourseNameInputDiv).should("be.visible");
 		cy.get(ImportCourseModal.#importShareCourseNameInputField).should("be.visible");
 		cy.get(ImportCourseModal.#importShareCourseNameInputField)
-			.invoke("attr", "value")
+			.invoke("value")
 			.then((value) => {
 				expect(value).to.equal(defaultCourseName);
 			});

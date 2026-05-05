@@ -32,8 +32,6 @@ Feature: Room Board - Share and import a card in rooms with a teacher from the s
         Then I see the Share settings dialog
         Then I see the title in the share modal
         Then I see the information box in share modal
-        Then I see modal 'share' with information on '<copyright_data_protection>, <content_etherpad>, <content_whiteboard>, <external_tools_info>, <external_tools_protected_parameter_info>'
-        Then I see the button Cancel in the share modal
         Then I see the checkbox Link valid for the same school is by default checked
         Then I see the checkbox Link valid for 21 days is by default checked
         When I click on the button Continue

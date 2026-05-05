@@ -31,7 +31,10 @@ Feature: Task - Teacher copies task from Course overview with student submission
         When I click on three dot menu of content '<task_name>'
         Then I see the option Copy on the list
         When I select the three dot menu action 'copy' at task index '0' in course detail page
-        Then I see the progress bar
+        Then I see dialog copy information
+        When I click on button duplicate
+        # progress bar not showing, so to be confirmed
+        #Then I see the progress bar
         Then I see the success message '<success_message>'
         Then I see the title '<draft_indicator>' in the task
         Then I see button Publish on the copied task

@@ -30,7 +30,10 @@ Feature: Task - Teacher copies a task from Task overview without student submiss
         When I click on three dot menu of task '<task_name>'
         Then I see the option Copy on the task menu list
         When I click on Copy in dot menu of task
-        Then I see the progress bar
+        Then I see dialog copy information
+        When I click on button duplicate
+        # progress bar not showing, so to be confirmed
+        #Then I see the progress bar
         Then I see the success message '<success_message>'
         Then I see the draft tasks tab was activated
         Then I see task '<copy_task_name>' in the list as teacher

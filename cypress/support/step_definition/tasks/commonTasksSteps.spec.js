@@ -3,6 +3,14 @@ import Tasks from "../../pages/tasks/pageTasks";
 
 const tasks = new Tasks();
 
+Then("I see dialog copy information", () => {
+	tasks.seeCopyResultNotificationDialog();
+});
+
+When("I click on button duplicate", () => {
+	tasks.clickOnConfirmDuplicate();
+});
+
 Then("I copy the task URL", () => {
 	tasks.copyTaskURLInModal();
 });

@@ -366,9 +366,12 @@ When("I click on the import course button", () => {
 	courses.clickImportCourseButton();
 });
 
-Then("I see the copy result notification", () => {
-	courses.seeCopyResultNotification();
-});
+Then(
+	"I see the copy result notification with data protection information and alert",
+	() => {
+		courses.seeCopyResultNotification();
+	}
+);
 
 When("I close the dialog", () => {
 	courses.clickOnDialogClose();
