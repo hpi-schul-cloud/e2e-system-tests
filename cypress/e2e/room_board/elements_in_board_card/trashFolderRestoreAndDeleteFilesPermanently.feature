@@ -141,7 +141,7 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then I see files '<file_name_4>, <file_name_5>' in file list
         Then I see the three dot menu next to the trash bin page title
         When I click on the three dot menu next to the trash bin page title
-        When I select the three dot menu action 'empty-thrash'
+        When I select the three dot menu action 'empty-trash'
         Then I see the permanent delete confirmation dialog for '2' files
         Then the confirm button in the permanent delete dialog is disabled
         When I click the warning checkbox in the permanent delete dialog
