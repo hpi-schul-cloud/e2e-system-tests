@@ -48,10 +48,8 @@ class ImportCourseModal {
 	seeDefaultCourseNameForImportCourse(defaultCourseName) {
 		cy.get(ImportCourseModal.#importShareCourseNameInputField).should("be.visible");
 		cy.get(ImportCourseModal.#importShareCourseNameInputField)
-			.invoke("value")
-			.then((value) => {
-				expect(value).to.equal(defaultCourseName);
-			});
+			.find("input")
+			.should("have.value", defaultCourseName);
 	}
 
 	seeImportDropDownDialogBox() {

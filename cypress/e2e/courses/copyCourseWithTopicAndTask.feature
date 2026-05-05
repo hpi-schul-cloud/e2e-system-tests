@@ -26,8 +26,6 @@ Feature: Course - Copy Course with Topic and Task
         When I click on button copy course
         Then I see the copy result notification with data protection information and alert
         When I close the dialog
-        When I go to courses overview
-        When I go to course '<course_name_copy>'
         Then I see course page '<course_name_copy>'
         Then I publish the task in index '<task_index_number>' in course page
         Then I publish the topic in course '<course_name_copy>'

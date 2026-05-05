@@ -29,8 +29,6 @@ Feature: Course - Copy course
         When I click on button copy course
         Then I see the copy result notification with data protection information and alert
         When I close the dialog
-        When I go to courses overview
-        When I go to course '<course_name_copy>'
         Then I see course page '<course_name_copy>'
         When I click on card Course Board
         When I click on three dot menu in the board header
