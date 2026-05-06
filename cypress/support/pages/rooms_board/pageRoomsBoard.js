@@ -150,7 +150,6 @@ class RoomBoards {
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 	static #importCardDialog = '[data-testid="import-card-dialog"]';
 	static #importDialogTitle = '[data-testid="select-destination-modal-title"]';
-	static #importRoomsModalTitle = '[data-testid="import-modal-title"]';
 	static #trashPageMenuButton = '[data-testid="folder-trash-menu"]';
 	static #permanentDeleteDialog = '[data-testid="purge-files-dialog"]';
 	static #permanentDeleteFileCount = '[data-testid="purge-files-dialog-description"]';
