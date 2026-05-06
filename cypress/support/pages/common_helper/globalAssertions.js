@@ -62,19 +62,6 @@ class GlobalAssertions {
 		});
 	}
 
-	checkModalMessagePoints(infoPoints, modalType) {
-		const infoPointsArray = infoPoints.split(",").map((p) => p.trim().toLowerCase());
-		const selectors = Object.fromEntries(
-			infoPointsArray.map((point, index) => {
-				const infoPointers = point.replace(/\s+/g, "-");
-				// first item = info section, others = modal section
-				const section = index === 0 ? "info" : "modal";
-				return [point, `[data-testid="${modalType}-${section}-${infoPointers}"]`];
-			})
-		);
-		this.checkMessagePoints(infoPointsArray, selectors);
-	}
-
 	checkContentPageTitle(contentPageTitle) {
 		cy.get("h2.section-title").should("have.text", contentPageTitle);
 	}

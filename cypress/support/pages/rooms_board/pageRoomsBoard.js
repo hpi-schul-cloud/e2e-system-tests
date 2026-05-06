@@ -50,9 +50,8 @@ class RoomBoards {
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
 	static #scanQRCodeOption = '[data-testid="qrCodeAction"]';
 	static #roomSelectionBoxModal = '[data-testid="import-destination-select"]';
-	static #continueButtonInImportModal =
-		'[data-testid="select-destination-modal-confirm"]';
-	static #boardNameInput = '[data-testid="import-modal-name-input"]';
+	static #continueButtonInImportModal = '[data-testid="import-dialog-confirm"]';
+	static #boardNameInput = '[data-testid="import-dialog-name-input"]';
 	static #moveButtonOnMoveDialog = '[data-testid="move-card-dialog-confirm"]';
 	static #shareModalTitleOnMovingCard = '[data-testid="move-card-dialog-title"]';
 	static #chipEditableForAllSelector = '[data-testid="board-editable-chip"]';
@@ -142,13 +141,12 @@ class RoomBoards {
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
 	static #globalShareDialogTitle = '[data-testid="share-dialog-title"]';
 	static #confirmDialogTitle = '[data-testid="confirm-dialog-title"]';
-	static #selectDestinationModalTitle =
-		'[data-testid="select-destination-modal-title"]';
+	static #selectDestinationModalTitle = '[data-testid="import-dialog-title"]';
 	static #deleteFileDialogConfirm = '[data-testid="delete-file-dialog-confirm"]';
 	static #showTrashBinLink = '[data-testid="trash-link"]';
 	static #dialogTitle = '[data-testid="dialog-title"]';
 	static #shareDialogTitle = '[data-testid="share-dialog-title"]';
-	static #importModalConfirm = '[data-testid="import-modal-confirm"]';
+	static #importModalConfirm = '[data-testid="import-dialog-confirm"]';
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 	static #importCardDialog = '[data-testid="import-card-dialog"]';
 	static #importDialogTitle = '[data-testid="select-destination-modal-title"]';
@@ -159,6 +157,9 @@ class RoomBoards {
 	static #permanentDeleteWarningCheckbox =
 		'[data-testid="purge-files-dialog-checkbox"]';
 	static #permanentDeleteConfirmButton = '[data-testid="purge-files-dialog-confirm"]';
+	static #importRoomsModalTitle = '[data-testid="import-dialog-title"]';
+	static #shareInfoCopyrightDataProtection =
+		'[data-testid="share-info-copyright-data-protection"]';
 
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
 		// ensure the board is currently at the starting position
@@ -735,6 +736,7 @@ class RoomBoards {
 
 	verifyShareInformationBox() {
 		cy.get(RoomBoards.#shareInformationBox).should("be.visible");
+		cy.get(RoomBoards.#shareInfoCopyrightDataProtection).should("be.visible");
 	}
 
 	verifyCancelButtonInShareModal() {
