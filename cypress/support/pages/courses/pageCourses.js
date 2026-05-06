@@ -1533,6 +1533,32 @@ class Courses {
 		cy.get(Courses.#ccImportModal).find(".v-messages__message").should("be.visible");
 	}
 
+	selectInvalidFileTypeForImport() {
+		const fileName = "invalid-file.pdf";
+		const fileContent = "dummy content";
+
+		cy.get(Courses.#dialogFileInput).within(() => {
+			cy.get(Courses.#inputOfTypeFile).then(($input) => {
+				const blob = new Blob([fileContent], {
+					type: "application/pdf",
+				});
+				const file = new File([blob], fileName, {
+					type: "application/pdf",
+				});
+
+				const dataTransfer = new DataTransfer();
+				dataTransfer.items.add(file);
+				$input[0].files = dataTransfer.files;
+
+				cy.wrap($input).trigger("change", { force: true });
+			});
+		});
+	}
+
+	seeInvalidFileTypeError() {
+		cy.get(Courses.#ccImportModal).find(".v-messages__message").should("be.visible");
+	}
+
 	clearSelectedFileInImportDialog() {
 		cy.get(Courses.#ccImportModal).find(".v-field__clearable").click();
 	}

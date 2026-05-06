@@ -547,6 +547,14 @@ Then("I see the filesize exceeded error message", () => {
 	courses.seeFilesizeExceededError();
 });
 
+When("I select a file with invalid file type", () => {
+	courses.selectInvalidFileTypeForImport();
+});
+
+Then("I see the invalid file type error message", () => {
+	courses.seeInvalidFileTypeError();
+});
+
 When("I clear the selected file in the import dialog", () => {
 	courses.clearSelectedFileInImportDialog();
 });
