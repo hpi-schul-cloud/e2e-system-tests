@@ -131,7 +131,7 @@ Given("all external tools at the school are deleted", () => {
 	management.deleteAllExternalTools();
 });
 
-Given("the card contains image {string} element", (imageFile) => {
+Given("the card contains file {string} element", (imageFile) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();

@@ -19,7 +19,7 @@ Feature: Room Board - Copying a card with contents
         Given link element is added in the card
         Given etherpad is added in the card
         Given the card has a folder named '<file_folder>'
-        Given the card contains image '<image_file>' element
+        Given the card contains file '<image_file>' element
         Given more cards are in the column
 
         # teacher duplicates a card on the room board page and its always below the original card

@@ -464,6 +464,26 @@ When("I click on the three dot on the card", () => {
 	roomBoards.clickOnThreeDotInCard();
 });
 
+When("I click on the fullscreen icon on the card", () => {
+	roomBoards.clickOnFullscreenIconOfCard();
+});
+
+Then("a lightbox opens with the title {string}", (title) => {
+	roomBoards.seeCardDetailViewLightboxWithTitle(title);
+});
+
+Then("I see etherpad in lightbox", () => {
+	roomBoards.seeEtherpadInLightbox();
+});
+
+Then("I see folder named {string} in lightbox", (folderName) => {
+	roomBoards.seeFolderInLightbox(folderName);
+});
+
+Then("I see file {string} in lightbox", (fileName) => {
+	roomBoards.seeFileInLightbox(fileName);
+});
+
 When("I click on the three dot menu in the video conference element", () => {
 	roomBoards.clickThreeDotMenuInVideoConferenceElement();
 });

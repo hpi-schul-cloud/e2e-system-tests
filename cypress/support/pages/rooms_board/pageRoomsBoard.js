@@ -125,6 +125,7 @@ class RoomBoards {
 	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
 	static #secondCardPositionInRoomBoard = '[data-testid="board-card-0-2"]';
+	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
 
 	static #importSelectRoom = '[data-testid="import-card-select-room"]';
 	static #importSelectBoard = '[data-testid="import-card-select-board"]';
@@ -673,6 +674,44 @@ class RoomBoards {
 
 	clickCloseButtonOnFullScreenImage() {
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).click();
+	}
+
+	clickOnFullscreenIconOfCard() {
+		cy.get('[data-testid="open-detail-view-btn"]').first().click();
+	}
+
+	seeCardDetailViewLightboxWithTitle(title) {
+		cy.get(RoomBoards.#cardDetailViewToolbar)
+			.should("be.visible")
+			.and("contain.text", title);
+	}
+
+	seeEtherpadInLightbox() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("be.visible");
+	}
+
+	seeFolderInLightbox(folderName) {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("be.visible")
+			.and("contain.text", folderName);
+	}
+
+	seeFileInLightbox(fileName) {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		const ext = fileName.split(".").pop().toLowerCase();
+		const videoExts = ["mp4", "webm", "ogg", "mov", "avi"];
+		const audioExts = ["mp3", "wav", "ogg", "aac", "flac"];
+		if (videoExts.includes(ext)) {
+			cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
+		} else if (audioExts.includes(ext)) {
+			cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
+		} else {
+			cy.get(
+				`[data-testid="board-file-element"] img[src*="${encodeURIComponent(fileName)}"], [data-testid="board-file-element"] img[src*="${fileName}"]`
+			).should("exist");
+		}
 	}
 
 	uncheckLinkValidForSameSchool() {
