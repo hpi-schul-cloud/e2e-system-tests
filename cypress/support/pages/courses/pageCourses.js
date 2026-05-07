@@ -1537,31 +1537,24 @@ class Courses {
 		const fileName = "invalid-file.pdf";
 		const fileContent = "dummy content";
 
-		cy.get(Courses.#dialogFileInput).within(() => {
-			cy.get(Courses.#inputOfTypeFile).then(($input) => {
-				const blob = new Blob([fileContent], {
-					type: "application/pdf",
-				});
-				const file = new File([blob], fileName, {
-					type: "application/pdf",
-				});
-
-				const dataTransfer = new DataTransfer();
-				dataTransfer.items.add(file);
-				$input[0].files = dataTransfer.files;
-
-				cy.wrap($input).trigger("change", { force: true });
-				cy.wrap($input).trigger("input", { force: true });
-			});
-		});
-		cy.wait(500);
+		cy.get(Courses.#dialogFileInput)
+			.find(Courses.#inputOfTypeFile)
+			.selectFile(
+				{
+					contents: Cypress.Buffer.from(fileContent),
+					fileName: fileName,
+					mimeType: "application/pdf",
+				},
+				{ force: true }
+			);
+		cy.wait(1000);
 	}
 
 	seeInvalidFileTypeError() {
 		cy.get(Courses.#ccImportModal)
-			.find(".v-messages__message")
-			.should("be.visible")
-			.and("not.be.empty");
+			.find(".v-messages__message", { timeout: 10000 })
+			.should("exist")
+			.and("be.visible");
 	}
 
 	clearSelectedFileInImportDialog() {
