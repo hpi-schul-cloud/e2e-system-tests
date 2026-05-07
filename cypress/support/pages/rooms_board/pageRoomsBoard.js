@@ -702,7 +702,7 @@ class RoomBoards {
 		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
 		const ext = fileName.split(".").pop().toLowerCase();
 		const videoExts = ["mp4", "webm", "ogg", "mov", "avi"];
-		const audioExts = ["mp3", "wav", "ogg", "aac", "flac"];
+		const audioExts = ["mp3", "wav", "aac", "flac"];
 		if (videoExts.includes(ext)) {
 			cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
 		} else if (audioExts.includes(ext)) {
