@@ -1551,12 +1551,17 @@ class Courses {
 				$input[0].files = dataTransfer.files;
 
 				cy.wrap($input).trigger("change", { force: true });
+				cy.wrap($input).trigger("input", { force: true });
 			});
 		});
+		cy.wait(500);
 	}
 
 	seeInvalidFileTypeError() {
-		cy.get(Courses.#ccImportModal).find(".v-messages__message").should("be.visible");
+		cy.get(Courses.#ccImportModal)
+			.find(".v-messages__message")
+			.should("be.visible")
+			.and("not.be.empty");
 	}
 
 	clearSelectedFileInImportDialog() {
