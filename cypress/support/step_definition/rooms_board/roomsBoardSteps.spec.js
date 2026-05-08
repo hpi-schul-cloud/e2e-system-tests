@@ -511,13 +511,16 @@ When("I enter the video conference title {string}", (videoConferenceTitle) => {
 	roomBoards.enterVideoConferenceTitle(videoConferenceTitle);
 });
 
-When("I click on the save button or press the button enter key", () => {
-	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
-});
-
 Then("I see the video conference element added in the card", () => {
 	roomBoards.verifyVideoConferenceElementAddedInCard();
 });
+
+Then(
+	"I see the title {string} in the video conference element",
+	(videoConferenceTitle) => {
+		roomBoards.verifyTitleInVideoConferenceElement(videoConferenceTitle);
+	}
+);
 
 When("I click on the video conference element in the card", () => {
 	roomBoards.clickVideoConferenceElementInCard();

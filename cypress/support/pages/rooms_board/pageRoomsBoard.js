@@ -23,8 +23,9 @@ class RoomBoards {
 	static #elementSelectionCancelButton =
 		'[data-testid="element-type-selection-cancel"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
-	static #saveButton = '[data-testid="save-video-conference-title-button"]';
 	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
+	static #videoConferenceElementCreate =
+		'[data-testid="board-video-conference-element-create"]';
 	static #videoConferenceModal = '[data-testid="video-conference-config-dialog"]';
 	static #createVideoConferenceButton =
 		'[data-testid="video-conference-config-dialog-confirm"]';
@@ -917,7 +918,7 @@ class RoomBoards {
 	}
 
 	clickThreeDotMenuInVideoConferenceElement() {
-		cy.get(RoomBoards.#videoConferenceElement)
+		cy.get(RoomBoards.#videoConferenceElementCreate)
 			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
@@ -988,8 +989,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#videoConferenceTitleInput).clear().type(videoConferenceTitle);
 	}
 
-	clickSaveButtonOrPressEnterToSaveVideoConferenceTitle() {
-		cy.get(RoomBoards.#saveButton).click();
+	verifyTitleInVideoConferenceElement(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceElement)
+			.should("be.visible")
+			.and("contain", expectedTitle);
 	}
 
 	verifyVideoConferenceElementAddedInCard() {

@@ -3,11 +3,11 @@
 @schedule_run
 @group-B
 @prio_0_staging
-Feature: Room Board - Add BBB Tool in the Room Board
+Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
 
-    As a teacher, I want to add a BBB (BigBlueButton) Tool to the room board so that I can manage video conferencing effectively.
+    As a teacher, I want to add, edit and delete a BBB (BigBlueButton) Tool to the room board so that I can manage video conferencing effectively.
 
-    Scenario Outline: Add BBB Tool to the Room Board, including pre & post conditions
+    Scenario Outline: Add, edit, delete BBB Tool to the Room Board, including pre & post conditions
 
         # pre-condition: creating accounts
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -38,12 +38,13 @@ Feature: Room Board - Add BBB Tool in the Room Board
         Then I see the dialog Add Element in the card
         When I select 'video-conference' from the element selection dialog box
         When I enter the video conference title '<video_conference_title>'
-        When I click on the save button or press the button enter key
+        When I click outside of the card to save it
         Then I see the video conference element added in the card
+        Then I see the title '<video_conference_title>' in the video conference element
         When I click on the video conference element in the card
         Then I see the modal to start the video conference
         When I click outside the BigBlueButton dialog box
-        Then I see the video conference element added in the card
+        Then I see the title '<video_conference_title>' in the video conference element
         When I click on the video conference element in the card
         Then I see the modal to start the video conference
         Then I see the moderator approval checkbox is checked in the video conference start modal
@@ -56,6 +57,18 @@ Feature: Room Board - Add BBB Tool in the Room Board
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the video conference element added in the card
+        Then I see the title '<video_conference_title>' in the video conference element
+
+        # teacher edits the BBB Tool in the multi-column board card
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I enter the video conference title '<video_conference_title_edited>'
+        When I click outside of the card to save it
+        Then I see the title '<video_conference_title_edited>' in the video conference element
 
         # teacher deletes the BBB Tool from the multi-column board card
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -88,5 +101,5 @@ Feature: Room Board - Add BBB Tool in the Room Board
 
         @school_api_test
         Examples:
-            | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title |
-            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut BBB Tool    |
+            | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title | video_conference_title_edited |
+            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut BBB Tool    | CypressAut BBB Tool Edited    |

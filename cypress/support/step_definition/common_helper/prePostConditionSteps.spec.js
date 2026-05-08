@@ -264,9 +264,9 @@ Given("video conference is added in the card", () => {
 	roomBoards.seeElementSelectionDialog();
 	board.selectCardElementFromMenu("video-conference");
 	roomBoards.enterVideoConferenceTitle("video_conference_title");
-	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
 	roomBoards.clickOutsideToSaveCard();
 	roomBoards.verifyVideoConferenceElementAddedInCard();
+	roomBoards.verifyTitleInVideoConferenceElement("video_conference_title");
 });
 
 Given("etherpad is added in the card", () => {
