@@ -1,5 +1,4 @@
 @clean_up_staging_test_data
-
 Feature: Deletion of test data that are left from previous failed test runs on staging
 
     Run this feature file before running cypress tests on staging
@@ -20,16 +19,16 @@ Feature: Deletion of test data that are left from previous failed test runs on s
         @staging_test
         Examples:
             | namespace | teacher         | course_name_prefix | room_name_prefix |
-            | nbc       | teacher1_nbc    | CypressAut         | CypressAut       |
-            | dbc       | teacher1_dbc    | CypressAut         | CypressAut       |
             | brb       | teacher1_brb    | CypressAut         | CypressAut       |
-            | nbc       | teacher2_nbc    | CypressAut         | CypressAut       |
-            | dbc       | teacher2_dbc    | CypressAut         | CypressAut       |
             | brb       | teacher2_brb    | CypressAut         | CypressAut       |
             | brb       | teacherExt1_brb | CypressAut         | CypressAut       |
             | brb       | teacherExt2_brb | CypressAut         | CypressAut       |
+            | dbc       | teacher1_dbc    | CypressAut         | CypressAut       |
+            | dbc       | teacher2_dbc    | CypressAut         | CypressAut       |
             | dbc       | teacherExt1_dbc | CypressAut         | CypressAut       |
             | dbc       | teacherExt2_dbc | CypressAut         | CypressAut       |
+            | nbc       | teacher1_nbc    | CypressAut         | CypressAut       |
+            | nbc       | teacher2_nbc    | CypressAut         | CypressAut       |
             | nbc       | teacherExt1_nbc | CypressAut         | CypressAut       |
             | nbc       | teacherExt2_nbc | CypressAut         | CypressAut       |
 
