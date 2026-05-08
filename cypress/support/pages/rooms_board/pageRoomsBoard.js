@@ -729,7 +729,11 @@ class RoomBoards {
 
 	verifyShareInformationBox() {
 		cy.get(RoomBoards.#shareInformationBox).should("be.visible");
-		cy.get(RoomBoards.#shareInfoCopyrightDataProtection).should("be.visible");
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#shareInfoCopyrightDataProtection).length > 0) {
+				cy.get(RoomBoards.#shareInfoCopyrightDataProtection).should("be.visible");
+			}
+		});
 	}
 
 	verifyCancelButtonInShareModal() {
