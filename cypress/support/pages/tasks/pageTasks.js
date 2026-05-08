@@ -81,7 +81,8 @@ class Tasks {
 	static #downloadFileButton = '[data-testid="file-download-btn-0"]';
 	static #fileRenameButton = '[data-testid="file-rename-btn-0"]';
 	static #fileDeleteButton = '[data-testid="file-delete-btn-0"]';
-	static #importModalTaskNameInput = '[data-testid="import-modal-name-input"]';
+	static #importModalTaskNameInput = '[data-testid="import-destination-select"]';
+	static #importDialogNameInput = '[data-testid="import-dialog-name-input"]';
 	static #taskCardTitleCourseDetail = '[data-testid="task-card-title-0"]';
 	static #taskPublishButtonOnTaskCardCourseDetail =
 		'[data-testid="task-card-action-publish-0"]';
@@ -95,6 +96,19 @@ class Tasks {
 	static #scoreFilter = '[data-testid="grade-status-filter"]';
 	static #resetFilterButton = '[data-testid="reset-filters-btn"]';
 	static #includeSubstituteFilter = '[data-testid="include-substitute-filter"]';
+	static #copyResultNotification = '[data-testid="copy-info-dialog-title"]';
+	static #infoCopyrightDataProtectionInModal =
+		'[data-testid="copy-info-copyright-data-protection"]';
+	static #copyResultDialogConfirmButton = '[data-testid="copy-info-dialog-confirm"]';
+
+	seeCopyResultNotificationDialog() {
+		cy.get(Tasks.#copyResultNotification).should("be.visible");
+		cy.get(Tasks.#infoCopyrightDataProtectionInModal).should("be.visible");
+	}
+
+	clickOnConfirmDuplicate() {
+		cy.get(Tasks.#copyResultDialogConfirmButton).click();
+	}
 
 	seeToggleTasksFromSubstitutes() {
 		cy.get(Tasks.#includeSubstituteFilter).should("be.visible");
@@ -181,8 +195,8 @@ class Tasks {
 	}
 
 	enterNewTaskNameForImport(importTaskName) {
-		cy.get(Tasks.#importModalTaskNameInput).clear();
-		cy.get(Tasks.#importModalTaskNameInput).type(importTaskName);
+		cy.get(Tasks.#importDialogNameInput).clear();
+		cy.get(Tasks.#importDialogNameInput).type(importTaskName);
 	}
 
 	navigateToTasksOverview() {

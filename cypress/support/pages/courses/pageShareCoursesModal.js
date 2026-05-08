@@ -9,8 +9,7 @@ class ShareCourseModal {
 	static #shareCourseDialogExpiryDateCheckBox = '[data-testid="hasExpiryDate"]';
 	static #shareCourseResultUrlTextBox = '[data-testid="share-course-result-url"]';
 	static #shareDialogNextButton = '[data-testid="share-dialog-next"]';
-	static #selectDestinationModalConfirm =
-		'[data-testid="select-destination-modal-confirm"]';
+	static #selectDestinationModalConfirm = '[data-testid="import-dialog-confirm"]';
 	static #shareCourseDialogMailButton = '[data-testid="shareMailAction"]';
 	static #shareCourseDialogCopyLinkButton = '[data-testid="copyAction"]';
 	static #shareCourseDialogQrCodeButton = '[data-testid="qrCodeAction"]';
@@ -18,6 +17,8 @@ class ShareCourseModal {
 	static #shareDialogCancelButton = '[data-testid="share-dialog-cancel"]';
 	static #shareCourseQRCodeScanner = '[data-testid="qrCode"]';
 	static #checkboxInput = 'input[type="checkbox"]';
+	static #shareInfoCopyrightDataProtection =
+		'[data-testid="share-info-copyright-data-protection"]';
 
 	seeShareCourseDialogBox() {
 		cy.get(ShareCourseModal.#shareCourseDialog).should("be.visible");
@@ -94,6 +95,7 @@ class ShareCourseModal {
 	seeDescriptionInShareDialog() {
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextTitle).should("be.visible");
 		cy.get(ShareCourseModal.#shareCourseDialogInfoTextContainer).should("be.visible");
+		cy.get(ShareCourseModal.#shareInfoCopyrightDataProtection).should("be.visible");
 	}
 	convertStringToCamelCase(string) {
 		return string
