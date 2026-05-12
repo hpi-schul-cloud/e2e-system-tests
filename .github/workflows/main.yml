@@ -73,6 +73,11 @@ jobs:
             "${workspace_path}" \
             "${{ inputs.environment }}"
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: Clean up previous report
         uses: cypress-io/github-action@ed2d88ccbbf936c5aac087dd43e10425abc3534f # v7.1.7
         with:
