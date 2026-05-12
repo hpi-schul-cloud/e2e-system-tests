@@ -45,12 +45,11 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
-        When I click on the three dot on the card
-        When I click on the option Edit in the three dot menu on the card
-        When I click on the three dot in the element Etherpad
-        When I click on the option Delete in the three dot menu
-        Then I see the dialog Confirm deletion
-        When I click on the button Delete in the confirmation dialog
+        When I click on three dot menu in the column
+        When I select the option Delete in three dot menu in the column
+        Then I see the modal Confirmation
+        When I click on the button Remove on the Modal
+        Then I do not see the column
         Then I do not see the element Etherpad
 
         # student can not see the element Etherpad in the multi-column board
