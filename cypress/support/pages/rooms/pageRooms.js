@@ -34,7 +34,7 @@ class Rooms {
 	static #roomLeaveDialogBox = '[data-testid="confirm-dialog-confirm"]';
 	static #dialogLeaveRoomOwner = '[data-testid="dialog-leave-room-owner"]';
 	static #infoTextForAdmin = '[class="alert-text"]';
-	static #modalDuplicateRoom = '[data-testid="copy-info-dialog"]';
+	static #modalDuplicateRoom = '[data-testid="copy-info-dialog-title"]';
 	static #modalTitleDuplicateRoom = '[data-testid="dialog-title"]';
 	static #copyInfoDialogTitle = '[data-testid="copy-info-dialog-title"]';
 	static #cancelButtonDuplicateRoom = '[data-testid="copy-info-dialog-cancel"]';
@@ -59,7 +59,7 @@ class Rooms {
 	static #threeDotMenuOfRowInRoomConfirmationsTable = '[data-testid^="kebab-menu-"]';
 	static #threeDotMenuConfirm = '[data-testid^="kebab-menu-confirm"]';
 	static #roomRoleDropdownOverlay = ".v-overlay-container .v-list-item";
-	static #roomNameInModalRoomImport = '[data-testid="import-modal-name-input"]';
+	static #roomNameInModalRoomImport = '[data-testid="import-dialog-name-input"]';
 	static #infoBoxContentRestriction = '[data-testid="share-options-table-header"]';
 	static #roomLockedMessage = '[data-testid="img-permission"]';
 	static #btnRoomDelete = '[data-testid="kebab-menu-action-delete"]';
@@ -70,7 +70,7 @@ class Rooms {
 		'[data-testid="input-invite-participants-restricted-to-creator-school"]';
 	static #threeDotMenuOptions = '[role="menuitem"]';
 	static #dialogTitleLeaveRoomOwner = '[data-testid="dialog-title"]';
-	static #importRoomsModalConfirm = '[data-testid="import-modal-confirm"]';
+	static #importRoomsModalConfirm = '[data-testid="import-dialog-confirm"]';
 	static #invitationLinkExpirationCheckbox =
 		'[data-testid="input-invite-participants-link-expires"]';
 	static #dropdownListbox = '[role="listbox"]';
@@ -412,7 +412,10 @@ class Rooms {
 					const menu = win.document.querySelector(`#${menuId}`);
 					expect(menu, `Menu #${menuId} should exist`).to.not.be.null;
 					const options = menu.querySelectorAll(Rooms.#threeDotMenuOptions);
-					expect(options.length, "Menu should have at least 1 option").to.be.at.least(1);
+					expect(
+						options.length,
+						"Menu should have at least 1 option"
+					).to.be.at.least(1);
 				});
 			});
 	}

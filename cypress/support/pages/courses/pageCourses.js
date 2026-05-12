@@ -89,16 +89,17 @@ class Courses {
 	static #btnCopyCourse = '[data-testid="room-menu-copy"]';
 	static #courseGroupTab = '[data-testid="groups-tab"]';
 	static #addNewCourseGroupButton = '[data-testid="add-course-group"]';
-	static #copyResultDialog = '[data-testid="dialog-text"]';
-	static #copyResultNotification = '[data-testid="copy-result-notifications"]';
+	// commented out as the progress bar is not showing until the request takes longer than 200ms, so this element is commented out.
+	// static #copyResultDialog = '[data-testid="dialog-text"]';
+	static #copyResultNotification = '[data-testid="copy-info-warnings"]';
 	static #dialogTitle = '[data-testid="copy-dialog-title"]';
 	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
-	static #copyDialogTitle = '[data-testid="copy-dialog-title"]';
+	static #copyDialogTitle = '[data-testid="copy-info-dialog-title"]';
 	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="copy-dialog-cancel"]';
 	static #errorDialogClose = '[data-testid="error-dialog-cancel"]';
 	static #errorDialogCancel = '[data-testid="error-dialog-cancel"]';
-	static #copyDialogCancel = '[data-testid="copy-dialog-cancel"]';
+	static #copyDialogClose = '[data-testid="copy-info-dialog-confirm"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #toolDomain = '[data-testid="tool-card-domain"]';
@@ -174,10 +175,10 @@ class Courses {
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #roomBoardCardPattern = '[data-testid^="room-board-card-"]';
 	static #copyButtonInDotTopicMenu = '[data-testid="lesson-card-menu-action-share-0"]';
-	static #shareSettingsDialog = '[data-testid="select-destination-modal-title"]';
+	static #shareSettingsDialog = '[data-testid="import-dialog-title"]';
 	static #courseSelectionBoxModal = '[data-testid="import-destination-select"]';
-	static #topicCourseDialog = '[data-testid="share-dialog"]';
-	static #selectDestinationModal = '[data-testid="select-destination-modal"]';
+	static #topicCourseDialog = '[data-testid="share-dialog-title"]';
+	static #selectDestinationModal = '[data-testid="import-dialog-title"]';
 	static #dialogFileInput = '[data-testid="dialog-file-input"]';
 	static #ccImportModal = '[data-testid="common-cartridge-import-modal"]';
 	static #ccImportCancelButton = '[data-testid="common-cartridge-import-modal-cancel"]';
@@ -196,6 +197,9 @@ class Courses {
 	static #chooseWeekday = "#weekday_chosen";
 	static #dropDownWeekday = ".chosen-drop";
 	static #courseTimeSectionOption = "tr.course-time";
+	static #copyInfoCopyrightDataProtection =
+		'[data-testid="copy-info-copyright-data-protection"]';
+	static #copyInfoWarnings = '[data-testid="copy-info-warnings"]';
 
 	openThreeDotMenuForCopiedTopic(contentTitle, suffix) {
 		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(
@@ -359,9 +363,10 @@ class Courses {
 		cy.get(Courses.#courseTimeTableContainer).should("exist");
 	}
 
-	seeProgressBar() {
-		cy.get(Courses.#copyResultDialog).should("be.visible");
-	}
+	// progress bar not showing until the request takes longer than 200ms, so this assertion is not stable, commenting out for now.
+	// seeProgressBar() {
+	// 	cy.get(Courses.#copyResultDialog).should("be.visible");
+	// }
 
 	seeSelectionBoxToSelectClass() {
 		cy.get(Courses.#addClassToCourseSelectionBox).should("exist");
@@ -1049,11 +1054,13 @@ class Courses {
 			"be.visible"
 		);
 		cy.get(Courses.#copyResultNotification).should("be.visible");
+		cy.get(Courses.#copyInfoCopyrightDataProtection).should("be.visible");
+		cy.get(Courses.#copyInfoWarnings).should("be.visible");
 	}
 
 	clickOnDialogClose() {
 		cy.get(
-			`${`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}, ${Courses.#errorDialogCancel}`}, ${Courses.#errorDialogClose}`
+			`${`${Courses.#dialogClose}, ${Courses.#copyDialogClose}, ${Courses.#errorDialogCancel}`}, ${Courses.#errorDialogClose}`
 		).click();
 	}
 
