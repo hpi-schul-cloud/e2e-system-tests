@@ -154,6 +154,12 @@ class RoomBoards {
 	static #dialogConfirm = '[data-testid="dialog-confirm"]';
 	static #importCardDialog = '[data-testid="import-card-dialog"]';
 	static #importDialogTitle = '[data-testid="select-destination-modal-title"]';
+	static #trashPageMenuButton = '[data-testid="folder-trash-menu"]';
+	static #permanentDeleteDialog = '[data-testid="purge-files-dialog"]';
+	static #permanentDeleteFileCount = '[data-testid="purge-files-dialog-description"]';
+	static #permanentDeleteWarningCheckbox =
+		'[data-testid="purge-files-dialog-checkbox"]';
+	static #permanentDeleteConfirmButton = '[data-testid="purge-files-dialog-confirm"]';
 	static #importRoomsModalTitle = '[data-testid="import-dialog-title"]';
 	static #shareInfoCopyrightDataProtection =
 		'[data-testid="share-info-copyright-data-protection"]';
@@ -1632,6 +1638,41 @@ class RoomBoards {
 				cy.get(RoomBoards.#toolbarEditButton).click();
 			}
 		});
+	verifyTrashTitleMenuVisible() {
+		cy.get(RoomBoards.#trashPageMenuButton).should("be.visible");
+	}
+
+	verifyTrashTitleMenuNotVisible() {
+		cy.get(RoomBoards.#trashPageMenuButton).should("not.exist");
+	}
+
+	clickTrashTitleMenu() {
+		cy.get(RoomBoards.#trashPageMenuButton).click();
+	}
+
+	verifyPermanentDeleteConfirmationDialog(fileCount) {
+		cy.get(RoomBoards.#permanentDeleteDialog).should("be.visible");
+		cy.get(RoomBoards.#permanentDeleteFileCount)
+			.should("be.visible")
+			.and("contain.text", fileCount);
+	}
+
+	verifyPermanentDeleteConfirmButtonDisabled() {
+		cy.get(RoomBoards.#permanentDeleteConfirmButton).should("be.disabled");
+	}
+
+	clickWarningCheckboxInPermanentDeleteDialog() {
+		cy.get(RoomBoards.#permanentDeleteWarningCheckbox)
+			.find('input[type="checkbox"]')
+			.check();
+	}
+
+	verifyPermanentDeleteConfirmButtonEnabled() {
+		cy.get(RoomBoards.#permanentDeleteConfirmButton).should("not.be.disabled");
+	}
+
+	clickConfirmInPermanentDeleteDialog() {
+		cy.get(RoomBoards.#permanentDeleteConfirmButton).click();
 	}
 }
 export default RoomBoards;
