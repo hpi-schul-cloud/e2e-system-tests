@@ -1642,6 +1642,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#toolbarEditButton).should("be.visible");
 	}
 
+	verifyEditButtonNotVisibleInLightbox() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.get(RoomBoards.#toolbarEditButton).should("not.exist");
+	}
+
 	verifyLightboxNotVisible() {
 		cy.get(RoomBoards.#cardDetailViewToolbar).should("not.exist");
 	}

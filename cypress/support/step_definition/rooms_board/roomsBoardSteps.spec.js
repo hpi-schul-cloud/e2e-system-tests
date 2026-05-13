@@ -1011,6 +1011,10 @@ Then("the lightbox switches to view mode", () => {
 	roomBoards.verifyLightboxInViewMode();
 });
 
+Then("I do not see the edit button in the lightbox header", () => {
+	roomBoards.verifyEditButtonNotVisibleInLightbox();
+});
+
 Then("the lightbox is not visible anymore", () => {
 	roomBoards.verifyLightboxNotVisible();
 });
