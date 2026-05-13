@@ -31,6 +31,14 @@ Feature: Room Board - See card content in fullscreen lightbox
         Then I see file "<file_3>" in lightbox
         # Then the background color '<card_bg_color>' is used as the page background
 
+        # Switch between view and edit mode via header button
+        When I click on the button Edit in the header
+        Then the lightbox switches to edit mode
+        # Then the lightbox switches to edit mode
+        # And all child elements and functions are available (e.g., add element, move element up, delete element)
+        # When I click on the "Ansehen" button in the header
+        # Then the lightbox switches back to view mode
+
 
 
 

@@ -974,3 +974,11 @@ Then("I see the file type PPTX is uploaded in the card", () => {
 When("I click on the link Show trash bin", () => {
 	roomBoards.clickShowTrashBinLink();
 });
+
+When("I click on the button Edit in the header", () => {
+	roomBoards.clickEditButtonInHeader();
+});
+
+Then("the lightbox switches to edit mode", () => {
+	roomBoards.verifyLightboxInEditMode();
+});

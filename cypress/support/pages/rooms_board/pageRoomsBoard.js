@@ -126,6 +126,9 @@ class RoomBoards {
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
 	static #secondCardPositionInRoomBoard = '[data-testid="board-card-0-2"]';
 	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
+	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
+	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
+	static #addElementButton = '[data-testid="add-element-btn"]';
 
 	static #importSelectRoom = '[data-testid="import-card-select-room"]';
 	static #importSelectBoard = '[data-testid="import-card-select-board"]';
@@ -1615,6 +1618,20 @@ class RoomBoards {
 
 	verifyPptxFileUploaded() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyLightboxInEditMode() {
+		cy.scrollTo("bottom");
+		cy.get(`${RoomBoards.#addElementButton}:visible`).first().should("be.visible");
+		cy.get(RoomBoards.#toolbarViewButton).should("be.visible");
+	}
+
+	clickEditButtonInHeader() {
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#toolbarEditButton).length > 0) {
+				cy.get(RoomBoards.#toolbarEditButton).click();
+			}
+		});
 	}
 }
 export default RoomBoards;
