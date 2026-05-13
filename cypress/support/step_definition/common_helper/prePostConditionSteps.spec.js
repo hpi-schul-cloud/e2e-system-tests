@@ -257,18 +257,6 @@ Given(
 	}
 );
 
-Given("video conference is added in the card", () => {
-	roomBoards.clickOnThreeDotInCard();
-	roomBoards.clickEditOptionInCardThreeDot();
-	board.clickPlusIconToAddContentIntoCard();
-	roomBoards.seeElementSelectionDialog();
-	board.selectCardElementFromMenu("video-conference");
-	roomBoards.enterVideoConferenceTitle("video_conference_title");
-	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
-	roomBoards.clickOutsideToSaveCard();
-	roomBoards.verifyVideoConferenceElementAddedInCard();
-});
-
 Given("etherpad is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();

@@ -34,7 +34,16 @@ Feature: Room Board - See card content in fullscreen lightbox
         # Switch between view and edit mode via header button
         When I click on the button Edit in the header
         Then the lightbox switches to edit mode
-        # Then the lightbox switches to edit mode
+        Then I see etherpad in lightbox
+        Then I see folder named "<file_folder>" in lightbox
+        Then I see file "<file_1>" in lightbox
+        Then I see file "<file_2>" in lightbox
+        Then I see file "<file_3>" in lightbox
+        When I click on icon Plus in lightbox to add content into card
+        Then I see the dialog Add Element in the card
+        When I select 'file' from the element selection dialog box
+        When I upload a file '<file_4>'
+        Then I see file "<file_4>" in lightbox
         # And all child elements and functions are available (e.g., add element, move element up, delete element)
         # When I click on the "Ansehen" button in the header
         # Then the lightbox switches back to view mode
@@ -91,8 +100,8 @@ Feature: Room Board - See card content in fullscreen lightbox
 
         @school_api_test
         Examples:
-            | namespace | teacher      | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
-            | dbc       | teacher1_dbc | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
+            | namespace | teacher      | room_name                             | file_folder       | file_1          | file_2                   | file_3         | file_4            | board_title       |
+            | dbc       | teacher1_brb | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | testboard_jpg.jpg | CypressAuto Board |
 
 # | namespace | user_role    | room_name            | board_type | board_title           | card_title   | card_bg_color | element_1    | element_2     | element_3 | element_4   | element_5 | element_6 | fullscreen_url             |
 # | dbc       | Board-Editor | CypressAut Card Room | one-column | CypressAut Card Board | Example Card | blue          | Text Element | Image Element | TLDraw    | File Folder | Etherpad  | Link      | /board/1/card/1/fullscreen |

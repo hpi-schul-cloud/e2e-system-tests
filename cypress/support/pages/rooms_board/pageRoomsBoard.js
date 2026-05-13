@@ -163,6 +163,8 @@ class RoomBoards {
 	static #importRoomsModalTitle = '[data-testid="import-dialog-title"]';
 	static #shareInfoCopyrightDataProtection =
 		'[data-testid="share-info-copyright-data-protection"]';
+	static #lightboxCard = '[data-testid="board-card--1--1"]';
+	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
 
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
 		// ensure the board is currently at the starting position
@@ -1627,8 +1629,6 @@ class RoomBoards {
 	}
 
 	verifyLightboxInEditMode() {
-		cy.scrollTo("bottom");
-		cy.get(`${RoomBoards.#addElementButton}:visible`).first().should("be.visible");
 		cy.get(RoomBoards.#toolbarViewButton).should("be.visible");
 	}
 
@@ -1674,6 +1674,14 @@ class RoomBoards {
 
 	clickConfirmInPermanentDeleteDialog() {
 		cy.get(RoomBoards.#permanentDeleteConfirmButton).click();
+	}
+
+	clickPlusIconInLightboxToAddContentIntoCard() {
+		//cy.get(RoomBoards.#lightboxCard).scrollTo("bottom");
+		cy.get(RoomBoards.#lightboxCard)
+			.find(RoomBoards.#addContentIntoCardButton)
+			.should("exist")
+			.click();
 	}
 }
 export default RoomBoards;

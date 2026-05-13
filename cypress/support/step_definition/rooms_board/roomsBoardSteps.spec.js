@@ -1014,3 +1014,7 @@ Then("the confirm button in the permanent delete dialog is enabled", () => {
 When("I confirm the permanent deletion", () => {
 	roomBoards.clickConfirmInPermanentDeleteDialog();
 });
+
+When("I click on icon Plus in lightbox to add content into card", () => {
+	roomBoards.clickPlusIconInLightboxToAddContentIntoCard();
+});
