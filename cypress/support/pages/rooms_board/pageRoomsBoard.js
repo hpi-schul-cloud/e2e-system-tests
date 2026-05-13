@@ -1638,6 +1638,7 @@ class RoomBoards {
 				cy.get(RoomBoards.#toolbarEditButton).click();
 			}
 		});
+	}
 	verifyTrashTitleMenuVisible() {
 		cy.get(RoomBoards.#trashPageMenuButton).should("be.visible");
 	}

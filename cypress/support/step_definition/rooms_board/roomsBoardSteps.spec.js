@@ -981,7 +981,8 @@ When("I click on the button Edit in the header", () => {
 
 Then("the lightbox switches to edit mode", () => {
 	roomBoards.verifyLightboxInEditMode();
-  
+});
+
 Then("I see the three dot menu next to the trash bin page title", () => {
 	roomBoards.verifyTrashTitleMenuVisible();
 });
