@@ -12,8 +12,8 @@ Feature: Room Board - See card content in fullscreen lightbox
         Given a room named '<room_name>' exists
         Given a multi-column board named '<board_title>' exists in the room
         Given the multi-column board has a column with a card
-        Given etherpad is added in the card
         Given the card has a folder named '<file_folder>'
+        Given etherpad is added in the card
         Given the card contains file '<file_1>' element
         Given the card contains file '<file_2>' element
         Given the card contains file '<file_3>' element
@@ -34,16 +34,31 @@ Feature: Room Board - See card content in fullscreen lightbox
         # Switch between view and edit mode via header button
         When I click on the button Edit in the header
         Then the lightbox switches to edit mode
-        Then I see etherpad in lightbox
         Then I see folder named "<file_folder>" in lightbox
-        Then I see file "<file_1>" in lightbox
-        Then I see file "<file_2>" in lightbox
-        Then I see file "<file_3>" in lightbox
+        When I click on the three dot in the first element in lightbox
+        When I click on the option Delete in the three dot menu
+        Then I see the dialog Confirm deletion
+        When I click on the button Delete in the confirmation dialog
+        Then I do not see folder named "<file_folder>" in lightbox
+        Then I see etherpad in lightbox
+        # Then I see file "<file_1>" in lightbox
+        # Then I see file "<file_2>" in lightbox
+        # Then I see file "<file_3>" in lightbox
+        # after deletion lightbox is in view mode. When this is fixed the following step can be removed
+        When I click on the button Edit in the header
         When I click on icon Plus in lightbox to add content into card
         Then I see the dialog Add Element in the card
         When I select 'file' from the element selection dialog box
         When I upload a file '<file_4>'
         Then I see file "<file_4>" in lightbox
+        When I click on the button View in the header
+        Then the lightbox switches to view mode
+
+        # close the lightbox
+        When I click on the button Close in the lightbox header
+        Then the lightbox is not visible anymore
+        Then I see the page board details
+        Then I do not see a folder element on board
         # And all child elements and functions are available (e.g., add element, move element up, delete element)
         # When I click on the "Ansehen" button in the header
         # Then the lightbox switches back to view mode

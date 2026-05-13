@@ -217,6 +217,10 @@ When("I click on the three dot in the element Etherpad", () => {
 	roomBoards.clickOnThreeDotOnEtherpad();
 });
 
+When("I click on the three dot in the first element in lightbox", () => {
+	roomBoards.clickOnFirstThreeDotInLightboxCard();
+});
+
 Then("I do not see the element Etherpad", () => {
 	roomBoards.verifyEtherpadIsNotVisibleOnCard();
 });
@@ -478,6 +482,10 @@ Then("I see etherpad in lightbox", () => {
 
 Then("I see folder named {string} in lightbox", (folderName) => {
 	roomBoards.seeFolderInLightbox(folderName);
+});
+
+Then("I do not see folder named {string} in lightbox", (folderName) => {
+	roomBoards.doNotSeeFolderInLightbox(folderName);
 });
 
 Then("I see file {string} in lightbox", (fileName) => {
@@ -979,8 +987,24 @@ When("I click on the button Edit in the header", () => {
 	roomBoards.clickEditButtonInHeader();
 });
 
+When("I click on the button View in the header", () => {
+	roomBoards.clickViewButtonInHeader();
+});
+
+When("I click on the button Close in the lightbox header", () => {
+	roomBoards.clickCloseButtonInLightbox();
+});
+
 Then("the lightbox switches to edit mode", () => {
 	roomBoards.verifyLightboxInEditMode();
+});
+
+Then("the lightbox switches to view mode", () => {
+	roomBoards.verifyLightboxInViewMode();
+});
+
+Then("the lightbox is not visible anymore", () => {
+	roomBoards.verifyLightboxNotVisible();
 });
 
 Then("I see the three dot menu next to the trash bin page title", () => {

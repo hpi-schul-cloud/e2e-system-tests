@@ -128,6 +128,7 @@ class RoomBoards {
 	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
 	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
 	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
+	static #closeDetailViewButton = '[data-testid="close-detail-view-button"]';
 	static #addElementButton = '[data-testid="add-element-btn"]';
 
 	static #importSelectRoom = '[data-testid="import-card-select-room"]';
@@ -707,6 +708,11 @@ class RoomBoards {
 		cy.get(RoomBoards.#folderElementSelector)
 			.should("be.visible")
 			.and("contain.text", folderName);
+	}
+
+	doNotSeeFolderInLightbox(folderName) {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.contains(RoomBoards.#folderElementSelector, folderName).should("not.exist");
 	}
 
 	seeFileInLightbox(fileName) {
@@ -1632,6 +1638,21 @@ class RoomBoards {
 		cy.get(RoomBoards.#toolbarViewButton).should("be.visible");
 	}
 
+	verifyLightboxInViewMode() {
+		cy.get(RoomBoards.#toolbarEditButton).should("be.visible");
+	}
+
+	verifyLightboxNotVisible() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("not.exist");
+	}
+
+	clickOnFirstThreeDotInLightboxCard() {
+		cy.get('[data-testid="board-card--1--1"]')
+			.find(RoomBoards.#globalCommonThreeDotInCardElement)
+			.first()
+			.click();
+	}
+
 	clickEditButtonInHeader() {
 		cy.get("body").then(($body) => {
 			if ($body.find(RoomBoards.#toolbarEditButton).length > 0) {
@@ -1639,6 +1660,15 @@ class RoomBoards {
 			}
 		});
 	}
+
+	clickViewButtonInHeader() {
+		cy.get(RoomBoards.#toolbarViewButton).click();
+	}
+
+	clickCloseButtonInLightbox() {
+		cy.get(RoomBoards.#closeDetailViewButton).click();
+	}
+
 	verifyTrashTitleMenuVisible() {
 		cy.get(RoomBoards.#trashPageMenuButton).should("be.visible");
 	}
