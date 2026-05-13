@@ -995,6 +995,14 @@ When("I click on the button Close in the lightbox header", () => {
 	roomBoards.clickCloseButtonInLightbox();
 });
 
+When("I copy the URL of the current fullscreen card", () => {
+	roomBoards.copyCurrentFullscreenCardURL();
+});
+
+When("I open copied URL", () => {
+	roomBoards.openCopiedFullscreenCardURL();
+});
+
 Then("the lightbox switches to edit mode", () => {
 	roomBoards.verifyLightboxInEditMode();
 });

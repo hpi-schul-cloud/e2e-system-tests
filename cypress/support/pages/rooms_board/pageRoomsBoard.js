@@ -1669,6 +1669,21 @@ class RoomBoards {
 		cy.get(RoomBoards.#closeDetailViewButton).click();
 	}
 
+	copyCurrentFullscreenCardURL() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.url().then((url) => {
+			expect(url).to.be.a("string").and.not.be.empty;
+			cy.wrap(url).as("copiedFullscreenCardURL");
+		});
+	}
+
+	openCopiedFullscreenCardURL() {
+		cy.get("@copiedFullscreenCardURL").then((url) => {
+			expect(url, "copied fullscreen card URL").to.be.a("string").and.not.be.empty;
+			cy.visit(url);
+		});
+	}
+
 	verifyTrashTitleMenuVisible() {
 		cy.get(RoomBoards.#trashPageMenuButton).should("be.visible");
 	}

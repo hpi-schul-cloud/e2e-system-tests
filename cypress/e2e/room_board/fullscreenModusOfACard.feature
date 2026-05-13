@@ -1,8 +1,8 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-D
-@prio_0_dev
+@group-A
+@prio_0_staging
 Feature: Room Board - See card content in fullscreen lightbox
 
     Scenario Outline: Open card in fullscreen lightbox and switch between view and edit modes
@@ -16,10 +16,8 @@ Feature: Room Board - See card content in fullscreen lightbox
         Given etherpad is added in the card
         Given the card contains file '<file_1>' element
         Given the card contains file '<file_2>' element
-        Given the card contains file '<file_3>' element
         Given link element is added in the card
         Given more cards are in the column
-
 
         # # Open fullscreen lightbox
         When I click on the fullscreen icon on the card
@@ -28,7 +26,6 @@ Feature: Room Board - See card content in fullscreen lightbox
         Then I see folder named "<file_folder>" in lightbox
         Then I see file "<file_1>" in lightbox
         Then I see file "<file_2>" in lightbox
-        Then I see file "<file_3>" in lightbox
         # Then the background color '<card_bg_color>' is used as the page background
 
         # Switch between view and edit mode via header button
@@ -41,16 +38,13 @@ Feature: Room Board - See card content in fullscreen lightbox
         When I click on the button Delete in the confirmation dialog
         Then I do not see folder named "<file_folder>" in lightbox
         Then I see etherpad in lightbox
-        # Then I see file "<file_1>" in lightbox
-        # Then I see file "<file_2>" in lightbox
-        # Then I see file "<file_3>" in lightbox
         # after deletion lightbox is in view mode. When this is fixed the following step can be removed
         When I click on the button Edit in the header
         When I click on icon Plus in lightbox to add content into card
         Then I see the dialog Add Element in the card
         When I select 'file' from the element selection dialog box
-        When I upload a file '<file_4>'
-        Then I see file "<file_4>" in lightbox
+        When I upload a file '<file_3>'
+        Then I see file "<file_3>" in lightbox
         When I click on the button View in the header
         Then the lightbox switches to view mode
 
@@ -59,67 +53,24 @@ Feature: Room Board - See card content in fullscreen lightbox
         Then the lightbox is not visible anymore
         Then I see the page board details
         Then I do not see a folder element on board
-        # And all child elements and functions are available (e.g., add element, move element up, delete element)
-        # When I click on the "Ansehen" button in the header
-        # Then the lightbox switches back to view mode
 
+        # Direct link to fullscreen view
+        When I click on the fullscreen icon on the card
+        Then a lightbox opens with the title "Vollansicht"
+        When I copy the URL of the current fullscreen card
+        When I click on the button Close in the lightbox header
+        When I open copied URL
+        Then a lightbox opens with the title "Vollansicht"
+        Then I see etherpad in lightbox
+        Then I see file "<file_1>" in lightbox
+        When I click on the button Close in the lightbox header
 
-
-
-        # And I see a close icon button with size 48px
-        # And I see a button "Bearbeiten" in the header if my role is 'Board-Editor'
-        # And the content of the card is displayed 1:1 in the lightbox
-        # And all elements '<element_1>, <element_2>', <element_3>', <element_4>', <element_5>', <element_6>' are displayed as in the one-column board layout in the correct order
-        # And the background color '<card_bg_color>' is used as the page background
-        # And the card itself has a white background
-
-        # # Switch between view and edit mode via header button
-        # When I click on the "Bearbeiten" button in the header (if visible)
-        # Then the lightbox switches to edit mode
-        # And all child elements and functions are available (e.g., add element, move element up, delete element)
-        # When I click on the "Ansehen" button in the header
-        # Then the lightbox switches back to view mode
-
-        # # Switch between view and edit mode via double-click and click outside
-        # When I double-click inside the card content in view mode
-        # Then the lightbox switches to edit mode
-        # When I click outside the card area in edit mode
-        # Then the lightbox switches back to view mode
-
-        # # Edit mode placeholders for empty card
-        # Given the card '<card_title>' is empty
-        # When I open the card in fullscreen edit mode
-        # Then I see "Titel hinzufügen" and "Text hinzufügen" as placeholders
-
-        # # Board-Viewer permission allows view-only fullscreen
-        # Given I am logged in as a 'Board-Viewer' at '<namespace>'
-        # When I open the card '<card_title>' in fullscreen
-        # Then I can view the card in fullscreen
-        # And I do not see the "Bearbeiten" button
-        # And I cannot switch to edit mode
-
-        # # opening element in separate tab and changing back to fullscreen tab
-        # When I click on the link element '<element_6>'
-        # Then link element '<element_6>' opens in separate tab
-        # When I go back to original tab
-        # Then fullscreen is visible
-        # Then scrolling position is like before
-
-        # # Direct link to fullscreen view
-        # When I copy the URL of the current fullscreen card
-        # When I open copied URL in a separate tab
-        # Then the lightbox opens in fullscreen mode for card '<card_title>'
-
-        # #Post-condition: delete the room
-        # Given the room '<room_name>' at position '0' is deleted
+        #Post-condition: delete the room
+        Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
+        @staging_test
         Examples:
-            | namespace | teacher      | room_name                             | file_folder       | file_1          | file_2                   | file_3         | file_4            | board_title       |
-            | dbc       | teacher1_brb | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | testboard_jpg.jpg | CypressAuto Board |
-
-# | namespace | user_role    | room_name            | board_type | board_title           | card_title   | card_bg_color | element_1    | element_2     | element_3 | element_4   | element_5 | element_6 | fullscreen_url             |
-# | dbc       | Board-Editor | CypressAut Card Room | one-column | CypressAut Card Board | Example Card | blue          | Text Element | Image Element | TLDraw    | File Folder | Etherpad  | Link      | /board/1/card/1/fullscreen |
-# | dbc       | Board-Viewer | CypressAut Card Room | one-column | CypressAut Card Board | Example Card | red           | Text Element | Image Element | TLDraw    | File Folder | Etherpad  | Link      | /board/1/card/1/fullscreen |
-# | dbc       | Board-Editor | CypressAut Card Room | one-column | CypressAut Card Board | Empty Card   | yellow        |              |               |           |             |           |           | /board/1/card/2/fullscreen |
+            | namespace | teacher      | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
+            | dbc       | teacher1_brb | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
 
