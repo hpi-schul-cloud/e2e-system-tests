@@ -1,6 +1,5 @@
 @stable_test
 @regression_test
-@schedule_run
 @group-D
 @prio_0_staging
 
@@ -106,5 +105,5 @@ Feature: Calendar - Create an event in a team and check in calendar
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | list_name_student | student_last_name | student_fullname | team                   | event_title | event_start_time | event_start_text | event_end_time | event_start_time_1 | event_start_text_1 | event_end_time_1 | event_description         | event_place  | event_title_1 | event_description_1            | event_place_1      |
-            | teacher1_brb | student1_brb | brb       | Kraft, Herbert    | Kraft, Herbert    | Herbert Kraft    | QA_01 - do not delete! | cy Event    | 10:00            | 10 Uhr           | 11:00          | 12:00              | 12 Uhr             | 13:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |
+            | teacher      | student      | namespace | student_last_name | student_fullname | team                   | event_title | event_start_time | event_start_text | event_end_time | event_start_time_1 | event_start_text_1 | event_end_time_1 | event_description         | event_place  | event_title_1 | event_description_1            | event_place_1      |
+            | teacher1_brb | student1_brb | brb       | Kraft, Herbert    | Herbert Kraft    | QA_01 - do not delete! | cy Event    | 10:00            | 10 Uhr           | 11:00          | 12:00              | 12 Uhr             | 13:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |

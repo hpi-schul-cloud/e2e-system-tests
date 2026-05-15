@@ -88,7 +88,7 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
         When I click on icon Edit event
         When I change the title to '<event_title_edited>'
         When I change the description to '<event_description_edited>'
-        When I change the event place to 'edit cy test place cy'
+        When I change the event place to '<event_place_edited>'
         When I click on button Save team event changes
         Then I see team event with description '<event_description_edited>'
         Then I see video icon for team event
@@ -116,5 +116,5 @@ Feature: Teams - Teacher adds edits and deletes team event with video conference
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | student_last_name | student_fullname | team_title             | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_description_edited |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | Kraft, Herbert    | Herbert Kraft    | QA_01 - do not delete! | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa            |
+            | admin      | teacher      | student      | namespace | student_last_name | student_fullname | team_title             | event_title      | event_description            | event_place  | event_title_edited      | event_description_edited               | event_place_edited |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | Kraft, Herbert    | Herbert Kraft    | QA_01 - do not delete! | CypressAut Event | this is cy event description | Cypress Aula | CypressAut Edited Event | this is an edited cy event description | Cypress Mensa      |
