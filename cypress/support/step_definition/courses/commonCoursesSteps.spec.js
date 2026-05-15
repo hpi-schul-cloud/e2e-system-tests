@@ -366,9 +366,12 @@ When("I click on the import course button", () => {
 	courses.clickImportCourseButton();
 });
 
-Then("I see the copy result notification", () => {
-	courses.seeCopyResultNotification();
-});
+Then(
+	"I see the copy result notification with data protection information and alert",
+	() => {
+		courses.seeCopyResultNotification();
+	}
+);
 
 When("I close the dialog", () => {
 	courses.clickOnDialogClose();
@@ -425,9 +428,10 @@ Then("I see button to create a course time table container", () => {
 	courses.seeCreateCourseTimeTableContainer();
 });
 
-Then("I see the progress bar", () => {
-	courses.seeProgressBar();
-});
+// progress bar not showing until the request takes longer than 200ms, so this assertion is not stable, commenting out for now.
+// Then("I see the progress bar", () => {
+// 	courses.seeProgressBar();
+// });
 
 Then("I see the title 'Aufgabe - Entwurf' in the task", () => {
 	courses.seeDraftTaskTitle();
@@ -521,6 +525,34 @@ Then("I see the loading bar", () => {
 
 When("I wait for the loading bar to close", () => {
 	courses.waitForImportFinish();
+});
+
+Then("I see the maximum filesize info message in the import dialog", () => {
+	courses.seeMaxFilesizeInfoMessage();
+});
+
+Then("I see the import button is disabled", () => {
+	courses.seeImportButtonDisabled();
+});
+
+Then("I see the import button is enabled", () => {
+	courses.seeImportButtonEnabled();
+});
+
+When("I select a file that exceeds the filesize limit", () => {
+	courses.selectOversizedFileForImport();
+});
+
+Then("I see the filesize exceeded error message", () => {
+	courses.seeFilesizeExceededError();
+});
+
+When("I clear the selected file in the import dialog", () => {
+	courses.clearSelectedFileInImportDialog();
+});
+
+Then("I click cancel in the import dialog", () => {
+	courses.cancelSelectedFileInImportDialog();
 });
 
 When("I click on the button Add new appointment in course", () => {
