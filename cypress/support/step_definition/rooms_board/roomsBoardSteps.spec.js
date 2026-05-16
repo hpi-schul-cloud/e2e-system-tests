@@ -957,3 +957,35 @@ Then("I see the file type PPTX is uploaded in the card", () => {
 When("I click on the link Show trash bin", () => {
 	roomBoards.clickShowTrashBinLink();
 });
+
+Then("I see the three dot menu next to the trash bin page title", () => {
+	roomBoards.verifyTrashTitleMenuVisible();
+});
+
+Then("I do not see the three dot menu next to the trash bin page title", () => {
+	roomBoards.verifyTrashTitleMenuNotVisible();
+});
+
+When("I click on the three dot menu next to the trash bin page title", () => {
+	roomBoards.clickTrashTitleMenu();
+});
+
+Then("I see the permanent delete confirmation dialog for {string} files", (fileCount) => {
+	roomBoards.verifyPermanentDeleteConfirmationDialog(fileCount);
+});
+
+Then("the confirm button in the permanent delete dialog is disabled", () => {
+	roomBoards.verifyPermanentDeleteConfirmButtonDisabled();
+});
+
+When("I click the warning checkbox in the permanent delete dialog", () => {
+	roomBoards.clickWarningCheckboxInPermanentDeleteDialog();
+});
+
+Then("the confirm button in the permanent delete dialog is enabled", () => {
+	roomBoards.verifyPermanentDeleteConfirmButtonEnabled();
+});
+
+When("I confirm the permanent deletion", () => {
+	roomBoards.clickConfirmInPermanentDeleteDialog();
+});
