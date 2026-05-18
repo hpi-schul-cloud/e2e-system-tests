@@ -55,7 +55,7 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         Then I see the element Link on the card
         Then I see the URL '<example_link_edited>' in the element Link
 
-        # teacher accesses detailed view of the link element and edits the link element in the detailed view
+        # teacher accesses detailed view of the link element and verifies edit/show mode in the detailed view
         When I click on the detailed view icon in the Link element
         Then I see the detailed view of the Link element
         Then I see the URL '<example_link_edited>' in the detailed view of the Link element
