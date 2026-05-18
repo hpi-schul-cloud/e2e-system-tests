@@ -4,7 +4,7 @@ import Rooms from "../../pages/rooms/pageRooms";
 const rooms = new Rooms();
 
 Then(
-	"I see team members count chip with count {string} for room {string}",
+	"I see room members count chip with count {string} for room {string}",
 	(teamMembersCount, roomName) => {
 		rooms.seeTeamMembersCountChipForRoom(roomName, teamMembersCount);
 	}
