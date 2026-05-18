@@ -29,7 +29,7 @@ Feature: Rooms - To create, edit and delete room
         When I click on the button Save room
         Then I see the detail page of room '<room_name_new>'
 
-        # teacher sees team members count chip on the room overview page
+        # teacher sees room members count chip on the room overview page
         When I go to rooms overview
         Then I see room members count chip with count '1' for room '<room_name_new>' at position '0'
 
