@@ -1,21 +1,14 @@
 "use strict";
 
 class Teams {
-	static #addNewTeamButton = '[data-testid="add_team_button"]';
-	static #addNewTeamEmptyOverviewButton =
-		'[data-testid="add_team_button_empty_overview"]';
-	static #teamName = '[data-testid="team_name"]';
 	static #teamDescription = '[data-testid="description_team"]';
 	static #teamColourDropdown = '[data-testid="selector"]';
-	static #teamCreateButton = '[data-testid ="save_team_button"]';
+	static #teamName = '[data-testid="team_name"]';
 	static #teamNameOnOverviewPage = '[data-testid="title_of_an_element"]';
 	static #teamDescriptionOnOverviewPage = '[data-testid="body_of_element"]';
 	static #teamSettings = '[data-testid="team_settings"]';
 	static #teamEditOption = '[data-testid="edit_team"]';
 	static #teamSaveChanges = '[data-testid="save_team_button"]';
-	static #teamDeleteOption = '[data-testid="delete_team_members"]';
-	static #teamDeleteOnDialogBox = '[data-testid="btn-submit-action"]';
-	static #teamMainSection = "main > section";
 	static #teamCalanderTab = '[data-testid="team_calendar_tab"]';
 	static #addTeamEventButton = '[data-testid="add_team_event"]';
 	static #teamEventCreteModal = '[data-testid="modal_content"]';
@@ -323,18 +316,6 @@ class Teams {
 		cy.get(Teams.#activateConfCheckbox).should("not.exist");
 	}
 
-	doNotSeeTeam(teamName) {
-		cy.get(Teams.#teamMainSection).contains(teamName).should("not.exist");
-	}
-
-	confirmDeleteOnDialogBox() {
-		cy.get(Teams.#teamDeleteOnDialogBox).click();
-	}
-
-	clickOnDeleteOption() {
-		cy.get(Teams.#teamDeleteOption).click();
-	}
-
 	clickOnSaveChangeButton() {
 		cy.get(Teams.#teamSaveChanges).click();
 	}
@@ -350,35 +331,15 @@ class Teams {
 	clickOnTeamSettings() {
 		cy.get(Teams.#teamSettings).eq(1).click();
 	}
-
-	clickOnAddTeam() {
-		cy.get(Teams.#teamMainSection).then(($element) => {
-			if ($element.hasClass("empty-state")) {
-				cy.get(Teams.#addNewTeamEmptyOverviewButton).click();
-			} else {
-				cy.get(Teams.#addNewTeamButton).click();
-			}
-		});
-	}
-
-	seeTeamCreationPage() {
-		cy.url().should("include", "/teams/add");
-	}
-
 	enterTeamName(teamName) {
 		cy.get(Teams.#teamName).clear().type(teamName);
 	}
-
 	enterTeamDescription(desc) {
 		cy.get(Teams.#teamDescription).clear().type(desc);
 	}
 
 	selectTeamColour() {
 		cy.get(Teams.#teamColourDropdown).click();
-	}
-
-	clickOnAddButtonToCreateTeam() {
-		cy.get(Teams.#teamCreateButton).click();
 	}
 
 	seeCreatedTeamName(teamName) {
