@@ -73,18 +73,6 @@ When("I enable the video conference toggle on the modal", () => {
 	teams.enableVideoConferenceToggleOnModal();
 });
 
-Then("I do not see the team {string}", (teamName) => {
-	teams.doNotSeeTeam(teamName);
-});
-
-Then("I see dialog box and click on delete button to confirm the deletion", () => {
-	teams.confirmDeleteOnDialogBox();
-});
-
-When("I click on delete option", () => {
-	teams.clickOnDeleteOption();
-});
-
 When("I click on edit option", () => {
 	teams.clickOnEditOption();
 });
@@ -95,10 +83,6 @@ Then("I see team edit page", () => {
 
 When("I click on team settings", () => {
 	teams.clickOnTeamSettings();
-});
-
-Then("I see new team creation page", () => {
-	teams.seeTeamCreationPage();
 });
 
 When("I enter in the description {string}", (desc) => {
