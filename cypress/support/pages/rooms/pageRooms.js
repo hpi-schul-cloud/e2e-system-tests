@@ -76,6 +76,12 @@ class Rooms {
 	static #dropdownListbox = '[role="listbox"]';
 	static #dropdownOptions = `${Rooms.#dropdownListbox} [role="option"]`;
 
+	seeTeamMembersCountChipForRoom(roomName, teamMembersCount) {
+		cy.get('[data-testid^="room--member-count-"]')
+			.should("be.visible")
+			.and("contain.text", teamMembersCount);
+	}
+
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
 		// ensure the room is currently at the starting position
 		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
