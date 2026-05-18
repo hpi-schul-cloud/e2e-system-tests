@@ -152,7 +152,7 @@ class RoomBoards {
 	static #importDialogTitle = '[data-testid="select-destination-modal-title"]';
 	static #trashPageMenuButton = '[data-testid="folder-trash-menu"]';
 	static #permanentDeleteDialog = '[data-testid="purge-files-dialog"]';
-	static #permanentDeleteFileCount = '[data-testid="purge-files-dialog-title"]';
+	static #permanentDeleteFileModalTitle = '[data-testid="purge-files-dialog-title"]';
 	static #permanentDeleteWarningCheckbox =
 		'[data-testid="purge-files-dialog-checkbox"]';
 	static #permanentDeleteConfirmButton = '[data-testid="purge-files-dialog-confirm"]';
@@ -1602,7 +1602,7 @@ class RoomBoards {
 
 	verifyPermanentDeleteConfirmationDialog(fileCount) {
 		cy.get(RoomBoards.#permanentDeleteDialog).should("be.visible");
-		cy.get(RoomBoards.#permanentDeleteFileCount)
+		cy.get(RoomBoards.#permanentDeleteFileModalTitle)
 			.should("be.visible")
 			.and("contain.text", fileCount);
 	}
