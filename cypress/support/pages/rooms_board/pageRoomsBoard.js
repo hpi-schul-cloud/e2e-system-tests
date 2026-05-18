@@ -44,7 +44,7 @@ class RoomBoards {
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
-	static #continueButton = '[data-testid="share-dialog-next"]';
+	static #continueButton = '[data-testid="share-dialog-confirm"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
