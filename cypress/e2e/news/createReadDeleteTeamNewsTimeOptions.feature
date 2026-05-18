@@ -1,6 +1,5 @@
 @stable_test
 @regression_test
-@schedule_run
 @group-A
 @prio_0_staging
 
