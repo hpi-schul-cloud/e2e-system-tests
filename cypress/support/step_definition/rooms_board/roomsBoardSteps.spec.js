@@ -11,6 +11,34 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I click on the detailed view icon in the Link element", () => {
+	roomBoards.clickDetailedViewIconInLinkElement();
+});
+
+Then("I see the detailed view of the Link element", () => {
+	roomBoards.verifyDetailedViewOfLinkElementIsVisible();
+});
+
+Then("I see the URL {string} in the detailed view of the Link element", (linkName) => {
+	roomBoards.verifyLinkURLInDetailedView(linkName);
+});
+
+Then("I see the URL {string} in the edit view of the Link element", (linkName) => {
+	roomBoards.verifyLinkURLInEditDetailedView(linkName);
+});
+
+When("I click on the button Edit in the detailed view of the Link element", () => {
+	roomBoards.clickEditButtonInLinkDetailedView();
+});
+
+When("I click on the button Show in the detailed view of the Link element", () => {
+	roomBoards.clickShowButtonInLinkDetailedView();
+});
+
+When("I click on the button Close in the detailed view of the Link element", () => {
+	roomBoards.clickCloseButtonInLinkDetailedView();
+});
+
 When(
 	"I drag and drop the board one {string} from position {string} to position {string}",
 	(boardTitle, fromPosition, toPosition) => {
