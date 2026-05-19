@@ -159,6 +159,51 @@ class RoomBoards {
 	static #importRoomsModalTitle = '[data-testid="import-dialog-title"]';
 	static #shareInfoCopyrightDataProtection =
 		'[data-testid="share-info-copyright-data-protection"]';
+	static #openDetailViewButton = '[data-testid="open-detail-view-btn"]';
+	static #detailViewToolbar = "#card-detail-view-toolbar";
+	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
+	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
+	static #closeElementDetailViewButton = '[data-testid="close-detail-view-button"]';
+
+	clickDetailedViewIconInLinkElement() {
+		cy.get(RoomBoards.#openDetailViewButton).click();
+	}
+
+	verifyDetailedViewOfLinkElementIsVisible() {
+		cy.get(RoomBoards.#detailViewToolbar)
+			.should("be.visible")
+			.and("contain.text", "Vollansicht");
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible");
+	}
+
+	verifyLinkURLInDetailedView(expectedURL) {
+		cy.get(RoomBoards.#linkElementOnCard)
+			.should("be.visible")
+			.and("have.attr", "href", expectedURL);
+	}
+
+	verifyLinkURLInEditDetailedView(expectedURL) {
+		cy.get(RoomBoards.#linkInputField)
+			.filter(":visible")
+			.first()
+			.find("textarea, input")
+			.first()
+			.should("have.value", expectedURL);
+	}
+
+	clickEditButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#toolbarEditButton).should("be.visible").click();
+		cy.get(RoomBoards.#linkInputField).should("be.visible");
+	}
+
+	clickShowButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#toolbarViewButton).should("be.visible").click();
+		cy.get(RoomBoards.#linkElementOnCard).should("be.visible");
+	}
+
+	clickCloseButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
+	}
 
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
 		// ensure the board is currently at the starting position
