@@ -70,6 +70,18 @@ Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
         When I click outside of the card to save it
         Then I see the title '<video_conference_title_edited>' in the video conference element
 
+        # teacher accesses detailed view of the BBB Tool and verifies edit/show mode in the detailed view
+        When I click on the detailed view icon in the video conference element
+        Then I see the detailed view of the video conference element
+        Then I see the title '<video_conference_title_edited>' in the detailed view of the video conference element
+        When I click on the button Edit in the detailed view of the video conference element
+        Then I see the title '<video_conference_title_edited>' in the edit view of the video conference element
+        When I click on the button Show in the detailed view of the video conference element
+        Then I see the title '<video_conference_title_edited>' in the detailed view of the video conference element
+        When I click on the button Close in the detailed view of the video conference element
+        Then I see the page board details
+        Then I see the title '<video_conference_title_edited>' in the video conference element
+
         # teacher deletes the BBB Tool from the multi-column board card
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to rooms overview

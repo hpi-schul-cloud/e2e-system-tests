@@ -39,6 +39,49 @@ When("I click on the button Close in the detailed view of the Link element", () 
 	roomBoards.clickCloseButtonInLinkDetailedView();
 });
 
+When("I click on the detailed view icon in the video conference element", () => {
+	roomBoards.clickDetailedViewIconInVideoConferenceElement();
+});
+
+Then("I see the detailed view of the video conference element", () => {
+	roomBoards.verifyDetailedViewOfVideoConferenceElementIsVisible();
+});
+
+Then(
+	"I see the title {string} in the detailed view of the video conference element",
+	(title) => {
+		roomBoards.verifyVideoConferenceTitleInDetailedView(title);
+	}
+);
+
+Then(
+	"I see the title {string} in the edit view of the video conference element",
+	(title) => {
+		roomBoards.verifyVideoConferenceTitleInEditDetailedView(title);
+	}
+);
+
+When(
+	"I click on the button Edit in the detailed view of the video conference element",
+	() => {
+		roomBoards.clickEditButtonInVideoConferenceDetailedView();
+	}
+);
+
+When(
+	"I click on the button Show in the detailed view of the video conference element",
+	() => {
+		roomBoards.clickShowButtonInVideoConferenceDetailedView();
+	}
+);
+
+When(
+	"I click on the button Close in the detailed view of the video conference element",
+	() => {
+		roomBoards.clickCloseButtonInVideoConferenceDetailedView();
+	}
+);
+
 When(
 	"I drag and drop the board one {string} from position {string} to position {string}",
 	(boardTitle, fromPosition, toPosition) => {

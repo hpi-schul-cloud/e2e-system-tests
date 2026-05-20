@@ -206,6 +206,46 @@ class RoomBoards {
 		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
 	}
 
+	clickDetailedViewIconInVideoConferenceElement() {
+		cy.get(RoomBoards.#openDetailViewButton).click();
+	}
+
+	verifyDetailedViewOfVideoConferenceElementIsVisible() {
+		cy.get(RoomBoards.#detailViewToolbar)
+			.should("be.visible")
+			.and("contain.text", "Vollansicht");
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible");
+	}
+
+	verifyVideoConferenceTitleInDetailedView(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceElement)
+			.should("be.visible")
+			.and("contain.text", expectedTitle);
+	}
+
+	verifyVideoConferenceTitleInEditDetailedView(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceTitleInput)
+			.filter(":visible")
+			.first()
+			.find("textarea, input")
+			.first()
+			.should("have.value", expectedTitle);
+	}
+
+	clickEditButtonInVideoConferenceDetailedView() {
+		cy.get(RoomBoards.#toolbarEditButton).should("be.visible").click();
+		cy.get(RoomBoards.#videoConferenceTitleInput).should("be.visible");
+	}
+
+	clickShowButtonInVideoConferenceDetailedView() {
+		cy.get(RoomBoards.#toolbarViewButton).should("be.visible").click();
+		cy.get(RoomBoards.#videoConferenceElement).should("be.visible");
+	}
+
+	clickCloseButtonInVideoConferenceDetailedView() {
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
+	}
+
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
 		// ensure the board is currently at the starting position
 		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
