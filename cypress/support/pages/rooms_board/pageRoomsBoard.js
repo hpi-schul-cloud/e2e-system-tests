@@ -126,7 +126,6 @@ class RoomBoards {
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
 	static #secondCardPositionInRoomBoard = '[data-testid="board-card-0-2"]';
 	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
-	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
 	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
 	static #closeDetailViewButton = '[data-testid="close-detail-view-button"]';
 	static #addElementButton = '[data-testid="add-element-btn"]';
@@ -169,7 +168,6 @@ class RoomBoards {
 	static #openDetailViewButton = '[data-testid="open-detail-view-btn"]';
 	static #detailViewToolbar = "#card-detail-view-toolbar";
 	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
-	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
 	static #closeElementDetailViewButton = '[data-testid="close-detail-view-button"]';
 
 	clickDetailedViewIconInLinkElement() {
