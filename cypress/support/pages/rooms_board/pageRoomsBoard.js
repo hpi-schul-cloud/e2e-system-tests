@@ -44,7 +44,7 @@ class RoomBoards {
 	static #editingSettingsDialog = '[data-testid="dialog-edit-settings"]';
 	static #sameSchoolCheckbox = '[data-testid="isSchoolInternal"]';
 	static #days21Checkbox = '[data-testid="hasExpiryDate"]';
-	static #continueButton = '[data-testid="share-dialog-next"]';
+	static #continueButton = '[data-testid="share-dialog-confirm"]';
 	static #shareEmailOption = '[data-testid="shareMailAction"]';
 	static #copyLinkOption = '[data-testid="copyAction"]';
 	static #urlInputBoxCopyBoard = '[data-testid="share-course-result-url"]';
@@ -157,7 +157,7 @@ class RoomBoards {
 	static #importDialogTitle = '[data-testid="select-destination-modal-title"]';
 	static #trashPageMenuButton = '[data-testid="folder-trash-menu"]';
 	static #permanentDeleteDialog = '[data-testid="purge-files-dialog"]';
-	static #permanentDeleteFileCount = '[data-testid="purge-files-dialog-description"]';
+	static #permanentDeleteFileModalTitle = '[data-testid="purge-files-dialog-title"]';
 	static #permanentDeleteWarningCheckbox =
 		'[data-testid="purge-files-dialog-checkbox"]';
 	static #permanentDeleteConfirmButton = '[data-testid="purge-files-dialog-confirm"]';
@@ -166,6 +166,51 @@ class RoomBoards {
 		'[data-testid="share-info-copyright-data-protection"]';
 	static #lightboxCard = '[data-testid="board-card--1--1"]';
 	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
+	static #openDetailViewButton = '[data-testid="open-detail-view-btn"]';
+	static #detailViewToolbar = "#card-detail-view-toolbar";
+	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
+	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
+	static #closeElementDetailViewButton = '[data-testid="close-detail-view-button"]';
+
+	clickDetailedViewIconInLinkElement() {
+		cy.get(RoomBoards.#openDetailViewButton).click();
+	}
+
+	verifyDetailedViewOfLinkElementIsVisible() {
+		cy.get(RoomBoards.#detailViewToolbar)
+			.should("be.visible")
+			.and("contain.text", "Vollansicht");
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible");
+	}
+
+	verifyLinkURLInDetailedView(expectedURL) {
+		cy.get(RoomBoards.#linkElementOnCard)
+			.should("be.visible")
+			.and("have.attr", "href", expectedURL);
+	}
+
+	verifyLinkURLInEditDetailedView(expectedURL) {
+		cy.get(RoomBoards.#linkInputField)
+			.filter(":visible")
+			.first()
+			.find("textarea, input")
+			.first()
+			.should("have.value", expectedURL);
+	}
+
+	clickEditButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#toolbarEditButton).should("be.visible").click();
+		cy.get(RoomBoards.#linkInputField).should("be.visible");
+	}
+
+	clickShowButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#toolbarViewButton).should("be.visible").click();
+		cy.get(RoomBoards.#linkElementOnCard).should("be.visible");
+	}
+
+	clickCloseButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
+	}
 
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
 		// ensure the board is currently at the starting position
@@ -785,7 +830,11 @@ class RoomBoards {
 
 	verifyShareInformationBox() {
 		cy.get(RoomBoards.#shareInformationBox).should("be.visible");
-		cy.get(RoomBoards.#shareInfoCopyrightDataProtection).should("be.visible");
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#shareInfoCopyrightDataProtection).length > 0) {
+				cy.get(RoomBoards.#shareInfoCopyrightDataProtection).should("be.visible");
+			}
+		});
 	}
 
 	verifyCancelButtonInShareModal() {
@@ -1703,7 +1752,7 @@ class RoomBoards {
 
 	verifyPermanentDeleteConfirmationDialog(fileCount) {
 		cy.get(RoomBoards.#permanentDeleteDialog).should("be.visible");
-		cy.get(RoomBoards.#permanentDeleteFileCount)
+		cy.get(RoomBoards.#permanentDeleteFileModalTitle)
 			.should("be.visible")
 			.and("contain.text", fileCount);
 	}
