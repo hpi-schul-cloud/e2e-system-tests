@@ -54,7 +54,19 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         When I click outside of the card to save it
         Then I see the element Link on the card
         Then I see the URL '<example_link_edited>' in the element Link
+
+        # teacher accesses detailed view of the link element and verifies edit/show mode in the detailed view
+        When I click on the detailed view icon in the Link element
+        Then I see the detailed view of the Link element
+        Then I see the URL '<example_link_edited>' in the detailed view of the Link element
+        When I click on the button Edit in the detailed view of the Link element
+        Then I see the URL '<example_link_edited>' in the edit view of the Link element
+        When I click on the button Show in the detailed view of the Link element
+        Then I see the URL '<example_link_edited>' in the detailed view of the Link element
         Then I verify the element Link is clickable
+        When I click on the button Close in the detailed view of the Link element
+        Then I see the page board details
+        Then I see the URL '<example_link_edited>' in the element Link
 
         # teacher deletes the element Link in the multi-column board
         Given I am logged in as a '<teacher>' at '<namespace>'
@@ -82,7 +94,7 @@ Feature: Room Board - Add, edit, delete element Link in the room board
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                        | example_link_edited                        |
+            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
             | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.dbc.dbildungscloud.dev/ | https://main.dbc.dbildungscloud.dev/edited/ |
 
         @school_api_test
