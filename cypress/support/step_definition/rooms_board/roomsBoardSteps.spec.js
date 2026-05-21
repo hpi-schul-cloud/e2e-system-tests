@@ -11,6 +11,34 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I click on the detailed view icon in the Link element", () => {
+	roomBoards.clickDetailedViewIconInLinkElement();
+});
+
+Then("I see the detailed view of the Link element", () => {
+	roomBoards.verifyDetailedViewOfLinkElementIsVisible();
+});
+
+Then("I see the URL {string} in the detailed view of the Link element", (linkName) => {
+	roomBoards.verifyLinkURLInDetailedView(linkName);
+});
+
+Then("I see the URL {string} in the edit view of the Link element", (linkName) => {
+	roomBoards.verifyLinkURLInEditDetailedView(linkName);
+});
+
+When("I click on the button Edit in the detailed view of the Link element", () => {
+	roomBoards.clickEditButtonInLinkDetailedView();
+});
+
+When("I click on the button Show in the detailed view of the Link element", () => {
+	roomBoards.clickShowButtonInLinkDetailedView();
+});
+
+When("I click on the button Close in the detailed view of the Link element", () => {
+	roomBoards.clickCloseButtonInLinkDetailedView();
+});
+
 When(
 	"I drag and drop the board one {string} from position {string} to position {string}",
 	(boardTitle, fromPosition, toPosition) => {
@@ -953,4 +981,36 @@ Then("I see the file type PPTX is uploaded in the card", () => {
 
 When("I click on the link Show trash bin", () => {
 	roomBoards.clickShowTrashBinLink();
+});
+
+Then("I see the three dot menu next to the trash bin page title", () => {
+	roomBoards.verifyTrashTitleMenuVisible();
+});
+
+Then("I do not see the three dot menu next to the trash bin page title", () => {
+	roomBoards.verifyTrashTitleMenuNotVisible();
+});
+
+When("I click on the three dot menu next to the trash bin page title", () => {
+	roomBoards.clickTrashTitleMenu();
+});
+
+Then("I see the permanent delete confirmation dialog for {string} files", (fileCount) => {
+	roomBoards.verifyPermanentDeleteConfirmationDialog(fileCount);
+});
+
+Then("the confirm button in the permanent delete dialog is disabled", () => {
+	roomBoards.verifyPermanentDeleteConfirmButtonDisabled();
+});
+
+When("I click the warning checkbox in the permanent delete dialog", () => {
+	roomBoards.clickWarningCheckboxInPermanentDeleteDialog();
+});
+
+Then("the confirm button in the permanent delete dialog is enabled", () => {
+	roomBoards.verifyPermanentDeleteConfirmButtonEnabled();
+});
+
+When("I confirm the permanent deletion", () => {
+	roomBoards.clickConfirmInPermanentDeleteDialog();
 });

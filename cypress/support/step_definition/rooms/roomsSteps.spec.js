@@ -3,6 +3,13 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
+Then(
+	"I see room members count chip with count {string} for room {string} at position {string}",
+	(roomMembersCount, roomName, position) => {
+		rooms.seeRoomMembersCountChipForRoom(roomName, roomMembersCount, position);
+	}
+);
+
 When(
 	"I drag and drop the room one {string} from position {string} to position {string}",
 	(roomName, fromPos, toPos) => {
