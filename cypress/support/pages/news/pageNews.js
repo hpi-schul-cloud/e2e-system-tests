@@ -18,16 +18,18 @@ class News {
 	static #newsDescriptionVisible = '[data-testid="news-content"]';
 	static #newsNameOnNewsOverview = '[data-testid="title_of_an_element"]';
 	static #newsNameOnDashboard = '[data-testid="news-title"]';
-	static #deleteNews = '[data-testid="btn-delete-news"]';
-	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
+	static #deleteNews = '[data-testid="news-delete-btn"]';
+	static #deleteNewsConfirmation = '[data-testid="confirm-dialog-confirm"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
-	static #newsMainContent = '[id="main-content"]';
+	//static #newsMainContent = '[id="main-content"]';
 	static #newsOverviewTabUnpublished = '[data-tab="b"]';
 	static #inlineCkToolbar = '[data-cke-tooltip-text="Link (Ctrl+K)"]';
 	static #newsContent = '[data-testid="news-content"]';
 	static #pageTitleLegacy = '[id="page-title"]';
 	static #ckBalloonPanelButton = ".ck-balloon-panel button";
 	static #ckLabeledFieldViewInputWrapper = ".ck-labeled-field-view__input-wrapper";
+	static #newsTimeInfo = '[data-testid="news-last-touched"]';
+	static #newsDetailPageHeader = "h1";
 
 	clickAddLinkInCKEditor() {
 		cy.get(News.#inlineCkToolbar).realClick();
@@ -102,6 +104,7 @@ class News {
 	}
 
 	seeCreatedNews(newsTitle, newsDesc) {
+		cy.get(News.#newsDetailPageHeader).should("contain.text", "Neuigkeit vom");
 		cy.get(News.#newsTitle).contains(newsTitle);
 		cy.get(News.#newsDescriptionVisible).contains(newsDesc);
 	}
@@ -152,14 +155,12 @@ class News {
 	}
 
 	seeNewsOnNewsDetailPage(titleOfNews, descriptionOfNews) {
-		const titleSelectors = `${News.#pageTitle}, ${News.#pageTitleLegacy}`;
-		cy.get(titleSelectors).contains(titleOfNews).should("exist");
-		cy.get(News.#newsMainContent).contains(descriptionOfNews).should("exist");
+		cy.get(News.#pageTitle).contains(titleOfNews).should("exist");
+		cy.get(News.#newsContent).contains(descriptionOfNews).should("exist");
 	}
 
 	seeLinkUrlOnNewsDetailPage(linkUrl) {
-		const contentSelectors = `${News.#newsContent}, ${News.#newsMainContent}`;
-		cy.get(contentSelectors).contains(linkUrl).should("exist");
+		cy.get(News.#newsContent).contains(linkUrl).should("exist");
 	}
 
 	setNewsStartDate(newsStartDateDifference, newsStartTime) {
@@ -226,7 +227,7 @@ class News {
 
 	seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo) {
 		if (newsTimeInfo === "vor ein") {
-			cy.get(News.#newsMainContent).contains(newsTimeInfo).should("exist");
+			cy.get(News.#newsTimeInfo).contains(newsTimeInfo).should("exist");
 		} else {
 			let daysFromNow = parseInt(newsTimeInfo);
 			let startDate = new Date();
@@ -236,7 +237,7 @@ class News {
 				day: "2-digit",
 				month: "2-digit",
 			});
-			cy.get(News.#newsMainContent).contains(newsDateInfo).should("exist");
+			cy.get(News.#newsTimeInfo).contains(newsDateInfo).should("exist");
 		}
 	}
 
