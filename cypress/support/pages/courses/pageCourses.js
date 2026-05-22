@@ -1537,17 +1537,14 @@ class Courses {
 		const fileName = "invalid-file.pdf";
 		const fileContent = "dummy content";
 
-		cy.get(Courses.#dialogFileInput)
-			.find(Courses.#inputOfTypeFile)
-			.selectFile(
-				{
-					contents: Cypress.Buffer.from(fileContent),
-					fileName: fileName,
-					mimeType: "application/pdf",
-				},
-				{ force: true }
-			);
-		cy.wait(1000);
+		cy.get(Courses.#dialogFileInput).within(() => {
+			cy.get(Courses.#inputOfTypeFile).attachFile({
+				fileContent: Cypress.Buffer.from(fileContent),
+				fileName: fileName,
+				mimeType: "application/pdf",
+				encoding: "utf-8",
+			});
+		});
 	}
 
 	seeInvalidFileTypeError() {
