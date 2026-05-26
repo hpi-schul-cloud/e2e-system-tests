@@ -17,7 +17,8 @@ Feature: Course Import - File type validation feature
         When I click on FAB to add or import courses
         When I click on the import course button
         When I select a file with invalid file type
-        Then I see the invalid file type error message
+        # Then I see the invalid file type error message
+        Then I see the filesize exceeded error message
         Then I see the import button is disabled
         Then I click cancel in the import dialog
 
