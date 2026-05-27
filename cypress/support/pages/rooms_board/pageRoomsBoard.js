@@ -23,8 +23,9 @@ class RoomBoards {
 	static #elementSelectionCancelButton =
 		'[data-testid="element-type-selection-cancel"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
-	static #saveButton = '[data-testid="save-video-conference-title-button"]';
 	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
+	static #videoConferenceElementCreate =
+		'[data-testid="board-video-conference-element-create"]';
 	static #videoConferenceModal = '[data-testid="video-conference-config-dialog"]';
 	static #createVideoConferenceButton =
 		'[data-testid="video-conference-config-dialog-confirm"]';
@@ -202,6 +203,46 @@ class RoomBoards {
 	}
 
 	clickCloseButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
+	}
+
+	clickDetailedViewIconInVideoConferenceElement() {
+		cy.get(RoomBoards.#openDetailViewButton).click();
+	}
+
+	verifyDetailedViewOfVideoConferenceElementIsVisible() {
+		cy.get(RoomBoards.#detailViewToolbar)
+			.should("be.visible")
+			.and("contain.text", "Vollansicht");
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible");
+	}
+
+	verifyVideoConferenceTitleInDetailedView(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceElement)
+			.should("be.visible")
+			.and("contain.text", expectedTitle);
+	}
+
+	verifyVideoConferenceTitleInEditDetailedView(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceTitleInput)
+			.filter(":visible")
+			.first()
+			.find("textarea, input")
+			.first()
+			.should("have.value", expectedTitle);
+	}
+
+	clickEditButtonInVideoConferenceDetailedView() {
+		cy.get(RoomBoards.#toolbarEditButton).should("be.visible").click();
+		cy.get(RoomBoards.#videoConferenceTitleInput).should("be.visible");
+	}
+
+	clickShowButtonInVideoConferenceDetailedView() {
+		cy.get(RoomBoards.#toolbarViewButton).should("be.visible").click();
+		cy.get(RoomBoards.#videoConferenceElement).should("be.visible");
+	}
+
+	clickCloseButtonInVideoConferenceDetailedView() {
 		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
 	}
 
@@ -972,7 +1013,7 @@ class RoomBoards {
 	}
 
 	clickThreeDotMenuInVideoConferenceElement() {
-		cy.get(RoomBoards.#videoConferenceElement)
+		cy.get(RoomBoards.#videoConferenceElementCreate)
 			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
@@ -1043,8 +1084,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#videoConferenceTitleInput).clear().type(videoConferenceTitle);
 	}
 
-	clickSaveButtonOrPressEnterToSaveVideoConferenceTitle() {
-		cy.get(RoomBoards.#saveButton).click();
+	verifyTitleInVideoConferenceElement(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceElement)
+			.should("be.visible")
+			.and("contain", expectedTitle);
 	}
 
 	verifyVideoConferenceElementAddedInCard() {
