@@ -28,8 +28,8 @@ class News {
 	static #pageTitleLegacy = '[id="page-title"]';
 	static #ckBalloonPanelButton = ".ck-balloon-panel button";
 	static #ckLabeledFieldViewInputWrapper = ".ck-labeled-field-view__input-wrapper";
-	static #newsTimeInfo = '[data-testid="news-last-touched"]';
 	static #newsDetailPageHeader = "h1";
+	static #newsTimeInfo = '[data-testid="news-last-touched"]';
 
 	clickAddLinkInCKEditor() {
 		cy.get(News.#inlineCkToolbar).realClick();
@@ -226,19 +226,24 @@ class News {
 	}
 
 	seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo) {
+		const daysFromNow = parseInt(newsTimeInfo, 10);
+		const targetSelector =
+			daysFromNow === -7 ? News.#newsDetailPageHeader : News.#newsTimeInfo;
+
 		if (newsTimeInfo === "vor ein") {
-			cy.get(News.#newsTimeInfo).contains(newsTimeInfo).should("exist");
-		} else {
-			let daysFromNow = parseInt(newsTimeInfo);
-			let startDate = new Date();
-			startDate.setDate(startDate.getDate() + daysFromNow);
-			let newsDateInfo = startDate.toLocaleString(News.#deDateFormat, {
-				year: "numeric",
-				day: "2-digit",
-				month: "2-digit",
-			});
-			cy.get(News.#newsTimeInfo).contains(newsDateInfo).should("exist");
+			cy.get(targetSelector).contains(newsTimeInfo).should("exist");
+			return;
 		}
+
+		let startDate = new Date();
+		startDate.setDate(startDate.getDate() + daysFromNow);
+		let newsDateInfo = startDate.toLocaleString(News.#deDateFormat, {
+			year: "numeric",
+			day: "2-digit",
+			month: "2-digit",
+		});
+
+		cy.get(targetSelector).contains(newsDateInfo).should("exist");
 	}
 
 	seeNewsTimeInfoOnOverviewPage(newsTimeInfo) {
