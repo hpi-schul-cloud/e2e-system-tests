@@ -827,6 +827,7 @@ class Rooms {
 
 	clickOnSpeedDialOption(option) {
 		cy.get(`[data-testid="fab-${option}-icon-btn"]`).should("be.visible").click();
+		cy.wait(500);
 	}
 
 	verifyLinkExpirationInInvitationDialog(linkExpirationAction) {
