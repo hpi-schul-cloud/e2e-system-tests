@@ -236,7 +236,10 @@ class Rooms {
 		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;
 
 		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
-		cy.get(openButtonSelector).should("be.visible").click();
+		cy.get(`${roomTitleSelector}, ${openButtonSelector}`)
+			.first()
+			.should("be.visible")
+			.click();
 	}
 
 	seeRoomNotAccessibleMessage() {

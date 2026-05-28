@@ -999,7 +999,11 @@ class RoomBoards {
 			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
 				cy.get(RoomBoards.#globalDialogConfirmButton).click();
 			} else if ($body.find(RoomBoards.#confirmDialogConfirm).length > 0) {
-				cy.get(RoomBoards.#confirmDialogConfirm).click();
+				cy.get(RoomBoards.#confirmDialogConfirm)
+					.click()
+					.then(() => {
+						cy.get('[data-testid^="board-external-tool-element-"]').should("not.exist");
+					});
 			} else {
 				throw new Error("No confirm button found in dialog.");
 			}
