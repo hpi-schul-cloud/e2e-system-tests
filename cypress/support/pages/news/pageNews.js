@@ -23,7 +23,7 @@ class News {
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
 	//static #newsMainContent = '[id="main-content"]';
 	static #newsOverviewTabUnpublished = '[data-tab="b"]';
-	static #inlineCkToolbar = '[data-cke-tooltip-text="Link (Ctrl+K)"]';
+	static #inlineCkToolbar = '[data-cke-tooltip-text^="Link"]';
 	static #newsContent = '[data-testid="news-content"]';
 	static #pageTitleLegacy = '[id="page-title"]';
 	static #ckBalloonPanelButton = ".ck-balloon-panel button";
