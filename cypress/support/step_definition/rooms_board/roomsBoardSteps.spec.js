@@ -288,6 +288,10 @@ When("I click on the three dot in the element Etherpad", () => {
 	roomBoards.clickOnThreeDotOnEtherpad();
 });
 
+When("I click on the three dot in the first element in lightbox", () => {
+	roomBoards.clickOnFirstThreeDotInLightboxCard();
+});
+
 Then("I do not see the element Etherpad", () => {
 	roomBoards.verifyEtherpadIsNotVisibleOnCard();
 });
@@ -533,6 +537,30 @@ When("I click on the option Edit in the three dot menu on the card", () => {
 
 When("I click on the three dot on the card", () => {
 	roomBoards.clickOnThreeDotInCard();
+});
+
+When("I click on the fullscreen icon on the card", () => {
+	roomBoards.clickOnFullscreenIconOfCard();
+});
+
+Then("a lightbox opens with the title {string}", (title) => {
+	roomBoards.seeCardDetailViewLightboxWithTitle(title);
+});
+
+Then("I see etherpad in lightbox", () => {
+	roomBoards.seeEtherpadInLightbox();
+});
+
+Then("I see folder named {string} in lightbox", (folderName) => {
+	roomBoards.seeFolderInLightbox(folderName);
+});
+
+Then("I do not see folder named {string} in lightbox", (folderName) => {
+	roomBoards.doNotSeeFolderInLightbox(folderName);
+});
+
+Then("I see file {string} in lightbox", (fileName) => {
+	roomBoards.seeFileInLightbox(fileName);
 });
 
 When("I click on the three dot menu in the video conference element", () => {
@@ -1029,6 +1057,42 @@ When("I click on the link Show trash bin", () => {
 	roomBoards.clickShowTrashBinLink();
 });
 
+When("I click on the button Edit in the header", () => {
+	roomBoards.clickEditButtonInHeader();
+});
+
+When("I click on the button View in the header", () => {
+	roomBoards.clickViewButtonInHeader();
+});
+
+When("I click on the button Close in the lightbox header", () => {
+	roomBoards.clickCloseButtonInLightbox();
+});
+
+When("I copy the URL of the current fullscreen card", () => {
+	roomBoards.copyCurrentFullscreenCardURL();
+});
+
+When("I open copied URL", () => {
+	roomBoards.openCopiedFullscreenCardURL();
+});
+
+Then("the lightbox switches to edit mode", () => {
+	roomBoards.verifyLightboxInEditMode();
+});
+
+Then("the lightbox switches to view mode", () => {
+	roomBoards.verifyLightboxInViewMode();
+});
+
+Then("I do not see the edit button in the lightbox header", () => {
+	roomBoards.verifyEditButtonNotVisibleInLightbox();
+});
+
+Then("the lightbox is not visible anymore", () => {
+	roomBoards.verifyLightboxNotVisible();
+});
+
 Then("I see the three dot menu next to the trash bin page title", () => {
 	roomBoards.verifyTrashTitleMenuVisible();
 });
@@ -1059,4 +1123,8 @@ Then("the confirm button in the permanent delete dialog is enabled", () => {
 
 When("I confirm the permanent deletion", () => {
 	roomBoards.clickConfirmInPermanentDeleteDialog();
+});
+
+When("I click on icon Plus in lightbox to add content into card", () => {
+	roomBoards.clickPlusIconInLightboxToAddContentIntoCard();
 });
