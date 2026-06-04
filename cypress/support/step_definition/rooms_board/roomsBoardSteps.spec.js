@@ -11,6 +11,77 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I click on the detailed view icon in the Link element", () => {
+	roomBoards.clickDetailedViewIconInLinkElement();
+});
+
+Then("I see the detailed view of the Link element", () => {
+	roomBoards.verifyDetailedViewOfLinkElementIsVisible();
+});
+
+Then("I see the URL {string} in the detailed view of the Link element", (linkName) => {
+	roomBoards.verifyLinkURLInDetailedView(linkName);
+});
+
+Then("I see the URL {string} in the edit view of the Link element", (linkName) => {
+	roomBoards.verifyLinkURLInEditDetailedView(linkName);
+});
+
+When("I click on the button Edit in the detailed view of the Link element", () => {
+	roomBoards.clickEditButtonInLinkDetailedView();
+});
+
+When("I click on the button Show in the detailed view of the Link element", () => {
+	roomBoards.clickShowButtonInLinkDetailedView();
+});
+
+When("I click on the button Close in the detailed view of the Link element", () => {
+	roomBoards.clickCloseButtonInLinkDetailedView();
+});
+
+When("I click on the detailed view icon in the video conference element", () => {
+	roomBoards.clickDetailedViewIconInVideoConferenceElement();
+});
+
+Then("I see the detailed view of the video conference element", () => {
+	roomBoards.verifyDetailedViewOfVideoConferenceElementIsVisible();
+});
+
+Then(
+	"I see the title {string} in the detailed view of the video conference element",
+	(title) => {
+		roomBoards.verifyVideoConferenceTitleInDetailedView(title);
+	}
+);
+
+Then(
+	"I see the title {string} in the edit view of the video conference element",
+	(title) => {
+		roomBoards.verifyVideoConferenceTitleInEditDetailedView(title);
+	}
+);
+
+When(
+	"I click on the button Edit in the detailed view of the video conference element",
+	() => {
+		roomBoards.clickEditButtonInVideoConferenceDetailedView();
+	}
+);
+
+When(
+	"I click on the button Show in the detailed view of the video conference element",
+	() => {
+		roomBoards.clickShowButtonInVideoConferenceDetailedView();
+	}
+);
+
+When(
+	"I click on the button Close in the detailed view of the video conference element",
+	() => {
+		roomBoards.clickCloseButtonInVideoConferenceDetailedView();
+	}
+);
+
 When(
 	"I drag and drop the board one {string} from position {string} to position {string}",
 	(boardTitle, fromPosition, toPosition) => {
@@ -215,6 +286,10 @@ Then("I see the element H5P {string} in the card", (title) => {
 
 When("I click on the three dot in the element Etherpad", () => {
 	roomBoards.clickOnThreeDotOnEtherpad();
+});
+
+When("I click on the three dot in the first element in lightbox", () => {
+	roomBoards.clickOnFirstThreeDotInLightboxCard();
 });
 
 Then("I do not see the element Etherpad", () => {
@@ -464,6 +539,30 @@ When("I click on the three dot on the card", () => {
 	roomBoards.clickOnThreeDotInCard();
 });
 
+When("I click on the fullscreen icon on the card", () => {
+	roomBoards.clickOnFullscreenIconOfCard();
+});
+
+Then("a lightbox opens with the title {string}", (title) => {
+	roomBoards.seeCardDetailViewLightboxWithTitle(title);
+});
+
+Then("I see etherpad in lightbox", () => {
+	roomBoards.seeEtherpadInLightbox();
+});
+
+Then("I see folder named {string} in lightbox", (folderName) => {
+	roomBoards.seeFolderInLightbox(folderName);
+});
+
+Then("I do not see folder named {string} in lightbox", (folderName) => {
+	roomBoards.doNotSeeFolderInLightbox(folderName);
+});
+
+Then("I see file {string} in lightbox", (fileName) => {
+	roomBoards.seeFileInLightbox(fileName);
+});
+
 When("I click on the three dot menu in the video conference element", () => {
 	roomBoards.clickThreeDotMenuInVideoConferenceElement();
 });
@@ -511,13 +610,16 @@ When("I enter the video conference title {string}", (videoConferenceTitle) => {
 	roomBoards.enterVideoConferenceTitle(videoConferenceTitle);
 });
 
-When("I click on the save button or press the button enter key", () => {
-	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
-});
-
 Then("I see the video conference element added in the card", () => {
 	roomBoards.verifyVideoConferenceElementAddedInCard();
 });
+
+Then(
+	"I see the title {string} in the video conference element",
+	(videoConferenceTitle) => {
+		roomBoards.verifyTitleInVideoConferenceElement(videoConferenceTitle);
+	}
+);
 
 When("I click on the video conference element in the card", () => {
 	roomBoards.clickVideoConferenceElementInCard();
@@ -955,6 +1057,42 @@ When("I click on the link Show trash bin", () => {
 	roomBoards.clickShowTrashBinLink();
 });
 
+When("I click on the button Edit in the header", () => {
+	roomBoards.clickEditButtonInHeader();
+});
+
+When("I click on the button View in the header", () => {
+	roomBoards.clickViewButtonInHeader();
+});
+
+When("I click on the button Close in the lightbox header", () => {
+	roomBoards.clickCloseButtonInLightbox();
+});
+
+When("I copy the URL of the current fullscreen card", () => {
+	roomBoards.copyCurrentFullscreenCardURL();
+});
+
+When("I open copied URL", () => {
+	roomBoards.openCopiedFullscreenCardURL();
+});
+
+Then("the lightbox switches to edit mode", () => {
+	roomBoards.verifyLightboxInEditMode();
+});
+
+Then("the lightbox switches to view mode", () => {
+	roomBoards.verifyLightboxInViewMode();
+});
+
+Then("I do not see the edit button in the lightbox header", () => {
+	roomBoards.verifyEditButtonNotVisibleInLightbox();
+});
+
+Then("the lightbox is not visible anymore", () => {
+	roomBoards.verifyLightboxNotVisible();
+});
+
 Then("I see the three dot menu next to the trash bin page title", () => {
 	roomBoards.verifyTrashTitleMenuVisible();
 });
@@ -985,4 +1123,8 @@ Then("the confirm button in the permanent delete dialog is enabled", () => {
 
 When("I confirm the permanent deletion", () => {
 	roomBoards.clickConfirmInPermanentDeleteDialog();
+});
+
+When("I click on icon Plus in lightbox to add content into card", () => {
+	roomBoards.clickPlusIconInLightboxToAddContentIntoCard();
 });

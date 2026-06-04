@@ -131,7 +131,7 @@ Given("all external tools at the school are deleted", () => {
 	management.deleteAllExternalTools();
 });
 
-Given("the card contains image {string} element", (imageFile) => {
+Given("the card contains file {string} element", (imageFile) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();
@@ -256,18 +256,6 @@ Given(
 		tasks.clickOnButtonToParentCourse();
 	}
 );
-
-Given("video conference is added in the card", () => {
-	roomBoards.clickOnThreeDotInCard();
-	roomBoards.clickEditOptionInCardThreeDot();
-	board.clickPlusIconToAddContentIntoCard();
-	roomBoards.seeElementSelectionDialog();
-	board.selectCardElementFromMenu("video-conference");
-	roomBoards.enterVideoConferenceTitle("video_conference_title");
-	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
-	roomBoards.clickOutsideToSaveCard();
-	roomBoards.verifyVideoConferenceElementAddedInCard();
-});
 
 Given("etherpad is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();
@@ -579,34 +567,6 @@ Given("course with name {string} is deleted", (courseName) => {
 	courses.confirmCourseDeletionOnModal();
 	courses.navigateToCoursesOverview();
 	courses.courseIsNotVisiblOnOverviewPage(courseName);
-});
-
-Given("team with name {string} is deleted", (teamName) => {
-	teams.navigateToTeamsOverview();
-	teams.selectTeam(teamName);
-	teams.clickOnTeamSettings();
-	teams.clickOnDeleteOption();
-	teams.confirmDeleteOnDialogBox();
-	teams.doNotSeeTeam(teamName);
-});
-
-Given("team with name {string} is created", (teamName) => {
-	teams.navigateToTeamsOverview();
-	teams.clickOnAddTeam();
-	teams.enterTeamName(teamName);
-	teams.clickOnAddButtonToCreateTeam();
-});
-
-Given("team {string} is created with student {string}", (teamName, studentName) => {
-	teams.navigateToTeamsOverview();
-	teams.clickOnAddTeam();
-	teams.enterTeamName(teamName);
-	teams.clickOnAddButtonToCreateTeam();
-	teams.clickOnThreeDotToManageTeam();
-	teams.clickOnManageTeamMembersEditOption();
-	teams.clickOnAddInternalAttendees();
-	teams.selectInternalTeamMember(studentName);
-	teams.clickOnAddingNewTeamMemberButtonOnModal();
 });
 
 Given("task with name {string} in course {string} is deleted", (taskName, courseName) => {

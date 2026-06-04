@@ -3,7 +3,7 @@
 class News {
 	static #elementTitle = '[data-testid="title_of_an_element"]';
 	static #elementHeader = '[data-testid="header-of-element"]';
-	static #pageTitle = '[id="page-title"]';
+	static #pageTitle = '[data-testid="news-title"]';
 	static #enDateFormat = "en-CA";
 	static #deDateFormat = "de-DE";
 	static #newsText = '[data-testid="body_of_element"]';
@@ -14,15 +14,41 @@ class News {
 	static #newsDateInput = '[data-testid="news_date"]';
 	static #newsTimeInput = '[data-testid="news_time"]';
 	static #newsCreateButton = '[data-testid="btn_news_submit"]';
-	static #newsTitle = '[id="page-title"]';
-	static #newsDescriptionVisible = '[class="ckcontent"]';
+	static #newsTitle = '[data-testid="news-title"]';
+	static #newsDescriptionVisible = '[data-testid="news-content"]';
 	static #newsNameOnNewsOverview = '[data-testid="title_of_an_element"]';
 	static #newsNameOnDashboard = '[data-testid="news-title"]';
-	static #deleteNews = '[data-testid="btn-delete-news"]';
-	static #deleteNewsConfirmation = '[data-testid="delete-article-btn"]';
+	static #deleteNews = '[data-testid="news-delete-btn"]';
+	static #deleteNewsConfirmation = '[data-testid="confirm-dialog-confirm"]';
 	static #titlebarNewsOverviewPage = '[id="titlebar"]';
-	static #newsContent = '[id="main-content"]';
+	//static #newsMainContent = '[id="main-content"]';
 	static #newsOverviewTabUnpublished = '[data-tab="b"]';
+	static #inlineCkToolbar = '[data-cke-tooltip-text^="Link"]';
+	static #newsContent = '[data-testid="news-content"]';
+	static #pageTitleLegacy = '[id="page-title"]';
+	static #ckBalloonPanelButton = ".ck-balloon-panel button";
+	static #ckLabeledFieldViewInputWrapper = ".ck-labeled-field-view__input-wrapper";
+	static #newsDetailPageHeader = "h1";
+	static #newsTimeInfo = '[data-testid="news-last-touched"]';
+
+	clickAddLinkInCKEditor() {
+		cy.get(News.#inlineCkToolbar).realClick();
+	}
+
+	enterLinkInLinkAddressTool(linkUrl) {
+		cy.contains(
+			News.#ckLabeledFieldViewInputWrapper,
+			/Linkadresse|Link address|Link URL/i
+		)
+			.find("input")
+			.should("be.visible")
+			.clear()
+			.type(linkUrl);
+	}
+
+	clickSaveIconInCKEditor() {
+		cy.contains(News.#ckBalloonPanelButton, /Save|Speichern/i).click();
+	}
 
 	doNotSeeNewsWhenNewsNotYetPublished(newsTitle) {
 		cy.get("span", { timeout: 20000 }).then(($span) => {
@@ -78,6 +104,7 @@ class News {
 	}
 
 	seeCreatedNews(newsTitle, newsDesc) {
+		cy.get(News.#newsDetailPageHeader).should("contain.text", "Neuigkeit vom");
 		cy.get(News.#newsTitle).contains(newsTitle);
 		cy.get(News.#newsDescriptionVisible).contains(newsDesc);
 	}
@@ -130,6 +157,10 @@ class News {
 	seeNewsOnNewsDetailPage(titleOfNews, descriptionOfNews) {
 		cy.get(News.#pageTitle).contains(titleOfNews).should("exist");
 		cy.get(News.#newsContent).contains(descriptionOfNews).should("exist");
+	}
+
+	seeLinkUrlOnNewsDetailPage(linkUrl) {
+		cy.get(News.#newsContent).contains(linkUrl).should("exist");
 	}
 
 	setNewsStartDate(newsStartDateDifference, newsStartTime) {
@@ -195,19 +226,24 @@ class News {
 	}
 
 	seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo) {
+		const daysFromNow = parseInt(newsTimeInfo, 10);
+		const targetSelector =
+			daysFromNow === -7 ? News.#newsDetailPageHeader : News.#newsTimeInfo;
+
 		if (newsTimeInfo === "vor ein") {
-			cy.get(News.#newsContent).contains(newsTimeInfo).should("exist");
-		} else {
-			let daysFromNow = parseInt(newsTimeInfo);
-			let startDate = new Date();
-			startDate.setDate(startDate.getDate() + daysFromNow);
-			let newsDateInfo = startDate.toLocaleString(News.#deDateFormat, {
-				year: "numeric",
-				day: "2-digit",
-				month: "2-digit",
-			});
-			cy.get(News.#newsContent).contains(newsDateInfo).should("exist");
+			cy.get(targetSelector).contains(newsTimeInfo).should("exist");
+			return;
 		}
+
+		let startDate = new Date();
+		startDate.setDate(startDate.getDate() + daysFromNow);
+		let newsDateInfo = startDate.toLocaleString(News.#deDateFormat, {
+			year: "numeric",
+			day: "2-digit",
+			month: "2-digit",
+		});
+
+		cy.get(targetSelector).contains(newsDateInfo).should("exist");
 	}
 
 	seeNewsTimeInfoOnOverviewPage(newsTimeInfo) {

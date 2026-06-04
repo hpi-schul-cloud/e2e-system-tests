@@ -2,7 +2,8 @@
 @stable_test
 @schedule_run
 @group-E
-@pr
+# @pr
+# Disabled for PR runs due to Confluence migration (BC-11809).
 @pre_check_test
 @prio_0_staging
 Feature: Help Section - To use the help areas in dBildungscloud
