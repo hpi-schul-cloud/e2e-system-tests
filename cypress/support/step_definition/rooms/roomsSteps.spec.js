@@ -26,7 +26,8 @@ Then("I see the room {string} at position {string}", (roomName, position) => {
 });
 
 Then("I delete all rooms whose names start with {string}", (roomNamePrefix) => {
-	rooms.deleteAllRoomsWithName(roomNamePrefix);
+	// rooms.deleteAllRoomsWithName(roomNamePrefix);
+	rooms.findAndDeleteRoomInAdminTable(roomNamePrefix);
 });
 
 Then(
@@ -424,4 +425,8 @@ When("I click on three dot menu for user {string} in Confirmations table", (user
 
 When("I click on button Confirm in the three dot menu", () => {
 	rooms.clickConfirmButtonInThreeDotMenu();
+});
+
+When("I duplicate the room for {int} times", (times) => {
+	rooms.duplicateRoomMultipleTimes(times);
 });
