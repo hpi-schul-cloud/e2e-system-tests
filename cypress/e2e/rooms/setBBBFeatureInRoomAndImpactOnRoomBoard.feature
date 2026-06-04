@@ -101,8 +101,9 @@ Feature: Room Board - Room BBB Feature Checkbox Impact on Adding BBB Tool
         Then I see the dialog Add Element in the card
         When I select 'video-conference' from the element selection dialog box
         When I enter the video conference title '<video_conference_title>'
-        When I click on the save button or press the button enter key
+        When I click outside of the card to save it
         Then I see the video conference element added in the card
+        Then I see the title '<video_conference_title>' in the video conference element
         When I click on the video conference element in the card
         Then I see the modal to start the video conference
         Then I see the moderator approval checkbox is checked in the video conference start modal

@@ -131,7 +131,7 @@ Given("all external tools at the school are deleted", () => {
 	management.deleteAllExternalTools();
 });
 
-Given("the card contains image {string} element", (imageFile) => {
+Given("the card contains file {string} element", (imageFile) => {
 	board.clickOutsideTheColumnToSaveTheColumn();
 	roomBoards.clickOnThreeDotInCard();
 	roomBoards.clickEditOptionInCardThreeDot();
@@ -256,18 +256,6 @@ Given(
 		tasks.clickOnButtonToParentCourse();
 	}
 );
-
-Given("video conference is added in the card", () => {
-	roomBoards.clickOnThreeDotInCard();
-	roomBoards.clickEditOptionInCardThreeDot();
-	board.clickPlusIconToAddContentIntoCard();
-	roomBoards.seeElementSelectionDialog();
-	board.selectCardElementFromMenu("video-conference");
-	roomBoards.enterVideoConferenceTitle("video_conference_title");
-	roomBoards.clickSaveButtonOrPressEnterToSaveVideoConferenceTitle();
-	roomBoards.clickOutsideToSaveCard();
-	roomBoards.verifyVideoConferenceElementAddedInCard();
-});
 
 Given("etherpad is added in the card", () => {
 	roomBoards.clickOnThreeDotInCard();

@@ -3,6 +3,18 @@ import News from "../../pages/news/pageNews";
 
 const news = new News();
 
+When("I click on the button Add link in the ckeditor", () => {
+	news.clickAddLinkInCKEditor();
+});
+
+When("I enter the link {string} in the link address tool", (linkUrl) => {
+	news.enterLinkInLinkAddressTool(linkUrl);
+});
+
+When("I click on the icon save in address link tool", () => {
+	news.clickSaveIconInCKEditor();
+});
+
 When("I go to news overview", () => {
 	news.navigateToNewsOverview();
 });
@@ -62,17 +74,23 @@ Then("I do not see the unpublished news {string}", (newsName) => {
 	news.doNotSeeNewsWhenNewsNotYetPublished(newsName);
 });
 
-When("I set news-visibility-start-date to {string} days at {string}", (newsDayDifference, newsTime) => {
-	news.setNewsStartDate(newsDayDifference, newsTime);
-});
+When(
+	"I set news-visibility-start-date to {string} days at {string}",
+	(newsDayDifference, newsTime) => {
+		news.setNewsStartDate(newsDayDifference, newsTime);
+	}
+);
 
 When("I can see the publishing time info {string} on overview page", (newsTimeInfo) => {
 	news.seeNewsTimeInfoOnOverviewPage(newsTimeInfo);
 });
 
-When("I can see the publishing time info {string} on news detail page", (newsTimeInfo) => {
-	news.seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo);
-});
+When(
+	"I can see the publishing time info {string} on news detail page",
+	(newsTimeInfo) => {
+		news.seeNewsTimeInfoOnNewsDetailPage(newsTimeInfo);
+	}
+);
 
 Then(
 	"I can read the news {string} with description {string} on news detail page",
@@ -81,16 +99,18 @@ Then(
 	}
 );
 
+Then("I see the link URL {string} on news detail page", (linkUrl) => {
+	news.seeLinkUrlOnNewsDetailPage(linkUrl);
+});
+
 When("I wait {string} seconds and reload", (timeInSeconds) => {
-	news.waitBeforeReload(timeInSeconds)
+	news.waitBeforeReload(timeInSeconds);
 });
 
 When("I click on tab for unpublished news", () => {
-	news.clickOnTabUnpublishedNews()
+	news.clickOnTabUnpublishedNews();
 });
 
 Then("I see the unpublished news {string}", (newsTitle) => {
-	news.seeNewsWhenNewsNotYetPublished(newsTitle)
+	news.seeNewsWhenNewsNotYetPublished(newsTitle);
 });
-
-

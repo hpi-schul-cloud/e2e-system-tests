@@ -23,8 +23,9 @@ class RoomBoards {
 	static #elementSelectionCancelButton =
 		'[data-testid="element-type-selection-cancel"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
-	static #saveButton = '[data-testid="save-video-conference-title-button"]';
 	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
+	static #videoConferenceElementCreate =
+		'[data-testid="board-video-conference-element-create"]';
 	static #videoConferenceModal = '[data-testid="video-conference-config-dialog"]';
 	static #createVideoConferenceButton =
 		'[data-testid="video-conference-config-dialog-confirm"]';
@@ -125,6 +126,10 @@ class RoomBoards {
 	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
 	static #secondCardPositionInRoomBoard = '[data-testid="board-card-0-2"]';
+	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
+	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
+	static #closeDetailViewButton = '[data-testid="close-detail-view-button"]';
+	static #addElementButton = '[data-testid="add-element-btn"]';
 
 	static #importSelectRoom = '[data-testid="import-card-select-room"]';
 	static #importSelectBoard = '[data-testid="import-card-select-board"]';
@@ -159,10 +164,11 @@ class RoomBoards {
 	static #importRoomsModalTitle = '[data-testid="import-dialog-title"]';
 	static #shareInfoCopyrightDataProtection =
 		'[data-testid="share-info-copyright-data-protection"]';
+	static #lightboxCard = '[data-testid="board-card--1--1"]';
+	static #addContentIntoCardButton = '[data-testid="add-element-btn"]';
 	static #openDetailViewButton = '[data-testid="open-detail-view-btn"]';
 	static #detailViewToolbar = "#card-detail-view-toolbar";
 	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
-	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
 	static #closeElementDetailViewButton = '[data-testid="close-detail-view-button"]';
 
 	clickDetailedViewIconInLinkElement() {
@@ -202,6 +208,46 @@ class RoomBoards {
 	}
 
 	clickCloseButtonInLinkDetailedView() {
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
+	}
+
+	clickDetailedViewIconInVideoConferenceElement() {
+		cy.get(RoomBoards.#openDetailViewButton).click();
+	}
+
+	verifyDetailedViewOfVideoConferenceElementIsVisible() {
+		cy.get(RoomBoards.#detailViewToolbar)
+			.should("be.visible")
+			.and("contain.text", "Vollansicht");
+		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible");
+	}
+
+	verifyVideoConferenceTitleInDetailedView(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceElement)
+			.should("be.visible")
+			.and("contain.text", expectedTitle);
+	}
+
+	verifyVideoConferenceTitleInEditDetailedView(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceTitleInput)
+			.filter(":visible")
+			.first()
+			.find("textarea, input")
+			.first()
+			.should("have.value", expectedTitle);
+	}
+
+	clickEditButtonInVideoConferenceDetailedView() {
+		cy.get(RoomBoards.#toolbarEditButton).should("be.visible").click();
+		cy.get(RoomBoards.#videoConferenceTitleInput).should("be.visible");
+	}
+
+	clickShowButtonInVideoConferenceDetailedView() {
+		cy.get(RoomBoards.#toolbarViewButton).should("be.visible").click();
+		cy.get(RoomBoards.#videoConferenceElement).should("be.visible");
+	}
+
+	clickCloseButtonInVideoConferenceDetailedView() {
 		cy.get(RoomBoards.#closeElementDetailViewButton).should("be.visible").click();
 	}
 
@@ -726,6 +772,49 @@ class RoomBoards {
 		cy.get(RoomBoards.#closeButtonSelectorOnFullImage).click();
 	}
 
+	clickOnFullscreenIconOfCard() {
+		cy.get('[data-testid="open-detail-view-btn"]').first().click();
+	}
+
+	seeCardDetailViewLightboxWithTitle(title) {
+		cy.get(RoomBoards.#cardDetailViewToolbar)
+			.should("be.visible")
+			.and("contain.text", title);
+	}
+
+	seeEtherpadInLightbox() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.get(RoomBoards.#elementEtherpadInBoard).should("be.visible");
+	}
+
+	seeFolderInLightbox(folderName) {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("be.visible")
+			.and("contain.text", folderName);
+	}
+
+	doNotSeeFolderInLightbox(folderName) {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.contains(RoomBoards.#folderElementSelector, folderName).should("not.exist");
+	}
+
+	seeFileInLightbox(fileName) {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		const ext = fileName.split(".").pop().toLowerCase();
+		const videoExts = ["mp4", "webm", "ogg", "mov", "avi"];
+		const audioExts = ["mp3", "wav", "aac", "flac"];
+		if (videoExts.includes(ext)) {
+			cy.get(RoomBoards.#videoPreviewOnCard).should("exist");
+		} else if (audioExts.includes(ext)) {
+			cy.get(RoomBoards.#audioPreviewOnCard).should("exist");
+		} else {
+			cy.get(
+				`[data-testid="board-file-element"] img[src*="${encodeURIComponent(fileName)}"], [data-testid="board-file-element"] img[src*="${fileName}"]`
+			).should("exist");
+		}
+	}
+
 	uncheckLinkValidForSameSchool() {
 		cy.get(RoomBoards.#sameSchoolCheckbox).click();
 		cy.get(RoomBoards.#sameSchoolCheckbox)
@@ -972,7 +1061,7 @@ class RoomBoards {
 	}
 
 	clickThreeDotMenuInVideoConferenceElement() {
-		cy.get(RoomBoards.#videoConferenceElement)
+		cy.get(RoomBoards.#videoConferenceElementCreate)
 			// Three dot has same data-testid and needs to be located inside the parent element
 			.find(RoomBoards.#globalCommonThreeDotInCardElement)
 			.click();
@@ -1047,8 +1136,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#videoConferenceTitleInput).clear().type(videoConferenceTitle);
 	}
 
-	clickSaveButtonOrPressEnterToSaveVideoConferenceTitle() {
-		cy.get(RoomBoards.#saveButton).click();
+	verifyTitleInVideoConferenceElement(expectedTitle) {
+		cy.get(RoomBoards.#videoConferenceElement)
+			.should("be.visible")
+			.and("contain", expectedTitle);
 	}
 
 	verifyVideoConferenceElementAddedInCard() {
@@ -1637,6 +1728,61 @@ class RoomBoards {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
 	}
 
+	verifyLightboxInEditMode() {
+		cy.get(RoomBoards.#toolbarViewButton).should("be.visible");
+	}
+
+	verifyLightboxInViewMode() {
+		cy.get(RoomBoards.#toolbarEditButton).should("be.visible");
+	}
+
+	verifyEditButtonNotVisibleInLightbox() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.get(RoomBoards.#toolbarEditButton).should("not.exist");
+	}
+
+	verifyLightboxNotVisible() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("not.exist");
+	}
+
+	clickOnFirstThreeDotInLightboxCard() {
+		cy.get('[data-testid="board-card--1--1"]')
+			.find(RoomBoards.#globalCommonThreeDotInCardElement)
+			.first()
+			.click();
+	}
+
+	clickEditButtonInHeader() {
+		cy.get("body").then(($body) => {
+			if ($body.find(RoomBoards.#toolbarEditButton).length > 0) {
+				cy.get(RoomBoards.#toolbarEditButton).click();
+			}
+		});
+	}
+
+	clickViewButtonInHeader() {
+		cy.get(RoomBoards.#toolbarViewButton).click();
+	}
+
+	clickCloseButtonInLightbox() {
+		cy.get(RoomBoards.#closeDetailViewButton).click();
+	}
+
+	copyCurrentFullscreenCardURL() {
+		cy.get(RoomBoards.#cardDetailViewToolbar).should("be.visible");
+		cy.url().then((url) => {
+			expect(url).to.be.a("string").and.not.be.empty;
+			cy.wrap(url).as("copiedFullscreenCardURL");
+		});
+	}
+
+	openCopiedFullscreenCardURL() {
+		cy.get("@copiedFullscreenCardURL").then((url) => {
+			expect(url, "copied fullscreen card URL").to.be.a("string").and.not.be.empty;
+			cy.visit(url);
+		});
+	}
+
 	verifyTrashTitleMenuVisible() {
 		cy.get(RoomBoards.#trashPageMenuButton).should("be.visible");
 	}
@@ -1672,6 +1818,14 @@ class RoomBoards {
 
 	clickConfirmInPermanentDeleteDialog() {
 		cy.get(RoomBoards.#permanentDeleteConfirmButton).click();
+	}
+
+	clickPlusIconInLightboxToAddContentIntoCard() {
+		//cy.get(RoomBoards.#lightboxCard).scrollTo("bottom");
+		cy.get(RoomBoards.#lightboxCard)
+			.find(RoomBoards.#addContentIntoCardButton)
+			.should("exist")
+			.click();
 	}
 }
 export default RoomBoards;
