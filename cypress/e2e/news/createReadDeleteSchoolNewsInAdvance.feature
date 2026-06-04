@@ -19,10 +19,14 @@ Feature:  News - To read a news on the respective dashboards
         Then I see news creation page
         When I enter news title '<news_title>'
         When I enter news description '<news_description>'
+        When I click on the button Add link in the ckeditor
+        When I enter the link '<link_url>' in the link address tool
+        When I click on the icon save in address link tool
         When I set news-visibility-start-date to '<news_day_from_today>' days at '<news_time>'
         Then I see time input field
         When I click on save button
         Then I can read the news '<news_title>' with description '<news_description>' on news detail page
+        Then I see the link URL '<link_url>' on news detail page
         When I go to news overview
         Then I do not see the unpublished news '<news_title>'
         When I click on tab for unpublished news
@@ -36,6 +40,7 @@ Feature:  News - To read a news on the respective dashboards
         Then I can read the news '<news_title>' with description '<news_description>'
         When I click on the news teaser '<news_title>'
         Then I can read the news '<news_title>' with description '<news_description>' on news detail page
+        Then I see the link URL '<link_url>' on news detail page
 
         # post-condition: first user deletes the school news
         Given I am logged in as a '<news_author>' at '<namespace>'
@@ -50,5 +55,5 @@ Feature:  News - To read a news on the respective dashboards
         @school_api_test
         @staging_test
         Examples:
-            | news_author  | news_reader  | namespace | news_title                          | news_description          | news_day_from_today | news_time | news_waiting_time |
-            | teacher1_brb | student1_brb | brb       | CypressAut - school news in advance | Remember Examination date | 0                   | +2minutes | 120               |
+            | news_author  | news_reader  | namespace | news_title                          | news_description          | news_day_from_today | news_time | news_waiting_time | link_url                                 |
+            | teacher1_brb | student1_brb | brb       | CypressAut - school news in advance | Remember Examination date | 0                   | +2minutes | 120               | https://main.brb.dbildungscloud.dev/news |
