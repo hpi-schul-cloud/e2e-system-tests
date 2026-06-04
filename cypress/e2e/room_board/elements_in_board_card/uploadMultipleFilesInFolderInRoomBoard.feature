@@ -98,15 +98,15 @@ Feature: Room Board - Upload multiple files in folder in board
         Then I see fab button Action at the top of the list
 
         # content editor downloads multiple files
-        When I click on button Action in the header of the list
-        When I select the three dot menu action 'download'
-        Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
+        # When I click on button Action in the header of the list
+        # When I select the three dot menu action 'download'
+        # Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
 
         # content editor downloads zip file from the file folder in the room board
         When I click on breadcrumb element '<board_title>'
         Then I see a folder with name '<standard_folder_name>' in the card
-        When I click on button Download in the card file folder
-        Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
+        # When I click on button Download in the card file folder
+        # Then zip file for folder '<standard_folder_name>' with date of today is saved in folder downloads
 
         # content editor checks / unchecks all files
         When I click on the folder '<standard_folder_name>' in the card

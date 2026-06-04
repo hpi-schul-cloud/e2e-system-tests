@@ -99,7 +99,7 @@ class Courses {
 	static #dialogClose = '[data-testid="copy-dialog-cancel"]';
 	static #errorDialogClose = '[data-testid="error-dialog-cancel"]';
 	static #errorDialogCancel = '[data-testid="error-dialog-cancel"]';
-	static #copyDialogClose = '[data-testid="copy-info-dialog-confirm"]';
+	static #copyDialogClose = '[data-testid="copy-info-dialog-cancel"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #toolDomain = '[data-testid="tool-card-domain"]';
