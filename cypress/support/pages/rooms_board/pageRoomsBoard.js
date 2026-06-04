@@ -816,7 +816,7 @@ class RoomBoards {
 	}
 
 	uncheckLinkValidForSameSchool() {
-		cy.get(RoomBoards.#sameSchoolCheckbox).click();
+		cy.get(RoomBoards.#sameSchoolCheckbox).find('[type="checkbox"]').uncheck();
 		cy.get(RoomBoards.#sameSchoolCheckbox)
 			.find(RoomBoards.#checkBoxCopyShareBoardModal)
 			.should("not.be.checked");

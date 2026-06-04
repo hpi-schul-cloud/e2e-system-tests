@@ -88,9 +88,9 @@ Feature: Course Board - Copy course with a board which has CTL tools
         Then I see course page '<course_name>'
         When I click on button copy course
         Then I see the copy result notification with data protection information and alert
-        When I close the dialog
-        When I go to courses overview
-        When I go to course '<course_name_copy>'
+        When I click on the button Duplicate in the modal to confirm
+        # When I go to courses overview
+        # When I go to course '<course_name_copy>'
         Then I see course page '<course_name_copy>'
 
         # teacher adds a student to newly copied course
