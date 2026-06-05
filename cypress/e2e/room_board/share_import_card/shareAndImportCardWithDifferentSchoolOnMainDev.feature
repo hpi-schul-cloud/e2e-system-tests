@@ -22,7 +22,7 @@ Feature: Room Board - Share and import a card in rooms with the teacher from dif
         Given link element is added in the card
         Given etherpad is added in the card
         Given the card has a folder named '<file_folder>'
-        Given the card contains image '<image_file>' element
+        Given the card contains file '<image_file>' element
 
         # first teacher shares the card via the share dialog and copied URL
         Then I see the page board details

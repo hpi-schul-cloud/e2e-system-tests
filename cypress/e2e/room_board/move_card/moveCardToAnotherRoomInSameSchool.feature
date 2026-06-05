@@ -20,7 +20,7 @@ Feature: Room Board - Move a card from one room to another room
         Given link element is added in the card
         Given etherpad is added in the card
         Given the card has a folder named '<file_folder>'
-        Given the card contains image '<image_file>' element
+        Given the card contains file '<image_file>' element
 
         # pre-condition: target room and target board exist
         Given a room named '<room_name_target>' exists
