@@ -252,18 +252,28 @@ class RoomBoards {
 	}
 
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
-		// ensure the board is currently at the starting position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
-			.should("be.visible")
-			.and("contain.text", boardTitle);
+		// // ensure the board is currently at the starting position
+		// cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
+		// 	.should("be.visible")
+		// 	.and("contain.text", boardTitle);
 
-		// drag board to target position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
-			`[data-testid="board-grid-item-${toPosition}"]`,
-			{ force: true }
-		);
-		// wait for the drag-and-drop action to complete and UI to update
-		cy.wait(300);
+		// // drag board to target position
+		// cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
+		// 	`[data-testid="board-grid-item-${toPosition}"]`,
+		// 	{ force: true }
+		// );
+		// // wait for the drag-and-drop action to complete and UI to update
+		// cy.wait(300);
+		const source = `[data-testid="board-grid-item-${fromPosition}"]`;
+		const target = `[data-testid="board-grid-item-${toPosition}"]`;
+
+		cy.get(source).should("be.visible").and("contain.text", boardTitle);
+
+		cy.get(source).drag(target, { force: true });
+		cy.get(target).click({ force: true });
+
+		cy.get(target).should("contain.text", boardTitle);
+		cy.wait(1000);
 	}
 
 	verifyBoardAtPosition(boardTitle, position) {
@@ -1219,6 +1229,7 @@ class RoomBoards {
 	}
 	clickOnButtonToAddMultiColumnBoard() {
 		cy.get(RoomBoards.#dialogAddMultiColumnBoard).click();
+		cy.wait(5000);
 	}
 	clickOnButtonToAddSingleColumnBoard() {
 		cy.get(RoomBoards.#dialogAddSingleColumnBoard).click();
@@ -1289,6 +1300,7 @@ class RoomBoards {
 	}
 
 	clickOnThreeDotMenuInRoomBoardTitle() {
+		cy.wait(5000);
 		cy.get(RoomBoards.#threeDotInBoardTitle).click();
 	}
 

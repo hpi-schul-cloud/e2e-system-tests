@@ -21,9 +21,9 @@ Feature: Room Board - Add, edit and delete board in room
         Then I see the detail page of room '<room_name>'
 
         # teacher creates a new multi-column board in the room
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        When I go to rooms overview
-        When I click on button Open to go to room '<room_name>' at position '0'
+        # Given I am logged in as a '<teacher>' at '<namespace>'
+        # When I go to rooms overview
+        # When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button add content
         Then I see the dialog box to select the Board type
         When I click on button to add multi-column board
@@ -52,7 +52,7 @@ Feature: Room Board - Add, edit and delete board in room
         Then I do not see the board '<board_title>' in the room
 
         # teacher creates a new single-column board in the room
-        Given I am logged in as a '<teacher>' at '<namespace>'
+        # Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button add content

@@ -87,18 +87,28 @@ class Rooms {
 	}
 
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
-		// ensure the room is currently at the starting position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
-			.should("be.visible")
-			.and("contain.text", roomName);
+		// // ensure the room is currently at the starting position
+		// cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
+		// 	.should("be.visible")
+		// 	.and("contain.text", roomName);
 
-		// drag room to target position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
-			`[data-testid="board-grid-item-${toPosition}"]`,
-			{ force: true }
-		);
-		// wait for the drag-and-drop action to complete and UI to update
-		cy.wait(300);
+		// // drag room to target position
+		// cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
+		// 	`[data-testid="board-grid-item-${toPosition}"]`,
+		// 	{ force: true }
+		// );
+		// // wait for the drag-and-drop action to complete and UI to update
+		// cy.wait(300);
+		const source = `[data-testid="board-grid-item-${fromPosition}"]`;
+		const target = `[data-testid="board-grid-item-${toPosition}"]`;
+
+		cy.get(source).should("be.visible").and("contain.text", roomName);
+
+		cy.get(source).drag(target, { force: true });
+		cy.get(target).click({ force: true });
+
+		cy.get(target).should("contain.text", roomName);
+		cy.wait(1000);
 	}
 
 	verifyRoomAtPosition(roomName, position) {
@@ -507,10 +517,13 @@ class Rooms {
 	}
 
 	selectParticipantName() {
-		cy.get(Rooms.#addParticipantName)
-			.should("be.visible")
-			.type("{downArrow}{enter}")
-			.type("{esc}");
+		// cy.get(Rooms.#addParticipantName)
+		// 	.should("be.visible")
+		// 	.type("{downArrow}{enter}")
+		// 	.type("{esc}");
+		cy.get(Rooms.#addParticipantName).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantsModal).find("h2, .v-card-title").first().click();
+		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
 	addParticipant() {
@@ -593,6 +606,11 @@ class Rooms {
 
 	clickOnActionButtonForRoomLeave(buttonAction) {
 		cy.get(`[data-testid="confirm-dialog-${buttonAction.toLowerCase()}"]`).click();
+		cy.wait("@rooms_api");
+		cy.get('[data-testid="empty-state-title"]')
+			.contains("Aktuell gibt es keine Räume")
+			.should("be.visible")
+			.and("exist");
 	}
 
 	isParticipantNotVisible(participantName) {
