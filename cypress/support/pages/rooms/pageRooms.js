@@ -75,6 +75,7 @@ class Rooms {
 		'[data-testid="input-invite-participants-link-expires"]';
 	static #dropdownListbox = '[role="listbox"]';
 	static #dropdownOptions = `${Rooms.#dropdownListbox} [role="option"]`;
+	static #emptyStateInfoText = '[data-testid="empty-state-title"]';
 
 	seeRoomMembersCountChipForRoom(roomName, roomMembersCount, position) {
 		cy.get(`[data-testid="board-grid-item-${position}"]`)
@@ -87,18 +88,6 @@ class Rooms {
 	}
 
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
-		// // ensure the room is currently at the starting position
-		// cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
-		// 	.should("be.visible")
-		// 	.and("contain.text", roomName);
-
-		// // drag room to target position
-		// cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
-		// 	`[data-testid="board-grid-item-${toPosition}"]`,
-		// 	{ force: true }
-		// );
-		// // wait for the drag-and-drop action to complete and UI to update
-		// cy.wait(300);
 		const source = `[data-testid="board-grid-item-${fromPosition}"]`;
 		const target = `[data-testid="board-grid-item-${toPosition}"]`;
 
@@ -207,9 +196,7 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`)
-					.should("be.visible")
-					.click();
+				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -435,18 +422,13 @@ class Rooms {
 					const menu = win.document.querySelector(`#${menuId}`);
 					expect(menu, `Menu #${menuId} should exist`).to.not.be.null;
 					const options = menu.querySelectorAll(Rooms.#threeDotMenuOptions);
-					expect(
-						options.length,
-						"Menu should have at least 1 option"
-					).to.be.at.least(1);
+					expect(options.length, "Menu should have at least 1 option").to.be.at.least(1);
 				});
 			});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -497,10 +479,7 @@ class Rooms {
 	selectParticipantSchool() {
 		cy.get(Rooms.#addParticipantSchool).should("be.visible").click();
 		cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
-		cy.get(Rooms.#dropdownOptions)
-			.should("have.length.greaterThan", 0)
-			.first()
-			.click();
+		cy.get(Rooms.#dropdownOptions).should("have.length.greaterThan", 0).first().click();
 		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
@@ -517,10 +496,6 @@ class Rooms {
 	}
 
 	selectParticipantName() {
-		// cy.get(Rooms.#addParticipantName)
-		// 	.should("be.visible")
-		// 	.type("{downArrow}{enter}")
-		// 	.type("{esc}");
 		cy.get(Rooms.#addParticipantName).should("be.visible").type("{downArrow}{enter}");
 		cy.get(Rooms.#addParticipantsModal).find("h2, .v-card-title").first().click();
 		cy.get(Rooms.#dropdownListbox).should("not.exist");
@@ -545,9 +520,7 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(
-			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
-		).click();
+		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -607,16 +580,14 @@ class Rooms {
 	clickOnActionButtonForRoomLeave(buttonAction) {
 		cy.get(`[data-testid="confirm-dialog-${buttonAction.toLowerCase()}"]`).click();
 		cy.wait("@rooms_api");
-		cy.get('[data-testid="empty-state-title"]')
+		cy.get(Rooms.#emptyStateInfoText)
 			.contains("Aktuell gibt es keine Räume")
 			.should("be.visible")
 			.and("exist");
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable)
-			.contains("td", participantName)
-			.should("not.exist");
+		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {

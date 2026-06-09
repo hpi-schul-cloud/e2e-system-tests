@@ -76,17 +76,12 @@ Feature: Room Board - Add bettermarks Tool in the Room Board
         Then I see the Title '<bettermarks_edit_title>' and the Domain URL '<bettermarks_domain_url>' of bettermarks in the card
 
         # teacher deletes the bettermarks Tool from the multi-column board card
-        # When I click on the three dot on the card
-        # When I click on the option Edit in the three dot menu on the card
-        # When I click on the three dot in the element external tool bettermarks
-        # When I click on the option Delete in the three dot menu
-        # Then I see the dialog Confirm deletion
-        # When I click on the button Delete in the confirmation dialog
-        When I click on three dot menu in the column
-        When I select the option Delete in three dot menu in the column
-        Then I see the modal Confirmation
-        When I click on the button Remove on the Modal
-        Then I do not see the column
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three dot in the element external tool bettermarks
+        When I click on the option Delete in the three dot menu
+        Then I see the dialog Confirm deletion
+        When I click on the button Delete in the confirmation dialog
         Then I do not see the tool bettermarks in the card
 
         # student can not see the bettermarks tool in the multi-column board
