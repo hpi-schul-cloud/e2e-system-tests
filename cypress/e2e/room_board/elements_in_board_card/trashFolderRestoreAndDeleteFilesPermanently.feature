@@ -40,7 +40,7 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         When I select the three dot menu action 'restore'
         Then I see the trash bin page for folder '<folder_name>'
         Then I do not see files '<file_name_2>' in file list
-        Then I see message Empty folder
+        Then I see no table with files
 
         # see the restored file back in the folder
         When I click on breadcrumb element '<folder_name>'
@@ -92,7 +92,7 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then the confirm button in the permanent delete dialog is enabled
         When I confirm the permanent deletion
         Then I do not see files '<file_name>' in file list
-        Then I see message Empty folder
+        Then I see no table with files
         Then I do not see the three dot menu next to the trash bin page title
 
         # verify permanently deleted file is not in the folder
@@ -120,7 +120,7 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then the confirm button in the permanent delete dialog is enabled
         When I confirm the permanent deletion
         Then I do not see files '<file_name_2>, <file_name_3>' in file list
-        Then I see message Empty folder
+        Then I see no table with files
 
         # verify permanently deleted files are not in the folder
         When I click on breadcrumb element '<folder_name>'
@@ -149,7 +149,7 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         Then the confirm button in the permanent delete dialog is enabled
         When I confirm the permanent deletion
         Then I do not see files '<file_name_4>, <file_name_5>' in file list
-        Then I see message Empty folder
+        Then I see no table with files
         Then I do not see the three dot menu next to the trash bin page title
 
         # verify permanently deleted files are not in the folder

@@ -27,8 +27,7 @@ Feature: Course Board - Create folder in board, check breadcrumb
         # content editor opens folder
         When I click on the folder '<folder_name>' in the card
         Then I see page Folder content for '<folder_name>'
-        Then I see message Empty folder
-        # Then I see page Folder content does not contain files - will be implemented when files can be displayed in folders
+        Then I see no table with files
         Then I see breadcrumb with 'Kurse, <course_name>, <board_title>'
         Then I see sidebar item 'courses' is highlighted
         Then I see button Add file
