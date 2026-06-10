@@ -43,7 +43,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         # content editor opens folder
         When I click on the folder '<folder_name_renamed>' in the card
         Then I see page Folder content for '<folder_name_renamed>'
-        Then I see message Empty folder
+        Then I see no table with files
         Then I see breadcrumb with 'Räume, <room_name>, <board_title>'
         Then I see sidebar item 'rooms' is highlighted
         Then I see button Add file
@@ -108,7 +108,7 @@ Feature: Room Board - Create, edit and delete folder in board, including file ha
         When I select the three dot menu action 'delete'
         When I click on button Approve in modal for deletion
         Then I see page Folder content for '<folder_name_renamed>'
-        Then I see message Empty folder
+        Then I see no table with files
 
         # editor deletes folder on folder page
         When I click on the three dot menu button next to the folder title
