@@ -35,7 +35,7 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the URL from the modal
-        Then I see the alert message
+        Then I see the success alert message
 
         # pre-condition: second teacher logged into the application, and a room exists
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
