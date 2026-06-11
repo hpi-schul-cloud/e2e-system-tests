@@ -40,8 +40,7 @@ class Courses {
 	static #taskCardTitleInCoursePageWithDynamicIndex =
 		'[data-testid="task-title-{index}"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
-	static #taskCardThreeDotMenuInCoursePageWithIndex =
-		'[data-testid="task-card-menu-0"]';
+	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
 	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]';
 	static #dropDownCourse = '[data-testid="room-menu"]';
@@ -115,8 +114,7 @@ class Courses {
 	static #studentGroupNameOnStudentGroupPage = '[data-testid="group-name-entry"]';
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
-	static #deleteCourseGroupConfirmationButton =
-		'[data-testid="delete-course-group-btn"]';
+	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
 	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
@@ -200,6 +198,7 @@ class Courses {
 	static #copyInfoCopyrightDataProtection =
 		'[data-testid="copy-info-copyright-data-protection"]';
 	static #copyInfoWarnings = '[data-testid="copy-info-warnings"]';
+	static #courseAdminTable = '[data-testid="admin-rooms-table"]';
 
 	openThreeDotMenuForCopiedTopic(contentTitle, suffix) {
 		cy.get(Courses.#topicTitleOnCoursePageWithIndex).contains(
@@ -453,9 +452,7 @@ class Courses {
 			);
 
 			if (matchingElements.length > 0) {
-				cy.log(
-					`Found ${matchingElements.length} courses matching "${courseName}"`
-				);
+				cy.log(`Found ${matchingElements.length} courses matching "${courseName}"`);
 				this.deleteCourse(textSelector, courseName, clickSelector);
 			} else {
 				cy.log(`No more courses found with course name "${courseName}".`);
@@ -511,6 +508,103 @@ class Courses {
 		);
 
 		this.verifyCourseDeletion(courseName);
+	}
+
+	findAndDeleteCourseInAdminTable(courseNamePrefix) {
+		// Wait for table to load
+		cy.get(Courses.#courseAdminTable).should("be.visible");
+		cy.get(Courses.#courseAdminTable, { timeout: 15000 }).should(
+			"not.have.class",
+			"v-data-table--loading"
+		);
+		cy.get(Courses.#courseAdminTable)
+			.find(".v-data-table-rows-loading")
+			.should("not.exist");
+		cy.get(Courses.#courseAdminTable)
+			.find(".v-progress-linear__indeterminate", { timeout: 15000 })
+			.should("not.be.visible");
+
+		cy.get("body").then(($body) => {
+			// Case 1: Table has "Keine Daten vorhanden"
+			if ($body.find(".v-data-table-rows-no-data").length > 0) {
+				cy.log(`No courses in table. Refreshing to confirm.`);
+				cy.reload();
+				cy.get(Courses.#courseAdminTable).should("be.visible");
+				cy.get(Courses.#courseAdminTable)
+					.find(".v-progress-linear__indeterminate", { timeout: 15000 })
+					.should("not.exist");
+				cy.get("body").then(($refreshedBody) => {
+					if ($refreshedBody.find(".v-data-table-rows-no-data").length > 0) {
+						cy.log(`Confirmed: No courses exist after refresh.`);
+					} else {
+						cy.log(`Courses appeared after refresh. Continuing deletion.`);
+						this.findAndDeleteCourseInAdminTable(courseNamePrefix);
+					}
+				});
+				return;
+			}
+
+			// Case 2: Table has data rows — search for matching course
+			this.searchCourseInAdminTablePages(courseNamePrefix).then((found) => {
+				if (!found) {
+					cy.log(`All courses starting with "${courseNamePrefix}" have been deleted.`);
+					return;
+				}
+
+				// Click delete button for the found course
+				cy.get("@foundCourseRow")
+					.find(Courses.#btnCourseTableDelete)
+					.click({ force: true });
+
+				// Confirm deletion in modal
+				cy.get(Courses.#deleteDialogTitle).should("exist");
+				cy.get(Courses.#confirmDeleteDialogButton).should("be.visible").click();
+
+				// Wait for deletion and table refresh
+				cy.wait(1500);
+
+				// Recurse
+				this.findAndDeleteCourseInAdminTable(courseNamePrefix);
+			});
+		});
+	}
+
+	searchCourseInAdminTablePages(courseNamePrefix) {
+		const regex = new RegExp(`^${courseNamePrefix}`);
+
+		return cy.get(Courses.#courseAdminTable).then(($table) => {
+			const $rows = $table.find("tbody tr").not(".v-data-table-rows-no-data");
+
+			// Search current page for a matching course
+			let foundIndex = -1;
+			$rows.each((index, row) => {
+				const $nameCell = Cypress.$(row).find(Courses.#adminCourseTableName);
+				if ($nameCell.length && regex.test($nameCell.text().trim())) {
+					foundIndex = index;
+					return false; // break
+				}
+			});
+
+			if (foundIndex >= 0) {
+				cy.get(Courses.#courseAdminTable)
+					.find("tbody tr")
+					.not(".v-data-table-rows-no-data")
+					.eq(foundIndex)
+					.as("foundCourseRow");
+				return cy.wrap(true);
+			}
+
+			// Check if next page button is enabled
+			const $nextBtn = $table.find('[data-test="v-pagination-next"] button');
+			if ($nextBtn.length && !$nextBtn.prop("disabled")) {
+				cy.wrap($nextBtn).click();
+				cy.wait(1000);
+				return this.searchCourseInAdminTablePages(courseNamePrefix);
+			}
+
+			// No match found on any page
+			return cy.wrap(false);
+		});
 	}
 
 	navigateToLtiTools() {
@@ -836,9 +930,7 @@ class Courses {
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
-		cy.get(Courses.#taskCardInCoursePageWithIndex)
-			.find("button")
-			.should("be.visible");
+		cy.get(Courses.#taskCardInCoursePageWithIndex).find("button").should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
@@ -924,10 +1016,7 @@ class Courses {
 
 	deleteCoursesByName(courseLabel, courseName) {
 		cy.get(`[class="rooms-container"]`).then(($coursesContainer) => {
-			if (
-				$coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`)
-					.length
-			) {
+			if ($coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`).length) {
 				cy.get(`[aria-label="${courseLabel} ${courseName}"]`).then(($courses) => {
 					if ($courses) {
 						cy.wrap($courses).first().click();
@@ -1028,7 +1117,9 @@ class Courses {
 	}
 
 	clickCopyCourseButton() {
+		cy.wait(500);
 		cy.get(Courses.#dropDownCourse).parent().click();
+		cy.wait(500);
 		cy.get(Courses.#btnCopyCourse).click();
 	}
 
@@ -1050,9 +1141,7 @@ class Courses {
 	}
 
 	seeCopyResultNotification() {
-		cy.get(`${Courses.#copyDialogTitle}, ${Courses.#dialogTitle}`).should(
-			"be.visible"
-		);
+		cy.get(`${Courses.#copyDialogTitle}, ${Courses.#dialogTitle}`).should("be.visible");
 		cy.get(Courses.#copyResultNotification).should("be.visible");
 		cy.get(Courses.#copyInfoCopyrightDataProtection).should("be.visible");
 		cy.get(Courses.#copyInfoWarnings).should("be.visible");
@@ -1069,9 +1158,7 @@ class Courses {
 	}
 
 	seeNumberOfTools(count) {
-		cy.get(Courses.#courseExternalToolSection)
-			.children()
-			.should("have.length", count);
+		cy.get(Courses.#courseExternalToolSection).children().should("have.length", count);
 	}
 
 	seeToolIsMarkedAsDeactivated(toolName) {
@@ -1150,10 +1237,7 @@ class Courses {
 	}
 
 	addStudentWithSearchStringToCourse(searchString) {
-		cy.get(Courses.#chooseStudentSelectionBox)
-			.click()
-			.type(searchString)
-			.type("{enter}");
+		cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type("{enter}");
 		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
@@ -1218,9 +1302,7 @@ class Courses {
 	}
 
 	seeSelectedTeacher(teacherName) {
-		cy.get(Courses.#selectTeacher)
-			.contains("option", teacherName)
-			.should("be.selected");
+		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected");
 	}
 
 	seeSelectedSubstituteTeacher(substituteTeacher) {
@@ -1230,9 +1312,7 @@ class Courses {
 	}
 
 	seeSelectedStudent(studentName) {
-		cy.get(Courses.#selectStudent)
-			.contains("option", studentName)
-			.should("be.selected");
+		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
 	}
 
 	seeSelectedClass(className) {
@@ -1401,18 +1481,17 @@ class Courses {
 	}
 
 	clickPublishLinkForTaskWithDynamicIndex(index) {
-		const selector =
-			Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
-				"{index}",
-				index
-			);
+		const selector = Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
+			"{index}",
+			index
+		);
 		cy.get(selector).click();
 	}
 
 	seeTopicCourseDialogBox() {
-		cy.get(
-			`${Courses.#topicCourseDialog}, ${Courses.#selectDestinationModal}`
-		).should("be.visible");
+		cy.get(`${Courses.#topicCourseDialog}, ${Courses.#selectDestinationModal}`).should(
+			"be.visible"
+		);
 	}
 
 	selectFixtureForImport(fixturePath) {
@@ -1539,6 +1618,25 @@ class Courses {
 
 	cancelSelectedFileInImportDialog() {
 		cy.get(Courses.#ccImportCancelButton).click();
+	}
+
+	// ########################################
+	// delete this method before merging into main
+	duplicateCourseMultipleTimes(courseName, times) {
+		const duplicateOnce = (remaining) => {
+			if (remaining <= 0) return;
+
+			// this.navigateToCoursePage(courseName);
+			this.clickCopyCourseButton();
+			this.seeCopyResultNotification();
+			cy.get('[data-testid="copy-info-dialog-confirm"]').click();
+			// this.navigateToCoursesOverview();
+			// this.navigateToCoursePage(courseName);
+
+			duplicateOnce(remaining - 1);
+		};
+
+		duplicateOnce(times);
 	}
 }
 export default Courses;

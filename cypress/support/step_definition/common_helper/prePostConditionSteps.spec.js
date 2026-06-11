@@ -397,7 +397,7 @@ Given(
 		courses.clickOnCreateCourseFAB();
 		courses.fillCourseCreationForm(courseName);
 		courses.selectCourseColour();
-		courses.selectTeacherInCourseCreatePage(teacherName);
+		// courses.selectTeacherInCourseCreatePage(teacherName);
 		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 		courses.selectStudentsInCourseCreatePage(studentName);
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
@@ -755,5 +755,23 @@ Given(
 		roomBoards.clickDeleteOptionInThreeDotMenu();
 		roomBoards.clickDeleteButtonInConfirmationDialog();
 		roomBoards.shouldNotSeeFileElement();
+	}
+);
+
+    // ########################################
+	// delete this method before merging into main
+Given(
+	"a course with name {string} exists with {string} as student",
+	(courseName, studentName) => {
+		courses.navigateToCoursesOverview();
+		courses.clickOnCreateCourseFAB();
+		courses.fillCourseCreationForm(courseName);
+		courses.selectCourseColour();
+		// courses.selectTeacherInCourseCreatePage(teacherName);
+		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
+		courses.selectStudentsInCourseCreatePage(studentName);
+		courses.clickOnNextStepButtonOnCourseParticipationDetail();
+		courses.clickOnToCourseOverviewBtn()
+		courses.navigateToCoursePage(courseName);
 	}
 );

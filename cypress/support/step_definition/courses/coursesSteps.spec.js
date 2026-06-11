@@ -517,3 +517,7 @@ When("I click on button Delete group confirmation", () => {
 Then("I do not see group name {string} in tab Course group", (groupName) => {
 	courses.courseGroupNotExists(groupName);
 });
+
+When("I duplicate the course {string} for {int} times", (courseName, times) => {
+	courses.duplicateCourseMultipleTimes(courseName, times);
+});

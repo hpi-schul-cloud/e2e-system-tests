@@ -135,7 +135,8 @@ When("I go to course {string}", (courseName) => {
 });
 
 When("I delete all courses whose names start with {string}", (courseName) => {
-	courses.deleteAllCoursesWithName(courseName);
+	// courses.deleteAllCoursesWithName(courseName);
+	courses.findAndDeleteCourseInAdminTable(courseName);
 });
 
 Then("I see the course {string} on the course overview page", (courseName) => {
