@@ -1303,8 +1303,8 @@ class RoomBoards {
 		cy.get(RoomBoards.#trashInfoAlert).should("be.visible").and("contain.text", message);
 	}
 
-	seeMessageEmptyFolder() {
-		cy.get(RoomBoards.#folderPageMessageEmptyFolder).should("exist");
+	seeNoDataTable() {
+		cy.get(RoomBoards.#dataTable).should("not.exist");
 	}
 
 	seeBtnAddFile() {

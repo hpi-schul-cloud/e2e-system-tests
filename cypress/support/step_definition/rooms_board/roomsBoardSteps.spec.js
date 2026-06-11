@@ -779,8 +779,8 @@ Then("I see an info message {string}", (message) => {
 	roomBoards.seeTrashInfoAlert(message);
 });
 
-Then("I see message Empty folder", () => {
-	roomBoards.seeMessageEmptyFolder();
+Then("I see no table with files", () => {
+	roomBoards.seeNoDataTable();
 });
 
 Then("I see button Add file", () => {
