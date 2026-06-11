@@ -33,7 +33,7 @@
 		"e2e"
 	],
 	"author": "",
-	"license": "ISC",
+	"license": "AGPL-3.0",
 	"bugs": {
 		"url": "https://github.com/hpi-schul-cloud/e2e-system-tests/issues"
 	},
