@@ -22,3 +22,7 @@ When("I click on button {string} from speed dial option", (option) => {
 When("I see the checkbox Link Expiration as {string}", (linkExpirationAction) => {
 	rooms.verifyLinkExpirationInInvitationDialog(linkExpirationAction);
 });
+
+Then("I don't see speed dial options {string}", (options) => {
+	rooms.doNotSeeSpeedDialOptions(options);
+});
