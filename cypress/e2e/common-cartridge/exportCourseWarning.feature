@@ -3,7 +3,7 @@
 @schedule_run
 @group-E
 @prio_0_dev
-# @prio_0_staging
+@prio_0_staging
 Feature: Course Board - To export a course as common cartridge and show a warning when 1.1.0 is selected
 
     As a teacher, I want to export a course as a common cartridge file and get a warning box, telling me that file folders will not be exported when CC 1.1.0 was selected
@@ -49,10 +49,10 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
         When I click on the cancel export button
         Given course with name '<course>' is deleted
 
-        # @staging_test
-        # Examples:
-        #     | teacher      | namespace | course       | import_wait_time |
-        #     | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
+        @staging_test
+        Examples:
+            | teacher      | namespace | course       | import_wait_time |
+            | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
 
         @school_api_test
         Examples:
