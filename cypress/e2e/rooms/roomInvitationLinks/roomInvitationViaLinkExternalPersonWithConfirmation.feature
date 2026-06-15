@@ -36,7 +36,7 @@ Feature: Rooms - External Person Invitation via Link with Approval Required
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the URL from the modal
-        Then I see the alert message
+        Then I see the success alert message
         Then I see '<invitation_description>' in the list of invitation links
 
         # external person uses the invitation link to join the room

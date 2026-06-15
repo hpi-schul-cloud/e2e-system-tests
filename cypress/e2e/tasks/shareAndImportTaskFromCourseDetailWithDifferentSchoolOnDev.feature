@@ -38,7 +38,7 @@ Feature: Task - share and import task between two teachers from different school
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the task URL
-        Then I see the alert message
+        Then I see the success alert message
 
         # teacher 2 logs in and creates a target course to import the task into it
         Given I am logged in as a '<teacherExt_2>' at '<namespace>'

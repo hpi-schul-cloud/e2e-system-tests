@@ -160,6 +160,19 @@ class RoomBoards {
 	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
 	static #closeElementDetailViewButton = '[data-testid="close-detail-view-button"]';
 	static #externalToolsInBoard = '[data-testid^="board-external-tool-element-"]';
+	static #alertLinkButton = '[data-testid="alert-link"]';
+
+	clickAlertMessageLinkButton() {
+		cy.get(RoomBoards.#shareImportAlert).within(() => {
+			cy.get(RoomBoards.#alertLinkButton).click();
+		});
+	}
+
+	verifyTargetBoardDetailsPage(boardNameTarget) {
+		cy.get(RoomBoards.#roomBoardTitleOnPage)
+			.should("be.visible")
+			.contains(boardNameTarget);
+	}
 
 	clickDetailedViewIconInLinkElement() {
 		cy.get(RoomBoards.#openDetailViewButton).click();

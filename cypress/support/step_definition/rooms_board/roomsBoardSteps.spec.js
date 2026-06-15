@@ -11,6 +11,14 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I click on the button Link in the success alert message", () => {
+	roomBoards.clickAlertMessageLinkButton();
+});
+
+Then("I see the target board details page {string}", (boardNameTarget) => {
+	roomBoards.verifyTargetBoardDetailsPage(boardNameTarget);
+});
+
 When("I click on the detailed view icon in the Link element", () => {
 	roomBoards.clickDetailedViewIconInLinkElement();
 });
@@ -391,7 +399,7 @@ Then("I see video player", () => {
 	roomBoards.verifyVideoPlayer();
 });
 
-Then("I see the alert message", () => {
+Then("I see the success alert message", () => {
 	roomBoards.verifyShareImportBoardAlert();
 });
 
