@@ -37,7 +37,7 @@ Feature: Rooms - Share and import room with a teacher from different school
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the URL from the modal
-        Then I see the alert message
+        Then I see the success alert message
 
         # pre-condition: the second teacher is logged into the application, and a room exists
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'

@@ -921,6 +921,13 @@ class Rooms {
 			.should(linkExpirationAction === "check" ? "be.checked" : "not.be.checked");
 	}
 
+	doNotSeeSpeedDialOptions(options) {
+		const buttonName = options.split(/,|and/).map((option) => option.trim());
+		buttonName.forEach((buttonName) => {
+			cy.get(`[data-testid="fab-${buttonName}-icon-btn"]`).should("not.exist");
+		});
+	}
+
 	// ########################################
 	// delete this method before merging into main
 	duplicateRoomMultipleTimes(times) {

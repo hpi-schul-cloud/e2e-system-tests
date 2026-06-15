@@ -41,7 +41,7 @@ Feature: Room Board - Share and import a card in rooms with a teacher from the s
         Then I see the option Copy link
         Then I see the option Scan QR Code
         Then I copy the card URL
-        Then I see the alert message
+        Then I see the success alert message
 
         # pre-condition: second teacher is logged in; target room and board exist
         Given I am logged in as a '<teacher2>' at '<namespace>'
