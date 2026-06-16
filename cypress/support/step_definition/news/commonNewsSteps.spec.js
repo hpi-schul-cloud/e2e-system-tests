@@ -114,3 +114,27 @@ When("I click on tab for unpublished news", () => {
 Then("I see the unpublished news {string}", (newsTitle) => {
 	news.seeNewsWhenNewsNotYetPublished(newsTitle);
 });
+
+// need to delete before final merge
+// ###################################
+
+When(
+	"I create {int} school news with title {string} and description {string}",
+	(count, newsTitle, newsDescription) => {
+		for (let i = 1; i <= count; i++) {
+			const title = `${newsTitle} ${i}`;
+			const description = `${newsDescription} ${i}`;
+			news.navigateToNewsOverview();
+			news.clickOnAddNews();
+			news.seeNewsCreationPage();
+			news.enterNewsTitle(title);
+			news.enterNewsDescription(description);
+			news.clickOnCreateNewsSaveButton();
+			news.seeCreatedNews(title, description);
+		}
+	}
+);
+
+Then("I delete all news whose titles start with {string}", (newsPrefix) => {
+	news.findAndDeleteAllNewsWithPrefix(newsPrefix);
+});

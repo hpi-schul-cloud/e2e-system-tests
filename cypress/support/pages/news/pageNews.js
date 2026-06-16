@@ -254,5 +254,49 @@ class News {
 		timeInSeconds = parseInt(timeInSeconds);
 		cy.wait(timeInSeconds * 1000).reload();
 	}
+
+	// need to refactor as its in draft version
+	// ###################################
+
+	findAndDeleteAllNewsWithPrefix(newsPrefix) {
+		this.navigateToNewsOverview();
+
+		cy.get("body").then(($body) => {
+			const $newsItems = $body.find(News.#newsNameOnNewsOverview);
+
+			// No news exist at all
+			if ($newsItems.length === 0) {
+				cy.log(`No news found. All news with prefix "${newsPrefix}" are deleted.`);
+				return;
+			}
+
+			// Search for a matching news title
+			let matchingTitle = null;
+			$newsItems.each((index, el) => {
+				const text = Cypress.$(el).text().trim();
+				if (text.startsWith(newsPrefix)) {
+					matchingTitle = text;
+					return false; // break
+				}
+			});
+
+			if (!matchingTitle) {
+				cy.log(`No more news starting with "${newsPrefix}" found.`);
+				return;
+			}
+
+			// Open, delete, confirm
+			cy.contains(News.#newsNameOnNewsOverview, matchingTitle).click();
+			this.clickOnDeleteNewsButton();
+			this.confirmDeletionOnDialogBox();
+
+			// Should be back on overview after deletion
+			cy.url().should("include", "/news");
+			cy.get(News.#titlebarNewsOverviewPage).should("exist");
+
+			// Recurse to delete next one
+			this.findAndDeleteAllNewsWithPrefix(newsPrefix);
+		});
+	}
 }
 export default News;

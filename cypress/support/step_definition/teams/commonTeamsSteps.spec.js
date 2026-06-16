@@ -1,9 +1,11 @@
 const { When, Then } = require("@badeball/cypress-cucumber-preprocessor");
 import Management from "../../pages/admin/pageAdmin";
+import News from "../../pages/news/pageNews";
 import Teams from "../../pages/teams/pageTeams";
 
 const management = new Management();
 const teams = new Teams();
+const news = new News();
 
 When("I click on teams save changes button", () => {
 	teams.clickOnSaveChangeButton();
@@ -164,3 +166,26 @@ When("I click on Save", () => {
 Then("I see checkbox is saved", () => {
 	management.seeStudentTeamsAllowed();
 });
+
+// need to delete before final merge
+// ###################################
+
+When(
+	"I create {int} team news with title {string} and description {string} in team {string}",
+	(count, newsTitle, newsDescription, teamName) => {
+		for (let i = 1; i <= count; i++) {
+			const title = `${newsTitle} ${i}`;
+			const description = `${newsDescription} ${i}`;
+			teams.navigateToTeamsOverview();
+			teams.selectTeam(teamName);
+			teams.clickOnNewsTabInTeamDetailPage();
+			teams.clickOnCreateNewsOnTeamDetailPage();
+			news.seeNewsCreationPage();
+			news.enterNewsTitle(title);
+			news.enterNewsDescription(description);
+			news.clickOnCreateNewsSaveButton();
+			news.seeCreatedNews(title, description);
+		}
+	}
+);
+

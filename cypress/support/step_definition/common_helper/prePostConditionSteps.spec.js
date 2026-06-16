@@ -67,42 +67,113 @@ Given("extracted content and files are deleted", function () {
 	commonCartridge.cleanUp();
 });
 
-Given("the school has external tool {string}", (toolList) => {
-	// list of special tools
+// Given("the school has external tool {string}", (toolList) => {
+// 	// list of special tools
+// 	const toolsWithCustomParameter = [
+// 		"CY Test Tool Required Parameters",
+// 		"CY Test Tool Optional Parameters",
+// 	];
+// 	const linkTools = ["CY Test Tool OpenStreetMap"];
+
+// 	const tools = toolList.split(/\s*,\s*/);
+
+// 	// navigation to external tools table on admin page
+// 	management.openAdministrationInMenu();
+// 	management.clickOnSchoolAdministrationInSideMenu();
+// 	management.clickExternalToolsPanel();
+
+// 	tools.forEach((toolName) => {
+// 		cy.wrap(null).then(() => {
+// 			// check if tool already exists
+// 			return management.schoolHasExternalTool(toolName).then((exists) => {
+// 				// if the tool already exists
+// 				if (exists) {
+// 					management.clickOnEditButton(toolName);
+
+// 					// if tool has a custom parameter
+// 					if (toolsWithCustomParameter.includes(toolName)) {
+// 						toolsConfiguration.fillInCustomParameter("schoolParam", "test");
+// 					}
+
+// 					// activates the tool if it is deactivated
+// 					toolsConfiguration.activateTool();
+// 					toolsConfiguration.saveExternalToolButton();
+// 					cy.log(`Tool ${toolName} already exists.`);
+// 					return;
+// 				}
+
+// 				// if the tool does not exists
+// 				management.clickAddExternalTool();
+
+// 				if (linkTools.includes(toolName)) {
+// 					toolsConfiguration.insertToolLink(
+// 						"https://www.openstreetmap.org/?mlat=52.40847&mlon=9.80823&zoom=19#map=19/52.40847/9.80823"
+// 					);
+// 				} else if (toolsWithCustomParameter.includes(toolName)) {
+// 					toolsConfiguration.addExternalTool(toolName);
+// 					toolsConfiguration.fillInCustomParameter("schoolParam", "test");
+// 				} else {
+// 					toolsConfiguration.addExternalTool(toolName);
+// 				}
+
+// 				toolsConfiguration.saveExternalToolButton();
+// 				management.seeExternalTool(toolName);
+// 				cy.log(`Tool ${toolName} was added.`);
+// 			});
+// 		});
+// 	});
+// });
+
+Given("the school has external tool {string}", (toolPrefix) => {
 	const toolsWithCustomParameter = [
 		"CY Test Tool Required Parameters",
 		"CY Test Tool Optional Parameters",
 	];
 	const linkTools = ["CY Test Tool OpenStreetMap"];
 
-	const tools = toolList.split(/\s*,\s*/);
+	// All known CY tools that should be added when prefix matches
+	const allKnownTools = [
+		"CY Test Tool Preferred",
+		"CY Test Tool Preferred With Param",
+		"CY Test Tool 1",
+		"CY Test Tool Required Parameters",
+		"CY Test Tool Optional Parameters",
+		"CY Test Tool OpenStreetMap",
+		"CY Test Tool 2",
+		"CY Test Tool Board-Element Restriction",
+		"CY Test Tool Course Restriction",
+		"CY Test Tool Media-Board Restriction",
+		"CY Test Tool All Restrictions",
+		"CY Test Tool Preferred Course Restriction",
+		"CY Test Tool Preferred Board Restriction",
+		"CY Test Tool Context Scope",
+		"CY Test Tool Optional Protected Parameter",
+		"CY Test Tool Protected Parameter",
+	];
 
-	// navigation to external tools table on admin page
+	// If input contains commas, treat as explicit list; otherwise filter by prefix
+	const tools = toolPrefix.includes(",")
+		? toolPrefix.split(/\s*,\s*/)
+		: allKnownTools.filter((t) => t.startsWith(toolPrefix));
+
+	if (tools.length === 0) {
+		cy.log(`No known tools match prefix "${toolPrefix}". Skipping.`);
+		return;
+	}
+
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();
 	management.clickExternalToolsPanel();
+	management.showAllExternalToolsInTable();
 
 	tools.forEach((toolName) => {
 		cy.wrap(null).then(() => {
-			// check if tool already exists
 			return management.schoolHasExternalTool(toolName).then((exists) => {
-				// if the tool already exists
 				if (exists) {
-					management.clickOnEditButton(toolName);
-
-					// if tool has a custom parameter
-					if (toolsWithCustomParameter.includes(toolName)) {
-						toolsConfiguration.fillInCustomParameter("schoolParam", "test");
-					}
-
-					// activates the tool if it is deactivated
-					toolsConfiguration.activateTool();
-					toolsConfiguration.saveExternalToolButton();
-					cy.log(`Tool ${toolName} already exists.`);
+					cy.log(`Tool "${toolName}" already exists. Skipping.`);
 					return;
 				}
 
-				// if the tool does not exists
 				management.clickAddExternalTool();
 
 				if (linkTools.includes(toolName)) {
@@ -117,8 +188,9 @@ Given("the school has external tool {string}", (toolList) => {
 				}
 
 				toolsConfiguration.saveExternalToolButton();
+				management.showAllExternalToolsInTable();
 				management.seeExternalTool(toolName);
-				cy.log(`Tool ${toolName} was added.`);
+				cy.log(`Tool "${toolName}" was added.`);
 			});
 		});
 	});
@@ -128,6 +200,7 @@ Given("all external tools at the school are deleted", () => {
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();
 	management.clickExternalToolsPanel();
+	management.showAllExternalToolsInTable();
 	management.deleteAllExternalTools();
 });
 
