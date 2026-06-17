@@ -100,6 +100,7 @@ class Tasks {
 	static #infoCopyrightDataProtectionInModal =
 		'[data-testid="copy-info-copyright-data-protection"]';
 	static #copyResultDialogConfirmButton = '[data-testid="copy-info-dialog-confirm"]';
+	static #homeworkDescriptionCk = ".ck-editor__editable[contenteditable='true']";
 
 	seeCopyResultNotificationDialog() {
 		cy.get(Tasks.#copyResultNotification).should("be.visible");
@@ -254,8 +255,12 @@ class Tasks {
 	}
 
 	setTaskText(taskText) {
-		cy.get(Tasks.#homeworkDescription).next().find("p").clear();
-		cy.get(Tasks.#homeworkDescription).next().find("p").type(taskText);
+		cy.get(Tasks.#homeworkDescription)
+			.parent()
+			.find(Tasks.#homeworkDescriptionCk)
+			.click()
+			.clear()
+			.realType(taskText);
 	}
 
 	setSubmissionComment(taskComment) {
