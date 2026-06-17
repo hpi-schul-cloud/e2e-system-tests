@@ -260,7 +260,7 @@ class Tasks {
 			.find(Tasks.#homeworkDescriptionCk)
 			.click()
 			.should("be.focused")
-			.clear()
+			.type("{selectAll}{del}")
 			.realType(taskText);
 	}
 
@@ -270,7 +270,7 @@ class Tasks {
 			.find(Tasks.#homeworkDescriptionCk)
 			.click()
 			.should("be.focused")
-			.clear()
+			.type("{selectAll}{del}")
 			.realType(taskComment);
 	}
 
@@ -280,7 +280,7 @@ class Tasks {
 			.find(Tasks.#homeworkDescriptionCk)
 			.click()
 			.should("be.focused")
-			.clear()
+			.type("{selectAll}{del}")
 			.realType(taskText);
 	}
 

@@ -155,7 +155,7 @@ class Topics {
 					.find(Topics.#textTopicDescriptionCk)
 					.click()
 					.should("be.focused")
-					.clear()
+					.type("{selectAll}{del}")
 					.realType(elementTextDescription);
 			});
 		} else if (elementPosition === "3") {
@@ -165,7 +165,7 @@ class Topics {
 					.find(Topics.#textTopicDescriptionCk)
 					.click()
 					.should("be.focused")
-					.clear()
+					.type("{selectAll}{del}")
 					.realType(elementTextDescription);
 			});
 		}
