@@ -254,33 +254,18 @@ class Tasks {
 	}
 
 	setTaskText(taskText) {
-		cy.get(Tasks.#homeworkDescription)
-			.next()
-			.find("[contenteditable]")
-			.should("exist")
-			.realClick()
-			.realPress(["Control", "a"])
-			.realType(taskText);
+		cy.get(Tasks.#homeworkDescription).next().find("p").clear();
+		cy.get(Tasks.#homeworkDescription).next().find("p").type(taskText);
 	}
 
 	setSubmissionComment(taskComment) {
-		cy.get(Tasks.#submissionComment)
-			.next()
-			.find("[contenteditable]")
-			.should("exist")
-			.realClick()
-			.realPress(["Control", "a"])
-			.realType(taskComment);
+		cy.get(Tasks.#submissionComment).next().find("p").clear();
+		cy.get(Tasks.#submissionComment).next().find("p").type(taskComment);
 	}
 
 	setSubmissionText(taskText) {
-		cy.get(Tasks.#submissionText)
-			.next()
-			.find("[contenteditable]")
-			.should("exist")
-			.realClick()
-			.realPress(["Control", "a"])
-			.realType(taskText);
+		cy.get(Tasks.#submissionText).next().find("p").clear();
+		cy.get(Tasks.#submissionText).next().find("p").type(taskText);
 	}
 
 	clickOnTabDraftTasks() {
