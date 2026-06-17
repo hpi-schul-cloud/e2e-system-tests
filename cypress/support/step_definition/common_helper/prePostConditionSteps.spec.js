@@ -848,3 +848,29 @@ Given(
 		courses.navigateToCoursePage(courseName);
 	}
 );
+
+Given("a class name {string} is created {int} times", (classPrefix, count) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	// classManagement.showAllClassesInTable();
+
+	for (let i = 1; i <= count; i++) {
+		const className = `${classPrefix}${i}`;
+
+		cy.wrap(null).then(() => {
+			return classManagement.classExistsInTable(className).then((exists) => {
+				if (exists) {
+					cy.log(`Class "${className}" already exists. Skipping.`);
+					return;
+				}
+
+				classManagement.clickCreateClassButtonOnNewClassPage();
+				classManagement.clickOnMoreOptionsInClassCreatePage();
+				classManagement.enterCustomClassName(className);
+				classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
+				classManagement.clickAddClassButton();
+				// classManagement.showAllClassesInTable();
+			});
+		});
+	}
+});
