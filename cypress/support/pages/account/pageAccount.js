@@ -87,7 +87,7 @@ class Account {
 		if (isChecked) {
 			cy.get(Account.#checkboxDirectoryVisibility).should("be.checked");
 		} else {
-			cy.get(Account.#checkboxDirectoryVisibility).should("not.be.checked");
+			cy.get(Account.#checkboxDirectoryVisibility).uncheck().should("not.be.checked");
 		}
 	}
 
