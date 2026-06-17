@@ -35,6 +35,7 @@ class Topics {
 	static #copyResultNotifications = '[data-testid="copy-info-warnings"]';
 	static #infoCopyrightDataProtectionInModal =
 		'[data-testid="copy-info-copyright-data-protection"]';
+	static #textTopicDescriptionCk = ".ck-editor__editable[contenteditable='true']";
 
 	seeCopyAlertDialog() {
 		cy.get(Topics.#copyAlertDialog).should("be.visible");
@@ -150,16 +151,22 @@ class Topics {
 		if (elementPosition === "0") {
 			cy.get(Topics.#textElementPos0).within(() => {
 				cy.get(Topics.#elementTextDescriptionTextarea)
-					.find("div > p")
+					.parent()
+					.find(Topics.#textTopicDescriptionCk)
+					.click()
+					.should("be.focused")
 					.clear()
-					.type(elementTextDescription);
+					.realType(elementTextDescription);
 			});
 		} else if (elementPosition === "3") {
 			cy.get(Topics.#textElementPos3).within(() => {
 				cy.get(Topics.#elementTextDescriptionTextarea)
-					.find("div > p")
+					.parent()
+					.find(Topics.#textTopicDescriptionCk)
+					.click()
+					.should("be.focused")
 					.clear()
-					.type(elementTextDescription);
+					.realType(elementTextDescription);
 			});
 		}
 	}

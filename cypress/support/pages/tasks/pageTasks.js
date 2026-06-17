@@ -259,18 +259,29 @@ class Tasks {
 			.parent()
 			.find(Tasks.#homeworkDescriptionCk)
 			.click()
+			.should("be.focused")
 			.clear()
 			.realType(taskText);
 	}
 
 	setSubmissionComment(taskComment) {
-		cy.get(Tasks.#submissionComment).next().find("p").clear();
-		cy.get(Tasks.#submissionComment).next().find("p").type(taskComment);
+		cy.get(Tasks.#submissionComment)
+			.parent()
+			.find(Tasks.#homeworkDescriptionCk)
+			.click()
+			.should("be.focused")
+			.clear()
+			.realType(taskComment);
 	}
 
 	setSubmissionText(taskText) {
-		cy.get(Tasks.#submissionText).next().find("p").clear();
-		cy.get(Tasks.#submissionText).next().find("p").type(taskText);
+		cy.get(Tasks.#submissionText)
+			.parent()
+			.find(Tasks.#homeworkDescriptionCk)
+			.click()
+			.should("be.focused")
+			.clear()
+			.realType(taskText);
 	}
 
 	clickOnTabDraftTasks() {
