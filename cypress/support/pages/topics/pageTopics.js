@@ -35,7 +35,7 @@ class Topics {
 	static #copyResultNotifications = '[data-testid="copy-info-warnings"]';
 	static #infoCopyrightDataProtectionInModal =
 		'[data-testid="copy-info-copyright-data-protection"]';
-	static #textTopicDescriptionCk = ".ck-editor__editable[contenteditable='true']";
+	static #textTopicDescriptionCk = "[contenteditable='true']";
 
 	seeCopyAlertDialog() {
 		cy.get(Topics.#copyAlertDialog).should("be.visible");

@@ -100,7 +100,7 @@ class Tasks {
 	static #infoCopyrightDataProtectionInModal =
 		'[data-testid="copy-info-copyright-data-protection"]';
 	static #copyResultDialogConfirmButton = '[data-testid="copy-info-dialog-confirm"]';
-	static #homeworkDescriptionCk = ".ck-editor__editable[contenteditable='true']";
+	static #homeworkDescriptionCk = "[contenteditable='true']";
 
 	seeCopyResultNotificationDialog() {
 		cy.get(Tasks.#copyResultNotification).should("be.visible");
