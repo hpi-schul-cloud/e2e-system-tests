@@ -20,8 +20,7 @@ class RoomBoards {
 	static #singleColumnBoardTileSelector = '[data-testid="board-grid-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
-	static #elementSelectionCancelButton =
-		'[data-testid="element-type-selection-cancel"]';
+	static #elementSelectionCancelButton = '[data-testid="element-type-selection-cancel"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
 	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
 	static #videoConferenceElementCreate =
@@ -36,8 +35,7 @@ class RoomBoards {
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #threeDotInLinkElement = '[data-testid="board-menu-button"]';
-	static #deleteOptionOnCardElementThreeDot =
-		'[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #importCardDialogTitle = '[data-testid="select-destination-modal-title"]';
@@ -84,17 +82,13 @@ class RoomBoards {
 	static #H5PPage = '[data-testid="skip-link"]';
 	static #titleAlert = '[role="alert"]';
 	static #fileTitleInCardInput = '[data-testid="file-name-input"]';
-	static #createDocumentButtonInFileFolder =
-		'[data-testid="fab-button-create-document"]';
+	static #createDocumentButtonInFileFolder = '[data-testid="fab-button-create-document"]';
 	static #dialogCreateDocumentInFileFolder = '[data-testid="collabora-file-dialog"]';
 	static #dialogCreateDocumentTitleInFileFolder =
 		'[data-testid="collabora-file-dialog-title"]';
-	static #dialogSelectDocumentTypeFileFolder =
-		'[data-testid="collabora-file-form-type"]';
+	static #dialogSelectDocumentTypeFileFolder = '[data-testid="collabora-file-form-type"]';
 	static #dialogFileNameFileFolder = '[data-testid="collabora-file-form-filename"]';
 	static #dialogCreateButton = '[data-testid="collabora-file-dialog-confirm"]';
-	static #boardFolderDownloadButton =
-		'[data-testid="board-folder-element-download-button"]';
 	static #boardContentElementBar = '[data-testid="content-element-bar-board"]';
 	// Img tag is assigned as it's down in the DOM by vuetify
 	static #fullScreenImageElement = "img";
@@ -120,8 +114,7 @@ class RoomBoards {
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolDomainUrl =
-		'[data-testid="board-external-tool-element-domain"]';
+	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
 	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
@@ -129,8 +122,6 @@ class RoomBoards {
 	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
 	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
 	static #closeDetailViewButton = '[data-testid="close-detail-view-button"]';
-	static #addElementButton = '[data-testid="add-element-btn"]';
-
 	static #importSelectRoom = '[data-testid="import-card-select-room"]';
 	static #importSelectBoard = '[data-testid="import-card-select-board"]';
 	static #importSelectColumn = '[data-testid="import-card-select-column"]';
@@ -139,8 +130,7 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #confirmRenamingFileButtonOnModal =
-		'[data-testid="rename-file-dialog-confirm"]';
+	static #confirmRenamingFileButtonOnModal = '[data-testid="rename-file-dialog-confirm"]';
 	static #globalDialogConfirmButton = '[data-testid="import-modal-confirm"]';
 	static #confirmDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
@@ -158,8 +148,7 @@ class RoomBoards {
 	static #trashPageMenuButton = '[data-testid="folder-trash-menu"]';
 	static #permanentDeleteDialog = '[data-testid="purge-files-dialog"]';
 	static #permanentDeleteFileModalTitle = '[data-testid="purge-files-dialog-title"]';
-	static #permanentDeleteWarningCheckbox =
-		'[data-testid="purge-files-dialog-checkbox"]';
+	static #permanentDeleteWarningCheckbox = '[data-testid="purge-files-dialog-checkbox"]';
 	static #permanentDeleteConfirmButton = '[data-testid="purge-files-dialog-confirm"]';
 	static #importRoomsModalTitle = '[data-testid="import-dialog-title"]';
 	static #shareInfoCopyrightDataProtection =
@@ -170,6 +159,7 @@ class RoomBoards {
 	static #detailViewToolbar = "#card-detail-view-toolbar";
 	static #toolbarEditButton = '[data-testid="toolbar-edit-button"]';
 	static #closeElementDetailViewButton = '[data-testid="close-detail-view-button"]';
+	static #externalToolsInBoard = '[data-testid^="board-external-tool-element-"]';
 	static #alertLinkButton = '[data-testid="alert-link"]';
 
 	clickAlertMessageLinkButton() {
@@ -265,18 +255,16 @@ class RoomBoards {
 	}
 
 	dragBoardFromPositionToPosition(boardTitle, fromPosition, toPosition) {
-		// ensure the board is currently at the starting position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
-			.should("be.visible")
-			.and("contain.text", boardTitle);
+		const source = `[data-testid="board-grid-item-${fromPosition}"]`;
+		const target = `[data-testid="board-grid-item-${toPosition}"]`;
 
-		// drag board to target position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
-			`[data-testid="board-grid-item-${toPosition}"]`,
-			{ force: true }
-		);
-		// wait for the drag-and-drop action to complete and UI to update
-		cy.wait(300);
+		cy.get(source).should("be.visible").and("contain.text", boardTitle);
+
+		cy.get(source).drag(target, { force: true });
+		cy.get(target).click({ force: true });
+
+		cy.get(target).should("contain.text", boardTitle);
+		cy.wait(1000);
 	}
 
 	verifyBoardAtPosition(boardTitle, position) {
@@ -480,12 +468,10 @@ class RoomBoards {
 
 		// assert layout position: duplicated card is rendered below the original
 		cy.get(RoomBoards.#firstCardPositionInRoomBoard).then(($original) => {
-			const originalBottom =
-				$original[0].getBoundingClientRect().bottom + window.scrollY;
+			const originalBottom = $original[0].getBoundingClientRect().bottom + window.scrollY;
 
 			cy.get(RoomBoards.#duplicatedCardPosition).then(($duplicate) => {
-				const duplicateTop =
-					$duplicate[0].getBoundingClientRect().top + window.scrollY;
+				const duplicateTop = $duplicate[0].getBoundingClientRect().top + window.scrollY;
 
 				expect(duplicateTop).to.be.greaterThan(
 					originalBottom,
@@ -829,7 +815,7 @@ class RoomBoards {
 	}
 
 	uncheckLinkValidForSameSchool() {
-		cy.get(RoomBoards.#sameSchoolCheckbox).click();
+		cy.get(RoomBoards.#sameSchoolCheckbox).find('[type="checkbox"]').uncheck();
 		cy.get(RoomBoards.#sameSchoolCheckbox)
 			.find(RoomBoards.#checkBoxCopyShareBoardModal)
 			.should("not.be.checked");
@@ -934,19 +920,6 @@ class RoomBoards {
 			.type("{downarrow}{enter}");
 	}
 
-	seeZipFileWithDatePrefixIsSavedInDownloads(fileName) {
-		const today = new Date();
-		const yyyy = today.getFullYear();
-		const mm = String(today.getMonth() + 1).padStart(2, "0");
-		const dd = String(today.getDate()).padStart(2, "0");
-		const decodedFileName = decodeURIComponent(fileName);
-		const zipFileName = `${yyyy}${mm}${dd}_${decodedFileName}.zip`;
-		const prefix = `${yyyy}${mm}${dd}_${decodeURIComponent(fileName)}`;
-		cy.readFile(`cypress/downloads/${prefix}.zip`, "binary", {
-			timeout: 15000,
-		}).should((buffer) => expect(buffer.length).to.be.gt(100));
-	}
-
 	clickContinueOnImportModal() {
 		cy.get(RoomBoards.#continueButtonInImportModal).click();
 	}
@@ -1043,9 +1016,7 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText")
-						.as("writeTextStub")
-						.resolves();
+					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -1101,14 +1072,18 @@ class RoomBoards {
 			if ($body.find(RoomBoards.#globalDialogConfirmButton).length > 0) {
 				cy.get(RoomBoards.#globalDialogConfirmButton).click();
 			} else if ($body.find(RoomBoards.#confirmDialogConfirm).length > 0) {
-				cy.get(RoomBoards.#confirmDialogConfirm).click();
+				cy.get(RoomBoards.#confirmDialogConfirm)
+					.click()
+					.then(() => {
+						cy.get(RoomBoards.#externalToolsInBoard).should("not.exist");
+					});
 			} else {
 				throw new Error("No confirm button found in dialog.");
 			}
 		});
 
 		cy.wait(1000);
-		// Refresh the page to let the UI re-render properly in case of some external tools like Etherpad.
+		// refresh the page to let the UI re-render properly in case of some external tools like etherpad.
 		cy.reload();
 	}
 
@@ -1228,6 +1203,7 @@ class RoomBoards {
 	}
 	clickOnButtonToAddMultiColumnBoard() {
 		cy.get(RoomBoards.#dialogAddMultiColumnBoard).click();
+		cy.wait(1000);
 	}
 	clickOnButtonToAddSingleColumnBoard() {
 		cy.get(RoomBoards.#dialogAddSingleColumnBoard).click();
@@ -1298,6 +1274,7 @@ class RoomBoards {
 	}
 
 	clickOnThreeDotMenuInRoomBoardTitle() {
+		cy.wait(1000);
 		cy.get(RoomBoards.#threeDotInBoardTitle).click();
 	}
 
@@ -1306,9 +1283,7 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector)
-			.should("exist")
-			.should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
 	}
 
 	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
@@ -1338,9 +1313,7 @@ class RoomBoards {
 	}
 
 	seeTrashInfoAlert(message) {
-		cy.get(RoomBoards.#trashInfoAlert)
-			.should("be.visible")
-			.and("contain.text", message);
+		cy.get(RoomBoards.#trashInfoAlert).should("be.visible").and("contain.text", message);
 	}
 
 	seeNoDataTable() {
@@ -1404,21 +1377,14 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element)
-					.find("th")
-					.contains("span", label)
-					.should("contain", label);
+				cy.get(element).find("th").contains("span", label).should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element)
-				.find("th")
-				.contains("span", label)
-				.should("contain", label)
-				.click();
+			cy.get(element).find("th").contains("span", label).should("contain", label).click();
 		});
 	}
 
@@ -1432,15 +1398,11 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
-			.find("div div input")
-			.uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -1504,11 +1466,7 @@ class RoomBoards {
 	}
 
 	enterFolderNameInBoardCard(newName) {
-		cy.get(RoomBoards.#folderTitleInCardInput)
-			.find("input")
-			.eq(0)
-			.clear()
-			.type(newName);
+		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear().type(newName);
 	}
 
 	clearFolderNameInCard() {
@@ -1725,12 +1683,6 @@ class RoomBoards {
 
 	clickCreateButtonInCreateDocumentDialog() {
 		cy.get(RoomBoards.#dialogCreateButton).click();
-	}
-
-	clickFolderDownloadButtonOnBoardcard() {
-		cy.get(RoomBoards.#folderElementSelector)
-			.find(RoomBoards.#boardFolderDownloadButton)
-			.click();
 	}
 
 	verifyPptxFileUploaded() {

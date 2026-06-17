@@ -75,6 +75,7 @@ class Rooms {
 		'[data-testid="input-invite-participants-link-expires"]';
 	static #dropdownListbox = '[role="listbox"]';
 	static #dropdownOptions = `${Rooms.#dropdownListbox} [role="option"]`;
+	static #emptyStateInfoText = '[data-testid="empty-state-title"]';
 	static #roomAdminTable = '[data-testid="room-admin-table"]';
 	static #paginationNext = '[data-test="v-pagination-next"] button';
 
@@ -89,18 +90,16 @@ class Rooms {
 	}
 
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
-		// ensure the room is currently at the starting position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`)
-			.should("be.visible")
-			.and("contain.text", roomName);
+		const source = `[data-testid="board-grid-item-${fromPosition}"]`;
+		const target = `[data-testid="board-grid-item-${toPosition}"]`;
 
-		// drag room to target position
-		cy.get(`[data-testid="board-grid-item-${fromPosition}"]`).drag(
-			`[data-testid="board-grid-item-${toPosition}"]`,
-			{ force: true }
-		);
-		// wait for the drag-and-drop action to complete and UI to update
-		cy.wait(300);
+		cy.get(source).should("be.visible").and("contain.text", roomName);
+
+		cy.get(source).drag(target, { force: true });
+		cy.get(target).click({ force: true });
+
+		cy.get(target).should("contain.text", roomName);
+		cy.wait(1000);
 	}
 
 	verifyRoomAtPosition(roomName, position) {
@@ -333,7 +332,10 @@ class Rooms {
 		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;
 
 		cy.get(roomTitleSelector).contains(roomName).should("be.visible");
-		cy.get(openButtonSelector).should("be.visible").click();
+		cy.get(`${roomTitleSelector}, ${openButtonSelector}`)
+			.first()
+			.should("be.visible")
+			.click();
 	}
 
 	seeRoomNotAccessibleMessage() {
@@ -593,10 +595,9 @@ class Rooms {
 	}
 
 	selectParticipantName() {
-		cy.get(Rooms.#addParticipantName)
-			.should("be.visible")
-			.type("{downArrow}{enter}")
-			.type("{esc}");
+		cy.get(Rooms.#addParticipantName).should("be.visible").type("{downArrow}{enter}");
+		cy.get(Rooms.#addParticipantsModal).find("h2, .v-card-title").first().click();
+		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
 	addParticipant() {
@@ -677,7 +678,11 @@ class Rooms {
 
 	clickOnActionButtonForRoomLeave(buttonAction) {
 		cy.get(`[data-testid="confirm-dialog-${buttonAction.toLowerCase()}"]`).click();
-		cy.wait(1000);
+		cy.wait("@rooms_api");
+		cy.get(Rooms.#emptyStateInfoText)
+			.contains("Aktuell gibt es keine Räume")
+			.should("be.visible")
+			.and("exist");
 	}
 
 	isParticipantNotVisible(participantName) {
@@ -913,6 +918,7 @@ class Rooms {
 
 	clickOnSpeedDialOption(option) {
 		cy.get(`[data-testid="fab-${option}-icon-btn"]`).should("be.visible").click();
+		cy.wait(500);
 	}
 
 	verifyLinkExpirationInInvitationDialog(linkExpirationAction) {

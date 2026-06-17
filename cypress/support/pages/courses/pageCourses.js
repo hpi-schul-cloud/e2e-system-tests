@@ -48,11 +48,9 @@ class Courses {
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChipWithIndex =
 		'[data-testid="task-submitted-teacher"]';
-	static #contentCardTaskInfoDueDate = '[data-testid="dueDateHintLabel"]';
 	static #contentCardTaskInfoGradingsChipWithIndex =
 		'[data-testid="task-graded-teacher"]';
 	static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]';
-	static #chosenChoices = ".chosen-choices";
 	static #chosenResults = ".chosen-results li";
 	static #chosenContainer = ".chosen-container span";
 	static #courseSearchBox = '[data-testid="search-field"]';
@@ -94,11 +92,10 @@ class Courses {
 	static #dialogTitle = '[data-testid="copy-dialog-title"]';
 	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
 	static #copyDialogTitle = '[data-testid="copy-info-dialog-title"]';
-	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="copy-dialog-cancel"]';
 	static #errorDialogClose = '[data-testid="error-dialog-cancel"]';
 	static #errorDialogCancel = '[data-testid="error-dialog-cancel"]';
-	static #copyDialogClose = '[data-testid="copy-info-dialog-confirm"]';
+	static #copyDialogCancel = '[data-testid="copy-info-dialog-cancel"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #toolDomain = '[data-testid="tool-card-domain"]';
@@ -155,8 +152,7 @@ class Courses {
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #classFieldContainer = '[data-testid="class_container"]';
-	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
-	static #delteToolDialog = '[data-testid="confirm-dialog"]';
+	static #deleteToolDialog = '[data-testid="confirm-dialog"]';
 	static #deleteDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #deleteDialogContent = '[data-testid="confirm-dialog-alert"]';
 	static #confirmDeleteDialogButton = '[data-testid="confirm-dialog-confirm"]';
@@ -1149,7 +1145,7 @@ class Courses {
 
 	clickOnDialogClose() {
 		cy.get(
-			`${`${Courses.#dialogClose}, ${Courses.#copyDialogClose}, ${Courses.#errorDialogCancel}`}, ${Courses.#errorDialogClose}`
+			`${`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}, ${Courses.#errorDialogCancel}`}, ${Courses.#errorDialogClose}`
 		).click();
 	}
 
@@ -1225,7 +1221,7 @@ class Courses {
 	}
 
 	seeDeleteDialog() {
-		cy.get(Courses.#delteToolDialog).should("be.visible");
+		cy.get(Courses.#deleteToolDialog).should("be.visible");
 		cy.get(Courses.#deleteDialogTitle).should("be.visible");
 		cy.get(Courses.#deleteDialogContent).should("be.visible");
 		cy.get(Courses.#confirmDeleteDialogButton).should("be.visible");

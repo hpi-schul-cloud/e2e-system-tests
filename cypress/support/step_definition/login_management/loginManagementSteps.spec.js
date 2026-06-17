@@ -130,23 +130,3 @@ When("I enter old password and repeat it in the next field in user settings", ()
 When("I wait for 15 seconds", () => {
 	loginManagement.waitFor15Seconds();
 });
-
-When("I click on the option button for the login via LDAP", () => {
-	loginManagement.clickOnLdapLoginOption();
-});
-
-When("I select the LDAP school {string}", (ldapSchoolName) => {
-	loginManagement.selectLdapSchoolOnLoginPage(ldapSchoolName);
-});
-
-When("I enter LDAP user name for {string} on {string}", (user, namespace) => {
-	loginManagement.enterLdapUserName(user, namespace);
-});
-
-When("I enter LDAP password {string} on {string}", (user, namespace) => {
-	loginManagement.enterLdapUserPassword(user, namespace);
-});
-
-When("I click on the button LDAP login on {string}", (namespace) => {
-	loginManagement.clickOnLdapLoginButton(namespace);
-});
