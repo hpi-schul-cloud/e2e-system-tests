@@ -100,6 +100,7 @@ class Tasks {
 	static #infoCopyrightDataProtectionInModal =
 		'[data-testid="copy-info-copyright-data-protection"]';
 	static #copyResultDialogConfirmButton = '[data-testid="copy-info-dialog-confirm"]';
+	static #homeworkDescriptionCk = "[contenteditable='true']";
 
 	seeCopyResultNotificationDialog() {
 		cy.get(Tasks.#copyResultNotification).should("be.visible");
@@ -254,18 +255,33 @@ class Tasks {
 	}
 
 	setTaskText(taskText) {
-		cy.get(Tasks.#homeworkDescription).next().find("p").clear();
-		cy.get(Tasks.#homeworkDescription).next().find("p").type(taskText);
+		cy.get(Tasks.#homeworkDescription)
+			.parent()
+			.find(Tasks.#homeworkDescriptionCk)
+			.click()
+			.should("be.focused")
+			.type("{selectAll}{del}")
+			.realType(taskText);
 	}
 
 	setSubmissionComment(taskComment) {
-		cy.get(Tasks.#submissionComment).next().find("p").clear();
-		cy.get(Tasks.#submissionComment).next().find("p").type(taskComment);
+		cy.get(Tasks.#submissionComment)
+			.parent()
+			.find(Tasks.#homeworkDescriptionCk)
+			.click()
+			.should("be.focused")
+			.type("{selectAll}{del}")
+			.realType(taskComment);
 	}
 
 	setSubmissionText(taskText) {
-		cy.get(Tasks.#submissionText).next().find("p").clear();
-		cy.get(Tasks.#submissionText).next().find("p").type(taskText);
+		cy.get(Tasks.#submissionText)
+			.parent()
+			.find(Tasks.#homeworkDescriptionCk)
+			.click()
+			.should("be.focused")
+			.type("{selectAll}{del}")
+			.realType(taskText);
 	}
 
 	clickOnTabDraftTasks() {
