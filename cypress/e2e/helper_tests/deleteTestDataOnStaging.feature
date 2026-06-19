@@ -31,60 +31,71 @@ Feature: Helper Test - Deletion of test data that are left from previous failed 
         # Given the school has external tool 'CY '
 
         # this one with admin/teacher
-        Given a class name 'CypressAut' is created 10 times
+        # Given a class name 'CypressAut' is created 10 times
 
         @staging_test
         Examples:
             | namespace | user       |
+            | brb       | admin1_brb |
             | dbc       | admin1_dbc |
-# | nbc       | admin1_nbc |
-# | dbc       | teacher1_dbc |
+            | nbc       | admin1_nbc |
 
-# Scenario Outline: Admin cleanup - Delete rooms ✅
+    # # | nbc       | admin1_nbc |
+    # | dbc       | teacher1_dbc |
 
-#     Given I am logged in as a '<user>' at '<namespace>'
+    Scenario Outline: Admin cleanup - Delete rooms in '<namespace>' ✅
 
-#     When I click on administration in menu
-#     When I navigate to rooms administration page via the submenu
-#     Then I delete all rooms whose names start with 'CypressAut'
+        Given I am logged in as a '<user>' at '<namespace>'
 
-#     @staging_test
-#     Examples:
-#         | namespace | user       |
-# | dbc       | admin1_dbc |
+        When I click on administration in menu
+        When I navigate to rooms administration page via the submenu
+        Then I delete all rooms whose names start with 'CypressAut'
 
-# Scenario Outline: Admin cleanup - Delete courses ✅
+        @staging_test
+        Examples:
+            | namespace | user       |
+            | brb       | admin1_brb |
+            | dbc       | admin1_dbc |
+            | nbc       | admin1_nbc |
 
-#     Given I am logged in as a '<user>' at '<namespace>'
+    Scenario Outline: Admin cleanup - Delete courses in '<namespace>' ✅
 
-#     When I click on administration in menu
-#     When I navigate to course administration page via the submenu
-#     Then I delete all courses whose names start with 'CypressAut'
+        Given I am logged in as a '<user>' at '<namespace>'
 
-#     @staging_test
-#     Examples:
-#         | namespace | user       |
-#         | dbc       | admin1_dbc |
+        When I click on administration in menu
+        When I navigate to course administration page via the submenu
+        Then I delete all courses whose names start with 'CypressAut'
 
-# Scenario Outline: Teacher cleanup - Delete news ✅
+        @staging_test
+        Examples:
+            | namespace | user       |
+            | brb       | admin1_brb |
+            | dbc       | admin1_dbc |
+            | nbc       | admin1_nbc |
 
-#     Given I am logged in as a '<user>' at '<namespace>'
+    Scenario Outline: Teacher cleanup - Delete news in '<namespace>' ✅
 
-#     When I go to news overview
-#     Then I delete all news whose titles start with 'CypressAut'
+        Given I am logged in as a '<user>' at '<namespace>'
 
-#     @staging_test
-#     Examples:
-#         | namespace | user       |
-#         | dbc       | admin1_dbc |
+        When I go to news overview
+        Then I delete all news whose titles start with 'CypressAut'
 
-# Scenario Outline: Teacher cleanup - Delete CTL Tools ✅
+        @staging_test
+        Examples:
+            | namespace | user       |
+            | brb       | admin1_brb |
+            | dbc       | admin1_dbc |
+            | nbc       | admin1_nbc |
 
-#     Given I am logged in as a '<user>' at '<namespace>'
+    Scenario Outline: Teacher cleanup - Delete CTL Tools in '<namespace>' ✅
 
-#     Given all external tools at the school are deleted
+        Given I am logged in as a '<user>' at '<namespace>'
 
-#     @staging_test
-#     Examples:
-#         | namespace | user       |
-#         | nbc       | admin1_nbc |
+        Given all external tools at the school are deleted
+
+        @staging_test
+        Examples:
+            | namespace | user       |
+            | brb       | admin1_brb |
+            | dbc       | admin1_dbc |
+            | nbc       | admin1_nbc |

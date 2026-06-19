@@ -526,9 +526,10 @@ class Courses {
 				cy.log(`No courses in table. Refreshing to confirm.`);
 				cy.reload();
 				cy.get(Courses.#courseAdminTable).should("be.visible");
-				cy.get(Courses.#courseAdminTable)
-					.find(".v-progress-linear__indeterminate", { timeout: 15000 })
-					.should("not.exist");
+				cy.get(Courses.#courseAdminTable, { timeout: 15000 }).should(
+					"not.have.class",
+					"v-data-table--loading"
+				);
 				cy.get("body").then(($refreshedBody) => {
 					if ($refreshedBody.find(".v-data-table-rows-no-data").length > 0) {
 						cy.log(`Confirmed: No courses exist after refresh.`);
