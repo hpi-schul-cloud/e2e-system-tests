@@ -87,6 +87,16 @@ class Rooms {
 			.and("contain.text", roomMembersCount);
 	}
 
+	seeRoomOriginChipForRoom(roomName, originString, position) {
+		cy.get(`[data-testid="board-grid-item-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", roomName);
+
+		cy.get(`[data-testid="room--external-school-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", originString);
+	}
+
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
 		const source = `[data-testid="board-grid-item-${fromPosition}"]`;
 		const target = `[data-testid="board-grid-item-${toPosition}"]`;
@@ -196,7 +206,9 @@ class Rooms {
 				const index = testId.replace("room--title-", "");
 
 				// open and delete the room
-				cy.get(`[data-testid="room-open-button-${index}"]`).should("be.visible").click();
+				cy.get(`[data-testid="room-open-button-${index}"]`)
+					.should("be.visible")
+					.click();
 
 				cy.get(Rooms.#roomDetailFAB).should("be.visible").click();
 				cy.get(Rooms.#btnRoomDelete).should("be.visible").click();
@@ -422,13 +434,18 @@ class Rooms {
 					const menu = win.document.querySelector(`#${menuId}`);
 					expect(menu, `Menu #${menuId} should exist`).to.not.be.null;
 					const options = menu.querySelectorAll(Rooms.#threeDotMenuOptions);
-					expect(options.length, "Menu should have at least 1 option").to.be.at.least(1);
+					expect(
+						options.length,
+						"Menu should have at least 1 option"
+					).to.be.at.least(1);
 				});
 			});
 	}
 
 	clickOnKebabMenuAction(kebabMenuAction) {
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeConfirmationModalForRoomDeletion() {
@@ -479,7 +496,10 @@ class Rooms {
 	selectParticipantSchool() {
 		cy.get(Rooms.#addParticipantSchool).should("be.visible").click();
 		cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
-		cy.get(Rooms.#dropdownOptions).should("have.length.greaterThan", 0).first().click();
+		cy.get(Rooms.#dropdownOptions)
+			.should("have.length.greaterThan", 0)
+			.first()
+			.click();
 		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
@@ -520,7 +540,9 @@ class Rooms {
 			.within(() => {
 				cy.get(Rooms.#memberRowInRoomMembershipTable).click();
 			});
-		cy.get(`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`).click();
+		cy.get(
+			`[data-testid="kebab-menu-action-${kebabMenuAction.toLowerCase()}"]`
+		).click();
 	}
 
 	seeParticipantInList(participantName) {
@@ -587,7 +609,9 @@ class Rooms {
 	}
 
 	isParticipantNotVisible(participantName) {
-		cy.get(Rooms.#participantTable).contains("td", participantName).should("not.exist");
+		cy.get(Rooms.#participantTable)
+			.contains("td", participantName)
+			.should("not.exist");
 	}
 
 	isParticipantVisible(participantName) {
@@ -828,7 +852,7 @@ class Rooms {
 			.should(linkExpirationAction === "check" ? "be.checked" : "not.be.checked");
 	}
 
-    doNotSeeSpeedDialOptions(options) {
+	doNotSeeSpeedDialOptions(options) {
 		const buttonName = options.split(/,|and/).map((option) => option.trim());
 		buttonName.forEach((buttonName) => {
 			cy.get(`[data-testid="fab-${buttonName}-icon-btn"]`).should("not.exist");
