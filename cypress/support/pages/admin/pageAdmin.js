@@ -239,6 +239,7 @@ class Management {
 	}
 
 	confirmUserDeletion() {
+		cy.wait(1000);
 		cy.get(Management.#confirmDeleteButtonDialog).should("be.visible").click();
 
 		cy.get("body").then(($body) => {
@@ -905,6 +906,7 @@ class Management {
 
 		// wait for search request and verify it succeeded
 		cy.wait(`@${apiAlias}`).its("response.statusCode").should("eq", 200);
+		cy.wait(1000);
 	}
 
 	clickEditUserButton(role, email) {

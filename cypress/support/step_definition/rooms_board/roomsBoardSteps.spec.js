@@ -942,13 +942,6 @@ When("I clear folder name in card", () => {
 	roomBoards.clearFolderNameInCard();
 });
 
-Then(
-	"zip file for folder {string} with date of today is saved in folder downloads",
-	(folderName) => {
-		roomBoards.seeZipFileWithDatePrefixIsSavedInDownloads(folderName);
-	}
-);
-
 When("I click on the three dot menu in the H5P element", () => {
 	roomBoards.openThreeDotMenuForH5PInCard();
 });
@@ -1051,10 +1044,6 @@ When("I click on button Create document in file folder", () => {
 
 When("I click on button Create in dialog create document", () => {
 	roomBoards.clickCreateButtonInCreateDocumentDialog();
-});
-
-When("I click on button Download in the card file folder", () => {
-	roomBoards.clickFolderDownloadButtonOnBoardcard();
 });
 
 Then("I see the file type PPTX is uploaded in the card", () => {

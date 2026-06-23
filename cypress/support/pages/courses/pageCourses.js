@@ -40,8 +40,7 @@ class Courses {
 	static #taskCardTitleInCoursePageWithDynamicIndex =
 		'[data-testid="task-title-{index}"]';
 	static #boardCardTitleInCoursePageWithIndex = '[data-testid="board-title-0"]';
-	static #taskCardThreeDotMenuInCoursePageWithIndex =
-		'[data-testid="task-card-menu-0"]';
+	static #taskCardThreeDotMenuInCoursePageWithIndex = '[data-testid="task-card-menu-0"]';
 	static #taskCardInCoursePageWithIndex = '[data-testid="room-task-card-0"]';
 	static #topicCardPublishBtn = '[data-testid="lesson-card-action-publish-0"]';
 	static #dropDownCourse = '[data-testid="room-menu"]';
@@ -49,11 +48,9 @@ class Courses {
 	static #pageTitle = '[id="page-title"]';
 	static #contentCardTaskInfoSubmissionsChipWithIndex =
 		'[data-testid="task-submitted-teacher"]';
-	static #contentCardTaskInfoDueDate = '[data-testid="dueDateHintLabel"]';
 	static #contentCardTaskInfoGradingsChipWithIndex =
 		'[data-testid="task-graded-teacher"]';
 	static #addSubstituteTeacher = '[id="substituteTeacher_chosen"]';
-	static #chosenChoices = ".chosen-choices";
 	static #chosenResults = ".chosen-results li";
 	static #chosenContainer = ".chosen-container span";
 	static #courseSearchBox = '[data-testid="search-field"]';
@@ -95,11 +92,10 @@ class Courses {
 	static #dialogTitle = '[data-testid="copy-dialog-title"]';
 	static #errorDialogTitle = '[data-testid="error-dialog-title"]';
 	static #copyDialogTitle = '[data-testid="copy-info-dialog-title"]';
-	static #warningTitle = '[data-testid="warning-title"]';
 	static #dialogClose = '[data-testid="copy-dialog-cancel"]';
 	static #errorDialogClose = '[data-testid="error-dialog-cancel"]';
 	static #errorDialogCancel = '[data-testid="error-dialog-cancel"]';
-	static #copyDialogClose = '[data-testid="copy-info-dialog-confirm"]';
+	static #copyDialogCancel = '[data-testid="copy-info-dialog-cancel"]';
 	static #toolEditBtn = '[data-testid="tool-edit"]';
 	static #toolDeleteBtn = '[data-testid="tool-delete"]';
 	static #toolDomain = '[data-testid="tool-card-domain"]';
@@ -115,8 +111,7 @@ class Courses {
 	static #studentGroupNameOnStudentGroupPage = '[data-testid="group-name-entry"]';
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
-	static #deleteCourseGroupConfirmationButton =
-		'[data-testid="delete-course-group-btn"]';
+	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
 	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
@@ -157,8 +152,7 @@ class Courses {
 	static #teacherFieldContainer = '[data-testid="teachers_container"]';
 	static #studentFieldContainer = '[data-testid="students_container"]';
 	static #classFieldContainer = '[data-testid="class_container"]';
-	static #teacherSelectionBoxInCourseCreate = '[data-testid="teachersearch"]';
-	static #delteToolDialog = '[data-testid="confirm-dialog"]';
+	static #deleteToolDialog = '[data-testid="confirm-dialog"]';
 	static #deleteDialogTitle = '[data-testid="confirm-dialog-title"]';
 	static #deleteDialogContent = '[data-testid="confirm-dialog-alert"]';
 	static #confirmDeleteDialogButton = '[data-testid="confirm-dialog-confirm"]';
@@ -453,9 +447,7 @@ class Courses {
 			);
 
 			if (matchingElements.length > 0) {
-				cy.log(
-					`Found ${matchingElements.length} courses matching "${courseName}"`
-				);
+				cy.log(`Found ${matchingElements.length} courses matching "${courseName}"`);
 				this.deleteCourse(textSelector, courseName, clickSelector);
 			} else {
 				cy.log(`No more courses found with course name "${courseName}".`);
@@ -836,9 +828,7 @@ class Courses {
 
 	checkTaskCardDoesHaveButtons(taskTitle) {
 		cy.get(Courses.#taskCardTitleInCoursePageWithIndex).contains(taskTitle);
-		cy.get(Courses.#taskCardInCoursePageWithIndex)
-			.find("button")
-			.should("be.visible");
+		cy.get(Courses.#taskCardInCoursePageWithIndex).find("button").should("be.visible");
 	}
 
 	fillCourseCreationForm(new_course) {
@@ -924,10 +914,7 @@ class Courses {
 
 	deleteCoursesByName(courseLabel, courseName) {
 		cy.get(`[class="rooms-container"]`).then(($coursesContainer) => {
-			if (
-				$coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`)
-					.length
-			) {
+			if ($coursesContainer.find(`[aria-label="${courseLabel} ${courseName}"]`).length) {
 				cy.get(`[aria-label="${courseLabel} ${courseName}"]`).then(($courses) => {
 					if ($courses) {
 						cy.wrap($courses).first().click();
@@ -1050,9 +1037,7 @@ class Courses {
 	}
 
 	seeCopyResultNotification() {
-		cy.get(`${Courses.#copyDialogTitle}, ${Courses.#dialogTitle}`).should(
-			"be.visible"
-		);
+		cy.get(`${Courses.#copyDialogTitle}, ${Courses.#dialogTitle}`).should("be.visible");
 		cy.get(Courses.#copyResultNotification).should("be.visible");
 		cy.get(Courses.#copyInfoCopyrightDataProtection).should("be.visible");
 		cy.get(Courses.#copyInfoWarnings).should("be.visible");
@@ -1060,7 +1045,7 @@ class Courses {
 
 	clickOnDialogClose() {
 		cy.get(
-			`${`${Courses.#dialogClose}, ${Courses.#copyDialogClose}, ${Courses.#errorDialogCancel}`}, ${Courses.#errorDialogClose}`
+			`${`${Courses.#dialogClose}, ${Courses.#copyDialogCancel}, ${Courses.#errorDialogCancel}`}, ${Courses.#errorDialogClose}`
 		).click();
 	}
 
@@ -1069,9 +1054,7 @@ class Courses {
 	}
 
 	seeNumberOfTools(count) {
-		cy.get(Courses.#courseExternalToolSection)
-			.children()
-			.should("have.length", count);
+		cy.get(Courses.#courseExternalToolSection).children().should("have.length", count);
 	}
 
 	seeToolIsMarkedAsDeactivated(toolName) {
@@ -1138,7 +1121,7 @@ class Courses {
 	}
 
 	seeDeleteDialog() {
-		cy.get(Courses.#delteToolDialog).should("be.visible");
+		cy.get(Courses.#deleteToolDialog).should("be.visible");
 		cy.get(Courses.#deleteDialogTitle).should("be.visible");
 		cy.get(Courses.#deleteDialogContent).should("be.visible");
 		cy.get(Courses.#confirmDeleteDialogButton).should("be.visible");
@@ -1150,10 +1133,7 @@ class Courses {
 	}
 
 	addStudentWithSearchStringToCourse(searchString) {
-		cy.get(Courses.#chooseStudentSelectionBox)
-			.click()
-			.type(searchString)
-			.type("{enter}");
+		cy.get(Courses.#chooseStudentSelectionBox).click().type(searchString).type("{enter}");
 		cy.get(Courses.#chooseStudentSelectionBox).contains(searchString).should("exist");
 	}
 
@@ -1218,9 +1198,7 @@ class Courses {
 	}
 
 	seeSelectedTeacher(teacherName) {
-		cy.get(Courses.#selectTeacher)
-			.contains("option", teacherName)
-			.should("be.selected");
+		cy.get(Courses.#selectTeacher).contains("option", teacherName).should("be.selected");
 	}
 
 	seeSelectedSubstituteTeacher(substituteTeacher) {
@@ -1230,9 +1208,7 @@ class Courses {
 	}
 
 	seeSelectedStudent(studentName) {
-		cy.get(Courses.#selectStudent)
-			.contains("option", studentName)
-			.should("be.selected");
+		cy.get(Courses.#selectStudent).contains("option", studentName).should("be.selected");
 	}
 
 	seeSelectedClass(className) {
@@ -1401,18 +1377,17 @@ class Courses {
 	}
 
 	clickPublishLinkForTaskWithDynamicIndex(index) {
-		const selector =
-			Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
-				"{index}",
-				index
-			);
+		const selector = Courses.#taskCardPublishButtonInCoursePageWithDynamicIndex.replace(
+			"{index}",
+			index
+		);
 		cy.get(selector).click();
 	}
 
 	seeTopicCourseDialogBox() {
-		cy.get(
-			`${Courses.#topicCourseDialog}, ${Courses.#selectDestinationModal}`
-		).should("be.visible");
+		cy.get(`${Courses.#topicCourseDialog}, ${Courses.#selectDestinationModal}`).should(
+			"be.visible"
+		);
 	}
 
 	selectFixtureForImport(fixturePath) {

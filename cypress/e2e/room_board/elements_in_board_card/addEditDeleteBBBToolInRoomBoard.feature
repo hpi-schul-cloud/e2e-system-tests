@@ -108,8 +108,9 @@ Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
 
         @staging_test
         Examples:
-            | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title |
-            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut BBB Tool    |
+            | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title | video_conference_title_edited |
+            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut BBB Tool    | CypressAut BBB Tool Edited    |
+
 
         @school_api_test
         Examples:
