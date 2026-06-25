@@ -40,16 +40,27 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
 
         # pre-condition: second teacher logged into the application, and a room exists
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        Given a room named '<room_name_target>' exists
+        Given a room named '<room_name_target_1>' exists
+        Given a room named '<room_name_target_2>' exists
 
         # second teacher from the second school can access the shared URL and import the multi-column board
         When I navigate to the shared URL
         Then I see the Dialog to import
         Then I see the title in the import modal
-        When I select the room from the room list in the modal
+        When I select two rooms '<room_name_target_1>' and '<room_name_target_2>' in the board import drop-down list
         When I click on the Continue button in the modal
         When I enter a new name for the imported board '<import_board_title>' in the modal
         When I click on the button Import in the import modal
+        Then I see the success alert message
+        Then I see room overview page
+        When I click on button Open to go to room '<room_name_target_1>' at position '0'
+        Then I see the detail page of room '<room_name_target_1>'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I see the page board details
+        Then I see the chip Draft
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name_target_2>' at position '1'
+        Then I see the detail page of room '<room_name_target_2>'
         When I click on the button Open on multi-column board in the room detail page
         Then I see the page board details
         Then I see the chip Draft
@@ -79,9 +90,10 @@ Feature: Room Board - Share multi-column board in the rooms with the teacher fro
         Given I am logged in as a '<teacher_1>' at '<namespace>'
         Given the room '<room_name_source>' at position '0' is deleted
         Given I am logged in as a '<teacherExt_1>' at '<namespace>'
-        Given the room '<room_name_target>' at position '0' is deleted
+        Given the room '<room_name_target_1>' at position '0' is deleted
+        Given the room '<room_name_target_2>' at position '0' is deleted
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | room_name_source       | room_name_target       | board_title            | import_board_title            | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
-            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | CypressAut Board Import Title | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
+            | teacher_1    | teacherExt_1    | namespace | room_name_source       | room_name_target_1     | room_name_target_2     | board_title            | import_board_title            | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
+            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Room Name-3 | CypressAut Board Title | CypressAut Board Import Title | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |

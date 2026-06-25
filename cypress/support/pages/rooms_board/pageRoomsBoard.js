@@ -20,7 +20,8 @@ class RoomBoards {
 	static #singleColumnBoardTileSelector = '[data-testid="board-grid-title-1"]';
 	static #elementSelectionDialog = '[data-testid="element-type-selection"]';
 	static #closeDialogButton = '[data-testid="dialog-close"]';
-	static #elementSelectionCancelButton = '[data-testid="element-type-selection-cancel"]';
+	static #elementSelectionCancelButton =
+		'[data-testid="element-type-selection-cancel"]';
 	static #videoConferenceTitleInput = '[data-testid="video-conference-element-title"]';
 	static #videoConferenceElement = '[data-testid="board-video-conference-element"]';
 	static #videoConferenceElementCreate =
@@ -35,7 +36,8 @@ class RoomBoards {
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #threeDotInLinkElement = '[data-testid="board-menu-button"]';
-	static #deleteOptionOnCardElementThreeDot = '[data-testid="kebab-menu-action-delete"]';
+	static #deleteOptionOnCardElementThreeDot =
+		'[data-testid="kebab-menu-action-delete"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
 	static #editOptionInCardThreeDot = '[data-testid="kebab-menu-action-edit"]';
 	static #importCardDialogTitle = '[data-testid="select-destination-modal-title"]';
@@ -82,11 +84,13 @@ class RoomBoards {
 	static #H5PPage = '[data-testid="skip-link"]';
 	static #titleAlert = '[role="alert"]';
 	static #fileTitleInCardInput = '[data-testid="file-name-input"]';
-	static #createDocumentButtonInFileFolder = '[data-testid="fab-button-create-document"]';
+	static #createDocumentButtonInFileFolder =
+		'[data-testid="fab-button-create-document"]';
 	static #dialogCreateDocumentInFileFolder = '[data-testid="collabora-file-dialog"]';
 	static #dialogCreateDocumentTitleInFileFolder =
 		'[data-testid="collabora-file-dialog-title"]';
-	static #dialogSelectDocumentTypeFileFolder = '[data-testid="collabora-file-form-type"]';
+	static #dialogSelectDocumentTypeFileFolder =
+		'[data-testid="collabora-file-form-type"]';
 	static #dialogFileNameFileFolder = '[data-testid="collabora-file-form-filename"]';
 	static #dialogCreateButton = '[data-testid="collabora-file-dialog-confirm"]';
 	static #boardContentElementBar = '[data-testid="content-element-bar-board"]';
@@ -114,7 +118,8 @@ class RoomBoards {
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
 	static #boardTitlePattern = '[data-testid^="board-title-"]';
 	static #parameterDisplayNameBettermarks = '[data-testid="parameter-display-name"]';
-	static #bettermarksToolDomainUrl = '[data-testid="board-external-tool-element-domain"]';
+	static #bettermarksToolDomainUrl =
+		'[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
 	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
@@ -130,7 +135,8 @@ class RoomBoards {
 	static #moveCardSelectRoom = '[data-testid="move-card-select-room"]';
 	static #moveCardSelectColumn = '[data-testid="move-card-select-column"]';
 	static #confirmButtonOnModal = '[data-testid="rename-folder-dialog-confirm"]';
-	static #confirmRenamingFileButtonOnModal = '[data-testid="rename-file-dialog-confirm"]';
+	static #confirmRenamingFileButtonOnModal =
+		'[data-testid="rename-file-dialog-confirm"]';
 	static #globalDialogConfirmButton = '[data-testid="import-modal-confirm"]';
 	static #confirmDialogConfirm = '[data-testid="confirm-dialog-confirm"]';
 	static #importCardDialogConfirm = '[data-testid="import-card-dialog-confirm"]';
@@ -148,7 +154,8 @@ class RoomBoards {
 	static #trashPageMenuButton = '[data-testid="folder-trash-menu"]';
 	static #permanentDeleteDialog = '[data-testid="purge-files-dialog"]';
 	static #permanentDeleteFileModalTitle = '[data-testid="purge-files-dialog-title"]';
-	static #permanentDeleteWarningCheckbox = '[data-testid="purge-files-dialog-checkbox"]';
+	static #permanentDeleteWarningCheckbox =
+		'[data-testid="purge-files-dialog-checkbox"]';
 	static #permanentDeleteConfirmButton = '[data-testid="purge-files-dialog-confirm"]';
 	static #importRoomsModalTitle = '[data-testid="import-dialog-title"]';
 	static #shareInfoCopyrightDataProtection =
@@ -161,6 +168,24 @@ class RoomBoards {
 	static #closeElementDetailViewButton = '[data-testid="close-detail-view-button"]';
 	static #externalToolsInBoard = '[data-testid^="board-external-tool-element-"]';
 	static #alertLinkButton = '[data-testid="alert-link"]';
+	static #checkboxImportRoomList = 'input[type="checkbox"]';
+
+	selectTwoRoomsForBoardImport(roomName1, roomName2) {
+		cy.get(
+			`${RoomBoards.#dialogTitle}, ${RoomBoards.#selectDestinationModalTitle}`
+		).should("exist");
+		cy.get(RoomBoards.#roomSelectionBoxModal).click();
+		// select first room
+		cy.contains('[role="option"]', roomName1)
+			.find(RoomBoards.#checkboxImportRoomList)
+			.check({ force: true });
+		// select second room
+		cy.contains('[role="option"]', roomName2)
+			.find(RoomBoards.#checkboxImportRoomList)
+			.check({ force: true });
+		// close the dropdown
+		cy.get(RoomBoards.#selectDestinationModalTitle).click();
+	}
 
 	clickAlertMessageLinkButton() {
 		cy.get(RoomBoards.#shareImportAlert).within(() => {
@@ -468,10 +493,12 @@ class RoomBoards {
 
 		// assert layout position: duplicated card is rendered below the original
 		cy.get(RoomBoards.#firstCardPositionInRoomBoard).then(($original) => {
-			const originalBottom = $original[0].getBoundingClientRect().bottom + window.scrollY;
+			const originalBottom =
+				$original[0].getBoundingClientRect().bottom + window.scrollY;
 
 			cy.get(RoomBoards.#duplicatedCardPosition).then(($duplicate) => {
-				const duplicateTop = $duplicate[0].getBoundingClientRect().top + window.scrollY;
+				const duplicateTop =
+					$duplicate[0].getBoundingClientRect().top + window.scrollY;
 
 				expect(duplicateTop).to.be.greaterThan(
 					originalBottom,
@@ -1016,7 +1043,9 @@ class RoomBoards {
 				expect(boardUrl).to.be.a("string").and.not.be.empty;
 				cy.wrap(boardUrl).as("copiedURL");
 				cy.window().then((win) => {
-					cy.stub(win.navigator.clipboard, "writeText").as("writeTextStub").resolves();
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeTextStub")
+						.resolves();
 				});
 				cy.get(RoomBoards.#copyLinkOption).click();
 				cy.get("@writeTextStub").should("be.calledOnce");
@@ -1283,7 +1312,9 @@ class RoomBoards {
 	}
 
 	seeFolderElementWithTitle(title) {
-		cy.get(RoomBoards.#folderElementSelector).should("exist").should("contain", title);
+		cy.get(RoomBoards.#folderElementSelector)
+			.should("exist")
+			.should("contain", title);
 	}
 
 	seeFolderElementWithSizeAndNumberOfFiles(folderDetails) {
@@ -1313,7 +1344,9 @@ class RoomBoards {
 	}
 
 	seeTrashInfoAlert(message) {
-		cy.get(RoomBoards.#trashInfoAlert).should("be.visible").and("contain.text", message);
+		cy.get(RoomBoards.#trashInfoAlert)
+			.should("be.visible")
+			.and("contain.text", message);
 	}
 
 	seeNoDataTable() {
@@ -1377,14 +1410,21 @@ class RoomBoards {
 			.map((opt) => opt.trim());
 		headerlabels.forEach((label) => {
 			cy.get(RoomBoards.#dataTable).within((element) => {
-				cy.get(element).find("th").contains("span", label).should("contain", label);
+				cy.get(element)
+					.find("th")
+					.contains("span", label)
+					.should("contain", label);
 			});
 		});
 	}
 
 	clickOnTableHeaderLink(label) {
 		cy.get(RoomBoards.#dataTable).within((element) => {
-			cy.get(element).find("th").contains("span", label).should("contain", label).click();
+			cy.get(element)
+				.find("th")
+				.contains("span", label)
+				.should("contain", label)
+				.click();
 		});
 	}
 
@@ -1398,11 +1438,15 @@ class RoomBoards {
 	}
 
 	checkCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").check();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.check();
 	}
 
 	uncheckCheckboxOfFile(fileName) {
-		cy.get(`[data-testid="select-checkbox-${fileName}"]`).find("div div input").uncheck();
+		cy.get(`[data-testid="select-checkbox-${fileName}"]`)
+			.find("div div input")
+			.uncheck();
 	}
 
 	seeFileCheckboxesAreChecked(files) {
@@ -1466,7 +1510,11 @@ class RoomBoards {
 	}
 
 	enterFolderNameInBoardCard(newName) {
-		cy.get(RoomBoards.#folderTitleInCardInput).find("input").eq(0).clear().type(newName);
+		cy.get(RoomBoards.#folderTitleInCardInput)
+			.find("input")
+			.eq(0)
+			.clear()
+			.type(newName);
 	}
 
 	clearFolderNameInCard() {
