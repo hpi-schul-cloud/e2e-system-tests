@@ -14,6 +14,13 @@ Then(
 	}
 );
 
+Then(
+	"I see room origin chip with string {string} for room {string} at position {string}",
+	(originString, roomName, position) => {
+		rooms.seeRoomOriginChipForRoom(roomName, originString, position);
+	}
+);
+
 When(
 	"I drag and drop the room one {string} from position {string} to position {string}",
 	(roomName, fromPos, toPos) => {
