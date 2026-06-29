@@ -3,6 +3,7 @@
 @schedule_run
 @group-E
 @prio_0_dev
+@prio_0_staging
 Feature: Course Board - To import a course from common cartridge 1.3
 
     As a teacher, I want to import a course from a common cartridge file exported from SVS
@@ -93,10 +94,10 @@ Feature: Course Board - To import a course from common cartridge 1.3
         #JPEG file
         Then I see the file type Image in the card
 
-        # @staging_test
-        # Examples:
-        #     | teacher      | namespace | import_wait_time |
-        #     | teacher1_dbc | dbc       | 3                |
+        @staging_test
+        Examples:
+            | teacher      | namespace | import_wait_time |
+            | teacher1_dbc | dbc       | 3                |
 
         @school_api_test
         Examples:

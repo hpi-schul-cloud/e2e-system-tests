@@ -3,6 +3,7 @@
 @schedule_run
 @group-E
 @prio_0_dev
+@prio_0_staging
 Feature: Course Import - Filesize limit feature
 
     As a teacher, I want to be informed about file size limits
@@ -42,6 +43,11 @@ Feature: Course Import - Filesize limit feature
         When I select the fixture file 'cc/CC-Import-Test.imscc'
         Then I see the import button is enabled
         Then I click cancel in the import dialog
+
+        @staging_test
+        Examples:
+            | teacher      | namespace |
+            | teacher1_dbc | dbc       |
 
         @school_api_test
         Examples:
