@@ -66,8 +66,6 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see an external tool element with tool '<ctl_tool_1_new>'
 
         # teacher adds tool via tool link
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I insert the external tool link '<ctl_tool_link>'
@@ -79,8 +77,6 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see an external tool element with tool '<ctl_tool_openstreetmap>'
 
         # teacher adds tool with a required custom parameter
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_required_param>' from available tools
@@ -94,8 +90,6 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see an external tool element with tool '<ctl_tool_required_param>'
 
         # teacher adds a tool with an optional custom parameter
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_optional_param>' from available tools
@@ -106,24 +100,18 @@ Feature: Course Board  - To add, edit and delete a ctl tool in a board
         Then I see an external tool element with tool '<ctl_tool_optional_param>'
 
         # teacher edits a tool
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on three dot menu of external tool element '<ctl_tool_optional_param>'
         When I click the edit button in three dot menu on the element
         Then I see tool '<ctl_tool_optional_param>' is selected
         Then I see custom parameter input field '<context_param_name>' contains '<param_value>'
         When I enter '<param_value_updated>' in optional custom parameter field '<context_param_name>'
         When I click on button Add in the modal to add an external tool
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on three dot menu of external tool element '<ctl_tool_optional_param>'
         When I click the edit button in three dot menu on the element
         Then I see custom parameter input field '<context_param_name>' contains '<param_value_updated>'
         When I click on button Add in the modal to add an external tool
 
         # teacher deletes tools from board
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on three dot menu of external tool element '<ctl_tool_optional_param>'
         When I click the delete button in three dot menu on the element
         When I click on the button Remove on the Modal
