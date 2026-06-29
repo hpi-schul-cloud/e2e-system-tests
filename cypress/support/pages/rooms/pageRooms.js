@@ -77,6 +77,10 @@ class Rooms {
 	static #dropdownOptions = `${Rooms.#dropdownListbox} [role="option"]`;
 	static #emptyStateInfoText = '[data-testid="empty-state-title"]';
 
+	seeRoomsOverviewPage() {
+		cy.url().should("match", /\/rooms\/?$/);
+	}
+
 	seeRoomMembersCountChipForRoom(roomName, roomMembersCount, position) {
 		cy.get(`[data-testid="board-grid-item-${position}"]`)
 			.should("be.visible")

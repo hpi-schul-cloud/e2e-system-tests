@@ -3,6 +3,10 @@ import Rooms from "../../pages/rooms/pageRooms";
 
 const rooms = new Rooms();
 
+Then("I see room overview page", () => {
+	rooms.seeRoomsOverviewPage();
+});
+
 Then(
 	"I see room members count chip with count {string} for room {string} at position {string}",
 	(roomMembersCount, roomName, position) => {
