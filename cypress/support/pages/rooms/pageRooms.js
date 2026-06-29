@@ -91,6 +91,16 @@ class Rooms {
 			.and("contain.text", roomMembersCount);
 	}
 
+	seeRoomOriginChipForRoom(roomName, originString, position) {
+		cy.get(`[data-testid="board-grid-item-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", roomName);
+
+		cy.get(`[data-testid="room--external-school-${position}"]`)
+			.should("be.visible")
+			.and("contain.text", originString);
+	}
+
 	dragRoomFromPositionToPosition(roomName, fromPosition, toPosition) {
 		const source = `[data-testid="board-grid-item-${fromPosition}"]`;
 		const target = `[data-testid="board-grid-item-${toPosition}"]`;
