@@ -169,20 +169,26 @@ class RoomBoards {
 	static #externalToolsInBoard = '[data-testid^="board-external-tool-element-"]';
 	static #alertLinkButton = '[data-testid="alert-link"]';
 	static #checkboxImportRoomList = 'input[type="checkbox"]';
+	static #listboxRoomsSelection = 'div[role="listbox"]';
 
 	selectTwoRoomsForBoardImport(roomName1, roomName2) {
 		cy.get(
 			`${RoomBoards.#dialogTitle}, ${RoomBoards.#selectDestinationModalTitle}`
 		).should("exist");
 		cy.get(RoomBoards.#roomSelectionBoxModal).click();
-		// select first room
-		cy.contains('[role="option"]', roomName1)
-			.find(RoomBoards.#checkboxImportRoomList)
-			.check({ force: true });
-		// select second room
-		cy.contains('[role="option"]', roomName2)
-			.find(RoomBoards.#checkboxImportRoomList)
-			.check({ force: true });
+		// wait for the listbox to be visible before interacting with it
+		cy.get(RoomBoards.#listboxRoomsSelection)
+			.should("be.visible")
+			.within(() => {
+				// select first room
+				cy.contains('[role="option"]', roomName1)
+					.find(RoomBoards.#checkboxImportRoomList)
+					.check({ force: true });
+				// select second room
+				cy.contains('[role="option"]', roomName2)
+					.find(RoomBoards.#checkboxImportRoomList)
+					.check({ force: true });
+			});
 		// close the dropdown
 		cy.get(RoomBoards.#selectDestinationModalTitle).click();
 	}

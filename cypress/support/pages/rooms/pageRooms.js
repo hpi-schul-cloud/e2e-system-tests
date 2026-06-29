@@ -78,7 +78,7 @@ class Rooms {
 	static #emptyStateInfoText = '[data-testid="empty-state-title"]';
 
 	seeRoomsOverviewPage() {
-		cy.url().should("include", "/rooms");
+		cy.url().should("match", /\/rooms\/?$/);
 	}
 
 	seeRoomMembersCountChipForRoom(roomName, roomMembersCount, position) {
