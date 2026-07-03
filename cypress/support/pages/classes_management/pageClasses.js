@@ -1,7 +1,7 @@
 "use strict";
 
 class Classes {
-	static #createClass = '[id="fab-label"]';
+	static #createClass = '[data-testid="fab_button_add_class"]';
 	static #confirmClassCreate = '[data-testid="confirmClassCreate"]';
 	static #classTableNew = '[data-testid="admin-class-table"]';
 	static #nextYearTab = '[data-testid="admin-class-next-year-tab"]';
@@ -111,7 +111,9 @@ class Classes {
 	}
 
 	clickCreateClassButtonOnNewClassPage() {
-		cy.get(Classes.#createClass).click();
+		cy.log(`Now its clicking at create class button...`);
+		cy.get(Classes.#createClass).find("a").click();
+		cy.wait(500);
 	}
 
 	clickAddClassButton() {
@@ -316,6 +318,7 @@ class Classes {
 			.contains(className)
 			.parents("tr")
 			.within(() => {
+				cy.wait(500);
 				cy.get(Classes.#deleteClassButton).should("be.visible").click();
 			});
 		cy.wait(500);
@@ -366,13 +369,56 @@ class Classes {
 	//  delete before merging
 	// ########################################
 
+	//  don't delete before merging
+	// ########################################
+
+	showAllClassesInTable() {
+		cy.get(Classes.#classTableNew).scrollIntoView().should("be.visible");
+
+		// Wait for initial load to complete
+		this.waitForClassTableToLoad();
+
+		// Click on the pagination select dropdown
+		cy.get(Classes.#classTableNew)
+			.find(".v-data-table-footer__items-per-page .v-field")
+			.click();
+
+		// Select "100" from the dropdown list
+		cy.get(".v-list").should("be.visible");
+		cy.get(".v-list-item").contains("100").click();
+
+		// Wait for table to finish loading with new page size
+		this.waitForClassTableToLoad();
+
+		// Verify pagination changed
+		cy.get(Classes.#classTableNew)
+			.find(".v-data-table-footer__items-per-page .v-select__selection-text")
+			.should("contain", "100");
+	}
+
+	getTotalClassCount() {
+		// Reads "1-10 von 109" and returns 109
+		return cy
+			.get(Classes.#classTableNew)
+			.find(".v-data-table-footer__info div")
+			.invoke("text")
+			.then((text) => {
+				const match = text.match(/von\s+(\d+)/);
+				return match ? parseInt(match[1], 10) : 0;
+			});
+	}
+
 	classExistsInTable(className) {
 		return cy
 			.get(Classes.#classTableNew)
 			.find("tbody tr")
 			.then(($rows) => {
 				// check empty state
-				if ($rows.length === 1 && $rows.text().includes("Keine Daten vorhanden")) {
+				if (
+					$rows.length === 1 &&
+					($rows.text().includes("Keine Daten vorhanden") ||
+						$rows.text().includes("No data available"))
+				) {
 					return cy.wrap(false);
 				}
 
@@ -383,6 +429,114 @@ class Classes {
 				});
 
 				return cy.wrap(found);
+			});
+	}
+
+	waitForClassTableToLoad() {
+		// Wait until the table no longer has the loading class
+		cy.get(Classes.#classTableNew, { timeout: 30000 }).should(
+			"not.have.class",
+			"v-data-table--loading"
+		);
+
+		// Wait for progress bar to disappear
+		cy.get(Classes.#classTableNew).find(".v-data-table-progress").should("not.exist");
+
+		// Ensure no loading text in tbody
+		cy.get(Classes.#classTableNew)
+			.find("tbody tr", { timeout: 30000 })
+			.should(($rows) => {
+				const isLoading = [...$rows].some((r) => r.textContent.includes("Lade Elemente"));
+				expect(isLoading).to.be.false;
+			});
+	}
+
+	deleteAllClassesWithPrefix(classPrefix, maxAttempts = 120) {
+		cy.intercept("DELETE", "/api/v1/classes/*").as("deleteClass");
+		cy.intercept("GET", "/api/v3/groups/class*").as("getClasses");
+
+		this._deleteNextClass(classPrefix, maxAttempts, 0);
+	}
+
+	_deleteNextClass(classPrefix, maxAttempts, attempt) {
+		if (attempt >= maxAttempts) {
+			cy.log(`Reached max attempts (${maxAttempts}). Stopping.`);
+			return;
+		}
+
+		this.waitForClassTableToLoad();
+
+		cy.get(Classes.#classTableNew)
+			.find("tbody tr")
+			.then(($rows) => {
+				if (
+					$rows.length === 1 &&
+					($rows.text().includes("Keine Daten vorhanden") ||
+						$rows.text().includes("No data available"))
+				) {
+					cy.log("No more classes to delete.");
+					return;
+				}
+
+				let classId = null;
+				let foundClassName = null;
+
+				$rows.each((_, row) => {
+					const nameCell = row.querySelector('[data-testid="class-table-name"]');
+					if (nameCell && nameCell.textContent.trim().startsWith(classPrefix)) {
+						foundClassName = nameCell.textContent.trim();
+						const manageLink = row.querySelector(
+							'[data-testid="legacy-class-table-manage-btn"]'
+						);
+						if (manageLink) {
+							const href = manageLink.getAttribute("href");
+							classId = href.split("/").slice(-2, -1)[0];
+						}
+						return false;
+					}
+				});
+
+				if (!classId) {
+					cy.log(`No more classes matching "${classPrefix}" found.`);
+					return;
+				}
+
+				cy.log(`Deleting "${foundClassName}" (${classId}) [attempt ${attempt + 1}]`);
+
+				// Add a small delay between deletions to avoid overwhelming the server
+				cy.wait(300, { log: false });
+
+				cy.get(`[href="/administration/classes/${classId}/manage"]`)
+					.parents("tr")
+					.find('[data-testid="class-table-delete-btn"]')
+					.click({ log: false });
+
+				cy.get('[data-testid="confirm-dialog-title"]', { log: false }).should(
+					"be.visible"
+				);
+				cy.get('[data-testid="confirm-dialog-confirm"]', { log: false }).click({
+					log: false,
+				});
+
+				// Shorter timeout — fail fast instead of hanging 80s
+				cy.wait("@deleteClass", { timeout: 15000, log: false }).then((interception) => {
+					if (interception.response.statusCode !== 200) {
+						cy.log(`DELETE failed with ${interception.response.statusCode}, retrying...`);
+					}
+				});
+
+				cy.wait("@getClasses", { timeout: 15000, log: false });
+
+				cy.get('[data-testid="confirm-dialog-title"]', { log: false }).should(
+					"not.exist"
+				);
+
+				cy.get(`[href="/administration/classes/${classId}/manage"]`, {
+					timeout: 10000,
+					log: false,
+				}).should("not.exist");
+
+				this._deleteNextClass(classPrefix, maxAttempts, attempt + 1);
 			});
 	}
 }

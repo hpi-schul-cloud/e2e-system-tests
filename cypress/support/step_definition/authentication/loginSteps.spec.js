@@ -31,7 +31,6 @@ Before(() => {
 	cy.intercept("**/rooms-overview**").as("rooms_overview_api");
 	cy.intercept("**/videoconference/event/**").as("videoconference_api");
 	cy.intercept("**/news/new").as("news_new_api");
-	cy.intercept("**/courses/**").as("courses_api");
 	cy.intercept("**/administration/**").as("administration_api");
 	cy.intercept("GET", "**/launch").as("toolLaunch_api");
 	cy.intercept("PATCH", "**/api/v3/file/**").as("renameFile");

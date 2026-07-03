@@ -832,7 +832,7 @@ Given(
 );
 
     // ########################################
-	// delete this method before merging into main
+	// delete these method before merging into main
 Given(
 	"a course with name {string} exists with {string} as student",
 	(courseName, studentName) => {
@@ -852,7 +852,6 @@ Given(
 Given("a class name {string} is created {int} times", (classPrefix, count) => {
 	management.openAdministrationInMenu();
 	classManagement.clickOnClassInAdministrationSubMenu();
-	// classManagement.showAllClassesInTable();
 
 	for (let i = 1; i <= count; i++) {
 		const className = `${classPrefix}${i}`;
@@ -869,8 +868,17 @@ Given("a class name {string} is created {int} times", (classPrefix, count) => {
 				classManagement.enterCustomClassName(className);
 				classManagement.clickOnCheckBoxMaintainSchoolYearAssignment();
 				classManagement.clickAddClassButton();
-				// classManagement.showAllClassesInTable();
 			});
 		});
 	}
+});
+
+// ########################################
+// not delete these method before merging into main
+
+Given("all classes with prefix {string} are deleted", (classPrefix) => {
+	management.openAdministrationInMenu();
+	classManagement.clickOnClassInAdministrationSubMenu();
+	classManagement.showAllClassesInTable();
+	classManagement.deleteAllClassesWithPrefix(classPrefix);
 });

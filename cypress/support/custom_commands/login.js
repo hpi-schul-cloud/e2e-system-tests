@@ -26,7 +26,7 @@ Cypress.Commands.add("login", (username, environment) => {
 				? await loginViaSchoolApi(username, environment)
 				: loginWithoutSchoolApi(username, environment);
 
-			cy.visit(`${targetDomain}/dashboard`);
+			cy.visit(`${targetDomain}dashboard`);
 			cy.url().should("contain", "/dashboard");
 			cy.get(initials).click();
 			cy.get(languageSelection).click();
@@ -41,5 +41,5 @@ Cypress.Commands.add("login", (username, environment) => {
 		}
 	);
 	// cy.visit("/dashboard");
-	cy.visit(`${targetDomain}/dashboard`);
+	cy.visit(`${targetDomain}dashboard`);
 });
