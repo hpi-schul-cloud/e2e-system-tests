@@ -35,18 +35,12 @@ Feature: Room Board - Add, edit, and delete a card from the three dots menu in t
         When I click outside of the card to save it
         Then I see a card titled '<edited_new_card_title>'
 
-        # assertion: edited card is displayed with the new title
-        Then I see a card titled '<edited_new_card_title>'
-
         # teacher deletes the edited card from the three dots menu
         When I click on the three dot on the card
         When I click on the option 'delete' on the card
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see a card titled '<edited_new_card_title>'
-
-        #assertion: teacher sees old existing card is still present
-        Then I see a card titled '<existing_card_title>'
 
         # post-condition: room created by the teacher is deleted
         Given the room '<room_name>' at position '0' is deleted

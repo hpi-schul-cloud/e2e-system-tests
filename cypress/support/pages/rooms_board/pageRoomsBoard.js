@@ -173,8 +173,11 @@ class RoomBoards {
 
 	verifyCardTitleInBoard(cardTitle) {
 		cy.get(RoomBoards.#inputCardTitle)
-			.should("be.visible")
-			.and("contain.text", cardTitle);
+			.filter(":visible")
+			.should(($titles) => {
+				const cardTitles = [...$titles].map((title) => title.textContent.trim());
+				expect(cardTitles).to.include(cardTitle);
+			});
 	}
 
 	verifyCardTitleNotInBoard(cardTitle) {
@@ -391,7 +394,7 @@ class RoomBoards {
 			.filter(":visible")
 			.find("textarea, input")
 			.first()
-			.click()
+			.clear()
 			.type(cardTitle);
 	}
 
