@@ -11,6 +11,13 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When(
+	"I select two rooms {string} and {string} in the board import drop-down list",
+	(roomName1, roomName2) => {
+		roomBoards.selectTwoRoomsForBoardImport(roomName1, roomName2);
+	}
+);
+
 When("I click on the button Link in the success alert message", () => {
 	roomBoards.clickAlertMessageLinkButton();
 });

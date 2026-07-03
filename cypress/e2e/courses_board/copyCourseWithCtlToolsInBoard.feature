@@ -60,8 +60,6 @@ Feature: Course Board - Copy course with a board which has CTL tools
         Then I see an external tool element with tool '<ctl_tool_scope_context>'
 
         # pre-condition: teacher adds a tool with optional protected parameter
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
@@ -71,8 +69,6 @@ Feature: Course Board - Copy course with a board which has CTL tools
         Then I see an external tool element with tool '<ctl_tool_optional_protected_param>'
 
         # pre-condition: teacher adds a tool with required parameter
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_protected_param>' from available tools
@@ -152,8 +148,6 @@ Feature: Course Board - Copy course with a board which has CTL tools
         When I select '<param_required_protected_value>' in required protected custom parameter selection
         When I click on button Add in the modal to add an external tool
         Then I see external tool element with tool '<ctl_tool_scope_context>' is not marked as incomplete
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on three dot menu of external tool element '<ctl_tool_optional_protected_param>'
         When I click the edit button in three dot menu on the element
         Then I see tool '<ctl_tool_optional_protected_param>' is selected

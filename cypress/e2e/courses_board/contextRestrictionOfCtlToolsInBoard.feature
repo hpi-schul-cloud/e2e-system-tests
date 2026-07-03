@@ -55,8 +55,6 @@ Feature: Course Board - Restrict CTL tools to context board-element
         Then I see an external tool element with tool '<ctl_tool_restriction_board_element>'
 
         # teacher adds a tool with all context restrictions
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_restriction_all>' from available tools
@@ -65,8 +63,6 @@ Feature: Course Board - Restrict CTL tools to context board-element
         Then I see an external tool element with tool '<ctl_tool_restriction_all>'
 
         # teacher adds a tool without any context restriction
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_1>' from available tools
@@ -75,8 +71,6 @@ Feature: Course Board - Restrict CTL tools to context board-element
         Then I see an external tool element with tool '<ctl_tool_1>'
 
         # teacher tries to add a preferred tool with context restriction course
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         Then I do not see preferred tool '<ctl_tool_preferred_restriction_course>' in the menu
 

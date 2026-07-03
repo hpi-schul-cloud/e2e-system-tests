@@ -81,8 +81,6 @@ Feature: Course - Teacher can share a course with CTL tools
         Then I see an external tool element with tool '<ctl_tool_scope_context>'
 
         # pre-condition: teacher adds a tool with optional protected parameter
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_optional_protected_param>' from available tools
@@ -92,8 +90,6 @@ Feature: Course - Teacher can share a course with CTL tools
         Then I see an external tool element with tool '<ctl_tool_optional_protected_param>'
 
         # pre-condition: teacher adds a tool with required parameter
-        When I click on three dot menu in the card
-        When I select the option Edit in three dot menu on the card
         When I click on icon Plus to add content into card
         When I select external tools from the element selection dialog box
         When I select the tool '<ctl_tool_protected_param>' from available tools

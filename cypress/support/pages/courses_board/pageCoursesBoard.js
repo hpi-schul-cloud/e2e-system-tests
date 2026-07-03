@@ -386,6 +386,8 @@ class Board {
 
 	launchTool(toolName, toolURL) {
 		const launchedTool = { toolName: toolName, isLaunched: false };
+		// exit card edit mode so the external tool link is clickable
+		this.clickOutsideTheCardToSaveTheCard();
 		cy.window().then((win) => {
 			cy.stub(win, "open")
 				.as("openStub")
