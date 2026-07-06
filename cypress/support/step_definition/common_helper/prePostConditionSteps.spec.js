@@ -149,6 +149,7 @@ Given("the school has external tool {string}", (toolPrefix) => {
 		"CY Test Tool Context Scope",
 		"CY Test Tool Optional Protected Parameter",
 		"CY Test Tool Protected Parameter",
+		"bettermarks",
 	];
 
 	// If input contains commas, treat as explicit list; otherwise filter by prefix
