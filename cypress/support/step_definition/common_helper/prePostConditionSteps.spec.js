@@ -535,6 +535,14 @@ Given("the multi-column board has a column with a card", () => {
 	board.clickOutsideTheCardToSaveTheCard();
 });
 
+Given("the multi-column board has a column titled {string} with a card", (columnTitle) => {
+	board.clickOnAddNewColumnButton();
+	board.enterColumnTitleInCourseBoard(columnTitle);
+	board.clickOutsideTheColumnToSaveTheColumn();
+	board.clickPlusIconToAddCardInColumn();
+	board.clickOutsideTheCardToSaveTheCard();
+});
+
 Given("more cards are in the column", () => {
 	board.clickPlusIconToAddCardInColumn();
 	board.clickOutsideTheCardToSaveTheCard();

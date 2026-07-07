@@ -170,6 +170,10 @@ class RoomBoards {
 	static #alertLinkButton = '[data-testid="alert-link"]';
 	static #checkboxImportRoomList = 'input[type="checkbox"]';
 	static #listboxRoomsSelection = 'div[role="listbox"]';
+	static #importColumnDialog = '[data-testid="import-column-dialog"]';
+	static #importColumnSelectRoom = '[data-testid="import-column-select-room"]';
+	static #importColumnSelectBoard = '[data-testid="import-column-select-board"]';
+	static #importColumnDialogConfirm = '[data-testid="import-column-dialog-confirm"]';
 
 	verifyCardTitleInBoard(cardTitle) {
 		cy.get(RoomBoards.#inputCardTitle)
@@ -1880,6 +1884,76 @@ class RoomBoards {
 		cy.get(RoomBoards.#lightboxCard)
 			.find(RoomBoards.#addContentIntoCardButton)
 			.should("exist")
+			.click();
+	}
+
+	clickColumnMenuBtnAtPosition(index) {
+		cy.get(`[data-testid="column-menu-btn-${index}"]`).click();
+		cy.wait(1000);
+	}
+
+	clickOnColumnThreeDotAction(actionName) {
+		cy.get(`[data-testid="kebab-menu-action-${actionName}-column"]`)
+			.should("exist")
+			.click();
+	}
+
+	copyColumnURLInModal() {
+		cy.get(RoomBoards.#urlInputBoxCopyBoard)
+			.parent()
+			.find('input[type="text"]')
+			.should("be.visible")
+			.invoke("val")
+			.then((columnUrl) => {
+				expect(columnUrl).to.be.a("string").and.not.be.empty;
+				cy.wrap(columnUrl).as("copiedColumnURL");
+				cy.window().then((win) => {
+					if (!win.navigator.clipboard) {
+						win.navigator.clipboard = { writeText: () => Promise.resolve() };
+					}
+					cy.stub(win.navigator.clipboard, "writeText")
+						.as("writeColumnTextStub")
+						.resolves();
+				});
+				cy.get(RoomBoards.#copyLinkOption).click();
+				cy.get("@writeColumnTextStub").should("be.calledOnce");
+				cy.get("@writeColumnTextStub").should("be.calledWith", columnUrl);
+			});
+	}
+
+	openSharedColumnURL() {
+		cy.get("@copiedColumnURL").then((columnUrl) => {
+			expect(columnUrl, "shared column URL").to.be.a("string").and.not.be.empty;
+			cy.visit(columnUrl);
+			cy.wait(500);
+		});
+	}
+
+	verifyImportColumnDialogVisible() {
+		cy.get(RoomBoards.#importColumnDialog).should("be.visible");
+	}
+
+	selectRoomInImportColumnModal(roomName) {
+		cy.get(RoomBoards.#importColumnSelectRoom).should("be.visible").click();
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', roomName)
+			.click();
+	}
+
+	selectBoardInImportColumnModal(boardTitle) {
+		cy.get(RoomBoards.#importColumnSelectBoard).should("be.visible").click();
+		cy.get('div[role="listbox"]')
+			.should("be.visible")
+			.contains('[role="option"]', boardTitle)
+			.click();
+	}
+
+	clickImportButtonInImportColumnModal() {
+		cy.get(RoomBoards.#importColumnDialog)
+			.find(RoomBoards.#importColumnDialogConfirm)
+			.should("be.visible")
+			.and("not.be.disabled")
 			.click();
 	}
 }

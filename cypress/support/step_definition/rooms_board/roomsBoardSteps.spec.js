@@ -1151,3 +1151,44 @@ When("I confirm the permanent deletion", () => {
 When("I click on icon Plus in lightbox to add content into card", () => {
 	roomBoards.clickPlusIconInLightboxToAddContentIntoCard();
 });
+
+When(
+	"I click on the three dot menu in the column header at position {string}",
+	(index) => {
+		roomBoards.clickColumnMenuBtnAtPosition(index);
+	}
+);
+
+When("I select the three dot menu action {string} on the column", (actionName) => {
+	roomBoards.clickOnColumnThreeDotAction(actionName);
+});
+
+Then("I copy the column URL", () => {
+	roomBoards.copyColumnURLInModal();
+});
+
+When("I open the shared URL for column", () => {
+	roomBoards.openSharedColumnURL();
+});
+
+Then("I see the import column dialog", () => {
+	roomBoards.verifyImportColumnDialogVisible();
+});
+
+When(
+	"I select the room {string} from the room list in the column import modal",
+	(roomName) => {
+		roomBoards.selectRoomInImportColumnModal(roomName);
+	}
+);
+
+When(
+	"I select the board {string} from the board list in the column import modal",
+	(boardTitle) => {
+		roomBoards.selectBoardInImportColumnModal(boardTitle);
+	}
+);
+
+When("I click on the button Import in the import column modal", () => {
+	roomBoards.clickImportButtonInImportColumnModal();
+});
