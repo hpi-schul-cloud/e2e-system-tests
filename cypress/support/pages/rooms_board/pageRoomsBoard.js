@@ -170,7 +170,6 @@ class RoomBoards {
 	static #alertLinkButton = '[data-testid="alert-link"]';
 	static #checkboxImportRoomList = 'input[type="checkbox"]';
 	static #listboxRoomsSelection = 'div[role="listbox"]';
-	static #threeDotButtonInColumn = '[data-testid="column-menu-btn-0"]';
 	static #importColumnDialog = '[data-testid="import-column-dialog"]';
 	static #importColumnSelectRoom = '[data-testid="import-column-select-room"]';
 	static #importColumnSelectBoard = '[data-testid="import-column-select-board"]';
@@ -1849,12 +1848,14 @@ class RoomBoards {
 	}
 
 	clickColumnMenuBtnAtPosition(index) {
-		cy.get(RoomBoards.#threeDotButtonInColumn).click();
+		cy.get(`[data-testid="column-menu-btn-${index}"]`).click();
 		cy.wait(1000);
 	}
 
 	clickOnColumnThreeDotAction(actionName) {
-		cy.get(`[data-testid="kebab-menu-action-${actionName}-column"]`).should("exist").click();
+		cy.get(`[data-testid="kebab-menu-action-${actionName}-column"]`)
+			.should("exist")
+			.click();
 	}
 
 	copyColumnURLInModal() {
