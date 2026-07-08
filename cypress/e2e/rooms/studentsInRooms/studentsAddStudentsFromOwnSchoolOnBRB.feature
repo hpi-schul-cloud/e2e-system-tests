@@ -2,7 +2,7 @@
 @stable_test
 @group-E
 @prio_0_staging
-Feature: Rooms - Students can only add students from their own classes to a room on dBC or on BRB
+Feature: Rooms - Students can only add students from their own classes to a room on BRB
 
     As a student, I can only add students from my own class to a room.
 
