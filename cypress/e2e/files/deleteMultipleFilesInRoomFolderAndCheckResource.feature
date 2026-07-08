@@ -55,4 +55,4 @@ Feature: Files - Delete multiple files in folder and check file resource
         @staging_test
         Examples:
             | namespace | content_editor | room_name              | board_title             | folder_name        | image1_file_name | image2_file_name  |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | example_jpg.jpg  | testboard_jpg.jpg |
+            | nbc       | teacher1_nbc   | CypressAut Folder Room | CypressAut Folder Board | Unbenannter Ordner | example_jpg.jpg  | testboard_jpg.jpg |

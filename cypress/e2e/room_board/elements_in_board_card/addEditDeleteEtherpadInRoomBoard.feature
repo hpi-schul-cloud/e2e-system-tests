@@ -67,9 +67,9 @@ Feature: Room Board - Add, edit and delete element Etherpad in the room board
         @staging_test
         Examples:
             | teacher      | student      | namespace | room_name            | board_title            | student_name | role_name_student | example_text            | edit_example_text            |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | Kraft        | Lernend           | CypressAut example text | CypressAut edit example text |
+            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | CypressAut Board Title | Kraft        | Lernend           | CypressAut example text | CypressAut edit example text |
 
         @school_api_test
         Examples:
             | teacher      | student      | namespace | room_name            | board_title            | student_name | role_name_student | example_text            | edit_example_text            |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | CypressAut Board Title | student_1    | Lernend           | CypressAut example text | CypressAut edit example text |
+            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | CypressAut Board Title | student_1    | Lernend           | CypressAut example text | CypressAut edit example text |

@@ -47,9 +47,9 @@ Feature: Course Import - Filesize limit feature
         @staging_test
         Examples:
             | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+            | teacher1_nbc | nbc       |
 
         @school_api_test
         Examples:
             | teacher      | namespace |
-            | teacher1_dbc | dbc       |
+            | teacher1_nbc | nbc       |

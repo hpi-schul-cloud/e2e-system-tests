@@ -69,4 +69,4 @@ Feature: Room Board - Move a card from one room to another room
         @staging_test
         Examples:
             | teacher      | namespace | room_name_source       | room_name_target       | board_title_source   | board_title_target   | card_title_source      | card_title_target      | file_folder       | image_file      | column_name |
-            | teacher1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | CypressAut Target Card | Cypress Card Docs | example_jpg.jpg | Abschnitt 1 |
+            | teacher1_nbc | nbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Src | CypressAut Board Tgt | CypressAut Source Card | CypressAut Target Card | Cypress Card Docs | example_jpg.jpg | Abschnitt 1 |

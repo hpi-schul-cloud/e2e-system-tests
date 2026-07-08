@@ -70,11 +70,11 @@ Feature: Course - To add and delete a course by the teacher
         @staging_test
         Examples:
             | namespace | teacher      | fullname_teacher | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
-            | dbc       | teacher1_dbc | Karl Herzog      | student1_dbc | Herbert Kraft     | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
+            | nbc       | teacher1_nbc | Karl Herzog      | student1_nbc | Herbert Kraft     | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
 
         # Note: This can not be run against BRB/NBC because student visibility is forbidden for Teacher while creating a new course.
 
         @school_api_test
         Examples:
             | namespace | teacher      | fullname_teacher  | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
-            | dbc       | teacher1_dbc | cypress teacher_1 | student1_dbc | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
+            | nbc       | teacher1_nbc | cypress teacher_1 | student1_nbc | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |

@@ -68,4 +68,4 @@ Feature: Rooms - Share and import room with a teacher from the same school
         @staging_test
         Examples:
             | teacher1     | teacher2     | namespace | room_name_source       | room_name_target       | board_title            | copyright_data_protection | room_member_permission | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
-            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | Copyright data protection | room member permission | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
+            | teacher1_nbc | teacher2_nbc | nbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Board Title | Copyright data protection | room member permission | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |

@@ -40,4 +40,4 @@ Feature: Room Board - Copying a card with contents
         @school_api_test
         Examples:
             | namespace | teacher      | room_name                   | file_folder       | image_file      | board_title       |
-            | dbc       | teacher1_dbc | CypressAuto Room - Card Dup | Cypress Card Docs | example_jpg.jpg | CypressAuto Board |
+            | nbc       | teacher1_nbc | CypressAuto Room - Card Dup | Cypress Card Docs | example_jpg.jpg | CypressAuto Board |

@@ -73,9 +73,9 @@ Feature: Room Board - Add, edit and delete element text in the room board
         @staging_test
         Examples:
             | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
+            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
 
         @school_api_test
         Examples:
             | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
+            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |

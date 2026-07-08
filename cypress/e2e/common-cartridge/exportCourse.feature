@@ -101,10 +101,10 @@ Feature: Course Board - To export a course as common cartridge
         @staging_test
         Examples:
             | teacher      | namespace | course       | import_wait_time |
-            | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
+            | teacher1_nbc | nbc       | CC_Test_Kurs | 3                |
 
         @school_api_test
         Examples:
             | teacher      | namespace | course       | import_wait_time |
-            | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
+            | teacher1_nbc | nbc       | CC_Test_Kurs | 3                |
 

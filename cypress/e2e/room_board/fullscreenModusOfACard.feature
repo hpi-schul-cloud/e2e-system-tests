@@ -103,10 +103,10 @@ Feature: Room Board - See card content in fullscreen lightbox
         @school_api_test
         Examples:
             | namespace | editor       | viewer       | viewer_name | role_name_student | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
-            | dbc       | teacher1_dbc | student1_dbc | student_1   | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
+            | nbc       | teacher1_nbc | student1_nbc | student_1   | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
 
         @staging_test
         Examples:
             | namespace | editor       | viewer       | viewer_name | role_name_student | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
-            | dbc       | teacher1_dbc | student1_dbc | Kraft       | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
+            | nbc       | teacher1_nbc | student1_nbc | Kraft       | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
 
