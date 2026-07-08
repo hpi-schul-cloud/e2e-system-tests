@@ -175,6 +175,40 @@ class RoomBoards {
 	static #importColumnSelectBoard = '[data-testid="import-column-select-board"]';
 	static #importColumnDialogConfirm = '[data-testid="import-column-dialog-confirm"]';
 
+	verifyCardTitleInBoard(cardTitle) {
+		cy.get(RoomBoards.#inputCardTitle)
+			.filter(":visible")
+			.should(($titles) => {
+				const cardTitles = [...$titles].map((title) => title.textContent.trim());
+				expect(cardTitles).to.include(cardTitle);
+			});
+	}
+
+	verifyCardTitleNotInBoard(cardTitle) {
+		cy.get(RoomBoards.#inputCardTitle)
+			.filter(":visible")
+			.should(($titles) => {
+				const cardTitles = [...$titles].map((title) => title.textContent.trim());
+				expect(cardTitles).not.to.include(cardTitle);
+			});
+	}
+
+	verifyCardInsertedAboveCard(newCardTitle, existingCardTitle) {
+		cy.get(RoomBoards.#inputCardTitle)
+			// use all visible titles to avoid hidden elements that may be present in the DOM but not visible to the user
+			.filter(":visible")
+			.should(($titles) => {
+				const cardTitles = [...$titles].map((title) => title.textContent.trim());
+
+				expect(cardTitles).to.include(newCardTitle);
+				expect(cardTitles).to.include(existingCardTitle);
+				// a smaller index means the new card appears above the existing card.
+				expect(cardTitles.indexOf(newCardTitle)).to.be.lessThan(
+					cardTitles.indexOf(existingCardTitle)
+				);
+			});
+	}
+
 	selectTwoRoomsForBoardImport(roomName1, roomName2) {
 		cy.get(
 			`${RoomBoards.#dialogTitle}, ${RoomBoards.#selectDestinationModalTitle}`
@@ -359,7 +393,13 @@ class RoomBoards {
 	}
 
 	enterCardTitleInBoard(cardTitle) {
-		cy.get(RoomBoards.#inputCardTitle).should("be.visible").clear().type(cardTitle);
+		cy.wait(500);
+		cy.get(RoomBoards.#inputCardTitle)
+			.filter(":visible")
+			.find("textarea, input")
+			.first()
+			.clear()
+			.type(cardTitle);
 	}
 
 	selectRoomInImportModal(roomName) {

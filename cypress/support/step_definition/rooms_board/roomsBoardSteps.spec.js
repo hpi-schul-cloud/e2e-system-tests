@@ -11,6 +11,25 @@ const rooms = new Rooms();
 const globalActions = new GlobalActions();
 const globalAssertions = new GlobalAssertions();
 
+When("I enter card title {string} in the card title field", (cardTitle) => {
+	roomBoards.enterCardTitleInBoard(cardTitle);
+});
+
+Then("I see a card titled {string}", (cardTitle) => {
+	roomBoards.verifyCardTitleInBoard(cardTitle);
+});
+
+Then("I do not see a card titled {string}", (cardTitle) => {
+	roomBoards.verifyCardTitleNotInBoard(cardTitle);
+});
+
+Then(
+	"I see card {string} is inserted above card {string}",
+	(newCardTitle, existingCardTitle) => {
+		roomBoards.verifyCardInsertedAboveCard(newCardTitle, existingCardTitle);
+	}
+);
+
 When(
 	"I select two rooms {string} and {string} in the board import drop-down list",
 	(roomName1, roomName2) => {
