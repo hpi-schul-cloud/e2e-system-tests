@@ -74,8 +74,6 @@ Feature: Course - To add and delete a course by the teacher
             | admin      | namespace | teacher      | fullname_teacher | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
             | admin1_nbc | nbc       | teacher1_nbc | Karl Herzog      | student1_nbc | Herbert Kraft     | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
 
-        # Note: This can not be run against BRB/NBC because student visibility is forbidden for Teacher while creating a new course.
-
         @school_api_test
         Examples:
             | admin      | namespace | teacher      | fullname_teacher  | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
