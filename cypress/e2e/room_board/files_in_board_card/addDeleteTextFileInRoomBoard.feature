@@ -9,7 +9,9 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
 
     Scenario Outline: Upload, download and delete docx file in the room board, including pre & post conditions
 
-        # pre-condition: creating accounts
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -100,10 +102,10 @@ Feature: Room Board - Upload, download and delete docx file type in the Room Boa
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | docx_file_name   | docx_caption_text         | docx_caption_text_rename         | error_message               | docx_file_name_rename    | file_name_field | caption_field |
-            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample-docx.docx | CypressAut docx test file | CypressAut docx test file rename | Bitte fülle dieses Feld aus | sample-docx-renamed.docx | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | docx_file_name   | docx_caption_text         | docx_caption_text_rename         | error_message               | docx_file_name_rename    | file_name_field | caption_field |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample-docx.docx | CypressAut docx test file | CypressAut docx test file rename | Bitte fülle dieses Feld aus | sample-docx-renamed.docx | Name            | Caption       |
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | docx_file_name   | docx_caption_text         | docx_caption_text_rename         | error_message               | docx_file_name_rename    | file_name_field | caption_field |
-            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample-docx.docx | CypressAut docx test file | CypressAut docx test file rename | Bitte fülle dieses Feld aus | sample-docx-renamed.docx | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | docx_file_name   | docx_caption_text         | docx_caption_text_rename         | error_message               | docx_file_name_rename    | file_name_field | caption_field |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample-docx.docx | CypressAut docx test file | CypressAut docx test file rename | Bitte fülle dieses Feld aus | sample-docx-renamed.docx | Name            | Caption       |

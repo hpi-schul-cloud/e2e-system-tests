@@ -10,8 +10,10 @@ Feature: Room Board - See card content in fullscreen lightbox
 
     Scenario Outline: Open card in fullscreen lightbox and switch between view and edit modes
 
-        # precondition: Room with board and card, user with edit or view rights
+        # precondition: Room with board and card, user with edit or view rights, student visibility for teachers in school management is enabled
         Given I am logged in as a '<viewer>' at '<namespace>'
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<editor>' at '<namespace>'
         Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
         Given '<viewer_name>' added in the room '<room_name>' at position '0' with role '<role_name_student>' and default read permission
@@ -102,11 +104,11 @@ Feature: Room Board - See card content in fullscreen lightbox
 
         @school_api_test
         Examples:
-            | namespace | editor       | viewer       | viewer_name | role_name_student | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
-            | nbc       | teacher1_nbc | student1_nbc | student_1   | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
+            | namespace | admin      | editor       | viewer       | viewer_name | role_name_student | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | student_1   | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
 
         @staging_test
         Examples:
-            | namespace | editor       | viewer       | viewer_name | role_name_student | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
-            | nbc       | teacher1_nbc | student1_nbc | Kraft       | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
+            | namespace | admin      | editor       | viewer       | viewer_name | role_name_student | room_name                             | file_folder       | file_1          | file_2                   | file_3         | board_title       |
+            | nbc       | admin1_nbc | teacher1_nbc | student1_nbc | Kraft       | Lernend           | CypressAuto Room - Card in Fullscreen | Cypress Card Docs | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample-pdf.pdf | CypressAuto Board |
 

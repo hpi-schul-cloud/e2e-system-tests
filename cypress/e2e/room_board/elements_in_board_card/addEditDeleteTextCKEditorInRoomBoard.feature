@@ -9,7 +9,9 @@ Feature: Room Board - Add, edit and delete element text in the room board
 
     Scenario Outline: Add, edit and delete element Text in the room the room board, including pre & post conditions
 
-        # pre-condition: creating accounts
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -72,10 +74,10 @@ Feature: Room Board - Add, edit and delete element text in the room board
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
-            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
-            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_text            | edit_example_text            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut example text | CypressAut edit example text |

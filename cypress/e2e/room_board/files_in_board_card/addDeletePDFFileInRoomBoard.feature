@@ -9,7 +9,9 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
 
     Scenario Outline: Upload, download and delete pdf file in the room board, including pre & post conditions
 
-        # pre-condition: creating accounts
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -100,10 +102,10 @@ Feature: Room Board - Upload, download and delete pdf file type in the Room Boar
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
-            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
-            | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |

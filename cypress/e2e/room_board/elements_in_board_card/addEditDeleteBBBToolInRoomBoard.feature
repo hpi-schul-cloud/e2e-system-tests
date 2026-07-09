@@ -14,7 +14,8 @@ Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # pre-condition: admin enable the video conference in school settings page
+        # pre-condition: admin enables student visibility and the video conference in school settings page
+        Given student visibility for teachers in school management is 'enabled'
         Given admin enables video conference for the school in the school settings page
 
         # pre-condition: room and boards are existing
