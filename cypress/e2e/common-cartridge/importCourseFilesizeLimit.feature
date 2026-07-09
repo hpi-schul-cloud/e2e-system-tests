@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
 @prio_0_staging
 Feature: Course Import - Filesize limit feature
 
@@ -49,7 +48,3 @@ Feature: Course Import - Filesize limit feature
             | teacher      | namespace |
             | teacher1_dbc | dbc       |
 
-        @school_api_test
-        Examples:
-            | teacher      | namespace |
-            | teacher1_dbc | dbc       |

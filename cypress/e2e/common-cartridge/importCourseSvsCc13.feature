@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
 @prio_0_staging
 Feature: Course Board - To import a course from common cartridge 1.3
 
@@ -99,7 +98,3 @@ Feature: Course Board - To import a course from common cartridge 1.3
             | teacher      | namespace | import_wait_time |
             | teacher1_dbc | dbc       | 3                |
 
-        @school_api_test
-        Examples:
-            | teacher      | namespace | import_wait_time |
-            | teacher1_dbc | dbc       | 3                |
