@@ -372,9 +372,9 @@ class Tasks {
 			day: "2-digit",
 			month: "2-digit",
 		});
-		cy.get(Tasks.#visibilityStartDateInput).type(
-			`{selectAll}${startDateText}${visibilityStartTime}`
-		);
+		cy.get(Tasks.#visibilityStartDateInput)
+			.should("be.visible")
+			.type(`{selectAll}${startDateText}${visibilityStartTime}`);
 	}
 
 	setVisibilityDueDate(visibilityDueDate, visibilityDueTime) {

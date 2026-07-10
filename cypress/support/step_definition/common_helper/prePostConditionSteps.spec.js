@@ -471,7 +471,7 @@ Given(
 		courses.clickOnCreateCourseFAB();
 		courses.fillCourseCreationForm(courseName);
 		courses.selectCourseColour();
-		// courses.selectTeacherInCourseCreatePage(teacherName);
+		courses.selectTeacherInCourseCreatePage(teacherName);
 		courses.clickOnNextStepsBtnAfterEnteringCourseDetails();
 		courses.selectStudentsInCourseCreatePage(studentName);
 		courses.clickOnNextStepButtonOnCourseParticipationDetail();
