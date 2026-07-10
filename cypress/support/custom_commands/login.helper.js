@@ -222,7 +222,7 @@ const fillLoginForm = (username, password) => {
 	);
 };
 
-const studentFirstLogin = (environment) => {
+const studentFirstLogin = () => {
 	Cypress.env("password", Cypress.env("SET_NEW_PWD_BY_STUDENT"));
 	cy.get(studentAgeSelectRadioBtn).check();
 	cy.get(nextButtonAfterAgeSelection).click();
@@ -230,21 +230,19 @@ const studentFirstLogin = (environment) => {
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(datePickerSelectorForDOB).type("2000-03-21");
 	cy.get(nextButtonOnFirstLoginPages).click();
-	if (environment === "dbc") {
-		cy.get(privacyConsentCheckboxDBC).check();
-		cy.get(termsOfUseCheckboxDBC).check();
-		cy.get(nextButtonOnFirstLoginPages).click();
-	}
 	cy.get(studentUpdatePassword).type(env["password"], { log: false });
 	cy.get(studentConfirmPassword).type(env["password"], { log: false });
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
 
-const nonStudentUsersFirstLogin = (environment) => {
+const nonStudentUsersFirstLogin = (environment, username) => {
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(nextButtonOnFirstLoginPages).click();
-	if (environment === "dbc") {
+	if (
+		(environment === "brb" || environment === "nbc") &&
+		username.includes("externalPerson")
+	) {
 		cy.get(privacyConsentCheckboxDBC).check();
 		cy.get(termsOfUseCheckboxDBC).check();
 		cy.get(nextButtonOnFirstLoginPages).click();
@@ -296,8 +294,8 @@ export const loginViaSchoolApi = async (username, environment) => {
 
 			fillLoginForm(env["username"], env["password"]);
 			username.includes("student")
-				? studentFirstLogin(environment)
-				: nonStudentUsersFirstLogin(environment);
+				? studentFirstLogin()
+				: nonStudentUsersFirstLogin(environment, username);
 		});
 	} catch (error) {
 		console.error("Error in loginViaSchoolApi:", error);
