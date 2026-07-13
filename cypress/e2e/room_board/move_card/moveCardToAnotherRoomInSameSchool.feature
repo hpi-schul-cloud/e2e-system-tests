@@ -2,7 +2,7 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
+@prio_0_staging
 Feature: Room Board - Move a card from one room to another room
 
     As a teacher,
