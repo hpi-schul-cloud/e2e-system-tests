@@ -40,7 +40,7 @@ class Account {
 	}
 
 	enterUpdatedEmailAfterSavingInAccountSettings() {
-		// Retrieve and use the same new email for the login after saving chnages in the account settings in the method enterNewEmailOnUserSettingsPage().
+		// Retrieve and use the same new email for the login after saving changes in the account settings in the method enterNewEmailOnUserSettingsPage().
 		cy.get("@newEmail").then((newEmail) => {
 			cy.get("body").then((body) => {
 				if (body.find(Account.#buttonLoginViaEmailNbc).length) {
@@ -48,7 +48,7 @@ class Account {
 					cy.get(Account.#buttonLoginViaEmailNbc).click();
 					cy.get(Account.#inputBoxUserEmailOnLoginPage).type(newEmail);
 				} else {
-					// For dBC/BRB
+					// For BRB
 					cy.get(Account.#inputBoxUserEmailOnLoginPage).type(newEmail);
 				}
 			});

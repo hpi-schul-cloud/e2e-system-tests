@@ -860,7 +860,7 @@ class Management {
 					cy.get(Management.#buttonLoginViaEmailNbc).click();
 					cy.get(Management.#inputBoxUserEmailOnLoginPage).type(uniqueEmail);
 				} else {
-					// For dBC/BRB
+					// For BRB
 					cy.get(Management.#inputBoxUserEmailOnLoginPage).type(uniqueEmail);
 				}
 			});

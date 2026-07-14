@@ -33,10 +33,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       cypress_brb_staging: ${{ steps.set_variables.outputs.cypress_brb_staging }}
-      cypress_dbc_staging: ${{ steps.set_variables.outputs.cypress_dbc_staging }}
       cypress_nbc_staging: ${{ steps.set_variables.outputs.cypress_nbc_staging }}
       cypress_brb_dev: ${{ steps.set_variables.outputs.cypress_brb_dev }}
-      cypress_dbc_dev: ${{ steps.set_variables.outputs.cypress_dbc_dev }}
       cypress_nbc_dev: ${{ steps.set_variables.outputs.cypress_nbc_dev }}
       all_tests_tag: ${{ steps.set_variables.outputs.all_tests_tag }}
       pr_tests_tag: ${{ steps.set_variables.outputs.pr_tests_tag }}
@@ -58,21 +56,17 @@ jobs:
 
           # DEV URLs (branch-based)
           brb_dev="https://${branch}.brb.dbildungscloud.dev/"
-          dbc_dev="https://${branch}.dbc.dbildungscloud.dev/"
           nbc_dev="https://${branch}.nbc.dbildungscloud.dev/"
 
           # STAGING URLs (fixed)
           brb_staging="https://staging.brandenburg.dbildungscloud.org/"
-          dbc_staging="https://staging.dbildungscloud.org/"
           nbc_staging="https://staging.niedersachsen.dbildungscloud.org/"
 
           # Export URLs
           echo "cypress_brb_dev=$brb_dev" >> $GITHUB_OUTPUT
-          echo "cypress_dbc_dev=$dbc_dev" >> $GITHUB_OUTPUT
           echo "cypress_nbc_dev=$nbc_dev" >> $GITHUB_OUTPUT
 
           echo "cypress_brb_staging=$brb_staging" >> $GITHUB_OUTPUT
-          echo "cypress_dbc_staging=$dbc_staging" >> $GITHUB_OUTPUT
           echo "cypress_nbc_staging=$nbc_staging" >> $GITHUB_OUTPUT
 
           # Default Tags
@@ -120,7 +114,6 @@ jobs:
             browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ matrix.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.dev_base_tag, matrix.group) }}
@@ -152,7 +145,6 @@ jobs:
             browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ matrix.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.pr_tests_tag, matrix.group) }}
@@ -168,7 +160,6 @@ jobs:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ inputs.browser}}
       tag: '"${{ needs.e2e-system-tests.outputs.pre_check_tag }}"'
@@ -184,7 +175,6 @@ jobs:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ inputs.browser }}
       tag: '"${{ needs.e2e-system-tests.outputs.only_tagged_tag }}"'
@@ -217,7 +207,6 @@ jobs:
             browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_staging }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_staging }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_staging }}
       browser: ${{ matrix.browser }}
       tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
@@ -239,7 +228,6 @@ jobs:
             browser: ${{ inputs.browser }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
       browser: ${{ matrix.browser }}
       tag: ${{ format('"{0}"',needs.e2e-system-tests.outputs.dev_base_tag) }}
