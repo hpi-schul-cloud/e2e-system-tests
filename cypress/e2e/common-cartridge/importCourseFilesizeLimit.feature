@@ -44,11 +44,7 @@ Feature: Course Import - Filesize limit feature
         Then I click cancel in the import dialog
 
         @staging_test
-        Examples:
-            | teacher      | namespace |
-            | teacher1_nbc | nbc       |
-
         @school_api_test
         Examples:
             | teacher      | namespace |
-            | teacher1_nbc | nbc       |
+            | teacher1_dbc | dbc       |
