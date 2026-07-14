@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
 @prio_0_staging
 Feature: Course Board - To import a course from common cartridge 1.1
 

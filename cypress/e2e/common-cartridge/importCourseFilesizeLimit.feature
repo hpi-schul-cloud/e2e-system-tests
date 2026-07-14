@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
 @prio_0_staging
 Feature: Course Import - Filesize limit feature
 

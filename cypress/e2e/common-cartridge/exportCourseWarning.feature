@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
 @prio_0_staging
 Feature: Course Board - To export a course as common cartridge and show a warning when 1.1.0 is selected
 
