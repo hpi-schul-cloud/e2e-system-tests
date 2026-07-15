@@ -51,9 +51,9 @@ Feature:  Class Management - To create, edit and delete class on BRB
         @staging_test
         Examples:
             | admin      | namespace | teacher      | student      | school_year | custom_class_name          | edit_custom_class_name            | number_of_students | fullname_teacher | fullname_student |
-            | admin1_nbc | brb       | teacher1_brb | student1_brb | 2025/26     | CypressAut Test Class Name | CypressAut Test Class Name Edited | 1                  | Karl Herzog      | Herbert Kraft    |
+            | admin1_brb | brb       | teacher1_brb | student1_brb | 2025/26     | CypressAut Test Class Name | CypressAut Test Class Name Edited | 1                  | Karl Herzog      | Herbert Kraft    |
 
         @school_api_test
         Examples:
             | admin      | namespace | teacher      | student      | school_year | custom_class_name          | edit_custom_class_name            | number_of_students | fullname_teacher  | fullname_student  |
-            | admin1_nbc | brb       | teacher1_brb | student1_brb | 2025/26     | CypressAut Test Class Name | CypressAut Test Class Name Edited | 1                  | cypress teacher_1 | cypress student_1 |
+            | admin1_brb | brb       | teacher1_brb | student1_brb | 2025/26     | CypressAut Test Class Name | CypressAut Test Class Name Edited | 1                  | cypress teacher_1 | cypress student_1 |
