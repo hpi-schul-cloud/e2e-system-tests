@@ -636,11 +636,11 @@ class RoomBoards {
 			.and("have.attr", "href", expectedURL);
 	}
 
-	verifyEmptyElementInLinkElement() {
+	verifyEmptyLinkElement() {
 		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
 	}
 
-	verifyEmptyElementInLinkElementIsNotVisible() {
+	verifyEmptyLinkElementIsNotVisible() {
 		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
 	}
 
@@ -663,6 +663,14 @@ class RoomBoards {
 
 	seeH5PElementInRoomBoard(title) {
 		cy.get(RoomBoards.#H5PElementSelector).should("exist").should("contain", title);
+	}
+
+	verifyEmptyH5PElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyH5PElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
 	}
 
 	verifyH5PElementIsNotVisible() {

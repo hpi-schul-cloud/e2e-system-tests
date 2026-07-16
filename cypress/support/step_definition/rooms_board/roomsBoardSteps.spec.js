@@ -307,7 +307,7 @@ Then("I see the empty link element", () => {
 });
 
 Then("I do not see the empty link element", () => {
-	roomBoards.verifyEmptyElementInLinkElementIsNotVisible();
+	roomBoards.verifyEmptyLinkElementIsNotVisible();
 });
 
 Then("I verify the element Link is clickable", () => {
@@ -324,6 +324,14 @@ Then("I verify the element Etherpad is clickable", () => {
 
 Then("I see the element H5P {string} in the card", (title) => {
 	roomBoards.seeH5PElementInRoomBoard(title);
+});
+
+Then("I see the empty H5P element", () => {
+	roomBoards.verifyEmptyH5PElement();
+});
+
+Then("I do not see the empty H5P element", () => {
+	roomBoards.verifyEmptyH5PElementIsNotVisible();
 });
 
 When("I click on the three dot in the element Etherpad", () => {
