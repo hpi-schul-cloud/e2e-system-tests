@@ -94,11 +94,11 @@ Feature: Room Board - Collabora full text file access (add, edit, delete) with e
         @school_api_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   | file_name_field | caption_field |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx | Name            | Caption       |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx | Name            | Caption       |
 
         @staging_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | docx_file_name   | text_1             | text_2             | docx_caption_text       | docx_caption_text_rename        | error_message               | docx_file_name_rename   | file_name_field | caption_field |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx | Name            | Caption       |
+            | nbc       | teacher1_nbc | teacher2_nbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-docx.docx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Word Caption | CypressAut Word Caption Renamed | Bitte fülle dieses Feld aus | sample-docx-rename.docx | Name            | Caption       |
 
 

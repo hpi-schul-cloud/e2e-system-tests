@@ -61,5 +61,5 @@ Feature: Room Board - Share and import a column in rooms with a teacher from the
         @school_api_test
         @staging_test
         Examples:
-            | teacher1     | teacher2     | namespace | room_name_source       | room_name_target       | board_title_source     | board_title_target     | column_title            |
-            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Column Src  | CypressAut Column Tgt  | CypressAut Column Title |
+            | teacher1     | teacher2     | namespace | room_name_source       | room_name_target       | board_title_source    | board_title_target    | column_title            |
+            | teacher1_nbc | teacher2_nbc | nbc       | CypressAut Room Name-1 | CypressAut Room Name-2 | CypressAut Column Src | CypressAut Column Tgt | CypressAut Column Title |

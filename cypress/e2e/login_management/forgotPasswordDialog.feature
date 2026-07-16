@@ -27,5 +27,4 @@ Feature: Login Management - Forgot Password Dialog Visibility Checks
         Examples:
             | namespace |
             | brb       |
-            | dbc       |
             | nbc       |

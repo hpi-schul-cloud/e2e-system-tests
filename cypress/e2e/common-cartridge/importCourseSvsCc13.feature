@@ -94,7 +94,7 @@ Feature: Course Board - To import a course from common cartridge 1.3
         Then I see the file type Image in the card
 
         @staging_test
+        @school_api_test
         Examples:
             | teacher      | namespace | import_wait_time |
             | teacher1_dbc | dbc       | 3                |
-

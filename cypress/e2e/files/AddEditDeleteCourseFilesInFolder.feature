@@ -104,7 +104,7 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         @school_api_test
         Examples:
             | teacher      | student      | fullname_teacher  | fullname_student  | namespace | admin      | course_name             | folder_name       | image_file_name | video_file_name          | audio_file_name            | folder_name_renamed       |
-            | teacher1_dbc | student1_dbc | cypress teacher_1 | cypress student_1 | dbc       | admin1_dbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |
+            | teacher1_nbc | student1_nbc | cypress teacher_1 | cypress student_1 | nbc       | admin1_nbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |
 
         @staging_test
         Examples:

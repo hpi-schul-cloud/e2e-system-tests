@@ -59,4 +59,4 @@ Feature: Topics - Teacher shares a topic to other teacher from the same school t
         @staging_test
         Examples:
             | teacher_1    | teacher_2    | namespace | fullname_teacher_1 | course_name_1          | topic_text_title_share      | topic_text_title_import        | course_name_2                   | copyright_data_protection | geogebra_info | content_etherpad |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress teacher_1  | CypressAut Math course | CypressAut Math Topic Share | CypressAut Math Topic Imported | CypressAut Math Course Imported | Copyright data protection | Geogebra      | Content etherpad |
+            | teacher1_nbc | teacher2_nbc | nbc       | cypress teacher_1  | CypressAut Math course | CypressAut Math Topic Share | CypressAut Math Topic Imported | CypressAut Math Course Imported | Copyright data protection | Geogebra      | Content etherpad |

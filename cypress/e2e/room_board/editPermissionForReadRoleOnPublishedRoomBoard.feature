@@ -87,10 +87,10 @@ Feature: Room Board - Edit permission for published room boards
         @school_api_test
         Examples:
             | admin      | teacher      | student_1    | student_2    | namespace | room_name              | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role | editable_by_read_role |
-            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | student_1      | student_2      | Lernend   | noneditable               | editable              |
+            | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | student_1      | student_2      | Lernend   | noneditable               | editable              |
 
         @staging_test
         Examples:
             | admin      | teacher      | student_1    | student_2    | namespace | room_name              | board_title               | student_1_name | student_2_name | role_name | not_editable_by_read_role | editable_by_read_role |
-            | admin1_dbc | teacher1_dbc | student1_dbc | student2_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | Kraft          | Strobl         | Lernend   | noneditable               | editable              |
+            | admin1_nbc | teacher1_nbc | student1_nbc | student2_nbc | nbc       | CypressAut Room Name-1 | CypressAut Board Cy Title | Kraft          | Strobl         | Lernend   | noneditable               | editable              |
 

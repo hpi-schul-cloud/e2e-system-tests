@@ -30,9 +30,9 @@ Feature: Admin - To add and delete new users by the admin in bulk
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | number_of_users | search_email_suffix                          |
-            | dbc       | admin1_dbc | student        | 3               | original_student_admin_users@cypress-mail.de |
+            | nbc       | admin1_nbc | student        | 3               | original_student_admin_users@cypress-mail.de |
 
         @staging_test
         Examples:
             | namespace | admin      | role_to_manage | number_of_users | search_email_suffix                          |
-            | dbc       | admin1_dbc | student        | 3               | original_student_admin_users@cypress-mail.de |
+            | nbc       | admin1_nbc | student        | 3               | original_student_admin_users@cypress-mail.de |

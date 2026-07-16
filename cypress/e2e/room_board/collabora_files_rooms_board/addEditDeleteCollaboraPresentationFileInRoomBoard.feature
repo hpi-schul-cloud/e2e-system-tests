@@ -81,11 +81,11 @@ Feature: Room Board - Collabora presentation file edit access (add, edit, delete
         @school_api_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | pptx_file_name   | value_1  | value_2  | create_collabora_document | document_type_pptx   |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-pptx.pptx | Teacher1 | Teacher2 | file-with-collabora       | .pptx (Präsentation) |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-pptx.pptx | Teacher1 | Teacher2 | file-with-collabora       | .pptx (Präsentation) |
 
         @staging_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | pptx_file_name   | value_1  | value_2  | create_collabora_document | document_type_pptx   |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-pptx.pptx | Teacher1 | Teacher2 | file-with-collabora       | .pptx (Präsentation) |
+            | nbc       | teacher1_nbc | teacher2_nbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-pptx.pptx | Teacher1 | Teacher2 | file-with-collabora       | .pptx (Präsentation) |
 
 
