@@ -302,6 +302,14 @@ Then("I see the URL {string} in the element Link", (linkName) => {
 	roomBoards.verifyLinkURLInLinkElement(linkName);
 });
 
+Then("I see the empty link element", () => {
+	roomBoards.verifyEmptyElementInLinkElement();
+});
+
+Then("I do not see the empty link element", () => {
+	roomBoards.verifyEmptyElementInLinkElementIsNotVisible();
+});
+
 Then("I verify the element Link is clickable", () => {
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });

@@ -113,6 +113,7 @@ class RoomBoards {
 	static #titleOnCardElement = '[data-testid="content-element-title-slot"]';
 	static #linkInputField = '[data-testid="input-link"]';
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
+	static #emptyElementOnCard = '[data-testid="board-empty-element"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
@@ -633,6 +634,14 @@ class RoomBoards {
 		cy.get(RoomBoards.#linkElementOnCard)
 			.should("be.visible")
 			.and("have.attr", "href", expectedURL);
+	}
+
+	verifyEmptyElementInLinkElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyElementInLinkElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
 	}
 
 	verifyEtherpadIsVisibleOnCard() {
