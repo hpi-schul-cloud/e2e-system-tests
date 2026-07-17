@@ -55,7 +55,7 @@ Feature: Room Board - Add H5P learning element in the board
         When I click on the option Edit in the three dot menu on the card
         When I click on icon Plus to add content into card
         Then I select 'h5p' from the element selection dialog box
-        Then I see the element H5P '<h5p_title>' in the card
+        When I click outside of the card to save it
         Then I see the empty H5P element
 
         # student does not see empty H5P element in the multi-column board
@@ -65,6 +65,19 @@ Feature: Room Board - Add H5P learning element in the board
         When I click on the button Open on multi-column board in the room detail page
         Then I do not see the empty H5P element
 
+        # content editor deletes H5P element on board page
+        Given I am logged in as a '<content_editor>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three dot menu in the H5P element
+        When I click on the option Delete in the three dot menu
+        When I click on the button Delete in the confirmation dialog
+        Then I do not see the element H5P
+        Then I do not see the empty H5P element
+
         # post-condition: delete the room
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given the room '<room_name>' at position '0' is deleted
@@ -72,5 +85,5 @@ Feature: Room Board - Add H5P learning element in the board
         @school_api_test
         @staging_test
         Examples:
-            | namespace | content_editor | student      | room_name                    | student_name | role_name_student | board_title                       | h5p_title                |
-            | nbc       | teacher1_nbc   | student1_nbc | CypressAut Folder Room Empty | student_1    | Lernend           | CypressAut Folder Board Empty H5P | Lernelement erstellen... |
+            | content_editor | student      | namespace | room_name                 | student_name | role_name_student | board_title            |
+            | teacher1_nbc   | student1_nbc | nbc       | CypressAut H5P Room Empty | Kraft        | Lernend           | CypressAut Board Title |
