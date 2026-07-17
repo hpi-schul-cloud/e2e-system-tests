@@ -3,7 +3,6 @@
 @schedule_run
 @group-B
 @prio_0_staging
-@only
 Feature: Room Board - Add, edit, delete element Link in the room board
 
     As a teacher, I want to add, edit and delete link element in the room board, so that I can link an important resources efficiently.

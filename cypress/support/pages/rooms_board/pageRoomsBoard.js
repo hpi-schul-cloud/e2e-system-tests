@@ -36,6 +36,7 @@ class RoomBoards {
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #threeDotInLinkElement = '[data-testid="board-menu-button"]';
+	static #threeDotInUploadFileElement = '[data-testid="board-menu-button"]';
 	static #deleteOptionOnCardElementThreeDot =
 		'[data-testid="kebab-menu-action-delete"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
@@ -797,6 +798,10 @@ class RoomBoards {
 		cy.get(RoomBoards.#threeDotMenuSelector).click();
 	}
 
+	clickThreeDotMenuInUploadFileElement() {
+		cy.get(RoomBoards.#threeDotInUploadFileElement).click({ multiple: true });
+	}
+
 	downloadFileIcon() {
 		cy.get(RoomBoards.#downloadFileIconSelector).should("be.visible").click();
 	}
@@ -850,6 +855,14 @@ class RoomBoards {
 
 	verifyPdfUploaded() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyEmptyFileElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyFileElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
 	}
 
 	clickOnImageThumbnailInCard() {

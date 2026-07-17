@@ -409,6 +409,10 @@ When("I click on the three dot in the element File", () => {
 	roomBoards.clickThreeDotMenuInFileElement();
 });
 
+When("I click on the three dot in the upload file element", () => {
+	roomBoards.clickThreeDotMenuInUploadFileElement();
+});
+
 When("I click on the icon Download file", () => {
 	roomBoards.downloadFileIcon();
 });
@@ -423,6 +427,14 @@ When("I enter text in the textbox Caption {string}", (captionText) => {
 
 Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
+});
+
+Then("I see the empty file element in the card", () => {
+	roomBoards.verifyEmptyFileElement();
+});
+
+Then("I do not see the empty file element in the card", () => {
+	roomBoards.verifyEmptyFileElementIsNotVisible();
 });
 
 When("I click on the thumbnail Image in the card", () => {
