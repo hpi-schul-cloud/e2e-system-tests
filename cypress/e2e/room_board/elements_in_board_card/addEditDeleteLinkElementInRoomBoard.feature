@@ -106,9 +106,9 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.nbc.dbildungscloud.dev/ | https://main.nbc.dbildungscloud.dev/edited/ |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.brb.dbildungscloud.dev/ | https://main.brb.dbildungscloud.dev/edited/ |
 
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.nbc.dbildungscloud.dev/ | https://main.nbc.dbildungscloud.dev/edited/ |
+            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.brb.dbildungscloud.dev/ | https://main.brb.dbildungscloud.dev/edited/ |

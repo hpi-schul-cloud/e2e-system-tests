@@ -303,7 +303,7 @@ Then("I see the URL {string} in the element Link", (linkName) => {
 });
 
 Then("I see the empty link element", () => {
-	roomBoards.verifyEmptyElementInLinkElement();
+	roomBoards.verifyEmptyLinkElement();
 });
 
 Then("I do not see the empty link element", () => {
