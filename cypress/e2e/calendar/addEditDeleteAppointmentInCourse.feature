@@ -62,4 +62,4 @@ Feature: Calendar - Add, edit and delete an appointment from a course
         @staging_test
         Examples:
             | teacher      | student      | namespace | course            | weekday_1 | time_input | duration | room_name        | event_time_display | weekday_2 | time_input_edited | event_time_display_edited |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Course | Montag    | 10:00      | 60       | CypressAut Room1 | 10 Uhr             | Dienstag  | 11:00             | 11 Uhr                    |
+            | teacher1_nbc | student1_nbc | nbc       | CypressAut Course | Montag    | 10:00      | 60       | CypressAut Room1 | 10 Uhr             | Dienstag  | 11:00             | 11 Uhr                    |

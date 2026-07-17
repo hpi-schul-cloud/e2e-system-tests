@@ -51,6 +51,6 @@ Feature: Room Board - Share room board copy with files in file folder
         @school_api_test
         Examples:
             | namespace | content_editor | room_name              | second_room_name       | board_title                      | import_board_title               | folder_name           | video_file_name          | audio_file_name            | image_file_name | copyright_data_protection | content_etherpad | content_whiteboard | external_tools_info | external_tools_protected_parameter_info |
-            | dbc       | teacher1_dbc   | CypressAut Room Source | CypressAut Room Second | CypressAut Folder Board Original | CypressAut Folder Board Imported | CypressAut Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
+            | nbc       | teacher1_nbc   | CypressAut Room Source | CypressAut Room Second | CypressAut Folder Board Original | CypressAut Folder Board Imported | CypressAut Test Files | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | example_jpg.jpg | Copyright data protection | Content etherpad | Content whiteboard | External tools info | External tools protected parameter info |
 
 

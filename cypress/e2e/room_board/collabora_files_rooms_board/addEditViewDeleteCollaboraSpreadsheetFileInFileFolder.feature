@@ -64,9 +64,9 @@ Feature: Room Board - Add, edit, view and delete collabora spreadsheet file in f
         @school_api_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | folder_name        | xlsx_file_name   | value_1            | value_2            |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | Unbenannter Ordner | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | Unbenannter Ordner | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
 
         @staging_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | folder_name        | xlsx_file_name   | value_1            | value_2            |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | Unbenannter Ordner | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |
+            | nbc       | teacher1_nbc | teacher2_nbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | Unbenannter Ordner | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 |

@@ -9,7 +9,9 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
 
     Scenario Outline: Upload, download and delete image file in the room board
 
-        # pre-condition: creating accounts
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -103,10 +105,10 @@ Feature: Room Board - Upload, download and delete image file type in the Room Bo
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | student_name | role_name_student | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
-            | teacher1_dbc | student1_dbc | dbc       | Kraft        | Lernend           | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |
+            | teacher      | admin      | student      | namespace | student_name | role_name_student | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
+            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | Kraft        | Lernend           | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | student_name | role_name_student | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
-            | teacher1_dbc | student1_dbc | dbc       | student_1    | Lernend           | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |
+            | teacher      | admin      | student      | namespace | student_name | role_name_student | room_name            | board_title            | image_file_name | image_caption_text         | alternative_text          | image_caption_text_rename          | alternative_text_rename           | error_message               | image_file_name_rename | file_name_field | caption_field | alternative_text_field |
+            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | student_1    | Lernend           | CypressAut Room Name | CypressAut Board Title | example_jpg.jpg | CypressAut image test file | CypressAut image alt text | CypressAut image test file renamed | CypressAut image alt text renamed | Bitte fülle dieses Feld aus | example_jpg_rename.jpg | Name            | Caption       | Alttext                |

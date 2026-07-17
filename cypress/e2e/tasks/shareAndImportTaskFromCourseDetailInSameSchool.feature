@@ -70,4 +70,4 @@ Feature: Task - Teacher shares a task with another teacher from the same school
         @staging_test
         Examples:
             | teacher_1    | teacher_2    | namespace | course_name_source       | course_name_target       | task_title                   | new_task_title                 |
-            | teacher1_dbc | teacher2_dbc | dbc       | CypressAut Source Course | CypressAut Target Course | CypressAut Sample Task Title | CypressAut Imported Task Title |
+            | teacher1_nbc | teacher2_nbc | nbc       | CypressAut Source Course | CypressAut Target Course | CypressAut Sample Task Title | CypressAut Imported Task Title |

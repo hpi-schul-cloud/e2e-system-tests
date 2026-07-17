@@ -17,7 +17,7 @@ Feature: Login Management - Verify login functionality via wrong user data
         @staging_test
         Examples:
             | namespace |
-            | dbc       |
+            | nbc       |
 
         @unstable_test
         Scenario Outline Outline: User login with empty fields
@@ -29,7 +29,7 @@ Feature: Login Management - Verify login functionality via wrong user data
         @staging_test
         Examples:
             | namespace |
-            | dbc       |
+            | nbc       |
 
         @unstable_test
         Scenario Outline Outline: User uses invalid username and password
@@ -45,4 +45,4 @@ Feature: Login Management - Verify login functionality via wrong user data
         @staging_test
         Examples:
             | namespace |
-            | dbc       |
+            | nbc       |

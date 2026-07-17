@@ -49,4 +49,4 @@ Feature: Room Board - Add, edit, and delete a card from the three dots menu in t
         @staging_test
         Examples:
             | teacher      | namespace | room_name                     | board_title                     | existing_card_title            | new_card_title                  | edited_new_card_title            |
-            | teacher1_dbc | dbc       | CypressAut Room Name Add Card | CypressAut Board Add Card Above | CypressAut Existing Card Title | CypressAut New Card Title Above | CypressAut Edited New Card Title |
+            | teacher1_nbc | nbc       | CypressAut Room Name Add Card | CypressAut Board Add Card Above | CypressAut Existing Card Title | CypressAut New Card Title Above | CypressAut Edited New Card Title |
