@@ -97,4 +97,4 @@ Feature: Course Board - To import a course from common cartridge 1.3
         @school_api_test
         Examples:
             | teacher      | namespace | import_wait_time |
-            | teacher1_nbc | nbc       | 3                |
+            | teacher1_dbc | dbc       | 3                |
