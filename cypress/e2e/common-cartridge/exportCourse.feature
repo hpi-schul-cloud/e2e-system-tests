@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
 @prio_0_staging
 Feature: Course Board - To export a course as common cartridge
 
@@ -99,10 +98,6 @@ Feature: Course Board - To export a course as common cartridge
         Given course with name '<course>' is deleted
 
         @staging_test
-        Examples:
-            | teacher      | namespace | course       | import_wait_time |
-            | teacher1_nbc | nbc       | CC_Test_Kurs | 3                |
-
         @school_api_test
         Examples:
             | teacher      | namespace | course       | import_wait_time |

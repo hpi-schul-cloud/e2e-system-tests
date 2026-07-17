@@ -2,7 +2,6 @@
 @stable_test
 @schedule_run
 @group-E
-@prio_0_dev
 @prio_0_staging
 Feature: Course Board - To import a course from common cartridge 1.1
 
@@ -116,10 +115,6 @@ Feature: Course Board - To import a course from common cartridge 1.1
         Then I see a rich text element with pattern 'Schulcloud-Verbund mit den Verbundparteien Brandenburg, Niedersachen, Thüringen' at position '1' '0'
 
         @staging_test
-        Examples:
-            | teacher      | namespace | import_wait_time |
-            | teacher1_nbc | nbc       | 3                |
-
         @school_api_test
         Examples:
             | teacher      | namespace | import_wait_time |
