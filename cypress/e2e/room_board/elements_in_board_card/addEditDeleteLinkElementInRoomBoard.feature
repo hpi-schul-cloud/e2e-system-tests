@@ -96,14 +96,14 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.brb.dbildungscloud.dev/ | https://main.brb.dbildungscloud.dev/edited/ |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.nbc.dbildungscloud.dev/ | https://main.nbc.dbildungscloud.dev/edited/ |
 
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
-            | admin1_brb | teacher1_brb | student1_brb | brb       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.brb.dbildungscloud.dev/ | https://main.brb.dbildungscloud.dev/edited/ |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.nbc.dbildungscloud.dev/ | https://main.nbc.dbildungscloud.dev/edited/ |
 
-                Scenario Outline: Add link element without URL and verify empty element in view mode
+    Scenario Outline: Add link element without URL and verify empty element in view mode
 
         # pre-condition: creating accounts
         Given I am logged in as a '<student>' at '<namespace>'
@@ -133,6 +133,19 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         When I click on button Open to go to room '<room_name>' at position '0'
         When I click on the button Open on multi-column board in the room detail page
         Then I do not see the empty link element
+
+        # teacher deletes empty element Link in the multi-column board
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three dot in the element Link
+        When I click on the option Delete in the three dot menu
+        Then I see the dialog Confirm deletion
+        When I click on the button Delete in the confirmation dialog
+        Then I do not see the element Link
 
         # post-condition: delete the room
         Given I am logged in as a '<teacher>' at '<namespace>'
