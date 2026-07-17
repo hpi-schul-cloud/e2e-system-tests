@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @prio_0_staging
+@only
 Feature: Room Board - Add, edit, delete element Link in the room board
 
     As a teacher, I want to add, edit and delete link element in the room board, so that I can link an important resources efficiently.
@@ -146,6 +147,7 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see the element Link
+        Then I do not see the empty link element
 
         # post-condition: delete the room
         Given I am logged in as a '<teacher>' at '<namespace>'
