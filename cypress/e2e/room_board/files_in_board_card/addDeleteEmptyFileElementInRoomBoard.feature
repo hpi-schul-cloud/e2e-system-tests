@@ -60,10 +60,10 @@ Feature: Room Board - Add and delete empty file element in the Room Board
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | pdf_file_name  | pdf_caption_text         | pdf_caption_text_rename         | error_message               | pdf_file_name_rename  | file_name_field | caption_field |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample-pdf.pdf | CypressAut pdf test file | CypressAut pdf test file rename | Bitte fülle dieses Feld aus | sample-pdf-rename.pdf | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title |
