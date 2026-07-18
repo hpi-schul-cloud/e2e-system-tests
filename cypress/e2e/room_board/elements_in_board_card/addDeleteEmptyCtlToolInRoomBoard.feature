@@ -34,7 +34,7 @@ Feature: Room Board - To add and delete a empty ctl tool element in a room board
         When I click outside of the card to save it
         Then I see an empty external tool element in the card
 
-        # # student can't see the empty tool element in the room board
+        # student can't see the empty tool element in the room board
         Given I am logged in as a '<student>' at '<namespace>'
         When I go to rooms overview
         When I click on button Open to go to room '<room_name>' at position '0'
