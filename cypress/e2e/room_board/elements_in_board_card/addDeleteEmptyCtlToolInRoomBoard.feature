@@ -3,7 +3,6 @@
 @schedule_run
 @group-F
 @prio_0_staging
-@only
 Feature: Room Board - To add and delete a empty ctl tool element in a room board
 
     As a teacher, I want to add and delete an empty ctl tool element in a room board
