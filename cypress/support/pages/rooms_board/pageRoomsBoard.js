@@ -576,6 +576,18 @@ class RoomBoards {
 		cy.get(RoomBoards.#threeDotMenuSelector).click();
 	}
 
+	clickCancelButton() {
+		cy.get('[data-testid="cancel-button"]').click();
+	}
+
+	verifyEmptyExternalToolElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyExternalToolElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
+	}
+
 	selectBettermarksSettingOption() {
 		cy.get(RoomBoards.#ThreeDotEditOptionTool).click();
 	}

@@ -241,6 +241,18 @@ When("I download by clicking on the option PDF download in collabora editor", ()
 	collabora.clickCollaboraPDFDownloadOption();
 });
 
+Then("I see an empty external tool element in the card", () => {
+	roomBoards.verifyEmptyExternalToolElement();
+});
+
+Then("I do not see an empty external tool element in the card", () => {
+	roomBoards.verifyEmptyExternalToolElementIsNotVisible();
+});
+
+When("I click on the button Cancel in external tool dialog", () => {
+	roomBoards.clickCancelButton();
+});
+
 When("I click on the three dot in the element external tool bettermarks", () => {
 	roomBoards.openThreeDotMenuForExternalTool();
 });
