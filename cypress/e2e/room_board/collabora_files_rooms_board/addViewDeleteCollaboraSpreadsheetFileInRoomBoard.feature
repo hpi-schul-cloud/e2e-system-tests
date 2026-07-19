@@ -79,11 +79,11 @@ Feature: Room Board - Collabora spreadsheet file read access (add, view, delete)
         @school_api_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    |
 
         @staging_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | create_collabora_document | document_type_xlsx |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    |
+            | nbc       | teacher1_nbc | teacher2_nbc | Hande          | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | file-with-collabora       | .xlsx (Tabelle)    |
 
 

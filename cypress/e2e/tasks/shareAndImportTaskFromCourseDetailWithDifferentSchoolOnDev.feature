@@ -70,5 +70,5 @@ Feature: Task - share and import task between two teachers from different school
         @school_api_test
         Examples:
             | teacher_1    | teacher_2    | namespace | course_name_source    | course_name_target    | task_title                | new_task_title              |
-            | teacher1_dbc | teacher2_dbc | dbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
+            | teacher1_nbc | teacher2_nbc | nbc       | cypress-source Course | cypress-target Course | cypress-sample Task Title | cypress-imported Task Title |
 

@@ -37,4 +37,4 @@ Feature: Room Board - Drag and Drop Boards on the Rooms Overview Page
         @staging_test
         Examples:
             | teacher1     | namespace | room_name              | board_title_one          | board_title_two          |
-            | teacher1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Board Title-1 | CypressAut Board Title-2 |
+            | teacher1_nbc | nbc       | CypressAut Room Name-1 | CypressAut Board Title-1 | CypressAut Board Title-2 |

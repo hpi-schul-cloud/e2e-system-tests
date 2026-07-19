@@ -58,4 +58,4 @@ Feature: Login Management - Verify login functionality via password change
 
         Examples:
             | namespace |
-            | dbc       |
+            | nbc       |

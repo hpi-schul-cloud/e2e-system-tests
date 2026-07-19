@@ -90,9 +90,9 @@ Feature: Room Board - Collabora spreadsheet file type with full file access (add
         @school_api_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text        | xlsx_caption_text_rename         | error_message               | xlsx_file_name_rename   | file_name_field | caption_field |
-            | dbc       | teacher1_dbc | teacher2_dbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx | Name            | Caption       |
+            | nbc       | teacher1_nbc | teacher2_nbc | teacher_2      | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx | Name            | Caption       |
 
         @staging_test
         Examples:
             | namespace | teacher_1    | teacher_2    | teacher_2_name | teacher_2_role | room_name                 | board_title                | xlsx_file_name   | value_1            | value_2            | xlsx_caption_text        | xlsx_caption_text_rename         | error_message               | xlsx_file_name_rename   | file_name_field | caption_field |
-            | dbc       | teacher1_dbc | teacher2_dbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx | Name            | Caption       |
+            | nbc       | teacher1_nbc | teacher2_nbc | Hande          | editor         | CypressAut Collabora Room | CypressAut Collabora Board | sample-xlsx.xlsx | Collabora Teacher1 | Collabora Teacher2 | CypressAut Excel Caption | CypressAut Excel Caption Renamed | Bitte fülle dieses Feld aus | sample-xlsx-rename.xlsx | Name            | Caption       |

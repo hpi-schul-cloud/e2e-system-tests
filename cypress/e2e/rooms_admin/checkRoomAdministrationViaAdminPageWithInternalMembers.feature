@@ -88,9 +88,9 @@ Feature: Room Administration - Able to see all the rooms and in each room all de
         @school_api_test
         Examples:
             | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name                              | participant_same_school | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher | participant_same_school_owner |
-            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Internal members Room Admin | cypress-test-school-1   | Lernbegleitend    | Lernend           | student_1                       | teacher_2                       | teacher_1                     |
+            | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_nbc | nbc       | CypressAut Internal members Room Admin | cypress-test-school-1   | Lernbegleitend    | Lernend           | student_1                       | teacher_2                       | teacher_1                     |
 
         @staging_test
         Examples:
             | teacher_1    | student_1    | teacher_2    | admin_1    | namespace | room_name                              | participant_same_school     | role_name_teacher | role_name_student | participant_same_school_student | participant_same_school_teacher | participant_same_school_owner |
-            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_dbc | dbc       | CypressAut Internal members Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft                           | Lara                            | Karl                          |
+            | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_nbc | nbc       | CypressAut Internal members Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft                           | Lara                            | Karl                          |

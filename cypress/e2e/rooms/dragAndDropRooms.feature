@@ -35,4 +35,4 @@ Feature: Rooms - Drag and Drop Rooms on the Rooms Overview Page
         @staging_test
         Examples:
             | teacher1     | namespace | room_one               | room_two               |
-            | teacher1_dbc | dbc       | CypressAut Room Name-1 | CypressAut Room Name-2 |
+            | teacher1_nbc | nbc       | CypressAut Room Name-1 | CypressAut Room Name-2 |

@@ -132,4 +132,4 @@ Feature: Room Administration - Able to see all rooms and the external members ar
 # @school_api_test
 #Examples:
 #          | teacher_1    | student_1    | teacherExt_1    | studentExt_1    | adminExt_1    | namespace | room_name            | participant_external_school | participant_same_school | role_name_teacher | participant_external_school_teacher | role_name_student | participant_external_school__student | participant_same_school_student |
-#          | teacher1_dbc | student1_dbc | teacherExt1_dbc | studentExt1_dbc | adminExt1_dbc | dbc       | CypressAut Room Name | cypress-test-school-2       | cypress-test-school-1   | Lernbegleitend    | cypressExt                          | Lernend           | cypress                              | student_1                       |
+#          | teacher1_nbc | student1_nbc | teacherExt1_nbc | studentExt1_nbc | adminExt1_nbc | nbc       | CypressAut Room Name | cypress-test-school-2       | cypress-test-school-1   | Lernbegleitend    | cypressExt                          | Lernend           | cypress                              | student_1                       |

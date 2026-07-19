@@ -14,7 +14,8 @@ Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<admin>' at '<namespace>'
 
-        # pre-condition: admin enable the video conference in school settings page
+        # pre-condition: admin enables student visibility and the video conference in school settings page
+        Given student visibility for teachers in school management is 'enabled'
         Given admin enables video conference for the school in the school settings page
 
         # pre-condition: room and boards are existing
@@ -109,10 +110,10 @@ Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
         @staging_test
         Examples:
             | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title | video_conference_title_edited |
-            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut BBB Tool    | CypressAut BBB Tool Edited    |
+            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | CypressAut BBB Tool    | CypressAut BBB Tool Edited    |
 
 
         @school_api_test
         Examples:
             | teacher      | admin      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_conference_title | video_conference_title_edited |
-            | teacher1_dbc | admin1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut BBB Tool    | CypressAut BBB Tool Edited    |
+            | teacher1_nbc | admin1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | CypressAut BBB Tool    | CypressAut BBB Tool Edited    |

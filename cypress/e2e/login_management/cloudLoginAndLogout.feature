@@ -18,9 +18,6 @@ Feature: Login Management - Login of users managed by SVS
         @staging_test
         Examples:
             | namespace | user         | initials |
-            | dbc       | student1_dbc | HK       |
-            | dbc       | teacher1_dbc | KH       |
-            | dbc       | admin1_dbc   | KP       |
             | nbc       | student1_nbc | HK       |
             | nbc       | teacher1_nbc | KH       |
             | nbc       | admin1_nbc   | KP       |
@@ -31,9 +28,6 @@ Feature: Login Management - Login of users managed by SVS
         @school_api_test
         Examples:
             | namespace | user         | initials |
-            | dbc       | student1_dbc | cs       |
-            | dbc       | teacher1_dbc | ct       |
-            | dbc       | admin1_dbc   | ca       |
             | nbc       | student1_nbc | cs       |
             | nbc       | teacher1_nbc | ct       |
             | nbc       | admin1_nbc   | ca       |

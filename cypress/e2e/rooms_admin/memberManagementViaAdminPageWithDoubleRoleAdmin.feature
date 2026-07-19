@@ -101,9 +101,9 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
         @school_api_test
         Examples:
             | teacher_1    | student_1    | teacher_2    | admin_1                | namespace | room_name             | participant_school    | role_name_teacher | role_name_student | participant_student | participant_teacher_1 | participant_school_owner | participant_teacher_2 | fullname_teacher_2 |
-            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_double_role_dbc | dbc       | CypressAut Room Admin | cypress-test-school-1 | Lernbegleitend    | Lernend           | student_1           | admin_1               | teacher_1                | teacher_2             | cypress teacher_2  |
+            | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_double_role_nbc | nbc       | CypressAut Room Admin | cypress-test-school-1 | Lernbegleitend    | Lernend           | student_1           | admin_1               | teacher_1                | teacher_2             | cypress teacher_2  |
 
         @staging_test
         Examples:
             | teacher_1    | student_1    | teacher_2    | admin_1                | namespace | room_name             | participant_school          | role_name_teacher | role_name_student | participant_student | participant_teacher_1 | participant_school_owner | participant_teacher_2 | fullname_teacher_2 |
-            | teacher1_dbc | student1_dbc | teacher2_dbc | admin1_double_role_dbc | dbc       | CypressAut Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft               | watson                | Karl                     | Lara                  | Lara Hande         |
+            | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_double_role_nbc | nbc       | CypressAut Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft               | watson                | Karl                     | Lara                  | Lara Hande         |

@@ -17,7 +17,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         @staging_test
         Examples:
             | namespace | teacher        |
-            | dbc       | teacher_hc_dbc |
             | nbc       | teacher_hc_nbc |
             | brb       | teacher_hc_brb |
 
@@ -61,7 +60,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         @staging_test
         Examples:
             | namespace | student        |
-            | dbc       | student_hc_dbc |
             | nbc       | student_hc_nbc |
             | brb       | student_hc_brb |
 
@@ -107,7 +105,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         @staging_test
         Examples:
             | namespace | teacher        | student_last_name |
-            | dbc       | teacher_hc_dbc | Schmitt           |
             | nbc       | teacher_hc_nbc | Schmitt           |
             | brb       | teacher_hc_brb | Schmitt           |
 
@@ -148,7 +145,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         @staging_test
         Examples:
             | namespace | teacher        |
-            | dbc       | teacher_hc_dbc |
             | nbc       | teacher_hc_nbc |
             | brb       | teacher_hc_brb |
 
@@ -200,7 +196,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         @staging_test
         Examples:
             | namespace | teacher        | mediashelf_tool                          |
-            | dbc       | teacher_hc_dbc | learn app                                |
             | nbc       | teacher_hc_nbc | Online-Diagnose Grundschule - Mathematik |
             | brb       | teacher_hc_brb | bettermarks                              |
 
@@ -257,7 +252,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         @staging_test
         Examples:
             | namespace | admin        | external_tool                            |
-            | dbc       | admin_hc_dbc | learn app                                |
             | nbc       | admin_hc_nbc | Online-Diagnose Grundschule - Mathematik |
             | brb       | admin_hc_brb | bettermarks                              |
 
@@ -280,45 +274,8 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         @staging_test
         Examples:
             | namespace | teacher        |
-            | dbc       | teacher_hc_dbc |
             | nbc       | teacher_hc_nbc |
             | brb       | teacher_hc_brb |
-
-    Scenario Outline: teacher sees system content and legal info pages on staging / ref dbc.
-
-        Given I am logged in as a '<teacher>' at '<namespace>'
-        # next step is to load sidebar in vue
-        When I go to rooms overview
-
-        # teacher checks legal content pages
-        Then I see element with data-testid 'sidebar-imprint'
-        Then I see element with data-testid 'sidebar-termsofuse'
-        Then I see element with data-testid 'sidebar-privacypolicy'
-        Then I see element with data-testid 'sidebar-licenses'
-        When I click on element with data-testid 'sidebar-imprint'
-        Then I see legal content page title 'Impressum'
-        When I click on element with data-testid 'sidebar-licenses'
-        Then I see legal content page title 'Open-Source-Lizenzliste'
-
-        # teacher checks system pages
-        When I click on element with data-testid 'sidebar-system'
-        Then I see element with data-testid 'sidebar-system-status'
-        Then I see element with data-testid 'sidebar-system-releases'
-        Then I see element with data-testid 'sidebar-system-github'
-        Then I see element with data-testid 'sidebar-system-security'
-        When I click on element with data-testid 'sidebar-system-releases'
-        Then I see element with data-testid 'Release Notes'
-        When I click on element with data-testid 'sidebar-system-security'
-        Then I see content page title 'Sicherheit'
-
-        # teacher logout
-        When I click on the initials
-        When I logout
-
-        @staging_test
-        Examples:
-            | namespace | teacher        |
-            | dbc       | teacher_hc_dbc |
 
     Scenario Outline: teacher sees system content and legal info pages on staging / ref nbc.
 

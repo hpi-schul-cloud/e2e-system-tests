@@ -70,4 +70,4 @@ Feature: Task - share and import task between two teachers from different school
         @staging_test
         Examples:
             | teacher_1    | teacherExt_2    | namespace | course_name_source       | course_name_target       | task_title                   | new_task_title                 |
-            | teacher1_dbc | teacherExt2_dbc | dbc       | CypressAut Source Course | CypressAut Target Course | CypressAut Sample Task Title | CypressAut Imported Task Title |
+            | teacher1_nbc | teacherExt2_nbc | nbc       | CypressAut Source Course | CypressAut Target Course | CypressAut Sample Task Title | CypressAut Imported Task Title |

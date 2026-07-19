@@ -9,7 +9,9 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
 
     Scenario Outline: Upload, download and delete video & audio files in the room board
 
-        # pre-condition: creating accounts
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -166,10 +168,10 @@ Feature: Room Board - Upload, download and delete video & audio files type in th
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_file_name          | video_caption_text         | audio_file_name            | audio_caption_text         | video_file_name_renamed         | video_caption_text_renamed         | error_message               | audio_file_name_renamed | audio_caption_text_renamed         | file_name_field | caption_field |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample_video_1mb_mp4.mp4 | CypressAut video test file | sample_audio_0.4mb_mp3.mp3 | CypressAut audio test file | sample_video_1mb_mp4_rename.mp4 | CypressAut video test file renamed | Bitte fülle dieses Feld aus | sample_audio_rename.mp3 | CypressAut audio test file renamed | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_file_name          | video_caption_text         | audio_file_name            | audio_caption_text         | video_file_name_renamed         | video_caption_text_renamed         | error_message               | audio_file_name_renamed | audio_caption_text_renamed         | file_name_field | caption_field |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | sample_video_1mb_mp4.mp4 | CypressAut video test file | sample_audio_0.4mb_mp3.mp3 | CypressAut audio test file | sample_video_1mb_mp4_rename.mp4 | CypressAut video test file renamed | Bitte fülle dieses Feld aus | sample_audio_rename.mp3 | CypressAut audio test file renamed | Name            | Caption       |
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_file_name          | video_caption_text         | audio_file_name            | audio_caption_text         | video_file_name_renamed         | video_caption_text_renamed         | error_message               | audio_file_name_renamed | audio_caption_text_renamed         | file_name_field | caption_field |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample_video_1mb_mp4.mp4 | CypressAut video test file | sample_audio_0.4mb_mp3.mp3 | CypressAut audio test file | sample_video_1mb_mp4_rename.mp4 | CypressAut video test file renamed | Bitte fülle dieses Feld aus | sample_audio_rename.mp3 | CypressAut audio test file renamed | Name            | Caption       |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | video_file_name          | video_caption_text         | audio_file_name            | audio_caption_text         | video_file_name_renamed         | video_caption_text_renamed         | error_message               | audio_file_name_renamed | audio_caption_text_renamed         | file_name_field | caption_field |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | sample_video_1mb_mp4.mp4 | CypressAut video test file | sample_audio_0.4mb_mp3.mp3 | CypressAut audio test file | sample_video_1mb_mp4_rename.mp4 | CypressAut video test file renamed | Bitte fülle dieses Feld aus | sample_audio_rename.mp3 | CypressAut audio test file renamed | Name            | Caption       |

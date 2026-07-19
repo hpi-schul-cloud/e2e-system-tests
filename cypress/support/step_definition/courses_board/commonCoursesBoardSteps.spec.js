@@ -22,7 +22,6 @@ When("I select the option Edit in three dot menu on the card", () => {
 When("I select the option Copy link to card in three dot menu on the card", () => {
 	board.selectCopyLinkToCardInThreeDotMenu();
 });
-
 When("I click the edit button in three dot menu on the element", () => {
 	board.clickEditButtonInThreeDotMenu();
 });

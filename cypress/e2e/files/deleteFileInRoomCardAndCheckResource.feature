@@ -51,4 +51,4 @@ Feature: Files - Delete image file in room board and check file resource
         @staging_test
         Examples:
             | teacher      | namespace | room_name                     | board_title                         | image_file_name | alternative_text | caption_text    |
-            | teacher1_dbc | dbc       | CypressAut File Deletion Room | CypressAut File Deletion Test Board | example_jpg.jpg | Example Image    | Example Caption |
+            | teacher1_nbc | nbc       | CypressAut File Deletion Room | CypressAut File Deletion Test Board | example_jpg.jpg | Example Image    | Example Caption |

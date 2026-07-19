@@ -164,4 +164,4 @@ Feature: Room Board - Trash for file folders and restoring deleted files
         @staging_test
         Examples:
             | namespace | content_editor | room_name              | board_title             | folder_name                 | file_name                | file_size | file_name_2                | file_size_2 | file_name_3     | file_name_4      | file_name_5    |
-            | dbc       | teacher1_dbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | example_jpg.jpg | sample-docx.docx | sample-pdf.pdf |
+            | nbc       | teacher1_nbc   | CypressAut Folder Room | CypressAut Folder Board | CypressAut Test File Folder | sample_video_1mb_mp4.mp4 | 1,83 MB   | sample_audio_0.4mb_mp3.mp3 | 433,52 KB   | example_jpg.jpg | sample-docx.docx | sample-pdf.pdf |

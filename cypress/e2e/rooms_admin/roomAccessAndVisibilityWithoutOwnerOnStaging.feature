@@ -69,4 +69,4 @@ Feature: Room Administration - Visibility of rooms without an owner assigned
         @staging_test
         Examples:
             | admin_1         | student_1         | teacher_1         | teacher_2         | namespace | room_without_owner                                  |
-            | admin_1_hcs_dbc | student_1_hcs_dbc | teacher_1_hcs_dbc | teacher_2_hcs_dbc | dbc       | cypress-room-without-teacher (please do not delete) |
+            | admin_1_hcs_nbc | student_1_hcs_nbc | teacher_1_hcs_nbc | teacher_2_hcs_nbc | nbc       | cypress-room-without-teacher (please do not delete) |
