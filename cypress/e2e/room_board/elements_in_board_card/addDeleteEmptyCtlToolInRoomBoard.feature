@@ -48,8 +48,8 @@ Feature: Room Board - Add and delete an empty ctl tool element in a room board
         When I click on the button Open on multi-column board in the room detail page
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
-        When I click on three dot menu of external tool element '<ctl_tool_optional_param>'
-        When I click the delete button in three dot menu on the element
+        When I click on the three dot menu in the external tool element
+        When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
         Then I do not see an empty external tool element in the card
@@ -59,10 +59,10 @@ Feature: Room Board - Add and delete an empty ctl tool element in a room board
 
         @staging_test
         Examples:
-            | admin        | teacher      | student      | namespace | room_name                       | student_name | role_name_student | board_title            | ctl_tool_optional_param |
-            | admin1_nbc   | teacher1_nbc | student1_nbc | nbc       | CypressAut Board With Ctl Tools | Kraft        | Lernend           | CypressAut Board Title | ...                     |
+            | admin      | teacher      | student      | namespace | room_name                       | student_name | role_name_student | board_title            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Board With Ctl Tools | Kraft        | Lernend           | CypressAut Board Title |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | room_name                       | student_name | role_name_student | board_title            | ctl_tool_optional_param |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Board With Ctl Tools | student_1    | Lernend           | CypressAut Board Title |...                     |
+            | admin      | teacher      | student      | namespace | room_name                       | student_name | role_name_student | board_title            |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Board With Ctl Tools | student_1    | Lernend           | CypressAut Board Title |

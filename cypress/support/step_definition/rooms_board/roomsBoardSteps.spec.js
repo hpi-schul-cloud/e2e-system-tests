@@ -253,6 +253,10 @@ When("I click on the button Cancel in external tool dialog", () => {
 	roomBoards.clickCancelButton();
 });
 
+When("I click on the three dot menu in the external tool element", () => {
+	roomBoards.openThreeDotMenuForExternalTool();
+});
+
 When("I click on the three dot in the element external tool bettermarks", () => {
 	roomBoards.openThreeDotMenuForExternalTool();
 });
