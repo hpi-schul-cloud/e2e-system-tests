@@ -3,7 +3,7 @@
 @schedule_run
 @group-F
 @prio_0_staging
-Feature: Room Board - To add and delete a empty ctl tool element in a room board
+Feature: Room Board - Add and delete an empty ctl tool element in a room board
 
     As a teacher, I want to add and delete an empty ctl tool element in a room board
 
@@ -54,7 +54,7 @@ Feature: Room Board - To add and delete a empty ctl tool element in a room board
         When I click on the button Delete in the confirmation dialog
         Then I do not see an empty external tool element in the card
 
-        # post-condition: teacher deletes course
+        # post-condition: teacher deletes room
         Given the room '<room_name>' at position '0' is deleted
 
         @staging_test

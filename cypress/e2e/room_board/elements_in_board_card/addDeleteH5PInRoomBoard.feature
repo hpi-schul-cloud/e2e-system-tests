@@ -39,7 +39,9 @@ Feature: Room Board - Add H5P learning element in the board
 
     Scenario Outline: Content editor adds empty H5P element and student does not see the empty element
 
-        # pre-condition: creating accounts and room with board
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<content_editor>' at '<namespace>'
         Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
@@ -85,5 +87,5 @@ Feature: Room Board - Add H5P learning element in the board
         @school_api_test
         @staging_test
         Examples:
-            | content_editor | student      | namespace | room_name                 | student_name | role_name_student | board_title            |
-            | teacher1_nbc   | student1_nbc | nbc       | CypressAut H5P Room Empty | Kraft        | Lernend           | CypressAut Board Title |
+            | admin      | content_editor | student      | namespace | room_name                 | student_name | role_name_student | board_title            |
+            | admin1_nbc | teacher1_nbc   | student1_nbc | nbc       | CypressAut H5P Room Empty | Kraft        | Lernend           | CypressAut Board Title |

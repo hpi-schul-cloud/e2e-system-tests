@@ -105,7 +105,9 @@ Feature: Room Board - Add, edit, delete element Link in the room board
 
     Scenario Outline: Add link element without URL and verify empty element in view mode
 
-        # pre-condition: creating accounts
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
         Given I am logged in as a '<student>' at '<namespace>'
         Given I am logged in as a '<teacher>' at '<namespace>'
 
@@ -154,10 +156,10 @@ Feature: Room Board - Add, edit, delete element Link in the room board
 
         @staging_test
         Examples:
-            | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | Kraft        | Lernend           | CypressAut Board Title No Link Empty |
+            | admin      | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | Kraft        | Lernend           | CypressAut Board Title No Link Empty |
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
-            | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | student_1    | Lernend           | CypressAut Board Title No Link Empty |
+            | admin      | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | student_1    | Lernend           | CypressAut Board Title No Link Empty |

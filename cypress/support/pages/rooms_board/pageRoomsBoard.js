@@ -811,7 +811,9 @@ class RoomBoards {
 	}
 
 	clickThreeDotMenuInUploadFileElement() {
-		cy.get(RoomBoards.#threeDotInUploadFileElement).click();
+		cy.get(RoomBoards.#threeDotInUploadFileElement)
+			.find(RoomBoards.#globalCommonThreeDotInCardElement)
+			.click();
 	}
 
 	downloadFileIcon() {
