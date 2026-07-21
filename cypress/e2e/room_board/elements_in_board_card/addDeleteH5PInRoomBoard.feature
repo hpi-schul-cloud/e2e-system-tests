@@ -85,6 +85,10 @@ Feature: Room Board - Add H5P learning element in the board
         Given the room '<room_name>' at position '0' is deleted
 
         @school_api_test
+        Examples:
+            | admin      | content_editor | student      | namespace | room_name                 | student_name | role_name_student | board_title            |
+            | admin1_nbc | teacher1_nbc   | student1_nbc | nbc       | CypressAut H5P Room Empty | student_1    | Lernend           | CypressAut Board Title |
+
         @staging_test
         Examples:
             | admin      | content_editor | student      | namespace | room_name                 | student_name | role_name_student | board_title            |
