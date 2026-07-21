@@ -111,7 +111,6 @@ class RoomBoards {
 	static #uploadProgressMessage = '[data-testid="upload-progress"]';
 	static #dataTable = '[data-testid="data-table"]';
 	static #titleOnCardElement = '[data-testid="content-element-title-slot"]';
-	static #titleOnCardFileElement = '[data-testid="board-file-element"]';
 	static #linkInputField = '[data-testid="input-link"]';
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
@@ -1665,9 +1664,7 @@ class RoomBoards {
 		cy.window().then((win) => {
 			cy.stub(win, "open").as("windowOpen");
 		});
-		cy.get(RoomBoards.#titleOnCardFileElement)
-			.should("contain.text", fileName)
-			.click();
+		cy.get(RoomBoards.#fileElementSelector).should("contain.text", fileName).click();
 		cy.get("@windowOpen")
 			.should("have.been.called")
 			.then((stub) => {
