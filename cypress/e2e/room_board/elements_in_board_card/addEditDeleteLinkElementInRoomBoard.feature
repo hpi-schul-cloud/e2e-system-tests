@@ -102,3 +102,64 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         Examples:
             | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
             | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.nbc.dbildungscloud.dev/ | https://main.nbc.dbildungscloud.dev/edited/ |
+
+    Scenario Outline: Add link element without URL and verify empty element in view mode
+
+        # pre-condition: creating accounts, student visibility for teachers in school management is enabled
+        Given I am logged in as a '<admin>' at '<namespace>'
+        Given student visibility for teachers in school management is 'enabled'
+        Given I am logged in as a '<student>' at '<namespace>'
+        Given I am logged in as a '<teacher>' at '<namespace>'
+
+        # pre-condition: room, board and card are existing
+        Given a room named '<room_name>' with a multi-column board named '<board_title>' exists
+        Given the multi-column board has a column with a card
+        Given multi column board is published to not to be in a draft mode
+        Given '<student_name>' added in the room '<room_name>' at position '0' with role '<role_name_student>' and default read permission
+
+        # teacher adds link element without URL and saves card by entering view mode
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on icon Plus to add content into card
+        Then I see the dialog Add Element in the card
+        When I select 'link' from the element selection dialog box
+        When I click outside of the card to save it
+        Then I see the empty link element
+
+        # student does not see the empty Link element in the multi-column board
+        Given I am logged in as a '<student>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        Then I do not see the empty link element
+
+        # teacher deletes empty element Link in the multi-column board
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on the button Open on multi-column board in the room detail page
+        When I click on the three dot on the card
+        When I click on the option Edit in the three dot menu on the card
+        When I click on the three dot in the element Link
+        When I click on the option Delete in the three dot menu
+        Then I see the dialog Confirm deletion
+        When I click on the button Delete in the confirmation dialog
+        Then I do not see the element Link
+        Then I do not see the empty link element
+
+        # post-condition: delete the room
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        Given the room '<room_name>' at position '0' is deleted
+
+        @staging_test
+        Examples:
+            | admin      | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | Kraft        | Lernend           | CypressAut Board Title No Link Empty |
+
+        @school_api_test
+        Examples:
+            | admin      | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
+            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | student_1    | Lernend           | CypressAut Board Title No Link Empty |

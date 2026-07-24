@@ -36,6 +36,7 @@ class RoomBoards {
 	static #globalCommonThreeDotInCardElement = '[data-testid="board-menu-icon"]';
 	static #threeDotInBoardTitle = '[data-testid="board-menu-btn"]';
 	static #threeDotInLinkElement = '[data-testid="board-menu-button"]';
+	static #threeDotInUploadFileElement = '[data-testid="board-menu-button"]';
 	static #deleteOptionOnCardElementThreeDot =
 		'[data-testid="kebab-menu-action-delete"]';
 	static #threeDotButtonInCard = '[data-testid="card-menu-btn-0-0"]';
@@ -113,6 +114,7 @@ class RoomBoards {
 	static #titleOnCardElement = '[data-testid="content-element-title-slot"]';
 	static #linkInputField = '[data-testid="input-link"]';
 	static #linkElementOnCard = '[data-testid="board-link-element"]';
+	static #emptyElementOnCard = '[data-testid="board-empty-element"]';
 	static #multiActionMenuInHeader = '[data-testid="multi-action-menu"]';
 	static #renameInputInDialog = '[data-testid="rename-dialog-input"]';
 	static #folderTitleInCardInput = '[data-testid="folder-title-text-field-in-card"]';
@@ -574,6 +576,18 @@ class RoomBoards {
 		cy.get(RoomBoards.#threeDotMenuSelector).click();
 	}
 
+	clickCancelButton() {
+		cy.get('[data-testid="cancel-button"]').click();
+	}
+
+	verifyEmptyExternalToolElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyExternalToolElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
+	}
+
 	selectBettermarksSettingOption() {
 		cy.get(RoomBoards.#ThreeDotEditOptionTool).click();
 	}
@@ -635,6 +649,14 @@ class RoomBoards {
 			.and("have.attr", "href", expectedURL);
 	}
 
+	verifyEmptyLinkElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyLinkElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
+	}
+
 	verifyEtherpadIsVisibleOnCard() {
 		cy.get(RoomBoards.#elementEtherpadInBoard).should("exist");
 		cy.get(RoomBoards.#titleOnCardElement).should("exist");
@@ -654,6 +676,14 @@ class RoomBoards {
 
 	seeH5PElementInRoomBoard(title) {
 		cy.get(RoomBoards.#H5PElementSelector).should("exist").should("contain", title);
+	}
+
+	verifyEmptyH5PElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyH5PElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
 	}
 
 	verifyH5PElementIsNotVisible() {
@@ -780,6 +810,12 @@ class RoomBoards {
 		cy.get(RoomBoards.#threeDotMenuSelector).click();
 	}
 
+	clickThreeDotMenuInUploadFileElement() {
+		cy.get(RoomBoards.#threeDotInUploadFileElement)
+			.find(RoomBoards.#globalCommonThreeDotInCardElement)
+			.click();
+	}
+
 	downloadFileIcon() {
 		cy.get(RoomBoards.#downloadFileIconSelector).should("be.visible").click();
 	}
@@ -833,6 +869,14 @@ class RoomBoards {
 
 	verifyPdfUploaded() {
 		cy.get(RoomBoards.#titleOnCardElement).should("be.visible");
+	}
+
+	verifyEmptyFileElement() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("be.visible");
+	}
+
+	verifyEmptyFileElementIsNotVisible() {
+		cy.get(RoomBoards.#emptyElementOnCard).should("not.exist");
 	}
 
 	clickOnImageThumbnailInCard() {
