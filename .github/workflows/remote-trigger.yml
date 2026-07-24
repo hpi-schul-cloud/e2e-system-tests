@@ -15,7 +15,6 @@ jobs:
     outputs:
       cypress_brb: ${{ steps.set_target.outputs.CYPRESS_BRB }}
       cypress_nbc: ${{ steps.set_target.outputs.CYPRESS_NBC }}
-      cypress_dbc: ${{ steps.set_target.outputs.CYPRESS_DBC }}
       environment: ${{ steps.set_target.outputs.environment }}
       all_pr_tests_tag: ${{ steps.set_target.outputs.all_pr_tests_tag }}
     steps:
@@ -67,10 +66,7 @@ jobs:
           echo "CYPRESS_NBC=https://${cleaned_branch_name}.nbc.dbildungscloud.dev" >> $GITHUB_OUTPUT
           echo "Set CYPRESS_NBC=https://${cleaned_branch_name}.nbc.dbildungscloud.dev"
 
-          echo "CYPRESS_DBC=https://${cleaned_branch_name}.dbc.dbildungscloud.dev" >> $GITHUB_OUTPUT
-          echo "Set CYPRESS_DBC=https://${cleaned_branch_name}.dbc.dbildungscloud.dev"
-
-          if [[ ! $CYPRESS_BRB =~ (staging|schulportal) && ! $CYPRESS_DBC =~ (staging|schulportal) && ! $CYPRESS_NBC =~ (staging|schulportal) ]]; then
+          if [[ ! $CYPRESS_BRB =~ (staging|schulportal) && ! $CYPRESS_NBC =~ (staging|schulportal) ]]; then
               echo "environment=dev" >> $GITHUB_OUTPUT
           else
               echo "environment=ref" >> $GITHUB_OUTPUT
@@ -102,7 +98,6 @@ jobs:
 
           check_availability ${{ steps.set_target.outputs.cypress_brb }}/version
           check_availability ${{ steps.set_target.outputs.cypress_nbc }}/version
-          check_availability ${{ steps.set_target.outputs.cypress_dbc }}/version
 
   run-remote-repo-tests:
     needs: e2e-system-tests
@@ -117,7 +112,6 @@ jobs:
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
-      cypress_dbc: ${{ needs.e2e-system-tests.outputs.cypress_dbc }}
       browser: chrome
       tag: >-
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_pr_tests_tag, matrix.group ) }}

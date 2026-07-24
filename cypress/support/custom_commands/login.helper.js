@@ -14,8 +14,8 @@ const nextButtonAfterAgeSelection = "#showExistingLoginForm";
 const datePickerSelectorForDOB = '[data-testid="form-date-input-studentBirthdate"]';
 const studentUpdatePassword = '[data-testid="firstlogin_password"]';
 const studentConfirmPassword = '[data-testid="firstlogin_password_control"]';
-const privacyConsentCheckboxDBC = 'input[name="privacyConsent"]';
-const termsOfUseCheckboxDBC = 'input[name="termsOfUseConsent"]';
+const privacyConsentCheckbox = 'input[name="privacyConsent"]';
+const termsOfUseCheckbox = 'input[name="termsOfUseConsent"]';
 
 const env = Cypress.env();
 let environmentUpperCased;
@@ -68,53 +68,6 @@ export const getUserCredentials = (username) => {
 			return ["ADMIN_1_HCS_BRB_EMAIL", "ADMIN_1_HCS_BRB_PASSWORD"];
 		case "externalPerson1_brb":
 			return ["EXTERNAL_PERSON_1_BRB_EMAIL", "EXTERNAL_PERSON_1_BRB_PASSWORD"];
-
-		case "admin1_dbc":
-			return ["ADMIN_1_DBC_EMAIL", "ADMIN_1_DBC_PASSWORD"];
-		case "admin_hc_dbc":
-			return ["ADMIN_HC_DBC_EMAIL", "ADMIN_HC_DBC_PASSWORD"];
-		case "teacher1_dbc":
-			return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
-		case "admin1_double_role_dbc":
-			return ["ADMIN_1_DOUBLE_ROLE_DBC_EMAIL", "ADMIN_1_DOUBLE_ROLE_DBC_PASSWORD"];
-		case "teacher2_dbc":
-			return ["TEACHER_2_DBC_EMAIL", "TEACHER_2_DBC_PASSWORD"];
-		case "teacher_hc_dbc":
-			return ["TEACHER_HC_DBC_EMAIL", "TEACHER_HC_DBC_PASSWORD"];
-		case "student1_dbc":
-			return ["STUDENT_1_DBC_EMAIL", "STUDENT_1_DBC_PASSWORD"];
-		case "student2_dbc":
-			return ["STUDENT_2_DBC_EMAIL", "STUDENT_2_DBC_PASSWORD"];
-		case "student_hc_dbc":
-			return ["STUDENT_HC_DBC_EMAIL", "STUDENT_HC_DBC_PASSWORD"];
-		case "student_extern_dbc":
-			return ["STUDENT_DBC_EXTERN", "STUDENT_DBC_EXTERN_PASSWORD"];
-		case "student_ldap_dbc":
-			return ["STUDENT_LDAP_DBC", "STUDENT_LDAP_DBC_PASSWORD"];
-		case "teacher_ldap_dbc":
-			return ["TEACHER_LDAP_DBC", "TEACHER_LDAP_DBC_PASSWORD"];
-		case "admin_ldap_dbc":
-			return ["ADMIN_LDAP_DBC", "ADMIN_LDAP_DBC_PASSWORD"];
-		case "teacherExt1_dbc":
-			return ["TEACHER_EXT_1_DBC_EMAIL", "TEACHER_EXT_1_DBC_PASSWORD"];
-		case "adminExt1_dbc":
-			return ["ADMIN_EXT_1_DBC_EMAIL", "ADMIN_EXT_1_DBC_PASSWORD"];
-		case "teacherExt2_dbc":
-			return ["TEACHER_EXT_2_DBC_EMAIL", "TEACHER_EXT_2_DBC_PASSWORD"];
-		case "studentExt1_dbc":
-			return ["STUDENT_EXT_1_DBC_EMAIL", "STUDENT_EXT_1_DBC_PASSWORD"];
-		case "studentExt2_dbc":
-			return ["STUDENT_EXT_2_DBC_EMAIL", "STUDENT_EXT_2_DBC_PASSWORD"];
-		case "student_1_hcs_dbc":
-			return ["STUDENT_1_HCS_DBC_EMAIL", "STUDENT_1_HCS_DBC_PASSWORD"];
-		case "teacher_1_hcs_dbc":
-			return ["TEACHER_1_HCS_DBC_EMAIL", "TEACHER_1_HCS_DBC_PASSWORD"];
-		case "teacher_2_hcs_dbc":
-			return ["TEACHER_2_HCS_DBC_EMAIL", "TEACHER_2_HCS_DBC_PASSWORD"];
-		case "admin_1_hcs_dbc":
-			return ["ADMIN_1_HCS_DBC_EMAIL", "ADMIN_1_HCS_DBC_PASSWORD"];
-		case "externalPerson1_dbc":
-			return ["EXTERNAL_PERSON_1_DBC_EMAIL", "EXTERNAL_PERSON_1_DBC_PASSWORD"];
 
 		case "admin1_nbc":
 			return ["ADMIN_1_NBC_EMAIL", "ADMIN_1_NBC_PASSWORD"];
@@ -222,7 +175,7 @@ const fillLoginForm = (username, password) => {
 	);
 };
 
-const studentFirstLogin = (environment) => {
+const studentFirstLogin = () => {
 	Cypress.env("password", Cypress.env("SET_NEW_PWD_BY_STUDENT"));
 	cy.get(studentAgeSelectRadioBtn).check();
 	cy.get(nextButtonAfterAgeSelection).click();
@@ -230,23 +183,21 @@ const studentFirstLogin = (environment) => {
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(datePickerSelectorForDOB).type("2000-03-21");
 	cy.get(nextButtonOnFirstLoginPages).click();
-	if (environment === "dbc") {
-		cy.get(privacyConsentCheckboxDBC).check();
-		cy.get(termsOfUseCheckboxDBC).check();
-		cy.get(nextButtonOnFirstLoginPages).click();
-	}
 	cy.get(studentUpdatePassword).type(env["password"], { log: false });
 	cy.get(studentConfirmPassword).type(env["password"], { log: false });
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
 };
 
-const nonStudentUsersFirstLogin = (environment) => {
+const nonStudentUsersFirstLogin = (environment, username) => {
 	cy.get(nextButtonOnFirstLoginPages).click();
 	cy.get(nextButtonOnFirstLoginPages).click();
-	if (environment === "dbc") {
-		cy.get(privacyConsentCheckboxDBC).check();
-		cy.get(termsOfUseCheckboxDBC).check();
+	if (
+		(environment === "brb" || environment === "nbc") &&
+		username.includes("externalPerson")
+	) {
+		cy.get(privacyConsentCheckbox).check();
+		cy.get(termsOfUseCheckbox).check();
 		cy.get(nextButtonOnFirstLoginPages).click();
 	}
 	cy.get(skipToDashboardButtonOnFirstLoginPage).click();
@@ -296,8 +247,8 @@ export const loginViaSchoolApi = async (username, environment) => {
 
 			fillLoginForm(env["username"], env["password"]);
 			username.includes("student")
-				? studentFirstLogin(environment)
-				: nonStudentUsersFirstLogin(environment);
+				? studentFirstLogin()
+				: nonStudentUsersFirstLogin(environment, username);
 		});
 	} catch (error) {
 		console.error("Error in loginViaSchoolApi:", error);

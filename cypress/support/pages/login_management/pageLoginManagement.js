@@ -21,7 +21,6 @@ class Login_Management {
 	static #userSettingsNameInitials = '[data-testid="initials"]';
 	static #logoutBtn = '[data-testid="logout"]';
 	static #loginSubmitBtn = '[data-testid="submit-login-email"]';
-	static #openLoginButtonDBC = '[data-testid="login-btn"]';
 	static #testData = {
 		usernameText:
 			"Fugiat consectetur deserunt officia velit. Dolore laboris incididunt consequat pariatur officia.",
@@ -171,12 +170,12 @@ class Login_Management {
 	}
 
 	enterEmail() {
-		let userEmail = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_EMAIL");
+		let userEmail = Cypress.env("STUDENT_NBC_PASSWORD_CHANGE_EMAIL");
 		this.typeEmailIntoField(Login_Management.#emailInputBox, userEmail);
 	}
 
 	enterPassword() {
-		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD");
+		let userPwd = Cypress.env("STUDENT_NBC_PASSWORD_CHANGE_OLD_PWD");
 		this.typePasswordIntoField(Login_Management.#passwordField, userPwd);
 	}
 
@@ -190,7 +189,7 @@ class Login_Management {
 	}
 
 	enterCurrentPassword() {
-		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD");
+		let userPwd = Cypress.env("STUDENT_NBC_PASSWORD_CHANGE_OLD_PWD");
 		this.typePasswordIntoField(
 			Login_Management.#userSettingsCurrentPasswordField,
 			userPwd
@@ -198,7 +197,7 @@ class Login_Management {
 	}
 
 	enterNewPasswordInAllFields() {
-		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD");
+		let userPwd = Cypress.env("STUDENT_NBC_PASSWORD_CHANGE_NEW_PWD");
 		this.typePasswordIntoField(Login_Management.#userSettingsNewPasswordField, userPwd);
 		this.typePasswordIntoField(
 			Login_Management.#userSettingsNewPasswordRepeatField,
@@ -233,12 +232,12 @@ class Login_Management {
 	}
 
 	enterNewPassword() {
-		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD");
+		let userPwd = Cypress.env("STUDENT_NBC_PASSWORD_CHANGE_NEW_PWD");
 		this.typePasswordIntoField(Login_Management.#passwordField, userPwd);
 	}
 
 	enterNewPasswordInUserSettings() {
-		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_NEW_PWD");
+		let userPwd = Cypress.env("STUDENT_NBC_PASSWORD_CHANGE_NEW_PWD");
 		this.typePasswordIntoField(
 			Login_Management.#userSettingsCurrentPasswordField,
 			userPwd
@@ -246,7 +245,7 @@ class Login_Management {
 	}
 
 	enterOldPasswordInUserSettings() {
-		let userPwd = Cypress.env("STUDENT_DBC_PASSWORD_CHANGE_OLD_PWD");
+		let userPwd = Cypress.env("STUDENT_NBC_PASSWORD_CHANGE_OLD_PWD");
 		this.typePasswordIntoField(Login_Management.#userSettingsNewPasswordField, userPwd);
 		this.typePasswordIntoField(
 			Login_Management.#userSettingsNewPasswordRepeatField,
@@ -269,7 +268,6 @@ class Login_Management {
 	assertLoginFormIsVisible(namespace) {
 		const loginFormSelectorMap = {
 			nbc: Login_Management.#buttonLoginViaEmailNbc,
-			dbc: Login_Management.#openLoginButtonDBC,
 			brb: Login_Management.#loginFormSelector,
 		};
 		const selectorForLoginForm =

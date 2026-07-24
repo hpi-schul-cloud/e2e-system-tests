@@ -495,6 +495,9 @@ class Rooms {
 		cy.get(Rooms.#addParticipantSchool)
 			.type("{selectall}{backspace}")
 			.type(participantSchool);
+        cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
+		cy.get(Rooms.#dropdownOptions).contains(participantSchool).click();
+		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
 	selectParticipantSchool() {

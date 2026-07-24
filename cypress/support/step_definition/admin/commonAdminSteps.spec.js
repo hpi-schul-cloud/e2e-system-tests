@@ -555,10 +555,6 @@ When("I request a new registration pin", () => {
 	management.requestRegistrationPin();
 });
 
-When("I accept the privacy and terms of use consents", () => {
-	management.acceptingConsentOnRegistrationProcess();
-});
-
 When("I click on the button Next to proceed to the next step", () => {
 	management.clickOnNextOnRegistrationPage();
 });
