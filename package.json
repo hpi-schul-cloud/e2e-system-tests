@@ -44,7 +44,7 @@
 	},
 	"devDependencies": {
 		"@4tw/cypress-drag-drop": "^2.2.5",
-		"@badeball/cypress-cucumber-preprocessor": "^22.0.1",
+		"@badeball/cypress-cucumber-preprocessor": "^26.0.0",
 		"@cypress/webpack-preprocessor": "^5.17.0",
 		"adm-zip": "^0.5.16",
 		"axios": "^1.12.0",
