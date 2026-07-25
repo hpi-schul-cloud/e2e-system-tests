@@ -157,9 +157,9 @@ Feature: Room Board - Add, edit, delete element Link in the room board
         @staging_test
         Examples:
             | admin      | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | Kraft        | Lernend           | CypressAut Board Title No Link Empty |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name No Link | Kraft        | Lernend           | CypressAut Board Title No Link Empty |
 
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | room_name                    | student_name | role_name_student | board_title                          |
-            | admin1_dbc | teacher1_dbc | student1_dbc | dbc       | CypressAut Room Name No Link | student_1    | Lernend           | CypressAut Board Title No Link Empty |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name No Link | student_1    | Lernend           | CypressAut Board Title No Link Empty |
