@@ -1,12 +1,13 @@
 "use strict";
 
 class News {
-	static #elementTitle = '[data-testid="title_of_an_element"]';
-	static #elementHeader = '[data-testid="header-of-element"]';
+	static #elementTitle =
+		'[data-testid="news-title"], [data-testid="title_of_an_element"]';
+	static #elementHeader = '.news-card-title, [data-testid="header-of-element"]';
 	static #pageTitle = '[data-testid="news-title"]';
 	static #enDateFormat = "en-CA";
 	static #deDateFormat = "de-DE";
-	static #newsText = '[data-testid="body_of_element"]';
+	static #newsText = '[data-testid="news-content"], [data-testid="body_of_element"]';
 	static #newsOverviewNavigationButton = '[data-testid="sidebar-news"]';
 	static #createNewNews = '[data-testid="create-news-btn"]';
 	static #newsTitleInput = '[data-testid="news_title"]';
@@ -16,13 +17,14 @@ class News {
 	static #newsCreateButton = '[data-testid="btn_news_submit"]';
 	static #newsTitle = '[data-testid="news-title"]';
 	static #newsDescriptionVisible = '[data-testid="news-content"]';
-	static #newsNameOnNewsOverview = '[data-testid="title_of_an_element"]';
+	static #newsNameOnNewsOverview =
+		'[data-testid="news-title"], [data-testid="title_of_an_element"]';
 	static #newsNameOnDashboard = '[data-testid="news-title"]';
 	static #deleteNews = '[data-testid="news-delete-btn"]';
 	static #deleteNewsConfirmation = '[data-testid="confirm-dialog-confirm"]';
-	static #titlebarNewsOverviewPage = '[id="titlebar"]';
+	static #newsOverviewPageTitle = '[data-testid="news-overview-title"]';
 	//static #newsMainContent = '[id="main-content"]';
-	static #newsOverviewTabUnpublished = '[data-tab="b"]';
+	static #newsOverviewTabUnpublished = '[data-testid="unpublished-news-tab"]';
 	static #inlineCkToolbar = '[data-cke-tooltip-text^="Link"]';
 	static #newsContent = '[data-testid="news-content"]';
 	static #pageTitleLegacy = '[id="page-title"]';
@@ -51,33 +53,21 @@ class News {
 	}
 
 	doNotSeeNewsWhenNewsNotYetPublished(newsTitle) {
-		cy.get("span", { timeout: 20000 }).then(($span) => {
-			if ($span.find(News.#newsNameOnNewsOverview)) {
-				cy.contains(newsTitle).should("not.be.visible");
-			} else {
-				cy.contains(
-					"Keine aktuellen Einträge vorhanden." || "Bisher gibt es keine News."
-				).should("exist");
-			}
-		});
+		cy.contains(News.#newsNameOnNewsOverview, newsTitle, { timeout: 20000 }).should(
+			"not.exist"
+		);
 	}
 
 	seeNewsWhenNewsNotYetPublished(newsTitle) {
-		cy.get("span", { timeout: 20000 }).then(($span) => {
-			cy.contains(newsTitle).should("be.visible");
-		});
+		cy.contains(News.#newsNameOnNewsOverview, newsTitle, { timeout: 20000 }).should(
+			"be.visible"
+		);
 	}
 
 	doNotSeeNews(newsTitle) {
-		cy.get("span", { timeout: 20000 }).then(($span) => {
-			if ($span.find(News.#newsNameOnNewsOverview)) {
-				cy.contains(newsTitle).should("not.exist");
-			} else {
-				cy.contains(
-					"Keine aktuellen Einträge vorhanden." || "Bisher gibt es keine News."
-				).should("exist");
-			}
-		});
+		cy.contains(News.#newsNameOnNewsOverview, newsTitle, { timeout: 20000 }).should(
+			"not.exist"
+		);
 	}
 
 	clickOnTabUnpublishedNews() {
@@ -134,9 +124,8 @@ class News {
 	}
 
 	seeNewsCreationPage() {
-		cy.wait("@news_new_api");
 		cy.url().should("include", "/news/new");
-		cy.get(News.#newsTitleInput).should("exist");
+		cy.get(News.#newsTitleInput).should("be.visible");
 	}
 
 	clickOnAddNews() {
@@ -146,7 +135,7 @@ class News {
 	navigateToNewsOverview() {
 		cy.get(News.#newsOverviewNavigationButton).click();
 		cy.url().should("include", "/news");
-		cy.get(News.#titlebarNewsOverviewPage).should("exist");
+		cy.get(News.#newsOverviewPageTitle).should("be.visible");
 	}
 
 	seeNewsOnOverviewPage(titleOfNews, descriptionOfNews) {
