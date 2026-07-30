@@ -530,6 +530,7 @@ class Rooms {
 
 	addParticipant() {
 		cy.get(Rooms.#btnAddParticipant).click();
+		cy.wait(500);
 	}
 
 	// This method performs a specified action from the kebab menu for a given participant.
