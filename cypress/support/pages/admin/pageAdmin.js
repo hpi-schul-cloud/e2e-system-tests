@@ -123,8 +123,6 @@ class Management {
 	static #pinSuccessMessage = "div[class*='alert-success']";
 	static #adminAlertNotification = '[data-testid="alert-text"]';
 	static #nextButtonOnRegistration = "button[id='nextSection']";
-	static #checkBoxPrivacyConsentRegistration = "input[name='privacyConsent']";
-	static #checkBoxTermsOfUseConsentRegistration = "input[name='termsOfUseConsent']";
 	static #nextButtonOnRegistrationFurtherStep = "button[id='nextSection']";
 	static #nextButtonToPersonalRegistrationData = "button[id='showRegistrationForm']";
 	static #ageSelectionBox = "input[id='reg-16']";
@@ -398,13 +396,6 @@ class Management {
 
 	clickOnNextToProceedToRegistrationPinPage() {
 		cy.get(Management.#nextButtonOnRegistration).click();
-	}
-
-	acceptingConsentOnRegistrationProcess() {
-		if (Cypress.config().baseUrl.includes("dbc")) {
-			cy.get(Management.#checkBoxPrivacyConsentRegistration).click();
-			cy.get(Management.#checkBoxTermsOfUseConsentRegistration).click();
-		}
 	}
 
 	clickOnNextOnRegistrationPage() {
@@ -840,7 +831,7 @@ class Management {
 					cy.get(Management.#buttonLoginViaEmailNbc).click();
 					cy.get(Management.#inputBoxUserEmailOnLoginPage).type(uniqueEmail);
 				} else {
-					// For dBC/BRB
+					// For BRB
 					cy.get(Management.#inputBoxUserEmailOnLoginPage).type(uniqueEmail);
 				}
 			});
@@ -1432,14 +1423,11 @@ class Management {
 					return cy.wrap(false);
 				}
 
-				// check for tool in all visible rows
-				return cy
-					.get(Management.#externalToolsTable)
-					.find('[data-testid="external-tool-name"]')
-					.then(($names) => {
-						const found = [...$names].some((el) => el.textContent.trim() === toolName);
-						return cy.wrap(found);
-					});
+				// otherwise check for tool
+				return cy.get(Management.#externalToolName).then(($names) => {
+					const found = [...$names].some((el) => el.textContent.trim() === toolName);
+					return cy.wrap(found);
+				});
 			});
 	}
 

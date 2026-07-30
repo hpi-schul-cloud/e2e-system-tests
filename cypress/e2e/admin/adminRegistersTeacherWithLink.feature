@@ -36,7 +36,6 @@ Feature: Admin - Teacher registration with registration link send by admin
         Then I see my last name '<user_last_name>'
         Then I set a new password on personal data page
         When I click on the button Next to proceed to the next step
-        When I accept the privacy and terms of use consents
         Then I click on the button Next to proceed to the registration pin step
         When I request a new registration pin
         Then I retrieve the registration pin to enter it into the form for '<namespace>'

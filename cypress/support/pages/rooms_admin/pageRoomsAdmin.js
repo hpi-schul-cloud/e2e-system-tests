@@ -113,8 +113,8 @@ class RoomsAdmin {
 	}
 
 	clickOnRemoveInOptions(user) {
-		cy.get('[aria-label="' + user + ' aus Raum entfernen"]').should("be.visible");
-		cy.get('[aria-label="' + user + ' aus Raum entfernen"]').click();
+		cy.wait(500);
+		cy.get(`[aria-label="${user} aus Raum entfernen"]`).should("be.visible").click();
 	}
 }
 

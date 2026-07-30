@@ -241,6 +241,22 @@ When("I download by clicking on the option PDF download in collabora editor", ()
 	collabora.clickCollaboraPDFDownloadOption();
 });
 
+Then("I see an empty external tool element in the card", () => {
+	roomBoards.verifyEmptyExternalToolElement();
+});
+
+Then("I do not see an empty external tool element in the card", () => {
+	roomBoards.verifyEmptyExternalToolElementIsNotVisible();
+});
+
+When("I click on the button Cancel in external tool dialog", () => {
+	roomBoards.clickCancelButton();
+});
+
+When("I click on the three dot menu in the external tool element", () => {
+	roomBoards.openThreeDotMenuForExternalTool();
+});
+
 When("I click on the three dot in the element external tool bettermarks", () => {
 	roomBoards.openThreeDotMenuForExternalTool();
 });
@@ -302,6 +318,14 @@ Then("I see the URL {string} in the element Link", (linkName) => {
 	roomBoards.verifyLinkURLInLinkElement(linkName);
 });
 
+Then("I see the empty link element", () => {
+	roomBoards.verifyEmptyLinkElement();
+});
+
+Then("I do not see the empty link element", () => {
+	roomBoards.verifyEmptyLinkElementIsNotVisible();
+});
+
 Then("I verify the element Link is clickable", () => {
 	roomBoards.verifyLinkElementClickableInRoomBoard();
 });
@@ -316,6 +340,14 @@ Then("I verify the element Etherpad is clickable", () => {
 
 Then("I see the element H5P {string} in the card", (title) => {
 	roomBoards.seeH5PElementInRoomBoard(title);
+});
+
+Then("I see the empty H5P element", () => {
+	roomBoards.verifyEmptyH5PElement();
+});
+
+Then("I do not see the empty H5P element", () => {
+	roomBoards.verifyEmptyH5PElementIsNotVisible();
 });
 
 When("I click on the three dot in the element Etherpad", () => {
@@ -393,6 +425,10 @@ When("I click on the three dot in the element File", () => {
 	roomBoards.clickThreeDotMenuInFileElement();
 });
 
+When("I click on the three dot in the upload file element", () => {
+	roomBoards.clickThreeDotMenuInUploadFileElement();
+});
+
 When("I click on the icon Download file", () => {
 	roomBoards.downloadFileIcon();
 });
@@ -407,6 +443,14 @@ When("I enter text in the textbox Caption {string}", (captionText) => {
 
 Then("I see the file type PDF is uploaded in the card", () => {
 	roomBoards.verifyPdfUploaded();
+});
+
+Then("I see the empty file element in the card", () => {
+	roomBoards.verifyEmptyFileElement();
+});
+
+Then("I do not see the empty file element in the card", () => {
+	roomBoards.verifyEmptyFileElementIsNotVisible();
 });
 
 When("I click on the thumbnail Image in the card", () => {

@@ -594,6 +594,9 @@ class Rooms {
 		cy.get(Rooms.#addParticipantSchool)
 			.type("{selectall}{backspace}")
 			.type(participantSchool);
+        cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
+		cy.get(Rooms.#dropdownOptions).contains(participantSchool).click();
+		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
 
 	selectParticipantSchool() {
@@ -626,6 +629,7 @@ class Rooms {
 
 	addParticipant() {
 		cy.get(Rooms.#btnAddParticipant).click();
+		cy.wait(500);
 	}
 
 	// This method performs a specified action from the kebab menu for a given participant.
