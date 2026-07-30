@@ -36,10 +36,11 @@ Feature: Helper Test - Deletion of test data that are left from previous failed 
 
         @staging_test
         Examples:
-            | namespace | user       |
-            | brb       | admin1_brb |
-            | nbc       | admin1_nbc |
-    # | dbc       | admin1_dbc |
+            | namespace | user          |
+            | brb       | admin1_brb    |
+            | brb       | adminExt1_brb |
+            | nbc       | admin1_nbc    |
+            | nbc       | adminExt1_nbc |
 
     # # | nbc       | admin1_nbc |
     # | dbc       | teacher1_dbc |
@@ -54,10 +55,12 @@ Feature: Helper Test - Deletion of test data that are left from previous failed 
 
         @staging_test
         Examples:
-            | namespace | user       |
-            | brb       | admin1_brb |
-            # | dbc       | admin1_dbc |
-            | nbc       | admin1_nbc |
+            | namespace | user          |
+            | brb       | admin1_brb    |
+            | brb       | adminExt1_brb |
+            | nbc       | admin1_nbc    |
+            | nbc       | adminExt1_nbc |
+
 
     Scenario Outline: Admin cleanup - Delete courses in '<namespace>' ✅
 
@@ -69,10 +72,12 @@ Feature: Helper Test - Deletion of test data that are left from previous failed 
 
         @staging_test
         Examples:
-            | namespace | user       |
-            | brb       | admin1_brb |
-            # | dbc       | admin1_dbc |
-            | nbc       | admin1_nbc |
+            | namespace | user          |
+            | brb       | admin1_brb    |
+            | brb       | adminExt1_brb |
+            | nbc       | admin1_nbc    |
+            | nbc       | adminExt1_nbc |
+
 
     Scenario Outline: Teacher cleanup - Delete news in '<namespace>' ✅
 
@@ -83,10 +88,12 @@ Feature: Helper Test - Deletion of test data that are left from previous failed 
 
         @staging_test
         Examples:
-            | namespace | user       |
-            | brb       | admin1_brb |
-            # | dbc       | admin1_dbc |
-            | nbc       | admin1_nbc |
+            | namespace | user          |
+            | brb       | admin1_brb    |
+            | brb       | adminExt1_brb |
+            | nbc       | admin1_nbc    |
+            | nbc       | adminExt1_nbc |
+
 
     Scenario Outline: Teacher cleanup - Delete CTL Tools in '<namespace>' ✅
 
@@ -96,10 +103,12 @@ Feature: Helper Test - Deletion of test data that are left from previous failed 
 
         @staging_test
         Examples:
-            | namespace | user       |
-            | brb       | admin1_brb |
-            # | dbc       | admin1_dbc |
-            | nbc       | admin1_nbc |
+            | namespace | user          |
+            | brb       | admin1_brb    |
+            | brb       | adminExt1_brb |
+            | nbc       | admin1_nbc    |
+            | nbc       | adminExt1_nbc |
+
 
     Scenario Outline: Admin cleanup - Delete classes in '<namespace>' ✅
 
@@ -109,7 +118,8 @@ Feature: Helper Test - Deletion of test data that are left from previous failed 
 
         @staging_test
         Examples:
-            | namespace | user       |
-            | brb       | admin1_brb |
-            # | dbc       | admin1_dbc |
-            | nbc       | admin1_nbc |
+            | namespace | user          |
+            | brb       | admin1_brb    |
+            | brb       | adminExt1_brb |
+            | nbc       | admin1_nbc    |
+            | nbc       | adminExt1_nbc |
