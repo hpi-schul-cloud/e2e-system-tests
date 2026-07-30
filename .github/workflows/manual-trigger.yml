@@ -193,8 +193,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - group: group-A
-            browser: ${{ inputs.browser }}
+           - group: group-seq
+             browser: ${{ inputs.browser }}
+          # - group: group-A
+          #   browser: ${{ inputs.browser }}
           # - group: group-B
           #   browser: ${{ inputs.browser }}
           # - group: group-C
@@ -209,7 +211,8 @@ jobs:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_staging }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_staging }}
       browser: ${{ matrix.browser }}
-      tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
+      tag: ${{ needs.e2e-system-tests.outputs.staging_base_tag }}
+      # tag: ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.staging_base_tag, matrix.group) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ format('{0}-{1}', 'manual-trigger-staging-tests', matrix.group) }}
 
