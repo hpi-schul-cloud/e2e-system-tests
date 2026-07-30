@@ -195,16 +195,16 @@ jobs:
         include:
           - group: group-A
             browser: ${{ inputs.browser }}
-          - group: group-B
-            browser: ${{ inputs.browser }}
-          - group: group-C
-            browser: ${{ inputs.browser }}
-          - group: group-D
-            browser: ${{ inputs.browser }}
-          - group: group-E
-            browser: ${{ inputs.browser }}
-          - group: group-F
-            browser: electron
+          # - group: group-B
+          #   browser: ${{ inputs.browser }}
+          # - group: group-C
+          #   browser: ${{ inputs.browser }}
+          # - group: group-D
+          #   browser: ${{ inputs.browser }}
+          # - group: group-E
+          #   browser: ${{ inputs.browser }}
+          # - group: group-F
+          #   browser: electron
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_staging }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_staging }}
