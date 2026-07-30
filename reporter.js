@@ -102,10 +102,6 @@ function generateReport() {
 					value: browserData.env.BRB,
 				},
 				{
-					label: "DBC Instance",
-					value: browserData.env.DBC,
-				},
-				{
 					label: "NBC Instance",
 					value: browserData.env.NBC,
 				},

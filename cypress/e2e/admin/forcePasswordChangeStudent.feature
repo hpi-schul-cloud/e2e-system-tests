@@ -36,7 +36,6 @@ Feature: Admin - Student must set a new password during login
         Then I see my first name '<user_first_name>'
         Then I see my last name '<user_last_name>'
         When I click on the button Next to proceed to the next step
-        When I accept the privacy and terms of use consents
         Then I click on the button Next to proceed to the registration pin step
         When I request a new registration pin
         Then I retrieve the registration pin to enter it into the form for '<namespace>'

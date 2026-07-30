@@ -1,13 +1,12 @@
 #!/bin/bash
 
-instances=(brb dbc nbc)
+instances=(brb nbc)
 
 workflow_name=$1
 brb_instance=$2
-dbc_instance=$3
-nbc_instance=$4
-workspace_path=$5
-environment=$6
+nbc_instance=$3
+workspace_path=$4
+environment=$5
 
 file_paths=()
 declare -A key_value_pairs
@@ -31,8 +30,7 @@ echo "$json_output" >"$aggregated_json_file"
 
 if [[ !($workflow_name == *"automatic"* || $workflow_name == *"scheduled"*) ]]; then
   updated_json=$(jq --arg brb "$brb_instance" \
-    --arg dbc "$dbc_instance" \
     --arg nbc "$nbc_instance" \
-    '.BRB = $brb | .DBC = $dbc | .NBC = $nbc' "$aggregated_json_file")
+    '.BRB = $brb | .NBC = $nbc' "$aggregated_json_file")
   echo "$updated_json" >"$aggregated_json_file"
 fi

@@ -8,7 +8,6 @@ const endPointUsers = "/admin/users";
 const federalStateNames = {
 	nbc: "Niedersachsen",
 	brb: "Brandenburg",
-	dbc: "Niedersachsen",
 };
 const users = {
 	admin: "administrator",
