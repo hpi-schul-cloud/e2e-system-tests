@@ -55,8 +55,8 @@ jobs:
           branch="$(echo '${{ inputs.branch_name }}' | sed 's@.*/@@' | tr '[:upper:]' '[:lower:]' | tr _ - | tr . -)"
 
           # DEV URLs (branch-based)
-          brb_dev="https://${branch}.brb.dbildungscloud.dev/"
-          nbc_dev="https://${branch}.nbc.dbildungscloud.dev/"
+          brb_dev="https://${branch}.brandenburg.schulcloud-verbund.org/"
+          nbc_dev="https://${branch}.niedersachsen.schulcloud-verbund.org/"
 
           # STAGING URLs (fixed)
           brb_staging="https://staging.brandenburg.dbildungscloud.org/"
