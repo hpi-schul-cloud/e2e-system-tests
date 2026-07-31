@@ -6,8 +6,8 @@ const path = "/admin/api/v1";
 const endPointSchools = "/admin/schools";
 const endPointUsers = "/admin/users";
 const federalStateNames = {
-	nbc: "Niedersachsen",
-	brb: "Brandenburg",
+	niedersachsen: "Niedersachsen",
+	brandenburg: "Brandenburg",
 };
 const users = {
 	admin: "administrator",
