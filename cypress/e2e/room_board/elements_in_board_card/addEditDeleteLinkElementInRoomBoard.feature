@@ -95,13 +95,13 @@ Feature: Room Board - Add, edit, delete element Link in the room board
 
         @staging_test
         Examples:
-            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.nbc.dbildungscloud.dev/ | https://main.nbc.dbildungscloud.dev/edited/ |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                                       | example_link_edited                                       |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | Kraft        | Lernend           | CypressAut Board Title | https://main.niedersachsen.schulcloud-verbund.org/ | https://main.niedersachsen.schulcloud-verbund.org/edited/ |
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                         | example_link_edited                         |
-            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.nbc.dbildungscloud.dev/ | https://main.nbc.dbildungscloud.dev/edited/ |
+            | admin      | teacher      | student      | namespace | room_name            | student_name | role_name_student | board_title            | example_link                                       | example_link_edited                                       |
+            | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Room Name | student_1    | Lernend           | CypressAut Board Title | https://main.niedersachsen.schulcloud-verbund.org/ | https://main.niedersachsen.schulcloud-verbund.org/edited/ |
 
     Scenario Outline: Add link element without URL and verify empty element in view mode
 
