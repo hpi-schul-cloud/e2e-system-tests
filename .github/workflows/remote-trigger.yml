@@ -60,11 +60,11 @@ jobs:
           cleaned_branch_name=$(echo $branch_name | sed 's@.*/@@' | tr [A-Z] [a-z] | tr _ - | tr \. -)
           echo "cleaned branch name: $cleaned_branch_name"
 
-          echo "CYPRESS_BRB=https://${cleaned_branch_name}.brb.dbildungscloud.dev" >> $GITHUB_OUTPUT
-          echo "Set CYPRESS_BRB=https://${cleaned_branch_name}.brb.dbildungscloud.dev"
+          echo "CYPRESS_BRB=https://${cleaned_branch_name}.brandenburg.schulcloud-verbund.org" >> $GITHUB_OUTPUT
+          echo "Set CYPRESS_BRB=https://${cleaned_branch_name}.brandenburg.schulcloud-verbund.org"
 
-          echo "CYPRESS_NBC=https://${cleaned_branch_name}.nbc.dbildungscloud.dev" >> $GITHUB_OUTPUT
-          echo "Set CYPRESS_NBC=https://${cleaned_branch_name}.nbc.dbildungscloud.dev"
+          echo "CYPRESS_NBC=https://${cleaned_branch_name}.niedersachsen.schulcloud-verbund.org" >> $GITHUB_OUTPUT
+          echo "Set CYPRESS_NBC=https://${cleaned_branch_name}.niedersachsen.schulcloud-verbund.org"
 
           if [[ ! $CYPRESS_BRB =~ (staging|schulportal) && ! $CYPRESS_NBC =~ (staging|schulportal) ]]; then
               echo "environment=dev" >> $GITHUB_OUTPUT
