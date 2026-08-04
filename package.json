@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"pretest": "if exist cypress\\reports; then rmdir /S/Q cypress\\reports; fi;",
-		"generate:report": "node reporter.js",
+		"generate:report": "node reporter.mjs",
 		"cy:gui:stable:regression_test:school_api_test:localhost": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
 		"cy:headless:stable:regression_test:school_api_test:localhost": "cypress run --browser chrome -e tags=\"@stable_test and @regression_test and @localhost_test\",environmentName=staging",
 		"cy:gui:stable:regression_test:school_api_test:local": "cypress open --browser chrome -e tags=\"@stable_test and @regression_test and @school_api_test\",environmentName=local",
@@ -56,7 +56,7 @@
 		"cypress": "^15.19.0",
 		"cypress-file-upload": "^5.0.8",
 		"cypress-real-events": "^1.13.0",
-		"multiple-cucumber-html-reporter": "^1.21.4",
+		"multiple-cucumber-html-reporter": "^4.2.0",
 		"prettier": "^3.2.5",
 		"webpack": "^5.77.0"
 	},

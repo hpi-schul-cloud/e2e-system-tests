@@ -1,7 +1,12 @@
-const report = require("multiple-cucumber-html-reporter");
-const fs = require("fs");
-const fs_extra = require("fs-extra");
-const path = require("path");
+// const report = require("multiple-cucumber-html-reporter");
+// const fs = require("fs");
+// const fs_extra = require("fs-extra");
+// const path = require("path");
+
+import fs from "fs";
+import fs_extra from "fs-extra";
+import report from "multiple-cucumber-html-reporter";
+import path from "path";
 
 const cucumberJsonDir = path.resolve(process.cwd(), "logs");
 const cucumberReportFileMap = {};
