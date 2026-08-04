@@ -74,6 +74,10 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Install dependencies
+        working-directory: e2e-system-tests
+        run: npm ci
+
       - name: Check reporter version
         run: |
           npm ls multiple-cucumber-html-reporter
