@@ -74,6 +74,11 @@ jobs:
         with:
           node-version: '24'
 
+      - name: Check reporter version
+        run: |
+          npm ls multiple-cucumber-html-reporter
+          cat node_modules/multiple-cucumber-html-reporter/package.json | head -20
+
       - name: Clean up previous report
         uses: cypress-io/github-action@948d67d3074f1bbb6379c8bdbb04e95d2f8e593f # v7.4.0
         with:
