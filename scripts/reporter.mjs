@@ -4,34 +4,37 @@
 // const path = require("path");
 
 import fs from "fs";
-import fs_extra from "fs-extra";
-import report from "multiple-cucumber-html-reporter";
+import fsExtra from "fs-extra";
+import { generate } from "multiple-cucumber-html-reporter";
 import path from "path";
 
 const cucumberJsonDir = path.resolve(process.cwd(), "logs");
 const cucumberReportFileMap = {};
 const cucumberReportMap = {};
-const jsonIndentLevel = 2;
 const htmlReportDir = path.resolve(process.cwd(), "reports");
 const screenshotsDir = path.resolve(process.cwd(), "cypress/screenshots");
 
 if (!fs.existsSync(screenshotsDir)) {
-	fs.mkdirSync(screenshotsDir);
+	fs.mkdirSync(screenshotsDir, { recursive: true });
 }
 
 getCucumberReportMaps();
-generateReport();
+await generateReport();
 
 function getCucumberReportMaps() {
-	filenames = fs_extra.readdirSync(cucumberJsonDir);
-	const files = fs_extra.readdirSync(cucumberJsonDir).filter((file) => {
-		return file.indexOf(".json") > -1;
-	});
+	const files = fsExtra
+		.readdirSync(cucumberJsonDir)
+		.filter((file) => file.endsWith(".json"));
+
 	files.forEach((file) => {
-		const json = JSON.parse(fs_extra.readFileSync(path.join(cucumberJsonDir, file)));
+		const json = JSON.parse(
+			fsExtra.readFileSync(path.join(cucumberJsonDir, file), "utf8")
+		);
+
 		if (!json[0]) {
 			return;
 		}
+
 		const [feature] = json[0].uri.split("/").reverse();
 		cucumberReportFileMap[feature] = file;
 		cucumberReportMap[feature] = json;
@@ -39,16 +42,12 @@ function getCucumberReportMaps() {
 }
 
 function getBrowserDetails() {
-	const stringifyData = JSON.stringify(
-		fs.readFileSync("cypress/fixtures/test-run-details.json", "utf8")
-	);
-	const parseData = JSON.parse(JSON.parse(stringifyData));
-	return parseData;
+	return JSON.parse(fs.readFileSync("cypress/fixtures/test-run-details.json", "utf8"));
 }
 
-function generateReport() {
+async function generateReport() {
 	const browserData = getBrowserDetails();
-	let browserMap = (browser) => {
+	const browserMap = (browser) => {
 		if (browser.startsWith("electron") || browser.startsWith("chrome")) {
 			return "chrome";
 		} else if (browser.startsWith("firefox")) {
@@ -57,12 +56,12 @@ function generateReport() {
 			return "safari";
 		} else if (browser.startsWith("internet explorer")) {
 			return "internet explorer";
-		} else {
-			return "edge";
 		}
+
+		return "edge";
 	};
 
-	let osMap = (os) => {
+	const osMap = (os) => {
 		if (os.startsWith("win")) {
 			return "windows";
 		} else if (os.startsWith("darwin")) {
@@ -76,18 +75,41 @@ function generateReport() {
 		} else if (os.startsWith("ios")) {
 			return "ios";
 		}
+
+		return "linux";
 	};
 
-	report.generate({
+	function getWorkflowTrigger() {
+		const trigger = process.env.GITHUB_EVENT_NAME;
+
+		const triggerMap = {
+			workflow_dispatch: "Manual Workflow",
+			schedule: "Scheduled Workflow",
+			repository_dispatch: "Remote Workflow",
+			push: "Automatic Workflow",
+		};
+
+		return triggerMap[trigger] ?? "Local Run";
+	}
+
+	console.log(JSON.stringify(browserData, null, 2));
+
+	await generate({
 		jsonDir: cucumberJsonDir,
 		reportPath: htmlReportDir,
 		openReportInBrowser: false,
 		saveCollectedJSON: true,
 		pageTitle: "dBildungscloud E2E Test Report",
-		reportName: "E2E Cucumber Test Report " + browserData.time,
-		pageFooter: " ",
+		reportName: `E2E Cucumber Test Report ${browserData.time}`,
+		pageFooter: '<div><p className="text-2xl">dBildungscloud 2026</p></div>',
 		hideMetadata: false,
 		displayReportTime: true,
+		durationAggregation: "sum",
+		displayDuration: true,
+		externalizeMedia: true,
+		plainDescription: true,
+		displayChartPercentages: false,
+		attachmentLayout: "modal",
 		metadata: {
 			browser: {
 				name: browserMap(browserData.browser.name),
@@ -98,23 +120,15 @@ function generateReport() {
 				name: osMap(browserData.platform),
 			},
 		},
+
 		customData: {
-			title: "Run info",
-			data: [
-				{ label: "Project", value: "dBildungscloud" },
-				{
-					label: "BRB Instance",
-					value: browserData.env.BRB,
-				},
-				{
-					label: "NBC Instance",
-					value: browserData.env.NBC,
-				},
-				{
-					label: "Execution Time",
-					value: browserData.time.toLocaleString(),
-				},
-			],
+			username: process.env.GITHUB_ACTOR ?? "GitHub Actions Runner",
+			projectName: "dBildungscloud",
+			environment: `${process.env.environmentName || "Local"}`,
+			ciPipeline: `${getWorkflowTrigger()}`,
+			buildNumber: process.env.GITHUB_RUN_NUMBER,
+			BRB: `BRB: ${browserData.env?.BRB ?? "missing"}`,
+			NBC: `NBC: ${browserData.env?.NBC ?? "missing"}`,
 		},
 	});
 }
