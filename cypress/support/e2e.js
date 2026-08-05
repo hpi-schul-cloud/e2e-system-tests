@@ -39,6 +39,7 @@ let data = {
 };
 
 before(() => {
+	Cypress.session.clearAllSavedSessions();
 	cy.exec(`ls cypress/fixtures/test-run-details.json`, {
 		failOnNonZeroExit: false,
 	}).then((result) => {
@@ -55,6 +56,7 @@ after(() => {
 		const env = Cypress.env();
 		data.env.BRB = env["BRB"];
 		data.env.NBC = env["NBC"];
+		data.env.environmentName = env["environmentName"];
 		data.browser.name = Cypress.browser.name;
 		data.browser.version = Cypress.browser.majorVersion;
 		data.platform = Cypress.platform;

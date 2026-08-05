@@ -92,7 +92,112 @@ async function generateReport() {
 		return triggerMap[trigger] ?? "Local Run";
 	}
 
-	console.log(JSON.stringify(browserData, null, 2));
+	function formatEnvironmentName(value) {
+		if (!value) {
+			return "Local";
+		}
+		const normalized = value.toLowerCase();
+		const environmentMap = {
+			local: "Local",
+			ci: "CI",
+			dev: "Development",
+			localhost: "Local Host",
+			staging: "Staging",
+			prod: "Production",
+			production: "Production",
+		};
+
+		return environmentMap[normalized] ?? value;
+	}
+
+	function escapeRegex(value) {
+		return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+	}
+
+	function removeRunInfoCardsByLabels(labels) {
+		const reportFile = path.join(htmlReportDir, "index.html");
+		let html = fs.readFileSync(reportFile, "utf8");
+
+		const labelRegex = new RegExp(
+			`<p class="text-\\[9px\\] text-muted-foreground uppercase font-bold tracking-wider mb-0\\.5">\\s*(${labels
+				.map(escapeRegex)
+				.join("|")})\\s*<\\/p>`,
+			"i"
+		);
+
+		const cardBlockRegex =
+			/<div class="flex items-center gap-3 min-w-\[\d+px\]">[\s\S]*?<\/div>\s*<\/div>/g;
+
+		html = html.replace(cardBlockRegex, (card) => {
+			return labelRegex.test(card) ? "" : card;
+		});
+
+		fs.writeFileSync(reportFile, html, "utf8");
+	}
+
+	function fixLogoRendering() {
+		const files = [path.join(htmlReportDir, "index.html")];
+		const featuresDir = path.join(htmlReportDir, "features");
+
+		if (fs.existsSync(featuresDir)) {
+			for (const file of fs.readdirSync(featuresDir)) {
+				if (file.endsWith(".html")) {
+					files.push(path.join(featuresDir, file));
+				}
+			}
+		}
+
+		for (const filePath of files) {
+			let html = fs.readFileSync(filePath, "utf8");
+
+			// make logo box a bit wider
+			html = html.replace(
+				'class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/20 overflow-hidden"',
+				'class="flex h-10 w-24 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-lg shadow-primary/20 overflow-hidden"'
+			);
+
+			// show full logo
+			html = html.replace(
+				'class="h-full w-full object-cover"',
+				'class="h-full w-full object-contain p-1"'
+			);
+
+			fs.writeFileSync(filePath, html, "utf8");
+		}
+	}
+
+	function escapeHtml(value) {
+		return String(value ?? "")
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#39;");
+	}
+
+	function formatInstanceUrlsCard(brbUrl, nbcUrl) {
+		const reportFile = path.join(htmlReportDir, "index.html");
+		let html = fs.readFileSync(reportFile, "utf8");
+
+		const block = `
+				<div class="mt-1 grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-foreground">
+					<div>
+						<p class="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-1">BRB URL</p>
+						<p class="font-medium break-all">${escapeHtml(brbUrl)}</p>
+					</div>
+					<div>
+						<p class="text-[9px] text-muted-foreground uppercase font-bold tracking-wider mb-1">NBC URL</p>
+						<p class="font-medium break-all">${escapeHtml(nbcUrl)}</p>
+					</div>
+				</div>`.trim();
+
+		const instanceCardRegex =
+			/(<p class="text-\[9px\] text-muted-foreground uppercase font-bold tracking-wider mb-0\.5">\s*Instance URLs\s*<\/p>\s*)<p class="text-sm font-bold text-foreground truncate">[\s\S]*?<\/p>/i;
+
+		html = html.replace(instanceCardRegex, `$1${block}`);
+
+		fs.writeFileSync(reportFile, html, "utf8");
+	}
 
 	await generate({
 		jsonDir: cucumberJsonDir,
@@ -108,8 +213,10 @@ async function generateReport() {
 		displayDuration: true,
 		externalizeMedia: true,
 		plainDescription: true,
-		displayChartPercentages: false,
-		attachmentLayout: "modal",
+		displayChartPercentages: true,
+		attachmentLayout: "inline",
+		brandLogo: "cypress/fixtures/status-logo-dBC.svg",
+		plainDescription: "Schulcloud-Verbund-Software End-to-End Test Framework Report",
 		metadata: {
 			browser: {
 				name: browserMap(browserData.browser.name),
@@ -124,11 +231,17 @@ async function generateReport() {
 		customData: {
 			username: process.env.GITHUB_ACTOR ?? "GitHub Actions Runner",
 			projectName: "dBildungscloud",
-			environment: `${process.env.environmentName || "Local"}`,
+			environment: formatEnvironmentName(browserData.env.environmentName),
 			ciPipeline: `${getWorkflowTrigger()}`,
-			buildNumber: process.env.GITHUB_RUN_NUMBER,
-			BRB: `BRB: ${browserData.env?.BRB ?? "missing"}`,
-			NBC: `NBC: ${browserData.env?.NBC ?? "missing"}`,
+			buildNumber: process.env.GITHUB_RUN_NUMBER || "Build 1",
+			testCycle: process.env.GITHUB_RUN_ID || "Cycle 1",
+			"Instance URLs": "rendered as table",
 		},
 	});
+	removeRunInfoCardsByLabels(["Report Version"]);
+	fixLogoRendering();
+	formatInstanceUrlsCard(
+		browserData.env?.BRB ?? "missing",
+		browserData.env?.NBC ?? "missing"
+	);
 }
