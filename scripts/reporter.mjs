@@ -199,6 +199,48 @@ async function generateReport() {
 		fs.writeFileSync(reportFile, html, "utf8");
 	}
 
+	function removeFeatureMetadataBadges() {
+		const featuresDir = path.join(htmlReportDir, "features");
+		if (!fs.existsSync(featuresDir)) return;
+		const files = fs.readdirSync(featuresDir).filter((f) => f.endsWith(".html"));
+
+		for (const file of files) {
+			const filePath = path.join(featuresDir, file);
+			let html = fs.readFileSync(filePath, "utf8");
+
+			// Remove Node badge
+			// html = html.replace(
+			// 	/<span class="flex items-center gap-1\.5" title="Node[^"]*">[\s\S]*?<\/span>/gi,
+			// 	""
+			// );
+
+			// Remove Reporter badge
+			html = html.replace(
+				/<span class="flex items-center gap-1\.5" title="Reporter[^"]*">[\s\S]*?<\/span>/gi,
+				""
+			);
+
+			// Remove Username badge (feature header metadata row)
+			const actor = process.env.GITHUB_ACTOR ?? "Local User";
+			html = html.replace(
+				/<span class="flex items-center gap-1\.5" title="[^"]*">\s*<i class="fa-solid fa-user text-primary text-base"><\/i>\s*<span class="text-xs text-foreground font-medium">[\s\S]*?<\/span>\s*<\/span>/gi,
+				`<span class="flex items-center gap-1.5" title="${actor}">
+					<i class="fa-solid fa-robot text-primary text-base"></i>
+					<span class="text-xs text-foreground font-medium">${actor}</span>
+				</span>`
+			);
+
+			// Remove Architecture badge (arm64/x64/etc.)
+			// html = html.replace(
+			// 	/<span class="flex items-center gap-1\.5" title="[^"]*">[\s\S]*?<i class="fa-solid fa-microchip[^"]*"[\s\S]*?<\/span>/gi,
+			// 	""
+			// );
+
+			fs.writeFileSync(filePath, html, "utf8");
+		}
+	}
+
+
 	await generate({
 		jsonDir: cucumberJsonDir,
 		reportPath: htmlReportDir,
@@ -242,4 +284,5 @@ async function generateReport() {
 		browserData.env?.BRB ?? "missing",
 		browserData.env?.NBC ?? "missing"
 	);
+	removeFeatureMetadataBadges();
 }
