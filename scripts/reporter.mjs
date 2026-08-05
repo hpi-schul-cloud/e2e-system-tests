@@ -209,14 +209,12 @@ async function generateReport() {
 		pageFooter: '<div><p className="text-2xl">dBildungscloud 2026</p></div>',
 		hideMetadata: false,
 		displayReportTime: true,
-		durationAggregation: "sum",
 		displayDuration: true,
 		externalizeMedia: true,
 		plainDescription: true,
 		displayChartPercentages: true,
 		attachmentLayout: "inline",
 		brandLogo: "cypress/fixtures/status-logo-dBC.svg",
-		plainDescription: "Schulcloud-Verbund-Software End-to-End Test Framework Report",
 		metadata: {
 			browser: {
 				name: browserMap(browserData.browser.name),
