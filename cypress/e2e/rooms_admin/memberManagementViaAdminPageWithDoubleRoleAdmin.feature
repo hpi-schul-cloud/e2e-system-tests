@@ -89,7 +89,7 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
         When I click on remove button in the options of user '<fullname_teacher_2>'
         Then I see confirmation modal for deleting the user in room admin page
         When I click on delete button in confirmation modal
-        Then I do not see '<participant_teacher_2>' in the room members list
+        Then I do not see '<fullname_teacher_2>' in the room members list
 
         # post-condition: admin deactivates student visibility
         Given student visibility for teachers in school management is 'disabled'
@@ -106,4 +106,4 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
         @staging_test
         Examples:
             | teacher_1    | student_1    | teacher_2    | admin_1                | namespace | room_name             | participant_school          | role_name_teacher | role_name_student | participant_student | participant_teacher_1 | participant_school_owner | participant_teacher_2 | fullname_teacher_2 |
-            | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_double_role_nbc | nbc       | CypressAut Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft               | watson                | Karl                     | Lara                  | Lara Hande         |
+            | teacher1_nbc | student1_nbc | teacher2_nbc | admin1_double_role_nbc | nbc       | CypressAut Room Admin | Felix Mendelssohn-Gymnasium | Lernbegleitend    | Lernend           | Kraft               | Watson                | Karl                     | Lara                  | Lara Hande         |

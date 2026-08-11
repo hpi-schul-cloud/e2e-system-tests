@@ -14,11 +14,11 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+import "cypress-real-events";
 import "./commands";
 import "./custom_commands/input.utils";
 import "./custom_commands/login";
 import "./custom_commands/logout";
-import "cypress-real-events";
 
 // prevents blocking test by uncaught exception. This should be commented out when BC-2711 is resolved
 Cypress.on("uncaught:exception", (err, runnable) => {
@@ -29,7 +29,6 @@ let data = {
 	env: {
 		BRB: "",
 		NBC: "",
-		DBC: "",
 	},
 	browser: {
 		name: "",
@@ -56,7 +55,6 @@ after(() => {
 		const env = Cypress.env();
 		data.env.BRB = env["BRB"];
 		data.env.NBC = env["NBC"];
-		data.env.DBC = env["DBC"];
 		data.browser.name = Cypress.browser.name;
 		data.browser.version = Cypress.browser.majorVersion;
 		data.platform = Cypress.platform;

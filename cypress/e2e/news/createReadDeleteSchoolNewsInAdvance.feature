@@ -55,5 +55,5 @@ Feature:  News - To read a news on the respective dashboards
         @school_api_test
         @staging_test
         Examples:
-            | news_author  | news_reader  | namespace | news_title                          | news_description          | news_day_from_today | news_time | news_waiting_time | link_url                                 |
-            | teacher1_brb | student1_brb | brb       | CypressAut - school news in advance | Remember Examination date | 0                   | +2minutes | 120               | https://main.brb.dbildungscloud.dev/news |
+            | news_author  | news_reader  | namespace | news_title                          | news_description          | news_day_from_today | news_time | news_waiting_time | link_url                                             |
+            | teacher1_brb | student1_brb | brb       | CypressAut - school news in advance | Remember Examination date | 0                   | +2minutes | 120               | https://main.brandenburg.schulcloud-verbund.org/news |

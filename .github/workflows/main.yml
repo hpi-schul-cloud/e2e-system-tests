@@ -11,9 +11,6 @@ on:
       cypress_nbc:
         description: "nbc url from the workflow"
         type: string
-      cypress_dbc:
-        description: "dbc url from the workflow"
-        type: string
       tag:
         description: "tag for running cypress tests"
         type: string
@@ -51,7 +48,7 @@ jobs:
 
       - name: Fetch JSON files from 1Password
         run: |
-          instances=(brb dbc nbc)
+          instances=(brb nbc)
 
           for instance in "${instances[@]}"; do
               vault_name="cy-${{ inputs.environment }}-${instance}"
@@ -68,7 +65,6 @@ jobs:
           ${workspace_path}/e2e-system-tests/scripts/aggregate-json-files.sh \
             "${workflow}" \
             "${{ inputs.cypress_brb }}" \
-            "${{ inputs.cypress_dbc }}" \
             "${{ inputs.cypress_nbc }}" \
             "${workspace_path}" \
             "${{ inputs.environment }}"

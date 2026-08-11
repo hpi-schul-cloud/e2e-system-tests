@@ -8,7 +8,8 @@ const endPointUsers = "/admin/users";
 const federalStateNames = {
 	nbc: "Niedersachsen",
 	brb: "Brandenburg",
-	dbc: "Niedersachsen",
+	niedersachsen: "Niedersachsen",
+	brandenburg: "Brandenburg",
 };
 const users = {
 	admin: "administrator",
@@ -58,7 +59,8 @@ const headers = {
 const extractSubdomain = (url) => {
 	try {
 		const parsedUrl = new URL(url);
-		return parsedUrl.hostname.split(".")[1];
+		const hostParts = parsedUrl.hostname.split(".");
+		return hostParts.find((part) => federalStateNames.hasOwnProperty(part)) ?? null;
 	} catch (error) {
 		console.error("Error parsing URL:", error.message);
 		return null;
