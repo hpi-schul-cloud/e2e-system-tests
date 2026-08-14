@@ -5,8 +5,8 @@ on:
       service-account-token:
         required: true
     inputs:
-      ref:
-        required: true
+      branch_to_checkout:
+        description: "branch to checkout for e2e-system-tests"
         type: string
       cypress_brb:
         description: "brb url from the workflow"
@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           repository: hpi-schul-cloud/e2e-system-tests
-          ref: ${{ inputs.ref }}
+          ref: ${{ inputs.branch_to_checkout }}
           path: e2e-system-tests
 
       - name: Install 1Password CLI

@@ -110,7 +110,7 @@ jobs:
         group:
           ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
     with:
-      ref: ${{ inputs.ref }}
+      branch_to_checkout: ${{ inputs.ref }}
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       browser: chrome
