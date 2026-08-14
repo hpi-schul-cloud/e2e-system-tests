@@ -5,6 +5,9 @@ on:
       service-account-token:
         required: true
     inputs:
+      ref:
+        required: true
+        type: string
       cypress_brb:
         description: "brb url from the workflow"
         type: string
@@ -24,20 +27,16 @@ on:
         description: "browser to run tests in"
         type: string
         default: "chrome"
-      already_checkedout:
-        description: "Indicates if the repository has already been checked out in a previous job."
-        type: boolean
-        default: false
 
 jobs:
   configure-load-secrets-and-run_tests:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: ${{ inputs.already_checkedout == false }}
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
           repository: hpi-schul-cloud/e2e-system-tests
+          ref: ${{ inputs.ref }}
           path: e2e-system-tests
 
       - name: Install 1Password CLI
