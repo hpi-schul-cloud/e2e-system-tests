@@ -23,7 +23,7 @@ jobs:
 
   run-automatic-tests:
     needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
+    uses: ./.github/workflows/main.yml@{{ github.sha }}
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     strategy:
@@ -50,3 +50,4 @@ jobs:
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ format('{0}-{1}', 'automatic-trigger-regression-tests', matrix.group) }}
+      current_branch: ${{ github.ref_name }}
