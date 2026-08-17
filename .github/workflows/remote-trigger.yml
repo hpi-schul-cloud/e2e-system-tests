@@ -112,7 +112,7 @@ jobs:
 
   run-remote-repo-tests:
     needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml
+    uses: ./.github/workflows/main.yml@${{ needs.e2e-system-tests.outputs.current_branch }}
     secrets:
       service-account-token: ${{ secrets.service-account-token }}
     strategy:
