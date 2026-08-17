@@ -113,7 +113,7 @@ jobs:
         group:
           ["group-A", "group-B", "group-C", "group-D", "group-E", "group-F"]
     with:
-      current_branch: ${{ steps.check_branch.outputs.current_branch }}
+      current_branch: ${{ needs.e2e-system-tests.outputs.current_branch }}
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc }}
       browser: chrome
