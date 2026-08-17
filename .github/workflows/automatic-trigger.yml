@@ -23,7 +23,7 @@ jobs:
 
   run-automatic-tests:
     needs: e2e-system-tests
-    uses: ./.github/workflows/main.yml@{{ github.sha }}
+    uses: ./.github/workflows/main.yml
     secrets:
       service-account-token: ${{ secrets.CYPRESS_ONEPWD_SERVICE_ACCOUNT_TOKEN }}
     strategy:
