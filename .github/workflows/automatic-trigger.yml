@@ -50,4 +50,3 @@ jobs:
         ${{ format('"{0} and @{1}"', needs.e2e-system-tests.outputs.all_tests_tag, matrix.group ) }}
       environment: ${{ needs.e2e-system-tests.outputs.environment }}
       groups: ${{ format('{0}-{1}', 'automatic-trigger-regression-tests', matrix.group) }}
-      current_branch: ${{ github.ref_name }}
