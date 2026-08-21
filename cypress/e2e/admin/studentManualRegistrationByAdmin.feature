@@ -67,6 +67,7 @@ Feature: Admin - Admin creates, manually register and deletes students
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
+        @only
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   |

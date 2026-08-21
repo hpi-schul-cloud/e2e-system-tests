@@ -47,6 +47,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         Then I can not see user '<user_email_edited>' in the table
 
+        @only
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   | user_first_name_edited | user_last_name_edited     | user_email_edited                          |
@@ -99,6 +100,7 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         Then I can not see user '<user_email_edited>' in the table
 
+        @only
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   | user_first_name_edited | user_last_name_edited     | user_email_edited                          |

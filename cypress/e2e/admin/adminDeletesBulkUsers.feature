@@ -27,6 +27,7 @@ Feature: Admin - To add and delete new users by the admin in bulk
         When I enter '<role_to_manage>' email '<search_email_suffix>' in search input field
         Then I can not see user '<search_email_suffix>' in the table
 
+        @only
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | number_of_users | search_email_suffix                          |

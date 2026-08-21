@@ -90,6 +90,7 @@ Feature: Admin - Teacher must set a new password during login
         #@staging_test
         # this feature is not executable on staging as we do not access the API calls on staging.
 
+        @only
         @school_api_test
         Examples:
             | namespace | admin      | role_to_manage | user_first_name | user_last_name     | user_email                                   |

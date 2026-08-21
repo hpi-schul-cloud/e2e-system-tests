@@ -36,6 +36,7 @@ let data = {
 	},
 	platform: "",
 	time: "",
+	environmentName: "",
 };
 
 before(() => {
@@ -53,14 +54,16 @@ before(() => {
 
 after(() => {
 	cy.readFile("cypress/fixtures/test-run-details.json").then((data) => {
-		const env = Cypress.env();
-		data.env.BRB = env["BRB"];
-		data.env.NBC = env["NBC"];
-		data.env.environmentName = env["environmentName"];
-		data.browser.name = Cypress.browser.name;
-		data.browser.version = Cypress.browser.majorVersion;
-		data.platform = Cypress.platform;
-		data.time = new Date().toLocaleString("en-GB");
-		cy.writeFile("cypress/fixtures/test-run-details.json", data);
+		cy.env(["BRB", "NBC", "environmentName"]).then((env) => {
+			data.env.BRB = env.BRB;
+			data.env.NBC = env.NBC;
+			data.env.environmentName = env.environmentName;
+			data.browser.name = Cypress.browser.name;
+			data.browser.version = Cypress.browser.majorVersion;
+			data.platform = Cypress.platform;
+			data.time = new Date().toLocaleString("en-GB");
+
+			cy.writeFile("cypress/fixtures/test-run-details.json", data);
+		});
 	});
 });
