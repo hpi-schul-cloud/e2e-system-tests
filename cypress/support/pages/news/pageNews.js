@@ -2,12 +2,12 @@
 
 class News {
 	static #elementTitle =
-		'[data-testid="news-title"], [data-testid="title_of_an_element"]';
-	static #elementHeader = '.news-card-title, [data-testid="header-of-element"]';
+		'[data-testid="news-title-0"]';
+	static #elementHeader = '[data-testid="news-header-0"]';
 	static #pageTitle = '[data-testid="news-title"]';
 	static #enDateFormat = "en-CA";
 	static #deDateFormat = "de-DE";
-	static #newsText = '[data-testid="news-content"], [data-testid="body_of_element"]';
+	static #newsText = '[data-testid="news-content"]';
 	static #newsOverviewNavigationButton = '[data-testid="sidebar-news"]';
 	static #createNewNews = '[data-testid="create-news-btn"] .v-btn';
 	static #newsTitleInput = '[data-testid="news_title"]';
@@ -18,8 +18,8 @@ class News {
 	static #newsTitle = '[data-testid="news-title"]';
 	static #newsDescriptionVisible = '[data-testid="news-content"]';
 	static #newsNameOnNewsOverview =
-		'[data-testid="news-title"], [data-testid="title_of_an_element"]';
-	static #newsNameOnDashboard = '[data-testid="news-title"]';
+		'[data-testid="news-title-0"]';
+	static #newsNameOnDashboard = '[data-testid="news-title-0"]';
 	static #deleteNews = '[data-testid="news-delete-btn"]';
 	static #deleteNewsConfirmation = '[data-testid="confirm-dialog-confirm"]';
 	static #newsOverviewPageTitle = '[data-testid="news-overview-title"]';
