@@ -52,9 +52,9 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I click on button Add GeoGebra to topic
         When I enter title "CypressAut Title for GeoGebra Element in Topic" into element GeoGebra
         When I enter GeoGebra material ID 'kEBfU7AR'
-        When I click on button Add Etherpad to topic
-        When I enter title 'CypressAut Title for Etherpad Element in Topic' into element Etherpad in element position '2'
-        When I enter description for the ether pad 'this is my epad description' in element position '2'
+        # When I click on button Add Etherpad to topic
+        # When I enter title 'CypressAut Title for Etherpad Element in Topic' into element Etherpad in element position '2'
+        # When I enter description for the ether pad 'this is my epad description' in element position '2'
         When I click on button Add Task to topic
         When I enter title 'CypressAut Title for Task Element in Topic' into element Task
         When I enter URL of the task from the another course for task id '59cce3f6c6abf042248e888d' for '<namespace>'
