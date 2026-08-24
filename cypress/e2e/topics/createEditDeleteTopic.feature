@@ -1,5 +1,6 @@
 @regression_test
-@stable_test
+#@stable_test
+@unstable_test
 @schedule_run
 @group-B
 @pr
