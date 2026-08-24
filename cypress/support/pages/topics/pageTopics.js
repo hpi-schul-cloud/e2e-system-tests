@@ -245,18 +245,14 @@ class Topics {
 
 	seeTopicDetailPageWithContent(
 		topicTitle,
-		contentTitle1,
-		contentTitle3,
-		contentTitle4,
-		contentTitle5
+		...contentTitles
 	) {
 		cy.get(Topics.#navCourseOverviewLink).should("have.class", "active");
 		cy.get(Topics.#titlebar).should("contain", topicTitle);
 		cy.get(Topics.#sectionCourse).within(() => {
-			cy.get("h2").should("contain", contentTitle1);
-			cy.get("h2").should("contain", contentTitle3);
-			cy.get("h2").should("contain", contentTitle4);
-			cy.get("h2").should("contain", contentTitle5);
+			contentTitles.forEach((title) => {
+				cy.get("h2").should("contain", title);
+			});
 		});
 	}
 

@@ -155,6 +155,18 @@ Then(
 	}
 );
 
+Then(
+	"I see topic detail page {string} with content elements {string}, {string} and {string}",
+	(topicTitle, contentTitle1, contentTitle2, contentTitle3) => {
+		topics.seeTopicDetailPageWithContent(
+			topicTitle,
+			contentTitle1,
+			contentTitle2,
+			contentTitle3
+		);
+	}
+);
+
 Then("I see topic detail page {string}", (topicTitle) => {
 	topics.seeTopicDetailPage(topicTitle);
 });
