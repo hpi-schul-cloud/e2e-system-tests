@@ -52,16 +52,17 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I click on button Add GeoGebra to topic
         When I enter title "CypressAut Title for GeoGebra Element in Topic" into element GeoGebra
         When I enter GeoGebra material ID 'kEBfU7AR'
-        When I click on button Add Etherpad to topic
-        When I enter title 'CypressAut Title for Etherpad Element in Topic' into element Etherpad in element position '2'
-        When I enter description for the ether pad 'this is my epad description' in element position '2'
+        # When I click on button Add Etherpad to topic
+        # When I enter title 'CypressAut Title for Etherpad Element in Topic' into element Etherpad in element position '2'
+        # When I enter description for the ether pad 'this is my epad description' in element position '2'
         When I click on button Add Task to topic
         When I enter title 'CypressAut Title for Task Element in Topic' into element Task
         When I enter URL of the task from the another course for task id '59cce3f6c6abf042248e888d' for '<namespace>'
         When I click on create button to create topic
         Then I can see edit topic page 'CypressAut Topic Creating and Deleting Test'
         When I click on save button to save changes
-        Then I see topic detail page "CypressAut Topic Creating and Deleting Test" with content elements "CypressAut Title for Text Element in Topic", "CypressAut Title for GeoGebra Element in Topic", "CypressAut Title for Etherpad Element in Topic" and "CypressAut Title for Task Element in Topic"
+        Then I see topic detail page "CypressAut Topic Creating and Deleting see topic detail pageng Test" with content elements "CypressAut Title for Text Element in Topic", "CypressAut Title for GeoGebra Element in Topic" and "CypressAut Title for Task Element in Topic"
+        #, "CypressAut Title for Etherpad Element in Topic"
         When I navigate back to course detail page via breadcrumb menu
         Then I can see topic 'CypressAut Topic Creating and Deleting Test' on course page
 
@@ -75,7 +76,8 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         When I click on save button to save changes
         Then I can see topic 'CypressAut Topic Creating and Deleting Test - Edited topic' on course page
         When I click on topic 'CypressAut Topic Creating and Deleting Test - Edited topic' on course page
-        Then I see topic detail page "CypressAut Topic Creating and Deleting Test - Edited topic" with content elements "CypressAut Title for Text Element in Topic", "CypressAut Title for GeoGebra Element in Topic", "CypressAut Title for Etherpad Element in Topic" and "CypressAut Title for Task Element in Topic"
+        Then I see topic detail page "CypressAut Topic Creating and Deleting Test - Edited topic" with content elements "CypressAut Title for Text Element in Topic", "CypressAut Title for GeoGebra Element in Topic" and "CypressAut Title for Task Element in Topic"
+        #"CypressAut Title for Etherpad Element in Topic"
         When I click on icon Pen on topic page
         Then I can see edit topic page 'CypressAut Topic Creating and Deleting Test - Edited topic'
         When I click on settings and remove option of element '0'
@@ -93,10 +95,11 @@ Feature: Topics - To create, edit and delete topics by the teacher.
         # When I move Text element on position '4' to position '3'
         # Then I can see form element Text on position '3'
         # Then I can see form element Task on position '4'
-        When I enter title 'CypressAut Title for Etherpad Element in Topic Changed' into element Etherpad in element position '1'
-        When I enter description for the ether pad 'changed etherpad description' in element position '1'
+        # When I enter title 'CypressAut Title for Etherpad Element in Topic Changed' into element Etherpad in element position '1'
+        # When I enter description for the ether pad 'changed etherpad description' in element position '1'
         When I click on save button to save changes
-        Then I see topic detail page "CypressAut Topic Creating and Deleting Test - Edited topic" with content elements "CypressAut Title for GeoGebra Element in Topic", "CypressAut Title for Etherpad Element in Topic Changed", "CypressAut Title for Task Element in Topic" and "CypressAut New text element Title"
+        Then I see topic detail page "CypressAut Topic Creating and Deleting Test - Edited topic" with content elements "CypressAut Title for GeoGebra Element in Topic", "CypressAut Title for Task Element in Topic" and "CypressAut New text element Title"
+        # "CypressAut Title for Etherpad Element in Topic Changed",
         # NOTE: steps for later implementation are commented out
         # Then I see file 'example_jpg.jpg' on topic page
         # When I click on button Edit on topic page

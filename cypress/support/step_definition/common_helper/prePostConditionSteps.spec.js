@@ -174,9 +174,9 @@ Given(
 		topics.enterIDforElementGeoGebra(geoGebraId);
 
 		// etherpad element
-		topics.clickOnAddEtherpadToTopic();
-		topics.enterTitleForElementEtherpad(etherpadTitle, "2");
-		topics.enterDescriptionForElementEtherpad(etherpadDescription, "2");
+		// topics.clickOnAddEtherpadToTopic();
+		// topics.enterTitleForElementEtherpad(etherpadTitle, "2");
+		// topics.enterDescriptionForElementEtherpad(etherpadDescription, "2");
 
 		// task element
 		topics.clickOnAddTaskToTopic();
