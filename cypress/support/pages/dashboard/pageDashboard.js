@@ -12,13 +12,13 @@ class Dashboard {
 	static #dashboardTasksTitle = '[data-testid="dashboard-tasks-title"]';
 	static #dashboardTaskCourseName = '[data-testid="task-course-name"]';
 	static #dashboardTaskName = '[data-testid="task-name"]';
-	static #elementTitle = '[data-testid="news-title"]';
-	static #newsText = '[data-testid="news-content"]';
+	static #elementTitle = '[data-testid="news-title-0"]';
+	static #newsText = '[data-testid="news-content-0"]';
 	static #newsSection = '[data-testid="news-section"]';
 	static #dashboardLink = 'a[data-testid="sidebar-dashboard"]';
 	static #showAllNewsButtonOnDashboard = '[data-testid="show-all-news"]';
 	static #showAllTasksButtonOnDashboard = '[data-testid="show-all-tasks"]';
-	static #titlebarNewsOverviewPage = '[id="titlebar"]';
+	static #newsOverviewPageTitle = '[data-testid="news-overview-title"]';
 	static #titlebarTasksOverviewPage = "h1";
 
 	static #testAssertionData = {
@@ -43,7 +43,7 @@ class Dashboard {
 
 	seeNewsOverviewPage() {
 		cy.url().should("include", "/news");
-		cy.get(Dashboard.#titlebarNewsOverviewPage).should("exist");
+		cy.get(Dashboard.#newsOverviewPageTitle).should("be.visible");
 	}
 
 	clickShowAllNewsButtonOnDashboard() {
