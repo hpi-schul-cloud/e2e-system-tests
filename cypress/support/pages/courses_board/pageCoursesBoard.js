@@ -179,11 +179,11 @@ class Board {
 				el.on("click", (event) => {
 					event.preventDefault();
 					clickSpy();
-					cy.log("The drawing element was clicked.");
 				});
 			});
 
-		cy.get(Board.#drawingElement).click();
+			cy.get(Board.#drawingElement).click();
+			cy.log("The drawing element was clicked.");
 
 		cy.get("@clickSpy").should("have.been.called");
 

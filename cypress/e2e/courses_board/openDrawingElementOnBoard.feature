@@ -82,7 +82,7 @@ Feature: Course Board - Opening a drawing element on a course page
         When I click on the button delete on the modal to confirm the course deletion
         Then I do not see the course '<course_name>' on the course overview page
 
-        @only
+        # @only
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | course_name              | fullname_teacher  | fullname_student  | board_title            |

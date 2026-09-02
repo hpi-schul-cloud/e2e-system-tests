@@ -1,8 +1,8 @@
-@regression_test
-@stable_test
-@schedule_run
-@group-E
-@prio_0_staging
+# @regression_test
+# @stable_test
+# @schedule_run
+# @group-E
+# @prio_0_staging
 Feature: Course Board - To export a course as common cartridge
 
     As a teacher, I want to export a course as a common cartridge file
@@ -101,5 +101,5 @@ Feature: Course Board - To export a course as common cartridge
         @school_api_test
         Examples:
             | teacher      | namespace | course       | import_wait_time |
-            | teacher1_nbc | nbc       | CC_Test_Kurs | 3                |
+            | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
 

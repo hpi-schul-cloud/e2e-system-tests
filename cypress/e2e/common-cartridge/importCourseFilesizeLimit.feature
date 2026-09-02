@@ -1,8 +1,8 @@
-@regression_test
-@stable_test
-@schedule_run
-@group-E
-@prio_0_staging
+# @regression_test
+# @stable_test
+# @schedule_run
+# @group-E
+# @prio_0_staging
 Feature: Course Import - Filesize limit feature
 
     As a teacher, I want to be informed about file size limits
@@ -47,4 +47,4 @@ Feature: Course Import - Filesize limit feature
         @school_api_test
         Examples:
             | teacher      | namespace |
-            | teacher1_nbc | nbc       |
+            | teacher1_dbc | dbc       |

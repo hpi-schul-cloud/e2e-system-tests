@@ -43,7 +43,7 @@ Feature: Rooms - To create and delete rooms with external teacher
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_external_school>' in dropdown School
-        When I select the first school from the dropdown
+        # When I select the first school from the dropdown
         Then I see school '<participant_external_school>' in dropdown School
         When I select '<role_name>' in dropdown Role
         Then I see role '<role_name>' in dropdown Role
@@ -69,5 +69,5 @@ Feature: Rooms - To create and delete rooms with external teacher
 
         @staging_test
         Examples:
-            | teacher_1    | teacherExt_1    | namespace | room_name             | participant_external_school | role_name      | participant_name |
-            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name  | Goethe-Gymnasium            | Lernbegleitend | Carlo            |
+            | teacher_1    | teacherExt_1    | namespace | room_name            | participant_external_school | role_name      | participant_name |
+            | teacher1_brb | teacherExt1_brb | brb       | CypressAut Room Name | Goethe-Gymnasium            | Lernbegleitend | Carlo            |

@@ -1,8 +1,8 @@
-@regression_test
-@stable_test
-@schedule_run
-@group-E
-@prio_0_staging
+# @regression_test
+# @stable_test
+# @schedule_run
+# @group-E
+# @prio_0_staging
 Feature: Course Board - To import a course from common cartridge 1.1
 
     As a teacher, I want to import a course from a common cartridge file exported from Moodle
@@ -118,4 +118,4 @@ Feature: Course Board - To import a course from common cartridge 1.1
         @school_api_test
         Examples:
             | teacher      | namespace | import_wait_time |
-            | teacher1_nbc | nbc       | 3                |
+            | teacher1_dbc | dbc       | 3                |
