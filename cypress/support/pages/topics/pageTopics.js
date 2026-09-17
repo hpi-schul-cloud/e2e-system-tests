@@ -119,6 +119,8 @@ class Topics {
 
 	clickOnSubmitChangesInTopicBtn() {
 		cy.get(Topics.#submitChangesInTopicBtn).click();
+		cy.wait(5000);
+		cy.get('[data-testid="section-topic"]').should("be.visible");
 	}
 
 	seeFormElementText(textElementPosition) {

@@ -125,6 +125,9 @@ export const getUserCredentials = (username) => {
 		case "admin1_lh":
 			return ["ADMIN_1_LH_EMAIL", "ADMIN_1_LH_PASSWORD"];
 
+		case "teacher1_dbc":
+			return ["TEACHER_1_DBC_EMAIL", "TEACHER_1_DBC_PASSWORD"];
+
 		default:
 			return [null, null];
 	}

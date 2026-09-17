@@ -1,13 +1,12 @@
 "use strict";
 
 class News {
-	static #elementTitle =
-		'[data-testid="news-title-0"]';
+	static #elementTitle = '[data-testid^="news-title-"]';
 	static #elementHeader = '[data-testid="news-header-0"]';
 	static #pageTitle = '[data-testid="news-title"]';
 	static #enDateFormat = "en-CA";
 	static #deDateFormat = "de-DE";
-	static #newsText = '[data-testid="news-content"]';
+	static #newsText = '[data-testid^="news-content-"]';
 	static #newsOverviewNavigationButton = '[data-testid="sidebar-news"]';
 	static #createNewNews = '[data-testid="create-news-btn"] .v-btn';
 	static #newsTitleInput = '[data-testid="news_title"]';
@@ -17,9 +16,8 @@ class News {
 	static #newsCreateButton = '[data-testid="btn_news_submit"]';
 	static #newsTitle = '[data-testid="news-title"]';
 	static #newsDescriptionVisible = '[data-testid="news-content"]';
-	static #newsNameOnNewsOverview =
-		'[data-testid="news-title-0"]';
-	static #newsNameOnDashboard = '[data-testid="news-title-0"]';
+	static #newsNameOnNewsOverview = '[data-testid^="news-title-"]';
+	static #newsNameOnDashboard = '[data-testid^="news-title-"]';
 	static #deleteNews = '[data-testid="news-delete-btn"]';
 	static #deleteNewsConfirmation = '[data-testid="confirm-dialog-confirm"]';
 	static #newsOverviewPageTitle = '[data-testid="news-overview-title"]';
@@ -139,8 +137,13 @@ class News {
 	}
 
 	seeNewsOnOverviewPage(titleOfNews, descriptionOfNews) {
-		cy.get(News.#elementTitle).contains(titleOfNews).should("exist");
-		cy.get(News.#newsText).contains(descriptionOfNews).should("exist");
+		cy.get(`${News.#elementTitle}, [data-testid="title_of_an_element"]`)
+			.contains(titleOfNews)
+			.should("exist");
+
+		cy.get(`${News.#newsText}, [data-testid="body_of_element"]`)
+			.contains(descriptionOfNews)
+			.should("exist");
 	}
 
 	seeNewsOnNewsDetailPage(titleOfNews, descriptionOfNews) {
