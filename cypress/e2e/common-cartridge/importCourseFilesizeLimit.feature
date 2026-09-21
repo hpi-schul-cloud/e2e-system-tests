@@ -1,8 +1,8 @@
-# @regression_test
-# @stable_test
-# @schedule_run
-# @group-E
-# @prio_0_staging
+@regression_test
+@stable_test
+@schedule_run
+@group-E
+@prio_0_staging
 Feature: Course Import - Filesize limit feature
 
     As a teacher, I want to be informed about file size limits

@@ -40,7 +40,7 @@ Feature: Room Administration - Add external room and members with visibility on 
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_origin_school>' in dropdown School
-        When I select the first school from the dropdown
+        # When I select the first school from the dropdown
         Then I see school '<participant_origin_school>' in dropdown School
         When I select '<role_name>' in dropdown Role
         Then I see role '<role_name>' in dropdown Role

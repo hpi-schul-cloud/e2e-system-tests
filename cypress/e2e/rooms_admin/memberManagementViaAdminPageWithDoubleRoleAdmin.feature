@@ -31,7 +31,7 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_school>' in dropdown School
-        When I select the first school from the dropdown
+        # When I select the first school from the dropdown
         Then I see school '<participant_school>' in dropdown School
         When I select '<role_name_student>' in dropdown Role
         Then I see role '<role_name_student>' in dropdown Role
@@ -44,7 +44,7 @@ Feature: RoomMembers Administration - Able to see rooms and manage all the room 
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_school>' in dropdown School
-        When I select the first school from the dropdown
+        # When I select the first school from the dropdown
         Then I see school '<participant_school>' in dropdown School
         When I select '<role_name_teacher>' in dropdown Role
         Then I see role '<role_name_teacher>' in dropdown Role

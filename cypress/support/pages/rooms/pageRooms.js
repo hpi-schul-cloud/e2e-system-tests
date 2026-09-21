@@ -414,6 +414,7 @@ class Rooms {
 	}
 
 	navigateToRoom(roomName, position) {
+		cy.wait(500);
 		// dynamically construct the title and button selectors based on the position
 		const roomTitleSelector = `[data-testid="room--title-${position}"]`;
 		const openButtonSelector = `[data-testid="room-open-button-${position}"]`;

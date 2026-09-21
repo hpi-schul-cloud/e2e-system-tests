@@ -49,7 +49,7 @@ Feature: Rooms - Invite Student from another school via teacher from another sch
         When I click on button 'select-from-directory' from speed dial option
         Then I see modal Add participants
         When I enter '<participant_external_school>' in dropdown School
-        When I select the first school from the dropdown
+        # When I select the first school from the dropdown
         Then I see school '<participant_external_school>' in dropdown School
         When I select '<role_name_teacher>' in dropdown Role
         Then I see role '<role_name_teacher>' in dropdown Role

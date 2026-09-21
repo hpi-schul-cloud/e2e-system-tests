@@ -1164,6 +1164,7 @@ class RoomBoards {
 	}
 
 	clickEditOptionInCardThreeDot() {
+		cy.wait(500);
 		cy.get(RoomBoards.#editOptionInCardThreeDot).click();
 	}
 

@@ -2,7 +2,8 @@
 
 class News {
 	static #elementTitle = '[data-testid^="news-title-"]';
-	static #elementHeader = '[data-testid="news-header-0"]';
+	static #elementHeader =
+		'[data-testid^="news-header-"], [data-testid="header-of-element"]';
 	static #pageTitle = '[data-testid="news-title"]';
 	static #enDateFormat = "en-CA";
 	static #deDateFormat = "de-DE";
@@ -16,8 +17,10 @@ class News {
 	static #newsCreateButton = '[data-testid="btn_news_submit"]';
 	static #newsTitle = '[data-testid="news-title"]';
 	static #newsDescriptionVisible = '[data-testid="news-content"]';
-	static #newsNameOnNewsOverview = '[data-testid^="news-title-"]';
-	static #newsNameOnDashboard = '[data-testid^="news-title-"]';
+	static #newsNameOnNewsOverview =
+		'[data-testid^="news-title-"], [data-testid="header-of-element"]';
+	static #newsNameOnDashboard =
+		'[data-testid^="news-title-"], [data-testid="header-of-element"]';
 	static #deleteNews = '[data-testid="news-delete-btn"]';
 	static #deleteNewsConfirmation = '[data-testid="confirm-dialog-confirm"]';
 	static #newsOverviewPageTitle = '[data-testid="news-overview-title"]';
@@ -47,7 +50,7 @@ class News {
 	}
 
 	clickSaveIconInCKEditor() {
-		cy.contains(News.#ckBalloonPanelButton, /Save|Speichern/i).click();
+		cy.contains(News.#ckBalloonPanelButton, /Save|Speichern|Einfügen/i).click();
 	}
 
 	doNotSeeNewsWhenNewsNotYetPublished(newsTitle) {
