@@ -1160,6 +1160,45 @@ Then("the lightbox is not visible anymore", () => {
 	roomBoards.verifyLightboxNotVisible();
 });
 
+When("I click on the button Table of contents in the lightbox header", () => {
+	roomBoards.clickTableOfContentsButtonInLightbox();
+});
+
+Then("I see the table of contents in the lightbox", () => {
+	roomBoards.seeTableOfContentsInLightbox();
+});
+
+Then("I do not see the table of contents in the lightbox", () => {
+	roomBoards.doNotSeeTableOfContentsInLightbox();
+});
+
+Then("I see the card {string} as current card in the table of contents", (cardTitle) => {
+	roomBoards.seeCardAsCurrentInTableOfContents(cardTitle);
+});
+
+When("I click on the card {string} in the table of contents", (cardTitle) => {
+	roomBoards.clickCardInTableOfContents(cardTitle);
+});
+
+Then("I see the entry {string} in the table of contents", (entryLabel) => {
+	roomBoards.seeElementEntryInTableOfContents(entryLabel);
+});
+
+When("I click on the entry {string} in the table of contents", (entryLabel) => {
+	roomBoards.clickElementEntryInTableOfContents(entryLabel);
+});
+
+Then(
+	"I see the entry {string} as current location in the table of contents",
+	(entryLabel) => {
+		roomBoards.seeElementEntryAsCurrentLocationInTableOfContents(entryLabel);
+	}
+);
+
+Then("I see the empty state in the table of contents", () => {
+	roomBoards.seeEmptyStateInTableOfContents();
+});
+
 Then("I see the three dot menu next to the trash bin page title", () => {
 	roomBoards.verifyTrashTitleMenuVisible();
 });

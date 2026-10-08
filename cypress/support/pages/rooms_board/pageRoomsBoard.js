@@ -129,6 +129,12 @@ class RoomBoards {
 	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
 	static #toolbarViewButton = '[data-testid="toolbar-view-button"]';
 	static #closeDetailViewButton = '[data-testid="close-detail-view-button"]';
+	static #tableOfContentsToggleButton =
+		'[data-testid="toggle-table-of-contents-button"]';
+	static #tableOfContents = '[data-testid="card-toc"]';
+	static #tableOfContentsCardEntry = '[data-testid^="card-toc-card-"]';
+	static #tableOfContentsElementEntry = '[data-testid^="card-toc-element-"]';
+	static #tableOfContentsEmptyState = '[data-testid="card-toc-empty"]';
 	static #importSelectRoom = '[data-testid="import-card-select-room"]';
 	static #importSelectBoard = '[data-testid="import-card-select-board"]';
 	static #importSelectColumn = '[data-testid="import-card-select-column"]';
@@ -1869,6 +1875,62 @@ class RoomBoards {
 
 	clickCloseButtonInLightbox() {
 		cy.get(RoomBoards.#closeDetailViewButton).click();
+	}
+
+	clickTableOfContentsButtonInLightbox() {
+		cy.get(RoomBoards.#tableOfContentsToggleButton).click();
+	}
+
+	seeTableOfContentsInLightbox() {
+		cy.get(RoomBoards.#tableOfContentsToggleButton).should(
+			"have.attr",
+			"aria-expanded",
+			"true"
+		);
+		cy.get(RoomBoards.#tableOfContents).should("be.visible");
+	}
+
+	doNotSeeTableOfContentsInLightbox() {
+		cy.get(RoomBoards.#tableOfContentsToggleButton).should(
+			"have.attr",
+			"aria-expanded",
+			"false"
+		);
+		cy.get(RoomBoards.#tableOfContents).should("not.exist");
+	}
+
+	seeCardAsCurrentInTableOfContents(cardTitle) {
+		cy.get(RoomBoards.#tableOfContents)
+			.contains(RoomBoards.#tableOfContentsCardEntry, cardTitle)
+			.should("have.attr", "aria-current", "page");
+	}
+
+	clickCardInTableOfContents(cardTitle) {
+		cy.get(RoomBoards.#tableOfContents)
+			.contains(RoomBoards.#tableOfContentsCardEntry, cardTitle)
+			.click();
+	}
+
+	seeElementEntryInTableOfContents(entryLabel) {
+		cy.get(RoomBoards.#tableOfContents)
+			.contains(RoomBoards.#tableOfContentsElementEntry, entryLabel)
+			.should("be.visible");
+	}
+
+	clickElementEntryInTableOfContents(entryLabel) {
+		cy.get(RoomBoards.#tableOfContents)
+			.contains(RoomBoards.#tableOfContentsElementEntry, entryLabel)
+			.click();
+	}
+
+	seeElementEntryAsCurrentLocationInTableOfContents(entryLabel) {
+		cy.get(RoomBoards.#tableOfContents)
+			.contains(RoomBoards.#tableOfContentsElementEntry, entryLabel)
+			.should("have.attr", "aria-current", "location");
+	}
+
+	seeEmptyStateInTableOfContents() {
+		cy.get(RoomBoards.#tableOfContentsEmptyState).should("be.visible");
 	}
 
 	copyCurrentFullscreenCardURL() {
