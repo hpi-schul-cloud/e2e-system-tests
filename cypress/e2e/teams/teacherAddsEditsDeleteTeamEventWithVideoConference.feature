@@ -1,7 +1,10 @@
-@stable_test
-@regression_test
-@group-E
-@prio_0_staging
+# @stable_test
+# @regression_test
+# @group-E
+# @prio_0_staging
+@unstable_test
+
+# TEAMS ARE DISABLED
 
 #---NEW TEAM CAN NOT BE CREATED IN GUI, SO PLEASE USE THE EXISTING TEAM AND DO NOT DELETE IT---#
 

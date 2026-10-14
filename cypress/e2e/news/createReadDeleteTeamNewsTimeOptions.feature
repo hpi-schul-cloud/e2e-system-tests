@@ -1,7 +1,10 @@
-@stable_test
-@regression_test
-@group-A
-@prio_0_staging
+# @stable_test
+# @regression_test
+# @group-A
+# @prio_0_staging
+@unstable_test
+
+# TEAMS ARE DISABLED
 
 #---NEW TEAM CAN NOT BE CREATED IN GUI, SO PLEASE USE THE EXISTING TEAM AND DO NOT DELETE IT---#
 
@@ -45,7 +48,7 @@ Feature:  News - To read a news on the respective dashboards
         When I confirm the deletion on confirmation dialog box
         Then I do not see the news '<team_news_title>'
 
-        @staging_test
+        # @staging_test
         Examples:
             | news_author  | news_reader  | namespace | news_day_from_today | news_time   | news_time_info_overviewpage | news_time_info_detailpage | team_name              | team_news_title                  | team_news_description      |
             | teacher1_brb | student1_brb | brb       | 0                   | currentTime | vor ein                     | vor ein                   | QA_01 - do not delete! | CypressAut - this is a team news | test team news description |

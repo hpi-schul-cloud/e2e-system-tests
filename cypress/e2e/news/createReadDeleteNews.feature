@@ -28,27 +28,27 @@ Feature:  News - To read a news on the respective dashboards
         Then I see news is created successfully with title '<news_title>' and with description '<news_description>'
 
         # teacher creates a team news
-        When I go to teams overview
-        When I go to a team '<team_name>'
-        When I click on news tab on the team detail page
-        When I click on create news button
-        Then I see news creation page
-        When I enter news title '<team_news_title>'
-        When I enter news description '<team_news_description>'
-        Then I see date input field
-        Then I see time input field
-        When I click on save button
-        Then I see news is created successfully with title '<team_news_title>' and with description '<team_news_description>'
+        # When I go to teams overview
+        # When I go to a team '<team_name>'
+        # When I click on news tab on the team detail page
+        # When I click on create news button
+        # Then I see news creation page
+        # When I enter news title '<team_news_title>'
+        # When I enter news description '<team_news_description>'
+        # Then I see date input field
+        # Then I see time input field
+        # When I click on save button
+        # Then I see news is created successfully with title '<team_news_title>' and with description '<team_news_description>'
 
         # teacher reads a school news on news overview page
         When I go to news overview
         Then I can read the news '<news_title>' with description '<news_description>'
 
         # teacher reads a team news on teams news overview page
-        When I go to teams overview
-        When I go to a team '<team_name>'
-        When I click on news tab on the team detail page
-        Then I can read the news '<team_news_title>' with description '<team_news_description>'
+        # When I go to teams overview
+        # When I go to a team '<team_name>'
+        # When I click on news tab on the team detail page
+        # Then I can read the news '<team_news_title>' with description '<team_news_description>'
 
         # student reads a school news on news overview page
         Given I am logged in as a '<student>' at '<namespace>'
@@ -64,11 +64,11 @@ Feature:  News - To read a news on the respective dashboards
         Then I do not see the news '<news_title>'
 
         # post-condition: teacher deletes the team news
-        When I arrive on the dashboard
-        When I click on the news teaser '<team_news_title>'
-        When I click on delete button
-        When I confirm the deletion on confirmation dialog box
-        Then I do not see the news '<team_news_title>'
+        # When I arrive on the dashboard
+        # When I click on the news teaser '<team_news_title>'
+        # When I click on delete button
+        # When I confirm the deletion on confirmation dialog box
+        # Then I do not see the news '<team_news_title>'
 
         @staging_test
         Examples:

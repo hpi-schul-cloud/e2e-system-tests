@@ -112,16 +112,18 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
 
         Given I am logged in as a '<teacher>' at '<namespace>'
 
+        # TEAMS ARE DISABLED
+
         # teacher checks team
-        When I go to teams overview
-        When I go to a team 'HC AG'
-        When I click on team settings
-        When I click on edit option
-        Then I see team edit page
-        When I go to teams overview
-        Then I see team title 'HC AG' is visible
-        When I go to a team 'HC AG'
-        Then I see the uploaded file 'Gadget.jpg' in the file list
+        # When I go to teams overview
+        # When I go to a team 'HC AG'
+        # When I click on team settings
+        # When I click on edit option
+        # Then I see team edit page
+        # When I go to teams overview
+        # Then I see team title 'HC AG' is visible
+        # When I go to a team 'HC AG'
+        # Then I see the uploaded file 'Gadget.jpg' in the file list
         When I go to tab Calendar
         Then I am in calendar tab on team detail page and title 'Brainstorming' is visible
         Then I see the start video conference button

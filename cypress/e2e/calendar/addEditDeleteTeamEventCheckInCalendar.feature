@@ -1,7 +1,10 @@
-@stable_test
-@regression_test
-@group-D
-@prio_0_staging
+# @stable_test
+# @regression_test
+# @group-D
+# @prio_0_staging
+@unstable_test
+
+# TEAMS ARE DISABLED
 
 #---NEW TEAM CAN NOT BE CREATED IN GUI, SO PLEASE USE THE EXISTING TEAM AND DO NOT DELETE IT---#
 
@@ -103,7 +106,7 @@ Feature: Calendar - Create an event in a team and check in calendar
         When I select the student '<student_fullname>' and click on delete icon
         Then I see '<student_fullname>' is not visible on the table
 
-        @staging_test
+        # @staging_test
         Examples:
             | teacher      | student      | namespace | student_last_name | student_fullname | team                   | event_title | event_start_time | event_start_text | event_end_time | event_start_time_1 | event_start_text_1 | event_end_time_1 | event_description         | event_place  | event_title_1 | event_description_1            | event_place_1      |
             | teacher1_brb | student1_brb | brb       | Kraft, Herbert    | Herbert Kraft    | QA_01 - do not delete! | cy Event    | 10:00            | 10 Uhr           | 11:00          | 12:00              | 12 Uhr             | 13:00            | cy team event description | cy TestPlace | edit cy title | edit cy team event description | edit cy test place |
