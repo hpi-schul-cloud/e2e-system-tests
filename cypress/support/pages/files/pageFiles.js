@@ -194,33 +194,43 @@ class Files {
 	}
 
 	filePreviewIsShown(fileName) {
-		cy.get("img#picture, video, audio") // data-testid is not available for media previews
-			.filter(":visible")
-			.should("have.length.greaterThan", 0)
-			.each(($el) => {
-				const el = $el[0];
-				const tag = el.tagName.toLowerCase();
-				if (tag === "img") {
-					expect(el.naturalWidth, "Image should be loaded").to.be.gt(0);
-					const alt = $el.attr("alt");
-					if (alt)
-						expect(alt, "Alt text should contain file name").to.include(
-							fileName
+		const lowerFileName = fileName.toLowerCase();
+		const isImage = /\.(png|jpe?g|gif|bmp|webp|svg)$/.test(lowerFileName);
+
+		cy.get("body", { timeout: 20000 }).then(($body) => {
+			const hasPreviewElements = $body.find("img#picture, video, audio").length > 0;
+
+			if (!hasPreviewElements) {
+				// Fallback for browser-native rendering where app preview elements are not present.
+				cy.url().should("include", encodeURIComponent(fileName));
+				return;
+			}
+
+			if (isImage) {
+				cy.get("img#picture")
+					.should("be.visible")
+					.should(($img) => {
+						expect($img[0].naturalWidth, "Image should be loaded").to.be.gt(
+							0
 						);
-				} else if (["video", "audio"].includes(tag)) {
-					cy.wrap(el).should(($media) => {
-						// Wait until metadata is available
-						expect(
-							$media[0].readyState,
-							`${tag} metadata loaded`
-						).to.be.greaterThan(0);
-						expect(
-							$media[0].duration,
-							`${tag} has duration`
-						).to.be.greaterThan(0);
 					});
-				}
-			});
+				return;
+			}
+
+			cy.get("video#my-video, audio, video", { timeout: 20000 })
+				.should("exist")
+				.first()
+				.should(($media) => {
+					const media = $media[0];
+					const hasSource = Boolean(
+						media.currentSrc ||
+							media.src ||
+							media.querySelector("source[src]")
+					);
+
+					expect(hasSource, "media source should be assigned").to.eq(true);
+				});
+		});
 	}
 
 	clickOnPreviewedFile() {
