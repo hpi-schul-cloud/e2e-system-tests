@@ -59,8 +59,8 @@ jobs:
           nbc_dev="https://${branch}.niedersachsen.schulcloud-verbund.org/"
 
           # STAGING URLs (fixed)
-          brb_staging="https://staging.brandenburg.dbildungscloud.org/"
-          nbc_staging="https://staging.niedersachsen.dbildungscloud.org/"
+          brb_staging="https://staging.brandenburg.schulcloud-verbund.org/"
+          nbc_staging="https://staging.niedersachsen.schulcloud-verbund.org/"
 
           # Export URLs
           echo "cypress_brb_dev=$brb_dev" >> $GITHUB_OUTPUT
