@@ -7,7 +7,7 @@ class News {
 	static #pageTitle = '[data-testid="news-title"]';
 	static #enDateFormat = "en-CA";
 	static #deDateFormat = "de-DE";
-	static #newsText = '[data-testid="news-content"]';
+	static #newsText = '[data-testid="news-content-0"]';
 	static #newsOverviewNavigationButton = '[data-testid="sidebar-news"]';
 	static #createNewNews = '[data-testid="create-news-btn"] .v-btn';
 	static #newsTitleInput = '[data-testid="news_title"]';
@@ -21,6 +21,7 @@ class News {
 		'[data-testid="news-title-0"]';
 	static #newsNameOnDashboard = '[data-testid="news-title-0"]';
 	static #deleteNews = '[data-testid="news-delete-btn"]';
+	static #editNews = '[data-testid="news-edit-btn"]';
 	static #deleteNewsConfirmation = '[data-testid="confirm-dialog-confirm"]';
 	static #newsOverviewPageTitle = '[data-testid="news-overview-title"]';
 	//static #newsMainContent = '[id="main-content"]';
@@ -80,6 +81,55 @@ class News {
 
 	clickOnDeleteNewsButton() {
 		cy.get(News.#deleteNews).click();
+	}
+
+	clickOnEditNewsButton() {
+		cy.get(News.#editNews).click();
+		cy.url().should("match", /\/news\/[0-9a-f]{24}\/edit/);
+		cy.get(News.#newsTitleInput).find("input").should("not.have.value", "");
+	}
+
+	replaceNewsTitle(newsTitle) {
+		cy.get(News.#newsTitleInput).find("input").clear().type(newsTitle);
+	}
+
+	replaceNewsDescription(newsDescription) {
+		cy.get(News.#newsDescription, { timeout: 20000 })
+			.focus()
+			.type("{selectall}{backspace}")
+			.realType(newsDescription)
+			// ckeditor-vue updates the v-model debounced
+			.wait(500);
+		cy.get(News.#newsDescription).should("have.text", newsDescription);
+	}
+
+	saveNewsAndWaitForUpdate() {
+		cy.intercept({ method: "PATCH", pathname: /\/api\/v3\/news\/[0-9a-f]{24}$/ }).as("updateNewsApi");
+		cy.get(News.#newsCreateButton).click();
+		cy.wait("@updateNewsApi").its("response.statusCode").should("eq", 200);
+	}
+
+	doNotSeeNewsTitleOnNewsDetailPage(newsTitle) {
+		cy.get(News.#pageTitle).should("be.visible").and("not.contain.text", newsTitle);
+	}
+
+	reloadNewsOverviewAndWaitForNewsList() {
+		cy.location("pathname").should("eq", "/news");
+		// a list request from the preceding navigation may be aborted by the reload,
+		// so wait for any successful list response that arrives after the reload
+		const state = { reloaded: false, loaded: false };
+		cy.intercept({ method: "GET", pathname: "/api/v3/news" }, (req) => {
+			req.continue((res) => {
+				if (state.reloaded && res.statusCode === 200) {
+					state.loaded = true;
+				}
+			});
+		});
+		cy.then(() => {
+			state.reloaded = true;
+		});
+		cy.reload();
+		cy.wrap(state, { timeout: 20000 }).its("loaded").should("eq", true);
 	}
 
 	openNewsDetailPage(newsName) {

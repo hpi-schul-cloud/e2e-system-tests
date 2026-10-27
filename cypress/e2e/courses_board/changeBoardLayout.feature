@@ -3,6 +3,7 @@
 @schedule_run
 @group-D
 @prio_0_staging
+@mikroorm_v7
 Feature: Course Board - To change the board layout
 
     As a teacher, I want to change the board layout
@@ -51,6 +52,9 @@ Feature: Course Board - To change the board layout
         Then I see in dialog box option for single-column board
         When I choose single-column board in the dialog box
         Then I see the single-column board
+        When I reload the current page
+        Then I see the single-column board
+        Then I see a board card
 
         # teacher changes board layout to multi column
         When I click on three dot menu in the board header
@@ -60,6 +64,9 @@ Feature: Course Board - To change the board layout
         Then I see in dialog box option for single-column board
         When I choose multi-column board in the dialog box
         Then I see the multi-column board
+        When I reload the current page
+        Then I see the multi-column board
+        Then I see a board card
 
         # post-condition: teacher deletes course
         Given course with name '<course_name>' is deleted

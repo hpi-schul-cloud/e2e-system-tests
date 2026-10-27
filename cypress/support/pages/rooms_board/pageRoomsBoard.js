@@ -123,7 +123,7 @@ class RoomBoards {
 	static #bettermarksToolDomainUrl =
 		'[data-testid="board-external-tool-element-domain"]';
 	static #body = "body";
-	static #duplicatedCardPosition = '[data-testid="board-card-0-1"]';
+	static #duplicatedCardPosition = '[data-testid="board-card-0-0"]';
 	static #firstCardPositionInRoomBoard = '[data-testid="board-card-0-0"]';
 	static #secondCardPositionInRoomBoard = '[data-testid="board-card-0-2"]';
 	static #cardDetailViewToolbar = '[id="card-detail-view-toolbar"]';
@@ -209,6 +209,21 @@ class RoomBoards {
 					cardTitles.indexOf(existingCardTitle)
 				);
 			});
+	}
+
+	moveCardDownByKeyboard(columnIndex, rowIndex) {
+		// card moves are sent via websocket; the board only reorders after the server confirmed the move
+		cy.get(`[data-testid="board-card-${columnIndex}-${rowIndex}"]`)
+			.focus()
+			.trigger("keydown", { key: "ArrowDown", code: "ArrowDown", keyCode: 40 });
+	}
+
+	reloadBoardAndWaitForCards() {
+		// board data is fetched via websocket, so wait for the rendered cards instead of an xhr
+		cy.reload();
+		cy.get('[data-testid="board-card-0-0"]').should("be.visible");
+		// card contents are loaded separately; the skeleton shows a progress spinner until then
+		cy.get('[data-testid="board-card-0-0"] .v-progress-circular').should("not.exist");
 	}
 
 	selectTwoRoomsForBoardImport(roomName1, roomName2) {

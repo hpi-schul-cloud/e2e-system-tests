@@ -240,6 +240,10 @@ When("I confirm the delete tool dialog", () => {
 	courses.confirmDeleteToolDialog();
 });
 
+When("I confirm the delete tool dialog and wait for deletion", () => {
+	courses.confirmDeleteToolDialogAndWaitForDeletion();
+});
+
 When("I click on add tool", () => {
 	courses.clickOnSaveTool();
 });

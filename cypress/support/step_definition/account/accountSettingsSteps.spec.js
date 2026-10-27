@@ -11,6 +11,18 @@ When("I enter my updated email", () => {
 	account.enterUpdatedEmailAfterSavingInAccountSettings();
 });
 
+When("I remember my current email", () => {
+	account.rememberCurrentEmailOnUserSettingsPage();
+});
+
+When("I enter my previous email", () => {
+	account.enterPreviousEmailOnLoginPage();
+});
+
+Then("I see my updated email in the account settings after reload", () => {
+	account.reloadAccountSettingsAndVerifyUpdatedEmail();
+});
+
 When("I enter my current password", () => {
 	account.enterCurrentPasswordOnUserSettingsPage();
 });
