@@ -5,6 +5,7 @@
 @pr
 @pre_check_test
 @prio_0_staging
+@mikroorm_v7
 Feature: Course - To add and delete a course by the teacher
 
     As a teacher, I want to manage courses by adding, updating, and removing them
@@ -46,6 +47,18 @@ Feature: Course - To add and delete a course by the teacher
         When I edit the course description to '<course_description>'
         When I click on button Save changes in page Edit course
         Then I see the course '<course_title_edited>' on the course overview page
+        # saving redirects to the course page, not to the course overview
+        When I reload the current page
+        Then I see course page '<course_title_edited>'
+        When I go to courses overview
+        Then I see the course '<course_title_edited>' on the course overview page
+        Then I do not see the course '<course_title>' on the course overview page
+        When I go to course '<course_title_edited>'
+        When I open page Edit course
+        Then I see the course title form contains '<course_title_edited>'
+        Then I see the course description form contains '<course_description>'
+        # the edit form lists students as 'last name, first name'
+        Then I see the student '<student_list_name>' is selected
 
         # student sees the course
         Given I am logged in as a '<student>' at '<namespace>'
@@ -53,15 +66,20 @@ Feature: Course - To add and delete a course by the teacher
         Then I see the course '<course_title_edited>' on the course overview page
         When I go to course '<course_title_edited>'
         Then I see course page '<course_title_edited>'
+        When I reload the current page
+        Then I see course page '<course_title_edited>'
 
         # post-condition: deleting the course created in this feature test
         Given I am logged in as a '<teacher>' at '<namespace>'
         When I go to courses overview
         When I go to course '<course_title_edited>'
         When I open page Edit course
+        Then I see the course description form contains '<course_description>'
         When I click on the button delete course
         Then I see the modal to confirm the deletion
         When I click on the button delete on the modal to confirm the course deletion
+        Then I do not see the course '<course_title_edited>' on the course overview page
+        When I reload the current page
         Then I do not see the course '<course_title_edited>' on the course overview page
 
         # post-condition: student does not see the course anymore
@@ -71,10 +89,10 @@ Feature: Course - To add and delete a course by the teacher
 
         @staging_test
         Examples:
-            | admin      | namespace | teacher      | fullname_teacher | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
-            | admin1_nbc | nbc       | teacher1_nbc | Karl Herzog      | student1_nbc | Herbert Kraft     | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
+            | admin      | namespace | teacher      | fullname_teacher | student      | student_last_name | student_list_name  | course_title                          | course_title_edited         | course_description               |
+            | admin1_nbc | nbc       | teacher1_nbc | Karl Herzog      | student1_nbc | Herbert Kraft     | Kraft, Herbert     | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
 
         @school_api_test
         Examples:
-            | admin      | namespace | teacher      | fullname_teacher  | student      | student_last_name | course_title                          | course_title_edited         | course_description               |
-            | admin1_nbc | nbc       | teacher1_nbc | cypress teacher_1 | student1_nbc | cypress student_1 | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |
+            | admin      | namespace | teacher      | fullname_teacher  | student      | student_last_name | student_list_name  | course_title                          | course_title_edited         | course_description               |
+            | admin1_nbc | nbc       | teacher1_nbc | cypress teacher_1 | student1_nbc | cypress student_1 | student_1, cypress | CypressAut Test Creation and Deletion | CypressAut Test Course Edit | cy edit this is test description |

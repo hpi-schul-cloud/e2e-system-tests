@@ -56,6 +56,14 @@ When("I click on button Add in the modal to add an external tool", () => {
 	toolConfiguration.saveExternalToolButton();
 });
 
+When("I save the external tool and wait for persistence", () => {
+	toolConfiguration.saveExternalToolAndWaitForPersistence();
+});
+
+When("I clear optional custom parameter field {string}", (paramName) => {
+	toolConfiguration.clearCustomParameter(paramName);
+});
+
 Then("I do not see tool {string} in the tool selection", (toolName) => {
 	toolConfiguration.toolIsNotVisibleInToolSelection(toolName);
 });
@@ -314,6 +322,10 @@ When("I click on delete button of tool {string}", (toolName) => {
 
 When("I confirm deletion on deletion dialog", () => {
 	management.clickOnConfirmInToolUsageDialog();
+});
+
+When("I confirm deletion on deletion dialog and wait for deletion", () => {
+	management.confirmToolDeletionAndWaitForDeletion();
 });
 
 Then(

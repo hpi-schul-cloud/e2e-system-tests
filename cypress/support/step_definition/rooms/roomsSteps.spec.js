@@ -130,6 +130,10 @@ When("I go to rooms overview", () => {
 	rooms.navigateToRoomsOverview();
 });
 
+When("I reload the rooms overview and wait for the rooms list", () => {
+	rooms.reloadRoomsOverviewAndWaitForRoomsList();
+});
+
 When("I click on FAB to create new room", () => {
 	rooms.clickOnCreateRoomFAB();
 });

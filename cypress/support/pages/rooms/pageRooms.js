@@ -487,6 +487,12 @@ class Rooms {
 		cy.contains(roomName).should("not.exist");
 	}
 
+	reloadRoomsOverviewAndWaitForRoomsList() {
+		cy.intercept({ method: "GET", pathname: "/api/v3/rooms" }).as("roomsListApi");
+		cy.reload();
+		cy.wait("@roomsListApi").its("response.statusCode").should("eq", 200);
+	}
+
 	seeSchoolOfParticipant(participantSchool) {
 		cy.get(Rooms.#addParticipantSchool).contains(participantSchool).should("exist");
 	}
