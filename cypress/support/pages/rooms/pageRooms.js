@@ -706,6 +706,19 @@ class Rooms {
 		cy.get(Rooms.#addContentButton).should("exist").should("be.visible");
 	}
 
+	doNotSeeFabCreateRoomBoard() {
+		cy.get(Rooms.#roomTitle).should("be.visible");
+		cy.get(Rooms.#addContentButton).should("not.exist");
+	}
+
+	confirmChangeRoleAndWaitForUpdate() {
+		cy.intercept({ method: "PATCH", pathname: /\/api\/v3\/rooms\/[0-9a-f]{24}\/members\/roles$/ }).as(
+			"changeRoomRoleApi"
+		);
+		cy.get('[data-testid="change-role-confirm-btn"]').click();
+		cy.wait("@changeRoomRoleApi").its("response.statusCode").should("eq", 200);
+	}
+
 	seeFabAddMember() {
 		cy.get(Rooms.#addParticipants).should("exist");
 	}

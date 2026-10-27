@@ -328,6 +328,14 @@ Then("I don't see last actions column in the table", () => {
 	rooms.doNotSeeLastColumnInRoomMembersTable();
 });
 
+Then("I do not see button Fab Create Room Board", () => {
+	rooms.doNotSeeFabCreateRoomBoard();
+});
+
+When("I confirm the role change and wait for the update", () => {
+	rooms.confirmChangeRoleAndWaitForUpdate();
+});
+
 Then("I see button Fab Create Room Board", () => {
 	rooms.seeFabCreateRoomBoard();
 });

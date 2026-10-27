@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @prio_0_staging
+@mikroorm_v7
 Feature: Room Board - Add, edit and delete element text in the room board
 
     As a teacher, I want to add, edit and delete an element Text on the room board, so that I can manage and update important notes efficiently.
@@ -53,12 +54,17 @@ Feature: Room Board - Add, edit and delete element text in the room board
         Then I re enter the text '<edit_example_text>' in the element Text
         When I click outside of the card to save it
         Then I see the element Text '<edit_example_text>' in the card
+        When I reload the current page
+        Then I see the element Text '<edit_example_text>' in the card
 
         # teacher deletes the element Text in the multi-column board
         When I click on the three dot on the card
         When I click on the option Edit in the three dot menu on the card
         When I remove the text '<edit_example_text>' in the element Text
         When I click outside of the card to save it
+        Then I do not see the element Text in the card
+        When I reload the current page
+        Then I see a board card
         Then I do not see the element Text in the card
 
         # student can not see the element Text in the multi-column board
