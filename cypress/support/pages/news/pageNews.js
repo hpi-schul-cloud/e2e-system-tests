@@ -115,9 +115,21 @@ class News {
 
 	reloadNewsOverviewAndWaitForNewsList() {
 		cy.location("pathname").should("eq", "/news");
-		cy.intercept({ method: "GET", pathname: "/api/v3/news" }).as("newsListApi");
+		// a list request from the preceding navigation may be aborted by the reload,
+		// so wait for any successful list response that arrives after the reload
+		const state = { reloaded: false, loaded: false };
+		cy.intercept({ method: "GET", pathname: "/api/v3/news" }, (req) => {
+			req.continue((res) => {
+				if (state.reloaded && res.statusCode === 200) {
+					state.loaded = true;
+				}
+			});
+		});
+		cy.then(() => {
+			state.reloaded = true;
+		});
 		cy.reload();
-		cy.wait("@newsListApi").its("response.statusCode").should("eq", 200);
+		cy.wrap(state, { timeout: 20000 }).its("loaded").should("eq", true);
 	}
 
 	openNewsDetailPage(newsName) {

@@ -130,6 +130,18 @@ When("I go to rooms overview", () => {
 	rooms.navigateToRoomsOverview();
 });
 
+When("I remember the url of the current room", () => {
+	rooms.rememberCurrentRoomUrl();
+});
+
+When("I open the remembered room url and get status {int}", (statusCode) => {
+	rooms.visitRememberedRoomUrlAndExpectStatus(statusCode);
+});
+
+Then("I do not see the room title", () => {
+	rooms.doNotSeeRoomTitle();
+});
+
 When("I reload the rooms overview and wait for the rooms list", () => {
 	rooms.reloadRoomsOverviewAndWaitForRoomsList();
 });

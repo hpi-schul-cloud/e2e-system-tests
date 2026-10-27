@@ -1,5 +1,9 @@
 "use strict";
 
+// kept across cy.session switches within one scenario
+let rememberedRoomPath;
+let roomDetailsVisitCount = 0;
+
 class Rooms {
 	static #pageTitle = '[data-testid="page-title"]';
 	static #roomTitle = '[data-testid="room-title"]';
@@ -487,10 +491,46 @@ class Rooms {
 		cy.contains(roomName).should("not.exist");
 	}
 
+	rememberCurrentRoomUrl() {
+		cy.location("pathname")
+			.should("match", /^\/rooms\/[0-9a-f]{24}$/)
+			.then((pathname) => {
+				rememberedRoomPath = pathname;
+			});
+	}
+
+	visitRememberedRoomUrlAndExpectStatus(expectedStatusCode) {
+		cy.then(() => {
+			expect(rememberedRoomPath, "remembered room url").to.be.a("string");
+			const roomId = rememberedRoomPath.split("/").pop();
+			// intercepts stay active for the whole test, so each visit needs its own alias
+			const alias = `roomDetailsApi${++roomDetailsVisitCount}`;
+			cy.intercept({ method: "GET", pathname: `/api/v3/rooms/${roomId}` }).as(alias);
+			cy.visit(rememberedRoomPath);
+			cy.wait(`@${alias}`).its("response.statusCode").should("eq", expectedStatusCode);
+		});
+	}
+
+	doNotSeeRoomTitle() {
+		cy.get(Rooms.#roomTitle).should("not.exist");
+	}
+
 	reloadRoomsOverviewAndWaitForRoomsList() {
-		cy.intercept({ method: "GET", pathname: "/api/v3/rooms" }).as("roomsListApi");
+		// a list request from the preceding navigation may still be in flight and gets aborted by the reload,
+		// so wait for any successful list response that arrives after the reload instead of the first match
+		const state = { reloaded: false, loaded: false };
+		cy.intercept({ method: "GET", pathname: "/api/v3/rooms" }, (req) => {
+			req.continue((res) => {
+				if (state.reloaded && res.statusCode === 200) {
+					state.loaded = true;
+				}
+			});
+		});
+		cy.then(() => {
+			state.reloaded = true;
+		});
 		cy.reload();
-		cy.wait("@roomsListApi").its("response.statusCode").should("eq", 200);
+		cy.wrap(state, { timeout: 20000 }).its("loaded").should("eq", true);
 	}
 
 	seeSchoolOfParticipant(participantSchool) {
