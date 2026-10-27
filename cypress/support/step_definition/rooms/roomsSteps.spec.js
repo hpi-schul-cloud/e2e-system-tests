@@ -130,6 +130,25 @@ When("I go to rooms overview", () => {
 	rooms.navigateToRoomsOverview();
 });
 
+When("I remember the current room as {string}", (key) => {
+	rooms.rememberCurrentRoomAs(key);
+});
+
+When("I open the remembered room {string}", (key) => {
+	rooms.openRememberedRoom(key);
+});
+
+Then(
+	"creating a board in the remembered room {string} via API returns status {int}",
+	(key, statusCode) => {
+		rooms.createBoardInRememberedRoomViaApiAndExpectStatus(key, statusCode);
+	}
+);
+
+When("I delete the remembered room {string} via API", (key) => {
+	rooms.deleteRememberedRoomViaApi(key);
+});
+
 When("I remember the url of the current room", () => {
 	rooms.rememberCurrentRoomUrl();
 });

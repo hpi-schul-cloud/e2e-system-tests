@@ -3,6 +3,7 @@
 // kept across cy.session switches within one scenario
 let rememberedRoomPath;
 let roomDetailsVisitCount = 0;
+const rememberedRoomIdsByKey = {};
 
 class Rooms {
 	static #pageTitle = '[data-testid="page-title"]';
@@ -497,6 +498,64 @@ class Rooms {
 			.then((pathname) => {
 				rememberedRoomPath = pathname;
 			});
+	}
+
+	rememberCurrentRoomAs(key) {
+		cy.location("pathname")
+			.should("match", /^\/rooms\/[0-9a-f]{24}$/)
+			.then((pathname) => {
+				rememberedRoomIdsByKey[key] = pathname.split("/").pop();
+			});
+	}
+
+	getRememberedRoomId(key) {
+		const roomId = rememberedRoomIdsByKey[key];
+		expect(roomId, `remembered room '${key}'`).to.be.a("string");
+		return roomId;
+	}
+
+	openRememberedRoom(key) {
+		cy.then(() => {
+			const roomId = this.getRememberedRoomId(key);
+			const alias = `roomDetailsApi${++roomDetailsVisitCount}`;
+			cy.intercept({ method: "GET", pathname: `/api/v3/rooms/${roomId}` }).as(alias);
+			cy.visit(`/rooms/${roomId}`);
+			cy.wait(`@${alias}`).its("response.statusCode").should("eq", 200);
+		});
+	}
+
+	// Calls the API directly to verify the server-side permission check independently of the hidden UI controls.
+	createBoardInRememberedRoomViaApiAndExpectStatus(key, expectedStatusCode) {
+		cy.then(() => {
+			const roomId = this.getRememberedRoomId(key);
+			cy.request({
+				method: "POST",
+				url: "/api/v3/boards",
+				body: {
+					title: "CypressAut API Permission Board",
+					parentId: roomId,
+					parentType: "room",
+					layout: "columns",
+				},
+				failOnStatusCode: false,
+			}).then((response) => {
+				expect(response.status, "create board status").to.eq(expectedStatusCode);
+				if (response.status === 201) {
+					cy.request({ method: "DELETE", url: `/api/v3/boards/${response.body.id}` })
+						.its("status")
+						.should("eq", 204);
+				}
+			});
+		});
+	}
+
+	deleteRememberedRoomViaApi(key) {
+		cy.then(() => {
+			const roomId = this.getRememberedRoomId(key);
+			cy.request({ method: "DELETE", url: `/api/v3/rooms/${roomId}` })
+				.its("status")
+				.should("eq", 204);
+		});
 	}
 
 	visitRememberedRoomUrlAndExpectStatus(expectedStatusCode) {
