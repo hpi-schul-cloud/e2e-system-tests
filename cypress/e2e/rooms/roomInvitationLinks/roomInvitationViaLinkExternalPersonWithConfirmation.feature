@@ -44,6 +44,8 @@ Feature: Rooms - External Person Invitation via Link with Approval Required
         Given I am logged in as a '<external_person_1>' at '<namespace>'
         When I navigate to the shared URL
         Then I see a link invitation status message
+        When I go to rooms overview
+        Then I do not see '<room_name>' on room overview page
 
         # teacher confirms the invitation
         Given I am logged in as a '<teacher_1>' at '<namespace>'
