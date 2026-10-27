@@ -424,6 +424,10 @@ Then("I can see the user with email {string} in the table", (email) => {
 	management.userIsVisibleInTable(email);
 });
 
+Then("I can see the user with last name {string} in the table", (lastName) => {
+	management.userIsVisibleInTable(lastName);
+});
+
 When("I enter {string} email {string} in search input field", (role, keyword) => {
 	management.enterNameForSearch(role, keyword);
 });
