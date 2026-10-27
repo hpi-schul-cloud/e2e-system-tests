@@ -2,6 +2,7 @@
 @stable_test
 @prio_0_staging
 @group-C
+@mikroorm_v7
 Feature: Course Files - Add, delete files in a folder and rename the file folder in course files
 
     As a teacher, I want to add and delete files in course folder and rename the folder in course files so that I can use the file folder like the known folders in Windows
@@ -56,6 +57,16 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         When I click on the folder '<course_name>' in files section
         When I click on the folder '<folder_name>' in files section
         Then I see the uploaded file '<audio_file_name>' in the file list
+        When I reload the current page
+        Then I see the uploaded file '<image_file_name>' in the file list
+        Then I see the uploaded file '<video_file_name>' in the file list
+        Then I see the uploaded file '<audio_file_name>' in the file list
+
+        # a student who is not enrolled in the course cannot see its course files
+        Given I am logged in as a '<unassigned_student>' at '<namespace>'
+        When I click on Files in menu
+        Then I go to course files overview
+        Then I do not see the folder title '<course_name>' in course files
 
         # student can see the uploaded files in the created folder in course files
         Given I am logged in as a '<student>' at '<namespace>'
@@ -65,6 +76,10 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         When I click on the folder '<course_name>' in files section
         Then I see the new folder '<folder_name>' in the folder list
         When I click on the folder '<folder_name>' in files section
+        Then I see the uploaded file '<image_file_name>' in the file list
+        Then I see the uploaded file '<video_file_name>' in the file list
+        Then I see the uploaded file '<audio_file_name>' in the file list
+        When I reload the current page
         Then I see the uploaded file '<image_file_name>' in the file list
         Then I see the uploaded file '<video_file_name>' in the file list
         Then I see the uploaded file '<audio_file_name>' in the file list
@@ -87,6 +102,10 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
         Then I click on button Delete file '<image_file_name>'
         Then I click on button Confirm deletion of file on the modal
         Then I can not see file with name '<image_file_name>'
+        When I reload the current page
+        Then I can not see file with name '<audio_file_name>'
+        Then I can not see file with name '<video_file_name>'
+        Then I can not see file with name '<image_file_name>'
 
         # teacher edits the foldername in course files
         Then I go to course files overview
@@ -103,10 +122,10 @@ Feature: Course Files - Add, delete files in a folder and rename the file folder
 
         @school_api_test
         Examples:
-            | teacher      | student      | fullname_teacher  | fullname_student  | namespace | admin      | course_name             | folder_name       | image_file_name | video_file_name          | audio_file_name            | folder_name_renamed       |
-            | teacher1_nbc | student1_nbc | cypress teacher_1 | cypress student_1 | nbc       | admin1_nbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |
+            | teacher      | student      | unassigned_student | fullname_teacher  | fullname_student  | namespace | admin      | course_name             | folder_name       | image_file_name | video_file_name          | audio_file_name            | folder_name_renamed       |
+            | teacher1_nbc | student1_nbc | student2_nbc       | cypress teacher_1 | cypress student_1 | nbc       | admin1_nbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |
 
         @staging_test
         Examples:
-            | teacher      | student      | fullname_teacher | fullname_student | namespace | admin      | course_name             | folder_name       | image_file_name | video_file_name          | audio_file_name            | folder_name_renamed       |
-            | teacher1_nbc | student1_nbc | Karl Herzog      | Herbert Kraft    | nbc       | admin1_nbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |
+            | teacher      | student      | unassigned_student | fullname_teacher | fullname_student | namespace | admin      | course_name             | folder_name       | image_file_name | video_file_name          | audio_file_name            | folder_name_renamed       |
+            | teacher1_nbc | student1_nbc | student2_nbc       | Karl Herzog      | Herbert Kraft    | nbc       | admin1_nbc | CypressAut Course Files | CypressAut Folder | example_jpg.jpg | sample_video_1mb_mp4.mp4 | sample_audio_0.4mb_mp3.mp3 | CypressAut Folder Renamed |

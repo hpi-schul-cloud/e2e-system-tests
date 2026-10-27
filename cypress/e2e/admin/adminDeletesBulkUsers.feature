@@ -3,6 +3,7 @@
 @schedule_run
 @group-D
 @prio_0_staging
+@mikroorm_v7
 Feature: Admin - To add and delete new users by the admin in bulk
 
     As an admin, I want to manage users by creating and removing them in bulk, so that I can manage user administration effectively.
@@ -24,6 +25,10 @@ Feature: Admin - To add and delete new users by the admin in bulk
         Then I see all '<number_of_users>' selected users in the deletion dialog with their first name and last name
         When I click on the button Delete to confirm the deletion
         Then I see the success alert
+        When I enter '<role_to_manage>' email '<search_email_suffix>' in search input field
+        Then I can not see user '<search_email_suffix>' in the table
+        When I reload the current page
+        When I go to '<role_to_manage>' administration
         When I enter '<role_to_manage>' email '<search_email_suffix>' in search input field
         Then I can not see user '<search_email_suffix>' in the table
 

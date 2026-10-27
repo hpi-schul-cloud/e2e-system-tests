@@ -3,6 +3,7 @@
 @schedule_run
 @group-C
 @prio_0_staging
+@mikroorm_v7
 Feature: Rooms - External Person Invitation via Link with Approval Required
 
     As a room owner, I want to create an invitation link with approval workflow so external persons must request access and await my confirmation before joining.
@@ -66,7 +67,11 @@ Feature: Rooms - External Person Invitation via Link with Approval Required
         Given I am logged in as a '<external_person_1>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
+        When I reload the rooms overview and wait for the rooms list
+        Then I see '<room_name>' on room overview page
         When I click on button Open to go to room '<room_name>' at position '0'
+        Then I see the detail page of room '<room_name>'
+        When I reload the current page
         Then I see the detail page of room '<room_name>'
 
         # post-condition: teacher deletes the room
@@ -82,4 +87,3 @@ Feature: Rooms - External Person Invitation via Link with Approval Required
         Examples:
             | teacher_1    | external_person_1   | namespace | room_name                     | invitation_description | external_person_last_name |
             | teacher1_nbc | externalPerson1_nbc | nbc       | CypressAut EP Invite Approval | test invitation link   | Ol                        |
-
