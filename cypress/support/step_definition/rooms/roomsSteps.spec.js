@@ -189,6 +189,21 @@ Then("I see the detail page of room {string}", (newRoomName) => {
 	rooms.seeRoomDetailPage(newRoomName);
 });
 
+When("I reload the room detail page and wait for the room", () => {
+	rooms.reloadRoomDetailPageAndWaitForRoom();
+});
+
+Then("I see exactly the room title {string} on the room detail page", (roomName) => {
+	rooms.seeExactRoomTitleOnDetailPage(roomName);
+});
+
+Then(
+	"I see room {string} but not room {string} on room overview page",
+	(expectedRoomName, absentRoomName) => {
+		rooms.seeExactRoomTitlesOnOverview(expectedRoomName, absentRoomName);
+	}
+);
+
 Then("I see the page Edit participants of room {string}", () => {
 	rooms.seeRoomEditParticipantsPage();
 });

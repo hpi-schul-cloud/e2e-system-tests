@@ -3,6 +3,7 @@
 @schedule_run
 @group-C
 @prio_0_dev
+@mikroorm_v7
 Feature: Account - Edit E-mail in the account setting page
 
     As a user, I want to edit my account details, such as email, in the account settings page
@@ -15,10 +16,22 @@ Feature: Account - Edit E-mail in the account setting page
         # user changes/updates the E-mail
         When I go to my account settings
         Then I see my email is editable
+        When I remember my current email
         When I change my email to a new email
         When I enter my current password
         When I click on the button Save Account Settings
         Then I see the message successful
+
+        # assertion: changed E-mail is persisted after reload
+        Then I see my updated email in the account settings after reload
+
+        # user can not login with the previous E-mail anymore
+        When I visit the login page
+        When I enter my previous email
+        When I enter my current password on the login page
+        When I click on the button Login
+        Then I see error message
+        When I wait for 15 seconds
 
         # user can login with the changed E-mail
         When I visit the login page

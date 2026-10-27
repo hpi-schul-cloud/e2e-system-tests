@@ -222,6 +222,8 @@ class RoomBoards {
 		// board data is fetched via websocket, so wait for the rendered cards instead of an xhr
 		cy.reload();
 		cy.get('[data-testid="board-card-0-0"]').should("be.visible");
+		// card contents are loaded separately; the skeleton shows a progress spinner until then
+		cy.get('[data-testid="board-card-0-0"] .v-progress-circular').should("not.exist");
 	}
 
 	selectTwoRoomsForBoardImport(roomName1, roomName2) {
