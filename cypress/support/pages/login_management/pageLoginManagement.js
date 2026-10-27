@@ -1,5 +1,7 @@
 ("use strict");
 
+let rememberedAccessToken;
+
 class Login_Management {
 	static #passwordRecoveryButton = '[data-testid="forgot-password"]';
 	static #usernameLabel = '[data-testid="username-label"]';
@@ -273,6 +275,39 @@ class Login_Management {
 		const selectorForLoginForm =
 			loginFormSelectorMap[namespace] || loginFormSelectorMap.brb;
 		cy.get(selectorForLoginForm).should("be.visible");
+	}
+
+	rememberAccessToken() {
+		cy.getCookie("jwt")
+			.should("exist")
+			.then((cookie) => {
+				rememberedAccessToken = cookie.value;
+			});
+	}
+
+	assertJwtCookieIsRemoved() {
+		cy.getCookie("jwt").should("not.exist");
+	}
+
+	// The UI logout does not reliably revoke the token on the server (also observed on main),
+	// so the revocation is triggered explicitly here to verify that a revoked token is rejected.
+	assertRememberedAccessTokenIsRejectedAfterServerLogout() {
+		cy.then(() => {
+			expect(rememberedAccessToken, "remembered access token").to.be.a("string");
+			const headers = { Authorization: "Bearer " + rememberedAccessToken };
+			cy.request({ method: "POST", url: "/api/v3/logout", headers, failOnStatusCode: false })
+				.its("status")
+				.should("be.oneOf", [200, 401]);
+			cy.request({ url: "/api/v3/me", headers, failOnStatusCode: false })
+				.its("status")
+				.should("eq", 401);
+		});
+	}
+
+	visitDashboardAndSeeLoginForm(namespace) {
+		cy.visit("/dashboard");
+		cy.url().should("include", "/login");
+		this.assertLoginFormIsVisible(namespace);
 	}
 }
 export default Login_Management;

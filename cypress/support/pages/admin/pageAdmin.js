@@ -462,6 +462,11 @@ class Management {
 		cy.get(Management.#userPasswordLoginPage).type(userPassword, { log: false });
 	}
 
+	enterNewPasswordChosenByUser() {
+		const userPassword = Cypress.env("SET_NEW_PWD_BY_STUDENT");
+		cy.get(Management.#userPasswordLoginPage).type(userPassword, { log: false });
+	}
+
 	clickOnLoginButtonForFirstLogin() {
 		cy.get(Management.#submitButtonOnLoginPage).click();
 	}
