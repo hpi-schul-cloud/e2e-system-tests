@@ -417,6 +417,7 @@ class Management {
 	chooseLanguageOnRegistrationProcess() {
 		cy.get(Management.#languageSelectionBox).click();
 		cy.contains("li", "deutsch", { matchCase: false }).click(); // Select 'Deutsch' from the list
+		cy.wait(1000);
 	}
 
 	openAndVisitToRegistrationPage() {
@@ -863,8 +864,6 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
-		// reload to ensure clean state
-		cy.reload();
 		const apiAlias = "search_api";
 		if (role === "student") {
 			cy.intercept("**/students?**").as(apiAlias);

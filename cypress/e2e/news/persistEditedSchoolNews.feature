@@ -1,6 +1,7 @@
-@regression_test
 @stable_test
+@regression_test
 @mikroorm_v7
+@group-C
 Feature: News - Persist edited school news
 
     As a teacher, I want edited school news to be stored permanently so that readers always see the current content
@@ -51,5 +52,5 @@ Feature: News - Persist edited school news
 
         @school_api_test
         Examples:
-            | teacher      | student      | namespace | news_title                       | news_description         | news_title_edited               | news_description_edited         |
-            | teacher1_brb | student1_brb | brb       | CypressAut - news to be edited   | original news content    | CypressAut - edited school news | edited news content, with comma |
+            | teacher      | student      | namespace | news_title                     | news_description      | news_title_edited               | news_description_edited         |
+            | teacher1_brb | student1_brb | brb       | CypressAut - news to be edited | original news content | CypressAut - edited school news | edited news content, with comma |

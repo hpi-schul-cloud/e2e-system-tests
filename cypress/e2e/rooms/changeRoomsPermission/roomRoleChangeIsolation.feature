@@ -1,5 +1,7 @@
+@stable_test
 @regression_test
 @mikroorm_v7
+@group-C
 Feature: Rooms - Role change only affects the selected room
 
     As a teacher, I want a changed room role to be stored only for the selected room, so that the participant keeps their previous permissions in all other rooms

@@ -1,3 +1,4 @@
+@stable_test
 @regression_test
 @mikroorm_v7
 @group-C

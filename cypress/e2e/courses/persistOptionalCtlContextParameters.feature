@@ -1,6 +1,7 @@
+@stable_test
 @regression_test
 @mikroorm_v7
-@group-F
+@group-C
 Feature: Course - Persist CTL names and empty optional context parameters
 
     Scenario Outline: Context parameter clearing and display name updates survive reload and role changes
@@ -82,5 +83,5 @@ Feature: Course - Persist CTL names and empty optional context parameters
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | teacher_name      | student_name      | course_name                       | tool                             | updated_name               |
+            | admin      | teacher      | student      | namespace | teacher_name      | student_name      | course_name                       | tool                             | updated_name              |
             | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | cypress teacher_1 | cypress student_1 | CypressAut CTL Persistence Course | CY Test Tool Optional Parameters | CypressAut Persisted Tool |

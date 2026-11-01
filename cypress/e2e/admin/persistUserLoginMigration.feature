@@ -1,5 +1,7 @@
+@stable_test
 @regression_test
 @mikroorm_v7
+@group-C
 Feature: Admin - User login migration state is persisted
 
     As an admin, I want the state of the user login migration and the related school data to be stored correctly, so that the migration can be started, made mandatory, ended and started again.

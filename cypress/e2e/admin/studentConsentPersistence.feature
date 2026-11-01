@@ -1,5 +1,7 @@
+@stable_test
 @regression_test
 @mikroorm_v7
+@group-C
 Feature: Admin - Student consents are persisted and returned unchanged
 
     As an admin, I want the consents of a student to be stored completely, including denied consents and empty parent consents, so that the consent status is shown correctly.

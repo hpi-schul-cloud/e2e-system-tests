@@ -1,5 +1,7 @@
+@stable_test
 @regression_test
 @mikroorm_v7
+@group-C
 Feature: Room Board - Card order is persisted after reload
     As a teacher,
     I want the order of cards in a board column to be kept after reloading the page
@@ -38,5 +40,5 @@ Feature: Room Board - Card order is persisted after reload
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name                       | board_title                    | existing_card_title             | new_card_title              |
-            | teacher1_brb | brb       | CypressAut Room Card Order      | CypressAut Board Card Order    | CypressAut Card Order Existing  | CypressAut Card Order New   |
+            | teacher      | namespace | room_name                  | board_title                 | existing_card_title            | new_card_title            |
+            | teacher1_brb | brb       | CypressAut Room Card Order | CypressAut Board Card Order | CypressAut Card Order Existing | CypressAut Card Order New |

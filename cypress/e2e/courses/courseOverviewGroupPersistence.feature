@@ -1,5 +1,7 @@
+@stable_test
 @regression_test
 @mikroorm_v7
+@group-C
 Feature: Course overview - Grouping and order of courses are persisted
 
     As a teacher, I want my course groups, their titles and the order of my courses to be kept after a reload and a new login.

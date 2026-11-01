@@ -1,5 +1,7 @@
+@stable_test
 @regression_test
 @mikroorm_v7
+@group-C
 Feature: Course - Video conference options are persisted
 
     As a teacher, I want the options of a course video conference to be stored
@@ -66,5 +68,5 @@ Feature: Course - Video conference options are persisted
 
         @school_api_test
         Examples:
-            | admin      | teacher      | student      | namespace | course_name                 | fullname_teacher  | fullname_student  |
+            | admin      | teacher      | student      | namespace | course_name                  | fullname_teacher  | fullname_student  |
             | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | CypressAut Course VC Options | cypress teacher_1 | cypress student_1 |
