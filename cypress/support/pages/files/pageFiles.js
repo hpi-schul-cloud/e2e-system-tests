@@ -141,6 +141,15 @@ class Files {
 		cy.get(Files.#fileFolderTitle).contains(FolderName).should("be.visible");
 	}
 
+	fileFolderTitleNotVisible(FolderName) {
+		cy.get("body").should(($body) => {
+			const folderTitles = $body
+				.find(Files.#fileFolderTitle)
+				.filter((_, element) => element.textContent.includes(FolderName));
+			expect(folderTitles, `course folder '${FolderName}'`).to.have.length(0);
+		});
+	}
+
 	clickOnFolderCourse(FolderName) {
 		cy.get(Files.#fileFolderTitle).contains(FolderName).click();
 	}

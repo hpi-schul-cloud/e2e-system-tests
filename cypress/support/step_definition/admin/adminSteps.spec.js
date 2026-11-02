@@ -33,6 +33,10 @@ When("I enter the password", () => {
 	management.enterPasswordOnFirstLogin();
 });
 
+When("I enter the new password chosen by the user", () => {
+	management.enterNewPasswordChosenByUser();
+});
+
 When("I click on the button Login", () => {
 	management.clickOnLoginButtonForFirstLogin();
 });

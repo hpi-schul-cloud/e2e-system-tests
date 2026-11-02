@@ -4,6 +4,7 @@
 @group-A
 @pr
 @prio_0_staging
+@mikroorm_v7
 Feature: Login Management - Login of users managed by SVS
 
     As a user, I want to login with username and password into SVS
@@ -12,8 +13,12 @@ Feature: Login Management - Login of users managed by SVS
 
         Given I am logged in as a '<user>' at '<namespace>'
         Then I see my initials '<initials>' in the dashboard
+        When I remember my access token
         When I log out
         Then I see the login form on '<namespace>'
+        Then my access token cookie is removed
+        Then I see the login form on '<namespace>' when I open the dashboard directly
+        Then the remembered access token is rejected by the API after server logout
 
         @staging_test
         Examples:

@@ -27,6 +27,10 @@ When("I go back to the previous page", () => {
 	globalActions.goBackToPreviousPage();
 });
 
+When("I reload the current page", () => {
+	globalActions.reloadCurrentPage();
+});
+
 When("I click on element with data-testid {string}", (dataTestId) => {
 	globalActions.clickElementWithDataTestId(dataTestId);
 });

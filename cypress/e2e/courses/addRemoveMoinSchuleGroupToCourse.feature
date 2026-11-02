@@ -1,5 +1,6 @@
 # Note: To set this test to stable, the school needs groups from moin.schule
 @unstable_test
+@mikroorm_v7
 Feature: Course - To add and remove a moin.schule group from a course on NBC
 
     As a Teacher I want to add and remove a moin.schule group from a course
@@ -33,8 +34,20 @@ Feature: Course - To add and remove a moin.schule group from a course on NBC
         When I select the class '<group_title2>'
         When I click on button Save changes in page Edit course
         Then I see the course '<course_title>' on the course overview page
+        When I reload the current page
+        When I open page Edit course
+        Then I see the class '<group_title1>' is selected
+        Then I see the class '<group_title2>' is selected
+
+        # a student in the newly added group can now see the course
+        Given I am logged in as a '<student2>' at '<namespace>'
+        When I go to courses overview
+        Then I see the course '<course_title>' on the course overview page
 
         # teacher removes the second group from course
+        Given I am logged in as a '<teacher>' at '<namespace>'
+        When I go to courses overview
+        When I go to course '<course_title>'
         When I open page Edit course
         Then I see the teacher '<listname_teacher>' is selected
         Then I see the student '<listname_student1>' is selected
@@ -43,13 +56,25 @@ Feature: Course - To add and remove a moin.schule group from a course on NBC
         Then I see the class '<group_title2>' is selected
         When I click on the remove icon of class '<group_title2>'
         When I click on button Save changes in page Edit course
+        When I reload the current page
         When I open page Edit course
         Then I see the class '<group_title1>' is selected
         Then I do not see '<group_title2>' in the class selection box
         Then I see the student '<listname_student1>' is selected
         Then I do not see '<listname_student2>' in the student selection box
 
+        # removing the group also removes course visibility for its student
+        Given I am logged in as a '<student2>' at '<namespace>'
+        When I go to courses overview
+        Then I do not see the course '<course_title>' on the course overview page
+
+        # the student in the remaining group keeps course access
+        Given I am logged in as a '<student1>' at '<namespace>'
+        When I go to courses overview
+        Then I see the course '<course_title>' on the course overview page
+
         # post-condition: teacher deletes course
+        Given I am logged in as a '<teacher>' at '<namespace>'
         Given course with name '<course_title>' is deleted
 
         @staging_test

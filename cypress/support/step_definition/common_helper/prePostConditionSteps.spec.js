@@ -78,9 +78,12 @@ Given("the school has external tool {string}", (toolList) => {
 	const tools = toolList.split(/\s*,\s*/);
 
 	// navigation to external tools table on admin page
+	// the table briefly renders its empty state before loading, so wait for the list request
+	management.interceptSchoolExternalToolsLoad();
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();
 	management.clickExternalToolsPanel();
+	management.waitForSchoolExternalToolsLoad();
 
 	tools.forEach((toolName) => {
 		cy.wrap(null).then(() => {

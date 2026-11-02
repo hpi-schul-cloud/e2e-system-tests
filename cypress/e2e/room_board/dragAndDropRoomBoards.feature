@@ -3,6 +3,7 @@
 @schedule_run
 @group-F
 @prio_0_staging
+@mikroorm_v7
 Feature: Room Board - Drag and Drop Boards on the Rooms Overview Page
 
     As a teacher, I want to drag and drop boards on the rooms overview page so that I can organize my boards effectively.
@@ -23,10 +24,21 @@ Feature: Room Board - Drag and Drop Boards on the Rooms Overview Page
         Then I do not see error alrert
         Then I see the board '<board_title_one>' at position '1'
         Then I see the board '<board_title_two>' at position '0'
+        When I reload the current page
+        Then I see the board '<board_title_one>' at position '1'
+        Then I see the board '<board_title_two>' at position '0'
+        Given I am logged in as a '<teacher1>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        Then I see the board '<board_title_one>' at position '1'
+        Then I see the board '<board_title_two>' at position '0'
 
         # teacher drags and drops the board one from the position two to the first position back (right to left)
         When I drag and drop the board one '<board_title_one>' from position '1' to position '0'
         Then I do not see error alrert
+        Then I see the board '<board_title_one>' at position '0'
+        Then I see the board '<board_title_two>' at position '1'
+        When I reload the current page
         Then I see the board '<board_title_one>' at position '0'
         Then I see the board '<board_title_two>' at position '1'
 

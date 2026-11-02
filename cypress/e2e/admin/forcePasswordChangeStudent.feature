@@ -3,6 +3,7 @@
 @schedule_run
 @group-C
 @prio_0_dev
+@mikroorm_v7
 Feature: Admin - Student must set a new password during login
 
     As a user, I want to update my password during my first login
@@ -70,6 +71,14 @@ Feature: Admin - Student must set a new password during login
         Then I click on the button Save
         Then I see the success message
 
+        # the password set during the first login is no longer valid after the admin reset
+        When I visit the login page
+        When I enter the email assigned during user creation
+        When I enter the new password chosen by the user
+        When I click on the button Login
+        Then I see error message
+        When I wait for 15 seconds
+
         # student do the login and set a new password
         When I visit the login page
         When I enter the email assigned during user creation
@@ -78,6 +87,19 @@ Feature: Admin - Student must set a new password during login
         Then I set a new password
         Then I re enter the new password
         When I click on the button Next to proceed
+        Then I see the dashboard
+
+        # the password set by the admin is no longer valid, the new password works on a fresh login
+        When I visit the login page
+        When I enter the email assigned during user creation
+        When I enter the password
+        When I click on the button Login
+        Then I see error message
+        When I wait for 15 seconds
+        When I visit the login page
+        When I enter the email assigned during user creation
+        When I enter the new password chosen by the user
+        When I click on the button Login
         Then I see the dashboard
 
         # post-condition: admin deletes a student

@@ -3,6 +3,7 @@
 @schedule_run
 @group-A
 @prio_0_staging
+@mikroorm_v7
 Feature: Rooms - To create, edit and delete room
 
     As a teacher, I want to create, edit and delete rooms.
@@ -28,6 +29,16 @@ Feature: Rooms - To create, edit and delete room
         When I enter the room name '<room_name_new>'
         When I click on the button Save room
         Then I see the detail page of room '<room_name_new>'
+
+        # assertion: new room name is persisted after reload and in the edit form
+        When I reload the room detail page and wait for the room
+        Then I see exactly the room title '<room_name_new>' on the room detail page
+        When I click on three dot menu in room page
+        When I select the three dot menu action 'edit'
+        Then I see edit page of room '<room_name_new>'
+        When I go to rooms overview
+        When I reload the rooms overview and wait for the rooms list
+        Then I see room '<room_name_new>' but not room '<room_name>' on room overview page
 
         # teacher sees room members count chip on the room overview page
         When I go to rooms overview

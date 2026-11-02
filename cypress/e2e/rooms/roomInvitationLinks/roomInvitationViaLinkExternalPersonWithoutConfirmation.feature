@@ -3,6 +3,7 @@
 @schedule_run
 @group-C
 @prio_0_staging
+@mikroorm_v7
 Feature: Rooms - External Person Invitation via Link with Immediate Access
 
     As a room owner, I want to invite external persons to the room through an invitation link with immediate access, so that they don't need manual approval.
@@ -42,6 +43,8 @@ Feature: Rooms - External Person Invitation via Link with Immediate Access
         # external person uses the no-confirmation invitation link to join the room
         Given I am logged in as a '<external_person_1>' at '<namespace>'
         When I navigate to the shared URL
+        Then I see the detail page of room '<room_name>'
+        When I reload the current page
         Then I see the detail page of room '<room_name>'
 
         # external person should only allow to leave the room

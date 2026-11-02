@@ -56,6 +56,14 @@ When("I click on button Add in the modal to add an external tool", () => {
 	toolConfiguration.saveExternalToolButton();
 });
 
+When("I save the external tool and wait for persistence", () => {
+	toolConfiguration.saveExternalToolAndWaitForPersistence();
+});
+
+When("I clear optional custom parameter field {string}", (paramName) => {
+	toolConfiguration.clearCustomParameter(paramName);
+});
+
 Then("I do not see tool {string} in the tool selection", (toolName) => {
 	toolConfiguration.toolIsNotVisibleInToolSelection(toolName);
 });
@@ -316,6 +324,10 @@ When("I confirm deletion on deletion dialog", () => {
 	management.clickOnConfirmInToolUsageDialog();
 });
 
+When("I confirm deletion on deletion dialog and wait for deletion", () => {
+	management.confirmToolDeletionAndWaitForDeletion();
+});
+
 Then(
 	"I see the tool {string} in external tools table has no context restriction",
 	(toolName) => {
@@ -410,6 +422,10 @@ When("I click on add button to add {string}", (role) => {
 
 Then("I can see the user with email {string} in the table", (email) => {
 	management.userIsVisibleInTable(email);
+});
+
+Then("I can see the user with last name {string} in the table", (lastName) => {
+	management.userIsVisibleInTable(lastName);
 });
 
 When("I enter {string} email {string} in search input field", (role, keyword) => {

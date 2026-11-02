@@ -417,6 +417,7 @@ class Management {
 	chooseLanguageOnRegistrationProcess() {
 		cy.get(Management.#languageSelectionBox).click();
 		cy.contains("li", "deutsch", { matchCase: false }).click(); // Select 'Deutsch' from the list
+		cy.wait(1000);
 	}
 
 	openAndVisitToRegistrationPage() {
@@ -459,6 +460,11 @@ class Management {
 
 	enterPasswordOnFirstLogin() {
 		const userPassword = Cypress.env("INITIAL_PWD_BY_ADMIN");
+		cy.get(Management.#userPasswordLoginPage).type(userPassword, { log: false });
+	}
+
+	enterNewPasswordChosenByUser() {
+		const userPassword = Cypress.env("SET_NEW_PWD_BY_STUDENT");
 		cy.get(Management.#userPasswordLoginPage).type(userPassword, { log: false });
 	}
 
@@ -858,8 +864,6 @@ class Management {
 	}
 
 	enterNameForSearch(role, keyword) {
-		// reload to ensure clean state
-		cy.reload();
 		const apiAlias = "search_api";
 		if (role === "student") {
 			cy.intercept("**/students?**").as(apiAlias);
@@ -1151,6 +1155,19 @@ class Management {
 		cy.get(Management.#externalToolsPanel).click();
 	}
 
+	interceptSchoolExternalToolsLoad() {
+		cy.intercept({
+			method: "GET",
+			url: /\/tools\/school-external-tools\?/,
+		}).as("loadSchoolExternalTools");
+	}
+
+	waitForSchoolExternalToolsLoad() {
+		cy.wait("@loadSchoolExternalTools")
+			.its("response.statusCode")
+			.should("be.within", 200, 299);
+	}
+
 	clickDeleteExternalToolButton() {
 		cy.get(Management.#deleteExternalToolButton).first().click();
 	}
@@ -1166,6 +1183,17 @@ class Management {
 
 	clickOnConfirmInToolUsageDialog() {
 		cy.get(Management.#confirmExternalToolDeletionButton).click();
+	}
+
+	confirmToolDeletionAndWaitForDeletion() {
+		cy.intercept({
+			method: "DELETE",
+			url: /\/tools\/school-external-tools\/[^/?]+(?:\?.*)?$/,
+		}).as("deleteSchoolExternalTool");
+		this.clickOnConfirmInToolUsageDialog();
+		cy.wait("@deleteSchoolExternalTool")
+			.its("response.statusCode")
+			.should("be.within", 200, 299);
 	}
 
 	clickCancelExternalToolDeletionButton() {
