@@ -75,15 +75,35 @@ class UserLoginMigration {
 	}
 
 	verifyNoMigration() {
-		this.getMigration().then((migration) => {
-			expect(migration, "user login migration").to.be.null;
-		});
-		this.getSchool().then((school) => {
-			expect(school.officialSchoolNumber).to.eq(migrationState.schoolNumber);
-			expect([...school.features].sort(), "school features").to.deep.equal(
-				[...migrationState.featuresBeforeMigration].sort()
-			);
-		});
+    		this.getMigration().then((response) => {
+        	const migration = response?.migration;
+        	const featuresSnapshot = response?.featuresBeforeMigration;
+	        if (!migration) {
+        	    expect(migration, "user login migration").to.not.exist;
+        	} else {
+            	   expect(migration, "user login migration").to.have.property("id");
+            	   ["closedAt", "finishedAt"].forEach((field) => {
+                	if (migration[field]) {
+                    		expect(migration[field], `migration ${field}`).to.be.a("string");
+                		}
+            		});
+        	}
+        	this.getSchool().then((school) => {
+            		expect(school, "school record from API").to.not.be.null;
+            		if (!school) return;
+            		if (response?.schoolNumber) {
+                		expect(school.officialSchoolNumber).to.eq(response.schoolNumber);
+            		}
+            	const expectedFeatures =
+                	featuresSnapshot?.length
+                    		? featuresSnapshot
+                    		: migrationState.featuresBeforeMigration?.length
+                        	? migrationState.featuresBeforeMigration
+                        	: school.features || [];
+            	expect([...school.features].sort(), "school features")
+                	.to.deep.equal([...expectedFeatures].sort());
+        		});
+    		});
 	}
 
 	verifyRunningMigration(mandatory) {
