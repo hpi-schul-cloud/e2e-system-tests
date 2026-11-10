@@ -9,6 +9,7 @@ class Collabora {
 	static #readDownloadLink = 'li[id="menu-downloadas"] a';
 	static #pdfDownloadSpan = '[id="downloadas-entries"] span';
 	static #pdfDownloadLink = 'li[id="menu-downloadas"] ul a';
+	static #updateSkip = '[id="onboarding-skip-button"]';
 
 	getIframeBody(selector) {
 		return cy
@@ -24,11 +25,31 @@ class Collabora {
 	}
 
 	typeCollaboraText(text, x, y) {
+		this.getIframeBody(Collabora.#collaboraEditor).then(($iframeBody) => {
+			const observer = new MutationObserver(() => {
+				const skipButton = $iframeBody[0].querySelector(Collabora.#updateSkip);
+				if (skipButton) {
+					skipButton.click();
+					observer.disconnect();
+				}
+			});
+
+			observer.observe($iframeBody[0], {
+				childList: true,
+				subtree: true,
+			});
+
+			const instantSkip = $iframeBody[0].querySelector(Collabora.#updateSkip);
+			if (instantSkip) {
+				instantSkip.click();
+			}
+		});
+
 		cy.get(Collabora.#collaboraEditor)
 			.realClick({ x: x, y: y })
 			.wait(300)
 			.should("be.focused") // focus is needed as the first letter is not typed sometimes.
-			.realType(`{enter}${text}`); // to type in new line
+			.realType(`{enter}{del}${text}`, { delay: 100 }); // to type in new line
 		this.getIframeBody(Collabora.#collaboraEditor).should("contain.text", text);
 	}
 
