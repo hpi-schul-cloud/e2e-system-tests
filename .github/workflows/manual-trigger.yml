@@ -142,7 +142,7 @@ jobs:
           - group: group-E
             browser: ${{ inputs.browser }}
           - group: group-F
-            browser: electron
+            browser: ${{ inputs.browser }}
     with:
       cypress_brb: ${{ needs.e2e-system-tests.outputs.cypress_brb_dev }}
       cypress_nbc: ${{ needs.e2e-system-tests.outputs.cypress_nbc_dev }}
