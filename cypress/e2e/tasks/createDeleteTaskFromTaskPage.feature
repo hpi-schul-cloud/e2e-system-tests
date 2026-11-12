@@ -2,7 +2,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-B
+@group-F
 @pr
 @prio_0_staging
 Feature: Task - To create and delete tasks starting from task overview page by the teacher.
