@@ -309,13 +309,8 @@ export const loginViaApiOnly = (username, environment) => {
 				firstLoginBody.termsOfUseConsent = true;
 			}
 
-			cy.request({
-				method: "POST",
-				url: `${baseUrl}/api/v1/firstLogin`,
-				headers,
-				body: firstLoginBody,
-				log: false,
-			});
+			cy.setCookie("jwt", token, { domain, log: false });
+			cy.setCookie("isLoggedIn", "true", { domain, log: false });
 			cy.request({
 				method: "PATCH",
 				url: `${baseUrl}/api/v3/user/language`,
@@ -323,8 +318,19 @@ export const loginViaApiOnly = (username, environment) => {
 				body: { language: "de" },
 				log: false,
 			});
-			cy.setCookie("jwt", token, { domain, log: false });
-			cy.setCookie("isLoggedIn", "true", { domain, log: false });
+			// The v1 firstLogin service is not exposed publicly; the legacy client's
+			// form route forwards to it. It is CSRF-protected, so read the token first.
+			cy.request({ url: `${baseUrl}/firstLogin`, log: false }).then((page) => {
+				const match = page.body.match(/name="_csrf" value="([^"]+)"/);
+				expect(match, "csrf token on /firstLogin").to.not.equal(null);
+				cy.request({
+					method: "POST",
+					url: `${baseUrl}/firstLogin/submit`,
+					form: true,
+					body: { _csrf: match[1], ...firstLoginBody },
+					log: false,
+				});
+			});
 		});
 	});
 };
