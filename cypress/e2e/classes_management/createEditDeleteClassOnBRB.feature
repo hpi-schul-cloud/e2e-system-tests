@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-E
+@group-B
 @pr
 @prio_0_staging
 Feature:  Class Management - To create, edit and delete class on BRB

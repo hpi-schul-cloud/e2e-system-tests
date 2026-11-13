@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_test
-@group-A
+@group-E
 @pr
 @pre_check_test
 @prio_0_staging
