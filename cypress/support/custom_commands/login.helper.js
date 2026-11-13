@@ -320,7 +320,12 @@ export const loginViaApiOnly = (username, environment) => {
 			});
 			// The v1 firstLogin service is not exposed publicly; the legacy client's
 			// form route forwards to it. It is CSRF-protected, so read the token first.
-			cy.request({ url: `${baseUrl}/firstLogin`, log: false }).then((page) => {
+			// Students without a birthday are redirected to an age selection page first;
+			// the UI test picks "16 or older", which leads to /firstLogin?ue16=true.
+			cy.request({
+				url: `${baseUrl}/firstLogin${isStudent ? "?ue16=true" : ""}`,
+				log: false,
+			}).then((page) => {
 				const match = page.body.match(/name="_csrf" value="([^"]+)"/);
 				expect(match, "csrf token on /firstLogin").to.not.equal(null);
 				cy.request({
