@@ -31,6 +31,7 @@ Feature: Account - Edit E-mail in the account setting page
         # Please do not execute this feature against STAGING environment, because after changing the E-mail user can not revert the old E-mail again.
         # The system does not allow reverting to an old or existing E-mail.
 
+        @only
         @school_api_test
         Examples:
             | user         | namespace |
