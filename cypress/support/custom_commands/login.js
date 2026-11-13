@@ -49,5 +49,5 @@ Cypress.Commands.add("login", (username, environment) => {
 			},
 		}
 	);
-	cy.visit("/dashboard");
+	cy.visit(getPageUrl(environment, "/dashboard"));
 });
