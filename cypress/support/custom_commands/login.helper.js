@@ -297,6 +297,16 @@ export const loginViaApiOnly = (username, environment) => {
 				? Cypress.env("SET_NEW_PWD_BY_STUDENT")
 				: res.initialPassword;
 			Cypress.env("password", newPassword);
+			// Cypress.env is reset when Cypress re-runs the test after the first visit to a new domain;
+			// login.js restores the password from here after cy.session.
+			cy.task(
+				"setRuntimeValue",
+				{
+					key: `password-${environment}-${username}-${Cypress.spec.relative}`,
+					value: newPassword,
+				},
+				{ log: false }
+			);
 
 			cy.request({
 				method: "POST",
@@ -319,8 +329,12 @@ export const loginViaApiOnly = (username, environment) => {
 					firstLoginBody.termsOfUseConsent = true;
 				}
 
-				cy.setCookie("jwt", token, { domain, log: false });
-				cy.setCookie("isLoggedIn", "true", { domain, log: false });
+				cy.setCookie("jwt", token, { domain, hostOnly: true, log: false });
+				cy.setCookie("isLoggedIn", "true", {
+					domain,
+					hostOnly: true,
+					log: false,
+				});
 				cy.request({
 					method: "PATCH",
 					url: `${baseUrl}/api/v3/user/language`,

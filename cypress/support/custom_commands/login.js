@@ -52,5 +52,17 @@ Cypress.Commands.add("login", (username, environment) => {
 			},
 		}
 	);
+	// Timing test: restore the current user's password stored by the API login (see login.helper.js).
+	cy.task(
+		"getRuntimeValue",
+		`password-${environment}-${username}-${Cypress.spec.relative}`,
+		{
+			log: false,
+		}
+	).then((password) => {
+		if (password) {
+			Cypress.env("password", password);
+		}
+	});
 	cy.visit(getPageUrl(environment, "/dashboard"));
 });
