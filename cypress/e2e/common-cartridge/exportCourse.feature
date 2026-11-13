@@ -98,7 +98,6 @@ Feature: Course Board - To export a course as common cartridge
         Given course with name '<course>' is deleted
 
         @staging_test
-        @only
         @school_api_test
         Examples:
             | teacher      | namespace | course       | import_wait_time |
