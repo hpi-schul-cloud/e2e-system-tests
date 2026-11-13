@@ -10,6 +10,9 @@ const languageSelection = '[id="v-list-group--id-languages"]';
 const languageDe = '[data-testid="selected-language-de"]';
 
 Cypress.Commands.add("login", (username, environment) => {
+	// Timing test: the API login never opens a page inside the session setup, so set the
+	// base URL here (outside the session) for later relative cy.visit() calls.
+	Cypress.config("baseUrl", Cypress.env()[environment.toUpperCase()]);
 	cy.session(
 		[username, environment],
 		async () => {
