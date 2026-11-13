@@ -1,5 +1,9 @@
 import { getPageUrl } from "./input.utils";
-import { loginViaSchoolApi, loginWithoutSchoolApi } from "./login.helper";
+import {
+	loginViaApiOnly,
+	loginViaSchoolApi,
+	loginWithoutSchoolApi,
+} from "./login.helper";
 
 const initials = '[data-testid="user-menu-btn"]';
 const languageSelection = '[id="v-list-group--id-languages"]';
@@ -17,6 +21,16 @@ Cypress.Commands.add("login", (username, environment) => {
 				/^https:\/\/(staging\.[\w-]+\.(dbildungscloud\.org)|test\.schulportal-thueringen\.de|staging\.dbildungscloud\.org)\/?/;
 
 			let isStaging = stagingRegex.test(link);
+
+			// Timing test: API login everywhere except the login test itself, which keeps covering the login form.
+			const useApiLogin =
+				!(isStaging || environment === "localhost") &&
+				!Cypress.spec.name.includes("cloudLoginAndLogout");
+
+			if (useApiLogin) {
+				loginViaApiOnly(username, environment);
+				return;
+			}
 
 			!(isStaging || environment === "localhost")
 				? await loginViaSchoolApi(username, environment)

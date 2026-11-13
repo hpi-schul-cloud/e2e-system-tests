@@ -262,3 +262,69 @@ const visitLoginPage = (environment) => {
 	cy.log(link);
 	cy.visit("/login");
 };
+
+// Timing test: create the user via admin API (as before), then log in, complete the
+// first login and set the language via API instead of the UI, and set the same
+// cookies the client sets after a form login.
+export const loginViaApiOnly = (username, environment) => {
+	const baseUrl = Cypress.config("baseUrl").replace(/\/$/, "");
+	const domain = new URL(baseUrl).hostname;
+	const isStudent = username.includes("student");
+
+	cy.task(
+		"loginViaSchoolApi",
+		{
+			url: baseUrl,
+			apiKey: Cypress.env(`apiKey-${environment}`),
+			schoolId: Cypress.env(`schoolId-${environment}`),
+			userType: username,
+		},
+		{ log: false }
+	).then((res) => {
+		Cypress.env(`schoolId-${environment}`, res.schoolId);
+		Cypress.env("username", res.username);
+		const newPassword = isStudent
+			? Cypress.env("SET_NEW_PWD_BY_STUDENT")
+			: res.initialPassword;
+		Cypress.env("password", newPassword);
+
+		cy.request({
+			method: "POST",
+			url: `${baseUrl}/api/v3/authentication/local`,
+			body: { username: res.username, password: res.initialPassword },
+			log: false,
+		}).then(({ body }) => {
+			const token = body.accessToken;
+			const headers = { Authorization: `Bearer ${token}` };
+
+			const firstLoginBody = isStudent
+				? {
+						"password-1": newPassword,
+						"password-2": newPassword,
+						studentBirthdate: "2000-03-21",
+					}
+				: {};
+			if (/(?:^|_)externalPerson/.test(username)) {
+				firstLoginBody.privacyConsent = true;
+				firstLoginBody.termsOfUseConsent = true;
+			}
+
+			cy.request({
+				method: "POST",
+				url: `${baseUrl}/api/v1/firstLogin`,
+				headers,
+				body: firstLoginBody,
+				log: false,
+			});
+			cy.request({
+				method: "PATCH",
+				url: `${baseUrl}/api/v3/user/language`,
+				headers,
+				body: { language: "de" },
+				log: false,
+			});
+			cy.setCookie("jwt", token, { domain, log: false });
+			cy.setCookie("isLoggedIn", "true", { domain, log: false });
+		});
+	});
+};
