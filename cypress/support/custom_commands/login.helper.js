@@ -271,69 +271,80 @@ export const loginViaApiOnly = (username, environment) => {
 	const domain = new URL(baseUrl).hostname;
 	const isStudent = username.includes("student");
 
-	cy.task(
-		"loginViaSchoolApi",
-		{
-			url: baseUrl,
-			apiKey: Cypress.env(`apiKey-${environment}`),
-			schoolId: Cypress.env(`schoolId-${environment}`),
-			userType: username,
-		},
-		{ log: false }
-	).then((res) => {
-		Cypress.env(`schoolId-${environment}`, res.schoolId);
-		Cypress.env("username", res.username);
-		const newPassword = isStudent
-			? Cypress.env("SET_NEW_PWD_BY_STUDENT")
-			: res.initialPassword;
-		Cypress.env("password", newPassword);
+	// One school per test file and environment, as before; kept in the Node process.
+	const schoolKey = `schoolId-${environment}-${Cypress.spec.relative}`;
 
-		cy.request({
-			method: "POST",
-			url: `${baseUrl}/api/v3/authentication/local`,
-			body: { username: res.username, password: res.initialPassword },
-			log: false,
-		}).then(({ body }) => {
-			const token = body.accessToken;
-			const headers = { Authorization: `Bearer ${token}` };
+	cy.task("getRuntimeValue", schoolKey, { log: false }).then((storedSchoolId) => {
+		cy.task(
+			"loginViaSchoolApi",
+			{
+				url: baseUrl,
+				apiKey: Cypress.env(`apiKey-${environment}`),
+				schoolId:
+					storedSchoolId || Cypress.env(`schoolId-${environment}`) || undefined,
+				userType: username,
+			},
+			{ log: false }
+		).then((res) => {
+			Cypress.env(`schoolId-${environment}`, res.schoolId);
+			cy.task(
+				"setRuntimeValue",
+				{ key: schoolKey, value: res.schoolId },
+				{ log: false }
+			);
+			Cypress.env("username", res.username);
+			const newPassword = isStudent
+				? Cypress.env("SET_NEW_PWD_BY_STUDENT")
+				: res.initialPassword;
+			Cypress.env("password", newPassword);
 
-			const firstLoginBody = isStudent
-				? {
-						"password-1": newPassword,
-						"password-2": newPassword,
-						studentBirthdate: "2000-03-21",
-					}
-				: {};
-			if (/(?:^|_)externalPerson/.test(username)) {
-				firstLoginBody.privacyConsent = true;
-				firstLoginBody.termsOfUseConsent = true;
-			}
-
-			cy.setCookie("jwt", token, { domain, log: false });
-			cy.setCookie("isLoggedIn", "true", { domain, log: false });
 			cy.request({
-				method: "PATCH",
-				url: `${baseUrl}/api/v3/user/language`,
-				headers,
-				body: { language: "de" },
+				method: "POST",
+				url: `${baseUrl}/api/v3/authentication/local`,
+				body: { username: res.username, password: res.initialPassword },
 				log: false,
-			});
-			// The v1 firstLogin service is not exposed publicly; the legacy client's
-			// form route forwards to it. It is CSRF-protected, so read the token first.
-			// Students without a birthday are redirected to an age selection page first;
-			// the UI test picks "16 or older", which leads to /firstLogin?ue16=true.
-			cy.request({
-				url: `${baseUrl}/firstLogin${isStudent ? "?ue16=true" : ""}`,
-				log: false,
-			}).then((page) => {
-				const match = page.body.match(/name="_csrf" value="([^"]+)"/);
-				expect(match, "csrf token on /firstLogin").to.not.equal(null);
+			}).then(({ body }) => {
+				const token = body.accessToken;
+				const headers = { Authorization: `Bearer ${token}` };
+
+				const firstLoginBody = isStudent
+					? {
+							"password-1": newPassword,
+							"password-2": newPassword,
+							studentBirthdate: "2000-03-21",
+						}
+					: {};
+				if (/(?:^|_)externalPerson/.test(username)) {
+					firstLoginBody.privacyConsent = true;
+					firstLoginBody.termsOfUseConsent = true;
+				}
+
+				cy.setCookie("jwt", token, { domain, log: false });
+				cy.setCookie("isLoggedIn", "true", { domain, log: false });
 				cy.request({
-					method: "POST",
-					url: `${baseUrl}/firstLogin/submit`,
-					form: true,
-					body: { _csrf: match[1], ...firstLoginBody },
+					method: "PATCH",
+					url: `${baseUrl}/api/v3/user/language`,
+					headers,
+					body: { language: "de" },
 					log: false,
+				});
+				// The v1 firstLogin service is not exposed publicly; the legacy client's
+				// form route forwards to it. It is CSRF-protected, so read the token first.
+				// Students without a birthday are redirected to an age selection page first;
+				// the UI test picks "16 or older", which leads to /firstLogin?ue16=true.
+				cy.request({
+					url: `${baseUrl}/firstLogin${isStudent ? "?ue16=true" : ""}`,
+					log: false,
+				}).then((page) => {
+					const match = page.body.match(/name="_csrf" value="([^"]+)"/);
+					expect(match, "csrf token on /firstLogin").to.not.equal(null);
+					cy.request({
+						method: "POST",
+						url: `${baseUrl}/firstLogin/submit`,
+						form: true,
+						body: { _csrf: match[1], ...firstLoginBody },
+						log: false,
+					});
 				});
 			});
 		});
