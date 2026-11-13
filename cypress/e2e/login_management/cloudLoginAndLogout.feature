@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_test
-@group-E
+@group-A
 @pr
 @prio_0_staging
 Feature: Login Management - Login of users managed by SVS

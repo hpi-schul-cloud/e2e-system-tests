@@ -154,9 +154,7 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 		}
 
 		if (schoolId === undefined) {
-			const tSchool = Date.now();
 			const { id } = await createSchool(schoolUrl, finalHeaders);
-			console.log(`[timing] school API call took ${Date.now() - tSchool} ms`);
 			schoolId = id;
 		} else {
 			console.log(`User created using existing school ID: ${schoolId}`);
@@ -169,11 +167,9 @@ const createUser = async (baseUrl, apiKeys, schoolId, userType) => {
 
 		const payload = generatePayload(schoolId, userType, role);
 
-		const tUser = Date.now();
 		const response = await axios.post(userUrl, payload, {
 			headers: finalHeaders,
 		});
-		console.log(`[timing] user API call took ${Date.now() - tUser} ms (${userType})`);
 
 		const { username, initialPassword } = response.data;
 		return { schoolId, username, initialPassword };
