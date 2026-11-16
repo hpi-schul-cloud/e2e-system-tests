@@ -125,10 +125,9 @@ Given("the school has external tool {string}", (toolList) => {
 });
 
 Given("all external tools at the school are deleted", () => {
-	management.openAdministrationInMenu();
-	management.clickOnSchoolAdministrationInSideMenu();
-	management.clickExternalToolsPanel();
-	management.deleteAllExternalTools();
+	// Clean-up only: delete via API instead of the admin UI. Deleting tools through the
+	// UI is covered by admin/administrateCtlTools.feature.
+	management.deleteAllExternalToolsViaApi();
 });
 
 Given("the card contains file {string} element", (imageFile) => {
