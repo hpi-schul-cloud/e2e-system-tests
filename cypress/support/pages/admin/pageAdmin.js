@@ -1383,6 +1383,22 @@ class Management {
 		);
 	}
 
+	deleteAllExternalToolsViaApi() {
+		// Relative URLs resolve against the instance of the last visited page.
+		cy.request({ url: "/api/v3/me" }).then(({ body: me }) => {
+			const listUrl = `/api/v3/tools/school-external-tools?schoolId=${me.school.id}`;
+			cy.request({ url: listUrl }).then(({ body: list }) => {
+				list.data.forEach((tool) => {
+					cy.request({
+						method: "DELETE",
+						url: `/api/v3/tools/school-external-tools/${tool.id}`,
+					});
+				});
+			});
+			cy.request({ url: listUrl }).its("body.data").should("have.length", 0);
+		});
+	}
+
 	deleteAllExternalTools() {
 		cy.get(Management.#externalToolsTable).then(($table) => {
 			if ($table.text().includes("Keine Daten vorhanden")) {
