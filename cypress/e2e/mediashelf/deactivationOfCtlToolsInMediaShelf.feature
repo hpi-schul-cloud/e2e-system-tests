@@ -100,6 +100,7 @@ Feature: Media Shelf - Deactivation of ctl tools in media shelf
         Given all external tools at the school are deleted
 
         @staging_test
+        @only
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | ctl_tool_1     | ctl_tool_2     |

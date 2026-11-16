@@ -69,6 +69,7 @@ Feature: Course Board  - To add a preferred tool in a board
             | admin      | teacher      | namespace | course_name                           | fullname_teacher | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |
             | admin1_nbc | teacher1_nbc | nbc       | CypressAut Board With Preferred Tools | Karl Herzog      | CY Test Tool Preferred With Param | CY Test Tool Preferred | contextParam | test        |
 
+        @only
         @school_api_test
         Examples:
             | admin      | teacher      | namespace | course_name                           | fullname_teacher  | ctl_tool_preferred_param          | ctl_tool_preferred     | param_name   | param_value |

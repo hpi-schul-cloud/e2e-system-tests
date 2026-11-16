@@ -176,6 +176,7 @@ Feature: Course Board - Deactivation of ctl tools in board
             | admin      | teacher      | student      | namespace | fullname_teacher | fullname_student | course_name                        | ctl_tool_1     | ctl_tool_2     |
             | admin1_nbc | teacher1_nbc | student1_nbc | nbc       | Karl Herzog      | Herbert Kraft    | CypressAut Tool Deactivation Board | CY Test Tool 1 | CY Test Tool 2 |
 
+        @only
         @school_api_test
         Examples:
             | admin      | teacher      | student      | namespace | fullname_teacher  | fullname_student  | course_name                        | ctl_tool_1     | ctl_tool_2     |

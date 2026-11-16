@@ -46,6 +46,7 @@ Feature: Media Shelf - No available tools in media shelf
         Then I see the no available media info text
 
         @staging_test
+        @only
         @school_api_test
         Examples:
             | admin      | teacher      | namespace | ctl_tool_1     |

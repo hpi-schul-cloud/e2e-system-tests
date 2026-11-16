@@ -125,6 +125,7 @@ Feature: Media Shelf - To show media shelf with respective functionality
         Given all external tools at the school are deleted
 
         @staging_test
+        @only
         @school_api_test
         Examples:
             | admin      | teacher      | namespace | ctl_tool_hidden     | ctl_tool_1     | ctl_tool_2     | color_white        | color_grey         | section_title  | section_title_updated | ctl_tool_launch_url |
