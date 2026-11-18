@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-D
+@group-F
 @pr
 @prio_0_staging
 Feature: Course - Student can create, edit and delete a group in the course
