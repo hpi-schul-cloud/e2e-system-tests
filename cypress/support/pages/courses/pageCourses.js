@@ -85,7 +85,7 @@ class Courses {
 	static #DeleteButtonInDotMenuOfTool = '[data-testid="tool-delete"]';
 	static #btnCopyCourse = '[data-testid="room-menu-copy"]';
 	static #courseGroupTab = '[data-testid="groups-tab"]';
-	static #addNewCourseGroupButton = '[data-testid="add-course-group"]';
+	static #addNewCourseGroupButton = '[data-testid="add-course-group"] .v-btn';
 	// commented out as the progress bar is not showing until the request takes longer than 200ms, so this element is commented out.
 	// static #copyResultDialog = '[data-testid="dialog-text"]';
 	static #copyResultNotification = '[data-testid="copy-info-warnings"]';
@@ -111,7 +111,7 @@ class Courses {
 	static #studentGroupNameOnStudentGroupPage = '[data-testid="group-name-entry"]';
 	static #editGroupButton = '[data-testid="edit-group"]';
 	static #deleteCourseGroupButton = '[data-testid="delete-course-group"]';
-	static #deleteCourseGroupConfirmationButton = '[data-testid="delete-course-group-btn"]';
+	static #deleteCourseGroupConfirmationButton = '[data-testid="dialog-confirm"]';
 	static #videoConferenceCheckBoxCourse = '[data-testid="videoconf_checkbox"]';
 	static #toolsTabInCourseDetail = '[data-testid="tools-tab"]';
 	static #bbbToolIconInToolsTabCourse = '[data-testid="vc-card-logo"]';
@@ -548,10 +548,16 @@ class Courses {
 		} else if (studentNames) {
 			students = [studentNames];
 		}
-		cy.get(Courses.#groupMemberField).invoke("show");
-		cy.get(Courses.#groupMemberField).should("be.visible");
-		// Select all students at once
-		cy.get(Courses.#groupMemberField).select(students.map((s) => s.trim()));
+		students
+			.map((s) => s.trim())
+			.forEach((student) => {
+				cy.get(Courses.#groupMemberField)
+					.click()
+					.type("{selectall}{backspace}")
+					.type(student);
+				cy.get(".v-overlay__content.v-autocomplete__content").contains(student).click();
+			});
+		cy.get(Courses.#groupMemberField).type("{esc}");
 	}
 
 	clickOnCreateStudentGroupButton() {
