@@ -42,16 +42,40 @@ class Account {
 	enterUpdatedEmailAfterSavingInAccountSettings() {
 		// Retrieve and use the same new email for the login after saving changes in the account settings in the method enterNewEmailOnUserSettingsPage().
 		cy.get("@newEmail").then((newEmail) => {
-			cy.get("body").then((body) => {
-				if (body.find(Account.#buttonLoginViaEmailNbc).length) {
-					// For NBC
-					cy.get(Account.#buttonLoginViaEmailNbc).click();
-					cy.get(Account.#inputBoxUserEmailOnLoginPage).type(newEmail);
-				} else {
-					// For BRB
-					cy.get(Account.#inputBoxUserEmailOnLoginPage).type(newEmail);
-				}
+			this.enterEmailOnLoginPage(newEmail);
+		});
+	}
+
+	rememberCurrentEmailOnUserSettingsPage() {
+		cy.get(Account.#inputBoxEmailOnUserSettings)
+			.invoke("val")
+			.should("match", /@/)
+			.then((previousEmail) => {
+				cy.wrap(previousEmail).as("previousEmail");
 			});
+	}
+
+	enterPreviousEmailOnLoginPage() {
+		cy.get("@previousEmail").then((previousEmail) => {
+			this.enterEmailOnLoginPage(previousEmail);
+		});
+	}
+
+	reloadAccountSettingsAndVerifyUpdatedEmail() {
+		cy.get("@newEmail").then((newEmail) => {
+			cy.reload();
+			cy.url().should("include", "/account");
+			cy.get(Account.#inputBoxEmailOnUserSettings).should("have.value", newEmail);
+		});
+	}
+
+	enterEmailOnLoginPage(email) {
+		cy.get("body").then((body) => {
+			if (body.find(Account.#buttonLoginViaEmailNbc).length) {
+				// For NBC
+				cy.get(Account.#buttonLoginViaEmailNbc).click();
+			}
+			cy.get(Account.#inputBoxUserEmailOnLoginPage).type(email);
 		});
 	}
 
@@ -87,7 +111,9 @@ class Account {
 		if (isChecked) {
 			cy.get(Account.#checkboxDirectoryVisibility).should("be.checked");
 		} else {
-			cy.get(Account.#checkboxDirectoryVisibility).uncheck().should("not.be.checked");
+			cy.get(Account.#checkboxDirectoryVisibility)
+				.uncheck()
+				.should("not.be.checked");
 		}
 	}
 

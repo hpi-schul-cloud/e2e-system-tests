@@ -3,6 +3,7 @@
 @schedule_run
 @group-D
 @prio_0_dev
+@mikroorm_v7
 Feature: Admin - Teacher must set a new password during login
 
     As a user, I want to update my password when logging in for the first time

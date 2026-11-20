@@ -3,6 +3,7 @@
 @schedule_run
 @group-F
 @prio_0_staging
+@mikroorm_v7
 Feature: Rooms - Drag and Drop Rooms on the Rooms Overview Page
 
     As a teacher, I want to drag and drop rooms on the rooms overview page so that I can organize my rooms effectively.
@@ -20,10 +21,16 @@ Feature: Rooms - Drag and Drop Rooms on the Rooms Overview Page
         Then I do not see error alrert
         Then I see the room '<room_one>' at position '1'
         Then I see the room '<room_two>' at position '0'
+        When I reload the rooms overview and wait for the rooms list
+        Then I see the room '<room_one>' at position '1'
+        Then I see the room '<room_two>' at position '0'
 
         # teacher drags and drops the room one from the position two to the first position back (right to left)
         When I drag and drop the room one '<room_one>' from position '1' to position '0'
         Then I do not see error alrert
+        Then I see the room '<room_one>' at position '0'
+        Then I see the room '<room_two>' at position '1'
+        When I reload the rooms overview and wait for the rooms list
         Then I see the room '<room_one>' at position '0'
         Then I see the room '<room_two>' at position '1'
 

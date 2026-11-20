@@ -16,6 +16,9 @@ In our Cypress and Cucumber setup, tags are used to categorize and selectively r
 - **@regression_test:** This tag is used for tests that are run against both the dev (32.41...) and staging environments before a release.
   <br>
 
+- **@mikroorm_v7:** Persistence regressions for the MikroORM v7 migration. This selection includes new scenarios that have not yet been marked `@stable_test`
+  <br>
+
 - **@school_api_test:** This tag is specific to tests that interact with the school API.
   <br>
 

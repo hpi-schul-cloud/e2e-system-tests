@@ -5,6 +5,7 @@
 @pr
 @pre_check_test
 @prio_0_staging
+@mikroorm_v7
 Feature: Admin - To add, edit and delete new users by the admin.
 
     As an admin, I want to manage users by creating, editing, and removing them, so that I can manage user administration effectively.
@@ -34,6 +35,15 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I click save changes button
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         Then I can see the user with email '<user_email_edited>' in the table
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
+        Then I can not see user '<user_email>' in the table
+
+        # admin verifies the edited user after reload
+        When I reload the current page
+        When I go to '<role_to_manage>' administration
+        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+        Then I can see the user with email '<user_email_edited>' in the table
+        Then I can see the user with last name '<user_last_name_edited>' in the table
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 
@@ -82,6 +92,15 @@ Feature: Admin - To add, edit and delete new users by the admin.
         When I click save changes button
         When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
         Then I can see the user with email '<user_email_edited>' in the table
+        When I enter '<role_to_manage>' email '<user_email>' in search input field
+        Then I can not see user '<user_email>' in the table
+
+        # admin verifies the edited user after reload
+        When I reload the current page
+        When I go to '<role_to_manage>' administration
+        When I enter '<role_to_manage>' email '<user_email_edited>' in search input field
+        Then I can see the user with email '<user_email_edited>' in the table
+        Then I can see the user with last name '<user_last_name_edited>' in the table
         When I enter '<role_to_manage>' email '<user_email>' in search input field
         Then I can not see user '<user_email>' in the table
 

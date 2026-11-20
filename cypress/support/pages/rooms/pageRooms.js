@@ -1,5 +1,10 @@
 "use strict";
 
+// kept across cy.session switches within one scenario
+let rememberedRoomPath;
+let roomDetailsVisitCount = 0;
+const rememberedRoomIdsByKey = {};
+
 class Rooms {
 	static #pageTitle = '[data-testid="page-title"]';
 	static #roomTitle = '[data-testid="room-title"]';
@@ -487,6 +492,137 @@ class Rooms {
 		cy.contains(roomName).should("not.exist");
 	}
 
+	reloadRoomDetailPageAndWaitForRoom() {
+		cy.intercept({ method: "GET", pathname: /^\/api\/v3\/rooms\/[0-9a-f]{24}$/ }).as(
+			"reloadedRoomDetails"
+		);
+		cy.reload();
+		cy.wait("@reloadedRoomDetails").its("response.statusCode").should("eq", 200);
+	}
+
+	seeExactRoomTitleOnDetailPage(roomName) {
+		cy.get(Rooms.#roomTitle).should(($title) => {
+			expect($title.text().trim()).to.eq(roomName);
+		});
+	}
+
+	seeExactRoomTitlesOnOverview(expectedRoomName, absentRoomName) {
+		cy.get('[data-testid^="room--title-"]').should(($titles) => {
+			const roomTitles = [...$titles].map((title) => title.textContent.trim());
+			expect(roomTitles).to.include(expectedRoomName);
+			expect(roomTitles).not.to.include(absentRoomName);
+		});
+	}
+
+	rememberCurrentRoomUrl() {
+		cy.location("pathname")
+			.should("match", /^\/rooms\/[0-9a-f]{24}$/)
+			.then((pathname) => {
+				rememberedRoomPath = pathname;
+			});
+	}
+
+	rememberCurrentRoomAs(key) {
+		cy.location("pathname")
+			.should("match", /^\/rooms\/[0-9a-f]{24}$/)
+			.then((pathname) => {
+				rememberedRoomIdsByKey[key] = pathname.split("/").pop();
+			});
+	}
+
+	getRememberedRoomId(key) {
+		const roomId = rememberedRoomIdsByKey[key];
+		expect(roomId, `remembered room '${key}'`).to.be.a("string");
+		return roomId;
+	}
+
+	openRememberedRoom(key) {
+		cy.then(() => {
+			const roomId = this.getRememberedRoomId(key);
+			const alias = `roomDetailsApi${++roomDetailsVisitCount}`;
+			cy.intercept({ method: "GET", pathname: `/api/v3/rooms/${roomId}` }).as(
+				alias
+			);
+			cy.visit(`/rooms/${roomId}`);
+			cy.wait(`@${alias}`).its("response.statusCode").should("eq", 200);
+		});
+	}
+
+	// Calls the API directly to verify the server-side permission check independently of the hidden UI controls.
+	createBoardInRememberedRoomViaApiAndExpectStatus(key, expectedStatusCode) {
+		cy.then(() => {
+			const roomId = this.getRememberedRoomId(key);
+			cy.request({
+				method: "POST",
+				url: "/api/v3/boards",
+				body: {
+					title: "CypressAut API Permission Board",
+					parentId: roomId,
+					parentType: "room",
+					layout: "columns",
+				},
+				failOnStatusCode: false,
+			}).then((response) => {
+				expect(response.status, "create board status").to.eq(expectedStatusCode);
+				if (response.status === 201) {
+					cy.request({
+						method: "DELETE",
+						url: `/api/v3/boards/${response.body.id}`,
+					})
+						.its("status")
+						.should("eq", 204);
+				}
+			});
+		});
+	}
+
+	deleteRememberedRoomViaApi(key) {
+		cy.then(() => {
+			const roomId = this.getRememberedRoomId(key);
+			cy.request({ method: "DELETE", url: `/api/v3/rooms/${roomId}` })
+				.its("status")
+				.should("eq", 204);
+		});
+	}
+
+	visitRememberedRoomUrlAndExpectStatus(expectedStatusCode) {
+		cy.then(() => {
+			expect(rememberedRoomPath, "remembered room url").to.be.a("string");
+			const roomId = rememberedRoomPath.split("/").pop();
+			// intercepts stay active for the whole test, so each visit needs its own alias
+			const alias = `roomDetailsApi${++roomDetailsVisitCount}`;
+			cy.intercept({ method: "GET", pathname: `/api/v3/rooms/${roomId}` }).as(
+				alias
+			);
+			cy.visit(rememberedRoomPath);
+			cy.wait(`@${alias}`)
+				.its("response.statusCode")
+				.should("eq", expectedStatusCode);
+		});
+	}
+
+	doNotSeeRoomTitle() {
+		cy.get(Rooms.#roomTitle).should("not.exist");
+	}
+
+	reloadRoomsOverviewAndWaitForRoomsList() {
+		// a list request from the preceding navigation may still be in flight and gets aborted by the reload,
+		// so wait for any successful list response that arrives after the reload instead of the first match
+		const state = { reloaded: false, loaded: false };
+		cy.intercept({ method: "GET", pathname: "/api/v3/rooms" }, (req) => {
+			req.continue((res) => {
+				if (state.reloaded && res.statusCode === 200) {
+					state.loaded = true;
+				}
+			});
+		});
+		cy.then(() => {
+			state.reloaded = true;
+		});
+		cy.reload();
+		cy.wrap(state, { timeout: 20000 }).its("loaded").should("eq", true);
+	}
+
 	seeSchoolOfParticipant(participantSchool) {
 		cy.get(Rooms.#addParticipantSchool).contains(participantSchool).should("exist");
 	}
@@ -495,7 +631,7 @@ class Rooms {
 		cy.get(Rooms.#addParticipantSchool)
 			.type("{selectall}{backspace}")
 			.type(participantSchool);
-        cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
+		cy.get(Rooms.#dropdownListbox, { timeout: 10000 }).should("be.visible");
 		cy.get(Rooms.#dropdownOptions).contains(participantSchool).click();
 		cy.get(Rooms.#dropdownListbox).should("not.exist");
 	}
@@ -658,6 +794,20 @@ class Rooms {
 
 	seeFabCreateRoomBoard() {
 		cy.get(Rooms.#addContentButton).should("exist").should("be.visible");
+	}
+
+	doNotSeeFabCreateRoomBoard() {
+		cy.get(Rooms.#roomTitle).should("be.visible");
+		cy.get(Rooms.#addContentButton).should("not.exist");
+	}
+
+	confirmChangeRoleAndWaitForUpdate() {
+		cy.intercept({
+			method: "PATCH",
+			pathname: /\/api\/v3\/rooms\/[0-9a-f]{24}\/members\/roles$/,
+		}).as("changeRoomRoleApi");
+		cy.get('[data-testid="change-role-confirm-btn"]').click();
+		cy.wait("@changeRoomRoleApi").its("response.statusCode").should("eq", 200);
 	}
 
 	seeFabAddMember() {

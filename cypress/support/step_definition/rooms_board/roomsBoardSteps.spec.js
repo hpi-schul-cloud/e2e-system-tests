@@ -19,6 +19,17 @@ Then("I see a card titled {string}", (cardTitle) => {
 	roomBoards.verifyCardTitleInBoard(cardTitle);
 });
 
+When(
+	"I move the card at column {int} row {int} down using the keyboard",
+	(columnIndex, rowIndex) => {
+		roomBoards.moveCardDownByKeyboard(columnIndex, rowIndex);
+	}
+);
+
+When("I reload the board page and wait for the cards", () => {
+	roomBoards.reloadBoardAndWaitForCards();
+});
+
 Then("I do not see a card titled {string}", (cardTitle) => {
 	roomBoards.verifyCardTitleNotInBoard(cardTitle);
 });

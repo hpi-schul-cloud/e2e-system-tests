@@ -72,6 +72,10 @@ When("I edit the course description to {string}", (editedCourseDescription) => {
 	courses.editCourseDescription(editedCourseDescription);
 });
 
+Then("I see the course description form contains {string}", (description) => {
+	courses.seeCourseDescriptionFormContains(description);
+});
+
 Then("I see student selection box to select the class for the course", () => {
 	courses.seeSelectionInBoxToSelectStudent();
 });

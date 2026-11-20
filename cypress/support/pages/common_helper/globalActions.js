@@ -37,6 +37,10 @@ class GlobalActions {
 	goBackToPreviousPage() {
 		cy.go("back");
 	}
+
+	reloadCurrentPage() {
+		cy.reload();
+	}
 }
 
 export default GlobalActions;

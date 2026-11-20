@@ -97,7 +97,25 @@ class ToolConfiguration {
 	}
 
 	fillInCustomParameter(paramName, value) {
-		cy.get(`[data-testid="${paramName}"]`).find("input").clear().type(value);
+		cy.get(`[data-testid="${paramName}"]`)
+			.find("input")
+			.clear()
+			.type(value, { parseSpecialCharSequences: false });
+	}
+
+	clearCustomParameter(paramName) {
+		cy.get(`[data-testid="${paramName}"]`).find("input").clear();
+	}
+
+	saveExternalToolAndWaitForPersistence() {
+		cy.intercept({
+			method: "+(POST|PUT)",
+			url: /\/tools\/(school|context)-external-tools(?:\/[^/?]+)?(?:\?.*)?$/,
+		}).as("saveExternalTool");
+		this.saveExternalToolButton();
+		cy.wait("@saveExternalTool")
+			.its("response.statusCode")
+			.should("be.within", 200, 299);
 	}
 
 	seeCustomParameterFormContains(paramName, value) {

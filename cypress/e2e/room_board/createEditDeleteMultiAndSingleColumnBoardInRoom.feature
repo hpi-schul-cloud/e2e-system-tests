@@ -3,6 +3,7 @@
 @schedule_run
 @group-A
 @prio_0_staging
+@mikroorm_v7
 Feature: Room Board - Add, edit and delete board in room
 
     As a teacher, I want to add, edit and delete board in the room.
@@ -32,6 +33,8 @@ Feature: Room Board - Add, edit and delete board in room
         Then I change the default room board title to '<board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<board_title>'
+        When I reload the current page
+        Then I see my room board is named '<board_title>'
 
         # cancel delete-process of the new multi-column board
         When I click on the three dot menu in room board title
@@ -46,6 +49,8 @@ Feature: Room Board - Add, edit and delete board in room
         When I select the three dot menu action 'delete'
         Then I see the button to confirm the dialog
         Then I click on the button Delete in the dialog
+        Then I do not see the board '<board_title>' in the room
+        When I reload the current page
         Then I do not see the board '<board_title>' in the room
 
         # teacher creates a new single-column board in the room
@@ -62,6 +67,8 @@ Feature: Room Board - Add, edit and delete board in room
         Then I change the default room board title to '<board_title>'
         When I click on the page outside of the title of the board
         Then I see my room board is named '<board_title>'
+        When I reload the current page
+        Then I see my room board is named '<board_title>'
 
         # confirm delete-process of single-column board
         When I click on the three dot menu in room board title
@@ -75,6 +82,8 @@ Feature: Room Board - Add, edit and delete board in room
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the room
         When I click on delete button in confirmation modal
+        Then I do not see '<room_name>' on room overview page
+        When I reload the rooms overview and wait for the rooms list
         Then I do not see '<room_name>' on room overview page
 
         @school_api_test

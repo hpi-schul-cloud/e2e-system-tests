@@ -130,6 +130,41 @@ When("I go to rooms overview", () => {
 	rooms.navigateToRoomsOverview();
 });
 
+When("I remember the current room as {string}", (key) => {
+	rooms.rememberCurrentRoomAs(key);
+});
+
+When("I open the remembered room {string}", (key) => {
+	rooms.openRememberedRoom(key);
+});
+
+Then(
+	"creating a board in the remembered room {string} via API returns status {int}",
+	(key, statusCode) => {
+		rooms.createBoardInRememberedRoomViaApiAndExpectStatus(key, statusCode);
+	}
+);
+
+When("I delete the remembered room {string} via API", (key) => {
+	rooms.deleteRememberedRoomViaApi(key);
+});
+
+When("I remember the url of the current room", () => {
+	rooms.rememberCurrentRoomUrl();
+});
+
+When("I open the remembered room url and get status {int}", (statusCode) => {
+	rooms.visitRememberedRoomUrlAndExpectStatus(statusCode);
+});
+
+Then("I do not see the room title", () => {
+	rooms.doNotSeeRoomTitle();
+});
+
+When("I reload the rooms overview and wait for the rooms list", () => {
+	rooms.reloadRoomsOverviewAndWaitForRoomsList();
+});
+
 When("I click on FAB to create new room", () => {
 	rooms.clickOnCreateRoomFAB();
 });
@@ -153,6 +188,21 @@ When("I click on the button Save room", () => {
 Then("I see the detail page of room {string}", (newRoomName) => {
 	rooms.seeRoomDetailPage(newRoomName);
 });
+
+When("I reload the room detail page and wait for the room", () => {
+	rooms.reloadRoomDetailPageAndWaitForRoom();
+});
+
+Then("I see exactly the room title {string} on the room detail page", (roomName) => {
+	rooms.seeExactRoomTitleOnDetailPage(roomName);
+});
+
+Then(
+	"I see room {string} but not room {string} on room overview page",
+	(expectedRoomName, absentRoomName) => {
+		rooms.seeExactRoomTitlesOnOverview(expectedRoomName, absentRoomName);
+	}
+);
 
 Then("I see the page Edit participants of room {string}", () => {
 	rooms.seeRoomEditParticipantsPage();
@@ -310,6 +360,14 @@ Then("I don't see first checkbox column in the table", () => {
 
 Then("I don't see last actions column in the table", () => {
 	rooms.doNotSeeLastColumnInRoomMembersTable();
+});
+
+Then("I do not see button Fab Create Room Board", () => {
+	rooms.doNotSeeFabCreateRoomBoard();
+});
+
+When("I confirm the role change and wait for the update", () => {
+	rooms.confirmChangeRoleAndWaitForUpdate();
 });
 
 Then("I see button Fab Create Room Board", () => {

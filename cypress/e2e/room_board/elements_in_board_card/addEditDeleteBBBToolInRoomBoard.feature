@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @prio_0_staging
+@mikroorm_v7
 Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
 
     As a teacher, I want to add, edit and delete a BBB (BigBlueButton) Tool to the room board so that I can manage video conferencing effectively.
@@ -71,6 +72,10 @@ Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
         When I click outside of the card to save it
         Then I see the title '<video_conference_title_edited>' in the video conference element
 
+        # assertion: edited video conference title is persisted after reload
+        When I reload the board page and wait for the cards
+        Then I see the title '<video_conference_title_edited>' in the video conference element
+
         # teacher accesses detailed view of the BBB Tool and verifies edit/show mode in the detailed view
         When I click on the detailed view icon in the video conference element
         Then I see the detailed view of the video conference element
@@ -94,6 +99,10 @@ Feature: Room Board - Add, edit, delete BBB Tool in the Room Board
         When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
+        Then I do not see the video conference element
+
+        # assertion: deleted video conference element does not return after reload
+        When I reload the board page and wait for the cards
         Then I do not see the video conference element
 
         # student cannot see the video conference in the multi-column board

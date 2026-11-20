@@ -4,6 +4,7 @@
 @group-A
 @pre_check_test
 @prio_0_staging
+@mikroorm_v7
 Feature: Rooms - Add and delete participants
 
     As a teacher, I want to add and delete participants in the room.
@@ -43,6 +44,11 @@ Feature: Rooms - Add and delete participants
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
         Then I see '<room_name>' on room overview page
+        When I click on button Open to go to room '<room_name>' at position '0'
+        Then I see the detail page of room '<room_name>'
+        When I remember the url of the current room
+        When I open the remembered room url and get status 200
+        Then I see the detail page of room '<room_name>'
 
         # first teacher is able to delete participants
         Given I am logged in as a '<teacher_1>' at '<namespace>'
@@ -57,10 +63,13 @@ Feature: Rooms - Add and delete participants
         When I click on delete button in confirmation modal
         Then I see the participant '<participant_name>' is removed from the room participants list
 
-        # second teacher do not see the room
+        # second teacher do not see the room, not even via the previously opened direct link
         Given I am logged in as a '<teacher_2>' at '<namespace>'
         When I go to rooms overview
+        When I reload the rooms overview and wait for the rooms list
         Then I do not see '<room_name>' on room overview page
+        When I open the remembered room url and get status 403
+        Then I do not see the room title
 
         # post-condition: first teacher deletes the room
         Given I am logged in as a '<teacher_1>' at '<namespace>'

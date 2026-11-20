@@ -875,6 +875,10 @@ class Courses {
 		cy.get(Courses.#courseDescription).clear().type(editedCourseDescription);
 	}
 
+	seeCourseDescriptionFormContains(description) {
+		cy.get(Courses.#courseDescription).should("have.value", description);
+	}
+
 	searchForACourse(courseName) {
 		cy.get(Courses.#searchFieldCourseOverview).type(
 			"{selectall}{backspace}{selectall}{backspace}"
@@ -1118,6 +1122,17 @@ class Courses {
 
 	confirmDeleteToolDialog() {
 		cy.get(Courses.#confirmDeleteDialogButton).click();
+	}
+
+	confirmDeleteToolDialogAndWaitForDeletion() {
+		cy.intercept({
+			method: "DELETE",
+			url: /\/tools\/context-external-tools\/[^/?]+(?:\?.*)?$/,
+		}).as("deleteContextExternalTool");
+		this.confirmDeleteToolDialog();
+		cy.wait("@deleteContextExternalTool")
+			.its("response.statusCode")
+			.should("be.within", 200, 299);
 	}
 
 	seeDeleteDialog() {

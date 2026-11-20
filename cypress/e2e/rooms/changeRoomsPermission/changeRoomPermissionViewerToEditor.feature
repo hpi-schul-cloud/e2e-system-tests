@@ -3,6 +3,7 @@
 @schedule_run
 @group-B
 @prio_0_staging
+@mikroorm_v7
 Feature: Rooms - Change room permission (Viewer - Editor)
 
     As a teacher, I want to change a participant's room permission from viewer to editor, so that other users can access the room and leave it as needed
@@ -33,14 +34,36 @@ Feature: Rooms - Change room permission (Viewer - Editor)
         When I click on the button Add participant
         Then I see '<participant_name>' in the room participants list
 
+        # second user as viewer can open the room but cannot create boards
+        Given I am logged in as a '<teacher_2>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        Then I see the detail page of room '<room_name>'
+        Then I do not see button Fab Create Room Board
+
         # first teacher changes role for other user
+        Given I am logged in as a '<teacher_1>' at '<namespace>'
+        When I go to rooms overview
+        When I click on button Open to go to room '<room_name>' at position '0'
+        When I click on three dot menu in room page
+        When I select the three dot menu action 'room-members'
+        Then I see the page Edit participants of room '<room_name>'
         When I click on button Three Dot Menu to edit participant '<participant_name>'
         Then I see button Change role permission is visible
         When I click on button 'Change-Permission' in the sub-menu
         Then I see dialog box Change Role Permission is visible
         When I change second user role to 'editor'
         Then I see Role changed to 'editor' for second user
-        Then I click on button 'Confirm' in the 'Role' action menu
+        When I confirm the role change and wait for the update
+
+        # changed role is still selected after reload
+        When I reload the current page
+        Then I see '<participant_name>' in the room participants list
+        When I click on button Three Dot Menu to edit participant '<participant_name>'
+        When I click on button 'Change-Permission' in the sub-menu
+        Then I see dialog box Change Role Permission is visible
+        Then I see Role changed to 'editor' for second user
+        When I click on button 'Cancel' in the 'Role' action menu
 
         # second user logs in, accesses the room, verifies that restricted functionalities are not visible to them, and then leaves the room
         Given I am logged in as a '<teacher_2>' at '<namespace>'

@@ -3,6 +3,7 @@
 @schedule_run
 @group-A
 @prio_0_staging
+@mikroorm_v7
 Feature: Files - Delete image file in room board and check file resource
 
     As a teacher, I want to remove image files from the board and confirm they are not accessible anymore
@@ -41,6 +42,9 @@ Feature: Files - Delete image file in room board and check file resource
         When I click on the option Delete in the three dot menu
         Then I see the dialog Confirm deletion
         When I click on the button Delete in the confirmation dialog
+        Then I do not see the element File
+        Then I see that image resource is not available '<image_file_name>'
+        When I reload the board page and wait for the cards
         Then I do not see the element File
         Then I see that image resource is not available '<image_file_name>'
 

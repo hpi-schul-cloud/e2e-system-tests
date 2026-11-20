@@ -66,6 +66,30 @@ When("I confirm the deletion on confirmation dialog box", () => {
 	news.confirmDeletionOnDialogBox();
 });
 
+When("I click on edit news button", () => {
+	news.clickOnEditNewsButton();
+});
+
+When("I replace the news title with {string}", (newsTitle) => {
+	news.replaceNewsTitle(newsTitle);
+});
+
+When("I replace the news description with {string}", (newsDescription) => {
+	news.replaceNewsDescription(newsDescription);
+});
+
+When("I save the news and wait for the update", () => {
+	news.saveNewsAndWaitForUpdate();
+});
+
+Then("I do not see the news title {string} on news detail page", (newsTitle) => {
+	news.doNotSeeNewsTitleOnNewsDetailPage(newsTitle);
+});
+
+When("I reload the news overview and wait for the news list", () => {
+	news.reloadNewsOverviewAndWaitForNewsList();
+});
+
 Then("I do not see the news {string}", (newsName) => {
 	news.doNotSeeNews(newsName);
 });
