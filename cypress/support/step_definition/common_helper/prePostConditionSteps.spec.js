@@ -125,8 +125,9 @@ Given("the school has external tool {string}", (toolList) => {
 });
 
 Given("all external tools at the school are deleted", () => {
-	// Clean-up only: delete via API instead of the admin UI. Deleting tools through the
-	// UI is covered by admin/administrateCtlTools.feature.
+	// Deletes via API instead of the admin UI, both for clean-up and where the deletion is part of
+	// the scenario (mediashelf/noAvailableToolsInMediaShelf.feature). Deleting tools through the
+	// admin UI is covered by admin/administrateCtlTools.feature.
 	management.deleteAllExternalToolsViaApi();
 });
 

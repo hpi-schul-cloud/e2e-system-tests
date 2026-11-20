@@ -26,7 +26,7 @@ Feature: Media Shelf - No available tools in media shelf
         Then I see the first media line
         Then I see tool '<ctl_tool_1>' in the first media line
 
-        # admin deletes tool
+        # admin deletes tool (via API in the admin session, see the step definition)
         Given I am logged in as a '<admin>' at '<namespace>'
         Given all external tools at the school are deleted
 
