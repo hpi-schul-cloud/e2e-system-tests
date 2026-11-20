@@ -1383,27 +1383,21 @@ class Management {
 		);
 	}
 
-	deleteAllExternalTools() {
-		cy.get(Management.#externalToolsTable).then(($table) => {
-			if ($table.text().includes("Keine Daten vorhanden")) {
-				return;
-			}
-
-			cy.get(Management.#externalToolName).each(($element) => {
-				cy.wrap($element)
-					.parents("tr")
-					.within(() => {
-						cy.get(Management.#deleteExternalToolButton).should("be.visible").click();
-					});
-
-				cy.get(Management.#confirmExternalToolDeletionButton).click();
-			});
-
-			cy.get(Management.#externalToolsTable).within(() => {
-				cy.get(Management.#tableExternalTool).should(
-					"have.text",
-					"Keine Daten vorhanden"
-				);
+	deleteAllExternalToolsViaApi() {
+		// Relative URLs resolve against baseUrl, like the cy.visit() calls (cy.login sets it).
+		cy.request({ url: "/api/v3/me" }).then(({ body: me }) => {
+			const listUrl = `/api/v3/tools/school-external-tools?schoolId=${me.school.id}`;
+			cy.request({ url: listUrl }).then(({ body: list }) => {
+				list.data.forEach((tool) => {
+					// 404: already deleted, e.g. by a parallel run on the shared staging school.
+					cy.request({
+						method: "DELETE",
+						url: `/api/v3/tools/school-external-tools/${tool.id}`,
+						failOnStatusCode: false,
+					})
+						.its("status")
+						.should("be.oneOf", [204, 404]);
+				});
 			});
 		});
 	}
