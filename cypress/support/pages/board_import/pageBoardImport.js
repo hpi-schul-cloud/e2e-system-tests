@@ -10,6 +10,7 @@ class BoardImport {
 			({ status, body }) => {
 				expect(status).to.eq(201);
 				expect(body.id).to.be.a("string").that.is.not.empty;
+				expect(body.status).to.eq("waiting");
 				cy.wrap(body.id).as(BoardImport.#jobIdAlias);
 			}
 		);
