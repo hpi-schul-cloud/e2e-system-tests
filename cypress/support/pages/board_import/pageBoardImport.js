@@ -3,6 +3,8 @@
 class BoardImport {
 	static #jobsUrl = "/api/v3/board-import/jobs";
 	static #jobIdAlias = "boardImportJobId";
+	static #pollIntervalInMs = 1000;
+	static #finalStatuses = ["finished", "failed"];
 
 	startBoardImportViaApi(link, triesLeft = 12) {
 		// Relative URLs resolve against baseUrl, like the cy.visit() calls (cy.login sets it).
@@ -28,14 +30,37 @@ class BoardImport {
 		});
 	}
 
-	seeBoardImportJobIsCreatedViaApi() {
+	seeBoardImportJobHasStatusViaApi(expectedStatus, timeoutInSeconds) {
+		// Polling sees a short-lived status only by chance, so only a final status is reliable.
+		expect(BoardImport.#finalStatuses).to.include(expectedStatus);
+		expect(timeoutInSeconds).to.be.a("number");
 		cy.get(`@${BoardImport.#jobIdAlias}`).then((jobId) => {
-			cy.request({ url: `${BoardImport.#jobsUrl}/${jobId}` }).then(
-				({ status, body }) => {
-					expect(status).to.eq(200);
-					expect(body.id).to.eq(jobId);
-				}
-			);
+			const deadline = Date.now() + timeoutInSeconds * 1000;
+			this.#pollUntilJobHasStatus(jobId, expectedStatus, deadline);
+		});
+	}
+
+	#pollUntilJobHasStatus(jobId, expectedStatus, deadline) {
+		cy.request({
+			url: `${BoardImport.#jobsUrl}/${jobId}`,
+			retryOnStatusCodeFailure: true,
+		}).then(({ status, body }) => {
+			expect(status).to.eq(200);
+			expect(body.id).to.eq(jobId);
+			if (body.status === expectedStatus) {
+				return;
+			}
+
+			// A job with a final status never changes, so the test stops at once.
+			const isFinalStatus = BoardImport.#finalStatuses.includes(body.status);
+			if (isFinalStatus || Date.now() >= deadline) {
+				expect(body.status, "status of the board import job").to.eq(
+					expectedStatus
+				);
+			}
+
+			cy.wait(BoardImport.#pollIntervalInMs);
+			this.#pollUntilJobHasStatus(jobId, expectedStatus, deadline);
 		});
 	}
 }
