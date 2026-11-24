@@ -15,6 +15,9 @@ Feature: Board Import - To start the import of a board from a link
         When I start a board import with the link '<link>' via API
         Then I see the board import job is created via API
 
+        # the import worker processes the import job
+        Then I see the board import job is finished via API
+
         @school_api_test
         Examples:
             | teacher      | namespace | link                      |

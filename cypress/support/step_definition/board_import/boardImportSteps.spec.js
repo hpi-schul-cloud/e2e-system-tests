@@ -10,3 +10,7 @@ When("I start a board import with the link {string} via API", (link) => {
 Then("I see the board import job is created via API", () => {
 	boardImport.seeBoardImportJobIsCreatedViaApi();
 });
+
+Then("I see the board import job is finished via API", () => {
+	boardImport.seeBoardImportJobIsFinishedViaApi();
+});

@@ -3,6 +3,8 @@
 class BoardImport {
 	static #jobsUrl = "/api/v3/board-import/jobs";
 	static #jobIdAlias = "boardImportJobId";
+	static #pollIntervalInMs = 1000;
+	static #maxPolls = 30;
 
 	startBoardImportViaApi(link, triesLeft = 12) {
 		// Relative URLs resolve against baseUrl, like the cy.visit() calls (cy.login sets it).
@@ -36,6 +38,30 @@ class BoardImport {
 					expect(body.id).to.eq(jobId);
 				}
 			);
+		});
+	}
+
+	seeBoardImportJobIsFinishedViaApi() {
+		cy.get(`@${BoardImport.#jobIdAlias}`).then((jobId) => {
+			this.#pollUntilJobIsFinished(jobId, BoardImport.#maxPolls);
+		});
+	}
+
+	#pollUntilJobIsFinished(jobId, remainingPolls) {
+		cy.request({ url: `${BoardImport.#jobsUrl}/${jobId}` }).then(({ body }) => {
+			if (body.status === "finished") {
+				return;
+			}
+
+			// A failed job never gets the status finished, so the test stops at once.
+			expect(body.status).to.be.oneOf(["waiting", "running"]);
+			expect(
+				remainingPolls,
+				"remaining polls of the board import job"
+			).to.be.greaterThan(0);
+
+			cy.wait(BoardImport.#pollIntervalInMs);
+			this.#pollUntilJobIsFinished(jobId, remainingPolls - 1);
 		});
 	}
 }
