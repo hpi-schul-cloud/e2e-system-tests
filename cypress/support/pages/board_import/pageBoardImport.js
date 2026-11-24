@@ -4,7 +4,7 @@ class BoardImport {
 	static #jobsUrl = "/api/v3/board-import/jobs";
 	static #jobIdAlias = "boardImportJobId";
 	static #pollIntervalInMs = 1000;
-	static #maxPolls = 30;
+	static #finalStatuses = ["finished", "failed"];
 
 	startBoardImportViaApi(link, triesLeft = 12) {
 		// Relative URLs resolve against baseUrl, like the cy.visit() calls (cy.login sets it).
@@ -30,38 +30,33 @@ class BoardImport {
 		});
 	}
 
-	seeBoardImportJobIsCreatedViaApi() {
+	seeBoardImportJobHasStatusViaApi(expectedStatus, timeoutInSeconds = 0) {
 		cy.get(`@${BoardImport.#jobIdAlias}`).then((jobId) => {
-			cy.request({ url: `${BoardImport.#jobsUrl}/${jobId}` }).then(
-				({ status, body }) => {
-					expect(status).to.eq(200);
-					expect(body.id).to.eq(jobId);
-				}
-			);
+			this.#pollUntilJobHasStatus(jobId, expectedStatus, timeoutInSeconds);
 		});
 	}
 
-	seeBoardImportJobIsFinishedViaApi() {
-		cy.get(`@${BoardImport.#jobIdAlias}`).then((jobId) => {
-			this.#pollUntilJobIsFinished(jobId, BoardImport.#maxPolls);
-		});
-	}
-
-	#pollUntilJobIsFinished(jobId, remainingPolls) {
-		cy.request({ url: `${BoardImport.#jobsUrl}/${jobId}` }).then(({ body }) => {
-			if (body.status === "finished") {
+	#pollUntilJobHasStatus(jobId, expectedStatus, remainingSeconds) {
+		cy.request({
+			url: `${BoardImport.#jobsUrl}/${jobId}`,
+			retryOnStatusCodeFailure: true,
+		}).then(({ status, body }) => {
+			expect(status).to.eq(200);
+			expect(body.id).to.eq(jobId);
+			if (body.status === expectedStatus) {
 				return;
 			}
 
-			// A failed job never gets the status finished, so the test stops at once.
-			expect(body.status).to.be.oneOf(["waiting", "running"]);
-			expect(
-				remainingPolls,
-				"remaining polls of the board import job"
-			).to.be.greaterThan(0);
+			// A job with a final status never changes, so the test stops at once.
+			const isFinalStatus = BoardImport.#finalStatuses.includes(body.status);
+			if (isFinalStatus || remainingSeconds <= 0) {
+				expect(body.status, "status of the board import job").to.eq(
+					expectedStatus
+				);
+			}
 
 			cy.wait(BoardImport.#pollIntervalInMs);
-			this.#pollUntilJobIsFinished(jobId, remainingPolls - 1);
+			this.#pollUntilJobHasStatus(jobId, expectedStatus, remainingSeconds - 1);
 		});
 	}
 }
