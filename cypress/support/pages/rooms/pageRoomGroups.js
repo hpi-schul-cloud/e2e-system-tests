@@ -286,6 +286,52 @@ class RoomGroups {
 			.and("contain.text", "zwischenzeitlich");
 	}
 
+	seeOnboardingHint() {
+		cy.get('[data-testid="room-groups-onboarding-add"]').should("be.visible");
+	}
+
+	doNotSeeOnboardingHint() {
+		cy.get('[data-testid="room-groups-onboarding-add"]').should("not.exist");
+	}
+
+	clickOnboardingAddGroup() {
+		cy.get('[data-testid="room-groups-onboarding-add"]').click();
+	}
+
+	chooseRoomsMenuAction(testId) {
+		cy.get(RoomGroups.#roomsMenu).click();
+		cy.get(`[data-testid="${testId}"]`).should("be.visible").click();
+	}
+
+	selectRoom(roomName) {
+		this.getRoomCard(roomName)
+			.find('[data-testid="room-card-select"] input')
+			.check({ force: true });
+	}
+
+	seeSelectionCount(count) {
+		cy.get('[data-testid="room-selection-bar"]')
+			.should("be.visible")
+			.and("contain.text", count);
+	}
+
+	moveSelectionTo(sectionName) {
+		cy.get('[data-testid="room-selection-move"]').click();
+		this.chooseMoveTarget(sectionName);
+		this.confirmMoveDialog();
+	}
+
+	doNotSeeSelectionBar() {
+		cy.get('[data-testid="room-selection-bar"]').should("not.exist");
+	}
+
+	undoLastChange() {
+		cy.get('[data-testid="room-arrangement-undo-action"]')
+			.should("be.visible")
+			.click();
+		cy.wait(1000);
+	}
+
 	verifyNoErrorAlert() {
 		cy.get(RoomGroups.#alertMessage).should("not.exist");
 	}

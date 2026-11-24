@@ -219,3 +219,47 @@ When(
 Then("I see a notice that the room groups were changed in the meantime", () => {
 	roomGroups.seeChangedElsewhereNotice();
 });
+
+Then("I see the hint to start grouping rooms", () => {
+	roomGroups.seeOnboardingHint();
+});
+
+Then("I do not see the hint to start grouping rooms", () => {
+	roomGroups.doNotSeeOnboardingHint();
+});
+
+When("I add a group from the hint to start grouping rooms", () => {
+	roomGroups.clickOnboardingAddGroup();
+});
+
+When("I collapse all room groups from the rooms menu", () => {
+	roomGroups.chooseRoomsMenuAction("rooms-menu-collapse-all-groups");
+});
+
+When("I expand all room groups from the rooms menu", () => {
+	roomGroups.chooseRoomsMenuAction("rooms-menu-expand-all-groups");
+});
+
+When("I start selecting rooms from the rooms menu", () => {
+	roomGroups.chooseRoomsMenuAction("rooms-menu-select-rooms");
+});
+
+When("I select the room {string}", (roomName) => {
+	roomGroups.selectRoom(roomName);
+});
+
+Then("I see {string} selected rooms", (count) => {
+	roomGroups.seeSelectionCount(count);
+});
+
+When("I move the selected rooms to section {string}", (sectionName) => {
+	roomGroups.moveSelectionTo(sectionName);
+});
+
+Then("I do not see the room selection", () => {
+	roomGroups.doNotSeeSelectionBar();
+});
+
+When("I undo the last change on the rooms overview", () => {
+	roomGroups.undoLastChange();
+});
