@@ -263,3 +263,45 @@ Then("I do not see the room selection", () => {
 When("I undo the last change on the rooms overview", () => {
 	roomGroups.undoLastChange();
 });
+
+When("I watch for changes to the room arrangement", () => {
+	cy.intercept({
+		method: /^(POST|PATCH|PUT|DELETE)$/,
+		url: "**/api/v3/room-arrangements/**",
+	}).as("arrangementWrite");
+	cy.intercept({ method: "PATCH", url: "**/api/v3/rooms" }).as("legacyRoomMove");
+});
+
+Then("no change to the room arrangement was sent", () => {
+	cy.wait(500);
+	cy.get("@arrangementWrite.all").should("have.length", 0);
+	cy.get("@legacyRoomMove.all").should("have.length", 0);
+});
+
+When("I scroll through the rooms overview", () => {
+	cy.scrollTo("bottom", { duration: 400, ensureScrollable: false });
+	cy.scrollTo("top", { duration: 400, ensureScrollable: false });
+});
+
+When("I open and close the menu of room group {string}", (groupName) => {
+	roomGroups.openGroupMenu(groupName);
+	cy.get("body").type("{esc}");
+});
+
+When("I open and cancel the move dialog of room {string}", (roomName) => {
+	roomGroups.openRoomCardMenu(roomName);
+	roomGroups.clickRoomCardMenuAction("move-to-group");
+	cy.get('[data-testid="room-move-dialog-cancel"]').click();
+});
+
+When("I select and deselect the room {string}", (roomName) => {
+	roomGroups.selectRoom(roomName);
+	roomGroups
+		.getRoomCard(roomName)
+		.find('[data-testid="room-card-select"] input')
+		.uncheck({ force: true });
+});
+
+When("I leave the room selection", () => {
+	cy.get('[data-testid="room-selection-cancel"]').click();
+});
