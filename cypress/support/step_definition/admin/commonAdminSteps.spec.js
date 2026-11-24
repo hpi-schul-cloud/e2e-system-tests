@@ -580,7 +580,7 @@ When("I click the toggle switch to enable student visibility for teachers", () =
 });
 
 Then("I disable the video conference", () => {
-	management.disableTeamsVideoConferenceByAdmin();
+	management.disableVideoConferenceByAdmin();
 });
 
 Then("I click on button Save admin settings", () => {
@@ -588,7 +588,7 @@ Then("I click on button Save admin settings", () => {
 });
 
 Then("I enable the video conference", () => {
-	management.enableTeamsVideoConferenceByAdmin();
+	management.enableVideoConferenceByAdmin();
 });
 
 When("I navigate to new school admin page via sub menu", () => {
@@ -617,10 +617,6 @@ When("I click save general settings button", () => {
 
 When("I go to {string} administration", (role) => {
 	management.navigateToUserAdministration(role);
-});
-
-When("I go to team administration", () => {
-	management.navigateToTeamAdministration();
 });
 
 When("I go to legacy course administration", () => {

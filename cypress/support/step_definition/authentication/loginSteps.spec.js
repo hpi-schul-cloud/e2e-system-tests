@@ -26,7 +26,6 @@ Before(() => {
 	cy.intercept("**/homework/**").as("homework_api");
 	cy.intercept("**/rooms/**").as("rooms_api");
 	cy.intercept("**/delete/**").as("delete_api");
-	cy.intercept("**/teams**").as("teams_api");
 	cy.intercept("**/courses/**").as("course_api");
 	cy.intercept("**/rooms-overview**").as("rooms_overview_api");
 	cy.intercept("**/courses/**").as("courses_api");
