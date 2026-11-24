@@ -31,12 +31,16 @@ class BoardImport {
 	}
 
 	seeBoardImportJobHasStatusViaApi(expectedStatus, timeoutInSeconds) {
+		// Polling sees a short-lived status only by chance, so only a final status is reliable.
+		expect(BoardImport.#finalStatuses).to.include(expectedStatus);
+		expect(timeoutInSeconds).to.be.a("number");
 		cy.get(`@${BoardImport.#jobIdAlias}`).then((jobId) => {
-			this.#pollUntilJobHasStatus(jobId, expectedStatus, timeoutInSeconds);
+			const deadline = Date.now() + timeoutInSeconds * 1000;
+			this.#pollUntilJobHasStatus(jobId, expectedStatus, deadline);
 		});
 	}
 
-	#pollUntilJobHasStatus(jobId, expectedStatus, remainingSeconds) {
+	#pollUntilJobHasStatus(jobId, expectedStatus, deadline) {
 		cy.request({
 			url: `${BoardImport.#jobsUrl}/${jobId}`,
 			retryOnStatusCodeFailure: true,
@@ -49,14 +53,14 @@ class BoardImport {
 
 			// A job with a final status never changes, so the test stops at once.
 			const isFinalStatus = BoardImport.#finalStatuses.includes(body.status);
-			if (isFinalStatus || remainingSeconds <= 0) {
+			if (isFinalStatus || Date.now() >= deadline) {
 				expect(body.status, "status of the board import job").to.eq(
 					expectedStatus
 				);
 			}
 
 			cy.wait(BoardImport.#pollIntervalInMs);
-			this.#pollUntilJobHasStatus(jobId, expectedStatus, remainingSeconds - 1);
+			this.#pollUntilJobHasStatus(jobId, expectedStatus, deadline);
 		});
 	}
 }
