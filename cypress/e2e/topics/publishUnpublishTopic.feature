@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-F
+@group-B
 @pr
 @prio_0_staging
 Feature: Topics - To publish and unpublish topic by teacher.

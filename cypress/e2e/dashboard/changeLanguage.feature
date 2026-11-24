@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @schedule_run
-@group-F
+@group-E
 @pr
 @prio_0_staging
 Feature: Dashboard - Change language of the user from user setting

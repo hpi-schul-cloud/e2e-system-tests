@@ -326,6 +326,9 @@ class Tasks {
 
 	clickConfirmDeletionButtonInEditTask() {
 		cy.get(Tasks.#dialogConfirmDeletionTaskButtons).click({ force: true });
+		// The client deletes via AJAX and only then redirects to /tasks. Wait for that redirect,
+		// otherwise it can override a cy.visit() started by the next step.
+		cy.location("pathname").should("eq", "/tasks");
 	}
 
 	compareFeedbackText(feedbackText) {
