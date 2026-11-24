@@ -121,7 +121,8 @@ class Rooms {
 	}
 
 	verifyNoErrorAlert() {
-		cy.get(Rooms.#alertMessage).should("not.exist");
+		// Success notifications are allowed (grouped rooms confirm moves with an undo notification).
+		cy.get(".v-alert.text-error").should("not.exist");
 	}
 
 	deleteElementsWithText(textSelector, roomName) {

@@ -46,7 +46,13 @@ class RoomGroups {
 	}
 
 	clickAddGroup() {
-		cy.get(RoomGroups.#addGroupButton).should("be.visible").click();
+		// While no group exists, the first-run line offers the add action instead of the bottom row.
+		cy.get(
+			`${RoomGroups.#addGroupButton}, [data-testid="room-groups-onboarding-add"]`
+		)
+			.filter(":visible")
+			.first()
+			.click();
 	}
 
 	enterGroupName(groupName) {
@@ -277,11 +283,12 @@ class RoomGroups {
 
 	reloadRoomsOverview() {
 		cy.reload();
-		cy.get(RoomGroups.#addGroupButton).should("be.visible");
+		cy.get('[data-testid="room-grouped-overview"]').should("be.visible");
 	}
 
 	seeChangedElsewhereNotice() {
-		cy.get(RoomGroups.#alertMessage)
+		cy.get(".v-alert.text-error")
+			.find(RoomGroups.#alertMessage)
 			.should("be.visible")
 			.and("contain.text", "zwischenzeitlich");
 	}
@@ -326,14 +333,14 @@ class RoomGroups {
 	}
 
 	undoLastChange() {
-		cy.get('[data-testid="room-arrangement-undo-action"]')
-			.should("be.visible")
-			.click();
+		// Undo is the action of the shared success notification (the same one archiving uses).
+		cy.get('[data-testid="alert-action"]').first().should("be.visible").click();
 		cy.wait(1000);
 	}
 
 	verifyNoErrorAlert() {
-		cy.get(RoomGroups.#alertMessage).should("not.exist");
+		// Success notifications (e.g. a move with undo) are expected; only error alerts count.
+		cy.get(".v-alert.text-error").should("not.exist");
 	}
 }
 
