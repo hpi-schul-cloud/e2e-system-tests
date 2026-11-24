@@ -1,7 +1,7 @@
 @regression_test
 @stable_test
 @group-A
-@pr
+@schedule_run
 Feature: Board Import - To start the import of a board from a link
 
     As a teacher, I want to start the import of a board from a link so that I get a copy of the board.
