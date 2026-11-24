@@ -30,7 +30,7 @@ class BoardImport {
 		});
 	}
 
-	seeBoardImportJobHasStatusViaApi(expectedStatus, timeoutInSeconds = 0) {
+	seeBoardImportJobHasStatusViaApi(expectedStatus, timeoutInSeconds) {
 		cy.get(`@${BoardImport.#jobIdAlias}`).then((jobId) => {
 			this.#pollUntilJobHasStatus(jobId, expectedStatus, timeoutInSeconds);
 		});

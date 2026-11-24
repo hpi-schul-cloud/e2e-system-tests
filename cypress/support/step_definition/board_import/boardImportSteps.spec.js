@@ -7,10 +7,6 @@ When("I start a board import with the link {string} via API", (link) => {
 	boardImport.startBoardImportViaApi(link);
 });
 
-Then("I see the board import job has the status {string} via API", (status) => {
-	boardImport.seeBoardImportJobHasStatusViaApi(status);
-});
-
 Then(
 	"I see the board import job has the status {string} within {int} seconds via API",
 	(status, timeoutInSeconds) => {
