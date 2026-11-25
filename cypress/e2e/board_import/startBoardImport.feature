@@ -6,18 +6,38 @@ Feature: Board Import - To start the import of a board from a link
 
     As a teacher, I want to start the import of a board from a link so that I get a copy of the board.
 
-    Scenario Outline: Teacher starts a board import via API
+    Scenario Outline: Teacher starts a board import in a room
 
-        # pre-condition: creating account
+        # pre-condition: teacher logs in
         Given I am logged in as a '<teacher>' at '<namespace>'
+        Given the board import API is available
+
+        # pre-condition: teacher creates a new room
+        When I go to rooms overview
+        When I click on FAB to create new room
+        Then I see room creation page
+        When I enter the room name '<room_name>'
+        When I click on the button Save room
+        Then I see the detail page of room '<room_name>'
 
         # teacher starts the import
-        When I start a board import with the link '<link>' via API
+        When I click on the button to import a board in the room
+        Then I see the dialog to import a board
+        When I enter the link '<link>' in the board import dialog
+        When I click on the button Import in the board import dialog
 
         # the import worker processes the import job
-        Then I see the board import job has the status 'finished' within 90 seconds via API
+        Then I see the board import job has the status 'finished' within 90 seconds
+
+        # post-condition: teacher deletes room
+        When I click on the button Close in the board import dialog
+        When I click on three dot menu in room page
+        When I select the three dot menu action 'delete'
+        Then I see confirmation modal for deleting the room
+        When I click on delete button in confirmation modal
+        Then I do not see '<room_name>' on room overview page
 
         @school_api_test
         Examples:
-            | teacher      | namespace | link                      |
-            | teacher1_nbc | nbc       | https://example.com/board |
+            | teacher      | namespace | room_name            | link                      |
+            | teacher1_nbc | nbc       | CypressAut Room Name | https://example.com/board |

@@ -7,6 +7,7 @@ class Rooms {
 	static #roomOverviewNavigationButton = '[data-testid="sidebar-rooms"]';
 	static #roomDetailFAB = '[data-testid="room-menu"]';
 	static #addContentButton = '[data-testid="add-content-button"] .v-btn';
+	static #createBoardButton = '[data-testid="create-board-button"]';
 	static #deletionConfirmationModalTitle = '[data-testid="confirm-dialog-title"]';
 	static #modalForFileDeletion = '[data-testid="delete-file-dialog"]';
 	static #confirmButtonOnModal = '[data-testid="confirm-dialog-confirm"]';
@@ -560,8 +561,18 @@ class Rooms {
 	notSeeParticipantInList(participantName) {
 		cy.get(Rooms.#participantTable).should("not.contain", participantName);
 	}
-	clickOnAddContentButton() {
+	openAddContentMenu() {
 		cy.get(Rooms.#addContentButton).click();
+	}
+
+	clickOnAddContentButton() {
+		this.openAddContentMenu();
+		// With the board import enabled, the button opens a menu and not the board layout dialog.
+		cy.request("/api/v3/config/public").then(({ body }) => {
+			if (body.FEATURE_BOARD_IMPORT_ENABLED) {
+				cy.get(Rooms.#createBoardButton).click();
+			}
+		});
 	}
 
 	clickOnThreeDotMenuToEditUser(participantName) {
