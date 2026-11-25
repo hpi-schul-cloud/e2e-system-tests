@@ -107,7 +107,7 @@ Feature: Dashboard - To check contents on the dashboard
         When I arrive on the dashboard
         Then I do not see school news with title 'CypressAut Dashboard - school news'
 
-        # post-condition:  teacher deletes the team and course
+        # post-condition:  teacher deletes the course
         Given I am logged in as a '<teacher>' at '<namespace>'
         Given course with name '<course_name>' is deleted
 

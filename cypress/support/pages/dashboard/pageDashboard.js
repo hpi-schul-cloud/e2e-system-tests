@@ -188,12 +188,6 @@ class Dashboard {
 		cy.get(Dashboard.#newsText).contains(newsDesc);
 	}
 
-	seeTeamsNews(newsTitle, newsDesc) {
-		cy.get(Dashboard.#newsSection).should("be.visible");
-		cy.get(Dashboard.#elementTitle).contains(newsTitle);
-		cy.get(Dashboard.#newsText).contains(newsDesc);
-	}
-
 	seeAssignedTasks(taskName, courseName) {
 		cy.get(Dashboard.#dashboardTasksTitle).eq(0);
 		cy.contains("Gestellte Aufgaben");

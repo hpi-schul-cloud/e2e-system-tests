@@ -14,7 +14,7 @@ Cypress.Commands.add("login", (username, environment) => {
 			const link = Cypress.config("baseUrl", env[environmentUpperCased]);
 
 			const stagingRegex =
-				/^https:\/\/(staging\.[\w-]+\.(dbildungscloud\.org)|test\.schulportal-thueringen\.de|staging\.dbildungscloud\.org)\/?/;
+				/^https:\/\/(staging\.[\w-]+\.(schulcloud-verbund\.org)|test\.schulportal-thueringen\.de|staging\.schulcloud-verbund\.org)\/?/;
 
 			let isStaging = stagingRegex.test(link);
 
