@@ -24,8 +24,6 @@ class Topics {
 	static #editTopicButton = '[data-testid="topic-button-edit"]';
 	static #textElementPos0 = '[data-testid="topic-content-element-text-0"]';
 	static #textElementPos3 = '[data-testid="topic-content-element-text-3"]';
-	// static #groupSubmissionCheckbox = '[id="teamSubmissions"]'
-	// static #draftCheckbox = '[data-testid="private-checkbox"]'
 	static #copyAlertDialog = '[data-testid="copy-info-dialog-title"]';
 	static #closeButtonInCopyTopicDialog = '[data-testid="copy-info-dialog-confirm"]';
 	static #topicTitleCourseDetail = '[data-testid="lesson-name-0"]';

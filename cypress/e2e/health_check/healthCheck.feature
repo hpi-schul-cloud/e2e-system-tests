@@ -26,8 +26,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Given I am logged in as a '<student>' at '<namespace>'
         When I arrive on the dashboard
         Then I see school news with title 'Herzlichen Willkommen in der Cypress Health School' and description 'DIes ist ein beispielhafter News-Text'
-        Then I see teams news with title 'Team HC AG nimmt Arbeit auf' and description 'Lorem ipsum'
-        #Then I can see the assigned task 'Aufgabe Health Check' of course 'HC Kurs'
+        # Then I can see the assigned task 'Aufgabe Health Check' of course 'HC Kurs'
 
         # student check rooms, roomboard and content
         When I go to rooms overview
@@ -40,7 +39,7 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         Then I see displayed number of checked files is '6'
         When I click on breadcrumb element 'Bereich HC'
         Then I see the element H5P 'Software Health Check' in the card
-        #Then I see a card with element Whiteboard
+        # Then I see a card with element Whiteboard
         Then I see the video conference element added in the card
 
         # student checks grading of task via task overview
@@ -108,33 +107,15 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
             | nbc       | teacher_hc_nbc | Schmitt           |
             | brb       | teacher_hc_brb | Schmitt           |
 
-    Scenario Outline: teacher sees teams and news section on staging / ref.
+    Scenario Outline: teacher sees news section on staging / ref.
 
         Given I am logged in as a '<teacher>' at '<namespace>'
-
-        # teacher checks team
-        When I go to teams overview
-        When I go to a team 'HC AG'
-        When I click on team settings
-        When I click on edit option
-        Then I see team edit page
-        When I go to teams overview
-        Then I see team title 'HC AG' is visible
-        When I go to a team 'HC AG'
-        Then I see the uploaded file 'Gadget.jpg' in the file list
-        When I go to tab Calendar
-        Then I am in calendar tab on team detail page and title 'Brainstorming' is visible
-        Then I see the start video conference button
-        When I click on news tab on the team detail page
-        Then I can read the news 'Team HC AG nimmt Arbeit auf' with description 'Lorem ipsum'
 
         # teacher checks news
         When I go to news overview
         Then I can read the news 'Herzlichen Willkommen in der Cypress Health School' with description 'DIes ist ein beispielhafter News-Text'
         When I click on the news teaser 'Herzlichen Willkommen in der Cypress Health School'
         Then I can read the news 'Herzlichen Willkommen in der Cypress Health School' with description 'DIes ist ein beispielhafter News-Text' on news detail page
-        When I go to news overview
-        Then I can read the news 'Team HC AG nimmt Arbeit auf' with description 'Lorem ipsum'
 
         # teacher logout
         # next step is to load sidebar in vue
@@ -166,11 +147,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on the uploaded file 'giphy.gif' in course files
         Then I can see the preview of file 'giphy.gif'
         When I close the preview by clicking on the file preview
-
-        # teacher checks files > team files
-        When I go to team files overview
-        When I click on the folder 'HC AG' in files section
-        Then I see the uploaded file 'Gadget.jpg' in the file list
 
         # teacher checks files > shared files
         When I go to shared files overview
@@ -240,10 +216,6 @@ Feature: Health Check - To check the presences of modules in the dBildungscloud 
         When I click on external tools panel
         Then I see the tool '<external_tool>' in external tools table
         When I click on general settings panel
-
-        # admin sees class administration page
-        When I go to team administration
-        Then I see element 'HC AG' in data table
 
         # admin logout
         When I click on the initials

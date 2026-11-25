@@ -11,7 +11,6 @@ import CourseManagement from "../../pages/courses_management/pageCoursesManageme
 import Rooms from "../../pages/rooms/pageRooms";
 import RoomBoards from "../../pages/rooms_board/pageRoomsBoard";
 import Tasks from "../../pages/tasks/pageTasks";
-import Teams from "../../pages/teams/pageTeams";
 import Topics from "../../pages/topics/pageTopics";
 
 const account = new Account();
@@ -28,7 +27,6 @@ const management = new Management();
 const globalActions = new GlobalActions();
 const tasks = new Tasks();
 const topics = new Topics();
-const teams = new Teams();
 
 Given("the admin has added {string} {string} users", (numberOfUsers, role) => {
 	const num = parseInt(numberOfUsers, 10);
@@ -292,7 +290,7 @@ Given("admin enables video conference for the school in the school settings page
 	management.openAdministrationInMenu();
 	management.clickOnSchoolAdministrationInSideMenu();
 	management.clickGeneralSettingsPanel();
-	management.enableTeamsVideoConferenceByAdmin();
+	management.enableVideoConferenceByAdmin();
 	management.clickOnAdminSettingsSave();
 });
 

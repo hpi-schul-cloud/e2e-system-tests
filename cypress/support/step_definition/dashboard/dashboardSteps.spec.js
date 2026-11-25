@@ -37,13 +37,6 @@ Then(
 );
 
 Then(
-	"I see teams news with title {string} and description {string}",
-	(newsTitle, newsDesc) => {
-		dashboard.seeTeamsNews(newsTitle, newsDesc);
-	}
-);
-
-Then(
 	"I can see the assigned task {string} of course {string}",
 	(taskName, courseName) => {
 		dashboard.seeAssignedTasks(taskName, courseName);
@@ -56,8 +49,4 @@ Then("I can see the draft task {string} of course {string}", (draftName, courseN
 
 Then("I do not see school news with title {string}", (schoolNewsTitle) => {
 	news.doNotSeeNews(schoolNewsTitle);
-});
-
-Then("I do not see teams news with title {string}", (teamNewsTitle) => {
-	news.doNotSeeNews(teamNewsTitle);
 });
