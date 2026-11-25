@@ -243,7 +243,7 @@ Then(
 );
 
 When("I click on the button add content", () => {
-	rooms.clickOnAddContentButton();
+	rooms.openCreateBoardDialog();
 });
 
 When(

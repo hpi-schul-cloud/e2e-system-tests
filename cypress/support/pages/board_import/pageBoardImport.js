@@ -10,6 +10,7 @@ class BoardImport {
 	static #importButton = '[data-testid="board-import-dialog-confirm"]';
 	static #closeButton = '[data-testid="board-import-dialog-cancel"]';
 	static #jobStatus = '[data-testid="board-import-job-status"]';
+	static #importError = '[data-testid="board-import-error"]';
 
 	// The board import API runs in its own pod, which can still start up on a new namespace.
 	waitForBoardImportApi(triesLeft = 12) {
@@ -26,6 +27,13 @@ class BoardImport {
 			expect(status, "status of the board import API").to.not.be.oneOf(
 				BoardImport.#gatewayErrorStatuses
 			);
+		});
+		// The jobs route answers also when the import is off, so only the config shows the flag.
+		cy.request("/api/v3/config/public").then(({ body }) => {
+			expect(
+				body.FEATURE_BOARD_IMPORT_ENABLED,
+				"FEATURE_BOARD_IMPORT_ENABLED"
+			).to.eq(true);
 		});
 	}
 
@@ -54,6 +62,15 @@ class BoardImport {
 		// Polling sees a short-lived status only by chance, so only a final status is reliable.
 		expect(BoardImport.#finalStatuses).to.include(expectedStatus);
 		expect(timeoutInSeconds).to.be.a("number");
+		// The dialog shows an error and no status when the start of the import fails.
+		cy.get(`${BoardImport.#jobStatus}, ${BoardImport.#importError}`).then(
+			($elements) => {
+				expect(
+					$elements.filter(BoardImport.#importError).text().trim(),
+					"error in the board import dialog"
+				).to.be.empty;
+			}
+		);
 		// A job with a final status never changes, so the test stops at once.
 		cy.get(BoardImport.#jobStatus, { timeout: timeoutInSeconds * 1000 })
 			.should(($status) => {

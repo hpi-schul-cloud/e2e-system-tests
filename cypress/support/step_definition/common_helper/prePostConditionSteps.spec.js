@@ -316,7 +316,7 @@ Given("a room named {string} exists", (roomName) => {
 });
 
 Given("a multi-column board named {string} exists in the room", (boardTitle) => {
-	rooms.clickOnAddContentButton();
+	rooms.openCreateBoardDialog();
 	roomBoards.seeColumnBoardDialogBox();
 	roomBoards.clickOnButtonToAddMultiColumnBoard();
 	roomBoards.seeNewRoomBoardCreatePage();
@@ -337,7 +337,7 @@ Given(
 		rooms.selectRoomColour();
 		rooms.submitRoom();
 		rooms.seeRoomDetailPage(roomName);
-		rooms.clickOnAddContentButton();
+		rooms.openCreateBoardDialog();
 		roomBoards.seeColumnBoardDialogBox();
 		roomBoards.clickOnButtonToAddMultiColumnBoard();
 		roomBoards.seeNewRoomBoardCreatePage();
@@ -359,7 +359,7 @@ Given(
 		rooms.selectRoomColour();
 		rooms.submitRoom();
 		rooms.seeRoomDetailPage(roomName);
-		rooms.clickOnAddContentButton();
+		rooms.openCreateBoardDialog();
 		roomBoards.seeColumnBoardDialogBox();
 		roomBoards.clickOnButtonToAddMultiColumnBoard();
 		roomBoards.seeNewRoomBoardCreatePage();
@@ -375,7 +375,7 @@ Given(
 );
 
 Given("a single-column board named {string} exists in the room", (boardTitle) => {
-	rooms.clickOnAddContentButton();
+	rooms.openCreateBoardDialog();
 	roomBoards.seeColumnBoardDialogBox();
 	roomBoards.clickOnButtonToAddSingleColumnBoard();
 	roomBoards.seeNewRoomBoardCreatePage();

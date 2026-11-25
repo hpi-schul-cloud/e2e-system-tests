@@ -566,7 +566,7 @@ class Rooms {
 		cy.get(Rooms.#addContentButton).click();
 	}
 
-	clickOnAddContentButton() {
+	openCreateBoardDialog() {
 		this.openAddContentMenu();
 		// With the board import enabled, the button opens a menu and not the board layout dialog.
 		cy.get(`${Rooms.#createBoardButton}, ${Rooms.#boardLayoutDialogTitle}`).then(
