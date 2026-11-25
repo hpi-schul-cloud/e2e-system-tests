@@ -56,12 +56,11 @@ class BoardImport {
 		expect(timeoutInSeconds).to.be.a("number");
 		// A job with a final status never changes, so the test stops at once.
 		cy.get(BoardImport.#jobStatus, { timeout: timeoutInSeconds * 1000 })
-			.invoke("text")
-			.should((text) => {
-				expect(text.trim()).to.be.oneOf(BoardImport.#finalStatuses);
+			.should(($status) => {
+				expect($status.text().trim()).to.be.oneOf(BoardImport.#finalStatuses);
 			})
-			.then((text) => {
-				expect(text.trim(), "status of the board import job").to.eq(
+			.then(($status) => {
+				expect($status.text().trim(), "status of the board import job").to.eq(
 					expectedStatus
 				);
 			});
