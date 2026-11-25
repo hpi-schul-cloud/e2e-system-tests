@@ -34,13 +34,8 @@ class Management {
 		'[data-testid="sidebar-management-courses"]';
 	static #classAdministrationNavigationButton =
 		'[data-testid="sidebar-management-classes"]';
-	static #newClassAdministrationNavigationButton = '[data-testid="administrate_classes"]';
-	static #teamAdministrationNavigationButton = '[data-testid="sidebar-management-teams"]';
-	static #studentTeamCheckbox = '[data-testid="student_team_checkbox"]';
-	// static #videoConferenceToggle = 'input[data-testid="toggle_video_conference"]'
 	static #videoConferenceToggle =
 		'[data-testid="toggle_video_conference"] .v-input__control input';
-	static #submitButtonTeamsAdmin = '[data-testid="button_save_team_administration"]';
 	static #startMigrationButton = '[data-testid="migration-start-button"]';
 	static #migrationInformationText = '[data-testid="text-description"]';
 	static #migrationSchoolNumberInformationText = '[data-testid="migration-info-text"]';
@@ -632,7 +627,7 @@ class Management {
 		return cy.get(Management.#videoConferenceToggle).invoke("prop", "checked");
 	}
 
-	toggleTeamsVideoConferenceByAdmin(desiredState) {
+	toggleVideoConferenceByAdmin(desiredState) {
 		this.checkingToggleButtonStatus().then((toggleBtnStatus) => {
 			toggleBtnStatus === desiredState
 				? cy.log(`Element is already in the desired state, skipping click`)
@@ -645,36 +640,16 @@ class Management {
 		);
 	}
 
-	enableTeamsVideoConferenceByAdmin() {
-		this.toggleTeamsVideoConferenceByAdmin(true);
+	enableVideoConferenceByAdmin() {
+		this.toggleVideoConferenceByAdmin(true);
 	}
 
-	disableTeamsVideoConferenceByAdmin() {
-		this.toggleTeamsVideoConferenceByAdmin(false);
+	disableVideoConferenceByAdmin() {
+		this.toggleVideoConferenceByAdmin(false);
 	}
 
 	clickOnSchoolAdministrationInSideMenu() {
 		cy.get(Management.#schoolAdministrationNavigationSubMenu).first().click();
-	}
-
-	clickAllowStudentsTeamCheckbox() {
-		cy.get(Management.#studentTeamCheckbox)
-			.as("checkbox")
-			.invoke("is", ":checked")
-			.then((checked) => {
-				if (checked) {
-				} else {
-					cy.get("@checkbox").check();
-				}
-			});
-	}
-
-	clickSaveButtonToAllowStudentCreateTeam() {
-		cy.get(Management.#submitButtonTeamsAdmin).eq(0).click();
-	}
-
-	seeStudentTeamsAllowed() {
-		cy.get(Management.#studentTeamCheckbox).should("be.checked");
 	}
 
 	openAdministrationInMenu() {
@@ -721,11 +696,6 @@ class Management {
 	navigateToNewClassAdministration() {
 		cy.get(Management.#classAdministrationNavigationButton).click();
 		cy.url().should("include", "/administration/groups/classes");
-	}
-
-	navigateToTeamAdministration() {
-		cy.get(Management.#teamAdministrationNavigationButton).click();
-		cy.url().should("include", "/administration/teams");
 	}
 
 	clickGeneralSettingsPanel() {

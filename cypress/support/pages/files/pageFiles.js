@@ -21,8 +21,6 @@ class Files {
 		'[data-testid="sidebar-files-personalfiles"]';
 	static #coursesFilesOverviewNavigationButton =
 		'[data-testid="sidebar-files-coursefiles"]';
-	static #teamsFilesOverviewNavigationButton =
-		'[data-testid="sidebar-files-teamfiles"]';
 	static #sharedFilesOverviewNavigationButton =
 		'[data-testid="sidebar-files-sharedfiles"]';
 	static #editFilePopupBoxTitle = '[data-testid="popup-title"]';
@@ -51,12 +49,6 @@ class Files {
 		cy.get(Files.#coursesFilesOverviewNavigationButton).click();
 		cy.wait("@alerts_api");
 		cy.url().should("include", "/files/courses");
-	}
-
-	navigateToTeamsFilesOverview() {
-		cy.get(Files.#teamsFilesOverviewNavigationButton).click();
-		cy.wait("@alerts_api");
-		cy.url().should("include", "/files/teams");
 	}
 
 	navigateToSharedFilesOverview() {
