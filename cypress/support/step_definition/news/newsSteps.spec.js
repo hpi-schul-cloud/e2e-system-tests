@@ -8,7 +8,6 @@ const news = new News();
 // External defined steps can be found here:
 // -----------------------------------------
 // -->\step_definition\authentication\loginStep.spec.js
-// --> \step_definition\teams\commonTeamsSteps.spec.js
 // --> \step_definition\news\commonNewsSteps.spec.js
 
 Then(
