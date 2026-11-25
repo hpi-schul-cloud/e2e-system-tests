@@ -1,8 +1,7 @@
-@regression_test
-@stable_test
-@schedule_run
-@group-E
-@prio_0_staging
+@unstable_test
+
+# SET UNSTABLE AS THIS FEATURE WAS ONLY RAN ON DBC
+
 Feature: Course Board - To import a course from common cartridge 1.3
 
     As a teacher, I want to import a course from a common cartridge file exported from SVS
@@ -97,4 +96,4 @@ Feature: Course Board - To import a course from common cartridge 1.3
         @school_api_test
         Examples:
             | teacher      | namespace | import_wait_time |
-            | teacher1_nbc | nbc       | 3                |
+            | teacher1_dbc | dbc       | 3                |

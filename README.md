@@ -13,7 +13,7 @@ This project utilizes Cypress and Cucumber for Behavior-Driven Development (BDD)
 
 ### Branch Activation Process
 
-To utilize e2e tests in other repositories, you must complete the branch activation process. This includes applying specific labels to the pull requests (PR's) to extend the activation time for the branch URL of the namespaces (e.g. BRB/NBC/dBC) .
+To utilize e2e tests in other repositories, you must complete the branch activation process. This includes applying specific labels to the pull requests (PR's) to extend the activation time for the branch URL of the namespaces (e.g. BRB/NBC) .
 
 For a detailed guide on how to extend activation time and other branch activation procedures, please refer to the [Branch Activation Process](./docs/branch_activation.md) documentation.
 

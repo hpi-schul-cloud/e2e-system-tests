@@ -34,7 +34,7 @@ This document provides comprehensive instructions for setting up the project env
    <h5>Setting Up Environment Variables for Dev Environment/Cluster:</h5>
 
    - Duplicate the file [devTemplate.env.json](../env_variables/devTemplate.env.json) and rename the duplicated file to `local.env.json` inside the `env_variables` folder.
-   - Include the required development namespace URLs for BRB/DBC/NBC.
+   - Include the required development namespace URLs for BRB/NBC.
    - Test user data on development clusters are created using the school API.
    - To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
    - Contact QA team for the necessary 1Password links.
@@ -42,7 +42,7 @@ This document provides comprehensive instructions for setting up the project env
    <h5>Setting Up Environment Variables for Staging Environment/Cluster:</h5>
 
    - Duplicate the file [stagingTemplate.env.json](../env_variables/stagingTemplate.env.json) and rename the duplicated file to `staging.env.json` in the `env_variables` folder.
-   - Include the required staging namespace URLs for BRB/DBC/NBC.
+   - Include the required staging namespace URLs for BRB/NBC.
    - Test data on the staging environment are fetched from the seed data on the server.
    - Add the environment-specific credentials to `staging.env.json` from 1Password (1PW).
    - Ensure all instances are included, as 1Password contains different vaults for each namespace with testing credentials.

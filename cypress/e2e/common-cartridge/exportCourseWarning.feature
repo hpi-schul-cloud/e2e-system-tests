@@ -1,8 +1,7 @@
-@regression_test
-@stable_test
-@schedule_run
-@group-E
-@prio_0_staging
+@unstable_test
+
+# SET UNSTABLE AS THIS FEATURE WAS ONLY RAN ON DBC
+
 Feature: Course Board - To export a course as common cartridge and show a warning when 1.1.0 is selected
 
     As a teacher, I want to export a course as a common cartridge file and get a warning box, telling me that file folders will not be exported when CC 1.1.0 was selected
@@ -52,4 +51,4 @@ Feature: Course Board - To export a course as common cartridge and show a warnin
         @school_api_test
         Examples:
             | teacher      | namespace | course       | import_wait_time |
-            | teacher1_nbc | nbc       | CC_Test_Kurs | 3                |
+            | teacher1_dbc | dbc       | CC_Test_Kurs | 3                |
