@@ -11,9 +11,11 @@ Feature: Board Import - To start the import of a board from a link
         # pre-condition: creating account
         Given I am logged in as a '<teacher>' at '<namespace>'
 
-        # teacher starts the import and reads the import job
+        # teacher starts the import
         When I start a board import with the link '<link>' via API
-        Then I see the board import job is created via API
+
+        # the import worker processes the import job
+        Then I see the board import job has the status 'finished' within 90 seconds via API
 
         @school_api_test
         Examples:
