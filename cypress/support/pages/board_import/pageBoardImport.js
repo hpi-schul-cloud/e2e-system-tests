@@ -62,7 +62,6 @@ class BoardImport {
 		cy.get(BoardImport.#importDialog).should("not.exist");
 	}
 
-	// The room page does not load the board that the import worker created.
 	reloadPage() {
 		cy.reload();
 	}

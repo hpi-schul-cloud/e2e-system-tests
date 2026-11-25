@@ -29,7 +29,7 @@ Feature: Board Import - To start the import of a board from a link
         # the import worker processes the import job
         Then I see the board import job has the status 'finished' within 90 seconds
 
-        # teacher sees the imported board
+        # teacher reloads the room page and sees the imported board
         When I click on the button Close in the board import dialog
         When I reload the page
         Then I see the board '<board_title>' on the room overview page
