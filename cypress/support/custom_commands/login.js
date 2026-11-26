@@ -25,8 +25,9 @@ const shouldLoginViaApi = (username) =>
 
 Cypress.Commands.add("login", (username, environment) => {
 	// The API login opens no page inside the session setup, so the base URL for the relative
-	// cy.visit() calls after the login is set here, in command order.
-	cy.then(() => Cypress.config("baseUrl", Cypress.env()[environment.toUpperCase()]));
+	// cy.visit() calls after the login is set here. Not wrapped in cy.then: that made Cypress
+	// crash at the start of the next spec file ("* is not a valid URL").
+	Cypress.config("baseUrl", Cypress.env()[environment.toUpperCase()]);
 	cy.session(
 		[username, environment],
 		async () => {
