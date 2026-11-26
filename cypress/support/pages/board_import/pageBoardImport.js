@@ -57,11 +57,6 @@ class BoardImport {
 		cy.get(BoardImport.#importButton).click();
 	}
 
-	seeErrorInBoardImportDialog(error) {
-		cy.get(BoardImport.#importError).should("be.visible").and("contain.text", error);
-		cy.get(BoardImport.#jobStatus).should("not.exist");
-	}
-
 	closeBoardImportDialog() {
 		cy.get(BoardImport.#closeButton).click();
 		cy.get(BoardImport.#importDialog).should("not.exist");
