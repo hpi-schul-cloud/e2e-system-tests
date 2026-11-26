@@ -33,6 +33,10 @@ Then(
 	}
 );
 
+Then("I see the error {string} in the board import dialog", (error) => {
+	boardImport.seeErrorInBoardImportDialog(error);
+});
+
 When("I click on the button Close in the board import dialog", () => {
 	boardImport.closeBoardImportDialog();
 });
