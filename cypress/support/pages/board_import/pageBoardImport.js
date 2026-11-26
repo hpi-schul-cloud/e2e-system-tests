@@ -62,6 +62,10 @@ class BoardImport {
 		cy.get(BoardImport.#importDialog).should("not.exist");
 	}
 
+	reloadPage() {
+		cy.reload();
+	}
+
 	seeBoardImportJobHasStatus(expectedStatus, timeoutInSeconds) {
 		// Polling sees a short-lived status only by chance, so only a final status is reliable.
 		expect(BoardImport.#finalStatuses).to.include(expectedStatus);

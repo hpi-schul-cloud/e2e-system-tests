@@ -36,3 +36,7 @@ Then(
 When("I click on the button Close in the board import dialog", () => {
 	boardImport.closeBoardImportDialog();
 });
+
+When("I reload the page", () => {
+	boardImport.reloadPage();
+});

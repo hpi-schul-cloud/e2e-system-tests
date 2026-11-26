@@ -29,8 +29,17 @@ Feature: Board Import - To start the import of a board from a link
         # the import worker processes the import job
         Then I see the board import job has the status 'finished' within 90 seconds
 
-        # post-condition: teacher deletes room
+        # teacher reloads the room page and sees the imported board
         When I click on the button Close in the board import dialog
+        When I reload the page
+        Then I see the board '<board_title>' at position '0'
+        When I click on the board '<board_title>' in the room
+        Then I see the page board details
+        Then I see my room board is named '<board_title>'
+        Then I see the element Text '<link>' in the card
+
+        # post-condition: teacher deletes room
+        When I click on the breadcrumb to navigate to the room detail page
         When I click on three dot menu in room page
         When I select the three dot menu action 'delete'
         Then I see confirmation modal for deleting the room
@@ -39,5 +48,5 @@ Feature: Board Import - To start the import of a board from a link
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name            | link                      |
-            | teacher1_nbc | nbc       | CypressAut Room Name | https://example.com/board |
+            | teacher      | namespace | room_name            | link                      | board_title |
+            | teacher1_nbc | nbc       | CypressAut Room Name | https://example.com/board | Import      |
