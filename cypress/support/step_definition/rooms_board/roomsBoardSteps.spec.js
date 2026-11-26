@@ -127,6 +127,10 @@ Then("I see the board {string} at position {string}", (boardTitle, position) => 
 	roomBoards.verifyBoardAtPosition(boardTitle, position);
 });
 
+When("I click on the board {string} in the room", (boardTitle) => {
+	roomBoards.clickOnBoardInRoom(boardTitle);
+});
+
 Then("I see the card titled {string} on the target board", (cardTitle) => {
 	roomBoards.verifyCardPresentOnTargetBoard(cardTitle);
 });

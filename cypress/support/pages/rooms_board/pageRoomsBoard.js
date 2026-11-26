@@ -344,6 +344,10 @@ class RoomBoards {
 			.and("contain.text", boardTitle);
 	}
 
+	clickOnBoardInRoom(boardTitle) {
+		cy.contains('[data-testid^="board-grid-title-"]', boardTitle).click();
+	}
+
 	clickOnConfirmOnModalForDeletion() {
 		cy.get(RoomBoards.#deleteFileDialogConfirm).click();
 	}

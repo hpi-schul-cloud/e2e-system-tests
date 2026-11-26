@@ -32,8 +32,8 @@ Feature: Board Import - To start the import of a board from a link
         # teacher reloads the room page and sees the imported board
         When I click on the button Close in the board import dialog
         When I reload the page
-        Then I see the board '<board_title>' on the room overview page
-        When I click on the board '<board_title>' on the room overview page
+        Then I see the board '<board_title>' at position '0'
+        When I click on the board '<board_title>' in the room
         Then I see the page board details
         Then I see my room board is named '<board_title>'
         Then I see the element Text '<link>' in the card
