@@ -82,7 +82,17 @@ async function setupNodeEvents(on, config) {
 		return launchOptions;
 	});
 
+	// Values that must survive Cypress re-running a test after its first visit to a new domain
+	// (Cypress.env is reset then, this Node process is not). Used by the login (login.helper.js).
+	const runtimeValues = {};
 	on("task", {
+		setRuntimeValue({ key, value }) {
+			runtimeValues[key] = value;
+			return null;
+		},
+		getRuntimeValue(key) {
+			return runtimeValues[key] ?? null;
+		},
 		async loginViaSchoolApi(obj) {
 			try {
 				return ({ schoolId, username, initialPassword } = await createUser(

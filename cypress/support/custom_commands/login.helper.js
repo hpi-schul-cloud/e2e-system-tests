@@ -224,23 +224,34 @@ export const loginViaSchoolApi = async (username, environment) => {
 		visitLoginPage(environment);
 		const link = Cypress.config("baseUrl");
 
-		await cy
-			.task(
-				"loginViaSchoolApi",
-				{
-					url: link,
-					apiKey: Cypress.env(`apiKey-${environment}`),
-					schoolId: Cypress.env(`schoolId-${environment}`),
-					userType: username,
-				},
-				{ log: false }
-			)
-			.as("school_api_response");
+		await getStoredSchoolId(environment).then((storedSchoolId) =>
+			cy
+				.task(
+					"loginViaSchoolApi",
+					{
+						url: link,
+						apiKey: Cypress.env(`apiKey-${environment}`),
+						schoolId:
+							storedSchoolId || Cypress.env(`schoolId-${environment}`),
+						userType: username,
+					},
+					{ log: false }
+				)
+				.as("school_api_response")
+		);
 
 		await cy.get("@school_api_response").then((res) => {
 			Cypress.env(`schoolId-${environment}`, res.schoolId);
+			storeSchoolId(environment, res.schoolId);
 			Cypress.env("username", res.username);
 			Cypress.env("password", res.initialPassword);
+			storePassword(
+				username,
+				environment,
+				username.includes("student")
+					? Cypress.env("SET_NEW_PWD_BY_STUDENT")
+					: res.initialPassword
+			);
 			if (environment.includes("nbc")) {
 				cy.get(nbcLoginWithEmailOptionButton).click();
 			}
@@ -261,4 +272,123 @@ const visitLoginPage = (environment) => {
 	const link = Cypress.config("baseUrl", env[environmentUpperCased]);
 	cy.log(link);
 	cy.visit("/login");
+};
+
+// Cypress clears Cypress.env when it re-runs a test after its first visit to a new domain.
+// The school ID per test file and the password per user are therefore also kept in the
+// Node process (tasks setRuntimeValue / getRuntimeValue in cypress.config.js).
+const schoolIdKey = (environment) => `schoolId-${environment}-${Cypress.spec.relative}`;
+const passwordKey = (username, environment) =>
+	`password-${environment}-${username}-${Cypress.spec.relative}`;
+
+const getStoredSchoolId = (environment) =>
+	cy.task("getRuntimeValue", schoolIdKey(environment), { log: false });
+
+const storeSchoolId = (environment, schoolId) =>
+	cy.task(
+		"setRuntimeValue",
+		{ key: schoolIdKey(environment), value: schoolId },
+		{ log: false }
+	);
+
+export const getStoredPassword = (username, environment) =>
+	cy.task("getRuntimeValue", passwordKey(username, environment), { log: false });
+
+const storePassword = (username, environment, password) =>
+	cy.task(
+		"setRuntimeValue",
+		{ key: passwordKey(username, environment), value: password },
+		{ log: false }
+	);
+
+// Cypress prints the request (body and headers) when a request fails on its status code. The
+// requests of the API login carry passwords and the token, and the CI logs are public, so these
+// requests check the status themselves and the error shows only the status.
+const requestWithoutSecretsInError = (description, options) =>
+	cy.request({ ...options, failOnStatusCode: false, log: false }).then((response) => {
+		expect(response.status, `status of ${description}`).to.be.lessThan(400);
+
+		return response;
+	});
+
+// Creates the user through the admin API like loginViaSchoolApi, then logs in, completes the
+// first login and sets the language through the API instead of the UI. Sets the same
+// host-only cookies the client sets after a login through the form.
+export const loginViaApi = (username, environment) => {
+	const baseUrl = Cypress.config("baseUrl").replace(/\/$/, "");
+	const domain = new URL(baseUrl).hostname;
+	const isStudent = username.includes("student");
+
+	getStoredSchoolId(environment).then((storedSchoolId) => {
+		cy.task(
+			"loginViaSchoolApi",
+			{
+				url: baseUrl,
+				apiKey: Cypress.env(`apiKey-${environment}`),
+				schoolId: storedSchoolId || Cypress.env(`schoolId-${environment}`),
+				userType: username,
+			},
+			{ log: false }
+		).then((res) => {
+			// Students set a new password in their first login, as in studentFirstLogin.
+			const password = isStudent
+				? Cypress.env("SET_NEW_PWD_BY_STUDENT")
+				: res.initialPassword;
+			Cypress.env(`schoolId-${environment}`, res.schoolId);
+			storeSchoolId(environment, res.schoolId);
+			Cypress.env("username", res.username);
+			Cypress.env("password", password);
+			storePassword(username, environment, password);
+
+			requestWithoutSecretsInError("the API login", {
+				method: "POST",
+				url: `${baseUrl}/api/v3/authentication/local`,
+				body: { username: res.username, password: res.initialPassword },
+			}).then(({ body }) => {
+				const token = body.accessToken;
+
+				cy.setCookie("jwt", token, { domain, hostOnly: true, log: false });
+				cy.setCookie("isLoggedIn", "true", {
+					domain,
+					hostOnly: true,
+					log: false,
+				});
+				requestWithoutSecretsInError("setting the language", {
+					method: "PATCH",
+					url: `${baseUrl}/api/v3/user/language`,
+					headers: { Authorization: `Bearer ${token}` },
+					body: { language: "de" },
+				});
+				completeFirstLoginViaClientRoute(baseUrl, isStudent, password);
+			});
+		});
+	});
+};
+
+// The first login is a Feathers service that is not reachable publicly on branch
+// environments; the legacy client's form route forwards to it. The route is CSRF-protected,
+// so the token is read from the first-login page first. Students without a birthday get an
+// age selection first; like studentFirstLogin, this picks "16 or older" (?ue16=true).
+const completeFirstLoginViaClientRoute = (baseUrl, isStudent, password) => {
+	const body = isStudent
+		? {
+				"password-1": password,
+				"password-2": password,
+				studentBirthdate: "2000-03-21",
+			}
+		: {};
+
+	cy.request({
+		url: `${baseUrl}/firstLogin${isStudent ? "?ue16=true" : ""}`,
+		log: false,
+	}).then((page) => {
+		const match = page.body.match(/name="_csrf" value="([^"]+)"/);
+		expect(match, "CSRF token on /firstLogin").to.not.equal(null);
+		requestWithoutSecretsInError("the first login", {
+			method: "POST",
+			url: `${baseUrl}/firstLogin/submit`,
+			form: true,
+			body: { _csrf: match[1], ...body },
+		});
+	});
 };
