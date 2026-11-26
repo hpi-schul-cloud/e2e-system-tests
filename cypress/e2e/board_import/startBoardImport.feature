@@ -48,5 +48,5 @@ Feature: Board Import - To start the import of a board from a link
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name            | link                      | board_title |
-            | teacher1_nbc | nbc       | CypressAut Room Name | https://example.com/board | Import      |
+            | teacher      | namespace | room_name            | link                                                                                                             | board_title |
+            | teacher1_nbc | nbc       | CypressAut Room Name | https://www.taskcards.de/#/board/793bed21-a8ac-4a26-910e-2c3305ac6c0d?token=0599256f-0bd0-498b-b231-1899dd79a644 | Import      |
