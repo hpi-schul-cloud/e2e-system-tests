@@ -301,6 +301,16 @@ const storePassword = (username, environment, password) =>
 		{ log: false }
 	);
 
+// Cypress prints the request (body and headers) when a request fails on its status code. The
+// requests of the API login carry passwords and the token, and the CI logs are public, so these
+// requests check the status themselves and the error shows only the status.
+const requestWithoutSecretsInError = (description, options) =>
+	cy.request({ ...options, failOnStatusCode: false, log: false }).then((response) => {
+		expect(response.status, `status of ${description}`).to.be.lessThan(400);
+
+		return response;
+	});
+
 // Creates the user through the admin API like loginViaSchoolApi, then logs in, completes the
 // first login and sets the language through the API instead of the UI. Sets the same
 // host-only cookies the client sets after a login through the form.
@@ -330,11 +340,10 @@ export const loginViaApi = (username, environment) => {
 			Cypress.env("password", password);
 			storePassword(username, environment, password);
 
-			cy.request({
+			requestWithoutSecretsInError("the API login", {
 				method: "POST",
 				url: `${baseUrl}/api/v3/authentication/local`,
 				body: { username: res.username, password: res.initialPassword },
-				log: false,
 			}).then(({ body }) => {
 				const token = body.accessToken;
 
@@ -344,12 +353,11 @@ export const loginViaApi = (username, environment) => {
 					hostOnly: true,
 					log: false,
 				});
-				cy.request({
+				requestWithoutSecretsInError("setting the language", {
 					method: "PATCH",
 					url: `${baseUrl}/api/v3/user/language`,
 					headers: { Authorization: `Bearer ${token}` },
 					body: { language: "de" },
-					log: false,
 				});
 				completeFirstLoginViaClientRoute(baseUrl, isStudent, password);
 			});
@@ -376,12 +384,11 @@ const completeFirstLoginViaClientRoute = (baseUrl, isStudent, password) => {
 	}).then((page) => {
 		const match = page.body.match(/name="_csrf" value="([^"]+)"/);
 		expect(match, "CSRF token on /firstLogin").to.not.equal(null);
-		cy.request({
+		requestWithoutSecretsInError("the first login", {
 			method: "POST",
 			url: `${baseUrl}/firstLogin/submit`,
 			form: true,
 			body: { _csrf: match[1], ...body },
-			log: false,
 		});
 	});
 };
