@@ -35,7 +35,7 @@ This document provides comprehensive instructions for setting up the project env
 
    - Duplicate the file [devTemplate.env.json](../env_variables/devTemplate.env.json) and rename the duplicated file to `local.env.json` inside the `env_variables` folder.
    - Include the required development namespace URLs for BRB/NBC.
-   - Test user data on development clusters are created using the school API.
+   - Test user data on development clusters are created using the school API. New users then log in, complete their first login and set the language through the API, not the UI. Exceptions that keep the login through the UI: test files whose subject is the login (`specsWithUiLogin` in `cypress/support/custom_commands/login.js`) and external persons (their consent dialogs are not covered elsewhere).
    - To retrieve the API keys for all three namespaces, navigate to 1Password (1PW).
    - Contact QA team for the necessary 1Password links.
 
