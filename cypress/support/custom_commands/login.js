@@ -11,7 +11,7 @@ const languageSelection = '[id="v-list-group--id-languages"]';
 const languageDe = '[data-testid="selected-language-de"]';
 
 // Test files whose subject is the login itself keep logging in through the login form.
-const specsWithUiLogin = ["cloudLoginAndLogout"];
+const specsWithUiLogin = ["cloudLoginAndLogout.feature"];
 
 // New users log in via API, except where the login UI is the only coverage of a flow:
 // - the test files in specsWithUiLogin test the login form;
@@ -20,13 +20,13 @@ const specsWithUiLogin = ["cloudLoginAndLogout"];
 // The login form and the first-login dialogs of students and teachers are covered by the
 // registration tests (adminRegisters*WithLink, forcePasswordChange*, studentManualRegistrationByAdmin).
 const shouldLoginViaApi = (username) =>
-	!specsWithUiLogin.some((spec) => Cypress.spec.name.includes(spec)) &&
+	!specsWithUiLogin.includes(Cypress.spec.relative.split("/").pop()) &&
 	!/(?:^|_)externalPerson/.test(username);
 
 Cypress.Commands.add("login", (username, environment) => {
 	// The API login opens no page inside the session setup, so the base URL for the relative
-	// cy.visit() calls after the login is set here.
-	Cypress.config("baseUrl", Cypress.env()[environment.toUpperCase()]);
+	// cy.visit() calls after the login is set here, in command order.
+	cy.then(() => Cypress.config("baseUrl", Cypress.env()[environment.toUpperCase()]));
 	cy.session(
 		[username, environment],
 		async () => {
