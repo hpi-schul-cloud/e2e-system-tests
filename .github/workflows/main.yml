@@ -80,6 +80,14 @@ jobs:
           working-directory: e2e-system-tests
           command: npm run pretest
 
+      # Cypress 13 crashes with Chrome 158 ("* is not a valid URL"). Remove this step after the Cypress upgrade.
+      - name: Setup Chrome
+        id: setup-chrome
+        if: inputs.browser == 'chrome'
+        uses: browser-actions/setup-chrome@48ad923757ca74d66703209fe939badbdf80f2f4 # v2.2.0
+        with:
+          chrome-version: '157'
+
       - name: Cypress run
         uses: cypress-io/github-action@948d67d3074f1bbb6379c8bdbb04e95d2f8e593f # v7.4.0
         env:
@@ -89,7 +97,7 @@ jobs:
           command: |
             npx cypress run \
               --env tags=${{ inputs.tag }},parallelGroup=${{ inputs.groups }},environmentName=ci \
-              --browser ${{ inputs.browser }}
+              --browser ${{ steps.setup-chrome.outputs.chrome-path || inputs.browser }}
 
       - name: Generate Report
         if: always()
