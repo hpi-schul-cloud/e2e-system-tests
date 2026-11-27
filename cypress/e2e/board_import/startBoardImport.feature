@@ -40,6 +40,8 @@ Feature: Board Import - To start the import of a board from a link
         Then I see a column with title '<third_column>' at position '2'
         Then I see a card titled '<card_title>'
         Then I see a rich text element with pattern '<card_text>' at position '2' '0'
+        Then I see the element Link on the card
+        Then I see the URL '<card_link>' in the element Link
 
         # post-condition: teacher deletes room
         When I click on the breadcrumb to navigate to the room detail page
@@ -51,5 +53,5 @@ Feature: Board Import - To start the import of a board from a link
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name            | link                                                                                                             | board_title   | first_column | third_column | card_title | card_text                |
-            | teacher1_nbc | nbc       | CypressAut Room Name | https://www.taskcards.de/#/board/793bed21-a8ac-4a26-910e-2c3305ac6c0d?token=0599256f-0bd0-498b-b231-1899dd79a644 | Test Pinboard | Green        | Red          | Foobar     | Picture + colors changed |
+            | teacher      | namespace | room_name            | link                                                                                                             | board_title   | first_column | third_column | card_title | card_text                | card_link       |
+            | teacher1_nbc | nbc       | CypressAut Room Name | https://www.taskcards.de/#/board/793bed21-a8ac-4a26-910e-2c3305ac6c0d?token=0599256f-0bd0-498b-b231-1899dd79a644 | Test Pinboard | Green        | Red          | Foobar     | Picture + colors changed | https://fwu.de/ |
