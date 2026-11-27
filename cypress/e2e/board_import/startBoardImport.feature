@@ -36,7 +36,10 @@ Feature: Board Import - To start the import of a board from a link
         When I click on the board '<board_title>' in the room
         Then I see the page board details
         Then I see my room board is named '<board_title>'
-        Then I see the element Text '<link>' in the card
+        Then I see the column '<first_column>' at position '0' in the imported board
+        Then I see the column '<third_column>' at position '2' in the imported board
+        Then I see a card titled '<card_title>'
+        Then I see the text '<card_text>' in the column at position '2' in the imported board
 
         # post-condition: teacher deletes room
         When I click on the breadcrumb to navigate to the room detail page
@@ -48,5 +51,5 @@ Feature: Board Import - To start the import of a board from a link
 
         @school_api_test
         Examples:
-            | teacher      | namespace | room_name            | link                                                                                                             | board_title |
-            | teacher1_nbc | nbc       | CypressAut Room Name | https://www.taskcards.de/#/board/793bed21-a8ac-4a26-910e-2c3305ac6c0d?token=0599256f-0bd0-498b-b231-1899dd79a644 | Import      |
+            | teacher      | namespace | room_name            | link                                                                                                             | board_title   | first_column | third_column | card_title | card_text                |
+            | teacher1_nbc | nbc       | CypressAut Room Name | https://www.taskcards.de/#/board/793bed21-a8ac-4a26-910e-2c3305ac6c0d?token=0599256f-0bd0-498b-b231-1899dd79a644 | Test Pinboard | Green        | Red          | Foobar     | Picture + colors changed |

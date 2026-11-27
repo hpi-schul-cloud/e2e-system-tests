@@ -40,3 +40,17 @@ When("I click on the button Close in the board import dialog", () => {
 When("I reload the page", () => {
 	boardImport.reloadPage();
 });
+
+Then(
+	"I see the column {string} at position {string} in the imported board",
+	(title, position) => {
+		boardImport.seeColumnInImportedBoard(title, position);
+	}
+);
+
+Then(
+	"I see the text {string} in the column at position {string} in the imported board",
+	(text, position) => {
+		boardImport.seeTextInColumnOfImportedBoard(text, position);
+	}
+);
