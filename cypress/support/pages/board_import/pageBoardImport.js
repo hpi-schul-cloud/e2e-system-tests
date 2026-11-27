@@ -11,23 +11,6 @@ class BoardImport {
 	static #closeButton = '[data-testid="board-import-dialog-cancel"]';
 	static #jobStatus = '[data-testid="board-import-job-status"]';
 	static #importError = '[data-testid="board-import-error"]';
-	static #columnTitlePrefix = "column-title-";
-	static #textElementPrefix = "rich-text-display-";
-
-	seeColumnInImportedBoard(title, position) {
-		cy.get(`[data-testid="${BoardImport.#columnTitlePrefix}${position}"]`).should(
-			"contain.text",
-			title
-		);
-	}
-
-	// The test id of a text element has the position of the column and the position of the element in its card.
-	seeTextInColumnOfImportedBoard(text, position) {
-		cy.get(`[data-testid="${BoardImport.#textElementPrefix}${position}-0"]`).should(
-			"contain.text",
-			text
-		);
-	}
 
 	waitForBoardImportApi() {
 		this.#waitForJobsRoute(12);

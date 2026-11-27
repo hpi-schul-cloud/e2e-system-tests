@@ -36,10 +36,10 @@ Feature: Board Import - To start the import of a board from a link
         When I click on the board '<board_title>' in the room
         Then I see the page board details
         Then I see my room board is named '<board_title>'
-        Then I see the column '<first_column>' at position '0' in the imported board
-        Then I see the column '<third_column>' at position '2' in the imported board
+        Then I see a column with title '<first_column>' at position '0'
+        Then I see a column with title '<third_column>' at position '2'
         Then I see a card titled '<card_title>'
-        Then I see the text '<card_text>' in the column at position '2' in the imported board
+        Then I see a rich text element with pattern '<card_text>' at position '2' '0'
 
         # post-condition: teacher deletes room
         When I click on the breadcrumb to navigate to the room detail page
